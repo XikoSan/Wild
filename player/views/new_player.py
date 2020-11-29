@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.shortcuts import redirect, render
 from django.utils import timezone
+
 # from django.utils.translation import ugettext as _
 #
 from player.forms import NewPlayerForm
@@ -14,6 +15,7 @@ from player.forms import NewPlayerForm
 from player.player import Player
 from state.region import Region
 # from gamecore.all_models.storage import Storage
+from storage.storage import Storage
 
 
 # Функция создания нового персонажа
@@ -31,8 +33,8 @@ def player_create(request, form):
     character.region = start_pk
     character.residency = start_pk
 
-    # storage = Storage(owner=character, region=character.region)
-    # storage.save()
+    storage = Storage(owner=character, region=character.region)
+    storage.save()
 
     # mess = Message(player_from=Player.objects.get(pk=1), player_to=character, body=_(
     #     'Welcome! I am the creator and administrator of this game. This message was created automatically - but you can reply to me, ask your question right here, or by contacting me through VK/Discord. I highly recommend reading the “First Steps” article on the Wiki, and joining one of the parties in your state’s parliament. If you have any difficulties with the game or with team finding - write to me, I will help. Also, I will be glad to feedback. Have a nice game!'),
@@ -67,8 +69,8 @@ def new_player(request):
                 return JsonResponse(data)
             else:
                 return render(request, 'player/new_player.html', {'timezones': common,
-                                                                 'default': default,
-                                                                 'not_valid': 'True'})
+                                                                  'default': default,
+                                                                  'not_valid': 'True'})
             # Если же это первый запрос к странице:
         else:
             pass

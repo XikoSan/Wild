@@ -1,0 +1,262 @@
+# coding=utf-8
+from django.db import models
+from django.utils.translation import gettext_lazy
+from state.region import Region
+from player.player import Player
+
+
+class Storage(models.Model):
+    # ------vvvvvvv------Деньги на складе------vvvvvvv------
+    valut = {
+        'cash': gettext_lazy('storage_cash'),
+    }
+    # ------vvvvvvv------Минералы на складе------vvvvvvv------
+    minerals = {
+        # Анохор
+        'anohor': gettext_lazy('anohor'),
+        # Берконор
+        'berkonor': gettext_lazy('berkonor'),
+        # Грокцит
+        'grokcite': gettext_lazy('grokcite'),
+    }
+    # ------vvvvvvv------Нефть на складе------vvvvvvv------
+    oils = {
+        'wti_oil': gettext_lazy('wti_oil'),
+
+        'brent_oil': gettext_lazy('brent_oil'),
+
+        'urals_oil': gettext_lazy('urals_oil'),
+    }
+    # ------vvvvvvv------Материалы на складе------vvvvvvv------
+    materials = {
+        'gas': gettext_lazy('gas'),
+
+        'diesel': gettext_lazy('diesel'),
+
+        'steel': gettext_lazy('steel'),
+
+        'alumunuim': gettext_lazy('steel'),
+    }
+    # ------vvvvvvv------Юниты на складе------vvvvvvv------
+    units = {
+        'tank': gettext_lazy('tank'),
+        'antitank': gettext_lazy('antitank'),
+        'station': gettext_lazy('orb_station'),
+
+        'jet': gettext_lazy('attack_air'),
+        'pzrk': gettext_lazy('mpads'),
+    }
+
+    # владелец склада
+    owner = models.ForeignKey(Player, default=None, null=True, on_delete=models.CASCADE, verbose_name='Владелец',
+                                 related_name="owner")
+    # регион размещения
+    region = models.ForeignKey(Region, default=None, null=True, on_delete=models.SET_NULL, verbose_name='Регион размещения',
+                               related_name="placement")
+
+    # наличные на складе
+    cash = models.BigIntegerField(default=0, verbose_name=gettext_lazy('storage_cash'))
+
+
+    # ------vvvvvvv------Минералы на складе------vvvvvvv------
+    # Анохор
+    anohor = models.IntegerField(default=0, verbose_name=gettext_lazy('anohor'))
+    # Анохор- максимум на складе
+    anohor_cap = models.IntegerField(default=100000, verbose_name=gettext_lazy('anohor_cap'))
+
+    # Берконор
+    berkonor = models.IntegerField(default=0, verbose_name=gettext_lazy('berkonor'))
+    # Берконор- максимум на складе
+    berkonor_cap = models.IntegerField(default=100000, verbose_name=gettext_lazy('berkonor_cap'))
+
+    # Грокцит
+    grokcite = models.IntegerField(default=0, verbose_name=gettext_lazy('grokcite'))
+    # Грокцит- максимум на складе
+    grokcite_cap = models.IntegerField(default=100000, verbose_name=gettext_lazy('grokcite_cap'))
+
+
+    # ------vvvvvvv------Нефть на складе------vvvvvvv------
+    # Нефть WTI
+    wti_oil = models.IntegerField(default=0, verbose_name=gettext_lazy('wti_oil'))
+    # Нефть WTI- максимум на складе
+    wti_oil_cap = models.IntegerField(default=100000, verbose_name=gettext_lazy('wti_oil_cap'))
+
+    # Нефть Brent
+    brent_oil = models.IntegerField(default=0, verbose_name=gettext_lazy('brent_oil'))
+    # Нефть Brent- максимум на складе
+    brent_oil_cap = models.IntegerField(default=100000, verbose_name=gettext_lazy('brent_oil_cap'))
+
+    # Нефть Urals
+    urals_oil = models.IntegerField(default=0, verbose_name=gettext_lazy('urals_oil'))
+    # Нефть Urals- максимум на складе
+    urals_oil_cap = models.IntegerField(default=100000, verbose_name=gettext_lazy('urals_oil_cap'))
+
+    # ------vvvvvvv------Материалы на складе------vvvvvvv------
+    # бензин
+    gas = models.IntegerField(default=0, verbose_name=gettext_lazy('gas'))
+    # бензин- максимум на складе
+    gas_cap = models.IntegerField(default=10000, verbose_name=gettext_lazy('gas_cap'))
+
+    # бензин
+    diesel = models.IntegerField(default=0, verbose_name=gettext_lazy('diesel'))
+    # бензин- максимум на складе
+    diesel_cap = models.IntegerField(default=10000, verbose_name=gettext_lazy('diesel_cap'))
+
+    steel = models.IntegerField(default=0, verbose_name=gettext_lazy('steel'))
+    # сталь- максимум на складе
+    steel_cap = models.IntegerField(default=10000, verbose_name=gettext_lazy('steel_cap'))
+
+    alumunuim = models.IntegerField(default=0, verbose_name=gettext_lazy('alumunuim'))
+    # сталь- максимум на складе
+    alumunuim_cap = models.IntegerField(default=10000, verbose_name=gettext_lazy('alumunuim_cap'))
+
+    # ------vvvvvvv------Юниты на складе------vvvvvvv------
+    # танки
+    tank = models.IntegerField(default=0, verbose_name=gettext_lazy('tank'))
+    # танки- максимум на складе
+    tank_cap = models.IntegerField(default=1000, verbose_name='Танки- максимум на складе')
+
+    # штурмовики
+    jet = models.IntegerField(default=0, verbose_name=gettext_lazy('attack_air'))
+    # танки- максимум на складе
+    jet_cap = models.IntegerField(default=1000, verbose_name='Штурмовики- максимум на складе')
+
+    # орбитальные орудия
+    station = models.IntegerField(default=0, verbose_name=gettext_lazy('orb_station'))
+    # танки- максимум на складе
+    station_cap = models.IntegerField(default=10, verbose_name='Орбитальные орудия- максимум на складе')
+
+    # ПЗРК
+    pzrk = models.IntegerField(default=0, verbose_name=gettext_lazy('mpads'))
+    # танки- максимум на складе
+    pzrk_cap = models.IntegerField(default=1000, verbose_name='ПЗРК- максимум на складе')
+
+    # AT-cannon
+    antitank = models.IntegerField(default=0, verbose_name=gettext_lazy('antitank'))
+    # танки- максимум на складе
+    antitank_cap = models.IntegerField(default=1000, verbose_name='ПТ-пушка- максимум на складе')
+
+    # получить информацию о количестве предметов
+    def unitsOnStorageCount(self, mode):
+        data = {}
+
+        for unit in getattr(self, mode).keys():
+            data[unit] = getattr(self, unit)
+
+        return data
+
+    # получить информацию о количестве предметов
+    def allStorageCount(self):
+        data = {}
+        data['cash'] = getattr(self, 'cash')
+        for mode in {'minerals', 'oils', 'materials', 'units'}:
+            for unit in getattr(self, mode).keys():
+                data[unit] = getattr(self, unit)
+
+        return data
+
+    # проверить наличие предметов на Складе
+    def unitsOnStorageExist(self, request, mode):
+        unit_cnt = 0
+        retcode = False
+        for unit in getattr(self, mode).keys():
+            # проверяем что передано целое положительное число
+            try:
+                unit_cnt = int(request.POST.get(unit, ''))
+                # передано отрицательное число
+                if unit_cnt < 0:
+                    return _('positive_spend_stock_req')
+                    # return 'Нельзя списать со Склада отрицательное количество'
+                if unit_cnt == 0:
+                    continue
+                if unit_cnt > getattr(self, unit):
+                    return _('not_enough') + ' ' + str(getattr(self, mode).get(unit))
+                    # return 'Не хватает на складе: ' + str(getattr(self, mode).get(unit))
+                else:
+                    retcode = True
+            # нет юнита в запросе, ищем дальше
+            except ValueError:
+                continue
+        # Если цикл прошел, а так ничего не нашлось
+        if not retcode:
+            return 0
+
+    # проверить наличие места для предметов на Складе
+    def capacityAtStorageCheck(self, request, mode):
+        unit_cnt = 0
+        retcode = False
+        for unit in getattr(self, mode).keys():
+            # проверяем что передано целое положительное число
+            try:
+                unit_cnt = int(request.POST.get(unit, ''))
+                # передан ноль (ничего не передают)
+                if unit_cnt == 0:
+                    continue
+                # передано отрицательное число
+                if unit_cnt < 0:
+                    return _('positive_charge_stock_req')
+                    # return 'Нельзя начислить на Склад отрицательное количество'
+                # проверяем влезет ли всё - кроме денег
+                if not unit == 'cash':
+                    if unit_cnt + getattr(self, unit) > getattr(self, unit + '_cap'):
+                        return _('no_capacity') + ': ' + str(getattr(self, mode).get(unit))
+                        # return 'Не хватает на складе: ' + str(getattr(self, mode).get(unit))
+                else:
+                    retcode = True
+            # нет юнита в запросе, ищем дальше
+            except ValueError:
+                continue
+        # Если цикл прошел, а так ничего не нашлось
+        if not retcode:
+            return 0
+
+    # списать предметы со Склада
+    def unitsOnStorageUsing(self, request, mode):
+        data_dict = {}
+        for unit in getattr(self, mode).keys():
+            # проверяем что передано целое положительное число
+            try:
+                unit_cnt = int(request.POST.get(unit, ''))
+                # передано отрицательное число
+                if unit_cnt < 0:
+                    return
+                # предметов нужно больше чем есть на складе
+                if unit_cnt > getattr(self, unit):
+                    return
+                # записываем новое число предметов на складе
+                data_dict[unit] = getattr(self, unit) - unit_cnt
+            # нет юнита в запросе, ищем дальше
+            except ValueError:
+                continue
+        # списываем предметы
+        Storage.objects.filter(pk=self.pk).update(**data_dict)
+
+    # начислить предметы на Склад
+    def unitsToStorageAdd(self, request, mode):
+        data_dict = {}
+        for unit in getattr(self, mode).keys():
+            # проверяем что передано целое положительное число
+            try:
+                unit_cnt = int(request.POST.get(unit, ''))
+                # передано отрицательное число
+                if unit_cnt < 0:
+                    return
+                # предметов добавляется больше чем может вместить Склад
+                if not unit == 'cash':
+                    if unit_cnt + getattr(self, unit) > getattr(self, unit + '_cap'):
+                        return
+                # записываем новое число предметов на складе
+                data_dict[unit] = getattr(self, unit) + unit_cnt
+            # нет юнита в запросе, ищем дальше
+            except ValueError:
+                continue
+        # начисляем предметы
+        Storage.objects.filter(pk=self.pk).update(**data_dict)
+
+    def __str__(self):
+        return self.owner.nickname + " в " + self.region.region_name
+
+    # Свойства класса
+    class Meta:
+        verbose_name = "Склад"
+        verbose_name_plural = "Склады"
