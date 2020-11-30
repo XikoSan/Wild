@@ -12,7 +12,7 @@ from django.db import models
 from django.utils import timezone
 from io import BytesIO
 
-from state.region import Region
+from region.region import Region
 
 
 # from gamecore.all_models.Party.party import Party

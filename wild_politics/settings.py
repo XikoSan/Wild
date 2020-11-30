@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 
     'article',
     'parliament',
+    'region',
     'party',
     'player',
     'state',

@@ -13,7 +13,7 @@ from player.forms import NewPlayerForm
 # from gamecore.all_models.mail import Message
 # from gamecore.all_models.player import Player, Partners
 from player.player import Player
-from state.region import Region
+from region.region import Region
 # from gamecore.all_models.storage import Storage
 from storage.storage import Storage
 
