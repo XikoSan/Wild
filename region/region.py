@@ -2,8 +2,11 @@
 # import sys
 # from PIL import Image
 # from django.core.files.uploadedfile import InMemoryUploadedFile
+from django import forms
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
+
+
 # from six import with_metaclass
 # from io import BytesIO
 # from django.utils.translation import get_language
@@ -89,16 +92,25 @@ class Region(models.Model):
 
     # Руда:
     # в наличии
-    # ore_has = models.DecimalField(default=00.00, validators=[MinValueValidator(0)], max_digits=5, decimal_places=2,
-    #                               verbose_name='Руда: в наличии')
-    # разведано
-    # ore_cap = models.DecimalField(default=00.00, max_digits=5, decimal_places=2, verbose_name='Руда: максимум')
+    ore_has = models.DecimalField(default=00.00, validators=[MinValueValidator(0)], max_digits=5, decimal_places=2,
+                                  verbose_name='Руда: в наличии')
+    # максимум запасов
+    ore_cap = models.DecimalField(default=00.00, max_digits=5, decimal_places=2, verbose_name='Руда: максимум')
 
-    # потрачено пунктов разведки за сегодня
+    # # потрачено пунктов разведки за сегодня
     # ore_explored = models.DecimalField(default=00.00, max_digits=5, decimal_places=2, verbose_name='Руда: разведано')
-
-    # предел разведки
+    #
+    # # предел разведки
     # ore_explore_cap = models.DecimalField(default=00.00, max_digits=5, decimal_places=2, verbose_name='Руда: предел разведки')
+
+    # процент добываемого в регионе Анохора
+    anohor_proc = models.IntegerField(default=25, verbose_name='Процент Анохора')
+    # процент добываемого в регионе Берконора
+    berkonor_proc = models.IntegerField(default=25, verbose_name='Процент Берконора')
+    # процент добываемого в регионе Грокцита
+    grokcite_proc = models.IntegerField(default=25, verbose_name='Процент Грокцита')
+    # процент добываемой в регионе Случайной руды
+    rnd_mineral = models.IntegerField(default=25, verbose_name='Процент случайной руды')
 
     # shape = models.TextField(default=None, verbose_name='Вид на карте SVG')
     # централизация на карте
@@ -108,6 +120,10 @@ class Region(models.Model):
     # сохранение профиля с изменением размеров и названия картинки профиля
     def save(self):
         super(Region, self).save()
+
+    def clean(self):
+        if self.anohor_proc + self.berkonor_proc + self.grokcite_proc + self.rnd_mineral != 100:
+            raise forms.ValidationError('Сумма процентов добываемых минералов должна быть равна ста')
 
     def __str__(self):
         return self.region_name

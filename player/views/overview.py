@@ -15,7 +15,7 @@ from django.shortcuts import redirect, render
 # from gamecore.all_models.gov.state import State
 # from gamecore.all_models.mail import Message
 from player.player import Player
-# from gamecore.all_models.region import Region
+# from region.region import Region
 # from gamecore.all_models.war.ground_war import GroundWar
 # from gamecore.all_models.war.war import War
 from player.decorators.player import check_player
