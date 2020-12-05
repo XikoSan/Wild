@@ -130,13 +130,13 @@ class Player(models.Model):
 
     # -----------перелёты----------------
 
-    # # регион назначения
-    # destination = models.ForeignKey(Region, default=None, null=True, on_delete=models.SET_NULL, blank=True,
-    #                                 verbose_name='Регион назначения', related_name="destination")
+    # регион назначения
+    destination = models.ForeignKey(Region, default=None, null=True, on_delete=models.SET_NULL, blank=True,
+                                    verbose_name='Регион назначения', related_name="destination")
     # # время вылета
     # departure = models.DateTimeField(default=datetime.datetime(2000, 1, 1, 0, 0), blank=True)
-    # # время прилёта
-    # arrival = models.DateTimeField(default=datetime.datetime(2000, 1, 1, 0, 0), blank=True)
+    # время прилёта
+    arrival = models.DateTimeField(default=datetime.datetime(2000, 1, 1, 0, 0), blank=True)
 
     # рассчет естественного прироста с учётом уровня медицины в текущем регионе
     # def increase_calc(self):

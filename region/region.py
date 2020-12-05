@@ -79,16 +79,28 @@ class Region(models.Model):
 
     # Нефть:
     # в наличии
-    # oil_has = models.DecimalField(default=00.00, validators=[MinValueValidator(0)], max_digits=5, decimal_places=2,
-    #                               verbose_name='Нефть: в наличии')
-    # разведано
-    # oil_cap = models.DecimalField(default=00.00, max_digits=5, decimal_places=2, verbose_name='Нефть: максимум')
+    oil_has = models.DecimalField(default=00.00, validators=[MinValueValidator(0)], max_digits=5, decimal_places=2,
+                                  verbose_name='Нефть: в наличии')
+    # максимум запасов
+    oil_cap = models.DecimalField(default=00.00, max_digits=5, decimal_places=2, verbose_name='Нефть: максимум')
 
     # потрачено пунктов разведки за сегодня
     # oil_explored = models.DecimalField(default=00.00, max_digits=5, decimal_places=2, verbose_name='Нефть: разведано')
 
     # предел разведки
     # oil_explore_cap = models.DecimalField(default=00.00, max_digits=5, decimal_places=2, verbose_name='Нефть: предел разведки')
+
+    # марка добываемой нефти в регионе
+    oil_type_choices = (
+        ('wti_oil', 'Нефть WTI'),
+        ('brent_oil', 'Нефть Brent'),
+        ('urals_oil', 'Нефть Urals'),
+    )
+    oil_type = models.CharField(
+        max_length=10,
+        choices=oil_type_choices,
+        default='urals_oil',
+    )
 
     # Руда:
     # в наличии
@@ -109,8 +121,6 @@ class Region(models.Model):
     berkonor_proc = models.IntegerField(default=25, verbose_name='Процент Берконора')
     # процент добываемого в регионе Грокцита
     grokcite_proc = models.IntegerField(default=25, verbose_name='Процент Грокцита')
-    # процент добываемой в регионе Случайной руды
-    rnd_mineral = models.IntegerField(default=25, verbose_name='Процент случайной руды')
 
     # shape = models.TextField(default=None, verbose_name='Вид на карте SVG')
     # централизация на карте
@@ -122,7 +132,7 @@ class Region(models.Model):
         super(Region, self).save()
 
     def clean(self):
-        if self.anohor_proc + self.berkonor_proc + self.grokcite_proc + self.rnd_mineral != 100:
+        if self.anohor_proc + self.berkonor_proc + self.grokcite_proc != 100:
             raise forms.ValidationError('Сумма процентов добываемых минералов должна быть равна ста')
 
     def __str__(self):

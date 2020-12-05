@@ -3,7 +3,7 @@ import pytz
 import random
 from django.contrib.auth.decorators import login_required
 # from django.db.models import F
-from django.http import JsonResponse
+from wild_politics.settings import JResponse
 from django.shortcuts import redirect, render
 from django.utils import timezone
 
@@ -66,7 +66,7 @@ def new_player(request):
                 data = {
                     'response': 'ok',
                 }
-                return JsonResponse(data)
+                return JResponse(data)
             else:
                 return render(request, 'player/new_player.html', {'timezones': common,
                                                                   'default': default,

@@ -1,0 +1,36 @@
+{% extends 'player/header.html' %}
+{% load floor_to_tens %}
+
+{% block content %}
+Добыча ресурсов в регионе {{ player.region }}
+<br>
+<br>
+<b>Нефть</b>
+<br>
+Запасы: {{ player.region.oil_has }} / {{ player.region.oil_cap }}
+<br>
+Марка нефти: {{ player.region.get_oil_type_display }}
+<br>
+<br>
+<form method="POST" action="{% url 'do_mining' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="hidden" name="resource" value="oil">
+    <input type="number" min="0" max="100" value="{{ player.energy|floor_to_tens }}" step="10" name="energy" maxlength="3">
+    <button type="submit" enctype="multipart/form-data" class="save btn btn-default">Добыча ресурсов</button>
+</form>
+<br>
+<br>
+<b>Руда</b>
+<br>
+Запасы: {{ player.region.ore_has }} / {{ player.region.ore_cap }}
+<br>
+Качество руды: {{ player.region.anohor_proc }}% / {{ player.region.berkonor_proc }}% / {{ player.region.grokcite_proc }}%
+<br>
+<br>
+<form method="POST" action="{% url 'do_mining' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="hidden" name="resource" value="ore">
+    <input type="number" min="0" max="100" value="{{ player.energy|floor_to_tens }}" step="10" name="energy" maxlength="3">
+    <button type="submit" enctype="multipart/form-data" class="save btn btn-default">Добыча ресурсов</button>
+</form>
+{% endblock %}

@@ -1,0 +1,11 @@
+{{ player.nickname }}
+<br>
+уровень {{ player.level }}
+<br>
+энергии: {{ player.energy }}%
+<form method="POST" action="{% url 'do_mining' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    <button type="submit" enctype="multipart/form-data" class="save btn btn-default">Пополнить</button>
+</form>
+<br>
+<br>

@@ -1,0 +1,14 @@
+<html>
+{% load static %}
+{% load player_status %}
+
+{% if player %}
+{% if not player.banned %}
+<!--Информация в шапке игры-->
+{% player_status player %}
+{% endif %}
+{% endif %}
+
+{% block content %}
+{% endblock %}
+</html>

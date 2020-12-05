@@ -182,33 +182,22 @@ class Storage(models.Model):
             return 0
 
     # проверить наличие места для предметов на Складе
-    def capacityAtStorageCheck(self, request, mode):
-        unit_cnt = 0
-        retcode = False
-        for unit in getattr(self, mode).keys():
-            # проверяем что передано целое положительное число
-            try:
-                unit_cnt = int(request.POST.get(unit, ''))
-                # передан ноль (ничего не передают)
-                if unit_cnt == 0:
-                    continue
-                # передано отрицательное число
-                if unit_cnt < 0:
-                    return _('positive_charge_stock_req')
-                    # return 'Нельзя начислить на Склад отрицательное количество'
-                # проверяем влезет ли всё - кроме денег
-                if not unit == 'cash':
-                    if unit_cnt + getattr(self, unit) > getattr(self, unit + '_cap'):
-                        return _('no_capacity') + ': ' + str(getattr(self, mode).get(unit))
-                        # return 'Не хватает на складе: ' + str(getattr(self, mode).get(unit))
-                else:
-                    retcode = True
-            # нет юнита в запросе, ищем дальше
-            except ValueError:
-                continue
-        # Если цикл прошел, а так ничего не нашлось
-        if not retcode:
-            return 0
+    def capacity_check(self, field, count):
+        # передан ноль (ничего не передают)
+        if count == 0:
+            return True
+        # передано отрицательное число
+        if count < 0:
+            return False
+        # проверяем влезет ли всё - кроме денег
+        if not field == 'cash':
+            if count + getattr(self, field) > getattr(self, field + '_cap'):
+                return False
+            else:
+                return True
+        else:
+            # Для денег место есть всегда
+            return True
 
     # списать предметы со Склада
     def unitsOnStorageUsing(self, request, mode):
