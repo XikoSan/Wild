@@ -5,6 +5,19 @@
 Добыча ресурсов в регионе {{ player.region }}
 <br>
 <br>
+<b>Золото</b>
+<br>
+Запасы: {{ player.region.gold_has }} / {{ player.region.gold_cap }}
+<br>
+<br>
+<form method="POST" action="{% url 'do_mining' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="hidden" name="resource" value="gold">
+    <input type="number" min="0" max="100" value="{{ player.energy|floor_to_tens }}" step="10" name="energy" maxlength="3">
+    <button type="submit" enctype="multipart/form-data" class="save btn btn-default">Добыча ресурсов</button>
+</form>
+<br>
+<br>
 <b>Нефть</b>
 <br>
 Запасы: {{ player.region.oil_has }} / {{ player.region.oil_cap }}

@@ -66,10 +66,10 @@ class Region(models.Model):
     # ---------- Ресурсы ----------
     # Золотце:
     # в наличии
-    # gold_has = models.DecimalField(default=00.00, validators=[MinValueValidator(0)], max_digits=5, decimal_places=2,
-    #                                verbose_name='Золото: в наличии')
+    gold_has = models.DecimalField(default=00.00, validators=[MinValueValidator(0)], max_digits=5, decimal_places=2,
+                                   verbose_name='Золото: в наличии')
     # разведано
-    # gold_cap = models.DecimalField(default=00.00, max_digits=5, decimal_places=2, verbose_name='Золото: максимум')
+    gold_cap = models.DecimalField(default=00.00, max_digits=5, decimal_places=2, verbose_name='Золото: максимум')
 
     # потрачено пунктов разведки за сегодня
     # gold_explored = models.DecimalField(default=00.00, max_digits=5, decimal_places=2, verbose_name='Золото: разведано')

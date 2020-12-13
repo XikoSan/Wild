@@ -30,7 +30,7 @@ def do_mining(request):
 
         if player.destination:
             data = {
-                # 'responce': _('wait_flight_end'),
+                # 'response': _('wait_flight_end'),
                 'response': 'Дождитесь конца полёта',
             }
             # return JResponse(data)
@@ -55,7 +55,7 @@ def do_mining(request):
         # Количество Энергии должно быть кратно десяти
         if count % 10 != 0:
             data = {
-                # 'responce': _('mul_ten_enrg_req'),
+                # 'response': _('mul_ten_enrg_req'),
                 'response': 'Количество Энергии должно быть кратно десяти',
             }
             return JResponse(data)
@@ -65,11 +65,28 @@ def do_mining(request):
 
         resource = request.POST.get('resource')
 
-        if resource == 'oil':
+        if resource == 'gold':
+            # если запасов ресурса недостаточно
+            if player.region.gold_has < Decimal((count / 10) * 0.01):
+                data = {
+                    # 'response': _('mul_ten_enrg_req'),
+                    'response': 'Запасов золота в регионе недостаточно для добычи',
+                }
+                return JResponse(data)
+
+            player.gold += count / 10
+            mined_result['gold'] = int(count / 10)
+
+            player.cash += count
+            mined_result['cash'] = count
+
+            player.region.gold_has -= Decimal((count / 10) * 0.01)
+
+        elif resource == 'oil':
             # если запасов ресурса недостаточно
             if player.region.oil_has < Decimal((count / 10) * 0.01):
                 data = {
-                    # 'responce': _('mul_ten_enrg_req'),
+                    # 'response': _('mul_ten_enrg_req'),
                     'response': 'Запасов нефти в регионе недостаточно для добычи',
                 }
                 return JResponse(data)
@@ -92,7 +109,7 @@ def do_mining(request):
             # если запасов ресурса недостаточно
             if player.region.ore_has < Decimal((count / 10) * 0.01):
                 data = {
-                    # 'responce': _('mul_ten_enrg_req'),
+                    # 'response': _('mul_ten_enrg_req'),
                     'response': 'Запасов руды в регионе недостаточно для добычи',
                 }
                 return JResponse(data)
@@ -111,12 +128,13 @@ def do_mining(request):
 
             player.region.ore_has -= Decimal((count / 10) * 0.01)
 
-        player.energy -= count
-        player.save()
+        if mined_result:
+            player.energy -= count
+            player.save()
 
-        player.region.save()
+            player.region.save()
 
-        storage.save()
+            storage.save()
 
         data = {
             'response': 'ok',

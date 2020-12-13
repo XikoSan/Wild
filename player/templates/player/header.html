@@ -1,6 +1,12 @@
 <html>
+{% load bootstrap3 %}
+<script src="{% bootstrap_jquery_url %}"></script>
+{% bootstrap_javascript %}
+{% bootstrap_css %}
+
 {% load static %}
 {% load player_status %}
+{% load menu %}
 
 {% if player %}
 {% if not player.banned %}
@@ -9,6 +15,12 @@
 {% endif %}
 {% endif %}
 
+<div class="col-xs-2 col-sm-2 col-md-2">
+<!--Информация в шапке игры-->
+{% menu %}
+</div>
+<div class="col-xs-10 col-sm-10 col-md-10">
 {% block content %}
 {% endblock %}
+</div>
 </html>

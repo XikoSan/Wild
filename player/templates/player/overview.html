@@ -1,8 +1,8 @@
+{% extends 'player/header.html' %}
+
+
+{% block content %}
 Привет, {{ player }} !
 <br>
 Ты находишься в регионе {{ player.region }}
-<br>
-<br>
-Действия:
-<br>
-<a href="/mining">Добыча ресурсов в регионе</a>
+{% endblock %}
