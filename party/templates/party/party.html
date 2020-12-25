@@ -1,0 +1,11 @@
+{% extends 'player/header.html' %}
+{% load party_blocks.no_party %}
+{% load party_blocks.has_party %}
+
+{% block content %}
+    {% if player.party %}
+       {% has_party player %}
+    {% else %}
+        {% no_party player %}
+    {% endif %}
+{% endblock %}

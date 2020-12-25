@@ -1,0 +1,177 @@
+{% load dict_key %}
+{% load tz %}
+<div class="row">
+    <div class="col-xs-2 col-sm-2 col-md-2">
+    </div>
+        <div class="col-xs-4 col-sm-4 col-md-4">
+            {% if player.party.image %}
+            <!--Картинка партии-->
+            <img src="{{ player.party.image }}" width="250" height="250">
+            {% else %}
+            нету :(
+            {% endif %}
+        </div>
+        <div class="col-xs-4 col-sm-4 col-md-4">
+            <br>
+            <font color="black" size="4"><b>{{ player.party.title }}</b></font>
+            {% if player.party.description %}
+            <br>
+            <font color="black" size="2">{{ player.party.description }}</font>
+            {% endif %}
+            <br>
+            <div>
+                <font color="black" size="4">регион: </font>{{ player.party.region.on_map_id }}<font color="black" size="4">{{ player.party.region.region_name }}</font>
+            </div>
+            <br>
+            <font color="black" size="4">Численность: {{ members_count }} человек</font>
+            <br>
+            <br>
+            {% if primaries != None %}
+            <a href="/" class="btn btn-info">Праймериз</a>
+            {% endif %}
+            {% if player.party_post.party_lead or player.party_post.party_sec %}
+                {% if player.party.type == 'pt' %}
+                    {% if requests_count %}
+                        <a href="/" class="btn btn-info">Запросов в партию: ({{ requests_count }})</a>
+                    {% else %}
+                        <a href="/" class="btn btn-info">Нет запросов</a>
+                    {% endif %}
+                {% endif %}
+            {% endif %}
+            {% if player.party_post.party_lead %}
+                <a href="/" class="btn btn-warning">Управление партией</a>
+            {% else %}
+<!--            <form id="leave_party_form" role="form">-->
+<!--                &lt;!&ndash;Форма выхода из партии&ndash;&gt;-->
+<!--                {% csrf_token %}-->
+<!--                <input type="hidden" name="party_id" id="party_id" value="{{ player.party.pk }}">-->
+<!--                <input type="submit" class="btn btn-danger" value="Покинуть партию"/>-->
+<!--            </form>-->
+            <a href="{% url 'party_leaver' party_id=player.party.pk %}" class="btn btn-danger">Покинуть партию</a>
+            {% endif %}
+        </div>
+    <div class="col-xs-2 col-sm-2 col-md-2">
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-1 col-sm-1 col-md-1">
+    </div>
+    <div class="col-xs-10 col-sm-10 col-md-10" align="left" id="all_members">
+        <div class="row">
+            <div class="col-xs-1 col-sm-1 col-md-1">
+            </div>
+            <div class="col-xs-4 col-sm-4 col-md-4" align="center">
+                <h4>
+                    Никнейм
+                </h4>
+            </div>
+            <div class="col-xs-2 col-sm-2 col-md-2" align="center">
+                <h4>
+                    Был в сети
+                </h4>
+            </div>
+            <div class="col-xs-4 col-sm-4 col-md-4" align="center">
+                <h4>
+                    Должность
+                </h4>
+            </div>
+            <div class="col-xs-1 col-sm-1 col-md-1">
+            </div>
+        </div>
+        {% for member in players_list %}
+        <div class="row flex">
+            <div class="col-xs-1 col-sm-1 col-md-1">
+                <!--если пользователь загрузил аватарку-->
+                <a href='profile/{{ member.pk }}' target="_blank">
+                    {% if member.image %}
+                    <img src="{{ member.image }}" width="50" height="50" align="right">
+                    {% else %}
+                    нету :(
+                    {% endif %}
+                </a>
+            </div>
+            <div class="col-xs-4 col-sm-4 col-md-4">
+                <h3>
+                <a href='profile/{{ member.pk }}' target="_blank">{{ member.nickname }}</a>
+                {% if member == prev_lead.leader %}
+                    <!--отметка лидера праймериз-->
+                    <div class="glyphicon glyphicon-star-empty">
+                    </div>
+                {% endif %}
+                </h3>
+            </div>
+            <div class="col-xs-2 col-sm-2 col-md-2" align="center">
+                <h4>
+                    {{ member.account.last_login|timezone:player.time_zone|date:"d.m.Y H:i" }}
+                </h4>
+            </div>
+            <div class="col-xs-4 col-sm-4 col-md-4">
+                <h3>
+                    <!--Редактировать должности могут только лидер или секретарь-->
+                    {% if player.party_post.party_lead or player.party_post.party_sec %}
+                    <form class="set_role_form" method="post">
+                        <!--Токен-->
+                        {% csrf_token %}
+                        <input type="hidden" name="member_id" id="member_id" value="{{ member.pk }}">
+                        <!--формы нет если она на строке лидера, игрока-->
+                        {% if member.party_post.party_lead or member == player %}
+                            {{ member.party_post.title }}
+                        {% else %}
+                            {% if member.party_post.party_sec == player.party_post.party_sec and player.party_post.party_sec == True %}
+                                {{ member.party_post.title }}
+                            {% else %}
+                            <select style="border-radius: 5px; border: 1px solid #efefef; background: #efefef;">
+                                {% for role in roles_list %}
+                                    {% if member.party_post == role %}
+                                        <option selected value='{{ role.pk }}'>{{ role.title }}</option>
+                                    {% else %}
+                                        <!--если игрок - лидер партии-->
+                                        {% if player.party_post.party_lead %}
+                                            <!--не выводить должность главы для тех, кому она не назначена-->
+                                            {% if not role.party_lead %}
+                                            <option value='{{ role.pk }}'>{{ role.title }}</option>
+                                            {% endif %}
+                                        <!--если player имеет должность секретаря-->
+                                        {% else %}
+                                            <!--не выводить должность главы и секретаря для тех, кому она не назначена-->
+                                            {% if not role.party_lead %}
+                                                {% if not role.party_sec %}
+                                                <option value='{{ role.pk }}'>{{ role.title }}</option>
+                                                {% endif %}
+                                            {% endif %}
+                                        {% endif %}
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                            {% endif %}
+                        {% endif %}
+                    </form>
+                    {% else %}
+                        {{ member.party_post.title }}
+                    {% endif %}
+                </h3>
+            </div>
+            <div class="col-xs-1 col-sm-1 col-md-1">
+                <!--если игрок - лидер партии-->
+                {% if player.party_post.party_lead %}
+                    <!--если это не строка с его персонажем и он не администратор-->
+                    {% if member.id == 1 or member == player %}
+                    {% else %}
+                    <!--кнопка исключения из партии-->
+                    <a href="/">
+                        <h3>
+                            <font color="red">
+                                <div class="glyphicon glyphicon-remove">
+                                </div>
+                            </font>
+                        </h3>
+                    </a>
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="col-xs-1 col-sm-1 col-md-1">
+    </div>
+</div>

@@ -12,11 +12,11 @@ from django.db import models
 from django.utils import timezone
 from io import BytesIO
 
+from party.party import Party
+from party.position import PartyPosition
 from region.region import Region
 
 
-# from gamecore.all_models.Party.party import Party
-# from gamecore.all_models.Party.position import PartyPosition
 # from gamecore.all_models.gov.state import State
 # from .region import Region
 
@@ -48,13 +48,13 @@ class Player(models.Model):
     residency_date = models.DateTimeField(default=timezone.now, blank=True, verbose_name='Дата получния прописки')
 
     # -----------партия----------------
-    #
-    # # партия игрока
-    # party = models.ForeignKey(Party, default=None, null=True, on_delete=models.SET_NULL, blank=True,
-    #                           verbose_name='Партия', related_name="party")
-    # # позиция в партии
-    # party_post = models.ForeignKey(PartyPosition, default=None, null=True, on_delete=models.SET_NULL, blank=True,
-    #                                verbose_name='Должность в партии', related_name="party_post")
+
+    # партия игрока
+    party = models.ForeignKey(Party, default=None, null=True, on_delete=models.SET_NULL, blank=True,
+                              verbose_name='Партия', related_name="party")
+    # позиция в партии
+    party_post = models.ForeignKey(PartyPosition, default=None, null=True, on_delete=models.SET_NULL, blank=True,
+                                   verbose_name='Должность в партии', related_name="party_post")
 
     # -----------опыт----------------
 

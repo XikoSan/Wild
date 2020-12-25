@@ -1,11 +1,13 @@
-{{ player.nickname }}
-<br>
-уровень {{ player.level }}
-<br>
-энергии: {{ player.energy }}%
-<form method="POST" action="{% url 'do_mining' %}" enctype="multipart/form-data">
-    {% csrf_token %}
-    <button type="submit" enctype="multipart/form-data" class="save btn btn-default">Пополнить</button>
-</form>
-<br>
-<br>
+<div class="col-xs-2 col-sm-2 col-md-2">
+    <div class="row">{{ player.nickname }}</div>
+    <div class="row">уровень {{ player.level }}</div>
+</div>
+<div class="col-xs-10 col-sm-10 col-md-10">
+    <div class="row">энергии: {{ player.energy }}%</div>
+    <div class="row">
+        <form method="POST" action="{% url 'do_mining' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <button type="submit" enctype="multipart/form-data" class="save btn btn-default">Пополнить</button>
+        </form>
+    </div>
+</div>

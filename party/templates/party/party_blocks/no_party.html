@@ -1,0 +1,114 @@
+{% load dict_key %}
+<div class="row">
+    <div class="col-xs-2 col-sm-2 col-md-2">
+    </div>
+    <div class="col-xs-8 col-sm-8 col-md-8">
+        <div class="row">
+            <div class="col-xs-6 col-sm-6 col-md-6" align="left">
+                <b>Вы не состоите в партии</b>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6" align="right">
+                <button type="button" class="btn btn-success" onclick="window.location.href = '/new_party'">
+                    создать партию
+                </button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-8 col-sm-8 col-md-8" align="left">
+                <b>Доступные партии: {{ party_count }}, в регионе {{ player.region }}: {{ regional_count }}</b>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-2 col-sm-2 col-md-2">
+    </div>
+</div>
+<!-- Tabs -->
+<ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#All">Все партии</a></li>
+    <!--<li class="active"><a data-toggle="tab" href="#All">Все партии</a></li>-->
+    <li><a data-toggle="tab" href="#Regional">Региональные</a></li>
+    <!--<li><a data-toggle="tab" href="#Regional">Региональные</a></li>-->
+</ul>
+<!-- Tab content -->
+<div class="tab-content">
+    <div id="All" class="tab-pane fade in active">
+        {% if party_count != 0 %}
+            {% for party in all_parties %}
+            <div class="row" style="margin: 1.5em;">
+                <div class="col-xs-2 col-sm-2 col-md-2">
+                    <!--если у партии есть аватарка-->
+                    {% if party.image %}
+                    <img src="{{ party.image }}" width="80" height="80" align="right">
+                    {% else %}
+                    нету :(
+                    {% endif %}
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6">
+                    <!--Заголовок партии-->
+                    <h4>{{ party.title }}</h4>
+                </div>
+                <div class="col-xs-2 col-sm-2 col-md-2">
+                    <h4>{{ sizes|dict_key:party }} человек</h4>
+                </div>
+                <div class="col-xs-2 col-sm-2 col-md-2">
+                    {% if party.type == 'op' %}
+                        <a href="{% url 'party_joiner' plr_pk=player.pk pty_pk=party.pk %}" class="btn btn-success">Вступить</a>
+                    {% endif %}
+                    {% if party.type == 'pt' %}
+                        {% if requests|dict_key:party %}
+                            <a href="/" class="btn btn-danger">Отменить заявку</a>
+                        {% else %}
+                            <a href="/" class="btn btn-success">Подать заявку</a>
+                        {% endif %}
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <div align="center">
+                <b>Ещё не создано ни одной партии. Станьте первыми!</b>
+            </div>
+        {% endif %}
+    </div>
+
+    <div id="Regional" class="tab-pane fade">
+        {% if regional_count != 0 %}
+            {% for party in regional_parties %}
+            <div class="row" style="margin: 1.5em;">
+                <div class="col-xs-2 col-sm-2 col-md-2">
+                    <!--если у партии есть аватарка-->
+                    {% if party.image%}
+                    <img src="{{ party.image }}" width="80" height="80" align="right">
+                    {% else %}
+                    нету :(
+                    {% endif %}
+                </div>
+            <div class="col-xs-6 col-sm-6 col-md-6">
+                <!--Заголовок партии-->
+                <h4>{{ party.title }}</h4>
+            </div>
+            <div class="col-xs-2 col-sm-2 col-md-2">
+                <h4>{{ rg_sizes|dict_key:party }} человек</h4>
+            </div>
+            <div class="col-xs-2 col-sm-2 col-md-2">
+                {% if party.type == 'op' %}
+                    <a href="{% url 'party_joiner' plr_pk=player.pk pty_pk=party.pk %}" class="btn btn-success">Вступить</a>
+                {% endif %}
+                {% if party.type == 'pt' %}
+                    {% if requests|dict_key:party %}
+                        <a href="/" class="btn btn-danger">Отменить заявку</a>
+                    {% else %}
+                        <a href="/" class="btn btn-success">Подать заявку</a>
+                    {% endif %}
+                {% endif %}
+            </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <div align="center">
+                <b>В этом регионе нет ни одной партии</b>
+            </div>
+        {% endif %}
+    </div>
+</div>

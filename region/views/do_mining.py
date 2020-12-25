@@ -37,7 +37,10 @@ def do_mining(request):
             return JResponse(data)
             # return HttpResponse('Дождитесь конца полёта')
 
-        if not Storage.objects.filter(owner=player, region=player.region).exists():
+        resource = request.POST.get('resource')
+
+        if not Storage.objects.filter(owner=player, region=player.region).exists()\
+                and resource != 'gold':
             data = {
                 'response': 'У вас нет склада в этом регионе',
             }
@@ -61,9 +64,9 @@ def do_mining(request):
             return JResponse(data)
 
         mined_result = {}
-        storage = Storage.objects.get(owner=player, region=player.region)
 
-        resource = request.POST.get('resource')
+        if resource != 'gold':
+            storage = Storage.objects.get(owner=player, region=player.region)
 
         if resource == 'gold':
             # если запасов ресурса недостаточно
@@ -134,7 +137,8 @@ def do_mining(request):
 
             player.region.save()
 
-            storage.save()
+            if resource != 'gold':
+                storage.save()
 
         data = {
             'response': 'ok',
