@@ -57,9 +57,9 @@
                     {% endif %}
                     {% if party.type == 'pt' %}
                         {% if requests|dict_key:party %}
-                            <a href="/" class="btn btn-danger">Отменить заявку</a>
+                            <a href="{% url 'party_cancel' plr_pk=player.pk pty_pk=party.pk %}" class="btn btn-danger">Отменить заявку</a>
                         {% else %}
-                            <a href="/" class="btn btn-success">Подать заявку</a>
+                            <a href="{% url 'party_request' plr_pk=player.pk pty_pk=party.pk %}" class="btn btn-success">Подать заявку</a>
                         {% endif %}
                     {% endif %}
                 </div>
@@ -97,9 +97,9 @@
                 {% endif %}
                 {% if party.type == 'pt' %}
                     {% if requests|dict_key:party %}
-                        <a href="/" class="btn btn-danger">Отменить заявку</a>
+                        <a href="{% url 'party_cancel' plr_pk=player.pk pty_pk=party.pk %}" class="btn btn-danger">Отменить заявку</a>
                     {% else %}
-                        <a href="/" class="btn btn-success">Подать заявку</a>
+                        <a href="{% url 'party_request' plr_pk=player.pk pty_pk=party.pk %}" class="btn btn-success">Подать заявку</a>
                     {% endif %}
                 {% endif %}
             </div>

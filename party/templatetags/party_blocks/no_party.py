@@ -1,6 +1,7 @@
 from django import template
 
 from party.party import Party
+from party.party_apply import PartyApply
 from player.player import Player
 
 register = template.Library()
@@ -18,17 +19,19 @@ def no_party(player):
     for reg_party in reg_partys:
         reg_party_sizes[reg_party] = Player.objects.filter(party=reg_party).count()
 
-    # r_partys = Party.objects.filter(type='pt')
-    # requests = {}
-    # for req_party in r_partys:
-    #     if PartyApply.objects.filter(player=player, party=req_party).exists():
-    #         requests[req_party] = True
-    #     else:
-    #         requests[req_party] = False
+    pt_partys = Party.objects.filter(type='pt')
+    requests = {}
+    for req_party in pt_partys:
+        if PartyApply.objects.filter(player=player, party=req_party).exists():
+            requests[req_party] = True
+        else:
+            requests[req_party] = False
 
     return {
         # игрок
         'player': player,
+        # запросы игрока в партии
+        'requests': requests,
 
         # количество партий в регионе
         'regional_count': Party.objects.filter(region=player.region, deleted=False).count(),
