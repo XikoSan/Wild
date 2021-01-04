@@ -1,0 +1,206 @@
+{% extends 'player/header.html' %}
+{% load static %}
+{% load dict_key %}
+{% load l10n %}{% load i18n %}
+{% block for_scripts_and_css %}
+<script src='{% static "js/manage.js" %}?{{ csrf_token }}'></script>
+{% endblock %}
+
+{% block content %}
+<div id="party" class="tabcontent">
+    <div class="row">
+        <div class="col-xs-4 col-sm-4 col-md-4" align="center">
+            <!--Картинка партии-->
+            <img id="party_coat" src="{% if player.party.image %}{{ player.party.image }}{% else %}{% static 'img/nopic_party.png' %}{% endif %}" width="250" height="250">
+            {% if player.party_post.party_lead %}
+<!--            <form method="POST" enctype="multipart/form-data" class="post-form" id="party_coat-form">-->
+<!--                {% csrf_token %}-->
+<!--                <input id="new_party_coat" type="text" name="file" maxlength="150" {% if player.party.image %}value="{{ player.party.image }}"{% endif %} style="width: 80%">-->
+<!--                <button type="submit" value="Submit" enctype="multipart/form-data" class="save btn btn-warning">-->
+<!--                    <img src="{% static 'img/reload.png' %}">-->
+<!--                </button>-->
+<!--            </form>-->
+            {% endif %}
+        </div>
+        <div class="col-xs-4 col-sm-4 col-md-4" align="center">
+            <div id="party_title" style="height: 50px; cursor: pointer; font-size: 20pt; font-weight: bold; color: black" onclick="open_rename()">
+                {{ player.party.title }}
+            </div>
+            <form id="rename_form" role="form" style="height: 50px; display: none">
+                <!--Форма переименования партии-->
+                {% csrf_token %}
+                <input type="text" size="20" style="font-size: 20pt;" maxlength="30" name="new_party_name" id="new_party_name" value="{{ party.title }}">
+                <input class="btn btn-success" type="submit" value="Ok"/> <a class="btn btn-danger" onclick="close_rename()">отмена</a>
+
+            </form>
+            <div id="party_deskr" style="height: 25px; cursor: pointer; font-size: 10pt; font-weight: bold; color: black" onclick="open_deskr()">
+                {% if player.party.description %}
+                    {{ player.party.description }}
+                {% else %}
+                    добавить описание партии
+                {% endif %}
+            </div>
+            <form id="deskr_form" role="form" style="height: 50px; display: none">
+                <!--Форма переименования партии-->
+                {% csrf_token %}
+                {% if player.party.description %}
+                    <input type="text" size="20" style="font-size: 20pt;" maxlength="300" name="new_party_deskr" id="new_party_deskr" value="{{ party.description }}"> <input class="btn btn-success" type="submit" value="Ok"/> <a class="btn btn-danger" onclick="close_deskr()">отмена</a>
+                {% else %}
+                    <input type="text" size="20" style="font-size: 20pt;" maxlength="300" name="new_party_deskr" id="new_party_deskr"> <input class="btn btn-success" type="submit" value="Ok"/> <a class="btn btn-danger" onclick="close_deskr()">отмена</a>
+                {% endif %}
+            </form>
+            <div class="row" style="margin-top: 30px">
+                <font color="black" size="4"><b>тип партии</b></font>
+            </div>
+            <div class="row" style="margin-top: 20px">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    {% if player.party_post.party_lead %}
+                    <!--открытая, частная, закрытая-->
+                    {% if player.party.type == 'op' %}
+                    <a href="{% url 'switch_party_type' %}"
+                       class="btn btn-warning">открытая (изменить)</a>
+                    {% endif %}
+                    {% if player.party.type == 'pt' %}
+                    <a href="{% url 'switch_party_type' %}"
+                       class="btn btn-warning">частная (изменить)</a>
+                    {% endif %}
+                    {% else %}
+                    <!--открытая, частная-->
+                    {% if player.party.type == 'op' %}
+                    <font color="black" size="4"><b>открытая</b></font>
+                    {% endif %}
+                    {% if player.party.type == 'pt' %}
+                    <font color="black" size="4"><b>частная</b></font>
+                    {% endif %}
+                    {% endif %}
+                </div>
+            </div>
+            <div class="row" style="margin-top: 30px">
+                    <font color="black" size="4"><b>роспуск партии</b></font>
+            </div>
+            <div class="row" style="margin-top: 20px">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                {% if player.party_post.party_lead %}
+                    {% if members_count == 1 %}
+                        <form id="leave_party_form" role="form">
+                            <!--Форма выхода из партии-->
+                            {% csrf_token %}
+                            <input type="hidden" name="party_id" id="party_id" value="{{ player.party.pk }}">
+                            <input type="submit" class="btn btn-danger" value="Подтвердить роспуск партии"/>
+                        </form>
+                    {% else %}
+                        <font color="black" size="3"><b>Роспуск невозможен:</b></font>
+                        <br>
+                        <font color="black" size="3"><b>исключите всех однопартийцев</b></font>
+                    {% endif %}
+                {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-4 col-sm-4 col-md-4" align="center">
+            {% if player.party.members_image %}
+            <!--Картинка кланового фона-->
+            <img id="party_back" src="{{ player.party.members_image }}" width="250" height="250">
+            {% else %}
+            <img id="party_back" src="{% static 'img/party/noback_party.png' %}" width="250" height="250">
+            {% endif %}
+            {% if player.party_post.party_lead %}
+<!--            <form method="POST" enctype="multipart/form-data" id="party_back-form">-->
+<!--                {% csrf_token %}-->
+<!--                {% if player.party.members_image %}-->
+<!--                <input id="new_party_back" type="text" name="file" maxlength="150" value="{{ player.party.members_image }}" style="width: 80%">-->
+<!--                {% else %}-->
+<!--                <input id="new_party_back" type="text" name="file" maxlength="150" style="width: 80%">-->
+<!--                {% endif %}-->
+<!--                <button type="submit" value="Submit" enctype="multipart/form-data" class="save btn btn-warning">-->
+<!--                    <img src="{% static 'img/reload.png' %}">-->
+<!--                </button>-->
+<!--            </form>-->
+            {% endif %}
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="row" style="margin-top: 30px">
+                <div class="col-xs-3 col-sm-3 col-md-3">
+                    <font color="black" size="4"><b>Добавить должность:</b></font>
+                    <div id="csrf_form">
+                        {% csrf_token %}
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6" style="align: right">
+                    <form id="new_role_form" role="form" class="flex">
+                        <!--Форма добавления должности-->
+                        {% csrf_token %}
+                        <input type="text" size="20" style="font-size: 15pt;" maxlength="30" name="new_role_name" id="new_role_name">
+                        <label style="font-size: 15pt; color: black; margin-left: 1%"><input type="checkbox" name="new_role_sec_rights" id="new_role_sec_rights">секретарь</label>
+                        <input class="btn btn-success" id="add_role" {% if roles_count == 10 %}style="display: none"{% endif %} type="submit" value="Добавить должность" style="margin-left: 1%"/>
+                    </form>
+                </div>
+                <div class="col-xs-3 col-sm-3 col-md-3">
+                    <b><font color="black" size="4">Должностей: </font>
+                    <font color="black" size="4" id="roles_count">{{ roles_count }}</font>
+                    <font color="black" size="4"> / 10</font></b>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 20px;">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="row" align="center" style="width: 99%">
+                        <div class="col-xs-4 col-sm-4 col-md-4">
+                            <font color="black" size="4"><b>Название должности</b></font>
+                        </div>
+                        <div class="col-xs-3 col-sm-3 col-md-3">
+                            <font color="black" size="4"><b>Управление партией</b></font>
+                        </div>
+                        <div class="col-xs-3 col-sm-3 col-md-3">
+                            <font color="black" size="4"><b>Секретарь</b></font>
+                        </div>
+                        <div class="col-xs-2 col-sm-2 col-md-2">
+                            <font color="black" size="4"><b>Действия</b></font>
+                        </div>
+                    </div>
+                    <div style="overflow-y: scroll; position: relative; width: 100%; height: 400px;" id="roles_lines_placeholder">
+                        <input type="hidden" id="csrf_token" value='{% csrf_token %}'>
+                        {% for role in roles_list %}
+                        <div class="row" align="center" style="margin-top: 20px; width: 99%; padding-top: 10px; border-top: 2px solid black;">
+                            <div class="col-xs-4 col-sm-4 col-md-4">
+                                <font color="black" size="3"><i>{{ role.title }}</i></font>
+                            </div>
+                            <div class="col-xs-3 col-sm-3 col-md-3">
+                                {% if role.party_lead %}
+                                    <font color="black" size="3">
+                                        <div class="glyphicon glyphicon-star">
+                                        </div>
+                                    </font>
+                                {% endif %}
+                            </div>
+                            <div class="col-xs-3 col-sm-3 col-md-3">
+                                {% if role.party_sec %}
+                                    <font color="black" size="3">
+                                        <div class="glyphicon glyphicon-star">
+                                        </div>
+                                    </font>
+                                {% endif %}
+                            </div>
+                            <div class="col-xs-2 col-sm-2 col-md-2">
+                                {% if not role.based %}
+                                <form class="rm_role_form" role="form">
+                                    <!--Форма удаления должности-->
+                                    {% csrf_token %}
+                                    <input type="hidden" name="post_id" id="post_id" value="{{ role.pk }}">
+
+                                    <input type="image" src="{% static 'img/party/trash-can.png' %}" type="submit" width="20"/>
+
+                                </form>
+                                {% endif %}
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

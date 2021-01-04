@@ -34,7 +34,7 @@ class Party(models.Model):
     # картинка партии
     image = models.ImageField(upload_to='img/party_avatars/', blank=True, null=True, verbose_name='Герб партии')
     # картинка партийного фона
-    members_image_link = models.CharField(max_length=150, blank=True, null=True,
+    members_image = models.ImageField(upload_to='img/party_backs/', blank=True, null=True,
                                           verbose_name='Ссылка партийный фон')
     # регион партии
     region = models.ForeignKey(Region, default=None, null=True, on_delete=models.SET_NULL, blank=True,

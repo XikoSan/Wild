@@ -61,7 +61,7 @@ def leave_party(request):
                 DeputyMandate.objects.get(player=player).delete()
 
             # отклоняем все заявки в партию
-            reject_all_requests(request, player.party.pk)
+            reject_all_requests(request)
             # Лищаем должностей
             player.party_post = None
             # Логировние: меянем запись об партийной активности

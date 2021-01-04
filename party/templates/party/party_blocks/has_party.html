@@ -39,7 +39,7 @@
                 {% endif %}
             {% endif %}
             {% if player.party_post.party_lead %}
-                <a href="/" class="btn btn-warning">Управление партией</a>
+                <a href="{% url 'party_management' %}" class="btn btn-warning">Управление партией</a>
             {% else %}
             <form id="leave_party_form" role="form">
                 <!--Форма выхода из партии-->
