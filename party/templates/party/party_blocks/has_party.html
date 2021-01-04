@@ -32,22 +32,21 @@
             {% if player.party_post.party_lead or player.party_post.party_sec %}
                 {% if player.party.type == 'pt' %}
                     {% if requests_count %}
-                        <a href="/" class="btn btn-info">Запросов в партию: ({{ requests_count }})</a>
+                        <a href="{% url 'party_requests' %}" class="btn btn-info">Запросов в партию: ({{ requests_count }})</a>
                     {% else %}
-                        <a href="/" class="btn btn-info">Нет запросов</a>
+                        <a href="{% url 'party_requests' %}" class="btn btn-info">Нет запросов</a>
                     {% endif %}
                 {% endif %}
             {% endif %}
             {% if player.party_post.party_lead %}
                 <a href="/" class="btn btn-warning">Управление партией</a>
             {% else %}
-<!--            <form id="leave_party_form" role="form">-->
-<!--                &lt;!&ndash;Форма выхода из партии&ndash;&gt;-->
-<!--                {% csrf_token %}-->
-<!--                <input type="hidden" name="party_id" id="party_id" value="{{ player.party.pk }}">-->
-<!--                <input type="submit" class="btn btn-danger" value="Покинуть партию"/>-->
-<!--            </form>-->
-            <a href="{% url 'party_leaver' party_id=player.party.pk %}" class="btn btn-danger">Покинуть партию</a>
+            <form id="leave_party_form" role="form">
+                <!--Форма выхода из партии-->
+                {% csrf_token %}
+                <input type="hidden" name="party_id" id="party_id" value="{{ player.party.pk }}">
+                <input type="submit" class="btn btn-danger" value="Покинуть партию"/>
+            </form>
             {% endif %}
         </div>
     <div class="col-xs-2 col-sm-2 col-md-2">
@@ -158,7 +157,7 @@
                     {% if member.id == 1 or member == player %}
                     {% else %}
                     <!--кнопка исключения из партии-->
-                    <a href="/">
+                    <a href="{% url 'party_kick' pk=member.pk %}">
                         <h3>
                             <font color="red">
                                 <div class="glyphicon glyphicon-remove">

@@ -1,0 +1,80 @@
+{% extends 'player/Header.html' %}
+{% load static %}
+{% load menu %}
+{% load dict_key %}
+{% load l10n %}{% load i18n %}
+{% block for_scripts_and_css %}
+<script src='{% static "party.js" %}?{{ csrf_token }}'></script>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-xs-3 col-sm-3 col-md-3">
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-6" align="center">
+        <font color="black" size="4"><b>Запросы в партию</b></font>
+    </div>
+    <div class="col-xs-3 col-sm-3 col-md-3">
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-3 col-sm-3 col-md-3">
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-6" align="center">
+        <font color="black" size="5" onclick="window.location.href = '{% url 'party' %}'" style="cursor: pointer;"><b>{{ player.party.title }}</b></font>
+    </div>
+    <div class="col-xs-3 col-sm-3 col-md-3">
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-3 col-sm-3 col-md-3">
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-6" align="center" id="all_requests"
+         style="height: 50%; margin-top: 30px; overflow-y: auto;">
+        {% if players_list %}
+            <div align="right">
+                <a onclick="window.location.href = '{% url 'party_dismiss_all' %}'" class="btn btn-danger">{% trans 'dismiss_all_requests' %}</a>
+            </div>
+            {% for member in players_list %}
+            <div class="row">
+                <div class="col-xs-2 col-sm-2 col-md-2">
+                    <!--если пользователь загрузил аватарку-->
+                    {% if member.image %}
+                    <img src="{{ member.image.url }}" width="50" height="50" align="right">
+                    {% else %}
+                    <img src="{% static 'img/nopic.png' %}" width="50" height="50" align="right">
+                    {% endif %}
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6">
+                    <h3>
+                        <a href='/profile/{{ user.pk }}' target="_blank">{{ member.nickname }}</a>
+                    </h3>
+                </div>
+                <div class="col-xs-1 col-sm-1 col-md-1">
+                    <h3>
+                        <!--принять-->
+                        <div class="glyphicon glyphicon-thumbs-up"
+                             onclick="window.location.href = '{% url 'party_accepter' plr_pk=member.pk %}'"
+                             style="cursor: pointer;"></div>
+                    </h3>
+                </div>
+                <div class="col-xs-1 col-sm-1 col-md-1">
+                    <h3>
+                        <!--отклонить-->
+                        <div class="glyphicon glyphicon-thumbs-down"
+                             onclick="window.location.href = '{% url 'party_decliner' plr_pk=member.pk %}'"
+                             style="cursor: pointer;"></div>
+                    </h3>
+                </div>
+                <div class="col-xs-2 col-sm-2 col-md-2">
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <font color="black" size="4"><b>Запросов нет</b></font>
+        {% endif %}
+    </div>
+    <div class="col-xs-3 col-sm-3 col-md-3">
+    </div>
+</div>
+{% endblock %}

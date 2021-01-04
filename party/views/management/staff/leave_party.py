@@ -19,16 +19,16 @@ from state.parliament.deputy_mandate import DeputyMandate
 # буферная страница выхода из партии
 @login_required(login_url='/')
 @check_player
-def leave_party(request, party_id):
+def leave_party(request):
     # получаем персонажа
     player = Player.objects.get(account=request.user)
-    if player.party == Party.objects.get(pk=party_id):
-    # if player.party == Party.objects.get(pk=request.POST.get('party_id')):
+    # if player.party == Party.objects.get(pk=party_id):
+    if player.party == Party.objects.get(pk=request.POST.get('party_id')):
         # если этот игрок - лидер партии
         if player.party_post.party_lead:
             # если в клане больше одного человека (то есть не только глава)
-            if Player.objects.filter(party=Party.objects.get(pk=party_id)).count() > 1:
-            # if Player.objects.filter(party=Party.objects.get(pk=request.POST.get('party_id'))).count() > 1:
+            # if Player.objects.filter(party=Party.objects.get(pk=party_id)).count() > 1:
+            if Player.objects.filter(party=Party.objects.get(pk=request.POST.get('party_id'))).count() > 1:
                 data = {
                     'response': 'Вы не исключили всех однопартийев',
                 }
