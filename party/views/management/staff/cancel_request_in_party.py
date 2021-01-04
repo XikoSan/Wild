@@ -16,7 +16,8 @@ def cancel_request_in_party(request, plr_pk, pty_pk):
         # получаем персонажа, которому надо изменить партию
         logged_player = Player.objects.get(pk=plr_pk)
         # удаляем его заявку
-        PartyApply.objects.filter(player=logged_player, party=Party.objects.get(pk=pty_pk)).delete()
+        PartyApply.objects.filter(player=logged_player, party=Party.objects.get(pk=pty_pk), status='op').update(
+                status='cs')
         return redirect('party')
     else:
         # Отправляем жулика к ЕГО аккаунтам

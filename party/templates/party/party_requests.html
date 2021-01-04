@@ -33,7 +33,7 @@
          style="height: 50%; margin-top: 30px; overflow-y: auto;">
         {% if players_list %}
             <div align="right">
-                <a onclick="window.location.href = '{% url 'party_dismiss_all' %}'" class="btn btn-danger">{% trans 'dismiss_all_requests' %}</a>
+                <a onclick="window.location.href = '{% url 'party_reject_all' %}'" class="btn btn-danger">{% trans 'reject_all_requests' %}</a>
             </div>
             {% for member in players_list %}
             <div class="row">
@@ -62,7 +62,7 @@
                     <h3>
                         <!--отклонить-->
                         <div class="glyphicon glyphicon-thumbs-down"
-                             onclick="window.location.href = '{% url 'party_decliner' plr_pk=member.pk %}'"
+                             onclick="window.location.href = '{% url 'party_rejecter' plr_pk=member.pk %}'"
                              style="cursor: pointer;"></div>
                     </h3>
                 </div>

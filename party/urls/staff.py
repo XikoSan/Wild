@@ -3,8 +3,8 @@ from django.conf.urls import include, url
 
 from party.views.management.staff.accept_in_party import accept_in_party
 from party.views.management.staff.cancel_request_in_party import cancel_request_in_party
-from party.views.management.staff.decline_party_request import decline_party_request
-from party.views.management.staff.dismiss_all_requests import dismiss_all_requests
+from party.views.management.staff.reject_party_request import reject_party_request
+from party.views.management.staff.reject_all_requests import reject_all_requests
 from party.views.management.staff.join_in_party import join_in_party
 from party.views.management.staff.kick_from_party import kick_from_party
 from party.views.management.staff.leave_party import leave_party
@@ -30,13 +30,13 @@ urlpatterns = [
         name='party_request'),
 
     # отклонение всех заявок в партию
-    url(r'^dismiss/party/$', dismiss_all_requests, name='party_dismiss_all'),
+    url(r'^reject/party/$', reject_all_requests, name='party_reject_all'),
     # открытие буферной страницы принятия в партию,
     # где проверяются права принимающего в партию
     # на страницу партии, но уже как игрока одной из партий
     url(r'^char/(?P<plr_pk>\d+)/accept/$', accept_in_party, name='party_accepter'),
     # # отклонение заявки в партию
-    url(r'^char/(?P<plr_pk>\d+)/decline/$', decline_party_request,
-        name='party_decliner'),
+    url(r'^char/(?P<plr_pk>\d+)/reject/$', reject_party_request,
+        name='party_rejecter'),
 
 ]

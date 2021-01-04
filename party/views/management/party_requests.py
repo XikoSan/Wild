@@ -28,7 +28,7 @@ def party_requests(request):
             # создаем список кандидатов
             candidates = None
             # для каждого запроса в эту партию
-            for pty_request in PartyApply.objects.filter(party=party):
+            for pty_request in PartyApply.objects.filter(party=party, status='op'):
                 # получаем экземпляр кандидата
                 can_player = Player.objects.filter(pk=pty_request.player.pk)
                 # если лист партий из парламента не пустой

@@ -10,7 +10,7 @@ from player.player import Player
 # буферная страница принтия в частную партию
 @login_required(login_url='/')
 @check_player
-def decline_party_request(request, plr_pk):
+def reject_party_request(request, plr_pk):
     # получаем персонажа
     player = Player.objects.get(account=request.user)
     # если игрок действительно лидер партии или хотя бы секретарь
@@ -19,7 +19,8 @@ def decline_party_request(request, plr_pk):
             # получаем персонажа, чью заявку мы отклоняем
             accepted_player = Player.objects.get(pk=plr_pk)
             # удаляем его заявку
-            PartyApply.objects.filter(player=accepted_player, party=player.party).delete()
+            PartyApply.objects.filter(player=accepted_player, party=player.party, status='op').update(
+                status='rj')
             return redirect('party_requests')
         else:
             return redirect('party')

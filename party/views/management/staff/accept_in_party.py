@@ -22,7 +22,8 @@ def accept_in_party(request, plr_pk):
             # получаем персонажа, которому надо изменить партию
             accepted_player = Player.objects.get(pk=plr_pk)
             # удаляем все его заявки в другие партии
-            PartyApply.objects.filter(player=accepted_player).delete()
+            PartyApply.objects.filter(player=accepted_player, party=player.party, status='op').update(
+                status='ac')
             # задаем его новую партию
             accepted_player.party = player.party
             # задаем ему должность нового игрока в партии

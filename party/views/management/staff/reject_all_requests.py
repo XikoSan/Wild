@@ -10,14 +10,15 @@ from player.player import Player
 # отклонить все заявки
 @login_required(login_url='/')
 @check_player
-def dismiss_all_requests(request):
+def reject_all_requests(request):
     # получаем персонажа
     player = Player.objects.get(account=request.user)
     if player.party_post:
         # если игрок действительно лидер партии или хотя бы секретарь
         if player.party_post.party_lead or player.party_post.party_sec:
             # удаляем все заявки в эту партию
-            PartyApply.objects.filter(party=player.party).delete()
+            PartyApply.objects.filter(party=player.party, status='op').update(
+                status='ra')
         return redirect('party')
     else:
         return redirect('party')

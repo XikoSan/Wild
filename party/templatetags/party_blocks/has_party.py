@@ -26,7 +26,7 @@ def has_party(player):
         'player': player,
 
         'members_count': Player.objects.filter(party=player.party).count(),
-        'requests_count': PartyApply.objects.filter(party=player.party).count(),
+        'requests_count': PartyApply.objects.filter(party=player.party, status='op').count(),
         'players_list': Player.objects.filter(party=player.party),
         'roles_list': PartyPosition.objects.filter(party=player.party),
         'primaries': prims,

@@ -22,7 +22,7 @@ def no_party(player):
     pt_partys = Party.objects.filter(type='pt')
     requests = {}
     for req_party in pt_partys:
-        if PartyApply.objects.filter(player=player, party=req_party).exists():
+        if PartyApply.objects.filter(player=player, party=req_party, status='op').exists():
             requests[req_party] = True
         else:
             requests[req_party] = False

@@ -10,7 +10,7 @@ from party.logs.membership_log import MembershipLog
 from party.party import Party
 from party.primaries.primaries import Primaries
 from party.primaries.primaries_bulletin import PrimBulletin
-from party.views.management.staff.dismiss_all_requests import dismiss_all_requests
+from party.views.management.staff.reject_all_requests import reject_all_requests
 from player.decorators.player import check_player
 from player.player import Player
 from state.parliament.deputy_mandate import DeputyMandate
@@ -61,7 +61,7 @@ def leave_party(request):
                 DeputyMandate.objects.get(player=player).delete()
 
             # отклоняем все заявки в партию
-            dismiss_all_requests(request, player.party.pk)
+            reject_all_requests(request, player.party.pk)
             # Лищаем должностей
             player.party_post = None
             # Логировние: меянем запись об партийной активности
