@@ -24,6 +24,9 @@ urlpatterns = [
                   url(r'', include('player.urls')),
                   url(r'', include('region.urls')),
 
+                  url(r'', include('storage.urls.storage')),
+                  url(r'', include('storage.urls.trading')),
+
                   url(r'', include('party.urls.party')),
                   url(r'', include('party.urls.roles')),
                   url(r'', include('party.urls.staff')),

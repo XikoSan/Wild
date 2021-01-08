@@ -1,0 +1,67 @@
+{% extends 'player/header.html' %}
+{% load static %}
+{% load get_attr %}
+{% load dict_key %}
+
+
+{% block for_scripts_and_css %}
+<!--<script src='{% static "js/party.js" %}?{{ csrf_token }}'></script>-->
+{% endblock %}
+
+{% block content %}
+{% for storage in storages %}
+<div class="row">
+Владелец: {{ storage.owner }}
+</div>
+<div class="row">
+Регион: {{ storage.region }}
+</div>
+<br>
+
+{% for mineral in storage.minerals %}
+    {% if storage|get_attr:mineral %}
+<div class="row">
+    {{ storage.minerals|dict_key:mineral }}: {{ storage|get_attr:mineral }}
+</div>
+    {% endif %}
+{% endfor %}
+<br>
+
+{% for oil in storage.oils %}
+    {% if storage|get_attr:oil %}
+<div class="row">
+    {{ storage.oils|dict_key:oil }}: {{ storage|get_attr:oil }}
+</div>
+    {% endif %}
+{% endfor %}
+<br>
+<!--<div class="row">-->
+<!--Руда-->
+<!--</div>-->
+<!--<div class="row">-->
+<!--Анохор: {{ storage.anohor }}-->
+<!--</div>-->
+<!--<div class="row">-->
+<!--Берконор: {{ storage.berkonor }}-->
+<!--</div>-->
+<!--<div class="row">-->
+<!--Гроксит: {{ storage.grokcite }}-->
+<!--</div>-->
+<!--<br>-->
+
+<!--<div class="row">-->
+<!--Нефть-->
+<!--</div>-->
+<!--<div class="row">-->
+<!--WTI: {{ storage.wti_oil }}-->
+<!--</div>-->
+<!--<div class="row">-->
+<!--Brent: {{ storage.brent_oil }}-->
+<!--</div>-->
+<!--<div class="row">-->
+<!--Urals: {{ storage.urals_oil }}-->
+<!--</div>-->
+<!--<br>-->
+<!--<br>-->
+{% endfor %}
+{% endblock %}

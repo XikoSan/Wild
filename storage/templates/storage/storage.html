@@ -1,0 +1,16 @@
+{% extends 'player/header.html' %}
+{% load storage_blocks.no_storage %}
+{% load storage_blocks.has_storage %}
+{% load static %}
+
+{% block for_scripts_and_css %}
+<!--<script src='{% static "js/party.js" %}?{{ csrf_token }}'></script>-->
+{% endblock %}
+
+{% block content %}
+    {% if storage %}
+       {% has_storage storage %}
+    {% else %}
+        {% no_storage %}
+    {% endif %}
+{% endblock %}
