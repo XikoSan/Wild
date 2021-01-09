@@ -1,3 +1,43 @@
 {% load dict_key %}
-
-место для рекламы
+{% load static %}
+{% block for_scripts_and_css %}
+<script src='{% static "js/new_storage.js" %}?{{ csrf_token }}'></script>
+{% endblock %}
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12" align="center">
+        У вас нет Склада в этом регионе
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-4 col-sm-4 col-md-4"></div>
+    <div class="col-xs-4 col-sm-4 col-md-4" style="margin-top: 1%; border: 4px double black;" align="center">
+        стоимость создания:<br> {{ material_cost }} стали, {{ material_cost }} алюминия<br>(доставка оплачивается
+        отдельно)
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-4 col-sm-4 col-md-4"></div>
+    <div class="col-xs-4 col-sm-4 col-md-4" style="margin-top: 1%;" align="center">
+        выберите Склад списания материалов:
+    </div>
+</div>
+<form method="POST" id="new_storage_form" enctype="multipart/form-data" class="post-form">
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-xs-4 col-sm-4 col-md-4"></div>
+        <div class="col-xs-4 col-sm-4 col-md-4" style="margin-top: 1%;" align="center">
+            <select name="storage">
+                {% for storage in storages %}
+                <option {% if forloop.first %}selected{% endif %} value='{{ storage.pk }}'>{{ storage.region }}{% if not materials_exists|dict_key:storage %} - нехватка материалов!{% else %} - доставка ${{delivery_sum|dict_key:storage }}{% endif %}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-4 col-sm-4 col-md-4"></div>
+        <div class="col-xs-4 col-sm-4 col-md-4" style="margin-top: 1%;" align="center">
+            <button type="submit" enctype="multipart/form-data" class="save btn btn-default">Создать</button>
+        </div>
+    </div>
+</form>

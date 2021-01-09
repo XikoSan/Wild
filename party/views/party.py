@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
+from django.utils.translation import ugettext as _
 
 from player.decorators.player import check_player
 from player.player import Player
@@ -12,7 +13,7 @@ def party(request):
     player = Player.objects.get(account=request.user)
     # отправляем в форму
     response = render(request, 'party/party.html', {
-        # 'page_name': _('Overview'),
+        'page_name': _('Партия'),
 
         'player': player,
     })

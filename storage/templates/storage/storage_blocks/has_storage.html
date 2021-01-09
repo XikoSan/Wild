@@ -1,32 +1,66 @@
+{% load get_attr %}
+{% load get_mod %}
+{% load get_sub %}
 {% load dict_key %}
-<div class="row">
-Владелец: {{ storage.owner }}
-</div>
-<br>
 
 <div class="row">
-Руда
+<div class="col-xs-2 col-sm-2 col-md-2" style="margin-top: 1%; border: 4px double black;">
+    {{ storage.valut|dict_key:'cash' }}: {{ storage|get_attr:'cash' }}
 </div>
-<div class="row">
-Анохор: {{ storage.anohor }}
 </div>
-<div class="row">
-Берконор: {{ storage.berkonor }}
-</div>
-<div class="row">
-Гроксит: {{ storage.grokcite }}
-</div>
-<br>
 
+
+{% for mineral in storage.minerals %}
+{% if forloop.counter|get_sub:1|get_mod:3 == 0 %}
 <div class="row">
-Нефть
+{% endif %}
+<div class="col-xs-2 col-sm-2 col-md-2" style="margin-top: 1%; border: 4px double black;">
+    {{ storage.minerals|dict_key:mineral }}:
+    {{ storage|get_attr:mineral }}
 </div>
+{% if forloop.last or forloop.counter|get_mod:3 == 0 %}
+</div>
+{% endif %}
+{% endfor %}
+
+
+{% for oil in storage.oils %}
+{% if forloop.counter|get_sub:1|get_mod:3 == 0 %}
 <div class="row">
-WTI: {{ storage.wti_oil }}
+{% endif %}
+<div class="col-xs-2 col-sm-2 col-md-2" style="margin-top: 1%; border: 4px double black;">
+    {{ storage.oils|dict_key:oil }}:
+    {{ storage|get_attr:oil }}
 </div>
+{% if forloop.last or forloop.counter|get_mod:3 == 0 %}
+</div>
+{% endif %}
+{% endfor %}
+
+
+{% for material in storage.materials %}
+{% if forloop.counter|get_sub:1|get_mod:3 == 0 %}
 <div class="row">
-Brent: {{ storage.brent_oil }}
+{% endif %}
+<div class="col-xs-2 col-sm-2 col-md-2" style="margin-top: 1%; border: 4px double black;">
+    {{ storage.materials|dict_key:material }}:
+    {{ storage|get_attr:material }}
 </div>
+{% if forloop.last or forloop.counter|get_mod:3 == 0 %}
+</div>
+{% endif %}
+{% endfor %}
+
+
+{% for unit in storage.units %}
+{% if forloop.counter|get_sub:1|get_mod:3 == 0 %}
 <div class="row">
-Urals: {{ storage.urals_oil }}
+{% endif %}
+<div class="col-xs-2 col-sm-2 col-md-2" style="margin-top: 1%; border: 4px double black;">
+    {{ storage.units|dict_key:unit }}:
+    {{ storage|get_attr:unit }}
 </div>
+{% if forloop.last or forloop.counter|get_mod:3 == 0 %}
+</div>
+{% endif %}
+{% endfor %}

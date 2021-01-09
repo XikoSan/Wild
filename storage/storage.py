@@ -1,62 +1,63 @@
 # coding=utf-8
 from django.db import models
 from django.utils.translation import gettext_lazy
-from region.region import Region
+
 from player.player import Player
+from region.region import Region
 
 
 class Storage(models.Model):
     # ------vvvvvvv------Деньги на складе------vvvvvvv------
     valut = {
-        'cash': gettext_lazy('storage_cash'),
+        'cash': gettext_lazy('Наличные'),
     }
     # ------vvvvvvv------Минералы на складе------vvvvvvv------
     minerals = {
         # Анохор
-        'anohor': gettext_lazy('anohor'),
+        'anohor': gettext_lazy('Анохор'),
         # Берконор
-        'berkonor': gettext_lazy('berkonor'),
+        'berkonor': gettext_lazy('Берконор'),
         # Грокцит
-        'grokcite': gettext_lazy('grokcite'),
+        'grokcite': gettext_lazy('Грокцит'),
     }
     # ------vvvvvvv------Нефть на складе------vvvvvvv------
     oils = {
-        'wti_oil': gettext_lazy('wti_oil'),
+        'wti_oil': gettext_lazy('Нефть WTI'),
 
-        'brent_oil': gettext_lazy('brent_oil'),
+        'brent_oil': gettext_lazy('Нефть Brent'),
 
-        'urals_oil': gettext_lazy('urals_oil'),
+        'urals_oil': gettext_lazy('Нефть Urals'),
     }
     # ------vvvvvvv------Материалы на складе------vvvvvvv------
     materials = {
-        'gas': gettext_lazy('gas'),
+        'gas': gettext_lazy('Бензин'),
 
-        'diesel': gettext_lazy('diesel'),
+        'diesel': gettext_lazy('Дизельное топливо'),
 
-        'steel': gettext_lazy('steel'),
+        'steel': gettext_lazy('Сталь'),
 
-        'alumunuim': gettext_lazy('steel'),
+        'aluminium': gettext_lazy('Алюминий'),
     }
     # ------vvvvvvv------Юниты на складе------vvvvvvv------
     units = {
-        'tank': gettext_lazy('tank'),
-        'antitank': gettext_lazy('antitank'),
-        'station': gettext_lazy('orb_station'),
+        'tank': gettext_lazy('Танки'),
+        'antitank': gettext_lazy('ПТ-орудия'),
+        'station': gettext_lazy('Орбитальные орудия'),
 
-        'jet': gettext_lazy('attack_air'),
-        'pzrk': gettext_lazy('mpads'),
+        'jet': gettext_lazy('Штурмовики'),
+        'pzrk': gettext_lazy('ПЗРК'),
     }
 
     # владелец склада
     owner = models.ForeignKey(Player, default=None, null=True, on_delete=models.CASCADE, verbose_name='Владелец',
-                                 related_name="owner")
+                              related_name="owner")
     # регион размещения
-    region = models.ForeignKey(Region, default=None, null=True, on_delete=models.SET_NULL, verbose_name='Регион размещения',
+    region = models.ForeignKey(Region, default=None, null=True, on_delete=models.SET_NULL,
+                               verbose_name='Регион размещения',
                                related_name="placement")
 
     # наличные на складе
     cash = models.BigIntegerField(default=0, verbose_name=gettext_lazy('storage_cash'))
-
 
     # ------vvvvvvv------Минералы на складе------vvvvvvv------
     # Анохор
@@ -73,7 +74,6 @@ class Storage(models.Model):
     grokcite = models.IntegerField(default=0, verbose_name=gettext_lazy('grokcite'))
     # Грокцит- максимум на складе
     grokcite_cap = models.IntegerField(default=100000, verbose_name=gettext_lazy('grokcite_cap'))
-
 
     # ------vvvvvvv------Нефть на складе------vvvvvvv------
     # Нефть WTI
@@ -106,9 +106,9 @@ class Storage(models.Model):
     # сталь- максимум на складе
     steel_cap = models.IntegerField(default=10000, verbose_name=gettext_lazy('steel_cap'))
 
-    alumunuim = models.IntegerField(default=0, verbose_name=gettext_lazy('alumunuim'))
+    aluminium = models.IntegerField(default=0, verbose_name=gettext_lazy('alumunuim'))
     # сталь- максимум на складе
-    alumunuim_cap = models.IntegerField(default=10000, verbose_name=gettext_lazy('alumunuim_cap'))
+    aluminium_cap = models.IntegerField(default=10000, verbose_name=gettext_lazy('alumunuim_cap'))
 
     # ------vvvvvvv------Юниты на складе------vvvvvvv------
     # танки
@@ -247,5 +247,8 @@ class Storage(models.Model):
 
     # Свойства класса
     class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['owner', 'region'], name='one_in_region')
+        ]
         verbose_name = "Склад"
         verbose_name_plural = "Склады"

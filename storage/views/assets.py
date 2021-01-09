@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
+from django.utils.translation import ugettext as _
 
 from player.decorators.player import check_player
 from player.player import Player
@@ -17,7 +18,7 @@ def assets(request):
 
     # отправляем в форму
     response = render(request, 'storage/assets.html', {
-        # 'page_name': _('Overview'),
+        'page_name': _('Активы'),
 
         'player': player,
         'storages': storages,

@@ -1,8 +1,12 @@
+<div class="col-xs-1 col-sm-1 col-md-1">
+    <img src="{{ player.image }}" width="60" height="60">
+</div>
 <div class="col-xs-2 col-sm-2 col-md-2">
     <div class="row">{{ player.nickname }}</div>
+    <div class="row">${{ player.cash }}</div>
     <div class="row">уровень {{ player.level }}</div>
 </div>
-<div class="col-xs-10 col-sm-10 col-md-10">
+<div class="col-xs-8 col-sm-8 col-md-8">
     <div class="row">энергии: {{ player.energy }}%</div>
     <div class="row">
         <form method="POST" action="{% url 'do_mining' %}" enctype="multipart/form-data">

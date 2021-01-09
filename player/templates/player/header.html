@@ -1,16 +1,17 @@
 <html>
 {% load static %}
+{% load player_status %}
+{% load menu %}
 {% load bootstrap3 %}
+<head>
+      <title>{{ page_name }}</title>
 <script src="{% bootstrap_jquery_url %}"></script>
 {% bootstrap_javascript %}
 {% bootstrap_css %}
 
 {% block for_scripts_and_css %}
 {% endblock %}
-
-{% load static %}
-{% load player_status %}
-{% load menu %}
+</head>
 
 {% if player %}
 {% if not player.banned %}

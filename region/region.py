@@ -28,15 +28,15 @@ class Region(models.Model):
     # название региона
     # on_map_id = models.CharField(max_length=50, verbose_name='ID на карте')
 
-    # # признак того что регион северный
-    # is_north = models.BooleanField(default=True, verbose_name='Северной широты')
-    # # координата широты
-    # north = models.DecimalField(default=00.00, max_digits=4, decimal_places=2)
-    #
-    # # признак того что регион восточный
-    # is_east = models.BooleanField(default=True, verbose_name='Восточной долготы')
-    # # координата долготы
-    # east = models.DecimalField(default=00.00, max_digits=4, decimal_places=2)
+    # признак того что регион северный
+    is_north = models.BooleanField(default=True, verbose_name='Северной широты')
+    # координата широты
+    north = models.DecimalField(default=00.00, max_digits=4, decimal_places=2)
+
+    # признак того что регион восточный
+    is_east = models.BooleanField(default=True, verbose_name='Восточной долготы')
+    # координата долготы
+    east = models.DecimalField(default=00.00, max_digits=4, decimal_places=2)
     # ---------- Государство ----------
     # state = models.ForeignKey(ste.State, default=None, blank=True, null=True, on_delete=models.SET_NULL,
     #                           verbose_name='Государство', related_name="reg_state")
