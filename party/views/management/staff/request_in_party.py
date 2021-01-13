@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 
 from party.party import Party
-from party.party_apply import PartyApply
+from party.logs.party_apply import PartyApply
 from player.decorators.player import check_player
 from player.player import Player
 

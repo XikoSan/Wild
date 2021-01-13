@@ -2,6 +2,7 @@
 import datetime
 from datetime import timedelta
 from django.db import models
+from django.utils import timezone
 
 from player.player import Player
 
@@ -12,7 +13,7 @@ class Log(models.Model):
     # персонаж
     player = models.ForeignKey(Player, default=None, null=True, on_delete=models.CASCADE, verbose_name='Персонаж')
     # дата создания записи
-    dtime = models.DateTimeField(default=datetime.datetime(2000, 1, 1, 0, 0), blank=True,
+    dtime = models.DateTimeField(default=timezone.now, blank=True,
                                  verbose_name='Время создания записи')
 
     # Указание абстрактности класса

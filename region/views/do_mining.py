@@ -14,7 +14,7 @@ from django.shortcuts import redirect, render
 
 from player.decorators.player import check_player
 from player.player import Player
-from storage.storage import Storage
+from storage.models.storage import Storage
 # from django.http import JResponse, HttpResponse
 from wild_politics.settings import JResponse
 

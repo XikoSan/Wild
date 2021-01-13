@@ -1,7 +1,7 @@
 from django import template
 
 from region.views.distance_counting import distance_counting
-from storage.storage import Storage
+from storage.models.storage import Storage
 
 register = template.Library()
 
@@ -29,7 +29,7 @@ def no_storage(player):
         delivery_sum[storage] = round(distance_counting(player.region, storage.region))
 
     return {
-        # склад
+        'player': player,
         'storages': storages,
         'material_cost': material_cost,
 

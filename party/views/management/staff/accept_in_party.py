@@ -4,7 +4,7 @@ from django.utils import timezone
 
 from party.logs.membership_log import MembershipLog
 from party.party import Party
-from party.party_apply import PartyApply
+from party.logs.party_apply import PartyApply
 from party.position import PartyPosition
 from player.decorators.player import check_player
 from player.player import Player

@@ -8,7 +8,7 @@ from io import BytesIO
 
 from region.region import Region
 from state.state import State
-from storage.storage import Storage
+from storage.models.storage import Storage
 
 
 class Treasury(models.Model):

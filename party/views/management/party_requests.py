@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from itertools import chain
 
 from party.party import Party
-from party.party_apply import PartyApply
+from party.logs.party_apply import PartyApply
 from party.primaries.primaries import Primaries
 from party.primaries.primaries_leader import PrimariesLeader
 from player.decorators.player import check_player

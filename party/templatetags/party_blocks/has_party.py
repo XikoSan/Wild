@@ -5,7 +5,7 @@ from party.party import Party
 from player.player import Player
 from party.primaries.primaries_leader import PrimariesLeader
 from party.primaries.primaries import Primaries
-from party.party_apply import PartyApply
+from party.logs.party_apply import PartyApply
 from party.position import PartyPosition
 
 

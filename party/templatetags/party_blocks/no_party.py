@@ -1,7 +1,7 @@
 from django import template
 
 from party.party import Party
-from party.party_apply import PartyApply
+from party.logs.party_apply import PartyApply
 from player.player import Player
 
 register = template.Library()

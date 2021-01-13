@@ -4,7 +4,7 @@ from django.utils.translation import ugettext as _
 
 from player.decorators.player import check_player
 from player.player import Player
-from storage.storage import Storage
+from storage.models.storage import Storage
 
 
 # главная страница

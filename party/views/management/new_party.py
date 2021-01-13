@@ -6,7 +6,7 @@ from django.shortcuts import redirect, render
 from django.utils import timezone
 
 from party.forms import NewPartyForm
-from party.party_apply import PartyApply
+from party.logs.party_apply import PartyApply
 from party.position import PartyPosition
 from player.decorators.player import check_player
 from player.player import Player

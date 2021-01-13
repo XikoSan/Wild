@@ -15,7 +15,7 @@ from player.forms import NewPlayerForm
 from player.player import Player
 from region.region import Region
 # from gamecore.all_models.storage import Storage
-from storage.storage import Storage
+from storage.models.storage import Storage
 
 
 # Функция создания нового персонажа

@@ -2,7 +2,7 @@ from django.contrib import admin
 
 from party.logs.membership_log import MembershipLog
 from party.party import Party
-from party.party_apply import PartyApply
+from party.logs.party_apply import PartyApply
 from party.position import PartyPosition
 from party.primaries.primaries import Primaries
 from party.primaries.primaries_bulletin import PrimBulletin
