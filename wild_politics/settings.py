@@ -27,7 +27,7 @@ SECRET_KEY = 'q#w=khb39-(r88pm!7gfl8ko*%ot1_2p3k(np*_y-uase%#fjh'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '192.168.0.197', '188.233.4.133']
 
 # Application definition
 
@@ -49,6 +49,12 @@ INSTALLED_APPS = [
     'state',
     'storage',
     'war',
+]
+
+USE_L10N = True
+USE_THOUSAND_SEPARATOR = True
+FORMAT_MODULE_PATH = [
+    'wild_politics.formats',
 ]
 
 MIDDLEWARE = [

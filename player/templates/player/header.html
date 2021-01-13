@@ -11,6 +11,7 @@
 
 {% block for_scripts_and_css %}
 {% endblock %}
+<script src='{% static "header.js" %}?{{ csrf_token }}'></script>
 </head>
 
 {% if player %}

@@ -1,9 +1,13 @@
+{% load l10n %}{% load i18n %}
 <div class="col-xs-1 col-sm-1 col-md-1">
     <img src="{{ player.image }}" width="60" height="60">
 </div>
 <div class="col-xs-2 col-sm-2 col-md-2">
     <div class="row">{{ player.nickname }}</div>
-    <div class="row">${{ player.cash }}</div>
+    <div class="row">
+<!--${{ player.cash }}-->
+        <b style="color: #85bb65" id="cash" data-text="{{ player.cash }}">${{ player.cash }}</b>
+    </div>
     <div class="row">уровень {{ player.level }}</div>
 </div>
 <div class="col-xs-8 col-sm-8 col-md-8">

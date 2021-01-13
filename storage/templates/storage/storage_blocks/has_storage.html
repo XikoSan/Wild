@@ -2,10 +2,23 @@
 {% load get_mod %}
 {% load get_sub %}
 {% load dict_key %}
+{% load static %}
+{% block for_scripts_and_css %}
+{% load l10n %}{% load i18n %}
+<script src='{% static "js/storage.js" %}?{{ csrf_token }}'></script>
+{% endblock %}
+<script>
+var csrftoken = '{{ csrf_token }}';
+</script>
+
+<div class="row" style="margin-bottom: 1%">
+    <div class="col-xs-12 col-sm-12 col-md-12" id="trade_tab">
+    </div>
+</div>
 
 <div class="row">
-<div class="col-xs-2 col-sm-2 col-md-2" style="margin-top: 1%; border: 4px double black;">
-    {{ storage.valut|dict_key:'cash' }}: {{ storage|get_attr:'cash' }}
+<div class="col-xs-2 col-sm-2 col-md-2" id="cash_transfer" onclick="open_trade_line(this.id)" style="cursor: pointer; margin-top: 1%; border: 4px double black;">
+    {{ storage.valut|dict_key:'cash' }}: <div id="storage_cash" {% localize off %}data-text="{{ storage.cash }}"{% endlocalize %} >{{ storage|get_attr:'cash' }}</div>
 </div>
 </div>
 
