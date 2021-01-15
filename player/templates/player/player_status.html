@@ -5,8 +5,12 @@
 <div class="col-xs-2 col-sm-2 col-md-2">
     <div class="row">{{ player.nickname }}</div>
     <div class="row">
-<!--${{ player.cash }}-->
-        <b style="color: #85bb65" id="cash" data-text="{{ player.cash }}">${{ player.cash }}</b>
+        <div class="col-xs-6 col-sm-6 col-md-6" align="left">
+            <b style="color: #85bb65" id="cash" data-text="{{ player.cash }}">${{ player.cash }}</b>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6" align="right">
+            <b style="color: gold" id="gold" data-text="{{ player.gold }}">{{ player.gold }}</b>
+        </div>
     </div>
     <div class="row">уровень {{ player.level }}</div>
 </div>

@@ -26,6 +26,7 @@ urlpatterns = [
 
                   url(r'', include('storage.urls.storage')),
                   url(r'', include('storage.urls.trading')),
+                  url(r'', include('storage.urls.vault')),
 
                   url(r'', include('party.urls.party')),
                   url(r'', include('party.urls.roles')),

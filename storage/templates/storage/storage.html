@@ -1,12 +1,26 @@
 {% extends 'player/header.html' %}
 {% load storage_blocks.no_storage %}
 {% load storage_blocks.has_storage %}
+{% load storage_blocks.vault %}
 {% load static %}
 
 {% block content %}
+<!-- Tabs -->
+<ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#storage">Склад</a></li>
+    <!--<li class="active"><a data-toggle="tab" href="#All">Все партии</a></li>-->
+    <li><a data-toggle="tab" href="#vault">Хранилище</a></li>
+    <!--<li><a data-toggle="tab" href="#Regional">Региональные</a></li>-->
+</ul>
+<div class="tab-content">
+    <div id="storage" class="tab-pane fade in active">
     {% if storage %}
        {% has_storage storage %}
     {% else %}
         {% no_storage player %}
     {% endif %}
+    </div>
+    <div id="vault" class="tab-pane fade">
+        {% vault player %}
+    </div>
 {% endblock %}
