@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'bootstrap3',
+    'channels',
 
     'article',
     'parliament',
@@ -49,6 +50,7 @@ INSTALLED_APPS = [
     'state',
     'storage',
     'war',
+    'chat',
 ]
 
 USE_L10N = True
@@ -86,6 +88,15 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'wild_politics.wsgi.application'
+ASGI_APPLICATION = "wild_politics.asgi.application"
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
+        },
+    },
+}
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
@@ -127,11 +138,29 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
-LANGUAGE_CODE = 'ru-ru'
+LANGUAGE_CODE = 'ru'
+
+LANGUAGES = (
+    ('ru', 'Russian'),
+    ('en', 'English'),
+    # ('fr', 'French'),
+    # ('it', 'Italian'),
+    # ('es', 'Spanish'),
+    # ('pl', 'Polish'),
+    # ('uk', 'Ukrainian'),
+    # ('tr', 'Turkish'),
+    # ('pt', 'Portuguese'),
+)
 
 TIME_ZONE = 'Europe/Moscow'
 
 USE_I18N = True
+
+# месторасположение файлов перевода
+LOCALE_PATHS = (
+    'locale',
+    # os.path.join(PROJECT_DIR, 'locale'),
+)
 
 USE_L10N = True
 

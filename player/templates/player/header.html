@@ -8,25 +8,27 @@
 <script src="{% bootstrap_jquery_url %}"></script>
 {% bootstrap_javascript %}
 {% bootstrap_css %}
-
+<script src='{% static "header.js" %}?{{ csrf_token }}'></script>
 {% block for_scripts_and_css %}
 {% endblock %}
-<script src='{% static "header.js" %}?{{ csrf_token }}'></script>
 </head>
-
+<body>
 {% if player %}
 {% if not player.banned %}
 <!--Информация в шапке игры-->
 {% player_status player %}
 {% endif %}
 {% endif %}
-
-<div class="col-xs-2 col-sm-2 col-md-2">
-<!--Информация в шапке игры-->
-{% menu %}
+<div style="width: 100%; margin-top: 1%; display: flex;">
+<!--<div style="width: 1300px">-->
+      <div class="col-xs-2 col-sm-2 col-md-2">
+      <!--Информация в шапке игры-->
+      {% menu %}
+      </div>
+      <div class="col-xs-10 col-sm-10 col-md-10">
+      {% block content %}
+      {% endblock %}
+      </div>
 </div>
-<div class="col-xs-10 col-sm-10 col-md-10">
-{% block content %}
-{% endblock %}
-</div>
+</body>
 </html>
