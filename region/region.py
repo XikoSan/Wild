@@ -5,7 +5,7 @@
 from django import forms
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
-
+from state.state import State
 
 # from six import with_metaclass
 # from io import BytesIO
@@ -26,7 +26,7 @@ class Region(models.Model):
     # название региона
     region_name = models.CharField(max_length=50, default=None, blank=True, null=True, verbose_name='Название региона')
     # название региона
-    # on_map_id = models.CharField(max_length=50, verbose_name='ID на карте')
+    on_map_id = models.CharField(max_length=50, verbose_name='ID на карте')
 
     # признак того что регион северный
     is_north = models.BooleanField(default=True, verbose_name='Северной широты')
@@ -38,8 +38,8 @@ class Region(models.Model):
     # координата долготы
     east = models.DecimalField(default=00.00, max_digits=4, decimal_places=2)
     # ---------- Государство ----------
-    # state = models.ForeignKey(ste.State, default=None, blank=True, null=True, on_delete=models.SET_NULL,
-    #                           verbose_name='Государство', related_name="reg_state")
+    state = models.ForeignKey(State, default=None, blank=True, null=True, on_delete=models.SET_NULL,
+                              verbose_name='Государство', related_name="reg_state")
     # # признак столицы
     # capital = models.OneToOneField(ste.State, default=None, blank=True, null=True, on_delete=models.SET_NULL,
     #                                verbose_name='Столица государства', related_name="cap_state")
@@ -122,10 +122,12 @@ class Region(models.Model):
     # процент добываемого в регионе Грокцита
     grokcite_proc = models.IntegerField(default=25, verbose_name='Процент Грокцита')
 
-    # shape = models.TextField(default=None, verbose_name='Вид на карте SVG')
+    shape = models.TextField(default='', verbose_name='Вид на карте')
     # централизация на карте
-    # svg_x = models.IntegerField(default=0, verbose_name='центр на карте - Х')
-    # svg_y = models.IntegerField(default=0, verbose_name='центр на карте - Y')
+    longitude = models.DecimalField(default=00.00, max_digits=9, decimal_places=7, verbose_name='Долгота - центр')
+    latitude = models.DecimalField(default=00.00, max_digits=9, decimal_places=7, verbose_name='Широта - центр')
+    # масштаб карты при открытии региона
+    zoom = models.IntegerField(default=1, verbose_name='Масштаб карты')
 
     # сохранение профиля с изменением размеров и названия картинки профиля
     def save(self):

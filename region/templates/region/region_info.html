@@ -1,0 +1,155 @@
+{% load static %}
+{% load dict_key %}{% load i18n %}
+<!--иконка региона, отображающаяся при нажатии-->
+<div class="col-xs-12 col-sm-12 col-md-12">
+    <div class="row flex">
+        <div class="col-xs-2 col-sm-2 col-md-2">
+            <img src='static/img/regions/{{ region.on_map_id }}.png' class='image' width='100' height='100' onclick="window.location.href = '/region/{{ region.pk }}/'" style="cursor: pointer">
+        </div>
+        <!--информация о регионе, отображающаяся при нажатии-->
+        <div class="col-xs-8 col-sm-8 col-md-8">
+            <div class="row" align="center">
+                <b><font size="4" color="white" onclick="window.location.href = '/region/{{ region.pk }}/'" style="cursor: pointer">
+                    {{ region.region_name }}
+                </font></b>
+                {% if region.state %}
+                <br>
+                <b><font size="3" color="white">
+                    {{ region.state }}
+                </font></b>
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-xs-2 col-sm-2 col-md-2">
+            {% if region.state %}
+                {% if region.state.image %}
+                <img src="{{ region.state.image }}" onclick="window.location.href = 'state/{{ region.state.pk }}/'" width="100" height="100" align="right" style="cursor: pointer;">
+                {% else %}
+                <img src="{% static 'img/congress.svg' %}" onclick="window.location.href = 'state/{{ region.state.pk }}/'" width="100" height="100" align="right" style="cursor: pointer;">
+                {% endif %}
+            {% else %}
+            <img src="{% static 'img/nostate.png' %}" width="100" height="100" align="right">
+            {% endif %}
+        </div>
+    </div>
+    <div class="row" align="center">
+        <div align="center">
+            <b><font size="3" color="white">
+            {% if player.destination %}
+                {% trans 'you_fly_to' %} <img src='static/img/regions/{{ player.destination.on_map_id }}.png' class='image' width='30' height='30'> {{ player.destination }}
+            {% else %}
+                {% if region == player.region %}
+                    {% trans 'Вы здесь' %}
+                {% else %}
+                    {% trans 'Время полёта' %}: {{ duration }} {% trans 'минут' %}
+                {% endif %}
+            {% endif %}
+            </font></b>
+        </div>
+        {% if not player.destination and region != player.region %}
+        <form class="to_fly_form" method="post" style="margin-top: 1%">
+            {% csrf_token %}
+            <input type="hidden" class="region_id" name="region" value="{{ region.on_map_id }}">
+            <input type="submit" class="btn btn-success" value="{% trans 'Отправиться' %}, - {{ cost }}" style="font-weight: bold; font-size: 15px;"/>
+        </form>
+        {% endif %}
+
+        {% if not player.destination %}
+<!--        <a class="btn btn-success" href="/fly/region/{{ region.on_map_id }}" id="go_fly" {% if duration == 0 %}style="display: none"{% endif %}><b><font size="3" color="white">-->
+<!--            {% trans 'to_fly' %}, - {{ cost }}-->
+<!--        </font></b></a>-->
+        {% endif %}
+    </div>
+    <div class="row" align="center" style="margin-top: 5%">
+        <b>
+            <font size="4" color="white">
+                    Запасы региона:
+            </font>
+        </b>
+    </div>
+
+    <div class="row" style="margin-top: 5%">
+        <div class="col-xs-6 col-sm-6 col-md-6" align="right">
+            <b>
+                <font size="3" color="white">{% trans 'Золото' %}: </font>
+            </b>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6">
+            <b>
+                <font size="3" color="gold">{{ region.gold_has }}</font>
+                <font size="3" color="white"> / </font>
+                <font size="3" color="gold">{{ region.gold_cap }}</font>
+            </b>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 1%">
+        <div class="col-xs-6 col-sm-6 col-md-6" align="right">
+            <b>
+                <font size="3" color="white">{% trans 'Нефть' %}: </font>
+            </b>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6">
+            <b>
+                <font size="3" color="black">{{ region.oil_has }}</font>
+                <font size="3" color="white"> / </font>
+                <font size="3" color="black">{{ region.oil_cap }}</font>
+            </b>
+        </div>
+    </div>
+<!--    <div class="row" style="margin-top: 1%">-->
+<!--        <div class="col-xs-6 col-sm-6 col-md-6">-->
+<!--            <b>-->
+<!--                <font size="3" color="white">{% trans 'ore_stocks' %}: </font>-->
+<!--            </b>-->
+<!--        </div>-->
+<!--        <div class="col-xs-6 col-sm-6 col-md-6">-->
+<!--            <b>-->
+<!--                <font size="3" color="#D2361C">{{ region.ore_has }}</font>-->
+<!--                <font size="3" color="white"> / </font>-->
+<!--                <font size="3" color="#D2361C">{{ region.ore_cap }}</font>-->
+<!--            </b>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <div class="line"></div>-->
+<!--    <div class="row" style="margin-top: 5%">-->
+<!--        <div class="col-xs-6 col-sm-6 col-md-6">-->
+<!--            <b>-->
+<!--                <font size="3" color="white">{% trans 'reg_taxes' %}: </font>-->
+<!--            </b>-->
+<!--        </div>-->
+<!--        <div class="col-xs-6 col-sm-6 col-md-6">-->
+<!--            <b>-->
+<!--                <font size="3" color="gold">{{ region.gold_tax }}%</font>-->
+<!--                <font size="3" color="white"> / </font>-->
+<!--                <font size="3" color="black">{{ region.oil_tax }}%</font>-->
+<!--                <font size="3" color="white"> / </font>-->
+<!--                <font size="3" color="#D2361C">{{ region.ore_tax }}%</font>-->
+<!--            </b>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <div class="line"></div>-->
+<!--    <div class="row" style="margin-top: 5%">-->
+<!--        <div class="col-xs-6 col-sm-6 col-md-6">-->
+<!--            <b>-->
+<!--                <font size="3" color="white">{% trans 'reg_med_rate' %}: </font>-->
+<!--            </b>-->
+<!--        </div>-->
+<!--        <div class="col-xs-6 col-sm-6 col-md-6">-->
+<!--            <b>-->
+<!--                <font size="3" color="white">{{ region.med_top }}</font>-->
+<!--            </b>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <div class="row" style="margin-top: 1%">-->
+<!--        <div class="col-xs-6 col-sm-6 col-md-6">-->
+<!--            <b>-->
+<!--                <font size="3" color="white">{% trans 'reg_med_lvl' %}: </font>-->
+<!--            </b>-->
+<!--        </div>-->
+<!--        <div class="col-xs-6 col-sm-6 col-md-6">-->
+<!--            <b>-->
+<!--                <font size="3" color="white">{{ region.med_lvl }}</font>-->
+<!--            </b>-->
+<!--        </div>-->
+<!--    </div>-->
+</div>
