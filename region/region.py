@@ -116,11 +116,11 @@ class Region(models.Model):
     # ore_explore_cap = models.DecimalField(default=00.00, max_digits=5, decimal_places=2, verbose_name='Руда: предел разведки')
 
     # процент добываемого в регионе Анохора
-    anohor_proc = models.IntegerField(default=25, verbose_name='Процент Анохора')
+    coal_proc = models.IntegerField(default=25, verbose_name='Процент Анохора')
     # процент добываемого в регионе Берконора
-    berkonor_proc = models.IntegerField(default=25, verbose_name='Процент Берконора')
+    iron_proc = models.IntegerField(default=25, verbose_name='Процент Берконора')
     # процент добываемого в регионе Грокцита
-    grokcite_proc = models.IntegerField(default=25, verbose_name='Процент Грокцита')
+    bauxite_proc = models.IntegerField(default=25, verbose_name='Процент Грокцита')
 
     shape = models.TextField(default='', verbose_name='Вид на карте')
     # централизация на карте
@@ -134,7 +134,7 @@ class Region(models.Model):
         super(Region, self).save()
 
     def clean(self):
-        if self.anohor_proc + self.berkonor_proc + self.grokcite_proc != 100:
+        if self.coal_proc + self.iron_proc + self.bauxite_proc != 100:
             raise forms.ValidationError('Сумма процентов добываемых минералов должна быть равна ста')
 
     def __str__(self):

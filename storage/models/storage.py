@@ -14,11 +14,11 @@ class Storage(models.Model):
     # ------vvvvvvv------Минералы на складе------vvvvvvv------
     minerals = {
         # Анохор
-        'anohor': gettext_lazy('Анохор'),
+        'coal': gettext_lazy('Уголь'),
         # Берконор
-        'berkonor': gettext_lazy('Берконор'),
+        'iron': gettext_lazy('Железо'),
         # Грокцит
-        'grokcite': gettext_lazy('Грокцит'),
+        'bauxite': gettext_lazy('Бокситы'),
     }
     # ------vvvvvvv------Нефть на складе------vvvvvvv------
     oils = {
@@ -61,19 +61,19 @@ class Storage(models.Model):
 
     # ------vvvvvvv------Минералы на складе------vvvvvvv------
     # Анохор
-    anohor = models.IntegerField(default=0, verbose_name=gettext_lazy('anohor'))
+    coal = models.IntegerField(default=0, verbose_name=gettext_lazy('coal'))
     # Анохор- максимум на складе
-    anohor_cap = models.IntegerField(default=100000, verbose_name=gettext_lazy('anohor_cap'))
+    coal_cap = models.IntegerField(default=100000, verbose_name=gettext_lazy('coal_cap'))
 
     # Берконор
-    berkonor = models.IntegerField(default=0, verbose_name=gettext_lazy('berkonor'))
+    iron = models.IntegerField(default=0, verbose_name=gettext_lazy('iron'))
     # Берконор- максимум на складе
-    berkonor_cap = models.IntegerField(default=100000, verbose_name=gettext_lazy('berkonor_cap'))
+    iron_cap = models.IntegerField(default=100000, verbose_name=gettext_lazy('iron_cap'))
 
     # Грокцит
-    grokcite = models.IntegerField(default=0, verbose_name=gettext_lazy('grokcite'))
+    bauxite = models.IntegerField(default=0, verbose_name=gettext_lazy('bauxite'))
     # Грокцит- максимум на складе
-    grokcite_cap = models.IntegerField(default=100000, verbose_name=gettext_lazy('grokcite_cap'))
+    bauxite_cap = models.IntegerField(default=100000, verbose_name=gettext_lazy('bauxite_cap'))
 
     # ------vvvvvvv------Нефть на складе------vvvvvvv------
     # Нефть WTI
