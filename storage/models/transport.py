@@ -4,18 +4,23 @@ from django.utils.translation import gettext_lazy
 
 from player.logs.log import Log
 from player.player import Player
-from region.region import Region
+from storage.models.storage import  Storage
 
 
 class Transport(Log):
+    # концепция:
+    # игрок платит за неполный "куб" пространства, занятого при транспортировке
+    # таким образом, он может перевезти 333 бокситов в одном кубе
+    # при попытке перевезти 334 единицы руды он будет платить за два "куба" емкости
+
     # ------vvvvvvv------Минералы на складе------vvvvvvv------
     minerals = {
         # Анохор
-        'anohor': 0.007,
+        'coal': 0.007,
         # Берконор
-        'berkonor': 0.005,
+        'iron': 0.005,
         # Грокцит
-        'grokcite': 0.003,
+        'bauxite': 0.003,
     }
     # ------vvvvvvv------Нефть на складе------vvvvvvv------
     oils = {
@@ -45,206 +50,97 @@ class Transport(Log):
     }
 
     # регион отправки
-    region_from = models.ForeignKey(Region, default=None, null=True, on_delete=models.SET_NULL,
-                               verbose_name='Регион отправки')
-
-    # персонаж получения
-    player_to = models.ForeignKey(Player, default=None, null=True, on_delete=models.CASCADE, verbose_name='Персонаж')
+    storage_from = models.ForeignKey(Storage, default=None, null=True, on_delete=models.SET_NULL,
+                               verbose_name='Склад отправки', related_name='storage_from')
 
     # регион получения
-    region_to = models.ForeignKey(Region, default=None, null=True, on_delete=models.SET_NULL,
-                               verbose_name='Регион отправки')
+    storage_to = models.ForeignKey(Storage, default=None, null=True, on_delete=models.SET_NULL,
+                               verbose_name='Склад получения', related_name='storage_to')
 
-    # наличные на складе
-    cash = models.BigIntegerField(default=0, verbose_name=gettext_lazy('storage_cash'))
 
+    # Количество занятых кубов всего
+    total_vol = models.IntegerField(default=0, verbose_name=gettext_lazy('Всего кубов'))
     # ------vvvvvvv------Минералы на складе------vvvvvvv------
-    # Анохор
-    anohor = models.IntegerField(default=0, verbose_name=gettext_lazy('anohor'))
-    # Анохор- максимум на складе
-    anohor_cap = models.IntegerField(default=100000, verbose_name=gettext_lazy('anohor_cap'))
+    # Уголь
+    coal = models.IntegerField(default=0, verbose_name=gettext_lazy('Уголь'))
+    # Уголь - количество занятых кубов
+    coal_vol = models.IntegerField(default=0, verbose_name=gettext_lazy('Уголь - кубов'))
 
-    # Берконор
-    berkonor = models.IntegerField(default=0, verbose_name=gettext_lazy('berkonor'))
-    # Берконор- максимум на складе
-    berkonor_cap = models.IntegerField(default=100000, verbose_name=gettext_lazy('berkonor_cap'))
+    # Железо
+    iron = models.IntegerField(default=0, verbose_name=gettext_lazy('iron'))
+    # Железо - кубов
+    iron_vol = models.IntegerField(default=0, verbose_name=gettext_lazy('Железо - кубов'))
 
-    # Грокцит
-    grokcite = models.IntegerField(default=0, verbose_name=gettext_lazy('grokcite'))
-    # Грокцит- максимум на складе
-    grokcite_cap = models.IntegerField(default=100000, verbose_name=gettext_lazy('grokcite_cap'))
+    # Бокситы
+    bauxite = models.IntegerField(default=0, verbose_name=gettext_lazy('bauxite'))
+    # Бокситы - кубов
+    bauxite_vol = models.IntegerField(default=0, verbose_name=gettext_lazy('Бокситы - кубов'))
 
     # ------vvvvvvv------Нефть на складе------vvvvvvv------
     # Нефть WTI
     wti_oil = models.IntegerField(default=0, verbose_name=gettext_lazy('wti_oil'))
-    # Нефть WTI- максимум на складе
-    wti_oil_cap = models.IntegerField(default=100000, verbose_name=gettext_lazy('wti_oil_cap'))
+    # Нефть WTI- кубов
+    wti_oil_vol = models.IntegerField(default=0, verbose_name=gettext_lazy('wti_oil_cap'))
 
     # Нефть Brent
     brent_oil = models.IntegerField(default=0, verbose_name=gettext_lazy('brent_oil'))
-    # Нефть Brent- максимум на складе
-    brent_oil_cap = models.IntegerField(default=100000, verbose_name=gettext_lazy('brent_oil_cap'))
+    # Нефть Brent- кубов
+    brent_oil_vol = models.IntegerField(default=0, verbose_name=gettext_lazy('brent_oil_cap'))
 
     # Нефть Urals
     urals_oil = models.IntegerField(default=0, verbose_name=gettext_lazy('urals_oil'))
-    # Нефть Urals- максимум на складе
-    urals_oil_cap = models.IntegerField(default=100000, verbose_name=gettext_lazy('urals_oil_cap'))
+    # Нефть Urals- кубов
+    urals_oil_vol = models.IntegerField(default=0, verbose_name=gettext_lazy('urals_oil_cap'))
 
     # ------vvvvvvv------Материалы на складе------vvvvvvv------
     # бензин
     gas = models.IntegerField(default=0, verbose_name=gettext_lazy('gas'))
-    # бензин- максимум на складе
-    gas_cap = models.IntegerField(default=10000, verbose_name=gettext_lazy('gas_cap'))
+    # бензин- кубов
+    gas_vol = models.IntegerField(default=0, verbose_name=gettext_lazy('gas_cap'))
 
     # бензин
     diesel = models.IntegerField(default=0, verbose_name=gettext_lazy('diesel'))
-    # бензин- максимум на складе
-    diesel_cap = models.IntegerField(default=10000, verbose_name=gettext_lazy('diesel_cap'))
+    # бензин- кубов
+    diesel_vol = models.IntegerField(default=0, verbose_name=gettext_lazy('diesel_cap'))
 
     steel = models.IntegerField(default=0, verbose_name=gettext_lazy('steel'))
     # сталь- максимум на складе
-    steel_cap = models.IntegerField(default=10000, verbose_name=gettext_lazy('steel_cap'))
+    steel_vol = models.IntegerField(default=0, verbose_name=gettext_lazy('steel_cap'))
 
     aluminium = models.IntegerField(default=0, verbose_name=gettext_lazy('alumunuim'))
     # сталь- максимум на складе
-    aluminium_cap = models.IntegerField(default=10000, verbose_name=gettext_lazy('alumunuim_cap'))
+    aluminium_vol = models.IntegerField(default=0, verbose_name=gettext_lazy('alumunuim_cap'))
 
     # ------vvvvvvv------Юниты на складе------vvvvvvv------
     # танки
     tank = models.IntegerField(default=0, verbose_name=gettext_lazy('tank'))
     # танки- максимум на складе
-    tank_cap = models.IntegerField(default=1000, verbose_name='Танки- максимум на складе')
+    tank_vol = models.IntegerField(default=0, verbose_name='Танки- максимум на складе')
 
     # штурмовики
     jet = models.IntegerField(default=0, verbose_name=gettext_lazy('attack_air'))
     # танки- максимум на складе
-    jet_cap = models.IntegerField(default=1000, verbose_name='Штурмовики- максимум на складе')
+    jet_vol = models.IntegerField(default=0, verbose_name='Штурмовики- максимум на складе')
 
     # орбитальные орудия
     station = models.IntegerField(default=0, verbose_name=gettext_lazy('orb_station'))
     # танки- максимум на складе
-    station_cap = models.IntegerField(default=10, verbose_name='Орбитальные орудия- максимум на складе')
+    station_vol = models.IntegerField(default=0, verbose_name='Орбитальные орудия- максимум на складе')
 
     # ПЗРК
     pzrk = models.IntegerField(default=0, verbose_name=gettext_lazy('mpads'))
     # танки- максимум на складе
-    pzrk_cap = models.IntegerField(default=1000, verbose_name='ПЗРК- максимум на складе')
+    pzrk_vol = models.IntegerField(default=0, verbose_name='ПЗРК- максимум на складе')
 
     # AT-cannon
     antitank = models.IntegerField(default=0, verbose_name=gettext_lazy('antitank'))
     # танки- максимум на складе
-    antitank_cap = models.IntegerField(default=1000, verbose_name='ПТ-пушка- максимум на складе')
-
-    # получить информацию о количестве предметов
-    def unitsOnStorageCount(self, mode):
-        data = {}
-
-        for unit in getattr(self, mode).keys():
-            data[unit] = getattr(self, unit)
-
-        return data
-
-    # получить информацию о количестве предметов
-    def allStorageCount(self):
-        data = {}
-        data['cash'] = getattr(self, 'cash')
-        for mode in {'minerals', 'oils', 'materials', 'units'}:
-            for unit in getattr(self, mode).keys():
-                data[unit] = getattr(self, unit)
-
-        return data
-
-    # проверить наличие предметов на Складе
-    def unitsOnStorageExist(self, request, mode):
-        unit_cnt = 0
-        retcode = False
-        for unit in getattr(self, mode).keys():
-            # проверяем что передано целое положительное число
-            try:
-                unit_cnt = int(request.POST.get(unit, ''))
-                # передано отрицательное число
-                if unit_cnt < 0:
-                    return _('positive_spend_stock_req')
-                    # return 'Нельзя списать со Склада отрицательное количество'
-                if unit_cnt == 0:
-                    continue
-                if unit_cnt > getattr(self, unit):
-                    return _('not_enough') + ' ' + str(getattr(self, mode).get(unit))
-                    # return 'Не хватает на складе: ' + str(getattr(self, mode).get(unit))
-                else:
-                    retcode = True
-            # нет юнита в запросе, ищем дальше
-            except ValueError:
-                continue
-        # Если цикл прошел, а так ничего не нашлось
-        if not retcode:
-            return 0
-
-    # проверить наличие места для предметов на Складе
-    def capacity_check(self, field, count):
-        # передан ноль (ничего не передают)
-        if count == 0:
-            return True
-        # передано отрицательное число
-        if count < 0:
-            return False
-        # проверяем влезет ли всё - кроме денег
-        if not field == 'cash':
-            if count + getattr(self, field) > getattr(self, field + '_cap'):
-                return False
-            else:
-                return True
-        else:
-            # Для денег место есть всегда
-            return True
-
-    # списать предметы со Склада
-    def unitsOnStorageUsing(self, request, mode):
-        data_dict = {}
-        for unit in getattr(self, mode).keys():
-            # проверяем что передано целое положительное число
-            try:
-                unit_cnt = int(request.POST.get(unit, ''))
-                # передано отрицательное число
-                if unit_cnt < 0:
-                    return
-                # предметов нужно больше чем есть на складе
-                if unit_cnt > getattr(self, unit):
-                    return
-                # записываем новое число предметов на складе
-                data_dict[unit] = getattr(self, unit) - unit_cnt
-            # нет юнита в запросе, ищем дальше
-            except ValueError:
-                continue
-        # списываем предметы
-        Storage.objects.filter(pk=self.pk).update(**data_dict)
-
-    # начислить предметы на Склад
-    def unitsToStorageAdd(self, request, mode):
-        data_dict = {}
-        for unit in getattr(self, mode).keys():
-            # проверяем что передано целое положительное число
-            try:
-                unit_cnt = int(request.POST.get(unit, ''))
-                # передано отрицательное число
-                if unit_cnt < 0:
-                    return
-                # предметов добавляется больше чем может вместить Склад
-                if not unit == 'cash':
-                    if unit_cnt + getattr(self, unit) > getattr(self, unit + '_cap'):
-                        return
-                # записываем новое число предметов на складе
-                data_dict[unit] = getattr(self, unit) + unit_cnt
-            # нет юнита в запросе, ищем дальше
-            except ValueError:
-                continue
-        # начисляем предметы
-        Storage.objects.filter(pk=self.pk).update(**data_dict)
+    antitank_vol = models.IntegerField(default=0, verbose_name='ПТ-пушка- максимум на складе')
 
     def __str__(self):
-        return self.owner.nickname + " в " + self.region.region_name
+        return self.storage_from.owner.nickname + " (" + self.storage_from.region.region_name + ") " + '-> ' + self.storage_to.owner.nickname + " (" + self.storage_to.region.region_name + ")"
 
     # Свойства класса
     class Meta:
-        verbose_name = "Склад"
-        verbose_name_plural = "Склады"
+        verbose_name = "Транспорт"
+        verbose_name_plural = "Транспорты"

@@ -31,12 +31,12 @@ class Region(models.Model):
     # признак того что регион северный
     is_north = models.BooleanField(default=True, verbose_name='Северной широты')
     # координата широты
-    north = models.DecimalField(default=00.00, max_digits=4, decimal_places=2)
+    north = models.DecimalField(default=00.00, max_digits=5, decimal_places=2)
 
     # признак того что регион восточный
     is_east = models.BooleanField(default=True, verbose_name='Восточной долготы')
     # координата долготы
-    east = models.DecimalField(default=00.00, max_digits=4, decimal_places=2)
+    east = models.DecimalField(default=00.00, max_digits=5, decimal_places=2)
     # ---------- Государство ----------
     state = models.ForeignKey(State, default=None, blank=True, null=True, on_delete=models.SET_NULL,
                               verbose_name='Государство', related_name="reg_state")
@@ -124,8 +124,8 @@ class Region(models.Model):
 
     shape = models.TextField(default='', verbose_name='Вид на карте')
     # централизация на карте
-    longitude = models.DecimalField(default=00.00, max_digits=9, decimal_places=7, verbose_name='Долгота - центр')
-    latitude = models.DecimalField(default=00.00, max_digits=9, decimal_places=7, verbose_name='Широта - центр')
+    longitude = models.DecimalField(default=00.00, max_digits=10, decimal_places=7, verbose_name='Долгота - центр')
+    latitude = models.DecimalField(default=00.00, max_digits=10, decimal_places=7, verbose_name='Широта - центр')
     # масштаб карты при открытии региона
     zoom = models.IntegerField(default=1, verbose_name='Масштаб карты')
 

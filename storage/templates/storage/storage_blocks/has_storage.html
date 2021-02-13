@@ -1,6 +1,7 @@
 {% load get_attr %}
 {% load get_mod %}
 {% load get_sub %}
+{% load get_sum %}
 {% load dict_key %}
 {% load static %}
 {% block for_scripts_and_css %}
@@ -30,6 +31,9 @@ var csrftoken = '{{ csrf_token }}';
 <div class="col-xs-2 col-sm-2 col-md-2" style="margin-top: 1%; border: 4px double black;">
     {{ storage.minerals|dict_key:mineral }}:
     {{ storage|get_attr:mineral }}
+    {% with cap_name=mineral|get_sum:'_cap' %}
+        / {{ storage|get_attr:cap_name }}
+    {% endwith %}
 </div>
 {% if forloop.last or forloop.counter|get_mod:3 == 0 %}
 </div>
@@ -44,6 +48,9 @@ var csrftoken = '{{ csrf_token }}';
 <div class="col-xs-2 col-sm-2 col-md-2" style="margin-top: 1%; border: 4px double black;">
     {{ storage.oils|dict_key:oil }}:
     {{ storage|get_attr:oil }}
+    {% with cap_name=oil|get_sum:'_cap' %}
+        / {{ storage|get_attr:cap_name }}
+    {% endwith %}
 </div>
 {% if forloop.last or forloop.counter|get_mod:3 == 0 %}
 </div>
@@ -58,6 +65,9 @@ var csrftoken = '{{ csrf_token }}';
 <div class="col-xs-2 col-sm-2 col-md-2" style="margin-top: 1%; border: 4px double black;">
     {{ storage.materials|dict_key:material }}:
     {{ storage|get_attr:material }}
+    {% with cap_name=material|get_sum:'_cap' %}
+        / {{ storage|get_attr:cap_name }}
+    {% endwith %}
 </div>
 {% if forloop.last or forloop.counter|get_mod:3 == 0 %}
 </div>
@@ -72,6 +82,9 @@ var csrftoken = '{{ csrf_token }}';
 <div class="col-xs-2 col-sm-2 col-md-2" style="margin-top: 1%; border: 4px double black;">
     {{ storage.units|dict_key:unit }}:
     {{ storage|get_attr:unit }}
+    {% with cap_name=unit|get_sum:'_cap' %}
+        / {{ storage|get_attr:cap_name }}
+    {% endwith %}
 </div>
 {% if forloop.last or forloop.counter|get_mod:3 == 0 %}
 </div>
