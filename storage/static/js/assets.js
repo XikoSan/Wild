@@ -2,11 +2,17 @@ function numberWithSpaces(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
 }
 
+// предобработка уничтожения предметов на Складе
+function destroy_pre(){
+    document.getElementById('accept').disabled = true
+}
+
 // предобработка передачи со склада на склад
 // показать только те склады, на которых не выбраны значения
 function transfer_pre() {
     var selected_dest = null;
     storage_pos.forEach((value, key, map) => map.set(key, 0));
+    document.getElementById('accept').disabled = true
     // показываем все склады сначала
     $("#storage_options option").each(function()
     {
@@ -45,9 +51,9 @@ function transfer_pre() {
     // считаем стоимость, как сумма произведений объемов складов на множитель до выбранного склада-цели
     var sum_vol = 0;
     sum_vol = 0;
-    console.log('selected_dest.val() = ' + selected_dest.val());
     storage_pos.forEach((value, key, map) => {
             if( !( selected_dest.val() == 'storage_none') ){
+                document.getElementById('accept').disabled = false
                 if( parseInt(key) != parseInt(selected_dest.val()) ){
                     sum_vol += map.get(key) * trans_mul[selected_dest.val()][key];
 
@@ -55,7 +61,6 @@ function transfer_pre() {
             }
         }
     );
-    console.log('sum_vol = ' + sum_vol);
     $('#total_sum').html(numberWithSpaces( sum_vol ));
 }
 
@@ -98,5 +103,44 @@ jQuery(document).ready(function ($) {
 
     $('#storage_options').on('change', function (e) {
         transfer_pre();
+    });
+
+    $('#assets_actions_form').submit(function(e){
+        e.preventDefault();
+
+        for (var [key, storage] of Object.entries(send_storages_map)){
+            for (var k in storage){
+                delete send_storages_map[key][k];
+            }
+        }
+
+        $('.good_input').each(function(i, obj) {
+            if(obj.value){
+               if(obj.value > 0){
+                    send_storages_map[obj.dataset.storage_id][obj.dataset.good_name] = obj.value;
+               }
+            }
+        });
+
+
+         var sending_data;
+         sending_data += "&csrfmiddlewaretoken=" + csrftoken;
+         sending_data += "&storages=" + JSON.stringify(send_storages_map);
+         sending_data += "&dest_storage=" + $('#storage_options').val();
+         sending_data += "&action=" + $('#assets_actions').val();
+        $.ajax({
+            type: "POST",
+            url: "/assets_action/",
+            data:  sending_data,
+            cache: false,
+            success: function(data){
+                if (data.response == 'ok'){
+                    location.reload();
+                }
+                else{
+                    alert(data.response);
+                }
+            }
+        });
     });
 });

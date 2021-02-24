@@ -61,7 +61,7 @@ class Storage(models.Model):
 
     # ------vvvvvvv------Минералы на складе------vvvvvvv------
     # Анохор
-    coal = models.IntegerField(default=0, verbose_name=gettext_lazy('coal'))
+    coal = models.IntegerField(default=0, verbose_name=gettext_lazy('Уголь'))
     # Анохор- максимум на складе
     coal_cap = models.IntegerField(default=100000, verbose_name=gettext_lazy('coal_cap'))
 

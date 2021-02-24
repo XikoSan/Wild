@@ -1,7 +1,6 @@
 # coding=utf-8
 from django.conf.urls import include, url
 
-from storage.views.assets.assets import assets
 from storage.views.cash_transfer import cash_transfer
 from storage.views.get_storage_action_line import get_storage_action_line
 from storage.views.new_storage import new_storage
@@ -22,7 +21,4 @@ urlpatterns = [
     url(r'^storage/(?P<type>[\w\-]+)/$', get_storage_action_line, name='get_storage_action_line'),
     # статус склада
     url(r'^status/(?P<pk>.*)/$', storage_status, name='storage_status'),
-
-    # страница активов
-    url(r'^assets$', assets, name='assets'),
 ]

@@ -31,8 +31,6 @@ def assets(request):
             if not dest == storage:
                 trans_mul[storage.pk][dest.pk] = math.ceil(distance_counting(storage.region, dest.region) / 100)
 
-    print(trans_mul)
-
     # отправляем в форму
     response = render(request, 'storage/assets.html', {
         'page_name': _('Активы'),

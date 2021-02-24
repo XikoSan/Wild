@@ -7,6 +7,8 @@
 
 {% block for_scripts_and_css %}
 <script>
+    var csrftoken = '{{ csrf_token }}';
+
     var vol_map = new Map();
     {% for type in types %}
         {% for good in transport|get_attr:type %}
@@ -25,183 +27,193 @@
     };
 
     var storage_pos = new Map();
+    <!--     также создаем словари складов для отправки данных   -->
+    var send_storages_map = {};
+
     {% for storage in storages %}
     storage_pos.set("{{ storage.pk }}", 0);
+
+    var st_{{ storage.pk }}_map = {};
+    st_{{ storage.pk }}_map[{{ storage.pk }}] = 0;
+    send_storages_map[{{ storage.pk }}] = st_{{ storage.pk }}_map;
     {% endfor %}
+    console.log(send_storages_map);
 </script>
 <script src='{% static "js/assets.js" %}?{{ csrf_token }}'></script>
 {% endblock %}
 
 {% block content %}
-<div class="col-xs-8 col-sm-8 col-md-8">
-    <ul class="nav nav-tabs">
-        {% for storage in storages %}
-        <li {% if forloop.first %}class="active"{% endif %}>
-            <a data-toggle="tab" href="#{{ storage.pk }}">{{ storage.region }}</a>
-        </li>
-        {% endfor %}
-    </ul>
-    <div class="tab-content">
-        {% for storage in storages %}
-        <div class="tab-pane {% if forloop.first %}active{% endif %}" id="{{ storage.pk }}" style="height: 400px; overflow-y: auto; overflow-x: hidden;">
-            <div class="row" style="margin-top: 3%;">
-                <div class="col-xs-2 col-sm-2 col-md-2">
-                {{ storage.valut|dict_key:'cash' }}:
-                </div>
-                <div class="col-xs-2 col-sm-2 col-md-2" style="color: #85bb65">
-                 {{ storage|get_attr:'cash' }}
-                </div>
-            </div>
-
-            {% for mineral in storage.minerals %}
-            {% if storage|get_attr:mineral %}
-            <div class="row" style="margin-top: 3%;">
-                <div class="col-xs-2 col-sm-2 col-md-2">
-                {{ storage.minerals|dict_key:mineral }}:
-                </div>
-                <div class="col-xs-2 col-sm-2 col-md-2">
-                <input style="width: 100%" type="number" class="good_input" data-good_name="{{ mineral }}" data-storage_id="{{ storage.pk }}" min="0" max="{% localize off %}{{ storage|get_attr:mineral }}{% endlocalize %}" value="0" step="1" name="{{ storage.pk }}_{{ mineral }}" maxlength="3">
-                </div>
-                <div class="col-xs-2 col-sm-2 col-md-2">
-                / {{ storage|get_attr:mineral }}
-                </div>
-                <div class="col-xs-2 col-sm-2 col-md-2">
-                </div>
-                <div class="col-xs-2 col-sm-2 col-md-2">
-                    Объём (ед.):
-                </div>
-                <div class="col-xs-2 col-sm-2 col-md-2">
-                    <div id="{{ storage.pk }}_{{ mineral }}_places" data-text="0">0</div>
-                </div>
-            </div>
-            {% endif %}
+<form id="assets_actions_form" role="form">
+    <div class="col-xs-8 col-sm-8 col-md-8">
+        <ul class="nav nav-tabs">
+            {% for storage in storages %}
+            <li {% if forloop.first %}class="active"{% endif %}>
+                <a data-toggle="tab" href="#{{ storage.pk }}">{{ storage.region }}</a>
+            </li>
             {% endfor %}
+        </ul>
+        <div class="tab-content">
+            {% for storage in storages %}
+            <div class="tab-pane {% if forloop.first %}active{% endif %}" id="{{ storage.pk }}" style="height: 400px; overflow-y: auto; overflow-x: hidden;">
+                <div class="row" style="margin-top: 3%;">
+                    <div class="col-xs-2 col-sm-2 col-md-2">
+                    {{ storage.valut|dict_key:'cash' }}:
+                    </div>
+                    <div class="col-xs-2 col-sm-2 col-md-2" style="color: #85bb65">
+                     {{ storage|get_attr:'cash' }}
+                    </div>
+                </div>
 
-            {% for oil in storage.oils %}
-            {% if storage|get_attr:oil %}
-            <div class="row" style="margin-top: 3%;">
-                <div class="col-xs-2 col-sm-2 col-md-2">
-                {{ storage.oils|dict_key:oil }}:
-                </div>
-                <div class="col-xs-2 col-sm-2 col-md-2">
-                <input style="width: 100%" type="number" class="good_input" data-good_name="{{ oil }}" data-storage_id="{{ storage.pk }}" min="0" max="{% localize off %}{{ storage|get_attr:oil }}{% endlocalize %}" value="0" step="1" name="{{ storage.pk }}_{{ oil }}" maxlength="3">
-                </div>
-                <div class="col-xs-2 col-sm-2 col-md-2">
-                / {{ storage|get_attr:oil }}
-                </div>
-                <div class="col-xs-2 col-sm-2 col-md-2">
-                </div>
-                <div class="col-xs-2 col-sm-2 col-md-2">
-                    Объём (ед.):
-                </div>
-                <div class="col-xs-2 col-sm-2 col-md-2">
-                    <div id="{{ storage.pk }}_{{ oil }}_places" data-text="0">0</div>
-                </div>
-            </div>
-            {% endif %}
-            {% endfor %}
-
-            {% for material in storage.materials %}
-            {% if storage|get_attr:material %}
-            <div class="row" style="margin-top: 3%;">
-                <div class="col-xs-2 col-sm-2 col-md-2">
-                {{ storage.materials|dict_key:material }}:
-                </div>
-                <div class="col-xs-2 col-sm-2 col-md-2">
-                <input style="width: 100%" type="number" class="good_input" data-good_name="{{ material }}" data-storage_id="{{ storage.pk }}" min="0" max="{% localize off %}{{ storage|get_attr:material }}{% endlocalize %}" value="0" step="1" name="{{ storage.pk }}_{{ material }}" maxlength="3">
-                </div>
-                <div class="col-xs-2 col-sm-2 col-md-2">
-                / {{ storage|get_attr:material }}
-                </div>
-                <div class="col-xs-2 col-sm-2 col-md-2">
-                </div>
-                <div class="col-xs-2 col-sm-2 col-md-2">
-                    Объём (ед.):
-                </div>
-                <div class="col-xs-2 col-sm-2 col-md-2">
-                    <div id="{{ storage.pk }}_{{ material }}_places" data-text="0">0</div>
-                </div>
-            </div>
-            {% endif %}
-            {% endfor %}
-
-            {% for unit in storage.units %}
-            {% if storage|get_attr:unit %}
-            <div class="row" style="margin-top: 3%;">
-                <div class="col-xs-2 col-sm-2 col-md-2">
-                {{ storage.units|dict_key:unit }}:
-                </div>
-                <div class="col-xs-2 col-sm-2 col-md-2">
-                <input style="width: 100%" type="number" class="good_input" data-good_name="{{ unit }}" data-storage_id="{{ storage.pk }}" min="0" max="{% localize off %}{{ storage|get_attr:unit }}{% endlocalize %}" value="0" step="1" name="{{ storage.pk }}_{{ unit }}" maxlength="3">
-                </div>
-                <div class="col-xs-2 col-sm-2 col-md-2">
-                / {{ storage|get_attr:unit }}
-                </div>
-                {% if not unit == 'station' %}
-                <div class="col-xs-2 col-sm-2 col-md-2">
-                </div>
-                <div class="col-xs-2 col-sm-2 col-md-2">
-                    Объём (ед.):
-                </div>
-                <div class="col-xs-2 col-sm-2 col-md-2">
-                    <div id="{{ storage.pk }}_{{ unit }}_places" data-text="0">0</div>
+                {% for mineral in storage.minerals %}
+                {% if storage|get_attr:mineral %}
+                <div class="row" style="margin-top: 3%;">
+                    <div class="col-xs-2 col-sm-2 col-md-2">
+                    {{ storage.minerals|dict_key:mineral }}:
+                    </div>
+                    <div class="col-xs-2 col-sm-2 col-md-2">
+                    <input style="width: 100%" type="number" class="good_input" data-good_name="{{ mineral }}" data-storage_id="{{ storage.pk }}" min="0" max="{% localize off %}{{ storage|get_attr:mineral }}{% endlocalize %}" value="0" step="1" name="{{ storage.pk }}_{{ mineral }}" maxlength="3">
+                    </div>
+                    <div class="col-xs-2 col-sm-2 col-md-2">
+                    / {{ storage|get_attr:mineral }}
+                    </div>
+                    <div class="col-xs-2 col-sm-2 col-md-2">
+                    </div>
+                    <div class="col-xs-2 col-sm-2 col-md-2">
+                        Объём (ед.):
+                    </div>
+                    <div class="col-xs-2 col-sm-2 col-md-2">
+                        <div id="{{ storage.pk }}_{{ mineral }}_places" data-text="0">0</div>
+                    </div>
                 </div>
                 {% endif %}
-            </div>
-            {% endif %}
-            {% endfor %}
+                {% endfor %}
 
+                {% for oil in storage.oils %}
+                {% if storage|get_attr:oil %}
+                <div class="row" style="margin-top: 3%;">
+                    <div class="col-xs-2 col-sm-2 col-md-2">
+                    {{ storage.oils|dict_key:oil }}:
+                    </div>
+                    <div class="col-xs-2 col-sm-2 col-md-2">
+                    <input style="width: 100%" type="number" class="good_input" data-good_name="{{ oil }}" data-storage_id="{{ storage.pk }}" min="0" max="{% localize off %}{{ storage|get_attr:oil }}{% endlocalize %}" value="0" step="1" name="{{ storage.pk }}_{{ oil }}" maxlength="3">
+                    </div>
+                    <div class="col-xs-2 col-sm-2 col-md-2">
+                    / {{ storage|get_attr:oil }}
+                    </div>
+                    <div class="col-xs-2 col-sm-2 col-md-2">
+                    </div>
+                    <div class="col-xs-2 col-sm-2 col-md-2">
+                        Объём (ед.):
+                    </div>
+                    <div class="col-xs-2 col-sm-2 col-md-2">
+                        <div id="{{ storage.pk }}_{{ oil }}_places" data-text="0">0</div>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+
+                {% for material in storage.materials %}
+                {% if storage|get_attr:material %}
+                <div class="row" style="margin-top: 3%;">
+                    <div class="col-xs-2 col-sm-2 col-md-2">
+                    {{ storage.materials|dict_key:material }}:
+                    </div>
+                    <div class="col-xs-2 col-sm-2 col-md-2">
+                    <input style="width: 100%" type="number" class="good_input" data-good_name="{{ material }}" data-storage_id="{{ storage.pk }}" min="0" max="{% localize off %}{{ storage|get_attr:material }}{% endlocalize %}" value="0" step="1" name="{{ storage.pk }}_{{ material }}" maxlength="3">
+                    </div>
+                    <div class="col-xs-2 col-sm-2 col-md-2">
+                    / {{ storage|get_attr:material }}
+                    </div>
+                    <div class="col-xs-2 col-sm-2 col-md-2">
+                    </div>
+                    <div class="col-xs-2 col-sm-2 col-md-2">
+                        Объём (ед.):
+                    </div>
+                    <div class="col-xs-2 col-sm-2 col-md-2">
+                        <div id="{{ storage.pk }}_{{ material }}_places" data-text="0">0</div>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+
+                {% for unit in storage.units %}
+                {% if storage|get_attr:unit %}
+                <div class="row" style="margin-top: 3%;">
+                    <div class="col-xs-2 col-sm-2 col-md-2">
+                    {{ storage.units|dict_key:unit }}:
+                    </div>
+                    <div class="col-xs-2 col-sm-2 col-md-2">
+                    <input style="width: 100%" type="number" class="good_input" data-good_name="{{ unit }}" data-storage_id="{{ storage.pk }}" min="0" max="{% localize off %}{{ storage|get_attr:unit }}{% endlocalize %}" value="0" step="1" name="{{ storage.pk }}_{{ unit }}" maxlength="3">
+                    </div>
+                    <div class="col-xs-2 col-sm-2 col-md-2">
+                    / {{ storage|get_attr:unit }}
+                    </div>
+                    {% if not unit == 'station' %}
+                    <div class="col-xs-2 col-sm-2 col-md-2">
+                    </div>
+                    <div class="col-xs-2 col-sm-2 col-md-2">
+                        Объём (ед.):
+                    </div>
+                    <div class="col-xs-2 col-sm-2 col-md-2">
+                        <div id="{{ storage.pk }}_{{ unit }}_places" data-text="0">0</div>
+                    </div>
+                    {% endif %}
+                </div>
+                {% endif %}
+                {% endfor %}
+
+            </div>
+            {% endfor %}
         </div>
-        {% endfor %}
     </div>
-</div>
-<!--Действия-->
-<div class="col-xs-4 col-sm-4 col-md-4">
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12" align="center">
-            <select id="assets_actions">
-                <option disabled selected value>Выберите действие</option>
-                <option value='transfer'>Передать</option>
-                <option value='destroy'>Уничтожить</option>
-            </select>
-        </div>
-    </div>
-    <div class="row" id="transfer_bloc" style="margin-top: 3%; display: none">
-        <div class="col-xs-12 col-sm-12 col-md-12" align="center">
-            <div class="row">
-                <select id="storage_options">
-                    <option disabled selected value="storage_none">Выберите склад</option>
-                    {% for storage in storages %}
-                    <option id="storage_{{ storage.pk }}" value='{{ storage.pk }}'>Склад в {{ storage.region.region_name }}</option>
-                    {% endfor %}
+    <!--Действия-->
+    <div class="col-xs-4 col-sm-4 col-md-4">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12" align="center">
+                <select name="assets_actions" id="assets_actions">
+                    <option disabled selected value>Выберите действие</option>
+                    <option value='transfer'>Передать</option>
+                    <option value='destroy'>Уничтожить</option>
                 </select>
             </div>
-            <div class="row" style="margin-top: 3%;">
-                <div class="col-xs-6 col-sm-6 col-md-6">
-                Объём (ед.):
+        </div>
+        <div class="row" id="transfer_bloc" style="margin-top: 3%; display: none">
+            <div class="col-xs-12 col-sm-12 col-md-12" align="center">
+                <div class="row">
+                    <select name="storage_options" id="storage_options">
+                        <option disabled selected value="storage_none">Выберите склад</option>
+                        {% for storage in storages %}
+                        <option id="storage_{{ storage.pk }}" value='{{ storage.pk }}'>Склад в {{ storage.region.region_name }}</option>
+                        {% endfor %}
+                    </select>
                 </div>
-                <div class="col-xs-6 col-sm-6 col-md-6" id="total_vol">
+                <div class="row" style="margin-top: 3%;">
+                    <div class="col-xs-6 col-sm-6 col-md-6">
+                    Объём (ед.):
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6" id="total_vol">
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 3%;">
+                    <div class="col-xs-6 col-sm-6 col-md-6">
+                    Стоимость доставки:
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6" id="total_sum">
+                    </div>
                 </div>
             </div>
-            <div class="row" style="margin-top: 3%;">
-                <div class="col-xs-6 col-sm-6 col-md-6">
-                Стоимость доставки:
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-6" id="total_sum">
-                </div>
+        </div>
+        <div class="row" id="destroy_bloc" style="margin-top: 3%; display: none">
+            <div class="col-xs-12 col-sm-12 col-md-12" align="center">
+                <input type="checkbox" id="destroy_sure">
+                <label for="destroy_sure">уверен</label>
+            </div>
+        </div>
+        <div class="row" id="accept_bloc" style="margin-top: 3%; display: none">
+            <div class="col-xs-12 col-sm-12 col-md-12" align="center">
+                <button id="accept" disabled type="submit" enctype="multipart/form-data" class="save btn btn-default">Подтвердить</button>
             </div>
         </div>
     </div>
-    <div class="row" id="destroy_bloc" style="margin-top: 3%; display: none">
-        <div class="col-xs-12 col-sm-12 col-md-12" align="center">
-            <input type="checkbox" id="destroy_sure">
-            <label for="destroy_sure">уверен</label>
-        </div>
-    </div>
-    <div class="row" id="accept_bloc" style="margin-top: 3%; display: none">
-        <div class="col-xs-12 col-sm-12 col-md-12" align="center">
-            <button type="submit" enctype="multipart/form-data" class="save btn btn-default">Подтвердить</button>
-        </div>
-    </div>
-</div>
+</form>
 {% endblock %}

@@ -4,7 +4,7 @@ from django.utils.translation import gettext_lazy
 
 from player.logs.log import Log
 from player.player import Player
-from storage.models.storage import  Storage
+from storage.models.storage import Storage
 
 
 class Transport(Log):
@@ -15,11 +15,11 @@ class Transport(Log):
 
     # ------vvvvvvv------Минералы на складе------vvvvvvv------
     minerals = {
-        # Анохор
+        # Уголь
         'coal': 0.007,
-        # Берконор
+        # Железо
         'iron': 0.005,
-        # Грокцит
+        # Бокситы
         'bauxite': 0.003,
     }
     # ------vvvvvvv------Нефть на складе------vvvvvvv------
@@ -50,11 +50,11 @@ class Transport(Log):
     }
 
     # регион отправки
-    storage_from = models.ForeignKey(Storage, default=None, null=True, on_delete=models.SET_NULL,
+    storage_from = models.ForeignKey(Storage, default=None, null=True, on_delete=models.CASCADE,
                                verbose_name='Склад отправки', related_name='storage_from')
 
     # регион получения
-    storage_to = models.ForeignKey(Storage, default=None, null=True, on_delete=models.SET_NULL,
+    storage_to = models.ForeignKey(Storage, default=None, null=True, on_delete=models.CASCADE,
                                verbose_name='Склад получения', related_name='storage_to')
 
 
