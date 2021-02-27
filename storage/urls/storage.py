@@ -1,11 +1,11 @@
 # coding=utf-8
 from django.conf.urls import include, url
 
-from storage.views.cash_transfer import cash_transfer
-from storage.views.get_storage_action_line import get_storage_action_line
-from storage.views.new_storage import new_storage
-from storage.views.storage import storage
-from storage.views.storage_status import storage_status
+from storage.views.storage.cash_transfer import cash_transfer
+from storage.views.storage.get_storage_action_line import get_storage_action_line
+from storage.views.storage.new_storage import new_storage
+from storage.views.storage.storage import storage
+from storage.views.storage.storage_status import storage_status
 
 urlpatterns = [
 

@@ -7,6 +7,13 @@ from region.region import Region
 
 
 class Storage(models.Model):
+    # ------vvvvvvv------Все типы товаров------vvvvvvv------
+    types = {
+        'minerals': gettext_lazy('Минералы'),
+        'oils': gettext_lazy('Нефть'),
+        'materials': gettext_lazy('Материалы'),
+        'units': gettext_lazy('Оружие'),
+    }
     # ------vvvvvvv------Деньги на складе------vvvvvvv------
     valut = {
         'cash': gettext_lazy('Наличные'),

@@ -10,10 +10,10 @@ from player.decorators.player import check_player
 from player.player import Player
 from region.views.distance_counting import distance_counting
 from storage.models.storage import Storage
-from storage.views.check_cap_exists import check_cap_exists
-from storage.views.check_goods_exists import check_goods_exists
-from storage.views.get_transfer_price import get_transfer_price
-from storage.views.transfer_values import transfer_values
+from storage.views.storage.check_cap_exists import check_cap_exists
+from storage.views.storage.check_goods_exists import check_goods_exists
+from storage.views.storage.get_transfer_price import get_transfer_price
+from storage.views.storage.transfer_values import transfer_values
 
 
 # переименование партии

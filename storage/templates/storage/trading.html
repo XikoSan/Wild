@@ -1,0 +1,65 @@
+{% extends 'player/header.html' %}
+{% load static %}
+{% load dict_key %}
+{% load get_attr %}
+{% load get_len %}
+{% load l10n %}{% load i18n %}
+{% block for_scripts_and_css %}
+<script src='{% static "js/trading.js" %}?{{ csrf_token }}'></script>
+{% endblock %}
+
+{% block content %}
+<script>
+    var csrftoken = '{{ csrf_token }}';
+
+    var groups_n_goods = {};
+
+    {% for group in storage_cl|get_attr:'types' %}
+        groups_n_goods['{{ group }}'] = {};
+        {% for good in storage_cl|get_attr:group %}
+            groups_n_goods['{{ group }}']['{{ good }}'] = '{{ storage_cl|get_attr:group|dict_key:good }}';
+        {% endfor %}
+    {% endfor %}
+</script>
+<div class="col-xs-10 col-sm-10 col-md-10">
+    <div id="goods_list" align="center">
+        Выберите товары по критериям слева
+    </div>
+</div>
+<div class="col-xs-2 col-sm-2 col-md-2" align="center">
+    <div class="row" style="margin-top: 5%">
+        <select name="trade_actions" id="trade_actions" style="width: 100%">
+            <option selected value='buy'>Покупка</option>
+            <option value='sell'>Продажа</option>
+        </select>
+    </div>
+    <div class="row" style="margin-top: 5%">
+        <select name="trade_actions" id="trade_range" style="width: 100%">
+            <option selected value='all'>Весь мир</option>
+            <option value='state'>Государство</option>
+            <option value='range'>Соседние регионы</option>
+            <option value='this'>Этот регион</option>
+        </select>
+    </div>
+    <div class="row" style="margin-top: 5%">
+        <select name="trade_groups" id="trade_groups" multiple size="{{ storage_cl|get_attr:'types'|get_len }}" style="width: 100%">
+            {% for group in storage_cl|get_attr:'types' %}
+            <option value='{{ group }}'>{{ storage_cl|get_attr:'types'|dict_key:group }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="row" style="margin-top: 5%">
+        <select name="trade_goods" id="trade_goods" style="width: 100%">
+            <option id="good_default" value='default' disabled selected value>Выберите товар</option>
+            {% for group in storage_cl|get_attr:'types' %}
+                {% for good in storage_cl|get_attr:group %}
+            <option id="good_{{ good }}" value='{{ good }}' style="display: none">{{ storage_cl|get_attr:group|dict_key:good }}</option>
+                {% endfor %}
+            {% endfor %}
+        </select>
+    </div>
+    <div class="row" style="margin-top: 5%;">
+        <button id="accept" type="submit" enctype="multipart/form-data" class="save btn btn-default" style="width: 100%">Поиск</button>
+    </div>
+</div>
+{% endblock %}
