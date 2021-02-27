@@ -9,6 +9,7 @@ from django.shortcuts import redirect
 from player.decorators.player import check_player
 from player.player import Player
 from region.views.distance_counting import distance_counting
+from storage.models.destroy import Destroy
 from storage.models.storage import Storage
 from storage.views.storage.check_cap_exists import check_cap_exists
 from storage.views.storage.check_goods_exists import check_goods_exists
@@ -131,25 +132,65 @@ def assets_action(request):
                 }
                 return JsonResponse(data)
 
-
-
-
         elif action == 'destroy':
-            pass
+            # проверяем, есть ли целевой склад среди складов игрока
+            storages = Storage.objects.filter(owner=player)
+            storages_pk = []
 
+            for storage in storages:
+                storages_pk.append(storage.pk)
+
+            storages_values = json.loads(request.POST.get('storages'))
+            # проверяем, что все склады принадлежат игроку
+            for i_storg in storages_values.keys():
+                if not int(i_storg) in storages_pk:
+                    data = {
+                        'response': 'Склад ' + i_storg + ' вам не принадлежит',
+                    }
+                    return JsonResponse(data)
+
+            # проверяем наличие на Складах из JSON указанных товаров
+            status = False
+            status, ret_storg, good, required, exist = check_goods_exists(storages, storages_values)
+
+            if status:
+                # словарь со списком всех складов-источников
+                source_dict = {}
+                # словарь с логами уничтожения ресурсов
+                destroy_dict = {}
+                # идем по всем складам
+                for storage in storages_values.keys():
+                    # если в текущем Складе есть ресурсы
+                    if len(storages_values.get(storage)):
+                        source_dict[storage] = Storage.objects.get(pk=int(storage))
+                        destroy_dict[storage] = Destroy(player=player,
+                                                        storage_from=Storage.objects.get(pk=int(storage)))
+                        # идём по списку товаров
+                        for good in storages_values.get(storage):
+                            # списываем со склада-источника ресурсы
+                            setattr(source_dict[storage], good,
+                                    getattr(source_dict[storage], good) - int(storages_values.get(storage).get(good)))
+                            # логируем это дело
+                            setattr(destroy_dict[storage], good, int(storages_values.get(storage).get(good)))
+                # списываем ресурсы со всех складов-источников
+                for s_storage in source_dict:
+                    source_dict[s_storage].save()
+                # сохраняем логи
+                for d_log in destroy_dict:
+                    destroy_dict[d_log].save()
+
+            else:
+                data = {
+                    'response': 'На складе в регионе ' + str(ret_storg.region.region_name) +
+                                ' недостаточно товара ' + str(good) + '.\n' +
+                                'Требуется: ' + str(required) + ', в наличии: ' + str(exist),
+                }
+                return JsonResponse(data)
         else:
             data = {
                 'response': 'Некорректное действие',
             }
             return JsonResponse(data)
-
-        # # находим Склад, с которого хотят списать материалы
-        # if not Storage.objects.filter(pk=int(request.POST.get('storage'))):
-        #     data = {
-        #         'response': 'Не найден Склад',
-        #     }
-        #     return JsonResponse(data)
-
         data = {
             'response': 'ok',
         }

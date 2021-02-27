@@ -105,6 +105,15 @@ jQuery(document).ready(function ($) {
         transfer_pre();
     });
 
+    $('#destroy_sure').change(function() {
+        if(this.checked) {
+            document.getElementById('accept').disabled = false
+        }
+        else{
+            document.getElementById('accept').disabled = true
+        }
+    });
+
     $('#assets_actions_form').submit(function(e){
         e.preventDefault();
 
