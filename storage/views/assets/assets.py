@@ -39,7 +39,7 @@ def assets(request):
         'storages': storages,
 
         'transport': Transport,
-        'types': ['minerals', 'oils', 'materials', 'units'],
+        'storage_cl': Storage,
         'trans_mul': trans_mul,
     })
 
