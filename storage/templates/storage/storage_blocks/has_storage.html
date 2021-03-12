@@ -3,6 +3,8 @@
 {% load get_sub %}
 {% load get_sum %}
 {% load dict_key %}
+{% load has_key %}
+{% load get_proc %}
 {% load static %}
 {% block for_scripts_and_css %}
 {% load l10n %}{% load i18n %}
@@ -17,76 +19,44 @@ var csrftoken = '{{ csrf_token }}';
     </div>
 </div>
 
-<div class="row">
-<div class="col-xs-2 col-sm-2 col-md-2" id="cash_transfer" onclick="open_trade_line(this.id)" style="cursor: pointer; margin-top: 1%; border: 4px double black;">
-    {{ storage.valut|dict_key:'cash' }}: <div id="storage_cash" {% localize off %}data-text="{{ storage.cash }}"{% endlocalize %} >{{ storage|get_attr:'cash' }}</div>
-</div>
+
+<div class="row" style="margin-bottom: 2%">
+    <div class="col-xs-2 col-sm-2 col-md-2">
+    </div>
+    <div class="col-xs-8 col-sm-8 col-md-8" align="center">
+        <button type="button" class="btn btn-primary" id="cash_transfer" onclick="open_trade_line(this.id)" style="width: 100%">
+          {{ storage.valut|dict_key:'cash' }} <span class="badge badge-light" id="storage_cash" {% localize off %}data-text="{{ storage.cash }}"{% endlocalize %}>{{ storage|get_attr:'cash' }}</span>
+          <span class="sr-only">unread messages</span>
+        </button>
+    </div>
 </div>
 
-
-{% for mineral in storage.minerals %}
-{% if forloop.counter|get_sub:1|get_mod:3 == 0 %}
+{% for group in storage|get_attr:'types' %}
+    {% for good in storage|get_attr:group %}
 <div class="row">
-{% endif %}
-<div class="col-xs-2 col-sm-2 col-md-2" style="margin-top: 1%; border: 4px double black;">
-    {{ storage.minerals|dict_key:mineral }}:
-    {{ storage|get_attr:mineral }}
-    {% with cap_name=mineral|get_sum:'_cap' %}
-        / {{ storage|get_attr:cap_name }}
-    {% endwith %}
+    {% with cap_name=good|get_sum:'_cap' %}
+    <div class="col-xs-2 col-sm-2 col-md-2">
+        {{ storage|get_attr:group|dict_key:good }}:
+    </div>
+    <div class="col-xs-8 col-sm-8 col-md-8">
+        <div class="progress" align="right">
+            {% with cap_val=storage|get_attr:cap_name %}
+                {% with good_val=storage|get_attr:good %}
+                <div class="progress-bar bg-success" role="progressbar" style="width: {{ cap_val|get_proc:good_val }}%">{% localize off %}{{ storage|get_attr:good }}{% endlocalize %}</div>
+                {% endwith %}
+                {% if locks|has_key:good %}
+                    {% with lock_val=locks|dict_key:good %}
+                <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: {{ cap_val|get_proc:lock_val }}%; background-color: #DC3545">{% localize off %}{{ locks|dict_key:good }}{% endlocalize %}</div>
+                    {% endwith %}
+                {% endif %}
+            {% endwith %}
+        </div>
+    </div>
+    <div class="col-xs-2 col-sm-2 col-md-2">
+            / {{ storage|get_attr:cap_name }}
+    </div>
+     {% endwith %}
 </div>
-{% if forloop.last or forloop.counter|get_mod:3 == 0 %}
-</div>
-{% endif %}
+    {% endfor %}
 {% endfor %}
 
-
-{% for oil in storage.oils %}
-{% if forloop.counter|get_sub:1|get_mod:3 == 0 %}
-<div class="row">
-{% endif %}
-<div class="col-xs-2 col-sm-2 col-md-2" style="margin-top: 1%; border: 4px double black;">
-    {{ storage.oils|dict_key:oil }}:
-    {{ storage|get_attr:oil }}
-    {% with cap_name=oil|get_sum:'_cap' %}
-        / {{ storage|get_attr:cap_name }}
-    {% endwith %}
-</div>
-{% if forloop.last or forloop.counter|get_mod:3 == 0 %}
-</div>
-{% endif %}
-{% endfor %}
-
-
-{% for material in storage.materials %}
-{% if forloop.counter|get_sub:1|get_mod:3 == 0 %}
-<div class="row">
-{% endif %}
-<div class="col-xs-2 col-sm-2 col-md-2" style="margin-top: 1%; border: 4px double black;">
-    {{ storage.materials|dict_key:material }}:
-    {{ storage|get_attr:material }}
-    {% with cap_name=material|get_sum:'_cap' %}
-        / {{ storage|get_attr:cap_name }}
-    {% endwith %}
-</div>
-{% if forloop.last or forloop.counter|get_mod:3 == 0 %}
-</div>
-{% endif %}
-{% endfor %}
-
-
-{% for unit in storage.units %}
-{% if forloop.counter|get_sub:1|get_mod:3 == 0 %}
-<div class="row">
-{% endif %}
-<div class="col-xs-2 col-sm-2 col-md-2" style="margin-top: 1%; border: 4px double black;">
-    {{ storage.units|dict_key:unit }}:
-    {{ storage|get_attr:unit }}
-    {% with cap_name=unit|get_sum:'_cap' %}
-        / {{ storage|get_attr:cap_name }}
-    {% endwith %}
-</div>
-{% if forloop.last or forloop.counter|get_mod:3 == 0 %}
-</div>
-{% endif %}
-{% endfor %}

@@ -116,11 +116,11 @@ class Region(models.Model):
     # ore_explore_cap = models.DecimalField(default=00.00, max_digits=5, decimal_places=2, verbose_name='Руда: предел разведки')
 
     # процент добываемого в регионе Анохора
-    coal_proc = models.IntegerField(default=25, verbose_name='Процент Анохора')
+    coal_proc = models.IntegerField(default=25, verbose_name='Процент угля')
     # процент добываемого в регионе Берконора
-    iron_proc = models.IntegerField(default=25, verbose_name='Процент Берконора')
+    iron_proc = models.IntegerField(default=25, verbose_name='Процент железа')
     # процент добываемого в регионе Грокцита
-    bauxite_proc = models.IntegerField(default=25, verbose_name='Процент Грокцита')
+    bauxite_proc = models.IntegerField(default=25, verbose_name='Процент бокситов')
 
     shape = models.TextField(default='', verbose_name='Вид на карте')
     # централизация на карте

@@ -6,9 +6,12 @@
 {% load l10n %}{% load i18n %}
 {% block for_scripts_and_css %}
 <script src='{% static "js/trading.js" %}?{{ csrf_token }}'></script>
+<script src='{% static "js/tablesort.js" %}?{{ csrf_token }}'></script>
+<script src='{% static "js/tablesort.number.js" %}?{{ csrf_token }}'></script>
 {% endblock %}
 
 {% block content %}
+<script type="text/javascript">onload = function() {var myTable = new SortedTable();}</script>
 <script>
     var csrftoken = '{{ csrf_token }}';
 
@@ -23,22 +26,61 @@
 </script>
 <div class="col-xs-10 col-sm-10 col-md-10">
     <div id="goods_list" align="center">
-        Выберите товары по критериям слева
+<!--        Выберите товары по критериям слева-->
+        <table id="lines" class="sort">
+          <thead>
+            <tr>
+              <th role="columnheader">Товар</th>
+              <th role="columnheader">Владелец</th>
+              <th role="columnheader">Регион</th>
+              <th role="columnheader">Количество</th>
+              <th role="columnheader">Цена (шт.)</th>
+              <th role="columnheader">Доставка</th>
+              <th role="columnheader">Сумма</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for storage in storages %}
+            <tr>
+              <td>{{ storage.pk }}</td>
+              <td>{{ storage.owner.nickname }}</td>
+              <td>{{ storage.region.region_name }}</td>
+              <td>{{ storage.region.region_name }}</td>
+              <td>{{ storage.region.region_name }}</td>
+              <td>{{ storage.region.region_name }}</td>
+              <td>{{ storage.region.region_name }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
     </div>
+    <script>
+        new Tablesort(document.getElementById('lines'));
+    </script>
 </div>
 <div class="col-xs-2 col-sm-2 col-md-2" align="center">
-    <div class="row" style="margin-top: 5%">
+    <div class="row" style="margin-top: 5%;">
+        <a class="save btn btn-success" style="width: 100%" href="/new_offer">Создать</a>
+    </div>
+    <div class="row" style="margin-top: 15%">
         <select name="trade_actions" id="trade_actions" style="width: 100%">
-            <option selected value='buy'>Покупка</option>
-            <option value='sell'>Продажа</option>
+            <option selected value='sell'>Продажа</option>
+            <option value='buy'>Покупка</option>
         </select>
     </div>
     <div class="row" style="margin-top: 5%">
-        <select name="trade_actions" id="trade_range" style="width: 100%">
+        <select name="trade_range" id="trade_range" style="width: 100%">
             <option selected value='all'>Весь мир</option>
             <option value='state'>Государство</option>
             <option value='range'>Соседние регионы</option>
             <option value='this'>Этот регион</option>
+        </select>
+    </div>
+    <div class="row" style="margin-top: 5%">
+        <select name="trade_owner" id="trade_owner" style="width: 100%">
+            <option selected value='all'>Все</option>
+            <option value='party'>Партия</option>
+            <option value='mine'>Мои</option>
         </select>
     </div>
     <div class="row" style="margin-top: 5%">
@@ -59,7 +101,7 @@
         </select>
     </div>
     <div class="row" style="margin-top: 5%;">
-        <button id="accept" type="submit" enctype="multipart/form-data" class="save btn btn-default" style="width: 100%">Поиск</button>
+        <button id="accept" type="submit" enctype="multipart/form-data" class="save btn btn-info" style="width: 100%">Поиск</button>
     </div>
 </div>
 {% endblock %}

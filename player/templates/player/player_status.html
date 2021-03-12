@@ -8,7 +8,10 @@
         <div class="row">{{ player.nickname }}</div>
         <div class="row">
             <div class="col-xs-6 col-sm-6 col-md-6" align="left">
-                <b style="color: #85bb65" id="cash" {% localize off %} data-text="{{ player.cash }}" {% endlocalize %}>${{ player.cash }}</b>
+                <b style="color: #85bb65" id="cash" {% localize off %} data-text="{{ player.cash }}" {% endlocalize %}
+                                     data-toggle="tooltip" data-placement="bottom" title="Заблокировано: ${{ locked }}">
+                    ${{ player.cash }}
+                </b>
             </div>
             <div class="col-xs-6 col-sm-6 col-md-6" align="right">
                 <b style="color: gold" id="gold" data-text="{{ player.gold }}">{{ player.gold }}</b>

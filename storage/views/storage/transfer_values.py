@@ -9,7 +9,7 @@ from storage.models.transport import Transport
 # входные данные:
 # dest     - целевой склад
 # values   - формат данных JSON из запроса
-def transfer_values(dest, values):
+def transfer_values(dest, values, prices):
     # словарь со списком всех складов-источников
     source_dict = {}
     # словарь со списком всех Транспортов
@@ -24,8 +24,15 @@ def transfer_values(dest, values):
             source_dict[storage] = Storage.objects.get(pk=int(storage))
             transport_dict[storage] = Transport(player=dest.owner, storage_from=Storage.objects.get(pk=int(storage)),
                                                 storage_to=dest)
+            transport_dict[storage].delivery_value = prices[int(storage)]
             # идём по списку товаров
             for good in values.get(storage):
+                # проверка, существует ли такой ресурс вообще
+                if not hasattr(dest, good):
+                    continue
+                # деньги и орбиталки передавать запрещено
+                if good == 'cash' or good == 'station':
+                    continue
                 # списываем со склада-источника ресурсы
                 setattr(source_dict[storage], good,
                         getattr(source_dict[storage], good) - int(values.get(storage).get(good)))
@@ -47,7 +54,7 @@ def transfer_values(dest, values):
     # списываем ресурсы со всех складов-источников
     for s_storage in source_dict:
         source_dict[s_storage].save()
-    # для каждого товара каждого Транспорта считаем сумму объемов и сохраняем
+    # для каждого товара каждого Транспорта считаем сумму объемов, ставим стоимость и сохраняем
     for transport in transport_dict:
         for cat in ["minerals", "oils", "materials", "units"]:
             for good in getattr(transport_dict[transport], cat):

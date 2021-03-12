@@ -88,13 +88,13 @@ def assets_action(request):
 
                             if status:
                                 # потом убедиться, что у игрока есть деньги, оплатить передачу ресурсов
-                                price = get_transfer_price(trans_mul, int(dest_pk), storages_values)
+                                price, prices = get_transfer_price(trans_mul, int(dest_pk), storages_values)
                                 if player.cash >= price:
                                     # оплата
                                     player.cash -= price
                                     player.save()
                                     # передача ресурсов
-                                    transfer_values(Storage.objects.get(pk=int(dest_pk)), storages_values)
+                                    transfer_values(Storage.objects.get(pk=int(dest_pk)), storages_values, prices)
 
                                 else:
                                     data = {

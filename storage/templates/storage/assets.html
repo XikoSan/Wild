@@ -112,7 +112,7 @@
                     <select name="storage_options" id="storage_options">
                         <option disabled selected value="storage_none">Выберите склад</option>
                         {% for storage in storages %}
-                        <option id="storage_{{ storage.pk }}" value='{{ storage.pk }}'>Склад в {{ storage.region.region_name }}</option>
+                        <option id="storage_{{ storage.pk }}" value='{{ storage.pk }}'>{{ storage.region.region_name }}</option>
                         {% endfor %}
                     </select>
                 </div>

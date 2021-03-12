@@ -6,6 +6,10 @@ function numberWithSpaces(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
 }
 
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+
 window.onload = function countdown() {
     if (document.getElementById("refill-countdown") != undefined){
         var elem = document.getElementById("refill-countdown");

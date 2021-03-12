@@ -9,12 +9,12 @@ from storage.models.storage import Storage
 
 @login_required(login_url='/')
 @check_player
-# открытие страницы торговли
-def trading(request):
+# новое торговое предложение
+def new_offer(request):
     # получаем персонажа
     player = Player.objects.get(account=request.user)
 
-    return render(request, 'storage/trading/trading.html', {'player': player,
-                                                            'storage_cl': Storage,
-                                                            'storages': Storage.objects.filter(owner=player)
-                                                            })
+    return render(request, 'storage/trading/new_offer.html', {'player': player,
+                                                              'storage_cl': Storage,
+                                                              'storages': Storage.objects.filter(owner=player)
+                                                              })

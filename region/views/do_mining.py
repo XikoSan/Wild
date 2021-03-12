@@ -15,6 +15,7 @@ from django.shortcuts import redirect, render
 from player.decorators.player import check_player
 from player.player import Player
 from storage.models.storage import Storage
+from storage.views.storage.locks.get_storage import get_storage
 # from django.http import JResponse, HttpResponse
 from wild_politics.settings import JResponse
 
@@ -39,7 +40,7 @@ def do_mining(request):
 
         resource = request.POST.get('resource')
 
-        if not Storage.objects.filter(owner=player, region=player.region).exists()\
+        if not Storage.objects.filter(owner=player, region=player.region).exists() \
                 and resource != 'gold':
             data = {
                 'response': 'У вас нет склада в этом регионе',
@@ -60,6 +61,13 @@ def do_mining(request):
             data = {
                 # 'response': _('mul_ten_enrg_req'),
                 'response': 'Количество Энергии должно быть кратно десяти',
+            }
+            return JResponse(data)
+
+        if count > player.energy:
+            data = {
+                # 'response': _('mul_ten_enrg_req'),
+                'response': 'Недостаточно энергии',
             }
             return JResponse(data)
 
@@ -93,9 +101,13 @@ def do_mining(request):
                     'response': 'Запасов нефти в регионе недостаточно для добычи',
                 }
                 return JResponse(data)
+            # получаем запасы склада, с учетом блокировок
+            goods = []
+            goods.append(player.region.oil_type)
+            lock_storage = get_storage(storage, goods)
             # узнаём тип нефти, добываемый в регионе
-            # и проверяем есть ли для него место на складе
-            if storage.capacity_check(player.region.oil_type, (count / 10) * 10):
+            # и проверяем есть ли для него место на складе, с учетом блокировок
+            if lock_storage.capacity_check(player.region.oil_type, (count / 10) * 10):
                 # начислить нефть
                 mined_result[player.region.oil_type] = (count / 10) * 10
                 setattr(storage, player.region.oil_type,
@@ -103,22 +115,31 @@ def do_mining(request):
             else:
                 # если места нет или его меньше чем пак ресурсов, забиваем под крышку
                 mined_result[player.region.oil_type] = getattr(storage, player.region.oil_type + '_cap') - getattr(
-                    storage, player.region.oil_type)
-                setattr(storage, player.region.oil_type, getattr(storage, player.region.oil_type + '_cap'))
+                    lock_storage, player.region.oil_type)
+                # устанавливаем новое значение как остаток до полного склада с учетом блокировок + старое значение ресурса
+                setattr(storage, player.region.oil_type,
+                        (getattr(storage, player.region.oil_type + '_cap') - getattr(lock_storage,
+                                                                                     player.region.oil_type)) +
+                        getattr(storage, player.region.oil_type)
+                        )
 
             player.region.oil_has -= Decimal((count / 10) * 0.01)
 
         elif resource == 'ore':
-            # если запасов ресурса недостаточно
+            # если запасов ресурса недостаточноы
             if player.region.ore_has < Decimal((count / 10) * 0.01):
                 data = {
                     # 'response': _('mul_ten_enrg_req'),
                     'response': 'Запасов руды в регионе недостаточно для добычи',
                 }
                 return JResponse(data)
+            goods = []
+            for key in storage.minerals.keys():
+                goods.append(key)
+            lock_storage = get_storage(storage, goods)
             for mineral in storage.minerals.keys():
                 # проверяем есть ли место на складе
-                if storage.capacity_check(mineral, (count / 10) * getattr(player.region, mineral + '_proc')):
+                if lock_storage.capacity_check(mineral, (count / 10) * getattr(player.region, mineral + '_proc')):
                     # начислить минерал
                     mined_result[mineral] = (count / 10) * getattr(player.region, mineral + '_proc')
                     setattr(storage, mineral,
@@ -126,8 +147,11 @@ def do_mining(request):
                 else:
                     # если места нет или его меньше чем пак ресурсов, забиваем под крышку
                     if (count / 10) * getattr(player.region, mineral + '_proc') > 0:
-                        mined_result[mineral] = getattr(storage, mineral + '_cap') - getattr(storage, mineral)
-                        setattr(storage, mineral, getattr(storage, mineral + '_cap'))
+                        mined_result[mineral] = getattr(storage, mineral + '_cap') - getattr(lock_storage, mineral)
+                        # устанавливаем новое значение как остаток до полного склада с учетом блокировок + старое значение ресурса
+                        setattr(storage, mineral,
+                                getattr(storage, mineral + '_cap') - getattr(lock_storage, mineral) + getattr(storage,
+                                                                                                              mineral))
 
             player.region.ore_has -= Decimal((count / 10) * 0.01)
 

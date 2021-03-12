@@ -16,6 +16,7 @@ def storage(request):
     # если склад есть
     if Storage.objects.filter(owner=player, region=player.region).exists():
         storage = Storage.objects.get(owner=player, region=player.region)
+
     # отправляем в форму
     response = render(request, 'storage/storage.html', {
         'page_name': _('Склад'),

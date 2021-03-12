@@ -20,6 +20,9 @@ def check_goods_exists(storages, values):
         if len(values.get(storage)):
             # идём по списку товаров
             for good in values.get(storage):
+                # проверка, существует ли такой ресурс вообще
+                if not hasattr(storages.get(pk=int(storage)), good):
+                    continue
                 # Если на Складе недостаточно товара
                 if not getattr(storages.get(pk=int(storage)), good) >= int(values.get(storage).get(good)):
                     return False,\
