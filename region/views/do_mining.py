@@ -13,6 +13,7 @@ from django.db.models import F
 from django.shortcuts import redirect, render
 
 from player.decorators.player import check_player
+from player.logs.cash_log import CashLog
 from player.player import Player
 from storage.models.storage import Storage
 from storage.views.storage.locks.get_storage import get_storage
@@ -28,6 +29,7 @@ def do_mining(request):
     if request.method == "POST":
 
         player = Player.objects.get(account=request.user)
+        cash_log = None
 
         if player.destination:
             data = {
@@ -89,6 +91,7 @@ def do_mining(request):
             mined_result['gold'] = int(count / 10)
 
             player.cash += count
+            cash_log = CashLog(player=player, cash=count, activity_txt='mine')
             mined_result['cash'] = count
 
             player.region.gold_has -= Decimal((count / 10) * 0.01)
@@ -158,6 +161,9 @@ def do_mining(request):
         if mined_result:
             player.energy -= count
             player.save()
+
+            if cash_log:
+                cash_log.save()
 
             player.region.save()
 
