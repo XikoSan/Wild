@@ -47,8 +47,10 @@
             </font></b>
         </div>
         {% if not player.destination and region != player.region %}
-        <form class="to_fly_form" method="post" style="margin-top: 1%">
+        <form class="to_fly_form" method="post" action="{% url 'map' %}" style="margin-top: 1%">
             {% csrf_token %}
+            <input type="hidden" name="cost" value="{{ cost }}">
+            <input type="hidden" name="duration" value="{{ duration }}">
             <input type="hidden" class="region_id" name="region" value="{{ region.on_map_id }}">
             <input type="submit" class="btn btn-success" value="{% trans 'Отправиться' %}, - {{ cost }}" style="font-weight: bold; font-size: 15px;"/>
         </form>
