@@ -2,7 +2,12 @@
 {% load floor_to_tens %}
 
 {% block content %}
-Добыча ресурсов в регионе {{ player.region }}
+<!--если игрок в полете-->
+{% if player.destination %}
+    Вы летите в регион {{ player.destination }}
+{% else %}
+    Добыча ресурсов в регионе {{ player.region }}
+{% endif %}
 <br>
 <br>
 <b>Золото</b>
@@ -14,7 +19,12 @@
     {% csrf_token %}
     <input type="hidden" name="resource" value="gold">
     <input type="number" min="0" max="100" value="{{ player.energy|floor_to_tens }}" step="10" name="energy" maxlength="3">
-    <button type="submit" enctype="multipart/form-data" class="save btn btn-default">Добыча ресурсов</button>
+    <!--если игрок в полете-->
+    {% if player.destination %}
+        <button type="button" class="btn btn-danger">Вы в полете</button>
+    {% else %}
+        <button type="submit" enctype="multipart/form-data" class="save btn btn-default">Добыча ресурсов</button>
+    {% endif %}
 </form>
 <br>
 <br>
@@ -29,7 +39,12 @@
     {% csrf_token %}
     <input type="hidden" name="resource" value="oil">
     <input type="number" min="0" max="100" value="{{ player.energy|floor_to_tens }}" step="10" name="energy" maxlength="3">
-    <button type="submit" enctype="multipart/form-data" class="save btn btn-default">Добыча ресурсов</button>
+    <!--если игрок в полете-->
+    {% if player.destination %}
+        <button type="button" class="btn btn-danger">Вы в полете</button>
+    {% else %}
+        <button type="submit" enctype="multipart/form-data" class="save btn btn-default">Добыча ресурсов</button>
+    {% endif %}
 </form>
 <br>
 <br>
@@ -44,6 +59,11 @@
     {% csrf_token %}
     <input type="hidden" name="resource" value="ore">
     <input type="number" min="0" max="100" value="{{ player.energy|floor_to_tens }}" step="10" name="energy" maxlength="3">
-    <button type="submit" enctype="multipart/form-data" class="save btn btn-default">Добыча ресурсов</button>
+    <!--если игрок в полете-->
+    {% if player.destination %}
+        <button type="button" class="btn btn-danger">Вы в полете</button>
+    {% else %}
+        <button type="submit" enctype="multipart/form-data" class="save btn btn-default">Добыча ресурсов</button>
+    {% endif %}
 </form>
 {% endblock %}

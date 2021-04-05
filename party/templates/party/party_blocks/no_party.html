@@ -8,9 +8,16 @@
                 <b>Вы не состоите в партии</b>
             </div>
             <div class="col-xs-6 col-sm-6 col-md-6" align="right">
+            <!--если игрок в полете-->
+            {% if player.destination %}
+                <button type="button" class="btn btn-danger">
+                    вы в полете
+                </button>
+            {% else %}
                 <button type="button" class="btn btn-success" onclick="window.location.href = '/new_party'">
                     создать партию
                 </button>
+            {% endif %}
             </div>
         </div>
 

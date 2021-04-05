@@ -14,7 +14,12 @@
 <div class="row" >
     Привет, {{ player }} !
     <br>
+    <!--если игрок в полете-->
+    {% if player.destination %}
+    Вы летите в регион {{ player.destination }}
+    {% else %}
     Ты находишься в регионе {{ player.region }}
+    {% endif %}
     {% get_current_language as LANGUAGE_CODE %}
     {% get_language_info for LANGUAGE_CODE as lang %}
     <!-- Tabs -->

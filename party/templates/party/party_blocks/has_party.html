@@ -29,7 +29,7 @@
             <br>
             <br>
             {% if primaries != None %}
-            <a href="/" class="btn btn-info">Праймериз</a>
+            <a href="{% url 'start_primaries' party_pk=player.party.pk %}" class="btn btn-info">Праймериз</a>
             {% endif %}
             {% if player.party_post.party_lead or player.party_post.party_sec %}
                 {% if player.party.type == 'pt' %}

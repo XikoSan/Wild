@@ -33,8 +33,10 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1', '192.168.0.197', '188.233.16.66', '19
 # Celery Configuration Options
 CELERY_TIMEZONE = "Europe/Moscow"
 CELERY_TASK_TRACK_STARTED = True
-CELERY_TASK_TIME_LIMIT = 30 * 60
+CELERY_TASK_TIME_LIMIT = 60 * 60
 CELERY_BROKER_URL = 'redis://localhost:6379/0'
+CELERY_RESULT_BACKEND = 'django-db'
+CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
 
 
 # Application definition
@@ -46,6 +48,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'django_celery_beat',
+    'django_celery_results',
 
     'bootstrap3',
     'channels',
@@ -115,11 +120,11 @@ DATABASES = {
     #     'NAME': BASE_DIR / 'db.sqlite3',
     # },
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'wild_politics',
         'USER': 'postgres',
-        'PASSWORD': 'aa10802602',
-        'HOST': '127.0.0.1',
+        # 'PASSWORD': 'aa10802602',
+        'HOST': 'localhost',
         'PORT': '5432',
         # 'ATOMIC_REQUESTS': 'True',
     }

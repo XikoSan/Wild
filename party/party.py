@@ -1,12 +1,24 @@
+import json
+
 import datetime
+
 from django.db import models
+from django.utils import timezone
+from django.dispatch import receiver
+from django.db.models.signals import post_save
+
+from django_celery_beat.models import IntervalSchedule, PeriodicTask
+
+from region.region import Region
 
 # from PIL import Image
 # from io import BytesIO
 # from django.core.files.uploadedfile import InMemoryUploadedFile
 # import sys
 # import gamecore.all_models.region as rgn
-from region.region import Region
+
+
+schedule = IntervalSchedule.objects.get_or_create(every = 2, period=IntervalSchedule.MINUTES)
 
 
 # Create your models here.
@@ -46,6 +58,18 @@ class Party(models.Model):
     # # id фонового процесса (начала или конца праймериз)
     # task_id = models.CharField(max_length=150, blank=True, null=True, verbose_name='id фонового процесса')
 
+    task = models.OneToOneField(PeriodicTask, on_delete = models.CASCADE, null = True, blank = True)
+
+    def setup_task(self):
+        self.task = PeriodicTask.objects.create(
+            name = self.title,
+            task = 'start_primaries',
+            interval = IntervalSchedule.objects.get(every=2),
+            args = json.dumps([self.id]),
+            start_time = timezone.now()
+        )
+        self.save()
+
     def __str__(self):
         return self.title
 
@@ -53,3 +77,9 @@ class Party(models.Model):
     class Meta:
         verbose_name = "Партия"
         verbose_name_plural = "Партии"
+
+@receiver(post_save, sender=Party)
+def save_post(sender, instance, created, **kwargs):
+    # print(f'Sender: {sender}, Instance {instance}, Created {created}, {kwargs}')
+    if created:
+        instance.setup_task()
