@@ -4,6 +4,7 @@ from django.db import models
 from django.utils.translation import gettext_lazy
 from django.utils.translation import ugettext as _
 
+from player.actual_manager import ActualManager
 from player.player import Player
 from region.region import Region
 from storage.models.storage import Storage
@@ -12,6 +13,9 @@ from storage.models.trading_log import TradingLog
 
 # Торговое предложение (Ордер)
 class TradeOffer(models.Model):
+    objects = models.Manager()  # Менеджер по умолчанию
+    actual = ActualManager()  # Менеджер активных записей
+
     # # разместивший предложение
     # owner = models.ForeignKey(Player, default=None, null=True, on_delete=models.CASCADE, blank=True,
     #                            verbose_name='Разместивший ордер', related_name="offer_owner")

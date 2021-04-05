@@ -28,42 +28,6 @@ jQuery(document).ready(function ($) {
         document.getElementById('recharge_cost').innerHTML = "- " + Math.ceil(document.getElementById('batteries_count').value/10) + " G";
     });
 
-//  при производстве энергии
-    $("#trade_tab").on("submit", "#pr_gold", function(e){
-        e.preventDefault();
-        var data = $(this).serialize();
-        $.ajax({
-            type: "POST",
-            url: "/produce/0/",
-            data: data,
-            cache: false,
-            success: function(data){
-                if (data == 'ok'){
-                    $('#batteries_count').val('');
-                }
-                else{
-                    alert(data);
-                }
-                //запрашиваем свежие данные состояния золота и энергетиков игрока
-                $.ajax({
-                    type: "GET",
-                    url: "/status/0/",
-                    dataType: "html",
-                    cache: false,
-                    success: function(data){
-
-                        result = JSON.parse(data);
-
-                        $('#cash').html(numberWithSpaces(result.cash));
-                        $('#cash').attr('data-text', result.cash);
-                        $('#gold').html(numberWithSpaces(result.gold));
-
-                        $('#bottles_count').html(result.bottles);
-                    }
-                });
-            }
-       });
-    });
 //  при передаче денег
     $("#trade_tab").on("submit", "#money_transfer_frm", function(e){
         e.preventDefault();
