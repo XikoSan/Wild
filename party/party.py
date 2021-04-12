@@ -18,6 +18,8 @@ from region.region import Region
 # import gamecore.all_models.region as rgn
 
 
+schedule = IntervalSchedule.objects.get_or_create(every = 2, period=IntervalSchedule.MINUTES)
+
 
 # Create your models here.
 
@@ -55,16 +57,14 @@ class Party(models.Model):
 
     # # id фонового процесса (начала или конца праймериз)
     # task_id = models.CharField(max_length=150, blank=True, null=True, verbose_name='id фонового процесса')
-    # переодическая таска
+
     task = models.OneToOneField(PeriodicTask, on_delete = models.CASCADE, null = True, blank = True)
 
-    # формируем переодическую таску
     def setup_task(self):
-        schedule, created = IntervalSchedule.objects.get_or_create(every = 7, period=IntervalSchedule.DAYS)
         self.task = PeriodicTask.objects.create(
             name = self.title,
             task = 'start_primaries',
-            interval = schedule,
+            interval = IntervalSchedule.objects.get(every=2),
             args = json.dumps([self.id]),
             start_time = timezone.now()
         )
@@ -78,7 +78,6 @@ class Party(models.Model):
         verbose_name = "Партия"
         verbose_name_plural = "Партии"
 
-# сигнал прослушивающий создание партии, после этого формирующий таску
 @receiver(post_save, sender=Party)
 def save_post(sender, instance, created, **kwargs):
     # print(f'Sender: {sender}, Instance {instance}, Created {created}, {kwargs}')
