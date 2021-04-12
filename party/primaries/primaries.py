@@ -12,8 +12,6 @@ from django_celery_beat.models import IntervalSchedule, PeriodicTask
 from party.party import Party
 
 
-schedule = IntervalSchedule.objects.get_or_create(every = 1, period=IntervalSchedule.MINUTES)
-
 
 # класс праймериз
 # parliament - парламент, в который проходят выборы
@@ -30,11 +28,13 @@ class Primaries(models.Model):
     # переодическая таска
     task = models.OneToOneField(PeriodicTask, on_delete = models.CASCADE, null = True, blank = True)
 
+    # формируем переодическую таску
     def setup_task(self):
+        schedule, created = IntervalSchedule.objects.get_or_create(every = 1, period=IntervalSchedule.DAYS)
         self.task = PeriodicTask.objects.create(
             name = f'Primaries of {self.party.title} party primaries',
             task = 'finish_primaries',
-            interval = IntervalSchedule.objects.get(every=1),
+            interval = schedule,
             args = json.dumps([self.party.pk]),
             start_time = timezone.now(),
         )
@@ -48,7 +48,7 @@ class Primaries(models.Model):
         verbose_name = "Праймериз в партии"
         verbose_name_plural = "Праймериз"
 
-
+# сигнал прослушивающий создание праймериз, после этого формирующий таску
 @receiver(post_save, sender=Primaries)
 def save_post(sender, instance, created, **kwargs):
     # print(f'Sender: {sender}, Instance {instance}, Created {created}, {kwargs}')
