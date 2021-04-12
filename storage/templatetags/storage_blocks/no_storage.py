@@ -1,7 +1,9 @@
+import math
 from django import template
 
 from region.views.distance_counting import distance_counting
 from storage.models.storage import Storage
+from storage.views.storage.get_transfer_price import get_transfer_price
 
 register = template.Library()
 
@@ -13,6 +15,10 @@ def no_storage(player):
     # словарь склад - сумма доставки из региона его размещения до региона нахождения игрока
     delivery_sum = {}
 
+    price_dict = {}
+    trans_mul = {}
+    trans_mul[0] = {}
+
     # считаем стоиомость создания нового Склада
     # она равна 500 * количество Складов сейчас
     material_cost = 500 * Storage.objects.filter(owner=player).count()
@@ -22,11 +28,18 @@ def no_storage(player):
 
     # узнаем, есть ли на Складах достаточно материалов для создания нового Склада, а также считаем доставку
     for storage in storages:
+        price_dict[storage.pk] = {}
+        price_dict[storage.pk]['steel'] = price_dict[storage.pk]['aluminium'] = material_cost
+
+        trans_mul[0][storage.pk] = math.ceil(distance_counting(player.region, storage.region) / 100)
+
         # в словарь попадает True или False
         materials_exists[storage] = getattr(storage, 'steel') >= material_cost \
                                     and getattr(storage, 'aluminium') >= material_cost
 
-        delivery_sum[storage] = round(distance_counting(player.region, storage.region))
+    price, prices = get_transfer_price(trans_mul, 0, price_dict)
+    for source_storage_pk in prices:
+        delivery_sum[storages.get(pk=source_storage_pk)] = prices[source_storage_pk]
 
     return {
         'player': player,

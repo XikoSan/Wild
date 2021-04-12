@@ -27,6 +27,11 @@ class CashLockAdmin(admin.ModelAdmin):
     raw_id_fields = ('lock_player', 'lock_offer',)
 
 
+class TradeOfferAdmin(admin.ModelAdmin):
+    list_display = ('owner_storage', 'type', 'good', 'price', 'deleted')
+    list_filter = ('deleted',)
+
+
 # Register your models here.
 admin.site.register(Storage)
 admin.site.register(Transport)

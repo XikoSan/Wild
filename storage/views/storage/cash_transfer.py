@@ -5,6 +5,7 @@ from django.shortcuts import redirect
 from django.utils.translation import ugettext as _
 
 from player.decorators.player import check_player
+from player.logs.cash_log import CashLog
 from player.player import Player
 from storage.models.storage import Storage
 
@@ -38,7 +39,7 @@ def cash_transfer(request):
                     Player.objects.filter(pk=player.pk).update(
                         cash=int(new_wallet))
                     # логируем
-                    # WalletLog.new_log(player, int(new_wallet) - player.cash, 'trans')
+                    CashLog(player=player, cash=int(new_wallet) - player.cash, activity_txt='store').save()
                     # обновляем данные склада
                     Storage.objects.filter(pk=storage.pk).update(
                         cash=int(new_storage))

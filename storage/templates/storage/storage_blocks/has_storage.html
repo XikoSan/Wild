@@ -26,7 +26,6 @@ var csrftoken = '{{ csrf_token }}';
     <div class="col-xs-8 col-sm-8 col-md-8" align="center">
         <button type="button" class="btn btn-primary" id="cash_transfer" onclick="open_trade_line(this.id)" style="width: 100%">
           {{ storage.valut|dict_key:'cash' }} <span class="badge badge-light" id="storage_cash" {% localize off %}data-text="{{ storage.cash }}"{% endlocalize %}>{{ storage|get_attr:'cash' }}</span>
-          <span class="sr-only">unread messages</span>
         </button>
     </div>
 </div>
