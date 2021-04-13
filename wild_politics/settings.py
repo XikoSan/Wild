@@ -29,6 +29,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', '192.168.0.197', '188.233.16.66', '192.168.1.237']
 
+INTERNAL_IPS = ['127.0.0.1']
+
 # Celery Configuration Options
 CELERY_TIMEZONE = "Europe/Moscow"
 CELERY_TASK_TRACK_STARTED = True
@@ -54,6 +56,8 @@ INSTALLED_APPS = [
     'bootstrap3',
     'channels',
 
+    'debug_toolbar',
+
     'article',
     'parliament',
     'region',
@@ -72,6 +76,7 @@ FORMAT_MODULE_PATH = [
 ]
 
 MIDDLEWARE = [
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
