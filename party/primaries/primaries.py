@@ -40,6 +40,12 @@ class Primaries(models.Model):
             start_time = timezone.now(),
         )
         self.save()
+    # удаляем таску вместе с экземпляром модели
+    def delete(self, *args, **kwargs):
+        if self.task is not None:
+            self.task.delete()
+
+        return super(self.__class__, self).delete(*args, **kwargs)
 
     def __str__(self):
         return self.party.title + "_" + self.prim_start.__str__()

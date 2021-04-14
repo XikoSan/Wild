@@ -74,6 +74,9 @@ def leave_party(request):
             # удаляем партию
             Party.objects.filter(pk=party.pk).update(deleted=True)
             # снимаем фоновые задачи праймериз этой партии
+            tasks = Primaries.objects.select_related('party').get(party=party.pk)
+            tasks.delete()
+            tasks.party.delete_task()
             # revoke(Party.objects.get(pk=party.pk).task_id, terminate=True)
             # Обновляем страницу
             data = {
