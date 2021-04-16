@@ -63,10 +63,8 @@ def new_player(request):
                 # Создаем его персонажа и перенаправляем в Overview
                 character = player_create(request, form)
                 character.save()
-                data = {
-                    'response': 'ok',
-                }
-                return JResponse(data)
+
+                return redirect('overview')
             else:
                 return render(request, 'player/new_player.html', {'timezones': common,
                                                                   'default': default,
