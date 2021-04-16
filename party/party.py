@@ -56,7 +56,7 @@ class Party(models.Model):
     # # id фонового процесса (начала или конца праймериз)
     # task_id = models.CharField(max_length=150, blank=True, null=True, verbose_name='id фонового процесса')
     # переодическая таска
-    task = models.OneToOneField(PeriodicTask, on_delete = models.CASCADE, null = True, blank = True)
+    task = models.OneToOneField(PeriodicTask, on_delete = models.DO_NOTHING, null = True, blank = True)
 
     # формируем переодическую таску
     def setup_task(self):
@@ -70,6 +70,15 @@ class Party(models.Model):
             start_time = timezone.now()
         )
         self.save()
+
+    def delete_task(self):
+        # проверяем есть ли таска
+        if self.task is not None:
+            task_identificator = self.task.id
+            # убираем таску у экземпляра модели
+            Party.objects.select_related('task').filter(pk=self.id).update(task=None)
+            # удаляем таску
+            PeriodicTask.objects.filter(pk=task_identificator).delete()
 
     def __str__(self):
         return self.title
