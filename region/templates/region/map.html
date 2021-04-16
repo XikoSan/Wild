@@ -47,7 +47,7 @@
 
 
 {% for district in regions %}
-      var polygon_{{ district.pk }} = new maptalks.Polygon([
+      var polygon_{{ district.pk }} = new maptalks.MultiPolygon([
 {{ district.shape }}
       ], {
         visible : true,
