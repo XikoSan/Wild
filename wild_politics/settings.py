@@ -27,7 +27,7 @@ SECRET_KEY = 'q#w=khb39-(r88pm!7gfl8ko*%ot1_2p3k(np*_y-uase%#fjh'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '192.168.0.197', '188.233.16.66', '192.168.1.237']
+ALLOWED_HOSTS = ['mysite.com', 'localhost', '127.0.0.1', '192.168.0.197', '188.233.16.66', '192.168.1.237']
 
 INTERNAL_IPS = ['127.0.0.1']
 
@@ -55,6 +55,7 @@ INSTALLED_APPS = [
 
     'bootstrap3',
     'channels',
+    'social_django',
 
     'debug_toolbar',
 
@@ -74,6 +75,18 @@ USE_THOUSAND_SEPARATOR = True
 FORMAT_MODULE_PATH = [
     'wild_politics.formats',
 ]
+
+SOCIAL_AUTH_POSTGRES_JSONFIELD = True
+
+AUTHENTICATION_BACKENDS = [
+    'social_core.backends.vk.VKOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+]
+
+LOGIN_REDIRECT_URL = '/'
+
+SOCIAL_AUTH_VK_OAUTH2_KEY = os.getenv('VK_KEY')
+SOCIAL_AUTH_VK_OAUTH2_SECRET = os.getenv('VK_SECRET')
 
 MIDDLEWARE = [
     'debug_toolbar.middleware.DebugToolbarMiddleware',
@@ -99,6 +112,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
             ],
         },
     },

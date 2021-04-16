@@ -22,6 +22,7 @@ from django.urls import path
 
 urlpatterns = [
                   path('admin/', admin.site.urls),
+                  path('', include('social_django.urls', namespace='social')),
                   url(r'', include('player.urls')),
                   url(r'', include('region.urls')),
 
