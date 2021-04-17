@@ -25,9 +25,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'q#w=khb39-(r88pm!7gfl8ko*%ot1_2p3k(np*_y-uase%#fjh'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = not os.getenv('PROD')
 
-ALLOWED_HOSTS = ['mysite.com', 'localhost', '127.0.0.1', '192.168.0.197', '188.233.16.66', '192.168.1.237']
+ALLOWED_HOSTS = ['mysite.com', 'localhost', '127.0.0.1', '52.15.87.215']
 
 INTERNAL_IPS = ['127.0.0.1']
 
@@ -75,8 +75,6 @@ USE_THOUSAND_SEPARATOR = True
 FORMAT_MODULE_PATH = [
     'wild_politics.formats',
 ]
-
-SOCIAL_AUTH_POSTGRES_JSONFIELD = True
 
 AUTHENTICATION_BACKENDS = [
     'social_core.backends.vk.VKOAuth2',
@@ -132,6 +130,10 @@ CHANNEL_LAYERS = {
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+endpoint = 'localhost'
+if os.getenv('ENDPOINT'):
+    endpoint = os.getenv('ENDPOINT')
+
 DATABASES = {
     # 'default': {
     #     'ENGINE': 'django.db.backends.sqlite3',
@@ -142,7 +144,7 @@ DATABASES = {
         'NAME': 'wild_politics',
         'USER': 'postgres',
         'PASSWORD': os.getenv('DB_PASS'),
-        'HOST': 'localhost',
+        'HOST': endpoint,
         'PORT': '5432',
         # 'ATOMIC_REQUESTS': 'True',
     }
@@ -203,7 +205,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 class JResponse(JsonResponse):
