@@ -22,7 +22,7 @@ chatSocket.onmessage = function(e) {
     div.innerHTML = "<div class='chat__item" + item_class + "'><img src='" + data.image + "' width='50px' height='50px' class='chat__person-avatar'><div class='chat__messages'><div class='chat__message'><div class='chat__message-time'>" + data.time + "</div><div class='chat__message-content'>" + data.message + "</div></div></div></div>";
     document.getElementById('chat-log-' + roomName).appendChild(div);
 
-    document.getElementById('chat-log-' + roomName).scrollTop = document.body.scrollHeight;
+    document.getElementById('chat-log-' + roomName).scrollTop = document.getElementById('chat-log-' + roomName).scrollHeight;
 };
 
 chatSocket.onclose = function(e) {
