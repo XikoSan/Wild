@@ -10,8 +10,11 @@
 {% endblock %}
 
 {% block content %}
-
-<div class="row" >
+<script>
+    const csrftoken = '{{ csrf_token }}';
+    const ban_button = "{% if request.user.is_superuser %} <input type='button' class='message__ban' value='отключить чат'>{% endif %}";
+</script>
+<div class="row">
     Привет, {{ player }} !
     <br>
     <!--если игрок в полете-->
@@ -26,26 +29,25 @@
     {{ LANGUAGE_CODE|json_script:"room-name" }}
     {{ player.pk|json_script:"player_id" }}
     <ul class="nav nav-tabs">
-        <li class="active"><a data-toggle="tab" href="#{{ language.code }}"><img src="/static/img/{{ LANGUAGE_CODE }}.png" width="30" height="30"> {{ lang.name_local }}</a></li>
+        <li class="active"><a data-toggle="tab" href="#{{ language.code }}"><img
+                src="/static/img/{{ LANGUAGE_CODE }}.png" width="30" height="30"> {{ lang.name_local }}</a></li>
     </ul>
     <div class="tab-content">
-        <div id="{{ LANGUAGE_CODE }}" class="tab-pane fade in active" style="height: 100%;">
-
-            <div style="height: 50vh; display: flex">
-                <div class="col-xs-12 col-sm-12 col-md-12 chat__content" id="chat-log-{{ LANGUAGE_CODE }}"
-                     style="flex: 10 10 auto; overflow-x: hidden; overflow-y: auto;">
-                </div>
-            </div>
+        <div id="{{ LANGUAGE_CODE }}" class="tab-pane fade in active" >
+            <section id="chat-log-{{ LANGUAGE_CODE }}" class="chat" style="height: 50vh; flex: 10 10 auto; overflow-x: hidden; overflow-y: auto;">
+            </section>
             <div style="display: flex">
                 <div style="flex: 10 10 auto">
                     <input id="chat-message-input-{{ LANGUAGE_CODE }}" type="text" size="100" style="width: 100%">
                 </div>
                 <div style="flex: 1 1 auto">
-                    <input id="chat-message-submit-{{ LANGUAGE_CODE }}" type="button" value="Отправить"  style="width: 100%">
+                    <input id="chat-message-submit-{{ LANGUAGE_CODE }}" type="button" value="Отправить"
+                           style="width: 100%">
                 </div>
             </div>
         </div>
     </div>
     <script src='{% static "chat.js" %}?{{ csrf_token }}'></script>
+    <script src='{% static "chat_admin.js" %}?{{ csrf_token }}'></script>
 </div>
 {% endblock %}

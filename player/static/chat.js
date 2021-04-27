@@ -13,13 +13,18 @@ chatSocket.onmessage = function(e) {
     const data = JSON.parse(e.data);
 
     var item_class = '';
+    var var_ban = '';
     if(data.id == playerId){
-        item_class = ' chat__item--responder';
+        item_class = ' message--user-2';
+    }
+    else{
+        item_class = ' message--user-1';
+        var_ban = ban_button;
     }
 
     var div = document.createElement('div');
     div.className = 'row';
-    div.innerHTML = "<div class='chat__item" + item_class + "'><img src='" + data.image + "' width='50px' height='50px' class='chat__person-avatar'><div class='chat__messages'><div class='chat__message'><div class='chat__message-time'>" + data.time + "</div><div class='chat__message-content'>" + data.message + "</div></div></div></div>";
+    div.innerHTML = "<div class='message" + item_class + "' data-sender='" + data.id + "'><time class='message__time'>" + data.time + var_ban + "</time><figure class='message__author-pic'><img src=" + data.image + " width='50px' height='50px'></figure><div class='message__text'><p>" + data.message + "</p></div></div>";
     document.getElementById('chat-log-' + roomName).appendChild(div);
 
     document.getElementById('chat-log-' + roomName).scrollTop = document.getElementById('chat-log-' + roomName).scrollHeight;
