@@ -26,6 +26,8 @@ def create_offer(request):
 
         if not (action == 'sell' or action == 'buy'):
             data = {
+                'header': 'Ошибка при создании',
+                'grey_btn': 'Закрыть',
                 'response': 'Некорректное действие',
             }
             return JsonResponse(data)
@@ -35,6 +37,8 @@ def create_offer(request):
 
         if not souce_pk.isdigit():
             data = {
+                'header': 'Ошибка при создании',
+                'grey_btn': 'Закрыть',
                 'response': 'Склад не заполнен',
             }
             return JsonResponse(data)
@@ -51,6 +55,8 @@ def create_offer(request):
             good = request.POST.get('good')
             if not hasattr(Storage, good):
                 data = {
+                    'header': 'Ошибка при создании',
+                    'grey_btn': 'Закрыть',
                     'response': 'Указанный товар не существует',
                 }
                 return JsonResponse(data)
@@ -60,12 +66,16 @@ def create_offer(request):
 
             if count <= 0:
                 data = {
+                    'header': 'Ошибка при создании',
+                    'grey_btn': 'Закрыть',
                     'response': 'Количество товара должно быть положительным числом',
                 }
                 return JsonResponse(data)
 
             if count > 2147483647:
                 data = {
+                    'header': 'Ошибка при создании',
+                    'grey_btn': 'Закрыть',
                     'response': 'Количество товара слишком велико',
                 }
                 return JsonResponse(data)
@@ -75,17 +85,20 @@ def create_offer(request):
 
             if price <= 0:
                 data = {
+                    'header': 'Ошибка при создании',
+                    'grey_btn': 'Закрыть',
                     'response': 'Цена товара должно быть положительным числом',
                 }
                 return JsonResponse(data)
 
             if price > 9223372036854775807:
                 data = {
+                    'header': 'Ошибка при создании',
+                    'grey_btn': 'Закрыть',
                     'response': 'Цена товара слишком велика',
                 }
                 return JsonResponse(data)
 
-            # todo: контролировать, чтобы при перемножении этих чисел не получалось больше 9223372036854775807
             s_storage = Storage.objects.get(pk=int(souce_pk))
             lock = None
             cost = 0
@@ -94,6 +107,8 @@ def create_offer(request):
                 # проверить, что на указанном складе хватает указанного ресурса
                 if count > getattr(s_storage, good):
                     data = {
+                        'header': 'Ошибка при создании',
+                        'grey_btn': 'Закрыть',
                         'response': 'Недостаточно ресурса для продажи',
                     }
                     return JsonResponse(data)
@@ -108,12 +123,16 @@ def create_offer(request):
                 # проверить, что произведение количества и цены меньше BigInt
                 if count * price > 9223372036854775807:
                     data = {
+                        'header': 'Ошибка при создании',
+                        'grey_btn': 'Закрыть',
                         'response': 'Стоимость товара слишком велика',
                     }
                     return JsonResponse(data)
                 # проверить, что стоимость товара не больше налички игрока
                 if count * price > player.cash:
                     data = {
+                        'header': 'Ошибка при создании',
+                        'grey_btn': 'Закрыть',
                         'response': 'Недостаточно средств',
                     }
                     return JsonResponse(data)
@@ -143,18 +162,24 @@ def create_offer(request):
 
         else:
             data = {
+                'header': 'Ошибка при создании',
                 'response': 'Указанный Склад вам не принадлежит',
+                'grey_btn': 'Закрыть',
             }
             return JsonResponse(data)
 
         data = {
-            'response': 'ok',
+            'header': 'Предложение создано',
+            'response': 'Торговое предложение успешно создано',
+            'grey_btn': 'Закрыть',
         }
         return JsonResponse(data)
 
     # если страницу только грузят
     else:
         data = {
+            'header': 'Ошибка при создании',
+            'grey_btn': 'Закрыть',
             'response': 'Ты уверен что тебе сюда, путник?',
         }
         return JsonResponse(data)

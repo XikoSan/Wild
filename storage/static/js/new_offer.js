@@ -58,12 +58,7 @@ jQuery(document).ready(function ($) {
             data:  sending_data,
             cache: false,
             success: function(data){
-                if (data.response == 'ok'){
-                    location.reload();
-                }
-                else{
-                    alert(data.response);
-                }
+                display_modal('notify', data.header, data.response, null, data.grey_btn)
             }
         });
     });

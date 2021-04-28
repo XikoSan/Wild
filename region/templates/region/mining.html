@@ -1,12 +1,16 @@
 {% extends 'player/header.html' %}
 {% load floor_to_tens %}
+{% load static %}
+{% block for_scripts_and_css %}
+<script src='{% static "js/mining.js" %}?{{ csrf_token }}'></script>
+{% endblock %}
 
 {% block content %}
 <!--если игрок в полете-->
 {% if player.destination %}
-    Вы летите в регион {{ player.destination }}
+Вы летите в регион {{ player.destination }}
 {% else %}
-    Добыча ресурсов в регионе {{ player.region }}
+Добыча ресурсов в регионе {{ player.region }}
 {% endif %}
 <br>
 <br>
@@ -15,15 +19,16 @@
 Запасы: {{ player.region.gold_has }} / {{ player.region.gold_cap }}
 <br>
 <br>
-<form method="POST" action="{% url 'do_mining' %}" enctype="multipart/form-data">
+<form class="mining_form" role="form">
     {% csrf_token %}
     <input type="hidden" name="resource" value="gold">
-    <input type="number" min="0" max="100" value="{{ player.energy|floor_to_tens }}" step="10" name="energy" maxlength="3">
+    <input type="number" min="0" max="100" value="{{ player.energy|floor_to_tens }}" step="10" name="energy"
+           maxlength="3">
     <!--если игрок в полете-->
     {% if player.destination %}
-        <button type="button" class="btn btn-danger">Вы в полете</button>
+    <button type="button" class="btn btn-danger">Вы в полете</button>
     {% else %}
-        <button type="submit" enctype="multipart/form-data" class="save btn btn-default">Добыча ресурсов</button>
+    <button type="submit" class="save btn btn-default">Добыча ресурсов</button>
     {% endif %}
 </form>
 <br>
@@ -35,15 +40,16 @@
 Марка нефти: {{ player.region.get_oil_type_display }}
 <br>
 <br>
-<form method="POST" action="{% url 'do_mining' %}" enctype="multipart/form-data">
+<form class="mining_form" role="form">
     {% csrf_token %}
     <input type="hidden" name="resource" value="oil">
-    <input type="number" min="0" max="100" value="{{ player.energy|floor_to_tens }}" step="10" name="energy" maxlength="3">
+    <input type="number" min="0" max="100" value="{{ player.energy|floor_to_tens }}" step="10" name="energy"
+           maxlength="3">
     <!--если игрок в полете-->
     {% if player.destination %}
-        <button type="button" class="btn btn-danger">Вы в полете</button>
+    <button type="button" class="btn btn-danger">Вы в полете</button>
     {% else %}
-        <button type="submit" enctype="multipart/form-data" class="save btn btn-default">Добыча ресурсов</button>
+    <button type="submit" enctype="multipart/form-data" class="save btn btn-default">Добыча ресурсов</button>
     {% endif %}
 </form>
 <br>
@@ -55,15 +61,16 @@
 Качество руды: {{ player.region.coal_proc }}% / {{ player.region.iron_proc }}% / {{ player.region.bauxite_proc }}%
 <br>
 <br>
-<form method="POST" action="{% url 'do_mining' %}" enctype="multipart/form-data">
+<form class="mining_form" role="form">
     {% csrf_token %}
     <input type="hidden" name="resource" value="ore">
-    <input type="number" min="0" max="100" value="{{ player.energy|floor_to_tens }}" step="10" name="energy" maxlength="3">
+    <input type="number" min="0" max="100" value="{{ player.energy|floor_to_tens }}" step="10" name="energy"
+           maxlength="3">
     <!--если игрок в полете-->
     {% if player.destination %}
-        <button type="button" class="btn btn-danger">Вы в полете</button>
+    <button type="button" class="btn btn-danger">Вы в полете</button>
     {% else %}
-        <button type="submit" enctype="multipart/form-data" class="save btn btn-default">Добыча ресурсов</button>
+    <button type="submit" enctype="multipart/form-data" class="save btn btn-default">Добыча ресурсов</button>
     {% endif %}
 </form>
 {% endblock %}

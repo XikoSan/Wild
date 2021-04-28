@@ -227,22 +227,25 @@ class Player(models.Model):
         # если картинка есть (добавили или изменили)
         if (self.image):
             # Opening the uploaded image
-            im = Image.open(self.image)
+            try:
+                im = Image.open(self.image)
 
-            output = BytesIO()
+                output = BytesIO()
 
-            # Resize/modify the image
-            im = im.resize((300, 300))
+                # Resize/modify the image
+                im = im.resize((300, 300))
 
-            # after modifications, save it to the output
-            im.save(output, format='PNG', quality=100)
-            output.seek(0)
+                # after modifications, save it to the output
+                im.save(output, format='PNG', quality=100)
+                output.seek(0)
 
-            # change the imagefield value to be the newley modifed image value
-            self.image = InMemoryUploadedFile(output, 'ImageField',
-                                              "%(account)s_%(player)s.png" % {"account": self.account.pk,
-                                                                              "player": self.pk}, 'image/png',
-                                              sys.getsizeof(output), None)
+                # change the imagefield value to be the newley modifed image value
+                self.image = InMemoryUploadedFile(output, 'ImageField',
+                                                  "%(account)s_%(player)s.png" % {"account": self.account.pk,
+                                                                                  "player": self.pk}, 'image/png',
+                                                  sys.getsizeof(output), None)
+            except FileNotFoundError:
+                pass
 
             super(Player, self).save()
         # если картинку удалили или её не было

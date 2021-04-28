@@ -35,6 +35,8 @@ def do_mining(request):
             data = {
                 # 'response': _('wait_flight_end'),
                 'response': 'Дождитесь конца полёта',
+                'header': 'Ошибка добычи ресурсов',
+                'grey_btn': 'Закрыть',
             }
             # return JResponse(data)
             return JResponse(data)
@@ -46,6 +48,8 @@ def do_mining(request):
                 and resource != 'gold':
             data = {
                 'response': 'У вас нет склада в этом регионе',
+                'header': 'Ошибка добычи ресурсов',
+                'grey_btn': 'Закрыть',
             }
             return JResponse(data)
 
@@ -56,6 +60,8 @@ def do_mining(request):
             data = {
                 # 'response': _('positive_enrg_req'),
                 'response': 'Количество Энергии должно быть положительным',
+                'header': 'Ошибка добычи ресурсов',
+                'grey_btn': 'Закрыть',
             }
             return JResponse(data)
         # Количество Энергии должно быть кратно десяти
@@ -63,6 +69,8 @@ def do_mining(request):
             data = {
                 # 'response': _('mul_ten_enrg_req'),
                 'response': 'Количество Энергии должно быть кратно десяти',
+                'header': 'Ошибка добычи ресурсов',
+                'grey_btn': 'Закрыть',
             }
             return JResponse(data)
 
@@ -70,6 +78,8 @@ def do_mining(request):
             data = {
                 # 'response': _('mul_ten_enrg_req'),
                 'response': 'Недостаточно энергии',
+                'header': 'Ошибка добычи ресурсов',
+                'grey_btn': 'Закрыть',
             }
             return JResponse(data)
 
@@ -84,6 +94,8 @@ def do_mining(request):
                 data = {
                     # 'response': _('mul_ten_enrg_req'),
                     'response': 'Запасов золота в регионе недостаточно для добычи',
+                    'header': 'Ошибка добычи ресурсов',
+                    'grey_btn': 'Закрыть',
                 }
                 return JResponse(data)
 
@@ -102,6 +114,8 @@ def do_mining(request):
                 data = {
                     # 'response': _('mul_ten_enrg_req'),
                     'response': 'Запасов нефти в регионе недостаточно для добычи',
+                    'header': 'Ошибка добычи ресурсов',
+                    'grey_btn': 'Закрыть',
                 }
                 return JResponse(data)
             # получаем запасы склада, с учетом блокировок
@@ -134,6 +148,8 @@ def do_mining(request):
                 data = {
                     # 'response': _('mul_ten_enrg_req'),
                     'response': 'Запасов руды в регионе недостаточно для добычи',
+                    'header': 'Ошибка добычи ресурсов',
+                    'grey_btn': 'Закрыть',
                 }
                 return JResponse(data)
             goods = []
@@ -172,7 +188,6 @@ def do_mining(request):
 
         data = {
             'response': 'ok',
-            'mined': mined_result,
         }
         return JResponse(data)
 
