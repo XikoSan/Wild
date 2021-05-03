@@ -22,12 +22,16 @@ def produce_energy(request):
         if not int(count) % 10 == 0:
             data = {
                 'response': 'Введите число, кратное десяти',
+                'header': 'Ошибка производства энергии',
+                'grey_btn': 'Закрыть',
             }
             return JsonResponse(data)
 
         if not int(count) > 0:
             data = {
                 'response': 'Введите положительное число',
+                'header': 'Ошибка производства энергии',
+                'grey_btn': 'Закрыть',
             }
             return JsonResponse(data)
 
@@ -44,6 +48,8 @@ def produce_energy(request):
         else:
             data = {
                 'response': 'Недостаточно средств',
+                'header': 'Ошибка производства энергии',
+                'grey_btn': 'Закрыть',
             }
             return JsonResponse(data)
 
@@ -51,5 +57,7 @@ def produce_energy(request):
     else:
         data = {
             'response': 'Ты уверен что тебе сюда, путник?',
+            'header': 'Ошибка производства энергии',
+            'grey_btn': 'Закрыть',
         }
         return JsonResponse(data)

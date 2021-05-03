@@ -61,7 +61,8 @@ jQuery(document).ready(function ($) {
                     help.style.display = 'none';
                 }
                 else{
-                    alert(data.response);
+                    display_modal('notify', data.header, data.response, null, data.grey_btn)
+//                    alert(data.response);
                 }
             }
         });

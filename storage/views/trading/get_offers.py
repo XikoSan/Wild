@@ -26,6 +26,8 @@ def get_offers(request):
         if not (action == 'sell' or action == 'buy'):
             data = {
                 'response': 'Некорректное действие',
+                'header': 'Ошибка получения офферов',
+                'grey_btn': 'Закрыть',
             }
             return JsonResponse(data)
         else:
@@ -46,6 +48,8 @@ def get_offers(request):
         if not (owner in ['all', 'mine', 'party']):
             data = {
                 'response': 'Некорректный владелец',
+                'header': 'Ошибка получения офферов',
+                'grey_btn': 'Закрыть',
             }
             return JsonResponse(data)
         else:
@@ -104,5 +108,7 @@ def get_offers(request):
     else:
         data = {
             'response': 'Ты уверен что тебе сюда, путник?',
+            'header': 'Ошибка получения офферов',
+            'grey_btn': 'Закрыть',
         }
         return JsonResponse(data)

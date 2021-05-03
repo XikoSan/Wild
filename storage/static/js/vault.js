@@ -77,7 +77,8 @@ jQuery(document).ready(function ($) {
                     $('#energy_range_max').html(numberWithSpaces(max_gold));
                 }
                 else{
-                     alert(data.response);
+                    display_modal('notify', data.header, data.response, null, data.grey_btn)
+//                     alert(data.response);
                 }
             }
         });
