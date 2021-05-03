@@ -68,6 +68,9 @@ INSTALLED_APPS = [
     'storage',
     'war',
     'chat',
+
+    'django_cleanup',
+
 ]
 
 USE_L10N = True

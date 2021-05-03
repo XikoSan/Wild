@@ -225,7 +225,7 @@ class Player(models.Model):
     # сохранение профиля с изменением размеров и названия картинки профиля
     def save(self):
         # если картинка есть (добавили или изменили)
-        if (self.image):
+        if self.image:
             # Opening the uploaded image
             try:
                 im = Image.open(self.image)
@@ -247,10 +247,7 @@ class Player(models.Model):
             except FileNotFoundError:
                 pass
 
-            super(Player, self).save()
-        # если картинку удалили или её не было
-        else:
-            super(Player, self).save()
+        super(Player, self).save()
 
     def __str__(self):
         return self.nickname

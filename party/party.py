@@ -1,22 +1,24 @@
 import json
-
+import sys
 import datetime
-
+from PIL import Image
 from django.db import models
 from django.utils import timezone
 from django.dispatch import receiver
 from django.db.models.signals import post_save
-
+from django.core.files.uploadedfile import InMemoryUploadedFile
 from django_celery_beat.models import IntervalSchedule, PeriodicTask
 
 from region.region import Region
+
+from io import BytesIO
+
 
 # from PIL import Image
 # from io import BytesIO
 # from django.core.files.uploadedfile import InMemoryUploadedFile
 # import sys
 # import gamecore.all_models.region as rgn
-
 
 
 # Create your models here.
@@ -45,7 +47,7 @@ class Party(models.Model):
     image = models.ImageField(upload_to='img/party_avatars/', blank=True, null=True, verbose_name='Герб партии')
     # картинка партийного фона
     members_image = models.ImageField(upload_to='img/party_backs/', blank=True, null=True,
-                                          verbose_name='Ссылка партийный фон')
+                                      verbose_name='Ссылка партийный фон')
     # регион партии
     region = models.ForeignKey(Region, default=None, null=True, on_delete=models.SET_NULL, blank=True,
                                verbose_name='Регион размещения', related_name="party_region")
@@ -56,18 +58,43 @@ class Party(models.Model):
     # # id фонового процесса (начала или конца праймериз)
     # task_id = models.CharField(max_length=150, blank=True, null=True, verbose_name='id фонового процесса')
     # переодическая таска
-    task = models.OneToOneField(PeriodicTask, on_delete = models.DO_NOTHING, null = True, blank = True)
+    task = models.OneToOneField(PeriodicTask, on_delete=models.DO_NOTHING, null=True, blank=True)
+
+    def save(self):
+        # если картинка есть (добавили или изменили)
+        if self.image:
+            # Opening the uploaded image
+            try:
+                im = Image.open(self.image)
+
+                output = BytesIO()
+
+                # Resize/modify the image
+                im = im.resize((300, 300))
+
+                # after modifications, save it to the output
+                im.save(output, format='PNG', quality=100)
+                output.seek(0)
+
+                # change the imagefield value to be the newley modifed image value
+                self.image = InMemoryUploadedFile(output, 'ImageField',
+                                                  "%(party)s.png" % {"party": self.pk}, 'image/png',
+                                                  sys.getsizeof(output), None)
+            except FileNotFoundError:
+                pass
+
+        super(Party, self).save()
 
     # формируем переодическую таску
     def setup_task(self):
         # schedule, created = IntervalSchedule.objects.get_or_create(every = 7, period=IntervalSchedule.DAYS)IntervalSchedule.SECONDS
-        schedule, created = IntervalSchedule.objects.get_or_create(every = 2, period=IntervalSchedule.MINUTES)
+        schedule, created = IntervalSchedule.objects.get_or_create(every=2, period=IntervalSchedule.MINUTES)
         self.task = PeriodicTask.objects.create(
-            name = self.title,
-            task = 'start_primaries',
-            interval = schedule,
-            args = json.dumps([self.id]),
-            start_time = timezone.now()
+            name=self.title,
+            task='start_primaries',
+            interval=schedule,
+            args=json.dumps([self.id]),
+            start_time=timezone.now()
         )
         self.save()
 
@@ -87,6 +114,7 @@ class Party(models.Model):
     class Meta:
         verbose_name = "Партия"
         verbose_name_plural = "Партии"
+
 
 # сигнал прослушивающий создание партии, после этого формирующий таску
 @receiver(post_save, sender=Party)
