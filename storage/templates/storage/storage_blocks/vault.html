@@ -16,7 +16,7 @@
                 {% csrf_token %}
                 <div class="row">
                     создать
-                    <input type="number" {% localize off %}min="{% if player.gold == 0 %}0{% else %}10{% endif %}" max="{{ player.gold|get_mul:10 }}"{% endlocalize %} step="10" name="energy" id="energy">
+                    <input type="number" {% localize off %}min="{% if player.gold == 0 %}0{% else %}10{% endif %}" max="{{ player.gold|get_mul:10 }}"{% endlocalize %} step="10" name="energy_field" id="energy_field">
                 </div>
                 <div class="row" style="margin-top: 2%;" >
                     <div class="col-xs-2 col-sm-2 col-md-2" id="energy_range_min">{% if player.gold == 0 %}0{% else %}10{% endif %}</div>

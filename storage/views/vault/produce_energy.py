@@ -17,7 +17,7 @@ def produce_energy(request):
         # получаем персонажа
         player = Player.objects.get(account=request.user)
 
-        count = request.POST.get('energy', '')
+        count = request.POST.get('energy_field', '')
 
         if not int(count) % 10 == 0:
             data = {

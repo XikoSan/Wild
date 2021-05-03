@@ -1,6 +1,6 @@
 jQuery(document).ready(function ($) {
     var range = document.getElementById('energy_range');
-    var field = document.getElementById('energy');
+    var field = document.getElementById('energy_field');
 
     field.value = range.value;
     if(range.value == 0 || range.value == ""){
@@ -69,9 +69,9 @@ jQuery(document).ready(function ($) {
                     document.getElementById('energy_range').setAttribute("max", max_gold);
                     document.getElementById('energy_range').value = min_gold;
 
-                    document.getElementById('energy').setAttribute("min", min_gold);
-                    document.getElementById('energy').setAttribute("max", max_gold);
-                    document.getElementById('energy').value = min_gold;
+                    document.getElementById('energy_field').setAttribute("min", min_gold);
+                    document.getElementById('energy_field').setAttribute("max", max_gold);
+                    document.getElementById('energy_field').value = min_gold;
 
                     $('#energy_range_min').html(numberWithSpaces(min_gold));
                     $('#energy_range_max').html(numberWithSpaces(max_gold));
