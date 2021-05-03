@@ -2,6 +2,24 @@ var RATE_LIMIT_IN_MS = 100;
 var NUMBER_OF_REQUESTS_ALLOWED = 1;
 var NUMBER_OF_REQUESTS = 0;
 
+
+jQuery(document).ready(function ($) {
+    setInterval(function()
+    {
+        NUMBER_OF_REQUESTS = 0;
+
+    }, RATE_LIMIT_IN_MS);
+
+    $.ajaxSetup ({
+      beforeSend: function canSendAjaxRequest()
+        {
+            var can_send = NUMBER_OF_REQUESTS < NUMBER_OF_REQUESTS_ALLOWED;
+            NUMBER_OF_REQUESTS++;
+            return can_send;
+        }
+    });
+});
+
 function numberWithSpaces(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
 }
@@ -35,6 +53,27 @@ window.onload = function countdown() {
         }
     }
 }
+
+function actualize(){
+    $.ajax({
+        beforeSend: function() {},
+        type: "GET",
+        url: "/status/0/",
+        dataType: "html",
+        cache: false,
+        success: function(data){
+
+            result = JSON.parse(data);
+
+            $('#cash').html('$' + numberWithSpaces(result.cash) );
+            $('#cash').attr('title', locked_txt + numberWithSpaces(result.locked) ).tooltip('fixTitle');
+
+            $('#gold').html(numberWithSpaces(result.gold));
+            $('#energy').html(energy_txt + result.energy + '%');
+        }
+    });
+}
+
 
 function recharge(){
     //запрашиваем свежие данные состояния золота и энергетиков игрока

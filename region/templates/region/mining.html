@@ -12,6 +12,11 @@
 {% else %}
 Добыча ресурсов в регионе {{ player.region }}
 {% endif %}
+
+<script>
+    const var_mining_default = 'Добыча ресурсов';
+    const var_mining_process = 'Копаем...';
+</script>
 <br>
 <br>
 <b>Золото</b>
@@ -28,7 +33,7 @@
     {% if player.destination %}
     <button type="button" class="btn btn-danger">Вы в полете</button>
     {% else %}
-    <button type="submit" class="save btn btn-default">Добыча ресурсов</button>
+    <button type="submit" class="save btn btn-mining btn-default">Добыча ресурсов</button>
     {% endif %}
 </form>
 <br>
@@ -49,7 +54,7 @@
     {% if player.destination %}
     <button type="button" class="btn btn-danger">Вы в полете</button>
     {% else %}
-    <button type="submit" enctype="multipart/form-data" class="save btn btn-default">Добыча ресурсов</button>
+    <button type="submit" enctype="multipart/form-data" class="save btn btn-mining btn-default">Добыча ресурсов</button>
     {% endif %}
 </form>
 <br>
@@ -70,7 +75,7 @@
     {% if player.destination %}
     <button type="button" class="btn btn-danger">Вы в полете</button>
     {% else %}
-    <button type="submit" enctype="multipart/form-data" class="save btn btn-default">Добыча ресурсов</button>
+    <button type="submit" enctype="multipart/form-data" class="save btn btn-mining btn-default">Добыча ресурсов</button>
     {% endif %}
 </form>
 {% endblock %}

@@ -1,11 +1,11 @@
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse, HttpResponse
 from django.utils.translation import ugettext as _
-
+from django.db.models import Sum
 from player.player import Player
 from storage.models.storage import Storage
 from player.decorators.player import check_player
-
+from storage.models.cash_lock import CashLock
 
 # возвращает состояние склада на данный момент
 @login_required(login_url='/')
@@ -15,11 +15,14 @@ def storage_status(request, pk):
         # получаем персонажа
         player = Player.objects.get(account=request.user)
         data = {}
+        locked = CashLock.objects.filter(lock_player=player, deleted=False).aggregate(total_cash=Sum('lock_cash'))
+
         if pk == '0':
             data = {
                 'gold': player.gold,
                 'cash': player.cash,
                 'storage_cash': Storage.objects.get(owner=player, region=player.region).cash,
+                'locked': locked['total_cash'],
                 'bottles': player.bottles,
                 'energy': player.energy
             }
@@ -49,7 +52,7 @@ def storage_status(request, pk):
         elif pk == 'units':
             data = Storage.objects.get(owner=player, region=player.region).unitsOnStorageCount('units')
         else:
-            data['responce'] = _('not_correct')
+            data['response'] = _('not_correct')
 
         return JsonResponse(data)
     else:
