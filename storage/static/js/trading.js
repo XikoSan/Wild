@@ -34,31 +34,40 @@ jQuery(document).ready(function ($) {
             cache: false,
             success: function(data){
                 if (data.response == 'ok'){
-                    var tbodyRef = document.getElementById('lines').getElementsByTagName('tbody')[0];
-                    var new_tbody = document.createElement('tbody');
+                    document.getElementById('lines').style.display = 'none';
 
-                    data.offers_list.forEach(function (line, index) {
-                        var newRow = new_tbody.insertRow();
-                        const attrs = ['good', 'owner', 'region', 'count', 'price', 'delivery', 'sum']
-                        attrs.forEach(function (item, index) {
-                            var newCell = newRow.insertCell();
-                            if(item == 'count'){
-                                newCell.setAttribute('contenteditable', 'true');
-                            }
-                            var newText = document.createTextNode(line[item]);
-                            newCell.appendChild(newText);
+                    if (Object.keys(data.offers_list).length > 0){
+                        var tbodyRef = document.getElementById('lines').getElementsByTagName('tbody')[0];
+                        var new_tbody = document.createElement('tbody');
+
+                        data.offers_list.forEach(function (line, index) {
+                            var newRow = new_tbody.insertRow();
+                            const attrs = ['good', 'owner', 'region', 'count', 'price', 'delivery', 'sum']
+                            attrs.forEach(function (item, index) {
+                                var newCell = newRow.insertCell();
+                                if(item == 'count'){
+                                    newCell.setAttribute('contenteditable', 'true');
+                                }
+                                var newText = document.createTextNode(line[item]);
+                                newCell.appendChild(newText);
+                            });
                         });
-                    });
-                    tbodyRef.parentNode.replaceChild(new_tbody, tbodyRef)
-                    tbodyRef.remove()
+                        tbodyRef.parentNode.replaceChild(new_tbody, tbodyRef)
+                        tbodyRef.remove()
 
-                    var table = document.getElementById('lines');
-                    var sort = new Tablesort(table);
-                    table.style.display = 'block';
-                    sort.refresh();
+                        var table = document.getElementById('lines');
+                        var sort = new Tablesort(table);
+                        table.style.display = 'block';
+                        sort.refresh();
 
-                    var help = document.getElementById('offers_help');
-                    help.style.display = 'none';
+                        document.getElementById('offers_help').style.display = 'none';
+                        document.getElementById('offers_none').style.display = 'none';
+                    }
+                    else{
+                        document.getElementById('offers_help').style.display = 'none';
+                        document.getElementById('offers_none').style.display = 'block';
+                    }
+
                 }
                 else{
                     display_modal('notify', data.header, data.response, null, data.grey_btn)
