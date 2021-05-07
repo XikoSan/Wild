@@ -4,9 +4,13 @@ from django.utils.translation import gettext_lazy
 
 from player.player import Player
 from region.region import Region
+from player.actual_manager import ActualManager
 
 
 class Storage(models.Model):
+    objects = models.Manager()  # Менеджер по умолчанию
+    actual = ActualManager()  # Менеджер активных записей
+
     # ------vvvvvvv------Все типы товаров------vvvvvvv------
     types = {
         'minerals': gettext_lazy('Минералы'),
@@ -142,6 +146,9 @@ class Storage(models.Model):
     antitank = models.IntegerField(default=0, verbose_name=gettext_lazy('antitank'))
     # танки- максимум на складе
     antitank_cap = models.IntegerField(default=1000, verbose_name='ПТ-пушка- максимум на складе')
+
+    # удалено
+    deleted = models.BooleanField(default=False, verbose_name='Удалено')
 
     # получить информацию о количестве предметов
     def unitsOnStorageCount(self, mode):

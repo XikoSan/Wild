@@ -1,10 +1,11 @@
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.utils import timezone
-
+import math
 from player.decorators.player import check_player
 from player.player import Player
 from region.views.distance_counting import distance_counting
+from storage.views.storage.get_transfer_price import get_transfer_price
 from storage.models.cash_lock import CashLock
 from storage.models.good_lock import GoodLock
 from storage.models.storage import Storage
@@ -18,6 +19,11 @@ def get_offers(request):
     if request.method == "POST":
 
         player = Player.objects.get(account=request.user)
+        storage = None
+
+        if Storage.actual.filter(owner=player, region=player.region).exists():
+            storage = Storage.actual.get(owner=player, region=player.region)
+
         kwargs = {}
 
         # узнаём действие, которое игрок хочет совершить
@@ -88,14 +94,29 @@ def get_offers(request):
         offers_list = []
 
         for offer in offers:
-            offer_dict = {}
-            offer_dict['good'] = offer.get_good_display()
-            offer_dict['owner'] = offer.owner_storage.owner.nickname
-            offer_dict['region'] = offer.owner_storage.region.region_name
-            offer_dict['count'] = offer.count
-            offer_dict['price'] = offer.price
-            offer_dict['delivery'] = 0
-            offer_dict['sum'] = 0
+            offer_dict = {'good': offer.get_good_display(),
+                          'owner': offer.owner_storage.owner.nickname,
+                          'region': offer.owner_storage.region.region_name,
+                          'count': offer.count,
+                          'price': offer.price
+            }
+
+            if storage:
+                trans_mul = {}
+                trans_mul[storage.pk] = {}
+                trans_mul[storage.pk][offer.owner_storage.pk] = math.ceil(distance_counting(storage.region, offer.owner_storage.region) / 100)
+
+                offer_value = {}
+                offer_value[str(offer.owner_storage.pk)] = {}
+                offer_value[str(offer.owner_storage.pk)][offer.good] = offer.count
+
+                price, prices = get_transfer_price(trans_mul, int(storage.pk), offer_value)
+
+                offer_dict['delivery'] = price
+            else:
+                offer_dict['delivery'] = 0
+
+            offer_dict['sum'] = offer_dict['delivery'] + ( offer.price * offer.count )
             offers_list.append(offer_dict)
 
         data = {

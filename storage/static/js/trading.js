@@ -47,7 +47,9 @@ jQuery(document).ready(function ($) {
                                 var newCell = newRow.insertCell();
                                 if(item == 'count'){
                                     newCell.setAttribute('contenteditable', 'true');
+                                    newCell.style.border = "thin solid black";
                                 }
+                                newCell.classList.add(item);
                                 var newText = document.createTextNode(line[item]);
                                 newCell.appendChild(newText);
                             });
@@ -76,4 +78,12 @@ jQuery(document).ready(function ($) {
             }
         });
     });
+
+    $("#lines").on("input", ".count", function(e){
+        if (!isNaN(parseInt(e.target.innerHTML))){
+            $($(e.currentTarget).parent()).find(".sum").html( ( parseInt($($(e.currentTarget).parent()).find(".price").html()) * parseInt(e.target.innerHTML) ) + parseInt($($(e.currentTarget).parent()).find(".delivery").html()) )
+        }
+    });
+
+
 });
