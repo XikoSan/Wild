@@ -6,6 +6,8 @@ from player.player import Player
 from storage.models.storage import Storage
 from player.decorators.player import check_player
 from storage.models.cash_lock import CashLock
+from wild_politics.settings import JResponse
+
 
 # возвращает состояние склада на данный момент
 @login_required(login_url='/')
@@ -35,9 +37,9 @@ def storage_status(request, pk):
             else:
                 data = {
                     'mode': 'notify',
-                    'header': _('Energy recharging'),
-                    'response': _('no_batteries'),
-                    'grey_btn': _('Close'),
+                    'response': 'Недостаточно Энергетиков. Создайте их в Хранилище Склада',
+                    'header': 'Пополнение энергии',
+                    'grey_btn': 'Закрыть',
                 }
         # получаем всё
         elif pk == 'all':
@@ -52,8 +54,13 @@ def storage_status(request, pk):
         elif pk == 'units':
             data = Storage.objects.get(owner=player, region=player.region).unitsOnStorageCount('units')
         else:
-            data['response'] = _('not_correct')
+            data = {
+                'mode': 'notify',
+                'response': 'Некорректный параметр',
+                'header': 'Информация со Склада',
+                'grey_btn': 'Закрыть',
+            }
 
-        return JsonResponse(data)
+        return JResponse(data)
     else:
         return HttpResponse('no', content_type='text/html')

@@ -74,7 +74,6 @@ function actualize(){
     });
 }
 
-
 function recharge(){
     //запрашиваем свежие данные состояния золота и энергетиков игрока
     $.ajax({
@@ -87,20 +86,19 @@ function recharge(){
             result = JSON.parse(data);
             //если у игрока хватает энергетиков для пополнения до ста
             if (result.response == 'ok'){
-                var token = $("#recharge_form").serialize();
+                var token = "&csrfmiddlewaretoken=" + csrftoken;
                 $.ajax({
                     beforeSend: function() {},
                     type: "POST",
                     url: "/recharge/",
                     data: token,
                     cache: false,
-                    success: function(data){
-                        if (data.response == 'ok'){
-                            $('#recharge_pic').attr("src", "/static/img/battery/full.svg");
-                            $('#energy_status_text').html(100);
+                    success: function(result){
+                        if (result.response == 'ok'){
+                            $('#energy').html(energy_txt + '100%');
                         }
                         else{
-                            display_modal('notify', data.header, data.response, null, data.grey_btn)
+                            display_modal('notify', result.header, result.response, null, result.grey_btn)
                         }
                     }
                 });

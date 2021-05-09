@@ -1,0 +1,76 @@
+from datetime import timedelta
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
+from django.shortcuts import redirect
+from django.utils import timezone
+from django.utils.translation import ugettext as _
+
+from player.decorators.player import check_player
+from player.player import Player
+from wild_politics.settings import JResponse
+
+
+# расход энергии со склада на пополнения её у персонажа
+@login_required(login_url='/')
+@check_player
+def expense_energy(request):
+    if request.method == "POST":
+        # получаем персонажа
+        player = Player.objects.get(account=request.user)
+        # время сейчас
+        cur_time = timezone.now()
+        # время, когда можно перезаряжаться
+        end_time = player.last_refill
+        # если время подзарядки ещё не пришло
+        if end_time > cur_time:
+            data = {
+                # 'response': _('positive_enrg_req'),
+                'response': 'Десять минут ещё не прошло',
+                'header': 'Пополнение энергии',
+                'grey_btn': 'Закрыть',
+            }
+            return JResponse(data)
+            # return HttpResponse(_('too_early'), content_type='text/html')
+        else:
+            # если у игрока достаточно энергетиков
+            if player.bottles >= 100 - player.energy:
+                # количество энергии, которое необходимо восполнить
+                refill_value = 100 - player.energy
+                print(refill_value)
+                if refill_value > 0:
+                    player.bottles -= refill_value
+                    player.energy += refill_value
+                    player.last_refill = timezone.now() + timedelta(seconds=600)
+                    player.save()
+                    data = {
+                        'response': 'ok',
+                    }
+                    return JResponse(data)
+                else:
+                    data = {
+                        # 'response': _('positive_enrg_req'),
+                        'response': 'Пополнение энергии не требуется',
+                        'header': 'Пополнение энергии',
+                        'grey_btn': 'Закрыть',
+                    }
+                    return JResponse(data)
+                    # return HttpResponse(_('no_required'), content_type='text/html')
+            else:
+                data = {
+                    # 'response': _('positive_enrg_req'),
+                    'response': 'Недостаточно Энергетиков. Создайте их в Хранилище Склада',
+                    'header': 'Пополнение энергии',
+                    'grey_btn': 'Закрыть',
+                }
+                return JResponse(data)
+                # return HttpResponse(_('no_batteries'), content_type='text/html')
+
+    # если страницу только грузят
+    else:
+        data = {
+            # 'response': _('positive_enrg_req'),
+            'response': 'Ошибка типа запроса',
+            'header': 'Пополнение энергии',
+            'grey_btn': 'Закрыть',
+        }
+        return JResponse(data)
