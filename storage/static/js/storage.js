@@ -125,6 +125,7 @@ function open_trade_line(id){
     }
     else{
         $.ajax({
+            beforeSend: function() {},
             type: "GET",
             url: "storage/" + id + "/",
             dataType: "html",

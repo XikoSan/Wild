@@ -11,7 +11,6 @@
 
 {% block content %}
 <script>
-    const csrftoken = '{{ csrf_token }}';
     const ban_button = "{% if request.user.is_superuser %} <input type='button' class='message__ban' value='отключить чат'>{% endif %}";
 </script>
 <div class="row">
