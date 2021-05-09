@@ -36,8 +36,8 @@ services:
     restart: always
     environment:
       DB_PASS: admin
-      VK_KEY: 6457259
-      VK_SECRET: u08UtFRlfmuFI8MqIftA
+      VK_KEY: '6457259'
+      VK_SECRET: 'u08UtFRlfmuFI8MqIftA'
     links:
       - db
       - redis
