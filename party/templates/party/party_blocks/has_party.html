@@ -1,4 +1,5 @@
 {% load dict_key %}
+{% load static %}
 {% load tz %}
 <div class="row">
     <div class="col-xs-2 col-sm-2 col-md-2">
@@ -6,9 +7,9 @@
         <div class="col-xs-4 col-sm-4 col-md-4">
             {% if player.party.image %}
             <!--Картинка партии-->
-            <img src="{{ player.party.image }}" width="250" height="250">
+            <img src="{{ player.party.image.url }}" width="250" height="250">
             {% else %}
-            нету :(
+            <img src="{% static 'img/nopic_party.png' %}" width="250" height="250">
             {% endif %}
         </div>
         <div class="col-xs-4 col-sm-4 col-md-4">
@@ -85,9 +86,9 @@
                 <!--если пользователь загрузил аватарку-->
                 <a href='profile/{{ member.pk }}' target="_blank">
                     {% if member.image %}
-                    <img src="{{ member.image }}" width="50" height="50" align="right">
+                    <img src="{{ member.image.url }}" width="50" height="50" align="right">
                     {% else %}
-                    нету :(
+                    <img src="{% static 'img/nopic.png' %}" width="50" height="50" align="right">
                     {% endif %}
                 </a>
             </div>
