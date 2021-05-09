@@ -35,7 +35,7 @@ INTERNAL_IPS = ['127.0.0.1']
 CELERY_TIMEZONE = "Europe/Moscow"
 CELERY_TASK_TRACK_STARTED = True
 CELERY_TASK_TIME_LIMIT = 60 * 60
-CELERY_BROKER_URL = 'redis://localhost:6379/0'
+CELERY_BROKER_URL = 'redis://redis:6379/0'
 CELERY_RESULT_BACKEND = 'django-db'
 CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
 CELERY_TASK_RESULT_EXPIRES = 3600
@@ -67,7 +67,7 @@ INSTALLED_APPS = [
     'state',
     'storage',
     'war',
-    'chat',
+    # 'chat',
 
     'django_cleanup',
 
@@ -125,17 +125,13 @@ CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
-            "hosts": [('127.0.0.1', 6379)],
+            "hosts": [('redis', 6379)],
         },
     },
 }
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-
-endpoint = 'localhost'
-if os.getenv('ENDPOINT'):
-    endpoint = os.getenv('ENDPOINT')
 
 DATABASES = {
     # 'default': {
@@ -147,7 +143,7 @@ DATABASES = {
         'NAME': 'wild_politics',
         'USER': 'postgres',
         'PASSWORD': os.getenv('DB_PASS'),
-        'HOST': endpoint,
+        'HOST': 'db',
         'PORT': '5432',
         # 'ATOMIC_REQUESTS': 'True',
     }

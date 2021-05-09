@@ -1,0 +1,92 @@
+version: '3'
+services:
+  db:
+    image: postgres:13-alpine
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: wild_politics
+
+  redis:
+    image: redis:alpine
+    restart: always
+
+  nginx:
+    image: nginx:alpine
+    restart: always
+    ports:
+      - 8000:80
+      #- 443:443
+    links:
+      - wildpolitics
+    depends_on:
+      - wildpolitics
+    volumes:
+      - static:/data/static
+      - media:/data/media
+      - certbot:/etc/letsencrypt
+      - certbot:/var/www/certbot
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+      # - ./certs:/etc/letsencrypt
+    # command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
+
+  wildpolitics:
+    build: .
+    image: wildpolitics
+    restart: always
+    environment:
+      DB_PASS: admin
+    links:
+      - db
+      - redis
+    depends_on:
+      - db
+      - redis
+    volumes:
+      #- ./:/app
+      - static:/app/static
+      - media:/app/media
+
+  celery:
+    image: wildpolitics
+    restart: always
+    environment:
+      DB_PASS: admin
+    command: celery -A wild_politics worker -l info
+    depends_on:
+      - db
+      - redis
+      - wildpolitics
+
+  celery_beat:
+    image: wildpolitics
+    restart: always
+    environment:
+      DB_PASS: admin
+    command: celery -A wild_politics beat -l info
+    depends_on:
+      - db
+      - redis
+      - wildpolitics
+
+  flower:
+    image: wildpolitics
+    restart: always
+    command: celery flower -A wild_politics --address=0.0.0.0 --port=5555 --basic_auth=admin:aa10802602
+    ports:
+      - 5555:5555
+    depends_on:
+      - redis
+      - wildpolitics
+
+#  certbot:
+#    image: certbot/certbot
+#    volumes:
+#      - certbot:/etc/letsencrypt
+#      - certbot:/var/www/certbot
+#    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew -d wildpolitics.online; sleep 12h & wait $${!}; done;'"
+
+volumes:
+  static:
+  media:
+  certbot:
