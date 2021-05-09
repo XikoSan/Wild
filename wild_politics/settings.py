@@ -27,7 +27,7 @@ SECRET_KEY = 'q#w=khb39-(r88pm!7gfl8ko*%ot1_2p3k(np*_y-uase%#fjh'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = not os.getenv('PROD')
 
-ALLOWED_HOSTS = ['mysite.com', 'localhost', '127.0.0.1', '52.15.87.215']
+ALLOWED_HOSTS = ['mysite.com', 'localhost', '127.0.0.1', 'ovz1.m4troskun.pxlzp.vps.myjino.ru']
 
 INTERNAL_IPS = ['127.0.0.1']
 
