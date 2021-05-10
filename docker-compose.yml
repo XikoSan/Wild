@@ -3,6 +3,8 @@ services:
   db:
     image: postgres:13-alpine
     restart: always
+    ports:
+      - 6543:5432
     environment:
       POSTGRES_PASSWORD: admin
       POSTGRES_DB: wild_politics
