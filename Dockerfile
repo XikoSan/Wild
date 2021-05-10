@@ -8,6 +8,5 @@ COPY requirements.txt ./
 RUN pip install -r requirements.txt
 
 COPY . .
-RUN python manage.py collectstatic --no-input
 
-CMD sh -c "python manage.py migrate --no-input && daphne -b 0.0.0.0 -p 80 wild_politics.asgi:application"
+CMD sh -c "python manage.py migrate --no-input && python manage.py collectstatic --no-input && daphne -b 0.0.0.0 -p 80 wild_politics.asgi:application"
