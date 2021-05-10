@@ -98,12 +98,8 @@
             </div>
         </div>
         <div class="col-xs-4 col-sm-4 col-md-4" align="center">
-            {% if player.party.members_image %}
             <!--Картинка партийного фона-->
-            <img id="party_back" src="{{ player.party.members_image.url }}" width="250" height="250">
-            {% else %}
-            <img id="party_back" src="{% static 'img/noback_party.png' %}" width="250" height="250">
-            {% endif %}
+            <img id="party_back" src="{% if player.party.members_image %}{{ player.party.members_image.url }}{% else %}{% static 'img/noback_party.png' %}{% endif %}" width="250" height="250">
             {% if player.party_post.party_lead %}
 <!--            <form method="POST" enctype="multipart/form-data" id="party_back-form">-->
 <!--                {% csrf_token %}-->
