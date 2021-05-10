@@ -1,4 +1,4 @@
-{% extends 'player/Header.html' %}
+{% extends 'player/header.html' %}
 {% load static %}
 {% load menu %}
 {% load dict_key %}
@@ -33,7 +33,7 @@
          style="height: 50%; margin-top: 30px; overflow-y: auto;">
         {% if players_list %}
             <div align="right">
-                <a onclick="window.location.href = '{% url 'party_reject_all' %}'" class="btn btn-danger">{% trans 'reject_all_requests' %}</a>
+                <a onclick="window.location.href = '{% url 'party_reject_all' %}'" class="btn btn-danger">{% trans 'отклонить всё' %}</a>
             </div>
             {% for member in players_list %}
             <div class="row">
