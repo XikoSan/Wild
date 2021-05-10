@@ -16,15 +16,22 @@ def storage_status(request, pk):
     if request.method == "GET":
         # получаем персонажа
         player = Player.objects.get(account=request.user)
-        data = {}
-        locked = CashLock.objects.filter(lock_player=player, deleted=False).aggregate(total_cash=Sum('lock_cash'))
+
+        locked = 0
+        locked_tmp = CashLock.objects.filter(lock_player=player, deleted=False).aggregate(total_cash=Sum('lock_cash'))
+        if locked_tmp['total_cash'] \
+                and locked_tmp['total_cash'] > 0:
+            locked = locked_tmp['total_cash']
 
         if pk == '0':
+            storage_cash = 0
+            if Storage.objects.filter(owner=player, region=player.region).exists():
+                storage_cash = Storage.objects.get(owner=player, region=player.region).cash
             data = {
                 'gold': player.gold,
                 'cash': player.cash,
-                'storage_cash': Storage.objects.get(owner=player, region=player.region).cash,
-                'locked': locked['total_cash'],
+                'storage_cash': storage_cash,
+                'locked': locked,
                 'bottles': player.bottles,
                 'energy': player.energy
             }
