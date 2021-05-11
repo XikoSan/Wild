@@ -6,7 +6,7 @@ services:
     ports:
       - 6543:5432
     environment:
-      POSTGRES_PASSWORD: admin
+      POSTGRES_PASSWORD: ${DB_PASSWD}
       POSTGRES_DB: wild_politics
 
   redis:
@@ -37,9 +37,12 @@ services:
     image: wildpolitics
     restart: always
     environment:
-      DB_PASS: admin
-      VK_KEY: '6457259'
-      VK_SECRET: 'u08UtFRlfmuFI8MqIftA'
+      PROD: ${PROD}
+      TOOL: ${TOOL}
+      DB_PASS: ${DB_PASSWD}
+      SECRET_KEY: ${SECRET_KEY}
+      VK_KEY: ${VK_KEY}
+      VK_SECRET: ${VK_SECRET}'
     links:
       - db
       - redis
@@ -55,7 +58,7 @@ services:
     image: wildpolitics
     restart: always
     environment:
-      DB_PASS: admin
+      DB_PASS: ${DB_PASSWD}
     command: celery -A wild_politics worker -l info
     depends_on:
       - db
@@ -66,7 +69,7 @@ services:
     image: wildpolitics
     restart: always
     environment:
-      DB_PASS: admin
+      DB_PASS: ${DB_PASSWD}
     command: celery -A wild_politics beat -l info
     depends_on:
       - db
@@ -76,7 +79,7 @@ services:
   flower:
     image: wildpolitics
     restart: always
-    command: celery flower -A wild_politics --address=0.0.0.0 --port=5555 --basic_auth=admin:aa10802602
+    command: celery flower -A wild_politics --address=0.0.0.0 --port=5555 --basic_auth=${CELERY_LOGIN}:${CELERY_PASSWD}
     ports:
       - 5555:5555
     depends_on:
