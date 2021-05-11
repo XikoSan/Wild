@@ -3,16 +3,17 @@ jQuery(document).ready(function ($) {
     $('#action').change(function(e) {
         var selected = $(e.target).val();
         if(selected == 'buy'){
-            $(".buy_row").each(function()
-            {
-                $(this).show();
-            });
+            $("#buy_row").show();
+
+            $("#stocks").hide();
+            $('#count').attr("max", 2147483647);
         }
         else{
-            $(".buy_row").each(function()
-            {
-                $(this).hide();
-            });
+            $("#buy_row").hide();
+
+            $("#stocks_value").html( numberWithSpaces(total_stocks[$('#storage').val()][$('#good').val()]) );
+            $("#stocks").show();
+            $('#count').attr("max", total_stocks[$('#storage').val()][$('#good').val()]);
         }
     });
 
@@ -21,6 +22,19 @@ jQuery(document).ready(function ($) {
     });
     $('#count').on('input', function (e) {
         $('#cash_to_lock').html('$' + numberWithSpaces($(e.target).val() * $('#price').val()));
+    });
+
+//  при смене склада выводить запасы с него, если продажа
+    $('#storage').change(function(e) {
+        if($('#action').val() == 'sell'){
+            if($('#good').val() !== null){
+                $("#stocks_value").html( numberWithSpaces(total_stocks[$('#storage').val()][$('#good').val()]) );
+            }
+            else{
+                $("#stocks_value").html('?');
+            }
+            $('#count').attr("max", total_stocks[$('#storage').val()][$('#good').val()]);
+        }
     });
 
 //  выводить ресурсы категории, когда она выбрана
@@ -35,6 +49,11 @@ jQuery(document).ready(function ($) {
         $('#good_default').show();
         document.getElementById('accept').disabled = true
 
+        if($('#action').val() == 'sell'){
+            $("#stocks_value").html('?');
+            $('#count').attr("max", 0);
+        }
+
         var selected = $(e.target).val();
         for (good in groups_n_goods[selected]){
             $('#good_' + good ).show();
@@ -43,8 +62,14 @@ jQuery(document).ready(function ($) {
         $("#good").attr("disabled", false);
     });
 
+//  выводить информацию о запасах
     $('#good').change(function() {
         document.getElementById('accept').disabled = false
+
+        if($('#action').val() == 'sell'){
+            $("#stocks_value").html( numberWithSpaces(total_stocks[$('#storage').val()][$('#good').val()]) );
+            $('#count').attr("max", total_stocks[$('#storage').val()][$('#good').val()]);
+        }
     });
 
     $('#new_offer_form').submit(function(e){

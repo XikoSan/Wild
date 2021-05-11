@@ -18,6 +18,16 @@
             groups_n_goods['{{ group }}']['{{ good }}'] = '{{ storage_cl|get_attr:group|dict_key:good }}';
         {% endfor %}
     {% endfor %}
+
+    var total_stocks = {};
+    {% for storage in storages %}
+        total_stocks["{{ storage|dict_key:'pk' }}"] = {};
+        {% for group in storage_cl|get_attr:'types' %}
+            {% for good in storage_cl|get_attr:group %}
+                total_stocks["{{ storage|dict_key:'pk' }}"]['{{ good }}'] = {% localize off %}{{ storage|dict_key:good }}{% endlocalize %};
+            {% endfor %}
+        {% endfor %}
+    {% endfor %}
 </script>
 <form id="new_offer_form" role="form">
     <div class="row" style="margin-top: 1%;">
@@ -38,7 +48,7 @@
         <div class="col-xs-6 col-sm-6 col-md-6" align="left">
             <select name="storage" id="storage">
                 {% for storage in storages %}
-                <option {% if storage == storages|first %} selected {% endif %} value='{{ storage.pk }}'>{{ storage.region }}</option>
+                <option {% if storage == storages|first %} selected {% endif %} value="{{ storage|dict_key:'pk' }}">{{ storage|dict_key:'region__region_name' }}</option>
                 {% endfor %}
             </select>
         </div>
@@ -75,8 +85,12 @@
         <div class="col-xs-6 col-sm-6 col-md-6" align="right">
             Количество
         </div>
-        <div class="col-xs-6 col-sm-6 col-md-6" align="left">
-            <input id="count" type="number" min="0" max="2147483647" value="0" step="1" name="count" maxlength="3">
+        <div class="col-xs-2 col-sm-2 col-md-2" align="left">
+            <input id="count" type="number" min="0" max="0" value="0" step="1" name="count" maxlength="3">
+        </div>
+        <div id="stocks" class="col-xs-3 col-sm-3 col-md-3" align="left">
+            <font>/</font>
+            <font id="stocks_value">?</font>
         </div>
     </div>
     <div class="row" style="margin-top: 1%;">
@@ -87,7 +101,7 @@
             <input id="price" type="number" min="0" max="9223372036854775807" value="0" step="1" name="price">
         </div>
     </div>
-    <div class="row buy_row" style="margin-top: 1%; display: none">
+    <div class="row" id="buy_row" style="margin-top: 1%; display: none">
         <div class="col-xs-6 col-sm-6 col-md-6" align="right">
             Будет заблокировано:
         </div>
