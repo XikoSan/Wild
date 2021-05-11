@@ -42,7 +42,7 @@ services:
       DB_PASS: ${DB_PASSWD}
       SECRET_KEY: ${SECRET_KEY}
       VK_KEY: ${VK_KEY}
-      VK_SECRET: ${VK_SECRET}'
+      VK_SECRET: ${VK_SECRET}
     links:
       - db
       - redis
