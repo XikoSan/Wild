@@ -7,8 +7,6 @@
 
 {% block for_scripts_and_css %}
 <script>
-    var csrftoken = '{{ csrf_token }}';
-
     var vol_map = new Map();
     {% for type in storage_cl|get_attr:'types' %}
         {% for good in transport|get_attr:type %}
