@@ -59,6 +59,7 @@ services:
     restart: always
     environment:
       DB_PASS: ${DB_PASSWD}
+      SECRET_KEY: ${SECRET_KEY}
     command: celery -A wild_politics worker -l info
     depends_on:
       - db
@@ -70,6 +71,7 @@ services:
     restart: always
     environment:
       DB_PASS: ${DB_PASSWD}
+      SECRET_KEY: ${SECRET_KEY}
     command: celery -A wild_politics beat -l info
     depends_on:
       - db
@@ -79,6 +81,8 @@ services:
   flower:
     image: wildpolitics
     restart: always
+    environment:
+      SECRET_KEY: ${SECRET_KEY}
     command: celery flower -A wild_politics --address=0.0.0.0 --port=5555 --basic_auth=${CELERY_LOGIN}:${CELERY_PASSWD}
     ports:
       - 5555:5555
