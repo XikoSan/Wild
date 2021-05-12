@@ -67,7 +67,7 @@ INSTALLED_APPS = [
     'state',
     'storage',
     'war',
-    # 'chat',
+    'chat',
 
     'django_cleanup',
 

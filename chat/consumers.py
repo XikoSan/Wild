@@ -2,22 +2,53 @@ import json
 from asgiref.sync import sync_to_async
 from channels.generic.websocket import AsyncWebsocketConsumer
 from datetime import datetime
-
+from channels.db import database_sync_to_async
 from player.player import Player
 from django.contrib.auth.models import User
 from django.contrib.auth.models import Group
+from .models import Chat, Message
+from player.logs.print_log import log
+from django.utils.timezone import make_aware
+import pytz
+
 
 def _get_player(account):
     return Player.objects.select_related('account').get(account=account)
 
+
 def _get_user(pk):
     return User.objects.prefetch_related('groups').get(pk=pk)
+
 
 def _get_groups(user):
     return list(user.groups.all().values_list('name', flat=True))
 
+
 def _set_player_banned(pk):
     Player.objects.filter(pk=pk).update(chat_ban=True)
+
+
+def _get_last_10_messages(chat_id):
+    chat, created = Chat.objects.get_or_create(chat_id=chat_id)
+    messages = []
+    for message in chat.messages.order_by('timestamp').all()[:10].values('author__pk', 'author__image', 'content',
+                                                                         'timestamp'):
+        messages.append(message)
+    return messages
+
+
+def _get_awa(image):
+    return image.url
+
+
+def _append_message(chat_id, author, text):
+    message = Message.objects.create(
+        author=author,
+        content=text)
+    chat, created = Chat.objects.get_or_create(chat_id=chat_id)
+    chat.messages.add(message)
+    chat.save()
+
 
 class ChatConsumer(AsyncWebsocketConsumer):
 
@@ -26,7 +57,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
         user = await sync_to_async(_get_user, thread_sensitive=True)(pk=self.player.account.pk)
         groups = await sync_to_async(_get_groups, thread_sensitive=True)(user=user)
 
-        if not self.player.chat_ban\
+        if not self.player.chat_ban \
                 or 'chat_moderator' in groups:
 
             if 'chat_moderator' in groups:
@@ -45,6 +76,19 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
             await self.accept()
 
+            messages = await sync_to_async(_get_last_10_messages, thread_sensitive=True)(chat_id=self.room_name)
+
+            for message in messages:
+                # Send message to WebSocket
+                await self.send(text_data=json.dumps({
+                    'message': message['content'],
+                    'time': message['timestamp'].astimezone(pytz.timezone("Europe/Moscow")).time().strftime(
+                        "%H:%M"),
+                    'id': message['author__pk'],
+                    'image': '/media/' + message['author__image'],
+                    # 'image': await sync_to_async(_get_image_url, thread_sensitive=True)(image=message['author__image']),
+                }))
+
         else:
             self.disconnect()
 
@@ -61,9 +105,13 @@ class ChatConsumer(AsyncWebsocketConsumer):
         message = text_data_json['message']
         destination = ''
 
+        await sync_to_async(_append_message, thread_sensitive=True)(chat_id=self.room_name,
+                                                                    author=self.player,
+                                                                    text=message)
+
         if message == 'disconnect' \
                 and not self.moderator:
-             pass
+            pass
 
         else:
             if message == 'disconnect':
@@ -91,7 +139,6 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
         if message == 'disconnect':
             if event['destination'] == self.player.pk:
-
                 await sync_to_async(_set_player_banned, thread_sensitive=True)(pk=self.player.pk)
 
                 # Send message to WebSocket
