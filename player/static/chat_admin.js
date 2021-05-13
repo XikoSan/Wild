@@ -4,7 +4,7 @@ jQuery(document).ready(function ($) {
         e.preventDefault();
 
         chatSocket.send(JSON.stringify({
-            'message': 'disconnect',
+            'message': 'ban_chat',
             'destination': $(this).data('sender')
         }));
 

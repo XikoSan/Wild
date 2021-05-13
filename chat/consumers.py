@@ -95,7 +95,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
         else:
             self.disconnect()
 
-    async def disconnect(self, close_code):
+    async def disconnect(self):
         # Leave room group
         await self.channel_layer.group_discard(
             self.room_group_name,
@@ -112,12 +112,12 @@ class ChatConsumer(AsyncWebsocketConsumer):
                                                                     author=self.player,
                                                                     text=message)
 
-        if message == 'disconnect' \
+        if message == 'ban_chat' \
                 and not self.moderator:
             pass
 
         else:
-            if message == 'disconnect':
+            if message == 'ban_chat':
                 destination = text_data_json['destination']
 
             image_url = '/static/img/nopic.png'
@@ -144,7 +144,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
         image = event['image']
         nickname = event['nickname']
 
-        if message == 'disconnect':
+        if message == 'ban_chat':
             if event['destination'] == self.player.pk:
                 await sync_to_async(_set_player_banned, thread_sensitive=True)(pk=self.player.pk)
 
