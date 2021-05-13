@@ -79,9 +79,14 @@ class ChatConsumer(AsyncWebsocketConsumer):
             messages = await sync_to_async(_get_last_10_messages, thread_sensitive=True)(chat_id=self.room_name)
 
             for message in messages:
+
+                if message['content'] == 'ban_chat':
+                    continue
+
                 image_url = '/static/img/nopic.png'
                 if message['author__image']:
                     image_url = '/media/' + message['author__image']
+
                 # Send message to WebSocket
                 await self.send(text_data=json.dumps({
                     'message': message['content'],
