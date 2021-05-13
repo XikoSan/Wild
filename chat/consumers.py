@@ -98,7 +98,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 }))
 
         else:
-            self.disconnect(None)
+            self.disconnect()
 
     async def disconnect(self, code):
         # Leave room group
@@ -172,7 +172,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                     }
                 )
 
-                self.disconnect(None)
+                self.disconnect()
 
         else:
             # Send message to WebSocket

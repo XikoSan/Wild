@@ -217,7 +217,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 # отладочная печать в Docker
-level = 'WARNING'
+level = 'DEBUG'
+# level = 'WARNING'
 if DEBUG:
     level = 'DEBUG'
 
