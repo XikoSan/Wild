@@ -98,7 +98,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 }))
 
         else:
-            self.disconnect()
+            self.close()
 
     async def disconnect(self, code):
         # Leave room group
@@ -153,12 +153,16 @@ class ChatConsumer(AsyncWebsocketConsumer):
             if event['destination'] == self.player.pk:
                 await sync_to_async(_set_player_banned, thread_sensitive=True)(pk=self.player.pk)
 
+                image_url = '/static/img/nopic.png'
+                if self.player.image:
+                    image_url = self.player.image.url
+
                 # Send message to WebSocket
                 await self.send(text_data=json.dumps({
                     'message': 'Вы заблокированы модератором ' + nickname,
                     'time': datetime.now().time().strftime("%H:%M"),
                     'id': self.player.pk,
-                    'image': self.player.image.url,
+                    'image': image_url,
                 }))
                 # Send message to room group
                 await self.channel_layer.group_send(
@@ -166,7 +170,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                     {
                         'type': 'chat_message',
                         'id': self.player.pk,
-                        'image': self.player.image.url,
+                        'image': image_url,
                         'nickname': self.player.nickname,
                         'message': 'Пользователь заблокирован модератором ' + nickname,
                     }

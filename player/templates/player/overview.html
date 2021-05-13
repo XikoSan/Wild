@@ -10,9 +10,11 @@
 {% endblock %}
 
 {% block content %}
+{% if player.account.groups.all.0.name == "chat_moderator" %}
 <script>
     const ban_button = "{% if request.user.is_superuser %} <input type='button' class='message__ban' value='отключить чат'>{% endif %}";
 </script>
+{% endif %}
 <div class="row">
     Привет, {{ player }} !
     <br>
@@ -40,13 +42,15 @@
                     <input id="chat-message-input-{{ LANGUAGE_CODE }}" type="text" size="100" style="width: 100%">
                 </div>
                 <div style="flex: 1 1 auto">
-                    <input id="chat-message-submit-{{ LANGUAGE_CODE }}" type="button" value="Отправить"
+                    <input id="chat-message-submit-{{ LANGUAGE_CODE }}" type="button" value="Отправить" class="chat-button"
                            style="width: 100%">
                 </div>
             </div>
         </div>
     </div>
     <script src='{% static "chat.js" %}?{{ csrf_token }}'></script>
+    {% if player.account.groups.all.0.name == "chat_moderator" %}
     <script src='{% static "chat_admin.js" %}?{{ csrf_token }}'></script>
+    {% endif %}
 </div>
 {% endblock %}

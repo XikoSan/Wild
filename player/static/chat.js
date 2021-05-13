@@ -19,7 +19,9 @@ chatSocket.onmessage = function(e) {
     }
     else{
         item_class = ' message--user-1';
-        var_ban = ban_button;
+        if(typeof ban_button !== 'undefined'){
+            var_ban = ban_button;
+        }
     }
 
     var div = document.createElement('div');
@@ -31,7 +33,7 @@ chatSocket.onmessage = function(e) {
 };
 
 chatSocket.onclose = function(e) {
-    console.error('Chat socket closed unexpectedly');
+    console.log('Chat socket closed unexpectedly');
 };
 
 document.querySelector('#chat-message-input-' + roomName).focus();
