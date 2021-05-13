@@ -31,8 +31,8 @@ def _set_player_banned(pk):
 def _get_last_10_messages(chat_id):
     chat, created = Chat.objects.get_or_create(chat_id=chat_id)
     messages = []
-    for message in chat.messages.order_by('timestamp').all()[:10].values('author__pk', 'author__image', 'content',
-                                                                         'timestamp'):
+    for message in reversed(chat.messages.order_by('-timestamp').all()[:10].values('author__pk', 'author__image', 'content',
+                                                                         'timestamp')):
         messages.append(message)
     return messages
 
