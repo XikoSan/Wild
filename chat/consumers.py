@@ -79,13 +79,16 @@ class ChatConsumer(AsyncWebsocketConsumer):
             messages = await sync_to_async(_get_last_10_messages, thread_sensitive=True)(chat_id=self.room_name)
 
             for message in messages:
+                image_url = '/static/img/nopic.png'
+                if message['author__image']:
+                    image_url = '/media/' + message['author__image']
                 # Send message to WebSocket
                 await self.send(text_data=json.dumps({
                     'message': message['content'],
                     'time': message['timestamp'].astimezone(pytz.timezone("Europe/Moscow")).time().strftime(
                         "%H:%M"),
                     'id': message['author__pk'],
-                    'image': '/media/' + message['author__image'],
+                    'image': image_url,
                     # 'image': await sync_to_async(_get_image_url, thread_sensitive=True)(image=message['author__image']),
                 }))
 
@@ -117,13 +120,17 @@ class ChatConsumer(AsyncWebsocketConsumer):
             if message == 'disconnect':
                 destination = text_data_json['destination']
 
+            image_url = '/static/img/nopic.png'
+            if self.player.image:
+                image_url = self.player.image.url
+
             # Send message to room group
             await self.channel_layer.group_send(
                 self.room_group_name,
                 {
                     'type': 'chat_message',
                     'id': self.player.pk,
-                    'image': self.player.image.url,
+                    'image': image_url,
                     'nickname': self.player.nickname,
                     'message': message,
                     'destination': destination
