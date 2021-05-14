@@ -87,7 +87,7 @@ AUTHENTICATION_BACKENDS = [
 LOGIN_REDIRECT_URL = '/'
 
 SOCIAL_AUTH_VK_OAUTH2_KEY = os.getenv('VK_KEY')
-SOCIAL_AUTH_VK_OAUTH2_SECRET = os.getenv('VK_SECRET')
+SOCIAL_AUTH_VK_OAUTH2_SECRET = os.getenv('VK_PASS')
 
 MIDDLEWARE = [
     'debug_toolbar.middleware.DebugToolbarMiddleware',
