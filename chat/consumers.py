@@ -16,6 +16,10 @@ def _get_player(account):
     return Player.objects.select_related('account').get(account=account)
 
 
+def _get_player_pk(pk):
+    return Player.objects.get(pk=pk)
+
+
 def _get_user(pk):
     return User.objects.prefetch_related('groups').get(pk=pk)
 
@@ -31,8 +35,9 @@ def _set_player_banned(pk):
 def _get_last_10_messages(chat_id):
     chat, created = Chat.objects.get_or_create(chat_id=chat_id)
     messages = []
-    for message in reversed(chat.messages.order_by('-timestamp').all()[:10].values('author__pk', 'author__image', 'content',
-                                                                         'timestamp')):
+    for message in reversed(
+            chat.messages.order_by('-timestamp').exclude(content='ban_chat')[:10].values('author__pk', 'author__image', 'content',
+                                                                   'timestamp')):
         messages.append(message)
     return messages
 
@@ -100,12 +105,12 @@ class ChatConsumer(AsyncWebsocketConsumer):
         else:
             self.close()
 
-    async def disconnect(self, code):
-        # Leave room group
-        await self.channel_layer.group_discard(
-            self.room_group_name,
-            self.channel_name
-        )
+    # async def disconnect(self, code):
+    #     # Leave room group
+    #     await self.channel_layer.group_discard(
+    #         self.room_group_name,
+    #         self.channel_name
+    #     )
 
     # Receive message from WebSocket
     async def receive(self, text_data):
@@ -122,8 +127,10 @@ class ChatConsumer(AsyncWebsocketConsumer):
             pass
 
         else:
-            if message == 'ban_chat':
+            if message == 'ban_chat'\
+                    and text_data_json['destination']:
                 destination = text_data_json['destination']
+                await sync_to_async(_set_player_banned, thread_sensitive=True)(pk=destination)
 
             image_url = '/static/img/nopic.png'
             if self.player.image:
@@ -142,8 +149,30 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 }
             )
 
+            if message == 'ban_chat'\
+                    and text_data_json['destination']:
+
+                banned_player = await sync_to_async(_get_player_pk, thread_sensitive=True)(pk=destination)
+
+                banned_image_url = '/static/img/nopic.png'
+                if banned_player.image:
+                    banned_image_url = banned_player.image.url
+
+                # Send message to room group
+                await self.channel_layer.group_send(
+                    self.room_group_name,
+                    {
+                        'type': 'chat_message',
+                        'id': banned_player.pk,
+                        'image': banned_image_url,
+                        'nickname': banned_player.nickname,
+                        'message': 'Пользователь заблокирован модератором ' + self.player.nickname,
+                    }
+                )
+
     # Receive message from room group
     async def chat_message(self, event):
+
         message = event['message']
         id = event['id']
         image = event['image']
@@ -151,7 +180,6 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
         if message == 'ban_chat':
             if event['destination'] == self.player.pk:
-                await sync_to_async(_set_player_banned, thread_sensitive=True)(pk=self.player.pk)
 
                 image_url = '/static/img/nopic.png'
                 if self.player.image:
@@ -164,17 +192,17 @@ class ChatConsumer(AsyncWebsocketConsumer):
                     'id': self.player.pk,
                     'image': image_url,
                 }))
-                # Send message to room group
-                await self.channel_layer.group_send(
-                    self.room_group_name,
-                    {
-                        'type': 'chat_message',
-                        'id': self.player.pk,
-                        'image': image_url,
-                        'nickname': self.player.nickname,
-                        'message': 'Пользователь заблокирован модератором ' + nickname,
-                    }
-                )
+                # # Send message to room group
+                # await self.channel_layer.group_send(
+                #     self.room_group_name,
+                #     {
+                #         'type': 'chat_message',
+                #         'id': self.player.pk,
+                #         'image': image_url,
+                #         'nickname': self.player.nickname,
+                #         'message': 'Пользователь заблокирован модератором ' + nickname,
+                #     }
+                # )
 
                 self.disconnect()
 
