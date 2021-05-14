@@ -9,6 +9,7 @@ from django.contrib.auth.models import Group
 from .models import Chat, Message
 from player.logs.print_log import log
 from django.utils.timezone import make_aware
+import bleach
 import pytz
 
 
@@ -120,7 +121,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
         await sync_to_async(_append_message, thread_sensitive=True)(chat_id=self.room_name,
                                                                     author=self.player,
-                                                                    text=message)
+                                                                    text=bleach.clean(message))
 
         if message == 'ban_chat' \
                 and not self.moderator:
@@ -207,9 +208,10 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 self.disconnect()
 
         else:
+
             # Send message to WebSocket
             await self.send(text_data=json.dumps({
-                'message': message,
+                'message': bleach.clean(message),
                 'time': datetime.now().time().strftime("%H:%M"),
                 'id': id,
                 'image': image,
