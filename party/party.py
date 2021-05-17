@@ -90,7 +90,7 @@ class Party(models.Model):
         schedule, created = IntervalSchedule.objects.get_or_create(every=7, period=IntervalSchedule.DAYS)
         # schedule, created = IntervalSchedule.objects.get_or_create(every=2, period=IntervalSchedule.MINUTES)
         self.task = PeriodicTask.objects.create(
-            name=self.title,
+            name=self.title + ', id ' + str(self.pk),
             task='start_primaries',
             interval=schedule,
             args=json.dumps([self.id]),
