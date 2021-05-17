@@ -9,6 +9,7 @@ from party.primaries.primaries_bulletin import PrimBulletin
 from party.primaries.primaries_leader import PrimariesLeader
 from party.position import PartyPosition
 
+
 # таска выключающая праймериз
 @shared_task(name="finish_primaries")
 def finish_primaries(party_id):
@@ -41,15 +42,15 @@ def finish_primaries(party_id):
         primaries.task.enabled = False
         primaries.task.save()
 
+
 # таска включающая праймериз
 @shared_task(name="start_primaries")
 def start_primaries(party_id):
-    party = Party.objects.select_related('task').prefetch_related('task__interval').only('task__interval__every').get(pk=party_id)
+    party = Party.objects.select_related('task').prefetch_related('task__interval').only('task__interval__every').get(
+        pk=party_id)
     # если интервал таски 7 дней, то увеличиваем до 8 дней
-    # if party.task.interval.every == 7:
-    if party.task.interval.every == 2:
+    if party.task.interval.every == 7:
         interval, created = IntervalSchedule.objects.get_or_create(every=8, period=IntervalSchedule.DAYS)
-        # interval, created = IntervalSchedule.objects.get_or_create(every=3, period=IntervalSchedule.MINUTES)
         PeriodicTask.objects.filter(pk=party.task.id).update(interval_id=interval.id)
         PeriodicTasks.changed(party.task)
     # получаем или создаем праймериз и включаем 24 часовую таску
@@ -59,5 +60,3 @@ def start_primaries(party_id):
         primaries.task.save()
     primaries.running = True
     primaries.save()
-
-

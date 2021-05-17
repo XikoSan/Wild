@@ -12,7 +12,6 @@ from django_celery_beat.models import IntervalSchedule, PeriodicTask
 from party.party import Party
 
 
-
 # класс праймериз
 # parliament - парламент, в который проходят выборы
 # время начала и конца выборов
@@ -26,20 +25,21 @@ class Primaries(models.Model):
     # время конца голосования
     prim_end = models.DateTimeField(default=datetime.datetime(2000, 1, 1, 0, 0), blank=True, null=True)
     # переодическая таска
-    task = models.OneToOneField(PeriodicTask, on_delete = models.CASCADE, null = True, blank = True)
+    task = models.OneToOneField(PeriodicTask, on_delete=models.CASCADE, null=True, blank=True)
 
     # формируем переодическую таску
     def setup_task(self):
         schedule, created = IntervalSchedule.objects.get_or_create(every=1, period=IntervalSchedule.DAYS)
         # schedule, created = IntervalSchedule.objects.get_or_create(every = 1, period=IntervalSchedule.MINUTES)
         self.task = PeriodicTask.objects.create(
-            name = f'Primaries of {self.party.title} party primaries',
-            task = 'finish_primaries',
-            interval = schedule,
-            args = json.dumps([self.party.pk]),
-            start_time = timezone.now(),
+            name=f'Primaries of {self.party.title} party primaries',
+            task='finish_primaries',
+            interval=schedule,
+            args=json.dumps([self.party.pk]),
+            start_time=timezone.now(),
         )
         self.save()
+
     # удаляем таску вместе с экземпляром модели
     def delete(self, *args, **kwargs):
         if self.task is not None:
@@ -54,6 +54,7 @@ class Primaries(models.Model):
     class Meta:
         verbose_name = "Праймериз в партии"
         verbose_name_plural = "Праймериз"
+
 
 # сигнал прослушивающий создание праймериз, после этого формирующий таску
 @receiver(post_save, sender=Primaries)
