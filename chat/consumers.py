@@ -96,7 +96,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 # Send message to WebSocket
                 await self.send(text_data=json.dumps({
                     'message': message['content'],
-                    'time': message['timestamp'].astimezone(pytz.timezone("Europe/Moscow")).time().strftime(
+                    'time': message['timestamp'].astimezone(pytz.timezone(self.player.time_zone)).time().strftime(
                         "%H:%M"),
                     'id': message['author__pk'],
                     'image': image_url,
@@ -212,7 +212,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
             # Send message to WebSocket
             await self.send(text_data=json.dumps({
                 'message': bleach.clean(message),
-                'time': datetime.now().time().strftime("%H:%M"),
+                'time': datetime.now().astimezone(pytz.timezone(self.player.time_zone)).time().strftime("%H:%M"),
                 'id': id,
                 'image': image,
                 'nickname': nickname,
