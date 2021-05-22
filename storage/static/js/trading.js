@@ -55,15 +55,13 @@ jQuery(document).ready(function ($) {
                                     var select = document.createElement('select');
                                     select.classList.add('destination');
 
-                                    for (var [k, v] in line[item]){
+                                    for (var key in line[item]){
                                         var option = document.createElement('option');
 
-                                        option.setAttribute('value', k)
-                                        console.log(line[item])
-                                        console.log(k)
-                                        option.dataset.delivery = line[item][k]['delivery'];
+                                        option.setAttribute('value', key)
+                                        option.dataset.delivery = line[item][key]['delivery'];
 
-                                        option.innerHTML = line[item][k]['name'] + ': $' + numberWithSpaces(line[item][k]['delivery'])
+                                        option.innerHTML = line[item][key]['name'] + ': $' + numberWithSpaces(line[item][key]['delivery'])
                                         select.appendChild(option);
                                     }
 
