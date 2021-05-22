@@ -59,6 +59,8 @@ jQuery(document).ready(function ($) {
                                         var option = document.createElement('option');
 
                                         option.setAttribute('value', k)
+                                        console.log(line[item])
+                                        console.log(k)
                                         option.dataset.delivery = line[item][k]['delivery'];
 
                                         option.innerHTML = line[item][k]['name'] + ': $' + numberWithSpaces(line[item][k]['delivery'])
