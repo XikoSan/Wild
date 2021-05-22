@@ -50,8 +50,28 @@ jQuery(document).ready(function ($) {
                                     newCell.style.border = "thin solid black";
                                 }
                                 newCell.classList.add(item);
-                                var newText = document.createTextNode(line[item]);
-                                newCell.appendChild(newText);
+
+                                if(item == 'delivery'){
+                                    var select = document.createElement('select');
+                                    select.classList.add('destination');
+
+                                    for (var [k, v] in line[item]){
+                                        var option = document.createElement('option');
+
+                                        option.setAttribute('value', k)
+                                        option.dataset.delivery = line[item][k]['delivery'];
+
+                                        option.innerHTML = line[item][k]['name'] + ': $' + numberWithSpaces(line[item][k]['delivery'])
+                                        select.appendChild(option);
+                                    }
+
+                                    newCell.appendChild(select);
+                                }
+                                else{
+                                    var newText = document.createTextNode(line[item]);
+                                    newCell.appendChild(newText);
+                                }
+
                             });
                         });
                         tbodyRef.parentNode.replaceChild(new_tbody, tbodyRef)
@@ -81,7 +101,15 @@ jQuery(document).ready(function ($) {
 
     $("#lines").on("input", ".count", function(e){
         if (!isNaN(parseInt(e.target.innerHTML))){
-            $($(e.currentTarget).parent()).find(".sum").html( ( parseInt($($(e.currentTarget).parent()).find(".price").html()) * parseInt(e.target.innerHTML) ) + parseInt($($(e.currentTarget).parent()).find(".delivery").html()) )
+            droplist = e.currentTarget.parentElement.getElementsByClassName("delivery")[0].getElementsByClassName('destination')[0];
+            $($(e.currentTarget).parent()).find(".sum").html( ( parseInt($($(e.currentTarget).parent()).find(".price").html()) * parseInt(e.target.innerHTML) ) + parseInt(droplist.selectedOptions[0].dataset.delivery) )
+        }
+    });
+
+    $("#lines").on("input", ".destination", function(e){
+        if (!isNaN(parseInt(e.target.parentElement.parentElement.getElementsByClassName("count")[0].innerHTML))){
+            droplist = e.currentTarget;
+            $($($(e.currentTarget).parent()).parent()).find(".sum").html( ( parseInt($($($(e.currentTarget).parent()).parent()).find(".price").html()) * parseInt(parseInt(e.target.parentElement.parentElement.getElementsByClassName("count")[0].innerHTML)) ) + parseInt(droplist.selectedOptions[0].dataset.delivery) )
         }
     });
 

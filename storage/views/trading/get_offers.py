@@ -19,10 +19,10 @@ def get_offers(request):
     if request.method == "POST":
 
         player = Player.objects.get(account=request.user)
-        storage = None
+        storages = {}
 
-        if Storage.actual.filter(owner=player, region=player.region).exists():
-            storage = Storage.actual.get(owner=player, region=player.region)
+        if Storage.actual.filter(owner=player).exists():
+            storages = Storage.actual.filter(owner=player)
 
         kwargs = {}
 
@@ -99,24 +99,26 @@ def get_offers(request):
                           'region': offer.owner_storage.region.region_name,
                           'count': offer.count,
                           'price': offer.price
-            }
+                          }
 
-            if storage:
-                trans_mul = {}
-                trans_mul[storage.pk] = {}
-                trans_mul[storage.pk][offer.owner_storage.pk] = math.ceil(distance_counting(storage.region, offer.owner_storage.region) / 100)
+            delivery_dict = {}
+
+            for storage in storages:
+                trans_mul = {storage.pk: {}}
+                trans_mul[storage.pk][offer.owner_storage.pk] = math.ceil(
+                    distance_counting(storage.region, offer.owner_storage.region) / 100)
 
                 offer_value = {}
                 offer_value[str(offer.owner_storage.pk)] = {}
                 offer_value[str(offer.owner_storage.pk)][offer.good] = offer.count
 
-                price, prices = get_transfer_price(trans_mul, int(storage.pk), offer_value)
+                delivery_dict[storage.pk] = {}
+                delivery_dict[storage.pk]['name'] = storage.region.region_name
+                delivery_dict[storage.pk]['delivery'], prices = get_transfer_price(trans_mul, int(storage.pk), offer_value)
 
-                offer_dict['delivery'] = price
-            else:
-                offer_dict['delivery'] = 0
+            offer_dict['delivery'] = delivery_dict
 
-            offer_dict['sum'] = offer_dict['delivery'] + ( offer.price * offer.count )
+            offer_dict['sum'] = list(offer_dict['delivery'].values())[0]['delivery'] + (offer.price * offer.count)
             offers_list.append(offer_dict)
 
         data = {

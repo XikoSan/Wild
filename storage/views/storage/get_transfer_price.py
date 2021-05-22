@@ -3,7 +3,7 @@ from storage.models.storage import Storage
 from storage.models.transport import Transport
 from math import ceil
 
-# проверка наличия места для товаров на указанном Складе, перед начислением их туда
+#
 # входные данные:
 # trans_mul- словарь множителей расстояния от склада до склада
 # dest     - pk Склада - цели
