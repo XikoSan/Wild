@@ -49,10 +49,8 @@ def start_primaries(party_id):
     party = Party.objects.select_related('task').prefetch_related('task__interval').only('task__interval__every').get(
         pk=party_id)
     # если интервал таски 7 дней, то увеличиваем до 8 дней
-    if party.task.interval.every == 2:
-    # if party.task.interval.every == 7:
-    #     interval, created = IntervalSchedule.objects.get_or_create(every=8, period=IntervalSchedule.DAYS)
-        interval, created = IntervalSchedule.objects.get_or_create(every=3, period=IntervalSchedule.MINUTES)
+    if party.task.interval.every == 7:
+        interval, created = IntervalSchedule.objects.get_or_create(every=8, period=IntervalSchedule.DAYS)
         PeriodicTask.objects.filter(pk=party.task.id).update(interval_id=interval.id)
         PeriodicTasks.changed(party.task)
     # получаем или создаем праймериз и включаем 24 часовую таску
