@@ -34,7 +34,7 @@ INTERNAL_IPS = ['127.0.0.1']
 # Celery Configuration Options
 CELERY_TIMEZONE = "Europe/Moscow"
 CELERY_TASK_TRACK_STARTED = True
-CELERY_TASK_TIME_LIMIT = 60 * 60
+CELERY_TASK_TIME_LIMIT = 864000
 CELERY_BROKER_URL = 'redis://redis:6379/0'
 CELERY_RESULT_BACKEND = 'django-db'
 CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
