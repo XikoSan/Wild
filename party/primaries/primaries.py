@@ -30,7 +30,7 @@ class Primaries(models.Model):
     # формируем переодическую таску
     def setup_task(self):
         # schedule, created = IntervalSchedule.objects.get_or_create(every=1, period=IntervalSchedule.DAYS)
-        schedule, created = IntervalSchedule.objects.get_or_create(every=12, period=IntervalSchedule.HOURS)
+        schedule, created = IntervalSchedule.objects.get_or_create(every=2, period=IntervalSchedule.HOURS)
         self.task = PeriodicTask.objects.create(
             name=f'Primaries of {self.party.title} party primaries',
             task='finish_primaries',
