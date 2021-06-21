@@ -14,6 +14,8 @@ import os
 from django.core.serializers.json import DjangoJSONEncoder
 from django.http import JsonResponse
 from pathlib import Path
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -73,6 +75,21 @@ INSTALLED_APPS = [
     'django_cleanup',
 
 ]
+
+sentry_sdk.init(
+    dsn="https://91bebe2f57014429968500d11b987c5b@o877046.ingest.sentry.io/5827278",
+    integrations=[DjangoIntegration()],
+
+    # Set traces_sample_rate to 1.0 to capture 100%
+    # of transactions for performance monitoring.
+    # We recommend adjusting this value in production.
+    traces_sample_rate=1.0,
+
+    # If you wish to associate users to errors (assuming you are using
+    # django.contrib.auth) you may enable sending PII data.
+    send_default_pii=True
+)
+
 
 USE_L10N = True
 USE_THOUSAND_SEPARATOR = True
