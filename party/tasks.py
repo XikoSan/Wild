@@ -33,6 +33,9 @@ def finish_primaries(party_id):
     # ищем и удаляем предыдущего лидера праймериз
     if PrimariesLeader.objects.filter(party=party).exists():
         PrimariesLeader.objects.filter(party=party).delete()
+    # если нашлась должность лидера с этим человеком - удаляем
+        if PrimariesLeader.objects.filter(leader=current_leader).exists():
+            PrimariesLeader.objects.filter(leader=current_leader).delete()
     # назначаем нового лидера праймериз
     leader = PrimariesLeader(party=party, leader=current_leader)
     leader.save()
