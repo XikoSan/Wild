@@ -76,7 +76,12 @@ INSTALLED_APPS = [
 
 ]
 
+sentry_environment = "production"
+if not os.getenv('TOOL'):
+    sentry_environment = "development"
+
 sentry_sdk.init(
+    environment=sentry_environment,
     dsn="https://91bebe2f57014429968500d11b987c5b@o877046.ingest.sentry.io/5827278",
     integrations=[DjangoIntegration()],
 
@@ -89,7 +94,6 @@ sentry_sdk.init(
     # django.contrib.auth) you may enable sending PII data.
     send_default_pii=True
 )
-
 
 USE_L10N = True
 USE_THOUSAND_SEPARATOR = True
