@@ -21,24 +21,25 @@ class Primaries(models.Model):
     # парламент, в который происходят выборы
     party = models.ForeignKey(Party, on_delete=models.CASCADE, verbose_name='Праймериз в партии')
     # время начала голосования
-    prim_start = models.DateTimeField(default=datetime.datetime(2000, 1, 1, 0, 0), blank=True, null=True)
+    prim_start = models.DateTimeField(default=timezone.now(), blank=True, null=True)
     # время конца голосования
-    prim_end = models.DateTimeField(default=datetime.datetime(2000, 1, 1, 0, 0), blank=True, null=True)
+    prim_end = models.DateTimeField(default=None, blank=True, null=True)
     # переодическая таска
     task = models.OneToOneField(PeriodicTask, on_delete=models.CASCADE, null=True, blank=True)
 
     # формируем переодическую таску
     def setup_task(self):
         schedule, created = IntervalSchedule.objects.get_or_create(every=1, period=IntervalSchedule.DAYS)
-        # schedule, created = IntervalSchedule.objects.get_or_create(every=2, period=IntervalSchedule.HOURS)
-        self.task = PeriodicTask.objects.create(
-            name=f'Primaries of {self.party.title} party primaries',
-            task='finish_primaries',
-            interval=schedule,
-            args=json.dumps([self.party.pk]),
-            start_time=timezone.now(),
-        )
-        self.save()
+        # schedule, created = IntervalSchedule.objects.get_or_create(every=1, period=IntervalSchedule.MINUTES)
+        if not PeriodicTask.objects.filter(name=f'{self.party.title}, id {self.party.pk} party primaries').exists():
+            self.task = PeriodicTask.objects.create(
+                name=f'{self.party.title}, id {self.party.pk} party primaries',
+                task='finish_primaries',
+                interval=schedule,
+                args=json.dumps([self.party.pk]),
+                start_time=timezone.now(),
+            )
+            self.save()
 
     # удаляем таску вместе с экземпляром модели
     def delete(self, *args, **kwargs):
@@ -48,8 +49,10 @@ class Primaries(models.Model):
         return super(self.__class__, self).delete(*args, **kwargs)
 
     def __str__(self):
-        return self.party.title + "_" + self.prim_start.__str__()
-
+        if self.prim_end:
+            return self.party.title + " ( " + self.prim_start.strftime("%m/%d/%Y") + ' - ' + self.prim_end.strftime("%m/%d/%Y") + " )"
+        else:
+            return self.party.title + " ( " + self.prim_start.strftime("%m/%d/%Y") + " )"
     # Свойства класса
     class Meta:
         verbose_name = "Праймериз в партии"

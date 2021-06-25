@@ -88,7 +88,7 @@ class Party(models.Model):
     # формируем переодическую таску
     def setup_task(self):
         schedule, created = IntervalSchedule.objects.get_or_create(every=7, period=IntervalSchedule.DAYS)
-        # schedule, created = IntervalSchedule.objects.get_or_create(every=10, period=IntervalSchedule.HOURS)
+        # schedule, created = IntervalSchedule.objects.get_or_create(every=7, period=IntervalSchedule.MINUTES)
         self.task = PeriodicTask.objects.create(
             name=self.title + ', id ' + str(self.pk),
             task='start_primaries',
