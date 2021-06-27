@@ -35,7 +35,6 @@ jQuery(document).ready(function ($) {
             success: function(data){
                 if (data.response == 'ok'){
                     document.getElementById('lines').style.display = 'none';
-
                     if (Object.keys(data.offers_list).length > 0){
                         var tbodyRef = document.getElementById('lines').getElementsByTagName('tbody')[0];
                         var new_tbody = document.createElement('tbody');
@@ -45,6 +44,11 @@ jQuery(document).ready(function ($) {
                             const attrs = ['good', 'owner', 'region', 'count', 'price', 'delivery', 'sum']
                             attrs.forEach(function (item, index) {
                                 var newCell = newRow.insertCell();
+
+                                if(item == 'good'){
+                                    newCell.dataset.name = line['good_name'];
+                                }
+
                                 if(item == 'count'){
                                     newCell.setAttribute('contenteditable', 'true');
                                     newCell.style.border = "thin solid black";
@@ -59,7 +63,9 @@ jQuery(document).ready(function ($) {
                                         var option = document.createElement('option');
 
                                         option.setAttribute('value', key)
-                                        option.dataset.delivery = line[item][key]['delivery'];
+//                                        option.dataset.delivery = line[item][key]['delivery'];
+                                        option.dataset.single = line[item][key]['single'];
+                                        option.dataset.region = line[item][key]['name'];
 
                                         option.innerHTML = line[item][key]['name'] + ': $' + numberWithSpaces(line[item][key]['delivery'])
                                         select.appendChild(option);
@@ -102,14 +108,25 @@ jQuery(document).ready(function ($) {
     $("#lines").on("input", ".count", function(e){
         if (!isNaN(parseInt(e.target.innerHTML))){
             droplist = e.currentTarget.parentElement.getElementsByClassName("delivery")[0].getElementsByClassName('destination')[0];
-            $($(e.currentTarget).parent()).find(".sum").html( ( parseInt($($(e.currentTarget).parent()).find(".price").html()) * parseInt(e.target.innerHTML) ) + parseInt(droplist.selectedOptions[0].dataset.delivery) )
+
+            var delivery_sum = parseInt(droplist.selectedOptions[0].dataset.single) * Math.ceil( parseInt(e.target.innerHTML) * parseFloat(vol_map.get($($(e.currentTarget).parent()).find(".good").data('name')) ) )
+            droplist.selectedOptions[0].innerHTML = droplist.selectedOptions[0].dataset.region + ': $' + numberWithSpaces(delivery_sum)
+
+            $($(e.currentTarget).parent()).find(".sum").html( numberWithSpaces( ( parseInt($($(e.currentTarget).parent()).find(".price").html()) * parseInt(e.target.innerHTML) ) + delivery_sum ) )
+        }
+        else{
+            $($(e.currentTarget).parent()).find(".sum").html( 0 )
         }
     });
 
     $("#lines").on("input", ".destination", function(e){
         if (!isNaN(parseInt(e.target.parentElement.parentElement.getElementsByClassName("count")[0].innerHTML))){
             droplist = e.currentTarget;
-            $($($(e.currentTarget).parent()).parent()).find(".sum").html( ( parseInt($($($(e.currentTarget).parent()).parent()).find(".price").html()) * parseInt(parseInt(e.target.parentElement.parentElement.getElementsByClassName("count")[0].innerHTML)) ) + parseInt(droplist.selectedOptions[0].dataset.delivery) )
+
+            var delivery_sum = parseInt(droplist.selectedOptions[0].dataset.single) * Math.ceil( parseInt(parseInt(e.target.parentElement.parentElement.getElementsByClassName("count")[0].innerHTML)) * parseFloat(vol_map.get($($($(e.currentTarget).parent()).parent()).find(".good").data('name')) ) )
+            droplist.selectedOptions[0].innerHTML = droplist.selectedOptions[0].dataset.region + ': $' + numberWithSpaces(delivery_sum)
+
+            $($($(e.currentTarget).parent()).parent()).find(".sum").html( numberWithSpaces( ( parseInt($($($(e.currentTarget).parent()).parent()).find(".price").html()) * parseInt(parseInt(e.target.parentElement.parentElement.getElementsByClassName("count")[0].innerHTML)) ) + delivery_sum ) )
         }
     });
 

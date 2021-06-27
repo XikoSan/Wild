@@ -95,6 +95,7 @@ def get_offers(request):
 
         for offer in offers:
             offer_dict = {'good': offer.get_good_display(),
+                          'good_name': offer.good,
                           'owner': offer.owner_storage.owner.nickname,
                           'region': offer.owner_storage.region.region_name,
                           'count': offer.count,
@@ -114,6 +115,7 @@ def get_offers(request):
 
                 delivery_dict[storage.pk] = {}
                 delivery_dict[storage.pk]['name'] = storage.region.region_name
+                delivery_dict[storage.pk]['single'] = trans_mul[storage.pk][offer.owner_storage.pk]
                 delivery_dict[storage.pk]['delivery'], prices = get_transfer_price(trans_mul, int(storage.pk), offer_value)
 
             offer_dict['delivery'] = delivery_dict
