@@ -109,8 +109,13 @@ jQuery(document).ready(function ($) {
         if (!isNaN(parseInt(e.target.innerHTML))){
             droplist = e.currentTarget.parentElement.getElementsByClassName("delivery")[0].getElementsByClassName('destination')[0];
 
+            var options = droplist.childNodes;
+            for(var i=0; i<options.length; i++) {
+                var delivery_sum = parseInt(options[i].dataset.single) * Math.ceil( parseInt(e.target.innerHTML) * parseFloat(vol_map.get($($(e.currentTarget).parent()).find(".good").data('name')) ) )
+                options[i].innerHTML = options[i].dataset.region + ': $' + numberWithSpaces(delivery_sum)
+            }
+
             var delivery_sum = parseInt(droplist.selectedOptions[0].dataset.single) * Math.ceil( parseInt(e.target.innerHTML) * parseFloat(vol_map.get($($(e.currentTarget).parent()).find(".good").data('name')) ) )
-            droplist.selectedOptions[0].innerHTML = droplist.selectedOptions[0].dataset.region + ': $' + numberWithSpaces(delivery_sum)
 
             $($(e.currentTarget).parent()).find(".sum").html( numberWithSpaces( ( parseInt($($(e.currentTarget).parent()).find(".price").html()) * parseInt(e.target.innerHTML) ) + delivery_sum ) )
         }
@@ -124,7 +129,6 @@ jQuery(document).ready(function ($) {
             droplist = e.currentTarget;
 
             var delivery_sum = parseInt(droplist.selectedOptions[0].dataset.single) * Math.ceil( parseInt(parseInt(e.target.parentElement.parentElement.getElementsByClassName("count")[0].innerHTML)) * parseFloat(vol_map.get($($($(e.currentTarget).parent()).parent()).find(".good").data('name')) ) )
-            droplist.selectedOptions[0].innerHTML = droplist.selectedOptions[0].dataset.region + ': $' + numberWithSpaces(delivery_sum)
 
             $($($(e.currentTarget).parent()).parent()).find(".sum").html( numberWithSpaces( ( parseInt($($($(e.currentTarget).parent()).parent()).find(".price").html()) * parseInt(parseInt(e.target.parentElement.parentElement.getElementsByClassName("count")[0].innerHTML)) ) + delivery_sum ) )
         }
