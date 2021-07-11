@@ -120,8 +120,20 @@ def get_offers(request):
 
             offer_dict['delivery'] = delivery_dict
 
-            offer_dict['sum'] = list(offer_dict['delivery'].values())[0]['delivery'] + (offer.price * offer.count)
+            if offer.type == 'sell':
+                offer_dict['sum'] = (offer.price * offer.count) + list(offer_dict['delivery'].values())[0]['delivery']
+            else:
+                offer_dict['sum'] = (offer.price * offer.count) - list(offer_dict['delivery'].values())[0]['delivery']
+
             offers_list.append(offer_dict)
+
+            offer_dict['type'] = offer.type
+            if offer.type == 'sell':
+                offer_dict['type_action'] = 'Купить'
+            else:
+                offer_dict['type_action'] = 'Продать'
+
+            offer_dict['id'] = offer.pk
 
         data = {
             'response': 'ok',

@@ -1,3 +1,7 @@
+function confirm_offer(){
+    alert(this.id)
+}
+
 jQuery(document).ready(function ($) {
     $('#trade_groups').change(function(e) {
         // скрываем все товары из вариантов
@@ -41,7 +45,7 @@ jQuery(document).ready(function ($) {
 
                         data.offers_list.forEach(function (line, index) {
                             var newRow = new_tbody.insertRow();
-                            const attrs = ['good', 'owner', 'region', 'count', 'price', 'delivery', 'sum']
+                            const attrs = ['good', 'owner', 'region', 'count', 'price', 'delivery', 'sum', 'type']
                             attrs.forEach(function (item, index) {
                                 var newCell = newRow.insertCell();
 
@@ -58,6 +62,7 @@ jQuery(document).ready(function ($) {
                                 if(item == 'delivery'){
                                     var select = document.createElement('select');
                                     select.classList.add('destination');
+                                    select.dataset.type = line['type'];
 
                                     for (var key in line[item]){
                                         var option = document.createElement('option');
@@ -72,6 +77,14 @@ jQuery(document).ready(function ($) {
                                     }
 
                                     newCell.appendChild(select);
+                                }
+                                else if(item == 'type'){
+                                    var button = document.createElement("button");
+                                    button.id = line['id'];
+                                    button.innerHTML = line['type_action'];
+
+                                    newCell.appendChild(button);
+                                    button.addEventListener ("click", confirm_offer)
                                 }
                                 else{
                                     var newText = document.createTextNode(line[item]);
@@ -117,7 +130,12 @@ jQuery(document).ready(function ($) {
 
             var delivery_sum = parseInt(droplist.selectedOptions[0].dataset.single) * Math.ceil( parseInt(e.target.innerHTML) * parseFloat(vol_map.get($($(e.currentTarget).parent()).find(".good").data('name')) ) )
 
-            $($(e.currentTarget).parent()).find(".sum").html( numberWithSpaces( ( parseInt($($(e.currentTarget).parent()).find(".price").html()) * parseInt(e.target.innerHTML) ) + delivery_sum ) )
+            if (droplist.dataset.type == 'sell'){
+                $($(e.currentTarget).parent()).find(".sum").html( numberWithSpaces( ( parseInt($($(e.currentTarget).parent()).find(".price").html()) * parseInt(e.target.innerHTML) ) + delivery_sum ) )
+            }
+            else{
+                $($(e.currentTarget).parent()).find(".sum").html( numberWithSpaces( ( parseInt($($(e.currentTarget).parent()).find(".price").html()) * parseInt(e.target.innerHTML) ) - delivery_sum ) )
+            }
         }
         else{
             $($(e.currentTarget).parent()).find(".sum").html( 0 )
@@ -130,7 +148,12 @@ jQuery(document).ready(function ($) {
 
             var delivery_sum = parseInt(droplist.selectedOptions[0].dataset.single) * Math.ceil( parseInt(parseInt(e.target.parentElement.parentElement.getElementsByClassName("count")[0].innerHTML)) * parseFloat(vol_map.get($($($(e.currentTarget).parent()).parent()).find(".good").data('name')) ) )
 
-            $($($(e.currentTarget).parent()).parent()).find(".sum").html( numberWithSpaces( ( parseInt($($($(e.currentTarget).parent()).parent()).find(".price").html()) * parseInt(parseInt(e.target.parentElement.parentElement.getElementsByClassName("count")[0].innerHTML)) ) + delivery_sum ) )
+            if (droplist.dataset.type == 'sell'){
+                $($($(e.currentTarget).parent()).parent()).find(".sum").html( numberWithSpaces( ( parseInt($($($(e.currentTarget).parent()).parent()).find(".price").html()) * parseInt(parseInt(e.target.parentElement.parentElement.getElementsByClassName("count")[0].innerHTML)) ) + delivery_sum ) )
+            }
+            else{
+                $($($(e.currentTarget).parent()).parent()).find(".sum").html( numberWithSpaces( ( parseInt($($($(e.currentTarget).parent()).parent()).find(".price").html()) * parseInt(parseInt(e.target.parentElement.parentElement.getElementsByClassName("count")[0].innerHTML)) ) - delivery_sum ) )
+            }
         }
     });
 
