@@ -1,3 +1,27 @@
+function confirm_offer(){
+     var sending_data;
+     sending_data += "&csrfmiddlewaretoken=" + csrftoken;
+     sending_data += "&id=" + this.id;
+     sending_data += "&count=" + this.parentElement.parentElement.getElementsByClassName("count")[0].innerHTML;
+     sending_data += "&storage=" + this.parentElement.parentElement.getElementsByClassName("delivery")[0].getElementsByClassName('destination')[0].selectedOptions[0].value;
+
+     $.ajax({
+        type: "POST",
+        url: "/accept_offer/",
+        data:  sending_data,
+        cache: false,
+        success: function(data){
+            if (data.response == 'ok'){
+
+            }
+            else{
+                display_modal('notify', data.header, data.response, null, data.grey_btn)
+//                    alert(data.response);
+            }
+        }
+    });
+}
+
 jQuery(document).ready(function ($) {
     $('#trade_groups').change(function(e) {
         // скрываем все товары из вариантов
@@ -35,16 +59,20 @@ jQuery(document).ready(function ($) {
             success: function(data){
                 if (data.response == 'ok'){
                     document.getElementById('lines').style.display = 'none';
-
                     if (Object.keys(data.offers_list).length > 0){
                         var tbodyRef = document.getElementById('lines').getElementsByTagName('tbody')[0];
                         var new_tbody = document.createElement('tbody');
 
                         data.offers_list.forEach(function (line, index) {
                             var newRow = new_tbody.insertRow();
-                            const attrs = ['good', 'owner', 'region', 'count', 'price', 'delivery', 'sum']
+                            const attrs = ['good', 'owner', 'region', 'count', 'price', 'delivery', 'sum', 'type']
                             attrs.forEach(function (item, index) {
                                 var newCell = newRow.insertCell();
+
+                                if(item == 'good'){
+                                    newCell.dataset.name = line['good_name'];
+                                }
+
                                 if(item == 'count'){
                                     newCell.setAttribute('contenteditable', 'true');
                                     newCell.style.border = "thin solid black";
@@ -54,18 +82,29 @@ jQuery(document).ready(function ($) {
                                 if(item == 'delivery'){
                                     var select = document.createElement('select');
                                     select.classList.add('destination');
+                                    select.dataset.type = line['type'];
 
                                     for (var key in line[item]){
                                         var option = document.createElement('option');
 
                                         option.setAttribute('value', key)
-                                        option.dataset.delivery = line[item][key]['delivery'];
+//                                        option.dataset.delivery = line[item][key]['delivery'];
+                                        option.dataset.single = line[item][key]['single'];
+                                        option.dataset.region = line[item][key]['name'];
 
                                         option.innerHTML = line[item][key]['name'] + ': $' + numberWithSpaces(line[item][key]['delivery'])
                                         select.appendChild(option);
                                     }
 
                                     newCell.appendChild(select);
+                                }
+                                else if(item == 'type'){
+                                    var button = document.createElement("button");
+                                    button.id = line['id'];
+                                    button.innerHTML = line['type_action'];
+
+                                    newCell.appendChild(button);
+                                    button.addEventListener ("click", confirm_offer)
                                 }
                                 else{
                                     var newText = document.createTextNode(line[item]);
@@ -102,14 +141,39 @@ jQuery(document).ready(function ($) {
     $("#lines").on("input", ".count", function(e){
         if (!isNaN(parseInt(e.target.innerHTML))){
             droplist = e.currentTarget.parentElement.getElementsByClassName("delivery")[0].getElementsByClassName('destination')[0];
-            $($(e.currentTarget).parent()).find(".sum").html( ( parseInt($($(e.currentTarget).parent()).find(".price").html()) * parseInt(e.target.innerHTML) ) + parseInt(droplist.selectedOptions[0].dataset.delivery) )
+
+            var options = droplist.childNodes;
+            for(var i=0; i<options.length; i++) {
+                var delivery_sum = parseInt(options[i].dataset.single) * Math.ceil( parseInt(e.target.innerHTML) * parseFloat(vol_map.get($($(e.currentTarget).parent()).find(".good").data('name')) ) )
+                options[i].innerHTML = options[i].dataset.region + ': $' + numberWithSpaces(delivery_sum)
+            }
+
+            var delivery_sum = parseInt(droplist.selectedOptions[0].dataset.single) * Math.ceil( parseInt(e.target.innerHTML) * parseFloat(vol_map.get($($(e.currentTarget).parent()).find(".good").data('name')) ) )
+
+            if (droplist.dataset.type == 'sell'){
+                $($(e.currentTarget).parent()).find(".sum").html( numberWithSpaces( ( parseInt($($(e.currentTarget).parent()).find(".price").html()) * parseInt(e.target.innerHTML) ) + delivery_sum ) )
+            }
+            else{
+                $($(e.currentTarget).parent()).find(".sum").html( numberWithSpaces( ( parseInt($($(e.currentTarget).parent()).find(".price").html()) * parseInt(e.target.innerHTML) ) - delivery_sum ) )
+            }
+        }
+        else{
+            $($(e.currentTarget).parent()).find(".sum").html( 0 )
         }
     });
 
     $("#lines").on("input", ".destination", function(e){
         if (!isNaN(parseInt(e.target.parentElement.parentElement.getElementsByClassName("count")[0].innerHTML))){
             droplist = e.currentTarget;
-            $($($(e.currentTarget).parent()).parent()).find(".sum").html( ( parseInt($($($(e.currentTarget).parent()).parent()).find(".price").html()) * parseInt(parseInt(e.target.parentElement.parentElement.getElementsByClassName("count")[0].innerHTML)) ) + parseInt(droplist.selectedOptions[0].dataset.delivery) )
+
+            var delivery_sum = parseInt(droplist.selectedOptions[0].dataset.single) * Math.ceil( parseInt(parseInt(e.target.parentElement.parentElement.getElementsByClassName("count")[0].innerHTML)) * parseFloat(vol_map.get($($($(e.currentTarget).parent()).parent()).find(".good").data('name')) ) )
+
+            if (droplist.dataset.type == 'sell'){
+                $($($(e.currentTarget).parent()).parent()).find(".sum").html( numberWithSpaces( ( parseInt($($($(e.currentTarget).parent()).parent()).find(".price").html()) * parseInt(parseInt(e.target.parentElement.parentElement.getElementsByClassName("count")[0].innerHTML)) ) + delivery_sum ) )
+            }
+            else{
+                $($($(e.currentTarget).parent()).parent()).find(".sum").html( numberWithSpaces( ( parseInt($($($(e.currentTarget).parent()).parent()).find(".price").html()) * parseInt(parseInt(e.target.parentElement.parentElement.getElementsByClassName("count")[0].innerHTML)) ) - delivery_sum ) )
+            }
         }
     });
 

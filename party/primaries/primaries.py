@@ -21,7 +21,7 @@ class Primaries(models.Model):
     # парламент, в который происходят выборы
     party = models.ForeignKey(Party, on_delete=models.CASCADE, verbose_name='Праймериз в партии')
     # время начала голосования
-    prim_start = models.DateTimeField(default=timezone.now(), blank=True, null=True)
+    prim_start = models.DateTimeField(default=timezone.now, blank=True, null=True)
     # время конца голосования
     prim_end = models.DateTimeField(default=None, blank=True, null=True)
     # переодическая таска

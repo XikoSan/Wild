@@ -23,6 +23,13 @@
             groups_n_goods['{{ group }}']['{{ good }}'] = '{{ storage_cl|get_attr:group|dict_key:good }}';
         {% endfor %}
     {% endfor %}
+
+    var vol_map = new Map();
+    {% for type in storage_cl|get_attr:'types' %}
+        {% for good in transport|get_attr:type %}
+            vol_map.set('{{ good }}', '{{ transport|get_attr:type|dict_key:good }}');
+        {% endfor %}
+    {% endfor %}
 </script>
 <div class="col-xs-10 col-sm-10 col-md-10">
     <div id="goods_list" align="center">
@@ -40,6 +47,7 @@
               <th role="columnheader">Цена (шт.)</th>
               <th role="columnheader">Доставка</th>
               <th role="columnheader">Сумма</th>
+              <th role="columnheader">Действие</th>
             </tr>
           </thead>
           <tbody>

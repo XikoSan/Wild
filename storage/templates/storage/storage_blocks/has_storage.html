@@ -38,11 +38,17 @@
         <div class="progress" align="right">
             {% with cap_val=storage|get_attr:cap_name %}
                 {% with good_val=storage|get_attr:good %}
-                <div class="progress-bar bg-success" role="progressbar" style="width: {{ cap_val|get_proc:good_val }}%; color:black;">{% localize off %}{{ storage|get_attr:good }}{% endlocalize %}</div>
+                <div class="progress-bar bg-success" role="progressbar" style="width: {{ cap_val|get_proc:good_val }}%; color:black;"
+                                     data-toggle="tooltip" data-placement="top" title="{% localize off %}{{ storage|get_attr:good }}{% endlocalize %}">
+                    {% localize off %}{{ storage|get_attr:good }}{% endlocalize %}
+                </div>
                 {% endwith %}
                 {% if locks|has_key:good %}
                     {% with lock_val=locks|dict_key:good %}
-                <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: {{ cap_val|get_proc:lock_val }}%; background-color: #DC3545">{% localize off %}{{ locks|dict_key:good }}{% endlocalize %}</div>
+                <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: {{ cap_val|get_proc:lock_val }}%; background-color: #DC3545"
+                                      data-toggle="tooltip" data-placement="top" title="{% localize off %}{{ locks|dict_key:good }}{% endlocalize %}">
+                    {% localize off %}{{ locks|dict_key:good }}{% endlocalize %}
+                </div>
                     {% endwith %}
                 {% endif %}
             {% endwith %}
