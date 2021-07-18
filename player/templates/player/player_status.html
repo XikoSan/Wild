@@ -13,7 +13,7 @@
                     const locked_txt = 'Заблокировано: $';
                 </script>
                 <b style="color: #85bb65" id="cash" {% localize off %} data-text="{{ player.cash }}" {% endlocalize %}
-                                     data-toggle="tooltip" data-placement="bottom" title="Заблокировано: ${{ locked }}">
+                                     data-toggle="tooltip" data-placement="bottom" title="Заблокировано: ${% if locked %}{{ locked }}{% else %}0{% endif %}">
                     ${{ player.cash }}
                 </b>
             </div>
