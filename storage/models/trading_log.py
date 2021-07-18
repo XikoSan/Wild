@@ -1,6 +1,6 @@
 # coding=utf-8
 from django.db import models
-
+from storage.models.storage import Storage
 from player.logs.log import Log
 
 
@@ -10,6 +10,11 @@ class TradingLog(Log):
     # если офффер-продажа - то от игрока в логе к продавцу
     # если оффер-покупка  - то от покупателя к игроку в логе
     cash_value = models.BigIntegerField(default=0, verbose_name='Денег передано')
+    # склад принявшего оффер
+    player_storage = models.ForeignKey(Storage, default=None, null=True, on_delete=models.CASCADE, blank=True,
+                                      verbose_name='Склад принявшего оффер', related_name="player_storage")
+    # стоимость доставки
+    delivery_value = models.BigIntegerField(default=0, verbose_name='Стоимость доставки')
     # Товаров передано: в противоположную сторону
     good_value = models.BigIntegerField(default=0, verbose_name='Товаров передано')
 

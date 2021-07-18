@@ -3,15 +3,12 @@ import copy
 from storage.models.good_lock import Storage, GoodLock
 
 
-# проверка наличия места для товаров на указанном Складе, перед начислением их туда
+# получение Склада с блокировками ресурсов, для вычисления доступного места
 # входные данные:
 # storage - Склада, который нужно обработать
 
 # выходные данные:
 # Склад, к которому применены блокировки
-
-# выходные данные:
-# price    - цена перевозки
 def get_storage(storage, resources):
     ret_storage = copy.deepcopy(storage)
     if resources:

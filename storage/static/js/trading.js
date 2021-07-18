@@ -1,5 +1,25 @@
 function confirm_offer(){
-    alert(this.id)
+     var sending_data;
+     sending_data += "&csrfmiddlewaretoken=" + csrftoken;
+     sending_data += "&id=" + this.id;
+     sending_data += "&count=" + this.parentElement.parentElement.getElementsByClassName("count")[0].innerHTML;
+     sending_data += "&storage=" + this.parentElement.parentElement.getElementsByClassName("delivery")[0].getElementsByClassName('destination')[0].selectedOptions[0].value;
+
+     $.ajax({
+        type: "POST",
+        url: "/accept_offer/",
+        data:  sending_data,
+        cache: false,
+        success: function(data){
+            if (data.response == 'ok'){
+
+            }
+            else{
+                display_modal('notify', data.header, data.response, null, data.grey_btn)
+//                    alert(data.response);
+            }
+        }
+    });
 }
 
 jQuery(document).ready(function ($) {
