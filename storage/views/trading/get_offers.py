@@ -121,8 +121,6 @@ def get_offers(request):
 
             offer_dict['delivery'] = delivery_dict
 
-            log(list(offer_dict['delivery'].values()))
-
             delivery_val = 0
             for key, value in offer_dict['delivery'].items():
                 if 'single' in value:

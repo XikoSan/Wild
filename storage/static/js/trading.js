@@ -85,7 +85,6 @@ jQuery(document).ready(function ($) {
                                     select.dataset.type = line['type'];
 
                                     var selected_option;
-                                    console.log(line[item]);
                                     for (var key in line[item]){
                                         var option = document.createElement('option');
 
