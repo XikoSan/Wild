@@ -84,6 +84,7 @@ jQuery(document).ready(function ($) {
                                     select.classList.add('destination');
                                     select.dataset.type = line['type'];
 
+                                    var selected_option;
                                     for (var key in line[item]){
                                         var option = document.createElement('option');
 
@@ -93,9 +94,13 @@ jQuery(document).ready(function ($) {
                                         option.dataset.region = line[item][key]['name'];
 
                                         option.innerHTML = line[item][key]['name'] + ': $' + numberWithSpaces(line[item][key]['delivery'])
+                                        if(selected_option == null){
+                                            selected_option = option;
+                                        }
                                         select.appendChild(option);
                                     }
-
+//                                    select.value = selected_option;
+                                    $(select).val(selected_option.value);
                                     newCell.appendChild(select);
                                 }
                                 else if(item == 'type'){
