@@ -85,16 +85,16 @@ jQuery(document).ready(function ($) {
                                     select.dataset.type = line['type'];
 
                                     var selected_option;
+                                    console.log(line[item]);
                                     for (var key in line[item]){
                                         var option = document.createElement('option');
 
                                         option.setAttribute('value', key)
 //                                        option.dataset.delivery = line[item][key]['delivery'];
-                                        option.dataset.single = line[item][key]['single'];
                                         option.dataset.region = line[item][key]['name'];
-
                                         option.innerHTML = line[item][key]['name'] + ': $' + numberWithSpaces(line[item][key]['delivery'])
-                                        if(selected_option == null){
+                                        if(selected_option == null && 'single' in line[item][key]){
+                                            option.dataset.single = line[item][key]['single'];
                                             selected_option = option;
                                         }
                                         select.appendChild(option);

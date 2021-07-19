@@ -115,17 +115,24 @@ def get_offers(request):
 
                 delivery_dict[storage.pk] = {}
                 delivery_dict[storage.pk]['name'] = storage.region.region_name
-                delivery_dict[storage.pk]['single'] = trans_mul[storage.pk][offer.owner_storage.pk]
+                if len(delivery_dict) == 1:
+                    delivery_dict[storage.pk]['single'] = trans_mul[storage.pk][offer.owner_storage.pk]
                 delivery_dict[storage.pk]['delivery'], prices = get_transfer_price(trans_mul, int(storage.pk), offer_value)
 
             offer_dict['delivery'] = delivery_dict
 
             log(list(offer_dict['delivery'].values()))
 
+            delivery_val = 0
+            for key, value in offer_dict['delivery'].items():
+                if 'single' in value:
+                    delivery_val = value['delivery']
+                    break
+
             if offer.type == 'sell':
-                offer_dict['sum'] = (offer.price * offer.count) + list(offer_dict['delivery'].values())[0]['delivery']
+                offer_dict['sum'] = (offer.price * offer.count) + delivery_val
             else:
-                offer_dict['sum'] = (offer.price * offer.count) - list(offer_dict['delivery'].values())[0]['delivery']
+                offer_dict['sum'] = (offer.price * offer.count) - delivery_val
 
             offers_list.append(offer_dict)
 
