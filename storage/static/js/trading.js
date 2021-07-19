@@ -106,6 +106,10 @@ jQuery(document).ready(function ($) {
                                     newCell.appendChild(button);
                                     button.addEventListener ("click", confirm_offer)
                                 }
+                                else if(item == 'sum'){
+                                    var newText = document.createTextNode(numberWithSpaces(line[item]));
+                                    newCell.appendChild(newText);
+                                }
                                 else{
                                     var newText = document.createTextNode(line[item]);
                                     newCell.appendChild(newText);
