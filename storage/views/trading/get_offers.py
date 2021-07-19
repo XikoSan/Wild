@@ -10,7 +10,7 @@ from storage.models.cash_lock import CashLock
 from storage.models.good_lock import GoodLock
 from storage.models.storage import Storage
 from storage.models.trade_offer import TradeOffer
-
+from player.logs.print_log import log
 
 @login_required(login_url='/')
 @check_player
@@ -119,6 +119,8 @@ def get_offers(request):
                 delivery_dict[storage.pk]['delivery'], prices = get_transfer_price(trans_mul, int(storage.pk), offer_value)
 
             offer_dict['delivery'] = delivery_dict
+
+            log(list(offer_dict['delivery'].values()))
 
             if offer.type == 'sell':
                 offer_dict['sum'] = (offer.price * offer.count) + list(offer_dict['delivery'].values())[0]['delivery']
