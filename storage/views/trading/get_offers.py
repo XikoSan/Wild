@@ -116,14 +116,15 @@ def get_offers(request):
                 delivery_dict[storage.pk] = {}
                 delivery_dict[storage.pk]['name'] = storage.region.region_name
                 if len(delivery_dict) == 1:
-                    delivery_dict[storage.pk]['single'] = trans_mul[storage.pk][offer.owner_storage.pk]
+                    delivery_dict[storage.pk]['default'] = True
+                delivery_dict[storage.pk]['single'] = trans_mul[storage.pk][offer.owner_storage.pk]
                 delivery_dict[storage.pk]['delivery'], prices = get_transfer_price(trans_mul, int(storage.pk), offer_value)
 
             offer_dict['delivery'] = delivery_dict
 
             delivery_val = 0
             for key, value in offer_dict['delivery'].items():
-                if 'single' in value:
+                if 'default' in value:
                     delivery_val = value['delivery']
                     break
 

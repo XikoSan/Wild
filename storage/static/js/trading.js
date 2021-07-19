@@ -92,8 +92,8 @@ jQuery(document).ready(function ($) {
 //                                        option.dataset.delivery = line[item][key]['delivery'];
                                         option.dataset.region = line[item][key]['name'];
                                         option.innerHTML = line[item][key]['name'] + ': $' + numberWithSpaces(line[item][key]['delivery'])
-                                        if(selected_option == null && 'single' in line[item][key]){
-                                            option.dataset.single = line[item][key]['single'];
+                                        option.dataset.single = line[item][key]['single'];
+                                        if(selected_option == null && 'default' in line[item][key]){
                                             selected_option = option;
                                         }
                                         select.appendChild(option);
