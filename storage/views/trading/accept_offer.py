@@ -18,6 +18,7 @@ from django.contrib.humanize.templatetags.humanize import number_format
 from storage.models.trading_log import TradingLog
 from player.logs.cash_log import CashLog
 
+
 @login_required(login_url='/')
 @check_player
 @transaction.atomic
@@ -130,9 +131,9 @@ def accept_offer(request):
 
         else:
             data = {
-                'header': 'Нет оффера',
+                'header': 'Нет склада игрока',
                 'grey_btn': 'Закрыть',
-                'response': 'Оффер не существует или уже принят',
+                'response': 'Выбранного склада игрока не существует',
             }
             return JsonResponse(data)
 
@@ -203,7 +204,7 @@ def accept_offer(request):
             offer_good_lock.save()
 
             #   начисляем товар на склад игрока
-            setattr(storage, offer.good, count)
+            setattr(storage, offer.good, getattr(storage, offer.good) + count)
             storage.save()
 
             # создаем лог о покупке товара
@@ -229,24 +230,109 @@ def accept_offer(request):
 
         # если оффер - покупка
         elif offer.type == 'buy':
-            data = {
-                'header': 'В работе',
-                'response': 'Офферы скупки пока что принять нельзя',
-                'grey_btn': 'Закрыть',
-            }
-            return JsonResponse(data)
-        #   проверяем наличие в ОФФЕРЕ денег на количество (на всяк случай)
-        #   проверяем у игрока наличие денег на доставку
-        #   списываем из оффера деньги
-        #   удаляем деньги из связанной блокировки
-        #   если удаляют все деньги из блокировки:
-        #       закрыть блокировку
-        #   начисляем деньги игроку
-        #   списываем с игрока деньги за доставку
-        #   списываем товар со склада
-        #   начисляем товар на склад оффера
-        #   если продажа закрывает оффер:
-        #       закрываем оффер
+            #   проверяем наличие в ОФФЕРЕ и блокировке денег на количество (на всяк случай)
+            offer_sum = count * offer.price
+
+            if offer_sum < price:
+                data = {
+                    'header': 'Запрет торговли в минус',
+                    'response': 'Ваши расходы на доставку больше прибыли',
+                    'grey_btn': 'Закрыть',
+                }
+                return JsonResponse(data)
+
+            if offer.cost_count < offer_sum:
+                data = {
+                    'header': 'Недостаточно средств',
+                    'response': 'В торговом предложении недостаточно средств',
+                    'grey_btn': 'Закрыть',
+                }
+                return JsonResponse(data)
+
+            # получим блокировку денег
+            offer_cash_lock = None
+            if CashLock.objects.filter(lock_offer=offer, deleted=False).exists():
+                offer_cash_lock = CashLock.objects.select_for_update().get(lock_offer=offer, deleted=False)
+
+            if offer_cash_lock.lock_cash < offer_sum:
+                data = {
+                    'header': 'Недостаточно средств',
+                    'response': 'В связанной блокировке недостаточно средств',
+                    'grey_btn': 'Закрыть',
+                }
+                return JsonResponse(data)
+
+                #   проверяем у игрока наличие денег на доставку
+            if player.cash + offer_sum < price:
+                data = {
+                    'header': 'Недостаточно средств на оплату доставки',
+                    'response': 'Недостаточно средств. Требуется $' + number_format(price),
+                    'grey_btn': 'Закрыть',
+                }
+                return JsonResponse(data)
+
+            # получим склад продавца
+            offer_storage = None
+            if Storage.actual.filter(pk=offer.owner_storage.pk).exists():
+                offer_storage = Storage.actual.select_for_update().get(pk=offer.owner_storage.pk)
+            else:
+                data = {
+                    'header': 'Нет склада оффера',
+                    'grey_btn': 'Закрыть',
+                    'response': 'Выбранного склада оффера не существует',
+                }
+                return JsonResponse(data)
+
+            #   списываем из оффера деньги
+            offer.cost_count -= offer_sum
+            offer.save()
+
+            #   удаляем деньги из связанной блокировки
+            offer_cash_lock.lock_cash -= offer_sum
+
+            #   если удаляют все деньги из блокировки:
+            if offer_cash_lock.lock_cash == 0:
+                #       закрыть блокировку
+                offer_cash_lock.deleted = True
+            offer_cash_lock.save()
+
+            #   начисляем деньги игроку
+            player.cash += offer_sum
+
+            #   списываем с игрока деньги за доставку
+            player.cash -= price
+            player.save()
+
+            #   списываем товар со склада
+            setattr(storage, offer.good, getattr(storage, offer.good) - count)
+            storage.save()
+
+            #   списываем из оффера товар
+            offer.count -= count
+
+            #   если продажа закрывает оффер:
+            if offer.count == 0:
+                #       закрываем оффер
+                offer.accept_date = timezone.now()
+                offer.deleted = True
+            offer.save()
+
+            #   начисляем товар на склад оффера
+            setattr(offer_storage, offer.good, getattr(storage, offer.good) + count)
+            offer_storage.save()
+
+            # создаем лог о покупке товара
+            new_log = TradingLog.objects.create(
+                player=player,
+                cash_value=offer_sum,
+                delivery_value=price,
+                player_storage=storage,
+                good_value=count
+            )
+            offer.accepters.add(new_log)
+
+            # создаем лог движения денег
+            CashLog(player=player, cash=offer_sum - price, activity_txt='trade').save()
 
         else:
             data = {
