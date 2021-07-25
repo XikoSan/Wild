@@ -283,6 +283,10 @@ def accept_offer(request):
                 }
                 return JsonResponse(data)
 
+            # получим склад продавца с учетом блокировок
+            lock_offer_storage = get_storage(Storage.actual.select_for_update().get(pk=offer_storage.pk),
+                                             [offer.good, ])
+
             #   списываем из оффера деньги
             offer.cost_count -= offer_sum
             offer.save()
@@ -318,7 +322,12 @@ def accept_offer(request):
             offer.save()
 
             #   начисляем товар на склад оффера
-            setattr(offer_storage, offer.good, getattr(offer_storage, offer.good) + count)
+            if lock_offer_storage.capacity_check(offer.good, count):
+                setattr(offer_storage, offer.good, getattr(offer_storage, offer.good) + count)
+            else:
+                setattr(offer_storage, offer.good, getattr(offer_storage, offer.good) + (
+                            getattr(offer_storage, offer.good + '_cap') - getattr(lock_offer_storage, offer.good)))
+
             offer_storage.save()
 
             # создаем лог о покупке товара
