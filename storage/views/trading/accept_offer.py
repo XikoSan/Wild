@@ -318,7 +318,7 @@ def accept_offer(request):
             offer.save()
 
             #   начисляем товар на склад оффера
-            setattr(offer_storage, offer.good, getattr(storage, offer.good) + count)
+            setattr(offer_storage, offer.good, getattr(offer_storage, offer.good) + count)
             offer_storage.save()
 
             # создаем лог о покупке товара
