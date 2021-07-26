@@ -34,7 +34,6 @@ class TradeOffer(models.Model):
     # то есть сумма, которая лежала в скупке изначально
     cost = models.BigIntegerField(default=0, verbose_name='Стоимость закупки')
     # количество денег, которые остались в закупке
-    # в отличии от CashLock, хранит в себе оставшуюся сумму денег, даже если предложение было отменено
     # из CashLock же деньги возвращаются на счет
     cost_count = models.BigIntegerField(default=0, verbose_name='Осталось денег в закупке')
 

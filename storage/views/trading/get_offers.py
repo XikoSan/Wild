@@ -136,10 +136,16 @@ def get_offers(request):
             offers_list.append(offer_dict)
 
             offer_dict['type'] = offer.type
-            if offer.type == 'sell':
-                offer_dict['type_action'] = 'Купить'
+
+            if offer.owner_storage.owner == player:
+                offer_dict['my_offer'] = True
+                offer_dict['type_action'] = 'Отменить'
             else:
-                offer_dict['type_action'] = 'Продать'
+                offer_dict['my_offer'] = False
+                if offer.type == 'sell':
+                    offer_dict['type_action'] = 'Купить'
+                else:
+                    offer_dict['type_action'] = 'Продать'
 
             offer_dict['id'] = offer.pk
 

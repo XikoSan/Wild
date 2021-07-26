@@ -22,6 +22,30 @@ function confirm_offer(){
     });
 }
 
+function cancel_offer(){
+     var sending_data;
+     sending_data += "&csrfmiddlewaretoken=" + csrftoken;
+     sending_data += "&id=" + this.id;
+
+    var button = this;
+
+     $.ajax({
+        type: "POST",
+        url: "/cancel_offer/",
+        data:  sending_data,
+        cache: false,
+        success: function(data){
+            if (data.response == 'ok'){
+                button.parentElement.parentElement.remove();
+            }
+            else{
+                display_modal('notify', data.header, data.response, null, data.grey_btn)
+//                    alert(data.response);
+            }
+        }
+    });
+}
+
 jQuery(document).ready(function ($) {
     $('#trade_groups').change(function(e) {
         // скрываем все товары из вариантов
@@ -108,7 +132,12 @@ jQuery(document).ready(function ($) {
                                     button.innerHTML = line['type_action'];
 
                                     newCell.appendChild(button);
-                                    button.addEventListener ("click", confirm_offer)
+                                    if(line['my_offer'] == true){
+                                        button.addEventListener ("click", cancel_offer)
+                                    }
+                                    else{
+                                        button.addEventListener ("click", confirm_offer)
+                                    }
                                 }
                                 else if(item == 'sum'){
                                     var newText = document.createTextNode(numberWithSpaces(line[item]));
