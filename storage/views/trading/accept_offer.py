@@ -253,6 +253,13 @@ def accept_offer(request):
             offer_cash_lock = None
             if CashLock.objects.filter(lock_offer=offer, deleted=False).exists():
                 offer_cash_lock = CashLock.objects.select_for_update().get(lock_offer=offer, deleted=False)
+            else:
+                data = {
+                    'header': 'Получение блокировки',
+                    'grey_btn': 'Закрыть',
+                    'response': 'Не удалось получить блокировку по офферу',
+                }
+                return JsonResponse(data)
 
             if offer_cash_lock.lock_cash < offer_sum:
                 data = {
