@@ -76,9 +76,3 @@ def start_primaries(party_id):
 
     primaries.running = True
     primaries.save()
-
-
-# таска проверочная
-@shared_task(name="delayed_task")
-def delayed_task(param):
-    Player.objects.filter(pk=1).update(gold=param)

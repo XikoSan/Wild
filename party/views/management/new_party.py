@@ -1,15 +1,15 @@
 # from celery import uuid
 # from celery.task.control import revoke
-import json
+
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 from django.utils import timezone
+
 from party.forms import NewPartyForm
 from party.logs.party_apply import PartyApply
 from party.position import PartyPosition
 from player.decorators.player import check_player
 from player.player import Player
-from django_celery_beat.models import IntervalSchedule, PeriodicTask
 
 
 # from gamecore.tasks import GoPrims
@@ -41,31 +41,6 @@ def new_party(request):
                     new_party.foundation_date = timezone.now()
                     # new_party.task_id = task_id.__str__()
                     new_party.save()
-
-                    if player.pk == 1:
-                        periods_types = [IntervalSchedule.DAYS,
-                                         IntervalSchedule.HOURS,
-                                         IntervalSchedule.MINUTES]
-
-                        periods = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-
-                        count = 0
-
-                        for p_type in periods_types:
-
-                            for period in periods:
-                                schedule, created = IntervalSchedule.objects.get_or_create(every=period,
-                                                                                           period=p_type)
-                                task = PeriodicTask.objects.create(
-                                    name=str(count),
-                                    task='delayed_task',
-                                    interval=schedule,
-                                    args=json.dumps([count]),
-                                    start_time=timezone.now()
-                                )
-
-                                count += 1
-
                     # Создаём должность лидера партии
                     leader_post = PartyPosition(title='Глава партии', party=new_party, based=True, party_lead=True)
                     leader_post.save()
