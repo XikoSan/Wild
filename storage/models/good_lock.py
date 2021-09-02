@@ -8,10 +8,14 @@ from player.player import Player
 from region.region import Region
 from storage.models.storage import Storage
 from storage.models.trade_offer import TradeOffer
+from player.actual_manager import ActualManager
 
 
 # Блокировки ресурсов на Складе, при их проадже
 class GoodLock(models.Model):
+    objects = models.Manager()  # Менеджер по умолчанию
+    actual = ActualManager()  # Менеджер активных записей
+
     # склад блокировки
     lock_storage = models.ForeignKey(Storage, default=None, on_delete=models.CASCADE,
                                      verbose_name='Склад блокировки', related_name="lock_storage")
