@@ -16,7 +16,7 @@ from party.position import PartyPosition
 def finish_primaries(party_id):
     party = Party.objects.get(pk=party_id)
     # выключаем праймериз
-    primaries = Primaries.objects.filter(party=party, running=True).update(running=False, prim_end=timezone.now())
+    Primaries.objects.filter(party=party, running=True).update(running=False, prim_end=timezone.now())
     primaries = Primaries.objects.get(party=party, task__isnull=False)
     # все члены партии
     candidates = Player.objects.filter(party=party)
@@ -40,10 +40,12 @@ def finish_primaries(party_id):
     # назначаем нового лидера праймериз
     leader = PrimariesLeader(party=party, leader=current_leader)
     leader.save()
-    # выключаем 24 часовую таску
-    if primaries.task:
-        primaries.task.enabled = False
-        primaries.task.save()
+    # если интервал таски 1 день, то увеличиваем до 7 дней
+    if primaries.task.interval.every == 1:
+        interval, created = IntervalSchedule.objects.get_or_create(every=7, period=IntervalSchedule.DAYS)
+        # interval, created = IntervalSchedule.objects.get_or_create(every=7, period=IntervalSchedule.MINUTES)
+        PeriodicTask.objects.filter(pk=primaries.task.id).update(interval_id=interval.id)
+        PeriodicTasks.changed(primaries.task)
 
 
 # таска включающая праймериз
@@ -51,12 +53,7 @@ def finish_primaries(party_id):
 def start_primaries(party_id):
     party = Party.objects.select_related('task').prefetch_related('task__interval').only('task__interval__every').get(
         pk=party_id)
-    # если интервал таски 7 дней, то увеличиваем до 8 дней
-    if party.task.interval.every == 7:
-        interval, created = IntervalSchedule.objects.get_or_create(every=8, period=IntervalSchedule.DAYS)
-        # interval, created = IntervalSchedule.objects.get_or_create(every=8, period=IntervalSchedule.MINUTES)
-        PeriodicTask.objects.filter(pk=party.task.id).update(interval_id=interval.id)
-        PeriodicTasks.changed(party.task)
+
     # получаем таску из предыдущих праймериз, чтобы переложить в новые
     old_primaries = None
     if Primaries.objects.filter(party=party, task__isnull=False).exists():

@@ -29,9 +29,11 @@ class Primaries(models.Model):
 
     # формируем переодическую таску
     def setup_task(self):
-        schedule, created = IntervalSchedule.objects.get_or_create(every=1, period=IntervalSchedule.DAYS)
-        # schedule, created = IntervalSchedule.objects.get_or_create(every=1, period=IntervalSchedule.MINUTES)
+
         if not PeriodicTask.objects.filter(name=f'{self.party.title}, id {self.party.pk} party primaries').exists():
+            schedule, created = IntervalSchedule.objects.get_or_create(every=1, period=IntervalSchedule.DAYS)
+            # schedule, created = IntervalSchedule.objects.get_or_create(every=1, period=IntervalSchedule.MINUTES)
+
             self.task = PeriodicTask.objects.create(
                 name=f'{self.party.title}, id {self.party.pk} party primaries',
                 task='finish_primaries',
@@ -53,6 +55,7 @@ class Primaries(models.Model):
             return self.party.title + " ( " + self.prim_start.strftime("%m/%d/%Y") + ' - ' + self.prim_end.strftime("%m/%d/%Y") + " )"
         else:
             return self.party.title + " ( " + self.prim_start.strftime("%m/%d/%Y") + " )"
+
     # Свойства класса
     class Meta:
         verbose_name = "Праймериз в партии"
