@@ -7,7 +7,7 @@ from django.utils import timezone
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 from django.core.files.uploadedfile import InMemoryUploadedFile
-from django_celery_beat.models import IntervalSchedule, PeriodicTask
+from django_celery_beat.models import ClockedSchedule, PeriodicTask
 
 from region.region import Region
 
@@ -87,12 +87,15 @@ class Party(models.Model):
 
     # формируем переодическую таску
     def setup_task(self):
-        schedule, created = IntervalSchedule.objects.get_or_create(every=7, period=IntervalSchedule.DAYS)
-        # schedule, created = IntervalSchedule.objects.get_or_create(every=7, period=IntervalSchedule.MINUTES)
+        start_time = timezone.now() + datetime.timedelta(days=7)
+        # start_time = timezone.now() + datetime.timedelta(minutes=7)
+        clock, created = ClockedSchedule.objects.get_or_create(clocked_time=start_time)
+
         self.task = PeriodicTask.objects.create(
             name=self.title + ', id ' + str(self.pk),
             task='start_primaries',
-            interval=schedule,
+            clocked=clock,
+            one_off=True,
             args=json.dumps([self.id]),
             start_time=timezone.now()
         )

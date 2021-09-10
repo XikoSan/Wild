@@ -75,7 +75,7 @@ def leave_party(request):
             Party.objects.filter(pk=party.pk).update(deleted=True)
             # снимаем фоновые задачи праймериз этой партии
             if Primaries.objects.filter(party=party.pk).exists():
-                tasks = Primaries.objects.select_related('party').get(party=party.pk)
+                tasks = Primaries.objects.select_related('party').get(party=party.pk, task__isnull=False)
                 tasks.delete()
                 tasks.party.delete_task()
             else:

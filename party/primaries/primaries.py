@@ -7,7 +7,7 @@ from django.utils import timezone
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 
-from django_celery_beat.models import IntervalSchedule, PeriodicTask
+from django_celery_beat.models import ClockedSchedule, PeriodicTask
 
 from party.party import Party
 
@@ -25,19 +25,21 @@ class Primaries(models.Model):
     # время конца голосования
     prim_end = models.DateTimeField(default=None, blank=True, null=True)
     # переодическая таска
-    task = models.OneToOneField(PeriodicTask, on_delete=models.CASCADE, null=True, blank=True)
+    task = models.OneToOneField(PeriodicTask, on_delete=models.DO_NOTHING, null=True, blank=True)
 
     # формируем переодическую таску
     def setup_task(self):
 
         if not PeriodicTask.objects.filter(name=f'{self.party.title}, id {self.party.pk} party primaries').exists():
-            schedule, created = IntervalSchedule.objects.get_or_create(every=1, period=IntervalSchedule.DAYS)
-            # schedule, created = IntervalSchedule.objects.get_or_create(every=1, period=IntervalSchedule.MINUTES)
+            start_time = timezone.now() + datetime.timedelta(days=1)
+            # start_time = timezone.now() + datetime.timedelta(minutes=1)
+            clock, created = ClockedSchedule.objects.get_or_create(clocked_time=start_time)
 
             self.task = PeriodicTask.objects.create(
                 name=f'{self.party.title}, id {self.party.pk} party primaries',
                 task='finish_primaries',
-                interval=schedule,
+                clocked=clock,
+                one_off=True,
                 args=json.dumps([self.party.pk]),
                 start_time=timezone.now(),
             )
@@ -52,7 +54,8 @@ class Primaries(models.Model):
 
     def __str__(self):
         if self.prim_end:
-            return self.party.title + " ( " + self.prim_start.strftime("%m/%d/%Y") + ' - ' + self.prim_end.strftime("%m/%d/%Y") + " )"
+            return self.party.title + " ( " + self.prim_start.strftime("%m/%d/%Y") + ' - ' + self.prim_end.strftime(
+                "%m/%d/%Y") + " )"
         else:
             return self.party.title + " ( " + self.prim_start.strftime("%m/%d/%Y") + " )"
 
