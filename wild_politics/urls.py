@@ -32,6 +32,7 @@ urlpatterns = [
                   url(r'', include('player.urls')),
                   url(r'', include('region.urls')),
 
+                  url(r'', include('storage.urls.factory')),
                   url(r'', include('storage.urls.storage')),
                   url(r'', include('storage.urls.assets')),
                   url(r'', include('storage.urls.trading')),

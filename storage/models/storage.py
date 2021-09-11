@@ -5,7 +5,7 @@ from django.utils.translation import gettext_lazy
 from player.player import Player
 from region.region import Region
 from player.actual_manager import ActualManager
-
+from django.utils.translation import ugettext as _
 
 class Storage(models.Model):
     objects = models.Manager()  # Менеджер по умолчанию
@@ -71,19 +71,19 @@ class Storage(models.Model):
     cash = models.BigIntegerField(default=0, verbose_name=gettext_lazy('storage_cash'))
 
     # ------vvvvvvv------Минералы на складе------vvvvvvv------
-    # Анохор
+    # Уголь
     coal = models.IntegerField(default=0, verbose_name=gettext_lazy('Уголь'))
-    # Анохор- максимум на складе
+    # Уголь- максимум на складе
     coal_cap = models.IntegerField(default=100000, verbose_name=gettext_lazy('coal_cap'))
 
-    # Берконор
+    # Железо
     iron = models.IntegerField(default=0, verbose_name=gettext_lazy('iron'))
-    # Берконор- максимум на складе
+    # Железо- максимум на складе
     iron_cap = models.IntegerField(default=100000, verbose_name=gettext_lazy('iron_cap'))
 
-    # Грокцит
+    # Бокситы
     bauxite = models.IntegerField(default=0, verbose_name=gettext_lazy('bauxite'))
-    # Грокцит- максимум на складе
+    # Бокситы- максимум на складе
     bauxite_cap = models.IntegerField(default=100000, verbose_name=gettext_lazy('bauxite_cap'))
 
     # ------vvvvvvv------Нефть на складе------vvvvvvv------

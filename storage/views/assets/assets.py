@@ -23,7 +23,7 @@ def assets(request):
     trans_mul = {}
 
     # получаем все склады
-    storages = Storage.objects.filter(owner=player)
+    storages = Storage.actual.filter(owner=player)
 
     for storage in storages:
         trans_mul[storage.pk] = {}
