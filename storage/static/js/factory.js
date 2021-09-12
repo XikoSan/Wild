@@ -115,9 +115,8 @@ jQuery(document).ready(function ($) {
     $('#schema').change(function() {
         document.getElementById('accept').disabled = false
 
-        schema = schemas[$('#good').val()][$('#schema').val()]
-
-        energy = schemas[$('#good').val()]['energy']
+        var energy_dict = { 'energy': schemas[$('#good').val()]['energy'] },
+        schema = Object.assign({}, energy_dict, schemas[$('#good').val()][$('#schema').val()])
 
         var last_crude_name = 'crude_header';
 
@@ -131,7 +130,31 @@ jQuery(document).ready(function ($) {
             var crude_name = goods_names[crude];
             cloned_line.getElementsByClassName("crude_name")[0].innerHTML = crude_name;
 
-            var max_value = Math.floor(total_stocks[$('#storage').val()][crude]/schema[crude]) * schema[crude]
+            var max_value = 0;
+            if (crude=='energy'){
+                $.ajax({
+                    async: false,
+                    beforeSend: function() {},
+                    type: "GET",
+                    url: "/status/0/",
+                    dataType: "html",
+                    cache: false,
+                    success: function(data){
+
+                        result = JSON.parse(data);
+
+                        $('#cash').html('$' + numberWithSpaces(result.cash) );
+                        $('#cash').attr('title', locked_txt + numberWithSpaces(result.locked) ).tooltip('fixTitle');
+
+                        $('#gold').html(numberWithSpaces(result.gold));
+                        $('#energy').html(energy_txt + result.energy + '%');
+                        max_value = Math.floor(result.energy/schema[crude]) * schema[crude]
+                    }
+                });
+            }
+            else{
+                max_value = Math.floor(total_stocks[$('#storage').val()][crude]/schema[crude]) * schema[crude]
+            }
             $(cloned_line.getElementsByClassName("crude_count")[0]).attr('max', max_value);
             $(cloned_line.getElementsByClassName("crude_amount")[0]).attr('max', max_value);
 

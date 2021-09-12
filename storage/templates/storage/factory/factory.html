@@ -22,6 +22,7 @@
     {% endfor %}
 
     var goods_names = {};
+    goods_names['energy'] = 'Энергия';
     {% for crude in crude_list %}
         {% for good in storage_cl|get_attr:crude %}
             goods_names['{{ good }}'] = '{{ storage_cl|get_attr:crude|dict_key:good }}';
