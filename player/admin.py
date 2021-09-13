@@ -18,7 +18,7 @@ class CashLogAdmin(admin.ModelAdmin):
 
 class PLayerAdmin(admin.ModelAdmin):
     search_fields = ['nickname', 'user_ip']
-    raw_id_fields = ('party',)
+    raw_id_fields = ('account', 'party',)
     # Функциия для отображения у игрока только тех постов,
     # которые относятся к текущему клану игрока
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
