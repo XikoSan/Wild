@@ -59,88 +59,92 @@
     {% endfor %}
 
 </script>
-<div class="col-xs-6 col-sm-6 col-md-6">
-    <form id="new_offer_form" role="form">
-        <div class="row" style="margin-top: 1%;">
-            <div class="col-xs-6 col-sm-6 col-md-6" align="right">
-                Склад
-            </div>
-            <div class="col-xs-6 col-sm-6 col-md-6" align="left">
-                <select name="storage" id="storage">
-                    {% for storage in storages %}
-                    <option {% if storage == storages|first %} selected {% endif %} value="{{ storage|dict_key:'pk' }}">{{ storage|dict_key:'region__region_name' }}</option>
-                    {% endfor %}
-                </select>
-            </div>
-        </div>
-        <div class="row" style="margin-top: 1%;">
-            <div class="col-xs-6 col-sm-6 col-md-6" align="right">
-                Група товаров
-            </div>
-            <div class="col-xs-6 col-sm-6 col-md-6" align="left">
-                <select id="group">
-                    <option id="group_default" value='default' disabled selected value>Выберите группу</option>
-                    {% for group in categories %}
-                    <option value='{{ group }}'>{{ storage_cl|get_attr:'types'|dict_key:group }}</option>
-                    {% endfor %}
-                </select>
-            </div>
-        </div>
-        <div class="row" style="margin-top: 1%;">
-            <div class="col-xs-6 col-sm-6 col-md-6" align="right">
-                Товар
-            </div>
-            <div class="col-xs-6 col-sm-6 col-md-6" align="left">
-                <select disabled name="good" id="good">
-                    <option id="good_default" value='default' disabled selected value>Выберите товар</option>
-                    {% for group in categories %}
-                        {% for good in storage_cl|get_attr:group %}
-                        {% if good != 'station' %}
-                    <option id="good_{{ good }}" value='{{ good }}' style="display: none">{{ storage_cl|get_attr:group|dict_key:good }}</option>
-                        {% endif %}
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <form id="new_offer_form" role="form">
+            <div class="row" style="margin-top: 1%;">
+                <div class="col-xs-6 col-sm-6 col-md-6" align="right">
+                    Склад
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6" align="left">
+                    <select name="storage" id="storage">
+                        {% for storage in storages %}
+                        <option {% if storage == storages|first %} selected {% endif %} value="{{ storage|dict_key:'pk' }}">{{ storage|dict_key:'region__region_name' }}</option>
                         {% endfor %}
-                    {% endfor %}
-                </select>
+                    </select>
+                </div>
             </div>
+            <div class="row" style="margin-top: 1%;">
+                <div class="col-xs-6 col-sm-6 col-md-6" align="right">
+                    Група товаров
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6" align="left">
+                    <select id="group">
+                        <option id="group_default" value='default' disabled selected value>Выберите группу</option>
+                        {% for group in categories %}
+                        <option value='{{ group }}'>{{ storage_cl|get_attr:'types'|dict_key:group }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 1%;">
+                <div class="col-xs-6 col-sm-6 col-md-6" align="right">
+                    Товар
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6" align="left">
+                    <select disabled name="good" id="good">
+                        <option id="good_default" value='default' disabled selected value>Выберите товар</option>
+                        {% for group in categories %}
+                            {% for good in storage_cl|get_attr:group %}
+                            {% if good != 'station' %}
+                        <option id="good_{{ good }}" value='{{ good }}' style="display: none">{{ storage_cl|get_attr:group|dict_key:good }}</option>
+                            {% endif %}
+                            {% endfor %}
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 1%;">
+                <div class="col-xs-6 col-sm-6 col-md-6" align="right">
+                    Схема
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6" align="left">
+                    <select disabled name="schema" id="schema">
+                        <option id="schema_default" value='default' disabled selected value>Выберите схему</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 1%;">
+                <div class="col-xs-6 col-sm-6 col-md-6" align="right">
+                    Количество
+                </div>
+                <div class="col-xs-2 col-sm-2 col-md-2" align="left">
+                    <input id="count" type="number" min="0" max="2147483647" value="0" step="1" name="count" maxlength="3"
+                        oninput="setAnotherValues(this.value)">
+                </div>
+            </div>
+            <div class="row" style="margin-top: 1%;">
+                <div class="col-xs-12 col-sm-12 col-md-12" align="center">
+                    <button disabled id="accept" type="submit" class="save btn btn-info">Создать</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12" id="storage_info_block">
+        <div class="row" id="crude_header" style="margin-top: 1%" align="center">
+            Сырье:
         </div>
-        <div class="row" style="margin-top: 1%;">
-            <div class="col-xs-6 col-sm-6 col-md-6" align="right">
-                Схема
-            </div>
-            <div class="col-xs-6 col-sm-6 col-md-6" align="left">
-                <select disabled name="schema" id="schema">
-                    <option id="schema_default" value='default' disabled selected value>Выберите схему</option>
-                </select>
-            </div>
-        </div>
-        <div class="row" style="margin-top: 1%;">
-            <div class="col-xs-6 col-sm-6 col-md-6" align="right">
-                Количество
+        <div class="row" id="crude_line" style="margin-top: 1%; display: none">
+            <div class="col-xs-2 col-sm-2 col-md-2 crude_name" align="left">
             </div>
             <div class="col-xs-2 col-sm-2 col-md-2" align="left">
-                <input id="count" type="number" min="0" max="2147483647" value="0" step="1" name="count" maxlength="3"
-                    oninput="setAnotherValues(this.value)">
+                <input type="number" class="crude_count" min="0" style="width: 100%;">
             </div>
-        </div>
-        <div class="row" style="margin-top: 1%;">
-            <div class="col-xs-12 col-sm-12 col-md-12" align="center">
-                <button disabled id="accept" type="submit" class="save btn btn-info">Создать</button>
+            <div class="col-xs-8 col-sm-8 col-md-8" align="left">
+                <input type="range" class="form-range crude_amount" min="0" max="5" step="1">
             </div>
-        </div>
-    </form>
-</div>
-<div class="col-xs-6 col-sm-6 col-md-6" id="storage_info_block">
-    <div class="row" id="crude_header" style="margin-top: 1%" align="center">
-        Сырье:
-    </div>
-    <div class="row" id="crude_line" style="margin-top: 1%; display: none">
-        <div class="col-xs-2 col-sm-2 col-md-2 crude_name" align="left">
-        </div>
-        <div class="col-xs-2 col-sm-2 col-md-2" align="left">
-            <input type="number" class="crude_count" min="0" style="width: 100%;">
-        </div>
-        <div class="col-xs-8 col-sm-8 col-md-8" align="left">
-            <input type="range" class="form-range crude_amount" min="0" max="5" step="1">
         </div>
     </div>
 </div>
