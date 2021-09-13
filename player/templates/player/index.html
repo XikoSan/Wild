@@ -1,4 +1,5 @@
 {% load static %}
+{% load socialaccount %}
 <html lang="ru-ru">
 <head>
     <meta charset="UTF-8">
@@ -6,7 +7,7 @@
 </head>
 <body align="center">
 <div flex>
-    <a href="{% url 'social:begin' 'vk-oauth2' %}"><img src="{% static 'img/vk_logo.svg' %}" width="100" height="100"
+    <a href="{% provider_login_url 'vk' %}"><img src="{% static 'img/vk_logo.svg' %}" width="100" height="100"
                                                         title="Войти через VK"></a>
 
 </div>

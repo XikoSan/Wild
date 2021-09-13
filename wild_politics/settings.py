@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'django.contrib.sites',
     'django.contrib.staticfiles',
 
     'django_celery_beat',
@@ -58,7 +59,13 @@ INSTALLED_APPS = [
 
     'bootstrap3',
     'channels',
-    'social_django',
+
+    # 'social_django',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    
+    'allauth.socialaccount.providers.vk',
 
     'debug_toolbar',
 
@@ -75,6 +82,10 @@ INSTALLED_APPS = [
     'django_cleanup',
 
 ]
+
+SITE_ID = 1
+
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
 
 sentry_environment = "production"
 if not os.getenv('TOOL'):
@@ -103,8 +114,8 @@ FORMAT_MODULE_PATH = [
 ]
 
 AUTHENTICATION_BACKENDS = [
-    'social_core.backends.vk.VKOAuth2',
     'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
 LOGIN_REDIRECT_URL = '/'

@@ -29,6 +29,7 @@ urlpatterns = [
                   path('admin/', admin.site.urls),
                   path('sentry-debug/', trigger_error),
                   path('', include('social_django.urls', namespace='social')),
+                  path('accounts/', include('allauth.urls')),
                   url(r'', include('player.urls')),
                   url(r'', include('region.urls')),
 
