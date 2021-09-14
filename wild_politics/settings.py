@@ -60,7 +60,7 @@ INSTALLED_APPS = [
     'bootstrap3',
     'channels',
 
-    # 'social_django',
+    'social_django',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
