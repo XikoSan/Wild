@@ -50,8 +50,7 @@ def start_primaries(request, party_pk):
     # если игрок не может голосовать - то и голоса у него быть не может
     if can_vote:
         # если игрок уже голосовал
-        if PrimBulletin.objects.filter(primaries=Primaries.objects.get(party=party, running=True),
-                                       player=player).exists():
+        if PrimBulletin.objects.filter(primaries=primaries, player=player).exists():
             vote = PrimBulletin.objects.get(primaries=Primaries.objects.get(party=party, running=True), player=player)
 
     # отправляем в форму
