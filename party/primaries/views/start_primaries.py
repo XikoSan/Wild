@@ -37,7 +37,7 @@ def start_primaries(request, party_pk):
         return redirect('party')
 
     # получаем список логов тех, кто вступил до начала праймериз
-    member_logs = MembershipLog.objects.filter(dtime__lt=primaries.prim_start, exit_dtime=None)
+    member_logs = MembershipLog.objects.filter(dtime__lt=primaries.prim_start, party=party, exit_dtime=None)
     member_pks = []
     for log in member_logs:
         member_pks.append(log.player.pk)
@@ -56,7 +56,7 @@ def start_primaries(request, party_pk):
     # отправляем в форму
     return render(request, 'primaries/primaries.html',
                   {'player': player,
-                   'players_list': Player.objects.filter(pk__in=member_pks),
+                   'players_list': Player.objects.filter(pk__in=member_pks, party=party),
                    'can_vote': can_vote,
                    'vote': vote
                    })
