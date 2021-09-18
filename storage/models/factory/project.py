@@ -191,33 +191,6 @@ class Project(models.Model):
         verbose_name='Схема',
     )
 
-    count = models.IntegerField(default=0, verbose_name='Количество')
-
-    # время постановки на производство
-    prod_start = models.DateTimeField(default=datetime.datetime(2000, 1, 1, 0, 0), blank=True,
-                                      verbose_name='Время начала производства')
-    # плановое время завершения производства
-    prod_end_plan = models.DateTimeField(default=datetime.datetime(2000, 1, 1, 0, 0), blank=True, null=True,
-                                         verbose_name='Плановое время завершения производства')
-    # фактическое время завершения производства
-    prod_end_fact = models.DateTimeField(default=datetime.datetime(2000, 1, 1, 0, 0), blank=True, null=True,
-                                         verbose_name='Время завершения производства')
-
-    # id фонового процесса данного производства
-    task_id = models.CharField(max_length=150, blank=True, null=True, verbose_name='id фонового процесса')
-
     # Указание абстрактности класса
     class Meta:
         abstract = True
-
-    # проверить наличие ресурсов
-    def validateProject(self):
-        return
-
-    # рассчитать время производства
-    def timeCalculation(self):
-        return
-
-    # выполнить производственную задачу
-    def doProject(self):
-        return
