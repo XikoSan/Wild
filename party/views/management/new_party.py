@@ -4,7 +4,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 from django.utils import timezone
-
+from party.logs.membership_log import MembershipLog
 from party.forms import NewPartyForm
 from party.logs.party_apply import PartyApply
 from party.position import PartyPosition
@@ -57,6 +57,10 @@ def new_party(request):
                     # Даем игроку пост в новой партии
                     player.party_post = leader_post
                     player.save()
+                    # Логировние: создаем запись о вступлении
+                    party_log = MembershipLog(player=player, dtime=timezone.now(),
+                                              party=new_party)
+                    party_log.save()
                     return redirect('party')
                 else:
                     return redirect('party')
