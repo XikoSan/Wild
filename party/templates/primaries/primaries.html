@@ -57,7 +57,7 @@
                         </div>
                         <div class="col-xs-2 col-sm-2 col-md-2">
                             {% if not vote %}
-                            {% if candidate != player %}
+                                {% if candidate != player %}
                             <a href="{% url 'vote_primaries' party_pk=candidate.party.pk player_pk=candidate.pk %}">
                                 <h3>
                                     <font color="green">
@@ -66,7 +66,16 @@
                                     </font>
                                 </h3>
                             </a>
-                            {% endif %}
+                                {% endif %}
+                            {% else %}
+                                {% if vote.candidate == candidate %}
+                            <h3>
+                                <font color="green">
+                                    <div class="glyphicon glyphicon-ok">
+                                    </div>
+                                </font>
+                            </h3>
+                                {% endif %}
                             {% endif %}
                         </div>
                     </div>
