@@ -44,7 +44,7 @@ def create_offer(request):
             return JsonResponse(data)
 
         # проверяем, есть ли целевой склад среди складов игрока
-        storages = Storage.objects.filter(owner=player)
+        storages = Storage.actual.filter(owner=player)
         storages_pk = []
 
         for storage in storages:
