@@ -191,20 +191,25 @@ jQuery(document).ready(function ($) {
     });
 
 
-    $('#new_offer_form').submit(function(e){
+    $('#produce_form').submit(function(e){
         e.preventDefault();
 
          var sending_data = $(this).serialize();
          sending_data += "&csrfmiddlewaretoken=" + csrftoken;
-//        $.ajax({
-//            type: "POST",
-//            url: "/create_offer/",
-//            data:  sending_data,
-//            cache: false,
-//            success: function(data){
-//                display_modal('notify', data.header, data.response, null, data.grey_btn)
-//            }
-//        });
+        $.ajax({
+            type: "POST",
+            url: "/produce/",
+            data:  sending_data,
+            cache: false,
+            success: function(data){
+                if (data.response == 'ok'){
+                    actualize();
+                }
+                else{
+                    display_modal('notify', data.header, data.response, null, data.grey_btn)
+                }
+            }
+        });
     });
 
 });
