@@ -24,11 +24,11 @@ class Storage(models.Model):
     }
     # ------vvvvvvv------Минералы на складе------vvvvvvv------
     minerals = {
-        # Анохор
+        # Уголь
         'coal': gettext_lazy('Уголь'),
-        # Берконор
+        # Железо
         'iron': gettext_lazy('Железо'),
-        # Грокцит
+        # Бокситы
         'bauxite': gettext_lazy('Бокситы'),
     }
     # ------vvvvvvv------Нефть на складе------vvvvvvv------
