@@ -20,7 +20,6 @@ jQuery(document).ready(function ($) {
             success: function(data){
 
                 if (data.response == 'ok'){
-//                    todo: актуализация header
                     actualize();
                 }
                 else{
