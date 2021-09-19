@@ -54,7 +54,18 @@ def do_mining(request):
             return JResponse(data)
 
         # узнаем сколько он хочет потратить энергии
-        count = int(request.POST.get('energy', ''))
+        count = request.POST.get('energy', '')
+
+        if not count.isdigit():
+            data = {
+                'header': 'Ошибка при создании',
+                'grey_btn': 'Закрыть',
+                'response': 'Количество энергии - не число',
+            }
+            return JResponse(data)
+
+        count = int(count)
+
         # Количество Энергии должно быть положительным
         if count <= 0:
             data = {

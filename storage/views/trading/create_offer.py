@@ -62,7 +62,17 @@ def create_offer(request):
                 return JsonResponse(data)
 
             # проверить, что количество товара в пределах Integer 0 < X < 2147483647
-            count = int(request.POST.get('count'))
+            count = request.POST.get('count')
+
+            if not count.isdigit():
+                data = {
+                    'header': 'Ошибка при создании',
+                    'grey_btn': 'Закрыть',
+                    'response': 'Количество - не число',
+                }
+                return JsonResponse(data)
+
+            count = int(count)
 
             if count <= 0:
                 data = {
