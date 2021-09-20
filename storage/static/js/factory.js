@@ -48,9 +48,10 @@ jQuery(document).ready(function ($) {
 
         $('#storage_info_block').children(".cloned_line").remove();
 
-        $("#good").attr("disabled", false);
-        $("#schema").attr("disabled", false);
-        $("#accept").attr("disabled", false);
+        $("#good").attr("disabled", true);
+        $("#schema").attr("disabled", true);
+        $("#accept").attr("disabled", true);
+        $("#count").attr("disabled", true);
     });
 
 //  выводить ресурсы категории, когда она выбрана
@@ -119,6 +120,7 @@ jQuery(document).ready(function ($) {
 //  если выбрана схема
     $('#schema').change(function() {
         document.getElementById('accept').disabled = false
+        $("#count").attr("disabled", false);
 
         var energy_dict = { 'energy': schemas[$('#good').val()]['energy'] },
         schema = Object.assign({}, energy_dict, schemas[$('#good').val()][$('#schema').val()])
