@@ -43,6 +43,7 @@ jQuery(document).ready(function ($) {
         $('#good').val('default');
 
         $('#schema').val('default');
+        schema_select = document.getElementById('schema');
         $(schema_select).children(":not(#schema_default)").remove();
 
         $('#storage_info_block').children(".cloned_line").remove();
