@@ -46,6 +46,10 @@ jQuery(document).ready(function ($) {
         $(schema_select).children(":not(#schema_default)").remove();
 
         $('#storage_info_block').children(".cloned_line").remove();
+
+        $("#good").attr("disabled", false);
+        $("#schema").attr("disabled", false);
+        $("#accept").attr("disabled", false);
     });
 
 //  выводить ресурсы категории, когда она выбрана
