@@ -5,15 +5,12 @@ from django.utils import timezone
 
 from player.decorators.player import check_player
 from player.player import Player
-from region.views.distance_counting import distance_counting
-from storage.models.cash_lock import CashLock
-from storage.models.good_lock import GoodLock
 from storage.models.storage import Storage
-from storage.models.trade_offer import TradeOffer
-from player.logs.print_log import log
 from storage.models.factory.project import Project
 from storage.views.storage.locks.get_storage import get_storage
 from django.contrib.humanize.templatetags.humanize import intcomma
+from storage.models.factory.production_log import ProductionLog
+
 
 @login_required(login_url='/')
 @check_player
@@ -169,15 +166,23 @@ def produce_good(request):
         player.energy -= energy_cost
         # сохранить игрока
         player.save()
+        # создаём лог производства
+        production_log = ProductionLog(player=player, prod_storage=storage, prod_result=good)
         # для каждого сырья в схеме
         for material in schema.keys():
             # установить новое значени склада
             setattr(storage, material, getattr(storage, material) - (schema[material] * count))
+            # залогировать траты со склада
+            setattr(production_log, material, 0 - schema[material] * count)
 
         # добавить товар на склад
         setattr(storage, good, getattr(storage, good) + count)
+        # залогировать приход на склад
+        setattr(production_log, good, count)
         # сохранить склад
         storage.save()
+        # сохранить лог
+        production_log.save()
 
         data = {
             'response': 'ok',

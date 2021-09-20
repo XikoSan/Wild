@@ -4,7 +4,7 @@ from storage.models.storage import Storage
 from player.logs.log import Log
 from django.utils.translation import gettext_lazy
 from storage.models.factory.project import Project
-from player.logs.print_log import log
+
 
 # Лог торговли
 class ProductionLog(Log):
