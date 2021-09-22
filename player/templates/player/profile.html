@@ -4,8 +4,6 @@
 {% load i18n %}
 {% load tz %}
 {% block for_scripts_and_css %}
-<link rel="stylesheet" type="text/css" href='{% static "css/overview.css" %}'/>
-<script src='{% static "js/profile/profile.js" %}?{{ csrf_token }}'></script>
 {% endblock %}
 
 {% block content %}
@@ -96,6 +94,10 @@
                             </div>
                         </div>
                     </div>
+<!--                    {% if player.account.socialaccount_set.all.0.provider == 'vk' %}-->
+<!--                    <div id="repost_tab" class="tab-pane fade" style="min-width: 600px">-->
+<!--                    </div>-->
+<!--                    {% endif %}-->
                 </div>
             </div>
             <div class="col-xs-1 col-sm-1 col-md-1" align="center"></div>

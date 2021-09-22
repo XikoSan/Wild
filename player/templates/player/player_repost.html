@@ -1,0 +1,62 @@
+{% load static %}{% load get_div %}{% load tz %}
+{% load l10n %}{% load i18n %}
+<div class="row flex" style="">
+    <div class="col-xs-4 col-sm-4 col-md-4"></div>
+    <div class="col-xs-4 col-sm-4 col-md-4" align="center">
+        <b><font size="4" color="white">Золото за репост:</font></b>
+    </div>
+</div>
+<div class="row flex" style="">
+    <div class="col-xs-12 col-sm-12 col-md-12" align="center">
+        <b><font size="4" color="white">поддержи проект репостом и получай золото!</font></b>
+<!--        <b><font size="4" color="white">Зарабатывай очки и получай награды</font></b>-->
+    </div>
+</div>
+<div class="row flex" style="margin-top: 1%">
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <b><font size="4" color="white">Запись для репоста:</font></b>
+        <a href='https://vk.com/wall-164930433_2117' target="_blank"><b><font size="4" color="white">перейти к записи (ссылка)</font></b></a>
+    </div>
+</div>
+<div class="row flex" style="margin-top: 3%">
+    <div class="col-xs-12 col-sm-12 col-md-12" align="center">
+        <b><font size="4" color="white">Для получения золота запись должна:</font></b>
+    </div>
+</div>
+<div class="row flex" style="margin-top: 1%">
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <b><font size="4" color="white">- быть первой сверху (не считая закрепа)</font></b>
+    </div>
+</div>
+<div class="row flex" style="margin-top: 1%">
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <b><font size="4" color="white">- пробыть на стене не меньше часа</font></b>
+    </div>
+</div>
+<div class="row flex" style="margin-top: 3%">
+    <div class="col-xs-12 col-sm-12 col-md-12" align="center">
+        <b><font size="4" color="white">Бонус можно получить раз в сутки</font></b>
+    </div>
+</div>
+<div class="row flex" style="margin-top: 1%">
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="row" align="center" style="margin-top: 1%">
+            <font color="{% if repost %}#85bb65{% else %}black{% endif %}" size="4" style="text-shadow: black 1px 1px 0, black -1px -1px 0, black -1px 1px 0, black 1px -1px 0;">Репост {% if not repost %}не {% endif %}найден</font>
+        </div>
+        {% if repost %}
+        {% if now_dtime > need_dtime %}
+        <form id="gold_4_repost" role="form" align="center">
+            {% csrf_token %}
+            <div class="row" style="margin-top: 1%">
+                <input type="submit" class="btn btn-success" value="Получить 100 G"/>
+            </div>
+        </form>
+        {% else %}
+        <div class="row" align="center" style="margin-top: 1%">
+            <input type="submit" class="btn btn-danger" disabled value="Час не прошёл"/>
+        </div>
+        {% endif %}
+        {% endif %}
+    </div>
+
+</div>
