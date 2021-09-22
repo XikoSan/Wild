@@ -1,0 +1,107 @@
+{% extends 'player/header.html' %}
+{% load static %}
+{% load bootstrap3 %}
+{% load i18n %}
+{% load tz %}
+{% block for_scripts_and_css %}
+<link rel="stylesheet" type="text/css" href='{% static "css/overview.css" %}'/>
+<script src='{% static "js/profile/profile.js" %}?{{ csrf_token }}'></script>
+{% endblock %}
+
+{% block content %}
+<div id="over" class="tabcontent">
+        <script>
+            var csrftoken = '{{ csrf_token }}';
+        </script>
+        <div class="row">
+            <div class="col-xs-1 col-sm-1 col-md-1" align="center"></div>
+            <div class="col-xs-4 col-sm-4 col-md-4" align="center">
+                <!--Картинка профиля-->
+                <img id="plr_image_link" src="{% if player.image %}{{ player.image.url }}{% else %}{% static 'img/nopic.png' %}{% endif %}" width="250" height="250">
+            </div>
+            <!--колонка характеристик персонажа-->
+            <div class="col-xs-6 col-sm-6 col-md-6">
+                <div align="center" id="player_nickname" style="cursor: pointer; font-size: 20pt; font-weight: bold;">{{ player.nickname }}</div>
+                <ul class="nav nav-tabs">
+<!--                    <li class="active"><a data-toggle="tab" href="#info">{% trans 'player_info' %}</a></li>-->
+                    <li class="active"><a data-toggle="tab" href="#info">Информация</a></li>
+<!--                    {% if player.account.socialaccount_set.all.0.provider == 'vk' %}-->
+<!--                    <li><a data-toggle="tab" href="#repost_tab">Золото за репост</a></li>-->
+<!--                    {% endif %}-->
+                </ul>
+                <div class="tab-content">
+                    <div id="info" class="tab-pane fade in active" style="min-width: 600px">
+                        <!--ID персонажа-->
+                        <div class="row flex" style="margin-left: 10px;">
+                            <div class="col-xs-6 col-sm-6 col-md-6" align="left">
+                                <b><font size="5" >ID:</font></b>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <b><font size="5" >{{ player.pk }}</font></b>
+                            </div>
+                        </div>
+                        <!--место нахождения-->
+                        <div class="row flex" style="margin-left: 10px;">
+                            <div class="col-xs-6 col-sm-6 col-md-6" align="left">
+<!--                                <b><font size="5" >{% trans 'region' %}:</font></b>-->
+                                <b><font size="5">Место жительства:</font></b>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <b><font size="4"  onclick="window.open('/region/{{ player.region.pk }}/', '_blank')" style="cursor: pointer">{{ player.region }}</font></b>
+                            </div>
+                        </div>
+                        <!--место прописки-->
+                        <div class="row flex" style="margin-left: 10px;">
+                            <div class="col-xs-6 col-sm-6 col-md-6" align="left">
+<!--                                <b><font size="5" >{% trans 'residency' %}:</font></b>-->
+                                <b><font size="5" >Прописка:</font></b>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <!--получена-->
+<!--                                <b><font size="4"  onclick="window.open('/region/{{ player.residency.pk }}/', '_blank')" style="cursor: pointer">{{ player.residency }}, {% trans 'since' %}: {{ player.residency_date|timezone:player.time_zone|date:"d.m.Y H:i" }}</font></b>-->
+                                <b><font size="4"  onclick="window.open('/region/{{ player.residency.pk }}/', '_blank')" style="cursor: pointer">{{ player.residency }}, с: {{ player.residency_date|timezone:player.time_zone|date:"d.m.Y H:i" }}</font></b>
+                            </div>
+                        </div>
+                        <!--партия-->
+                        <div class="row flex" style="margin-left: 10px;">
+                            <div class="col-xs-6 col-sm-6 col-md-6" align="left">
+<!--                                <b><font size="5" >{% trans 'party' %}:</font></b>-->
+                                <b><font size="5" >Партия:</font></b>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                {% if player.party %}
+                                    {% if player.party.image %}
+                                    <!--Картинка партии-->
+                                    <img src="{{ player.party.image.url }}" width="50" height="50">
+                                    {% else %}
+                                    <img src="{% static 'img/nopic_party.png' %}" width="50" height="50">
+                                    {% endif %}
+                                    <b><font size="4" >{{ player.party.title }}</font></b>
+                                {% else %}
+                                    <b><font size="5" >беспартийный</font></b>
+<!--                                    <b><font size="5" >{% trans 'unaffiliated' %}</font></b>-->
+                                {% endif %}
+                            </div>
+                        </div>
+                        <!--партия-->
+                        <div class="row flex" style="margin-left: 10px;">
+                            <div class="col-xs-6 col-sm-6 col-md-6" align="left">
+                                <b><font size="5" >Должность в партии:</font></b>
+<!--                                <b><font size="5" >{% trans 'party_post' %}:</font></b>-->
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                {% if player.party_post %}
+                                    <b><font size="4" >{{ player.party_post.title }}</font></b>
+                                {% else %}
+                                    <b><font size="5" >беспартийный</font></b>
+<!--                                    <b><font size="5" >{% trans 'unaffiliated' %}</font></b>-->
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-1 col-sm-1 col-md-1" align="center"></div>
+        </div>
+    </div>
+{% endblock %}

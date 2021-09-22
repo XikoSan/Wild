@@ -5,6 +5,7 @@ from .views.index import index
 from .views.overview import overview
 from .views.new_player import new_player
 from .views.expense_energy import expense_energy
+from .views.my_profile import my_profile
 
 urlpatterns = [
 
@@ -19,5 +20,8 @@ urlpatterns = [
     url(r'^overview$', overview, name='overview'),
     # пополнение энергии:
     url(r'^recharge/$', expense_energy, name='expense_energy'),
+
+    # открытие страницы персонажа игрока
+    url(r'^profile/$', my_profile, name='my_profile'),
 
 ]

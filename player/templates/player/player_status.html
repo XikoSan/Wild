@@ -3,7 +3,9 @@
 <div style="width: 100%; max-height: 100px; display: flex; align-items: stretch">
 <!--<div style="width: 1300px">-->
     <div class="col-xs-2 col-sm-2 col-md-1">
-        <img {% if player.image %}src="{{ player.image.url }}"{% else %}src="{% static 'img/nopic.png' %}"{% endif %} width="80px" height="80px">
+        <a href="/profile/">
+            <img {% if player.image %}src="{{ player.image.url }}"{% else %}src="{% static 'img/nopic.png' %}"{% endif %} width="80px" height="80px">
+        </a>
     </div>
     <div class="col-xs-2 col-sm-2 col-md-2">
         <div class="row">{{ player.nickname }}</div>
@@ -21,7 +23,6 @@
                 <b style="color: gold" id="gold" data-text="{{ player.gold }}">{{ player.gold }}</b>
             </div>
         </div>
-        <div class="row">уровень {{ player.level }}</div>
     </div>
     <div class="col-xs-8 col-sm-8 col-md-8">
         <script>
