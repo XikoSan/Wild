@@ -33,7 +33,7 @@ def overview(request):
 
     for scan in redis_list:
         b = json.loads(scan)
-        author = Player.objects.filter(account=int(b['author'])).only('id', 'image', 'time_zone').get()
+        author = Player.objects.filter(pk=int(b['author'])).only('id', 'image', 'time_zone').get()
         # сначала делаем из наивного времени aware, потом задаем ЧП игрока
         b['dtime'] = datetime.fromtimestamp(int(b['dtime'])).replace(tzinfo=pytz.timezone(TIME_ZONE)).astimezone(tz=pytz.timezone(player.time_zone)).strftime("%H:%M")
         b['author'] = author.pk
