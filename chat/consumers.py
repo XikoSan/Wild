@@ -2,15 +2,13 @@ import json
 from asgiref.sync import sync_to_async
 from channels.generic.websocket import AsyncWebsocketConsumer
 from datetime import datetime
-from channels.db import database_sync_to_async
 from player.player import Player
 from django.contrib.auth.models import User
-from django.contrib.auth.models import Group
 from .models import Chat, Message
-from player.logs.print_log import log
-from django.utils.timezone import make_aware
 import bleach
 import pytz
+from django.utils import timezone
+import redis
 
 
 def _get_player(account):
@@ -33,14 +31,15 @@ def _set_player_banned(pk):
     Player.objects.filter(pk=pk).update(chat_ban=True)
 
 
-def _get_last_10_messages(chat_id):
-    chat, created = Chat.objects.get_or_create(chat_id=chat_id)
-    messages = []
-    for message in reversed(
-            chat.messages.order_by('-timestamp').exclude(content='ban_chat')[:10].values('author__pk', 'author__image', 'content',
-                                                                   'timestamp')):
-        messages.append(message)
-    return messages
+# def _get_last_10_messages(chat_id):
+#     chat, created = Chat.objects.get_or_create(chat_id=chat_id)
+#     messages = []
+#     for message in reversed(
+#             chat.messages.order_by('-timestamp').exclude(content='ban_chat')[:10].values('author__pk', 'author__image',
+#                                                                                          'content',
+#                                                                                          'timestamp')):
+#         messages.append(message)
+#     return messages
 
 
 def _get_awa(image):
@@ -48,12 +47,29 @@ def _get_awa(image):
 
 
 def _append_message(chat_id, author, text):
-    message = Message.objects.create(
-        author=author,
-        content=text)
-    chat, created = Chat.objects.get_or_create(chat_id=chat_id)
-    chat.messages.add(message)
-    chat.save()
+
+    message = {'author': author.pk,
+               'content': text,
+               'dtime': str(timezone.now().timestamp()).split('.')[0]
+               }
+
+    r = redis.StrictRedis(host='redis', port=6379, db=0)
+
+    counter = 0
+
+    if r.hlen('counter') > 0:
+        counter = r.hget('counter', 'counter')
+
+    r.hset('counter', 'counter', int(counter) + 1)
+
+    o_json = json.dumps(message, indent=2, default=str)
+
+    r.zadd('chat', {o_json: int(counter) + 1})
+
+    count = r.zcard("chat")
+
+    if count > 50:
+        r.zremrangebyrank('chat', 0, 0)
 
 
 class ChatConsumer(AsyncWebsocketConsumer):
@@ -82,26 +98,26 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
             await self.accept()
 
-            messages = await sync_to_async(_get_last_10_messages, thread_sensitive=True)(chat_id=self.room_name)
+            # messages = await sync_to_async(_get_last_10_messages, thread_sensitive=True)(chat_id=self.room_name)
 
-            for message in messages:
-
-                if message['content'] == 'ban_chat':
-                    continue
-
-                image_url = '/static/img/nopic.png'
-                if message['author__image']:
-                    image_url = '/media/' + message['author__image']
-
-                # Send message to WebSocket
-                await self.send(text_data=json.dumps({
-                    'message': message['content'],
-                    'time': message['timestamp'].astimezone(pytz.timezone(self.player.time_zone)).time().strftime(
-                        "%H:%M"),
-                    'id': message['author__pk'],
-                    'image': image_url,
-                    # 'image': await sync_to_async(_get_image_url, thread_sensitive=True)(image=message['author__image']),
-                }))
+            # for message in messages:
+            #
+            #     if message['content'] == 'ban_chat':
+            #         continue
+            #
+            #     image_url = '/static/img/nopic.png'
+            #     if message['author__image']:
+            #         image_url = '/media/' + message['author__image']
+            #
+            #     # Send message to WebSocket
+            #     await self.send(text_data=json.dumps({
+            #         'message': message['content'],
+            #         'time': message['timestamp'].astimezone(pytz.timezone(self.player.time_zone)).time().strftime(
+            #             "%H:%M"),
+            #         'id': message['author__pk'],
+            #         'image': image_url,
+            #         # 'image': await sync_to_async(_get_image_url, thread_sensitive=True)(image=message['author__image']),
+            #     }))
 
         else:
             self.close()
@@ -128,7 +144,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
             pass
 
         else:
-            if message == 'ban_chat'\
+            if message == 'ban_chat' \
                     and text_data_json['destination']:
                 destination = text_data_json['destination']
                 await sync_to_async(_set_player_banned, thread_sensitive=True)(pk=destination)
@@ -150,7 +166,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 }
             )
 
-            if message == 'ban_chat'\
+            if message == 'ban_chat' \
                     and text_data_json['destination']:
 
                 banned_player = await sync_to_async(_get_player_pk, thread_sensitive=True)(pk=destination)
@@ -193,17 +209,6 @@ class ChatConsumer(AsyncWebsocketConsumer):
                     'id': self.player.pk,
                     'image': image_url,
                 }))
-                # # Send message to room group
-                # await self.channel_layer.group_send(
-                #     self.room_group_name,
-                #     {
-                #         'type': 'chat_message',
-                #         'id': self.player.pk,
-                #         'image': image_url,
-                #         'nickname': self.player.nickname,
-                #         'message': 'Пользователь заблокирован модератором ' + nickname,
-                #     }
-                # )
 
                 self.disconnect()
 

@@ -3,6 +3,8 @@
 {% load bootstrap3 %}
 {% load i18n %}
 {% block for_scripts_and_css %}
+{% load dict_key %}
+{% load get_attr %}
 <script src="{% bootstrap_jquery_url %}"></script>
 {% bootstrap_javascript %}
 {% bootstrap_css %}
@@ -36,7 +38,32 @@
     <div class="tab-content">
         <div id="{{ LANGUAGE_CODE }}" class="tab-pane fade in active" >
             <section id="chat-log-{{ LANGUAGE_CODE }}" class="chat" style="height: 50vh; flex: 10 10 auto; overflow-x: hidden; overflow-y: auto;">
+                {% for message in messages %}
+                <div class="row">
+                    <div class='message {% if message|dict_key:"author" == player.pk %}message--user-2{% else %}message--user-1{% endif %}' data-sender='{{  message|dict_key:"author" }}'>
+                        <time class='message__time'>
+                            {{ message|dict_key:'dtime' }}
+                            {% if player.account.groups.all.0.name == "chat_moderator" %}
+                                {% if message|dict_key:"author" != player.pk %}
+                            <input type='button' class='message__ban' value='отключить чат'>
+                                {% endif %}
+                            {% endif %}
+                        </time>
+                        <figure class='message__author-pic'>
+                            <a href='/profile/{{  message|dict_key:"author" }}' target='_blank'>
+                                <img src="{{  message|dict_key:'image_link'  }}" width='50px' height='50px'>
+                            </a>
+                        </figure>
+                        <div class='message__text'>
+                            <p>{{ message|dict_key:'content' }}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
             </section>
+            <script>
+                document.getElementById('chat-log-{{ LANGUAGE_CODE }}').scrollTop = document.getElementById('chat-log-{{ LANGUAGE_CODE }}').scrollHeight;
+            </script>
             <div style="display: flex">
                 <div style="flex: 10 10 auto">
                     <input id="chat-message-input-{{ LANGUAGE_CODE }}" type="text" size="100" style="width: 100%">
