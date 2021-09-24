@@ -40,6 +40,7 @@
             <section id="chat-log-{{ LANGUAGE_CODE }}" class="chat" style="height: 50vh; flex: 10 10 auto; overflow-x: hidden; overflow-y: auto;">
                 {% if not player.chat_ban %}
                     {% for message in messages %}
+                        {% if message|dict_key:'content' != 'ban_chat' %}
                 <div class="row">
                     <div class='message {% if message|dict_key:"author" == player.pk %}message--user-2{% else %}message--user-1{% endif %}' data-sender='{{  message|dict_key:"author" }}'>
                         <time class='message__time'>
@@ -60,6 +61,7 @@
                         </div>
                     </div>
                 </div>
+                        {% endif %}
                     {% endfor %}
                 {% endif %}
             </section>
