@@ -38,7 +38,8 @@
     <div class="tab-content">
         <div id="{{ LANGUAGE_CODE }}" class="tab-pane fade in active" >
             <section id="chat-log-{{ LANGUAGE_CODE }}" class="chat" style="height: 50vh; flex: 10 10 auto; overflow-x: hidden; overflow-y: auto;">
-                {% for message in messages %}
+                {% if not player.chat_ban %}
+                    {% for message in messages %}
                 <div class="row">
                     <div class='message {% if message|dict_key:"author" == player.pk %}message--user-2{% else %}message--user-1{% endif %}' data-sender='{{  message|dict_key:"author" }}'>
                         <time class='message__time'>
@@ -59,7 +60,8 @@
                         </div>
                     </div>
                 </div>
-                {% endfor %}
+                    {% endfor %}
+                {% endif %}
             </section>
             <script>
                 document.getElementById('chat-log-{{ LANGUAGE_CODE }}').scrollTop = document.getElementById('chat-log-{{ LANGUAGE_CODE }}').scrollHeight;

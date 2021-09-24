@@ -20,28 +20,29 @@ import pytz
 def overview(request):
     player = Player.objects.get(account=request.user)
 
-    r = redis.StrictRedis(host='redis', port=6379, db=0)
-
-    counter = 0
-
-    if r.hlen('counter') > 0:
-        counter = r.hget('counter', 'counter')
-
-    redis_list = r.zrangebyscore("chat", 0, counter)
-
     messages = []
 
-    for scan in redis_list:
-        b = json.loads(scan)
-        author = Player.objects.filter(pk=int(b['author'])).only('id', 'image', 'time_zone').get()
-        # сначала делаем из наивного времени aware, потом задаем ЧП игрока
-        b['dtime'] = datetime.fromtimestamp(int(b['dtime'])).replace(tzinfo=pytz.timezone(TIME_ZONE)).astimezone(tz=pytz.timezone(player.time_zone)).strftime("%H:%M")
-        b['author'] = author.pk
-        if author.image:
-            b['image_link'] = author.image.url
-        else:
-            b['image_link'] = static('img/nopic.png')
-        messages.append(b)
+    if not player.chat_ban:
+        r = redis.StrictRedis(host='redis', port=6379, db=0)
+
+        counter = 0
+
+        if r.hlen('counter') > 0:
+            counter = r.hget('counter', 'counter')
+
+        redis_list = r.zrangebyscore("chat", 0, counter)
+
+        for scan in redis_list:
+            b = json.loads(scan)
+            author = Player.objects.filter(pk=int(b['author'])).only('id', 'image', 'time_zone').get()
+            # сначала делаем из наивного времени aware, потом задаем ЧП игрока
+            b['dtime'] = datetime.fromtimestamp(int(b['dtime'])).replace(tzinfo=pytz.timezone(TIME_ZONE)).astimezone(tz=pytz.timezone(player.time_zone)).strftime("%H:%M")
+            b['author'] = author.pk
+            if author.image:
+                b['image_link'] = author.image.url
+            else:
+                b['image_link'] = static('img/nopic.png')
+            messages.append(b)
 
 
     # отправляем в форму
