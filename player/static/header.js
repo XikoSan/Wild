@@ -28,6 +28,43 @@ $(function () {
   $('[data-toggle="tooltip"]').tooltip()
 })
 
+function callable_countdown() {
+    if (document.getElementById("refill-countdown") != undefined){
+        var elem = document.getElementById("refill-countdown");
+
+        //получает строку
+        var sec_string = $('#refill-countdown').attr('data-text');
+        var sec = parseInt(sec_string);
+
+        if (sec == 0) {
+            elem.textContent = refill_button_txt;
+        } else {
+
+            var h = sec/3600 ^ 0 ;
+            var m = (sec-h*3600)/60 ^ 0 ;
+            var s = sec-h*3600-m*60 ;
+            elem.textContent = (m<10?"0"+m:m)+":"+(s<10?"0"+s:s);
+            sec = --sec;
+        }
+
+        //запускаем функцию с повторением раз 1 секунду
+        var id = setInterval(frame, 1000);
+        function frame() {
+            if (sec == 0) {
+                elem.textContent = refill_button_txt;
+                clearInterval(id);
+            } else {
+
+                var h = sec/3600 ^ 0 ;
+                var m = (sec-h*3600)/60 ^ 0 ;
+                var s = sec-h*3600-m*60 ;
+                elem.textContent = (m<10?"0"+m:m)+":"+(s<10?"0"+s:s);
+                sec = --sec;
+            }
+        }
+    }
+}
+
 window.onload = function countdown() {
     if (document.getElementById("refill-countdown") != undefined){
         var elem = document.getElementById("refill-countdown");
@@ -64,6 +101,7 @@ window.onload = function countdown() {
         }
     }
 }
+
 
 function actualize(){
     $.ajax({
@@ -107,6 +145,8 @@ function recharge(){
                     success: function(result){
                         if (result.response == 'ok'){
                             $('#energy').html(energy_txt + '100%');
+                            $('#refill-countdown').attr('data-text', 600);
+                            callable_countdown();
                         }
                         else{
                             display_modal('notify', result.header, result.response, null, result.grey_btn)
