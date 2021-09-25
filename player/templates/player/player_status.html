@@ -27,13 +27,20 @@
     <div class="col-xs-8 col-sm-8 col-md-8">
         <script>
             const energy_txt = 'энергии: ';
+            const refill_button_txt = 'Пополнить';
         </script>
         <div class="row" id="energy">энергии: {{ player.energy }}%</div>
         <div class="row">
             <script>
                 const csrftoken = '{{ csrf_token }}';
             </script>
-            <button type="submit" onclick="recharge()" class="save btn btn-default">Пополнить</button>
+            <button type="submit" id="refill-countdown" data-text="{{ countdown }}" onclick="recharge()" class="save btn btn-default">
+                {% if time_text %}
+                {{ time_text }}
+                {% else %}
+                Пополнить
+                {% endif %}
+            </button>
         </div>
     </div>
 </div>
