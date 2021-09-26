@@ -175,17 +175,13 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 if banned_player.image:
                     banned_image_url = banned_player.image.url
 
-                # Send message to room group
-                await self.channel_layer.group_send(
-                    self.room_group_name,
-                    {
-                        'type': 'chat_message',
-                        'id': banned_player.pk,
-                        'image': banned_image_url,
-                        'nickname': banned_player.nickname,
-                        'message': 'Пользователь заблокирован модератором ' + self.player.nickname,
-                    }
-                )
+                # Сообщить об успешном бане
+                await self.send(text_data=json.dumps({
+                    'message': 'Успешно заблокирован',
+                    'time': datetime.now().time().strftime("%H:%M"),
+                    'id': banned_player.pk,
+                    'image': banned_image_url,
+                }))
 
     # Receive message from room group
     async def chat_message(self, event):
@@ -197,19 +193,6 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
         if message == 'ban_chat':
             if event['destination'] == self.player.pk:
-
-                image_url = '/static/img/nopic.png'
-                if self.player.image:
-                    image_url = self.player.image.url
-
-                # Send message to WebSocket
-                await self.send(text_data=json.dumps({
-                    'message': 'Вы заблокированы модератором ' + nickname,
-                    'time': datetime.now().time().strftime("%H:%M"),
-                    'id': self.player.pk,
-                    'image': image_url,
-                }))
-
                 self.disconnect()
 
         else:
