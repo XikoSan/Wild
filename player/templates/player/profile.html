@@ -27,7 +27,7 @@
     var canvasData;
     $("#modalCrop").on("shown.bs.modal", function () {
       $image.cropper({
-        viewMode: 1,
+        viewMode: 0.5,
         aspectRatio: 1/1,
         minCropBoxWidth: 250,
         minCropBoxHeight: 250,
@@ -85,10 +85,9 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>
-                        <h4 class="modal-title">Crop the photo</h4>
                       </div>
                       <div class="modal-body">
-                        <img src="" id="image" style="max-width: 100%;">
+                        <img src="" id="image" style="max-width: 50%; max-height: 50%;">
                       </div>
                       <div class="modal-footer">
                         <div class="btn-group pull-left" role="group">
@@ -99,8 +98,8 @@
                             <span class="glyphicon glyphicon-zoom-out"></span>
                           </button>
                         </div>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Nevermind</button>
-                        <button type="button" class="btn btn-primary js-crop-and-upload">Crop and upload</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+                        <button type="button" class="btn btn-primary js-crop-and-upload">Загрузить</button>
                       </div>
                     </div>
                     </div>
