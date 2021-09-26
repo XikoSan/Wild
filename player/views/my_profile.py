@@ -3,9 +3,12 @@ from django.contrib.auth.decorators import login_required
 from django.db import connection
 from django.shortcuts import redirect
 from django.shortcuts import render, get_object_or_404
+from PIL import Image
 
+from django.core.files import File
 from player.player import Player
 from player.decorators.player import check_player
+from player.forms import ImageForm
 
 
 @login_required(login_url='/')
@@ -15,6 +18,27 @@ def my_profile(request):
     # получаем персонажа
     player = Player.objects.get(account=request.user)
     player_settings = None
+
+    if request.method == 'POST':
+        form = ImageForm(request.POST, request.FILES)
+        if form.is_valid():
+
+            player.image = form.cleaned_data['image']
+            player.save()
+
+            x = form.cleaned_data['x']
+            y = form.cleaned_data['y']
+            w = form.cleaned_data['width']
+            h = form.cleaned_data['height']
+            
+            image = Image.open(player.image)
+            cropped_image = image.crop((x, y, w + x, h + y))
+            resized_image = cropped_image.resize((250, 250), Image.ANTIALIAS)
+            resized_image.save(player.image.path)
+            
+            return redirect('my_profile')
+    else:
+        form = ImageForm()
 
     # timezones = pytz.common_timezones
     #
@@ -28,6 +52,7 @@ def my_profile(request):
     # ---------------------
 
     return render(request, 'player/profile.html', {'player': player,
+                                                   'form': form,
                                                    # 'timezones': timezones,
                                                    # 'cash_rating': cash_rating[0],
                                                    # 'player_settings': player_settings,
