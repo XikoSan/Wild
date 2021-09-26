@@ -52,6 +52,16 @@
       $image.cropper("zoom", -0.1);
     });
 
+    // Enable move up button
+    $(".js-pic-up").click(function () {
+      $image.cropper("move", 0, 10);
+    });
+
+    // Enable move down button
+    $(".js-pic-down").click(function () {
+      $image.cropper("move", 0, -10);
+    });
+
     /* SCRIPT TO COLLECT THE DATA AND POST TO THE SERVER */
     $(".js-crop-and-upload").click(function () {
         var cropData = $image.cropper("getData");
@@ -96,6 +106,14 @@
                           </button>
                           <button type="button" class="btn btn-default js-zoom-out">
                             <span class="glyphicon glyphicon-zoom-out"></span>
+                          </button>
+                        </div>
+                        <div class="btn-group pull-left" role="group">
+                          <button type="button" class="btn btn-default js-pic-up">
+                            <span class="glyphicon glyphicon-arrow-up"></span>
+                          </button>
+                          <button type="button" class="btn btn-default js-pic-down">
+                            <span class="glyphicon glyphicon-arrow-down"></span>
                           </button>
                         </div>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
