@@ -1,0 +1,278 @@
+// Для упрощения навигации во время разработки савить коменты (но не злоупотреблят) и в них добавлять #название__тега или #класса по которму можно будет быстро найти через поиск
+
+// background-color
+$main_bg: #1c1b23;
+$sec_bg: #27272f;
+$hr_bg: #31313a;
+$button_bg: #f36920;
+
+// text color
+$color_text: #dddddd;
+
+$font_size_mb: 7px;
+$font_size_tablet: 15px;
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Open Sans", sans-serif;
+    text-decoration: none;
+    box-sizing: border-box;
+    color: $color_text;
+}
+
+.panelHightNull {
+    height: 0px !important;
+    padding: 0px 9px !important;
+}
+
+.moveBlock {
+    right: 0px !important;
+}
+
+.version {
+    position: fixed;
+    color: rgba(255, 255, 255, 0.199);
+    font-size: 1%;
+    margin-left: 3px;
+}
+
+hr {
+    width: 100%;
+}
+
+.btnActive {
+    background-color: $button_bg;
+    border: none;
+    border-radius: 5px;
+}
+
+//нужен для работы скрипта для табов #Script#tab#скрипт для табов
+.dpb {
+    display: block !important;
+}
+
+input {
+    display: none;
+}
+
+body {
+    background-color: $main_bg;
+}
+
+.blok__bg {
+    background-color: $sec_bg;
+}
+
+.container {
+    .wrapper {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        .content {
+            flex-grow: 1;
+            .tabBox {
+                // Стили для табов, пока закоменчены, оставить на всякий случай, не удалять, аналогичные есть в медиа запросах, если будет решение сделать табы и на десктоп, раскоментить а в медиазпросах удалить, что бы код не дублировался #tab#TAB#TABS#Табы#таб
+
+                // .tabBox__button {
+                //     display: flex;
+                //     justify-content: space-between;
+
+                //     .buttonHr {
+                //         width: 0%;
+                //         border: 2px solid #31313a;
+                //     }
+
+                //     #tab1:checked ~ #btn1,
+                //     #tab2:checked ~ #btn2 {
+                //         box-shadow: none;
+                //         background: #31313a;
+                //     }
+
+                //     button {
+                //         width: 100vh;
+                //         padding: 15px 69px;
+                //         background: #27272f;
+                //         border: none;
+                //         box-shadow: inset 5px 4px 4px rgba(0, 0, 0, 0.42);
+                //     }
+                // }
+                .hrBetweenBlocks {
+                    border: 4px solid #31313a;
+                }
+                .mainTab {
+                    display: none;
+                }
+                .seconTab {
+                    display: none;
+                }
+            }
+        }
+        .footer {
+            display: flex;
+            align-items: center;
+            box-shadow: 0px 0px 10px 10px rgba(0, 0, 0, 0.1);
+            .navMenu {
+                position: relative;
+
+                .upDownMenu__label {
+                    margin: 0 10px 0 5px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-around;
+                    height: 30px;
+                    img {
+                        transform: rotate(0deg);
+                        transition: 1s ease;
+                    }
+
+                    .burgerMenu {
+                        width: 30px;
+                    }
+                }
+
+                .navMenu__box > a {
+                    width: 1px;
+                }
+
+                .navMenu__box {
+                    position: fixed;
+                    right: -125px;
+                    bottom: 56px;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    border-radius: 0px 0px 5px 0px;
+                    box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.4);
+                    transition: 0.3s ease;
+
+                    input[type="radio"]:checked + a {
+                        opacity: 1;
+                    }
+
+                    hr {
+                        margin: 56px 0 11px 0;
+                        border: 1px solid $hr_bg;
+                    }
+
+                    a {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-around;
+                        width: 97px;
+                        margin: 0 14px 28px 14px;
+                        opacity: 0.3;
+
+                        label {
+                            width: min-content;
+                            font-style: normal;
+                            font-weight: 400;
+                            margin-left: 18px;
+                        }
+                    }
+
+                    .main {
+                        &::before {
+                            content: url(../img/menu__navigation/main.svg);
+                        }
+                    }
+
+                    .booty {
+                        &::before {
+                            content: url(../img/menu__navigation/booty.svg);
+                        }
+                    }
+
+                    .map {
+                        &::before {
+                            content: url(../img/menu__navigation/map.svg);
+                        }
+                    }
+
+                    .party {
+                        &::before {
+                            content: url(../img/menu__navigation/party.svg);
+                        }
+                    }
+
+                    .storage {
+                        &::before {
+                            content: url(../img/menu__navigation/storage.svg);
+                        }
+                    }
+
+                    .assets {
+                        &::before {
+                            content: url(../img/menu__navigation/assets.svg);
+                        }
+                    }
+
+                    .trading {
+                        &::before {
+                            content: url(../img/menu__navigation/trading.svg);
+                        }
+                    }
+                }
+            }
+
+            .menu {
+                display: flex;
+                width: 100%;
+                justify-content: space-between;
+                align-items: center;
+
+                .power__item {
+                    display: flex;
+                    p {
+                        margin-right: 10px;
+                    }
+
+                    .resources__item-addPower {
+                        padding: 2px 5px;
+                        background: #747474;
+                        box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.44);
+                        border: none;
+                        border-radius: 2px;
+                        display: flex;
+                        align-items: center;
+                        position: relative;
+                        span {
+                            font-family: "Quantico", sans-serif;
+                            font-style: normal;
+                            font-weight: bold;
+                            color: #bebebe;
+                        }
+                        &::before {
+                            content: url(../img/clock.svg);
+                            position: absolute;
+                            top: -13px;
+                            left: 57px;
+                        }
+                    }
+                }
+
+                .resources__item {
+                    display: flex;
+                    align-items: center;
+                    margin-right: 10px;
+                    img {
+                        margin-right: 3px;
+                    }
+                }
+
+                .otherMenu {
+                    display: flex;
+                    align-items: center;
+                }
+            }
+        }
+    }
+
+    // #upDownMenu:checked ~ .navMenu__box {
+    //     right: 0px;
+    // }
+
+    // #upDownMenu:checked ~ .upDownMenu__label img {
+    //     transform: rotate(178deg);
+    // }
+}

@@ -1,0 +1,179 @@
+{% extends 'player/redesign/header.html' %}
+{% load static %}
+{% load i18n %}
+{% load tz %}
+{% load dict_key %}
+
+{% block content %}
+<div class="tabBox blok__bg">
+    <div class="tabBox__button">
+        <input type="radio" name="tabMenu" id="tab1" checked="checked">
+        <input type="radio" name="tabMenu" id="tab2">
+        <label for="tab1" onclick="chk1();" id="btn1" class="btn borButLeft">Обзор</label>
+        <hr class="buttonHr">
+        <label for="tab2" onclick="chk2();" id="btn2" class="btn">Чат</label>
+    </div>
+    <div id="div_1" class="mainTab dpb">
+        <div class="mainBox">
+            <hr>
+            <div class="mainBox__world mainTab__item">
+                <div class="icon__elemet">
+                    <img src="{% static 'redesign/img/no__img__icon.svg' %}" alt="world_icon">
+                    <h5>Мир</h5>
+                </div>
+                <div class="info__elemet">
+                    <div class="info__elemet-item">
+<!--                                        <span>+8K</span>-->
+                        <span>{{ world_pop }}</span>
+                        <img src="{% static 'redesign/img/mainBox/pop.svg' %}" alt="pop">
+<!--                                        <span>18</span>-->
+<!--                                        <img src="{% static 'redesign/img/mainBox/earch.svg' %}" alt="earh">-->
+                    </div>
+                    <div class="info__elemet-item">
+<!--                                        <span>6315</span>-->
+<!--                                        <img src="{% static 'redesign/img/mainBox/factory.svg' %}" alt="factory_icon">-->
+                        <span>839</span>
+                        <img src="{% static 'redesign/img/mainBox/count_part.svg' %}" alt="pop">
+<!--                                        <span>18</span>-->
+<!--                                        <img src="{% static 'redesign/img/mainBox/count__sity.svg' %}" alt="earh">-->
+<!--                                        <span>2</span>-->
+<!--                                        <img src="{% static 'redesign/img/mainBox/count__power.svg' %}" alt="earh">-->
+                    </div>
+
+                </div>
+            </div>
+            <hr>
+            <div class="mainBox__country mainTab__item">
+                <div class="icon__elemet">
+                    <img src="{% static 'redesign/img/no__img__icon.svg' %}" alt="world_icon">
+                    <h5>Независимый регион</h5>
+                </div>
+                <div class="info__elemet">
+                    <div class="info__elemet-item">
+<!--                                        <span>+8K</span>-->
+                        <span>{{ state_pop }}</span>
+                        <img src="{% static 'redesign/img/mainBox/pop.svg' %}" alt="pop">
+<!--                                        <span>18</span>-->
+<!--                                        <img src="{% static 'redesign/img/mainBox/earch.svg' %}" alt="earh">-->
+                    </div>
+                    <div class="info__elemet-item">
+<!--                                        <span>6315</span>-->
+<!--                                        <img src="{% static 'redesign/img/mainBox/factory.svg' %}" alt="factory_icon">-->
+                        <span>839</span>
+                        <img src="{% static 'redesign/img/mainBox/count_part.svg' %}" alt="pop">
+<!--                                        <span>18</span>-->
+<!--                                        <img src="{% static 'redesign/img/mainBox/count__sity.svg' %}" alt="earh">-->
+<!--                                        <span>2</span>-->
+<!--                                        <img src="{% static 'redesign/img/mainBox/count__power.svg' %}" alt="earh">-->
+                    </div>
+
+                </div>
+            </div>
+            <hr>
+            <div class="mainBox__region mainTab__item">
+                <div class="icon__elemet">
+                    <img src="static/img/regions/{{ player.region.on_map_id }}.png" width="25px" height="25px" alt="world_icon">
+                    <h5>{{ player.region.region_name }}</h5>
+                </div>
+                <div class="info__elemet">
+                    <div class="info__elemet-item">
+<!--                                        <span>+8K</span>-->
+                        <span>{{ region_pop }}</span>
+                        <img src="{% static 'redesign/img/mainBox/pop.svg' %}" alt="pop">
+<!--                                        <span>18</span>-->
+<!--                                        <img src="{% static 'redesign/img/mainBox/earch.svg' %}" alt="earh">-->
+                    </div>
+                    <div class="info__elemet-item">
+<!--                                        <span>6315</span>-->
+<!--                                        <img src="{% static 'redesign/img/mainBox/factory.svg' %}" alt="factory_icon">-->
+                        <span>839</span>
+                        <img src="{% static 'redesign/img/mainBox/count_part.svg' %}" alt="pop">
+<!--                                        <span>18</span>-->
+<!--                                        <img src="{% static 'redesign/img/mainBox/count__sity.svg' %}" alt="earh">-->
+<!--                                        <span>2</span>-->
+<!--                                        <img src="{% static 'redesign/img/mainBox/count__power.svg' %}" alt="earh">-->
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="warBox">
+            <div class="warBox__item">
+                <img src="{% static 'redesign/img/no__img__icon.svg' %}" alt="icon_power">
+                <span>Сторона 1</span>
+            </div>
+            <div class="warBox__item">
+                <img src="{% static 'redesign/img/no__img__icon.svg' %}" alt="icon">
+                <span>Сторона 2</span>
+            </div>
+            <span class="power__count">000.000.000</span>
+            <button class="btnActive">В бой</button>
+        </div>
+        <input type="radio" name="partAndEvent" id="partButtonId" checked="checked">
+        <input type="radio" name="partAndEvent" id="eventButtonId">
+        <div class="partBox">
+            <label  onclick="chkPartBtn();" class="partBox-label" id="partBtn">Партии государства</label>
+            <div class="partBox__panel" id="partBoxId">
+                {% for party in region_parties %}
+                <div class="partBox__panel__item">
+                    <img src="{% if party.image %}{{ party.image.url }}{% else %}{% static 'redesign/img/mainBox/count_part.svg' %}{% endif %}" width="25px" height="25px" alt="icon_part">
+                    <p>{{ party.title }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="eventBox">
+            <label  onclick="chkEventBtn();" class="eventBox-label" id="eventBtn">События</label>
+            <div class="eventBox__panel panelHightNull" id="eventBoxId">
+                <div class="eventBox__panel__item">
+                    <img src="{% static 'redesign/img/no__img__icon.svg' %}" alt="icon_part">
+                    <p>Какая-то новость из логов</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="div_2" class="seconTab">
+        <hr>
+        <div class="secondTab__chat">
+            {% get_current_language as LANGUAGE_CODE %}
+            {% get_language_info for LANGUAGE_CODE as lang %}
+            {{ LANGUAGE_CODE|json_script:"room-name" }}
+            {{ player.pk|json_script:"player_id" }}
+            <div id="chat-log-{{ LANGUAGE_CODE }}" class="chatPanelMassegeBox">
+                <div class="massage" id="message_line" style="display: none">
+                    <a class="author_link" href='' target='_blank'><img class="author_avatar" src="" width="25px" height="25px" alt="avatar"></a>
+                    <div class="massage__box">
+                        <p class="massage__name" data-title=""></p>
+                        <p class="massage__text"></p>
+                    </div>
+                </div>
+                {% if not player.chat_ban %}
+                    {% for message in messages %}
+                        {% if message|dict_key:'content' != 'ban_chat' %}
+                <div class="massage">
+                    <a href='/profile/{{  message|dict_key:"author" }}' target='_blank'><img src="{{  message|dict_key:'image_link'  }}" width="25px" height="25px" alt="avatar"></a>
+                    <div class="massage__box">
+                        <p class="massage__name" data-title="{{ message|dict_key:'dtime' }}">{{  message|dict_key:"author_nickname" }}</p>
+                        <p class="massage__text">{{ message|dict_key:'content' }}</p>
+                    </div>
+                </div>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <script>
+            function scroll_chat() {
+                document.getElementById('chat-log-{{ LANGUAGE_CODE }}').scrollTop = document.getElementById('chat-log-{{ LANGUAGE_CODE }}').scrollHeight;
+            }
+            </script>
+            <div class="chatPanelInputBox">
+                <input id="chat-message-input-{{ LANGUAGE_CODE }}" type="text" placeholder="Введите сообщение"
+                class="chatPanelInputBox-text">
+                <input id="chat-message-submit-{{ LANGUAGE_CODE }}" type="submit" value="Отправить" class="chatPanelInputBox-button btnActive">
+            </div>
+        </div>
+        <script src='{% static "redesign/js/chat.js" %}?{{ csrf_token }}'></script>
+    </div>
+</div>
+{% endblock %}

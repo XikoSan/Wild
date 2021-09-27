@@ -1,0 +1,282 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Open Sans", sans-serif;
+  text-decoration: none;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  color: #dddddd;
+}
+
+.panelHightNull {
+  height: 0px !important;
+  padding: 0px 9px !important;
+}
+
+.moveBlock {
+  right: 0px !important;
+}
+
+.version {
+  position: fixed;
+  color: rgba(255, 255, 255, 0.199);
+  font-size: 1%;
+  margin-left: 3px;
+}
+
+hr {
+  width: 100%;
+}
+
+.btnActive {
+  background-color: #f36920;
+  border: none;
+  border-radius: 5px;
+}
+
+.dpb {
+  display: block !important;
+}
+
+input {
+  display: none;
+}
+
+body {
+  background-color: #1c1b23;
+}
+
+.blok__bg {
+  background-color: #27272f;
+}
+
+.container .wrapper {
+  min-height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.container .wrapper .content {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+}
+
+.container .wrapper .content .tabBox .hrBetweenBlocks {
+  border: 4px solid #31313a;
+}
+
+.container .wrapper .content .tabBox .mainTab {
+  display: none;
+}
+
+.container .wrapper .content .tabBox .seconTab {
+  display: none;
+}
+
+.container .wrapper .footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-shadow: 0px 0px 10px 10px rgba(0, 0, 0, 0.1);
+          box-shadow: 0px 0px 10px 10px rgba(0, 0, 0, 0.1);
+}
+
+.container .wrapper .footer .navMenu {
+  position: relative;
+}
+
+.container .wrapper .footer .navMenu .upDownMenu__label {
+  margin: 0 10px 0 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  height: 30px;
+}
+
+.container .wrapper .footer .navMenu .upDownMenu__label img {
+  -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+  -webkit-transition: 1s ease;
+  transition: 1s ease;
+}
+
+.container .wrapper .footer .navMenu .upDownMenu__label .burgerMenu {
+  width: 30px;
+}
+
+.container .wrapper .footer .navMenu .navMenu__box > a {
+  width: 1px;
+}
+
+.container .wrapper .footer .navMenu .navMenu__box {
+  position: fixed;
+  right: -125px;
+  bottom: 56px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 0px 0px 5px 0px;
+  -webkit-box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.4);
+          box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.4);
+  -webkit-transition: 0.3s ease;
+  transition: 0.3s ease;
+}
+
+.container .wrapper .footer .navMenu .navMenu__box input[type="radio"]:checked + a {
+  opacity: 1;
+}
+
+.container .wrapper .footer .navMenu .navMenu__box hr {
+  margin: 56px 0 11px 0;
+  border: 1px solid #31313a;
+}
+
+.container .wrapper .footer .navMenu .navMenu__box a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  width: 97px;
+  margin: 0 14px 28px 14px;
+  opacity: 0.3;
+}
+
+.container .wrapper .footer .navMenu .navMenu__box a label {
+  width: -webkit-min-content;
+  width: -moz-min-content;
+  width: min-content;
+  font-style: normal;
+  font-weight: 400;
+  margin-left: 18px;
+}
+
+.container .wrapper .footer .navMenu .navMenu__box .main::before {
+  content: url(../img/menu__navigation/main.svg);
+}
+
+.container .wrapper .footer .navMenu .navMenu__box .booty::before {
+  content: url(../img/menu__navigation/booty.svg);
+}
+
+.container .wrapper .footer .navMenu .navMenu__box .map::before {
+  content: url(../img/menu__navigation/map.svg);
+}
+
+.container .wrapper .footer .navMenu .navMenu__box .party::before {
+  content: url(../img/menu__navigation/party.svg);
+}
+
+.container .wrapper .footer .navMenu .navMenu__box .storage::before {
+  content: url(../img/menu__navigation/storage.svg);
+}
+
+.container .wrapper .footer .navMenu .navMenu__box .assets::before {
+  content: url(../img/menu__navigation/assets.svg);
+}
+
+.container .wrapper .footer .navMenu .navMenu__box .trading::before {
+  content: url(../img/menu__navigation/trading.svg);
+}
+
+.container .wrapper .footer .menu {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.container .wrapper .footer .menu .power__item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.container .wrapper .footer .menu .power__item p {
+  margin-right: 10px;
+}
+
+.container .wrapper .footer .menu .power__item .resources__item-addPower {
+  padding: 2px 5px;
+  background: #747474;
+  -webkit-box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.44);
+          box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.44);
+  border: none;
+  border-radius: 2px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+}
+
+.container .wrapper .footer .menu .power__item .resources__item-addPower span {
+  font-family: "Quantico", sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  color: #bebebe;
+}
+
+.container .wrapper .footer .menu .power__item .resources__item-addPower::before {
+  content: url(../img/clock.svg);
+  position: absolute;
+  top: -13px;
+  left: 57px;
+}
+
+.container .wrapper .footer .menu .resources__item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-right: 10px;
+}
+
+.container .wrapper .footer .menu .resources__item img {
+  margin-right: 3px;
+}
+
+.container .wrapper .footer .menu .otherMenu {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+/*# sourceMappingURL=style.css.map */

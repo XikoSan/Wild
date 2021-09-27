@@ -222,4 +222,3 @@ function countdown() {
         }
     }
 }
-window.addEventListener('load', countdown);
