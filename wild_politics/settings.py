@@ -29,7 +29,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = not os.getenv('PROD')
 
-ALLOWED_HOSTS = ['mysite.com', 'localhost', '127.0.0.1', '192.168.0.181', 'ovz1.m4troskun.pxlzp.vps.myjino.ru']
+ALLOWED_HOSTS = ['mysite.com', 'localhost', '127.0.0.1', '192.168.0.181', 'test.wildpolitics.online']
 
 INTERNAL_IPS = ['127.0.0.1']
 
