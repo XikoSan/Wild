@@ -6,9 +6,9 @@ function insertAfter(newNode, existingNode) {
 }
 
 const chatSocket = new WebSocket(
-    'ws://'
+    'wss://'
     + window.location.host
-    + '/ws/chat/'
+    + '/wss/chat/'
     + roomName
     + '/'
 );
