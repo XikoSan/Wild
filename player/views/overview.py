@@ -23,7 +23,7 @@ from region.region import Region
 def overview(request):
     player = Player.objects.get(account=request.user)
 
-    region_parties = Party.objects.filter(region=player.region)
+    region_parties = Party.objects.filter(deleted=False, region=player.region)
 
     world_pop = Player.objects.all().count()
     region_pop = Player.objects.filter(region=player.region).count()
