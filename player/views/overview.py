@@ -12,6 +12,7 @@ from player.logs.print_log import log
 from django.utils import timezone
 from datetime import datetime
 from wild_politics.settings import TIME_ZONE
+from wild_politics.settings import sentry_environment
 import pytz
 from party.party import Party
 from region.region import Region
@@ -58,8 +59,11 @@ def overview(request):
                 b['image_link'] = static('img/nopic.png')
             messages.append(b)
 
+    http_use = False
+    if sentry_environment == "development":
+        http_use = True
     # отправляем в форму
-    response = render(request, 'player/redesign/overview.html', {
+    response = render(request, 'player/overview.html', {
         'page_name': _('Обзор'),
 
         'player': player,
@@ -70,6 +74,8 @@ def overview(request):
         'region_pop': region_pop,
 
         'messages': messages,
+
+        'http_use': http_use,
 
     })
 

@@ -2,9 +2,9 @@ const roomName = JSON.parse(document.getElementById('room-name').textContent);
 const playerId = JSON.parse(document.getElementById('player_id').textContent);
 
 const chatSocket = new WebSocket(
-    'ws://'
+    chat_conn_type + '://'
     + window.location.host
-    + '/ws/chat/'
+    + '/wss/chat/'
     + roomName
     + '/'
 );

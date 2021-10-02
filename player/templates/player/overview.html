@@ -79,6 +79,9 @@
             </div>
         </div>
     </div>
+    <script>
+    const chat_conn_type = "{% if http_use %}ws{% else %}wss{% endif %}";
+    </script>
     <script src='{% static "chat.js" %}?{{ csrf_token }}'></script>
     {% if player.account.groups.all.0.name == "chat_moderator" %}
     <script src='{% static "chat_admin.js" %}?{{ csrf_token }}'></script>
