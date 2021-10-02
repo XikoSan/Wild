@@ -40,6 +40,7 @@ urlpatterns = [
                   url(r'', include('storage.urls.vault')),
 
                   url(r'', include('party.urls.party')),
+                  url(r'', include('party.urls_list')),
                   url(r'', include('party.urls.roles')),
                   url(r'', include('party.urls.staff')),
                   url('__debug__/', include(debug_toolbar.urls)),

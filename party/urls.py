@@ -9,9 +9,10 @@ from party.views.management.staff.kick_from_party import kick_from_party
 from party.views.management.staff.leave_party import leave_party
 from party.views.management.staff.request_in_party import request_in_party
 from party.views.party import party
+from party.views.lists.world_parties import world_parties_list
+from party.views.lists.region_parties import region_parties_list
 
 urlpatterns = [
-
     # страница партии
     url(r'^party$', party, name='party'),
     # открытие буферной страницы вступления в партию,
