@@ -6,7 +6,7 @@ import datetime
 # from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.db import models
 
-from state.parliament.parliament import Parliament
+from state.models.parliament.parliament import Parliament
 
 
 # from io import BytesIO

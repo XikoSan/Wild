@@ -1,12 +1,12 @@
 from django.contrib import admin
 
-from .parliament.bulletin import Bulletin
-from .parliament.deputy_mandate import DeputyMandate
-from .parliament.parliament import Parliament
-from .parliament.parliament_party import ParliamentParty
-from .parliament.parliament_voting import ParliamentVoting
-from .state import State
-from .treasury import Treasury
+from state.models.parliament.bulletin import Bulletin
+from state.models.parliament.deputy_mandate import DeputyMandate
+from state.models.parliament.parliament import Parliament
+from state.models.parliament.parliament_party import ParliamentParty
+from state.models.parliament.parliament_voting import ParliamentVoting
+from state.models.state import State
+from state.models.treasury import Treasury
 
 # Register your models here.
 admin.site.register(State)

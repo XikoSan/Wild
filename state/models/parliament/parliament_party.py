@@ -9,7 +9,7 @@ from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 
 from party.party import Party
-from state.parliament.parliament import Parliament
+from state.models.parliament.parliament import Parliament
 
 
 # класс, указывающий какой процент парламента занимает партия

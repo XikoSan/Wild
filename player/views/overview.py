@@ -62,8 +62,14 @@ def overview(request):
     http_use = False
     if sentry_environment == "development":
         http_use = True
+
+    groups = list(player.account.groups.all().values_list('name', flat=True))
+    page = 'player/overview.html'
+    if 'redesign' in groups:
+        page = 'player/redesign/overview.html'
+
     # отправляем в форму
-    response = render(request, 'player/overview.html', {
+    response = render(request, page, {
         'page_name': _('Обзор'),
 
         'player': player,

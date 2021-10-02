@@ -173,6 +173,9 @@
                 <input id="chat-message-submit-{{ LANGUAGE_CODE }}" type="submit" value="Отправить" class="chatPanelInputBox-button btnActive">
             </div>
         </div>
+        <script>
+        const chat_conn_type = "{% if http_use %}ws{% else %}wss{% endif %}";
+        </script>
         <script src='{% static "redesign/js/chat.js" %}?{{ csrf_token }}'></script>
     </div>
 </div>

@@ -19,7 +19,7 @@ from channels.routing import ProtocolTypeRouter, URLRouter
 import chat.routing
 
 application = ProtocolTypeRouter({
-    "https": django_asgi_app,
+    "http": django_asgi_app,
     "websocket": AuthMiddlewareStack(
         URLRouter(
             chat.routing.websocket_urlpatterns

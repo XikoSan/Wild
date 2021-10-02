@@ -5,7 +5,7 @@
 from django import forms
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
-from state.state import State
+from state.models.state import State
 
 # from six import with_metaclass
 # from io import BytesIO

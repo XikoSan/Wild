@@ -7,7 +7,7 @@ from io import BytesIO
 
 from party.party import Party
 from player.player import Player
-from state.state import State
+from state.models.state import State
 
 
 class Parliament(models.Model):

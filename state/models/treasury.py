@@ -7,7 +7,7 @@ from django.utils.translation import gettext_lazy, ugettext as _
 from io import BytesIO
 
 from region.region import Region
-from state.state import State
+from state.models.state import State
 from storage.models.storage import Storage
 
 

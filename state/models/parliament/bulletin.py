@@ -8,7 +8,7 @@ from django.db import models
 
 from party.party import Party
 from player.player import Player
-from state.parliament.parliament_voting import ParliamentVoting
+from state.models.parliament.parliament_voting import ParliamentVoting
 
 
 # from io import BytesIO

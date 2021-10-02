@@ -7,7 +7,7 @@ from party.primaries.primaries import Primaries
 from party.primaries.primaries_bulletin import PrimBulletin
 from player.decorators.player import check_player
 from player.player import Player
-from state.parliament.deputy_mandate import DeputyMandate
+from state.models.parliament.deputy_mandate import DeputyMandate
 
 
 # процедура исключения из партии

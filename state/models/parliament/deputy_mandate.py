@@ -9,7 +9,7 @@ from django.db import models
 
 from party.party import Party
 from player.player import Player
-from state.parliament.parliament import Parliament
+from state.models.parliament.parliament import Parliament
 
 
 # класс, указывающий право участвовать в деятельности парламента государства от имени партии
