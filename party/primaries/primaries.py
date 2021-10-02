@@ -45,12 +45,15 @@ class Primaries(models.Model):
             )
             self.save()
 
-    # удаляем таску вместе с экземпляром модели
-    def delete(self, *args, **kwargs):
-        if self.task is not None:
-            self.task.delete()
 
-        return super(self.__class__, self).delete(*args, **kwargs)
+    def delete_task(self):
+        # проверяем есть ли таска
+        if self.task is not None:
+            task_identificator = self.task.id
+            # убираем таску у экземпляра модели
+            Primaries.objects.select_related('task').filter(pk=self.id).update(task=None)
+            # удаляем таску
+            PeriodicTask.objects.filter(pk=task_identificator).delete()
 
     def __str__(self):
         if self.prim_end:
