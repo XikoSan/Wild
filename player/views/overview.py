@@ -24,11 +24,12 @@ from region.region import Region
 def overview(request):
     player = Player.objects.get(account=request.user)
 
-    region_parties = Party.objects.filter(deleted=False, region=player.region)
+    region_parties = Party.objects.filter(deleted=False, region=player.region).count()
+    world_parties = Party.objects.filter(deleted=False).count()
 
     world_pop = Player.objects.all().count()
     region_pop = Player.objects.filter(region=player.region).count()
-    state_pop = 0
+    state_pop = region_pop
     if player.region.state:
         reigions_state = Region.objects.filter(state=player.region.state)
         state_pop = Player.objects.filter(region__in=reigions_state).count()
@@ -74,6 +75,7 @@ def overview(request):
 
         'player': player,
         'region_parties': region_parties,
+        'world_parties': world_parties,
 
         'world_pop': world_pop,
         'state_pop': state_pop,
