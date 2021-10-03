@@ -2,9 +2,13 @@ from django.contrib.auth.decorators import login_required
 from django.db import connection
 from django.shortcuts import redirect
 from django.shortcuts import render, get_object_or_404
-
+from django.utils import timezone
+import redis
 from player.player import Player
 from player.decorators.player import check_player
+from datetime import datetime
+from wild_politics.settings import TIME_ZONE
+import pytz
 
 
 @login_required(login_url='/')
@@ -20,6 +24,16 @@ def view_profile(request, pk):
     if player == char:
         # перекидываем его в профиль
         return redirect("my_profile")
+
+    # получим время онлайна игрока
+    dtime = None
+    r = redis.StrictRedis(host='redis', port=6379, db=0)
+
+    timestamp = r.hget('online', str(char.pk))
+    if timestamp:
+        dtime = datetime.fromtimestamp(int(timestamp)).replace(tzinfo=pytz.timezone(TIME_ZONE)).astimezone(
+            tz=pytz.timezone(player.time_zone)).strftime("%d.%m.%Y %H:%M:%S")
+
     # char_settings = None
     # if PlayerSettings.objects.filter(player=char).exists():
     #     char_settings = PlayerSettings.objects.get(player=char)
@@ -32,6 +46,7 @@ def view_profile(request, pk):
     # ---------------------
     return render(request, 'player/view_profile.html', {'player': player,
                                                         'char': char,
+                                                        'dtime': dtime,
                                                         # 'cash_rating': cash_rating[0],
                                                         # 'char_settings': char_settings,
                                                         # 'countdown': UntilRecharge(player)

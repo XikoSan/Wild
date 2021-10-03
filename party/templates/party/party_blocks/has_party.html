@@ -104,7 +104,7 @@
             </div>
             <div class="col-xs-2 col-sm-2 col-md-2" align="center">
                 <h4>
-                    {{ member.account.last_login|timezone:player.time_zone|date:"d.m.Y H:i" }}
+                    {% if online_dict|dict_key:member.pk %}{{ online_dict|dict_key:member.pk }}{% else %}давно{% endif %}
                 </h4>
             </div>
             <div class="col-xs-4 col-sm-4 col-md-4">

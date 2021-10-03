@@ -9,7 +9,6 @@ import bleach
 import pytz
 from django.utils import timezone
 import redis
-from player.logs.print_log import log
 
 def _get_player(account):
     return Player.objects.select_related('account').get(account=account)
@@ -151,7 +150,6 @@ class ChatConsumer(AsyncWebsocketConsumer):
             pass
 
         else:
-            log(text_data_json)
             if message == 'delete_message' \
                     and text_data_json['counter']:
                 counter = int(text_data_json['counter'])

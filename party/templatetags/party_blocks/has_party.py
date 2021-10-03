@@ -7,7 +7,10 @@ from party.primaries.primaries_leader import PrimariesLeader
 from party.primaries.primaries import Primaries
 from party.logs.party_apply import PartyApply
 from party.position import PartyPosition
-
+from datetime import datetime
+from wild_politics.settings import TIME_ZONE
+import pytz
+import redis
 
 @register.inclusion_tag('party/party_blocks/has_party.html')
 def has_party(player):
@@ -21,6 +24,18 @@ def has_party(player):
     if Primaries.objects.filter(party=Party.objects.get(pk=player.party.pk), running=True).exists():
         prims = Primaries.objects.get(party=player.party, running=True)
 
+    online_dict = {}
+    r = redis.StrictRedis(host='redis', port=6379, db=0)
+
+    for char in Player.objects.filter(party=player.party):
+        timestamp = None
+        timestamp = r.hget('online', str(char.pk))
+        if timestamp:
+            online_dict[char.pk] = datetime.fromtimestamp(int(timestamp)).replace(tzinfo=pytz.timezone(TIME_ZONE)).astimezone(
+                tz=pytz.timezone(player.time_zone)).strftime("%d.%m.%Y %H:%M:%S")
+        else:
+            online_dict[char.pk] = None
+
     return {
         # игрок
         'player': player,
@@ -30,5 +45,6 @@ def has_party(player):
         'players_list': Player.objects.filter(party=player.party),
         'roles_list': PartyPosition.objects.filter(party=player.party),
         'primaries': prims,
-        'prev_lead': last_prim_lead
+        'prev_lead': last_prim_lead,
+        'online_dict': online_dict
     }

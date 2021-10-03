@@ -34,6 +34,15 @@
                                 <b><font size="5" >{{ char.pk }}</font></b>
                             </div>
                         </div>
+                        <!--Был в сети-->
+                        <div class="row flex" style="margin-left: 10px;">
+                            <div class="col-xs-6 col-sm-6 col-md-6" align="left">
+                                <b><font size="5" >Был в сети:</font></b>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <b><font size="4" >{% if dtime %}{{ dtime }}{% else %}давно{% endif %}</font></b>
+                            </div>
+                        </div>
                         <!--место нахождения-->
                         <div class="row flex" style="margin-left: 10px;">
                             <div class="col-xs-6 col-sm-6 col-md-6" align="left">
