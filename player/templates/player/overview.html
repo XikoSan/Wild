@@ -33,10 +33,10 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-xs-2 col-sm-2 col-md-2" align="left">Игроков: {{ world_pop }}</div>
+        <div class="col-xs-2 col-sm-2 col-md-2" align="left" onclick="window.location.href = '/world/players/'"  style="cursor: pointer">Игроков: {{ world_pop }}</div>
         <div class="col-xs-2 col-sm-2 col-md-2" align="left" onclick="window.location.href = '/world/parties/'"  style="cursor: pointer">Партий: {{ world_parties }}</div>
         <div class="col-xs-2 col-sm-2 col-md-2" align="left"></div>
-        <div class="col-xs-2 col-sm-2 col-md-2" align="left">Игроков: {{ region_pop }}</div>
+        <div class="col-xs-2 col-sm-2 col-md-2" align="left" onclick="window.location.href = '/region/{{ player.region.pk }}/players/'"  style="cursor: pointer">Игроков: {{ region_pop }}</div>
         <div class="col-xs-2 col-sm-2 col-md-2" align="left" onclick="window.location.href = '/region/{{ player.region.pk }}/parties/'"  style="cursor: pointer">Партий: {{ region_parties }}</div>
         <div class="col-xs-2 col-sm-2 col-md-2" align="left"></div>
     </div>

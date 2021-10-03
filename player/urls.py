@@ -7,6 +7,8 @@ from .views.new_player import new_player
 from .views.expense_energy import expense_energy
 from .views.my_profile import my_profile
 from .views.view_profile import view_profile
+from player.views.lists.world_players import world_players_list
+from player.views.lists.region_players import region_players_list
 
 urlpatterns = [
 
@@ -16,6 +18,11 @@ urlpatterns = [
     url(r'^player/new/$', new_player, name='new_player'),
     # выход
     # url(r'^logout', logout.LogoutView.as_view(), name='logout'),
+
+    # открытие списка всех игроков
+    url(r'^world/players/', world_players_list, name='world_players_list'),
+    # открытие списка населения региона
+    url(r'^region/(?P<region_pk>\d+)/players/', region_players_list, name='region_players_list'),
 
     # открытие "обзора"
     url(r'^overview$', overview, name='overview'),
