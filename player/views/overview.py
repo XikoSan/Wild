@@ -44,15 +44,16 @@ def overview(request):
         if r.hlen('counter') > 0:
             counter = r.hget('counter', 'counter')
 
-        redis_list = r.zrangebyscore("chat", 0, counter)
+        redis_list = r.zrangebyscore("chat", 0, counter, withscores=True)
 
         for scan in redis_list:
-            b = json.loads(scan)
+            b = json.loads(scan[0])
             author = Player.objects.filter(pk=int(b['author'])).only('id', 'nickname', 'image', 'time_zone').get()
             # сначала делаем из наивного времени aware, потом задаем ЧП игрока
             b['dtime'] = datetime.fromtimestamp(int(b['dtime'])).replace(tzinfo=pytz.timezone(TIME_ZONE)).astimezone(
                 tz=pytz.timezone(player.time_zone)).strftime("%H:%M")
             b['author'] = author.pk
+            b['counter'] = int(scan[1])
             b['author_nickname'] = author.nickname
             if author.image:
                 b['image_link'] = author.image.url

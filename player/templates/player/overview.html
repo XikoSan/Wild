@@ -14,7 +14,7 @@
 {% block content %}
 {% if player.account.groups.all.0.name == "chat_moderator" %}
 <script>
-    const ban_button = "{% if request.user.is_superuser %} <input type='button' class='message__ban' value='отключить чат'>{% endif %}";
+    const ban_button = "{% if request.user.is_superuser %} <input type='button' class='message__ban' value='отключить чат'><input type='button' class='message__delete' value='удалить'>{% endif %}";
 </script>
 {% endif %}
 <div class="row">
@@ -54,14 +54,15 @@
             <section id="chat-log-{{ LANGUAGE_CODE }}" class="chat" style="height: 50vh; flex: 10 10 auto; overflow-x: hidden; overflow-y: auto;">
                 {% if not player.chat_ban %}
                     {% for message in messages %}
-                        {% if message|dict_key:'content' != 'ban_chat' %}
+                        {% if message|dict_key:'content' != 'ban_chat' and message|dict_key:'content' != 'delete_message' %}
                 <div class="row">
-                    <div class='message {% if message|dict_key:"author" == player.pk %}message--user-2{% else %}message--user-1{% endif %}' data-sender='{{  message|dict_key:"author" }}'>
+                    <div class='message {% if message|dict_key:"author" == player.pk %}message--user-2{% else %}message--user-1{% endif %}' data-counter='{{  message|dict_key:"counter" }}' data-sender='{{  message|dict_key:"author" }}'>
                         <time class='message__time'>
                             {{ message|dict_key:'dtime' }}
                             {% if player.account.groups.all.0.name == "chat_moderator" %}
                                 {% if message|dict_key:"author" != player.pk %}
                             <input type='button' class='message__ban' value='отключить чат'>
+                            <input type='button' class='message__delete' value='удалить'>
                                 {% endif %}
                             {% endif %}
                         </time>

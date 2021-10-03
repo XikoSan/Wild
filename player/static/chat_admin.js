@@ -9,4 +9,13 @@ jQuery(document).ready(function ($) {
         }));
 
     });
+    $(".chat").on("click", ".message__delete", function(e){
+        e.preventDefault();
+
+        chatSocket.send(JSON.stringify({
+            'message': 'delete_message',
+            'counter': $(this).parent().parent().data('counter')
+        }));
+        $(this).parent().parent().parent().remove();
+    });
 });

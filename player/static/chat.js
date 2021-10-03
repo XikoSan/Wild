@@ -26,7 +26,7 @@ chatSocket.onmessage = function(e) {
 
     var div = document.createElement('div');
     div.className = 'row';
-    div.innerHTML = "<div class='message" + item_class + "' data-sender='" + data.id + "'><time class='message__time'>" + data.time + var_ban + "</time><figure class='message__author-pic'><a href='/profile/" + data.id + "' target='_blank'><img src=" + data.image + " width='50px' height='50px'></a></figure><div class='message__text'><p>" + data.message + "</p></div></div>";
+    div.innerHTML = "<div class='message" + item_class + "' data-counter='" + data.counter + "' data-sender='" + data.id + "'><time class='message__time'>" + data.time + var_ban + "</time><figure class='message__author-pic'><a href='/profile/" + data.id + "' target='_blank'><img src=" + data.image + " width='50px' height='50px'></a></figure><div class='message__text'><p>" + data.message + "</p></div></div>";
     document.getElementById('chat-log-' + roomName).appendChild(div);
 
     document.getElementById('chat-log-' + roomName).scrollTop = document.getElementById('chat-log-' + roomName).scrollHeight;

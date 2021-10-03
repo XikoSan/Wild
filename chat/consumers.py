@@ -9,7 +9,7 @@ import bleach
 import pytz
 from django.utils import timezone
 import redis
-
+from player.logs.print_log import log
 
 def _get_player(account):
     return Player.objects.select_related('account').get(account=account)
@@ -30,6 +30,11 @@ def _get_groups(user):
 def _set_player_banned(pk):
     Player.objects.filter(pk=pk).update(chat_ban=True)
 
+
+def _delete_message(counter):
+    r = redis.StrictRedis(host='redis', port=6379, db=0)
+
+    r.zremrangebyscore('chat', counter, counter)
 
 # def _get_last_10_messages(chat_id):
 #     chat, created = Chat.objects.get_or_create(chat_id=chat_id)
@@ -70,6 +75,8 @@ def _append_message(chat_id, author, text):
 
     if count > 50:
         r.zremrangebyrank('chat', 0, 0)
+
+    return int(counter) + 1
 
 
 class ChatConsumer(AsyncWebsocketConsumer):
@@ -135,36 +142,45 @@ class ChatConsumer(AsyncWebsocketConsumer):
         message = text_data_json['message']
         destination = ''
 
-        await sync_to_async(_append_message, thread_sensitive=True)(chat_id=self.room_name,
-                                                                    author=self.player,
-                                                                    text=bleach.clean(message))
+        counter = await sync_to_async(_append_message, thread_sensitive=True)(chat_id=self.room_name,
+                                                                        author=self.player,
+                                                                        text=bleach.clean(message))
 
-        if message == 'ban_chat' \
+        if (message == 'ban_chat' or message == 'delete_message')\
                 and not self.moderator:
             pass
 
         else:
-            if message == 'ban_chat' \
-                    and text_data_json['destination']:
-                destination = text_data_json['destination']
-                await sync_to_async(_set_player_banned, thread_sensitive=True)(pk=destination)
+            log(text_data_json)
+            if message == 'delete_message' \
+                    and text_data_json['counter']:
+                counter = int(text_data_json['counter'])
+                await sync_to_async(_delete_message, thread_sensitive=True)(counter=counter)
 
-            image_url = '/static/img/nopic.png'
-            if self.player.image:
-                image_url = self.player.image.url
+            else:
+                if message == 'ban_chat' \
+                        and text_data_json['destination']:
+                    destination = text_data_json['destination']
+                    await sync_to_async(_set_player_banned, thread_sensitive=True)(pk=destination)
 
-            # Send message to room group
-            await self.channel_layer.group_send(
-                self.room_group_name,
-                {
-                    'type': 'chat_message',
-                    'id': self.player.pk,
-                    'image': image_url,
-                    'nickname': self.player.nickname,
-                    'message': message,
-                    'destination': destination
-                }
-            )
+
+                image_url = '/static/img/nopic.png'
+                if self.player.image:
+                    image_url = self.player.image.url
+
+                # Send message to room group
+                await self.channel_layer.group_send(
+                    self.room_group_name,
+                    {
+                        'type': 'chat_message',
+                        'id': self.player.pk,
+                        'image': image_url,
+                        'nickname': self.player.nickname,
+                        'message': message,
+                        'destination': destination,
+                        'counter': counter
+                    }
+                )
 
             if message == 'ban_chat' \
                     and text_data_json['destination']:
@@ -190,6 +206,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
         id = event['id']
         image = event['image']
         nickname = event['nickname']
+        counter = event['counter']
 
         if message == 'ban_chat':
             if event['destination'] == self.player.pk:
@@ -204,4 +221,5 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 'id': id,
                 'image': image,
                 'nickname': nickname,
+                'counter': counter,
             }))
