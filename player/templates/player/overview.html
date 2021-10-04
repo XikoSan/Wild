@@ -50,13 +50,14 @@
                 src="/static/img/{{ LANGUAGE_CODE }}.png" width="30" height="30"> {{ lang.name_local }}</a></li>
     </ul>
     <div class="tab-content">
-        <div id="{{ LANGUAGE_CODE }}" class="tab-pane fade in active" >
+        <div id="{{ LANGUAGE_CODE }}" class="tab-pane fade in active chat_window" >
             <section id="chat-log-{{ LANGUAGE_CODE }}" class="chat" style="height: 50vh; flex: 10 10 auto; overflow-x: hidden; overflow-y: auto;">
                 {% if not player.chat_ban %}
                     {% for message in messages %}
                         {% if message|dict_key:'content' != 'ban_chat' and message|dict_key:'content' != 'delete_message' %}
-                <div class="row">
+                <div class="row" style="margin-top: 1%">
                     <div class='message {% if message|dict_key:"author" == player.pk %}message--user-2{% else %}message--user-1{% endif %}' data-counter='{{  message|dict_key:"counter" }}' data-sender='{{  message|dict_key:"author" }}'>
+                        <div class='massage__name' style="cursor: pointer;">{{  message|dict_key:"author_nickname" }}</div>
                         <time class='message__time'>
                             {{ message|dict_key:'dtime' }}
                             {% if player.account.groups.all.0.name == "chat_moderator" %}
@@ -85,7 +86,7 @@
             </script>
             <div style="display: flex">
                 <div style="flex: 10 10 auto">
-                    <input id="chat-message-input-{{ LANGUAGE_CODE }}" type="text" size="100" maxlength="500" style="width: 100%">
+                    <input id="chat-message-input-{{ LANGUAGE_CODE }}" class="chat-message-input" type="text" size="100" maxlength="500" style="width: 100%">
                 </div>
                 <div style="flex: 1 1 auto">
                     <input id="chat-message-submit-{{ LANGUAGE_CODE }}" type="button" value="Отправить" class="chat-button"

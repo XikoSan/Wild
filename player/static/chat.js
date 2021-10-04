@@ -25,8 +25,9 @@ chatSocket.onmessage = function(e) {
     }
 
     var div = document.createElement('div');
+    div.style.cssText = "margin-top: 1%";
     div.className = 'row';
-    div.innerHTML = "<div class='message" + item_class + "' data-counter='" + data.counter + "' data-sender='" + data.id + "'><time class='message__time'>" + data.time + var_ban + "</time><figure class='message__author-pic'><a href='/profile/" + data.id + "' target='_blank'><img src=" + data.image + " width='50px' height='50px'></a></figure><div class='message__text'><p>" + data.message + "</p></div></div>";
+    div.innerHTML = "<div class='message" + item_class + "' data-counter='" + data.counter + "' data-sender='" + data.id + "'><div class='massage__name' style='cursor: pointer;'>" + data.nickname + "</div><time class='message__time'>" + data.time + var_ban + "</time><figure class='message__author-pic'><a href='/profile/" + data.id + "' target='_blank'><img src=" + data.image + " width='50px' height='50px'></a></figure><div class='message__text'><p>" + data.message + "</p></div></div>";
     document.getElementById('chat-log-' + roomName).appendChild(div);
 
     document.getElementById('chat-log-' + roomName).scrollTop = document.getElementById('chat-log-' + roomName).scrollHeight;
@@ -53,3 +54,9 @@ document.querySelector('#chat-message-submit-' + roomName).onclick = function(e)
         messageInputDom.value = '';
     }
 };
+
+$(".chat").on("click", ".massage__name", function(e){
+    console.log($(this).closest('.chat_window').find(".chat-message-input"));
+    elem = $(this).closest('.chat_window').find(".chat-message-input")
+    elem.val($(this).html() + ', ' + elem.val());
+});
