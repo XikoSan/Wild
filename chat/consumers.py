@@ -138,7 +138,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
     # Receive message from WebSocket
     async def receive(self, text_data):
         text_data_json = json.loads(text_data)
-        message = text_data_json['message']
+        message = text_data_json['message'][:500]
         destination = ''
 
         counter = await sync_to_async(_append_message, thread_sensitive=True)(chat_id=self.room_name,
