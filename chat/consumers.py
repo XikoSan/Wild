@@ -1,4 +1,6 @@
 import json
+import re
+
 from asgiref.sync import sync_to_async
 from channels.generic.websocket import AsyncWebsocketConsumer
 from datetime import datetime
@@ -104,46 +106,21 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
             await self.accept()
 
-            # messages = await sync_to_async(_get_last_10_messages, thread_sensitive=True)(chat_id=self.room_name)
-
-            # for message in messages:
-            #
-            #     if message['content'] == 'ban_chat':
-            #         continue
-            #
-            #     image_url = '/static/img/nopic.png'
-            #     if message['author__image']:
-            #         image_url = '/media/' + message['author__image']
-            #
-            #     # Send message to WebSocket
-            #     await self.send(text_data=json.dumps({
-            #         'message': message['content'],
-            #         'time': message['timestamp'].astimezone(pytz.timezone(self.player.time_zone)).time().strftime(
-            #             "%H:%M"),
-            #         'id': message['author__pk'],
-            #         'image': image_url,
-            #         # 'image': await sync_to_async(_get_image_url, thread_sensitive=True)(image=message['author__image']),
-            #     }))
-
         else:
             self.close()
-
-    # async def disconnect(self, code):
-    #     # Leave room group
-    #     await self.channel_layer.group_discard(
-    #         self.room_group_name,
-    #         self.channel_name
-    #     )
 
     # Receive message from WebSocket
     async def receive(self, text_data):
         text_data_json = json.loads(text_data)
-        message = text_data_json['message'][:500]
+        message = bleach.clean(text_data_json['message'][:500], strip=True)
+        if not re.search('[^\s]', message):
+            return
+
         destination = ''
 
         counter = await sync_to_async(_append_message, thread_sensitive=True)(chat_id=self.room_name,
                                                                         author=self.player,
-                                                                        text=bleach.clean(message))
+                                                                        text=message)
 
         if (message == 'ban_chat' or message == 'delete_message')\
                 and not self.moderator:
@@ -211,10 +188,9 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 self.disconnect()
 
         else:
-
             # Send message to WebSocket
             await self.send(text_data=json.dumps({
-                'message': bleach.clean(message),
+                'message': message,
                 'time': datetime.now().astimezone(pytz.timezone(self.player.time_zone)).time().strftime("%H:%M"),
                 'id': id,
                 'image': image,
