@@ -203,4 +203,9 @@ def do_mining(request):
         return JResponse(data)
 
     else:
-        pass
+        data = {
+            'header': 'Ошибка при создании',
+            'grey_btn': 'Закрыть',
+            'response': 'Ты уверен что тебе сюда, путник?',
+        }
+        return JResponse(data)
