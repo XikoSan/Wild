@@ -19,14 +19,14 @@
                 </div>
                 <div class="row">
                     {% if not player.residency == region %}
-                        {% if player.region == region %}
-                            {% if player.destination %}
-                                <button type="submit" disabled class="save btn btn-danger">Недоступно в полете</button>
-                            {% else %}
+                        {% if not player.destination %}
+                            {% if player.region == region %}
                                 <button type="submit" onclick="get_residency()" class="save btn btn-success">Получить прописку</button>
+                            {% else %}
+                                <button type="submit" disabled class="save btn btn-danger">Недоступно из другого региона</button>
                             {% endif %}
                         {% else %}
-                        <button type="submit" disabled class="save btn btn-danger">Недоступно из другого региона</button>
+                            <button type="submit" disabled class="save btn btn-danger">Недоступно в полете</button>
                         {% endif %}
                     {% else %}
                         <button type="submit" disabled class="save btn btn-default">Регион прописки</button>
