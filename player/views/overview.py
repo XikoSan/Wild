@@ -30,6 +30,9 @@ def overview(request):
     world_pop = Player.objects.all().count()
     region_pop = Player.objects.filter(region=player.region).count()
     state_pop = region_pop
+
+    region_parties_list = Party.objects.filter(deleted=False, region=player.region)
+
     if player.region.state:
         reigions_state = Region.objects.filter(state=player.region.state)
         state_pop = Player.objects.filter(region__in=reigions_state).count()
@@ -81,6 +84,8 @@ def overview(request):
         'world_pop': world_pop,
         'state_pop': state_pop,
         'region_pop': region_pop,
+
+        'region_parties_list': region_parties_list,
 
         'messages': messages,
 

@@ -115,7 +115,7 @@
         <div class="partBox">
             <label  onclick="chkPartBtn();" class="partBox-label" id="partBtn">Партии государства</label>
             <div class="partBox__panel" id="partBoxId">
-                {% for party in region_parties %}
+                {% for party in region_parties_list %}
                 <div class="partBox__panel__item">
                     <img src="{% if party.image %}{{ party.image.url }}{% else %}{% static 'redesign/img/mainBox/count_part.svg' %}{% endif %}" width="25px" height="25px" alt="icon_part">
                     <p>{{ party.title }}</p>
