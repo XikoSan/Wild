@@ -4,7 +4,7 @@ from PIL import Image
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.db import models
 from io import BytesIO
-
+from django.utils import timezone
 
 class State(models.Model):
     # название страны
@@ -14,7 +14,7 @@ class State(models.Model):
     # цвет на карте
     color = models.CharField(max_length=6, default="008542", verbose_name='Цвет государства')
     # время основания партии
-    foundation_date = models.DateTimeField(default=None, blank=True, null=True)
+    foundation_date = models.DateTimeField(default=timezone.now, blank=True, null=True)
     # тип государства
     stateTypeChoices = (
         ('parl', 'Парламентская республика'),

@@ -43,6 +43,9 @@ urlpatterns = [
                   url(r'', include('party.urls_list')),
                   url(r'', include('party.urls.roles')),
                   url(r'', include('party.urls.staff')),
+
+                  url(r'', include('state.urls.government')),
+
                   url('__debug__/', include(debug_toolbar.urls)),
 
                   # url(r'', include('article.urls')),

@@ -1,0 +1,136 @@
+{% extends 'player/header.html' %}
+{% load static %}
+{% load dict_key %}
+{% load i18n %}{% load tz %}
+
+{% block for_scripts_and_css %}
+<script src='{% static "js/government.js" %}?{{ csrf_token }}'></script>
+{% endblock %}
+
+{% block content %}
+<!-- Tab content -->
+<div id="over" class="tabcontent">
+    <div class="row">
+    <div class="col-xs-2 col-sm-2 col-md-2">
+    </div>
+    <div class="col-xs-8 col-sm-8 col-md-8">
+        <div class="polaroid">
+            <div class="row flex">
+                <div class="col-xs-2 col-sm-2 col-md-2">
+                    {% if player.region.state %}
+                        {% if player.region.state.image %}
+                        <img src="{{ player.region.state.image.url }}" onclick="window.location.href = 'state/{{ player.region.state.pk }}/'" align="left" style="cursor: pointer; width: 70px; height: 70px; margin-left: 5px">
+                        {% else %}
+                        <img src="{% static 'img/congress.svg' %}" onclick="window.location.href = 'state/{{ player.region.state.pk }}/'" align="left" style="cursor: pointer; width: 70px; height: 70px; margin-left: 5px">
+                        {% endif %}
+                    {% else %}
+                    <img src="{% static 'img/nostate.png' %}" align="left" style="width: 70px; height: 70px; margin-left: 5px">
+                    {% endif %}
+                </div>
+                <div class="col-xs-2 col-sm-2 col-md-2">
+                    <div class="row">
+                        {% if player.region.state %}
+                        <font size="4"><b>Государство:</b></font>
+                        {% else %}
+                        <b>Независимый регион</b>
+                        {% endif %}
+                    </div>
+                    <div class="row">
+                        {% if parliament_voting %}
+                        <a href="{% url 'parl_elections' parl_pk=parliament.pk %}" class="btn btn-info">Выборы</a>
+                        {% else %}
+                        <b><font size="3" color="black">Выборы:</font></b>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-4">
+                    <div class="row">
+                        <font size="4">{{ state.title }}</font>
+                    </div>
+                    <div class="row">
+                        {% if not parliament_voting %}
+                        <b><font size="3" color="black" >{{ next_voting_date|timezone:player.time_zone|date:"d.m.y H:i" }}</font></b>
+                        {% endif %}
+                    </div>
+                </div>
+                {% if player.region.state %}
+                <div class="col-xs-2 col-sm-2 col-md-2">
+                    <img src="static/img/regions/{{ capital.on_map_id }}.png" align="left"
+                         style="width: 70px;">
+                </div>
+                <div class="col-xs-2 col-sm-2 col-md-2">
+                    <div class="row">
+                        <b><font size="4">Столица:</font>
+                            <br>
+                            {{ capital.region_name }}</b>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+            <div class="row" style="margin-top: 15px;">
+                <div class="col-xs-12 col-sm-12 col-md-12" align="center" style="height: 700px;">
+                    <!-- Tabs -->
+                    {% if player.region.state %}
+                        <!--для каждой парламентской партии из списка-->
+                        {% for party in parties %}
+                        <div class="row">
+                            <!--Получить её имя-->
+                            <font size="5"><b>
+                                <!--если у партии есть аватарка-->
+                                {% if party.party.image_link %}
+                                <img src="{{ party.party.image_link }}" width="30" height="30">
+                                {% else %}
+                                <img src="{% static 'img/nopic_party.png' %}" width="30" height="30">
+                                {% endif %}
+                                {{ party.party.title }}, {{ party.seats }}% мест:
+                            </b></font>
+                        </div>
+                        {% for deputate in deputates %}
+                        <div class="row flex">
+                            <div class="col-xs-2 col-sm-2 col-md-2">
+                                {% if deputate.party.pk == party.party.pk %}
+                                    <a href='profile/{{ deputate.pk }}' target="_blank">
+                                        <!--если пользователь загрузил аватарку-->
+                                        {% if deputate.image %}
+                                        <img src="{{ deputate.image.url }}" width="80" height="80" align="right">
+                                        {% else %}
+                                        <img src="{% static 'img/nopic.png' %}" width="80" height="80"
+                                             align="right">
+                                        {% endif %}
+                                    </a>
+                                {% endif %}
+                            </div>
+                            <div class="col-xs-5 col-sm-5 col-md-5">
+                            {% if deputate.party.pk == party.party.pk %}
+                                <a href='profile/{{ deputate.pk }}' style="text-decoration: none;" target="_blank">
+                                    <h3><b>{{ deputate.nickname }}</b></h3>
+                                </a>
+                            {% endif %}
+                            </div>
+                            <div class="col-xs-5 col-sm-5 col-md-5">
+                            {% if deputate.party.pk == party.party.pk %}
+                                <h3><b>{{ deputate.party_post.title }}</b></h3>
+                            {% endif %}
+                            </div>
+                        </div>
+                        {% endfor %}
+                        {% endfor %}
+                    {% else %}
+                    <div class="row" style="margin-top: 15px;">
+                        <font size="3"><b>Государство ещё не основано</b></font>
+                    </div>
+                    <div class="row">
+                        <button type="submit" onclick="state_foundation()" class="btn btn-default">
+                            Основать государство
+                        </button>
+                    </div>
+                    {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-2 col-sm-2 col-md-2">
+    </div>
+</div>
+</div>
+</div>
+{% endblock %}

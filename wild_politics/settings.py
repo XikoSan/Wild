@@ -70,7 +70,6 @@ INSTALLED_APPS = [
     'debug_toolbar',
 
     'article',
-    'parliament',
     'region',
     'party',
     'player',
