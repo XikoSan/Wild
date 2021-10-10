@@ -1,14 +1,16 @@
+import redis
 from django.contrib.auth.decorators import login_required
+from django.db.models import Count
 from django.shortcuts import render
+from django.utils import timezone
 from django.utils.translation import ugettext as _
 
 from player.decorators.player import check_player
-from player.logs.print_log import log
 from player.player import Player
 from player.views.lists.get_thing_page import get_thing_page
 from region.region import Region
-import redis
-from django.utils import timezone
+
+
 # список всех регионов игры
 # page - открываемая страница
 @login_required(login_url='/')
@@ -26,24 +28,32 @@ def world_regions_list(request):
     pk_list = []
     for line in lines:
         pk_list.append(line.pk)
+    # получаем список регионов вместе с дополнительным полем, в котором количество игроков
+    regions_with_pop = Region.objects.filter(region__pk__in=pk_list).annotate(player_cnt=Count('region'))
+
+    regions_pop = {}
+    for reg_pop in regions_with_pop:
+        regions_pop[reg_pop] = reg_pop.player_cnt
 
     characters_pk = Player.objects.only('pk', 'region').filter(region__pk__in=pk_list)
 
-    regions_pop = {}
-    for plr in characters_pk:
-        if plr.region in regions_pop:
-            regions_pop[plr.region] += 1
-        else:
-            regions_pop[plr.region] = 1
-
-    regions_online = {}
     r = redis.StrictRedis(host='redis', port=6379, db=0)
+
+    pk_list = []
+    for char in characters_pk:
+        pk_list.append(str(char.pk))
+    # по списку pk игроков мы получаем их онлайн в том же порядке
+    online_list = r.hmget('online', pk_list)
+
     # момент завершения выборов - сейчас. Выбираем, чтобы timestamp был одинаков для всех
     timestamp_now = timezone.now().timestamp()
 
+    regions_online = {}
+
+    index = 0
     for char in characters_pk:
         timestamp = None
-        timestamp = r.hget('online', str(char.pk))
+        timestamp = online_list[index]
         if timestamp:
             # если заходил последние сутки
             if int(timestamp) > timestamp_now - 86400:
@@ -51,7 +61,7 @@ def world_regions_list(request):
                     regions_online[char.region] += 1
                 else:
                     regions_online[char.region] = 1
-
+        index += 1
 
     # отправляем в форму
     return render(request, 'lists/world_regions_list.html', {
