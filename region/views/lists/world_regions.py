@@ -28,14 +28,15 @@ def world_regions_list(request):
     pk_list = []
     for line in lines:
         pk_list.append(line.pk)
-    # получаем список регионов вместе с дополнительным полем, в котором количество игроков
-    regions_with_pop = Region.objects.filter(region__pk__in=pk_list).annotate(player_cnt=Count('region'))
-
-    regions_pop = {}
-    for reg_pop in regions_with_pop:
-        regions_pop[reg_pop] = reg_pop.player_cnt
 
     characters_pk = Player.objects.only('pk', 'region').filter(region__pk__in=pk_list)
+
+    regions_pop = {}
+    for plr in characters_pk:
+        if plr.region in regions_pop:
+            regions_pop[plr.region] += 1
+        else:
+            regions_pop[plr.region] = 1
 
     r = redis.StrictRedis(host='redis', port=6379, db=0)
 
