@@ -1,9 +1,9 @@
 # coding=utf-8
 import os
+
+import redis
 from django.db.models import Q
 from django.shortcuts import redirect
-from django.shortcuts import render, redirect, get_object_or_404
-import redis
 from django.utils import timezone
 
 from player.player import Player
@@ -26,7 +26,8 @@ def check_player(func):
         # Если у игрока есть хоть один персонаж:
         if Player.objects.filter(account=request.user).exists():
             # Получаем игрока
-            player = Player.objects.get(account=request.user)
+            player = Player.objects.only('pk', 'user_ip', 'natural_refill', 'energy', 'region', 'last_top',
+                                         'banned').get(account=request.user)
             # записываем время последнего онлайна
             r = redis.StrictRedis(host='redis', port=6379, db=0)
             r.hset('online', str(player.pk), str(timezone.now().timestamp()).split('.')[0])
