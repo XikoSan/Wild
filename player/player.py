@@ -1,24 +1,15 @@
 # coding=utf-8
 import datetime
-# import os
+
 import pytz
-import sys
-from PIL import Image
-# from datetime import timedelta
-# from django.conf import settings
-from django.core.files.uploadedfile import InMemoryUploadedFile
-from django.core.validators import MinValueValidator, MaxValueValidator
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.utils import timezone
-from io import BytesIO
+from django_celery_beat.models import PeriodicTask
 
 from party.party import Party
 from party.position import PartyPosition
 from region.region import Region
-
-
-# from gamecore.all_models.gov.state import State
-# from .region import Region
 
 
 class Player(models.Model):
@@ -135,8 +126,8 @@ class Player(models.Model):
     # регион назначения
     destination = models.ForeignKey(Region, default=None, null=True, on_delete=models.SET_NULL, blank=True,
                                     verbose_name='Регион назначения', related_name="destination")
-    # # время вылета
-    # departure = models.DateTimeField(default=datetime.datetime(2000, 1, 1, 0, 0), blank=True)
+    # таска полета
+    task = models.OneToOneField(PeriodicTask, on_delete=models.SET_NULL, null=True, blank=True)
     # время прилёта
     arrival = models.DateTimeField(default=datetime.datetime(2000, 1, 1, 0, 0), blank=True)
 

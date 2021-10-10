@@ -2,6 +2,7 @@ from celery import shared_task
 
 from django_celery_beat.models import PeriodicTask, PeriodicTasks, ClockedSchedule
 import datetime
+
 from player.player import Player
 from .primaries.primaries import Primaries
 from .party import Party

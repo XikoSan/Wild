@@ -1,14 +1,17 @@
+import datetime
+import json
+
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import redirect, render
+from django.shortcuts import render
+from django.utils import timezone
 from django.utils.translation import ugettext as _
-from django.core.exceptions import ObjectDoesNotExist
+from django_celery_beat.models import ClockedSchedule, PeriodicTask
 
 from player.decorators.player import check_player
 from player.player import Player
-
-from region.views.time_in_flight import time_in_flight
 from region.region import Region
-from region.tasks import move_to_another_region
+from region.views.time_in_flight import time_in_flight
+
 
 # главная страница
 @login_required(login_url='/')
@@ -31,10 +34,21 @@ def map(request):
         player.destination = destination
         player.save()
         duration = time_in_flight(player, player.destination)
-        # move_to_another_region.s(player.id).apply_async(countdown=duration)
-        move_to_another_region.apply_async((player.id,), countdown=duration)
+        # move_to_another_region.apply_async((player.id,), countdown=duration)
 
-    
+        start_time = timezone.now() + datetime.timedelta(seconds=duration)
+        clock, created = ClockedSchedule.objects.get_or_create(clocked_time=start_time)
+
+        player.task = PeriodicTask.objects.create(
+            name=str(player.pk) + ' fly ' + str(player.destination.pk),
+            task='move_to_another_region',
+            clocked=clock,
+            one_off=True,
+            args=json.dumps([player.pk]),
+            start_time=timezone.now()
+        )
+        player.save()
+
     response = render(request, 'region/map.html', {
         'page_name': _('Карта'),
 
