@@ -35,6 +35,7 @@
                         <b>Независимый регион</b>
                         {% endif %}
                     </div>
+                    {% if player.region.state %}
                     <div class="row">
                         {% if parliament_voting %}
                         <a href="{% url 'parl_elections' parl_pk=parliament.pk %}" class="btn btn-info">Выборы</a>
@@ -42,6 +43,7 @@
                         <b><font size="3" color="black">Выборы:</font></b>
                         {% endif %}
                     </div>
+                    {% endif %}
                 </div>
                 <div class="col-xs-4 col-sm-4 col-md-4">
                     <div class="row">
