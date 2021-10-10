@@ -61,8 +61,8 @@ def open_elections(request, parl_pk):
             ParliamentVoting.objects.get(parliament=Parliament.objects.get(pk=parl_pk), running=True),
             'voting_start',
             end_fname=None,
-            # delay_in_sec=86400
-            delay_in_sec=60
+            delay_in_sec=86400
+            # delay_in_sec=60
         )
 
         time_text = None
