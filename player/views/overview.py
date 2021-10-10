@@ -51,6 +51,9 @@ def overview(request):
 
         for scan in redis_list:
             b = json.loads(scan[0])
+            if not Player.objects.filter(pk=int(b['author'])).exists():
+                r.zremrangebyscore('chat', int(scan[1]), int(scan[1]))
+                continue
             author = Player.objects.filter(pk=int(b['author'])).only('id', 'nickname', 'image', 'time_zone').get()
             # сначала делаем из наивного времени aware, потом задаем ЧП игрока
             b['dtime'] = datetime.fromtimestamp(int(b['dtime'])).replace(tzinfo=pytz.timezone(TIME_ZONE)).astimezone(
