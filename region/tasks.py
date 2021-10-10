@@ -12,3 +12,4 @@ def move_to_another_region(id):
     player.task.clocked.delete()
     player.task = None
     player.save()
+    player.increase_calc()

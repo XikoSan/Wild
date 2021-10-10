@@ -64,12 +64,12 @@ class Player(models.Model):
     # дата последнего пополнения
     last_refill = models.DateTimeField(default=datetime.datetime(2020, 10, 28, 0, 0), blank=True,
                                        verbose_name='Перезарядка будет доступна в')
-    #
-    # # дата последнего есстественного прироста
-    # natural_refill = models.DateTimeField(default=None, null=True, blank=True, verbose_name='Время прироста')
-    # # индекс во время последнего прироста
-    # last_top = models.IntegerField(default=0, null=True, blank=True,
-    #                                verbose_name='Рейтинг госпиталя при последнем приросте')
+
+    # дата последнего есстественного прироста
+    natural_refill = models.DateTimeField(default=None, null=True, blank=True, verbose_name='Время прироста')
+    # индекс во время последнего прироста
+    last_top = models.IntegerField(default=0, null=True, blank=True,
+                                   verbose_name='Рейтинг госпиталя при последнем приросте')
 
     # -----------навыки игрока----------------
 
@@ -131,87 +131,87 @@ class Player(models.Model):
     # время прилёта
     arrival = models.DateTimeField(default=datetime.datetime(2000, 1, 1, 0, 0), blank=True)
 
-    # рассчет естественного прироста с учётом уровня медицины в текущем регионе
-    # def increase_calc(self):
-    #     # если дата последнего прироста пуста (только зарегистрировался)
-    #     if not self.natural_refill:
-    #         # если энергии меньше ста
-    #         if self.energy < 100:
-    #             # пополняем
-    #             if self.region.med_top == 5:
-    #                 self.energy += 15
-    #             elif self.region.med_top == 4:
-    #                 self.energy += 13
-    #             elif self.region.med_top == 3:
-    #                 self.energy += 12
-    #             elif self.region.med_top == 2:
-    #                 self.energy += 11
-    #             else:
-    #                 self.energy += 10
-    #             # запоминаем дату восстановления
-    #             self.natural_refill = timezone.now()
-    #             # запоминаем рейтинг медицины
-    #             self.last_top = self.region.med_top
-    #
-    #     # инчае если с момента последнего пополнения прошло более десяти минут
-    #     elif (timezone.now() - self.natural_refill).total_seconds() >= 600:
-    #         # узнаем сколько раз по десять минут прошло
-    #         counts = (timezone.now() - self.natural_refill).total_seconds() // 600
-    #         # остаток от деления понадобится чтобы указать время обновления
-    #         modulo = (timezone.now() - self.natural_refill).total_seconds() % 600
-    #         # в зависимости от рейтинга
-    #         if self.last_top == 5:
-    #             # если интервалов больше шести (энергии станет заведомо больше ста)
-    #             if counts > 6:
-    #                 self.energy = 100
-    #             else:
-    #                 if self.energy + (15 * counts) >= 100:
-    #                     self.energy = 100
-    #                 else:
-    #                     self.energy += 15 * counts
-    #         elif self.last_top == 4:
-    #             # если интервалов больше семи (энергии станет заведомо больше ста)
-    #             if counts > 7:
-    #                 self.energy = 100
-    #             else:
-    #                 if self.energy + (13 * counts) >= 100:
-    #                     self.energy = 100
-    #                 else:
-    #                     self.energy += 13 * counts
-    #         elif self.last_top == 3:
-    #             # если интервалов больше семи (энергии станет заведомо больше ста)
-    #             if counts > 8:
-    #                 self.energy = 100
-    #             else:
-    #                 if self.energy + (12 * counts) >= 100:
-    #                     self.energy = 100
-    #                 else:
-    #                     self.energy += 12 * counts
-    #         elif self.last_top == 2:
-    #             # если интервалов больше 9 (энергии станет заведомо больше ста)
-    #             if counts > 9:
-    #                 self.energy = 100
-    #             else:
-    #                 if self.energy + (11 * counts) >= 100:
-    #                     self.energy = 100
-    #                 else:
-    #                     self.energy += 11 * counts
-    #         else:
-    #             # если интервалов больше 10 (энергии станет заведомо больше ста)
-    #             if counts > 10:
-    #                 self.energy = 100
-    #             else:
-    #                 if self.energy + (10 * counts) >= 100:
-    #                     self.energy = 100
-    #                 else:
-    #                     self.energy += 10 * counts
-    #
-    #         # запоминаем дату восстановления
-    #         self.natural_refill = timezone.now() - datetime.timedelta(seconds=modulo)
-    #         # запоминаем рейтинг медицины
-    #         self.last_top = self.region.med_top
-    #
-    #     self.save()
+    # расчет естественного прироста с учётом уровня медицины в текущем регионе
+    def increase_calc(self):
+        # если дата последнего прироста пуста (только зарегистрировался)
+        if not self.natural_refill:
+            # если энергии меньше ста
+            if self.energy < 100:
+                # пополняем
+                if self.region.med_top == 5:
+                    self.energy += 16
+                elif self.region.med_top == 4:
+                    self.energy += 13
+                elif self.region.med_top == 3:
+                    self.energy += 12
+                elif self.region.med_top == 2:
+                    self.energy += 11
+                else:
+                    self.energy += 9
+                # запоминаем дату восстановления
+                self.natural_refill = timezone.now()
+                # запоминаем рейтинг медицины
+                self.last_top = self.region.med_top
+
+        # инчае если с момента последнего пополнения прошло более десяти минут
+        elif (timezone.now() - self.natural_refill).total_seconds() >= 600:
+            # узнаем сколько раз по десять минут прошло
+            counts = (timezone.now() - self.natural_refill).total_seconds() // 600
+            # остаток от деления понадобится чтобы указать время обновления
+            modulo = (timezone.now() - self.natural_refill).total_seconds() % 600
+            # в зависимости от рейтинга
+            if self.last_top == 5:
+                # если интервалов больше шести (энергии станет заведомо больше ста)
+                if counts > 6:
+                    self.energy = 100
+                else:
+                    if self.energy + (16 * counts) >= 100:
+                        self.energy = 100
+                    else:
+                        self.energy += 15 * counts
+            elif self.last_top == 4:
+                # если интервалов больше семи (энергии станет заведомо больше ста)
+                if counts > 7:
+                    self.energy = 100
+                else:
+                    if self.energy + (13 * counts) >= 100:
+                        self.energy = 100
+                    else:
+                        self.energy += 13 * counts
+            elif self.last_top == 3:
+                # если интервалов больше семи (энергии станет заведомо больше ста)
+                if counts > 8:
+                    self.energy = 100
+                else:
+                    if self.energy + (12 * counts) >= 100:
+                        self.energy = 100
+                    else:
+                        self.energy += 12 * counts
+            elif self.last_top == 2:
+                # если интервалов больше 9 (энергии станет заведомо больше ста)
+                if counts > 9:
+                    self.energy = 100
+                else:
+                    if self.energy + (11 * counts) >= 100:
+                        self.energy = 100
+                    else:
+                        self.energy += 11 * counts
+            else:
+                # если интервалов больше 10 (энергии станет заведомо больше ста)
+                if counts > 11:
+                    self.energy = 100
+                else:
+                    if self.energy + (9 * counts) >= 100:
+                        self.energy = 100
+                    else:
+                        self.energy += 9 * counts
+
+            # запоминаем дату восстановления
+            self.natural_refill = timezone.now() - datetime.timedelta(seconds=modulo)
+            # запоминаем рейтинг медицины
+            self.last_top = self.region.med_top
+
+        self.save()
 
     # сохранение профиля с изменением размеров и названия картинки профиля
     # def save(self):

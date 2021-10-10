@@ -57,8 +57,8 @@ class Region(models.Model):
     # ---------- Здания ----------
     # # Уровень здания Госпиталь
     # med_lvl = models.IntegerField(default=0, verbose_name='Уровень госпиталя')
-    # # Рейтинг здания Госпиталь
-    # med_top = models.IntegerField(default=0, verbose_name='Рейтинг госпиталя')
+    # Рейтинг здания Госпиталь
+    med_top = models.IntegerField(default=1, verbose_name='Рейтинг госпиталя')
     #
     # # Уровень здания Полицейский участок
     # dpt_lvl = models.IntegerField(default=0, verbose_name='Уровень полиции')

@@ -34,7 +34,7 @@ def check_player(func):
             if player.pk == 1 or request.user.is_staff:
                 # Возвращение выполнения основной(переданной в check_player)
                 # функции - func, с переданными ей аргументами - *args и **kwargs
-                # player.increase_calc()
+                player.increase_calc()
                 return func(request, *args, **kwargs)
             else:
                 # Получаем текущий ip игрока
@@ -57,7 +57,7 @@ def check_player(func):
                 if not player.banned:
                     # Возвращение выполнения основной(переданной в check_player)
                     # функции - func, с переданными ей аргументами - *args и **kwargs
-                    # player.increase_calc()
+                    player.increase_calc()
                     return func(request, *args, **kwargs)
                 # Если же забанен:
                 else:
