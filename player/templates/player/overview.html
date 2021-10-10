@@ -20,9 +20,13 @@
 <div class="row">
     Привет, {{ player }} !
     <div class="row">
-        <div class="col-xs-6 col-sm-6 col-md-6" align="left">
+        <div class="col-xs-2 col-sm-2 col-md-2" align="left">
             Мир
         </div>
+        <div class="col-xs-2 col-sm-2 col-md-2" align="left" onclick="window.location.href = '/world/regions/'"  style="cursor: pointer">
+            Регионов: {{ regions_count }}
+        </div>
+        <div class="col-xs-2 col-sm-2 col-md-2" align="left"></div>
         <div class="col-xs-6 col-sm-6 col-md-6" align="left">
             <!--если игрок в полете-->
             {% if player.destination %}

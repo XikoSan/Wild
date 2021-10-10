@@ -2,11 +2,12 @@
 from django.conf.urls import url
 
 from .views.do_mining import do_mining
+from .views.lists.world_regions import world_regions_list
+from .views.map.get_residency import get_residency
 from .views.map.map import map
 from .views.map.open_region import open_region
 from .views.map.region_info import region_info
 from .views.mining import mining
-from .views.map.get_residency import get_residency
 
 urlpatterns = [
 
@@ -24,5 +25,8 @@ urlpatterns = [
     url(r'^region/(?P<pk>\d+)/$', open_region, name='open_region'),
     # получить прописку в регине
     url(r'^get_residency/$', get_residency, name='get_residency'),
+
+    # открытие списка всех игроков
+    url(r'^world/regions/', world_regions_list, name='world_players_list'),
 
 ]

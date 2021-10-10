@@ -88,6 +88,8 @@ def overview(request):
         'state_pop': state_pop,
         'region_pop': region_pop,
 
+        'regions_count': Region.objects.all().count(),
+
         'region_parties_list': region_parties_list,
 
         'messages': messages,
