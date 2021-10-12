@@ -67,6 +67,9 @@ class Storage(models.Model):
                                verbose_name='Регион размещения',
                                related_name="placement")
 
+    # Показатель того, что склад уже переносился хоть раз
+    was_moved = models.BooleanField(default=False, null=False, verbose_name='Переносился')
+
     # наличные на складе
     cash = models.BigIntegerField(default=0, verbose_name=gettext_lazy('storage_cash'))
 

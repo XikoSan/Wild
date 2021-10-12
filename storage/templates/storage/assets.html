@@ -36,16 +36,40 @@
     send_storages_map[{{ storage.pk }}] = st_{{ storage.pk }}_map;
     {% endfor %}
 </script>
+
+{% if storage_alone %}
+<script>
+    var move_storage_pk = null;
+    var move_header = 'Перемещение Склада';
+    var move_text = 'Склад будет перемещен в регион вашего местонахождения - {{ player.region.region_name }}. Больше этот Склад переместить не получится. Продолжить?';
+    var move_yes = 'Продолжить';
+    var move_cancel = 'Отмена';
+</script>
+<script src='{% static "js/assets_move.js" %}?{{ csrf_token }}'></script>
+{% endif %}
+
 <script src='{% static "js/assets.js" %}?{{ csrf_token }}'></script>
 {% endblock %}
 
 {% block content %}
+
 <form id="assets_actions_form" role="form">
     <div class="col-xs-8 col-sm-8 col-md-8">
         <ul class="nav nav-tabs">
             {% for storage in storages %}
             <li {% if forloop.first %}class="active"{% endif %}>
-                <a data-toggle="tab" href="#{{ storage.pk }}">{{ storage.region }}</a>
+                <a data-toggle="tab" href="#{{ storage.pk }}">
+                    {% if storage_alone and not storage.was_moved and player.region != storage.region %}
+                    {{ storage.region }}
+                    <button type="submit" onclick="move_storage({{ storage.pk }})" class="save btn btn-default">
+                        <img src="static/move_storage.png" width="15px" height="15px" alt="Переместить в текущий регион">
+                    </button>
+
+                    {% else %}
+                    {{ storage.region }}
+                    {% endif %}
+                </a>
+<!--                <a data-toggle="tab" href="#{{ storage.pk }}">{{ storage.region }}</a>-->
             </li>
             {% endfor %}
         </ul>
