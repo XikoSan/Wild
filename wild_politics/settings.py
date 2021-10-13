@@ -79,6 +79,7 @@ INSTALLED_APPS = [
     'chat',
 
     'django_cleanup',
+    'fixture_magic',
 
 ]
 
