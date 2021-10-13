@@ -66,7 +66,7 @@
    },
  ];
 
- region_poly = L.geoJSON(region, {
+ region_poly_{{ district.pk }} = L.geoJSON(region, {
      style: function(feature) {
          return {color: feature.properties.color, weight: 1};
      },
@@ -75,7 +75,7 @@
        },
  }).on('click', get_district_info);
 
- region_poly.addTo(mymap);
+ region_poly_{{ district.pk }}.addTo(mymap);
 
  {% endfor %}
  </script>
