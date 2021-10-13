@@ -2,78 +2,81 @@
 {% load floor_to_tens %}
 
 {% block content %}
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/maptalks/dist/maptalks.css">
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/maptalks/dist/maptalks.min.js"></script>
+ <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
+ <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<div style="position: relative;">
+  <div id="mapid" style="z-index: 1"></div>
+  <div id="district_info" style="z-index: 2; display:none; position: absolute; background-color:rgba(13, 13, 13, 0.5);
+  font:13px bold sans-serif;color:#fff; width: 400px; top:20px; right:20px; overflow:hidden;
+  padding: 15px;"></div>
+<!--  <div id="district_info" style="display:none; position:fixed;background-color:rgba(13, 13, 13, 0.5);font:13px bold sans-serif;color:#fff;width:20%;overflow:hidden"></div>-->
+</div>
+ <style>
+     #mapid { height: 200%; }
+ </style>
+ <script>
+ function get_district_info(event) {
+     var id = event.target.options.data.id;
 
-    <div id="map" class="container" style="width:100%;height:500px"></div>
-    <div id="district_info" style="display:none; position:fixed;background-color:rgba(13, 13, 13, 0.5);font:13px bold sans-serif;color:#fff;left:calc(100% - 300px);top:calc(20% - 40px);width:300px;height:75%;overflow:hidden"></div>
-<script>
-      var player = '{{ player.region.region_name }}';
-      var map = new maptalks.Map('map', {
-        center: [{{ player.region.longitude }}, {{ player.region.latitude }}],
-        zoom: {{ player.region.zoom }},
-        zoomControl : true,
-        baseLayer: new maptalks.TileLayer('base', {
-          urlTemplate: 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png',
-          subdomains: ['a','b','c','d'],
-        })
-      });
+     $.ajax({
+       type: "GET",
+       url: "info/region/"+id,
+       dataType: "html",
+       cache: false,
+       success: function(data){
 
+           region_infos = document.getElementsByClassName("region_info");
+           for (i = 0; i < region_infos.length; i++) {
+               region_infos[i].remove();
+           }
 
-      function get_district_info(id) {
+           var div = document.createElement('div');
+           div.className = 'row region_info';
+           div.id = id + '_info';
 
-          $.ajax({
-            type: "GET",
-            url: "info/region/"+id,
-            dataType: "html",
-            cache: false,
-            success: function(data){
-
-                region_infos = document.getElementsByClassName("region_info");
-                for (i = 0; i < region_infos.length; i++) {
-                    region_infos[i].remove();
-                }
-
-                var div = document.createElement('div');
-                div.className = 'row region_info';
-                div.id = id + '_info';
-
-                div.innerHTML = data;
-                document.getElementById('district_info').appendChild(div);
-                document.getElementById('district_info').style.display = "block";
-            }
-          });
-      }
+           div.innerHTML = data;
+           document.getElementById('district_info').appendChild(div);
+           document.getElementById('district_info').style.display = "block";
+       }
+     });
+ }
 
 
-{% for district in regions %}
-      var polygon_{{ district.pk }} = new maptalks.MultiPolygon([
-{{ district.shape }}
-      ], {
-        visible : true,
-        editable : true,
-        cursor : 'pointer',
-        shadowBlur : 0,
-        shadowColor : 'black',
-        draggable : false,
-        dragShadow : false, // display a shadow during dragging
-        drawOnAxis : null,  // force dragging stick on a axis, can be: x, y
-        symbol: {
-          'lineColor' : '#34495e',
-          'lineWidth' : 2,
-          'polygonFill' : '#{% if district.state.color %}{{ district.state.color }}{% else %}FFFFFF{% endif %}',
-          'polygonOpacity' : 0.6
-        },
-      });
+     var mymap = L.map('mapid').setView([{{ player.region.latitude }}, {{ player.region.longitude }}], {{ player.region.zoom }});
+     L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+     attribution: '',
+     maxZoom: 18,
+     id: 'mapbox/streets-v11',
+     tileSize: 512,
+     zoomOffset: -1,
+     accessToken: 'your.mapbox.access.token'
+ }).addTo(mymap);
 
-      new maptalks.VectorLayer('vector_{{ district.pk }}', polygon_{{ district.pk }}).addTo(map);
+ {% for district in regions %}
+ var region = [
+   {
+       "type": "Feature",
+       "properties": {
+            "color": "#{% if district.state.color %}{{ district.state.color }}{% else %}000000{% endif %}",
+       },
+       "geometry": {
+           "type": "Polygon",
+           "coordinates": {{ district.shape }}
+       }
+   },
+ ];
 
-      polygon_{{ district.pk }}.on('click', function() {
-        get_district_info('{{ district.on_map_id }}');
-      });
+ region_poly = L.geoJSON(region, {
+     style: function(feature) {
+         return {color: feature.properties.color, weight: 1};
+     },
+     data:{
+          "id": "{{ district.on_map_id }}",
+       },
+ }).on('click', get_district_info);
 
-{% endfor %}
+ region_poly.addTo(mymap);
 
-</script>
-
+ {% endfor %}
+ </script>
 {% endblock %}
