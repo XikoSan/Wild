@@ -11,17 +11,14 @@ from state.models.state import State
 # from io import BytesIO
 # from django.utils.translation import get_language
 # import gamecore.all_models.gov.state as ste
-
+from .actual_manager import ActualManager
 
 class Region(models.Model):
-    # ---------------Ресурсы региона---------------
-    # resourses = {
-    #     'gold': 'Золото',
-    #
-    #     'oil': 'Нефть',
-    #
-    #     'ore': 'Руда',
-    # }
+    with_off = models.Manager()  # Менеджер по умолчанию
+    objects = ActualManager()  # Менеджер активных записей
+
+    # регион выключен - не доступен спавн и перелёты
+    is_off = models.BooleanField(default=False, verbose_name='Выключен')
 
     # название региона
     region_name = models.CharField(max_length=50, default=None, blank=True, null=True, verbose_name='Название региона')

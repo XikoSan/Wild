@@ -19,7 +19,7 @@ from region.views.time_in_flight import time_in_flight
 def map(request):
     player = Player.objects.get(account=request.user)
 
-    regions = Region.objects.all()
+    regions = Region.with_off.all()
 
     # форма по перелету игрока в другой регион
     if request.method == "POST":

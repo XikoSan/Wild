@@ -73,7 +73,7 @@
      data:{
           "id": "{{ district.on_map_id }}",
        },
- }).on('click', get_district_info);
+ }){% if not district.is_off %}.on('click', get_district_info){% endif %};
 
  region_poly_{{ district.pk }}.addTo(mymap);
 

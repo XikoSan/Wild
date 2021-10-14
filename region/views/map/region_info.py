@@ -18,17 +18,25 @@ def region_info(request, id):
 
         player = Player.objects.get(account=request.user)
 
-        if player.residency == Region.objects.get(on_map_id=id):
-            cost = 0
-        else:
-            cost = round(distance_counting(player.region, Region.objects.get(on_map_id=id)))
+        if Region.objects.filter(on_map_id=id).exists():
 
-        return render(request, 'region/region_info.html', {
-            'player': player,
-            'region': Region.objects.get(on_map_id=id),
-            'duration': round(time_in_flight(player, Region.objects.get(on_map_id=id)) / 60, 1),
-            'cost': cost
-        })
+            if player.residency == Region.objects.get(on_map_id=id):
+                cost = 0
+            else:
+                cost = round(distance_counting(player.region, Region.objects.get(on_map_id=id)))
+
+            return render(request, 'region/region_info.html', {
+                'player': player,
+                'region': Region.objects.get(on_map_id=id),
+                'duration': round(time_in_flight(player, Region.objects.get(on_map_id=id)) / 60, 1),
+                'cost': cost
+            })
+
+        else:
+            data = {
+                'response': _('Такого региона нет'),
+            }
+            return JsonResponse(data)
 
     else:
         data = {
