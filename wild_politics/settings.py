@@ -66,6 +66,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     
     'allauth.socialaccount.providers.vk',
+    'allauth.socialaccount.providers.google',
 
     'debug_toolbar',
 

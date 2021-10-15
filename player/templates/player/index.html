@@ -5,11 +5,35 @@
     <meta charset="UTF-8">
     <title>WP Common test</title>
 </head>
-<body align="center">
-<div flex>
-    <a href="{% provider_login_url 'vk' %}"><img src="{% static 'img/vk_logo.svg' %}" width="100" height="100"
-                                                        title="Войти через VK"></a>
+<style>
+    @font-face {
+    font-family: "Font";
+    src: url("{% static 'font.ttf' %}");
+}
 
-</div>
+.name {
+    font-family: "Font";
+    margin: 0;
+    padding: 0;
+    letter-spacing: 1px;
+    font-size:  30px;
+}
+
+</style>
+<body align="center">
+    <div class="name" align="center">WILD POLITICS</div>
+    <div class="name" align="center" style="font-size:  20px; margin-top: 20px">Логин через:</div>
+    <div flex style="margin-top: 50px">
+        <div flex style="display: inline-block; margin-right: 25px">
+            <a href="{% provider_login_url 'vk' %}"><img src="{% static 'img/vk_logo.svg' %}" width="100" height="100"
+                                                                title="Войти через VK"></a>
+
+        </div>
+        <div flex style="display: inline-block;  margin-left: 25px">
+            <a href="{% provider_login_url 'google' %}"><img src="{% static 'img/google_logo.svg' %}" width="100" height="100"
+                                                                title="Войти через Google"></a>
+
+        </div>
+    </div>
 </body>
 </html>
