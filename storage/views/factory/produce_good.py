@@ -74,7 +74,8 @@ def produce_good(request):
         # проверка, существует ли у товара схема с таким номером
         schema_num = request.POST.get('schema')
 
-        if not schema_num.isdigit():
+        if not schema_num or\
+                not schema_num.isdigit():
             data = {
                 'header': 'Ошибка производства',
                 'grey_btn': 'Закрыть',
