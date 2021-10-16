@@ -2,6 +2,7 @@ import datetime
 import json
 
 from django.contrib.auth.decorators import login_required
+from django.db import transaction
 from django.shortcuts import render
 from django.utils import timezone
 from django.utils.translation import ugettext as _
@@ -16,8 +17,9 @@ from region.views.time_in_flight import time_in_flight
 # главная страница
 @login_required(login_url='/')
 @check_player
+@transaction.atomic
 def map(request):
-    player = Player.objects.get(account=request.user)
+    player = Player.objects.select_for_update().get(account=request.user)
 
     regions = Region.with_off.all()
 
@@ -32,7 +34,6 @@ def map(request):
             raise Exception("Region is doesn't exist")
 
         if not player.destination:
-
             player.destination = destination
             player.save()
             duration = time_in_flight(player, player.destination)
