@@ -17,7 +17,7 @@ def remove_role(request):
         player = Player.objects.get(account=request.user)
         # если игрок действительно лидер партии
         if player.party_post.party_lead:
-            if not PartyPosition.objects.get(pk=request.POST.get('post_id')).exists():
+            if not PartyPosition.objects.filter(pk=request.POST.get('post_id')).exists():
                 data = {
                     'response': 'Должность не найдена',
                 }
