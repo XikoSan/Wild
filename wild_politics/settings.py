@@ -88,7 +88,8 @@ SITE_ID = 1
 
 SOCIAL_AUTH_URL_NAMESPACE = 'social'
 
-ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'https'
+if not os.getenv('HTTP_USE'):
+    ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'https'
 
 sentry_environment = "production"
 if not os.getenv('TOOL'):

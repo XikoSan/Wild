@@ -37,6 +37,7 @@ services:
     image: wildpolitics
     restart: always
     environment:
+      HTTP_USE: ${HTTP_USE}
       PROD: ${PROD}
       TOOL: ${TOOL}
       DB_PASS: ${DB_PASSWD}
