@@ -1,14 +1,15 @@
 # coding=utf-8
-from django.conf.urls import include, url
+from django.conf.urls import url
 
-from .views.index import index
-from .views.overview import overview
-from .views.new_player import new_player
-from .views.expense_energy import expense_energy
-from .views.my_profile import my_profile
-from .views.view_profile import view_profile
-from player.views.lists.world_players import world_players_list
+from player.views.banned import banned
 from player.views.lists.region_players import region_players_list
+from player.views.lists.world_players import world_players_list
+from .views.expense_energy import expense_energy
+from .views.index import index
+from .views.my_profile import my_profile
+from .views.new_player import new_player
+from .views.overview import overview
+from .views.view_profile import view_profile
 
 urlpatterns = [
 
@@ -33,4 +34,7 @@ urlpatterns = [
     url(r'^profile/$', my_profile, name='my_profile'),
     # Открытие профиля персонажа для просмотра(другими игроками)
     url(r'^profile/(?P<pk>\d+)/$', view_profile, name='view_profile'),
+
+    # Открытие страницы забаненного игрока
+    url(r'^banned/$', banned, name='banned'),
 ]

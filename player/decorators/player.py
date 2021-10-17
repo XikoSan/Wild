@@ -44,15 +44,15 @@ def check_player(func):
                 player.user_ip = cur_ip
                 player.save()
 
-                # проверка на IP работает только на продакшене
-                if os.environ.get('PROD'):
-                    # если найдены игроки с таким же ip как найденный, не считая самого игрока
-                    if Player.objects.filter(user_ip=cur_ip).exclude(Q(pk=player.pk) | Q(banned=True)).exists():
-                        players = Player.objects.filter(user_ip=cur_ip)
-                        for it_player in players:
-                            it_player.banned = True
-                            it_player.save()
-                        player.banned = True
+                # # проверка на IP работает только на продакшене
+                # if os.environ.get('PROD'):
+                #     # если найдены игроки с таким же ip как найденный, не считая самого игрока
+                #     if Player.objects.filter(user_ip=cur_ip).exclude(Q(pk=player.pk) | Q(banned=True)).exists():
+                #         players = Player.objects.filter(user_ip=cur_ip)
+                #         for it_player in players:
+                #             it_player.banned = True
+                #             it_player.save()
+                #         player.banned = True
 
                 # Если игрок не забанен:
                 if not player.banned:
