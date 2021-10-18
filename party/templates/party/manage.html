@@ -154,7 +154,7 @@
             <img id="party_coat" src="{% if player.party.image %}{{ player.party.image.url }}{% else %}{% static 'img/nopic_party.png' %}{% endif %}" width="250" height="250">
             {% if player.party_post.party_lead %}
                 <form method="post" enctype="multipart/form-data" class="imgUpload" id="formUpload1">
-                    <input type="hidden" name="csrfmiddlewaretoken" value="zRIwLrdB6zqNgicjkkaun84werEZu68P2Rl16giwoGlmXnkl3ScRU3faiAPcn8KF">
+                    <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
                     <input type="file" name="image" accept="image/*" class="id_image" onclick="pic_mode(1)">
                     <input type="hidden" name="x" id="id_x1">
                     <input type="hidden" name="y" id="id_y1">
@@ -243,7 +243,7 @@
             <img id="party_back" src="{% if player.party.members_image %}{{ player.party.members_image.url }}{% else %}{% static 'img/noback_party.png' %}{% endif %}" width="250" height="250">
             {% if player.party_post.party_lead %}
                 <form method="post" enctype="multipart/form-data" class="imgUpload" id="formUpload2">
-                    <input type="hidden" name="csrfmiddlewaretoken" value="zRIwLrdB6zqNgicjkkaun84werEZu68P2Rl16giwoGlmXnkl3ScRU3faiAPcn8KF">
+                    <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
                     <input type="file" name="members_image" accept="image/*" class="id_image" onclick="pic_mode(2)">
                     <input type="hidden" name="x" id="id_x2">
                     <input type="hidden" name="y" id="id_y2">
