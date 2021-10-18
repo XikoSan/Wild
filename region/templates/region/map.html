@@ -68,7 +68,12 @@
 
  region_poly_{{ district.pk }} = L.geoJSON(region, {
      style: function(feature) {
-         return {color: feature.properties.color, weight: 1};
+         return {
+         {% if district.is_off %}color: '#ffffff',{% else %}color: feature.properties.color,{% endif %}
+          {% if district.is_off %}fillOpacity: 0.5,{% endif %}
+          fillColor: feature.properties.color,
+          weight: 1
+         };
      },
      data:{
           "id": "{{ district.on_map_id }}",
