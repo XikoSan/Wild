@@ -23,7 +23,7 @@
         <div class="col-xs-2 col-sm-2 col-md-2">
             {% if region.state %}
                 {% if region.state.image %}
-                <img src="{{ region.state.image }}" onclick="window.location.href = 'state/{{ region.state.pk }}/'" width="100" height="100" align="right" style="cursor: pointer;">
+                <img src="{{ region.state.image.url }}" onclick="window.location.href = 'state/{{ region.state.pk }}/'" width="100" height="100" align="right" style="cursor: pointer;">
                 {% else %}
                 <img src="{% static 'img/congress.svg' %}" onclick="window.location.href = 'state/{{ region.state.pk }}/'" width="100" height="100" align="right" style="cursor: pointer;">
                 {% endif %}
