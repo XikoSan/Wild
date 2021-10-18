@@ -60,30 +60,30 @@ class Party(models.Model):
     # переодическая таска
     task = models.OneToOneField(PeriodicTask, on_delete=models.DO_NOTHING, null=True, blank=True)
 
-    def save(self):
-        # если картинка есть (добавили или изменили)
-        if self.image:
-            # Opening the uploaded image
-            try:
-                im = Image.open(self.image)
-
-                output = BytesIO()
-
-                # Resize/modify the image
-                im = im.resize((300, 300))
-
-                # after modifications, save it to the output
-                im.save(output, format='PNG', quality=100)
-                output.seek(0)
-
-                # change the imagefield value to be the newley modifed image value
-                self.image = InMemoryUploadedFile(output, 'ImageField',
-                                                  "%(party)s.png" % {"party": self.pk}, 'image/png',
-                                                  sys.getsizeof(output), None)
-            except FileNotFoundError:
-                pass
-
-        super(Party, self).save()
+    # def save(self):
+    #     # если картинка есть (добавили или изменили)
+    #     if self.image:
+    #         # Opening the uploaded image
+    #         try:
+    #             im = Image.open(self.image)
+    #
+    #             output = BytesIO()
+    #
+    #             # Resize/modify the image
+    #             im = im.resize((300, 300))
+    #
+    #             # after modifications, save it to the output
+    #             im.save(output, format='PNG', quality=100)
+    #             output.seek(0)
+    #
+    #             # change the imagefield value to be the newley modifed image value
+    #             self.image = InMemoryUploadedFile(output, 'ImageField',
+    #                                               "%(party)s.png" % {"party": self.pk}, 'image/png',
+    #                                               sys.getsizeof(output), None)
+    #         except FileNotFoundError:
+    #             pass
+    #
+    #     super(Party, self).save()
 
     # формируем переодическую таску
     def setup_task(self):

@@ -1,18 +1,16 @@
 # coding=utf-8
-from django.conf.urls import include, url
-from django.urls import path
+from django.conf.urls import url
 
+from party.primaries.views.start_primaries import start_primaries
+from party.primaries.views.vote_primaries import vote_primaries
+from party.views.management.change_party_pic import change_party_pic
 from party.views.management.management import management
 from party.views.management.new_party import new_party
 from party.views.management.party_requests import party_requests
 from party.views.management.rename_party import rename_party
 from party.views.management.switch_description import switch_description
-from party.views.management.switch_party_coat import switch_party_coat
 from party.views.management.switch_party_type import switch_party_type
 from party.views.party import party
-from party.primaries.views.start_primaries import start_primaries
-from party.primaries.views.vote_primaries import vote_primaries
-
 
 urlpatterns = [
 
@@ -25,6 +23,8 @@ urlpatterns = [
     url(r'^party_management$', management, name='party_management'),
     # переименование партии:
     url(r'^rename_party/$', rename_party, name='rename_party'),
+    # сменить картинки партии:
+    url(r'^change_party_pic/$', change_party_pic, name='change_party_pic'),
     # изменить описание партии:
     url(r'^switch_description/$', switch_description, name='switch_description'),
     # изменить тип партии
@@ -32,7 +32,7 @@ urlpatterns = [
     # лист заявок в партию
     url(r'^party/requests/$', party_requests, name='party_requests'),
 
-    #праймериз
+    # праймериз
     url(r'^primaries/(?P<party_pk>\d+)/$', start_primaries, name='start_primaries'),
     # голосование на праймериз
     url(r'^primaries/vote/(?P<party_pk>\d+)/(?P<player_pk>\d+)/$', vote_primaries, name='vote_primaries'),
