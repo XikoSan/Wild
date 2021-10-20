@@ -1,0 +1,24 @@
+{% load static %}
+{% load get_attr %}
+{% load get_sum %}
+{% load get_mod %}
+{% load dict_key %}
+{% load l10n %}{% load i18n %}
+
+{% if treasury %}
+{% for group in storage_cl|get_attr:'types' %}
+<div class="row" align="center" style="margin-top: 20px">
+    {{ storage_cl|get_attr:'types'|dict_key:group }}
+</div>
+    {% for good in storage_cl|get_attr:group %}
+<div class="row" {% if forloop.counter|get_mod:2 == 1 %}style="background: #E0FFF3"{% endif %}>
+    <div class="col-xs-2 col-sm-2 col-md-2">
+        {{ storage_cl|get_attr:group|dict_key:good }}:
+    </div>
+    <div class="col-xs-10 col-sm-10 col-md-10">
+        {% localize off %}{{ treasury|get_attr:good }}{% endlocalize %}
+    </div>
+</div>
+    {% endfor %}
+{% endfor %}
+{% endif %}
