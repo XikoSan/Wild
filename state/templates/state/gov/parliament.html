@@ -15,10 +15,10 @@
     </b></font>
 </div>
 {% for deputate in deputates %}
+{% if deputate.party.pk == parl_party.party.pk %}
 <div class="row flex">
     <div class="col-xs-2 col-sm-2 col-md-2">
         {% if deputate.player %}
-            {% if deputate.party.pk == parl_party.party.pk %}
             <a href='profile/{{ deputate.player.pk }}' target="_blank">
                 <!--если пользователь загрузил аватарку-->
                 {% if deputate.player.image %}
@@ -28,21 +28,17 @@
                      align="right">
                 {% endif %}
             </a>
-            {% endif %}
         {% else %}
-            <a href="/set_mandate_view/">
-                <img src="{% static 'plus.png' %}" width="80" height="80"
-                         align="right">
-            </a>
+            <img src="{% static 'plus.png' %}" width="80" height="80"
+                 {% if player.party %}{% if player.party_post.party_lead %}onclick="window.location.href = '/set_mandate_view/'" style="cursor: pointer" {% endif %}{% endif %}
+                     align="right">
         {% endif %}
     </div>
     <div class="col-xs-5 col-sm-5 col-md-5">
     {% if deputate.player %}
-        {% if deputate.party.pk == parl_party.party.pk %}
         <a href='profile/{{ deputate.player.pk }}' style="text-decoration: none;" target="_blank">
             <h3><b>{{ deputate.player.nickname }}</b></h3>
         </a>
-        {% endif %}
     {% else %}
         <h3><b>свободно</b></h3>
     {% endif %}
@@ -55,5 +51,6 @@
     </div>
     {% endif %}
 </div>
+{% endif %}
 {% endfor %}
 {% endfor %}

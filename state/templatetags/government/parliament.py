@@ -13,7 +13,7 @@ from player.player import Player
 
 
 @register.inclusion_tag('state/gov/parliament.html')
-def parliament(parliament):
+def parliament(player, parliament):
 
     deputates = None
 
@@ -37,6 +37,8 @@ def parliament(parliament):
                     deputates = party_deputates
 
     return {
+        'player': player,
+
         # парламент
         'parliament': parliament,
 

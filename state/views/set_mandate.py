@@ -18,7 +18,8 @@ def set_mandate(request):
 
         # если у игрока есть партия
         # и он в ней лидер
-        if player.party_post.party_lead:
+        if player.party \
+                and player.party_post.party_lead:
             # если есть свободные мандаты
             if DeputyMandate.objects.filter(player=None).exists():
                 candidate_pk = request.POST.get('candidate')
