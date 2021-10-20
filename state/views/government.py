@@ -34,37 +34,18 @@ def government(request):
         # если у государства есть парламент
         if Parliament.objects.filter(state=state).exists():
 
-            has_parliament = True
+            parliament = Parliament.objects.get(state=state)
 
-        # # если у государства есть парламент
-        # if Parliament.objects.filter(state=state).exists():
-        #     parliament = Parliament.objects.get(state=state)
-        #     # если в парламенте идут выборы
-        #     if ParliamentVoting.objects.filter(running=True, parliament=parliament).exists():
-        #         parliament_voting = ParliamentVoting.objects.get(running=True, parliament=parliament)
-        #     else:
-        #         if ParliamentVoting.objects.filter(running=False, parliament=parliament, task__isnull=False).exists():
-        #             next_voting_date = \
-        #                 ParliamentVoting.objects.get(running=False, parliament=parliament,
-        #                                              task__isnull=False).voting_start + timedelta(days=7)
-        #         else:
-        #             next_voting_date = state.foundation_date + timedelta(days=7)
-        #     # если есть парламентские партии
-        #     if ParliamentParty.objects.filter(parliament=parliament).exists():
-        #         # для каждой парламентской партии
-        #         for parl_party in ParliamentParty.objects.filter(parliament=parliament):
-        #             # получаем экземпляр партии из объекта парламентской партии
-        #             adding_party = Party.objects.get(pk=parl_party.party.pk)
-        #             # для каждого игрока этой партии с мандатом
-        #             for deputate in DeputyMandate.objects.filter(parliament=parliament, party=adding_party):
-        #                 # получаем экземпляр депутата
-        #                 dep_player = Player.objects.filter(pk=deputate.player.pk)
-        #                 # если лист партий из парламента не пустой
-        #                 if deputates:
-        #                     # добавляем партию к списку
-        #                     deputates = list(chain(deputates, dep_player))
-        #                 else:
-        #                     deputates = dep_player
+            # если в парламенте идут выборы
+            if ParliamentVoting.objects.filter(running=True, parliament=parliament).exists():
+                parliament_voting = ParliamentVoting.objects.get(running=True, parliament=parliament)
+            else:
+                if ParliamentVoting.objects.filter(running=False, parliament=parliament, task__isnull=False).exists():
+                    next_voting_date = \
+                        ParliamentVoting.objects.get(running=False, parliament=parliament,
+                                                     task__isnull=False).voting_start + timedelta(days=7)
+                else:
+                    next_voting_date = state.foundation_date + timedelta(days=7)
 
     # отправляем в форму
     return render(request, 'state/gov/government.html', {
@@ -76,6 +57,8 @@ def government(request):
         # столица государства
         'capital': capital,
 
-        # наличие парламента
-        'has_parliament': has_parliament,
+        # парламент
+        'parliament': parliament,
+        # дата выборов
+        'next_voting_date': next_voting_date,
     })

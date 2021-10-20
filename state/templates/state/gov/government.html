@@ -76,15 +76,17 @@
                     <!-- Tabs -->
                     {% if player.region.state %}
                         <ul class="nav nav-tabs">
-                            {% if has_parliament %}
+                            {% if parliament %}
                             <li class="active"><a data-toggle="tab" href="#parliament">Парламент</a></li>
                             {% endif %}
                             <li><a data-toggle="tab" href="#treasury">Казна</a></li>
                         </ul>
                         <div class="tab-content">
+                            {% if parliament %}
                             <div id="parliament" class="tab-pane fade in active">
-                                {% parliament state %}
+                                {% parliament parliament %}
                             </div>
+                            {% endif %}
                             <div id="treasury" class="tab-pane fade">
                                 {% treasury state %}
                             </div>
