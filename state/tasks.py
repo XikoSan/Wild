@@ -40,13 +40,18 @@ def set_mandates(pty_pk, parl_pk, places):
     players = Player.objects.filter(banned=False, party=Party.objects.get(pk=pty_pk)).exclude(
         pk__in=exclude_list).order_by('pk')
 
-    # если на всех мест хватает
-    if places > players.count():
-        places = players.count()
+    # # если на всех мест хватает
+    # if places > players.count():
+    #     places = players.count()
 
     for num in range(places):
-        dm = DeputyMandate(player=players[num], party=Party.objects.get(pk=pty_pk),
-                           parliament=Parliament.objects.get(pk=parl_pk))
+
+        if num < len(players):
+            dm = DeputyMandate(player=players[num], party=Party.objects.get(pk=pty_pk),
+                               parliament=Parliament.objects.get(pk=parl_pk))
+        else:
+            dm = DeputyMandate(player=None, party=Party.objects.get(pk=pty_pk),
+                               parliament=Parliament.objects.get(pk=parl_pk))
         dm.save()
 
 

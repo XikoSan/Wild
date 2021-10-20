@@ -44,12 +44,17 @@ class ParliamentVotingAdmin(admin.ModelAdmin):
     list_display = ('parliament', 'voting_start', 'voting_end', 'running')
 
 
+class DeputyMandateAdmin(admin.ModelAdmin):
+    list_display = ('party', 'player', 'parliament')
+    raw_id_fields = ('party', 'player', 'parliament')
+
+
 # Register your models here.
 admin.site.register(State)
 admin.site.register(Treasury)
 admin.site.register(Parliament)
 admin.site.register(ParliamentVoting, ParliamentVotingAdmin)
 admin.site.register(Bulletin)
-admin.site.register(DeputyMandate)
+admin.site.register(DeputyMandate, DeputyMandateAdmin)
 admin.site.register(ParliamentParty)
 admin.site.register(Capital, CapitalAdmin)

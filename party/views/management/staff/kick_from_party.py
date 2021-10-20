@@ -51,7 +51,9 @@ def kick_from_party(request, pk):
                 # если персонаж был депутатом
                 if DeputyMandate.objects.filter(player=kickin_player).exists():
                     # лишаем его такого счастья
-                    DeputyMandate.objects.get(player=kickin_player).delete()
+                    mandate = DeputyMandate.objects.get(player=kickin_player)
+                    mandate.player = None
+                    mandate.save()
 
                 # Логировние: меянем запись об партийной активности
                 MembershipLog.objects.filter(player=kickin_player, party=kickin_player.party, exit_dtime=None).update(

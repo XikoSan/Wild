@@ -39,7 +39,7 @@
                     </div>
                     {% if player.region.state %}
                     <div class="row">
-                        {% if parliament_voting %}
+                        {% if has_voting %}
                         <a href="{% url 'parl_elections' parl_pk=parliament.pk %}" class="btn btn-info">Выборы</a>
                         {% else %}
                         <b><font size="3" color="black">Выборы:</font></b>
@@ -52,7 +52,7 @@
                         <font size="4">{{ state.title }}</font>
                     </div>
                     <div class="row">
-                        {% if not parliament_voting %}
+                        {% if not has_voting %}
                         <b><font size="3" color="black" >{{ next_voting_date|timezone:player.time_zone|date:"d.m.y H:i" }}</font></b>
                         {% endif %}
                     </div>
@@ -83,7 +83,7 @@
                         </ul>
                         <div class="tab-content">
                             {% if parliament %}
-                            <div id="parliament" class="tab-pane fade in active">
+                            <div id="parliament" class="tab-pane fade in active" style=" height: 640px; overflow-y: auto; overflow-x: hidden;">
                                 {% parliament parliament %}
                             </div>
                             {% endif %}

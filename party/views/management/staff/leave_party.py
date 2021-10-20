@@ -58,7 +58,9 @@ def leave_party(request):
             # если персонаж был депутатом
             if DeputyMandate.objects.filter(player=player).exists():
                 # лишаем его такого счастья
-                DeputyMandate.objects.get(player=player).delete()
+                mandate = DeputyMandate.objects.get(player=player)
+                mandate.player = None
+                mandate.save()
 
             # отклоняем все заявки в партию
             reject_all_requests(request)
@@ -109,7 +111,9 @@ def leave_party(request):
             # если персонаж был депутатом
             if DeputyMandate.objects.filter(player=player).exists():
                 # лишаем его такого счастья
-                DeputyMandate.objects.get(player=player).delete()
+                mandate = DeputyMandate.objects.get(player=player)
+                mandate.player = None
+                mandate.save()
 
             # Логировние: меянем запись об партийной активности
             MembershipLog.objects.filter(player=player, party=player.party, exit_dtime=None).update(
