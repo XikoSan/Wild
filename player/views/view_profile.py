@@ -34,7 +34,7 @@ def view_profile(request, pk):
         dtime = datetime.fromtimestamp(int(timestamp)).replace(tzinfo=pytz.timezone(TIME_ZONE)).astimezone(
             tz=pytz.timezone(player.time_zone)).strftime("%d.%m.%Y %H:%M:%S")
 
-    user_link = None
+    user_link = ''
 
     if SocialAccount.objects.filter(user=char.account).exists():
         if SocialAccount.objects.filter(user=char.account).all()[0].provider == 'vk':

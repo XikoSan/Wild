@@ -41,7 +41,7 @@ def my_profile(request):
     else:
         form = ImageForm()
 
-    user_link = None
+    user_link = ''
 
     if SocialAccount.objects.filter(user=player.account).exists():
         if SocialAccount.objects.filter(user=player.account).all()[0].provider == 'vk':
