@@ -101,6 +101,18 @@
                                 {% endif %}
                             </div>
                         </div>
+                        <!--биография-->
+                        <div class="row flex" style="margin-left: 10px;">
+                            <div class="col-xs-6 col-sm-6 col-md-6" align="left">
+                                <b><font size="5" >О себе:</font></b>
+                            </div>
+                        </div>
+                        <div class="row flex" style="margin-left: 10px;">
+                            <div class="col-xs-10 col-sm-10 col-md-10">
+                                <textarea id="player_bio" disabled maxlength="250" style="width: 100%; height: 60px">{% if not char.bio %}{{ user_link }}{% else %}{{ char.bio }}{% endif %}</textarea>
+                            </div>
+                        </div>
+                    </div>
                     </div>
                 </div>
             </div>

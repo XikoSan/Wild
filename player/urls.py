@@ -4,6 +4,7 @@ from django.conf.urls import url
 from player.views.banned import banned
 from player.views.lists.region_players import region_players_list
 from player.views.lists.world_players import world_players_list
+from .views.change_bio import change_bio
 from .views.expense_energy import expense_energy
 from .views.index import index
 from .views.my_profile import my_profile
@@ -32,6 +33,8 @@ urlpatterns = [
 
     # открытие страницы персонажа игрока
     url(r'^profile/$', my_profile, name='my_profile'),
+    # изменить биографию
+    url(r'^change_bio/$', change_bio, name='change_bio'),
     # Открытие профиля персонажа для просмотра(другими игроками)
     url(r'^profile/(?P<pk>\d+)/$', view_profile, name='view_profile'),
 

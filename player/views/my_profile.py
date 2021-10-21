@@ -9,6 +9,7 @@ from django.core.files import File
 from player.player import Player
 from player.decorators.player import check_player
 from player.forms import ImageForm
+from allauth.socialaccount.models import SocialAccount
 
 
 @login_required(login_url='/')
@@ -40,6 +41,12 @@ def my_profile(request):
     else:
         form = ImageForm()
 
+    user_link = None
+
+    if SocialAccount.objects.filter(user=player.account).exists():
+        if SocialAccount.objects.filter(user=player.account).all()[0].provider == 'vk':
+            user_link = 'https://vk.com/id' + SocialAccount.objects.filter(user=player.account).all()[0].uid
+
     # timezones = pytz.common_timezones
     #
     # if PlayerSettings.objects.filter(player=player).exists():
@@ -53,6 +60,8 @@ def my_profile(request):
 
     return render(request, 'player/profile.html', {'player': player,
                                                    'form': form,
+
+                                                   'user_link': user_link,
                                                    # 'timezones': timezones,
                                                    # 'cash_rating': cash_rating[0],
                                                    # 'player_settings': player_settings,

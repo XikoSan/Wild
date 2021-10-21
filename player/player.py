@@ -40,6 +40,9 @@ class Player(models.Model):
     # время получения прописки
     residency_date = models.DateTimeField(default=timezone.now, blank=True, verbose_name='Дата получния прописки')
 
+    # о себе
+    bio = models.TextField(max_length=250, default='', null=True, blank=True, verbose_name='Биография')
+
     # -----------партия----------------
 
     # партия игрока

@@ -1,14 +1,14 @@
-from django.contrib.auth.decorators import login_required
-from django.db import connection
-from django.shortcuts import redirect
-from django.shortcuts import render, get_object_or_404
-from django.utils import timezone
-import redis
-from player.player import Player
-from player.decorators.player import check_player
 from datetime import datetime
-from wild_politics.settings import TIME_ZONE
+
 import pytz
+import redis
+from allauth.socialaccount.models import SocialAccount
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import get_object_or_404, redirect, render
+
+from player.decorators.player import check_player
+from player.player import Player
+from wild_politics.settings import TIME_ZONE
 
 
 @login_required(login_url='/')
@@ -34,6 +34,12 @@ def view_profile(request, pk):
         dtime = datetime.fromtimestamp(int(timestamp)).replace(tzinfo=pytz.timezone(TIME_ZONE)).astimezone(
             tz=pytz.timezone(player.time_zone)).strftime("%d.%m.%Y %H:%M:%S")
 
+    user_link = None
+
+    if SocialAccount.objects.filter(user=char.account).exists():
+        if SocialAccount.objects.filter(user=char.account).all()[0].provider == 'vk':
+            user_link = 'https://vk.com/id' + SocialAccount.objects.filter(user=char.account).all()[0].uid
+
     # char_settings = None
     # if PlayerSettings.objects.filter(player=char).exists():
     #     char_settings = PlayerSettings.objects.get(player=char)
@@ -47,6 +53,7 @@ def view_profile(request, pk):
     return render(request, 'player/view_profile.html', {'player': player,
                                                         'char': char,
                                                         'dtime': dtime,
+                                                        'user_link': user_link,
                                                         # 'cash_rating': cash_rating[0],
                                                         # 'char_settings': char_settings,
                                                         # 'countdown': UntilRecharge(player)
