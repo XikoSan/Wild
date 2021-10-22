@@ -4,13 +4,21 @@
     <div class="progress" align="right">
         {% if parties %}
         {% for parl_party in parties %}
-        <div class="progress-bar bg-success" role="progressbar" style="width: {{ parl_party.seats }}%; color:black; background-color:#{{ party_colors|dict_key:parl_party }}!important"
+        <div class="progress-bar bg-success" role="progressbar" style="width: {{ parl_party.seats }}%; color:white; background-color:#{{ party_colors|dict_key:parl_party }}!important;
+                                                                                         text-shadow: 1px 0 1px #000,
+                                                                                                        0 1px 1px #000,
+                                                                                                        -1px 0 1px #000,
+                                                                                                        0 -1px 1px #000;"
                              data-toggle="tooltip" data-placement="top" title="{{ parl_party.party }}: {{ parl_party.seats }}%">
             {{ parl_party.party }}
         </div>
         {% endfor %}
         {% else %}
-        <div class="progress-bar bg-success" role="progressbar" style="width: 100%; color:black; background-color:#F5F5F5!important">
+        <div class="progress-bar bg-success" role="progressbar" style="width: 100%; color:white; background-color:#F5F5F5!important;
+         text-shadow: 1px 0 1px #000,
+                        0 1px 1px #000,
+                        -1px 0 1px #000,
+                        0 -1px 1px #000;">
             парламентских партий нет
         </div>
         {% endif %}
