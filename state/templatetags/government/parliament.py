@@ -10,12 +10,14 @@ from state.models.parliament.parliament import Parliament
 from state.models.parliament.parliament_party import ParliamentParty
 from state.models.parliament.parliament_voting import ParliamentVoting
 from player.player import Player
-
+import random
 
 @register.inclusion_tag('state/gov/parliament.html')
 def parliament(player, parliament):
 
     deputates = None
+
+    party_colors = {}
 
     # если у государства есть парламент
     if parliament:
@@ -23,6 +25,9 @@ def parliament(player, parliament):
         if ParliamentParty.objects.filter(parliament=parliament).exists():
             # для каждой парламентской партии
             for parl_party in ParliamentParty.objects.filter(parliament=parliament):
+
+                party_colors[parl_party] = "%06x" % random.randint(0, 0xFFFFFF)
+
                 # получаем экземпляр партии из объекта парламентской партии
                 adding_party = Party.objects.get(pk=parl_party.party.pk)
 
@@ -44,6 +49,8 @@ def parliament(player, parliament):
 
         # партии из парламента
         'parties': ParliamentParty.objects.filter(parliament=parliament),
+        # рандомные цвета парламентских партий
+        'party_colors': party_colors,
         # депутаты парламента
         'deputates': deputates,
     }
