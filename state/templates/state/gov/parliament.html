@@ -2,12 +2,18 @@
 {% load dict_key %}
 <div id="parliament" class="tab-pane fade in active">
     <div class="progress" align="right">
+        {% if parties %}
         {% for parl_party in parties %}
         <div class="progress-bar bg-success" role="progressbar" style="width: {{ parl_party.seats }}%; color:black; background-color:#{{ party_colors|dict_key:parl_party }}!important"
                              data-toggle="tooltip" data-placement="top" title="{{ parl_party.party }}: {{ parl_party.seats }}%">
             {{ parl_party.party }}
         </div>
         {% endfor %}
+        {% else %}
+        <div class="progress-bar bg-success" role="progressbar" style="width: 100%; color:black; background-color:#F5F5F5!important">
+            парламентских партий нет
+        </div>
+        {% endif %}
     </div>
     <div id="parliament_list" style=" height: 640px; overflow-y: auto; overflow-x: hidden;">
         <!--для каждой парламентской партии из списка-->
