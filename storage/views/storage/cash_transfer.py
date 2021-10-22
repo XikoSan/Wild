@@ -18,9 +18,30 @@ def cash_transfer(request):
     if request.method == "POST":
         # получаем персонажа
         player = Player.objects.get(account=request.user)
+
         # новые значения денег в кошельке и складе
         new_wallet = request.POST.get('cash_at_player', '')
+        # проверяем что передано целое положительное число
+        try:
+            new_wallet_cnt = int(new_wallet)
+            # передано отрицательное число
+            if new_wallet_cnt < 0:
+                return HttpResponse(_('Отрицательное число денег игрока'), content_type='text/html')
+        # нет юнита в запросе, ищем дальше
+        except ValueError:
+            return HttpResponse(_('Некорректное число денег игрока'), content_type='text/html')
+
         new_storage = request.POST.get('cash_at_storage', '')
+        # проверяем что передано целое положительное число
+        try:
+            new_storage_cnt = int(new_storage)
+            # передано отрицательное число
+            if new_storage_cnt < 0:
+                return HttpResponse(_('Отрицательное число денег Склада'), content_type='text/html')
+        # нет юнита в запросе, ищем дальше
+        except ValueError:
+            return HttpResponse(_('Некорректное число денег Склада'), content_type='text/html')
+
         # если у игрока в этом регионе есть Склад
         if not Storage.objects.filter(owner=player, region=player.region).exists():
             return HttpResponse(_('В этом регионе нет Склада'), content_type='text/html')
