@@ -55,12 +55,10 @@ def leave_party(request):
                         # удаляем все бюллетени за этого игрока
                         bultin.delete()
 
-            # если персонаж был депутатом
-            if DeputyMandate.objects.filter(player=player).exists():
+            # если партия состояла в парламенте
+            if DeputyMandate.objects.filter(party=player.party).exists():
                 # лишаем его такого счастья
-                mandate = DeputyMandate.objects.get(player=player)
-                mandate.player = None
-                mandate.save()
+                DeputyMandate.objects.filter(party=player.party).update(player=None)
 
             # отклоняем все заявки в партию
             reject_all_requests(request)

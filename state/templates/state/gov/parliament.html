@@ -29,9 +29,14 @@
                 {% endif %}
             </a>
         {% else %}
+            {% if parl_party.party.deleted %}
+            <img src="{% static 'cross.png' %}" width="80" height="80"
+                     align="right">
+            {% else %}
             <img src="{% static 'plus.png' %}" width="80" height="80"
                  {% if player.party %}{% if player.party_post.party_lead %}onclick="window.location.href = '/set_mandate_view/'" style="cursor: pointer" {% endif %}{% endif %}
                      align="right">
+            {% endif %}
         {% endif %}
     </div>
     <div class="col-xs-5 col-sm-5 col-md-5">
