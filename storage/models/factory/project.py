@@ -69,11 +69,11 @@ class Project(models.Model):
                 },
                 {
                     'cash': 10,
-                    'brent_oil': 10,
+                    'brent_oil': 15,
                 },
                 {
                     'cash': 10,
-                    'urals_oil': 15,
+                    'urals_oil': 10,
                 },
             ],
 
