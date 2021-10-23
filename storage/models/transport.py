@@ -42,6 +42,8 @@ class Transport(Log):
     }
     # ------vvvvvvv------Юниты на складе------vvvvvvv------
     units = {
+        'rifle': 5,
+
         'tank': 105,
         'antitank': 50,
 
@@ -114,6 +116,11 @@ class Transport(Log):
     aluminium_vol = models.IntegerField(default=0, verbose_name=gettext_lazy('Алюминий - кубов'))
 
     # ------vvvvvvv------Юниты на складе------vvvvvvv------
+    # Автоматы
+    rifle = models.IntegerField(default=0, verbose_name=gettext_lazy('Автоматы'))
+    # Автоматы- максимум на складе
+    rifle_vol = models.IntegerField(default=0, verbose_name=gettext_lazy('Автоматы - кубов'))
+
     # танки
     tank = models.IntegerField(default=0, verbose_name=gettext_lazy('Танки'))
     # танки- максимум на складе

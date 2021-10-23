@@ -7,6 +7,22 @@ from region.region import Region
 from player.actual_manager import ActualManager
 from django.utils.translation import ugettext as _
 
+
+# Важная информация!
+# При добавлении / изменении полей:
+
+# - Если это товар:
+# - - Добавить в списки по типам товаров
+# - - Добавить в transport.py
+# - - Добавить в destroy.py
+# - - Добавить в treasury.py
+# - - Добавить в treasury.py
+# - - Добавить в trade_offer.py
+# - - Добавить в good_lock.py
+
+# - Если его можно производить:
+# - - Добавить в project.py (саму схему и список схем внизу)
+# - - Добавить в production_log.py
 class Storage(models.Model):
     objects = models.Manager()  # Менеджер по умолчанию
     actual = ActualManager()  # Менеджер активных записей
@@ -51,6 +67,8 @@ class Storage(models.Model):
     }
     # ------vvvvvvv------Юниты на складе------vvvvvvv------
     units = {
+        'rifle': gettext_lazy('Автоматы'),
+
         'tank': gettext_lazy('Танки'),
         'antitank': gettext_lazy('ПТ-орудия'),
         'station': gettext_lazy('Орбитальные орудия'),
@@ -125,6 +143,16 @@ class Storage(models.Model):
     aluminium_cap = models.IntegerField(default=10000, verbose_name=gettext_lazy('alumunuim_cap'))
 
     # ------vvvvvvv------Юниты на складе------vvvvvvv------
+    # Автоматы
+    rifle = models.IntegerField(default=0, verbose_name=gettext_lazy('Автоматы'))
+    # Автоматы- максимум на складе
+    rifle_cap = models.IntegerField(default=1000, verbose_name='Автоматы- максимум на складе')
+
+    # ПТ-пушка
+    antitank = models.IntegerField(default=0, verbose_name=gettext_lazy('antitank'))
+    # танки- максимум на складе
+    antitank_cap = models.IntegerField(default=1000, verbose_name='ПТ-пушка- максимум на складе')
+
     # танки
     tank = models.IntegerField(default=0, verbose_name=gettext_lazy('tank'))
     # танки- максимум на складе
@@ -144,11 +172,6 @@ class Storage(models.Model):
     pzrk = models.IntegerField(default=0, verbose_name=gettext_lazy('mpads'))
     # танки- максимум на складе
     pzrk_cap = models.IntegerField(default=1000, verbose_name='ПЗРК- максимум на складе')
-
-    # AT-cannon
-    antitank = models.IntegerField(default=0, verbose_name=gettext_lazy('antitank'))
-    # танки- максимум на складе
-    antitank_cap = models.IntegerField(default=1000, verbose_name='ПТ-пушка- максимум на складе')
 
     # удалено
     deleted = models.BooleanField(default=False, verbose_name='Удалено')

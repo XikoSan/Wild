@@ -110,6 +110,21 @@ class Project(models.Model):
         'energy': 1,
     }
 
+    rifle = {
+        'title': _('rifle'),
+
+        'resources':
+            [
+                {
+                    'cash': 10,
+                    'steel': 1,
+                },
+            ],
+
+        'time': 3,
+        'energy': 1,
+    }
+
     tank = {
         'title': _('tank'),
 
@@ -179,6 +194,7 @@ class Project(models.Model):
         ('diesel', diesel.get('title')),
         ('steel', steel.get('title')),
         ('aluminium', aluminium.get('title')),
+        ('rifle', rifle.get('title')),
         ('tank', tank.get('title')),
         ('jet', jet.get('title')),
         ('pzrk', pzrk.get('title')),

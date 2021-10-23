@@ -45,6 +45,8 @@ class Destroy(Log):
     aluminium = models.IntegerField(default=0, verbose_name=gettext_lazy('alumunuim'))
 
     # ------vvvvvvv------Юниты на складе------vvvvvvv------
+    # автоматы
+    rifle = models.IntegerField(default=0, verbose_name=gettext_lazy('Автоматы'))
     # танки
     tank = models.IntegerField(default=0, verbose_name=gettext_lazy('tank'))
     # штурмовики

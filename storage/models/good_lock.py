@@ -35,6 +35,7 @@ class GoodLock(models.Model):
         ('steel', 'Сталь'),
         ('aluminium', 'Алюминий'),
 
+        ('rifle', 'Автоматы'),
         ('tank', 'Танки'),
         ('antitank', 'ПТ-орудия'),
         ('station', 'Орбитальные орудия'),
