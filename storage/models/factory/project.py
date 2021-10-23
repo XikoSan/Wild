@@ -188,6 +188,22 @@ class Project(models.Model):
         'time': 10,
         'energy': 1,
     }
+
+    howitzer = {
+        'title': _('Гаубица'),
+
+        'resources':
+            [
+                {
+                    'cash': 100,
+                    'diesel': 5,
+                    'steel': 50,
+                },
+            ],
+
+        'time': 10,
+        'energy': 5,
+    }
     # -------------^^^^^^^---------------Производственные схемы---------------^^^^^^^---------------
     schemas = (
         ('gas', gas.get('title')),
@@ -199,6 +215,7 @@ class Project(models.Model):
         ('jet', jet.get('title')),
         ('pzrk', pzrk.get('title')),
         ('antitank', antitank.get('title')),
+        ('howitzer', howitzer.get('title')),
     )
 
     type = models.CharField(

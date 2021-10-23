@@ -57,6 +57,8 @@ class Destroy(Log):
     pzrk = models.IntegerField(default=0, verbose_name=gettext_lazy('mpads'))
     # AT-cannon
     antitank = models.IntegerField(default=0, verbose_name=gettext_lazy('antitank'))
+    # гаубицы
+    howitzer = models.IntegerField(default=0, verbose_name=gettext_lazy('howitzer'))
 
     def __str__(self):
         return self.storage_from.owner.nickname + " в " + self.storage_from.region.region_name + ": " + str(self.dtime.strftime('%Y-%m-%d %H:%M'))

@@ -78,6 +78,9 @@ class Treasury(models.Model):
     # ПТ-пушки
     antitank = models.IntegerField(default=0, verbose_name=gettext_lazy('antitank'))
 
+    # Гаубицы
+    howitzer = models.IntegerField(default=0, verbose_name=gettext_lazy('howitzer'))
+
     def __str__(self):
         return self.state.title
 

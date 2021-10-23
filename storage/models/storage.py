@@ -16,7 +16,6 @@ from django.utils.translation import ugettext as _
 # - - Добавить в transport.py
 # - - Добавить в destroy.py
 # - - Добавить в treasury.py
-# - - Добавить в treasury.py
 # - - Добавить в trade_offer.py
 # - - Добавить в good_lock.py
 
@@ -75,6 +74,8 @@ class Storage(models.Model):
 
         'jet': gettext_lazy('Штурмовики'),
         'pzrk': gettext_lazy('ПЗРК'),
+
+        'howitzer': gettext_lazy('Гаубица'),
     }
 
     # владелец склада
@@ -172,6 +173,11 @@ class Storage(models.Model):
     pzrk = models.IntegerField(default=0, verbose_name=gettext_lazy('mpads'))
     # танки- максимум на складе
     pzrk_cap = models.IntegerField(default=1000, verbose_name='ПЗРК- максимум на складе')
+
+    # Гаубицы
+    howitzer = models.IntegerField(default=0, verbose_name=gettext_lazy('Гаубицы'))
+    # танки- максимум на складе
+    howitzer_cap = models.IntegerField(default=1000, verbose_name='Гаубицы- максимум на складе')
 
     # удалено
     deleted = models.BooleanField(default=False, verbose_name='Удалено')
