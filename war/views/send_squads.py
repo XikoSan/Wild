@@ -74,6 +74,14 @@ def send_squads(request):
 
         war = EventWar.objects.get(pk=int(war_pk))
 
+        if player.region != war.agr_region:
+            data = {
+                'response': 'Вы вне зоны боя',
+                'header': 'Отправка войск',
+                'grey_btn': 'Закрыть',
+            }
+            return JResponse(data)
+
         squad = None
 
         if Infantry.objects.filter(owner=player, object_id=int(war_pk), deleted=False, side=request.POST.get('side')).exists():
