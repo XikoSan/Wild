@@ -46,6 +46,8 @@ urlpatterns = [
 
                   url(r'', include('state.urls.government')),
 
+                  url(r'', include('war.urls.war')),
+
                   url('__debug__/', include(debug_toolbar.urls)),
 
                   # url(r'', include('article.urls')),
