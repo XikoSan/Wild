@@ -35,6 +35,14 @@ def send_squads(request):
             }
             return JResponse(data)
 
+        if rifle > 100:
+            data = {
+                'response': 'Достигнут лимит юнитов',
+                'header': 'Отправка войск',
+                'grey_btn': 'Закрыть',
+            }
+            return JResponse(data)
+
         if not Storage.objects.filter(owner=player, region=player.region).exists():
             data = {
                 'response': 'Нет Склада отправки войск в регионе',
