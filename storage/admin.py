@@ -27,11 +27,15 @@ class GoodLockAdmin(admin.ModelAdmin):
     raw_id_fields = ('lock_storage', 'lock_offer',)
 
 
+class StorageAdmin(admin.ModelAdmin):
+    raw_id_fields = ('owner', 'region',)
+
+
 class CashLockAdmin(admin.ModelAdmin):
     raw_id_fields = ('lock_player', 'lock_offer',)
 
 # Register your models here.
-admin.site.register(Storage)
+admin.site.register(Storage, StorageAdmin)
 admin.site.register(Transport)
 admin.site.register(Destroy)
 admin.site.register(TradeOffer, TradeOfferAdmin)
