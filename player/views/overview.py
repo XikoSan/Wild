@@ -76,9 +76,6 @@ def overview(request):
     if 'redesign' in groups:
         page = 'player/redesign/overview.html'
 
-    from war.models.wars.event_war import EventWar
-    EventWar.objects.get(pk=9).war_round()
-
     # отправляем в форму
     response = render(request, page, {
         'page_name': _('Обзор'),
