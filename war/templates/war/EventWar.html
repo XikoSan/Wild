@@ -8,10 +8,8 @@
 {% load get_class_name %}
 
 {% block for_scripts_and_css %}
-{% if player.account.is_superuser %}
 <script src='{% static "js/start_war.js" %}?{{ csrf_token }}'></script>
 <script src='{% static "js/EventWar.js" %}?{{ csrf_token }}'></script>
-{% endif %}
 {% endblock %}
 
 {% block content %}
