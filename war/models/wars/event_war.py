@@ -329,6 +329,7 @@ class EventWar(War):
         pk = self.task.pk
         self.task = None
         self.running = False
+        self.end_time = timezone.now()
         self.save()
         PeriodicTask.objects.filter(pk=pk).delete()
 

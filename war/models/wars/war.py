@@ -13,6 +13,8 @@ class War(models.Model):
 
     # время начала войны
     start_time = models.DateTimeField(default=None, blank=True, null=True, verbose_name='Начало войны')
+    # время окончания войны
+    end_time = models.DateTimeField(default=None, blank=True, null=True, verbose_name='Конец войны')
 
     # регион-агрессор
     agr_region = models.ForeignKey(Region, default=None, null=True, on_delete=models.SET_NULL, blank=True,

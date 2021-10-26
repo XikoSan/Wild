@@ -35,9 +35,17 @@ def send_squads(request):
             }
             return JResponse(data)
 
-        if rifle > 100:
+        if rifle <= 0:
             data = {
-                'response': 'Достигнут лимит юнитов',
+                'response': 'Допустимы только количества больше нуля',
+                'header': 'Отправка войск',
+                'grey_btn': 'Закрыть',
+            }
+            return JResponse(data)
+
+        if getattr(Infantry, 'specs')['rifle']['energy'] * rifle > player.energy:
+            data = {
+                'response': 'Недостаточно энергии',
                 'header': 'Отправка войск',
                 'grey_btn': 'Закрыть',
             }
@@ -51,7 +59,7 @@ def send_squads(request):
             }
             return JResponse(data)
 
-        storage = Storage.objects.get(owner=player, region=player.region)
+        storage = Storage.objects.select_for_update().get(owner=player, region=player.region)
 
         if getattr(storage, 'rifle') < rifle:
             data = {
@@ -82,18 +90,12 @@ def send_squads(request):
 
         war = EventWar.objects.get(pk=int(war_pk))
 
-        if player.region != war.agr_region:
-            data = {
-                'response': 'Вы вне зоны боя',
-                'header': 'Отправка войск',
-                'grey_btn': 'Закрыть',
-            }
-            return JResponse(data)
-
         squad = None
 
-        if Infantry.objects.filter(owner=player, object_id=int(war_pk), deleted=False, side=request.POST.get('side')).exists():
-            squad = Infantry.objects.get(owner=player, object_id=int(war_pk), deleted=False, side=request.POST.get('side'))
+        if Infantry.objects.filter(owner=player, object_id=int(war_pk), deleted=False,
+                                   side=request.POST.get('side')).exists():
+            squad = Infantry.objects.select_for_update().get(owner=player, object_id=int(war_pk), deleted=False,
+                                         side=request.POST.get('side'))
 
         else:
             # создаем новый отряд
@@ -107,6 +109,9 @@ def send_squads(request):
         setattr(squad, 'rifle', getattr(squad, 'rifle') + int(rifle))
 
         squad.save()
+
+        player.energy -= getattr(Infantry, 'specs')['rifle']['energy'] * rifle
+        player.save()
 
         setattr(storage, 'rifle', getattr(storage, 'rifle') - rifle)
         storage.save()
