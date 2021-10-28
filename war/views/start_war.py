@@ -40,7 +40,7 @@ def start_war(request):
 
         war.save()
 
-        schedule, created = IntervalSchedule.objects.get_or_create(every=1, period=IntervalSchedule.HOURS)
+        schedule, created = IntervalSchedule.objects.get_or_create(every=1, period=IntervalSchedule.MINUTES)
 
         war.task = PeriodicTask.objects.create(
             name=f'Война EventWar {war.pk}',
