@@ -3,6 +3,7 @@
 {% load dict_key %}
 {% load has_key %}
 {% load get_attr %}
+{% load get_sum %}
 {% load get_key_list %}
 {% load i18n %}{% load tz %}
 {% load get_class_name %}
@@ -37,7 +38,7 @@
         </div>
         <div class="col-xs-4 col-sm-4 col-md-4" align="center">
             <div class="row">
-                Фаза войны: {{ war.round }} / 24
+                Фаза войны: {{ war.round|get_sum:1 }} / 24
             </div>
             <div class="row">
                 Война завершится: {{ end_time|timezone:player.time_zone|date:"d.m.y H:i" }}

@@ -3,6 +3,7 @@
 {% load dict_key %}
 {% load i18n %}{% load tz %}
 {% load get_class_name %}
+{% load get_sum %}
 
 {% block for_scripts_and_css %}
 {% if player.account.is_superuser %}
@@ -54,7 +55,7 @@
                 {{ war.agr_region }}
             </div>
             <div class="col-xs-1 col-sm-1 col-md-1">
-                {{ war.round }}
+                {{ war.round|get_sum:1 }}
             </div>
             <div class="col-xs-3 col-sm-3 col-md-3">
                 {{ war.hq_points }}

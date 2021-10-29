@@ -73,7 +73,7 @@ services:
     environment:
       DB_PASS: ${DB_PASSWD}
       SECRET_KEY: ${SECRET_KEY}
-    command: celery -A wild_politics beat --loglevel=debug --scheduler django_celery_beat.schedulers:DatabaseScheduler
+    command: celery -A wild_politics beat -l info --scheduler django_celery_beat.schedulers:DatabaseScheduler
     depends_on:
       - db
       - redis

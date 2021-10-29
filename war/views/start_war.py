@@ -31,7 +31,7 @@ def start_war(request):
         # создаем новую войну
         war = EventWar(
             running=True,
-            round=1,
+            round=0,
             start_time=timezone.now(),
             agr_region=player.region,
             def_region=player.region,
