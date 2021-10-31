@@ -55,7 +55,7 @@
                 {{ war.agr_region }}
             </div>
             <div class="col-xs-1 col-sm-1 col-md-1">
-                {{ war.round|get_sum:1 }}
+                {% if war.round|get_sum:1 > 24 %}24{% else %}{{ war.round|get_sum:1 }}{% endif %}
             </div>
             <div class="col-xs-3 col-sm-3 col-md-3">
                 {{ war.hq_points }}

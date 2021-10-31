@@ -38,7 +38,7 @@
         </div>
         <div class="col-xs-4 col-sm-4 col-md-4" align="center">
             <div class="row">
-                Фаза войны: {{ war.round|get_sum:1 }} / 24
+                Фаза войны: {% if war.round|get_sum:1 > 24 %}24{% else %}{{ war.round|get_sum:1 }}{% endif %} / 24
             </div>
             <div class="row">
                 Война завершится: {{ end_time|timezone:player.time_zone|date:"d.m.y H:i" }}
