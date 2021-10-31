@@ -25,6 +25,8 @@ class WarSide(models.Model):
 
     # Автоматы
     rifle = models.IntegerField(default=0, verbose_name=gettext_lazy('Автоматы'))
+    # БМП
+    ifv = models.IntegerField(default=0, verbose_name=gettext_lazy('БМП'))
 
     def __str__(self):
         return 'Сторона войны в ' + getattr(getattr(self.content_object, 'agr_region'), 'region_name')

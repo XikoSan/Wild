@@ -2,17 +2,21 @@
 from django.contrib.contenttypes.fields import GenericRelation
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
-from django_celery_beat.models import ClockedSchedule, PeriodicTask
+from django.utils import timezone
+from django_celery_beat.models import PeriodicTask
+
 from war.models.squads.infantry import Infantry
+from war.models.squads.light_vehicle import LightVehicle
 from war.models.wars.war import War
 from war.models.wars.war_side import WarSide
-from django.utils import timezone
-import datetime
+
+from django.contrib.contenttypes.fields import create_generic_related_manager
+
 
 # класс ивентовой войны
 class EventWar(War):
-    using_units = ['rifle', ]
-    squads_list = ['infantry', ]
+    using_units = ['rifle', 'ifv']
+    squads_list = ['infantry', 'lightvehicle']
     # прочность Штаба
     hq_points = models.BigIntegerField(default=0, verbose_name='Прочность Штаба')
     # стороны войны
@@ -20,6 +24,8 @@ class EventWar(War):
 
     # отряды пихоты
     infantry = GenericRelation(Infantry)
+    # отряды легкой бронетехники
+    lightvehicle = GenericRelation(LightVehicle)
 
     def __str__(self):
         return 'Тестовая война в регионе ' + getattr(self.agr_region, 'region_name')
@@ -38,7 +44,7 @@ class EventWar(War):
         agr_side = self.war_side.get(side='agr', object_id=self.pk)
         def_side = self.war_side.get(side='def', object_id=self.pk)
 
-        squads_list = ['infantry']
+        squads_list = self.squads_list
         squads_dict = {}
 
         for squad_type in squads_list:
@@ -86,9 +92,14 @@ class EventWar(War):
         log(damage_dict)
 
         hp_dict = {}
-        # по каждому типу отрядов получаем здоровье
+
         for squad_type in squads_list:
             hp_dict[squad_type] = {}
+            hp_dict[squad_type]['agr'] = 0
+            hp_dict[squad_type]['def'] = 0
+
+        # по каждому типу отрядов получаем здоровье
+        for squad_type in squads_list:
             # если есть хоть один отряд
             if squads_dict[squad_type]:
                 if squads_dict[squad_type]:
@@ -100,19 +111,8 @@ class EventWar(War):
                                 hp_dict[squad_type][squad.side] += getattr(squad, unit) * getattr(squad, 'specs')[unit][
                                     'hp']
                             else:
-                                hp_dict[squad_type][squad.side] = getattr(squad, unit) * getattr(squad, 'specs')[unit]['hp']
-                else:
-                    hp_dict[squad_type]['agr'] = 0
-                    hp_dict[squad_type]['def'] = 0
-            else:
-                hp_dict[squad_type]['agr'] = 0
-                hp_dict[squad_type]['def'] = 0
-
-        if not 'def' in hp_dict[squad_type]:
-            hp_dict[squad_type]['def'] = 0
-
-        if not 'agr' in hp_dict[squad_type]:
-            hp_dict[squad_type]['agr'] = 0
+                                hp_dict[squad_type][squad.side] = getattr(squad, unit) * getattr(squad, 'specs')[unit][
+                                    'hp']
 
         log('hp_dict')
         log(hp_dict)

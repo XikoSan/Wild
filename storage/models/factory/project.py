@@ -189,20 +189,20 @@ class Project(models.Model):
         'energy': 1,
     }
 
-    howitzer = {
-        'title': _('Гаубица'),
+    ifv = {
+        'title': _('БМП'),
 
         'resources':
             [
                 {
-                    'cash': 100,
+                    'cash': 50,
                     'diesel': 5,
-                    'steel': 50,
+                    'steel': 5,
                 },
             ],
 
         'time': 10,
-        'energy': 5,
+        'energy': 2,
     }
     # -------------^^^^^^^---------------Производственные схемы---------------^^^^^^^---------------
     schemas = (
@@ -215,7 +215,7 @@ class Project(models.Model):
         ('jet', jet.get('title')),
         ('pzrk', pzrk.get('title')),
         ('antitank', antitank.get('title')),
-        ('howitzer', howitzer.get('title')),
+        ('ifv', ifv.get('title')),
     )
 
     type = models.CharField(

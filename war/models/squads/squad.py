@@ -9,9 +9,14 @@ from player.player import Player
 
 # отряд армии игрока
 class Squad(models.Model):
+
+    @staticmethod
+    def get_squad_related_name():
+        return '%(app_label)s_%(class)s'
+
     # владелец отряда
     owner = models.ForeignKey(Player, default=None, null=True, on_delete=models.SET_NULL, verbose_name='Владелец',
-                              related_name='squad_owner')
+                              related_name=get_squad_related_name.__func__())
 
     # война
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)

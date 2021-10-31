@@ -50,7 +50,7 @@ class Transport(Log):
         'jet': 150,
         'pzrk': 50,
 
-        'howitzer': 90,
+        'ifv': 40,
     }
 
     # регион отправки
@@ -149,9 +149,9 @@ class Transport(Log):
     antitank_vol = models.IntegerField(default=0, verbose_name=gettext_lazy('ПТ-пушка - кубов'))
 
     # Гаубица
-    howitzer = models.IntegerField(default=0, verbose_name=gettext_lazy('Гаубица'))
+    ifv = models.IntegerField(default=0, verbose_name=gettext_lazy('БМП'))
     # Гаубица - кубов
-    howitzer_vol = models.IntegerField(default=0, verbose_name=gettext_lazy('Гаубица - кубов'))
+    ifv_vol = models.IntegerField(default=0, verbose_name=gettext_lazy('БМП - кубов'))
 
     def __str__(self):
         return self.storage_from.owner.nickname + " (" + self.storage_from.region.region_name + ") " + '-> ' + self.storage_to.owner.nickname + " (" + self.storage_to.region.region_name + ")"

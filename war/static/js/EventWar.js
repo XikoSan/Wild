@@ -11,9 +11,15 @@ function send_squads(){
 
     var sending_data = "&csrfmiddlewaretoken=" + csrftoken;
 
-    sending_data += "&rifle=" + $('#rifle').val();
+    $('.unit_input').each(function(i, obj) {
+        sending_data += "&" + obj.id + "=" + obj.value;
+    });
+
     sending_data += "&war_id=" + war_id;
+    sending_data += "&war_type=" + war_type;
     sending_data += "&side=" + $('#war_side').val();
+
+    console.log(sending_data)
 
     $.ajax({
         type: "POST",

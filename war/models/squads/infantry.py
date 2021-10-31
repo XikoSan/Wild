@@ -6,7 +6,7 @@ from player.actual_manager import ActualManager
 from war.models.squads.squad import Squad
 
 
-# отряд армии игрока
+# отряд пехоты армии игрока
 class Infantry(Squad):
     objects = models.Manager()  # Менеджер по умолчанию
     actual = ActualManager()  # Менеджер активных записей
@@ -20,6 +20,7 @@ class Infantry(Squad):
                 'damage':
                     {
                         'infantry': 6,
+                        'lightvehicle': 1,
                     },
                 'price': 50,
             },
@@ -29,7 +30,7 @@ class Infantry(Squad):
     rifle = models.IntegerField(default=0, verbose_name=gettext_lazy('Автоматы'))
 
     def __str__(self):
-        return 'Отряд пехоты в ' + getattr(getattr(self.content_object,'agr_region'), 'region_name')
+        return 'Отряд пехоты'
 
     # Свойства класса
     class Meta:

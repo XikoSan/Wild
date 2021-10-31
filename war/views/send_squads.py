@@ -1,14 +1,12 @@
+from django.apps import apps
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
-from django.utils import timezone
 
 from player.decorators.player import check_player
 from player.player import Player
 from storage.models.storage import Storage
-from war.models.squads.infantry import Infantry
-from war.models.wars.event_war import EventWar
 from wild_politics.settings import JResponse
-
+from django.utils import timezone
 
 # запуск войны в текущем регионе
 @login_required(login_url='/')
@@ -22,35 +20,6 @@ def send_squads(request):
         # получаем персонажа
         player = Player.objects.select_for_update().get(account=request.user)
 
-        rifle = 0
-
-        try:
-            rifle = int(request.POST.get('rifle'))
-
-        except ValueError:
-            data = {
-                'response': 'Количество юнитов - не число',
-                'header': 'Отправка войск',
-                'grey_btn': 'Закрыть',
-            }
-            return JResponse(data)
-
-        if rifle <= 0:
-            data = {
-                'response': 'Допустимы только количества больше нуля',
-                'header': 'Отправка войск',
-                'grey_btn': 'Закрыть',
-            }
-            return JResponse(data)
-
-        if getattr(Infantry, 'specs')['rifle']['energy'] * rifle > player.energy:
-            data = {
-                'response': 'Недостаточно энергии',
-                'header': 'Отправка войск',
-                'grey_btn': 'Закрыть',
-            }
-            return JResponse(data)
-
         if not Storage.objects.filter(owner=player, region=player.region).exists():
             data = {
                 'response': 'Нет Склада отправки войск в регионе',
@@ -61,18 +30,30 @@ def send_squads(request):
 
         storage = Storage.objects.select_for_update().get(owner=player, region=player.region)
 
-        if getattr(storage, 'rifle') < rifle:
+        # получаем войну
+        try:
+            war_pk = int(request.POST.get('war_id'))
+
+        except ValueError:
             data = {
-                'response': 'Недостаточно войск',
+                'response': 'ID войны указан некорректно',
                 'header': 'Отправка войск',
                 'grey_btn': 'Закрыть',
             }
             return JResponse(data)
 
-        # получаем войну
-        war_pk = request.POST.get('war_id')
+        try:
+            war_class = apps.get_model('war', request.POST.get('war_type'))
 
-        if not EventWar.objects.filter(pk=int(war_pk), deleted=False, running=True).exists():
+        except KeyError:
+            data = {
+                'response': 'Такого вида войн нет',
+                'header': 'Отправка войск',
+                'grey_btn': 'Закрыть',
+            }
+            return JResponse(data)
+
+        if not war_class.objects.filter(pk=war_pk, deleted=False, running=True).exists():
             data = {
                 'response': 'Нет такой войны',
                 'header': 'Отправка войск',
@@ -88,32 +69,108 @@ def send_squads(request):
             }
             return JResponse(data)
 
-        war = EventWar.objects.get(pk=int(war_pk))
+        war = war_class.objects.get(pk=war_pk)
 
-        squad = None
+        squads_list = getattr(war, 'squads_list')
 
-        if Infantry.objects.filter(owner=player, object_id=int(war_pk), deleted=False,
-                                   side=request.POST.get('side')).exists():
-            squad = Infantry.objects.select_for_update().get(owner=player, object_id=int(war_pk), deleted=False,
-                                         side=request.POST.get('side'))
+        energy_sum = 0
 
-        else:
-            # создаем новый отряд
-            squad = Infantry(
-                owner=player,
-                content_object=war,
-                side=request.POST.get('side'),
-                deploy=timezone.now()
-            )
+        squads_count_class = {}
+        # rifles: 25, Infantry, true - отряд для 25 автоматов уже есть
 
-        setattr(squad, 'rifle', getattr(squad, 'rifle') + int(rifle))
+        for squad_type in squads_list:
+            if not hasattr(war, squad_type):
+                continue
+            # для каждого юнита в каждом типе отрядов этой войны
+            for unit in getattr(getattr(getattr(war, squad_type), 'model'), 'specs').keys():
 
-        squad.save()
+                unit_class = getattr(getattr(war, squad_type), 'model')
 
-        player.energy -= getattr(Infantry, 'specs')['rifle']['energy'] * rifle
+                if request.POST.get(unit):
+
+                    try:
+                        unit_count = int(request.POST.get(unit))
+
+                    except ValueError:
+                        data = {
+                            'response': 'Количество юнитов - не число',
+                            'header': 'Отправка войск',
+                            'grey_btn': 'Закрыть',
+                        }
+                        return JResponse(data)
+
+                    if unit_count <= 0:
+                        data = {
+                            'response': 'Допустимы только количества больше нуля',
+                            'header': 'Отправка войск',
+                            'grey_btn': 'Закрыть',
+                        }
+                        return JResponse(data)
+
+                    if getattr(storage, unit) < unit_count:
+                        data = {
+                            'response': 'Недостаточно войск (' + getattr(unit_class, 'specs')[unit]['name'] + ') на Складе',
+                            'header': 'Отправка войск',
+                            'grey_btn': 'Закрыть',
+                        }
+                        return JResponse(data)
+
+                    energy_sum += getattr(unit_class, 'specs')[unit]['energy'] * unit_count
+
+                    # узнаем, нужен ли новый объект для юнитов. Если нужен будет, сделаем
+                    if unit_class.objects.filter(owner=player, object_id=war_pk, deleted=False,
+                                                 side=request.POST.get('side')).exists():
+                        squads_count_class[unit] = [unit_count, unit_class, True]
+                    else:
+                        squads_count_class[unit] = [unit_count, unit_class, False]
+
+        if energy_sum > player.energy:
+            data = {
+                'response': 'Недостаточно энергии',
+                'header': 'Отправка войск',
+                'grey_btn': 'Закрыть',
+            }
+            return JResponse(data)
+
+        new_squads_dict = {}
+
+        for unit in squads_count_class.keys():
+
+            unit_list = squads_count_class[unit]
+
+            squad = None
+            # unit_list[2] - это наличие объекта отряда для юнита
+            if unit_list[2]:
+                # unit_list[1] - это класс юнита
+                squad = unit_list[1].objects.select_for_update().get(owner=player, object_id=war_pk, deleted=False,
+                                             side=request.POST.get('side'))
+
+            else:
+                if unit_list[1] in new_squads_dict:
+                    squad = new_squads_dict[unit_list[1]]
+
+                else:
+                    # создаем новый отряд
+                    squad = unit_list[1](
+                        owner=player,
+                        content_object=war,
+                        side=request.POST.get('side'),
+                        deploy=timezone.now()
+                    )
+
+                    new_squads_dict[unit_list[1]] = squad
+
+            setattr(squad, unit, getattr(squad, unit) + unit_list[0])
+
+            squad.save()
+
+        player.energy -= energy_sum
         player.save()
 
-        setattr(storage, 'rifle', getattr(storage, 'rifle') - rifle)
+        for unit in squads_count_class.keys():
+
+            setattr(storage, unit, getattr(storage, unit) - squads_count_class[unit][0])
+
         storage.save()
 
         data = {
@@ -125,7 +182,7 @@ def send_squads(request):
     else:
         data = {
             'response': 'Ошибка типа запроса',
-            'header': 'Основание государства',
+            'header': 'Отправка войск',
             'grey_btn': 'Закрыть',
         }
         return JResponse(data)

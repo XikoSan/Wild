@@ -75,7 +75,7 @@ class Storage(models.Model):
         'jet': gettext_lazy('Штурмовики'),
         'pzrk': gettext_lazy('ПЗРК'),
 
-        'howitzer': gettext_lazy('Гаубица'),
+        'ifv': gettext_lazy('БМП'),
     }
 
     # владелец склада
@@ -147,7 +147,7 @@ class Storage(models.Model):
     # Автоматы
     rifle = models.IntegerField(default=0, verbose_name=gettext_lazy('Автоматы'))
     # Автоматы- максимум на складе
-    rifle_cap = models.IntegerField(default=1000, verbose_name='Автоматы- максимум на складе')
+    rifle_cap = models.IntegerField(default=10000, verbose_name='Автоматы- максимум на складе')
 
     # ПТ-пушка
     antitank = models.IntegerField(default=0, verbose_name=gettext_lazy('antitank'))
@@ -175,9 +175,9 @@ class Storage(models.Model):
     pzrk_cap = models.IntegerField(default=1000, verbose_name='ПЗРК- максимум на складе')
 
     # Гаубицы
-    howitzer = models.IntegerField(default=0, verbose_name=gettext_lazy('Гаубицы'))
+    ifv = models.IntegerField(default=0, verbose_name=gettext_lazy('БМП'))
     # танки- максимум на складе
-    howitzer_cap = models.IntegerField(default=1000, verbose_name='Гаубицы- максимум на складе')
+    ifv_cap = models.IntegerField(default=1000, verbose_name='БМП- максимум на складе')
 
     # удалено
     deleted = models.BooleanField(default=False, verbose_name='Удалено')

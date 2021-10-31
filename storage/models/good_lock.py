@@ -41,7 +41,7 @@ class GoodLock(models.Model):
         ('station', 'Орбитальные орудия'),
         ('jet', 'Штурмовики'),
         ('pzrk', 'ПЗРК'),
-        ('howitzer', 'Гаубица')
+        ('ifv', 'БМП')
     )
 
     lock_good = models.CharField(

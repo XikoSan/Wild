@@ -17,6 +17,7 @@
 <!-- Tab content -->
 <script>
     const war_id = '{{ war.pk }}';
+    const war_type = 'EventWar';
 </script>
 <div id="over" class="tabcontent">
     <div class="row">
@@ -24,16 +25,30 @@
             <div class="row">
                 Атакует: <img src="/static/img/regions/{{ war.agr_region.on_map_id }}.png" width="25px" height="25px" alt="world_icon">{{ war.agr_region }}
             </div>
-            <div class="row" align="center" style="margin-top: 50px">
-                Пехота:
-            </div>
-            <div class="row" style="margin-top: 20px">
-                <div class="col-xs-6 col-sm-6 col-md-6">
-                    Автоматы:
+            <ul class="nav nav-tabs">
+                {% for squad_type in war|get_attr:'squads_list' %}
+                <li {% if forloop.counter0 == 0 %}class="active"{% endif %}><a data-toggle="tab" href="#agr_{{ squad_type }}">{{ war|get_attr:'squads_dict'|dict_key:squad_type }}</a></li>
+                {% endfor %}
+            </ul>
+            <div class="tab-content">
+                {% for squad_type in war|get_attr:'squads_list' %}
+                <div id="agr_{{ squad_type }}" class="tab-pane fade {% if forloop.counter0 == 0 %}in active{% endif %}">
+                {% with squad_cl=war|get_attr:squad_type|get_attr:'model' %}
+                    {% for unit in squad_cl|get_attr:'specs'|get_key_list %}
+                        {% if agr_side|get_attr:unit > 0 %}
+                    <div class="row" style="margin-top: 20px">
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            {{ squad_cl|get_attr:'specs'|dict_key:unit|dict_key:'name' }}:
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            {{ agr_side|get_attr:unit }}
+                        </div>
+                    </div>
+                        {% endif %}
+                    {% endfor %}
+                {% endwith %}
                 </div>
-                <div class="col-xs-6 col-sm-6 col-md-6">
-                    {{ agr_side.rifle }}
-                </div>
+                {% endfor %}
             </div>
         </div>
         <div class="col-xs-4 col-sm-4 col-md-4" align="center">
@@ -51,16 +66,30 @@
             <div class="row">
                 Обороняется: <img src="/static/img/regions/{{ war.def_region.on_map_id }}.png" width="25px" height="25px">{{ war.def_region }}
             </div>
-            <div class="row" align="center" style="margin-top: 50px">
-                Пехота:
-            </div>
-            <div class="row" style="margin-top: 20px">
-                <div class="col-xs-6 col-sm-6 col-md-6">
-                    Автоматы:
+            <ul class="nav nav-tabs">
+                {% for squad_type in war|get_attr:'squads_list' %}
+                <li {% if forloop.counter0 == 0 %}class="active"{% endif %}><a data-toggle="tab" href="#def_{{ squad_type }}">{{ war|get_attr:'squads_dict'|dict_key:squad_type }}</a></li>
+                {% endfor %}
+            </ul>
+            <div class="tab-content">
+                {% for squad_type in war|get_attr:'squads_list' %}
+                <div id="def_{{ squad_type }}" class="tab-pane fade {% if forloop.counter0 == 0 %}in active{% endif %}">
+                {% with squad_cl=war|get_attr:squad_type|get_attr:'model' %}
+                    {% for unit in squad_cl|get_attr:'specs'|get_key_list %}
+                        {% if def_side|get_attr:unit > 0 %}
+                    <div class="row" style="margin-top: 20px">
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            {{ squad_cl|get_attr:'specs'|dict_key:unit|dict_key:'name' }}:
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            {{ def_side|get_attr:unit }}
+                        </div>
+                    </div>
+                        {% endif %}
+                    {% endfor %}
+                {% endwith %}
                 </div>
-                <div class="col-xs-6 col-sm-6 col-md-6">
-                    {{ def_side.rifle }}
-                </div>
+                {% endfor %}
             </div>
         </div>
     </div>
@@ -68,23 +97,44 @@
     <div class="row" align="center" style="margin-top: 50px">
         <div class="col-xs-4 col-sm-4 col-md-4" align="center">
             <div class="row" align="center">Отправить на фронт</div>
+
+            {% for squad_type in war|get_attr:'squads_list' %}
             <div class="row" align="center" style="margin-top: 20px">
-                Пехота:
+                {{ war|get_attr:'squads_dict'|dict_key:squad_type }}:
             </div>
+            {% with squad_cl=war|get_attr:squad_type|get_attr:'model' %}
+                {% for unit in squad_cl|get_attr:'specs'|get_key_list %}
             <div class="row unit_select_list" style="margin-top: 20px">
-                <div class="col-xs-4 col-sm-4 col-md-4">
-                    Автоматы:
+                <div class="col-xs-7 col-sm-7 col-md-7">
+                    <div class="row">
+                        {{ squad_cl|get_attr:'specs'|dict_key:unit|dict_key:'name' }}:
+                    </div>
+                    <div class="row">
+                        {% for dest_type in squad_cl|get_attr:'specs'|dict_key:unit|dict_key:'damage' %}
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="row">
+                                {{ war|get_attr:'squads_dict'|dict_key:dest_type }}
+                            </div>
+                            <div class="row">
+                            {{ squad_cl|get_attr:'specs'|dict_key:unit|dict_key:'damage'|dict_key:dest_type }}
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <div class="row">
+                        Прочность: {{ squad_cl|get_attr:'specs'|dict_key:unit|dict_key:'hp' }}
+                    </div>
                 </div>
-                <div class="col-xs-1 col-sm-1 col-md-1">
-                    У: {% for dest_type in infantry_cl|get_attr:'specs'|dict_key:'rifle'|dict_key:'damage' %}{{ infantry_cl|get_attr:'specs'|dict_key:'rifle'|dict_key:'damage'|dict_key:dest_type }}{% endfor %}
+                <div class="col-xs-2 col-sm-2 col-md-2">
+                    Энергия: {{ squad_cl|get_attr:'specs'|dict_key:unit|dict_key:'energy' }}
                 </div>
-                <div class="col-xs-1 col-sm-1 col-md-1">
-                    Э: {{ infantry_cl|get_attr:'specs'|dict_key:'rifle'|dict_key:'energy' }}
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-6">
-                    <input type="number" min="0" max="100" value="0" step="1" id="rifle" name="rifle" class="unit_input" maxlength="3">
+                <div class="col-xs-3 col-sm-3 col-md-3">
+                    <input type="number" min="0" max="100" value="0" step="1" id="{{ unit }}" name="{{ unit }}" class="unit_input" maxlength="3">
                 </div>
             </div>
+                {% endfor %}
+            {% endwith %}
+            {% endfor %}
         </div>
         <div class="col-xs-4 col-sm-4 col-md-4" align="center">
             <div class="row">
@@ -132,7 +182,7 @@
 
             {% for squad_type in war|get_attr:'squads_list' %}
             <div class="row" align="center" style="margin-top: 20px">
-                Пехота:
+                {{ war_cl|get_attr:'squads_dict'|dict_key:squad_type }}:
             </div>
                 {% if squads_dict|has_key:squad_type %}
                     {% for squad in squads_dict|dict_key:squad_type %}

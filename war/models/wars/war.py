@@ -4,8 +4,13 @@ from django_celery_beat.models import PeriodicTask
 
 from region.region import Region
 
+
 # класс абстрактной войны
 class War(models.Model):
+    squads_dict = {
+        'infantry': 'Пехота',
+        'lightvehicle': 'Легкая бронетехника'
+    }
     # признак того что война идет сейчас
     running = models.BooleanField(default=False, verbose_name='Идёт война')
     # раунд войны

@@ -68,7 +68,7 @@ class ProductionLog(Log):
     antitank = models.IntegerField(default=0, verbose_name=gettext_lazy('antitank'))
 
     # Гаубицы
-    howitzer = models.IntegerField(default=0, verbose_name=gettext_lazy('howitzer'))
+    ifv = models.IntegerField(default=0, verbose_name=gettext_lazy('ifv'))
 
     def __str__(self):
         good_name = self.prod_result
