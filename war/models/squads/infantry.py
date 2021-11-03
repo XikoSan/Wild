@@ -22,7 +22,7 @@ class Infantry(Squad):
                         'infantry': 6,
                         'lightvehicle': 1,
                     },
-                'price': 50,
+                'price': 52,
             },
     }
 

@@ -212,6 +212,7 @@
                 {{ squad.get_side_display }}
             </div>
                         {% for unit in squad|get_attr:'specs'|get_key_list %}
+                            {% if not squad|get_attr:unit == 0 %}
             <div class="row" style="margin-top: 20px">
                 <div class="col-xs-6 col-sm-6 col-md-6">
                     {{ squad|get_attr:'specs'|dict_key:unit|dict_key:'name' }}:
@@ -219,7 +220,7 @@
                 <div class="col-xs-6 col-sm-6 col-md-6">
                     {{ squad|get_attr:unit }}
                 </div>
-            </div>
+            </div>          {% endif %}
                         {% endfor %}
                     {% endfor %}
                 {% else %}

@@ -1,7 +1,7 @@
 # coding=utf-8
 from django.db import models
 from django.utils.translation import gettext_lazy
-from django.contrib.contenttypes.models import ContentType
+
 from player.actual_manager import ActualManager
 from war.models.squads.squad import Squad
 
@@ -24,10 +24,25 @@ class LightVehicle(Squad):
                     },
                 'price': 450,
             },
+
+        'antitank':
+            {
+                'name': 'ПТ-орудия',
+                'energy': 2,
+                'hp': 20,
+                'damage':
+                    {
+                        'infantry': 0,
+                        'lightvehicle': 20,
+                    },
+                'price': 335,
+            },
     }
 
     # БМП
     ifv = models.IntegerField(default=0, verbose_name=gettext_lazy('БМП'))
+    # ПТ-орудия
+    antitank = models.IntegerField(default=0, verbose_name=gettext_lazy('ПТ-орудия'))
 
     def __str__(self):
         return 'Отряд легкой бронетехники'

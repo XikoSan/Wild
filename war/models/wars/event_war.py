@@ -15,7 +15,7 @@ from django.contrib.contenttypes.fields import create_generic_related_manager
 
 # класс ивентовой войны
 class EventWar(War):
-    using_units = ['rifle', 'ifv']
+    using_units = ['rifle', 'ifv', 'antitank']
     squads_list = ['infantry', 'lightvehicle']
     # прочность Штаба
     hq_points = models.BigIntegerField(default=0, verbose_name='Прочность Штаба')
@@ -63,10 +63,10 @@ class EventWar(War):
             if squads_dict[squad_type]:
                 # по каждому отряду типа
                 for squad in squads_dict[squad_type]:
+                    damage_dict[squad_type][squad.side] = {}
                     # по каждому юниту отряда
                     for unit in getattr(squad, 'specs').keys():
                         # для каждого типа юнитов, по которому этот юнит может бить
-                        damage_dict[squad_type][squad.side] = {}
                         for target_type in getattr(squad, 'specs')[unit]['damage'].keys():
                             if target_type in damage_dict[squad_type][squad.side]:
                                 damage_dict[squad_type][squad.side][target_type] += getattr(squad, unit) * \
@@ -123,10 +123,10 @@ class EventWar(War):
             side_damage_dict[squad_type] = {}
             # по каждому юниту стороны боя
             static_class = ContentType.objects.get(app_label="war", model=squad_type).model_class()
+            side_damage_dict[squad_type]['agr'] = {}
+            side_damage_dict[squad_type]['def'] = {}
             for unit in getattr(static_class, 'specs').keys():
                 # для каждого типа юнитов, по которому этот юнит может бить
-                side_damage_dict[squad_type]['agr'] = {}
-                side_damage_dict[squad_type]['def'] = {}
                 for target_type in getattr(static_class, 'specs')[unit]['damage'].keys():
                     if target_type in side_damage_dict[squad_type]['agr']:
                         side_damage_dict[squad_type]['agr'][target_type] += getattr(agr_side, unit) * \
