@@ -75,8 +75,14 @@ def send_squads(request):
 
         energy_sum = 0
 
+        # rifles: 25, Infantry, true - отряд для 25 автоматов уже есть,
         squads_count_class = {}
-        # rifles: 25, Infantry, true - отряд для 25 автоматов уже есть
+
+        # словарь: тип отряда - наличие
+        squads_avail_dict = {}
+
+        # признак того, что хотя бы один юнит указан (не нулевой)
+        has_units = False
 
         for squad_type in squads_list:
             if not hasattr(war, squad_type):
@@ -99,13 +105,18 @@ def send_squads(request):
                         }
                         return JResponse(data)
 
-                    if unit_count <= 0:
+                    if unit_count < 0:
                         data = {
-                            'response': 'Допустимы только количества больше нуля',
+                            'response': 'Допустимы только положительные значения',
                             'header': 'Отправка войск',
                             'grey_btn': 'Закрыть',
                         }
                         return JResponse(data)
+
+                    if unit_count == 0:
+                        continue
+
+                    has_units = True
 
                     if getattr(storage, unit) < unit_count:
                         data = {
@@ -117,12 +128,27 @@ def send_squads(request):
 
                     energy_sum += getattr(unit_class, 'specs')[unit]['energy'] * unit_count
 
-                    # узнаем, нужен ли новый объект для юнитов. Если нужен будет, сделаем
-                    if unit_class.objects.filter(owner=player, object_id=war_pk, deleted=False,
-                                                 side=request.POST.get('side')).exists():
-                        squads_count_class[unit] = [unit_count, unit_class, True]
+                    # проверяем, известно ли нам о наличии или отсутсвии отряда такого типа
+                    if not unit_class in squads_avail_dict:
+                        # узнаем, нужен ли новый объект для юнитов. Если нужен будет, сделаем
+                        if unit_class.objects.filter(owner=player, object_id=war_pk, deleted=False,
+                                                     side=request.POST.get('side')).exists():
+                            squads_count_class[unit] = [unit_count, unit_class, True]
+                            squads_avail_dict[unit_class] = True
+                        else:
+                            squads_count_class[unit] = [unit_count, unit_class, False]
+                            squads_avail_dict[unit_class] = False
+
                     else:
-                        squads_count_class[unit] = [unit_count, unit_class, False]
+                        squads_count_class[unit] = [unit_count, unit_class, squads_avail_dict[unit_class]]
+
+        if not has_units:
+            data = {
+                'response': 'Не указан ни один юнит к отправке',
+                'header': 'Отправка войск',
+                'grey_btn': 'Закрыть',
+            }
+            return JResponse(data)
 
         if energy_sum > player.energy:
             data = {
