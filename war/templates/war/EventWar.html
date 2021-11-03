@@ -18,6 +18,23 @@
 <script>
     const war_id = '{{ war.pk }}';
     const war_type = 'EventWar';
+
+    var units_energy = {};
+    var units_damage = {};
+
+        {% for squad_type in war|get_attr:'squads_list' %}
+            {% with squad_cl=war|get_attr:squad_type|get_attr:'model' %}
+                {% for unit in squad_cl|get_attr:'specs'|get_key_list %}
+        units_energy['{{ unit }}'] = {{ squad_cl|get_attr:'specs'|dict_key:unit|dict_key:'energy' }};
+        units_damage['{{ unit }}'] = {
+                        {% for dest_type in squad_cl|get_attr:'specs'|dict_key:unit|dict_key:'damage' %}
+            {{ dest_type }}: {{ squad_cl|get_attr:'specs'|dict_key:unit|dict_key:'damage'|dict_key:dest_type }},
+                        {% endfor %}
+        };
+                {% endfor %}
+            {% endwith %}
+        {% endfor %}
+
 </script>
 <div id="over" class="tabcontent">
     <div class="row">
@@ -161,8 +178,13 @@
                 <div class="col-xs-6 col-sm-6 col-md-6">
                     Урон:
                 </div>
-                <div class="col-xs-6 col-sm-6 col-md-6">
-                    <div id="damage_count">0</div>
+                <div class="col-xs-6 col-sm-6 col-md-6 flex">
+                    {% for squad_type in war|get_attr:'squads_list' %}
+                    <div id="damage_{{ squad_type }}" style="display: inline-block">0</div>
+                        {% if not squad_type == war|get_attr:'squads_list'|last %}
+                    /
+                        {% endif %}
+                    {% endfor %}
                 </div>
             </div>
             <div class="row">
