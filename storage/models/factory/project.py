@@ -181,7 +181,7 @@ class Project(models.Model):
                 {
                     'cash': 50,
                     'gas': 2,
-                    'steel': 5,
+                    'steel': 2,
                 },
             ],
 
