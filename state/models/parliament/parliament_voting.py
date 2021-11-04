@@ -33,8 +33,8 @@ class ParliamentVoting(models.Model):
         if not PeriodicTask.objects.filter(
                 name=f'{self.parliament.state.title}, id {self.parliament.pk} parl primaries').exists():
 
-            # schedule, created = IntervalSchedule.objects.get_or_create(every=1, period=IntervalSchedule.DAYS)
-            schedule, created = IntervalSchedule.objects.get_or_create(every=1, period=IntervalSchedule.MINUTES)
+            schedule, created = IntervalSchedule.objects.get_or_create(every=1, period=IntervalSchedule.DAYS)
+            # schedule, created = IntervalSchedule.objects.get_or_create(every=1, period=IntervalSchedule.MINUTES)
 
             self.task = PeriodicTask.objects.create(
                 name=f'{self.parliament.state.title}, id {self.parliament.pk} parl primaries',

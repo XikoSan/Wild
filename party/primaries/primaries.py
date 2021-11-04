@@ -28,8 +28,8 @@ class Primaries(models.Model):
     def setup_task(self):
 
         if not PeriodicTask.objects.filter(name=f'{self.party.title}, id {self.party.pk} party primaries').exists():
-            # schedule, created = IntervalSchedule.objects.get_or_create(every=1, period=IntervalSchedule.DAYS)
-            schedule, created = IntervalSchedule.objects.get_or_create(every=1, period=IntervalSchedule.MINUTES)
+            schedule, created = IntervalSchedule.objects.get_or_create(every=1, period=IntervalSchedule.DAYS)
+            # schedule, created = IntervalSchedule.objects.get_or_create(every=1, period=IntervalSchedule.MINUTES)
 
             self.task = PeriodicTask.objects.create(
                 name=f'{self.party.title}, id {self.party.pk} party primaries',

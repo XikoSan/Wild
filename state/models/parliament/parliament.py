@@ -23,8 +23,8 @@ class Parliament(models.Model):
 
     # формируем переодическую таску
     def setup_task(self):
-        # schedule, created = IntervalSchedule.objects.get_or_create(every=7, period=IntervalSchedule.DAYS)
-        schedule, created = IntervalSchedule.objects.get_or_create(every=7, period=IntervalSchedule.MINUTES)
+        schedule, created = IntervalSchedule.objects.get_or_create(every=7, period=IntervalSchedule.DAYS)
+        # schedule, created = IntervalSchedule.objects.get_or_create(every=7, period=IntervalSchedule.MINUTES)
 
         self.task = PeriodicTask.objects.create(
             name=f'{self.state.title}, id парла {str(self.pk)}',

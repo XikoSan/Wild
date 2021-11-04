@@ -140,8 +140,8 @@ def finish_elections(parl_id):
     finish_task = PeriodicTask.objects.get(pk=elections.task.pk)
 
     if finish_task.interval.every == 1:
-        # schedule, created = IntervalSchedule.objects.get_or_create(every=7, period=IntervalSchedule.DAYS)
-        schedule, created = IntervalSchedule.objects.get_or_create(every=7, period=IntervalSchedule.MINUTES)
+        schedule, created = IntervalSchedule.objects.get_or_create(every=7, period=IntervalSchedule.DAYS)
+        # schedule, created = IntervalSchedule.objects.get_or_create(every=7, period=IntervalSchedule.MINUTES)
 
         finish_task.interval = schedule
         finish_task.save()
