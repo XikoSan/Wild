@@ -7,7 +7,7 @@ from django.utils import timezone
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 from django.core.files.uploadedfile import InMemoryUploadedFile
-from django_celery_beat.models import ClockedSchedule, PeriodicTask
+from django_celery_beat.models import IntervalSchedule, PeriodicTask
 
 from region.region import Region
 
@@ -60,42 +60,15 @@ class Party(models.Model):
     # переодическая таска
     task = models.OneToOneField(PeriodicTask, on_delete=models.DO_NOTHING, null=True, blank=True)
 
-    # def save(self):
-    #     # если картинка есть (добавили или изменили)
-    #     if self.image:
-    #         # Opening the uploaded image
-    #         try:
-    #             im = Image.open(self.image)
-    #
-    #             output = BytesIO()
-    #
-    #             # Resize/modify the image
-    #             im = im.resize((300, 300))
-    #
-    #             # after modifications, save it to the output
-    #             im.save(output, format='PNG', quality=100)
-    #             output.seek(0)
-    #
-    #             # change the imagefield value to be the newley modifed image value
-    #             self.image = InMemoryUploadedFile(output, 'ImageField',
-    #                                               "%(party)s.png" % {"party": self.pk}, 'image/png',
-    #                                               sys.getsizeof(output), None)
-    #         except FileNotFoundError:
-    #             pass
-    #
-    #     super(Party, self).save()
-
     # формируем переодическую таску
     def setup_task(self):
-        start_time = timezone.now() + datetime.timedelta(days=7)
-        # start_time = timezone.now() + datetime.timedelta(minutes=7)
-        clock, created = ClockedSchedule.objects.get_or_create(clocked_time=start_time)
+        # schedule, created = IntervalSchedule.objects.get_or_create(every=7, period=IntervalSchedule.DAYS)
+        schedule, created = IntervalSchedule.objects.get_or_create(every=7, period=IntervalSchedule.MINUTES)
 
         self.task = PeriodicTask.objects.create(
             name=self.title + ', id ' + str(self.pk),
             task='start_primaries',
-            clocked=clock,
-            one_off=True,
+            interval=schedule,
             args=json.dumps([self.id]),
             start_time=timezone.now()
         )

@@ -1,13 +1,10 @@
 import json
 
-import datetime
-
 from django.db import models
-from django.utils import timezone
-from django.dispatch import receiver
 from django.db.models.signals import post_save
-
-from django_celery_beat.models import ClockedSchedule, PeriodicTask
+from django.dispatch import receiver
+from django.utils import timezone
+from django_celery_beat.models import IntervalSchedule, PeriodicTask
 
 from party.party import Party
 
@@ -31,20 +28,17 @@ class Primaries(models.Model):
     def setup_task(self):
 
         if not PeriodicTask.objects.filter(name=f'{self.party.title}, id {self.party.pk} party primaries').exists():
-            start_time = timezone.now() + datetime.timedelta(days=1)
-            # start_time = timezone.now() + datetime.timedelta(minutes=1)
-            clock, created = ClockedSchedule.objects.get_or_create(clocked_time=start_time)
+            # schedule, created = IntervalSchedule.objects.get_or_create(every=1, period=IntervalSchedule.DAYS)
+            schedule, created = IntervalSchedule.objects.get_or_create(every=1, period=IntervalSchedule.MINUTES)
 
             self.task = PeriodicTask.objects.create(
                 name=f'{self.party.title}, id {self.party.pk} party primaries',
                 task='finish_primaries',
-                clocked=clock,
-                one_off=True,
+                interval=schedule,
                 args=json.dumps([self.party.pk]),
                 start_time=timezone.now(),
             )
             self.save()
-
 
     def delete_task(self):
         # проверяем есть ли таска
