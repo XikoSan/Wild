@@ -21,6 +21,7 @@ class Infantry(Squad):
                     {
                         'infantry': 6,
                         'lightvehicle': 1,
+                        'heavyvehicle': 1,
                     },
                 'price': 52,
             },

@@ -5,18 +5,17 @@ from django.db import models
 from django.utils import timezone
 from django_celery_beat.models import PeriodicTask
 
+from war.models.squads.heavy_vehicle import HeavyVehicle
 from war.models.squads.infantry import Infantry
 from war.models.squads.light_vehicle import LightVehicle
 from war.models.wars.war import War
 from war.models.wars.war_side import WarSide
 
-from django.contrib.contenttypes.fields import create_generic_related_manager
-
 
 # класс ивентовой войны
 class EventWar(War):
-    using_units = ['rifle', 'ifv', 'antitank']
-    squads_list = ['infantry', 'lightvehicle']
+    using_units = ['rifle', 'ifv', 'antitank', 'tank']
+    squads_list = ['infantry', 'lightvehicle', 'heavyvehicle']
     # прочность Штаба
     hq_points = models.BigIntegerField(default=0, verbose_name='Прочность Штаба')
     # стороны войны
@@ -26,6 +25,8 @@ class EventWar(War):
     infantry = GenericRelation(Infantry)
     # отряды легкой бронетехники
     lightvehicle = GenericRelation(LightVehicle)
+    # отряды тяжелой бронетехники
+    heavyvehicle = GenericRelation(HeavyVehicle)
 
     def __str__(self):
         return 'Тестовая война в регионе ' + getattr(self.agr_region, 'region_name')

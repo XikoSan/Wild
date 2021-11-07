@@ -21,6 +21,7 @@ class LightVehicle(Squad):
                     {
                         'infantry': 16,
                         'lightvehicle': 10,
+                        'heavyvehicle': 5,
                     },
                 'price': 450,
             },
@@ -34,6 +35,7 @@ class LightVehicle(Squad):
                     {
                         'infantry': 0,
                         'lightvehicle': 20,
+                        'heavyvehicle': 15,
                     },
                 'price': 335,
             },

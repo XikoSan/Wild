@@ -9,7 +9,8 @@ from region.region import Region
 class War(models.Model):
     squads_dict = {
         'infantry': 'Пехота',
-        'lightvehicle': 'Легкая бронетехника'
+        'lightvehicle': 'Легкая бронетехника',
+        'heavyvehicle': 'Тяжелая бронетехника'
     }
     # признак того что война идет сейчас
     running = models.BooleanField(default=False, verbose_name='Идёт война')
