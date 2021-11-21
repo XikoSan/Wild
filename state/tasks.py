@@ -5,7 +5,7 @@ from math import floor
 import redis
 from celery import shared_task
 from django.utils import timezone
-from django_celery_beat.models import IntervalSchedule, PeriodicTask
+from django_celery_beat.models import ClockedSchedule, PeriodicTask
 
 from party.party import Party
 from player.player import Player
@@ -60,7 +60,9 @@ def set_mandates(pty_pk, parl_pk, places):
 def finish_elections(parl_id):
     # включаем начало выборов
     parliament = Parliament.objects.get(pk=parl_id)
-
+    if parliament.task is not None:
+        parliament.task.enabled = True
+        parliament.task.save()
     # выключаем выборы
     ParliamentVoting.objects.filter(parliament=parliament, running=True).update(running=False,
                                                                                 voting_end=timezone.now())
@@ -138,13 +140,10 @@ def finish_elections(parl_id):
     # ================================================================
 
     finish_task = PeriodicTask.objects.get(pk=elections.task.pk)
-
-    if finish_task.interval.every == 1:
-        schedule, created = IntervalSchedule.objects.get_or_create(every=7, period=IntervalSchedule.DAYS)
-        # schedule, created = IntervalSchedule.objects.get_or_create(every=7, period=IntervalSchedule.MINUTES)
-
-        finish_task.interval = schedule
-        finish_task.save()
+    finish_schedule, created = ClockedSchedule.objects.get_or_create(pk=finish_task.clocked.pk)
+    # finish_schedule.clocked_time = timezone.now() + datetime.timedelta(minutes=7)
+    finish_schedule.clocked_time = timezone.now() + datetime.timedelta(days=7)
+    finish_schedule.save()
 
 
 # таска включающая выборы
@@ -167,5 +166,16 @@ def start_elections(parl_id):
         old_elections.task = None
         old_elections.save()
 
+    if parliament_voting.task:
+        parliament_voting.task.enabled = True
+        parliament_voting.task.save()
+
     parliament_voting.running = True
     parliament_voting.save()
+
+    start_task = PeriodicTask.objects.get(pk=parliament.task.pk)
+
+    start_schedule, created = ClockedSchedule.objects.get_or_create(pk=start_task.clocked.pk)
+    start_schedule.clocked_time = timezone.now() + datetime.timedelta(days=7)
+    # start_schedule.clocked_time = timezone.now() + datetime.timedelta(minutes=7)
+    start_schedule.save()

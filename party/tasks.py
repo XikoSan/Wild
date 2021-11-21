@@ -1,6 +1,6 @@
 from celery import shared_task
 
-from django_celery_beat.models import PeriodicTask, PeriodicTasks, IntervalSchedule
+from django_celery_beat.models import PeriodicTask, PeriodicTasks, ClockedSchedule
 import datetime
 
 from player.player import Player
@@ -16,7 +16,9 @@ from party.position import PartyPosition
 @shared_task(name="finish_primaries")
 def finish_primaries(party_id):
     party = Party.objects.get(pk=party_id)
-
+    if party.task is not None:
+        party.task.enabled = True
+        party.task.save()
     # выключаем праймериз
     Primaries.objects.filter(party=party, running=True).update(running=False, prim_end=timezone.now())
     primaries = Primaries.objects.get(party=party, task__isnull=False)
@@ -45,12 +47,13 @@ def finish_primaries(party_id):
 
     finish_task = PeriodicTask.objects.get(pk=primaries.task.pk)
 
-    if finish_task.interval.every == 1:
-        schedule, created = IntervalSchedule.objects.get_or_create(every=7, period=IntervalSchedule.DAYS)
-        # schedule, created = IntervalSchedule.objects.get_or_create(every=7, period=IntervalSchedule.MINUTES)
+    finish_schedule, created = ClockedSchedule.objects.get_or_create(pk=finish_task.clocked.pk)
+    finish_schedule.clocked_time = timezone.now() + datetime.timedelta(days=7)
+    # finish_schedule.clocked_time = timezone.now() + datetime.timedelta(minutes=7)
+    finish_schedule.save()
 
-        finish_task.interval = schedule
-        finish_task.save()
+    # PeriodicTask.objects.filter(pk=primaries.task.pk).update(enabled=True)
+    # PeriodicTasks.changed(primaries.task)
 
 
 # таска включающая праймериз
@@ -78,3 +81,13 @@ def start_primaries(party_id):
 
     primaries.running = True
     primaries.save()
+
+    start_task = PeriodicTask.objects.get(pk=party.task.pk)
+
+    start_schedule, created = ClockedSchedule.objects.get_or_create(pk=start_task.clocked.pk)
+    start_schedule.clocked_time = timezone.now() + datetime.timedelta(days=7)
+    # start_schedule.clocked_time = timezone.now() + datetime.timedelta(minutes=7)
+    start_schedule.save()
+
+    # PeriodicTask.objects.filter(pk=party.task.pk).update(enabled=True)
+    # PeriodicTasks.changed(party.task)
