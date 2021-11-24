@@ -18,6 +18,7 @@ class CashLog(Log):
     activity = GenericForeignKey('content_type', 'object_id')
     # текст активности
     activityChoices = (
+        ('daily',  'Дейлик'),
         ('mine',  'Майнинг'),
         ('flyin', 'Перелёт'),
         ('n_str', 'Новый Склад'),

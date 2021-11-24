@@ -9,7 +9,9 @@ from django_celery_beat.models import PeriodicTask
 
 from party.party import Party
 from party.position import PartyPosition
+from player.views.set_cah_log import set_cash_log
 from region.region import Region
+from wild_politics.settings import JResponse
 
 
 class Player(models.Model):
@@ -74,6 +76,15 @@ class Player(models.Model):
     last_top = models.IntegerField(default=0, null=True, blank=True,
                                    verbose_name='Рейтинг госпиталя при последнем приросте')
 
+    # -----------дневной квест на трату энергии----------------
+
+    # расход энергии за эти сутки (еще не оплаченный)
+    energy_consumption = models.IntegerField(default=0, verbose_name='Расход энергии')
+    # расход энергии, за который игрок уже забрал деньги
+    paid_consumption = models.IntegerField(default=0, verbose_name='Оплаченный расход энергии')
+    # сумма, которую игрок уже забрал
+    paid_sum = models.IntegerField(default=0, verbose_name='Оплачено сегодня')
+
     # -----------навыки игрока----------------
 
     # # значение силы игрока
@@ -134,8 +145,91 @@ class Player(models.Model):
     # время прилёта
     arrival = models.DateTimeField(default=datetime.datetime(2000, 1, 1, 0, 0), blank=True)
 
+    def energy_cons(self, value):
+        self.energy_consumption += value
+        self.energy -= value
+        self.save()
+
+    # сбор денег из дейлика
+    def daily_claim(self):
+
+        if self.destination:
+            data = {
+                # 'response': _('wait_flight_end'),
+                'response': 'Дождитесь конца полёта',
+                'header': 'Ошибка получения финансирования',
+                'grey_btn': 'Закрыть',
+            }
+            # return JResponse(data)
+            return JResponse(data), 0
+            # return HttpResponse('Дождитесь конца полёта')
+
+        # 3500 - количество энергии, которую надо выфармить за день
+        if self.paid_consumption >= 3500:
+            daily_procent = 100
+        else:
+            daily_procent = self.energy_consumption / ((3500 - self.paid_consumption) / 100)
+
+        if daily_procent > 100:
+            daily_procent = 100
+
+        # сумма минимальной выплаты, зависящая от уровня медки
+        energy_increase = 0
+
+        if self.region.med_top == 5:
+            energy_increase += 16
+        elif self.region.med_top == 4:
+            energy_increase += 13
+        elif self.region.med_top == 3:
+            energy_increase += 12
+        elif self.region.med_top == 2:
+            energy_increase += 11
+        else:
+            energy_increase += 9
+        # количество интервалов по 10 минут в сутках * прирост = сумма прироста энергии за день
+        dole = 144 * energy_increase
+        # если игрок уже сегодня забирал деньги, значит, забирал и минимальную выплату
+        if self.paid_sum > 0:
+            dole = 0
+
+        if dole == 0 and daily_procent == 0:
+            data = {
+                # 'response': _('wait_flight_end'),
+                'response': 'Нечего забирать',
+                'header': 'Ошибка получения финансирования',
+                'grey_btn': 'Закрыть',
+            }
+            # return JResponse(data)
+            return JResponse(data), 0
+
+        # сумма, которую уже можно забрать
+        count = int((14500 - self.paid_sum - dole) / 100 * daily_procent)
+        count += dole
+
+        # выдаем деньги
+        self.cash += count
+        # прибавляем деньги к уже выплаченным
+        self.paid_sum += count
+        # добавляем потраченную энергию к оплаченной
+        self.paid_consumption += self.energy_consumption
+        # занялем потраченное
+        self.energy_consumption = 0
+
+        self.save()
+
+        return None, count
+
     # расчет естественного прироста с учётом уровня медицины в текущем регионе
+    # прирост медки используется в mining.py
     def increase_calc(self):
+        # нужно очистить дейлик
+        if self.natural_refill \
+                and timezone.now().date() > self.natural_refill.date():
+            err, sum = self.daily_claim()
+            # вынес потому что вызывает круговой импорт
+            set_cash_log(self, sum, 'daily')
+            self.energy_consumption = self.paid_consumption = self.paid_sum = 0
+
         # если дата последнего прироста пуста (только зарегистрировался)
         if not self.natural_refill:
             # если энергии меньше ста

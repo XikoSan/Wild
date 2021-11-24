@@ -2,21 +2,60 @@
 {% load floor_to_tens %}
 {% load static %}
 {% block for_scripts_and_css %}
+{% load l10n %}{% load i18n %}
 <script src='{% static "js/mining.js" %}?{{ csrf_token }}'></script>
 {% endblock %}
 
 {% block content %}
+<script>
+    const var_mining_default = 'Добыча ресурсов';
+    const var_mining_process = 'Копаем...';
+</script>
+
+<div class="row" align="center">
+    Ежедневное финансирование
+</div>
+<div class="row" align="center">
+    Потрать энергию и получи до <b style="color: #85bb65">$14 500</b> за день!
+</div>
+<div class="row" style="margin-top: 25px; margin-bottom: 50px">
+    <div class="col-xs-2 col-sm-2 col-md-2">
+        <div class="row" align="center">
+            энергии потрачено: {{ player.energy_consumption }} / {{ daily_energy_limit }}
+        </div>
+        <div class="row" align="center">
+            уже получено: <b style="color: #85bb65">${{ player.paid_sum }}</b>
+        </div>
+    </div>
+    <div class="col-xs-8 col-sm-8 col-md-8">
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: {{ daily_procent }}%; background-color: #85bb65!important"></div>
+        </div>
+    </div>
+    <div class="col-xs-2 col-sm-2 col-md-2">
+        <div class="row" align="center">
+            <form class="cash_retrieve" role="form">
+                {% csrf_token %}
+                <!--если игрок в полете-->
+                {% if player.destination %}
+                <button type="button" class="btn btn-danger">Вы в полете</button>
+                {% else %}
+                <button type="submit" class="save btn btn-mining btn-default">
+                    <div class="process" style="display: none">Получаем...</div>
+                    <div class="main">Забрать <b class="sum" style="color: #85bb65">${{ daily_current_sum }}</b></div>
+                </button>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+</div>
+
 <!--если игрок в полете-->
 {% if player.destination %}
 Вы летите в регион {{ player.destination }}
 {% else %}
 Добыча ресурсов в регионе {{ player.region }}
 {% endif %}
-
-<script>
-    const var_mining_default = 'Добыча ресурсов';
-    const var_mining_process = 'Копаем...';
-</script>
 <br>
 <br>
 <b>Золото</b>

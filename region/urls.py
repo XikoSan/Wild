@@ -8,6 +8,7 @@ from .views.map.map import map
 from .views.map.open_region import open_region
 from .views.map.region_info import region_info
 from .views.mining import mining
+from .views.retrieve_cash import retrieve_cash
 
 urlpatterns = [
 
@@ -15,6 +16,8 @@ urlpatterns = [
     url(r'^mining$', mining, name='mining'),
     # добыча ресурсов
     url(r'^do_mining$', do_mining, name='do_mining'),
+    # получение денег из дейлика
+    url(r'^retrieve_cash$', retrieve_cash, name='retrieve_cash'),
 
     # карта
     url(r'^map$', map, name='map'),

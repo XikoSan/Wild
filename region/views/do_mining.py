@@ -113,9 +113,9 @@ def do_mining(request):
             player.gold += count / 10
             mined_result['gold'] = int(count / 10)
 
-            player.cash += count
-            cash_log = CashLog(player=player, cash=count, activity_txt='mine')
-            mined_result['cash'] = count
+            # player.cash += count
+            # cash_log = CashLog(player=player, cash=count, activity_txt='mine')
+            # mined_result['cash'] = count
 
             player.region.gold_has -= Decimal((count / 10) * 0.01)
 
@@ -186,8 +186,11 @@ def do_mining(request):
             player.region.ore_has -= Decimal((count / 10) * 0.01)
 
         if mined_result:
-            player.energy -= count
-            player.save()
+            if resource != 'gold':
+                player.energy_cons(count)
+            else:
+                player.energy -= count
+                player.save()
 
             if cash_log:
                 cash_log.save()
