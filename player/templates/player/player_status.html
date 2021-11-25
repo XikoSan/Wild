@@ -14,8 +14,9 @@
                 <script>
                     const locked_txt = 'Заблокировано: $';
                 </script>
-                <b style="color: #85bb65" id="cash" {% localize off %} data-text="{{ player.cash }}" {% endlocalize %}
-                                     data-toggle="tooltip" data-placement="bottom" title="Заблокировано: ${% if locked %}{{ locked }}{% else %}0{% endif %}">
+                <b style="color: #85bb65; cursor: pointer" id="cash" {% localize off %} data-text="{{ player.cash }}" {% endlocalize %}
+                                     data-toggle="tooltip" data-placement="bottom" title="Заблокировано: ${% if locked %}{{ locked }}{% else %}0{% endif %}"
+                                    onclick="window.location.href = '/wallet/'">
                     ${{ player.cash }}
                 </b>
             </div>

@@ -1,15 +1,15 @@
 from django.contrib.auth.decorators import login_required
+from django.contrib.humanize.templatetags.humanize import intcomma
 from django.db import transaction
 from django.http import JsonResponse
-from django.utils import timezone
 
 from player.decorators.player import check_player
+from player.logs.cash_log import CashLog
 from player.player import Player
-from storage.models.storage import Storage
-from storage.models.factory.project import Project
-from storage.views.storage.locks.get_storage import get_storage
-from django.contrib.humanize.templatetags.humanize import intcomma
 from storage.models.factory.production_log import ProductionLog
+from storage.models.factory.project import Project
+from storage.models.storage import Storage
+from storage.views.storage.locks.get_storage import get_storage
 
 
 @login_required(login_url='/')
@@ -74,7 +74,7 @@ def produce_good(request):
         # проверка, существует ли у товара схема с таким номером
         schema_num = request.POST.get('schema')
 
-        if not schema_num or\
+        if not schema_num or \
                 not schema_num.isdigit():
             data = {
                 'header': 'Ошибка производства',
@@ -127,7 +127,9 @@ def produce_good(request):
             data = {
                 'header': 'Ошибка производства',
                 'grey_btn': 'Закрыть',
-                'response': 'Недостаточно места на складе для товара. В наличии ' + str(intcomma(getattr(lock_storage, good + '_cap') - getattr(lock_storage, good))) + ', требуется ' + str(intcomma(count)),
+                'response': 'Недостаточно места на складе для товара. В наличии ' + str(intcomma(
+                    getattr(lock_storage, good + '_cap') - getattr(lock_storage, good))) + ', требуется ' + str(
+                    intcomma(count)),
             }
             return JsonResponse(data)
 
@@ -141,7 +143,8 @@ def produce_good(request):
             data = {
                 'header': 'Ошибка производства',
                 'grey_btn': 'Закрыть',
-                'response': 'Недостаточно энергии. В наличии ' + str(player.energy) + ', требуется ' + str(intcomma(energy_cost)),
+                'response': 'Недостаточно энергии. В наличии ' + str(player.energy) + ', требуется ' + str(
+                    intcomma(energy_cost)),
             }
             return JsonResponse(data)
 
@@ -159,7 +162,8 @@ def produce_good(request):
                 data = {
                     'header': 'Ошибка производства',
                     'grey_btn': 'Закрыть',
-                    'response': 'Недостаточно ' + str(goods_names[material]) + '. В наличии ' + str(intcomma(getattr(storage, material))) + ', требуется ' + str(intcomma(required)),
+                    'response': 'Недостаточно ' + str(goods_names[material]) + '. В наличии ' + str(
+                        intcomma(getattr(storage, material))) + ', требуется ' + str(intcomma(required)),
                 }
                 return JsonResponse(data)
 
@@ -169,6 +173,9 @@ def produce_good(request):
         production_log = ProductionLog(player=player, prod_storage=storage, prod_result=good)
         # для каждого сырья в схеме
         for material in schema.keys():
+            if material == 'cash':
+                # логируем
+                CashLog(player=player, cash=0 - (schema[material] * count), activity_txt='prod').save()
             # установить новое значени склада
             setattr(storage, material, getattr(storage, material) - (schema[material] * count))
             # залогировать траты со склада

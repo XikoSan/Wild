@@ -51,7 +51,6 @@ def new_storage(request):
         # списываем ресурсы
         setattr(paid_storage, 'steel', getattr(paid_storage, 'steel') - material_cost)
         setattr(paid_storage, 'aluminium', getattr(paid_storage, 'aluminium') - material_cost)
-        paid_storage.save()
 
         price, prices = get_transfer_price(trans_mul, 0, price_dict)
         if price > player.cash:
@@ -61,6 +60,8 @@ def new_storage(request):
             return JsonResponse(data)
         # логируем
         CashLog(player=player, cash=0 - price, activity_txt='n_str').save()
+
+        paid_storage.save()
 
         player.cash -= price
         player.save()

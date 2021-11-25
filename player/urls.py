@@ -11,6 +11,7 @@ from .views.my_profile import my_profile
 from .views.new_player import new_player
 from .views.overview import overview
 from .views.view_profile import view_profile
+from .views.wallet import wallet
 
 urlpatterns = [
 
@@ -37,6 +38,9 @@ urlpatterns = [
     url(r'^change_bio/$', change_bio, name='change_bio'),
     # Открытие профиля персонажа для просмотра(другими игроками)
     url(r'^profile/(?P<pk>\d+)/$', view_profile, name='view_profile'),
+
+    # открытие страницы кошелька
+    url(r'^wallet/$', wallet, name='wallet'),
 
     # Открытие страницы забаненного игрока
     url(r'^banned/$', banned, name='banned'),

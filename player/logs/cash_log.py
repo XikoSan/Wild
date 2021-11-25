@@ -18,13 +18,14 @@ class CashLog(Log):
     activity = GenericForeignKey('content_type', 'object_id')
     # текст активности
     activityChoices = (
-        ('daily',  'Дейлик'),
+        ('daily',  'Финансирование'),
         ('mine',  'Майнинг'),
         ('flyin', 'Перелёт'),
         ('n_str', 'Новый Склад'),
         ('store', 'Операции со Складом'),
         ('trans', 'Передача товаров'),
         ('trade', 'Торговля'),
+        ('prod', 'Производство'),
     )
     activity_txt = models.CharField(
         max_length=5,
