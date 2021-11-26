@@ -2,19 +2,16 @@
 # import operator
 # from datetime import timedelta
 # from django.conf import settings
-import random
-import time
 from decimal import Decimal
+
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
-from django.db.models import F
-# from django.contrib.auth.models import User
-# from django.db.models import Q
-from django.shortcuts import redirect, render
 
 from player.decorators.player import check_player
-from player.logs.cash_log import CashLog
 from player.player import Player
+# from django.contrib.auth.models import User
+# from django.db.models import Q
+from state.models.state import State
 from storage.models.storage import Storage
 from storage.views.storage.locks.get_storage import get_storage
 # from django.http import JResponse, HttpResponse
@@ -130,16 +127,18 @@ def do_mining(request):
                 }
                 return JResponse(data)
             # получаем запасы склада, с учетом блокировок
-            goods = []
-            goods.append(player.region.oil_type)
+            goods = [player.region.oil_type]
             lock_storage = get_storage(storage, goods)
-            # узнаём тип нефти, добываемый в регионе
-            # и проверяем есть ли для него место на складе, с учетом блокировок
-            if lock_storage.capacity_check(player.region.oil_type, (count / 10) * 10):
+            # облагаем налогом добытую нефть
+            total_oil = (count / 10) * 10
+            taxed_oil = State.get_taxes(player.region, total_oil, 'oil', player.region.oil_type)
+
+            # проверяем есть ли для него место на складе, с учетом блокировок
+            if lock_storage.capacity_check(player.region.oil_type, taxed_oil):
                 # начислить нефть
-                mined_result[player.region.oil_type] = (count / 10) * 10
+                mined_result[player.region.oil_type] = taxed_oil
                 setattr(storage, player.region.oil_type,
-                        getattr(storage, player.region.oil_type) + (count / 10) * 10)
+                        getattr(storage, player.region.oil_type) + taxed_oil)
             else:
                 # если места нет или его меньше чем пак ресурсов, забиваем под крышку
                 mined_result[player.region.oil_type] = getattr(storage, player.region.oil_type + '_cap') - getattr(
@@ -167,16 +166,21 @@ def do_mining(request):
             for key in storage.minerals.keys():
                 goods.append(key)
             lock_storage = get_storage(storage, goods)
+
             for mineral in storage.minerals.keys():
+                # облагаем налогом добытую руду
+                total_ore = (count / 10) * getattr(player.region, mineral + '_proc')
+                taxed_ore = State.get_taxes(player.region, total_ore, 'ore', mineral)
+
                 # проверяем есть ли место на складе
-                if lock_storage.capacity_check(mineral, (count / 10) * getattr(player.region, mineral + '_proc')):
+                if lock_storage.capacity_check(mineral, taxed_ore):
                     # начислить минерал
-                    mined_result[mineral] = (count / 10) * getattr(player.region, mineral + '_proc')
+                    mined_result[mineral] = taxed_ore
                     setattr(storage, mineral,
-                            getattr(storage, mineral) + (count / 10) * getattr(player.region, mineral + '_proc'))
+                            getattr(storage, mineral) + taxed_ore)
                 else:
                     # если места нет или его меньше чем пак ресурсов, забиваем под крышку
-                    if (count / 10) * getattr(player.region, mineral + '_proc') > 0:
+                    if taxed_ore > 0:
                         mined_result[mineral] = getattr(storage, mineral + '_cap') - getattr(lock_storage, mineral)
                         # устанавливаем новое значение как остаток до полного склада с учетом блокировок + старое значение ресурса
                         setattr(storage, mineral,

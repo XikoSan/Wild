@@ -11,7 +11,7 @@
     {{ storage_cl|get_attr:'types'|dict_key:group }}
 </div>
     {% for good in storage_cl|get_attr:group %}
-<div class="row" {% if forloop.counter|get_mod:2 == 1 %}style="background: #E0FFF3"{% endif %}>
+<div class="row" {% if forloop.counter|get_mod:2 == 1 %}style="background: #F1F3F4"{% endif %}>
     <div class="col-xs-2 col-sm-2 col-md-2">
         {{ storage_cl|get_attr:group|dict_key:good }}:
     </div>

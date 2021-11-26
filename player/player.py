@@ -12,7 +12,7 @@ from party.position import PartyPosition
 from player.views.set_cah_log import set_cash_log
 from region.region import Region
 from wild_politics.settings import JResponse
-
+from state.models.state import State
 
 class Player(models.Model):
     # учетная запись игрока
@@ -206,18 +206,20 @@ class Player(models.Model):
         count = int((14500 - self.paid_sum - dole) / 100 * daily_procent)
         count += dole
 
+        taxed_count = State.get_taxes(self.region, count, 'cash', 'cash')
+
         # выдаем деньги
-        self.cash += count
-        # прибавляем деньги к уже выплаченным
+        self.cash += taxed_count
+        # прибавляем деньги ДО НАЛОГОВ к уже выплаченным
         self.paid_sum += count
         # добавляем потраченную энергию к оплаченной
         self.paid_consumption += self.energy_consumption
-        # занялем потраченное
+        # занулем потраченное
         self.energy_consumption = 0
 
         self.save()
 
-        return None, count
+        return None, taxed_count
 
     # расчет естественного прироста с учётом уровня медицины в текущем регионе
     # прирост медки используется в mining.py

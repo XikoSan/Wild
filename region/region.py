@@ -37,19 +37,19 @@ class Region(models.Model):
     # ---------- Государство ----------
     state = models.ForeignKey(State, default=None, blank=True, null=True, on_delete=models.SET_NULL,
                               verbose_name='Государство', related_name="reg_state")
-    # # признак столицы
-    # capital = models.OneToOneField(ste.State, default=None, blank=True, null=True, on_delete=models.SET_NULL,
-    #                                verbose_name='Столица государства', related_name="cap_state")
     # ---------- Налоги ----------
-    # # Золотце:
-    # gold_tax = models.DecimalField(default=00.00, validators=[MinValueValidator(0), MaxValueValidator(100)],
-    #                                max_digits=5, decimal_places=2, verbose_name='Золото: налог')
-    # # Нефть:
-    # oil_tax = models.DecimalField(default=00.00, validators=[MinValueValidator(0), MaxValueValidator(100)],
-    #                               max_digits=5, decimal_places=2, verbose_name='Нефть: налог')
-    # # Руда:
-    # ore_tax = models.DecimalField(default=00.00, validators=[MinValueValidator(0), MaxValueValidator(100)],
-    #                               max_digits=5, decimal_places=2, verbose_name='Руда: налог')
+    # Деньги:
+    cash_tax = models.DecimalField(default=00.00, validators=[MinValueValidator(0), MaxValueValidator(100)],
+                                   max_digits=5, decimal_places=2, verbose_name='Деньги: налог')
+    # Нефть:
+    oil_tax = models.DecimalField(default=00.00, validators=[MinValueValidator(0), MaxValueValidator(100)],
+                                  max_digits=5, decimal_places=2, verbose_name='Нефть: налог')
+    # Руда:
+    ore_tax = models.DecimalField(default=00.00, validators=[MinValueValidator(0), MaxValueValidator(100)],
+                                  max_digits=5, decimal_places=2, verbose_name='Руда: налог')
+    # Производство:
+    prod_tax = models.DecimalField(default=00.00, validators=[MinValueValidator(0), MaxValueValidator(100)],
+                                  max_digits=5, decimal_places=2, verbose_name='Производство: налог')
 
     # ---------- Здания ----------
     # # Уровень здания Госпиталь
