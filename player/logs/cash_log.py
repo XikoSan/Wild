@@ -25,7 +25,6 @@ class CashLog(Log):
         ('store', 'Операции со Складом'),
         ('trans', 'Передача товаров'),
         ('trade', 'Торговля'),
-        ('prod', 'Производство'),
     )
     activity_txt = models.CharField(
         max_length=5,

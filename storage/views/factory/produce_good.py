@@ -4,7 +4,6 @@ from django.db import transaction
 from django.http import JsonResponse
 
 from player.decorators.player import check_player
-from player.logs.cash_log import CashLog
 from player.player import Player
 from storage.models.factory.production_log import ProductionLog
 from storage.models.factory.project import Project
@@ -173,9 +172,6 @@ def produce_good(request):
         production_log = ProductionLog(player=player, prod_storage=storage, prod_result=good)
         # для каждого сырья в схеме
         for material in schema.keys():
-            if material == 'cash':
-                # логируем
-                CashLog(player=player, cash=0 - (schema[material] * count), activity_txt='prod').save()
             # установить новое значени склада
             setattr(storage, material, getattr(storage, material) - (schema[material] * count))
             # залогировать траты со склада
