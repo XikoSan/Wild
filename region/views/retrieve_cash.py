@@ -11,7 +11,7 @@ from player.player import Player
 from wild_politics.settings import JResponse
 
 
-# главная страница
+# получение денег с дейлика
 @login_required(login_url='/')
 @check_player
 @transaction.atomic
