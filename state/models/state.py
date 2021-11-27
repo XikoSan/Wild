@@ -49,6 +49,27 @@ class State(models.Model):
     # id фонового процесса (начала или конца праймериз)
     # task_id = models.CharField(max_length=150, blank=True, null=True, verbose_name='id фонового процесса')
 
+    # проверить налог с указанной суммы указанного ресурса
+    @staticmethod
+    def check_taxes(region, sum, mode, resource):
+        taxed_sum = sum
+        # если в регионе есть гос
+        if region.state:
+            # если налог в регион не равен налогу в государстве
+            if getattr(region, mode + '_tax') != getattr(region.state, mode + '_tax'):
+                # берем из региона
+                tax_value = getattr(region, mode + '_tax')
+            else:
+                # неважно откуда брать налог
+                tax_value = getattr(region, mode + '_tax')
+
+            # получаем налог по ставке, которую получили
+            tax = int(sum * (float(tax_value) / 100))
+            # сумма "на руки"
+            taxed_sum = sum - tax
+
+        return taxed_sum
+
     # получить налог с указанной суммы указанного ресурса
     @staticmethod
     def get_taxes(region, sum, mode, resource):
