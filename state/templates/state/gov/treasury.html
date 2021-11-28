@@ -6,6 +6,14 @@
 {% load l10n %}{% load i18n %}
 
 {% if treasury %}
+<div class="row" style="background: #F1F3F4; margin-top: 20px">
+    <div class="col-xs-2 col-sm-2 col-md-2">
+        {{ storage_cl|get_attr:'valut'|dict_key:'cash' }}:
+    </div>
+    <div class="col-xs-10 col-sm-10 col-md-10">
+        {% localize off %}{{ treasury|get_attr:'cash' }}{% endlocalize %}
+    </div>
+</div>
 {% for group in storage_cl|get_attr:'types' %}
 <div class="row" align="center" style="margin-top: 20px">
     {{ storage_cl|get_attr:'types'|dict_key:group }}
