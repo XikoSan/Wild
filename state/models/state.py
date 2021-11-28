@@ -39,9 +39,9 @@ class State(models.Model):
     # Руда:
     ore_tax = models.DecimalField(default=00.00, validators=[MinValueValidator(0), MaxValueValidator(100)],
                                   max_digits=5, decimal_places=2, verbose_name='Руда: налог')
-    # Производство:
-    prod_tax = models.DecimalField(default=00.00, validators=[MinValueValidator(0), MaxValueValidator(100)],
-                                   max_digits=5, decimal_places=2, verbose_name='Производство: налог')
+    # Торговля:
+    trade_tax = models.DecimalField(default=00.00, validators=[MinValueValidator(0), MaxValueValidator(100)],
+                                   max_digits=5, decimal_places=2, verbose_name='Торговля: налог')
 
     # удалено
     deleted = models.BooleanField(default=False, verbose_name='Удалено')
@@ -51,7 +51,7 @@ class State(models.Model):
 
     # проверить налог с указанной суммы указанного ресурса
     @staticmethod
-    def check_taxes(region, sum, mode, resource):
+    def check_taxes(region, sum, mode):
         taxed_sum = sum
         # если в регионе есть гос
         if region.state:

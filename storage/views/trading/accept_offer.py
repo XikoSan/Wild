@@ -12,6 +12,7 @@ from storage.models.storage import Storage
 from storage.models.trade_offer import TradeOffer
 import time
 import math
+from state.models.state import State
 from storage.views.storage.get_transfer_price import get_transfer_price
 from storage.views.storage.locks.get_storage import get_storage
 from django.contrib.humanize.templatetags.humanize import number_format
@@ -175,8 +176,10 @@ def accept_offer(request):
             #   списываем у игрока деньги
             player.cash -= fin_sum
             player.save()
+            # получаем налог с прибыли продавца
+            taxed_count = State.get_taxes(offer_owner.region, count * offer.price, 'trade', 'cash')
             #   начисляем продавцу деньги
-            offer_owner.cash += count * offer.price
+            offer_owner.cash += taxed_count
             offer_owner.save()
             #   списываем из оффера товар
             offer.count -= count
@@ -219,6 +222,7 @@ def accept_offer(request):
 
             # создаем лог движения денег
             CashLog(player=player, cash=0 - fin_sum, activity_txt='trade').save()
+            CashLog(player=offer_owner, cash=taxed_count, activity_txt='trade').save()
 
             #   если продажа закрывает оффер:
             if offer.count == 0:
@@ -232,8 +236,10 @@ def accept_offer(request):
         elif offer.type == 'buy':
             #   проверяем наличие в ОФФЕРЕ и блокировке денег на количество (на всяк случай)
             offer_sum = count * offer.price
+            # проверяем налог с прибыли продавца
+            taxed_sum = State.check_taxes(player.region, offer_sum, 'trade')
 
-            if offer_sum < price:
+            if taxed_sum < price:
                 data = {
                     'header': 'Запрет торговли в минус',
                     'response': 'Ваши расходы на доставку больше прибыли',
@@ -270,7 +276,7 @@ def accept_offer(request):
                 return JsonResponse(data)
 
                 #   проверяем у игрока наличие денег на доставку
-            if player.cash + offer_sum < price:
+            if player.cash + taxed_sum < price:
                 data = {
                     'header': 'Недостаточно средств на оплату доставки',
                     'response': 'Недостаточно средств. Требуется $' + number_format(price),
@@ -307,8 +313,11 @@ def accept_offer(request):
                 offer_cash_lock.deleted = True
             offer_cash_lock.save()
 
+            # получаем налог с прибыли продавца
+            taxed_sum = State.get_taxes(player.region, offer_sum, 'trade', 'cash')
+
             #   начисляем деньги игроку
-            player.cash += offer_sum
+            player.cash += taxed_sum
 
             #   списываем с игрока деньги за доставку
             player.cash -= price
@@ -347,8 +356,8 @@ def accept_offer(request):
             )
             offer.accepters.add(new_log)
 
-            # создаем лог движения денег
-            CashLog(player=player, cash=offer_sum - price, activity_txt='trade').save()
+            # создаем логи движения денег
+            CashLog(player=player, cash=taxed_sum - price, activity_txt='trade').save()
 
         else:
             data = {

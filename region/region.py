@@ -47,9 +47,9 @@ class Region(models.Model):
     # Руда:
     ore_tax = models.DecimalField(default=00.00, validators=[MinValueValidator(0), MaxValueValidator(100)],
                                   max_digits=5, decimal_places=2, verbose_name='Руда: налог')
-    # Производство:
-    prod_tax = models.DecimalField(default=00.00, validators=[MinValueValidator(0), MaxValueValidator(100)],
-                                  max_digits=5, decimal_places=2, verbose_name='Производство: налог')
+    # Торговля:
+    trade_tax = models.DecimalField(default=00.00, validators=[MinValueValidator(0), MaxValueValidator(100)],
+                                  max_digits=5, decimal_places=2, verbose_name='Торговля: налог')
 
     # ---------- Здания ----------
     # # Уровень здания Госпиталь
