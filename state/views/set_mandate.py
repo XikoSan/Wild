@@ -21,7 +21,7 @@ def set_mandate(request):
         if player.party \
                 and player.party_post.party_lead:
             # если есть свободные мандаты
-            if DeputyMandate.objects.filter(player=None).exists():
+            if DeputyMandate.objects.filter(player=None, party=player.party).exists():
                 candidate_pk = request.POST.get('candidate')
                 # проверяем, есть ли такой игрок в этой партии
                 if not Player.objects.filter(pk=int(candidate_pk), party=player.party).exists():
@@ -44,7 +44,7 @@ def set_mandate(request):
                     return JResponse(data)
 
                 # получаем первый свободный мандат
-                mandate = DeputyMandate.objects.select_for_update().filter(player=None).first()
+                mandate = DeputyMandate.objects.select_for_update().filter(player=None, party=player.party).first()
 
                 mandate.player = candidate
                 mandate.save()
