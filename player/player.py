@@ -228,8 +228,9 @@ class Player(models.Model):
         if self.natural_refill \
                 and timezone.now().date() > self.natural_refill.date():
             err, sum = self.daily_claim()
-            # вынес потому что вызывает круговой импорт
-            set_cash_log(self, sum, 'daily')
+            if not err:
+                # вынес потому что вызывает круговой импорт
+                set_cash_log(self, sum, 'daily')
             self.energy_consumption = self.paid_consumption = self.paid_sum = 0
 
         # если дата последнего прироста пуста (только зарегистрировался)
