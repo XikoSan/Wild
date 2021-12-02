@@ -126,7 +126,7 @@ class ExploreResources(Bill):
                     setattr(region, self.resource + '_has', getattr(region, self.resource + '_has') + Decimal(max_exp))
 
                     self.cash_cost = treasury.cash
-                    setattr(treasury, 'cash', 0)
+                    setattr(treasury, 'cash', treasury.cash % self.exp_price)
                     b_type = 'ac'
 
                 else:
