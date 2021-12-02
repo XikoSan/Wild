@@ -22,7 +22,7 @@ def government(request):
     # получаем персонажа
     player = Player.objects.get(account=request.user)
 
-    state = parliament = has_voting = capital = next_voting_date = None
+    state = parliament = has_voting = capital = next_voting_date = is_deputate = None
 
     # если в этом регионе есть государство
     if player.region.state:
@@ -35,6 +35,8 @@ def government(request):
         if Parliament.objects.filter(state=state).exists():
 
             parliament = Parliament.objects.get(state=state)
+            # проверяем, депутат ли этого парла игрок или нет
+            is_deputate = DeputyMandate.objects.filter(player=player, parliament=parliament).exists()
 
             # если в парламенте идут выборы
             if ParliamentVoting.objects.filter(running=True, parliament=parliament).exists():
@@ -59,6 +61,9 @@ def government(request):
 
         # парламент
         'parliament': parliament,
+        # депутат
+        'is_deputate': is_deputate,
+
         # идут выборы
         'has_voting': has_voting,
         # дата выборов

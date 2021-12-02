@@ -1,5 +1,12 @@
-from django.contrib import admin
 from re import findall
+
+from django.contrib import admin
+from django.contrib.admin import widgets
+from django.db import models
+
+from region.region import Region
+from state.models.bills.explore_resources import ExploreResources
+from state.models.capital import Capital
 from state.models.parliament.bulletin import Bulletin
 from state.models.parliament.deputy_mandate import DeputyMandate
 from state.models.parliament.parliament import Parliament
@@ -7,8 +14,6 @@ from state.models.parliament.parliament_party import ParliamentParty
 from state.models.parliament.parliament_voting import ParliamentVoting
 from state.models.state import State
 from state.models.treasury import Treasury
-from state.models.capital import Capital
-from region.region import Region
 
 
 class CapitalAdmin(admin.ModelAdmin):
@@ -49,6 +54,16 @@ class DeputyMandateAdmin(admin.ModelAdmin):
     raw_id_fields = ('party', 'player', 'parliament')
 
 
+class BillAdmin(admin.ModelAdmin):
+    search_fields = ['initiator', 'parliament']
+    formfield_overrides = {
+        models.ManyToManyField: {'widget': widgets.FilteredSelectMultiple(
+            verbose_name='Голоса',
+            is_stacked=False
+        )},
+    }
+
+
 # Register your models here.
 admin.site.register(State)
 admin.site.register(Treasury)
@@ -58,3 +73,5 @@ admin.site.register(Bulletin)
 admin.site.register(DeputyMandate, DeputyMandateAdmin)
 admin.site.register(ParliamentParty)
 admin.site.register(Capital, CapitalAdmin)
+
+admin.site.register(ExploreResources, BillAdmin)

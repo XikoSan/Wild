@@ -1,0 +1,76 @@
+{% load dict_key %}
+{% load get_attr %}
+{% load get_diff %}
+{% load get_sum %}
+{% load get_mul %}
+{% load get_key_list %}
+{% load tz %}
+
+<div class="row bill_row" style="margin-top: 25px">
+    {% with title=data|dict_key:'title' %}
+    <div class="col-xs-2 col-sm-2 col-md-2">
+        <div class="row">
+            {{ title }}
+        </div>
+        <div class="row">
+            {% with bill=data|dict_key:'bill' %}
+                {% with player=data|dict_key:'player' %}
+                <b>{{ bill.voting_end|timezone:player.time_zone|date:"d.m.Y H:i" }}</b>
+                {% endwith %}
+            {% endwith %}
+        </div>
+    </div>
+    {% endwith %}
+
+    {% with bill=data|dict_key:'bill' %}
+    <div class="col-xs-4 col-sm-4 col-md-4">
+        <img src="static/img/regions/{{ bill.region.on_map_id }}.png" align="left"
+                         style="width: 70px;">
+        {{ bill.region }}
+    </div>
+    <div class="col-xs-2 col-sm-2 col-md-2">
+        <div class="row">
+            {% with res_has=bill.resource|get_sum:'_has' %}
+                {% with res_cap=bill.resource|get_sum:'_cap' %}
+                    {% with res_cap_val=bill.region|get_attr:res_cap %}
+                        {% with res_hap_val=bill.region|get_attr:res_has %}
+                            {{ res_cap_val|get_diff:res_hap_val }} {{ bill.get_resource_display }}
+                        {% endwith %}
+                    {% endwith %}
+                {% endwith %}
+            {% endwith %}
+        </div>
+        <div class="row">
+            {% with res_has=bill.resource|get_sum:'_has' %}
+                {% with res_cap=bill.resource|get_sum:'_cap' %}
+                    {% with res_cap_val=bill.region|get_attr:res_cap %}
+                        {% with res_hap_val=bill.region|get_attr:res_has %}
+            <b style="color: #85bb65">${{ res_cap_val|get_diff:res_hap_val|get_mul:100 }}</b>
+                        {% endwith %}
+                    {% endwith %}
+                {% endwith %}
+            {% endwith %}
+        </div>
+    </div>
+    <div class="col-xs-2 col-sm-2 col-md-2">
+    {{ bill.initiator }}
+    </div>
+    <div class="col-xs-2 col-sm-2 col-md-2">
+        <div class="row">
+            {% if bill.type == 'ac' %}
+            <b style="color:#4cae4c">Принят</b>
+            {% elif bill.type == 'rj' %}
+            <b style="color:#870A09">Отклонён</b>
+            {% elif bill.type == 'cn' %}
+            <b>Отменён</b>
+            {% endif %}
+        </div>
+        <div class="row">
+            <font size="5">
+                <div class="glyphicon glyphicon-thumbs-up" style="color:#4cae4c; margin-right: 10px">{{ bill.votes_pro.all.count }}</div>
+                <div class="glyphicon glyphicon-thumbs-down" style="color:#870A09; margin-left: 10px">{{ bill.votes_con.all.count }}</div>
+            </font>
+        </div>
+    </div>
+    {% endwith %}
+</div>

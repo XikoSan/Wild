@@ -4,9 +4,20 @@
 {% load i18n %}{% load tz %}
 {% load government.parliament %}
 {% load government.treasury %}
+{% load government.bills %}
+{% load government.new_bill %}
+{% load government.bills_history %}
 
 {% block for_scripts_and_css %}
 <script src='{% static "js/government.js" %}?{{ csrf_token }}'></script>
+{% if player.region.state %}
+    {% if parliament %}
+        {% if is_deputate %}
+<script src='{% static "js/new_bill.js" %}?{{ csrf_token }}'></script>
+<script src='{% static "js/vote_bill.js" %}?{{ csrf_token }}'></script>
+        {% endif %}
+    {% endif %}
+{% endif %}
 {% endblock %}
 
 {% block content %}
@@ -77,17 +88,36 @@
                     {% if player.region.state %}
                         <ul class="nav nav-tabs">
                             {% if parliament %}
-                            <li class="active"><a data-toggle="tab" href="#parliament">Парламент</a></li>
+                            <li class="active"><a data-toggle="tab" href="#bills">Законопроекты</a></li>
+                            {% if is_deputate %}
+                            <style type="text/css">
+                            .green_hover {
+                                    border-color: #85bb65!important
+                                }
+                            .green_hover:hover {
+                                    background-color: #85bb65!important
+                                }
+                            </style>
+                            <li><a data-toggle="tab" class="green_hover" href="#new_bill">Новый</a></li>
+                            {% endif %}
+                            <li><a data-toggle="tab" href="#bills_history">История</a></li>
+                            <li><a data-toggle="tab" href="#parliament">Парламент</a></li>
                             {% endif %}
                             <li><a data-toggle="tab" href="#treasury">Казна</a></li>
                         </ul>
                         <div class="tab-content">
                             {% if parliament %}
+                                <!--законопроекты-->
+                                {% bills player parliament %}
+                                <!--новый законопроект-->
+                                {% new_bill player parliament %}
+                                <!--история законопроектов-->
+                                {% bills_history player parliament %}
+                                <!--парламент-->
                                 {% parliament player parliament %}
                             {% endif %}
-                            <div id="treasury" class="tab-pane fade">
-                                {% treasury state %}
-                            </div>
+                            <!--казна-->
+                            {% treasury state %}
                         </div>
                     {% else %}
                     <div class="row" style="margin-top: 15px;">

@@ -9,11 +9,38 @@ from django_celery_beat.models import ClockedSchedule, PeriodicTask
 
 from party.party import Party
 from player.player import Player
+from player.views.get_subclasses import get_subclasses
+from state.models.bills.bill import Bill
 from state.models.parliament.bulletin import Bulletin
 from state.models.parliament.deputy_mandate import DeputyMandate
 from state.models.parliament.parliament_party import ParliamentParty
 from .models.parliament.parliament import Parliament
 from .models.parliament.parliament_voting import ParliamentVoting
+
+
+@shared_task(name="run_bill")
+def run_bill(bill_type, bill_pk):
+    bills_classes = get_subclasses(Bill)
+    bills_dict = {}
+
+    for bill_cl in bills_classes:
+        bills_dict[bill_cl.__name__] = bill_cl
+
+    bill = bills_dict[bill_type].objects.get(pk=bill_pk)
+
+    if bill.type:
+        # nothing to do here...
+        return
+    if bill.votes_pro.all().count() > bill.votes_con.all().count():
+        bill.do_bill()
+    else:
+        bills_dict[bill_type].objects.filter(pk=bill_pk).update(running=False, voting_end=timezone.now(), type='rj')
+
+    task_identificator = bill.task.id
+    # убираем таску у экземпляра модели
+    bills_dict[bill_type].objects.select_related('task').filter(pk=bill_pk).update(task=None)
+    # удаляем таску
+    PeriodicTask.objects.filter(pk=task_identificator).delete()
 
 
 @shared_task

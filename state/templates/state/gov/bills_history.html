@@ -1,0 +1,13 @@
+{% load static %}
+{% load get_attr %}
+{% load get_sum %}
+{% load get_mod %}
+{% load dict_key %}
+{% load government.get_reviewed_bill %}
+{% load l10n %}{% load i18n %}
+
+<div id="bills_history" class="tab-pane fade">
+    {% for bill in bills_list %}
+        {% get_reviewed_bill %}
+    {% endfor %}
+</div>

@@ -6,27 +6,29 @@
 {% load l10n %}{% load i18n %}
 
 {% if treasury %}
-<div class="row" style="background: #F1F3F4; margin-top: 20px">
-    <div class="col-xs-2 col-sm-2 col-md-2">
-        {{ storage_cl|get_attr:'valut'|dict_key:'cash' }}:
+<div id="treasury" class="tab-pane fade">
+    <div class="row" style="background: #F1F3F4; margin-top: 20px">
+        <div class="col-xs-2 col-sm-2 col-md-2">
+            {{ storage_cl|get_attr:'valut'|dict_key:'cash' }}:
+        </div>
+        <div class="col-xs-10 col-sm-10 col-md-10">
+            {% localize off %}{{ treasury|get_attr:'cash' }}{% endlocalize %}
+        </div>
     </div>
-    <div class="col-xs-10 col-sm-10 col-md-10">
-        {% localize off %}{{ treasury|get_attr:'cash' }}{% endlocalize %}
+    {% for group in storage_cl|get_attr:'types' %}
+    <div class="row" align="center" style="margin-top: 20px">
+        {{ storage_cl|get_attr:'types'|dict_key:group }}
     </div>
-</div>
-{% for group in storage_cl|get_attr:'types' %}
-<div class="row" align="center" style="margin-top: 20px">
-    {{ storage_cl|get_attr:'types'|dict_key:group }}
-</div>
-    {% for good in storage_cl|get_attr:group %}
-<div class="row" {% if forloop.counter|get_mod:2 == 1 %}style="background: #F1F3F4"{% endif %}>
-    <div class="col-xs-2 col-sm-2 col-md-2">
-        {{ storage_cl|get_attr:group|dict_key:good }}:
+        {% for good in storage_cl|get_attr:group %}
+    <div class="row" {% if forloop.counter|get_mod:2 == 1 %}style="background: #F1F3F4"{% endif %}>
+        <div class="col-xs-2 col-sm-2 col-md-2">
+            {{ storage_cl|get_attr:group|dict_key:good }}:
+        </div>
+        <div class="col-xs-10 col-sm-10 col-md-10">
+            {% localize off %}{{ treasury|get_attr:good }}{% endlocalize %}
+        </div>
     </div>
-    <div class="col-xs-10 col-sm-10 col-md-10">
-        {% localize off %}{{ treasury|get_attr:good }}{% endlocalize %}
-    </div>
-</div>
+        {% endfor %}
     {% endfor %}
-{% endfor %}
+</div>
 {% endif %}
