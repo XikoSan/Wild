@@ -1,11 +1,13 @@
 # coding=utf-8
+import math
+from decimal import Decimal
 
-from django.db import models, transaction
+from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.utils import timezone
 from django.utils.translation import gettext_lazy
-from decimal import Decimal
+
 from region.region import Region
 from state.models.bills.bill import Bill
 from state.models.treasury import Treasury
@@ -96,18 +98,12 @@ class ExploreResources(Bill):
         b_type = None
         treasury = Treasury.objects.get(state=self.parliament.state)
 
-
-
         if treasury.cash != 0:
 
             region = Region.objects.get(pk=self.region.pk)
 
             cash_cost = float(
                 getattr(region, self.resource + '_cap') - getattr(region, self.resource + '_has')) * self.exp_price
-
-            from player.logs.print_log import log
-            log(treasury.cash)
-            log(cash_cost)
 
             if cash_cost <= treasury.cash:
                 # обновляем запасы в регионе до максимума
@@ -119,14 +115,18 @@ class ExploreResources(Bill):
 
             else:
                 # узнаем, сколько можем разведать максимум
-                max_exp = treasury.cash / self.exp_price
+                hund_price = self.exp_price / 100
+                hund_points = treasury.cash // hund_price
+
+                price = hund_points * hund_price
+
                 # если эта величина - как минимум один пункт
-                if max_exp >= 0.01:
+                if hund_points >= 1:
                     # обновляем запасы в регионе
-                    setattr(region, self.resource + '_has', getattr(region, self.resource + '_has') + Decimal(max_exp))
+                    setattr(region, self.resource + '_has', getattr(region, self.resource + '_has') + Decimal(hund_points/100))
 
                     self.cash_cost = treasury.cash
-                    setattr(treasury, 'cash', treasury.cash % self.exp_price)
+                    setattr(treasury, 'cash', treasury.cash - price)
                     b_type = 'ac'
 
                 else:
