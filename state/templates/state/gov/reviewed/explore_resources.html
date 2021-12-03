@@ -30,26 +30,10 @@
     </div>
     <div class="col-xs-2 col-sm-2 col-md-2">
         <div class="row">
-            {% with res_has=bill.resource|get_sum:'_has' %}
-                {% with res_cap=bill.resource|get_sum:'_cap' %}
-                    {% with res_cap_val=bill.region|get_attr:res_cap %}
-                        {% with res_hap_val=bill.region|get_attr:res_has %}
-                            {{ res_cap_val|get_diff:res_hap_val }} {{ bill.get_resource_display }}
-                        {% endwith %}
-                    {% endwith %}
-                {% endwith %}
-            {% endwith %}
+            {{ bill.cash_cost }} {{ bill.get_resource_display }}
         </div>
         <div class="row">
-            {% with res_has=bill.resource|get_sum:'_has' %}
-                {% with res_cap=bill.resource|get_sum:'_cap' %}
-                    {% with res_cap_val=bill.region|get_attr:res_cap %}
-                        {% with res_hap_val=bill.region|get_attr:res_has %}
-            <b style="color: #85bb65">${{ res_cap_val|get_diff:res_hap_val|get_mul:100 }}</b>
-                        {% endwith %}
-                    {% endwith %}
-                {% endwith %}
-            {% endwith %}
+            <b style="color: #85bb65">${{ bill.cash_cost }}</b>
         </div>
     </div>
     <div class="col-xs-2 col-sm-2 col-md-2">

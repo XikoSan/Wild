@@ -106,10 +106,12 @@ class ExploreResources(Bill):
                 getattr(region, self.resource + '_cap') - getattr(region, self.resource + '_has')) * self.exp_price
 
             if cash_cost <= treasury.cash:
+                volume = getattr(region, self.resource + '_cap') - getattr(region, self.resource + '_has')
                 # обновляем запасы в регионе до максимума
                 setattr(region, self.resource + '_has', getattr(region, self.resource + '_cap'))
 
                 self.cash_cost = cash_cost
+                self.exp_value = Decimal(volume)
                 setattr(treasury, 'cash', getattr(treasury, 'cash') - self.cash_cost)
                 b_type = 'ac'
 
@@ -126,6 +128,7 @@ class ExploreResources(Bill):
                     setattr(region, self.resource + '_has', getattr(region, self.resource + '_has') + Decimal(hund_points/100))
 
                     self.cash_cost = treasury.cash
+                    self.exp_value = Decimal(hund_points/100)
                     setattr(treasury, 'cash', treasury.cash - price)
                     b_type = 'ac'
 
