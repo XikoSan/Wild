@@ -7,11 +7,11 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.utils import timezone
 from django.utils.translation import gettext_lazy
-
+from state.models.parliament.deputy_mandate import DeputyMandate
 from region.region import Region
 from state.models.bills.bill import Bill
 from state.models.treasury import Treasury
-
+from state.models.parliament.parliament import Parliament
 
 # Разведать ресурсы
 class ExploreResources(Bill):
@@ -156,15 +156,12 @@ class ExploreResources(Bill):
 
     def get_bill(self, player):
 
-        # votes_pro = self.votes_pro.all()
-        # votes_con = self.votes_con.all()
-
         data = {
             'bill': self,
             'title': self._meta.verbose_name_raw,
             'player': player,
-            # 'votes_pro': votes_pro,
-            # 'votes_con': votes_con,
+            # проверяем, депутат ли этого парла игрок или нет
+            'is_deputy': DeputyMandate.objects.filter(player=player, parliament=Parliament.objects.get(state=player.region.state)).exists(),
         }
 
         return data, 'state/gov/bills/explore_resources.html'

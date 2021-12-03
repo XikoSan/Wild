@@ -57,23 +57,27 @@
     {{ bill.initiator }}
     </div>
     <div class="col-xs-2 col-sm-2 col-md-2">
-    {% with player=data|dict_key:'player' %}
-        {% if player not in bill.votes_pro.all and player not in bill.votes_con.all %}
-        <div class="row">
-            <a class="btn btn-success" onclick="vote_bill('ExploreResources',{{ bill.pk }},'pro')">Проголосовать</a>
-        </div>
-        <div class="row">
-            <a class="btn btn-danger" onclick="vote_bill('ExploreResources',{{ bill.pk }},'con')">Проголосовать</a>
-        </div>
-        {% else %}
-        <font size="5">
-            {% if player in bill.votes_pro.all %}
-            <div class="glyphicon glyphicon-thumbs-up" style="color:#4cae4c"></div>
-            {% endif %}
-            {% if player in bill.votes_con.all %}
-            <div class="glyphicon glyphicon-thumbs-down" style="color:#870A09"></div>
-            {% endif %}
-        </font>
+    {% with is_deputy=data|dict_key:'is_deputy' %}
+        {% if is_deputy %}
+            {% with player=data|dict_key:'player' %}
+                {% if player not in bill.votes_pro.all and player not in bill.votes_con.all %}
+                <div class="row">
+                    <a class="btn btn-success" onclick="vote_bill('ExploreResources',{{ bill.pk }},'pro')">Проголосовать</a>
+                </div>
+                <div class="row">
+                    <a class="btn btn-danger" onclick="vote_bill('ExploreResources',{{ bill.pk }},'con')">Проголосовать</a>
+                </div>
+                {% else %}
+                <font size="5">
+                    {% if player in bill.votes_pro.all %}
+                    <div class="glyphicon glyphicon-thumbs-up" style="color:#4cae4c"></div>
+                    {% endif %}
+                    {% if player in bill.votes_con.all %}
+                    <div class="glyphicon glyphicon-thumbs-down" style="color:#870A09"></div>
+                    {% endif %}
+                </font>
+                {% endif %}
+            {% endwith %}
         {% endif %}
     {% endwith %}
     </div>
