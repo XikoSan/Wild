@@ -6,7 +6,7 @@
 {% load government.get_bill %}
 {% load l10n %}{% load i18n %}
 
-<div id="bills" class="tab-pane fade in active">
+<div id="bills" class="tab-pane fade in active" style="height: 640px; overflow-y: auto; overflow-x: hidden;">
     {% for bill in bills_list %}
         {% get_bill %}
     {% endfor %}

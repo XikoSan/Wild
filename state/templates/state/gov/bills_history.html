@@ -6,7 +6,7 @@
 {% load government.get_reviewed_bill %}
 {% load l10n %}{% load i18n %}
 
-<div id="bills_history" class="tab-pane fade">
+<div id="bills_history" class="tab-pane fade" style="height: 640px; overflow-y: auto; overflow-x: hidden;">
     {% for bill in bills_list %}
         {% get_reviewed_bill %}
     {% endfor %}
