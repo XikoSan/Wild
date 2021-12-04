@@ -9,7 +9,7 @@ from player.views.get_subclasses import get_subclasses
 
 @register.inclusion_tag('state/gov/bills.html')
 def bills(player, parliament):
-    bills_list = None
+    bills_list = []
 
     bills_classes = get_subclasses(Bill)
 
@@ -23,6 +23,8 @@ def bills(player, parliament):
                 bills_list = list(chain(bills_list, type.objects.filter(parliament=parliament, running=True)))
             else:
                 bills_list = type.objects.filter(parliament=parliament, running=True)
+
+    bills_list = sorted(bills_list, key=lambda bill: bill.voting_start)
 
     return {
         'player': player,
