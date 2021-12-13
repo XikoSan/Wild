@@ -24,7 +24,8 @@ def bills(player, parliament):
             else:
                 bills_list = type.objects.filter(parliament=parliament, running=True)
 
-    bills_list = sorted(bills_list, key=lambda bill: bill.voting_start)
+    if bills_list:
+        bills_list = sorted(bills_list, key=lambda bill: bill.voting_start)
 
     return {
         'player': player,
