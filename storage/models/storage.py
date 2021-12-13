@@ -31,6 +31,7 @@ class Storage(models.Model):
         'minerals': gettext_lazy('Минералы'),
         'oils': gettext_lazy('Нефть'),
         'materials': gettext_lazy('Материалы'),
+        'equipments': gettext_lazy('Оборудование'),
         'units': gettext_lazy('Оружие'),
     }
     # ------vvvvvvv------Деньги на складе------vvvvvvv------
@@ -60,9 +61,15 @@ class Storage(models.Model):
 
         'diesel': gettext_lazy('Дизельное топливо'),
 
+        'plastic': gettext_lazy('Пластик'),
+
         'steel': gettext_lazy('Сталь'),
 
         'aluminium': gettext_lazy('Алюминий'),
+    }
+    # ------vvvvvvv------Оборудование на складе------vvvvvvv------
+    equipments = {
+        'medical': gettext_lazy('Койки'),
     }
     # ------vvvvvvv------Юниты на складе------vvvvvvv------
     units = {
@@ -135,6 +142,11 @@ class Storage(models.Model):
     # бензин- максимум на складе
     diesel_cap = models.IntegerField(default=10000, verbose_name=gettext_lazy('diesel_cap'))
 
+    # пластик
+    plastic = models.IntegerField(default=0, verbose_name=gettext_lazy('plastic'))
+    # пластик- максимум на складе
+    plastic_cap = models.IntegerField(default=10000, verbose_name=gettext_lazy('plastic_cap'))
+
     steel = models.IntegerField(default=0, verbose_name=gettext_lazy('steel'))
     # сталь- максимум на складе
     steel_cap = models.IntegerField(default=10000, verbose_name=gettext_lazy('steel_cap'))
@@ -142,6 +154,12 @@ class Storage(models.Model):
     aluminium = models.IntegerField(default=0, verbose_name=gettext_lazy('alumunuim'))
     # сталь- максимум на складе
     aluminium_cap = models.IntegerField(default=10000, verbose_name=gettext_lazy('alumunuim_cap'))
+
+    # ------vvvvvvv------Оборудование на складе------vvvvvvv------
+    # койки
+    medical = models.IntegerField(default=0, verbose_name=gettext_lazy('Койки'))
+    # койки- максимум на складе
+    medical_cap = models.IntegerField(default=10000, verbose_name=gettext_lazy('medical_cap'))
 
     # ------vvvvvvv------Юниты на складе------vvvvvvv------
     # Автоматы

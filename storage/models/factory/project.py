@@ -35,28 +35,29 @@ class Project(models.Model):
         'time': 10,
         'energy': 1,
     }
-    # plastic = {
-    #     'title': _('Пластик'),
-    #     # 'title': _('plastic'),
-    #
-    #     'resources':
-    #         {
-    #             {
-    #                 'cash': 10,
-    #                 'wti_oil': 15,
-    #             },
-    #             {
-    #                 'cash': 10,
-    #                 'brent_oil': 10,
-    #             },
-    #             {
-    #                 'cash': 10,
-    #                 'urals_oil': 15,
-    #             },
-    #         },
-    #     'time': 10,
-    #     'energy': 1,
-    # }
+    plastic = {
+        'title': _('Пластик'),
+        # 'title': _('plastic'),
+
+        'resources':
+            [
+                {
+                    'cash': 10,
+                    'wti_oil': 15,
+                },
+                {
+                    'cash': 10,
+                    'brent_oil': 10,
+                },
+                {
+                    'cash': 10,
+                    'urals_oil': 15,
+                },
+            ],
+
+        'time': 10,
+        'energy': 1,
+    }
     diesel = {
         'title': _('Дизель'),
         # 'title': _('plastic'),
@@ -103,6 +104,22 @@ class Project(models.Model):
                 {
                     'cash': 10,
                     'bauxite': 10,
+                },
+            ],
+
+        'time': 10,
+        'energy': 1,
+    }
+
+    medical = {
+        'title': _('medical'),
+
+        'resources':
+            [
+                {
+                    'cash': 5,
+                    'plastic': 5,
+                    'steel': 2,
                 },
             ],
 
@@ -208,8 +225,13 @@ class Project(models.Model):
     schemas = (
         ('gas', gas.get('title')),
         ('diesel', diesel.get('title')),
+        ('plastic', diesel.get('title')),
+
         ('steel', steel.get('title')),
         ('aluminium', aluminium.get('title')),
+
+        ('medical', aluminium.get('title')),
+
         ('rifle', rifle.get('title')),
         ('tank', tank.get('title')),
         ('jet', jet.get('title')),

@@ -37,7 +37,7 @@ def factory(request):
         'project_cl': Project,
         'storage_cl': Storage,
         'storages': storages,
-        'categories': ['materials', 'units'],
-        'crude_list': ['valut', 'minerals', 'oils', 'materials'],
+        'categories': ['materials', 'equipments', 'units'],
+        'crude_list': ['valut', 'minerals', 'oils', 'materials', 'equipments'],
     })
     return response

@@ -36,9 +36,15 @@ class Transport(Log):
 
         'diesel': 1,
 
+        'plastic': 2,
+
         'steel': 10,
 
         'aluminium': 10,
+    }
+    # ------vvvvvvv------Оборудование на складе------vvvvvvv------
+    equipments = {
+        'medical': 5,
     }
     # ------vvvvvvv------Юниты на складе------vvvvvvv------
     units = {
@@ -109,6 +115,11 @@ class Transport(Log):
     # бензин- кубов
     diesel_vol = models.IntegerField(default=0, verbose_name=gettext_lazy('Дизель - кубов'))
 
+    # пластик
+    plastic = models.IntegerField(default=0, verbose_name=gettext_lazy('Пластик'))
+    # пластик- кубов
+    plastic_vol = models.IntegerField(default=0, verbose_name=gettext_lazy('Пластик - кубов'))
+
     steel = models.IntegerField(default=0, verbose_name=gettext_lazy('Сталь'))
     # сталь- максимум на складе
     steel_vol = models.IntegerField(default=0, verbose_name=gettext_lazy('Сталь - кубов'))
@@ -116,6 +127,12 @@ class Transport(Log):
     aluminium = models.IntegerField(default=0, verbose_name=gettext_lazy('Алюминий'))
     # сталь- максимум на складе
     aluminium_vol = models.IntegerField(default=0, verbose_name=gettext_lazy('Алюминий - кубов'))
+
+    # ------vvvvvvv------Оборудование на складе------vvvvvvv------
+    # койки
+    medical = models.IntegerField(default=0, verbose_name=gettext_lazy('Койки'))
+    # Автоматы- максимум на складе
+    medical_vol = models.IntegerField(default=0, verbose_name=gettext_lazy('Койки - кубов'))
 
     # ------vvvvvvv------Юниты на складе------vvvvvvv------
     # Автоматы

@@ -44,9 +44,16 @@ class ProductionLog(Log):
     # бензин
     diesel = models.IntegerField(default=0, verbose_name=gettext_lazy('diesel'))
 
+    # пластик
+    plastic = models.IntegerField(default=0, verbose_name=gettext_lazy('plastic'))
+
     steel = models.IntegerField(default=0, verbose_name=gettext_lazy('steel'))
 
     aluminium = models.IntegerField(default=0, verbose_name=gettext_lazy('alumunuim'))
+
+    # ------vvvvvvv------Оборудование на складе------vvvvvvv------
+    # койки
+    medical = models.IntegerField(default=0, verbose_name=gettext_lazy('Койки'))
 
     # ------vvvvvvv------Юниты на складе------vvvvvvv------
     # Автоматы

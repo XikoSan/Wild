@@ -82,8 +82,11 @@ class TradeOffer(models.Model):
 
         ('gas', 'Бензин'),
         ('diesel', 'Дизельное топливо'),
+        ('plastic', 'Пластик'),
         ('steel', 'Сталь'),
         ('aluminium', 'Алюминий'),
+
+        ('medical', 'Койки'),
 
         ('rifle', 'Автоматы'),
         ('tank', 'Танки'),
