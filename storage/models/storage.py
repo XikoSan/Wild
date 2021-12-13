@@ -213,7 +213,7 @@ class Storage(models.Model):
     def allStorageCount(self):
         data = {}
         data['cash'] = getattr(self, 'cash')
-        for mode in {'minerals', 'oils', 'materials', 'units'}:
+        for mode in self.types.keys():
             for unit in getattr(self, mode).keys():
                 data[unit] = getattr(self, unit)
 

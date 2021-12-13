@@ -27,7 +27,7 @@ def get_transfer_price(trans_mul, dest, values):
                     continue
                 # надо понять, к какой категории относится товар. Так что, придётся пройтись по циклу
                 # "minerals" - "oils" - "materials" - "units"
-                for cat in ["minerals", "oils", "materials", "units"]:
+                for cat in Storage.types.keys():
                     if good in getattr(Transport, cat):
                         prices[int(storage)] += ceil(int(values.get(storage).get(good)) * getattr(Transport, cat)[good]) * trans_mul[dest][int(storage)]
                         price += ceil(int(values.get(storage).get(good)) * getattr(Transport, cat)[good]) * trans_mul[dest][int(storage)]
