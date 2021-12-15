@@ -23,17 +23,20 @@
     {% endwith %}
 
     {% with bill=data|dict_key:'bill' %}
-    <div class="col-xs-4 col-sm-4 col-md-4">
-        <img src="static/img/regions/{{ bill.region.on_map_id }}.png" align="left"
-                         style="width: 70px;">
-        {{ bill.region }}
-    </div>
-    <div class="col-xs-2 col-sm-2 col-md-2">
+    <div class="col-xs-3 col-sm-3 col-md-3">
         <div class="row">
-            {{ bill.exp_value }} {{ bill.get_resource_display }}
+            {{ bill.buy_value }}
         </div>
+        <div class="row" style="margin-top: 25px;">
+            {{ bill.get_good_display }}
+        </div>
+    </div>
+    <div class="col-xs-3 col-sm-3 col-md-3">
         <div class="row">
-            <b style="color: #85bb65">${{ bill.cash_cost }}</b>
+            Лотов: {{ bill.lots_count }}
+        </div>
+        <div class="row" style="margin-top: 25px;">
+            Стоимость: <b style="color: #85bb65">${{ bill.cash_cost }}</b>
         </div>
     </div>
     <div class="col-xs-2 col-sm-2 col-md-2">

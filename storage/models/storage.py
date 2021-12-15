@@ -1,11 +1,10 @@
 # coding=utf-8
 from django.db import models
-from django.utils.translation import gettext_lazy
+from django.utils.translation import gettext_lazy, ugettext as _
 
+from player.actual_manager import ActualManager
 from player.player import Player
 from region.region import Region
-from player.actual_manager import ActualManager
-from django.utils.translation import ugettext as _
 
 
 # Важная информация!
@@ -199,6 +198,18 @@ class Storage(models.Model):
 
     # удалено
     deleted = models.BooleanField(default=False, verbose_name='Удалено')
+
+    @staticmethod
+    def get_choises(mode=None):
+        choises = []
+
+        for type in Storage.types.keys():
+            if mode and mode != type:
+                continue
+            for good in getattr(Storage, type).keys():
+                choises.append((good, getattr(Storage, type)[good]))
+
+        return choises
 
     # получить информацию о количестве предметов
     def unitsOnStorageCount(self, mode):

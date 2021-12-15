@@ -9,5 +9,8 @@
 <div id="bills" class="tab-pane fade in active" style="height: 640px; overflow-y: auto; overflow-x: hidden;">
     {% for bill in bills_list %}
         {% get_bill %}
+        {% if bill != bills_list|last %}
+        <hr>
+        {% endif %}
     {% endfor %}
 </div>

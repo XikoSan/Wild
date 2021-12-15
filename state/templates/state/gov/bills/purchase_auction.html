@@ -24,33 +24,20 @@
     {% endwith %}
 
     {% with bill=data|dict_key:'bill' %}
-    <div class="col-xs-4 col-sm-4 col-md-4">
-        <img src="static/img/regions/{{ bill.region.on_map_id }}.png"  align="center"
-                         style="width: 70px;">
-        {{ bill.region }}
-    </div>
-    <div class="col-xs-2 col-sm-2 col-md-2">
+    <div class="col-xs-3 col-sm-3 col-md-3">
         <div class="row">
-            {% with res_has=bill.resource|get_sum:'_has' %}
-                {% with res_cap=bill.resource|get_sum:'_cap' %}
-                    {% with res_cap_val=bill.region|get_attr:res_cap %}
-                        {% with res_hap_val=bill.region|get_attr:res_has %}
-                            {{ res_cap_val|get_diff:res_hap_val }} {{ bill.get_resource_display }}
-                        {% endwith %}
-                    {% endwith %}
-                {% endwith %}
-            {% endwith %}
+            {{ bill.buy_value }}
         </div>
         <div class="row" style="margin-top: 25px;">
-            {% with res_has=bill.resource|get_sum:'_has' %}
-                {% with res_cap=bill.resource|get_sum:'_cap' %}
-                    {% with res_cap_val=bill.region|get_attr:res_cap %}
-                        {% with res_hap_val=bill.region|get_attr:res_has %}
-            Стоимость: <b style="color: #85bb65">${{ res_cap_val|get_diff:res_hap_val|get_mul:100 }}</b>
-                        {% endwith %}
-                    {% endwith %}
-                {% endwith %}
-            {% endwith %}
+            {{ bill.get_good_display }}
+        </div>
+    </div>
+    <div class="col-xs-3 col-sm-3 col-md-3">
+        <div class="row">
+            Лотов: {{ bill.lots_count }}
+        </div>
+        <div class="row" style="margin-top: 25px;">
+            Стоимость: <b style="color: #85bb65">${{ bill.cash_cost }}</b>
         </div>
     </div>
     <div class="col-xs-2 col-sm-2 col-md-2">

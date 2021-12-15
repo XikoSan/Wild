@@ -6,6 +6,7 @@ from django.db import models
 
 from region.region import Region
 from state.models.bills.explore_resources import ExploreResources
+from state.models.bills.purchase_auction import PurchaseAuction
 from state.models.capital import Capital
 from state.models.parliament.bulletin import Bulletin
 from state.models.parliament.deputy_mandate import DeputyMandate
@@ -75,3 +76,4 @@ admin.site.register(ParliamentParty)
 admin.site.register(Capital, CapitalAdmin)
 
 admin.site.register(ExploreResources, BillAdmin)
+admin.site.register(PurchaseAuction, BillAdmin)
