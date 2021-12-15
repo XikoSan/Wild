@@ -208,7 +208,7 @@ class PurchaseAuction(Bill):
         return data, 'state/gov/reviewed/purchase_auction.html'
 
     def __str__(self):
-        return str(self.buy_value) + " " + self.get_good_display() + " за " + str(self.cash_cost)
+        return self.get_good_display()
 
     # Свойства класса
     class Meta:

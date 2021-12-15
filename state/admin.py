@@ -65,6 +65,10 @@ class BillAdmin(admin.ModelAdmin):
     }
 
 
+class AuctionAdmin(BillAdmin):
+    list_display = ('voting_start', 'good', 'buy_value', 'cash_cost')
+
+
 # Register your models here.
 admin.site.register(State)
 admin.site.register(Treasury)
@@ -76,4 +80,4 @@ admin.site.register(ParliamentParty)
 admin.site.register(Capital, CapitalAdmin)
 
 admin.site.register(ExploreResources, BillAdmin)
-admin.site.register(PurchaseAuction, BillAdmin)
+admin.site.register(PurchaseAuction, AuctionAdmin)
