@@ -88,6 +88,7 @@ class Project(models.Model):
             [
                 {
                     'cash': 10,
+                    'coal': 5,
                     'iron': 10,
                 },
             ],
