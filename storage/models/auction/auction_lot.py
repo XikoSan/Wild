@@ -3,6 +3,7 @@ from django.apps import apps
 from django.db import models
 
 from player.actual_manager import ActualManager
+from player.logs.cash_log import CashLog
 from storage.models.auction.auction import BuyAuction
 from storage.models.storage import Storage
 
@@ -48,6 +49,9 @@ class AuctionLot(models.Model):
         bet = bet_class.actual.get(auction_lot=self)
         # начисляем владельцу ставки на баланс = цена ставки * объем лота
         bet.good_lock.lock_storage.owner.cash += bet.price * self.count
+        bet.good_lock.lock_storage.owner.save()
+        # логируем
+        CashLog(player=bet.good_lock.lock_storage.owner, cash=(bet.price * self.count), activity_txt='auct').save()
         # удаляем блокировку ресурсов из ставки (отметка)
         bet.good_lock.deleted = True
         # сохраняем блокировку
