@@ -8,6 +8,10 @@ from django.utils import timezone
 from state.models.bills.bill import Bill
 from state.models.parliament.deputy_mandate import DeputyMandate
 from state.models.parliament.parliament import Parliament
+from state.models.treasury import Treasury
+from state.models.treasury_lock import TreasuryLock
+from storage.models.auction.auction import BuyAuction
+from storage.models.auction.auction_lot import AuctionLot
 from storage.models.storage import Storage
 
 
@@ -54,14 +58,14 @@ class PurchaseAuction(Bill):
             return {
                 'header': 'Новый законопроект',
                 'grey_btn': 'Закрыть',
-                'response': 'Стоимость закупки должна быть целым числом',
+                'response': 'Цена закупки должна быть целым числом',
             }
 
         if not 0 < purchase_price < 9223372036854775807:
             return {
                 'header': 'Новый законопроект',
                 'grey_btn': 'Закрыть',
-                'response': 'Стоимость закупки должна быть положительным INT',
+                'response': 'Цена закупки должна быть положительным INT',
             }
 
         # получаем количество лотов
@@ -124,58 +128,64 @@ class PurchaseAuction(Bill):
 
     # выполнить законопроект
     def do_bill(self):
-        pass
-        # b_type = None
-        # treasury = Treasury.objects.get(state=self.parliament.state)
-        #
-        # if treasury.cash != 0:
-        #
-        #     region = Region.objects.get(pk=self.region.pk)
-        #
-        #     cash_cost = float(
-        #         getattr(region, self.resource + '_cap') - getattr(region, self.resource + '_has')) * self.exp_price
-        #
-        #     if cash_cost <= treasury.cash:
-        #         volume = getattr(region, self.resource + '_cap') - getattr(region, self.resource + '_has')
-        #         # обновляем запасы в регионе до максимума
-        #         setattr(region, self.resource + '_has', getattr(region, self.resource + '_cap'))
-        #
-        #         self.cash_cost = cash_cost
-        #         self.exp_value = Decimal(volume)
-        #         setattr(treasury, 'cash', getattr(treasury, 'cash') - self.cash_cost)
-        #         b_type = 'ac'
-        #
-        #     else:
-        #         # узнаем, сколько можем разведать максимум
-        #         hund_price = self.exp_price / 100
-        #         hund_points = treasury.cash // hund_price
-        #
-        #         price = hund_points * hund_price
-        #
-        #         # если эта величина - как минимум один пункт
-        #         if hund_points >= 1:
-        #             # обновляем запасы в регионе
-        #             setattr(region, self.resource + '_has',
-        #                     getattr(region, self.resource + '_has') + Decimal(hund_points / 100))
-        #
-        #             self.cash_cost = treasury.cash
-        #             self.exp_value = Decimal(hund_points / 100)
-        #             setattr(treasury, 'cash', treasury.cash - price)
-        #             b_type = 'ac'
-        #
-        #         else:
-        #             b_type = 'rj'
-        #
-        #     # если закон принят
-        #     if b_type == 'ac':
-        #         self.save()
-        #         treasury.save()
-        #         region.save()
-        #
-        # else:
-        #     b_type = 'rj'
-        #
-        # ExploreResources.objects.filter(pk=self.pk).update(type=b_type, running=False, voting_end=timezone.now())
+        b_type = None
+        treasury = Treasury.objects.get(state=self.parliament.state)
+
+        lots_list = []
+
+        # узнаем, хватает ли денег в Казне, на блокировку
+        if self.cash_cost <= treasury.cash:
+            # вешаем на эти денежки блокировку
+            treasury.cash -= self.cash_cost
+            lock = TreasuryLock(
+                lock_treasury=treasury,
+                lock_good='cash',
+                lock_count=self.cash_cost
+            )
+
+            # создаем Аукцион
+            auction = BuyAuction(
+                treasury_lock=lock,
+                good=self.good,
+                create_date=timezone.now()
+            )
+
+            # создаем Лоты аукциона
+            buy_value_now = self.buy_value
+
+            for lot_count in range(self.lots_count):
+
+                if not (self.lots_count - lot_count == 0):
+                    curr_lot_count = buy_value_now // (self.lots_count - lot_count)
+                else:
+                    curr_lot_count = buy_value_now
+
+                lot = AuctionLot(
+                    auction=auction,
+                    count=curr_lot_count,
+                    start_price=self.cash_cost / self.buy_value
+                )
+
+                buy_value_now -= curr_lot_count
+
+                lots_list.append(lot)
+
+            b_type = 'ac'
+
+        else:
+            b_type = 'rj'
+
+        # если закон принят
+        if b_type == 'ac':
+            self.save()
+            treasury.save()
+            lock.save()
+            auction.save()
+
+            for lot in lots_list:
+                lot.save()
+
+        PurchaseAuction.objects.filter(pk=self.pk).update(type=b_type, running=False, voting_end=timezone.now())
 
     @staticmethod
     def get_draft(state):

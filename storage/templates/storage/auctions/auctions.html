@@ -7,7 +7,7 @@
 {% block for_scripts_and_css %}
 <script src='{% static "js/tablesort.js" %}?{{ csrf_token }}'></script>
 <script src='{% static "js/tablesort.number.js" %}?{{ csrf_token }}'></script>
-<script src='{% static "js/trading.js" %}?{{ csrf_token }}'></script>
+<script src='{% static "js/auctions.js" %}?{{ csrf_token }}'></script>
 <link rel="stylesheet" href='{% static "css/tablesort.css" %}?{{ csrf_token }}'>
 <link rel="stylesheet" href='{% static "css/style.css" %}?{{ csrf_token }}'>
 {% endblock %}
@@ -23,65 +23,48 @@
             groups_n_goods['{{ group }}']['{{ good }}'] = '{{ storage_cl|get_attr:group|dict_key:good }}';
         {% endfor %}
     {% endfor %}
-
-    var vol_map = new Map();
-    {% for type in storage_cl|get_attr:'types' %}
-        {% for good in transport|get_attr:type %}
-            vol_map.set('{{ good }}', '{{ transport|get_attr:type|dict_key:good }}');
-        {% endfor %}
-    {% endfor %}
 </script>
 <div class="col-xs-12 col-sm-12 col-md-10">
     <div id="goods_list" align="center">
         <font id="offers_help" style="color: black">Выберите один или несколько критериев справа и нажмите "Поиск"</font>
         <font id="offers_none" style="color: black; display: none">Ничего не найдено</font>
-<!--        Выберите товары по критериям слева-->
+
         <table id="lines" class="sort" style="display: none">
 <!--        <table id="lines" class="sort">-->
           <thead>
             <tr>
               <th data-sort-default role="columnheader">Товар</th>
+              <th role="columnheader">Дата создания</th>
               <th role="columnheader">Владелец</th>
-              <th role="columnheader">Регион</th>
               <th role="columnheader">Количество</th>
               <th role="columnheader">Цена (шт.)</th>
-              <th role="columnheader">Доставка</th>
-              <th role="columnheader">Сумма</th>
+              <th role="columnheader">Лотов</th>
+              <th role="columnheader">Ставка (мин)</th>
+              <th role="columnheader">Ставка (макс)</th>
               <th role="columnheader">Действие</th>
             </tr>
           </thead>
           <tbody>
           <!--торговые предложения-->
+              <tr>
+                  <td data-name="coal" class="good">Уголь</td>
+                  <td>13:57</td>
+                  <td class="owner">
+                      Ordensstaat
+                  </td>
+                  <td class="volume">500 000</td>
+                  <td class="price">10</td>
+                  <td class="lots">10</td>
+                  <td class="price_min">5</td>
+                  <td class="price_max">8</td>
+                  <td class="type"><button id="72">Перейти</button></td>
+              </tr>
           </tbody>
         </table>
     </div>
 </div>
 <div class="col-xs-2 col-sm-2 col-md-2" align="center">
-    <div class="row" style="margin-top: 5%;">
-        <a class="save btn btn-success" style="width: 100%" href="/auctions">Государственнные закупки</a>
-    </div>
     <form id="offers_search_form" role="form">
-        <div class="row" style="margin-top: 30%">
-            <select name="trade_actions" id="trade_actions" style="width: 100%">
-                <option selected value='sell'>Продажа</option>
-                <option value='buy'>Покупка</option>
-            </select>
-        </div>
-<!--        <div class="row" style="margin-top: 5%">-->
-<!--            <select name="trade_range" id="trade_range" style="width: 100%">-->
-<!--                <option selected value='all'>Весь мир</option>-->
-<!--                <option value='state'>Государство</option>-->
-<!--                <option value='range'>Соседние регионы</option>-->
-<!--                <option value='this'>Этот регион</option>-->
-<!--            </select>-->
-<!--        </div>-->
-        <div class="row" style="margin-top: 5%">
-            <select name="trade_owner" id="trade_owner" style="width: 100%">
-                <option selected value='all'>Все</option>
-                <option value='party'>Партия</option>
-                <option value='mine'>Мои</option>
-            </select>
-        </div>
         <div class="row" style="margin-top: 5%">
             <select name="trade_groups" id="trade_groups" multiple size="{{ storage_cl|get_attr:'types'|get_len }}" style="width: 100%">
                 {% for group in storage_cl|get_attr:'types' %}
@@ -103,8 +86,5 @@
             <button id="accept" type="submit" enctype="multipart/form-data" class="save btn btn-info" style="width: 100%">Поиск</button>
         </div>
     </form>
-    <div class="row" style="margin-top: 15%;">
-        <a class="save btn btn-success" style="width: 100%" href="/new_offer">Создать</a>
-    </div>
 </div>
 {% endblock %}

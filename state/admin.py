@@ -15,6 +15,7 @@ from state.models.parliament.parliament_party import ParliamentParty
 from state.models.parliament.parliament_voting import ParliamentVoting
 from state.models.state import State
 from state.models.treasury import Treasury
+from state.models.treasury_lock import TreasuryLock
 
 
 class CapitalAdmin(admin.ModelAdmin):
@@ -69,9 +70,20 @@ class AuctionAdmin(BillAdmin):
     list_display = ('voting_start', 'good', 'buy_value', 'cash_cost')
 
 
+class TreasuryLockAdmin(admin.ModelAdmin):
+    model = TreasuryLock
+    list_display = ['get_state_title', 'lock_good', 'lock_count', ]
+
+    def get_state_title(self, obj):
+        return obj.lock_treasury.state.title
+
+    get_state_title.short_description = 'Казна'
+
+
 # Register your models here.
 admin.site.register(State)
 admin.site.register(Treasury)
+admin.site.register(TreasuryLock, TreasuryLockAdmin)
 admin.site.register(Parliament)
 admin.site.register(ParliamentVoting, ParliamentVotingAdmin)
 admin.site.register(Bulletin)

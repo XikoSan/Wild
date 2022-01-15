@@ -1,0 +1,129 @@
+{% extends 'player/header.html' %}
+{% load static %}
+{% load dict_key %}
+{% load has_key %}
+{% load get_attr %}
+{% load get_len %}
+{% load get_sum %}
+{% load l10n %}{% load i18n %}{% load tz %}
+{% block for_scripts_and_css %}
+<script src='{% static "js/auction_info.js" %}?{{ csrf_token }}'></script>
+{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-xs-4 col-sm-4 col-md-4" align="center">
+        Владелец:
+        {% with state=auction.treasury_lock.lock_treasury.state %}
+            {% if player.region.state.image %}
+            <img src="{{ player.region.state.image.url }}" onclick="window.location.href = 'state/{{ state.pk }}/'" style="cursor: pointer;" width="50" height="50">
+            {% else %}
+            <img src="{% static 'img/congress.svg' %}" onclick="window.location.href = 'state/{{ state.pk }}/'" style="cursor: pointer;" width="50" height="50">
+            {% endif %}
+            {{ state.title }}
+        {% endwith %}
+    </div>
+    <div class="col-xs-4 col-sm-4 col-md-4" align="center">
+        Ресурс: {{ auction.get_good_display }}
+    </div>
+    <div class="col-xs-4 col-sm-4 col-md-4" align="center">
+        Завершение: {{ auction.create_date|timezone:player.time_zone|date:"d.m H:i" }}
+    </div>
+</div>
+<div class="row" style="margin-top: 30px">
+    <div class="col-xs-12 col-sm-12 col-md-12" align="center">
+        Лоты:
+    </div>
+</div>
+<div id="all_lots" style=" height: 640px; overflow-y: auto; overflow-x: hidden;">
+    {% for lot in lots %}
+    <div class="row" style="margin-top: 15px">
+        <div class="col-xs-6 col-sm-6 col-md-6" align="center" style="border-right: solid #e2e2e2 1px;">
+            <div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-6" align="right">
+                Количество:
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6" align="left">
+                {{ lot.count }}
+                </div>
+            </div>
+            <div class="row" style="margin-top: 5px">
+                <div class="col-xs-6 col-sm-6 col-md-6" align="right">
+                Ставка:
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6" align="left">
+                    {% if bets_dict|has_key:lot.pk %}
+                        {{ bets_dict|dict_key:lot.pk|dict_key:'price' }}
+                    {% else %}
+                        {{ lot.start_price }} <text style="color: #85bb65">(начальная)</text>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="row" style="margin-top: 5px">
+                <div class="col-xs-6 col-sm-6 col-md-6" align="right">
+                Лидер:
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6" align="left">
+                    <div class="row">
+                        {% if bets_dict|has_key:lot.pk %}
+                            {% with owner=bets_dict|dict_key:lot.pk|dict_key:'owner' %}
+                                {% if owner.image %}
+                            <img src="{{ owner.image.url }}" width="50" height="50">
+                                {% else %}
+                            <img src="{% static 'img/nopic.png' %}" width="50" height="50">
+                                {% endif %}
+                            {{ owner.nickname }}
+                            {% endwith %}
+                        {% else %}
+                            <p style="color: #85bb65">отсутствует</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6" align="center" style="border-right: solid #e2e2e2 1px;">
+            <form class="set_bet_form" method="post">
+                <input type="hidden" name="lot_id" value="{{ lot.pk }}">
+                <div class="row">
+                    <div class="col-xs-6 col-sm-6 col-md-6" align="right">
+                    Склад:
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6" align="left">
+                    <td class="delivery">
+                        <select name="source" data-type="sell">
+                            {% for storage in storages %}
+                            <option {% if storage == storages|first %} selected {% endif %} value="{{ storage|dict_key:'pk' }}">{{ storage|dict_key:'region__region_name' }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 10px">
+                    <div class="col-xs-6 col-sm-6 col-md-6" align="right">
+                    Ставка:
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6" align="left">
+                        <input id="count"
+                               type="number"
+                               max="{% localize off %}{% if bets_dict|has_key:lot.pk %}{% if bets_dict|dict_key:lot.pk|dict_key:'price' > 1 %}{{ bets_dict|dict_key:lot.pk|dict_key:'price'|get_sum:-1 }}{% else %}1{% endif %}{% else %}{{ lot.start_price }}{% endif %}{% endlocalize %}"
+                               min="1"
+                               value="{% localize off %}{% if bets_dict|has_key:lot.pk %}{% if bets_dict|dict_key:lot.pk|dict_key:'price' > 1 %}{{ bets_dict|dict_key:lot.pk|dict_key:'price'|get_sum:-1 }}{% else %}1{% endif %}{% else %}{{ lot.start_price }}{% endif %}{% endlocalize %}"
+                               step="1"
+                               name="count"
+                               maxlength="3">
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 10px">
+                    <div class="col-xs-6 col-sm-6 col-md-6" align="right">
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6" align="left">
+                        <button type="submit">Сделать ставку</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    {% if lot != lots|last %}
+        <hr>
+    {% endif %}
+    {% endfor %}
+</div>
+{% endblock %}

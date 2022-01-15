@@ -55,7 +55,7 @@ class GoodLock(models.Model):
 
     lock_count = models.BigIntegerField(default=0, verbose_name='Количество')
 
-    lock_offer = models.ForeignKey(TradeOffer, default=None, on_delete=models.CASCADE,
+    lock_offer = models.ForeignKey(TradeOffer, default=None, on_delete=models.CASCADE,  null=True, blank=True,
                                    verbose_name='Торговое предложение', related_name="good_lock_offer")
 
     # удалено
