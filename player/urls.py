@@ -12,6 +12,7 @@ from .views.new_player import new_player
 from .views.overview import overview
 from .views.view_profile import view_profile
 from .views.wallet import wallet
+from .views.no_social import no_social
 
 urlpatterns = [
 
@@ -44,4 +45,7 @@ urlpatterns = [
 
     # Открытие страницы забаненного игрока
     url(r'^banned/$', banned, name='banned'),
+
+    # удаление аккаунтов, не имеющих соцсеть
+    url(r'^no_social/$', no_social, name='no_social'),
 ]
