@@ -11,10 +11,11 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 import os
+from pathlib import Path
+
+import sentry_sdk
 from django.core.serializers.json import DjangoJSONEncoder
 from django.http import JsonResponse
-from pathlib import Path
-import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -64,7 +65,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    
+
     'allauth.socialaccount.providers.vk',
     'allauth.socialaccount.providers.google',
 
@@ -260,6 +261,8 @@ level = 'DEBUG'
 if DEBUG:
     level = 'DEBUG'
 
+ACCOUNT_ADAPTER = 'wild_politics.account_adapter.AccountAdapter'
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -274,6 +277,7 @@ LOGGING = {
         'level': 'INFO',
     },
 }
+
 
 class JResponse(JsonResponse):
     def __init__(self, data, encoder=DjangoJSONEncoder, safe=True, **kwargs):
