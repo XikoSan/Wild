@@ -23,13 +23,25 @@
                             {% if player.region == region %}
                                 <button type="submit" onclick="get_residency()" class="save btn btn-success">Получить прописку</button>
                             {% else %}
-                                <button type="submit" disabled class="save btn btn-danger">Недоступно из другого региона</button>
+                            <form class="to_fly_form" method="post" action="{% url 'map' %}" style="margin-top: 1%">
+                                {% csrf_token %}
+                                <input type="hidden" class="region_id" name="region" value="{{ region.on_map_id }}">
+                                <input type="submit" class="btn btn-success" value="{% trans 'Отправиться' %}, - {{ cost }}" style="font-weight: bold; font-size: 15px;"/>
+                            </form>
                             {% endif %}
                         {% else %}
                             <button type="submit" disabled class="save btn btn-danger">Недоступно в полете</button>
                         {% endif %}
                     {% else %}
-                        <button type="submit" disabled class="save btn btn-default">Регион прописки</button>
+                        {% if player.region == region %}
+                            <button type="submit" disabled class="save btn btn-default">Регион прописки</button>
+                        {% else %}
+                            <form class="to_fly_form" method="post" action="{% url 'map' %}" style="margin-top: 1%">
+                                {% csrf_token %}
+                                <input type="hidden" class="region_id" name="region" value="{{ region.on_map_id }}">
+                                <input type="submit" class="btn btn-success" value="{% trans 'Отправиться' %}, - {{ cost }}" style="font-weight: bold; font-size: 15px;"/>
+                            </form>
+                        {% endif %}
                     {% endif %}
                 </div>
             </div>
@@ -71,7 +83,7 @@
                                     <!--Картинка партии-->
                                     <img src="{{ region.state.image_link }}" width="30" height="30" onclick="window.location.href = '/state/{{ region.state.pk }}/'" style="cursor: pointer">
                                     {% else %}
-                                    <img src="{% static 'img/gov/congress_inv.png' %}" width="30" height="30" onclick="window.location.href = '/state/{{ region.state.pk }}/'" style="cursor: pointer">
+                                    <img src="{% static 'img/congress.svg' %}" width="30" height="30" onclick="window.location.href = '/state/{{ region.state.pk }}/'" style="cursor: pointer">
                                     {% endif %}
                                     <b><font size="4" onclick="window.location.href = '/state/{{ region.state.pk }}/'" style="cursor: pointer">{{ region.state.title }}</font></b>
                                 {% else %}
@@ -79,7 +91,7 @@
                                 {% endif %}
                             </div>
                         </div>
-                        <div class="line"></div>
+                        <hr>
                         <div class="row flex" >
                             <div class="col-xs-6 col-sm-6 col-md-6">
                                 <b>
@@ -150,6 +162,19 @@
                                 </b>
                             </div>
                         </div>
+                        <hr>
+                        <div class="row flex">
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <b>
+                                    <font size="4">{% trans 'Рейтинг Госпиталя' %}: </font>
+                                </b>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <b>
+                                    <font size="4">{{ region.med_top }}</font>
+                                </b>
+                            </div>
+                        </div>
 <!--                        <div class="row flex" >-->
 <!--                            <div class="col-xs-6 col-sm-6 col-md-6">-->
 <!--                                <b>-->
@@ -163,18 +188,6 @@
 <!--                                    <font size="4" color="black">{{ region.oil_tax }}%</font>-->
 <!--                                    <font size="4"> / </font>-->
 <!--                                    <font size="4" color="#D2361C">{{ region.ore_tax }}%</font>-->
-<!--                                </b>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="row flex" >-->
-<!--                            <div class="col-xs-6 col-sm-6 col-md-6">-->
-<!--                                <b>-->
-<!--                                    <font size="4">{% trans 'reg_med_rate' %}: </font>-->
-<!--                                </b>-->
-<!--                            </div>-->
-<!--                            <div class="col-xs-6 col-sm-6 col-md-6">-->
-<!--                                <b>-->
-<!--                                    <font size="4">{{ region.med_top }}</font>-->
 <!--                                </b>-->
 <!--                            </div>-->
 <!--                        </div>-->

@@ -5,6 +5,7 @@ from party.party import Party
 from player.decorators.player import check_player
 from player.player import Player
 from region.region import Region
+from region.views.distance_counting import distance_counting
 
 
 @login_required(login_url='/')
@@ -21,6 +22,11 @@ def open_region(request, pk):
 
     parties_count = Party.objects.filter(region=region, deleted=False).count()
 
+    if player.residency == Region.objects.get(on_map_id=region.on_map_id):
+        cost = 0
+    else:
+        cost = round(distance_counting(player.region, Region.objects.get(on_map_id=region.on_map_id)))
+
     # # список войн за все время
     # war_types = get_subclasses(War)
     # wars_cnt = 0
@@ -35,6 +41,7 @@ def open_region(request, pk):
         'page_name': region.region_name,
         'player': player,
         'region': region,
+        'cost': cost,
 
         'players_count': players_count,
         'parties_count': parties_count,
