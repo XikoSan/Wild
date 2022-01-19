@@ -7,13 +7,16 @@ from state.views.set_mandate_view import set_mandate_view
 from state.views.set_mandate import set_mandate
 from state.views.state_foundation import state_foundation
 from state.views.vote_elections import vote_elections
+from state.views.open_state import open_state
 
 urlpatterns = [
 
     # страница государства
     url(r'^government$', government, name='government'),
-    # пополнение энергии:
+    # основание государства:
     url(r'^state_foundation/$', state_foundation, name='state_foundation'),
+    # открыть страницу государства
+    url(r'^state/(?P<pk>\d+)/$', open_state, name='open_state'),
 
     # открытие страницы праймериз
     url(r'^elections/(?P<parl_pk>\d+)/$', open_elections, name='parl_elections'),

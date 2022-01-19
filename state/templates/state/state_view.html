@@ -1,0 +1,164 @@
+{% extends 'player/header.html' %}
+{% load static %}
+{% load i18n %}{% load tz %}
+{% load dict_key %}
+{% load has_key %}
+{% load government.treasury %}
+
+{% block for_scripts_and_css %}
+<script src='{% static "js/region_view.js" %}?{{ csrf_token }}'></script>
+{% endblock %}
+
+{% block content %}
+<div id="over" class="tabcontent">
+        <div class="row">
+            <div class="col-xs-1 col-sm-1 col-md-1" align="center"></div>
+            <div class="col-xs-4 col-sm-4 col-md-4" align="center">
+                <div class="row">
+                    <div align="center" style="height: 50px; font-size: 20pt; font-weight: bold;">{{ state.title }}</div>
+                </div>
+                <div class="row">
+                    {% if state.image %}
+                    <img src='{{ state.image.url }}' class='image' width='250' height='250'>
+                    {% else %}
+                    <img src="{% static 'img/congress.svg' %}" class='image' width='250' height='250'>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6">
+                <div class="row">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#data">Информация</a></li>
+                        <li><a data-toggle="tab" href="#regions">Регионы</a></li>
+                        <li><a data-toggle="tab" href="#parties">Партии</a></li>
+                        <li><a data-toggle="tab" href="#treasury">Казна</a></li>
+    <!--                    <li><a data-toggle="tab" href="#donate">{% trans 'Donate' %}</a></li>-->
+                    </ul>
+                    <div class="tab-content">
+                        <div id="data" class="tab-pane fade in active" style="overflow-x: hidden; height: 500px">
+                            <div class="row flex" style="margin-top: 15px">
+                                <div class="col-xs-6 col-sm-6 col-md-6" align="left">
+                                    <b><font size="4">Жителей:</font></b>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <b><font size="4">{{ players_count }}</font></b>
+                                </div>
+                            </div>
+                            <div class="row flex" >
+                                <div class="col-xs-6 col-sm-6 col-md-6" align="left">
+                                    <b><font size="4">Партий:</font></b>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <b><font size="4">{{ parties_count }}</font></b>
+                                </div>
+                            </div>
+                            <div class="row flex" >
+                                <div class="col-xs-6 col-sm-6 col-md-6" align="left">
+                                    <b><font size="4">{% trans 'Столица' %}:</font></b>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <b>
+                                        <img src='/static/img/regions/{{ capital.on_map_id }}.png' class='image' width='30' height='30' onclick="window.location.href = '/region/{{ capital.pk }}/'" style="cursor: pointer">
+                                        <font size="4" onclick="window.location.href = '/region/{{ capital.pk }}/'" style="cursor: pointer">{{ capital.region_name }}</font>
+                                    </b>
+                                </div>
+                            </div>
+                            <div class="row flex">
+                                <div class="col-xs-6 col-sm-6 col-md-6" align="left">
+                                    <b><font size="4">Дата основания:</font></b>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <b><font size="4">{{ state.foundation_date|timezone:player.time_zone|date:"d.m.Y H:i" }}</font></b>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="regions" class="tab-pane fade" style="overflow-x: hidden; height: 500px">
+                            <div class="row flex">
+                                <div class="col-xs-6 col-sm-6 col-md-6" align="center">
+                                    <font  size="4"><b>Регион</b></font>
+                                </div>
+                                <div class="col-xs-3 col-sm-3 col-md-3" align="center">
+                                    <font  size="4"><b>Жителей</b></font>
+                                </div>
+                                <div class="col-xs-3 col-sm-3 col-md-3" align="center">
+                                    <font  size="4"><b>Запасы</b></font>
+                                </div>
+                            </div>
+                            <div class="line"></div>
+                            <div style="overflow-y: auto; overflow-x: hidden;">
+                            {% for region in regions_state %}
+                                <div class="row flex" style="margin-top: 1%;">
+                                    <div class="col-xs-1 col-sm-1 col-md-1">
+                                        <img src="/static/img/regions/{{ region.on_map_id }}.png" width="50" height="50" align="left">
+                                    </div>
+                                    <div class="col-xs-5 col-sm-5 col-md-5">
+                                        <font size="4"><b>{{ region }}</b></font>
+                                    </div>
+                                    <div class="col-xs-3 col-sm-3 col-md-3" align="center">
+                                        <b>
+                                            <font size="3" >{% if regions_pop|has_key:region %}{{ regions_pop|dict_key:region }}{% else %}0{% endif %}</font>
+                                        </b>
+                                    </div>
+                                    <div class="col-xs-3 col-sm-3 col-md-3" align="center">
+                                        <b>
+                                            <font size="3" color="gold">{{ region.gold_has }}</font>
+                                            <font size="3" > / </font>
+                                            <font size="3" color="black">{{ region.oil_has }}</font>
+                                            <font size="3" > / </font>
+                                            <font size="3" color="#D2361C">{{ region.ore_has }}</font>
+                                        </b>
+                                    </div>
+                                </div>
+                                <div class="line"></div>
+                            {% endfor %}
+                            </div>
+                        </div>
+                        <div id="parties" class="tab-pane fade" style="overflow-x: hidden; height: 500px">
+                            <div class="row flex">
+                                <div class="col-xs-1 col-sm-1 col-md-1" align="center"></div>
+                                <div class="col-xs-4 col-sm-4 col-md-4" align="center">
+                                    <font  size="4"><b>Название</b></font>
+                                </div>
+                                <div class="col-xs-2 col-sm-2 col-md-2" align="center">
+                                    <font  size="4"><b>Размер</b></font>
+                                </div>
+                                <div class="col-xs-5 col-sm-5 col-md-5" align="center">
+                                    <font  size="4"><b>Регион</b></font>
+                                </div>
+                            </div>
+                            <div class="line"></div>
+                            <div style="overflow-y: auto; overflow-x: hidden;">
+                                {% for party in parties_of_state %}
+                                 <div class="row flex">
+                                    <div class="col-xs-1 col-sm-1 col-md-1">
+                                        <!--если пользователь загрузил аватарку-->
+                                        {% if party.image %}
+                                        <img src="{{ party.image.url }}" width="50" height="50" align="left">
+                                        {% else %}
+                                        <img src="{% static 'img/nopic_party.png' %}" width="50" height="50" align="left">
+                                        {% endif %}
+                                    </div>
+                                    <div class="col-xs-4 co сl-sm-4 col-md-4">
+                                        <font  size="4"><b>{{ party.title }}</b></font>
+                                    </div>
+                                    <div class="col-xs-2 col-sm-2 col-md-2" align="center">
+                                        <font  size="4"><b>{% if party_sizes|has_key:party %}{{ party_sizes|dict_key:party }}{% else %}0{% endif %}</b></font>
+                                    </div>
+                                    <div class="col-xs-1 col-sm-1 col-md-1">
+                                        <img src="/static/img/regions/{{ party.region.on_map_id }}.png" class='image' width='50' height='50'>
+                                    </div>
+                                    <div class="col-xs-4 col-sm-4 col-md-4">
+                                        <font  size="4"><b>{{ party.region.region_name }}</b></font>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        {% treasury state %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-1 col-sm-1 col-md-1" align="center"></div>
+        </div>
+</div>
+{% endblock %}
