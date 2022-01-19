@@ -40,7 +40,7 @@ def open_state(request, pk):
     
     party_sizes = {}
     for char in party_characters_pk:
-        if char.region in party_sizes:
+        if char.party in party_sizes:
             party_sizes[char.party] += 1
         else:
             party_sizes[char.party] = 1
