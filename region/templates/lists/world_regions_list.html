@@ -29,7 +29,7 @@
                                      </div>
                                 </div>
                                 {% for region in lines %}
-                                 <div class="row">
+                                 <div class="row" onclick="window.location.href = '/region/{{ region.pk }}/'" style="cursor: pointer">
                                      <div class="col-xs-2 col-sm-2 col-md-2" align="center">
                                         <img src="/static/img/regions/{{ region.on_map_id }}.png" width="50" height="50" align="right">
                                      </div>
