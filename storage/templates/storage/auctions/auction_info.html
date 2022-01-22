@@ -15,7 +15,7 @@
         Владелец:
         {% with state=auction.treasury_lock.lock_treasury.state %}
             {% if player.region.state.image %}
-            <img src="{{ player.region.state.image.url }}" onclick="window.location.href = 'state/{{ state.pk }}/'" style="cursor: pointer;" width="50" height="50">
+            <img src="{{ state.image.url }}" onclick="window.location.href = 'state/{{ state.pk }}/'" style="cursor: pointer;" width="50" height="50">
             {% else %}
             <img src="{% static 'img/congress.svg' %}" onclick="window.location.href = 'state/{{ state.pk }}/'" style="cursor: pointer;" width="50" height="50">
             {% endif %}
