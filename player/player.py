@@ -2,6 +2,7 @@
 import datetime
 
 import pytz
+from django.apps import apps
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.utils import timezone
@@ -11,8 +12,9 @@ from party.party import Party
 from party.position import PartyPosition
 from player.views.set_cah_log import set_cash_log
 from region.region import Region
-from wild_politics.settings import JResponse
 from state.models.state import State
+from wild_politics.settings import JResponse
+
 
 class Player(models.Model):
     # учетная запись игрока
@@ -188,6 +190,14 @@ class Player(models.Model):
             energy_increase += 9
         # количество интервалов по 10 минут в сутках * прирост = сумма прироста энергии за день
         dole = 144 * energy_increase
+
+        # если есть запись о том, что человек сегодня собирал деньги - значит, забирал и мин. выплату
+        cash_log_cl = apps.get_model('player.CashLog')
+        if cash_log_cl.objects.filter(dtime__gt=timezone.now().date(), activity_txt='daily').exists():
+            self.paid_sum += cash_log_cl.objects.filter(dtime__gt=timezone.now().date(), activity_txt='daily').order_by('dtime').first().cash
+            self.save()
+            dole = 0
+
         # если игрок уже сегодня забирал деньги, значит, забирал и минимальную выплату
         if self.paid_sum > 0:
             dole = 0
