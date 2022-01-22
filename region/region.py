@@ -1,17 +1,13 @@
 # coding=utf-8
-# import sys
-# from PIL import Image
-# from django.core.files.uploadedfile import InMemoryUploadedFile
-from django import forms
-from django.core.validators import MinValueValidator, MaxValueValidator
-from django.db import models
-from state.models.state import State
+import math
 
-# from six import with_metaclass
-# from io import BytesIO
-# from django.utils.translation import get_language
-# import gamecore.all_models.gov.state as ste
+from django import forms
+from django.core.validators import MaxValueValidator, MinValueValidator
+from django.db import models
+
+from state.models.state import State
 from .actual_manager import ActualManager
+
 
 class Region(models.Model):
     with_off = models.Manager()  # Менеджер по умолчанию
@@ -49,11 +45,11 @@ class Region(models.Model):
                                   max_digits=5, decimal_places=2, verbose_name='Руда: налог')
     # Торговля:
     trade_tax = models.DecimalField(default=00.00, validators=[MinValueValidator(0), MaxValueValidator(100)],
-                                  max_digits=5, decimal_places=2, verbose_name='Торговля: налог')
+                                    max_digits=5, decimal_places=2, verbose_name='Торговля: налог')
 
     # ---------- Здания ----------
-    # # Уровень здания Госпиталь
-    # med_lvl = models.IntegerField(default=0, verbose_name='Уровень госпиталя')
+    # Уровень здания Госпиталь
+    med_lvl = models.IntegerField(default=0, verbose_name='Уровень госпиталя')
     # Рейтинг здания Госпиталь
     med_top = models.IntegerField(default=1, verbose_name='Рейтинг госпиталя')
     #
@@ -133,6 +129,35 @@ class Region(models.Model):
     def clean(self):
         if self.coal_proc + self.iron_proc + self.bauxite_proc != 100:
             raise forms.ValidationError('Сумма процентов добываемых минералов должна быть равна ста')
+
+    @staticmethod
+    def recount_rating(mode):
+        # рейтинг медки
+        rating_percents = {
+            5: 1,
+            4: 10,
+            3: 20,
+            2: 30,
+            1: 100,
+        }
+
+        already_rated_pk = []
+        kwargs = {}
+        for i in [5, 4, 3, 2, 1]:
+            if i == 5:
+                kwargs[mode + '_lvl__gt'] = 0
+                top_5 = Region.objects.filter(**kwargs).order_by('-' + mode + '_lvl').first()
+                kwargs = {mode + '_top': 5}
+                Region.objects.filter(pk=top_5.pk).update(**kwargs)
+                already_rated_pk.append(top_5.pk)
+            else:
+                reg_cnt = Region.objects.exclude(pk__in=already_rated_pk).count()
+                regions = Region.objects.exclude(pk__in=already_rated_pk).order_by('-' + mode + '_lvl')[
+                          :math.ceil(reg_cnt / 100 * rating_percents.get(i))]
+                for region in regions:
+                    kwargs = {mode + '_top': i}
+                    Region.objects.filter(pk=region.pk).update(**kwargs)
+                    already_rated_pk.append(region.pk)
 
     def __str__(self):
         return self.region_name

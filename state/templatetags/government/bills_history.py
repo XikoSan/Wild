@@ -25,7 +25,7 @@ def bills_history(player, parliament):
                 bills_list = type.objects.filter(parliament=parliament, running=False)
 
     if bills_list:
-        bills_list = sorted(bills_list, key=lambda bill: bill.voting_end)
+        bills_list = sorted(bills_list, key=lambda bill: bill.voting_end, reverse=True)
 
     return {
         'player': player,

@@ -1,0 +1,151 @@
+{% load dict_key %}
+{% load get_attr %}
+{% load get_sum %}
+{% load get_key_list %}
+<div class="row draft_row" id="Construction" style="display: none">
+    <script>
+        function insertAfter(newNode, existingNode) {
+            existingNode.parentNode.insertBefore(newNode, existingNode.nextSibling);
+        }
+
+        function openBuilding() {
+            $('#construction_building_lvl').html(region_levels[$('#construction_regions').val()][$('#construction_buildings').val()])
+            $('#construction_building_new').html(parseInt(region_levels[$('#construction_regions').val()][$('#construction_buildings').val()]) + parseInt($('#construction_value').val()))
+
+            schema = building_schemas[$('#construction_buildings').val()]
+
+            $('#construction_schema').children(".cloned_line").remove();
+            var last_crude_name = 'construction_component_header';
+
+            for (component in schema){
+                var cloned_line = document.getElementById('construction_component_blank').cloneNode(true);
+                cloned_line.id = component + '_line';
+                cloned_line.className += ' cloned_line';
+
+                var component_name = goods_names[component];
+                cloned_line.getElementsByClassName("construction_component_name")[0].innerHTML = component_name;
+
+                $(cloned_line.getElementsByClassName("construction_component_val")[0]).attr('step', schema[component]);
+                cloned_line.getElementsByClassName("construction_component_val")[0].innerHTML = parseInt(schema[component]) * parseInt($('#construction_value').val());
+
+                previous_line = document.getElementById(last_crude_name);
+                insertAfter(cloned_line, previous_line);
+
+                last_crude_name = cloned_line.id;
+                $('#' + component + '_line').show();
+            }
+
+            $('#construction_level').show();
+            $('#construction_schema').show();
+        }
+
+        var goods_names = {};
+        {% with crude_list=data|dict_key:'crude_list' %}
+            {% with storage_cl=data|dict_key:'storage_cl' %}
+                {% for crude in crude_list %}
+                    {% for good in storage_cl|get_attr:crude %}
+                        goods_names['{{ good }}'] = '{{ storage_cl|get_attr:crude|dict_key:good }}';
+                    {% endfor %}
+                {% endfor %}
+            {% endwith %}
+        {% endwith %}
+
+        var region_levels = {};
+        {% with regions=data|dict_key:'regions' %}
+            {% for region in regions %}
+        region_levels["{{ region.pk }}"] = {};
+                {% with buildings=data|dict_key:'buildings' %}
+                    {% for building in buildings|get_key_list %}
+                        {% with building_lvl=building|get_sum:'_lvl' %}
+        region_levels["{{ region.pk }}"]["{{ building }}"] = {{ region|get_attr:building_lvl }}
+                        {% endwith %}
+                    {% endfor %}
+                {% endwith %}
+            {% endfor %}
+        {% endwith %}
+
+        var building_schemas = {};
+        {% with buildings=data|dict_key:'buildings' %}
+            {% for building in buildings|get_key_list %}
+        building_schemas["{{ building }}"] = {};
+                {% with resources=buildings|dict_key:building|dict_key:'resources' %}
+                    {% for resource in resources|get_key_list %}
+        building_schemas["{{ building }}"]["{{ resource }}"] = {{ resources|dict_key:resource }};
+                    {% endfor %}
+                {% endwith %}
+            {% endfor %}
+        {% endwith %}
+
+    // выводить информацию по необходимому количеству материалов для строительства
+    jQuery(document).ready(function ($) {
+
+        $('#construction_regions').change(function(e) {
+            // если значение региона не пустое
+            if($('#construction_regions').val() != null && $('#construction_buildings').val() != null){
+                openBuilding();
+            }
+        });
+
+        $('#construction_buildings').change(function(e) {
+            // если значение строения не пустое
+            if($('#construction_regions').val() != null && $('#construction_buildings').val() != null){
+                openBuilding();
+            }
+        });
+
+        $('#construction_value').change(function(e) {
+            var elements = document.getElementById('construction_schema').querySelectorAll('.cloned_line');
+
+            for (var i = 0; i < elements.length; i++) {
+                var tableChild = elements[i];
+                $('#construction_building_new').html(parseInt(region_levels[$('#construction_regions').val()][$('#construction_buildings').val()]) + parseInt($('#construction_value').val()))
+                tableChild.getElementsByClassName("construction_component_val")[0].innerHTML = $('#construction_value').val() * $(tableChild.getElementsByClassName("construction_component_val")[0]).attr('step');
+            }
+        });
+    });
+    </script>
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="row">
+            <div class="col-xs-6 col-sm-6 col-md-6">
+                <div class="row" style="margin-top: 25px;">
+                    {% with regions=data|dict_key:'regions' %}
+                    <select name="construction_regions" id="construction_regions" style="height: 20px; min-width: 20%">
+                        <option id="construction_region_default" value='default' disabled selected value>Выберите регион строительства</option>
+                        {% for region in regions %}
+                        <option id="construction_region_{{ region.pk }}" value="{{ region.pk }}">{{ region.region_name }}</option>
+                        {% endfor %}
+                    </select>
+                    {% endwith %}
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6">
+                <div class="row" style="margin-top: 25px;">
+                    {% with buildings=data|dict_key:'buildings' %}
+                    <select name="construction_buildings" id="construction_buildings" style="height: 20px; min-width: 20%">
+                        <option id="construction_building_default" value='default' disabled selected value>Выберите строение</option>
+                        {% for building in buildings|get_key_list %}
+                        <option id="construction_building_{{ building }}" value="{{ building }}">{{ buildings|dict_key:building|dict_key:'title' }}</option>
+                        {% endfor %}
+                    </select>
+                    {% endwith %}
+                </div>
+            </div>
+        </div>
+        <div class="row" id="construction_level" style="margin-top: 25px; display: none">
+            Уровень: <b id="construction_building_lvl"></b> + <input type="number" min="1" max="1000" value="1" step="1" id="construction_value" name="construction_value" maxlength="3"> = <b id="construction_building_new"></b>
+        </div>
+        <div class="row" style="margin-top: 25px;">
+            <div class="col-xs-12 col-sm-12 col-md-12" id="construction_schema" style="display: none">
+                <div class="row" align="center" id="construction_component_header">
+                    Затраты:
+                </div>
+                <div class="row" id="construction_component_blank" style="margin-top: 5%; display: none">
+                    <div class="construction_component_name col-xs-6 col-sm-6 col-md-6" align="center">
+                    </div>
+                    <div class="construction_component_val col-xs-6 col-sm-6 col-md-6" align="center">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
