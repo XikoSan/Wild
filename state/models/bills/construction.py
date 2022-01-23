@@ -77,7 +77,7 @@ class Construction(Bill):
                         'response': 'Уровни здания должны быть целым числом',
                     }
 
-                if not 1 < new_levels < 1000:
+                if not 1 <= new_levels <= 1000:
                     return {
                         'header': 'Новый законопроект',
                         'grey_btn': 'Закрыть',
@@ -123,14 +123,21 @@ class Construction(Bill):
 
             region = Region.objects.get(pk=self.region.pk)
 
-            cash_cost = self.exp_value * getattr(self, self.building)['resources']['cash']
+            # проверяем наличие всех ресурсов в казне, для стройки
+            all_exists = True
 
-            if cash_cost <= treasury.cash:
+            for component in getattr(self, self.building)['resources'].keys():
+                if getattr(treasury, component) < getattr(self, self.building)['resources'][component] * self.exp_value:
+                    all_exists = False
+                    break
+
+            if all_exists:
                 setattr(region, self.building + '_lvl', getattr(region, self.building + '_lvl') + self.exp_value)
 
                 for resource in getattr(self, self.building)['resources'].keys():
                     setattr(treasury, resource,
-                            getattr(treasury, resource) - getattr(self, self.building)['resources'][resource])
+                            getattr(treasury, resource) - (
+                                        getattr(self, self.building)['resources'][resource] * self.exp_value))
 
                 b_type = 'ac'
 
