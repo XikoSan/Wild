@@ -193,7 +193,8 @@ class Player(models.Model):
 
         # если есть запись о том, что человек сегодня собирал деньги - значит, забирал и мин. выплату
         cash_log_cl = apps.get_model('player.CashLog')
-        if cash_log_cl.objects.filter(dtime__gt=timezone.now().date(), activity_txt='daily').exists():
+        if cash_log_cl.objects.filter(dtime__gt=timezone.now().date(), activity_txt='daily').exists()\
+                and self.paid_sum == 0:
             self.paid_sum += cash_log_cl.objects.filter(dtime__gt=timezone.now().date(), activity_txt='daily').order_by('dtime').first().cash
             self.save()
             dole = 0
@@ -201,6 +202,9 @@ class Player(models.Model):
         # если игрок уже сегодня забирал деньги, значит, забирал и минимальную выплату
         if self.paid_sum > 0:
             dole = 0
+
+        if self.paid_sum > 14500:
+            daily_procent = 0
 
         if dole == 0 and daily_procent == 0:
             data = {
@@ -214,6 +218,9 @@ class Player(models.Model):
 
         # сумма, которую уже можно забрать
         count = int((14500 - self.paid_sum - dole) / 100 * daily_procent)
+
+        if count < 0:
+            count = 0
         count += dole
 
         taxed_count = State.get_taxes(self.region, count, 'cash', 'cash')
