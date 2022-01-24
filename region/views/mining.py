@@ -41,7 +41,7 @@ def mining(request):
 
     # если есть запись о том, что человек сегодня собирал деньги - значит, забирал и мин. выплату
     cash_log_cl = apps.get_model('player.CashLog')
-    if cash_log_cl.objects.filter(dtime__gt=timezone.now().date(), activity_txt='daily').exists()\
+    if cash_log_cl.objects.filter(player=player, dtime__gt=timezone.now().date(), activity_txt='daily').exists()\
             and player.paid_sum == 0:
         player.paid_sum += cash_log_cl.objects.filter(dtime__gt=timezone.now().date(), activity_txt='daily').order_by(
             'dtime').first().cash

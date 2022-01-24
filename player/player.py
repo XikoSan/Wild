@@ -193,9 +193,10 @@ class Player(models.Model):
 
         # если есть запись о том, что человек сегодня собирал деньги - значит, забирал и мин. выплату
         cash_log_cl = apps.get_model('player.CashLog')
-        if cash_log_cl.objects.filter(dtime__gt=timezone.now().date(), activity_txt='daily').exists()\
+        if cash_log_cl.objects.filter(player=self, dtime__gt=timezone.now().date(), activity_txt='daily').exists() \
                 and self.paid_sum == 0:
-            self.paid_sum += cash_log_cl.objects.filter(dtime__gt=timezone.now().date(), activity_txt='daily').order_by('dtime').first().cash
+            self.paid_sum += cash_log_cl.objects.filter(dtime__gt=timezone.now().date(), activity_txt='daily').order_by(
+                'dtime').first().cash
             self.save()
             dole = 0
 
@@ -247,7 +248,7 @@ class Player(models.Model):
             err, sum = self.daily_claim()
             if not err:
                 # вынес потому что вызывает круговой импорт
-                set_cash_log(self, sum, 'daily')
+                set_cash_log(self, sum, 'daily', self.natural_refill)
             self.energy_consumption = self.paid_consumption = self.paid_sum = 0
 
         # если дата последнего прироста пуста (только зарегистрировался)
