@@ -20,10 +20,7 @@ def region_info(request, id):
 
         if Region.objects.filter(on_map_id=id).exists():
 
-            if player.residency == Region.objects.get(on_map_id=id):
-                cost = 0
-            else:
-                cost = round(distance_counting(player.region, Region.objects.get(on_map_id=id)))
+            cost = round(distance_counting(player.region, Region.objects.get(on_map_id=id)))
 
             return render(request, 'region/region_info.html', {
                 'player': player,

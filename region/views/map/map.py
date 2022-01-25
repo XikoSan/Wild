@@ -7,12 +7,12 @@ from django.shortcuts import render
 from django.utils import timezone
 from django.utils.translation import ugettext as _
 from django_celery_beat.models import ClockedSchedule, PeriodicTask
-
+from player.logs.cash_log import CashLog
 from player.decorators.player import check_player
 from player.player import Player
 from region.region import Region
 from region.views.time_in_flight import time_in_flight
-
+from region.views.distance_counting import distance_counting
 
 # главная страница
 @login_required(login_url='/')
@@ -30,27 +30,37 @@ def map(request):
 
         try:
             destination = Region.objects.get(on_map_id=destination)
+
         except Region.DoesNotExist:
             raise Exception("Region is doesn't exist")
 
-        if not player.destination:
-            player.destination = destination
-            player.save()
-            duration = time_in_flight(player, player.destination)
-            # move_to_another_region.apply_async((player.id,), countdown=duration)
+        else:
+            cost = round(distance_counting(player.region, destination))
 
-            start_time = timezone.now() + datetime.timedelta(seconds=duration)
-            clock, created = ClockedSchedule.objects.get_or_create(clocked_time=start_time)
+            if player.cash >= cost:
+                if not player.destination:
+                    player.destination = destination
+                    player.cash -= cost
+                    player.save()
 
-            player.task = PeriodicTask.objects.create(
-                name=str(player.pk) + ' fly ' + str(player.destination.pk),
-                task='move_to_another_region',
-                clocked=clock,
-                one_off=True,
-                args=json.dumps([player.pk]),
-                start_time=timezone.now()
-            )
-            player.save()
+                    cash_log = CashLog(player=player, cash=0-cost, activity_txt='flyin')
+                    cash_log.save()
+
+                    duration = time_in_flight(player, player.destination)
+                    # move_to_another_region.apply_async((player.id,), countdown=duration)
+
+                    start_time = timezone.now() + datetime.timedelta(seconds=duration)
+                    clock, created = ClockedSchedule.objects.get_or_create(clocked_time=start_time)
+
+                    player.task = PeriodicTask.objects.create(
+                        name=str(player.pk) + ' fly ' + str(player.destination.pk),
+                        task='move_to_another_region',
+                        clocked=clock,
+                        one_off=True,
+                        args=json.dumps([player.pk]),
+                        start_time=timezone.now()
+                    )
+                    player.save()
 
     response = render(request, 'region/map.html', {
         'page_name': _('Карта'),
