@@ -151,9 +151,13 @@ class Region(models.Model):
                 Region.objects.filter(pk=top_5.pk).update(**kwargs)
                 already_rated_pk.append(top_5.pk)
             else:
-                reg_cnt = Region.objects.exclude(pk__in=already_rated_pk).count()
-                regions = Region.objects.exclude(pk__in=already_rated_pk).order_by('-' + mode + '_lvl')[
-                          :math.ceil(reg_cnt / 100 * rating_percents.get(i))]
+                if i != 1:
+                    kwargs[mode + '_lvl__gt'] = 0
+                reg_cnt = Region.objects.filter(**kwargs).exclude(pk__in=already_rated_pk).count()
+
+                regions = Region.objects.filter(**kwargs).exclude(pk__in=already_rated_pk).order_by(
+                    '-' + mode + '_lvl')[:math.ceil(reg_cnt / 100 * rating_percents.get(i))]
+
                 for region in regions:
                     kwargs = {mode + '_top': i}
                     Region.objects.filter(pk=region.pk).update(**kwargs)
