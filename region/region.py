@@ -151,6 +151,7 @@ class Region(models.Model):
                 Region.objects.filter(pk=top_5.pk).update(**kwargs)
                 already_rated_pk.append(top_5.pk)
             else:
+                kwargs = {}
                 if i != 1:
                     kwargs[mode + '_lvl__gt'] = 0
                 reg_cnt = Region.objects.filter(**kwargs).exclude(pk__in=already_rated_pk).count()
