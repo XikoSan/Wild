@@ -286,7 +286,7 @@ class Player(models.Model):
                     if self.energy + (16 * counts) >= 100:
                         self.energy = 100
                     else:
-                        self.energy += 15 * counts
+                        self.energy += 16 * counts
             elif self.last_top == 4:
                 # если интервалов больше семи (энергии станет заведомо больше ста)
                 if counts > 7:
