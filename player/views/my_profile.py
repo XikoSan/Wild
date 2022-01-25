@@ -21,10 +21,14 @@ def my_profile(request):
     player_settings = None
 
     if request.method == 'POST':
+        if player.gold < 100:
+            return redirect('my_profile')
+
         form = ImageForm(request.POST, request.FILES)
         if form.is_valid():
 
             player.image = form.cleaned_data['image']
+            player.gold -= 100
             player.save()
 
             x = form.cleaned_data['x']
