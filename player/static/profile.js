@@ -37,3 +37,48 @@ function send_bio(){
         }
     });
 };
+
+// Никнейм
+
+function open_nickname(){
+
+    $('#nickname_edit').hide();
+
+    $('#nickname_cancel').show();
+    $('#nickname_send').show();
+
+    $('#player_nickname').attr("disabled", false);
+};
+
+function close_nickname(){
+
+    $('#nickname_edit').show();
+
+    $('#nickname_cancel').hide();
+    $('#nickname_send').hide();
+
+    $('#player_nickname').attr("disabled", true);
+};
+
+function send_nickname(){
+
+    var sending_data = "&csrfmiddlewaretoken=" + csrftoken;
+    sending_data += "&nickname=" + $('#player_nickname').val();
+    $.ajax({
+        type: "POST",
+        url: "/change_nickname/",
+        data:  sending_data,
+        cache: false,
+        success: function(data){
+            if (data.response == 'ok'){
+                actualize();
+                $('#nickname').html($('#player_nickname').val());
+                close_nickname();
+            }
+            else{
+                display_modal('notify', data.header, data.response, null, data.grey_btn);
+            }
+        }
+    });
+};
+
