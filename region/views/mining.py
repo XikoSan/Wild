@@ -43,7 +43,7 @@ def mining(request):
     cash_log_cl = apps.get_model('player.CashLog')
     if cash_log_cl.objects.filter(player=player, dtime__gt=timezone.now().date(), activity_txt='daily').exists()\
             and player.paid_sum == 0:
-        player.paid_sum += cash_log_cl.objects.filter(dtime__gt=timezone.now().date(), activity_txt='daily').order_by(
+        player.paid_sum += cash_log_cl.objects.filter(player=player, dtime__gt=timezone.now().date(), activity_txt='daily').order_by(
             'dtime').first().cash
         player.save()
         dole = 0

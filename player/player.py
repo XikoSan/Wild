@@ -195,7 +195,7 @@ class Player(models.Model):
         cash_log_cl = apps.get_model('player.CashLog')
         if cash_log_cl.objects.filter(player=self, dtime__gt=timezone.now().date(), activity_txt='daily').exists() \
                 and self.paid_sum == 0:
-            self.paid_sum += cash_log_cl.objects.filter(dtime__gt=timezone.now().date(), activity_txt='daily').order_by(
+            self.paid_sum += cash_log_cl.objects.filter(player=self, dtime__gt=timezone.now().date(), activity_txt='daily').order_by(
                 'dtime').first().cash
             self.save()
             dole = 0
