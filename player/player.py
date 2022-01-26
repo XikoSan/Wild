@@ -79,7 +79,8 @@ class Player(models.Model):
                                    verbose_name='Рейтинг госпиталя при последнем приросте')
 
     # -----------дневной квест на трату энергии----------------
-
+    # количество энергии, которую надо тратить ежедневно
+    energy_limit = 3000
     # расход энергии за эти сутки (еще не оплаченный)
     energy_consumption = models.IntegerField(default=0, verbose_name='Расход энергии')
     # расход энергии, за который игрок уже забрал деньги
@@ -166,48 +167,19 @@ class Player(models.Model):
             return JResponse(data), 0
             # return HttpResponse('Дождитесь конца полёта')
 
-        # 3500 - количество энергии, которую надо выфармить за день
-        if self.paid_consumption >= 3500:
+        # energy_limit - количество энергии, которую надо выфармить за день
+        if self.paid_consumption >= self.energy_limit:
             daily_procent = 100
         else:
-            daily_procent = self.energy_consumption / ((3500 - self.paid_consumption) / 100)
+            daily_procent = self.energy_consumption / ((self.energy_limit - self.paid_consumption) / 100)
 
         if daily_procent > 100:
             daily_procent = 100
 
-        # сумма минимальной выплаты, зависящая от уровня медки
-        energy_increase = 0
-
-        if self.region.med_top == 5:
-            energy_increase += 16
-        elif self.region.med_top == 4:
-            energy_increase += 13
-        elif self.region.med_top == 3:
-            energy_increase += 12
-        elif self.region.med_top == 2:
-            energy_increase += 11
-        else:
-            energy_increase += 9
-        # количество интервалов по 10 минут в сутках * прирост = сумма прироста энергии за день
-        dole = 144 * energy_increase
-
-        # если есть запись о том, что человек сегодня собирал деньги - значит, забирал и мин. выплату
-        cash_log_cl = apps.get_model('player.CashLog')
-        if cash_log_cl.objects.filter(player=self, dtime__gt=timezone.now().date(), activity_txt='daily').exists() \
-                and self.paid_sum == 0:
-            self.paid_sum += cash_log_cl.objects.filter(player=self, dtime__gt=timezone.now().date(), activity_txt='daily').order_by(
-                'dtime').first().cash
-            self.save()
-            dole = 0
-
-        # если игрок уже сегодня забирал деньги, значит, забирал и минимальную выплату
-        if self.paid_sum > 0:
-            dole = 0
-
         if self.paid_sum > 14500:
             daily_procent = 0
 
-        if dole == 0 and daily_procent == 0:
+        if daily_procent == 0:
             data = {
                 # 'response': _('wait_flight_end'),
                 'response': 'Нечего забирать',
@@ -218,11 +190,10 @@ class Player(models.Model):
             return JResponse(data), 0
 
         # сумма, которую уже можно забрать
-        count = int((14500 - self.paid_sum - dole) / 100 * daily_procent)
+        count = int((14500 - self.paid_sum) / 100 * daily_procent)
 
         if count < 0:
             count = 0
-        count += dole
 
         taxed_count = State.get_taxes(self.region, count, 'cash', 'cash')
 
@@ -237,17 +208,12 @@ class Player(models.Model):
 
         self.save()
 
-        return None, taxed_count
+        return False, taxed_count
 
     # расчет естественного прироста с учётом уровня медицины в текущем регионе
     # прирост медки используется в mining.py
     def increase_calc(self):
         # нужно очистить дейлик
-        from player.logs.print_log import log
-        log('сейчас:')
-        log(timezone.now())
-        log("перезарядка:")
-        log(self.natural_refill)
         if self.natural_refill \
                 and timezone.now().date() > self.natural_refill.date():
             err, sum = self.daily_claim()
