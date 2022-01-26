@@ -243,6 +243,11 @@ class Player(models.Model):
     # прирост медки используется в mining.py
     def increase_calc(self):
         # нужно очистить дейлик
+        from player.logs.print_log import log
+        log('сейчас:')
+        log(timezone.now())
+        log("перезарядка:")
+        log(self.natural_refill)
         if self.natural_refill \
                 and timezone.now().date() > self.natural_refill.date():
             err, sum = self.daily_claim()
