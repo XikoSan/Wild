@@ -163,7 +163,6 @@ jQuery(document).ready(function ($) {
             data:  sending_data,
             cache: false,
             success: function(data){
-                console.log(data);
                 if (data.response == 'ok'){
                     window.location = '/party'
                 }
