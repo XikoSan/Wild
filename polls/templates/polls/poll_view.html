@@ -1,0 +1,38 @@
+{% extends 'player/header.html' %}
+{% load static %}
+{% load i18n %}{% load tz %}{% load dict_key %}
+{% load get_mod %}
+{% block for_scripts_and_css %}
+<script src='{% static "js/region_view.js" %}?{{ csrf_token }}'></script>
+{% endblock %}
+
+{% block content %}
+<div id="over" class="tabcontent">
+    <div class="row" align="center">
+        <h3>{{ poll.header }}</h3>
+    </div>
+
+    {% for variant in variants %}
+    <div class="row" style="margin-top: 5%; {% if forloop.counter|get_mod:2 == 1 %}background: #F1F3F4{% endif %}">
+        <div class="col-xs-4 col-sm-4 col-md-4" align="center">
+            {{ variant.text }}
+        </div>
+        <div class="col-xs-4 col-sm-4 col-md-4" align="center">
+            {% if not voted %}
+            <a href="{% url 'vote_poll' poll_pk=poll.pk variant_pk=variant.pk %}">
+                <h3>
+                    <font color="green">
+                        <div class="glyphicon glyphicon-plus">
+                        </div>
+                    </font>
+                </h3>
+            </a>
+            {% endif %}
+        </div>
+        <div class="col-xs-4 col-sm-4 col-md-4" align="center">
+            {{ dict|dict_key:variant }} %
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

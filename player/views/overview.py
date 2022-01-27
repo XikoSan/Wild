@@ -1,21 +1,19 @@
+import json
+from datetime import datetime
+
+import pytz
+import redis
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import redirect, render
+from django.shortcuts import render
+from django.templatetags.static import static
 from django.utils.translation import ugettext as _
-from django.core.serializers import serialize
+
+from party.party import Party
 from player.decorators.player import check_player
 from player.player import Player
-from chat.models import Chat, Message
-import json
-import redis
-from django.templatetags.static import static
-from player.logs.print_log import log
-from django.utils import timezone
-from datetime import datetime
-from wild_politics.settings import TIME_ZONE
-from wild_politics.settings import sentry_environment
-import pytz
-from party.party import Party
+from polls.models.poll import Poll
 from region.region import Region
+from wild_politics.settings import TIME_ZONE, sentry_environment
 
 
 # главная страница
@@ -71,6 +69,8 @@ def overview(request):
     if sentry_environment == "development":
         http_use = True
 
+    polls = Poll.actual.all()
+
     groups = list(player.account.groups.all().values_list('name', flat=True))
     page = 'player/overview.html'
     if 'redesign' in groups:
@@ -95,6 +95,8 @@ def overview(request):
         'messages': messages,
 
         'http_use': http_use,
+
+        'polls': polls,
 
     })
 

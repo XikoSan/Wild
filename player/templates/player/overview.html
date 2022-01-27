@@ -44,67 +44,83 @@
         <div class="col-xs-2 col-sm-2 col-md-2" align="left" onclick="window.location.href = '/region/{{ player.region.pk }}/parties/'"  style="cursor: pointer">Партий: {{ region_parties }}</div>
         <div class="col-xs-2 col-sm-2 col-md-2" align="left"></div>
     </div>
-    {% get_current_language as LANGUAGE_CODE %}
-    {% get_language_info for LANGUAGE_CODE as lang %}
-    <!-- Tabs -->
-    {{ LANGUAGE_CODE|json_script:"room-name" }}
-    {{ player.pk|json_script:"player_id" }}
-    <ul class="nav nav-tabs">
-        <li class="active"><a data-toggle="tab" href="#{{ language.code }}"><img
-                src="/static/img/{{ LANGUAGE_CODE }}.png" width="30" height="30"> {{ lang.name_local }}</a></li>
-    </ul>
-    <div class="tab-content">
-        <div id="{{ LANGUAGE_CODE }}" class="tab-pane fade in active chat_window" >
-            <section id="chat-log-{{ LANGUAGE_CODE }}" class="chat" style="height: 50vh; flex: 10 10 auto; overflow-x: hidden; overflow-y: auto;">
-                {% if not player.chat_ban %}
-                    {% for message in messages %}
-                        {% if message|dict_key:'content' != 'ban_chat' and message|dict_key:'content' != 'delete_message' %}
-                <div class="row" style="margin-top: 1%">
-                    <div class='message {% if message|dict_key:"author" == player.pk %}message--user-2{% else %}message--user-1{% endif %}' data-counter='{{  message|dict_key:"counter" }}' data-sender='{{  message|dict_key:"author" }}'>
-                        <div class='massage__name' style="cursor: pointer;">{{  message|dict_key:"author_nickname" }}</div>
-                        <time class='message__time'>
-                            {{ message|dict_key:'dtime' }}
-                            {% if player.account.groups.all.0.name == "chat_moderator" %}
-                                {% if message|dict_key:"author" != player.pk %}
-                            <input type='button' class='message__ban' value='отключить чат'>
-                            <input type='button' class='message__delete' value='удалить'>
+    <div class="row">
+        <!--блок чата-->
+        <div class="col-xs-9 col-sm-9 col-md-9">
+            {% get_current_language as LANGUAGE_CODE %}
+            {% get_language_info for LANGUAGE_CODE as lang %}
+            <!-- Tabs -->
+            {{ LANGUAGE_CODE|json_script:"room-name" }}
+            {{ player.pk|json_script:"player_id" }}
+            <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#{{ language.code }}"><img
+                        src="/static/img/{{ LANGUAGE_CODE }}.png" width="30" height="30"> {{ lang.name_local }}</a></li>
+            </ul>
+            <div class="tab-content">
+                <div id="{{ LANGUAGE_CODE }}" class="tab-pane fade in active chat_window" >
+                    <section id="chat-log-{{ LANGUAGE_CODE }}" class="chat" style="height: 50vh; flex: 10 10 auto; overflow-x: hidden; overflow-y: auto;">
+                        {% if not player.chat_ban %}
+                            {% for message in messages %}
+                                {% if message|dict_key:'content' != 'ban_chat' and message|dict_key:'content' != 'delete_message' %}
+                        <div class="row" style="margin-top: 1%">
+                            <div class='message {% if message|dict_key:"author" == player.pk %}message--user-2{% else %}message--user-1{% endif %}' data-counter='{{  message|dict_key:"counter" }}' data-sender='{{  message|dict_key:"author" }}'>
+                                <div class='massage__name' style="cursor: pointer;">{{  message|dict_key:"author_nickname" }}</div>
+                                <time class='message__time'>
+                                    {{ message|dict_key:'dtime' }}
+                                    {% if player.account.groups.all.0.name == "chat_moderator" %}
+                                        {% if message|dict_key:"author" != player.pk %}
+                                    <input type='button' class='message__ban' value='отключить чат'>
+                                    <input type='button' class='message__delete' value='удалить'>
+                                        {% endif %}
+                                    {% endif %}
+                                </time>
+                                <figure class='message__author-pic'>
+                                    <a href='/profile/{{  message|dict_key:"author" }}' target='_blank'>
+                                        <img src="{{  message|dict_key:'image_link'  }}" width='50px' height='50px'>
+                                    </a>
+                                </figure>
+                                <div class='message__text'>
+                                    <p>{{ message|dict_key:'content' }}</p>
+                                </div>
+                            </div>
+                        </div>
                                 {% endif %}
-                            {% endif %}
-                        </time>
-                        <figure class='message__author-pic'>
-                            <a href='/profile/{{  message|dict_key:"author" }}' target='_blank'>
-                                <img src="{{  message|dict_key:'image_link'  }}" width='50px' height='50px'>
-                            </a>
-                        </figure>
-                        <div class='message__text'>
-                            <p>{{ message|dict_key:'content' }}</p>
+                            {% endfor %}
+                        {% endif %}
+                    </section>
+                    <script>
+                        document.getElementById('chat-log-{{ LANGUAGE_CODE }}').scrollTop = document.getElementById('chat-log-{{ LANGUAGE_CODE }}').scrollHeight;
+                    </script>
+                    <div style="display: flex">
+                        <div style="flex: 10 10 auto">
+                            <input id="chat-message-input-{{ LANGUAGE_CODE }}" class="chat-message-input" type="text" size="100" maxlength="500" style="width: 100%">
+                        </div>
+                        <div style="flex: 1 1 auto">
+                            <input id="chat-message-submit-{{ LANGUAGE_CODE }}" type="button" value="Отправить" class="chat-button"
+                                   style="width: 100%">
                         </div>
                     </div>
                 </div>
-                        {% endif %}
-                    {% endfor %}
-                {% endif %}
-            </section>
-            <script>
-                document.getElementById('chat-log-{{ LANGUAGE_CODE }}').scrollTop = document.getElementById('chat-log-{{ LANGUAGE_CODE }}').scrollHeight;
-            </script>
-            <div style="display: flex">
-                <div style="flex: 10 10 auto">
-                    <input id="chat-message-input-{{ LANGUAGE_CODE }}" class="chat-message-input" type="text" size="100" maxlength="500" style="width: 100%">
-                </div>
-                <div style="flex: 1 1 auto">
-                    <input id="chat-message-submit-{{ LANGUAGE_CODE }}" type="button" value="Отправить" class="chat-button"
-                           style="width: 100%">
-                </div>
             </div>
+            <script>
+            const chat_conn_type = "{% if http_use %}ws{% else %}wss{% endif %}";
+            </script>
+            <script src='{% static "chat.js" %}?{{ csrf_token }}'></script>
+            {% if player.account.groups.all.0.name == "chat_moderator" %}
+            <script src='{% static "chat_admin.js" %}?{{ csrf_token }}'></script>
+            {% endif %}
+        </div>
+        <div class="col-xs-1 col-sm-1 col-md-1"></div>
+        <div class="col-xs-2 col-sm-2 col-md-2">
+            <div class="row" align="center">
+                Активные опросы:
+            </div>
+            {% for poll in polls %}
+            <div class="row" style="margin-top: 5%; cursor: pointer" onclick="window.location.href = '/poll/{{ poll.pk }}/'">
+                {{ poll.header }}
+            </div>
+            {% endfor %}
         </div>
     </div>
-    <script>
-    const chat_conn_type = "{% if http_use %}ws{% else %}wss{% endif %}";
-    </script>
-    <script src='{% static "chat.js" %}?{{ csrf_token }}'></script>
-    {% if player.account.groups.all.0.name == "chat_moderator" %}
-    <script src='{% static "chat_admin.js" %}?{{ csrf_token }}'></script>
-    {% endif %}
 </div>
 {% endblock %}
