@@ -17,7 +17,7 @@
     const ban_button = "{% if request.user.is_superuser %} <input type='button' class='message__ban' value='отключить чат'><input type='button' class='message__delete' value='удалить'>{% endif %}";
 </script>
 {% endif %}
-<div class="row">
+<div class="row" style="margin-right: 0 !important;">
     Привет, {{ player }} !
     <div class="row">
         <div class="col-xs-2 col-sm-2 col-md-2" align="left">
