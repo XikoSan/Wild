@@ -29,7 +29,10 @@
             </a>
             {% endif %}
         </div>
-        <div class="col-xs-4 col-sm-4 col-md-4" align="center">
+        <div class="col-xs-2 col-sm-2 col-md-2" align="center">
+            {{ vote_dict|dict_key:variant }}
+        </div>
+        <div class="col-xs-2 col-sm-2 col-md-2" align="center">
             {{ dict|dict_key:variant }} %
         </div>
     </div>

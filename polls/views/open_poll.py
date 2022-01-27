@@ -26,6 +26,7 @@ def open_poll(request, pk):
 
     total_votes = 0
     dict = {}
+    vote_dict = {}
 
     variants = Variant.objects.filter(poll=poll)
 
@@ -35,8 +36,10 @@ def open_poll(request, pk):
     for vari in variants:
         if vari.votes_pro.all().count() > 0:
             dict[vari] = vari.votes_pro.all().count() / total_votes * 100
+            vote_dict[vari] = vari.votes_pro.all().count()
         else:
             dict[vari] = 0
+            vote_dict[vari] = 0
 
     voted = False
 
@@ -52,6 +55,7 @@ def open_poll(request, pk):
         'poll': poll,
         'variants': variants,
         'voted': voted,
+        'vote_dict': vote_dict,
         'dict': dict,
 
         'player': player,
