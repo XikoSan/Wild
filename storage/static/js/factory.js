@@ -164,6 +164,7 @@ jQuery(document).ready(function ($) {
             }
             $(cloned_line.getElementsByClassName("crude_count")[0]).attr('max', max_value);
             $(cloned_line.getElementsByClassName("crude_amount")[0]).attr('max', max_value);
+
             $(cloned_line.getElementsByClassName("storage_stocks")[0]).html('/ ' + numberWithSpaces(max_value));
 
             $(cloned_line.getElementsByClassName("crude_count")[0]).attr('min', schema[crude]);
@@ -171,6 +172,8 @@ jQuery(document).ready(function ($) {
 
             $(cloned_line.getElementsByClassName("crude_count")[0]).attr('step', schema[crude]);
             $(cloned_line.getElementsByClassName("crude_amount")[0]).attr('step', schema[crude]);
+
+            $(cloned_line.getElementsByClassName("crude_price")[0]).html('цена: ' + numberWithSpaces(schema[crude]));
 
             if (max_value == 0){
                 $(cloned_line.getElementsByClassName("crude_count")[0]).val(0);
