@@ -73,13 +73,15 @@
                             </div>
                             <div class="col-xs-6 col-sm-6 col-md-6">
                                 {% if char.party %}
+                                    <a href='/party/{{ char.party.pk }}' target="_blank">
                                     {% if char.party.image %}
-                                    <!--Картинка партии-->
-                                    <img src="{{ char.party.image.url }}" width="50" height="50">
+                                        <!--Картинка партии-->
+                                        <img src="{{ char.party.image.url }}" width="50" height="50">
                                     {% else %}
-                                    <img src="{% static 'img/nopic_party.png' %}" width="50" height="50">
+                                        <img src="{% static 'img/nopic_party.png' %}" width="50" height="50">
                                     {% endif %}
-                                    <b><font size="4" >{{ char.party.title }}</font></b>
+                                    </a>
+                                    <b><font size="4" style="cursor: pointer" onclick="window.open('/party/{{ char.party.pk }}/', '_blank')">{{ char.party.title }}</font></b>
                                 {% else %}
                                     <b><font size="5" >беспартийный</font></b>
 <!--                                    <b><font size="5" >{% trans 'unaffiliated' %}</font></b>-->

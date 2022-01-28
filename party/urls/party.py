@@ -10,6 +10,7 @@ from party.views.management.party_requests import party_requests
 from party.views.management.rename_party import rename_party
 from party.views.management.switch_description import switch_description
 from party.views.management.switch_party_type import switch_party_type
+from party.views.open_party import open_party
 from party.views.party import party
 
 urlpatterns = [
@@ -18,6 +19,8 @@ urlpatterns = [
     url(r'^party$', party, name='party'),
     # открытие страницы создания новой партии
     url(r'^new_party$', new_party, name='new_party'),
+    # открыть страницу партии
+    url(r'^party/(?P<pk>\d+)/$', open_party, name='open_party'),
 
     # управление партией
     url(r'^party_management$', management, name='party_management'),

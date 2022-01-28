@@ -20,14 +20,16 @@
                                  <div class="row">
                                     <div class="col-xs-2 col-sm-2 col-md-2">
                                         <!--если пользователь загрузил аватарку-->
+                                        <a href='/party/{{ party.pk }}' target="_blank">
                                         {% if party.image %}
-                                        <img src="{{ party.image.url }}" width="50" height="50" align="right">
+                                            <img src="{{ party.image.url }}" width="50" height="50" align="right">
                                         {% else %}
-                                        <img src="{% static 'img/nopic_party.png' %}" width="50" height="50" align="right">
+                                            <img src="{% static 'img/nopic_party.png' %}" width="50" height="50" align="right">
                                         {% endif %}
+                                        </a>
                                     </div>
                                     <div class="col-xs-4 col-sm-4 col-md-4">
-                                        <h3>{{ party.title }}</h3>
+                                        <h3 style="cursor: pointer" onclick="window.open('/party/{{ party.pk }}/', '_blank')">{{ party.title }}</h3>
                                     </div>
                                     <div class="col-xs-1 col-sm-1 col-md-1">
                                         <h3>{{ sizes|dict_key:party }}</h3>

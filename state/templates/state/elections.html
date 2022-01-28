@@ -41,14 +41,16 @@
                     <div class="row" style="border: 1px solid white;">
                         <div class="col-xs-2 col-sm-2 col-md-2">
                             <!--если пользователь загрузил аватарку-->
+                            <a href='/party/{{ candidate.pk }}' target="_blank">
                             {% if candidate.image %}
-                            <img src="{{ candidate.image.url }}" width="50" height="50" align="right">
+                                <img src="{{ candidate.image.url }}" width="50" height="50" align="right">
                             {% else %}
-                            <img src="{% static 'img/nopic_party.png' %}" width="50" height="50" align="right">
+                                <img src="{% static 'img/nopic_party.png' %}" width="50" height="50" align="right">
                             {% endif %}
+                            </a>
                         </div>
                         <div class="col-xs-8 col-sm-8 col-md-8">
-                            <h3>{{ candidate.title }}</h3>
+                            <h3 style="cursor: pointer" onclick="window.open('/party/{{ candidate.pk }}/', '_blank')">{{ candidate.title }}</h3>
                         </div>
                         <div class="col-xs-2 col-sm-2 col-md-2">
                             {% if vote %}

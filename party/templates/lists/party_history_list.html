@@ -22,14 +22,16 @@
                                  <div class="row" {% if forloop.counter|get_mod:2 == 1 %}style="background: #E0FFF3"{% endif %}>
                                     <div class="col-xs-2 col-sm-2 col-md-2" align="center">
                                         <!--если пользователь загрузил аватарку-->
+                                        <a href='/party/{{ log.party.pk }}' target="_blank">
                                         {% if log.party.image %}
-                                        <img src="{{ log.party.image.url }}" width="50" height="50">
+                                            <img src="{{ log.party.image.url }}" width="50" height="50">
                                         {% else %}
-                                        <img src="{% static 'img/nopic_party.png' %}" width="50" height="50">
+                                            <img src="{% static 'img/nopic_party.png' %}" width="50" height="50">
                                         {% endif %}
+                                        </a>
                                     </div>
                                     <div class="col-xs-4 col-sm-4 col-md-4">
-                                        <h3>{{ log.party.title }}</h3>
+                                        <h3 style="cursor: pointer" onclick="window.open('/party/{{ log.party.pk }}/', '_blank')">{{ log.party.title }}</h3>
                                     </div>
                                     <div class="col-xs-3 col-sm-3 col-md-3">
                                         <h3>{{ log.dtime|timezone:player.time_zone|date:"d.m.Y H:i" }}</h3>

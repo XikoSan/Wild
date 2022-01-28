@@ -46,15 +46,17 @@
             <div class="row" style="margin: 1.5em;">
                 <div class="col-xs-2 col-sm-2 col-md-2">
                     <!--если у партии есть аватарка-->
+                    <a href='/party/{{ party.pk }}' target="_blank">
                     {% if party.image %}
-                    <img src="{{ party.image.url }}" width="80" height="80" align="right">
+                        <img src="{{ party.image.url }}" width="80" height="80" align="right">
                     {% else %}
-                    <img src="{% static 'img/nopic_party.png' %}" width="80" height="80" align="right">
+                        <img src="{% static 'img/nopic_party.png' %}" width="80" height="80" align="right">
                     {% endif %}
+                    </a>
                 </div>
                 <div class="col-xs-6 col-sm-6 col-md-6">
                     <!--Заголовок партии-->
-                    <h4>{{ party.title }}</h4>
+                    <h4 style="cursor: pointer" onclick="window.open('/party/{{ party.pk }}/', '_blank')">{{ party.title }}</h4>
                 </div>
                 <div class="col-xs-2 col-sm-2 col-md-2">
                     <h4>{{ sizes|dict_key:party }} человек</h4>

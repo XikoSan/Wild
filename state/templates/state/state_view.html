@@ -89,10 +89,12 @@
                             {% for region in regions_state %}
                                 <div class="row flex" style="margin-top: 1%;">
                                     <div class="col-xs-1 col-sm-1 col-md-1">
-                                        <img src="/static/img/regions/{{ region.on_map_id }}.png" width="50" height="50" align="left">
+                                        <a href='/region/{{ region.pk }}' target="_blank">
+                                            <img src="/static/img/regions/{{ region.on_map_id }}.png" width="50" height="50" align="left">
+                                        </a>
                                     </div>
                                     <div class="col-xs-5 col-sm-5 col-md-5">
-                                        <font size="4"><b>{{ region }}</b></font>
+                                        <font size="4" onclick="window.open('/region/{{ region.pk }}/', '_blank')"><b>{{ region }}</b></font>
                                     </div>
                                     <div class="col-xs-3 col-sm-3 col-md-3" align="center">
                                         <b>
@@ -132,14 +134,16 @@
                                  <div class="row flex">
                                     <div class="col-xs-1 col-sm-1 col-md-1">
                                         <!--если пользователь загрузил аватарку-->
+                                        <a href='/party/{{ party.pk }}' target="_blank">
                                         {% if party.image %}
-                                        <img src="{{ party.image.url }}" width="50" height="50" align="left">
+                                            <img src="{{ party.image.url }}" width="50" height="50" align="left">
                                         {% else %}
-                                        <img src="{% static 'img/nopic_party.png' %}" width="50" height="50" align="left">
+                                            <img src="{% static 'img/nopic_party.png' %}" width="50" height="50" align="left">
                                         {% endif %}
+                                        </a>
                                     </div>
                                     <div class="col-xs-4 co сl-sm-4 col-md-4">
-                                        <font  size="4"><b>{{ party.title }}</b></font>
+                                        <font  size="4" style="cursor: pointer" onclick="window.open('/party/{{ party.pk }}/', '_blank')"><b>{{ party.title }}</b></font>
                                     </div>
                                     <div class="col-xs-2 col-sm-2 col-md-2" align="center">
                                         <font  size="4"><b>{% if party_sizes|has_key:party %}{{ party_sizes|dict_key:party }}{% else %}0{% endif %}</b></font>

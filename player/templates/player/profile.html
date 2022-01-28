@@ -187,13 +187,15 @@
                             </div>
                             <div class="col-xs-6 col-sm-6 col-md-6">
                                 {% if player.party %}
+                                    <a href='/party/{{ player.party.pk }}' target="_blank">
                                     {% if player.party.image %}
                                     <!--Картинка партии-->
-                                    <img src="{{ player.party.image.url }}" width="50" height="50">
+                                        <img src="{{ player.party.image.url }}" width="50" height="50">
                                     {% else %}
-                                    <img src="{% static 'img/nopic_party.png' %}" width="50" height="50">
+                                        <img src="{% static 'img/nopic_party.png' %}" width="50" height="50">
                                     {% endif %}
-                                    <b><font size="4" >{{ player.party.title }}</font></b>
+                                    </a>
+                                    <b><font size="4" style="cursor: pointer" onclick="window.open('/party/{{ player.party.pk }}/', '_blank')">{{ player.party.title }}</font></b>
                                 {% else %}
                                     <b><font size="5" >беспартийный</font></b>
 <!--                                    <b><font size="5" >{% trans 'unaffiliated' %}</font></b>-->
