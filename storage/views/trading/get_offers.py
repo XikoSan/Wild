@@ -25,7 +25,7 @@ def get_offers(request):
             storages = Storage.actual.filter(owner=player)
 
         kwargs = {}
-        dis_args = ['owner_storage', 'price']
+        dis_args = ['owner_storage', 'price', 'view_type', 'good']
 
         # узнаём действие, которое игрок хочет совершить
         action = request.POST.get('action')
