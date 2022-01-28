@@ -18,9 +18,9 @@
                     <div align="center" style="height: 50px; font-size: 20pt; font-weight: bold;">{{ party.title }}</div>
                 </div>
                 <div class="row">
-                    {% if player.party.image %}
+                    {% if party.image %}
                     <!--Картинка партии-->
-                    <img src="{{ player.party.image.url }}" width="250" height="250">
+                    <img src="{{ party.image.url }}" width="250" height="250">
                     {% else %}
                     <img src="{% static 'img/nopic_party.png' %}" width="250" height="250">
                     {% endif %}
