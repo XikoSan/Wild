@@ -25,6 +25,7 @@ def get_offers(request):
             storages = Storage.actual.filter(owner=player)
 
         kwargs = {}
+        dis_args = ['owner_storage', 'price']
 
         # узнаём действие, которое игрок хочет совершить
         action = request.POST.get('action')
@@ -61,6 +62,7 @@ def get_offers(request):
         else:
             if owner == 'mine':
                 kwargs['owner_storage__owner__pk'] = player.pk
+                dis_args = []
             elif owner == 'party':
                 # если у игрока есть партия
                 if player.party:
@@ -89,7 +91,7 @@ def get_offers(request):
             if goods_list:
                 kwargs['good__in'] = goods_list
 
-        offers = TradeOffer.actual.filter(**kwargs)
+        offers = TradeOffer.actual.filter(**kwargs).order_by('price').distinct(*dis_args)
 
         offers_list = []
 
