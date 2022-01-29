@@ -3,6 +3,7 @@ from django.contrib.admin import widgets
 from django.db import models
 
 from storage.models.auction.auction import BuyAuction
+from storage.models.auction.auction_bet import AuctionBet
 from storage.models.auction.auction_lot import AuctionLot
 from storage.models.cash_lock import CashLock
 from storage.models.destroy import Destroy
@@ -12,7 +13,7 @@ from storage.models.storage import Storage
 from storage.models.trade_offer import TradeOffer
 from storage.models.trading_log import TradingLog
 from storage.models.transport import Transport
-from storage.models.auction.auction_bet import AuctionBet
+
 
 class TradeOfferAdmin(admin.ModelAdmin):
     search_fields = ['player__nickname']
@@ -26,7 +27,16 @@ class TradeOfferAdmin(admin.ModelAdmin):
 
 
 class GoodLockAdmin(admin.ModelAdmin):
+    model = GoodLock
+    search_fields = ['lock_good', 'lock_count']
     raw_id_fields = ('lock_storage', 'lock_offer',)
+    list_display = ['get_owner_nickname', 'get_region_name', 'lock_count', 'lock_good', 'deleted', ]
+
+    def get_owner_nickname(self, obj):
+        return obj.lock_storage.owner.nickname
+
+    def get_region_name(self, obj):
+        return obj.lock_storage.region.region_name
 
 
 class StorageAdmin(admin.ModelAdmin):
