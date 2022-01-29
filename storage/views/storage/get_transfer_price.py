@@ -30,6 +30,6 @@ def get_transfer_price(trans_mul, dest, values):
                 for cat in Storage.types.keys():
                     if good in getattr(Transport, cat):
                         prices[int(storage)] += ceil(int(values.get(storage).get(good)) * getattr(Transport, cat)[good]) * trans_mul[dest][int(storage)]
-                        price += prices[int(storage)]
+                        price += ceil(int(values.get(storage).get(good)) * getattr(Transport, cat)[good]) * trans_mul[dest][int(storage)]
 
     return price, prices
