@@ -202,7 +202,7 @@ def accept_offer(request):
             #   если удаляют весь товар из блокировки:
             if offer_good_lock.lock_count == 0:
                 # закрыть блокировку
-                offer_good_lock.deleted = False
+                offer_good_lock.deleted = True
 
             offer_good_lock.save()
 
