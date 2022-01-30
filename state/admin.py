@@ -5,6 +5,7 @@ from django.contrib.admin import widgets
 from django.db import models
 
 from region.region import Region
+from state.models.bills.change_title import ChangeTitle
 from state.models.bills.construction import Construction
 from state.models.bills.explore_resources import ExploreResources
 from state.models.bills.purchase_auction import PurchaseAuction
@@ -94,4 +95,5 @@ admin.site.register(Capital, CapitalAdmin)
 
 admin.site.register(ExploreResources, BillAdmin)
 admin.site.register(Construction, BillAdmin)
+admin.site.register(ChangeTitle, BillAdmin)
 admin.site.register(PurchaseAuction, AuctionAdmin)
