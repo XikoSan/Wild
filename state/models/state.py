@@ -12,7 +12,7 @@ from django.utils import timezone
 
 class State(models.Model):
     # название страны
-    title = models.CharField(max_length=255, verbose_name='Название государства')
+    title = models.CharField(max_length=50, verbose_name='Название государства')
     # герб страны
     image = models.ImageField(upload_to='img/state_avatars/', blank=True, null=True, verbose_name='Герб')
     # цвет на карте

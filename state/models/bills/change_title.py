@@ -14,7 +14,7 @@ from state.models.state import State
 # Изменить название государства
 class ChangeTitle(Bill):
     # название страны
-    new_title = models.CharField(max_length=255, verbose_name='Название государства')
+    new_title = models.CharField(max_length=50, verbose_name='Название государства')
 
     @staticmethod
     def new_bill(request, player, parliament):
