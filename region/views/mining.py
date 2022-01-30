@@ -15,10 +15,10 @@ def mining(request):
     player = Player.objects.get(account=request.user)
 
     # 3500 - количество энергии, которую надо выфармить за день
-    if player.paid_consumption >= 3500:
+    if player.paid_consumption >= player.energy_limit:
         daily_procent = 100
     else:
-        daily_procent = player.energy_consumption / ((3500 - player.paid_consumption) / 100)
+        daily_procent = player.energy_consumption / ((player.energy_limit - player.paid_consumption) / 100)
 
     if daily_procent > 100:
         daily_procent = 100
