@@ -23,21 +23,13 @@
     {% endwith %}
 
     {% with bill=data|dict_key:'bill' %}
-    <div class="col-xs-3 col-sm-3 col-md-3">
-        <div class="row">
-            {{ bill.buy_value }}
-        </div>
-        <div class="row" style="margin-top: 25px;">
-            {{ bill.get_good_display }}
-        </div>
-    </div>
-    <div class="col-xs-3 col-sm-3 col-md-3">
-        <div class="row">
-            Лотов: {{ bill.lots_count }}
-        </div>
-        <div class="row" style="margin-top: 25px;">
-            Стоимость: <b style="color: #85bb65">${{ bill.cash_cost }}</b>
-        </div>
+    <div class="col-xs-6 col-sm-6 col-md-6">
+        {% if bill.image %}
+        <img src="{{ bill.image.url }}" width="50" height="50">
+        <a href='{{ bill.image.url }}' target="_blank"><u>оригинальный размер</u></a>
+        {% else %}
+        недоступно
+        {% endif %}
     </div>
     <div class="col-xs-2 col-sm-2 col-md-2">
     <a href='/profile/{{ bill.initiator.pk }}' target="_blank">{{ bill.initiator }}</a>

@@ -98,31 +98,31 @@ class State(models.Model):
 
         return taxed_sum
 
-    # сохранение государства с изменением размеров и названия картинки профиля
-    def save(self):
-        # если картинка есть (добавили или изменили)
-        if self.image:
-            # Opening the uploaded image
-            im = Image.open(self.image)
-
-            output = BytesIO()
-
-            # Resize/modify the image
-            im = im.resize((300, 300))
-
-            # after modifications, save it to the output
-            im.save(output, format='PNG', quality=100)
-            output.seek(0)
-
-            # change the imagefield value to be the newley modifed image value
-            self.image = InMemoryUploadedFile(output, 'ImageField', "%(state)s.png" % {"state": self.title},
-                                              'image/png',
-                                              sys.getsizeof(output), None)
-
-            super(State, self).save()
-        # если картинку удалили или её не было
-        else:
-            super(State, self).save()
+    # # сохранение государства с изменением размеров и названия картинки профиля
+    # def save(self):
+    #     # если картинка есть (добавили или изменили)
+    #     if self.image:
+    #         # Opening the uploaded image
+    #         im = Image.open(self.image)
+    #
+    #         output = BytesIO()
+    #
+    #         # Resize/modify the image
+    #         im = im.resize((300, 300))
+    #
+    #         # after modifications, save it to the output
+    #         im.save(output, format='PNG', quality=100)
+    #         output.seek(0)
+    #
+    #         # change the imagefield value to be the newley modifed image value
+    #         self.image = InMemoryUploadedFile(output, 'ImageField', "%(state)s.png" % {"state": self.title},
+    #                                           'image/png',
+    #                                           sys.getsizeof(output), None)
+    #
+    #         super(State, self).save()
+    #     # если картинку удалили или её не было
+    #     else:
+    #         super(State, self).save()
 
     def __str__(self):
         return self.title

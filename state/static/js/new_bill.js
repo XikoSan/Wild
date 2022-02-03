@@ -3,20 +3,21 @@ jQuery(document).ready(function ($) {
     $('.new_bill').submit(function(e){
         e.preventDefault();
 
-        var sending_data = $(this).serialize();
+        var sending_data = new FormData(this);
 
         $.ajax({
-            type: "POST",
-            url: "/new_bill/",
-            data:  sending_data,
-            cache: false,
-            success: function(data){
-                if (data.response == 'ok'){
-                    location.reload();
-                }
-                else{
-                    display_modal('notify', data.header, data.response, null, data.grey_btn)
-                }
+              url: "/new_bill/",
+              type: "POST",
+              data: sending_data,
+              processData: false,  // Сообщить jQuery не передавать эти данные
+              contentType: false,   // Сообщить jQuery не передавать тип контента
+              success: function(result){
+                  if (result.response == 'ok'){
+                      location.reload();
+                  }
+                  else{
+                      display_modal('notify', result.header, result.response, null, result.grey_btn)
+                  }
             }
         });
     });

@@ -1,0 +1,125 @@
+{% load dict_key %}
+{% load get_attr %}
+{% load get_sum %}
+{% load get_key_list %}
+{% load static %}
+<script src='{% static "cropper.js" %}?{{ csrf_token }}'></script>
+<link rel="stylesheet" href='{% static "cropper.css" %}?{{ csrf_token }}'>
+<script>
+    $(function () {
+
+    /* SCRIPT TO OPEN THE MODAL WITH THE PREVIEW */
+    $("#id_image").change(function () {
+      if (this.files && this.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          $("#image").attr("src", e.target.result);
+          $("#modalCrop").modal("show");
+        }
+        reader.readAsDataURL(this.files[0]);
+      }
+    });
+
+    /* SCRIPTS TO HANDLE THE CROPPER BOX */
+    var $image = $("#image");
+    var cropBoxData;
+    var canvasData;
+    $("#modalCrop").on("shown.bs.modal", function () {
+      $image.cropper({
+        viewMode: 0.5,
+        aspectRatio: 1/1,
+        minCropBoxWidth: 250,
+        minCropBoxHeight: 250,
+        ready: function () {
+          $image.cropper("setCanvasData", canvasData);
+          $image.cropper("setCropBoxData", cropBoxData);
+        }
+      });
+    }).on("hidden.bs.modal", function () {
+      cropBoxData = $image.cropper("getCropBoxData");
+      canvasData = $image.cropper("getCanvasData");
+      $image.cropper("destroy");
+    });
+
+    // Enable zoom in button
+    $(".js-zoom-in").click(function () {
+      $image.cropper("zoom", 0.1);
+    });
+
+    // Enable zoom out button
+    $(".js-zoom-out").click(function () {
+      $image.cropper("zoom", -0.1);
+    });
+
+    // Enable move up button
+    $(".js-pic-up").click(function () {
+      $image.cropper("move", 0, 10);
+    });
+
+    // Enable move down button
+    $(".js-pic-down").click(function () {
+      $image.cropper("move", 0, -10);
+    });
+
+    /* SCRIPT TO COLLECT THE DATA AND POST TO THE SERVER */
+    $(".js-crop-and-upload").click(function () {
+        var cropData = $image.cropper("getData");
+        $("#id_x").val(cropData["x"]);
+        $("#id_y").val(cropData["y"]);
+        $("#id_height").val(cropData["height"]);
+        $("#id_width").val(cropData["width"]);
+        $("#modalCrop").modal("hide");
+    });
+
+    });
+
+</script>
+<div class="row draft_row" id="ChangeCoat" style="display: none;">
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="row" style="margin-top: 15px;">
+            <b>Новый герб государства:</b>
+        </div>
+        <div class="row" style="margin-top: 15px;">
+            <input type="file" name="image" accept="image/*" id="id_image">
+            <input type="hidden" name="x" id="id_x">
+            <input type="hidden" name="y" id="id_y">
+            <input type="hidden" name="width" id="id_width">
+            <input type="hidden" name="height" id="id_height">
+        </div>
+        <!-- MODAL TO CROP THE IMAGE -->
+        <div class="modal fade" id="modalCrop">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <img src="" id="image" style="max-width: 50%; max-height: 50%;">
+              </div>
+              <div class="modal-footer">
+                <div class="btn-group pull-left" role="group">
+                  <button type="button" class="btn btn-default js-zoom-in">
+                    <span class="glyphicon glyphicon-zoom-in"></span>
+                  </button>
+                  <button type="button" class="btn btn-default js-zoom-out">
+                    <span class="glyphicon glyphicon-zoom-out"></span>
+                  </button>
+                </div>
+                <div class="btn-group pull-left" role="group">
+                  <button type="button" class="btn btn-default js-pic-up">
+                    <span class="glyphicon glyphicon-arrow-up"></span>
+                  </button>
+                  <button type="button" class="btn btn-default js-pic-down">
+                    <span class="glyphicon glyphicon-arrow-down"></span>
+                  </button>
+                </div>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+                <button type="button" class="btn btn-primary js-crop-and-upload">Загрузить</button>
+              </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
