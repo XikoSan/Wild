@@ -25,7 +25,7 @@ class CapitalAdmin(admin.ModelAdmin):
     list_display = ('state', 'region')
     raw_id_fields = ('state',)
 
-    # Функциия для отображения у столицы только тех регионов,
+    # Функциия для отображения у столицы тольк тех регионов,
     # которые относятся к текущему государству
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
         # Если поле - пост игрока в клане
@@ -61,6 +61,14 @@ class DeputyMandateAdmin(admin.ModelAdmin):
 
 class BillAdmin(admin.ModelAdmin):
     search_fields = ['initiator', 'parliament']
+
+    list_filter = ("running", "type",)
+
+    list_display = ['get_obj_name', 'running', 'type', ]
+
+    def get_obj_name(self, obj):
+        return obj.__str__()
+
     formfield_overrides = {
         models.ManyToManyField: {'widget': widgets.FilteredSelectMultiple(
             verbose_name='Голоса',
