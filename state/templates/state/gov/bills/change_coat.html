@@ -5,7 +5,7 @@
 {% load get_mul %}
 {% load get_key_list %}
 {% load tz %}
-
+{% load l10n %}{% load i18n %}
 <div class="row bill_row" style="margin-top: 25px">
     {% with title=data|dict_key:'title' %}
     <div class="col-xs-2 col-sm-2 col-md-2">
@@ -24,7 +24,7 @@
     {% endwith %}
 
     {% with bill=data|dict_key:'bill' %}
-    <div class="col-xs-4 col-sm-4 col-md-4" style="vertical-align: middle;">
+    <div class="col-xs-6 col-sm-6 col-md-6" style="vertical-align: middle;">
         <img src="{{ bill.image.url }}" width="50" height="50">
         <a href='{{ bill.image.url }}' target="_blank"><u>оригинал</u></a>
     </div>
@@ -37,10 +37,10 @@
             {% with player=data|dict_key:'player' %}
                 {% if player not in bill.votes_pro.all and player not in bill.votes_con.all %}
                 <div class="row">
-                    <a class="btn btn-success" onclick="vote_bill('ChangeCoat',{{ bill.pk }},'pro')">Проголосовать</a>
+                    <a class="btn btn-success" onclick="vote_bill('ChangeCoat',{% localize off %}{{ bill.pk }}{% endlocalize %},'pro')">Проголосовать</a>
                 </div>
                 <div class="row">
-                    <a class="btn btn-danger" onclick="vote_bill('ChangeCoat',{{ bill.pk }},'con')">Проголосовать</a>
+                    <a class="btn btn-danger" onclick="vote_bill('ChangeCoat',{% localize off %}{{ bill.pk }}{% endlocalize %},'con')">Проголосовать</a>
                 </div>
                 {% else %}
                 <font size="5">

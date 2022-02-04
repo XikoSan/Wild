@@ -5,7 +5,7 @@
 {% load get_mul %}
 {% load get_key_list %}
 {% load tz %}
-
+{% load l10n %}{% load i18n %}
 <div class="row bill_row" style="margin-top: 25px">
     {% with title=data|dict_key:'title' %}
     <div class="col-xs-2 col-sm-2 col-md-2">
@@ -60,10 +60,10 @@
             {% with player=data|dict_key:'player' %}
                 {% if player not in bill.votes_pro.all and player not in bill.votes_con.all %}
                 <div class="row">
-                    <a class="btn btn-success" onclick="vote_bill('Construction',{{ bill.pk }},'pro')">Проголосовать</a>
+                    <a class="btn btn-success" onclick="vote_bill('Construction',{% localize off %}{{ bill.pk }}{% endlocalize %},'pro')">Проголосовать</a>
                 </div>
                 <div class="row">
-                    <a class="btn btn-danger" onclick="vote_bill('Construction',{{ bill.pk }},'con')">Проголосовать</a>
+                    <a class="btn btn-danger" onclick="vote_bill('Construction',{% localize off %}{{ bill.pk }}{% endlocalize %},'con')">Проголосовать</a>
                 </div>
                 {% else %}
                 <font size="5">
