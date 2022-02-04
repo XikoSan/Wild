@@ -45,6 +45,14 @@ class Construction(Bill):
 
     @staticmethod
     def new_bill(request, player, parliament):
+
+        if Construction.objects.filter(running=True, initiator=player).exists():
+            return {
+                'header': 'Новый законопроект',
+                'grey_btn': 'Закрыть',
+                'response': 'Ограничение: не более одного законопроекта данного типа',
+            }
+
         try:
             construction_region = int(request.POST.get('construction_regions'))
 

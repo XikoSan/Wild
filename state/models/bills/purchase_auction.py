@@ -32,6 +32,14 @@ class PurchaseAuction(Bill):
 
     @staticmethod
     def new_bill(request, player, parliament):
+
+        if PurchaseAuction.objects.filter(running=True, initiator=player).exists():
+            return {
+                'header': 'Новый законопроект',
+                'grey_btn': 'Закрыть',
+                'response': 'Ограничение: не более одного законопроекта данного типа',
+            }
+
         # получаем объем закупки
         try:
             purchase_value = int(request.POST.get('purchase_value'))

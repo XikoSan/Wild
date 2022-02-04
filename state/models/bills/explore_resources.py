@@ -42,6 +42,13 @@ class ExploreResources(Bill):
     @staticmethod
     def new_bill(request, player, parliament):
 
+        if ExploreResources.objects.filter(running=True, initiator=player).exists():
+            return {
+                'header': 'Новый законопроект',
+                'grey_btn': 'Закрыть',
+                'response': 'Ограничение: не более одного законопроекта данного типа',
+            }
+
         try:
             explore_region = int(request.POST.get('explore_regions'))
 
