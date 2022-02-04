@@ -17,9 +17,17 @@ def produce_energy(request):
         # получаем персонажа
         player = Player.objects.get(account=request.user)
 
-        count = request.POST.get('energy_field', '')
+        try:
+            count = int(request.POST.get('energy_field', ''))
 
-        if not int(count) % 10 == 0:
+        except ValueError:
+            return {
+                'header': 'Ошибка производства энергии',
+                'grey_btn': 'Закрыть',
+                'response': 'Введите целое число',
+            }
+
+        if not count % 10 == 0:
             data = {
                 'response': 'Введите число, кратное десяти',
                 'header': 'Ошибка производства энергии',
