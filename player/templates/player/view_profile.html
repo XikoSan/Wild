@@ -62,7 +62,7 @@
                             <div class="col-xs-6 col-sm-6 col-md-6">
                                 <!--получена-->
 <!--                                <b><font size="4"  onclick="window.open('/region/{{ char.residency.pk }}/', '_blank')" style="cursor: pointer">{{ char.residency }}, {% trans 'since' %}: {{ char.residency_date|timezone:char.time_zone|date:"d.m.Y H:i" }}</font></b>-->
-                                <b><font size="4"  onclick="window.open('/region/{{ char.residency.pk }}/', '_blank')" style="cursor: pointer">{{ char.residency }}, с: {{ char.residency_date|timezone:char.time_zone|date:"d.m.Y H:i" }}</font></b>
+                                <b><font size="4"  onclick="window.open('/region/{{ char.residency.pk }}/', '_blank')" style="cursor: pointer">{{ char.residency }}, с: {{ char.residency_date|timezone:player.time_zone|date:"d.m.Y H:i" }}</font></b>
                             </div>
                         </div>
                         <!--партия-->
