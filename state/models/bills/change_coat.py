@@ -75,11 +75,8 @@ class ChangeCoat(Bill):
 
         # image = Image.open(getattr(self, 'image'))
 
-        if state.image:
-            image.save(getattr(state, 'image').path)
-        else:
-            state.image = self.image
-            state.save()
+        state.image = self.image
+        state.save()
 
         b_type = 'ac'
         ChangeCoat.objects.filter(pk=self.pk).update(type=b_type, running=False, voting_end=timezone.now())
