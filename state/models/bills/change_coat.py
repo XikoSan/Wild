@@ -1,8 +1,11 @@
 # coding=utf-8
 import os
+import shutil
+from io import BytesIO
 
 from PIL import Image
 from django import forms
+from django.conf import settings
 from django.core.files.base import ContentFile
 from django.db import models
 from django.db.models.signals import post_save
@@ -71,16 +74,31 @@ class ChangeCoat(Bill):
         b_type = None
         state = State.objects.get(pk=self.parliament.state.pk)
 
-        image = ContentFile(self.image.url)
+        original = os.path.join(settings.MEDIA_ROOT, self.image.name)
 
-        # image = Image.open(getattr(self, 'image'))
+        from player.logs.print_log import log
 
-        state.image = self.image
+        target = os.path.join(settings.MEDIA_ROOT,
+                              'img/state_avatars/' + str(state.pk) + '.' + self.image.path.split('.')[1])
+
+        shutil.copyfile(original, target)
+
+        t_image = Image.open(target)
+
+        thumb_io = BytesIO()
+        t_image.save(thumb_io, t_image.format, quality=60)
+
+        log(target)
+        log(t_image.filename.split('/')[-1])
+
+        state.image.save(t_image.filename.split('/')[-1], ContentFile(thumb_io.getvalue()), save=False)
         state.save()
 
         b_type = 'ac'
         ChangeCoat.objects.filter(pk=self.pk).update(type=b_type, running=False, voting_end=timezone.now())
-        # ChangeCoat.objects.exclude(pk=self.pk, type__isnull=True).image.delete(save=True)
+
+        for bill in ChangeCoat.objects.filter(image__isnull=False).exclude(pk=self.pk, type__isnull=False):
+            bill.image.delete(save=True)
 
     @staticmethod
     def get_draft(state):

@@ -66,6 +66,10 @@ services:
       - db
       - redis
       - wildpolitics
+    volumes:
+      #- ./:/app
+      - static:/app/static
+      - media:/app/media
 
   celery_beat:
     image: wildpolitics
