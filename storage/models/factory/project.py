@@ -19,15 +19,15 @@ class Project(models.Model):
         'resources':
             [
                 {
-                    'cash': 10,
+                    'cash': 5,
                     'wti_oil': 10,
                 },
                 {
-                    'cash': 10,
+                    'cash': 8,
                     'brent_oil': 15,
                 },
                 {
-                    'cash': 10,
+                    'cash': 8,
                     'urals_oil': 15,
                 },
             ],
@@ -42,15 +42,15 @@ class Project(models.Model):
         'resources':
             [
                 {
-                    'cash': 10,
+                    'cash': 8,
                     'wti_oil': 15,
                 },
                 {
-                    'cash': 10,
+                    'cash': 5,
                     'brent_oil': 10,
                 },
                 {
-                    'cash': 10,
+                    'cash': 8,
                     'urals_oil': 15,
                 },
             ],
@@ -65,15 +65,15 @@ class Project(models.Model):
         'resources':
             [
                 {
-                    'cash': 10,
+                    'cash': 8,
                     'wti_oil': 15,
                 },
                 {
-                    'cash': 10,
+                    'cash': 8,
                     'brent_oil': 15,
                 },
                 {
-                    'cash': 10,
+                    'cash': 5,
                     'urals_oil': 10,
                 },
             ],
@@ -87,7 +87,7 @@ class Project(models.Model):
         'resources':
             [
                 {
-                    'cash': 10,
+                    'cash': 5,
                     'coal': 5,
                     'iron': 10,
                 },
@@ -103,7 +103,7 @@ class Project(models.Model):
         'resources':
             [
                 {
-                    'cash': 10,
+                    'cash': 5,
                     'coal': 8,
                     'bauxite': 10,
                 },
@@ -119,7 +119,7 @@ class Project(models.Model):
         'resources':
             [
                 {
-                    'cash': 5,
+                    'cash': 25,
                     'plastic': 5,
                     'steel': 2,
                 },
@@ -182,7 +182,7 @@ class Project(models.Model):
         'resources':
             [
                 {
-                    'cash': 50,
+                    'cash': 30,
                     'gas': 5,
                     'steel': 2,
                 },
@@ -198,7 +198,7 @@ class Project(models.Model):
         'resources':
             [
                 {
-                    'cash': 50,
+                    'cash': 30,
                     'gas': 2,
                     'steel': 2,
                 },
