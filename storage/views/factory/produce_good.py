@@ -167,6 +167,8 @@ def produce_good(request):
                 return JsonResponse(data)
 
         # списать энергию игрока
+        if energy_cost == 100:
+            energy_cost = 200
         player.energy_cons(energy_cost)
         # создаём лог производства
         production_log = ProductionLog(player=player, prod_storage=storage, prod_result=good)
