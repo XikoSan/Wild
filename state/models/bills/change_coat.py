@@ -76,8 +76,6 @@ class ChangeCoat(Bill):
 
         original = os.path.join(settings.MEDIA_ROOT, self.image.name)
 
-        from player.logs.print_log import log
-
         target = os.path.join(settings.MEDIA_ROOT,
                               'img/state_avatars/' + str(state.pk) + '.' + self.image.path.split('.')[1])
 
@@ -87,9 +85,6 @@ class ChangeCoat(Bill):
 
         thumb_io = BytesIO()
         t_image.save(thumb_io, t_image.format, quality=60)
-
-        log(target)
-        log(t_image.filename.split('/')[-1])
 
         state.image.save(t_image.filename.split('/')[-1], ContentFile(thumb_io.getvalue()), save=False)
         state.save()
