@@ -148,8 +148,8 @@ class Player(models.Model):
     # время прилёта
     arrival = models.DateTimeField(default=datetime.datetime(2000, 1, 1, 0, 0), blank=True)
 
-    def energy_cons(self, value):
-        self.energy_consumption += value
+    def energy_cons(self, value, mul=1):
+        self.energy_consumption += value * mul
         self.energy -= value
         self.save()
 
