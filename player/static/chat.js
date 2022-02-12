@@ -55,6 +55,12 @@ document.querySelector('#chat-message-submit-' + roomName).onclick = function(e)
     }
 };
 
+$(".sticker_img").click(function () {
+    chatSocket.send(JSON.stringify({
+        'sticker': $(this).attr('id')
+    }));
+})
+
 $(".chat").on("click", ".massage__name", function(e){
     console.log($(this).closest('.chat_window').find(".chat-message-input"));
     elem = $(this).closest('.chat_window').find(".chat-message-input")

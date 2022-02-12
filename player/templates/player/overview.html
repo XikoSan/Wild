@@ -1,6 +1,7 @@
 {% extends 'player/header.html' %}
 {% load static %}
 {% load bootstrap3 %}
+{% load stickers.stickers_advice %}
 {% load i18n %}
 {% block for_scripts_and_css %}
 {% load dict_key %}
@@ -80,7 +81,13 @@
                                     </a>
                                 </figure>
                                 <div class='message__text'>
+                                    {% if '/stickers/' in message|dict_key:'content' %}
+                                        {% autoescape off %}
                                     <p>{{ message|dict_key:'content' }}</p>
+                                        {% endautoescape %}
+                                    {% else %}
+                                    <p>{{ message|dict_key:'content' }}</p>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
@@ -91,9 +98,17 @@
                     <script>
                         document.getElementById('chat-log-{{ LANGUAGE_CODE }}').scrollTop = document.getElementById('chat-log-{{ LANGUAGE_CODE }}').scrollHeight;
                     </script>
-                    <div style="display: flex">
+                    <div style="display: flex; align-items: center">
                         <div style="flex: 10 10 auto">
-                            <input id="chat-message-input-{{ LANGUAGE_CODE }}" class="chat-message-input" type="text" size="100" maxlength="500" style="width: 100%">
+                            <input id="chat-message-input-{{ LANGUAGE_CODE }}" class="chat-message-input" type="text" size="100" maxlength="500" style="width: 99%">
+                        </div>
+                        <div style="flex: 1 1 auto" align="center">
+                            <div class="stickers_bar">
+                                <div>
+                                    {% stickers_advice stickers %}
+                                </div>
+                                <img src="{% static 'img/smile.svg' %}" width='30px' height='30px'>
+                            </div>
                         </div>
                         <div style="flex: 1 1 auto">
                             <input id="chat-message-submit-{{ LANGUAGE_CODE }}" type="button" value="Отправить" class="chat-button"
@@ -106,6 +121,8 @@
             const chat_conn_type = "{% if http_use %}ws{% else %}wss{% endif %}";
             </script>
             <script src='{% static "chat.js" %}?{{ csrf_token }}'></script>
+            <link rel="stylesheet" href='{% static "stickers_modal.css" %}?{{ csrf_token }}'>
+            <script src='{% static "stickers_modal.js" %}?{{ csrf_token }}'></script>
             {% if player.account.groups.all.0.name == "chat_moderator" %}
             <script src='{% static "chat_admin.js" %}?{{ csrf_token }}'></script>
             {% endif %}

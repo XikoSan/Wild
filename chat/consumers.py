@@ -1,19 +1,27 @@
 import json
 import re
-
-from asgiref.sync import sync_to_async
-from channels.generic.websocket import AsyncWebsocketConsumer
 from datetime import datetime
-from player.player import Player
-from django.contrib.auth.models import User
-from .models import Chat, Message
+
 import bleach
 import pytz
-from django.utils import timezone
 import redis
+from asgiref.sync import sync_to_async
+from channels.generic.websocket import AsyncWebsocketConsumer
+from django.contrib.auth.models import User
+from django.utils import timezone
+
+from chat.models.stickers_ownership import StickersOwnership
+from chat.models.sticker import Sticker
+from player.player import Player
+
 
 def _get_player(account):
     return Player.objects.select_related('account').get(account=account)
+
+
+def _get_sticker_packs(pk):
+    # return StickersOwnership.objects.filter(owner__pk=pk).first().pk
+    return StickersOwnership.objects.filter(owner__pk=pk).values_list('pack__pk', flat=True)
 
 
 def _get_player_pk(pk):
@@ -32,10 +40,18 @@ def _set_player_banned(pk):
     Player.objects.filter(pk=pk).update(chat_ban=True)
 
 
+def _check_has_pack(message, packs):
+    if int(message.split('_')[0]) in packs:
+        return Sticker.objects.get(pk=int(message.split('_')[1])).image.url
+    else:
+        return False
+
+
 def _delete_message(counter):
     r = redis.StrictRedis(host='redis', port=6379, db=0)
 
     r.zremrangebyscore('chat', counter, counter)
+
 
 # def _get_last_10_messages(chat_id):
 #     chat, created = Chat.objects.get_or_create(chat_id=chat_id)
@@ -53,7 +69,6 @@ def _get_awa(image):
 
 
 def _append_message(chat_id, author, text):
-
     message = {'author': author.pk,
                'content': text,
                'dtime': str(timezone.now().timestamp()).split('.')[0]
@@ -84,6 +99,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
     async def connect(self):
         self.player = await sync_to_async(_get_player, thread_sensitive=True)(account=self.scope["user"])
+        self.sticker_packs = await sync_to_async(_get_sticker_packs, thread_sensitive=True)(pk=self.player.pk)
         user = await sync_to_async(_get_user, thread_sensitive=True)(pk=self.player.account.pk)
         groups = await sync_to_async(_get_groups, thread_sensitive=True)(user=user)
 
@@ -112,17 +128,37 @@ class ChatConsumer(AsyncWebsocketConsumer):
     # Receive message from WebSocket
     async def receive(self, text_data):
         text_data_json = json.loads(text_data)
-        message = bleach.clean(text_data_json['message'][:500], strip=True)
-        if not re.search('[^\s]', message):
+
+        message = None
+        if 'message' in text_data_json:
+            message = bleach.clean(text_data_json['message'][:500], strip=True)
+
+        sticker = None
+        if 'sticker' in text_data_json:
+            sticker = bleach.clean(text_data_json['sticker'], strip=True)
+
+        if (not message or not re.search('[^\s]', message)) and (not sticker):
             return
+
+        sticker_only = False
+        if not message and sticker:
+            message = sticker
+            sticker_only = True
+
+        if sticker_only:
+            link = await sync_to_async(_check_has_pack, thread_sensitive=True)(message=message,
+                                                                                   packs=self.sticker_packs)
+
+            if link:
+                message = '<img src="' + link + '" width="250" height="250">'
+
+        counter = await sync_to_async(_append_message, thread_sensitive=True)(chat_id=self.room_name,
+                                                                              author=self.player,
+                                                                              text=message)
 
         destination = ''
 
-        counter = await sync_to_async(_append_message, thread_sensitive=True)(chat_id=self.room_name,
-                                                                        author=self.player,
-                                                                        text=message)
-
-        if (message == 'ban_chat' or message == 'delete_message')\
+        if (message == 'ban_chat' or message == 'delete_message') \
                 and not self.moderator:
             pass
 
@@ -137,7 +173,6 @@ class ChatConsumer(AsyncWebsocketConsumer):
                         and text_data_json['destination']:
                     destination = text_data_json['destination']
                     await sync_to_async(_set_player_banned, thread_sensitive=True)(pk=destination)
-
 
                 image_url = '/static/img/nopic.png'
                 if self.player.image:

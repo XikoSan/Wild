@@ -10,7 +10,7 @@ from party.position import PartyPosition
 class CashLogAdmin(admin.ModelAdmin):
     list_display = ('player', 'cash', 'activity_txt')
     list_filter = ('activity_txt',)
-    search_fields = ('player',)
+    search_fields = ('player__nickname',)
     raw_id_fields = ('player',)
     date_hierarchy = 'dtime'
     ordering = ('-dtime',)

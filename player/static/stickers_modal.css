@@ -1,0 +1,29 @@
+.stickers_bar {
+    position:relative;
+}
+.stickers_bar > div {
+    display: none;
+}
+.stickers_advice {
+    position:relative;
+}
+.stickers_advice > div {
+    display:block;
+    position:absolute;
+    width: 470px;
+    bottom:3.3em;
+    right: 0em;
+    z-index:1000;
+    background-color: #efefef;
+    padding: 5px;
+    border-radius: 4px;
+}
+
+.sticker_img {
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.sticker_img:hover {
+    background-color: #bfbfbf;
+}

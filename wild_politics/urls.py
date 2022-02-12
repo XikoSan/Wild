@@ -51,6 +51,7 @@ urlpatterns = [
                   url(r'', include('war.urls.war')),
 
                   url(r'', include('polls.urls')),
+                  url(r'', include('chat.urls')),
 
                   url('__debug__/', include(debug_toolbar.urls)),
 
