@@ -92,7 +92,8 @@ class ChangeCoat(Bill):
         b_type = 'ac'
         ChangeCoat.objects.filter(pk=self.pk).update(type=b_type, running=False, voting_end=timezone.now())
 
-        for bill in ChangeCoat.objects.filter(image__isnull=False).exclude(pk=self.pk, type__isnull=False):
+        for bill in ChangeCoat.objects.filter(parliament=self.parliament, image__isnull=False).exclude(
+                pk=self.pk).exclude(running=True):
             bill.image.delete(save=True)
 
     @staticmethod
