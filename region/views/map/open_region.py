@@ -25,10 +25,7 @@ def open_region(request, pk):
 
     parties_count = Party.objects.filter(region=region, deleted=False).count()
 
-    if player.residency == region:
-        cost = 0
-    else:
-        cost = round(distance_counting(player.region, region))
+    cost = round(distance_counting(player.region, region))
 
     # # список войн за все время
     # war_types = get_subclasses(War)
