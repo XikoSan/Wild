@@ -1,12 +1,12 @@
 import json
 import math
+
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
-from django.http import HttpResponse
 from django.http import JsonResponse
-from django.shortcuts import redirect
 
 from player.decorators.player import check_player
+from player.logs.cash_log import CashLog
 from player.player import Player
 from region.views.distance_counting import distance_counting
 from storage.models.destroy import Destroy
@@ -90,6 +90,8 @@ def assets_action(request):
                                 # потом убедиться, что у игрока есть деньги, оплатить передачу ресурсов
                                 price, prices = get_transfer_price(trans_mul, int(dest_pk), storages_values)
                                 if player.cash >= price:
+                                    # логируем
+                                    CashLog(player=player, cash=0 - price, activity_txt='trans').save()
                                     # оплата
                                     player.cash -= price
                                     player.save()
