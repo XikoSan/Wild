@@ -54,7 +54,16 @@
         </div>
     </div>
     <div class="col-xs-2 col-sm-2 col-md-2">
-    <a href='/profile/{{ bill.initiator.pk }}' target="_blank">{{ bill.initiator }}</a>
+        <div class="row">
+            <a href='/profile/{{ bill.initiator.pk }}' target="_blank">{{ bill.initiator }}</a>
+        </div>
+        <div class="row" style="margin-top: 15px">
+            {% with player=data|dict_key:'player' %}
+                {% if bill.initiator == player %}
+                <a class="btn btn-danger" onclick="cancel_bill('ExploreResources',{% localize off %}{{ bill.pk }}{% endlocalize %})">Отменить</a>
+                {% endif %}
+            {% endwith %}
+        </div>
     </div>
     <div class="col-xs-2 col-sm-2 col-md-2">
     {% with is_deputy=data|dict_key:'is_deputy' %}
@@ -64,7 +73,7 @@
                 <div class="row">
                     <a class="btn btn-success" onclick="vote_bill('ExploreResources',{% localize off %}{{ bill.pk }}{% endlocalize %},'pro')">Проголосовать</a>
                 </div>
-                <div class="row">
+                <div class="row" style="margin-top: 15px">
                     <a class="btn btn-danger" onclick="vote_bill('ExploreResources',{% localize off %}{{ bill.pk }}{% endlocalize %},'con')">Проголосовать</a>
                 </div>
                 {% else %}
