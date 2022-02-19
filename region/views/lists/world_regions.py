@@ -34,40 +34,50 @@ def world_regions_list(request):
     for line in lines:
         pk_list.append(line.pk)
 
-    characters_pk = Player.objects.only('pk', 'region').filter(region__pk__in=pk_list)
-
-    regions_pop = {}
-    for plr in characters_pk:
-        if plr.region in regions_pop:
-            regions_pop[plr.region] += 1
-        else:
-            regions_pop[plr.region] = 1
-
     r = redis.StrictRedis(host='redis', port=6379, db=0)
 
     # запрашиваем дату последнего обновления онлайна в регионах
-
     # если информацию обновляли менее часа назад
     timestamp = r.hget('regions_online', 'dtime')
     dtime = None
     if timestamp:
         dtime = datetime.fromtimestamp(int(timestamp)).astimezone(pytz.timezone(TIME_ZONE))
 
+    regions_pop = {}
     regions_online = {}
 
     with_timezone = timezone.now().astimezone(pytz.timezone(TIME_ZONE))
 
     if dtime and dtime > with_timezone + timedelta(hours=-1):
 
-        json_dict = r.hget('regions_online', 'online_dict')
-        # получаем задампленный словарь онлойна игроков
-        regions_tmp = json.loads(json_dict)
-        # переводим словарик из текстового ключа в числовой
-        for text_key in regions_tmp.keys():
-            val = regions_tmp[text_key]
-            regions_online[int(text_key)] = val
+        pop_json_dict = r.hget('regions_online', 'pop_dict')
+        if pop_json_dict:
+            # получаем задампленный словарь онлойна игроков
+            regions_pop_tmp = json.loads(pop_json_dict)
+            # переводим словарик из текстового ключа в числовой
+            for text_key in regions_pop_tmp.keys():
+                val = regions_pop_tmp[text_key]
+                regions_pop[int(text_key)] = val
+
+        online_json_dict = r.hget('regions_online', 'online_dict')
+        if online_json_dict:
+            # получаем задампленный словарь онлойна игроков
+            regions_online_tmp = json.loads(online_json_dict)
+            # переводим словарик из текстового ключа в числовой
+            for text_key in regions_online_tmp.keys():
+                val = regions_online_tmp[text_key]
+                regions_online[int(text_key)] = val
 
     else:
+        characters_pk = Player.objects.only('pk', 'region').filter(region__pk__in=pk_list)
+
+        regions_pop = {}
+        for plr in characters_pk:
+            if plr.region in regions_pop:
+                regions_pop[plr.region] += 1
+            else:
+                regions_pop[plr.region] = 1
+
         pk_list = []
         for char in characters_pk:
             pk_list.append(str(char.pk))
@@ -93,6 +103,9 @@ def world_regions_list(request):
             index += 1
 
         # загрузить результаты в кэш
+        pop_json = json.dumps(regions_pop, indent=2, default=str)
+        r.hset('regions_online', 'pop_dict', pop_json)
+
         o_json = json.dumps(regions_online, indent=2, default=str)
         r.hset('regions_online', 'online_dict', o_json)
 
