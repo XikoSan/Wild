@@ -13,6 +13,7 @@ from player.player import Player
 from region.region import Region
 from region.views.time_in_flight import time_in_flight
 from region.views.distance_counting import distance_counting
+from wild_politics.settings import JResponse
 
 # главная страница
 @login_required(login_url='/')
@@ -28,47 +29,74 @@ def map(request):
 
         destination = request.POST.get('region')
 
-        try:
-            destination = Region.objects.get(on_map_id=destination)
-
-        except Region.DoesNotExist:
-            raise Exception("Region is doesn't exist")
+        if Region.objects.filter(pk=destination).exists():
+            destination = Region.objects.get(pk=destination)
 
         else:
-            cost = round(distance_counting(player.region, destination))
+            data = {
+                'header': 'Ошибка полёта',
+                'grey_btn': 'Закрыть',
+                'response': 'Указанный регион не существует',
+            }
+            return JResponse(data)
 
-            if player.cash >= cost:
-                if not player.destination:
-                    player.destination = destination
-                    player.cash -= cost
-                    player.save()
+        cost = round(distance_counting(player.region, destination))
 
-                    cash_log = CashLog(player=player, cash=0-cost, activity_txt='flyin')
-                    cash_log.save()
+        if player.cash >= cost:
+            if not player.destination:
+                player.destination = destination
+                player.cash -= cost
+                player.save()
 
-                    duration = time_in_flight(player, player.destination)
-                    # move_to_another_region.apply_async((player.id,), countdown=duration)
+                cash_log = CashLog(player=player, cash=0-cost, activity_txt='flyin')
+                cash_log.save()
 
-                    start_time = timezone.now() + datetime.timedelta(seconds=duration)
-                    clock, created = ClockedSchedule.objects.get_or_create(clocked_time=start_time)
+                duration = time_in_flight(player, player.destination)
+                # move_to_another_region.apply_async((player.id,), countdown=duration)
 
-                    player.task = PeriodicTask.objects.create(
-                        name=str(player.pk) + ' fly ' + str(player.destination.pk),
-                        task='move_to_another_region',
-                        clocked=clock,
-                        one_off=True,
-                        args=json.dumps([player.pk]),
-                        start_time=timezone.now()
-                    )
-                    player.save()
+                start_time = timezone.now() + datetime.timedelta(seconds=duration)
+                clock, created = ClockedSchedule.objects.get_or_create(clocked_time=start_time)
 
-    response = render(request, 'region/map.html', {
-        'page_name': _('Карта'),
+                player.task = PeriodicTask.objects.create(
+                    name=str(player.pk) + ' fly ' + str(player.destination.pk),
+                    task='move_to_another_region',
+                    clocked=clock,
+                    one_off=True,
+                    args=json.dumps([player.pk]),
+                    start_time=timezone.now()
+                )
+                player.save()
 
-        'player': player,
-        'regions': regions,
-    })
+                data = {
+                    'response': 'ok',
+                }
+                return JResponse(data)
 
-    # if player_settings:
-    #     response.set_cookie(settings.LANGUAGE_COOKIE_NAME, player_settings.language)
-    return response
+            else:
+                data = {
+                    'header': 'Ошибка полёта',
+                    'grey_btn': 'Закрыть',
+                    'response': 'Вы уже в полёте',
+                }
+                return JResponse(data)
+
+        else:
+            data = {
+                'header': 'Ошибка полёта',
+                'grey_btn': 'Закрыть',
+                'response': 'Недостаточно денег. В наличии: $' + str(player.cash) + ' , требуется: $' + str(cost),
+            }
+            return JResponse(data)
+
+    else:
+
+        response = render(request, 'region/map.html', {
+            'page_name': _('Карта'),
+
+            'player': player,
+            'regions': regions,
+        })
+
+        # if player_settings:
+        #     response.set_cookie(settings.LANGUAGE_COOKIE_NAME, player_settings.language)
+        return response

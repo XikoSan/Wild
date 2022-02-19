@@ -4,6 +4,7 @@
 
 {% block for_scripts_and_css %}
 <script src='{% static "js/region_view.js" %}?{{ csrf_token }}'></script>
+<script src='{% static "js/map.js" %}?{{ csrf_token }}'></script>
 {% endblock %}
 
 {% block content %}
@@ -23,11 +24,11 @@
                             {% if player.region == region %}
                                 <button type="submit" onclick="get_residency()" class="save btn btn-success">Получить прописку</button>
                             {% else %}
-                            <form class="to_fly_form" method="post" action="{% url 'map' %}" style="margin-top: 1%">
+                            <div style="margin-top: 1%">
                                 {% csrf_token %}
-                                <input type="hidden" class="region_id" name="region" value="{{ region.on_map_id }}">
-                                <input type="submit" class="btn btn-success" value="{% trans 'Отправиться' %}, - {{ cost }}" style="font-weight: bold; font-size: 15px;"/>
-                            </form>
+                                <input type="hidden" class="region_id" name="region" value="{{ region.pk }}">
+                                <input type="submit" class="to_fly btn btn-success" value="{% trans 'Отправиться' %}, - {{ cost }}" style="font-weight: bold; font-size: 15px;"/>
+                            </div>
                             {% endif %}
                         {% else %}
                             <button type="submit" disabled class="save btn btn-danger">Недоступно в полете</button>
@@ -36,11 +37,11 @@
                         {% if player.region == region %}
                             <button type="submit" disabled class="save btn btn-default">Регион прописки</button>
                         {% else %}
-                            <form class="to_fly_form" method="post" action="{% url 'map' %}" style="margin-top: 1%">
-                                {% csrf_token %}
-                                <input type="hidden" class="region_id" name="region" value="{{ region.on_map_id }}">
-                                <input type="submit" class="btn btn-success" value="{% trans 'Отправиться' %}, - {{ cost }}" style="font-weight: bold; font-size: 15px;"/>
-                            </form>
+                        <div style="margin-top: 1%">
+                            {% csrf_token %}
+                            <input type="hidden" class="region_id" name="region" value="{{ region.pk }}">
+                            <input type="submit" class="to_fly btn btn-success" value="{% trans 'Отправиться' %}, - {{ cost }}" style="font-weight: bold; font-size: 15px;"/>
+                        </div>
                         {% endif %}
                     {% endif %}
                 </div>
@@ -209,5 +210,11 @@
             </div>
             <div class="col-xs-1 col-sm-1 col-md-1" align="center"></div>
         </div>
+        <script>
+           if ( document.getElementsByClassName("to_fly").length > 0 ){
+               var button = document.getElementsByClassName("to_fly")[0];
+               button.addEventListener ("click", to_fly)
+           }
+        </script>
 </div>
 {% endblock %}

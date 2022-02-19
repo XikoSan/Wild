@@ -47,17 +47,11 @@
             </font></b>
         </div>
         {% if not player.destination and region != player.region %}
-        <form class="to_fly_form" method="post" action="{% url 'map' %}" style="margin-top: 1%">
+        <div style="margin-top: 1%">
             {% csrf_token %}
-            <input type="hidden" class="region_id" name="region" value="{{ region.on_map_id }}">
-            <input type="submit" class="btn btn-success" value="{% trans 'Отправиться' %}, - {{ cost }}" style="font-weight: bold; font-size: 15px;"/>
-        </form>
-        {% endif %}
-
-        {% if not player.destination %}
-<!--        <a class="btn btn-success" href="/fly/region/{{ region.on_map_id }}" id="go_fly" {% if duration == 0 %}style="display: none"{% endif %}><b><font size="3" color="white">-->
-<!--            {% trans 'to_fly' %}, - {{ cost }}-->
-<!--        </font></b></a>-->
+            <input type="hidden" class="region_id" name="region" value="{{ region.pk }}">
+            <input type="submit" class="to_fly btn btn-success" value="{% trans 'Отправиться' %}, - {{ cost }}" style="font-weight: bold; font-size: 15px;"/>
+        </div>
         {% endif %}
     </div>
     <div class="row" align="center" style="margin-top: 5%">
@@ -96,20 +90,20 @@
             </b>
         </div>
     </div>
-<!--    <div class="row" style="margin-top: 1%">-->
-<!--        <div class="col-xs-6 col-sm-6 col-md-6">-->
-<!--            <b>-->
-<!--                <font size="3" color="white">{% trans 'ore_stocks' %}: </font>-->
-<!--            </b>-->
-<!--        </div>-->
-<!--        <div class="col-xs-6 col-sm-6 col-md-6">-->
-<!--            <b>-->
-<!--                <font size="3" color="#D2361C">{{ region.ore_has }}</font>-->
-<!--                <font size="3" color="white"> / </font>-->
-<!--                <font size="3" color="#D2361C">{{ region.ore_cap }}</font>-->
-<!--            </b>-->
-<!--        </div>-->
-<!--    </div>-->
+    <div class="row" style="margin-top: 1%">
+        <div class="col-xs-6 col-sm-6 col-md-6" align="right">
+            <b>
+                <font size="3" color="white">{% trans 'Руда' %}: </font>
+            </b>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6">
+            <b>
+                <font size="3" color="#D2361C">{{ region.ore_has }}</font>
+                <font size="3" color="white"> / </font>
+                <font size="3" color="#D2361C">{{ region.ore_cap }}</font>
+            </b>
+        </div>
+    </div>
 <!--    <div class="line"></div>-->
 <!--    <div class="row" style="margin-top: 5%">-->
 <!--        <div class="col-xs-6 col-sm-6 col-md-6">-->

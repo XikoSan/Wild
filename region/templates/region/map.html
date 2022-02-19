@@ -2,6 +2,13 @@
 {% load floor_to_tens %}
 
 {% block content %}
+
+{% load static %}
+
+{% block for_scripts_and_css %}
+<script src='{% static "js/map.js" %}?{{ csrf_token }}'></script>
+{% endblock %}
+
  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 <div style="position: relative;">
@@ -35,6 +42,11 @@
            div.id = id + '_info';
 
            div.innerHTML = data;
+
+           if ( div.getElementsByClassName("to_fly").length > 0 ){
+               var button = div.getElementsByClassName("to_fly")[0];
+               button.addEventListener ("click", to_fly)
+           }
            document.getElementById('district_info').appendChild(div);
            document.getElementById('district_info').style.display = "block";
        }
