@@ -38,7 +38,7 @@ def vote_bill(request):
 
                     if bill_type in bills_dict.keys():
 
-                        if bills_dict[bill_type].objects.filter(pk=int(request.POST.get('pk'))).exists():
+                        if bills_dict[bill_type].objects.filter(running=True, pk=int(request.POST.get('pk'))).exists():
 
                             bill = bills_dict[bill_type].objects.select_for_update().get(pk=int(request.POST.get('pk')))
 
