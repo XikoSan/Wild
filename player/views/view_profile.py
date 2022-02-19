@@ -54,7 +54,6 @@ def view_profile(request, pk):
                                                         'char': char,
                                                         'dtime': dtime,
                                                         'user_link': user_link,
-                                                        # 'cash_rating': cash_rating[0],
-                                                        # 'char_settings': char_settings,
-                                                        # 'countdown': UntilRecharge(player)
+
+                                                        'page_name': char.nickname,
                                                         })

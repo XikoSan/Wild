@@ -70,4 +70,5 @@ def my_profile(request):
                                                    # 'cash_rating': cash_rating[0],
                                                    # 'player_settings': player_settings,
                                                    # 'countdown': UntilRecharge(player)
+                                                   'page_name': player.nickname,
                                                    })
