@@ -1,6 +1,10 @@
+import json
+from datetime import datetime
+from datetime import timedelta
+
+import pytz
 import redis
 from django.contrib.auth.decorators import login_required
-from django.db.models import Count
 from django.shortcuts import render
 from django.utils import timezone
 from django.utils.translation import ugettext as _
@@ -9,6 +13,7 @@ from player.decorators.player import check_player
 from player.player import Player
 from player.views.lists.get_thing_page import get_thing_page
 from region.region import Region
+from wild_politics.settings import TIME_ZONE
 
 
 # список всех регионов игры
@@ -40,29 +45,55 @@ def world_regions_list(request):
 
     r = redis.StrictRedis(host='redis', port=6379, db=0)
 
-    pk_list = []
-    for char in characters_pk:
-        pk_list.append(str(char.pk))
-    # по списку pk игроков мы получаем их онлайн в том же порядке
-    online_list = r.hmget('online', pk_list)
+    # запрашиваем дату последнего обновления онлайна в регионах
 
-    # момент завершения выборов - сейчас. Выбираем, чтобы timestamp был одинаков для всех
-    timestamp_now = timezone.now().timestamp()
+    # если информацию обновляли менее часа назад
+    dtime = datetime.fromtimestamp(int(r.hget('regions_online', 'dtime'))).astimezone(pytz.timezone(TIME_ZONE))
 
     regions_online = {}
 
-    index = 0
-    for char in characters_pk:
-        timestamp = None
-        timestamp = online_list[index]
-        if timestamp:
-            # если заходил последние сутки
-            if int(timestamp) > timestamp_now - 86400:
-                if char.region in regions_online:
-                    regions_online[char.region] += 1
-                else:
-                    regions_online[char.region] = 1
-        index += 1
+    with_timezone = timezone.now().astimezone(pytz.timezone(TIME_ZONE))
+
+    if dtime > timezone.now() + timedelta(hours=-1):
+
+        json_dict = r.hget('regions_online', 'online_dict')
+        # получаем задампленный словарь онлойна игроков
+        regions_tmp = json.loads(json_dict)
+        # переводим словарик из текстового ключа в числовой
+        for text_key in regions_tmp.keys():
+            val = regions_tmp[text_key]
+            regions_online[int(text_key)] = val
+
+    else:
+        pk_list = []
+        for char in characters_pk:
+            pk_list.append(str(char.pk))
+        # по списку pk игроков мы получаем их онлайн в том же порядке
+        online_list = r.hmget('online', pk_list)
+
+        # момент завершения выборов - сейчас. Выбираем, чтобы timestamp был одинаков для всех
+        timestamp_now = timezone.now().timestamp()
+
+        regions_online = {}
+
+        index = 0
+        for char in characters_pk:
+            timestamp = None
+            timestamp = online_list[index]
+            if timestamp:
+                # если заходил последние сутки
+                if int(timestamp) > timestamp_now - 86400:
+                    if char.region.pk in regions_online:
+                        regions_online[char.region.pk] += 1
+                    else:
+                        regions_online[char.region.pk] = 1
+            index += 1
+
+        # загрузить результаты в кэш
+        o_json = json.dumps(regions_online, indent=2, default=str)
+        r.hset('regions_online', 'online_dict', o_json)
+
+        r.hset('regions_online', 'dtime', str(timezone.now().timestamp()).split('.')[0])
 
     # отправляем в форму
     return render(request, 'lists/world_regions_list.html', {

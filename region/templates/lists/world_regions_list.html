@@ -38,8 +38,8 @@
                                      </div>
                                      <div class="col-xs-2 col-sm-2 col-md-2"></div>
                                      <div class="col-xs-2 col-sm-2 col-md-2">
-                                         {% if region in regions_online %}
-                                        <h3>{{ regions_online|dict_key:region }}</h3>
+                                         {% if region.pk in regions_online %}
+                                        <h3>{{ regions_online|dict_key:region.pk }}</h3>
                                          {% else %}
                                         <h3>0</h3>
                                          {% endif %}
