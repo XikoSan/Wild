@@ -167,7 +167,7 @@ def produce_good(request):
                 return JsonResponse(data)
 
         # списать энергию игрока
-        player.energy_cons(energy_cost, mul)
+        player.energy_cons(energy_cost)
         # создаём лог производства
         production_log = ProductionLog(player=player, prod_storage=storage, prod_result=good)
         # для каждого сырья в схеме
