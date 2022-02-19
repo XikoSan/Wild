@@ -48,13 +48,16 @@ def world_regions_list(request):
     # запрашиваем дату последнего обновления онлайна в регионах
 
     # если информацию обновляли менее часа назад
-    dtime = datetime.fromtimestamp(int(r.hget('regions_online', 'dtime'))).astimezone(pytz.timezone(TIME_ZONE))
+    timestamp = r.hget('regions_online', 'dtime')
+    dtime = None
+    if timestamp:
+        dtime = datetime.fromtimestamp(int(timestamp)).astimezone(pytz.timezone(TIME_ZONE))
 
     regions_online = {}
 
     with_timezone = timezone.now().astimezone(pytz.timezone(TIME_ZONE))
 
-    if dtime > timezone.now() + timedelta(hours=-1):
+    if dtime and dtime > with_timezone + timedelta(hours=-1):
 
         json_dict = r.hget('regions_online', 'online_dict')
         # получаем задампленный словарь онлойна игроков
