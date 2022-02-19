@@ -74,9 +74,9 @@ def world_regions_list(request):
         regions_pop = {}
         for plr in characters_pk:
             if plr.region in regions_pop:
-                regions_pop[plr.region] += 1
+                regions_pop[plr.region.pk] += 1
             else:
-                regions_pop[plr.region] = 1
+                regions_pop[plr.region.pk] = 1
 
         pk_list = []
         for char in characters_pk:
