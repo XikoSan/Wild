@@ -4,6 +4,7 @@ from django.conf.urls import url
 from player.views.banned import banned
 from player.views.lists.region_players import region_players_list
 from player.views.lists.world_players import world_players_list
+from player.views.repost_reward import repost_reward
 from .views.change_bio import change_bio
 from .views.change_nickname import change_nickname
 from .views.expense_energy import expense_energy
@@ -35,11 +36,17 @@ urlpatterns = [
     url(r'^recharge/$', expense_energy, name='expense_energy'),
 
     # открытие страницы персонажа игрока
+
     url(r'^profile/$', my_profile, name='my_profile'),
     # изменить никнейм
     url(r'^change_nickname/$', change_nickname, name='change_nickname'),
+
     # изменить биографию
     url(r'^change_bio/$', change_bio, name='change_bio'),
+
+    # Начать учёт активностей
+    url(r'^reward_4_repost', repost_reward, name='reward_4_repost'),
+
     # Открытие профиля персонажа для просмотра(другими игроками)
     url(r'^profile/(?P<pk>\d+)/$', view_profile, name='view_profile'),
 

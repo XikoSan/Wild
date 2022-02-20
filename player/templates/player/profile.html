@@ -3,6 +3,7 @@
 {% load bootstrap3 %}
 {% load i18n %}
 {% load tz %}
+{% load profile_blocks.repost_tab %}
 {% block for_scripts_and_css %}
 <script src='{% static "cropper.js" %}?{{ csrf_token }}'></script>
 <script src='{% static "profile.js" %}?{{ csrf_token }}'></script>
@@ -142,9 +143,9 @@
                 <ul class="nav nav-tabs">
 <!--                    <li class="active"><a data-toggle="tab" href="#info">{% trans 'player_info' %}</a></li>-->
                     <li class="active"><a data-toggle="tab" href="#info">Информация</a></li>
-<!--                    {% if player.account.socialaccount_set.all.0.provider == 'vk' %}-->
-<!--                    <li><a data-toggle="tab" href="#repost_tab">Золото за репост</a></li>-->
-<!--                    {% endif %}-->
+                    {% if player.account.socialaccount_set.all.0.provider == 'vk' %}
+                    <li><a data-toggle="tab" href="#repost_tab">Золото за репост</a></li>
+                    {% endif %}
                 </ul>
                 <div class="tab-content">
                     <div id="info" class="tab-pane fade in active" style="min-width: 600px">
@@ -245,10 +246,11 @@
                             </div>
                         </div>
                     </div>
-<!--                    {% if player.account.socialaccount_set.all.0.provider == 'vk' %}-->
-<!--                    <div id="repost_tab" class="tab-pane fade" style="min-width: 600px">-->
-<!--                    </div>-->
-<!--                    {% endif %}-->
+                    {% if player.account.socialaccount_set.all.0.provider == 'vk' %}
+                    <div id="repost_tab" class="tab-pane fade" style="min-width: 600px">
+                        {% repost_tab player %}
+                    </div>
+                    {% endif %}
                 </div>
             </div>
             <div class="col-xs-1 col-sm-1 col-md-1" align="center"></div>

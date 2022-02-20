@@ -1,3 +1,39 @@
+jQuery(document).ready(function ($) {
+    $('#gold_4_repost').submit(function(e){
+        e.preventDefault();
+        var sending_data = $(this).serialize();
+        $.ajax({
+            type: "POST",
+            url: "/reward_4_repost",
+            data:  sending_data,
+            cache: false,
+            success: function(data){
+                if (data.response == 'ok'){
+                    //запрашиваем свежие данные состояния валют и энергии игрока
+                    $.ajax({
+                        type: "GET",
+                        url: "/status/0/",
+                        dataType: "html",
+                        cache: false,
+                        success: function(data){
+
+                            result = JSON.parse(data);
+
+                            $('#cash').html(numberWithSpaces(result.cash));
+                            $('#gold').html(numberWithSpaces(result.gold));
+
+                            $('#energy_status_text').html(numberWithSpaces(result.energy));
+                        }
+                    });
+                }
+                else{
+                    display_modal('notify', data.header, data.response, null, data.grey_btn);
+                }
+            }
+        });
+    });
+});
+
 function open_bio(){
 
     $('#bio_edit').hide();
