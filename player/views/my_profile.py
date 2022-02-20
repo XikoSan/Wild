@@ -4,7 +4,7 @@ from django.db import connection
 from django.shortcuts import redirect
 from django.shortcuts import render, get_object_or_404
 from PIL import Image
-
+from player.logs.gold_log import GoldLog
 from django.core.files import File
 from player.player import Player
 from player.decorators.player import check_player
@@ -29,6 +29,10 @@ def my_profile(request):
 
             player.image = form.cleaned_data['image']
             player.gold -= 100
+
+            gold_log = GoldLog(player=player, gold=-100, activity_txt='avatar')
+            gold_log.save()
+
             player.save()
 
             x = form.cleaned_data['x']

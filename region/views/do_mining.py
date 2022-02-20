@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.db import transaction
 
 from player.decorators.player import check_player
+from player.logs.gold_log import GoldLog
 from player.player import Player
 # from django.contrib.auth.models import User
 # from django.db.models import Q
@@ -111,7 +112,7 @@ def do_mining(request):
             mined_result['gold'] = int(count / 10)
 
             # player.cash += count
-            # cash_log = CashLog(player=player, cash=count, activity_txt='mine')
+            gold_log = GoldLog(player=player, gold=int(count / 10), activity_txt='mine')
             # mined_result['cash'] = count
 
             player.region.gold_has -= Decimal((count / 10) * 0.01)
@@ -196,8 +197,8 @@ def do_mining(request):
                 player.energy -= count
                 player.save()
 
-            if cash_log:
-                cash_log.save()
+            if gold_log:
+                gold_log.save()
 
             player.region.save()
 

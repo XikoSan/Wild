@@ -1,10 +1,11 @@
 from re import findall
 
 from django.contrib import admin
-from player.logs.print_log import log
-from player.logs.cash_log import CashLog
-from .player import Player
+
 from party.position import PartyPosition
+from player.logs.cash_log import CashLog
+from player.logs.gold_log import GoldLog
+from .player import Player
 
 
 class CashLogAdmin(admin.ModelAdmin):
@@ -16,9 +17,19 @@ class CashLogAdmin(admin.ModelAdmin):
     ordering = ('-dtime',)
 
 
+class GoldLogAdmin(admin.ModelAdmin):
+    list_display = ('player', 'gold', 'activity_txt')
+    list_filter = ('activity_txt',)
+    search_fields = ('player__nickname',)
+    raw_id_fields = ('player',)
+    date_hierarchy = 'dtime'
+    ordering = ('-dtime',)
+
+
 class PLayerAdmin(admin.ModelAdmin):
     search_fields = ['nickname', 'user_ip']
     raw_id_fields = ('account', 'party',)
+
     # Функциия для отображения у игрока только тех постов,
     # которые относятся к текущему клану игрока
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
@@ -48,3 +59,4 @@ class PLayerAdmin(admin.ModelAdmin):
 # Register your models here.
 admin.site.register(Player, PLayerAdmin)
 admin.site.register(CashLog, CashLogAdmin)
+admin.site.register(GoldLog, GoldLogAdmin)

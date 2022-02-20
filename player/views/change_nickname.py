@@ -2,6 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.db import transaction
 
 from player.decorators.player import check_player
+from player.logs.gold_log import GoldLog
 from player.player import Player
 from wild_politics.settings import JResponse
 
@@ -28,6 +29,10 @@ def change_nickname(request):
 
         player.nickname = nickname
         player.gold -= 50
+
+        gold_log = GoldLog(player=player, gold=-50, activity_txt='reward')
+        gold_log.save()
+
         player.save()
 
         data = {

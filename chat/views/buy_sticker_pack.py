@@ -4,6 +4,7 @@ from django.db import transaction
 from chat.models.sticker_pack import StickerPack
 from chat.models.stickers_ownership import StickersOwnership
 from player.decorators.player import check_player
+from player.logs.gold_log import GoldLog
 from player.player import Player
 from wild_politics.settings import JResponse
 
@@ -55,6 +56,10 @@ def buy_sticker_pack(request):
             return JResponse(data)
 
         player.gold -= pack.price
+
+        gold_log = GoldLog(player=player, gold=0 - pack.price, activity_txt='stick')
+        gold_log.save()
+
         player.save()
 
         new_entry = StickersOwnership(owner=player,

@@ -4,15 +4,13 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 from django.utils import timezone
-from party.logs.membership_log import MembershipLog
+
 from party.forms import NewPartyForm
+from party.logs.membership_log import MembershipLog
 from party.logs.party_apply import PartyApply
 from party.position import PartyPosition
-from player.decorators.player import check_player
+from player.logs.gold_log import GoldLog
 from player.player import Player
-
-
-# from gamecore.tasks import GoPrims
 
 
 # вкладка "Партия" главной страницы
@@ -56,6 +54,10 @@ def new_party(request):
                     player.party = new_party
                     # Даем игроку пост в новой партии
                     player.party_post = leader_post
+
+                    gold_log = GoldLog(player=player, gold=-10, activity_txt='party')
+                    gold_log.save()
+
                     player.save()
                     # Логировние: создаем запись о вступлении
                     party_log = MembershipLog(player=player, dtime=timezone.now(),
