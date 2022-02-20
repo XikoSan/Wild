@@ -27,7 +27,7 @@ def do_mining(request):
     if request.method == "POST":
 
         player = Player.objects.get(account=request.user)
-        cash_log = None
+        gold_log = None
 
         if player.destination:
             data = {
