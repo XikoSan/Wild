@@ -7,6 +7,7 @@ from player.views.get_subclasses import get_subclasses
 from state.models.bills.bill import Bill
 from state.models.parliament.deputy_mandate import DeputyMandate
 from state.models.parliament.parliament import Parliament
+from state.tasks import run_bill
 from wild_politics.settings import JResponse
 
 
@@ -62,6 +63,20 @@ def vote_bill(request):
                                         'grey_btn': 'Закрыть',
                                     }
                                     return JResponse(data)
+
+                                # если досрочное принятие разрешено
+                                if bill.accept_ahead:
+                                    # если после голосования голосов стало больше, чем процент досрочного принятия
+                                    #           то принимаем законопроект
+                                    if bill.votes_pro.count() * 100 / DeputyMandate.objects.filter(
+                                            parliament=parliament).count() >= bill.ahead_percent \
+                                            or bill.votes_con.count() * 100 / DeputyMandate.objects.filter(
+                                            parliament=parliament).count() >= bill.ahead_percent:
+
+                                        run_bill.apply_async(
+                                            (bill.__class__.__name__, bill.pk),
+                                            retry=False
+                                        )
 
                                 data = {
                                     'response': 'ok',

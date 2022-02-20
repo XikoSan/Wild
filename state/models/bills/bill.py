@@ -60,6 +60,12 @@ class Bill(models.Model):
     # переодическая таска
     task = models.OneToOneField(PeriodicTask, on_delete=models.DO_NOTHING, null=True, blank=True)
 
+    # возможность принять закон досрочно
+    accept_ahead = True
+
+    # процент голосов от всего парламента, который нужен для принятия досрочно
+    ahead_percent = 51
+
     # Указание абстрактности класса
     class Meta:
         abstract = True
