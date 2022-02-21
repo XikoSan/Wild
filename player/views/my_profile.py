@@ -26,14 +26,14 @@ def my_profile(request):
 
         form = ImageForm(request.POST, request.FILES)
         if form.is_valid():
-
-            player.image = form.cleaned_data['image']
             # не списывать деньги, если аватара нет
             if player.image:
                 player.gold -= 100
 
                 gold_log = GoldLog(player=player, gold=-100, activity_txt='avatar')
                 gold_log.save()
+
+            player.image = form.cleaned_data['image']
 
             player.save()
 
