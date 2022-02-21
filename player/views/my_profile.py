@@ -21,17 +21,19 @@ def my_profile(request):
     player_settings = None
 
     if request.method == 'POST':
-        if player.gold < 100:
+        if player.image and player.gold < 100:
             return redirect('my_profile')
 
         form = ImageForm(request.POST, request.FILES)
         if form.is_valid():
 
             player.image = form.cleaned_data['image']
-            player.gold -= 100
+            # не списывать деньги, если аватара нет
+            if player.image:
+                player.gold -= 100
 
-            gold_log = GoldLog(player=player, gold=-100, activity_txt='avatar')
-            gold_log.save()
+                gold_log = GoldLog(player=player, gold=-100, activity_txt='avatar')
+                gold_log.save()
 
             player.save()
 
