@@ -27,6 +27,14 @@ def change_nickname(request):
 
         nickname = request.POST.get('nickname')
 
+        if nickname == player.nickname:
+            data = {
+                'response': 'Никнейм не изменился',
+                'header': 'Переименование',
+                'grey_btn': 'Закрыть',
+            }
+            return JResponse(data)
+
         player.nickname = nickname
         player.gold -= 50
 
