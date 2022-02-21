@@ -1,14 +1,12 @@
 # coding=utf-8
-import sys
-from PIL import Image
-from django.core.files.uploadedfile import InMemoryUploadedFile
+import datetime
+
 from django.db import models
-from django.utils.translation import gettext_lazy, ugettext as _
-from io import BytesIO
+from django.utils import timezone
+from django.utils.translation import gettext_lazy
 
 from region.region import Region
 from state.models.state import State
-from storage.models.storage import Storage
 
 
 class Treasury(models.Model):
@@ -22,6 +20,9 @@ class Treasury(models.Model):
     # регион размещения
     region = models.ForeignKey(Region, default=None, null=True, on_delete=models.SET_NULL, blank=True,
                                verbose_name='Регион размещения', related_name="treasury_placement")
+
+    # дата актуализации
+    actualize_dtime = models.DateTimeField(default=None, null=True, blank=True, verbose_name='Дата акутализации')
 
     # наличные на складе
     cash = models.BigIntegerField(default=0, verbose_name=gettext_lazy('storage_cash'))
@@ -87,6 +88,40 @@ class Treasury(models.Model):
 
     # БМП
     ifv = models.IntegerField(default=0, verbose_name=gettext_lazy('ifv'))
+
+    # получить Казну с акутализированными значениями запасов
+    # любые постоянные траты Казны должны быть прописаны тут
+    @staticmethod
+    def get_instance(**params):
+
+        treasury = None
+        # получаем запрошенную инстанцию Склада
+        if Treasury.objects.filter(**params).exists():
+            treasury = Treasury.objects.get(**params)
+        else:
+            return treasury
+
+        # если дата последней актуализации пуста
+        if not treasury.actualize_dtime:
+            # запоминаем дату
+            treasury.actualize_dtime = timezone.now()
+            treasury.station += 1
+
+        # инчае если с момента последней актуализации прошла минута
+        elif (timezone.now() - treasury.actualize_dtime).total_seconds() >= 60:
+            # узнаем сколько раз по минуте прошло
+            counts = (timezone.now() - treasury.actualize_dtime).total_seconds() // 60
+
+            treasury.station += int(counts)
+
+            # остаток от деления понадобится чтобы указать время обновления
+            modulo = (timezone.now() - treasury.actualize_dtime).total_seconds() % 60
+
+            # запоминаем дату
+            treasury.actualize_dtime = timezone.now() - datetime.timedelta(seconds=modulo)
+
+        treasury.save()
+        return treasury
 
     def __str__(self):
         return self.state.title

@@ -12,7 +12,7 @@ def treasury(state):
 
     if Treasury.objects.filter(state=state).exists():
         # находим казну государства
-        treasury = Treasury.objects.get(state=state)
+        treasury = Treasury.get_instance(state=state)
 
         locks = {}
         for lock in TreasuryLock.actual.filter(lock_treasury=treasury):

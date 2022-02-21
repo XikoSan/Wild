@@ -103,7 +103,7 @@ class ExploreResources(Bill):
     # выполнить законопроект
     def do_bill(self):
         b_type = None
-        treasury = Treasury.objects.get(state=self.parliament.state)
+        treasury = Treasury.get_instance(state=self.parliament.state)
 
         if treasury.cash != 0:
 

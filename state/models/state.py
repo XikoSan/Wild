@@ -78,7 +78,7 @@ class State(models.Model):
         if region.state:
             # казна
             treasury_cl = apps.get_model('state.Treasury')
-            treasury = treasury_cl.objects.get(state=region.state, deleted=False)
+            treasury = treasury_cl.get_instance(state=region.state, deleted=False)
 
             # если налог в регион не равен налогу в государстве
             if getattr(region, mode + '_tax') != getattr(region.state, mode + '_tax'):
