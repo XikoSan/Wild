@@ -30,7 +30,7 @@ def change_nickname(request):
         player.nickname = nickname
         player.gold -= 50
 
-        gold_log = GoldLog(player=player, gold=-50, activity_txt='reward')
+        gold_log = GoldLog(player=player, gold=-50, activity_txt='nick')
         gold_log.save()
 
         player.save()
