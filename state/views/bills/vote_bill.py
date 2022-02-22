@@ -68,11 +68,8 @@ def vote_bill(request):
                                 if bill.accept_ahead:
                                     # если после голосования голосов стало больше, чем процент досрочного принятия
                                     #           то принимаем законопроект
-                                    if bill.votes_pro.count() * 100 / DeputyMandate.objects.filter(
-                                            parliament=parliament).count() >= bill.ahead_percent \
-                                            or bill.votes_con.count() * 100 / DeputyMandate.objects.filter(
-                                            parliament=parliament).count() >= bill.ahead_percent:
-
+                                    if bill.votes_pro.count() * 100 / DeputyMandate.objects.filter(player__isnull=False, parliament=parliament).count() >= bill.ahead_percent \
+                                            or bill.votes_con.count() * 100 / DeputyMandate.objects.filter(player__isnull=False, parliament=parliament).count() >= bill.ahead_percent:
                                         run_bill.apply_async(
                                             (bill.__class__.__name__, bill.pk),
                                             retry=False
