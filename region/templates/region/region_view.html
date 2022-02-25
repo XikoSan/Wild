@@ -167,6 +167,18 @@
                         <div class="row flex">
                             <div class="col-xs-6 col-sm-6 col-md-6">
                                 <b>
+                                    <font size="4">{% trans 'Уровень Госпиталя' %}: </font>
+                                </b>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <b>
+                                    <font size="4">{{ region.med_lvl }}</font>
+                                </b>
+                            </div>
+                        </div>
+                        <div class="row flex">
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <b>
                                     <font size="4">{% trans 'Рейтинг Госпиталя' %}: </font>
                                 </b>
                             </div>
@@ -176,35 +188,52 @@
                                 </b>
                             </div>
                         </div>
-<!--                        <div class="row flex" >-->
-<!--                            <div class="col-xs-6 col-sm-6 col-md-6">-->
-<!--                                <b>-->
-<!--                                    <font size="4">{% trans 'reg_taxes' %}: </font>-->
-<!--                                </b>-->
-<!--                            </div>-->
-<!--                            <div class="col-xs-6 col-sm-6 col-md-6">-->
-<!--                                <b>-->
-<!--                                    <font size="4" color="gold">{{ region.gold_tax }}%</font>-->
-<!--                                    <font size="4"> / </font>-->
-<!--                                    <font size="4" color="black">{{ region.oil_tax }}%</font>-->
-<!--                                    <font size="4"> / </font>-->
-<!--                                    <font size="4" color="#D2361C">{{ region.ore_tax }}%</font>-->
-<!--                                </b>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="row flex" >-->
-<!--                            <div class="col-xs-6 col-sm-6 col-md-6">-->
-<!--                                <b>-->
-<!--                                    <font size="4">{% trans 'reg_med_lvl' %}: </font>-->
-<!--                                </b>-->
-<!--                            </div>-->
-<!--                            <div class="col-xs-6 col-sm-6 col-md-6">-->
-<!--                                <b>-->
-<!--                                    <font size="4">{{ region.med_lvl }}</font>-->
-<!--                                </b>-->
-<!--                            </div>-->
-<!--                        </div>-->
-
+                        <hr>
+                        <div class="row flex">
+                            <div class="col-xs-12 col-sm-12 col-md-12" align="center">
+                                <b>
+                                    <font size="4">{% trans 'Региональные налоги' %}: </font>
+                                </b>
+                            </div>
+                        </div>
+                        <div class="row flex">
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <b>
+                                    <font size="4">{% trans 'На финансирование' %}: </font>
+                                </b>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <b>
+                                    <font size="4" color="#85bb65">{{ region.cash_tax }}%</font>
+                                </b>
+                            </div>
+                        </div>
+                        <div class="row flex">
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <b>
+                                    <font size="4">{% trans 'На добычу' %}: </font>
+                                </b>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <b>
+                                    <font size="4" color="black">{{ region.oil_tax }}%</font>
+                                    <font size="4"> / </font>
+                                    <font size="4" color="#D2361C">{{ region.ore_tax }}%</font>
+                                </b>
+                            </div>
+                        </div>
+                        <div class="row flex">
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <b>
+                                    <font size="4">{% trans 'На торговлю' %}: </font>
+                                </b>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <b>
+                                    <font size="4" color="#85bb65">{{ region.trade_tax }}%</font>
+                                </b>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
