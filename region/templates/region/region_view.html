@@ -80,9 +80,9 @@
                             </div>
                             <div class="col-xs-6 col-sm-6 col-md-6">
                                 {% if region.state %}
-                                    {% if region.state.image_link %}
+                                    {% if region.state.image %}
                                     <!--Картинка партии-->
-                                    <img src="{{ region.state.image_link }}" width="30" height="30" onclick="window.location.href = '/state/{{ region.state.pk }}/'" style="cursor: pointer">
+                                    <img src="{{ region.state.image.url }}" width="30" height="30" onclick="window.location.href = '/state/{{ region.state.pk }}/'" style="cursor: pointer">
                                     {% else %}
                                     <img src="{% static 'img/congress.svg' %}" width="30" height="30" onclick="window.location.href = '/state/{{ region.state.pk }}/'" style="cursor: pointer">
                                     {% endif %}
