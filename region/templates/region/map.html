@@ -7,10 +7,11 @@
 
 {% block for_scripts_and_css %}
 <script src='{% static "js/map.js" %}?{{ csrf_token }}'></script>
+<script src='{% static "js/leaflet.js" %}?{{ csrf_token }}'></script>
+ <link rel="stylesheet" href="{% static 'css/leaflet.css' %}?{{ csrf_token }}"/>
 {% endblock %}
 
- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
- <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
 <div style="position: relative;">
   <div id="mapid" style="z-index: 1"></div>
   <div id="district_info" style="z-index: 2; display:none; position: absolute; background-color:rgba(13, 13, 13, 0.5);
@@ -55,9 +56,10 @@
 
 
      var mymap = L.map('mapid').setView([{{ player.region.latitude }}, {{ player.region.longitude }}], {{ player.region.zoom }});
-     L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+     L.tileLayer('/static/tiles/{z}/{x}/{y}.png', {
      attribution: '',
-     maxZoom: 18,
+     minZoom: 2,
+     maxZoom: 7,
      id: 'mapbox/streets-v11',
      tileSize: 512,
      zoomOffset: -1,
