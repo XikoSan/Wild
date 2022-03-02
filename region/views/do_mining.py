@@ -119,7 +119,7 @@ def do_mining(request):
 
         elif resource == 'oil':
             # если запасов ресурса недостаточно
-            if player.region.oil_has < Decimal((count / 10) * 0.01):
+            if int(player.region.oil_has * 100) < count / 10:
                 data = {
                     # 'response': _('mul_ten_enrg_req'),
                     'response': 'Запасов нефти в регионе недостаточно для добычи',
@@ -155,7 +155,7 @@ def do_mining(request):
 
         elif resource == 'ore':
             # если запасов ресурса недостаточноы
-            if player.region.ore_has < Decimal((count / 10) * 0.01):
+            if int(player.region.ore_has * 100) < count / 10:
                 data = {
                     # 'response': _('mul_ten_enrg_req'),
                     'response': 'Запасов руды в регионе недостаточно для добычи',
