@@ -71,6 +71,52 @@
                                     <b><font size="4">{{ state.foundation_date|timezone:player.time_zone|date:"d.m.Y H:i" }}</font></b>
                                 </div>
                             </div>
+                            <hr>
+                            <div class="row flex">
+                                <div class="col-xs-12 col-sm-12 col-md-12" align="center">
+                                    <b>
+                                        <font size="4">{% trans 'Государственные налоги' %}: </font>
+                                    </b>
+                                </div>
+                            </div>
+                            <div class="row flex">
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <b>
+                                        <font size="4">{% trans 'На финансирование' %}: </font>
+                                    </b>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <b>
+                                        <font size="4" color="#85bb65">{{ state.cash_tax }}%</font>
+                                    </b>
+                                </div>
+                            </div>
+                            <div class="row flex">
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <b>
+                                        <font size="4">{% trans 'На добычу' %}: </font>
+                                    </b>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <b>
+                                        <font size="4" color="black">{{ state.oil_tax }}%</font>
+                                        <font size="4"> / </font>
+                                        <font size="4" color="#D2361C">{{ state.ore_tax }}%</font>
+                                    </b>
+                                </div>
+                            </div>
+                            <div class="row flex">
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <b>
+                                        <font size="4">{% trans 'На торговлю' %}: </font>
+                                    </b>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <b>
+                                        <font size="4" color="#85bb65">{{ state.trade_tax }}%</font>
+                                    </b>
+                                </div>
+                            </div>
                         </div>
                         <div id="regions" class="tab-pane fade" style="overflow-x: hidden; height: 500px">
                             <div class="row flex">
