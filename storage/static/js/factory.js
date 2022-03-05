@@ -154,7 +154,7 @@ jQuery(document).ready(function ($) {
                         $('#cash').attr('title', locked_txt + numberWithSpaces(result.locked) ).tooltip('fixTitle');
 
                         $('#gold').html(numberWithSpaces(result.gold));
-                        $('#energy').html(energy_txt + result.energy + '%');
+                        $('#energy').html(result.energy + '%');
                         max_value = Math.floor(result.energy/schema[crude]) * schema[crude]
                     }
                 });
