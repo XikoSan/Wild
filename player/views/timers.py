@@ -1,5 +1,7 @@
+import datetime
+from datetime import timedelta
+
 from django.utils import timezone
-from datetime import datetime, timedelta
 
 
 # подсчет времени до возможности пополнить энергию
@@ -15,6 +17,19 @@ def until_recharge(player):
         return dif
     else:
         return 0
+
+
+# подсчет времени до возможности есст. прироста энергии
+def until_increase(player):
+    # узнаем сколько раз по десять минут прошло
+    counts = (timezone.now() - player.natural_refill).total_seconds() // 600
+    # время в будущем, когда произойдет пополнение
+    future_time = player.natural_refill + datetime.timedelta(seconds=(counts+1) * 600)
+
+    if player.energy == 100:
+        return 0
+    else:
+        return abs((future_time - timezone.now()).total_seconds())
 
 
 # универсальный подсчитыватель времени в секундах до конца процесса

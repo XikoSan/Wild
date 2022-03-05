@@ -100,6 +100,43 @@ window.onload = function countdown() {
             }
         }
     }
+
+    if (document.getElementById("increase-countdown") != undefined){
+        var inc_elem = document.getElementById("increase-countdown");
+
+        //получает строку
+        var inc_sec_string = $('#increase-countdown').attr('data-text');
+        var inc_sec = parseInt(inc_sec_string);
+
+        if (inc_sec == 0) {
+            $('#increase_line').hide()
+        } else {
+
+            var inc_h = inc_sec/3600 ^ 0 ;
+            var inc_m = (inc_sec-inc_h*3600)/60 ^ 0 ;
+            var inc_s = inc_sec-inc_h*3600-inc_m*60 ;
+            inc_elem.textContent = (inc_m<10?"0"+inc_m:inc_m)+":"+(inc_s<10?"0"+inc_s:inc_s);
+            inc_sec = --inc_sec;
+
+
+            //запускаем функцию с повторением раз 1 секунду
+            var inc_id = setInterval(increase_frame, 1000);
+            function increase_frame() {
+                if (inc_sec == 0) {
+                    $('#energy').html(parseInt($('#energy').html()) + parseInt($('#increase_value').attr('data-value')) + '%');
+                    $('#increase_line').hide()
+                    clearInterval(inc_id);
+                } else {
+
+                    var inc_h = inc_sec/3600 ^ 0 ;
+                    var inc_m = (inc_sec-inc_h*3600)/60 ^ 0 ;
+                    var inc_s = inc_sec-inc_h*3600-inc_m*60 ;
+                    inc_elem.textContent = (inc_m<10?"0"+inc_m:inc_m)+":"+(inc_s<10?"0"+inc_s:inc_s);
+                    inc_sec = --inc_sec;
+                }
+            }
+        }
+    }
 }
 
 
@@ -118,7 +155,7 @@ function actualize(){
             $('#cash').attr('title', locked_txt + numberWithSpaces(result.locked) ).tooltip('fixTitle');
 
             $('#gold').html(numberWithSpaces(result.gold));
-            $('#energy').html(energy_txt + result.energy + '%');
+            $('#energy').html(result.energy + '%');
         }
     });
 }
@@ -144,7 +181,7 @@ function recharge(){
                     cache: false,
                     success: function(result){
                         if (result.response == 'ok'){
-                            $('#energy').html(energy_txt + '100%');
+                            $('#energy').html('100%');
                             $('#refill-countdown').attr('data-text', 600);
                             callable_countdown();
                         }
