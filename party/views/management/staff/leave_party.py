@@ -1,9 +1,7 @@
 # from celery import uuid
 # from celery.task.control import revoke
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
 from django.http import JsonResponse
-from django.shortcuts import redirect
 from django.utils import timezone
 
 from party.logs.membership_log import MembershipLog
@@ -13,6 +11,8 @@ from party.primaries.primaries_bulletin import PrimBulletin
 from party.views.management.staff.reject_all_requests import reject_all_requests
 from player.decorators.player import check_player
 from player.player import Player
+from player.views.get_subclasses import get_subclasses
+from state.models.bills.bill import Bill
 from state.models.parliament.deputy_mandate import DeputyMandate
 
 
@@ -57,6 +57,24 @@ def leave_party(request):
 
             # если партия состояла в парламенте
             if DeputyMandate.objects.filter(party=player.party).exists():
+                # если глава сам был депутатом
+                if DeputyMandate.objects.filter(party=player.party, player=player).exists():
+                    # предварительно получим парламент, из мандата игрока
+                    parliament = DeputyMandate.objects.get(party=player.party, player=player).parliament
+
+                    # УБИРАЕМ ЕГО ГОЛОСА ИЗ АКТИВНЫХ ЗП В ПАРЛАМЕНТЕ:
+                    bills_classes = get_subclasses(Bill)
+                    # для каждого видоа ЗП
+                    for bill_class in bills_classes:
+                        # если есть активные ЗП этого вида
+                        if bill_class.objects.filter(running=True, parliament=parliament).exists():
+                            for bill in bill_class.objects.filter(running=True, parliament=parliament):
+                                if player in bill.votes_pro.all():
+                                    bill.votes_pro.remove(player)
+
+                                elif player in bill.votes_con.all():
+                                    bill.votes_con.remove(player)
+
                 # лишаем его такого счастья
                 DeputyMandate.objects.filter(party=player.party).update(player=None)
 
@@ -108,6 +126,22 @@ def leave_party(request):
 
             # если персонаж был депутатом
             if DeputyMandate.objects.filter(player=player).exists():
+                # предварительно получим парламент, из мандата игрока
+                parliament = DeputyMandate.objects.get(party=player.party, player=player).parliament
+
+                # УБИРАЕМ ЕГО ГОЛОСА ИЗ АКТИВНЫХ ЗП В ПАРЛАМЕНТЕ:
+                bills_classes = get_subclasses(Bill)
+                # для каждого видоа ЗП
+                for bill_class in bills_classes:
+                    # если есть активные ЗП этого вида
+                    if bill_class.objects.filter(running=True, parliament=parliament).exists():
+                        for bill in bill_class.objects.filter(running=True, parliament=parliament):
+                            if player in bill.votes_pro.all():
+                                bill.votes_pro.remove(player)
+
+                            elif player in bill.votes_con.all():
+                                bill.votes_con.remove(player)
+
                 # лишаем его такого счастья
                 mandate = DeputyMandate.objects.get(player=player)
                 mandate.player = None

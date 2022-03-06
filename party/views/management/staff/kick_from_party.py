@@ -7,6 +7,8 @@ from party.primaries.primaries import Primaries
 from party.primaries.primaries_bulletin import PrimBulletin
 from player.decorators.player import check_player
 from player.player import Player
+from player.views.get_subclasses import get_subclasses
+from state.models.bills.bill import Bill
 from state.models.parliament.deputy_mandate import DeputyMandate
 
 
@@ -50,6 +52,22 @@ def kick_from_party(request, pk):
 
                 # если персонаж был депутатом
                 if DeputyMandate.objects.filter(player=kickin_player).exists():
+                    # предварительно получим парламент, из мандата игрока
+                    parliament = DeputyMandate.objects.get(party=kickin_player.party, player=kickin_player).parliament
+
+                    # УБИРАЕМ ЕГО ГОЛОСА ИЗ АКТИВНЫХ ЗП В ПАРЛАМЕНТЕ:
+                    bills_classes = get_subclasses(Bill)
+                    # для каждого видоа ЗП
+                    for bill_class in bills_classes:
+                        # если есть активные ЗП этого вида
+                        if bill_class.objects.filter(running=True, parliament=parliament).exists():
+                            for bill in bill_class.objects.filter(running=True, parliament=parliament):
+                                if kickin_player in bill.votes_pro.all():
+                                    bill.votes_pro.remove(kickin_player)
+
+                                elif kickin_player in bill.votes_con.all():
+                                    bill.votes_con.remove(kickin_player)
+
                     # лишаем его такого счастья
                     mandate = DeputyMandate.objects.get(player=kickin_player)
                     mandate.player = None
