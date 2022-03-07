@@ -8,7 +8,7 @@ from party.primaries.primaries_bulletin import PrimBulletin
 from player.decorators.player import check_player
 from player.player import Player
 from player.views.get_subclasses import get_subclasses
-from state.models.bills.bill import Bill
+from bill.models.bill import Bill
 from state.models.parliament.deputy_mandate import DeputyMandate
 
 

@@ -5,7 +5,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.utils import timezone
 
-from state.models.bills.bill import Bill
+from bill.models.bill import Bill
 from state.models.parliament.deputy_mandate import DeputyMandate
 from state.models.parliament.parliament import Parliament
 from state.models.treasury import Treasury
@@ -230,6 +230,7 @@ class PurchaseAuction(Bill):
 
     # Свойства класса
     class Meta:
+
         verbose_name = "Закупка товаров"
         verbose_name_plural = "Закупки товаров"
 

@@ -10,7 +10,7 @@ from django_celery_beat.models import ClockedSchedule, PeriodicTask
 from party.party import Party
 from player.player import Player
 from player.views.get_subclasses import get_subclasses
-from state.models.bills.bill import Bill
+from bill.models.bill import Bill
 from state.models.parliament.bulletin import Bulletin
 from state.models.parliament.deputy_mandate import DeputyMandate
 from state.models.parliament.parliament_party import ParliamentParty

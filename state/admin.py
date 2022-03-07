@@ -1,16 +1,8 @@
 from re import findall
 
 from django.contrib import admin
-from django.contrib.admin import widgets
-from django.db import models
 
 from region.region import Region
-from state.models.bills.change_coat import ChangeCoat
-from state.models.bills.change_taxes import ChangeTaxes
-from state.models.bills.change_title import ChangeTitle
-from state.models.bills.construction import Construction
-from state.models.bills.explore_resources import ExploreResources
-from state.models.bills.purchase_auction import PurchaseAuction
 from state.models.capital import Capital
 from state.models.parliament.bulletin import Bulletin
 from state.models.parliament.deputy_mandate import DeputyMandate
@@ -60,28 +52,6 @@ class DeputyMandateAdmin(admin.ModelAdmin):
     raw_id_fields = ('party', 'player', 'parliament')
 
 
-class BillAdmin(admin.ModelAdmin):
-    search_fields = ['initiator', 'parliament']
-
-    list_filter = ("running", "type",)
-
-    list_display = ['get_obj_name', 'running', 'type', ]
-
-    def get_obj_name(self, obj):
-        return obj.__str__()
-
-    formfield_overrides = {
-        models.ManyToManyField: {'widget': widgets.FilteredSelectMultiple(
-            verbose_name='Голоса',
-            is_stacked=False
-        )},
-    }
-
-
-class AuctionAdmin(BillAdmin):
-    list_display = ('voting_start', 'good', 'buy_value', 'cash_cost')
-
-
 class TreasuryLockAdmin(admin.ModelAdmin):
     model = TreasuryLock
     list_display = ['get_state_title', 'lock_good', 'lock_count', ]
@@ -102,10 +72,3 @@ admin.site.register(Bulletin)
 admin.site.register(DeputyMandate, DeputyMandateAdmin)
 admin.site.register(ParliamentParty)
 admin.site.register(Capital, CapitalAdmin)
-
-admin.site.register(ExploreResources, BillAdmin)
-admin.site.register(Construction, BillAdmin)
-admin.site.register(ChangeTitle, BillAdmin)
-admin.site.register(ChangeCoat, BillAdmin)
-admin.site.register(ChangeTaxes, BillAdmin)
-admin.site.register(PurchaseAuction, AuctionAdmin)

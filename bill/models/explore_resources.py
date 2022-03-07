@@ -1,5 +1,4 @@
 # coding=utf-8
-import math
 from decimal import Decimal
 
 from django.db import models
@@ -9,7 +8,7 @@ from django.utils import timezone
 from django.utils.translation import gettext_lazy
 from state.models.parliament.deputy_mandate import DeputyMandate
 from region.region import Region
-from state.models.bills.bill import Bill
+from bill.models.bill import Bill
 from state.models.treasury import Treasury
 from state.models.parliament.parliament import Parliament
 
@@ -188,6 +187,7 @@ class ExploreResources(Bill):
 
     # Свойства класса
     class Meta:
+
         verbose_name = "Разведка ресурсов"
         verbose_name_plural = "Разведки ресурсов"
 

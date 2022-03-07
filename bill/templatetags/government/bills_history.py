@@ -3,7 +3,7 @@ from itertools import chain
 from django import template
 
 register = template.Library()
-from state.models.bills.bill import Bill
+from bill.models.bill import Bill
 from player.views.get_subclasses import get_subclasses
 
 

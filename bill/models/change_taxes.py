@@ -8,11 +8,10 @@ from django.utils import timezone
 from django.utils.translation import gettext_lazy
 
 from region.region import Region
-from state.models.bills.bill import Bill
+from bill.models.bill import Bill
 from state.models.parliament.deputy_mandate import DeputyMandate
 from state.models.parliament.parliament import Parliament
 from state.models.state import State
-from storage.models.storage import Storage
 
 
 # Построить здание
@@ -216,6 +215,7 @@ class ChangeTaxes(Bill):
 
     # Свойства класса
     class Meta:
+
         verbose_name = "Изменение налогов"
         verbose_name_plural = "Изменения налогов"
 

@@ -7,7 +7,7 @@ from django.utils import timezone
 from django.utils.translation import gettext_lazy
 
 from region.region import Region
-from state.models.bills.bill import Bill
+from bill.models.bill import Bill
 from state.models.parliament.deputy_mandate import DeputyMandate
 from state.models.parliament.parliament import Parliament
 from state.models.treasury import Treasury
@@ -218,6 +218,7 @@ class Construction(Bill):
 
     # Свойства класса
     class Meta:
+
         verbose_name = "Строительство"
         verbose_name_plural = "Строительства"
 
