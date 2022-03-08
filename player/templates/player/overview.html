@@ -64,7 +64,7 @@
                             {% for message in messages %}
                                 {% if message|dict_key:'content' != 'ban_chat' and message|dict_key:'content' != 'delete_message' %}
                         <div class="row" style="margin-top: 1%">
-                            <div class='message {% if message|dict_key:"author" == player.pk %}message--user-2{% else %}message--user-1{% endif %}' data-counter='{{  message|dict_key:"counter" }}' data-sender='{{  message|dict_key:"author" }}'>
+                            <div class='message {% if message|dict_key:"author" == player.pk %}message--user-2{% else %}message--user-1{% endif %}'  {% localize off %} data-counter='{{  message|dict_key:"counter" }}' {% endlocalize %} data-sender='{{  message|dict_key:"author" }}'>
                                 <div class='massage__name' style="cursor: pointer;">{{  message|dict_key:"author_nickname" }}</div>
                                 <time class='message__time'>
                                     {{ message|dict_key:'dtime' }}
