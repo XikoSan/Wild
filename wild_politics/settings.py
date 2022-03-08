@@ -263,10 +263,10 @@ SESSION_COOKIE_AGE = 43200
 DATA_UPLOAD_MAX_MEMORY_SIZE = 5242880
 
 # отладочная печать в Docker
-level = 'DEBUG'
-# level = 'WARNING'
-if DEBUG:
-    level = 'DEBUG'
+# level = 'DEBUG'
+level = 'WARNING'
+# if DEBUG:
+#     level = 'DEBUG'
 
 ACCOUNT_ADAPTER = 'wild_politics.account_adapter.AccountAdapter'
 
@@ -281,7 +281,8 @@ LOGGING = {
     },
     'root': {
         'handlers': ['console'],
-        'level': 'INFO',
+        # 'level': 'INFO',
+        'level': 'WARNING',
     },
 }
 
