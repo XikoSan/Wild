@@ -284,12 +284,6 @@ LOGGING = {
         # 'level': 'INFO',
         'level': 'WARNING',
     },
-    'daphne': {
-        'handlers': [
-            'console',
-        ],
-        'level': 'DEBUG'
-    },
 }
 
 
