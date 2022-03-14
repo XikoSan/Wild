@@ -1,10 +1,6 @@
 # coding=utf-8
-import sys
-from io import BytesIO
 
-from PIL import Image
 from django.apps import apps
-from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.utils import timezone
@@ -21,13 +17,13 @@ class State(models.Model):
     foundation_date = models.DateTimeField(default=timezone.now, blank=True, null=True)
     # тип государства
     stateTypeChoices = (
-        ('parl', 'Парламентская республика'),
-        ('pres', 'Президентская республика'),
+        ('Temporary', 'Временное правительство'),
+        ('Presidential', 'Президентская республика'),
     )
     type = models.CharField(
-        max_length=4,
+        max_length=15,
         choices=stateTypeChoices,
-        default='parl',
+        default='Temporary',
     )
     # ---------- Налоги ----------
     # Деньги:

@@ -46,6 +46,7 @@ urlpatterns = [
                   url(r'', include('party.urls.staff')),
 
                   url(r'', include('state.urls.government')),
+                  url(r'', include('gov.urls.government')),
                   url(r'', include('bill.urls.bills')),
 
                   url(r'', include('war.urls.war')),

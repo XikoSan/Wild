@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.templatetags.static import static
 from django.utils.translation import ugettext as _
-
+from gov.models.presidential_voting import PresidentialVoting
 from party.party import Party
 from player.decorators.player import check_player
 from player.player import Player
@@ -15,7 +15,7 @@ from polls.models.poll import Poll
 from region.region import Region
 from wild_politics.settings import TIME_ZONE, sentry_environment
 from chat.models.stickers_ownership import StickersOwnership
-
+from gov.models.president import President
 
 # главная страница
 @login_required(login_url='/')
@@ -78,6 +78,16 @@ def overview(request):
 
     polls = Poll.actual.all()
 
+    president_post = has_voting = None
+    # если есть гос
+    if player.region.state:
+        # если в госе есть през
+        if President.objects.filter(state=player.region.state).exists():
+            president_post = President.objects.get(state=player.region.state)
+            # если идут выборы президента
+            if PresidentialVoting.objects.filter(running=True, president=president_post).exists():
+                has_voting = True
+
     groups = list(player.account.groups.all().values_list('name', flat=True))
     page = 'player/overview.html'
     if 'redesign' in groups:
@@ -105,6 +115,9 @@ def overview(request):
         'http_use': http_use,
 
         'polls': polls,
+
+        'has_voting': has_voting,
+        'president': president_post,
 
     })
 

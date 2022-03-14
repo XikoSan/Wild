@@ -7,7 +7,7 @@ from player.player import Player
 from region.region import Region
 from state.models.capital import Capital
 from state.models.state import State
-
+from gov.models.president import President
 
 @login_required(login_url='/')
 @check_player
@@ -19,6 +19,10 @@ def open_state(request, pk):
 
     state = get_object_or_404(State, pk=pk)
     capital = Capital.objects.get(state=state)
+
+    president = None
+    if President.objects.filter(state=state).exists():
+        president = President.objects.get(state=state)
 
     regions_state = Region.objects.filter(state=state)
 
@@ -50,6 +54,7 @@ def open_state(request, pk):
         'player': player,
         'state': state,
         'capital': capital.region,
+        'president': president,
 
         'players_count': players_count,
         'parties_count': parties_count,

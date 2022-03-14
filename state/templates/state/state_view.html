@@ -38,6 +38,38 @@
                         <div id="data" class="tab-pane fade in active" style="overflow-x: hidden; height: 500px">
                             <div class="row flex" style="margin-top: 15px">
                                 <div class="col-xs-6 col-sm-6 col-md-6" align="left">
+                                    <b><font size="4">Форма правления:</font></b>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <b><font size="4">{{ state.get_type_display }}</font></b>
+                                </div>
+                            </div>
+                            {% if president %}
+                            <div class="row flex" >
+                                <div class="col-xs-6 col-sm-6 col-md-6" align="left">
+                                    <b><font size="4">Президент:</font></b>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <b>
+                                        {% if president.leader %}
+                                        <a href='/profile/{{ president.leader.pk }}' target="_blank">
+                                            {% if president.leader.image %}
+                                                <img src="{{ president.leader.image.url }}" width="30" height="30">
+                                            {% else %}
+                                                <img src="{% static 'img/nopic.png' %}" width="30" height="30">
+                                            {% endif %}
+                                            <font size="4">{{ president.leader.nickname }}</font>
+                                        </a>
+                                        {% else %}
+                                        <font size="4">не избран</font>
+                                        {% endif %}
+                                    </b>
+                                </div>
+                            </div>
+                            {% endif %}
+                            <hr>
+                            <div class="row flex" style="margin-top: 15px">
+                                <div class="col-xs-6 col-sm-6 col-md-6" align="left">
                                     <b><font size="4">Жителей:</font></b>
                                 </div>
                                 <div class="col-xs-6 col-sm-6 col-md-6">

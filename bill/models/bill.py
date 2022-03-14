@@ -66,6 +66,9 @@ class Bill(models.Model):
     # процент голосов от всего парламента, который нужен для принятия досрочно
     ahead_percent = 51
 
+    # процент голосов "за", который надо преодолеть, чтобы принять закон
+    acceptation_percent = 50
+
     # Указание абстрактности класса
     class Meta:
         abstract = True
@@ -93,8 +96,8 @@ class Bill(models.Model):
 
     # формируем переодическую таску
     def setup_task(self):
-        start_time = timezone.now() + datetime.timedelta(days=1)
-        # start_time = timezone.now() + datetime.timedelta(minutes=1)
+        # start_time = timezone.now() + datetime.timedelta(days=1)
+        start_time = timezone.now() + datetime.timedelta(minutes=1)
 
         clock, created = ClockedSchedule.objects.get_or_create(clocked_time=start_time)
 

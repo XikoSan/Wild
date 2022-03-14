@@ -16,7 +16,11 @@ from state.models.parliament.deputy_mandate import DeputyMandate
 from state.models.parliament.parliament_party import ParliamentParty
 from .models.parliament.parliament import Parliament
 from .models.parliament.parliament_voting import ParliamentVoting
-
+from gov.models.president import President
+from gov.models.presidential_voting import PresidentialVoting
+from gov.models.vote import Vote
+from party.primaries.primaries_leader import PrimariesLeader
+from region.region import Region
 
 @shared_task(name="run_bill")
 def run_bill(bill_type, bill_pk):
@@ -31,10 +35,19 @@ def run_bill(bill_type, bill_pk):
     if bill.type:
         # nothing to do here...
         return
-    if bill.votes_pro.all().count() > bill.votes_con.all().count():
-        bill.do_bill()
-    else:
+
+    if bill.votes_pro.count() == bill.votes_con.count() == 0:
         bills_dict[bill_type].objects.filter(pk=bill_pk).update(running=False, voting_end=timezone.now(), type='rj')
+
+    else:
+        # считаем процент голосов за
+        pro_percent = bill.votes_pro.count() * 100 / (bill.votes_pro.count() + bill.votes_con.count())
+        # если голосов "за" больше, и процент голосов больше порога
+        if bill.votes_pro.all().count() > bill.votes_con.all().count()\
+                and pro_percent > bill.acceptation_percent:
+            bill.do_bill()
+        else:
+            bills_dict[bill_type].objects.filter(pk=bill_pk).update(running=False, voting_end=timezone.now(), type='rj')
 
     task_identificator = bill.task.id
     # убираем таску у экземпляра модели
@@ -108,15 +121,15 @@ def finish_elections(parl_id):
     DeputyMandate.objects.filter(parliament=parliament).delete()
 
     # ищем законы этого парламента
-    # bills_types = get_subclasses(Bill)
-    # # для каждого типа законопроектов:
-    # for type in bills_types:
-    #     # если есть активные законы в этом парламенте
-    #     if type.objects.filter(parliament=parliament, running=True).exists():
-    #         for bill in type.objects.filter(parliament=parliament, running=True):
-    #             # снимаем голоса
-    #             bill.votes_pro.clear()
-    #             bill.votes_con.clear()
+    bills_types = get_subclasses(Bill)
+    # для каждого типа законопроектов:
+    for type in bills_types:
+        # если есть активные законы в этом парламенте
+        if type.objects.filter(parliament=parliament, running=True).exists():
+            for bill in type.objects.filter(parliament=parliament, running=True):
+                # снимаем голоса
+                bill.votes_pro.clear()
+                bill.votes_con.clear()
 
     # если есть хоть один голос на выборах:
     if not all_votes_count == 0:
@@ -201,6 +214,101 @@ def start_elections(parl_id):
     parliament_voting.save()
 
     start_task = PeriodicTask.objects.get(pk=parliament.task.pk)
+
+    start_schedule, created = ClockedSchedule.objects.get_or_create(pk=start_task.clocked.pk)
+    start_schedule.clocked_time = timezone.now() + datetime.timedelta(days=7)
+    # start_schedule.clocked_time = timezone.now() + datetime.timedelta(minutes=7)
+    start_schedule.save()
+
+
+# таска выключающая выборы
+@shared_task(name="finish_presidential")
+def finish_presidential(pres_id):
+    # включаем начало выборов
+    president = President.objects.get(pk=pres_id)
+    if president.task is not None:
+        president.task.enabled = True
+        president.task.save()
+    # выключаем выборы
+    PresidentialVoting.objects.filter(president=president, running=True).update(running=False,
+                                                                                voting_end=timezone.now())
+    elections = PresidentialVoting.objects.get(president=president, task__isnull=False)
+
+    # ================================================================
+
+    # получаем все голоса на этих выборах
+    all_votes_count = Vote.objects.filter(voting=elections).count()
+
+    # если есть хоть один голос на выборах:
+    if not all_votes_count == 0:
+        all_votes = Vote.objects.filter(voting=elections)
+
+        # словарь с кандидатами и количеством голосов за них
+        bulltins_dic = {}
+        # список людей, за которых есть голоса
+        challengers_with_vote = []
+        # для каждой партии подсчитываем количество бюллетеней
+        for vote in all_votes:
+            if vote.challenger in bulltins_dic:
+                bulltins_dic[vote.challenger] += 1
+            else:
+                # вносим в словарик
+                bulltins_dic[vote.challenger] = 1
+                challengers_with_vote.append(vote.challenger)
+
+        max_votes = 0
+        max_cadidate = None
+        for candidate in challengers_with_vote:
+            if bulltins_dic[candidate] > max_votes:
+                max_votes = bulltins_dic[candidate]
+                max_cadidate = candidate
+
+        president.leader = max_cadidate
+        president.save()
+
+    # ================================================================
+
+    finish_task = PeriodicTask.objects.get(pk=elections.task.pk)
+    finish_schedule, created = ClockedSchedule.objects.get_or_create(pk=finish_task.clocked.pk)
+    # finish_schedule.clocked_time = timezone.now() + datetime.timedelta(minutes=7)
+    finish_schedule.clocked_time = timezone.now() + datetime.timedelta(days=7)
+    finish_schedule.save()
+
+
+# таска включающая президентские выборы
+@shared_task(name="start_presidential")
+def start_presidential(pres_id):
+    president = President.objects.select_related('task').prefetch_related('task__interval').only(
+        'task__interval__every').get(
+        pk=pres_id)
+
+    # получаем таску из предыдущих праймериз, чтобы переложить в новые
+    old_elections = None
+    if PresidentialVoting.objects.filter(president=president, task__isnull=False).exists():
+        old_elections = PresidentialVoting.objects.select_related('task').get(president=president, task__isnull=False)
+
+    voting, created = PresidentialVoting.objects.select_related('task').get_or_create(president=president,
+                                                                                       voting_start=timezone.now())
+
+    prim_leaders = PrimariesLeader.objects.filter(
+        party__in=Party.objects.filter(deleted=False, region__in=Region.objects.filter(state=president.state)))
+
+    for prim_leader in prim_leaders:
+        voting.candidates.add(prim_leader.leader)
+
+    if old_elections:
+        voting.task = old_elections.task
+        old_elections.task = None
+        old_elections.save()
+
+    if voting.task:
+        voting.task.enabled = True
+        voting.task.save()
+
+    voting.running = True
+    voting.save()
+
+    start_task = PeriodicTask.objects.get(pk=president.task.pk)
 
     start_schedule, created = ClockedSchedule.objects.get_or_create(pk=start_task.clocked.pk)
     start_schedule.clocked_time = timezone.now() + datetime.timedelta(days=7)

@@ -76,6 +76,7 @@ INSTALLED_APPS = [
     'party',
     'player',
     'bill',
+    'gov',
     'state',
     'storage',
     'war',
