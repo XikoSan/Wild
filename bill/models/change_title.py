@@ -34,6 +34,8 @@ class ChangeTitle(Bill):
                 'grey_btn': 'Закрыть',
                 'response': 'Новое название не должно быть пустым',
             }
+        else:
+            new_title = new_title[:50]
 
         # ура, все проверили
         bill = ChangeTitle(
