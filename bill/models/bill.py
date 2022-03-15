@@ -96,8 +96,8 @@ class Bill(models.Model):
 
     # формируем переодическую таску
     def setup_task(self):
-        # start_time = timezone.now() + datetime.timedelta(days=1)
-        start_time = timezone.now() + datetime.timedelta(minutes=1)
+        start_time = timezone.now() + datetime.timedelta(days=1)
+        # start_time = timezone.now() + datetime.timedelta(minutes=1)
 
         clock, created = ClockedSchedule.objects.get_or_create(clocked_time=start_time)
 
