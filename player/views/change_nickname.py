@@ -27,6 +27,14 @@ def change_nickname(request):
 
         nickname = request.POST.get('nickname')
 
+        if nickname == '':
+            data = {
+                'response': 'Никнейм не может быть пустым',
+                'header': 'Переименование',
+                'grey_btn': 'Закрыть',
+            }
+            return JResponse(data)
+
         if nickname == player.nickname:
             data = {
                 'response': 'Никнейм не изменился',
@@ -35,7 +43,7 @@ def change_nickname(request):
             }
             return JResponse(data)
 
-        player.nickname = nickname
+        player.nickname = nickname[:30]
         player.gold -= 50
 
         gold_log = GoldLog(player=player, gold=-50, activity_txt='nick')
