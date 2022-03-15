@@ -10,10 +10,12 @@ jQuery(document).ready(function ($) {
         }
         else{
             $("#buy_row").hide();
-
-            $("#stocks_value").html( numberWithSpaces(total_stocks[$('#storage').val()][$('#good').val()]) );
             $("#stocks").show();
-            $('#count').attr("max", total_stocks[$('#storage').val()][$('#good').val()]);
+
+            if($('#good').val() !== null){
+                $("#stocks_value").html( numberWithSpaces(total_stocks[$('#storage').val()][$('#good').val()]) );
+                $('#count').attr("max", total_stocks[$('#storage').val()][$('#good').val()]);
+            }
         }
     });
 
@@ -29,11 +31,11 @@ jQuery(document).ready(function ($) {
         if($('#action').val() == 'sell'){
             if($('#good').val() !== null){
                 $("#stocks_value").html( numberWithSpaces(total_stocks[$('#storage').val()][$('#good').val()]) );
+                $('#count').attr("max", total_stocks[$('#storage').val()][$('#good').val()]);
             }
             else{
                 $("#stocks_value").html('?');
             }
-            $('#count').attr("max", total_stocks[$('#storage').val()][$('#good').val()]);
         }
     });
 

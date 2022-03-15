@@ -31,6 +31,21 @@
 </script>
 <form id="new_offer_form" role="form">
     <div class="row" style="margin-top: 1%;">
+        <div class="col-xs-12 col-sm-12 col-md-12" align="center">
+            Новое торговое предложение
+        </div>
+    </div>
+    <div class="row" style="margin-top: 1%;">
+        <div class="col-xs-12 col-sm-12 col-md-12" align="center">
+            Доступно: {% if free_offers > 0 %}{{ free_offers }}{% else %}0{% endif %} / {{ total_offers }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12" align="center">
+            (+5 за каждый Склад)
+        </div>
+    </div>
+    <div class="row" style="margin-top: 1%;">
         <div class="col-xs-6 col-sm-6 col-md-6" align="right">
             Действие
         </div>

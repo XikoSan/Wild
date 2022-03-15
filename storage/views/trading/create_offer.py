@@ -51,6 +51,15 @@ def create_offer(request):
             storages_pk.append(storage.pk)
 
         if int(souce_pk) in storages_pk:
+            # проверка на количество уже созданных предложений
+            if (storages.count() * 5) - TradeOffer.actual.filter(owner_storage__owner__pk=player.pk).count() <= 0:
+                data = {
+                    'header': 'Ошибка при создании',
+                    'grey_btn': 'Закрыть',
+                    'response': 'Достигнут лимит на количество торговых предложений',
+                }
+                return JsonResponse(data)
+
             # проверка, существует ли такой ресурс вообще
             good = request.POST.get('good')
             if not hasattr(Storage, good):
