@@ -17,7 +17,7 @@ def change_bio(request):
 
         bio = request.POST.get('bio')
 
-        player.bio = bio
+        player.bio = bio[:250]
         player.save()
 
         data = {
