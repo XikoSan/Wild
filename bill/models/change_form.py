@@ -128,7 +128,7 @@ class ChangeForm(Bill):
 
         data = {'bill': self, 'title': self._meta.verbose_name_raw, 'player': player}
 
-        return data, 'state/gov/reviewed/change_title.html'
+        return data, 'state/gov/reviewed/change_form.html'
 
     def __str__(self):
         return self.get_form_display()
