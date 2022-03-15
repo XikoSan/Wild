@@ -123,7 +123,12 @@ window.onload = function countdown() {
             var inc_id = setInterval(increase_frame, 1000);
             function increase_frame() {
                 if (inc_sec == 0) {
-                    $('#energy').html(parseInt($('#energy').html()) + parseInt($('#increase_value').attr('data-value')) + '%');
+                    if (parseInt($('#energy').html()) + parseInt($('#increase_value').attr('data-value')) > 100){
+                        $('#energy').html('100%');
+                    }
+                    else{
+                        $('#energy').html(parseInt($('#energy').html()) + parseInt($('#increase_value').attr('data-value')) + '%');
+                    }
                     $('#increase_line').hide()
                     clearInterval(inc_id);
                 } else {
