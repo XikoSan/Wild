@@ -63,9 +63,9 @@ class Construction(Bill):
                 'response': 'ID региона должен быть целым числом',
             }
 
-        if Region.objects.filter(pk=construction_region).exists():
+        if Region.objects.filter(pk=construction_region, state=parliament.state).exists():
 
-            region = Region.objects.get(pk=construction_region)
+            region = Region.objects.get(pk=construction_region, state=parliament.state)
 
             schemas_list = []
             for schema in Construction.building_schemas:

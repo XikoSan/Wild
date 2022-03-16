@@ -48,11 +48,23 @@ class ChangeForm(Bill):
 
         new_form = request.POST.get('new_state_form')
 
+        choice_list = []
+
+        for choice in Bill.stateTypeChoices:
+            choice_list.append(choice[0])
+
         if new_form == '':
             return {
                 'header': 'Новый законопроект',
                 'grey_btn': 'Закрыть',
                 'response': 'Новая форма государства должна быть указана',
+            }
+
+        elif not new_form in choice_list:
+            return {
+                'header': 'Новый законопроект',
+                'grey_btn': 'Закрыть',
+                'response': 'Такой формы государства не существует',
             }
 
         # ура, все проверили

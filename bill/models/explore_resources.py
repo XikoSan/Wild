@@ -58,9 +58,9 @@ class ExploreResources(Bill):
                 'response': 'ID региона должен быть целым числом',
             }
 
-        if Region.objects.filter(pk=explore_region).exists():
+        if Region.objects.filter(pk=explore_region, state=parliament.state).exists():
 
-            region = Region.objects.get(pk=explore_region)
+            region = Region.objects.get(pk=explore_region, state=parliament.state)
 
             resources_list = []
             for resource in ExploreResources.resExpChoices:

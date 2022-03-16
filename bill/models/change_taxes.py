@@ -57,7 +57,7 @@ class ChangeTaxes(Bill):
 
     @staticmethod
     def new_bill(request, player, parliament):
-        pass
+
         if ChangeTaxes.objects.filter(running=True, initiator=player).exists():
             return {
                 'header': 'Новый законопроект',
@@ -84,8 +84,8 @@ class ChangeTaxes(Bill):
                     'response': 'ID региона должен быть целым числом',
                 }
 
-            if Region.objects.filter(pk=bill_region_pk).exists():
-                region = Region.objects.get(pk=bill_region_pk)
+            if Region.objects.filter(pk=bill_region_pk, state=parliament.state).exists():
+                region = Region.objects.get(pk=bill_region_pk, state=parliament.state)
 
             else:
                 return {
