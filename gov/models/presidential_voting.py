@@ -41,7 +41,7 @@ class PresidentialVoting(models.Model):
                 name=f'{self.president.state.title}, id {self.president.pk} pres elections').exists():
             start_time = timezone.now() + datetime.timedelta(days=1)
             # start_time = timezone.now() + datetime.timedelta(minutes=1)
-            clock, created = ClockedSchedule.objects.get_or_ccandreate(clocked_time=start_time)
+            clock, created = ClockedSchedule.objects.get_or_create(clocked_time=start_time)
 
             self.task = PeriodicTask.objects.create(
                 name=f'{self.president.state.title}, id {self.president.pk} pres elections',
