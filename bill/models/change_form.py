@@ -50,7 +50,7 @@ class ChangeForm(Bill):
 
         choice_list = []
 
-        for choice in Bill.stateTypeChoices:
+        for choice in ChangeForm.stateTypeChoices:
             choice_list.append(choice[0])
 
         if new_form == '':
