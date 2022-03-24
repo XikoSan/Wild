@@ -38,7 +38,7 @@ urlpatterns = [
     # праймериз
     url(r'^primaries/(?P<party_pk>\d+)/$', start_primaries, name='start_primaries'),
     # голосование на праймериз
-    url(r'^primaries/vote/(?P<party_pk>\d+)/(?P<player_pk>\d+)/$', vote_primaries, name='vote_primaries'),
+    url(r'^primaries/vote/$', vote_primaries, name='vote_primaries'),
 
 ]
 # # -------------- Партия --------------------

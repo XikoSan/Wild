@@ -1,28 +1,93 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import redirect
-
-from player.decorators.player import check_player
 
 from party.party import Party
-from player.player import Player
-
 from party.primaries.primaries import Primaries
 from party.primaries.primaries_bulletin import PrimBulletin
+from player.decorators.player import check_player
+from player.player import Player
+from wild_politics.settings import JResponse
+
 
 # проголосовать на праймериз
 @login_required(login_url='/')
 @check_player
-def vote_primaries(request, party_pk, player_pk):
-    # получаем персонажа
-    player = Player.objects.get(account=request.user)
-    # если игрок состоит в партии, на праймериз которой голосует,
-    # если игрок ещё НЕ голосовал вообще
-    #  а также существуют АКТИВНЫЕ праймериз,
-    #  а кандидат состоит в этой партии (вдруг вышел пока открывали страницу)
-    if player.party == Party.objects.get(pk=party_pk)\
-            and not PrimBulletin.objects.filter(primaries=Primaries.objects.get(party=Party.objects.get(pk=party_pk), running=True), player=player).exists()\
-            and Primaries.objects.filter(party=Party.objects.get(pk=party_pk), running=True).exists()\
-            and Player.objects.filter(pk=player_pk, party=party_pk).exists():
+def vote_primaries(request):
+    if request.method == "POST":
+        # получаем персонажа
+        player = Player.objects.get(account=request.user)
+
+        from player.logs.print_log import log
+        log(request.POST.get('party_pk'))
+
+        try:
+            party_pk = int(request.POST.get('party_pk'))
+
+        except ValueError:
+            data = {
+                'header': 'Голосование на праймериз',
+                'grey_btn': 'Закрыть',
+                'response': 'ID партии должен быть целым числом',
+            }
+            return JResponse(data)
+
+        # если игрок НЕ состоит в партии, на праймериз которой голосует
+        if not player.party == Party.objects.get(pk=party_pk):
+            data = {
+                'header': 'Голосование на праймериз',
+                'grey_btn': 'Закрыть',
+                'response': 'Вы не состоите в этой партии',
+            }
+            return JResponse(data)
+
+        # если нет активных праймериз
+        if not Primaries.objects.filter(party=Party.objects.get(pk=party_pk), running=True).exists():
+            data = {
+                'header': 'Голосование на праймериз',
+                'grey_btn': 'Закрыть',
+                'response': 'Активных праймериз нет',
+            }
+            return JResponse(data)
+
+        # если игрок ещё уже голосовал
+        if PrimBulletin.objects.filter(
+                primaries=Primaries.objects.get(party=Party.objects.get(pk=party_pk), running=True),
+                player=player).exists():
+            data = {
+                'header': 'Голосование на праймериз',
+                'grey_btn': 'Закрыть',
+                'response': 'Вы уже голосовали',
+            }
+            return JResponse(data)
+
+        try:
+            player_pk = int(request.POST.get('player_pk'))
+
+        except ValueError:
+            data = {
+                'header': 'Голосование на праймериз',
+                'grey_btn': 'Закрыть',
+                'response': 'ID кандидата должен быть целым числом',
+            }
+            return JResponse(data)
+
+        # если игрок = кандидат
+        if player.pk == player_pk:
+            data = {
+                'header': 'Голосование на праймериз',
+                'grey_btn': 'Закрыть',
+                'response': 'Нельзя голосовать за себя',
+            }
+            return JResponse(data)
+
+        # если такого игрока нет в партии
+        if not Player.objects.filter(pk=player_pk, party=party_pk).exists():
+            data = {
+                'header': 'Голосование на праймериз',
+                'grey_btn': 'Закрыть',
+                'response': 'Такого кандидата в партии нет',
+            }
+            return JResponse(data)
+
         # создаем новый бюллетень голосования за переданного игрока
         vote = PrimBulletin(primaries=Primaries.objects.get(party=Party.objects.get(pk=party_pk), running=True),
                             player=player,
@@ -30,4 +95,15 @@ def vote_primaries(request, party_pk, player_pk):
         # сохраняем бюллетень
         vote.save()
 
-    return redirect('party')
+        data = {
+            'response': 'ok',
+        }
+        return JResponse(data)
+
+    else:
+        data = {
+            'response': 'Некорректный тип запроса',
+            'header': 'Голосование на праймериз',
+            'grey_btn': 'Закрыть',
+        }
+        return JResponse(data)
