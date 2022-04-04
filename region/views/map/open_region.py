@@ -4,6 +4,8 @@ from django.shortcuts import get_object_or_404, redirect, render
 from party.party import Party
 from player.decorators.player import check_player
 from player.player import Player
+from player.views.get_subclasses import get_subclasses
+from region.building.building import Building
 from region.region import Region
 from region.views.distance_counting import distance_counting
 
@@ -45,6 +47,8 @@ def open_region(request, pk):
 
         'players_count': players_count,
         'parties_count': parties_count,
+
+        'building_classes': get_subclasses(Building),
 
         # 'wars_cnt': wars_cnt,
     })

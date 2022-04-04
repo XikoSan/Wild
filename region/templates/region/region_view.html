@@ -1,6 +1,7 @@
 {% extends 'player/header.html' %}
 {% load static %}
 {% load i18n %}{% load tz %}{% load dict_key %}
+{% load get_building_info %}
 
 {% block for_scripts_and_css %}
 <script src='{% static "js/region_view.js" %}?{{ csrf_token }}'></script>
@@ -164,31 +165,10 @@
                             </div>
                         </div>
                         <hr>
-                        <div class="row flex">
-                            <div class="col-xs-6 col-sm-6 col-md-6">
-                                <b>
-                                    <font size="4">{% trans 'Уровень Госпиталя' %}: </font>
-                                </b>
-                            </div>
-                            <div class="col-xs-6 col-sm-6 col-md-6">
-                                <b>
-                                    <font size="4">{{ region.med_lvl }}</font>
-                                </b>
-                            </div>
-                        </div>
-                        <div class="row flex">
-                            <div class="col-xs-6 col-sm-6 col-md-6">
-                                <b>
-                                    <font size="4">{% trans 'Рейтинг Госпиталя' %}: </font>
-                                </b>
-                            </div>
-                            <div class="col-xs-6 col-sm-6 col-md-6">
-                                <b>
-                                    <font size="4">{{ region.med_top }}</font>
-                                </b>
-                            </div>
-                        </div>
-                        <hr>
+                        {% for building_cl in building_classes %}
+                            {% get_building_info %}
+                            <hr>
+                        {% endfor %}
                         <div class="row flex">
                             <div class="col-xs-12 col-sm-12 col-md-12" align="center">
                                 <b>

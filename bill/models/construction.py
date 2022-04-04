@@ -5,19 +5,20 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.utils import timezone
 from django.utils.translation import gettext_lazy
-
+from region.building.building import Building
 from region.region import Region
 from bill.models.bill import Bill
 from state.models.parliament.deputy_mandate import DeputyMandate
 from state.models.parliament.parliament import Parliament
 from state.models.treasury import Treasury
 from storage.models.storage import Storage
-
+from player.views.get_subclasses import get_subclasses
+from region.building.rate_building import RateBuilding
 
 # Построить здание
 class Construction(Bill):
     # -------------vvvvvvv---------------Строительные схемы---------------vvvvvvv---------------
-    med = {
+    Hospital = {
         'title': 'Больницы',
 
         'resources':
@@ -26,14 +27,20 @@ class Construction(Bill):
                 'medical': 15,
             },
     }
+
     # регион разведки
     region = models.ForeignKey(Region, on_delete=models.CASCADE, verbose_name='Регион строительства')
+
+    # получим классы всех строений
+    building_classes = get_subclasses(Building)
     # строение
-    building_schemas = (
-        ('med', gettext_lazy('Больницы')),
-    )
+    building_schemas = ()
+
+    for building_cl in building_classes:
+        building_schemas = building_schemas + ((building_cl.__name__, building_cl._meta.verbose_name_raw),)
+
     building = models.CharField(
-        max_length=4,
+        max_length=20,
         choices=building_schemas,
         blank=True,
         null=True,
@@ -127,40 +134,63 @@ class Construction(Bill):
         b_type = None
         treasury = Treasury.get_instance(state=self.parliament.state)
 
-        if treasury.cash != 0:
+        # получим классы всех строений
+        building_classes = get_subclasses(Building)
 
-            region = Region.objects.get(pk=self.region.pk)
+        building_dict = {}
 
-            # проверяем наличие всех ресурсов в казне, для стройки
-            all_exists = True
+        for building_cl in building_classes:
+            building_dict[building_cl.__name__] = building_cl
 
-            for component in getattr(self, self.building)['resources'].keys():
-                if getattr(treasury, component) < getattr(self, self.building)['resources'][component] * self.exp_value:
-                    all_exists = False
-                    break
+        # если такой тип строений существует
+        if self.building in building_dict:
 
-            if all_exists:
-                setattr(region, self.building + '_lvl', getattr(region, self.building + '_lvl') + self.exp_value)
+            if treasury.cash != 0:
 
-                for resource in getattr(self, self.building)['resources'].keys():
-                    setattr(treasury, resource,
-                            getattr(treasury, resource) - (
-                                        getattr(self, self.building)['resources'][resource] * self.exp_value))
+                if self.building:
 
-                b_type = 'ac'
+                    if building_dict[self.building].objects.filter(region=self.region).exists():
+                        building = building_dict[self.building].objects.get(region=self.region)
+
+                    else:
+                        building = building_dict[self.building](region=self.region)
+
+                    # проверяем наличие всех ресурсов в казне, для стройки
+                    all_exists = True
+
+                    for component in getattr(self, self.building)['resources'].keys():
+                        if getattr(treasury, component) < getattr(self, self.building)['resources'][component] * self.exp_value:
+                            all_exists = False
+                            break
+
+                    if all_exists:
+                        setattr(building, 'level', getattr(building, 'level') + self.exp_value)
+
+                        for resource in getattr(self, self.building)['resources'].keys():
+                            setattr(treasury, resource,
+                                    getattr(treasury, resource) - (
+                                                getattr(self, self.building)['resources'][resource] * self.exp_value))
+
+                        b_type = 'ac'
+
+                    else:
+                        b_type = 'rj'
+                else:
+                    b_type = 'rj'
+
+                # если закон принят
+                if b_type == 'ac':
+                    self.save()
+                    treasury.save()
+                    building.save()
+
+                    # если это рейтинговое строение
+                    if RateBuilding in building_dict[self.building].__bases__:
+                        # пересчитаем рейтинг
+                        building_dict[self.building].recount_rating()
 
             else:
                 b_type = 'rj'
-
-            # если закон принят
-            if b_type == 'ac':
-                self.save()
-                treasury.save()
-                region.save()
-
-                # пересчитать рейтинг
-                Region.recount_rating(self.building)
-
         else:
             b_type = 'rj'
 
@@ -169,13 +199,32 @@ class Construction(Bill):
     @staticmethod
     def get_draft(state):
 
+        regions = Region.objects.filter(state=state)
+
+        # получим классы всех строений
+        building_classes = get_subclasses(Building)
+
+        building_dict = {}
+
+        for building_cl in building_classes:
+            building_dict[building_cl.__name__] = {}
+
+            buildings = building_cl.objects.filter(region__in=regions)
+
+            for region in regions:
+                if buildings.filter(region=region).exists():
+                    building_dict[building_cl.__name__][region.pk] = buildings.get(region=region).level
+                else:
+                    building_dict[building_cl.__name__][region.pk] = 0
+
         build_dict = {}
         for schema in Construction.building_schemas:
             build_dict[schema[0]] = getattr(Construction, schema[0])
 
         data = {
-            'regions': Region.objects.filter(state=state),
-            'buildings': build_dict,
+            'regions': regions,
+            'schemas': build_dict,
+            'buildings': building_dict,
             'storage_cl': Storage,
             'crude_list': ['valut', 'minerals', 'oils', 'materials', 'equipments'],
         }

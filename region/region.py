@@ -49,9 +49,9 @@ class Region(models.Model):
 
     # ---------- Здания ----------
     # Уровень здания Госпиталь
-    med_lvl = models.IntegerField(default=0, verbose_name='Уровень госпиталя')
+    # med_lvl = models.IntegerField(default=0, verbose_name='Уровень госпиталя')
     # Рейтинг здания Госпиталь
-    med_top = models.IntegerField(default=1, verbose_name='Рейтинг госпиталя')
+    # med_top = models.IntegerField(default=1, verbose_name='Рейтинг госпиталя')
     #
     # # Уровень здания Полицейский участок
     # dpt_lvl = models.IntegerField(default=0, verbose_name='Уровень полиции')
@@ -129,40 +129,6 @@ class Region(models.Model):
     def clean(self):
         if self.coal_proc + self.iron_proc + self.bauxite_proc != 100:
             raise forms.ValidationError('Сумма процентов добываемых минералов должна быть равна ста')
-
-    @staticmethod
-    def recount_rating(mode):
-        # рейтинг медки
-        rating_percents = {
-            5: 1,
-            4: 10,
-            3: 20,
-            2: 30,
-            1: 100,
-        }
-
-        already_rated_pk = []
-        kwargs = {}
-        for i in [5, 4, 3, 2, 1]:
-            if i == 5:
-                kwargs[mode + '_lvl__gt'] = 0
-                top_5 = Region.objects.filter(**kwargs).order_by('-' + mode + '_lvl').first()
-                kwargs = {mode + '_top': 5}
-                Region.objects.filter(pk=top_5.pk).update(**kwargs)
-                already_rated_pk.append(top_5.pk)
-            else:
-                kwargs = {}
-                if i != 1:
-                    kwargs[mode + '_lvl__gt'] = 0
-                reg_cnt = Region.objects.filter(**kwargs).exclude(pk__in=already_rated_pk).count()
-
-                regions = Region.objects.filter(**kwargs).exclude(pk__in=already_rated_pk).order_by(
-                    '-' + mode + '_lvl')[:math.ceil(reg_cnt / 100 * rating_percents.get(i))]
-
-                for region in regions:
-                    kwargs = {mode + '_top': i}
-                    Region.objects.filter(pk=region.pk).update(**kwargs)
-                    already_rated_pk.append(region.pk)
 
     def __str__(self):
         return self.region_name

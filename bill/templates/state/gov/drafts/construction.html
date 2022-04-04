@@ -54,10 +54,10 @@
         {% with regions=data|dict_key:'regions' %}
             {% for region in regions %}
         region_levels["{{ region.pk }}"] = {};
-                {% with buildings=data|dict_key:'buildings' %}
-                    {% for building in buildings|get_key_list %}
-                        {% with building_lvl=building|get_sum:'_lvl' %}
-        region_levels["{{ region.pk }}"]["{{ building }}"] = {{ region|get_attr:building_lvl }}
+                {% with schemas=data|dict_key:'schemas' %}
+                    {% for schema in schemas|get_key_list %}
+                        {% with buildings=data|dict_key:'buildings' %}
+        region_levels["{{ region.pk }}"]["{{ schema }}"] = {{ buildings|dict_key:schema|dict_key:region.pk }}
                         {% endwith %}
                     {% endfor %}
                 {% endwith %}
@@ -65,10 +65,10 @@
         {% endwith %}
 
         var building_schemas = {};
-        {% with buildings=data|dict_key:'buildings' %}
-            {% for building in buildings|get_key_list %}
+        {% with schemas=data|dict_key:'schemas' %}
+            {% for building in schemas|get_key_list %}
         building_schemas["{{ building }}"] = {};
-                {% with resources=buildings|dict_key:building|dict_key:'resources' %}
+                {% with resources=schemas|dict_key:building|dict_key:'resources' %}
                     {% for resource in resources|get_key_list %}
         building_schemas["{{ building }}"]["{{ resource }}"] = {{ resources|dict_key:resource }};
                     {% endfor %}
@@ -120,11 +120,11 @@
             </div>
             <div class="col-xs-6 col-sm-6 col-md-6">
                 <div class="row" style="margin-top: 25px;">
-                    {% with buildings=data|dict_key:'buildings' %}
+                    {% with schemas=data|dict_key:'schemas' %}
                     <select name="construction_buildings" id="construction_buildings" style="height: 20px; min-width: 20%">
                         <option id="construction_building_default" value='default' disabled selected value>Выберите строение</option>
-                        {% for building in buildings|get_key_list %}
-                        <option id="construction_building_{{ building }}" value="{{ building }}">{{ buildings|dict_key:building|dict_key:'title' }}</option>
+                        {% for schema in schemas|get_key_list %}
+                        <option id="construction_building_{{ schema }}" value="{{ schema }}">{{ schemas|dict_key:schema|dict_key:'title' }}</option>
                         {% endfor %}
                     </select>
                     {% endwith %}

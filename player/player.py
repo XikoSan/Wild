@@ -10,6 +10,7 @@ from django_celery_beat.models import PeriodicTask
 from party.party import Party
 from party.position import PartyPosition
 from player.views.set_cah_log import set_cash_log
+from region.building.hospital import Hospital
 from region.region import Region
 from state.models.state import State
 from wild_politics.settings import JResponse
@@ -178,7 +179,7 @@ class Player(models.Model):
         if self.paid_sum > 14500:
             daily_procent = 0
 
-        if daily_procent == 0 or ( self.paid_consumption >= self.energy_limit ):
+        if daily_procent == 0 or (self.paid_consumption >= self.energy_limit):
             data = {
                 # 'response': _('wait_flight_end'),
                 'response': 'Нечего забирать',
@@ -221,25 +222,22 @@ class Player(models.Model):
                 set_cash_log(self, sum, 'daily', self.natural_refill)
             self.energy_consumption = self.paid_consumption = self.paid_sum = 0
 
+        med_top = 1
+
+        if Hospital.objects.filter(region=self.region).exists():
+            med_top = Hospital.objects.get(region=self.region).top
+
         # если дата последнего прироста пуста (только зарегистрировался)
         if not self.natural_refill:
             # если энергии меньше ста
             if self.energy < 100:
                 # пополняем
-                if self.region.med_top == 5:
-                    self.energy += 16
-                elif self.region.med_top == 4:
-                    self.energy += 13
-                elif self.region.med_top == 3:
-                    self.energy += 12
-                elif self.region.med_top == 2:
-                    self.energy += 11
-                else:
-                    self.energy += 9
+                self.energy += Hospital.indexes[med_top]
+
                 # запоминаем дату восстановления
                 self.natural_refill = timezone.now()
                 # запоминаем рейтинг медицины
-                self.last_top = self.region.med_top
+                self.last_top = med_top
 
         # инчае если с момента последнего пополнения прошло более десяти минут
         elif (timezone.now() - self.natural_refill).total_seconds() >= 600:
@@ -247,86 +245,25 @@ class Player(models.Model):
             counts = (timezone.now() - self.natural_refill).total_seconds() // 600
             # остаток от деления понадобится чтобы указать время обновления
             modulo = (timezone.now() - self.natural_refill).total_seconds() % 600
-            # в зависимости от рейтинга
-            if self.last_top == 5:
-                # если интервалов больше шести (энергии станет заведомо больше ста)
-                if counts > 6:
-                    self.energy = 100
-                else:
-                    if self.energy + (16 * counts) >= 100:
-                        self.energy = 100
-                    else:
-                        self.energy += 16 * counts
-            elif self.last_top == 4:
-                # если интервалов больше семи (энергии станет заведомо больше ста)
-                if counts > 7:
-                    self.energy = 100
-                else:
-                    if self.energy + (13 * counts) >= 100:
-                        self.energy = 100
-                    else:
-                        self.energy += 13 * counts
-            elif self.last_top == 3:
-                # если интервалов больше семи (энергии станет заведомо больше ста)
-                if counts > 8:
-                    self.energy = 100
-                else:
-                    if self.energy + (12 * counts) >= 100:
-                        self.energy = 100
-                    else:
-                        self.energy += 12 * counts
-            elif self.last_top == 2:
-                # если интервалов больше 9 (энергии станет заведомо больше ста)
-                if counts > 9:
-                    self.energy = 100
-                else:
-                    if self.energy + (11 * counts) >= 100:
-                        self.energy = 100
-                    else:
-                        self.energy += 11 * counts
+
+            # считаем, сколько энергии станет при последнем индексе
+            energy_sum = Hospital.indexes[self.last_top] * counts
+
+            # если энергии заведомо больше ста
+            if energy_sum > 100:
+                self.energy = 100
+            # если энергии с тем, что было игрока, больше ста
+            elif self.energy + energy_sum > 100:
+                self.energy = 100
             else:
-                # если интервалов больше 10 (энергии станет заведомо больше ста)
-                if counts > 11:
-                    self.energy = 100
-                else:
-                    if self.energy + (9 * counts) >= 100:
-                        self.energy = 100
-                    else:
-                        self.energy += 9 * counts
+                self.energy += energy_sum
 
             # запоминаем дату восстановления
             self.natural_refill = timezone.now() - datetime.timedelta(seconds=modulo)
             # запоминаем рейтинг медицины
-            self.last_top = self.region.med_top
+            self.last_top = med_top
 
         self.save()
-
-    # сохранение профиля с изменением размеров и названия картинки профиля
-    # def save(self):
-    #     # если картинка есть (добавили или изменили)
-    #     if self.image:
-    #         # Opening the uploaded image
-    #         try:
-    #             im = Image.open(self.image)
-    #
-    #             output = BytesIO()
-    #
-    #             # Resize/modify the image
-    #             im = im.resize((300, 300))
-    #
-    #             # after modifications, save it to the output
-    #             im.save(output, format='PNG', quality=100)
-    #             output.seek(0)
-    #
-    #             # change the imagefield value to be the newley modifed image value
-    #             self.image = InMemoryUploadedFile(output, 'ImageField',
-    #                                               "%(account)s_%(player)s.png" % {"account": self.account.pk,
-    #                                                                               "player": self.pk}, 'image/png',
-    #                                               sys.getsizeof(output), None)
-    #         except FileNotFoundError:
-    #             pass
-    #
-    #     super(Player, self).save()
 
     def __str__(self):
         return self.nickname
