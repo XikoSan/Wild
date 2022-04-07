@@ -23,9 +23,18 @@ def set_role(request):
             if player.party == member.party:
                 # если должность игроков НЕ одна и та же (один секретарь не может менять должность другому)
                 # и изменяемый игрок - не глава
-                if player.party_post != member.party_post and member.party_post.party_lead == False:
+                if player.party_post != member.party_post\
+                        and not member.party_post.party_lead:
                     # получаем роль для установки
                     role = PartyPosition.objects.get(pk=request.POST.get('role_id'))
+
+                    if role.party_lead:
+                        data = {
+                            'header': 'Смена должности',
+                            'grey_btn': 'Закрыть',
+                            'response': 'В партии может быть только один глава',
+                        }
+                        return JsonResponse(data)
 
                     member.party_post = role
                     member.save()
@@ -36,15 +45,22 @@ def set_role(request):
                     return JsonResponse(data)
 
                 data = {
+                    'header': 'Смена должности',
+                    'grey_btn': 'Закрыть',
                     'response': 'Твоих прав недостаточно для смены должности',
                 }
                 return JsonResponse(data)
+
             data = {
+                'header': 'Смена должности',
+                'grey_btn': 'Закрыть',
                 'response': 'Это не твоя партия!',
             }
             return JsonResponse(data)
 
         data = {
+            'header': 'Смена должности',
+            'grey_btn': 'Закрыть',
             'response': 'У тебя недостаточно прав!',
         }
         return JsonResponse(data)
@@ -52,6 +68,8 @@ def set_role(request):
     # если страницу только грузят
     else:
         data = {
+            'header': 'Смена должности',
+            'grey_btn': 'Закрыть',
             'response': 'Ты уверен что тебе сюда, путник?',
         }
         return JsonResponse(data)

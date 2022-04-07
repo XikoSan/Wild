@@ -11,7 +11,7 @@ jQuery(document).ready(function ($) {
             cache: false,
             success: function(data){
                 if (data.response != 'ok'){
-                    alert(data.response);
+                    display_modal('notify', data.header, data.response, null, data.grey_btn)
                 }
             }
         });
