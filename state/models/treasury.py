@@ -105,14 +105,11 @@ class Treasury(models.Model):
         if not treasury.actualize_dtime:
             # запоминаем дату
             treasury.actualize_dtime = timezone.now()
-            treasury.station += 1
 
         # инчае если с момента последней актуализации прошла минута
         elif (timezone.now() - treasury.actualize_dtime).total_seconds() >= 60:
             # узнаем сколько раз по минуте прошло
             counts = (timezone.now() - treasury.actualize_dtime).total_seconds() // 60
-
-            treasury.station += int(counts)
 
             # остаток от деления понадобится чтобы указать время обновления
             modulo = (timezone.now() - treasury.actualize_dtime).total_seconds() % 60

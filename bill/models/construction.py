@@ -28,6 +28,16 @@ class Construction(Bill):
             },
     }
 
+    PowerPlant = {
+        'title': 'ТЭЦ',
+
+        'resources':
+            {
+                'cash': 100,
+                'steel': 50,
+            },
+    }
+
     # регион разведки
     region = models.ForeignKey(Region, on_delete=models.CASCADE, verbose_name='Регион строительства')
 
@@ -188,6 +198,12 @@ class Construction(Bill):
                     if RateBuilding in building_dict[self.building].__bases__:
                         # пересчитаем рейтинг
                         building_dict[self.building].recount_rating()
+
+                    elif self.building == 'PowerPlant':
+                        for building_cl in building_classes:
+                            if RateBuilding in building_cl.__bases__:
+                                # пересчитаем рейтинг
+                                building_cl.recount_rating()
 
             else:
                 b_type = 'rj'

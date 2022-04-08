@@ -2,8 +2,8 @@
 import math
 
 from region.building.rate_building import RateBuilding
-
-
+from region.building.power_plant import PowerPlant
+from state.models.state import State
 # госпиталь здание в регионе
 class Hospital(RateBuilding):
     # словарь индексов, с процентом от числа зданий (за вычетом вышест. рейтингов)
@@ -23,6 +23,9 @@ class Hospital(RateBuilding):
         2: 11,
         1: 9,
     }
+
+    # потребление электричества, уровень
+    power_consumption = 3
 
     # получить строки с информацией об уровне и рейтинге здания
     @staticmethod
@@ -49,26 +52,62 @@ class Hospital(RateBuilding):
     def recount_rating():
         already_rated_pk = []
         kwargs = {}
+
+        efficiency_dict = {}
+        real_level = ()
+
+        # для каждого Госпиталя считаем его уровень, с поправкой на электросеть
+        for building in Hospital.objects.all():
+
+            if building.region.state:
+                # если для этого госа уже знаем эффективность
+                if building.region.state in efficiency_dict:
+                    efficiency = efficiency_dict[building.region.state]
+
+                else:
+                    efficiency = PowerPlant.get_power_efficiency(state=building.region.state)
+                    efficiency_dict[building.region.state] = efficiency
+
+            else:
+                efficiency = PowerPlant.get_power_efficiency(region=building.region)
+
+            # список с госпиталями и реальным уровнем. Словарь здесь не подойдет, нужно сортировать
+            real_level += ((building, math.floor(building.level * (efficiency / 100))), )
+
+        real_level = sorted(real_level, key=lambda x: x[1], reverse=True)
+
         for i in Hospital.rating_percents.keys():
             if i == 5:
-                kwargs['level__gt'] = 0
-                top_5 = Hospital.objects.filter(**kwargs).order_by('-' + 'level').first()
+                if real_level[0][1] == 0:
+                    continue
+
+                top_5 = real_level.pop(0)[0]
                 kwargs = {'top': 5}
                 Hospital.objects.filter(pk=top_5.pk).update(**kwargs)
                 already_rated_pk.append(top_5.pk)
+
             else:
-                kwargs = {}
-                if i != 1:
-                    kwargs['level__gt'] = 0
-                build_cnt = Hospital.objects.filter(**kwargs).exclude(pk__in=already_rated_pk).count()
+                # количество зданий в списке с факт уровенм больше нуля
+                build_cnt = 0
+                for build in real_level:
+                    if i != 1 and build[1] == 0:
+                        break
+                    build_cnt += 1
 
-                buildings = Hospital.objects.filter(**kwargs).exclude(pk__in=already_rated_pk).order_by(
-                    '-' + 'level')[:math.ceil(build_cnt / 100 * Hospital.rating_percents.get(i))]
+                # берем только здания ненулевого уровня
+                buildings = real_level[:build_cnt]
 
-                for building in buildings:
-                    kwargs = {'top': i}
-                    Hospital.objects.filter(pk=building.pk).update(**kwargs)
-                    already_rated_pk.append(building.pk)
+                # берем процент от этих зданий, которые и получат рейтинг
+                buildings = buildings[:math.ceil(build_cnt / 100 * Hospital.rating_percents.get(i))]
+
+                real_level = real_level[len(buildings):]
+
+                # список айди госпиталей, которые обновляем
+                hosp_pk_list = []
+                for hosp in buildings:
+                    hosp_pk_list.append(hosp[0].pk)
+
+                Hospital.objects.filter(pk__in=hosp_pk_list).update(top=i)
 
     # Свойства класса
     class Meta:

@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, render
-
+from region.building.power_plant import PowerPlant
 from party.party import Party
 from player.decorators.player import check_player
 from player.player import Player
@@ -64,6 +64,9 @@ def open_state(request, pk):
 
         'parties_of_state': parties,
         'party_sizes': party_sizes,
+
+        'energy_production': PowerPlant.get_power_production(state=state),
+        'energy_consumption': PowerPlant.get_power_consumption(state=state),
 
         # 'wars_cnt': wars_cnt,
     })

@@ -15,6 +15,9 @@ class Building(models.Model):
     # Уровень здания
     level = models.IntegerField(default=0, verbose_name='Уровень здания')
 
+    # потребление электричества, уровень
+    power_consumption = 0
+
     # получить строки с информацией об уровне и рейтинге здания
     @staticmethod
     def get_stat(region):

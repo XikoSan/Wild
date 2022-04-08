@@ -105,6 +105,15 @@
                             </div>
                             <hr>
                             <div class="row flex">
+                                <div class="col-xs-6 col-sm-6 col-md-6" align="left">
+                                    <b><font size="4">Баланс электросети:</font></b>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <b><font size="4" {% if energy_consumption > energy_production %}color="red"{% endif %}>{{ energy_consumption }} / {{ energy_production }}</font></b>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row flex">
                                 <div class="col-xs-12 col-sm-12 col-md-12" align="center">
                                     <b>
                                         <font size="4">{% trans 'Государственные налоги' %}: </font>
