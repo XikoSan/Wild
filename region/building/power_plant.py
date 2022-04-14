@@ -1,9 +1,12 @@
 # coding=utf-8
+from django.db import models
+from django.utils import timezone
 from player.views.get_subclasses import get_subclasses
 from region.building.building import Building
 from region.region import Region
-import math
-
+from state.models.treasury import Treasury
+from django.db.models import F
+import datetime
 # Электростанция - здание в регионе
 class PowerPlant(Building):
     # сколько производит каждый уровень электростанции
@@ -12,11 +15,39 @@ class PowerPlant(Building):
     # сколько угля потребляет каждый уровень электры в час
     consumption = 80
 
+    # проверяем работоспособность электросети
+    @staticmethod
+    def check_is_working(state):
+        # получаем Казну госа
+        treasury = Treasury.get_instance(state=state)
+        # если электросеть работает и час еще не прошел - возвращаем ОК
+        if treasury.power_on and (timezone.now() - treasury.power_actualize).total_seconds() < 3600:
+            return True
+
+        # узнаем сколько раз по часу прошло
+        counts = (timezone.now() - treasury.power_actualize).total_seconds() // 3600
+
+        # остаток от деления понадобится чтобы указать время обновления
+        modulo = (timezone.now() - treasury.power_actualize).total_seconds() % 3600
+
+        # узнаем, сколько потребляется электросетью угля
+        cons = PowerPlant.get_coal_consumption(state=state)
+
+        # если угля достаточно
+        if treasury.coal >= cons * counts:
+            # списываем этот уголь, актуализируем казну
+            Treasury.objects.filter(pk=treasury.pk).update(coal=F('coal')-(cons * counts), power_actualize=timezone.now()-datetime.timedelta(seconds=modulo), power_on=True)
+            return True
+
+        # иначе - сеть не работает
+        else:
+            # списываем этот уголь, актуализируем казну
+            Treasury.objects.filter(pk=treasury.pk).update(power_actualize=timezone.now()-datetime.timedelta(seconds=modulo), power_on=False)
+            return False
+
     # получить строки с информацией об уровне и рейтинге здания
     @staticmethod
     def get_stat(region):
-
-        production = consumption = None
 
         if PowerPlant.objects.filter(region=region).exists():
             level = PowerPlant.objects.get(region=region).level
@@ -24,14 +55,8 @@ class PowerPlant(Building):
         else:
             level = 0
 
-        if not region.state:
-            production = PowerPlant.get_power_production(region=region)
-            consumption = PowerPlant.get_power_consumption(region=region)
-
         data = {
             'level': level,
-            'production': production,
-            'consumption': consumption,
         }
 
         return data, 'region/buildings/power_plant.html'

@@ -24,6 +24,16 @@ class Treasury(models.Model):
     # дата актуализации
     actualize_dtime = models.DateTimeField(default=None, null=True, blank=True, verbose_name='Дата акутализации')
 
+    # ------vvvvvvv------Электростанция------vvvvvvv------
+
+    # удалено
+    power_on = models.BooleanField(default=False, verbose_name='Электроскть работает')
+
+    # дата актуализации
+    power_actualize = models.DateTimeField(default=None, null=True, blank=True, verbose_name='Акутализация электросети')
+
+    # ------^^^^^^^------Электростанция------^^^^^^^------
+
     # наличные на складе
     cash = models.BigIntegerField(default=0, verbose_name=gettext_lazy('storage_cash'))
 
