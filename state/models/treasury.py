@@ -22,7 +22,7 @@ class Treasury(models.Model):
                                verbose_name='Регион размещения', related_name="treasury_placement")
 
     # дата актуализации
-    actualize_dtime = models.DateTimeField(default=None, null=True, blank=True, verbose_name='Дата акутализации')
+    actualize_dtime = models.DateTimeField(default=timezone.now, null=True, blank=True, verbose_name='Дата акутализации')
 
     # ------vvvvvvv------Электростанция------vvvvvvv------
 
