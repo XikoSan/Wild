@@ -2,6 +2,7 @@
 {% load static %}
 {% load bootstrap3 %}
 {% load stickers.stickers_advice %}
+{% load overview_blocks.skills %}
 {% load l10n %}{% load i18n %}
 {% block for_scripts_and_css %}
 {% load dict_key %}
@@ -131,16 +132,8 @@
             <script src='{% static "chat_admin.js" %}?{{ csrf_token }}'></script>
             {% endif %}
         </div>
-        <div class="col-xs-1 col-sm-1 col-md-1"></div>
-        <div class="col-xs-2 col-sm-2 col-md-2">
-            <div class="row" align="center">
-                Активные опросы:
-            </div>
-            {% for poll in polls %}
-            <div class="row" style="margin-top: 5%; cursor: pointer" onclick="window.location.href = '/poll/{{ poll.pk }}/'">
-                {{ poll.header }}
-            </div>
-            {% endfor %}
+        <div class="col-xs-3 col-sm-3 col-md-3">
+            {% skills player %}
         </div>
     </div>
 </div>

@@ -17,7 +17,7 @@ from player.player import Player
 @login_required(login_url='/')
 def new_party(request):
     # получаем персонажа
-    player = Player.objects.get(account=request.user)
+    player = Player.get_instance(account=request.user)
     # если игрок состоит в партии
     if player.party:
         return redirect('party')

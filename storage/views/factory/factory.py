@@ -16,7 +16,7 @@ from storage.models.storage import Storage
 # Производство
 def factory(request):
     # получаем персонажа
-    player = Player.objects.get(account=request.user)
+    player = Player.get_instance(account=request.user)
 
     fields_list = ['pk', 'region__region_name', 'cash', ]
     # собираем из Склада все поля ресурсов

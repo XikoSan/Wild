@@ -24,7 +24,7 @@ from storage.views.storage.transfer_values import transfer_values
 def storage_move(request):
     if request.method == "POST":
         # получаем персонажа
-        player = Player.objects.get(account=request.user)
+        player = Player.get_instance(account=request.user)
 
         # получаем целевой склад
         dest_pk = request.POST.get('storage')

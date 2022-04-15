@@ -17,7 +17,7 @@ def join_in_party(request, plr_pk, pty_pk):
     # если персонаж с переданным pk принадлежит залогиненному аккаунту
     if Player.objects.filter(pk=plr_pk, account=request.user).exists():
         # получаем персонажа, которому надо изменить партию
-        logged_player = Player.objects.get(pk=plr_pk)
+        logged_player = Player.get_instance(pk=plr_pk)
         # если игрок - беспартийный
         if not logged_player.party:
             # если партия является открытой

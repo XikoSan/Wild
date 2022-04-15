@@ -18,7 +18,7 @@ from state.models.parliament.parliament_voting import ParliamentVoting
 @check_player
 def vote_elections(request, parl_pk, party_pk):
     # получаем персонажа
-    player = Player.objects.get(account=request.user)
+    player = Player.get_instance(account=request.user)
     # регионы государства, в котором идут выборы
     state = Parliament.objects.get(pk=parl_pk).state
     regions_of_state = Region.objects.filter(state=state)

@@ -15,7 +15,7 @@ def new_role(request):
     if request.method == "POST":
         count = request.POST.get('battaries_count', '')
         # получаем персонажа
-        player = Player.objects.get(account=request.user)
+        player = Player.get_instance(account=request.user)
         # если игрок действительно лидер партии
         if player.party_post.party_lead:
             # если в партии должностей уже десять или (вдруг) больше

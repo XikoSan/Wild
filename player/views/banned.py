@@ -13,7 +13,7 @@ def banned(request):
     # Если у игрока есть персонаж:
     if Player.objects.filter(account=request.user).exists():
         # Получаем его
-        player = Player.objects.get(account=request.user)
+        player = Player.get_instance(account=request.user)
         # Если игрок забанен:
         if player.banned:
             return render(request, 'player/banned.html', {

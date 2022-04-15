@@ -15,7 +15,7 @@ from storage.models.storage import Storage
 # открытие страницы кошелька игрока
 def wallet(request):
     # получаем персонажа
-    player = Player.objects.get(account=request.user)
+    player = Player.get_instance(account=request.user)
 
     # получаем последние 50 записей о движении денег
     page = request.GET.get('page')

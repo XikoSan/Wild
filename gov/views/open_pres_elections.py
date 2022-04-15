@@ -24,7 +24,7 @@ from state.models.parliament.parliament_voting import ParliamentVoting
 @check_player
 def open_pres_elections(request, pres_pk):
     # получаем персонажа
-    player = Player.objects.get(account=request.user)
+    player = Player.get_instance(account=request.user)
     # проверяем, есть ли такой пост президента
     if not President.objects.filter(pk=pres_pk).exists():
         return redirect('government')

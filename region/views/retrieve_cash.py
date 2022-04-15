@@ -18,7 +18,7 @@ from wild_politics.settings import JResponse
 def retrieve_cash(request):
     if request.method == "POST":
 
-        player = Player.objects.select_for_update().get(account=request.user)
+        player = Player.get_instance(account=request.user)
 
         failure, sum = player.daily_claim()
 

@@ -11,7 +11,7 @@ from storage.models.storage import Storage
 @login_required(login_url='/')
 @check_player
 def storage(request):
-    player = Player.objects.get(account=request.user)
+    player = Player.get_instance(account=request.user)
     storage = None
     # если склад есть
     if Storage.objects.filter(owner=player, region=player.region).exists():

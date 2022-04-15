@@ -20,7 +20,7 @@ from storage.views.storage.get_transfer_price import get_transfer_price
 def new_storage(request):
     if request.method == "POST":
         # получаем персонажа
-        player = Player.objects.get(account=request.user)
+        player = Player.get_instance(account=request.user)
 
         price_dict = {}
         trans_mul = {}

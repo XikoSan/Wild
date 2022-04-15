@@ -15,7 +15,7 @@ from wild_politics.settings import JResponse
 def storage_status(request, pk):
     if request.method == "GET":
         # получаем персонажа
-        player = Player.objects.get(account=request.user)
+        player = Player.get_instance(account=request.user)
 
         locked = 0
         locked_tmp = CashLock.objects.filter(lock_player=player, deleted=False).aggregate(total_cash=Sum('lock_cash'))

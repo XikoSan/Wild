@@ -25,7 +25,7 @@ def _get_sticker_packs(pk):
 
 
 def _get_player_pk(pk):
-    return Player.objects.get(pk=pk)
+    return Player.get_instance(pk=pk)
 
 
 def _get_user(pk):

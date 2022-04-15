@@ -17,7 +17,7 @@ from storage.models.storage import Storage
 def set_bet(request):
     if request.method == "POST":
         # получаем персонажа
-        player = Player.objects.get(account=request.user)
+        player = Player.get_instance(account=request.user)
 
         try:
             lot_id = int(request.POST.get('lot_id'))

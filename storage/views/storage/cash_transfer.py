@@ -17,7 +17,7 @@ from storage.models.storage import Storage
 def cash_transfer(request):
     if request.method == "POST":
         # получаем персонажа
-        player = Player.objects.get(account=request.user)
+        player = Player.get_instance(account=request.user)
 
         # новые значения денег в кошельке и складе
         new_wallet = request.POST.get('cash_at_player', '')

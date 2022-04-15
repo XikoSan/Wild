@@ -12,7 +12,7 @@ from storage.models.trade_offer import TradeOffer
 # новое торговое предложение
 def new_offer(request):
     # получаем персонажа
-    player = Player.objects.get(account=request.user)
+    player = Player.get_instance(account=request.user)
 
     fields_list = ['pk', 'region__region_name', ]
 

@@ -18,7 +18,7 @@ def send_squads(request):
     # сделать универсальную отправку, а не только автоматы
     if request.method == "POST":
         # получаем персонажа
-        player = Player.objects.select_for_update().get(account=request.user)
+        player = Player.get_instance(account=request.user)
 
         if not Storage.objects.filter(owner=player, region=player.region).exists():
             data = {

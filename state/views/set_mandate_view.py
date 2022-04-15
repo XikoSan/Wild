@@ -11,7 +11,7 @@ from state.models.parliament.deputy_mandate import DeputyMandate
 @check_player
 def set_mandate_view(request):
     # получаем персонажа
-    player = Player.objects.get(account=request.user)
+    player = Player.get_instance(account=request.user)
     # если у игрока есть партия
     # и он в ней лидер
     if player.party\

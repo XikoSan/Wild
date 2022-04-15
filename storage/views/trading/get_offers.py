@@ -18,7 +18,7 @@ from player.logs.print_log import log
 def get_offers(request):
     if request.method == "POST":
 
-        player = Player.objects.get(account=request.user)
+        player = Player.get_instance(account=request.user)
         storages = {}
 
         if Storage.actual.filter(owner=player).exists():

@@ -26,7 +26,7 @@ from player.logs.cash_log import CashLog
 def cancel_offer(request):
     if request.method == "POST":
         # получаем персонажа
-        player = Player.objects.select_for_update().get(account=request.user)
+        player = Player.get_instance(account=request.user)
 
         # получим оффер
         offer_id = None

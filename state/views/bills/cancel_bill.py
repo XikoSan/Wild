@@ -18,7 +18,7 @@ from wild_politics.settings import JResponse
 def cancel_bill(request):
     if request.method == "POST":
         # получаем персонажа
-        player = Player.objects.get(account=request.user)
+        player = Player.get_instance(account=request.user)
 
         # если в этом регионе есть государство
         if player.region.state:

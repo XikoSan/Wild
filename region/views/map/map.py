@@ -20,7 +20,7 @@ from wild_politics.settings import JResponse
 @check_player
 @transaction.atomic
 def map(request):
-    player = Player.objects.select_for_update().get(account=request.user)
+    player = Player.get_instance(account=request.user)
 
     regions = Region.with_off.all()
 

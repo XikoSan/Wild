@@ -15,7 +15,7 @@ from war.models.wars.war import War
 @check_player
 def open_war(request, class_name, pk):
     # получаем персонажа
-    player = Player.objects.get(account=request.user)
+    player = Player.get_instance(account=request.user)
 
     try:
         war_class = apps.get_model('war', class_name)

@@ -24,7 +24,7 @@ def auction_info(request, pk):
     auction.create_date += datetime.timedelta(days=1)
 
     # Текущий пользователь
-    player = Player.objects.get(account=request.user)
+    player = Player.get_instance(account=request.user)
 
     # Его склады
     # собираем из Склада все нужные поля + ресурс

@@ -12,7 +12,7 @@ from player.player import Player
 @check_player
 def switch_party_type(request):
     # получаем персонажа
-    player = Player.objects.get(account=request.user)
+    player = Player.get_instance(account=request.user)
 
     if player.party_post:
         # если игрок действительно лидер партии

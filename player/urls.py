@@ -5,6 +5,7 @@ from player.views.banned import banned
 from player.views.lists.region_players import region_players_list
 from player.views.lists.world_players import world_players_list
 from player.views.repost_reward import repost_reward
+from player.views.skills.up_skill import up_skill
 from .views.change_bio import change_bio
 from .views.change_nickname import change_nickname
 from .views.expense_energy import expense_energy
@@ -36,10 +37,12 @@ urlpatterns = [
     url(r'^recharge/$', expense_energy, name='expense_energy'),
 
     # открытие страницы персонажа игрока
-
     url(r'^profile/$', my_profile, name='my_profile'),
     # изменить никнейм
     url(r'^change_nickname/$', change_nickname, name='change_nickname'),
+
+    # изучить навык
+    url(r'^up_skill/$', up_skill, name='up_skill'),
 
     # изменить биографию
     url(r'^change_bio/$', change_bio, name='change_bio'),

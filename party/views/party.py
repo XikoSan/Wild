@@ -10,7 +10,7 @@ from player.player import Player
 @login_required(login_url='/')
 @check_player
 def party(request):
-    player = Player.objects.get(account=request.user)
+    player = Player.get_instance(account=request.user)
     # отправляем в форму
     response = render(request, 'party/party.html', {
         'page_name': _('Партия'),

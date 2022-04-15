@@ -21,7 +21,7 @@ from state.models.parliament.deputy_mandate import DeputyMandate
 @check_player
 def leave_party(request):
     # получаем персонажа
-    player = Player.objects.get(account=request.user)
+    player = Player.get_instance(account=request.user)
     # if player.party == Party.objects.get(pk=party_id):
     if player.party == Party.objects.get(pk=request.POST.get('party_id')):
         # если этот игрок - лидер партии

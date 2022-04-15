@@ -19,7 +19,7 @@ from state.models.parliament.parliament import Parliament
 def state_foundation(request):
     if request.method == "POST":
         # получаем персонажа
-        player = Player.objects.get(account=request.user)
+        player = Player.get_instance(account=request.user)
 
         # если у игрока нет прописки
         if player.region != player.residency:

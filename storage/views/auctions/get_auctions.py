@@ -18,7 +18,7 @@ from storage.models.storage import Storage
 def get_auctions(request):
     if request.method == "POST":
 
-        player = Player.objects.get(account=request.user)
+        player = Player.get_instance(account=request.user)
 
         kwargs = {}
 

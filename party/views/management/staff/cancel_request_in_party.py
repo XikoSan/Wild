@@ -14,7 +14,7 @@ def cancel_request_in_party(request, plr_pk, pty_pk):
     # если персонаж с переданным pk принадлежит залогиненному аккаунту
     if Player.objects.filter(pk=plr_pk, account=request.user).exists():
         # получаем персонажа, которому надо изменить партию
-        logged_player = Player.objects.get(pk=plr_pk)
+        logged_player = Player.get_instance(pk=plr_pk)
         # удаляем его заявку
         PartyApply.objects.filter(player=logged_player, party=Party.objects.get(pk=pty_pk), status='op').update(
                 status='cs')

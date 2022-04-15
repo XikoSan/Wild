@@ -12,7 +12,7 @@ from player.player import Player
 @login_required(login_url='/')
 def management(request):
     # получаем персонажа
-    player = Player.objects.get(account=request.user)
+    player = Player.get_instance(account=request.user)
     # если игрок действительно лидер партии
     if player.party_post.party_lead:
         # если у лидера партии есть партия

@@ -15,7 +15,7 @@ from party.party import Party
 @check_player
 def region_players_list(request, region_pk):
     # получаем персонажа
-    player = Player.objects.get(account=request.user)
+    player = Player.get_instance(account=request.user)
     request_region = None
 
     if Region.objects.filter(pk=region_pk).exists():

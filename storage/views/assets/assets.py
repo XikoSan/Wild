@@ -14,7 +14,7 @@ from storage.models.transport import Transport
 @login_required(login_url='/')
 @check_player
 def assets(request):
-    player = Player.objects.get(account=request.user)
+    player = Player.get_instance(account=request.user)
     # словарь склад - словарь стоимости до других регионов со складами:
     # москва:
     # - архангельск = 15

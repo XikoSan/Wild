@@ -15,7 +15,7 @@ from gov.models.president import President
 def open_state(request, pk):
     # Получаем объект персонажа, по его ключу
     # Текущий пользователь
-    player = Player.objects.get(account=request.user)
+    player = Player.get_instance(account=request.user)
 
     state = get_object_or_404(State, pk=pk)
     capital = Capital.objects.get(state=state)

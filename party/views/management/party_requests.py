@@ -15,7 +15,7 @@ from player.player import Player
 @check_player
 def party_requests(request):
     # получаем персонажа
-    player = Player.objects.get(account=request.user)
+    player = Player.get_instance(account=request.user)
     # если у игрока есть должность в партии (то есть он состоит в ней)
     if player.party_post:
         # если игрок действительно лидер партии или хотя бы секретарь

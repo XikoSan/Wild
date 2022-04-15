@@ -23,7 +23,7 @@ from wild_politics.settings import TIME_ZONE, sentry_environment
 @login_required(login_url='/')
 @check_player
 def overview(request):
-    player = Player.objects.get(account=request.user)
+    player = Player.get_instance(account=request.user)
 
     region_parties = Party.objects.filter(deleted=False, region=player.region).count()
     world_parties = Party.objects.filter(deleted=False).count()

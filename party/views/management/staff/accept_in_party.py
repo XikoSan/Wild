@@ -15,12 +15,12 @@ from player.player import Player
 @check_player
 def accept_in_party(request, plr_pk):
     # получаем персонажа
-    player = Player.objects.get(account=request.user)
+    player = Player.get_instance(account=request.user)
     if player.party_post:
         # если игрок действительно лидер партии или хотя бы секретарь
         if player.party_post.party_lead or player.party_post.party_sec:
             # получаем персонажа, которому надо изменить партию
-            accepted_player = Player.objects.get(pk=plr_pk)
+            accepted_player = Player.get_instance(pk=plr_pk)
             # удаляем все его заявки в другие партии
             PartyApply.objects.filter(player=accepted_player, party=player.party, status='op').update(
                 status='ac')

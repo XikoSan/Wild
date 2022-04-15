@@ -26,7 +26,7 @@ from wild_politics.settings import JResponse
 def do_mining(request):
     if request.method == "POST":
 
-        player = Player.objects.get(account=request.user)
+        player = Player.get_instance(account=request.user)
         gold_log = None
 
         if player.destination:

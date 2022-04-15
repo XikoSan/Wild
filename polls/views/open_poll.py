@@ -13,7 +13,7 @@ from polls.models.variant import Variant
 def open_poll(request, pk):
     # Получаем объект персонажа, по его ключу
     # Текущий пользователь
-    player = Player.objects.get(account=request.user)
+    player = Player.get_instance(account=request.user)
 
     # проверяем что передано целое положительное число
     try:

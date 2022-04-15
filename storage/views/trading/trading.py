@@ -13,7 +13,7 @@ from storage.models.transport import Transport
 # открытие страницы торговли
 def trading(request):
     # получаем персонажа
-    player = Player.objects.get(account=request.user)
+    player = Player.get_instance(account=request.user)
 
     return render(request, 'storage/trading/trading.html', {'player': player,
                                                             'storage_cl': Storage,

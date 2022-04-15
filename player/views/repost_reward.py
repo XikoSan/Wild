@@ -21,7 +21,7 @@ from wild_politics.settings import TIME_ZONE
 def repost_reward(request):
     if request.method == "POST":
         # получаем персонажа
-        player = Player.objects.get(account=request.user)
+        player = Player.get_instance(account=request.user)
         # ====== API VK =====
         repost = False
         timer = False

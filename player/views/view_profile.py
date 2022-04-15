@@ -17,7 +17,7 @@ from wild_politics.settings import TIME_ZONE
 def view_profile(request, pk):
     # Получаем объект персонажа, по его ключу
     # Текущий пользователь
-    player = Player.objects.get(account=request.user)
+    player = Player.get_instance(account=request.user)
     # Пользователб, чью страницу необходимо просмотреть
     char = get_object_or_404(Player, pk=pk)
     # если игрок хочет посмотреть самого себя

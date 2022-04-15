@@ -14,7 +14,7 @@ from wild_politics.settings import JResponse
 def vote_primaries(request):
     if request.method == "POST":
         # получаем персонажа
-        player = Player.objects.get(account=request.user)
+        player = Player.get_instance(account=request.user)
 
         from player.logs.print_log import log
         log(request.POST.get('party_pk'))
@@ -91,7 +91,7 @@ def vote_primaries(request):
         # создаем новый бюллетень голосования за переданного игрока
         vote = PrimBulletin(primaries=Primaries.objects.get(party=Party.objects.get(pk=party_pk), running=True),
                             player=player,
-                            candidate=Player.objects.get(pk=player_pk))
+                            candidate=Player.get_instance(pk=player_pk))
         # сохраняем бюллетень
         vote.save()
 

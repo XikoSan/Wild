@@ -17,13 +17,13 @@ from state.models.parliament.deputy_mandate import DeputyMandate
 @check_player
 def kick_from_party(request, pk):
     # получаем персонажа
-    leader = Player.objects.get(account=request.user)
+    leader = Player.get_instance(account=request.user)
     # если игрок действительно лидер партии
     if leader.party_post.party_lead:
         # если персонаж с переданным pk принадлежит игроку этой же партии
         if Player.objects.filter(pk=pk, party=leader.party).exists():
             # получаем персонажа, которому надо изменить партию
-            kickin_player = Player.objects.get(pk=pk)
+            kickin_player = Player.get_instance(pk=pk)
             # если этот игрок - лидер партии
             if kickin_player.party_post.party_lead:
                 return redirect('party')

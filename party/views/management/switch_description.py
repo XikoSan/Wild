@@ -12,7 +12,7 @@ from player.player import Player
 def switch_description(request):
     if request.method == "POST":
         # получаем персонажа
-        player = Player.objects.get(account=request.user)
+        player = Player.get_instance(account=request.user)
         # если игрок действительно лидер партии
         if player.party_post.party_lead:
             desk = request.POST.get('new_party_deskr')

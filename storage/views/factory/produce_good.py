@@ -18,7 +18,7 @@ from storage.views.storage.locks.get_storage import get_storage
 def produce_good(request):
     if request.method == "POST":
         # получаем персонажа
-        player = Player.objects.select_for_update().get(account=request.user)
+        player = Player.get_instance(account=request.user)
 
         if player.destination:
             data = {

@@ -12,7 +12,7 @@ from player.player import Player
 @check_player
 def vote_poll(request, poll_pk, variant_pk):
     # получаем персонажа
-    player = Player.objects.get(account=request.user)
+    player = Player.get_instance(account=request.user)
 
     # проверяем что передано целое положительное число
     try:

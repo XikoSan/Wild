@@ -12,7 +12,7 @@ from player.player import Player
 @check_player
 def reject_all_requests(request):
     # получаем персонажа
-    player = Player.objects.get(account=request.user)
+    player = Player.get_instance(account=request.user)
     if player.party_post:
         # если игрок действительно лидер партии или хотя бы секретарь
         if player.party_post.party_lead or player.party_post.party_sec:

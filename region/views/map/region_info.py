@@ -16,7 +16,7 @@ from region.views.time_in_flight import time_in_flight
 def region_info(request, id):
     if request.method == "GET":
 
-        player = Player.objects.get(account=request.user)
+        player = Player.get_instance(account=request.user)
 
         if Region.objects.filter(on_map_id=id).exists():
 

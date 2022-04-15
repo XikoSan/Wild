@@ -10,7 +10,7 @@ from storage.models.storage import Storage
 # Производство
 def get_storage_action_line(request, type):
     # получаем персонажа
-    player = Player.objects.get(account=request.user)
+    player = Player.get_instance(account=request.user)
     storage = Storage.objects.get(owner=player, region=player.region)
 
     return render(request, 'storage/storage_lines/' + type + '.html', {'player': player,

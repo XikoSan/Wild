@@ -14,7 +14,7 @@ from wild_politics.settings import JResponse
 def set_mandate(request):
     if request.method == "POST":
         # получаем персонажа
-        player = Player.objects.get(account=request.user)
+        player = Player.get_instance(account=request.user)
 
         # если у игрока есть партия
         # и он в ней лидер
@@ -32,7 +32,7 @@ def set_mandate(request):
                     }
                     return JResponse(data)
 
-                candidate = Player.objects.get(pk=int(candidate_pk))
+                candidate = Player.get_instance(pk=int(candidate_pk))
 
                 # проверяем, есть ли мандат с таким кадитатом:
                 if DeputyMandate.objects.filter(player=candidate).exists():

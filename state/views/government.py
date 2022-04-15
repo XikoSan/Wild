@@ -20,7 +20,7 @@ from state.models.treasury import Treasury
 @check_player
 def government(request):
     # получаем персонажа
-    player = Player.objects.get(account=request.user)
+    player = Player.get_instance(account=request.user)
 
     state = parliament = has_voting = capital = next_voting_date = is_deputate = None
 

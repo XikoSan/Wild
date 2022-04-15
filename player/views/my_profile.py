@@ -17,7 +17,7 @@ from allauth.socialaccount.models import SocialAccount
 # открытие страницы персонажа игрока
 def my_profile(request):
     # получаем персонажа
-    player = Player.objects.get(account=request.user)
+    player = Player.get_instance(account=request.user)
     player_settings = None
 
     if request.method == 'POST':

@@ -14,11 +14,11 @@ from player.player import Player
 def set_role(request):
     if request.method == "POST":
         # получаем персонажа
-        player = Player.objects.get(account=request.user)
+        player = Player.get_instance(account=request.user)
         # если игрок действительно лидер партии или хотя бы секретарь
         if player.party_post.party_lead or player.party_post.party_sec:
             # кому устанавливаем должность
-            member = Player.objects.get(pk=request.POST.get('member_id'))
+            member = Player.get_instance(pk=request.POST.get('member_id'))
             # если партия игроков одна и та же (то есть player имеет должность в той партии, игрока которой меняет)
             if player.party == member.party:
                 # если должность игроков НЕ одна и та же (один секретарь не может менять должность другому)

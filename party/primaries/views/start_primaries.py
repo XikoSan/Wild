@@ -16,7 +16,7 @@ from party.logs.membership_log import MembershipLog
 @check_player
 def start_primaries(request, party_pk):
     # получаем персонажа
-    player = Player.objects.get(account=request.user)
+    player = Player.get_instance(account=request.user)
 
     # если существует партия
     party = None

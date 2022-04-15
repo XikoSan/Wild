@@ -27,7 +27,7 @@ def finish_primaries(party_id):
     # должность лидера партии в данной партии
     party_boss_post = PartyPosition.objects.get(based=True, party=party, party_lead=True)
     # лидером праймериз будет глава партии, если нет голосов
-    current_leader = Player.objects.get(party=party, party_post=party_boss_post)
+    current_leader = Player.get_instance(party=party, party_post=party_boss_post)
     current_leader_votes = 0
     # подсчитываем количество голосов за каждого кандидата
     for candidate in candidates:

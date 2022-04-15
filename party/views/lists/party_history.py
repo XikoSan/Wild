@@ -16,12 +16,12 @@ from party.logs.membership_log import MembershipLog
 @check_player
 def party_history_list(request, char_pk):
     # получаем персонажа
-    player = Player.objects.get(account=request.user)
+    player = Player.get_instance(account=request.user)
 
     character = None
 
     if Player.objects.filter(pk=char_pk).exists():
-        character = Player.objects.get(pk=char_pk)
+        character = Player.get_instance(pk=char_pk)
     else:
         return redirect('overview')
 

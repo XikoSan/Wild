@@ -14,7 +14,7 @@ from player.player import Player
 def produce_energy(request):
     if request.method == "POST":
         # получаем персонажа
-        player = Player.objects.get(account=request.user)
+        player = Player.get_instance(account=request.user)
 
         try:
             count = int(request.POST.get('energy_field', ''))

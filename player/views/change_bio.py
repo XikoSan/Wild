@@ -13,7 +13,7 @@ from wild_politics.settings import JResponse
 def change_bio(request):
     if request.method == "POST":
         # получаем персонажа
-        player = Player.objects.select_for_update().get(account=request.user)
+        player = Player.get_instance(account=request.user)
 
         bio = request.POST.get('bio')
 

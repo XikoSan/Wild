@@ -1,6 +1,6 @@
 # coding=utf-8
 import datetime
-
+from django.db import transaction
 import pytz
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
@@ -10,11 +10,11 @@ from django_celery_beat.models import PeriodicTask
 from party.party import Party
 from party.position import PartyPosition
 from player.views.set_cah_log import set_cash_log
+from django.apps import apps
 from region.building.hospital import Hospital
 from region.region import Region
 from state.models.state import State
 from wild_politics.settings import JResponse
-
 
 class Player(models.Model):
     # учетная запись игрока
@@ -90,37 +90,12 @@ class Player(models.Model):
 
     # -----------навыки игрока----------------
 
-    # # значение силы игрока
-    # power = models.IntegerField(default=1)
-    # # значение знаний игрока
-    # knowlege = models.IntegerField(default=1)
-    # # значение выносливости игрока
-    # endurance = models.IntegerField(default=1)
-    #
-    # # флаг изучения в данный момент
-    # # тип партии
-    # choice_power = 'power'
-    # choice_knowlege = 'knowlege'
-    # choice_endurance = 'endurance'
-    # skillChoices = (
-    #     (choice_power, 'Сила'),
-    #     (choice_knowlege, 'Знания'),
-    #     (choice_endurance, 'Выносливость'),
-    # )
-    # learning = models.CharField(
-    #     max_length=10,
-    #     default=None,
-    #     null=True,
-    #     blank=True,
-    #     choices=skillChoices
-    # )
-    # # время получение следующего уровня навыка (если изучается)
-    # learning_up_date = models.DateTimeField(default=datetime.datetime(2020, 10, 28, 0, 0), blank=True)
-    # # id фонового процесса (обучения)
-    # task_id = models.CharField(max_length=150, blank=True, null=True, verbose_name='id фонового процесса')
-    #
-    # # значение навыка добычи ресурсов
-    # mining_skill = models.IntegerField(default=1)
+    # значение силы игрока
+    power = models.IntegerField(default=1)
+    # значение знаний игрока
+    knowledge = models.IntegerField(default=1)
+    # значение выносливости игрока
+    endurance = models.IntegerField(default=1)
 
     # -----------склад ресурсов----------------
 
@@ -153,8 +128,53 @@ class Player(models.Model):
         self.energy -= value
         self.save()
 
+
+    # получить Казну с акутализированными значениями запасов
+    # любые постоянные траты Казны должны быть прописаны тут
+    @staticmethod
+    @transaction.atomic
+    def get_instance(**params):
+
+        player = None
+        # получаем запрошенную инстанцию Склада
+        if Player.objects.filter(**params).exists():
+            player = Player.objects.select_for_update().get(**params)
+        else:
+            return player
+
+        SkillTraining = apps.get_model('player.SkillTraining')
+
+        if SkillTraining.objects.filter(player=player).exists():
+            skills = SkillTraining.objects.filter(player=player).order_by('end_dtime')
+
+            for skill in skills:
+                if skill.end_dtime <= timezone.now():
+                    setattr(player, skill.skill, getattr(player, skill.skill) + 1)
+                    # навык изучен, удаляем запись
+                    skill.delete()
+
+                else:
+                    break
+
+            player.save()
+
+        return player
+
     # сбор денег из дейлика
     def daily_claim(self):
+
+        power = self.power
+        if power > 100:
+            power = 100
+
+        knowledge = self.knowledge
+        if knowledge > 100:
+            knowledge = 100
+
+        endurance = self.endurance
+        if endurance > 100:
+            endurance = 100
+        daily_limit = 15000 + (power * 100) + (knowledge * 100) + (endurance * 100)
 
         if self.destination:
             data = {
@@ -176,7 +196,7 @@ class Player(models.Model):
         if daily_procent > 100:
             daily_procent = 100
 
-        if self.paid_sum > 14500:
+        if self.paid_sum > daily_limit:
             daily_procent = 0
 
         if daily_procent == 0 or (self.paid_consumption >= self.energy_limit):
@@ -190,7 +210,7 @@ class Player(models.Model):
             return JResponse(data), 0
 
         # сумма, которую уже можно забрать
-        count = int((14500 - self.paid_sum) / 100 * daily_procent)
+        count = int((daily_limit - self.paid_sum) / 100 * daily_procent)
 
         if count < 0:
             count = 0

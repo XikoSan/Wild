@@ -22,7 +22,7 @@ from wild_politics.settings import TIME_ZONE
 @check_player
 def world_regions_list(request):
     # получаем персонажа
-    player = Player.objects.get(account=request.user)
+    player = Player.get_instance(account=request.user)
 
     # получаем регионы для текущей страницы
     page = request.GET.get('page')

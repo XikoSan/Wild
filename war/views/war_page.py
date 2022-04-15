@@ -12,7 +12,7 @@ from itertools import chain
 @check_player
 def war_page(request):
     # получаем персонажа
-    player = Player.objects.get(account=request.user)
+    player = Player.get_instance(account=request.user)
 
     wars_list = None
 

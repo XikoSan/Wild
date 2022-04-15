@@ -12,7 +12,22 @@ from player.player import Player
 @login_required(login_url='/')
 @check_player
 def mining(request):
-    player = Player.objects.get(account=request.user)
+    player = Player.get_instance(account=request.user)
+
+    # лимит денег, доступный игроку
+    power = player.power
+    if power > 100:
+        power = 100
+
+    knowledge = player.knowledge
+    if knowledge > 100:
+        knowledge = 100
+
+    endurance = player.endurance
+    if endurance > 100:
+        endurance = 100
+
+    daily_limit = 15000 + (power * 100) + (knowledge * 100) + (endurance * 100)
 
     # 3500 - количество энергии, которую надо выфармить за день
     if player.paid_consumption >= player.energy_limit:
@@ -24,7 +39,7 @@ def mining(request):
         daily_procent = 100
 
     # сумма, которую уже можно забрать
-    daily_current_sum = int((14500 - player.paid_sum) / 100 * daily_procent)
+    daily_current_sum = int((daily_limit - player.paid_sum) / 100 * daily_procent)
 
     daily_energy_limit = 0
     if player.energy_limit - player.paid_consumption > 0:
@@ -36,6 +51,7 @@ def mining(request):
 
         'player': player,
 
+        'daily_limit': daily_limit,
         'daily_energy_limit': daily_energy_limit,
         'daily_procent': daily_procent,
         'daily_current_sum': daily_current_sum,

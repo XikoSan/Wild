@@ -5,12 +5,22 @@ from django.contrib import admin
 from party.position import PartyPosition
 from player.logs.cash_log import CashLog
 from player.logs.gold_log import GoldLog
+from player.logs.skill_training import SkillTraining
 from .player import Player
 
 
 class CashLogAdmin(admin.ModelAdmin):
     list_display = ('player', 'cash', 'activity_txt')
     list_filter = ('activity_txt',)
+    search_fields = ('player__nickname',)
+    raw_id_fields = ('player',)
+    date_hierarchy = 'dtime'
+    ordering = ('-dtime',)
+
+
+class SkillTrainingAdmin(admin.ModelAdmin):
+    list_display = ('player', 'skill', 'end_dtime')
+    list_filter = ('skill',)
     search_fields = ('player__nickname',)
     raw_id_fields = ('player',)
     date_hierarchy = 'dtime'
@@ -43,7 +53,7 @@ class PLayerAdmin(admin.ModelAdmin):
                 # Получаем pk(без "/" в начале и конце
                 pk = pks[0][1:-1]
                 if Player.objects.filter(pk=pk).exists():
-                    user = Player.objects.get(pk=pk)
+                    user = Player.get_instance(pk=pk)
                     # Возвращаем для выбора только те посты, которые относятся к клану игрока
                     kwargs['queryset'] = PartyPosition.objects.filter(party=user.party)
             # Если нет - это значит, что мы не запрашиваем доступ к модели Player,
@@ -60,3 +70,4 @@ class PLayerAdmin(admin.ModelAdmin):
 admin.site.register(Player, PLayerAdmin)
 admin.site.register(CashLog, CashLogAdmin)
 admin.site.register(GoldLog, GoldLogAdmin)
+admin.site.register(SkillTraining, SkillTrainingAdmin)

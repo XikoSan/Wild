@@ -21,7 +21,7 @@ from state.models.parliament.parliament_voting import ParliamentVoting
 @check_player
 def vote_pres_elections(request, pres_pk, cand_pk):
     # получаем персонажа
-    player = Player.objects.get(account=request.user)
+    player = Player.get_instance(account=request.user)
 
     president_post = President.objects.get(pk=pres_pk)
 
@@ -46,13 +46,13 @@ def vote_pres_elections(request, pres_pk, cand_pk):
         voting=PresidentialVoting.objects.get(president=president_post, running=True),
         player=player).exists() \
             and Player.objects.filter(pk=cand_pk).exists() \
-            and Player.objects.get(pk=cand_pk) in PresidentialVoting.objects.get(president=president_post, running=True).candidates.all():
+            and Player.get_instance(pk=cand_pk) in PresidentialVoting.objects.get(president=president_post, running=True).candidates.all():
 
         # создаем новый бюллетень голосования за переданного игрока
         vote = Vote(
             voting=PresidentialVoting.objects.get(president=president_post, running=True),
             player=player,
-            challenger=Player.objects.get(pk=cand_pk)
+            challenger=Player.get_instance(pk=cand_pk)
         )
         # сохраняем бюллетень
         vote.save()

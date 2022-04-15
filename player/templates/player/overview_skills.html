@@ -1,0 +1,140 @@
+{% load get_sum %}
+{% load get_mul %}
+{% load i18n %}
+{% load tz %}
+{% load static %}
+<script src='{% static "overview_skills.js" %}?{{ csrf_token }}'></script>
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12" align="center">
+        Сила
+    </div>
+</div>
+<div class="row" style="margin-top: 1%">
+    {% if train and train.skill == 'power' %}
+    <div class="col-xs-12 col-sm-12 col-md-12" align="center">
+        Завершение: {{ train.end_dtime|timezone:player.time_zone|date:"d.m.Y H:i" }}
+    </div>
+    {% else %}
+    <div class="col-xs-6 col-sm-6 col-md-6" align="center">
+        <div class="row">
+            Стоимость:
+        </div>
+        <div class="row">
+            <b style="color: #85bb65;">${{ player.power|get_sum:1|get_mul:1000 }}</b>
+        </div>
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-6">
+        <div class="row">
+            Время изучения:
+        </div>
+        <div class="row">
+            {{ player.power|get_sum:1 }} ч.
+        </div>
+    </div>
+    {% endif %}
+</div>
+<div class="row" style="margin-top: 1%">
+    <div class="col-xs-12 col-sm-12 col-md-12" align="center">
+        <button type="submit" {% if not train %} onclick="up_skill('power')" {% else %} disabled {% endif %} class="save btn btn-default" style="width: 50%;border-color: FF0000!important;">
+            {% if train %}
+                {% if train.skill == 'power' %}
+                    Изучается...
+                {% else %}
+                    Недоступно
+                {% endif %}
+            {% else %}
+            Изучить
+            {% endif %}
+        </button>
+    </div>
+</div>
+<!--знания-->
+<div class="row" style="margin-top: 10%;">
+    <div class="col-xs-12 col-sm-12 col-md-12" align="center">
+        Интеллект
+    </div>
+</div>
+<div class="row" style="margin-top: 1%">
+    {% if train and train.skill == 'knowledge' %}
+    <div class="col-xs-12 col-sm-12 col-md-12" align="center">
+        Завершение: {{ train.end_dtime|timezone:player.time_zone|date:"d.m.Y H:i" }}
+    </div>
+    {% else %}
+    <div class="col-xs-6 col-sm-6 col-md-6" align="center">
+        <div class="row">
+            Стоимость:
+        </div>
+        <div class="row">
+            <b style="color: #85bb65;">${{ player.knowledge|get_sum:1|get_mul:1000 }}</b>
+        </div>
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-6">
+        <div class="row">
+            Время изучения:
+        </div>
+        <div class="row">
+            {{ player.knowledge|get_sum:1 }} ч.
+        </div>
+    </div>
+    {% endif %}
+</div>
+<div class="row" style="margin-top: 1%">
+    <div class="col-xs-12 col-sm-12 col-md-12" align="center">
+        <button type="submit" {% if not train %} onclick="up_skill('knowledge')" {% else %} disabled {% endif %} class="save btn btn-default" style="width: 50%;border-color: 337AB7!important;">
+            {% if train %}
+                {% if train.skill == 'knowledge' %}
+                    Изучается...
+                {% else %}
+                    Недоступно
+                {% endif %}
+            {% else %}
+            Изучить
+            {% endif %}
+        </button>
+    </div>
+</div>
+<!--выносливость-->
+<div class="row" style="margin-top: 10%;">
+    <div class="col-xs-12 col-sm-12 col-md-12" align="center">
+        Выносливость
+    </div>
+</div>
+<div class="row" style="margin-top: 1%">
+    {% if train and train.skill == 'endurance' %}
+    <div class="col-xs-12 col-sm-12 col-md-12" align="center">
+        Завершение: {{ train.end_dtime|timezone:player.time_zone|date:"d.m.Y H:i" }}
+    </div>
+    {% else %}
+    <div class="col-xs-6 col-sm-6 col-md-6" align="center">
+        <div class="row">
+            Стоимость:
+        </div>
+        <div class="row">
+            <b style="color: #85bb65;">${{ player.endurance|get_sum:1|get_mul:1000 }}</b>
+        </div>
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-6">
+        <div class="row">
+            Время изучения:
+        </div>
+        <div class="row">
+            {{ player.endurance|get_sum:1 }} ч.
+        </div>
+    </div>
+    {% endif %}
+</div>
+<div class="row" style="margin-top: 1%">
+    <div class="col-xs-12 col-sm-12 col-md-12" align="center">
+        <button type="submit" {% if not train %} onclick="up_skill('endurance')" {% else %} disabled {% endif %} class="save btn btn-default" style="width: 50%;border-color: 18D04C!important;">
+            {% if train %}
+                {% if train.skill == 'endurance' %}
+                    Изучается...
+                {% else %}
+                    Недоступно
+                {% endif %}
+            {% else %}
+            Изучить
+            {% endif %}
+        </button>
+    </div>
+</div>

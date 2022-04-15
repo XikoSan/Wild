@@ -15,7 +15,7 @@ from party.party import Party
 @check_player
 def world_parties_list(request):
     # получаем персонажа
-    player = Player.objects.get(account=request.user)
+    player = Player.get_instance(account=request.user)
 
     # получаем партии для текущей страницы
     page = request.GET.get('page')

@@ -25,7 +25,7 @@ def start_war(request):
             return JResponse(data)
 
         # получаем персонажа
-        player = Player.objects.select_for_update().get(account=request.user)
+        player = Player.get_instance(account=request.user)
 
         # создаем новую войну
         war = EventWar(

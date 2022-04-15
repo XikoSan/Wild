@@ -15,7 +15,7 @@ from wild_politics.settings import JResponse
 def get_residency(request):
     if request.method == "POST":
 
-        player = Player.objects.select_for_update().get(account=request.user)
+        player = Player.get_instance(account=request.user)
 
         if player.destination:
             data = {
