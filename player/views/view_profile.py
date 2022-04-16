@@ -5,6 +5,7 @@ import redis
 from allauth.socialaccount.models import SocialAccount
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
+from django.utils import timezone
 
 from player.decorators.player import check_player
 from player.player import Player

@@ -48,10 +48,16 @@ def up_skill(request):
 
         player.cash -= (getattr(player, skill) + 1) * 1000
 
+        # время изучения навыка без према
+        time_delta = datetime.timedelta(hours=(getattr(player, skill) + 1))
+        # с премом
+        if player.premium > timezone.now():
+            time_delta = datetime.timedelta(seconds=(getattr(player, skill) + 1)*2400)
+
         new_skill = SkillTraining(
             player=player,
             skill=skill,
-            end_dtime=timezone.now() + datetime.timedelta(hours=(getattr(player, skill) + 1)),
+            end_dtime=timezone.now() + time_delta,
         )
 
         new_skill.save()

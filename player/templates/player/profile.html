@@ -158,6 +158,15 @@
                                 <b><font size="5" >{{ player.pk }}</font></b>
                             </div>
                         </div>
+                        <!--Премиум-->
+                        <div class="row flex" style="margin-left: 10px;">
+                            <div class="col-xs-6 col-sm-6 col-md-6" align="left">
+                                <b><font size="5" >Премиум-аккаунт:</font></b>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <b><font size="4" color="FFBE00">{% if premium %}до {{ premium|timezone:player.time_zone|date:"d.m.Y H:i" }}{% else %}не активен{% endif %}</font></b>
+                            </div>
+                        </div>
                         <!--Навыки персонажа-->
                         <div class="row flex" style="margin-left: 10px;">
                             <div class="col-xs-6 col-sm-6 col-md-6" align="left">

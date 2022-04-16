@@ -1,15 +1,14 @@
-import pytz
 from django.contrib.auth.decorators import login_required
-from django.db import connection
+from allauth.socialaccount.models import SocialAccount
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
-from django.shortcuts import render, get_object_or_404
-from PIL import Image
-from player.logs.gold_log import GoldLog
-from django.core.files import File
-from player.player import Player
+from django.shortcuts import render
+from django.utils import timezone
+
 from player.decorators.player import check_player
 from player.forms import ImageForm
-from allauth.socialaccount.models import SocialAccount
+from player.logs.gold_log import GoldLog
+from player.player import Player
 
 
 @login_required(login_url='/')
@@ -41,12 +40,12 @@ def my_profile(request):
             y = form.cleaned_data['y']
             w = form.cleaned_data['width']
             h = form.cleaned_data['height']
-            
+
             image = Image.open(player.image)
             cropped_image = image.crop((x, y, w + x, h + y))
             resized_image = cropped_image.resize((250, 250), Image.ANTIALIAS)
             resized_image.save(player.image.path)
-            
+
             return redirect('my_profile')
     else:
         form = ImageForm()
@@ -56,6 +55,11 @@ def my_profile(request):
     if SocialAccount.objects.filter(user=player.account).exists():
         if SocialAccount.objects.filter(user=player.account).all()[0].provider == 'vk':
             user_link = 'https://vk.com/id' + SocialAccount.objects.filter(user=player.account).all()[0].uid
+
+    premium = None
+
+    if player.premium > timezone.now():
+        premium = player.premium
 
     # timezones = pytz.common_timezones
     #
@@ -70,6 +74,8 @@ def my_profile(request):
 
     return render(request, 'player/profile.html', {'player': player,
                                                    'form': form,
+
+                                                   'premium': premium,
 
                                                    'user_link': user_link,
                                                    # 'timezones': timezones,

@@ -3,6 +3,7 @@
 {% load i18n %}
 {% load tz %}
 {% load static %}
+{% load get_hh_mm_ss %}
 <script src='{% static "overview_skills.js" %}?{{ csrf_token }}'></script>
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12" align="center">
@@ -28,7 +29,11 @@
             Время изучения:
         </div>
         <div class="row">
-            {{ player.power|get_sum:1 }} ч.
+            {% if premium %}
+            {{ player.power|get_sum:1|get_mul:2400|get_hh_mm_ss }}
+            {% else %}
+            {{ player.power|get_sum:1|get_mul:3600|get_hh_mm_ss }}
+            {% endif %}
         </div>
     </div>
     {% endif %}
@@ -73,7 +78,11 @@
             Время изучения:
         </div>
         <div class="row">
-            {{ player.knowledge|get_sum:1 }} ч.
+            {% if premium %}
+            {{ player.knowledge|get_sum:1|get_mul:2400|get_hh_mm_ss }}
+            {% else %}
+            {{ player.knowledge|get_sum:1|get_mul:3600|get_hh_mm_ss }}
+            {% endif %}
         </div>
     </div>
     {% endif %}
@@ -118,7 +127,11 @@
             Время изучения:
         </div>
         <div class="row">
-            {{ player.endurance|get_sum:1 }} ч.
+            {% if premium %}
+            {{ player.endurance|get_sum:1|get_mul:2400|get_hh_mm_ss }}
+            {% else %}
+            {{ player.endurance|get_sum:1|get_mul:3600|get_hh_mm_ss }}
+            {% endif %}
         </div>
     </div>
     {% endif %}

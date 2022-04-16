@@ -99,13 +99,14 @@ class Player(models.Model):
 
     # -----------склад ресурсов----------------
 
+    # дата истечения премиум-акккаунта
+    premium = models.DateTimeField(default=timezone.now, blank=True,
+                                 verbose_name='Премиум, до')
+
+    # -----------склад ресурсов----------------
+
     # запасы денег
     cash = models.BigIntegerField(default=10000, verbose_name='Наличные')
-    # ёмкость кошелька
-    # cash_cap = models.BigIntegerField(default=10000, verbose_name='Ёмкость кошелька')
-    # время завершения расширения Кошелька
-    # expansion_end = models.DateTimeField(default=None, null=True, blank=True)
-
     # запасы золота
     gold = models.BigIntegerField(default=100, verbose_name='Золото')
     # запасы золота, которые будут выданы после релиза
