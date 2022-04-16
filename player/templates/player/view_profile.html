@@ -42,6 +42,21 @@
                                 <b><font size="4" >{% if dtime %}{{ dtime }}{% else %}давно{% endif %}</font></b>
                             </div>
                         </div>
+                        <!--Навыки персонажа-->
+                        <div class="row flex" style="margin-left: 10px;">
+                            <div class="col-xs-6 col-sm-6 col-md-6" align="left">
+                                <b><font size="5">Навыки:</font></b>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <b>
+                                    <font size="4" color="FF0000">{{ char.power }}</font>
+                                    /
+                                    <font size="4" color="337AB7">{{ char.knowledge }}</font>
+                                    /
+                                    <font size="4" color="#18D04C">{{ char.endurance }}</font>
+                                </b>
+                            </div>
+                        </div>
                         <!--место нахождения-->
                         <div class="row flex" style="margin-left: 10px;">
                             <div class="col-xs-6 col-sm-6 col-md-6" align="left">
