@@ -41,9 +41,6 @@ urlpatterns = [
     # изменить никнейм
     url(r'^change_nickname/$', change_nickname, name='change_nickname'),
 
-    # изучить навык
-    url(r'^up_skill/$', up_skill, name='up_skill'),
-
     # изменить биографию
     url(r'^change_bio/$', change_bio, name='change_bio'),
 

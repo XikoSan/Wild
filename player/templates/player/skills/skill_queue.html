@@ -1,0 +1,26 @@
+{% extends 'player/header.html' %}
+{% load static %}
+{% load bootstrap3 %}
+{% load l10n %}{% load i18n %}
+{% load dict_key %}
+{% load get_attr %}
+{% load overview_blocks.skills %}
+
+{% block for_scripts_and_css %}
+{% endblock %}
+
+{% block content %}
+{% load get_sum %}
+{% load get_mul %}
+{% load i18n %}
+{% load tz %}
+{% load static %}
+{% load get_hh_mm_ss %}
+<script src='{% static "overview_skills.js" %}?{{ csrf_token }}'></script>
+<div class="col-xs-3 col-sm-3 col-md-3">
+   {% skills player False %}
+</div>
+<div class="col-xs-9 col-sm-9 col-md-9">
+
+</div>
+{% endblock %}
