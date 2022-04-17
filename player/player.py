@@ -200,7 +200,7 @@ class Player(models.Model):
         if self.paid_sum > daily_limit:
             daily_procent = 0
 
-        if daily_procent == 0 or (self.paid_consumption >= self.energy_limit):
+        if daily_procent == 0 or (self.paid_consumption >= self.energy_limit and daily_limit - self.paid_sum == 0):
             data = {
                 # 'response': _('wait_flight_end'),
                 'response': 'Нечего забирать',
