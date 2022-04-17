@@ -5,6 +5,7 @@ from django.db import transaction
 from django.utils import timezone
 
 from player.decorators.player import check_player
+from player.logs.cash_log import CashLog
 from player.logs.skill_training import SkillTraining
 from player.player import Player
 from wild_politics.settings import JResponse
@@ -35,7 +36,10 @@ def up_skill(request):
             }
             return JResponse(data)
 
-        if player.cash < (getattr(player, skill) + 1) * 1000:
+        # считаем, сколько у нас изучается навыков с этим именем
+        skill_cnt = SkillTraining.objects.filter(player=player, skill=skill).count()
+
+        if player.cash < (getattr(player, skill) + skill_cnt + 1) * 1000:
             data = {
                 # 'response': _('positive_enrg_req'),
                 'response': 'Недостаточно денег, необходимо: ' + str((getattr(player, skill) + 1) * 1000),
@@ -60,10 +64,11 @@ def up_skill(request):
             }
             return JResponse(data)
 
-        player.cash -= (getattr(player, skill) + 1) * 1000
+        player.cash -= (getattr(player, skill) + skill_cnt + 1) * 1000
 
-        # считаем, сколько у нас изучается навыков с этим именем
-        skill_cnt = SkillTraining.objects.filter(player=player, skill=skill).count()
+        cash_log = CashLog(player=player, cash=0 - (getattr(player, skill) + skill_cnt + 1) * 1000,
+                           activity_txt='skill')
+        cash_log.save()
 
         # время изучения навыка без према
         time_delta = datetime.timedelta(hours=(getattr(player, skill) + skill_cnt + 1))

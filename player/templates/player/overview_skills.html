@@ -22,7 +22,7 @@
             Стоимость:
         </div>
         <div class="row">
-            <b style="color: #85bb65;">${{ player.power|get_sum:1|get_mul:1000 }}</b>
+            <b style="color: #85bb65;">${{ player.power|get_sum:power_count|get_sum:1|get_mul:1000 }}</b>
         </div>
     </div>
     <div class="col-xs-6 col-sm-6 col-md-6">
@@ -75,7 +75,7 @@
             Стоимость:
         </div>
         <div class="row">
-            <b style="color: #85bb65;">${{ player.knowledge|get_sum:1|get_mul:1000 }}</b>
+            <b style="color: #85bb65;">${{ player.knowledge|get_sum:knowledge_count|get_sum:1|get_mul:1000 }}</b>
         </div>
     </div>
     <div class="col-xs-6 col-sm-6 col-md-6">
@@ -128,7 +128,7 @@
             Стоимость:
         </div>
         <div class="row">
-            <b style="color: #85bb65;">${{ player.endurance|get_sum:1|get_mul:1000 }}</b>
+            <b style="color: #85bb65;">${{ player.endurance|get_sum:endurance_count|get_sum:1|get_mul:1000 }}</b>
         </div>
     </div>
     <div class="col-xs-6 col-sm-6 col-md-6">
