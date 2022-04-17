@@ -9,6 +9,8 @@ def skills(player, queue_need):
     train = None
     has_slot = False
 
+    power_count = knowledge_count = endurance_count = skills_count = 0
+
     if SkillTraining.objects.filter(player=player).exists():
         # сколько навыков Силы изучается
         power_count = SkillTraining.objects.filter(player=player, skill='power').count()
