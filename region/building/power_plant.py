@@ -7,6 +7,8 @@ from region.region import Region
 from state.models.treasury import Treasury
 from django.db.models import F
 import datetime
+from django.db import transaction
+import time
 # Электростанция - здание в регионе
 class PowerPlant(Building):
     # сколько производит каждый уровень электростанции
@@ -17,6 +19,7 @@ class PowerPlant(Building):
 
     # проверяем работоспособность электросети
     @staticmethod
+    @transaction.atomic
     def check_is_working(state):
         # получаем Казну госа
         treasury = Treasury.get_instance(state=state)
@@ -27,6 +30,10 @@ class PowerPlant(Building):
         # узнаем сколько раз по часу прошло
         counts = (timezone.now() - treasury.power_actualize).total_seconds() // 3600
 
+        if counts == 0:
+            # если актуализировать не нужно, возвращаем текущее состояние
+            return treasury.power_on
+
         # остаток от деления понадобится чтобы указать время обновления
         modulo = (timezone.now() - treasury.power_actualize).total_seconds() % 3600
 
@@ -36,13 +43,21 @@ class PowerPlant(Building):
         # если угля достаточно
         if treasury.coal >= cons * counts:
             # списываем этот уголь, актуализируем казну
-            Treasury.objects.filter(pk=treasury.pk).update(coal=F('coal')-(cons * counts), power_actualize=timezone.now()-datetime.timedelta(seconds=modulo), power_on=True)
+            treasury.coal -= cons * counts
+            treasury.power_actualize = timezone.now()-datetime.timedelta(seconds=modulo)
+            treasury.power_on = True
+            treasury.save()
+
             return True
 
         # иначе - сеть не работает
         else:
             # списываем этот уголь, актуализируем казну
-            Treasury.objects.filter(pk=treasury.pk).update(power_actualize=timezone.now()-datetime.timedelta(seconds=modulo), power_on=False)
+            treasury.power_actualize = timezone.now()-datetime.timedelta(seconds=modulo)
+            treasury.power_on = False
+            treasury.save()
+
+
             return False
 
     # получить строки с информацией об уровне и рейтинге здания

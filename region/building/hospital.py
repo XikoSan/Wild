@@ -49,7 +49,7 @@ class Hospital(RateBuilding):
         if Hospital.objects.filter(region=region).exists():
             building = Hospital.objects.get(region=region)
             level = building.level
-            top = building.top
+            top = building.get_top()
 
         else:
             level = 0

@@ -7,7 +7,7 @@ from django.utils.translation import gettext_lazy
 
 from region.region import Region
 from state.models.state import State
-
+from django.db import transaction
 
 class Treasury(models.Model):
     # государство принадлежности
@@ -102,12 +102,13 @@ class Treasury(models.Model):
     # получить Казну с акутализированными значениями запасов
     # любые постоянные траты Казны должны быть прописаны тут
     @staticmethod
+    @transaction.atomic
     def get_instance(**params):
 
         treasury = None
         # получаем запрошенную инстанцию Склада
         if Treasury.objects.filter(**params).exists():
-            treasury = Treasury.objects.get(**params)
+            treasury = Treasury.objects.select_for_update().get(**params)
         else:
             return treasury
 
