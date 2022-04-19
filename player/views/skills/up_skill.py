@@ -42,7 +42,7 @@ def up_skill(request):
         if player.cash < (getattr(player, skill) + skill_cnt + 1) * 1000:
             data = {
                 # 'response': _('positive_enrg_req'),
-                'response': 'Недостаточно денег, необходимо: ' + str((getattr(player, skill) + 1) * 1000),
+                'response': 'Недостаточно денег, необходимо: ' + str((getattr(player, skill) + skill_cnt + 1) * 1000),
                 'header': 'Изучение навыка',
                 'grey_btn': 'Закрыть',
             }
