@@ -104,8 +104,7 @@ class Project(models.Model):
             [
                 {
                     'cash': 5,
-                    'coal': 8,
-                    'bauxite': 10,
+                    'bauxite': 20,
                 },
             ],
 

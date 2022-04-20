@@ -15,7 +15,7 @@ class PowerPlant(Building):
     production = 10
 
     # сколько угля потребляет каждый уровень электры в час
-    consumption = 80
+    consumption = 20
 
     # проверяем работоспособность электросети
     @staticmethod
