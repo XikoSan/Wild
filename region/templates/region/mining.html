@@ -1,9 +1,13 @@
 {% extends 'player/header.html' %}
 {% load floor_to_tens %}
 {% load static %}
-{% block for_scripts_and_css %}
 {% load l10n %}{% load i18n %}
+
+{% block for_scripts_and_css %}
 <script src='{% static "js/mining.js" %}?{{ csrf_token }}'></script>
+{% if premium %}
+<script src='{% static "js/auto_mining.js" %}?{{ csrf_token }}'></script>
+{% endif %}
 {% endblock %}
 
 {% block content %}
@@ -56,65 +60,94 @@
 {% else %}
 Добыча ресурсов в регионе {{ player.region }}
 {% endif %}
-<br>
-<br>
-<b>Золото</b>
-<br>
-Запасы: {{ player.region.gold_has }} / {{ player.region.gold_cap }}
-<br>
-<br>
-<form class="mining_form" role="form">
-    {% csrf_token %}
-    <input type="hidden" name="resource" value="gold">
-    <input type="number" min="0" max="100" value="{{ player.energy|floor_to_tens }}" step="10" name="energy"
-           maxlength="3">
-    <!--если игрок в полете-->
-    {% if player.destination %}
-    <button type="button" class="btn btn-danger">Вы в полете</button>
-    {% else %}
-    <button type="submit" class="save btn btn-mining btn-default">Добыча ресурсов</button>
-    {% endif %}
-</form>
-<br>
-<br>
-<b>Нефть</b>
-<br>
-Запасы: {{ player.region.oil_has }} / {{ player.region.oil_cap }}
-<br>
-Марка нефти: {{ player.region.get_oil_type_display }}
-<br>
-<br>
-<form class="mining_form" role="form">
-    {% csrf_token %}
-    <input type="hidden" name="resource" value="oil">
-    <input type="number" min="0" max="100" value="{{ player.energy|floor_to_tens }}" step="10" name="energy"
-           maxlength="3">
-    <!--если игрок в полете-->
-    {% if player.destination %}
-    <button type="button" class="btn btn-danger">Вы в полете</button>
-    {% else %}
-    <button type="submit" enctype="multipart/form-data" class="save btn btn-mining btn-default">Добыча ресурсов</button>
-    {% endif %}
-</form>
-<br>
-<br>
-<b>Руда</b>
-<br>
-Запасы: {{ player.region.ore_has }} / {{ player.region.ore_cap }}
-<br>
-Качество руды: {{ player.region.coal_proc }}% / {{ player.region.iron_proc }}% / {{ player.region.bauxite_proc }}%
-<br>
-<br>
-<form class="mining_form" role="form">
-    {% csrf_token %}
-    <input type="hidden" name="resource" value="ore">
-    <input type="number" min="0" max="100" value="{{ player.energy|floor_to_tens }}" step="10" name="energy"
-           maxlength="3">
-    <!--если игрок в полете-->
-    {% if player.destination %}
-    <button type="button" class="btn btn-danger">Вы в полете</button>
-    {% else %}
-    <button type="submit" enctype="multipart/form-data" class="save btn btn-mining btn-default">Добыча ресурсов</button>
-    {% endif %}
-</form>
+<div id="mining_main">
+    <br>
+    <br>
+    <b>Золото</b>
+    <br>
+    Запасы: {{ player.region.gold_has }} / {{ player.region.gold_cap }}
+    <br>
+    <br>
+    <form class="mining_form" role="form">
+        {% csrf_token %}
+        <input type="hidden" name="resource" value="gold">
+        <input type="number" min="0" max="100" value="{{ player.energy|floor_to_tens }}" step="10" name="energy"
+               maxlength="3">
+        <!--если игрок в полете-->
+        {% if player.destination %}
+        <button type="button" class="btn btn-danger">Вы в полете</button>
+        {% else %}
+        <button type="submit" class="save btn btn-mining btn-default" style="margin-left: 1%">Добыча ресурсов</button>
+
+            {% if premium %}
+            <button type="button" class="btn btn-warning start_auto" onclick="start_auto(event, 'gold')" style="margin-left: 1% {% if auto_mining.resource == 'gold' %};display:none{% endif %}">
+                <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
+            </button>
+            <button type="button" class="btn btn-danger cancel_auto" onclick="cancel_auto(event)" style="margin-left: 1% {% if not auto_mining or auto_mining.resource != 'gold' %}; display:none {% endif %}">
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+            </button>
+            {% endif %}
+        {% endif %}
+    </form>
+    <br>
+    <br>
+    <b>Нефть</b>
+    <br>
+    Запасы: {{ player.region.oil_has }} / {{ player.region.oil_cap }}
+    <br>
+    Марка нефти: {{ player.region.get_oil_type_display }}
+    <br>
+    <br>
+    <form class="mining_form" role="form">
+        {% csrf_token %}
+        <input type="hidden" name="resource" value="oil">
+        <input type="number" min="0" max="100" value="{{ player.energy|floor_to_tens }}" step="10" name="energy"
+               maxlength="3">
+        <!--если игрок в полете-->
+        {% if player.destination %}
+        <button type="button" class="btn btn-danger">Вы в полете</button>
+        {% else %}
+        <button type="submit" enctype="multipart/form-data" class="save btn btn-mining btn-default" style="margin-left: 1%">Добыча ресурсов</button>
+
+                {% if premium %}
+        <button type="button" class="btn btn-warning start_auto" onclick="start_auto(event, 'oil')" style="margin-left: 1% {% if auto_mining.resource == 'oil' %};display:none{% endif %}">
+            <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="btn btn-danger cancel_auto" onclick="cancel_auto(event)" style="margin-left: 1% {% if not auto_mining or auto_mining.resource != 'oil' %}; display:none {% endif %}">
+            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        </button>
+            {% endif %}
+        {% endif %}
+    </form>
+    <br>
+    <br>
+    <b>Руда</b>
+    <br>
+    Запасы: {{ player.region.ore_has }} / {{ player.region.ore_cap }}
+    <br>
+    Качество руды: {{ player.region.coal_proc }}% / {{ player.region.iron_proc }}% / {{ player.region.bauxite_proc }}%
+    <br>
+    <br>
+    <form class="mining_form" role="form">
+        {% csrf_token %}
+        <input type="hidden" name="resource" value="ore">
+        <input type="number" min="0" max="100" value="{{ player.energy|floor_to_tens }}" step="10" name="energy"
+               maxlength="3">
+        <!--если игрок в полете-->
+        {% if player.destination %}
+        <button type="button" class="btn btn-danger">Вы в полете</button>
+        {% else %}
+        <button type="submit" enctype="multipart/form-data" class="save btn btn-mining btn-default" style="margin-left: 1%">Добыча ресурсов</button>
+
+            {% if premium %}
+        <button type="button" class="btn btn-warning start_auto" onclick="start_auto(event, 'ore')" style="margin-left: 1% {% if auto_mining.resource == 'ore' %};display:none{% endif %}">
+            <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="btn btn-danger cancel_auto" onclick="cancel_auto(event)" style="margin-left: 1% {% if not auto_mining or auto_mining.resource != 'ore' %}; display:none {% endif %}">
+            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        </button>
+            {% endif %}
+        {% endif %}
+    </form>
+</div>
 {% endblock %}

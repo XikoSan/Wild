@@ -6,6 +6,7 @@ from party.position import PartyPosition
 from player.logs.cash_log import CashLog
 from player.logs.gold_log import GoldLog
 from player.logs.skill_training import SkillTraining
+from player.logs.auto_mining import AutoMining
 from .player import Player
 
 
@@ -21,6 +22,15 @@ class CashLogAdmin(admin.ModelAdmin):
 class SkillTrainingAdmin(admin.ModelAdmin):
     list_display = ('player', 'skill', 'end_dtime')
     list_filter = ('skill',)
+    search_fields = ('player__nickname',)
+    raw_id_fields = ('player',)
+    date_hierarchy = 'dtime'
+    ordering = ('-dtime',)
+
+
+class AutoMiningAdmin(admin.ModelAdmin):
+    list_display = ('player', 'resource', 'dtime')
+    list_filter = ('resource',)
     search_fields = ('player__nickname',)
     raw_id_fields = ('player',)
     date_hierarchy = 'dtime'
@@ -71,3 +81,4 @@ admin.site.register(Player, PLayerAdmin)
 admin.site.register(CashLog, CashLogAdmin)
 admin.site.register(GoldLog, GoldLogAdmin)
 admin.site.register(SkillTraining, SkillTrainingAdmin)
+admin.site.register(AutoMining, AutoMiningAdmin)

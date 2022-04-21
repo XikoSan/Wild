@@ -1,7 +1,4 @@
 # coding=utf-8
-# import operator
-# from datetime import timedelta
-# from django.conf import settings
 from decimal import Decimal
 
 from django.contrib.auth.decorators import login_required
@@ -10,16 +7,13 @@ from django.db import transaction
 from player.decorators.player import check_player
 from player.logs.gold_log import GoldLog
 from player.player import Player
-# from django.contrib.auth.models import User
-# from django.db.models import Q
 from state.models.state import State
 from storage.models.storage import Storage
 from storage.views.storage.locks.get_storage import get_storage
-# from django.http import JResponse, HttpResponse
 from wild_politics.settings import JResponse
 
 
-# главная страница
+# выкопать ресурсы по запросу игрока
 @login_required(login_url='/')
 @check_player
 @transaction.atomic

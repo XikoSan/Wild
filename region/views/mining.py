@@ -6,6 +6,7 @@ from django.utils.translation import ugettext as _
 
 from player.decorators.player import check_player
 from player.player import Player
+from player.logs.auto_mining import AutoMining
 
 
 # главная страница
@@ -13,6 +14,21 @@ from player.player import Player
 @check_player
 def mining(request):
     player = Player.get_instance(account=request.user)
+
+    premium = False
+
+    if player.premium > timezone.now():
+        premium = True
+
+    auto_mining = None
+
+    if AutoMining.objects.filter(player=player).exists():
+        auto_mining = AutoMining.objects.get(player=player)
+
+        if not premium:
+            auto_mining.delete()
+            auto_mining = None
+
 
     # лимит денег, доступный игроку
     power = player.power
@@ -50,6 +66,8 @@ def mining(request):
         'page_name': _('Добыча'),
 
         'player': player,
+        'premium': premium,
+        'auto_mining': auto_mining,
 
         'daily_limit': daily_limit,
         'daily_energy_limit': daily_energy_limit,

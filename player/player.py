@@ -143,6 +143,8 @@ class Player(models.Model):
         else:
             return player
 
+        player.increase_calc()
+
         SkillTraining = apps.get_model('player.SkillTraining')
 
         if SkillTraining.objects.filter(player=player).exists():

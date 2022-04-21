@@ -1,6 +1,8 @@
 # coding=utf-8
 from django.conf.urls import url
 
+from region.views.cancel_auto import cancel_auto
+from region.views.start_auto import start_auto
 from .views.do_mining import do_mining
 from .views.lists.world_regions import world_regions_list
 from .views.map.get_residency import get_residency
@@ -18,6 +20,11 @@ urlpatterns = [
     url(r'^do_mining$', do_mining, name='do_mining'),
     # получение денег из дейлика
     url(r'^retrieve_cash$', retrieve_cash, name='retrieve_cash'),
+
+    # добыча ресурсов АВТО
+    url(r'^start_auto/$', start_auto, name='start_auto'),
+    # отмена добыча ресурсов АВТО
+    url(r'^cancel_auto/$', cancel_auto, name='cancel_auto'),
 
     # карта
     url(r'^map$', map, name='map'),

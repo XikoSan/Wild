@@ -7,13 +7,16 @@ from django.shortcuts import render
 from django.utils import timezone
 from django.utils.translation import ugettext as _
 from django_celery_beat.models import ClockedSchedule, PeriodicTask
-from player.logs.cash_log import CashLog
+
 from player.decorators.player import check_player
+from player.logs.auto_mining import AutoMining
+from player.logs.cash_log import CashLog
 from player.player import Player
 from region.region import Region
-from region.views.time_in_flight import time_in_flight
 from region.views.distance_counting import distance_counting
+from region.views.time_in_flight import time_in_flight
 from wild_politics.settings import JResponse
+
 
 # главная страница
 @login_required(login_url='/')
@@ -44,11 +47,15 @@ def map(request):
 
         if player.cash >= cost:
             if not player.destination:
+
+                if AutoMining.objects.filter(player=player).exists():
+                    AutoMining.objects.filter(player=player).delete()
+
                 player.destination = destination
                 player.cash -= cost
                 player.save()
 
-                cash_log = CashLog(player=player, cash=0-cost, activity_txt='flyin')
+                cash_log = CashLog(player=player, cash=0 - cost, activity_txt='flyin')
                 cash_log.save()
 
                 duration = time_in_flight(player, player.destination)

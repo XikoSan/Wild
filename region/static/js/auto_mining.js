@@ -1,0 +1,51 @@
+function start_auto(e, resource){
+
+    var sending_data = "&csrfmiddlewaretoken=" + csrftoken;
+    sending_data += "&resource=" + resource;
+
+    $.ajax({
+        type: "POST",
+        url: "/start_auto/",
+        data:  sending_data,
+        cache: false,
+        success: function(data){
+            if (data.response == 'ok'){
+
+                var elements = document.getElementById('mining_main').querySelectorAll('.mining_form');
+
+                for (var i = 0; i < elements.length; i++) {
+                    var child = elements[i];
+                    child.getElementsByClassName('start_auto')[0].style.display = 'inline-block';
+                    child.getElementsByClassName('cancel_auto')[0].style.display = 'none';
+                }
+
+                e.target.closest(".mining_form").getElementsByClassName("start_auto")[0].style.display = 'none';
+                e.target.closest(".mining_form").getElementsByClassName("cancel_auto")[0].style.display = 'inline-block';
+            }
+            else{
+                display_modal('notify', data.header, data.response, null, data.grey_btn);
+            }
+        }
+    });
+};
+
+function cancel_auto(e){
+
+    var sending_data = "&csrfmiddlewaretoken=" + csrftoken;
+
+    $.ajax({
+        type: "POST",
+        url: "/cancel_auto/",
+        data:  sending_data,
+        cache: false,
+        success: function(data){
+            if (data.response == 'ok'){
+                e.target.closest(".mining_form").getElementsByClassName("start_auto")[0].style.display = 'inline-block';
+                e.target.closest(".mining_form").getElementsByClassName("cancel_auto")[0].style.display = 'none';
+            }
+            else{
+                display_modal('notify', data.header, data.response, null, data.grey_btn);
+            }
+        }
+    });
+};

@@ -20,6 +20,7 @@ class GoldLog(Log):
     activityChoices = (
         ('reward',  'Бонус за репост'),
         ('mine',  'Майнинг'),
+        ('aumine',  'Авто-майнинг'),
 
         ('nick', 'Смена никнейма'),
         ('avatar', 'Смена аватара'),
