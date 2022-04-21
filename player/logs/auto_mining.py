@@ -79,7 +79,7 @@ class AutoMining(Log):
             return
 
         # получаем ровные 10, 20...100 энергии
-        count = player.energy // 10 * 10
+        count = int(player.energy // 10 * 10)
 
         if count == 0:
             # ждем следующего цикла
