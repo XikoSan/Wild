@@ -265,7 +265,7 @@ class Player(models.Model):
         # инчае если с момента последнего пополнения прошло более десяти минут
         elif (timezone.now() - self.natural_refill).total_seconds() >= 600:
             # узнаем сколько раз по десять минут прошло
-            counts = (timezone.now() - self.natural_refill).total_seconds() // 600
+            counts = int((timezone.now() - self.natural_refill).total_seconds() // 600)
             # остаток от деления понадобится чтобы указать время обновления
             modulo = (timezone.now() - self.natural_refill).total_seconds() % 600
 
