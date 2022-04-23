@@ -41,6 +41,42 @@
         </div>
     </div>
     <div class="col-xs-6 col-sm-6 col-md-6" align="center" style="margin-top: 1%">
+        <script>
+            var move_header = '{% if premium %}Продление{% else %}Активация{% endif %} премиум-аккаунта';
+
+            {% if premium %}
+            var move_text = 'Ваш премиум-аккаунт будет продлён на один месяц. Данную операцию невозможно отменить. Продолжить?';
+            {% else %}
+            var move_text = 'Вы активируете премиум-аккаунт, длительностью один месяц. Данную операцию невозможно отменить. Продолжить?';
+            {% endif %}
+
+            var move_yes = 'Продолжить';
+            var move_cancel = 'Отмена';
+        </script>
+        <div class="row">
         Wild Pass
+        </div>
+        <div class="row">
+            <div class="col-xs-4 col-sm-4 col-md-4" align="center">
+                <div class="row">
+                    <img src="{% static 'img/wild_pass.png' %}" width="100px" height="100px" style="pointer-events: none;">
+                </div>
+            </div>
+            <div class="col-xs-4 col-sm-4 col-md-4" align="center">
+                <div class="row" style="margin-top: 15px;">
+                    <font size="4">
+                        Количество: <b id="wp_count">{{ player.cards_count }}</b>
+                    </font>
+                </div>
+<!--                <div class="row" style="margin-top: 15px;">-->
+<!--                    <font size="4">-->
+<!--                        Цена: <b style="color: #85bb65;">$250 000</b>-->
+<!--                    </font>-->
+<!--                </div>-->
+            </div>
+            <div class="col-xs-4 col-sm-4 col-md-4" align="center">
+                    <button onclick="check_card()" {% if not player.cards_count > 0 %}disabled{% endif %} class="save btn btn-default" style="margin-top: 30px;">Использовать</button>
+            </div>
+        </div>
     </div>
 </div>

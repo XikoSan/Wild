@@ -1,3 +1,4 @@
+// энергетики
 jQuery(document).ready(function ($) {
     var range = document.getElementById('energy_range');
     var field = document.getElementById('energy_field');
@@ -84,3 +85,27 @@ jQuery(document).ready(function ($) {
         });
     });
 });
+//wild pass - проверка
+function check_card(){
+    $('#InfoModal').find(".modal-green").on( "click", use_card);
+
+    display_modal('ask', move_header, move_text, move_yes, move_cancel)
+};
+//wild pass - использование
+function use_card(){
+    var sending_data = "&csrfmiddlewaretoken=" + csrftoken;
+    $.ajax({
+        type: "POST",
+        url: "/use_card/",
+        data:  sending_data,
+        cache: false,
+        success: function(data){
+            if (data.response == 'ok'){
+                location.reload();
+            }
+            else{
+                display_modal('notify', data.header, data.response, null, data.grey_btn);
+            }
+        }
+    });
+};

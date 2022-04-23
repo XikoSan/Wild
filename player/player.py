@@ -103,6 +103,9 @@ class Player(models.Model):
     premium = models.DateTimeField(default=timezone.now, blank=True,
                                  verbose_name='Премиум, до')
 
+    # количество премиум-карточек Wild Pass
+    cards_count = models.IntegerField(default=0, verbose_name='Премиум-карты')
+
     # -----------склад ресурсов----------------
 
     # запасы денег
