@@ -18,6 +18,8 @@
             groups_n_goods['{{ group }}']['{{ good }}'] = '{{ storage_cl|get_attr:group|dict_key:good }}';
         {% endfor %}
     {% endfor %}
+            groups_n_goods['premium'] = {};
+            groups_n_goods['premium']['wild_pass'] = 'Wild Pass';
 
     var total_stocks = {};
     {% for storage in storages %}
@@ -27,6 +29,7 @@
                 total_stocks["{{ storage|dict_key:'pk' }}"]['{{ good }}'] = {% localize off %}{{ storage|dict_key:good }}{% endlocalize %};
             {% endfor %}
         {% endfor %}
+                total_stocks["{{ storage|dict_key:'pk' }}"]['wild_pass'] = {% localize off %}{{ player|get_attr:'cards_count' }}{% endlocalize %};
     {% endfor %}
 </script>
 <form id="new_offer_form" role="form">
@@ -78,6 +81,7 @@
                 {% for group in storage_cl|get_attr:'types' %}
                 <option value='{{ group }}'>{{ storage_cl|get_attr:'types'|dict_key:group }}</option>
                 {% endfor %}
+                <option value='premium'>Wild Pass</option>
             </select>
         </div>
     </div>
@@ -93,6 +97,7 @@
                 <option id="good_{{ good }}" value='{{ good }}' style="display: none">{{ storage_cl|get_attr:group|dict_key:good }}</option>
                     {% endfor %}
                 {% endfor %}
+                <option id="good_wild_pass" value='wild_pass' style="display: none">Wild Pass</option>
             </select>
         </div>
     </div>

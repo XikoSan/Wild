@@ -62,7 +62,7 @@ def create_offer(request):
 
             # проверка, существует ли такой ресурс вообще
             good = request.POST.get('good')
-            if not hasattr(Storage, good):
+            if not hasattr(Storage, good) and not good == 'wild_pass':
                 data = {
                     'header': 'Ошибка при создании',
                     'grey_btn': 'Закрыть',
@@ -123,19 +123,33 @@ def create_offer(request):
             cost = 0
             # если продажа:
             if action == 'sell':
-                # проверить, что на указанном складе хватает указанного ресурса
-                if count > getattr(s_storage, good):
-                    data = {
-                        'header': 'Ошибка при создании',
-                        'grey_btn': 'Закрыть',
-                        'response': 'Недостаточно ресурса для продажи',
-                    }
-                    return JsonResponse(data)
-                # списать товар со Склада
-                setattr(s_storage, good, getattr(s_storage, good) - count)
-                s_storage.save()
-                # заблокировать товар на указанном Складе
-                lock = GoodLock(lock_storage=s_storage, lock_good=good, lock_count=count)
+                if good == 'wild_pass':
+                    # проверить, что у игрока хватает премиум-карт
+                    if count > getattr(player, 'cards_count'):
+                        data = {
+                            'header': 'Ошибка при создании',
+                            'grey_btn': 'Закрыть',
+                            'response': 'Недостаточно премиум-карт для продажи',
+                        }
+                        return JsonResponse(data)
+                    # списать товар со Склада
+                    setattr(player, 'cards_count', getattr(player, 'cards_count') - count)
+                    player.save()
+
+                else:
+                    # проверить, что на указанном складе хватает указанного ресурса
+                    if count > getattr(s_storage, good):
+                        data = {
+                            'header': 'Ошибка при создании',
+                            'grey_btn': 'Закрыть',
+                            'response': 'Недостаточно ресурса для продажи',
+                        }
+                        return JsonResponse(data)
+                    # списать товар со Склада
+                    setattr(s_storage, good, getattr(s_storage, good) - count)
+                    s_storage.save()
+                    # заблокировать товар на указанном Складе
+                    lock = GoodLock(lock_storage=s_storage, lock_good=good, lock_count=count)
 
             # если покупка:
             elif action == 'buy':
@@ -176,8 +190,10 @@ def create_offer(request):
                 create_date=timezone.now()
             )
             offer.save()
-            lock.lock_offer = offer
-            lock.save()
+            # для всех, кроме прем-карт
+            if lock:
+                lock.lock_offer = offer
+                lock.save()
 
         else:
             data = {

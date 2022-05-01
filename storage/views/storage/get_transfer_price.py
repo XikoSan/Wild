@@ -22,8 +22,11 @@ def get_transfer_price(trans_mul, dest, values):
             prices[int(storage)] = 0
             # идём по списку товаров
             for good in values.get(storage):
+                if good == 'wild_pass':
+                    prices[int(storage)] += 0
+                    price += 0
                 # проверка, существует ли такой ресурс вообще
-                if not hasattr(Storage, good):
+                elif not hasattr(Storage, good):
                     continue
                 # надо понять, к какой категории относится товар. Так что, придётся пройтись по циклу
                 # "minerals" - "oils" - "materials" - "units"

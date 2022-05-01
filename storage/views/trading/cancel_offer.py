@@ -89,23 +89,28 @@ def cancel_offer(request):
             return JsonResponse(data)
 
         if offer.type == 'sell':
-            # получим блокировку ресурса
-            offer_good_lock = None
-            if GoodLock.objects.filter(lock_offer=offer, deleted=False).exists():
-                offer_good_lock = GoodLock.objects.select_for_update().get(lock_offer=offer, deleted=False)
+            if offer.good == 'wild_pass':
+                setattr(player, 'cards_count', getattr(player, 'cards_count') + offer.count)
+                player.save()
+
             else:
-                data = {
-                    'header': 'Получение блокировки',
-                    'grey_btn': 'Закрыть',
-                    'response': 'Не удалось получить блокировку по офферу',
-                }
-                return JsonResponse(data)
+                # получим блокировку ресурса
+                offer_good_lock = None
+                if GoodLock.objects.filter(lock_offer=offer, deleted=False).exists():
+                    offer_good_lock = GoodLock.objects.select_for_update().get(lock_offer=offer, deleted=False)
+                else:
+                    data = {
+                        'header': 'Получение блокировки',
+                        'grey_btn': 'Закрыть',
+                        'response': 'Не удалось получить блокировку по офферу',
+                    }
+                    return JsonResponse(data)
 
-            setattr(storage, offer.good, getattr(storage, offer.good) + offer_good_lock.lock_count)
-            storage.save()
+                setattr(storage, offer.good, getattr(storage, offer.good) + offer_good_lock.lock_count)
+                storage.save()
 
-            offer_good_lock.deleted = True
-            offer_good_lock.save()
+                offer_good_lock.deleted = True
+                offer_good_lock.save()
 
         else:
             # получим блокировку денег

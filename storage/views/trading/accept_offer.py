@@ -18,6 +18,7 @@ from storage.views.storage.locks.get_storage import get_storage
 from django.contrib.humanize.templatetags.humanize import number_format
 from storage.models.trading_log import TradingLog
 from player.logs.cash_log import CashLog
+from storage.views.trading.premium_trading import premium_trading
 
 
 @login_required(login_url='/')
@@ -91,6 +92,9 @@ def accept_offer(request):
                 'response': 'Оффер не существует или уже принят',
             }
             return JsonResponse(data)
+
+        if offer.good == 'wild_pass':
+            return premium_trading(player, count, offer)
 
         # получим склад
         storage_id = None

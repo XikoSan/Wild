@@ -76,7 +76,8 @@ def get_offers(request):
         good = request.POST.get('good')
 
         all_goods = [good_tuple[0] for good_tuple in TradeOffer.goodsChoises]
-        if good in all_goods:
+        if good in all_goods\
+                or good == 'wild_pass':
             kwargs['good'] = good
         else:
             # узнаём группы товаров
@@ -87,6 +88,9 @@ def get_offers(request):
                 if group in Storage.types.keys():
                     for good in getattr(Storage, group).keys():
                         goods_list.append(good)
+
+                elif group == 'premium':
+                    goods_list.append('wild_pass')
 
             if goods_list:
                 kwargs['good__in'] = goods_list
@@ -123,6 +127,9 @@ def get_offers(request):
                 delivery_dict[storage.pk]['delivery'], prices = get_transfer_price(trans_mul, int(storage.pk), offer_value)
 
             offer_dict['delivery'] = delivery_dict
+
+            # from player.logs.print_log import log
+            # log(delivery_dict)
 
             delivery_val = 0
             for key, value in offer_dict['delivery'].items():

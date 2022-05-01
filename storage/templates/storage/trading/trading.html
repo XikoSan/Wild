@@ -3,6 +3,7 @@
 {% load dict_key %}
 {% load get_attr %}
 {% load get_len %}
+{% load get_sum %}
 {% load l10n %}{% load i18n %}
 {% block for_scripts_and_css %}
 <script src='{% static "js/tablesort.js" %}?{{ csrf_token }}'></script>
@@ -23,6 +24,8 @@
             groups_n_goods['{{ group }}']['{{ good }}'] = '{{ storage_cl|get_attr:group|dict_key:good }}';
         {% endfor %}
     {% endfor %}
+            groups_n_goods['premium'] = {};
+            groups_n_goods['premium']['wild_pass'] = 'Wild Pass';
 
     var vol_map = new Map();
     {% for type in storage_cl|get_attr:'types' %}
@@ -30,6 +33,7 @@
             vol_map.set('{{ good }}', '{{ transport|get_attr:type|dict_key:good }}');
         {% endfor %}
     {% endfor %}
+            vol_map.set('wild_pass', '0');
 </script>
 <div class="col-xs-12 col-sm-12 col-md-10">
     <div id="goods_list" align="center">
@@ -83,10 +87,11 @@
             </select>
         </div>
         <div class="row" style="margin-top: 5%">
-            <select name="trade_groups" id="trade_groups" multiple size="{{ storage_cl|get_attr:'types'|get_len }}" style="width: 100%">
+            <select name="trade_groups" id="trade_groups" multiple size="{{ storage_cl|get_attr:'types'|get_len|get_sum:1 }}" style="width: 100%">
                 {% for group in storage_cl|get_attr:'types' %}
                 <option value='{{ group }}'>{{ storage_cl|get_attr:'types'|dict_key:group }}</option>
                 {% endfor %}
+                <option value='premium'>Wild Pass</option>
             </select>
         </div>
         <div class="row" style="margin-top: 5%">
@@ -97,6 +102,7 @@
                 <option id="good_{{ good }}" value='{{ good }}' style="display: none">{{ storage_cl|get_attr:group|dict_key:good }}</option>
                     {% endfor %}
                 {% endfor %}
+                <option id="good_wild_pass" value='wild_pass' style="display: none">Wild Pass</option>
             </select>
         </div>
         <div class="row" style="margin-top: 5%;">

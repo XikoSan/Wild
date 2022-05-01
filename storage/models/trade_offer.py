@@ -95,6 +95,8 @@ class TradeOffer(models.Model):
         ('jet', 'Штурмовики'),
         ('pzrk', 'ПЗРК'),
         ('ifv', 'БМП'),
+
+        ('wild_pass', 'Wild Pass'),
     )
 
     good = models.CharField(
