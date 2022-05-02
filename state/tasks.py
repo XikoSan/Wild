@@ -87,8 +87,13 @@ def set_mandates(pty_pk, parl_pk, places):
     for num in range(places):
 
         if num < len(players):
-            dm = DeputyMandate(player=players[num], party=Party.objects.get(pk=pty_pk),
-                               parliament=Parliament.objects.get(pk=parl_pk))
+            # если у данного игрока есть мандат президента (в этом госе или где-то ещё)
+            if DeputyMandate.objects.filter(player=players[num], is_president=True).exists():
+                dm = DeputyMandate(player=None, party=Party.objects.get(pk=pty_pk),
+                                   parliament=Parliament.objects.get(pk=parl_pk))
+            else:
+                dm = DeputyMandate(player=players[num], party=Party.objects.get(pk=pty_pk),
+                                   parliament=Parliament.objects.get(pk=parl_pk))
         else:
             dm = DeputyMandate(player=None, party=Party.objects.get(pk=pty_pk),
                                parliament=Parliament.objects.get(pk=parl_pk))
@@ -118,7 +123,7 @@ def finish_elections(parl_id):
     all_votes_count = Bulletin.objects.filter(voting=elections).count()
 
     # удаляем депутатские мандаты
-    DeputyMandate.objects.filter(parliament=parliament).delete()
+    DeputyMandate.objects.filter(parliament=parliament, is_president=False).delete()
 
     # ищем законы этого парламента
     bills_types = get_subclasses(Bill)
@@ -265,6 +270,14 @@ def finish_presidential(pres_id):
 
         president.leader = max_cadidate
         president.save()
+
+        # если есть парламент
+        if Parliament.objects.filter(state=president.state).exists():
+            # добавляем президента в новое место в парламенте
+            parl = Parliament.objects.get(state=president.state)
+            # ищем прездидентское место
+            if DeputyMandate.objects.filter(parliament=parl, is_president=True).exists():
+                DeputyMandate.objects.filter(parliament=parl, is_president=True).update(player=max_cadidate)
 
     # ================================================================
 

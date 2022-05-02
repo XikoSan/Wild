@@ -16,11 +16,15 @@ import random
 def parliament(player, parliament):
 
     deputates = None
+    pres_mandate = None
 
     party_colors = {}
 
     # если у государства есть парламент
     if parliament:
+        # если есть президентский мандат
+        if DeputyMandate.objects.filter(parliament=parliament, is_president=True).exists():
+            pres_mandate = DeputyMandate.objects.get(parliament=parliament, is_president=True)
         # если есть парламентские партии
         if ParliamentParty.objects.filter(parliament=parliament).exists():
             # для каждой парламентской партии
@@ -53,4 +57,6 @@ def parliament(player, parliament):
         'party_colors': party_colors,
         # депутаты парламента
         'deputates': deputates,
+        # мандат президента
+        'pres_mandate': pres_mandate,
     }

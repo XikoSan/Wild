@@ -15,11 +15,13 @@ from state.models.parliament.parliament import Parliament
 # класс, указывающий право участвовать в деятельности парламента государства от имени партии
 class DeputyMandate(models.Model):
     # партия, от которой избран
-    party = models.ForeignKey(Party, on_delete=models.CASCADE, verbose_name='Представляет партию')
+    party = models.ForeignKey(Party, on_delete=models.CASCADE, null=True, blank=True, verbose_name='Представляет партию')
     # игрок - депутат
     player = models.OneToOneField(Player, default=None, null=True, on_delete=models.SET_NULL, blank=True, verbose_name='Депутат')
     # парламент, в котороый избран
     parliament = models.ForeignKey(Parliament, on_delete=models.CASCADE, verbose_name='Заседает в парламенте')
+    # Президентский мандат - партия не указывается
+    is_president = models.BooleanField(default=False, null=False, verbose_name='Президентский')
 
     def __str__(self):
         if self.player:
