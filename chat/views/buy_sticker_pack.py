@@ -65,6 +65,15 @@ def buy_sticker_pack(request):
         new_entry = StickersOwnership(owner=player,
                                       pack=pack)
         new_entry.save()
+        # если у пака есть выгодоприобретатель
+        if pack.owner:
+            owner = Player.get_instance(pk=pack.owner.pk)
+
+            owner.gold += pack.price * (pack.percent / 100)
+            owner.save()
+
+            gold_log = GoldLog(player=owner, gold=pack.price * (pack.percent / 100), activity_txt='stckow')
+            gold_log.save()
 
         data = {
             'response': 'ok',

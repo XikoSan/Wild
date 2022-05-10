@@ -3,7 +3,7 @@
 from django.db import models
 
 from player.actual_manager import ActualManager
-
+from player.player import Player
 
 # набор стикеров
 class StickerPack(models.Model):
@@ -15,6 +15,13 @@ class StickerPack(models.Model):
 
     # автор набора
     creator = models.CharField(max_length=100, blank=False, verbose_name='Автор набора')
+
+    # выгодоприобретатель
+    owner = models.ForeignKey(Player, default=None, null=True, on_delete=models.SET_NULL, verbose_name='Владелец',
+                              related_name="pack_owner")
+
+    # процент за покупку стикера Владельцу
+    percent = models.IntegerField(default=50, verbose_name='Процент с продажи')
 
     # Ссылка на автора набора
     creator_link = models.CharField(max_length=100, blank=True, null=True, verbose_name='Ссылка на автора')
