@@ -2,6 +2,8 @@ from django.contrib import admin
 from django.contrib.admin import widgets
 from django.db import models
 
+from gov.models.minister import Minister
+from gov.models.minister_right import MinisterRight
 from gov.models.president import President
 from gov.models.presidential_voting import PresidentialVoting
 from gov.models.vote import Vote
@@ -33,7 +35,32 @@ class PresidentAdmin(admin.ModelAdmin):
     list_display = ['state', 'leader', ]
 
 
+class MinisterRightAdmin(admin.ModelAdmin):
+    search_fields = ['state', 'right']
+
+    raw_id_fields = ('state', )
+
+    list_display = ['state', 'right', ]
+
+
+class MinisterAdmin(admin.ModelAdmin):
+    search_fields = ['state', 'player']
+
+    raw_id_fields = ('state', 'player',)
+
+    list_display = ['state', 'player', ]
+
+    formfield_overrides = {
+        models.ManyToManyField: {'widget': widgets.FilteredSelectMultiple(
+            verbose_name='Права',
+            is_stacked=False
+        )},
+    }
+
+
 # Register your models here.
 admin.site.register(Vote)
 admin.site.register(PresidentialVoting, PresidentialVotingAdmin)
 admin.site.register(President, PresidentAdmin)
+admin.site.register(Minister, MinisterAdmin)
+admin.site.register(MinisterRight, MinisterRightAdmin)

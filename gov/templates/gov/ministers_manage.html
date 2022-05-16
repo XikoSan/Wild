@@ -1,0 +1,170 @@
+{% extends 'player/header.html' %}
+{% load static %}
+{% load i18n %}{% load tz %}
+{% load l10n %}
+{% load get_mod %}
+{% load dict_key %}
+{% load get_len %}
+{% load get_all %}
+{% load get_attr %}
+{% load get_class_name %}
+{% block for_scripts_and_css %}
+<link rel="stylesheet" type="text/css" href='{% static "css/overview.css" %}'/>
+<script src="{% static 'js/ministers_manage.js' %}?{{ csrf_token }}"></script>
+{% endblock %}
+
+{% block content %}
+<script>
+    var ministers = {};
+    var my_party = {{ player.party.pk }};
+    var selected_minister = null;
+    var selected_deputate = null;
+    var points = {{ points }};
+
+    {% for minister in ministers %}
+        ministers['{% localize off %}{{ minister.player.pk }}{% endlocalize %}'] = {};
+        ministers['{% localize off %}{{ minister.player.pk }}{% endlocalize %}']['nickname'] = '{{ minister.player.nickname }}';
+        ministers['{% localize off %}{{ minister.player.pk }}{% endlocalize %}']['post_name'] = '{{ minister.post_name }}';
+        ministers['{% localize off %}{{ minister.player.pk }}{% endlocalize %}']['rights'] = [];
+        {% for right in minister|get_attr:'rights'|get_all %}
+            ministers['{% localize off %}{{ minister.player.pk }}{% endlocalize %}']['rights'].push('{{ right.right }}');
+        {% endfor %}
+    {% endfor %}
+</script>
+<div class="row">
+    <div class="col-xs-4 col-sm-4 col-md-4">
+        <div class="row flex" align="center">
+            <h3><b>Депутаты</b></h3>
+        </div>
+        <div class="row flex" align="center">
+            <div class="col-xs-6 col-sm-6 col-md-6" style="height: 45px">
+<!--                <input type="checkbox" id="my_party">-->
+<!--                <label for="my_party">-->
+<!--                    <h4>моя партия</h4>-->
+<!--                </label>-->
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6" style="height: 45px">
+                <button type="submit" onclick="set_minister()" class="save btn btn-default">
+                    Назначить
+                    <img src="/static/move_storage.png" width="20px" height="20px" alt="Назначить">
+                </button>
+            </div>
+        </div>
+        <div id="parliament_list" style="margin-top: 20px; height: 640px; overflow-y: auto; overflow-x: hidden;">
+            {% for deputate in deputates %}
+            <div class="row flex" id="deputate_{% localize off %}{{ deputate.player.pk }}{% endlocalize %}" data-player="{% localize off %}{{ deputate.player.pk }}{% endlocalize %}" onclick="select_deputate(event, {% localize off %}{{ deputate.player.pk }}{% endlocalize %})" {% if forloop.counter|get_mod:2 == 1 %}style="background: #F1F3F4"{% endif %}>
+                <div style="pointer-events: none">
+                    <div class="col-xs-4 col-sm-4 col-md-4">
+                        <!--если пользователь загрузил аватарку-->
+                        {% if deputate.player.image %}
+                        <img src="{{ deputate.player.image.url }}" width="80" height="80">
+                        {% else %}
+                        <img src="{% static 'img/nopic.png' %}" width="80" height="80">
+                        {% endif %}
+                    </div>
+                    <div class="col-xs-8 col-sm-8 col-md-8">
+                        <h3><b class="nickname">{{ deputate.player.nickname }}</b></h3>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="row flex" id="blank_deputate_line" data-player="" style="display: none">
+            <div style="pointer-events: none">
+                <div class="col-xs-4 col-sm-4 col-md-4">
+                    <img src="" width="80" height="80">
+                </div>
+                <div class="col-xs-8 col-sm-8 col-md-8">
+                    <h3><b class="nickname"></b></h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-4 col-sm-4 col-md-4">
+        <div class="row flex" align="center">
+            <h3><b>Министры</b></h3>
+        </div>
+        <div class="row flex" align="center">
+            <div class="col-xs-6 col-sm-6 col-md-6" style="height: 45px">
+                <button type="submit" onclick="unset_minister()" class="save btn btn-default">
+                    <img src="/static/unset_minister.png" width="20px" height="20px" alt="Разжаловать">
+                    Разжаловать
+                </button>
+            </div>
+        </div>
+        <div id="ministers_list" style="margin-top: 20px; height: 640px; overflow-y: auto; overflow-x: hidden;">
+            {% for minister in ministers %}
+            <div class="row flex" id="minister_{% localize off %}{{ minister.player.pk }}{% endlocalize %}" data-player="{% localize off %}{{ minister.player.pk }}{% endlocalize %}" onclick="view_minister(event, {% localize off %}{{ minister.player.pk }}{% endlocalize %})" {% if forloop.counter|get_mod:2 == 1 %}style="background: #F1F3F4"{% endif %}>
+                <div style="pointer-events: none">
+                    <div class="col-xs-4 col-sm-4 col-md-4">
+                        <!--если пользователь загрузил аватарку-->
+                        {% if minister.player.image %}
+                        <img src="{{ minister.player.image.url }}" width="80" height="80">
+                        {% else %}
+                        <img src="{% static 'img/nopic.png' %}" width="80" height="80">
+                        {% endif %}
+                    </div>
+                    <div class="col-xs-8 col-sm-8 col-md-8">
+                        <div class="row">
+                            <h4><b class="nickname">{{ minister.player.nickname }}</b></h4>
+                        </div>
+                        <div class="row">
+                            <h4 class="post_name">{{ minister.post_name }}</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="row flex" id="blank_minister_line" data-player="" style="display: none">
+            <div style="pointer-events: none">
+                <div class="col-xs-4 col-sm-4 col-md-4">
+                    <img src="" width="80" height="80">
+                </div>
+                <div class="col-xs-8 col-sm-8 col-md-8">
+                    <div class="row">
+                        <h4><b class="nickname"></b></h4>
+                    </div>
+                    <div class="row">
+                        <h4 class="post_name"></h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-4 col-sm-4 col-md-4">
+        <div class="row flex" align="center">
+            <h3><b>Полномочия</b></h3>
+        </div>
+        <div class="row flex" align="center">
+            <div class="col-xs-6 col-sm-6 col-md-6" style="height: 45px">
+                <h4 style="display: flex; flex-wrap: wrap; justify-content: center;">
+                    <div style="margin-right: 10px;">очков:</div>
+                    <div id="points" style="margin-right: 10px;">{{ points }}</div>
+                    <div style="margin-right: 10px;">/</div>10
+                </h4>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6" style="height: 45px">
+                <button type="submit" onclick="save_ministers()" class="save btn btn-success">
+                    Сохранить
+                </button>
+            </div>
+        </div>
+        <div class="row flex" align="center">
+            <input id="post_name" value="" maxlength="30" style="text-align: center; width: 80%;">
+        </div>
+        <div class="row flex" align="center" style="margin-top: 20px">
+            <select id="minister_rights" multiple size="{{ bills_classes|get_len }}" style="width: 100%">
+                {% for bill_cl in bills_classes %}
+                <option id="{{ bill_cl|get_class_name }}" value="{{ bill_cl|get_class_name }}">{% with class_name=bill_cl|get_class_name %}{{ bills_dict|dict_key:class_name }}{% endwith %}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="row flex" align="center" style="margin-top: 20px">
+            <button type="submit" onclick="clear_rights()" class="save btn btn-default">
+                очистить список
+            </button>
+        </div>
+    </div>
+</div>
+{% endblock %}
