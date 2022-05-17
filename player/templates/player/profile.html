@@ -3,6 +3,8 @@
 {% load bootstrap3 %}
 {% load i18n %}
 {% load tz %}
+{% load get_len %}
+{% load get_all %}
 {% load profile_blocks.repost_tab %}
 {% block for_scripts_and_css %}
 <script src='{% static "cropper.js" %}?{{ csrf_token }}'></script>
@@ -243,6 +245,24 @@
                                 {% endif %}
                             </div>
                         </div>
+                        {% if minister %}
+                        <!--миинстр-->
+                        <div class="row flex" style="margin-left: 10px;">
+                            <div class="col-xs-6 col-sm-6 col-md-6" align="left">
+                                <b><font size="5">Министр:</font></b>
+<!--                                <b><font size="5" >{% trans 'party_post' %}:</font></b>-->
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                {% if minister.state.image %}
+                                <!--Картинка партии-->
+                                <img src="{{ minister.state.image.url }}" width="30" height="30" onclick="window.location.href = '/state/{{ minister.state.pk }}/'" style="cursor: pointer">
+                                {% else %}
+                                <img src="{% static 'img/congress.svg' %}" width="30" height="30" onclick="window.location.href = '/state/{{ minister.state.pk }}/'" style="cursor: pointer">
+                                {% endif %}
+                                <b onclick="window.location.href = '/state/{{ minister.state.pk }}/'" style="cursor: pointer"><font size="4">{{ minister.state.title }}{% if minister.rights|get_all|get_len == 0 %} (без портфеля){% endif %}</font></b>
+                            </div>
+                        </div>
+                        {% endif %}
                         <!--биография-->
                         <div class="row flex" style="margin-left: 10px;">
                             <div class="col-xs-6 col-sm-6 col-md-6" align="left">

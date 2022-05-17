@@ -87,7 +87,7 @@ class Bill(models.Model):
         return
 
     # получить шаблон законопроекта в парламенте
-    def get_bill(self, player):
+    def get_bill(self, player, minister, president):
         return
 
     # получить шаблон рассмотренного законопроекта

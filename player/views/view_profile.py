@@ -6,7 +6,7 @@ from allauth.socialaccount.models import SocialAccount
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils import timezone
-
+from gov.models.minister import Minister
 from player.decorators.player import check_player
 from player.player import Player
 from wild_politics.settings import TIME_ZONE
@@ -41,6 +41,10 @@ def view_profile(request, pk):
         if SocialAccount.objects.filter(user=char.account).all()[0].provider == 'vk':
             user_link = 'https://vk.com/id' + SocialAccount.objects.filter(user=char.account).all()[0].uid
 
+    minister = None
+    if Minister.objects.filter(player=char).exists():
+        minister = Minister.objects.get(player=char)
+
     # char_settings = None
     # if PlayerSettings.objects.filter(player=char).exists():
     #     char_settings = PlayerSettings.objects.get(player=char)
@@ -53,6 +57,7 @@ def view_profile(request, pk):
     # ---------------------
     return render(request, 'player/view_profile.html', {'player': player,
                                                         'char': char,
+                                                        'minister': minister,
                                                         'dtime': dtime,
                                                         'user_link': user_link,
 

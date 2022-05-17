@@ -97,9 +97,8 @@ def set_ministers(request):
                     # проверяем, есть ли право министра в словаре
                     if right not in right_cl_dict:
                         # если нет в БД - создаем
-                        if not MinisterRight.objects.filter(state=pres_mandate.parliament.state, right=right).exists():
+                        if not MinisterRight.objects.filter(right=right).exists():
                             right_cl = MinisterRight(
-                                state=pres_mandate.parliament.state,
                                 right=right
                             )
                             right_cl.save()
@@ -134,9 +133,8 @@ def set_ministers(request):
                     # проверяем, есть ли право министра в словаре
                     if right not in right_cl_dict:
                         # если нет в БД - создаем
-                        if not MinisterRight.objects.filter(state=pres_mandate.parliament.state, right=right).exists():
+                        if not MinisterRight.objects.filter(right=right).exists():
                             right_cl = MinisterRight(
-                                state=pres_mandate.parliament.state,
                                 right=right
                             )
                             right_cl.save()

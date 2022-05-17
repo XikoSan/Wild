@@ -69,6 +69,26 @@
                 <div class="row" style="margin-top: 15px">
                     <a class="btn btn-danger" onclick="vote_bill('ChangeTaxes',{% localize off %}{{ bill.pk }}{% endlocalize %},'con')">Проголосовать</a>
                 </div>
+                {% elif has_right %}
+                <a class="btn btn-warning" onclick="speedup_bill('ChangeTaxes',{% localize off %}{{ bill.pk }}{% endlocalize %},'pro')">
+                    Принять досрочно
+                    <img src="/static/move_storage.png" width="20px" height="20px" alt="Принять досрочно">
+                </a>
+                {% elif has_right and player in bill.votes_pro.all %}
+                {% with president=data|dict_key:'president' %}
+                <div class="row">
+                    {% if president in bill.votes_pro.all %}
+                    <a class="btn btn-success" disabled style="background-color: #FFFFFF">
+                        <font color="green">Подписано президентом</font>
+                    </a>
+                    {% endif %}
+                </div>
+                <div class="row" style="margin-top: 15px">
+                    <a class="btn btn-warning" {% if not president in bill.votes_pro.all %}disabled{% endif %}  onclick="speedup_bill('ChangeTaxes',{% localize off %}{{ bill.pk }}{% endlocalize %})">
+                    <font color="black">Принять досрочно</font>
+                </a>
+                </div>
+                {% endwith %}
                 {% else %}
                 <font size="5">
                     {% if player in bill.votes_pro.all %}

@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 from django.shortcuts import render
 from django.utils import timezone
-
+from gov.models.minister import Minister
 from player.decorators.player import check_player
 from player.forms import ImageForm
 from player.logs.gold_log import GoldLog
@@ -57,9 +57,12 @@ def my_profile(request):
             user_link = 'https://vk.com/id' + SocialAccount.objects.filter(user=player.account).all()[0].uid
 
     premium = None
-
     if player.premium > timezone.now():
         premium = player.premium
+
+    minister = None
+    if Minister.objects.filter(player=player).exists():
+        minister = Minister.objects.get(player=player)
 
     # timezones = pytz.common_timezones
     #
@@ -76,6 +79,7 @@ def my_profile(request):
                                                    'form': form,
 
                                                    'premium': premium,
+                                                   'minister': minister,
 
                                                    'user_link': user_link,
                                                    # 'timezones': timezones,

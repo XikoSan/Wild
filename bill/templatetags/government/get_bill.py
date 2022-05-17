@@ -7,7 +7,9 @@ register = Library()
 def get_bill(context):
     bill = context['bill']
     player = context['player']
-    data, template = bill.get_bill(player)
+    minister = context['minister']
+    president = context['president']
+    data, template = bill.get_bill(player, minister, president)
 
     t = loader.get_template(template)
     return t.render({

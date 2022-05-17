@@ -247,17 +247,26 @@ class Construction(Bill):
 
         return data, 'state/gov/drafts/construction.html'
 
-    def get_bill(self, player):
+    def get_bill(self, player, minister, president):
 
         good_names = {}
         for crude in ['valut', 'minerals', 'oils', 'materials', 'equipments']:
             for good in getattr(Storage, crude):
                 good_names[good] = getattr(Storage, crude)[good]
 
+        has_right = False
+        if minister:
+            for right in minister.rights.all():
+                if self.__class__.__name__ == right.right:
+                    has_right = True
+                    break
+
         data = {
             'bill': self,
             'title': self._meta.verbose_name_raw,
             'player': player,
+            'president': president,
+            'has_right': has_right,
             # проверяем, депутат ли этого парла игрок или нет
             'is_deputy': DeputyMandate.objects.filter(player=player, parliament=Parliament.objects.get(
                 state=player.region.state)).exists(),

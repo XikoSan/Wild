@@ -7,9 +7,6 @@ from state.models.state import State
 
 
 class MinisterRight(models.Model):
-    # государство принадлежности
-    state = models.ForeignKey(State, on_delete=models.CASCADE, verbose_name='Государство',
-                              related_name="min_right_state")
     # тип законопроекта, который можно ускорять
     bill_classes = get_subclasses(Bill)
     # строение

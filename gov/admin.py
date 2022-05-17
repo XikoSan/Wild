@@ -36,11 +36,9 @@ class PresidentAdmin(admin.ModelAdmin):
 
 
 class MinisterRightAdmin(admin.ModelAdmin):
-    search_fields = ['state', 'right']
+    search_fields = ['right']
 
-    raw_id_fields = ('state', )
-
-    list_display = ['state', 'right', ]
+    list_display = ['right', ]
 
 
 class MinisterAdmin(admin.ModelAdmin):
