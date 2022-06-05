@@ -1,0 +1,250 @@
+{% extends 'player/redesign/header.html' %}
+{% load l10n %}{% load i18n %}
+{% load static %}
+{% load tz %}
+{% load profile_blocks.redesign.repost_tab %}
+{% block content %}
+<section class="profile">
+
+		<!-- НИКНЕЙМ -->
+		<h1 class="ct__nickname">
+			<button class="ct__nickname-edit ct__square-mid-btn" onclick="open_nickname()" style="z-index: 3;"> <!-- кнопка открыть редактирование -->
+				<svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M26 30H0V0H30V26L26 30Z" fill="var(--c10two)"/><path d="M5.5 21.5L22.5 4.5L26.5 8.5L9.5 25.5H5.5V21.5Z" stroke="var(--c60)" stroke-width="3"/>
+				</svg>
+			</button>
+
+			<button id="nickname_cancel" class="ct__nickname-exit ct__square-mid-btn" style="z-index: 3; display: none;" onclick="close_nickname()"> <!-- кнопка закрыть редактирование -->
+				<svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M26 30H0V0H30V26L26 30Z" fill="var(--c10two)"/><path d="M4 4L26 26M4 26L26 4" stroke="var(--c60)" stroke-width="3"/>
+				</svg>
+			</button>
+
+<!--			<span style="display: none;">-->
+			<span id="player_nickname_view">
+				{{ player.nickname }}
+			</span>
+			<input id="player_nickname" class="ct__nickname-input" value="{{ player.nickname }}" type="text" style="display: none">
+
+			<button id="nickname_send" class="ct__nickname-save ct__square-mid-btn" style="z-index: 3; display: none;" onclick="send_nickname()"><!-- кнопка применить редактирование -->
+				<svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M26 30H0V0H30V26L26 30Z" fill="var(--c10two)"/><path d="M2.5 13.5L11 22L28 5" stroke="var(--c60)" stroke-width="3"/>
+				</svg>
+				<span>-50G</span>
+			</button>
+		</h1>
+		<!-- конец НИКНЕЙМА -->
+
+		<div class="profile__top-wrapper">
+
+			<div class="profile__top-left">
+
+				<span class="profile__id">
+					<span>
+						ID: {{ player.pk }} <!-- значение ID игрока -->
+					</span>
+					<svg width="97" height="24" viewBox="0 0 97 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<rect width="73" height="24" fill="var(--c30)"/><path d="M97 0L73 24V0H97Z" fill="var(--c30)"/>
+					</svg>
+				</span>
+
+				<img src="{% if player.image %}{{ player.image.url }}{% else %}{% static 'img/nopic.png' %}{% endif %}" class="profile__ava">
+
+				<form method="post" enctype="multipart/form-data" id="formUpload">
+					{% csrf_token %}
+					<label class="profile__load-img">
+						<input type="file" name="image" accept="image/*" id="id_image" class="visually-hidden">
+						<span>изменить аватар</span>
+						<svg width="40" height="200" viewBox="0 0 40 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M32 200L40 192V0H0V200H32Z" fill="var(--c10two)"/>
+						</svg>
+					</label>
+					<input type="hidden" name="x" id="id_x">
+					<input type="hidden" name="y" id="id_y">
+					<input type="hidden" name="width" id="id_width">
+					<input type="hidden" name="height" id="id_height">
+                </form>
+			</div>
+
+			<div class="profile__top-right">
+				<button class="profile__info ct__square-btn active"> <!-- кнопка перекл. на инфо -->
+					<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M100 10.0711L100 95C100 97.7614 97.7614 100 95 100L5 100C2.23858 100 2.66948e-08 97.7614 5.96244e-08 95L1.13286e-06 5C1.16579e-06 2.23858 2.23858 2.66947e-08 5 5.96244e-08L89.9289 1.07239e-06C91.255 1.08821e-06 92.5268 0.52678 93.4645 1.46446L98.5355 6.53554C99.4732 7.47321 100 8.74499 100 10.0711Z" fill="url(#paint0_linear_48_141)"/>
+						<path class="profile__info-i1" d="M46.9877 45.4508L43.2377 46.8033L43.1147 47.8484C48.2787 45.9303 48.4631 49.1394 47.9098 50.9836L45.3279 60.082C43.6065 66.2295 51.8238 65.1844 56.1475 63.8935L56.3934 62.7869C51.5246 64.164 51.0041 61.5574 51.3525 60.082L53.8115 50.9836C55.6803 44.4918 50.041 44.5902 46.9877 45.4508Z" fill="var(--c10one)" stroke="var(--c10one)" stroke-width="2" stroke-linejoin="round"/>
+						<circle class="profile__info-i2" cx="50" cy="50" r="30" stroke="var(--c10one)" stroke-width="5"/>
+						<circle class="profile__info-i1" cx="53.1353" cy="37.7664" r="1.88115" fill="var(--c10one)" stroke="var(--c10one)" stroke-width="3"/>
+						<defs>
+						<linearGradient id="paint0_linear_48_141" x1="1.19249e-06" y1="0" x2="100" y2="99.9998" gradientUnits="userSpaceOnUse">
+						<stop class="profile__info-i3" stop-color="var(--c30)"/>
+						<stop class="profile__info-i4" offset="1" stop-color="var(--c30)" stop-opacity="0"/>
+						</linearGradient>
+						</defs>
+					</svg>
+				</button>
+				{% if player.account.socialaccount_set.all.0.provider == 'vk' %}
+				<button class="profile__repost ct__square-btn"> <!-- кнопка перекл. на репост -->
+					<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<rect width="100" height="100" rx="5" fill="url(#paint0_linear_48_140)"/>
+						<path class="profile__repost-rup" d="M31.2893 33.9514L24.7691 36.2871C22.5704 38.2745 21.536 42.4944 27.0703 42.7105L28.988 42.0235M31.2893 33.9514L33.5906 40.3747M31.2893 33.9514L47.5899 19.1582M33.5906 40.3747L28.988 42.0235M33.5906 40.3747L35.7102 44.4623L36.424 53.2433L34.933 54L28.988 42.0235M33.5906 40.3747L55.4526 41.348M55.4526 41.348L47.5899 19.1582M55.4526 41.348L56.371 43.8784C56.4968 44.2736 56.998 44.969 57.9966 44.5889L58.6696 44.3327C59.0767 44.2076 59.8 43.6965 59.4366 42.6527L56.0279 32.8606M47.5899 19.1582L46.8867 17.0171C46.5121 15.8764 47.2985 15.3749 47.7386 15.2667L48.3776 15.0759C48.8102 14.9216 49.7752 14.899 50.1737 16.0439L53.6972 26.1655M53.6972 26.1655L58.3291 26.5548L59.288 29.4745L56.0279 32.8606M53.6972 26.1655L56.0279 32.8606M58.3291 22.2726L59.8633 18.7689M62.1646 26.7494L66 25.3869M61.5893 32.5888L65.2329 34.3407" stroke="var(--c10one)" stroke-width="3" stroke-linejoin="round"/>
+						<path class="profile__repost-sl" d="M43.1083 47L39.6666 59H59.3333L56.3833 47H43.1083Z" fill="var(--c10two)"/>
+						<path class="profile__repost-sl" d="M33.4417 60L30 72H49.6667L46.7167 60H33.4417Z" fill="var(--c10two)"/>
+						<path class="profile__repost-sl" d="M43.4417 73L40 85H59.6667L56.7167 73H43.4417Z" fill="var(--c10two)"/>
+						<path class="profile__repost-sl" d="M63.4417 73L60 85H79.6667L76.7167 73H63.4417Z" fill="var(--c10two)"/>
+						<path class="profile__repost-sl" d="M23.4417 73L20 85H39.6667L36.7167 73H23.4417Z" fill="var(--c10two)"/>
+						<path class="profile__repost-sl" d="M53.4417 60L50 72H69.6667L66.7167 60H53.4417Z" fill="var(--c10two)"/>
+						<defs>
+						<linearGradient id="paint0_linear_48_140" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse">
+						<stop class="profile__repost-g1" stop-color="var(--c30)"/>
+						<stop class="profile__repost-g2" offset="1" stop-color="var(--c30)" stop-opacity="0"/>
+						</linearGradient>
+						</defs>
+					</svg>
+				</button>
+				{% endif %}
+			</div>
+		</div>
+
+		<div class="profile__tabs-wrapper">
+			<!-- ВКЛАДКА ИНФОРМАЦИЯ -->
+			<div class="profile__info-tab">
+
+				<div class="ct__s">
+					<h2 class="ct__s-title">место жительства</h2>
+					<p class="ct__s-text">
+						<a href="##">
+							{{ player.region }}
+						</a>
+					</p>
+				</div>
+
+				<div class="ct__s">
+					<h2 class="ct__s-title">прописка</h2>
+					<p class="ct__s-text">
+						<a href="/region/{{ player.residency.pk }}/">
+							{{ player.residency }}, с: {{ player.residency_date|timezone:player.time_zone|date:"d.m.Y H:i" }}
+						</a>
+					</p>
+				</div>
+
+				<div class="ct__s">
+					<h2 class="ct__s-title">партия</h2>
+					<p class="ct__s-text">
+						{% if player.party %}{{ player.party.title }}{% else %}беспартийный{% endif %}
+						<a href="/party_history/{{ player.pk }}/">
+							(история)
+						</a>
+					</p>
+				</div>
+
+				<div class="ct__s">
+					<h2 class="ct__s-title">должность в партии</h2>
+					<p class="ct__s-text">
+						{% if player.party_post %}{{ player.party_post.title }}{% else %}беспартийный{% endif %}
+					</p>
+				</div>
+
+				<div class="ct__s">
+					<h2 class="ct__s-title ct__s-title--about">
+						<!-- редактировать "о себе" -->
+						<button id="bio_edit" class="ct__s-edit ct__square-small-btn" onclick="open_bio()">
+							<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M20.8 24H0V0H24V20.8L20.8 24Z" fill="#EB9929"/>
+								<path d="M4.40002 17.2L18 3.6L21.2 6.8L7.60002 20.4H4.40002V17.2Z" stroke="#28353E" stroke-width="3"/>
+							</svg>
+						</button>
+						<!-- отмена редактирования "о себе" -->
+						<button id="bio_cancel" class="ct__s-exit ct__square-small-btn" style="display: none" onclick="close_bio()">
+							<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M20.8 24H0V0H24V20.8L20.8 24Z" fill="#EB9929"/>
+								<path d="M3 21L21 3M21 21L3 3" stroke="#28353E" stroke-width="3"/>
+							</svg>
+						</button>
+						<!-- схоранить редактирование "о себе" -->
+						<button id="bio_send" class="ct__s-save ct__square-small-btn" style="display: none" onclick="send_bio()">
+							<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M20.8 24H0V0H24V20.8L20.8 24Z" fill="#EB9929"/>
+								<path d="M2 10.8L8.8 17.6L22.4 4" stroke="#28353E" stroke-width="3"/>
+							</svg>
+						</button>
+						<span>о себе:</span>
+					</h2>
+					<p id="player_bio_view" class="ct__s-text" >{% if not player.bio %}{{ user_link }}{% else %}{{ player.bio }}{% endif %}</p>
+					<textarea id="player_bio" class="profile__s-textarea" cols="30" rows="10" style="display: none">
+						{% if not player.bio %}{{ user_link }}{% else %}{{ player.bio }}{% endif %}
+					</textarea>
+				</div>
+			</div>
+			<!-- конец ВКЛАДКИ ИНФОРМАЦИЯ -->
+
+			{% if player.account.socialaccount_set.all.0.provider == 'vk' %}
+			<!-- ВКЛАДКА РЕПОСТ -->
+			<div class="profile__repost-tab">
+				{% repost_tab player %}
+			</div>
+			<!-- конец ВКЛАДКИ РЕПОСТ -->
+			{% endif %}
+		</div>
+
+
+	</section>
+
+
+	<!-- ОБРЕЗКА ИЗОБРАЖЕНИЙ МОДАЛКА -->
+	<div class="img_modal" id="modalCrop">
+		<div class="modal-cropper-wrapper">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" id="crop-close" aria-label="Close">
+							<span aria-hidden="true">×</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<img id="image" src="" alt="The image to preview" style="width: 274.129px; height: 274.129px; transform: translateX(-13.0647px);"></span>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<div class="btn-l-wrapper">
+					<div class="btn-group pull-left" role="group" style="margin-right: 5px;">
+						<button type="button" class="btn btn-default js-zoom-in">
+							<svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M1 18L6 13" stroke="var(--c60)"/>
+								<circle cx="11" cy="8" r="7.5" stroke="var(--c60)"/>
+								<path d="M11 4V12M15 8H7" stroke="var(--c60)"/>
+							</svg>
+						</button>
+						<button type="button" class="btn btn-default js-zoom-out">
+							<svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M1 18L6 13" stroke="var(--c60)"/>
+								<circle cx="11" cy="8" r="7.5" stroke="var(--c60)"/>
+								<path d="M15 8H7" stroke="var(--c60)"/>
+							</svg>
+						</button>
+					</div>
+					<div class="btn-group pull-left" role="group">
+						<button type="button" class="btn btn-default js-pic-up">
+							<svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M10 1L1 10M10 1L19 10M10 1V19" stroke="var(--c60)"/>
+							</svg>
+						</button>
+						<button type="button" class="btn btn-default js-pic-down">
+							<svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M10 18L19 9M10 18L1 9M10 18V0" stroke="black"/>
+							</svg>
+						</button>
+					</div>
+				</div>
+				<div class="btn-r-wrapper">
+					<button type="button" class="btn btn-default back-crop-js" data-dismiss="modal">Отмена</button>
+					<button type="button" class="btn btn-primary js-crop-and-upload">Загрузить, -100 G</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="{% static 'redesign/js/cropper.min.js' %}?{{ csrf_token }}"></script>
+<!-- КОНЕЦ ОБРЕЗКИ ИЗОБРАЖЕНИЙ МОДАЛКА -->
+
+	<script src="{% static 'redesign/js/profile.js' %}?{{ csrf_token }}"></script>
+
+{% endblock %}

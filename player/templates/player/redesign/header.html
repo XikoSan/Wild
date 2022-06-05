@@ -3,49 +3,106 @@
 {% load static %}
 {% load redesign.player_status %}
 {% load redesign.menu %}
+{% load bootstrap3 %}
 {% load i18n %}
 {% load tz %}
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <script src="https://code.jquery.com/jquery.min.js"></script>
-
-    <script src='{% static "redesign/js/header.js" %}?{{ csrf_token }}'></script>
-    <script src='{% static "redesign/js/script.js" %}?{{ csrf_token }}'></script>
-
-    <link rel="stylesheet" href='{% static "redesign/css/font.css" %}?{{ csrf_token }}'>
-    <link rel="stylesheet" href='{% static "redesign/css/style.css" %}?{{ csrf_token }}'>
-    <link rel="stylesheet" href='{% static "redesign/css/media.css" %}?{{ csrf_token }}'>
-    <title>Wild Politics</title>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+				content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>{{ page_name }}</title>
+	<script
+	  src="https://code.jquery.com/jquery-3.6.0.min.js"
+	  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+	  crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="{% static 'redesign/css/style.css' %}?{{ csrf_token }}">
+	<link rel="stylesheet" href="{% static 'redesign/css/cropper.min.css' %}?{{ csrf_token }}">
 </head>
-
-
 <body>
-    <div class="container">
-        <div class="wrapper" id="wrapper" style="">
-            <div class="content">
-                {% block content %}
-                {% endblock %}
-            </div>
-            <div class="footer blok__bg">
-                {% if player %}
-                    {% if not player.banned %}
-                        <!--Информация в шапке игры-->
-                        {% player_status player %}
-                    {% endif %}
-                {% endif %}
 
-                <!--Игровое меню-->
-                {% menu %}
-            </div>
-        </div>
-    </div>
-    <script>
 
-    </script>
+{% if player %}
+    {% if not player.banned %}
+<!-- ИНФОРМАЦИЯ ОБ ИГРОКЕ ВНИЗУ ЭКРАНА -->
+{% player_status player %}
+<!-- конец ИНФОРМАЦИИ ОБ ИГРОКЕ ВНИЗУ ЭКРАНА -->
+    {% endif %}
+{% endif %}
 
+
+<main>
+	<script>
+		const csrftoken = '{{ csrf_token }}';
+	</script>
+    {% block content %}
+    {% endblock %}
+
+</main>
+
+<!-- МОДАЛЬНОЕ МЕНЮ-НАВИГАЦИЯ -->
+{% menu %}
+<!-- конец МОДАЛЬНОГО МЕНЮ-НАВИГАЦИИ -->
+
+<!-- ГЛОБАЛЬНОЕ МОДАЛЬНОЕ ОКНО -->
+<div class="modal">
+	<div class="modal__inner-window">
+		<h2 class="modal__header ct__nickname">
+			<span>
+				Пополнение энергии
+			</span>
+		</h2>
+		<p class="modal__text"></p>
+		<div class="modal__btn-wrapper">
+		<button class="modal__ok">
+			<svg width="144" height="30" viewBox="0 0 144 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<mask id="mask0_259_325" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+				<path d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z" fill="var(--c10two)"/>
+				</mask>
+				<g mask="url(#mask0_259_325)">
+				<path d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" fill="var(--c10one)"/>
+				</g>
+			</svg>
+			<span>ok</span>
+		</button>
+		<button class="modal__cancel ct__mid-btn">
+			<svg width="144" height="30" viewBox="0 0 144 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<mask id="mask0_259_317" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+					<path d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z" fill="var(--c10two)"/>
+				</mask>
+				<g mask="url(#mask0_259_317)">
+					<path d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" fill="var(--c10two)"/>
+					<path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"/>
+					<path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"/>
+					<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
+				</g>
+			</svg>
+			<span>отмена</span>
+		</button>
+		<div class="modal__decor ct__decor-border">
+			<svg width="360" height="194" viewBox="0 0 360 194" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<g opacity="0.75">
+				<path d="M6 6.99999L150 7L156 1" stroke="var(--c10two)"/>
+				<path d="M12 1L12 13L0 13" stroke="var(--c10two)"/>
+				<path d="M6.00001 7L6 151L0 157" stroke="var(--c10two)"/>
+				<path d="M2.62268e-06 163L6 157L6 169L1.57361e-06 175M1.04907e-06 181L6 175L6 181L5.24537e-07 187M0 193L6 187" stroke="var(--c10two)"/>
+				</g>
+				<g opacity="0.75">
+				<path d="M354 7.00001L210 7L204 1" stroke="var(--c10two)"/>
+				<path d="M348 1L348 13L360 13" stroke="var(--c10two)"/>
+				<path d="M354 7L354 151L360 157" stroke="var(--c10two)"/>
+				<path d="M360 163L354 157L354 169L360 175M360 181L354 175L354 181L360 187M360 193L354 187" stroke="var(--c10two)"/>
+				</g>
+			</svg>
+		</div>
+		</div>
+	</div>
+</div>
+<!-- КОНЕЦ ГЛОБАЛЬНОГО МОДАЛЬНОГО ОКНА -->
+
+<footer></footer>
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>-->
+<script src="{% static 'redesign/js/header.js' %}?{{ csrf_token }}"></script>
+<script src="{% static 'redesign/js/status.js' %}?{{ csrf_token }}"></script>
 </body>
-
 </html>

@@ -133,8 +133,7 @@ class Player(models.Model):
         self.save()
 
 
-    # получить Казну с акутализированными значениями запасов
-    # любые постоянные траты Казны должны быть прописаны тут
+    # получить актуализированного Игрока
     @staticmethod
     @transaction.atomic
     def get_instance(**params):

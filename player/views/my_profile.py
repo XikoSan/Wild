@@ -75,16 +75,23 @@ def my_profile(request):
     # cash_rating = cursor.fetchone()
     # ---------------------
 
-    return render(request, 'player/profile.html', {'player': player,
-                                                   'form': form,
+    groups = list(player.account.groups.all().values_list('name', flat=True))
+    page = 'player/profile.html'
+    if 'redesign' not in groups:
+        page = 'player/redesign/profile.html'
 
-                                                   'premium': premium,
+    response = render(request, page, {
+                                   'player': player,
+                                   'form': form,
+
+                                   'premium': premium,
                                                    'minister': minister,
 
-                                                   'user_link': user_link,
-                                                   # 'timezones': timezones,
-                                                   # 'cash_rating': cash_rating[0],
-                                                   # 'player_settings': player_settings,
-                                                   # 'countdown': UntilRecharge(player)
-                                                   'page_name': player.nickname,
-                                                   })
+                                   'user_link': user_link,
+                                   # 'timezones': timezones,
+                                   # 'cash_rating': cash_rating[0],
+                                   # 'player_settings': player_settings,
+                                   # 'countdown': UntilRecharge(player)
+                                   'page_name': player.nickname,
+                                   })
+    return response

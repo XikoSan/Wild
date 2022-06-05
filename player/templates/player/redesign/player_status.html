@@ -1,35 +1,68 @@
 {% load l10n %}{% load i18n %}
 {% load static %}
-<div class="menu">
-    <div class="otherMenu">
-        <div class="menu__profile">
-            <a href="/profile/"><img src="{% if player.image %}{{ player.image.url }}{% else %}{% static 'img/nopic.png' %}{% endif %}" alt="user_photo"></a>
-        </div>
-    </div>
-    <div class="resources__item power__item">
-        <img src="{% static 'redesign/img/power.png' %}" alt="power_image">
-        <p id="energy">{{ player.energy }}</p>
-        <script>
-            const csrftoken = '{{ csrf_token }}';
+<header class="info">
+
+	<a href="profile" class="info__profile-link">
+		<img {% if player.image %}src="{{ player.image.url }}"{% else %}src="{% static 'img/nopic.png' %}"{% endif %} class="info__ava"> <!-- аватар игрока -->
+	</a>
+
+	<div class="info__left-col">
+		<p class="info__money">
+			$
+			<span id="cash">
+				{{ player.cash }} <!-- значение денег -->
+			</span>
+		</p>
+		<p class="info__gold">
+			G
+			<span id="gold" data-text="{{ player.gold }}">
+				{{ player.gold }} <!-- значение голды -->
+			</span>
+		</p>
+		<p class="info__energy">
+			⚡
+			<span id="energy" class="info__energy-move-left">
+				{{ player.energy }} <!-- значение текущей энергии -->
+			</span>
+		</p>
+	</div>
+
+	<div class="info__right-col">
+		<script>
+            const refill_button_txt = 'пополнить';
         </script>
-        <button class="resources__item-addPower" data-text="{{ countdown }}" onclick="recharge()" id="refill-countdown"><span>{{ time_text }}</span></button>
-    </div>
-    <div class="currency">
-        <ul class="currency__box">
-            <script>
-                const locked_txt = 'Заблокировано: ';
-            </script>
-            <li class="cash__item"><img src="{% static 'redesign/img/cash.svg' %}" alt="cash_image">
-                <p id="cash" data-title="Заблокировано: {% if locked %}{{ locked }}{% else %}0{% endif %}" {% localize off %} data-text="{{ player.cash }}" {% endlocalize %} class="itemData-title">{{ player.cash }}</p>
-            </li>
-            <li class="gold__item"><img src="{% static 'redesign/img/gold.svg' %}" alt="gold_image">
-                <p data-text="{{ player.gold }}">{{ player.gold }}</p>
-            </li>
-        </ul>
-    </div>
-    <button class="menu__button" id="buttonID">
-        <hr class="menu__button-hr">
-        <hr class="menu__button-hr">
-        <hr class="menu__button-hr">
-    </button>
-</div>
+		<button id="refill-countdown" data-text="{{ countdown }}" onclick="recharge()" class="info__add-energy">
+			<span class="info__fill-text">
+				{% if time_text %}
+                {{ time_text }}
+                {% else %}
+                пополнить
+                {% endif %}
+			</span>
+		</button>
+		{% if increase_time %}
+		<div class="info__right-col-wrapper" id="increase_line">
+			<p class="info__plus">
+				+
+				<span id="increase_value" data-value="{{ increase_value }}">
+					{{ increase_value }} <!-- значение насколько пополнится энергия через время -->
+				</span>
+				<span class="info__move-en-left">⚡</span>
+			</p>
+
+			<p class="info__plus-time" id="increase-countdown" data-text="{{ increase_time }}">
+				<span>
+					{{ increase_text }} <!-- значение времени восполнения энергии -->
+				</span>
+			</p>
+		</div>
+		{% endif %}
+	</div>
+
+	<button class="info__open-nav">
+		<div id="burger">
+			<i></i>
+		</div>
+	</button>
+
+</header>

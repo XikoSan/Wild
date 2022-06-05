@@ -1,123 +1,150 @@
-var RATE_LIMIT_IN_MS = 100;
-var NUMBER_OF_REQUESTS_ALLOWED = 1;
-var NUMBER_OF_REQUESTS = 0;
+const modalNavButton = document.getElementById('burger');
+const modalNav = document.getElementById('modal-nav');
 
+modalNavButton.addEventListener('click', () => {
+  if (modalNavButton.classList.contains('burgeractive')) {
+    modalNavButton.classList.remove('burgeractive');
+    modalNav.classList.remove('active');
+  } else {
+    modalNavButton.classList.add('burgeractive');
+    modalNav.classList.add('active');
+  }
+})
 
-jQuery(document).ready(function ($) {
-    setInterval(function()
-    {
-        NUMBER_OF_REQUESTS = 0;
+const infoTabBtn = document.querySelector('.profile__info');
+const repostTabBtn = document.querySelector('.profile__repost');
+const tabsContainer = document.querySelector('.profile__tabs-wrapper');
 
-    }, RATE_LIMIT_IN_MS);
+infoTabBtn.addEventListener('click', () => {
+  if (infoTabBtn.classList.contains('active')) return;
+  infoTabBtn.classList.add('active');
+  if(repostTabBtn != null){
+    repostTabBtn.classList.remove('active');
+  }
+  tabsContainer.style.transform = 'translateX(0)'
+})
 
-    $.ajaxSetup ({
-      beforeSend: function canSendAjaxRequest()
-        {
-            var can_send = NUMBER_OF_REQUESTS < NUMBER_OF_REQUESTS_ALLOWED;
-            NUMBER_OF_REQUESTS++;
-            return can_send;
-        }
-    });
-});
-
-function numberWithSpaces(x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+if(repostTabBtn != null){
+    repostTabBtn.addEventListener('click', () => {
+      if (repostTabBtn.classList.contains('active')) return;
+      repostTabBtn.classList.add('active');
+      infoTabBtn.classList.remove('active');
+      tabsContainer.style.transform = 'translateX(-100vw)';
+    })
 }
 
+const modal = document.querySelector('.modal');
+const modalHeaderText = document.querySelector('.modal__header span')
+const modalText = document.querySelector('.modal__text')
+const modalOk = document.querySelector('.modal__ok')
+const modalOkText = document.querySelector('.modal__ok span')
+const modalCancel = document.querySelector('.modal__cancel')
+const modalCancelText = document.querySelector('.modal__cancel span')
 
-function callable_countdown() {
-    if (document.getElementById("refill-countdown") != undefined){
-        var elem = document.getElementById("refill-countdown").firstChild;
+function display_modal(mode, headerText, bodyText, greenBtnText, greyBtnText) {
+  modalOk.style.display = '';
+  if (mode === 'notify') { 
+    modalOk.style.display = 'none'; 
+  } else {
+    modalOkText.textContent = greenBtnText;
+  }
+  modalHeaderText.textContent = headerText;
+  modalText.textContent = bodyText;
+  modalCancelText.textContent = greyBtnText;
+  modal.classList.add('active');
+}
 
-        //получает строку
-        var sec_string = $('#refill-countdown').attr('data-text');
-        var sec = parseInt(sec_string);
+modalOk.addEventListener('click', () => modal.classList.remove('active'))
+modalCancel.addEventListener('click', () => modal.classList.remove('active'))
 
-        var h = sec/3600 ^ 0 ;
-        var m = (sec-h*3600)/60 ^ 0 ;
-        var s = sec-h*3600-m*60 ;
-        elem.textContent = (m<10?"0"+m:m)+":"+(s<10?"0"+s:s);
+// Cropper
 
-        if (sec == 0) {
-        }
-        else{
-            sec = --sec;
-        }
+$(function () {
 
-        //запускаем функцию с повторением раз 1 секунду
-        var id = setInterval(frame, 1000);
-        function frame() {
-            if (sec == 0) {
-                clearInterval(id);
-            }
+  var cropper;
 
-            var h = sec/3600 ^ 0 ;
-            var m = (sec-h*3600)/60 ^ 0 ;
-            var s = sec-h*3600-m*60 ;
-            elem.textContent = (m<10?"0"+m:m)+":"+(s<10?"0"+s:s);
-            sec = --sec;
-        }
+  /* SCRIPT TO OPEN THE MODAL WITH THE PREVIEW */
+  $("#id_image").change(function () {
+    if (this.files && this.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        $("#image").attr("src", e.target.result);
+        document.getElementById('modalCrop').classList.add('active');
+
+        let image = document.getElementById('image');
+        cropper = new Cropper(image, {
+          aspectRatio: 1,
+          cropBoxResizable: false,
+          minContainerHeight: 200,
+          minCanvasHeight: 200,
+          minCropBoxWidth: 200,
+          minCropBoxHeight: 200,
+          crop(event) {
+            console.log(event.detail.x);
+            console.log(event.detail.y);
+            console.log(event.detail.width);
+            console.log(event.detail.height);
+            console.log(event.detail.rotate);
+            console.log(event.detail.scaleX);
+            console.log(event.detail.scaleY);
+          },
+        });
+        console.log(cropper);
+
+        //document.querySelector('.js-pic-up').click();
+      }
+      reader.readAsDataURL(this.files[0]);
     }
-}
+  });
 
-function actualize(){
-    $.ajax({
-        beforeSend: function() {},
-        type: "GET",
-        url: "/status/0/",
-        dataType: "html",
-        cache: false,
-        success: function(data){
+  /* SCRIPTS TO HANDLE THE CROPPER BOX */
+  var cropBoxData;
+  var canvasData;
 
-            result = JSON.parse(data);
+  $("#crop-close").click( function () {
+    document.getElementById('modalCrop').classList.remove('active');
+    cropBoxData = cropper.getCropBoxData();
+    canvasData = cropper.getCanvasData();
+    cropper.destroy();
+    }
+  );
 
-            $('#cash').html(numberWithSpaces(result.cash) );
+  $(".back-crop-js").click( function () {
+    document.getElementById('modalCrop').classList.remove('active');
+    cropBoxData = cropper.getCropBoxData();
+    canvasData = cropper.getCanvasData();
+    cropper.destroy();
+    }
+  );
 
-            var cash = document.getElementById('cash');
-            cash.dataset.title = locked_txt + numberWithSpaces(result.locked);
+  // Enable zoom in button
+  $(".js-zoom-in").click(function () {
+    cropper.zoom(0.1);
+  });
 
-            $('#gold').html(numberWithSpaces(result.gold));
-            $('#energy').html(result.energy);
-        }
-    });
-}
+  // Enable zoom out button
+  $(".js-zoom-out").click(function () {
+    cropper.zoom(-0.1);
+  });
 
-function recharge(){
-    //запрашиваем свежие данные состояния золота и энергетиков игрока
-    $.ajax({
-        type: "GET",
-        url: "/status/recharge/",
-        dataType: "html",
-        cache: false,
-        success: function(data){
+  // Enable move up button
+  $(".js-pic-up").click(function () {
+    cropper.move(0, 10);
+  });
 
-            result = JSON.parse(data);
-            //если у игрока хватает энергетиков для пополнения до ста
-            if (result.response == 'ok'){
-                var token = "&csrfmiddlewaretoken=" + csrftoken;
-                $.ajax({
-                    beforeSend: function() {},
-                    type: "POST",
-                    url: "/recharge/",
-                    data: token,
-                    cache: false,
-                    success: function(result){
-                        if (result.response == 'ok'){
-                            $('#energy').html('100');
-                            $('#refill-countdown').attr('data-text', 599);
-                            callable_countdown();
-                            actualize();
-                        }
-                        else{
-                            alert(result.response)
-                        }
-                    }
-                });
-            }
-            else{
-                alert(result.response)
-            }
-        }
-    });
-}
+  // Enable move down button
+  $(".js-pic-down").click(function () {
+    cropper.move(0, -10);
+  });
 
+  /* SCRIPT TO COLLECT THE DATA AND POST TO THE SERVER */
+  $(".js-crop-and-upload").click(function () {
+      var cropData = cropper.getData();
+      $("#id_x").val(cropData["x"]);
+      $("#id_y").val(cropData["y"]);
+      $("#id_height").val(cropData["height"]);
+      $("#id_width").val(cropData["width"]);
+      $("#formUpload").submit();
+  });
+
+  });

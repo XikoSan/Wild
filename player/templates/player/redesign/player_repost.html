@@ -1,0 +1,50 @@
+{% load static %}{% load get_div %}{% load tz %}
+{% load l10n %}{% load i18n %}
+<div class="ct__s">
+    <h2 class="ct__s-title">золото за репост</h2>
+    <p class="ct__s-text">поддержи проект репостом и получай золото!</p>
+</div>
+
+<div class="ct__s">
+    <h2 class="ct__s-title">запись для репоста</h2>
+    <p class="ct__s-text">
+        <a href="">перейти к записи (ссылка)</a>
+        Для получения золота запись должна: <br>
+        - быть первой сверху (не считая закрепа) <br>
+        - пробыть на стене не меньше часа <br>
+        Бонус можно получить раз в сутки
+    </p>
+</div>
+{% if not repost %}
+<p class="profile__repost-status">репост не найден</p>
+{% else %}
+<p class="profile__repost-status ok" style="display: none;">репост найден</p>
+{% endif %}
+{% if is_error %}
+<p>Произошла ошибка API VK</p>
+<p>Обычно помогает повторный логин в игре</p>
+<a href="/accounts/logout/" class="btn btn-danger">Выйти из игры</a>
+{% endif %}
+{% if repost %}
+{% if now_dtime > need_dtime %}
+<form id="gold_4_repost" role="form" align="center">
+    {% csrf_token %}
+    <button class="profile__get-gold ct__long-btn">
+        <span>Получить 100 GOLD</span>
+        <svg width="176" height="31" viewBox="0 0 176 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <mask id="mask0_36_212" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="-1" width="176" height="32">
+            <path d="M0 5.78935L5.78947 -0.00012207H176V23.1578L169.053 30.1051H0V5.78935Z" fill="var(--c10two)"/>
+            </mask>
+            <g mask="url(#mask0_36_212)">
+            <path d="M0 5.78935L5.78947 -0.00012207H176V23.1578L169.053 30.1051H0V5.78935Z" fill="var(--c10two)"/>
+            <path class="treg1" opacity="0.2" d="M38.1333 -14.0492L68.5505 38.635H7.71606L38.1333 -14.0492Z" fill="white"/>
+            <path class="treg2" opacity="0.2" d="M110.911 -13.8387L99.6371 22.9836L73.385 -5.19097L110.911 -13.8387Z" fill="white"/>
+            <path class="treg3" opacity="0.2" d="M169.098 6.14752L158.04 25.3L146.983 6.14752L169.098 6.14752Z" fill="white"/>
+            </g>
+        </svg>
+    </button>
+</form>
+{% else %}
+<p class="profile__repost-status">час не прошёл</p>
+{% endif %}
+{% endif %}
