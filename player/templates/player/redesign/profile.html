@@ -54,9 +54,8 @@
 					{% csrf_token %}
 					<label class="profile__load-img">
 						<input type="file" name="image" accept="image/*" id="id_image" class="visually-hidden">
-						<span>изменить аватар</span>
-						<svg width="40" height="200" viewBox="0 0 40 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<path d="M32 200L40 192V0H0V200H32Z" fill="var(--c10two)"/>
+						<svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path class="profile__ava-rect" d="M26 30H0V0H30V26L26 30Z" fill="var(--c10two)"/><path d="M5.5 21.5L22.5 4.5L26.5 8.5L9.5 25.5H5.5V21.5Z" stroke="var(--c60)" stroke-width="3"/>
 						</svg>
 					</label>
 					<input type="hidden" name="x" id="id_x">
