@@ -108,6 +108,13 @@
 			<div class="profile__info-tab">
 
 				<div class="ct__s">
+					<h2 class="ct__s-title">премиум-аккаунт</h2>
+					<p class="ct__s-text">
+						{% if premium %}до {{ premium|timezone:player.time_zone|date:"d.m.Y H:i" }}{% else %}не активен{% endif %}
+					</p>
+				</div>
+
+				<div class="ct__s">
 					<h2 class="ct__s-title">место жительства</h2>
 					<p class="ct__s-text">
 						<a href="/region/{{ player.region.pk }}/">
