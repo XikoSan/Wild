@@ -19,7 +19,7 @@ jQuery(document).ready(function ($) {
 
                             result = JSON.parse(data);
 
-                            $('#cash').html('$' + numberWithSpaces(result.cash));
+                            $('#cash').html(numberWithSpaces(result.cash));
                             $('#gold').html(numberWithSpaces(result.gold));
 
                             $('#energy_status_text').html(numberWithSpaces(result.energy));
