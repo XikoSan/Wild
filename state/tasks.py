@@ -275,6 +275,9 @@ def finish_presidential(pres_id):
         if Parliament.objects.filter(state=president.state).exists():
             # добавляем президента в новое место в парламенте
             parl = Parliament.objects.get(state=president.state)
+            # если у нового президента есть мандат - очищаем его
+            if DeputyMandate.objects.filter(player=max_cadidate).exists():
+                DeputyMandate.objects.filter(player=max_cadidate).update(player=None)
             # ищем прездидентское место
             if DeputyMandate.objects.filter(parliament=parl, is_president=True).exists():
                 DeputyMandate.objects.filter(parliament=parl, is_president=True).update(player=max_cadidate)
