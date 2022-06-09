@@ -55,11 +55,17 @@ def view_profile(request, pk):
     #     [char.pk])
     # cash_rating = cursor.fetchone()
     # ---------------------
-    return render(request, 'player/view_profile.html', {'player': player,
-                                                        'char': char,
-                                                        'minister': minister,
-                                                        'dtime': dtime,
-                                                        'user_link': user_link,
 
-                                                        'page_name': char.nickname,
-                                                        })
+    groups = list(player.account.groups.all().values_list('name', flat=True))
+    page = 'player/view_profile.html'
+    if 'redesign' not in groups:
+        page = 'player/redesign/view_profile.html'
+
+    return render(request, page, {'player': player,
+                                            'char': char,
+                                            'minister': minister,
+                                            'dtime': dtime,
+                                            'user_link': user_link,
+
+                                            'page_name': char.nickname,
+                                            })
