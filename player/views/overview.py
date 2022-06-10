@@ -92,8 +92,8 @@ def overview(request):
 
     groups = list(player.account.groups.all().values_list('name', flat=True))
     page = 'player/overview.html'
-    if 'redesign' in groups:
-        page = 'player/redesign/overview.html'
+    # if 'redesign' not in groups:
+    #     page = 'player/redesign/overview.html'
 
     # отправляем в форму
     response = render(request, page, {
