@@ -61,8 +61,13 @@ def mining(request):
     if player.energy_limit - player.paid_consumption > 0:
         daily_energy_limit = player.energy_limit - player.paid_consumption
 
+    groups = list(player.account.groups.all().values_list('name', flat=True))
+    page = 'region/mining.html'
+    if 'redesign' not in groups:
+        page = 'region/redesign/mining.html'
+
     # отправляем в форму
-    response = render(request, 'region/mining.html', {
+    response = render(request, page, {
         'page_name': _('Добыча'),
 
         'player': player,

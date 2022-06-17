@@ -1,0 +1,122 @@
+{% extends 'player/redesign/header.html' %}
+{% load l10n %}{% load i18n %}
+{% load floor_to_tens %}
+{% load static %}
+
+{% block content %}
+<script>
+    const var_mining_default = 'Добыча ресурсов';
+    const var_mining_process = 'Копаем...';
+</script>
+
+<section class="earn" id="mining_main">
+    <h1 class="earn__title ct__page-title">Добыча</h1>
+    <p class="earn__info">
+        Потрать энергию и получи <br>
+        до <span>${{ daily_limit }}</span> за день!
+    </p>
+    <div class="earn__energy-wrapper ct__widebar">
+        <span>энергии потрачено:</span>
+        <div class="ct__widebar-bar">
+            <span>{{ player.energy_consumption }} / {{ daily_energy_limit }}</span>
+            <div style="width: {{ daily_procent }}%;" class="ct__widebar-fill"></div>
+        </div>
+    </div>
+    <form class="cash_retrieve" role="form">
+        {% csrf_token %}
+        <button {% if player.destination %}disabled{% endif %} class="earn__long-btn ct__long-btn btn">
+            {% if player.destination %}
+            <span>в полете</span>
+            {% else %}
+            <span class="process" style="display: none">получаем...</span>
+            <span>получить: ${{ daily_current_sum }}</span>
+            {% endif %}
+            <svg width="176" height="31" viewBox="0 0 176 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <mask id="mask0_36_212" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="-1" width="176" height="32">
+                <path d="M0 5.78935L5.78947 -0.00012207H176V23.1578L169.053 30.1051H0V5.78935Z" fill="var(--c10two)"/>
+                </mask>
+                <g mask="url(#mask0_36_212)">
+                    <path d="M0 5.78935L5.78947 -0.00012207H176V23.1578L169.053 30.1051H0V5.78935Z" fill="var(--c10two)"/>
+                    {% if not player.destination %}
+                    <path class="treg1" opacity="0.2" d="M38.1333 -14.0492L68.5505 38.635H7.71606L38.1333 -14.0492Z" fill="var(--c10one)"/>
+                    <path class="treg2" opacity="0.2" d="M110.911 -13.8387L99.6371 22.9836L73.385 -5.19097L110.911 -13.8387Z" fill="var(--c10one)"/>
+                    <path class="treg3" opacity="0.2" d="M169.098 6.14752L158.04 25.3L146.983 6.14752L169.098 6.14752Z" fill="var(--c10one)"/>
+                    {% endif %}
+                </g>
+            </svg>
+        </button>
+    </form>
+    <p class="earn__after-btn">
+        уже получено:
+        ${{ player.paid_sum }}
+    </p>
+    <div class="earn__card ct__card">
+        <h3>Золото</h3>
+        <span>Запасы: {{ player.region.gold_has }} / {{ player.region.gold_cap }}</span>
+        <p></p>
+        <form class="mining_form" role="form">
+            {% csrf_token %}
+            <input type="hidden" name="resource" value="gold">
+            <input type="number" min="0" max="100" value="{{ player.energy|floor_to_tens }}" step="10" name="energy">
+            {% if player.destination %}
+            <button disabled>в полете</button>
+            {% else %}
+                {% if premium %}
+                <button class="start_auto" onclick="start_auto(event, 'gold')" style="{% if auto_mining.resource == 'gold' %}display:none{% endif %}">авто</button>
+                <button class="cancel_auto" onclick="cancel_auto(event)" style="{% if not auto_mining or auto_mining.resource != 'gold' %}display:none {% endif %}">отмена</button>
+                {% endif %}
+            <button class="btn-mining">добыча</button>
+            {% endif %}
+        </form>
+        <svg width="314" height="100" viewBox="0 0 314 100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.46447 11.5355L11.5355 2.46447C12.4732 1.52678 13.745 1 15.0711 1H308C310.761 1 313 3.23857 313 6V94C313 96.7614 310.761 99 308 99H6C3.23858 99 1 96.7614 1 94V15.0711C1 13.745 1.52678 12.4732 2.46447 11.5355Z" fill="var(--c30)" stroke="var(--c30)"/></svg>
+    </div>
+    <div class="earn__card ct__card">
+        <h3>Нефть</h3>
+        <span>Запасы: {{ player.region.oil_has }} / {{ player.region.oil_cap }}</span>
+        <p>Марка нефти: {{ player.region.get_oil_type_display }}</p>
+			<form class="mining_form" role="form">
+                {% csrf_token %}
+                <input type="hidden" name="resource" value="oil">
+				<input type="number" min="0" max="100" value="{{ player.energy|floor_to_tens }}" step="10" name="energy">
+                {% if player.destination %}
+                <button type="button" class="btn btn-danger">в полете</button>
+                {% else %}
+                    {% if premium %}
+                <button class="start_auto" onclick="start_auto(event, 'oil')" style="{% if auto_mining.resource == 'oil' %}display:none{% endif %}">авто</button>
+                <button class="cancel_auto" onclick="cancel_auto(event)" style="{% if not auto_mining or auto_mining.resource != 'oil' %}display:none {% endif %}">отмена</button>
+                    {% endif %}
+                <button class="btn-mining">добыча</button>
+                {% endif %}
+			</form>
+        <svg width="314" height="100" viewBox="0 0 314 100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.46447 11.5355L11.5355 2.46447C12.4732 1.52678 13.745 1 15.0711 1H308C310.761 1 313 3.23857 313 6V94C313 96.7614 310.761 99 308 99H6C3.23858 99 1 96.7614 1 94V15.0711C1 13.745 1.52678 12.4732 2.46447 11.5355Z" fill="var(--c30)" stroke="var(--c30)"/></svg>
+    </div>
+    <div class="earn__card ct__card">
+        <h3>Руда</h3>
+        <span>Запасы: {{ player.region.ore_has }} / {{ player.region.ore_cap }}</span>
+        <p>Качество руды: {{ player.region.coal_proc }}% / {{ player.region.iron_proc }}% / {{ player.region.bauxite_proc }}%</p>
+        <form class="mining_form" role="form">
+            {% csrf_token %}
+            <input type="hidden" name="resource" value="ore">
+            <input type="number" min="0" max="100" value="{{ player.energy|floor_to_tens }}" step="10" name="energy">
+            {% if player.destination %}
+            <button type="button" class="btn btn-danger">в полете</button>
+            {% else %}
+                {% if premium %}
+            <button class="start_auto" onclick="start_auto(event, 'ore')" style="{% if auto_mining.resource == 'ore' %}display:none{% endif %}">авто</button>
+            <button class="cancel_auto" onclick="cancel_auto(event)" style="{% if not auto_mining or auto_mining.resource != 'ore' %}display:none {% endif %}">отмена</button>
+                {% endif %}
+            <button class="btn-mining">добыча</button>
+            {% endif %}
+        </form>
+        <svg width="314" height="100" viewBox="0 0 314 100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.46447 11.5355L11.5355 2.46447C12.4732 1.52678 13.745 1 15.0711 1H308C310.761 1 313 3.23857 313 6V94C313 96.7614 310.761 99 308 99H6C3.23858 99 1 96.7614 1 94V15.0711C1 13.745 1.52678 12.4732 2.46447 11.5355Z" fill="var(--c30)" stroke="var(--c30)"/></svg>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block for_scripts_and_css %}
+<script src='{% static "js/mining.js" %}?{{ csrf_token }}'></script>
+{% if premium %}
+<script src='{% static "js/auto_mining.js" %}?{{ csrf_token }}'></script>
+{% endif %}
+{% endblock %}

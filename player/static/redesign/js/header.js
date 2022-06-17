@@ -15,16 +15,18 @@ const infoTabBtn = document.querySelector('.profile__info');
 const repostTabBtn = document.querySelector('.profile__repost');
 const tabsContainer = document.querySelector('.profile__tabs-wrapper');
 
-infoTabBtn.addEventListener('click', () => {
-  if (infoTabBtn.classList.contains('active')) return;
-  infoTabBtn.classList.add('active');
-  if(repostTabBtn != null){
-    repostTabBtn.classList.remove('active');
-  }
-  tabsContainer.style.transform = 'translateX(0)'
-})
+if(infoTabBtn){
+    infoTabBtn.addEventListener('click', () => {
+      if (infoTabBtn.classList.contains('active')) return;
+      infoTabBtn.classList.add('active');
+      if(repostTabBtn != null){
+        repostTabBtn.classList.remove('active');
+      }
+      tabsContainer.style.transform = 'translateX(0)'
+    })
+}
 
-if(repostTabBtn != null){
+if(repostTabBtn){
     repostTabBtn.addEventListener('click', () => {
       if (repostTabBtn.classList.contains('active')) return;
       repostTabBtn.classList.add('active');
@@ -34,12 +36,12 @@ if(repostTabBtn != null){
 }
 
 const modal = document.querySelector('.modal');
-const modalHeaderText = document.querySelector('.modal__header span')
-const modalText = document.querySelector('.modal__text')
-const modalOk = document.querySelector('.modal__ok')
-const modalOkText = document.querySelector('.modal__ok span')
-const modalCancel = document.querySelector('.modal__cancel')
-const modalCancelText = document.querySelector('.modal__cancel span')
+const modalHeaderText = document.querySelector('.modal__header span');
+const modalText = document.querySelector('.modal__text');
+const modalOk = document.querySelector('.modal__ok');
+const modalOkText = document.querySelector('.modal__ok span');
+const modalCancel = document.querySelector('.modal__cancel');
+const modalCancelText = document.querySelector('.modal__cancel span');
 
 function display_modal(mode, headerText, bodyText, greenBtnText, greyBtnText) {
   modalOk.style.display = '';
