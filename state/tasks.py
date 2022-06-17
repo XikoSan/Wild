@@ -6,7 +6,7 @@ import redis
 from celery import shared_task
 from django.utils import timezone
 from django_celery_beat.models import ClockedSchedule, PeriodicTask
-
+from gov.models.minister import Minister
 from party.party import Party
 from player.player import Player
 from player.views.get_subclasses import get_subclasses
@@ -278,6 +278,9 @@ def finish_presidential(pres_id):
             # если у нового президента есть мандат - очищаем его
             if DeputyMandate.objects.filter(player=max_cadidate).exists():
                 DeputyMandate.objects.filter(player=max_cadidate).update(player=None)
+            # если у нового президента есть министерское место - очищаем его
+            if Minister.objects.filter(player=max_cadidate).exists():
+                Minister.objects.filter(player=max_cadidate).delete()
             # ищем прездидентское место
             if DeputyMandate.objects.filter(parliament=parl, is_president=True).exists():
                 DeputyMandate.objects.filter(parliament=parl, is_president=True).update(player=max_cadidate)
