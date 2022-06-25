@@ -20,6 +20,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('state', '0037_auto_20220502_1807'),
+	('gov', '0004_presidentialvoting_candidates'),
     ]
 
     operations = [
