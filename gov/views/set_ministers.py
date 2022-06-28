@@ -12,6 +12,8 @@ from player.views.get_subclasses import get_subclasses
 from state.models.parliament.deputy_mandate import DeputyMandate
 
 from gov.models.minister_right import MinisterRight
+
+
 # переименование партии
 @login_required(login_url='/')
 @check_player
@@ -85,6 +87,18 @@ def set_ministers(request):
                 'response': 'Сумма очков назначения министров превышает 10',
             }
             return JsonResponse(data)
+
+        # удаление министров, которые были разжалованы
+        for cur_minister in Minister.objects.filter(state=pres_mandate.parliament.state):
+            min_exists = False
+
+            for minister in ministers.keys():
+                if minister == cur_minister.player.pk:
+                    min_exists = True
+                    break
+
+            if not min_exists:
+                cur_minister.delete()
 
         for minister in ministers.keys():
             if Minister.objects.filter(player__pk__in=[minister]).exists():
