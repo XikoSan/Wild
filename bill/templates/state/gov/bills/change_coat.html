@@ -44,6 +44,7 @@
     {% with is_deputy=data|dict_key:'is_deputy' %}
         {% if is_deputy %}
             {% with player=data|dict_key:'player' %}
+            {% with has_right=data|dict_key:'has_right' %}
                 {% if player not in bill.votes_pro.all and player not in bill.votes_con.all %}
                 <div class="row">
                     <a class="btn btn-success" onclick="vote_bill('ChangeCoat',{% localize off %}{{ bill.pk }}{% endlocalize %},'pro')">Проголосовать</a>
@@ -76,6 +77,7 @@
                     {% endif %}
                 </font>
                 {% endif %}
+            {% endwith %}
             {% endwith %}
         {% endif %}
     {% endwith %}

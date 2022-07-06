@@ -208,8 +208,11 @@ class PurchaseAuction(Bill):
     def get_bill(self, player, minister, president):
 
         has_right = False
-        if minister and self.__class__.__name__ in minister.rights.all():
-            has_right = True
+        if minister:
+            for right in minister.rights.all():
+                if self.__class__.__name__ == right.right:
+                    has_right = True
+                    break
 
         data = {
             'bill': self,
