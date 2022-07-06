@@ -68,6 +68,8 @@ def set_ministers(request):
             for bill_cl in bills_classes:
                 bills_classes_list.append(bill_cl.__name__)
 
+            bills_classes_list.append('EnergyRights')
+
             # права министров совпадают с классами ЗП
             for right in ministers[minister]['rights']:
                 points += 1

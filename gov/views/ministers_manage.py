@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
-
+# from django.db import models
 from bill.models.bill import Bill
 from gov.models.minister import Minister
 from player.decorators.player import check_player
@@ -9,6 +9,8 @@ from player.views.get_subclasses import get_subclasses
 from state.models.parliament.deputy_mandate import DeputyMandate
 from state.models.parliament.parliament_party import ParliamentParty
 import copy
+from gov.models.custom_rights.custom_right import CustomRight
+
 
 # управление министрами
 @login_required(login_url='/')
@@ -47,8 +49,8 @@ def ministers_manage(request):
                                                      is_president=False,
                                                      player__isnull=False,
                                                      ).exclude(
-                                                     player__in=ministers_list
-                                                    ).order_by('player')
+                player__in=ministers_list
+            ).order_by('player')
 
         # число использованных очков
         points = ministers.count() * 3
@@ -72,6 +74,12 @@ def ministers_manage(request):
 
         for bill_cl in bills_classes:
             bills_dict[bill_cl.__name__] = bill_cl._meta.verbose_name_raw
+
+        custom_rights = CustomRight.__subclasses__()
+
+        for c_right in custom_rights:
+            bills_classes.append(c_right)
+            bills_dict[c_right.__name__] = c_right._meta.verbose_name_raw
 
         # отправляем в форму
         return render(request, 'gov/ministers_manage.html',

@@ -6,6 +6,8 @@ from gov.views.open_pres_elections import open_pres_elections
 from gov.views.set_ministers import set_ministers
 from gov.views.vote_pres_elections import vote_pres_elections
 
+from gov.views.custom_rights.set_power_plant_fact import set_power_plant_fact
+
 urlpatterns = [
     # открытие страницы праймериз
     url(r'^presidential/(?P<pres_pk>\d+)/$', open_pres_elections, name='pres_elections'),
@@ -15,4 +17,7 @@ urlpatterns = [
     url(r'^ministers_manage/$', ministers_manage, name='ministers_manage'),
     # назначить министров
     url(r'^set_ministers/$', set_ministers, name='set_ministers'),
+
+    # права министра энергетики: фактические ТЭЦ
+    url(r'^energy_fact_save/$', set_power_plant_fact, name='set_ministers'),
 ]

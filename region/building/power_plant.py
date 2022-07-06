@@ -17,6 +17,9 @@ class PowerPlant(Building):
     # сколько угля потребляет каждый уровень электры в час
     consumption = 20
 
+    # Включенный уровень здания
+    level_on = models.IntegerField(default=None, blank=True, null=True, verbose_name='Вкл. уровень здания')
+
     # проверяем работоспособность электросети
     @staticmethod
     @transaction.atomic
@@ -65,13 +68,22 @@ class PowerPlant(Building):
     def get_stat(region):
 
         if PowerPlant.objects.filter(region=region).exists():
-            level = PowerPlant.objects.get(region=region).level
+            plant = PowerPlant.objects.get(region=region)
+
+            level = plant.level
+
+            if plant.level_on:
+                level_on = plant.level_on
+            else:
+                level_on = None
 
         else:
             level = 0
+            level_on = None
 
         data = {
             'level': level,
+            'level_on': level_on,
         }
 
         return data, 'region/buildings/power_plant.html'
@@ -85,7 +97,10 @@ class PowerPlant(Building):
         coal_consumption = 0
 
         for plant in power_plants:
-            coal_consumption += plant.level * PowerPlant.consumption
+            if plant.level_on:
+                coal_consumption += plant.level_on * PowerPlant.consumption
+            else:
+                coal_consumption += plant.level * PowerPlant.consumption
 
         return coal_consumption
 
@@ -106,7 +121,10 @@ class PowerPlant(Building):
         power_grid = 0
 
         for plant in power_plants:
-            power_grid += plant.level * PowerPlant.production
+            if plant.level_on:
+                power_grid += plant.level_on * PowerPlant.production
+            else:
+                power_grid += plant.level * PowerPlant.production
 
         return power_grid
 

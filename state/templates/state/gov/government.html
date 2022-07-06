@@ -7,6 +7,7 @@
 {% load government.bills %}
 {% load government.new_bill %}
 {% load government.bills_history %}
+{% load government.custom_rights %}
 
 {% block for_scripts_and_css %}
 <script src='{% static "js/government.js" %}?{{ csrf_token }}'></script>
@@ -97,6 +98,9 @@
                                 }
                             </style>
                             <li><a data-toggle="tab" class="green_hover" href="#new_bill">Новый</a></li>
+                                {% if has_custom_right %}
+                            <li><a data-toggle="tab" class="green_hover" href="#custom_rights">Министр</a></li>
+                                {% endif %}
                             {% endif %}
                             <li><a data-toggle="tab" href="#bills_history">История</a></li>
                             <li><a data-toggle="tab" href="#parliament">Парламент</a></li>
@@ -108,7 +112,12 @@
                                 <!--законопроекты-->
                                 {% bills player parliament %}
                                 <!--новый законопроект-->
-                                {% new_bill player parliament %}
+                                {% if is_deputate %}
+                                    {% new_bill player parliament %}
+                                    {% if has_custom_right %}
+                                        {% custom_rights player parliament.state %}
+                                    {% endif %}
+                                {% endif %}
                                 <!--история законопроектов-->
                                 {% bills_history player parliament %}
                                 <!--парламент-->

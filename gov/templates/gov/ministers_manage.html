@@ -9,14 +9,9 @@
 {% load get_attr %}
 {% load get_class_name %}
 {% block for_scripts_and_css %}
-<link rel="stylesheet" type="text/css" href='{% static "css/overview.css" %}'/>
-<script src="{% static 'js/ministers_manage.js' %}?{{ csrf_token }}"></script>
-{% endblock %}
-
-{% block content %}
 <script>
     var ministers = {};
-    var my_party = {{ player.party.pk }};
+    var my_party = {% if player.party %}{{ player.party.pk }}{% else %}0{% endif %};
     var selected_minister = null;
     var selected_deputate = null;
     var points = {{ points }};
@@ -31,6 +26,11 @@
         {% endfor %}
     {% endfor %}
 </script>
+<link rel="stylesheet" type="text/css" href='{% static "css/overview.css" %}'/>
+<script src="{% static 'js/ministers_manage.js' %}?{{ csrf_token }}"></script>
+{% endblock %}
+
+{% block content %}
 <div class="row">
     <div class="col-xs-4 col-sm-4 col-md-4">
         <div class="row flex" align="center">

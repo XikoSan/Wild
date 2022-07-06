@@ -11,3 +11,19 @@
         </b>
     </div>
 </div>
+{% with level_on=data|dict_key:'level_on' %}
+{% if level_on %}
+<div class="row flex">
+    <div class="col-xs-6 col-sm-6 col-md-6">
+        <b>
+            <font size="4">{% trans 'Запущено ТЭЦ' %}:</font>
+        </b>
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-6">
+        <b>
+            <font size="4">{{ level_on }}</font>
+        </b>
+    </div>
+</div>
+{% endif %}
+{% endwith %}

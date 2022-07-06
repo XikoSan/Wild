@@ -28,8 +28,15 @@ class RateBuildingAdmin(BuildingAdmin):
         return obj.region.region_name
 
 
+class PowerPlantAdmin(BuildingAdmin):
+    list_display = ('get_region', 'level', 'level_on')
+
+    def get_region(self, obj):
+        return obj.region.region_name
+
+
 # Register your models here.
 admin.site.register(Region)
 admin.site.register(Neighbours)
 admin.site.register(Hospital, RateBuildingAdmin)
-admin.site.register(PowerPlant, BuildingAdmin)
+admin.site.register(PowerPlant, PowerPlantAdmin)
