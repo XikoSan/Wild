@@ -22,7 +22,8 @@ class EnergyRights(CustomRight):
         for region in regions:
             if buildings.filter(region=region).exists():
                 building_dict[region.pk] = buildings.get(region=region).level
-                building_fact_dict[region.pk] = buildings.get(region=region).level_on
+                if buildings.get(region=region).level_on:
+                    building_fact_dict[region.pk] = buildings.get(region=region).level_on
             else:
                 building_dict[region.pk] = 0
 
