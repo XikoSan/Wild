@@ -11,14 +11,6 @@
   font-style: normal;
 }
 
-:root {
-  --c10one: #FFFFFF;
-  --c10two: #EB9929;
-  --c60: #28353E;
-  --c30: #284E64;
-  --nav: #336380;
-}
-
 
 /*! ----------normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css---------- */
 html {
@@ -351,8 +343,9 @@ a {
 
 .profile__top-wrapper {
   display: flex;
+  flex-wrap: wrap;
   width: 100vw;
-  height: 200rem;
+  height: 248rem;
   padding-right: 12rem;
   padding-left: 24rem;
   justify-content: space-between;
@@ -424,6 +417,37 @@ a {
   width: 100rem;
 }
 
+.profile__settings {
+  position: relative;
+  background-color: transparent;
+  padding: 0;
+  border: none;
+  border-top: 1px solid var(--c10two);
+  border-bottom: 1px solid var(--c10two);
+  border-right: 1px solid var(--c10two);
+  margin-top: 24rem;
+  margin-left: 12rem;
+  width: 312rem;
+  height: 24rem;
+}
+
+.profile__settings svg {
+  position: absolute;
+  left: -12rem;
+  top: -8rem;
+  width: 40rem;
+  height: 40rem;
+  transform: rotate(24deg);
+}
+
+.profile__settings span {
+  font-weight: 400;
+  font-size: 14rem;
+  line-height: 24rem;
+  letter-spacing: -0.04em;
+  color: var(--c10two);
+}
+
 .profile__info svg{
   transition: all 0.5s ease;
 }
@@ -472,7 +496,7 @@ a {
   display: flex;
   width: 200vw;
   margin-top: 24rem;
-  height: calc(100vh - 350rem);
+  height: calc(100vh - 398rem);
   overflow: auto;
   transition: all 0.5s ease;
 }
@@ -722,14 +746,12 @@ a {
   margin: 0 auto;
 }
 
-
 /*! Store */
 
 .store {
   padding-top: 14rem;
   padding-bottom: 24rem;
   height: calc(100vh - 60rem);
-  overflow-y: auto;
 }
 
 .store__tabs {
@@ -856,11 +878,15 @@ a {
   row-gap: 12rem;
   font-size: 14rem;
   color: var(--c10one);
+  height: calc(100vh - 306rem);
+  overflow-y: scroll;
+  padding-bottom: 24rem;
 }
 
 .store__item {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .store__item p {
@@ -870,31 +896,43 @@ a {
 
 .store__bar {
   position: relative;
-  width: 150rem;
-  height: 16rem;
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 6rem;
+  width: 100%;
+  height: 10rem;
   border: 1px solid var(--c10two);
 }
 
 .store__bar-fill {
   z-index: 1;
-  position: absolute;
   height: 100%;
-  left: 0;
-  top: 0;
   background-color: var(--c10two);
 }
 
-.store__bar span {
+.store__bar-reserved {
+  height: calc(100% + 2px);
+  margin-top: -1px;
+  border: 1px solid var(--c10one);
+  background-image: repeating-linear-gradient(-45deg,  var(--c10one),  var(--c10one) 5px,  transparent 5px,  transparent 10px);
+}
+
+.store__item span {
   z-index: 2;
   position: relative;
-  display: block;
-  width: 100%;
+  display: inline-block;
+  width: max-content;
+  flex-shrink: 0;
   font-size: 14rem;
   line-height: 16rem;
   text-align: center;
   letter-spacing: -0.04em;
-  color: var(--c10one);
+  color: var(--c10two);
   text-shadow: -1px -1px 0px var(--c60);
+}
+
+.store__item  .store__item-span-r {
+  color: var(--c10one);
 }
 
 .store__right {
@@ -932,6 +970,24 @@ a {
   line-height: 14rem;
   letter-spacing: -0.04em;
   color: #FFFFFF;
+}
+
+.store__right-block label {
+  margin-right: auto;
+  margin-left: 6rem;
+  font-size: 14rem;
+  line-height: 14rem;
+  letter-spacing: -0.04em;
+  color: #FFFFFF;
+}
+
+.store__right-block input[type="number"] {
+  background-color: transparent;
+  border: 1px solid var(--c10one);
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+  width: 60rem;
 }
 
 .store__right-block span i{
@@ -1041,6 +1097,124 @@ a {
   margin-bottom: 12rem;
   color: var(--c10two);
 }
+
+.store__nostore {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.store__nostore h3 {
+  margin: 0;
+  margin-bottom: 8rem;
+  font-size: 14rem;
+  line-height: 14rem;
+  font-weight: 400;
+  text-align: center;
+  letter-spacing: -0.04em;
+  color: var(--c10one);
+}
+
+.store__notitle {
+  margin: 0;
+  margin-bottom: 20rem;
+  width: 100%;
+  padding: 0 24rem;
+  font-weight: 400;
+  font-size: 18rem;
+  line-height: 18rem;
+  text-align: center;
+  letter-spacing: -0.04em;
+  color: var(--c10one);
+}
+
+.store__noblock {
+  position: relative;
+  width: 312rem;
+  height: 98rem;
+  margin-bottom: 20rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.store__noblock p {
+  z-index: 2;
+  position: relative;
+  margin: 0;
+  font-size: 14rem;
+  line-height: 24rem;
+  letter-spacing: -0.04em;
+  color: var(--c10one);
+}
+
+.store__noblock svg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.store__noselect {
+  position: relative;
+  width: 312rem;
+  height: 24rem;
+  margin-bottom: 24rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.store__noselect i {
+  position: absolute;
+  right: 9rem;
+  top: 8rem;
+  display: block;
+  width: 12rem;
+  height: 8rem;
+  pointer-events: none;
+}
+
+.store__noselect i svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.store__noselect::after {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  opacity: 0.3;
+  border: 1rem solid var(--c10one);
+  content: '';
+  pointer-events: none;
+}
+
+.store__noselect select {
+  border: none;
+  background-color: var(--c60);
+  -webkit-appearance: none;
+  appearance: none;
+  width: 312rem;
+  height: 24rem;
+  padding: 0 9rem;
+  font-size: 13rem;
+  line-height: 24rem;
+  letter-spacing: -0.05em;
+  color: var(--c10one);
+  outline: none;
+}
+
+.store__nobtn {}
+
 
 /*! ct__card */
 
@@ -1719,6 +1893,97 @@ a {
   pointer-events: none;
 }
 
+/*! ----- M-sett ----- */
+
+.m-sett {
+  z-index: 10;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0 24rem;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--c60);
+  transition: all 0.5s ease;
+  transform: translateX(-101%);
+}
+
+.m-sett.active {
+  transform: translateX(0);
+}
+
+.m-sett__close {
+  position: absolute;
+  top: 12rem;
+  right: 12rem;
+}
+
+.m-sett__form {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.m-sett__colors {
+  display: grid;
+  grid-gap: 24rem;
+  width: 100%;
+}
+
+.m-sett__l-color {
+  display: flex;
+  align-items: center;
+  background-color: var(--c30);
+}
+
+.m-sett__l-color input {
+  border: none;
+  border: 1px solid #fff;
+  width: 40rem;
+  height: 40rem;
+  padding: 0;
+  appearance: none;
+  margin-right: 24rem;
+}
+
+/* -webkit */
+.m-sett__l-color input[type="color"]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.m-sett__l-color input[type="color"]::-webkit-color-swatch {
+  border: none;
+  border: 1px solid #fff;
+}
+
+/* firefox */
+.m-sett__l-color input[type=color]::-moz-focus-inner {
+  border: none;
+  padding: 0;
+}
+
+.m-sett__l-color input[type=color]::-moz-color-swatch {
+  border: 1px solid #fff;
+}
+
+.m-sett__l-color span {
+  font-weight: 400;
+  font-size: 14rem;
+  line-height: 24rem;
+  letter-spacing: -0.04em;
+  color: var(--c10one);
+}
+
+.m-sett__save {
+  margin-top: 96rem;
+  align-self: center;
+}
 
 /*! -----Служебные классы----- */
 

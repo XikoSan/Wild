@@ -1,0 +1,69 @@
+{% load get_attr %}
+{% load get_mod %}
+{% load get_sub %}
+{% load get_sum %}
+{% load dict_key %}
+{% load has_key %}
+{% load get_proc %}
+{% load get_sum %}
+{% load static %}
+{% load l10n %}{% load i18n %}
+<div class="store__left">
+    <div id="trade_tab">
+        <form id="money_transfer_frm" role="form" class="store__exch-wrapper">
+            {% csrf_token %}
+            <span class="store__exch-left-text">счёт</span>
+            <button type="submit" id="do_transfer" disabled> <!--кнопка перевода средств на склад-->
+                <svg width="41" height="60" viewBox="0 0 41 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M41 0L-3.8147e-06 -1.79217e-06L-5.53219e-06 39.2917L20.5 59.7917L41 39.2917L41 0Z" fill="var(--c10two)"/>
+                    <path d="M35.5 23L6.65384 23L5.5 23M35.5 23L27.4231 15M35.5 23L27.4231 31M5.5 23L13.5 15M5.5 23L13.5 31" stroke="var(--c60)" stroke-width="3"/>
+                </svg>
+            </button> <!--конец кнопки перевода средств на склад-->
+            <span class="store__exch-right-text">наличные</span>
+            <input class="store__num-left" type="number" min="0" value="{% localize off %}{{ player.cash }}{% endlocalize %}" name="cash_at_player" id="cash_at_player"> <!--инпут наличных-->
+            <input class="store__num-right" type="number" min="0" value="{% localize off %}{{ storage|get_attr:'cash' }}{% endlocalize %}" name="cash_at_storage" id="cash_at_storage"> <!--инпут на складе-->
+            <div id="storage_cash" {% localize off %}data-text="{{ storage.cash }}"{% endlocalize %} style="display: none"></div>
+            <p>
+                <span>всего денег:</span>
+                <p>
+                {{ player.cash|get_sum:storage.cash }}
+                </p> <!--значение "всего денег"-->
+            </p>
+            <svg width="314" height="100" viewBox="0 0 314 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2.46447 11.5355L11.5355 2.46447C12.4732 1.52678 13.745 1 15.0711 1H308C310.761 1 313 3.23857 313 6V94C313 96.7614 310.761 99 308 99H6C3.23858 99 1 96.7614 1 94V15.0711C1 13.745 1.52678 12.4732 2.46447 11.5355Z" fill="var(--c30)" stroke="var(--c30)"/>
+            </svg>
+        </form>
+    </div>
+    <ul class="store__list">
+        {% for group in storage|get_attr:'types' %}
+            {% for good in storage|get_attr:group %}
+        <li class="store__item"><!--начало товара-->
+            {% with cap_name=good|get_sum:'_cap' %}
+            <p>{{ storage|get_attr:group|dict_key:good }}</p>
+            <span>
+                {{ storage|get_attr:good }} /
+                {% if locks|has_key:good %}
+                    {% with lock_val=locks|dict_key:good %}
+                <span class="store__item-span-r">{{ locks|dict_key:good }}</span> /
+                    {% endwith %}
+                {% endif %}
+                {{ storage|get_attr:cap_name }}
+            </span> <!--значение товара-->
+            <div class="store__bar">
+                {% with cap_val=storage|get_attr:cap_name %}
+                    {% with good_val=storage|get_attr:good %}
+                <div class="store__bar-fill" style="width: {{ cap_val|get_proc:good_val }}%;"></div> <!--width: 45% - процент заполнения шкалы-->
+                    {% endwith %}
+                    {% if locks|has_key:good %}
+                        {% with lock_val=locks|dict_key:good %}
+                <div class="store__bar-reserved" style="width: {{ cap_val|get_proc:lock_val }}%;"></div>
+                        {% endwith %}
+                    {% endif %}
+                {% endwith %}
+            </div>
+            {% endwith %}
+        </li><!--конец товара-->
+            {% endfor %}
+        {% endfor %}
+    </ul>
+</div>

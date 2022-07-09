@@ -28,7 +28,9 @@ def new_storage(request):
         # находим Склад, с которого хотят списать материалы
         if not Storage.objects.filter(pk=int(request.POST.get('storage')), owner=player):
             data = {
+                'header': 'Новый Склад',
                 'response': 'Не найден Склад',
+                'grey_btn': 'Закрыть',
             }
             return JsonResponse(data)
 
@@ -44,7 +46,9 @@ def new_storage(request):
         if not (getattr(paid_storage, 'steel') >= material_cost \
                 and getattr(paid_storage, 'aluminium') >= material_cost):
             data = {
+                'header': 'Новый Склад',
                 'response': 'Недостаточно ресурсов',
+                'grey_btn': 'Закрыть',
             }
             return JsonResponse(data)
 
@@ -55,7 +59,9 @@ def new_storage(request):
         price, prices = get_transfer_price(trans_mul, 0, price_dict)
         if price > player.cash:
             data = {
-                'response': 'Недостаточно денег',
+                'header': 'Новый Склад',
+                'response': 'Недостаточно денег на транспортировку',
+                'grey_btn': 'Закрыть',
             }
             return JsonResponse(data)
         # логируем

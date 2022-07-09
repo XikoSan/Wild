@@ -11,37 +11,47 @@ modalNavButton.addEventListener('click', () => {
   }
 })
 
-const infoTabBtn = document.querySelector('.profile__info');
-const repostTabBtn = document.querySelector('.profile__repost');
-const tabsContainer = document.querySelector('.profile__tabs-wrapper');
+// Tabs
+function toggleTabs(tabOneClass, tabTwoClass, wrapperClass) {
 
-if(infoTabBtn){
-    infoTabBtn.addEventListener('click', () => {
-      if (infoTabBtn.classList.contains('active')) return;
-      infoTabBtn.classList.add('active');
-      if(repostTabBtn != null){
-        repostTabBtn.classList.remove('active');
-      }
-      tabsContainer.style.transform = 'translateX(0)'
+  const tabOne = document.querySelector(`.${tabOneClass}`);
+  const tabTwo = document.querySelector(`.${tabTwoClass}`);
+  const wrapper = document.querySelector(`.${wrapperClass}`);
+
+  tabOne.addEventListener('click', () => {
+    if (tabOne.classList.contains('active')) return;
+    tabOne.classList.add('active');
+    if (tabTwo != null) tabTwo.classList.remove('active');
+    wrapper.style.transform = 'translateX(0)'
+  })
+
+  if (tabTwo != null) {
+    tabTwo.addEventListener('click', () => {
+      if (tabTwo.classList.contains('active')) return;
+      tabTwo.classList.add('active');
+      tabOne.classList.remove('active');
+      wrapper.style.transform = 'translateX(-100vw)';
     })
+  }
 }
 
-if(repostTabBtn){
-    repostTabBtn.addEventListener('click', () => {
-      if (repostTabBtn.classList.contains('active')) return;
-      repostTabBtn.classList.add('active');
-      infoTabBtn.classList.remove('active');
-      tabsContainer.style.transform = 'translateX(-100vw)';
-    })
+if (document.querySelector('.profile__tabs-wrapper')) {
+  toggleTabs(`profile__info`, `profile__repost`, `profile__tabs-wrapper`)
 }
+
+if (document.querySelector(`.store__wrapper`)) {
+  toggleTabs(`ct__top-tab1`, `ct__top-tab2`, `store__wrapper`);
+}
+
+// Modal
 
 const modal = document.querySelector('.modal');
-const modalHeaderText = document.querySelector('.modal__header span');
-const modalText = document.querySelector('.modal__text');
-const modalOk = document.querySelector('.modal__ok');
-const modalOkText = document.querySelector('.modal__ok span');
-const modalCancel = document.querySelector('.modal__cancel');
-const modalCancelText = document.querySelector('.modal__cancel span');
+const modalHeaderText = document.querySelector('.modal__header span')
+const modalText = document.querySelector('.modal__text')
+const modalOk = document.querySelector('.modal__ok')
+const modalOkText = document.querySelector('.modal__ok span')
+const modalCancel = document.querySelector('.modal__cancel')
+const modalCancelText = document.querySelector('.modal__cancel span')
 
 function display_modal(mode, headerText, bodyText, greenBtnText, greyBtnText) {
   modalOk.style.display = '';

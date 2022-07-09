@@ -60,7 +60,7 @@ jQuery(document).ready(function ($) {
 
                         result = JSON.parse(data);
 
-                        $('#cash').html('$' + numberWithSpaces(result.cash));
+                        $('#cash').html(numberWithSpaces(result.cash));
                         $('#cash').attr('data-text', result.cash);
                         $('#gold').html(numberWithSpaces(result.gold));
                     }
@@ -112,7 +112,7 @@ function open_trade_line(id){
         success: function(data){
 
             result = JSON.parse(data);
-            $('#cash').html('$' + numberWithSpaces(result.cash));
+            $('#cash').html(numberWithSpaces(result.cash));
             $('#cash').attr('data-text', result.cash);
             $('#storage_cash').html(numberWithSpaces(result.storage_cash));
             $('#storage_cash').attr('data-text', result.storage_cash);

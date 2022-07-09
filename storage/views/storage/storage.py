@@ -17,8 +17,13 @@ def storage(request):
     if Storage.objects.filter(owner=player, region=player.region).exists():
         storage = Storage.objects.get(owner=player, region=player.region)
 
+    groups = list(player.account.groups.all().values_list('name', flat=True))
+    page = 'storage/storage.html'
+    if 'redesign' not in groups:
+        page = 'storage/redesign/storage.html'
+
     # отправляем в форму
-    response = render(request, 'storage/storage.html', {
+    response = render(request, page, {
         'page_name': _('Склад'),
 
         'player': player,
