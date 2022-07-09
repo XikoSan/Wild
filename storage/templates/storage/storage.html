@@ -15,7 +15,7 @@
 <div class="tab-content">
     <div id="storage" class="tab-pane fade in active">
     {% if storage %}
-       {% has_storage storage %}
+       {% has_storage storage player %}
     {% else %}
         {% no_storage player %}
     {% endif %}
