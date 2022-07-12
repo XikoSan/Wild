@@ -16,11 +16,14 @@ from .views.no_social import no_social
 from .views.overview import overview
 from .views.view_profile import view_profile
 from .views.wallet import wallet
+from player.views.eula import eula
 
 urlpatterns = [
 
     # приветственная страница
     url(r'^$', index, name='index'),
+    # ЕУЛА
+    url(r'^eula$', eula, name='eula'),
     # регистрация нового персонажа
     url(r'^player/new/$', new_player, name='new_player'),
     # выход
