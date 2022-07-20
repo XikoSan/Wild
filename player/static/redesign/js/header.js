@@ -55,8 +55,8 @@ const modalCancelText = document.querySelector('.modal__cancel span')
 
 function display_modal(mode, headerText, bodyText, greenBtnText, greyBtnText) {
   modalOk.style.display = '';
-  if (mode === 'notify') { 
-    modalOk.style.display = 'none'; 
+  if (mode === 'notify') {
+    modalOk.style.display = 'none';
   } else {
     modalOkText.textContent = greenBtnText;
   }
@@ -160,3 +160,19 @@ $(function () {
   });
 
   });
+
+  // modal settings
+
+  if (document.querySelector('.m-sett')) {
+    const openMSettBtn = document.querySelector('.profile__settings')
+    const closeMSettBtn = document.querySelector('.m-sett__close')
+    const mSettWindow = document.querySelector('.m-sett')
+
+    openMSettBtn.addEventListener('click', () => {
+      mSettWindow.classList.add('active');
+    })
+
+    closeMSettBtn.addEventListener('click', () => {
+      mSettWindow.classList.remove('active');
+    })
+  }

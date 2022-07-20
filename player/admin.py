@@ -8,6 +8,7 @@ from player.logs.gold_log import GoldLog
 from player.logs.skill_training import SkillTraining
 from player.logs.auto_mining import AutoMining
 from .player import Player
+from .player_settings import PlayerSettings
 
 
 class CashLogAdmin(admin.ModelAdmin):
@@ -46,6 +47,11 @@ class GoldLogAdmin(admin.ModelAdmin):
     ordering = ('-dtime',)
 
 
+class PlayerSettingsAdmin(admin.ModelAdmin):
+    search_fields = ['player__nickname',]
+    raw_id_fields = ('player',)
+
+
 class PLayerAdmin(admin.ModelAdmin):
     search_fields = ['nickname', 'user_ip']
     raw_id_fields = ('account', 'party',)
@@ -78,6 +84,7 @@ class PLayerAdmin(admin.ModelAdmin):
 
 # Register your models here.
 admin.site.register(Player, PLayerAdmin)
+admin.site.register(PlayerSettings, PlayerSettingsAdmin)
 admin.site.register(CashLog, CashLogAdmin)
 admin.site.register(GoldLog, GoldLogAdmin)
 admin.site.register(SkillTraining, SkillTrainingAdmin)

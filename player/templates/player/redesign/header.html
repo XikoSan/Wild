@@ -2,6 +2,7 @@
 <html lang="ru">
 {% load static %}
 {% load redesign.player_status %}
+{% load redesign.player_colors %}
 {% load redesign.menu %}
 {% load bootstrap3 %}
 {% load i18n %}
@@ -19,6 +20,9 @@
 	<link rel="stylesheet" href="{% static 'redesign/css/style.css' %}?{{ csrf_token }}">
 	<link rel="stylesheet" href="{% static 'redesign/css/cropper.min.css' %}?{{ csrf_token }}">
 	<style>
+	{% if player %}
+		{% player_colors player %}
+	{% else %}
 		:root {
 		  --c10one: #FFFFFF;
 		  --c10two: #EB9929;
@@ -26,6 +30,7 @@
 		  --c30: #284E64;
 		  --nav: #336380;
 		}
+	{% endif %}
 	</style>
 </head>
 <body>

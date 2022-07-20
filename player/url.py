@@ -17,6 +17,7 @@ from .views.overview import overview
 from .views.view_profile import view_profile
 from .views.wallet import wallet
 from player.views.eula import eula
+from .views.color_change import color_change
 
 urlpatterns = [
 
@@ -46,6 +47,9 @@ urlpatterns = [
 
     # изменить биографию
     url(r'^change_bio/$', change_bio, name='change_bio'),
+
+    # изменить цвета игры
+    url(r'^color_change', color_change, name='color_change'),
 
     # Начать учёт активностей
     url(r'^reward_4_repost', repost_reward, name='reward_4_repost'),
