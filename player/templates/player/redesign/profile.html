@@ -331,19 +331,19 @@
 			{% csrf_token %}
 			<div class="m-sett__colors">
 				<label class="m-sett__l-color">
-					<input type="color" value="#28353E" name="color_back" id="color_back">
+					<input type="color" value="#{{ color_back }}" name="color_back" id="color_back">
 					<span>цвет фона</span>
 				</label>
 				<label class="m-sett__l-color">
-					<input type="color" value="#284E64" name="color_block" id="color_block">
+					<input type="color" value="#{{ color_block }}" name="color_block" id="color_block">
 					<span>цвет блоков</span>
 				</label>
 				<label class="m-sett__l-color">
-					<input type="color" value="#FFFFFF" name="color_text" id="color_text">
+					<input type="color" value="#{{ color_text }}" name="color_text" id="color_text">
 					<span>цвет текста</span>
 				</label>
 				<label class="m-sett__l-color">
-					<input type="color" value="#EB9929" name="color_acct" id="color_acct">
+					<input type="color" value="#{{ color_acct }}" name="color_acct" id="color_acct">
 					<span>цвет акцента</span>
 				</label>
 			</div>

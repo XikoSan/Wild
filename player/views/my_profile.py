@@ -9,6 +9,7 @@ from player.decorators.player import check_player
 from player.forms import ImageForm
 from player.logs.gold_log import GoldLog
 from player.player import Player
+from player.player_settings import PlayerSettings
 
 
 @login_required(login_url='/')
@@ -64,6 +65,22 @@ def my_profile(request):
     if Minister.objects.filter(player=player).exists():
         minister = Minister.objects.get(player=player)
 
+    #  Настройки цветов профиля
+    setts = None
+
+    color_back = '28353E'
+    color_block = '284E64'
+    color_text = 'FFFFFF'
+    color_acct = 'EB9929'
+
+    if PlayerSettings.objects.filter(player=player).exists():
+        setts = PlayerSettings.objects.get(player=player)
+
+        color_back = setts.color_back
+        color_block = setts.color_block
+        color_text = setts.color_text
+        color_acct = setts.color_acct
+
     # timezones = pytz.common_timezones
     #
     # if PlayerSettings.objects.filter(player=player).exists():
@@ -93,5 +110,11 @@ def my_profile(request):
                                    # 'player_settings': player_settings,
                                    # 'countdown': UntilRecharge(player)
                                    'page_name': player.nickname,
+
+                                    'color_back': color_back,
+                                    'color_block': color_block,
+                                    'color_text': color_text,
+                                    'color_acct': color_acct,
+
                                    })
     return response
