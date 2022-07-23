@@ -29,18 +29,19 @@ class Hospital(RateBuilding):
 
     # получить информацию об топе медки, исходя из работы электросети
     def get_top(self):
-        # проверяем наличие госа в реге
-        if not self.region.state:
-            # в реге без госа нет казны, а, значит, электросеть не работает
-            return 1
-
-        # если электросеть работает
-        if PowerPlant.check_is_working(state=self.region.state):
-            # возвращаем оригинальный индекс
-            return self.top
-        # иначе - возвращаем первый индекс
-        else:
-            return 1
+        return 5
+        # # проверяем наличие госа в реге
+        # if not self.region.state:
+        #     # в реге без госа нет казны, а, значит, электросеть не работает
+        #     return 1
+        #
+        # # если электросеть работает
+        # if PowerPlant.check_is_working(state=self.region.state):
+        #     # возвращаем оригинальный индекс
+        #     return self.top
+        # # иначе - возвращаем первый индекс
+        # else:
+        #     return 1
 
     # получить строки с информацией об уровне и рейтинге здания
     @staticmethod
