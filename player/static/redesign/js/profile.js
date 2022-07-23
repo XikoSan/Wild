@@ -55,6 +55,14 @@ jQuery(document).ready(function ($) {
 
 });
 
+function color_default(e){
+    e.preventDefault();
+    $('#color_back').val('#28353E');
+    $('#color_block').val('#284E64');
+    $('#color_text').val('#FFFFFF');
+    $('#color_acct').val('#EB9929');
+};
+
 function open_bio(){
 
     $('#bio_edit').hide();
