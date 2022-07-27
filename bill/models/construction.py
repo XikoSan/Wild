@@ -35,6 +35,7 @@ class Construction(Bill):
             {
                 'cash': 100,
                 'steel': 50,
+                'coal': 100,
             },
     }
 
