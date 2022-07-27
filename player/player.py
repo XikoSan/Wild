@@ -254,7 +254,8 @@ class Player(models.Model):
         med_top = 1
 
         if Hospital.objects.filter(region=self.region).exists():
-            med_top = Hospital.objects.get(region=self.region).get_top()
+            # med_top = Hospital.objects.get(region=self.region).get_top()
+            med_top = Hospital.objects.get(region=self.region).top
 
         # если дата последнего прироста пуста (только зарегистрировался)
         if not self.natural_refill:
