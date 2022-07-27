@@ -40,15 +40,15 @@ def government(request):
             # проверяем, депутат ли этого парла игрок или нет
             is_deputate = DeputyMandate.objects.filter(player=player, parliament=parliament).exists()
 
-            if is_deputate and Minister.objects.filter(player=player, state=state).exists():
-
-                minister = Minister.objects.get(player=player, state=state)
-                custom_rights = CustomRight.__subclasses__()
-
-                for c_right in custom_rights:
-                    for min_rights in minister.rights.all():
-                        if c_right.__name__ == min_rights.right:
-                            has_custom_right = True
+            # if is_deputate and Minister.objects.filter(player=player, state=state).exists():
+            #
+            #     minister = Minister.objects.get(player=player, state=state)
+            #     custom_rights = CustomRight.__subclasses__()
+            #
+            #     for c_right in custom_rights:
+            #         for min_rights in minister.rights.all():
+            #             if c_right.__name__ == min_rights.right:
+            #                 has_custom_right = True
 
             # если в парламенте идут выборы
             if ParliamentVoting.objects.filter(running=True, parliament=parliament).exists():
@@ -75,8 +75,8 @@ def government(request):
         'parliament': parliament,
         # депутат
         'is_deputate': is_deputate,
-        # депутат
-        'has_custom_right': has_custom_right,
+        # # имеет особые права министра
+        # 'has_custom_right': has_custom_right,
 
         # идут выборы
         'has_voting': has_voting,

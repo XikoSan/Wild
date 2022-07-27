@@ -17,8 +17,8 @@ class PowerPlant(Building):
     # сколько угля потребляет каждый уровень электры в час
     consumption = 20
 
-    # Включенный уровень здания
-    level_on = models.IntegerField(default=None, blank=True, null=True, verbose_name='Вкл. уровень здания')
+    # # Включенный уровень здания
+    # level_on = models.IntegerField(default=None, blank=True, null=True, verbose_name='Вкл. уровень здания')
 
     # # проверяем работоспособность электросети
     # @staticmethod

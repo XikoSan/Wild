@@ -15,7 +15,7 @@ class MinisterRight(models.Model):
     for bill_cl in bill_classes:
         bill_choises = bill_choises + ((bill_cl.__name__, bill_cl._meta.verbose_name_raw),)
 
-    bill_choises = bill_choises + (('EnergyRights', 'Министр энергетики'),)
+    # bill_choises = bill_choises + (('EnergyRights', 'Министр энергетики'),)
 
     right = models.CharField(
         max_length=20,

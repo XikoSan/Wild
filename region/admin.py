@@ -29,7 +29,8 @@ class RateBuildingAdmin(BuildingAdmin):
 
 
 class PowerPlantAdmin(BuildingAdmin):
-    list_display = ('get_region', 'level', 'level_on')
+    # list_display = ('get_region', 'level', 'level_on')
+    list_display = ('get_region', 'level')
 
     def get_region(self, obj):
         return obj.region.region_name
