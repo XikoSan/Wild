@@ -148,7 +148,7 @@ class AutoMining(Log):
 
             for mineral in storage.minerals.keys():
                 # облагаем налогом добытую руду
-                total_ore = (count / 10) * getattr(player.region, mineral + '_proc')
+                total_ore = (count / 100) * getattr(player.region, mineral + '_proc')
                 taxed_ore = State.get_taxes(player.region, total_ore, 'ore', mineral)
 
                 # проверяем есть ли место на складе
