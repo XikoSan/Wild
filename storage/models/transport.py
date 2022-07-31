@@ -24,39 +24,47 @@ class Transport(Log):
     }
     # ------vvvvvvv------Нефть на складе------vvvvvvv------
     oils = {
-        'wti_oil': 1,
+        'wti_oil': 0.1,
 
-        'brent_oil': 1,
+        'brent_oil': 0.1,
 
-        'urals_oil': 1,
+        'urals_oil': 0.1,
     }
     # ------vvvvvvv------Материалы на складе------vvvvvvv------
     materials = {
-        'gas': 1,
+        'gas': 0.1,
 
-        'diesel': 1,
+        'diesel': 0.1,
 
-        'plastic': 2,
+        'plastic': 0.2,
 
-        'steel': 10,
+        # 'steel': 10,
+        'steel': 1,
 
-        'aluminium': 10,
+        'aluminium': 1,
+        # 'aluminium': 10,
     }
     # ------vvvvvvv------Оборудование на складе------vvvvvvv------
     equipments = {
-        'medical': 5,
+        # 'medical': 5,
+        'medical': 0.5,
     }
     # ------vvvvvvv------Юниты на складе------vvvvvvv------
     units = {
-        'rifle': 5,
+        'rifle': 0.5,
 
-        'tank': 105,
-        'antitank': 50,
+        # 'tank': 105,
+        'tank': 10.5,
+        'antitank': 5,
+        # 'antitank': 50,
 
-        'jet': 150,
-        'pzrk': 50,
+        # 'jet': 150,
+        'jet': 15,
+        # 'pzrk': 50,
+        'pzrk': 5,
 
-        'ifv': 40,
+        'ifv': 4,
+        # 'ifv': 40,
     }
 
     # регион отправки
