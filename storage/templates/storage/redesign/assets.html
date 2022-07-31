@@ -90,9 +90,10 @@
                 <path d="M1 1L10.5 10L20 1" stroke="var(--c10one)"/>
             </svg>
         </label>
+        {% for storage in storages %}
         {% if storage_alone and not storage.was_moved and player.region != storage.region %}
         <!--Кнопка перемотки-->
-        <button>
+        <button type="submit" onclick="move_storage(event, {{ storage.pk }})">
             <svg width="45" height="30" viewBox="0 0 45 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M6 1L1 6V29H39L44 24V1H6Z" stroke="var(--c10two)"/>
                 <path d="M24 15L9 23.6603L9 6.33974L24 15Z" fill="var(--c10two)"/>
@@ -100,6 +101,7 @@
             </svg>
         </button>
         {% endif %}
+        {% endfor %}
     </div>
 
     <!-- Таблица Активов -->

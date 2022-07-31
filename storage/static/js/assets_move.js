@@ -1,9 +1,10 @@
 // переместить склад в регион местонаходждения
-function move_storage(storage_pk) {
-
+function move_storage(e, storage_pk) {
+e.preventDefault();
 move_storage_pk = storage_pk;
-$('#InfoModal').find(".modal-green").on( "click", move_contunue);
-$('#InfoModal').find(".modal-grey").on( "click", clear_modal);
+
+$(".modal__ok").on( "click", move_contunue);
+$(".modal__cancel").on( "click", clear_modal);
 
 display_modal('ask', move_header, move_text, move_yes, move_cancel)
 
