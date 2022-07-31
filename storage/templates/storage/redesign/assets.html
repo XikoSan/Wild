@@ -1,0 +1,176 @@
+{% extends 'player/redesign/header.html' %}
+{% load static %}
+{% load get_attr %}
+{% load dict_key %}
+{% load define %}
+{% load l10n %}{% load i18n %}
+
+{% block content %}
+<section class="actives">
+    <form id="assets_actions_form" role="form">
+    <!-- Заголовок -->
+    <h1 class="actives__title ct__page-title">Активы</h1>
+
+		<!-- Верхний Блок -->
+    <div class="actives__top-wrapper ct__two-select-wrapper">
+			<svg width="314" height="157" viewBox="0 0 314 157" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path d="M2.46447 11.5355L11.5355 2.46447C12.4732 1.52678 13.745 1 15.0711 1H308C310.761 1 313 3.23858 313 6V151C313 153.761 310.761 156 308 156H6C3.23858 156 1 153.761 1 151V15.0711C1 13.745 1.52678 12.4732 2.46447 11.5355Z" fill="var(--c30)" stroke="var(--c30)"/>
+			</svg>
+			<!--Выбор действия-->
+      <label>
+        <select name="assets_actions" id="assets_actions">
+          <option disabled selected>выбор действия</option>
+          <option value="transfer">Передать</option>
+          <option value="destroy">Уничтожить</option>
+        </select>
+        <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
+        </svg>
+      </label>
+        <!--Чекбокс уверен-->
+        <div class="ct__two-select-wrapper-check destroy_bloc" style="display: none;">
+            <label>
+                <input type="checkbox" class="visually-hidden" id="destroy_sure">
+                <svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(--c10two)"/>
+                </svg>
+                <span>
+                    <svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(--c10two)"/>
+                        <path d="M6.5 4.5L4.5 6.5V20.5H18.5L20.5 18.5V4.5H6.5Z" fill="var(--c10two)" stroke="var(--c10two)"/>
+                    </svg>
+                </span>
+                уверен
+            </label>
+        </div>
+        <!--Выбор склада-->
+      <label class="transfer_bloc">
+        <select name="storage_options" id="storage_options" disabled>
+            <option value="storage_none" disabled selected>выберите склад</option>
+            {% for storage in storages %}
+            <option id="storage_{{ storage.pk }}" value='{{ storage.pk }}'>{{ storage.region.region_name }}</option>
+            {% endfor %}
+        </select>
+        <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
+        </svg>
+      </label>
+        <div class="ct__two-select-info-wrapper transfer_bloc">
+            <!--Объем-->
+            <p>объём (ед): </p><p id="total_vol">0</p>
+            <!--Стоимость-->
+            <p>стоимость: </p><p id="total_sum">0</p>
+        </div>
+        <!--Кнопка подтвердить-->
+      <button class="actives__confirm-btn ct__mid-btn" id="accept" disabled>
+        <svg width="144" height="30" viewBox="0 0 144 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <mask id="mask0_259_319" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+            <path d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z" fill="var(--c10two)"/>
+          </mask>
+          <g mask="url(#mask0_259_319)">
+            <path d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" fill="var(--c10two)"/>
+            <path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"/>
+            <path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"/>
+            <path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
+          </g>
+        </svg>
+        <span>подтвердить</span>
+      </button>
+    </div>
+
+    <!-- Выбор региона -->
+    <div class="actives__region-wrapper">
+        <label class="actives__region ct__select-region">
+          <select id="storages_tabs">
+            {% for storage in storages %}
+            <option value="{% localize off %}{{ storage.pk }}{% endlocalize %}">{{ storage.region }}</option>
+            {% endfor %}
+          </select>
+            <svg width="21" height="11" viewBox="0 0 21 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 1L10.5 10L20 1" stroke="var(--c10one)"/>
+            </svg>
+        </label>
+        {% if storage_alone and not storage.was_moved and player.region != storage.region %}
+        <!--Кнопка перемотки-->
+        <button>
+            <svg width="45" height="30" viewBox="0 0 45 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 1L1 6V29H39L44 24V1H6Z" stroke="var(--c10two)"/>
+                <path d="M24 15L9 23.6603L9 6.33974L24 15Z" fill="var(--c10two)"/>
+                <path d="M39 15L24 23.6603L24 6.33974L39 15Z" fill="var(--c10two)"/>
+            </svg>
+        </button>
+        {% endif %}
+    </div>
+
+    <!-- Таблица Активов -->
+    {% for storage in storages %}
+    <div id="table_{{ storage.pk }}" class="actives__table" {% if forloop.counter0 != 0 %}style="display: none"{% endif %}>
+        <!--Наличные-->
+      <div class="ct__s">
+        <h2 class="ct__s-title">{{ storage.valut|dict_key:'cash' }}:</h2>
+        <p class="ct__s-text">
+          {{ storage|get_attr:'cash' }}
+        </p>
+      </div>
+    {% for group in storage_cl|get_attr:'types' %}
+        {% for good in storage_cl|get_attr:group %}
+            {% if storage|get_attr:good %}
+      <div class="ct__s">
+        <h2 class="ct__s-title">{{ storage_cl|get_attr:group|dict_key:good }}:</h2>
+        <div class="ct__s-text-input">
+					<label>
+						<input type="number" value="0" step="1" min="0" max="{% localize off %}{{ storage|get_attr:good }}{% endlocalize %}" data-storage_id="{{ storage.pk }}" data-good_name="{{ good }}" class="good_input" name="{{ storage.pk }}_{{ good }}">
+					</label>
+					<span>/ {{ storage|get_attr:good }}</span>
+					<span>объем (ед): <span id="{{ storage.pk }}_{{ good }}_places" data-text="0">0</span></span>
+				</div>
+      </div>
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+    </div>
+    {% endfor %}
+    </form>
+</section>
+{% if storage_alone %}
+<script>
+    var move_storage_pk = null;
+    var move_header = 'Перемещение Склада';
+    var move_text = 'Склад будет перемещен в регион вашего местонахождения - {{ player.region.region_name }}. Больше этот Склад переместить не получится. Продолжить?';
+    var move_yes = 'Продолжить';
+    var move_cancel = 'Отмена';
+</script>
+<script src='{% static "js/assets_move.js" %}?{{ csrf_token }}'></script>
+{% endif %}
+<script>
+    var vol_map = new Map();
+    {% for type in storage_cl|get_attr:'types' %}
+        {% for good in transport|get_attr:type %}
+            vol_map.set('{{ good }}', '{{ transport|get_attr:type|dict_key:good }}');
+        {% endfor %}
+    {% endfor %}
+
+    var trans_mul = {
+        {% for key, values in trans_mul.items %}
+            {{ key }}: {
+                {% for i_key, i_values in values.items %}
+                {{ i_key }}: {{ i_values }},
+                {% endfor %}
+            },
+        {% endfor %}
+    };
+
+    var storage_pos = new Map();
+    <!--     также создаем словари складов для отправки данных   -->
+    var send_storages_map = {};
+
+    {% for storage in storages %}
+    storage_pos.set("{{ storage.pk }}", 0);
+
+    var st_{{ storage.pk }}_map = {};
+    st_{{ storage.pk }}_map[{{ storage.pk }}] = 0;
+    send_storages_map[{{ storage.pk }}] = st_{{ storage.pk }}_map;
+    {% endfor %}
+</script>
+<script src='{% static "js/redesign/assets.js" %}?{{ csrf_token }}'></script>
+{% endblock %}

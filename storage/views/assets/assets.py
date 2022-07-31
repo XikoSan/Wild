@@ -35,8 +35,13 @@ def assets(request):
             if not dest == storage:
                 trans_mul[storage.pk][dest.pk] = math.ceil(distance_counting(storage.region, dest.region) / 100)
 
+    groups = list(player.account.groups.all().values_list('name', flat=True))
+    page = 'storage/assets.html'
+    if 'redesign' not in groups:
+        page = 'storage/redesign/assets.html'
+
     # отправляем в форму
-    response = render(request, 'storage/assets.html', {
+    response = render(request, page, {
         'page_name': _('Активы'),
 
         'player': player,
