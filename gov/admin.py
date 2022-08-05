@@ -7,6 +7,7 @@ from gov.models.minister_right import MinisterRight
 from gov.models.president import President
 from gov.models.presidential_voting import PresidentialVoting
 from gov.models.vote import Vote
+from gov.models.residency_request import ResidencyRequest
 
 
 class PresidentialVotingAdmin(admin.ModelAdmin):
@@ -35,6 +36,14 @@ class PresidentAdmin(admin.ModelAdmin):
     list_display = ['state', 'leader', ]
 
 
+class ResidencyRequestAdmin(admin.ModelAdmin):
+    search_fields = ['char__nickname', 'region__region_name', 'state__title']
+
+    raw_id_fields = ('char', 'region', 'state', )
+
+    list_display = ['char', 'region', 'state', ]
+
+
 class MinisterRightAdmin(admin.ModelAdmin):
     search_fields = ['right']
 
@@ -42,7 +51,7 @@ class MinisterRightAdmin(admin.ModelAdmin):
 
 
 class MinisterAdmin(admin.ModelAdmin):
-    search_fields = ['state', 'player']
+    search_fields = ['state', 'player__nickname']
 
     raw_id_fields = ('state', 'player',)
 
@@ -62,3 +71,4 @@ admin.site.register(PresidentialVoting, PresidentialVotingAdmin)
 admin.site.register(President, PresidentAdmin)
 admin.site.register(Minister, MinisterAdmin)
 admin.site.register(MinisterRight, MinisterRightAdmin)
+admin.site.register(ResidencyRequest, ResidencyRequestAdmin)

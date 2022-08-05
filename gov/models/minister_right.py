@@ -5,6 +5,7 @@ from bill.models.bill import Bill
 from player.views.get_subclasses import get_subclasses
 from state.models.state import State
 from gov.models.custom_rights.energy_rights import EnergyRights
+from gov.models.custom_rights.foreign_rights import ForeignRights
 
 class MinisterRight(models.Model):
     # тип законопроекта, который можно ускорять
@@ -15,7 +16,7 @@ class MinisterRight(models.Model):
     for bill_cl in bill_classes:
         bill_choises = bill_choises + ((bill_cl.__name__, bill_cl._meta.verbose_name_raw),)
 
-    # bill_choises = bill_choises + (('EnergyRights', 'Министр энергетики'),)
+    bill_choises = bill_choises + (('ForeignRights', 'Министр иностранных дел'),)
 
     right = models.CharField(
         max_length=20,

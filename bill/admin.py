@@ -9,6 +9,7 @@ from bill.models.construction import Construction
 from bill.models.explore_resources import ExploreResources
 from bill.models.purchase_auction import PurchaseAuction
 from bill.models.change_form import ChangeForm
+from bill.models.change_residency import ChangeResidency
 
 
 class BillAdmin(admin.ModelAdmin):
@@ -40,4 +41,5 @@ admin.site.register(ChangeTitle, BillAdmin)
 admin.site.register(ChangeCoat, BillAdmin)
 admin.site.register(ChangeTaxes, BillAdmin)
 admin.site.register(ChangeForm, BillAdmin)
+admin.site.register(ChangeResidency, BillAdmin)
 admin.site.register(PurchaseAuction, AuctionAdmin)

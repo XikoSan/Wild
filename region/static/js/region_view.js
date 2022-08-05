@@ -1,6 +1,6 @@
 // получаем прописку в этом регионе
-function get_residency(){
-    var token = "&csrfmiddlewaretoken=" + csrftoken;
+function get_residency(region){
+    var token = "&csrfmiddlewaretoken=" + csrftoken + "&region=" + region;
     $.ajax({
         beforeSend: function() {},
         type: "POST",

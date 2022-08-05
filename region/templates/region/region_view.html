@@ -22,27 +22,38 @@
                 <div class="row">
                     {% if not player.residency == region %}
                         {% if not player.destination %}
-                            {% if player.region == region %}
-                                <button type="submit" onclick="get_residency()" class="save btn btn-success">Получить прописку</button>
+                            {% if residency == 'free' %}
+                            <button type="submit" onclick="get_residency({{ region.pk }})" class="save btn btn-success" style="margin-top: 3%">Получить прописку</button>
                             {% else %}
-                            <div style="margin-top: 1%">
+                                {% if request %}
+                                <button type="submit" disabled class="save btn btn-default" style="margin-top: 3%">Запрос отправлен</button>
+                                {% else %}
+                                <button type="submit" onclick="get_residency({{ region.pk }})" class="save btn btn-success" style="margin-top: 3%">Запросить прописку</button>
+                                {% endif %}
+                            {% endif %}
+                            {% if not player.region == region %}
+                            <div style="margin-top: 3%">
                                 {% csrf_token %}
                                 <input type="hidden" class="region_id" name="region" value="{{ region.pk }}">
                                 <input type="submit" class="to_fly btn btn-success" value="{% trans 'Отправиться' %}, - {{ cost }}" style="font-weight: bold; font-size: 15px;"/>
                             </div>
                             {% endif %}
                         {% else %}
-                            <button type="submit" disabled class="save btn btn-danger">Недоступно в полете</button>
+                            <button type="submit" disabled class="save btn btn-danger" style="margin-top: 3%">Недоступно в полете</button>
                         {% endif %}
                     {% else %}
-                        {% if player.region == region %}
-                            <button type="submit" disabled class="save btn btn-default">Регион прописки</button>
+                        {% if not player.destination %}
+                            {% if player.region == region %}
+                                <button type="submit" disabled class="save btn btn-default" style="margin-top: 3%">Регион прописки</button>
+                            {% else %}
+                            <div style="margin-top: 3%">
+                                {% csrf_token %}
+                                <input type="hidden" class="region_id" name="region" value="{{ region.pk }}">
+                                <input type="submit" class="to_fly btn btn-success" value="{% trans 'Отправиться' %}, - {{ cost }}" style="font-weight: bold; font-size: 15px;"/>
+                            </div>
+                            {% endif %}
                         {% else %}
-                        <div style="margin-top: 1%">
-                            {% csrf_token %}
-                            <input type="hidden" class="region_id" name="region" value="{{ region.pk }}">
-                            <input type="submit" class="to_fly btn btn-success" value="{% trans 'Отправиться' %}, - {{ cost }}" style="font-weight: bold; font-size: 15px;"/>
-                        </div>
+                            <button type="submit" disabled class="save btn btn-danger" style="margin-top: 3%">В полете</button>
                         {% endif %}
                     {% endif %}
                 </div>

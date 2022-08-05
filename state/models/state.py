@@ -25,6 +25,16 @@ class State(models.Model):
         choices=stateTypeChoices,
         default='Temporary',
     )
+    # прописка
+    residencyTypeChoices = (
+        ('free', 'Свободная'),
+        ('issue', 'Выдаётся министром'),
+    )
+    residency = models.CharField(
+        max_length=5,
+        choices=residencyTypeChoices,
+        default='free',
+    )
     # ---------- Налоги ----------
     # Деньги:
     cash_tax = models.DecimalField(default=00.00, validators=[MinValueValidator(0), MaxValueValidator(100)],

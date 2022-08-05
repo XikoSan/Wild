@@ -78,6 +78,9 @@ def ministers_manage(request):
         custom_rights = CustomRight.__subclasses__()
 
         for c_right in custom_rights:
+            if c_right.__name__ == 'EnergyRights':
+                continue
+
             bills_classes.append(c_right)
             bills_dict[c_right.__name__] = c_right._meta.verbose_name_raw
 

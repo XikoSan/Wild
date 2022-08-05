@@ -1,12 +1,15 @@
 # coding=utf-8
+import json
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
+from django.http import JsonResponse
 from django.utils import timezone
-
+import redis
 from player.decorators.player import check_player
 from player.player import Player
+from region.region import Region
 from wild_politics.settings import JResponse
-
+from gov.models.residency_request import ResidencyRequest
 
 # получить прописку
 @login_required(login_url='/')
@@ -21,23 +24,97 @@ def get_residency(request):
             data = {
                 # 'response': _('wait_flight_end'),
                 'response': 'Дождитесь конца полёта',
-                'header': 'Ошибка добычи ресурсов',
+                'header': 'Получение прописки',
                 'grey_btn': 'Закрыть',
             }
             return JResponse(data)
 
-        player.residency = player.region
-        player.residency_date = timezone.now()
-        player.save()
+        try:
+            # получаем айди региона
+            region = int(json.loads(request.POST.get('region')))
 
-        data = {
-            'response': 'ok',
-        }
-        return JResponse(data)
+        except ValueError:
+            data = {
+                'header': 'Получение прописки',
+                'grey_btn': 'Закрыть',
+                'response': 'ID региона должен быть целым числом',
+            }
+            return JsonResponse(data)
+
+        if not Region.objects.filter(pk=region).exists():
+            data = {
+                'header': 'Получение прописки',
+                'grey_btn': 'Закрыть',
+                'response': 'Региона не существует',
+            }
+            return JsonResponse(data)
+
+        region = Region.objects.get(pk=region)
+
+        if region.state:
+            if region.state.residency == 'issue':
+                if not ResidencyRequest.objects.filter(char=player, region=region, state=region.state).exists():
+                    res_req = ResidencyRequest(
+                        char=player,
+                        region=region,
+                        state=region.state
+                    )
+                    res_req.save()
+
+                    data = {
+                        'response': 'ok',
+                    }
+                    return JResponse(data)
+
+                else:
+                    data = {
+                        'header': 'Запрос прописки',
+                        'grey_btn': 'Закрыть',
+                        'response': 'Заявка уже существует',
+                    }
+                    return JsonResponse(data)
+            else:
+                player.residency = Region.objects.get(pk=region.pk)
+                player.residency_date = timezone.now()
+                player.save()
+
+                r = redis.StrictRedis(host='redis', port=6379, db=0)
+
+                counter = 0
+                if r.zcard('res_ch_state_' + str(region.state.pk)) > 0:
+                    counter = r.zrevrange('res_ch_state_' + str(region.state.pk), 0, 0, withscores=True)[0][1]
+
+                dict = {
+                    'char': str(player.pk),
+                    'region': str(region.pk)
+                }
+
+                o_json = json.dumps(dict, indent=4)
+
+                r.zadd('res_ch_state_' + str(region.state.pk), {o_json: int(counter) + 1})
+
+                count = r.zcard('res_ch_state_' + str(region.state.pk))
+
+                if count > 50:
+                    r.zremrangebyrank('res_ch_state_' + str(region.state.pk), 0, 0)
+
+                data = {
+                    'response': 'ok',
+                }
+                return JResponse(data)
+        else:
+            player.residency = Region.objects.get(pk=region.pk)
+            player.residency_date = timezone.now()
+            player.save()
+
+            data = {
+                'response': 'ok',
+            }
+            return JResponse(data)
 
     else:
         data = {
-            'header': 'Ошибка при создании',
+            'header': 'Получение прописки',
             'grey_btn': 'Закрыть',
             'response': 'Ты уверен что тебе сюда, путник?',
         }
