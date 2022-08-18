@@ -1,21 +1,21 @@
 # coding=utf-8
 import pytz
 import random
+from PIL import Image
 from django.contrib.auth.decorators import login_required
-# from django.db.models import F
-from wild_politics.settings import JResponse
+from django.db import transaction
 from django.shortcuts import redirect, render
 from django.utils import timezone
-
+import traceback
+from player.forms import ImageForm
 # from django.utils.translation import ugettext as _
 #
 from player.forms import NewPlayerForm
-# from gamecore.all_models.mail import Message
-# from gamecore.all_models.player import Player, Partners
 from player.player import Player
 from region.region import Region
-# from gamecore.all_models.storage import Storage
 from storage.models.storage import Storage
+# from django.db.models import F
+from wild_politics.settings import JResponse
 
 
 # Функция создания нового персонажа
@@ -32,6 +32,7 @@ def player_create(request, form):
     # Помещаем нового персонажа в случаный регион и прописываем там же
     character.region = start_pk
     character.residency = start_pk
+    character.save()
 
     storage = Storage(owner=character, region=character.region)
     storage.save()
@@ -46,11 +47,13 @@ def player_create(request, form):
 
 # новый персонаж
 @login_required(login_url='/')
+@transaction.atomic
 def new_player(request):
     # если у игрока есть хоть один персонаж:
     if Player.objects.filter(account=request.user).exists():
         # возврат в главное меню
         return redirect('overview')
+
     else:
         # Если форма нового персонажа возвращена заполненной
         common = pytz.common_timezones
@@ -60,16 +63,49 @@ def new_player(request):
             form = NewPlayerForm(request.POST, request.FILES)
             # если форма заполненна корректно
             if form.is_valid():
+                sid = transaction.savepoint()
+
                 # Создаем его персонажа и перенаправляем в Overview
                 character = player_create(request, form)
-                character.save()
 
-                return redirect('overview')
+                if character.image:
+                    try:
+                        x = float(request.POST.get('x'))
+                        y = float(request.POST.get('y'))
+                        w = float(request.POST.get('width'))
+                        h = float(request.POST.get('height'))
+
+                        image = Image.open(character.image)
+                        cropped_image = image.crop((x, y, w + x, h + y))
+                        resized_image = cropped_image.resize((250, 250), Image.ANTIALIAS)
+                        resized_image.save(character.image.path)
+
+                    except Exception as e:
+                        transaction.savepoint_rollback(sid)
+                        data = {
+                            'response': str(type(e).__name__) + ': попробуйте создать персонажа, не загружая изображение',
+                            'header': 'Новый персонаж',
+                            'grey_btn': 'Закрыть',
+                        }
+                        return JResponse(data)
+
+                data = {
+                    'response': 'ok',
+                }
+                return JResponse(data)
+
             else:
-                return render(request, 'player/new_player.html', {'timezones': common,
-                                                                  'default': default,
-                                                                  'not_valid': 'True'})
-            # Если же это первый запрос к странице:
-        else:
-            pass
-        return render(request, 'player/new_player.html', {'timezones': common, 'default': default, })
+                data = {
+                    'response': 'Ошибка в форме профиля',
+                    'header': 'Новый персонаж',
+                    'grey_btn': 'Закрыть',
+                }
+                return JResponse(data)
+
+        # Если же это первый запрос к странице:
+        groups = list(request.user.groups.all().values_list('name', flat=True))
+        page = 'player/new_player.html'
+        if 'redesign' not in groups:
+            page = 'player/redesign/new_player.html'
+
+        return render(request, page, {'timezones': common, 'default': default, })

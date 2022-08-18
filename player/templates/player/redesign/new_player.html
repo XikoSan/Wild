@@ -1,0 +1,204 @@
+<!doctype html>
+{% load static %}
+{% load i18n %}
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+				content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Wild Politics</title>
+	<script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="{% static 'redesign/css/style.css' %}?{{ csrf_token }}">
+	<link rel="stylesheet" href="{% static 'redesign/css/cropper.min.css' %}?{{ csrf_token }}">
+	<style>
+		:root {
+  --c10one: #FFFFFF;
+  --c10two: #EB9929;
+  --c60: #28353E;
+  --c30: #284E64;
+  --nav: #336380;
+	}
+	</style>
+	</head>
+<body>
+
+
+<main>
+
+  <section class="create">
+		<!-- Заголовок -->
+      <h1 class="create__title ct__page-title">{% trans 'Создание персонажа' %}</h1>
+      <form method="POST" action="{% url 'new_player' %}" enctype="multipart/form-data" id="post-form" class="create__form">
+      {% csrf_token %}
+      <!--Никнейм-->
+      <h2>{% trans 'Никнейм' %}</h2>
+      <input type="text" id="your_name" name="nickname" maxlength="30">
+      <!--Аватар-->
+      <h2>{% trans 'Аватар' %}</h2>
+      <input type="file" name="image" accept="image/*" id="id_image">
+      <input type="hidden" name="x" id="id_x">
+      <input type="hidden" name="y" id="id_y">
+      <input type="hidden" name="width" id="id_width">
+      <input type="hidden" name="height" id="id_height">
+      <!--Часовой пояс-->
+      <h2>{% trans 'Часовой пояс' %}</h2>
+      <label class="create__label">
+        <select id="timezone" name="time_zone">
+<!--          <option value="none" disabled selected>выбор действия</option>-->
+            {% for tz in timezones %}
+            <option value="{{ tz }}" {% if tz == default %} selected="selected"{% endif %}>{{ tz }}</option>
+            {% endfor %}
+        </select>
+        <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1L7.5 7L14 1" stroke="var(--c10two)"/>
+        </svg>
+      </label>
+<!--      &lt;!&ndash;Язык&ndash;&gt;-->
+<!--      <h2 style="display: none;">Язык</h2>&lt;!&ndash;язык скрыт&ndash;&gt;-->
+<!--      <label style="display: none;" class="create__label">&lt;!&ndash;язык скрыт&ndash;&gt;-->
+<!--        <select>-->
+<!--          <option value="" disabled selected>выбор действия</option>-->
+<!--          <option value="">действие 1</option>-->
+<!--          <option value="">действие 2</option>-->
+<!--          <option value="">действие 3</option>-->
+<!--        </select>-->
+<!--				<svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+<!--					<path d="M1 1L7.5 7L14 1" stroke="var(&#45;&#45;c10two)"/>-->
+<!--				</svg>-->
+<!--      </label>-->
+      <!--Кнопка Start-->
+      <button class="create__form-start">
+        <span class="visually-hidden">Начать</span>
+        <svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M24.368 59.144C23.12 59.144 21.92 58.944 20.768 58.544C19.632 58.144 18.752 57.616 18.128 56.96L18.824 55.592C19.432 56.2 20.24 56.696 21.248 57.08C22.256 57.448 23.296 57.632 24.368 57.632C25.872 57.632 27 57.36 27.752 56.816C28.504 56.256 28.88 55.536 28.88 54.656C28.88 53.984 28.672 53.448 28.256 53.048C27.856 52.648 27.36 52.344 26.768 52.136C26.176 51.912 25.352 51.672 24.296 51.416C23.032 51.096 22.024 50.792 21.272 50.504C20.52 50.2 19.872 49.744 19.328 49.136C18.8 48.528 18.536 47.704 18.536 46.664C18.536 45.816 18.76 45.048 19.208 44.36C19.656 43.656 20.344 43.096 21.272 42.68C22.2 42.264 23.352 42.056 24.728 42.056C25.688 42.056 26.624 42.192 27.536 42.464C28.464 42.72 29.264 43.08 29.936 43.544L29.336 44.96C28.632 44.496 27.88 44.152 27.08 43.928C26.28 43.688 25.496 43.568 24.728 43.568C23.256 43.568 22.144 43.856 21.392 44.432C20.656 44.992 20.288 45.72 20.288 46.616C20.288 47.288 20.488 47.832 20.888 48.248C21.304 48.648 21.816 48.96 22.424 49.184C23.048 49.392 23.88 49.624 24.92 49.88C26.152 50.184 27.144 50.488 27.896 50.792C28.664 51.08 29.312 51.528 29.84 52.136C30.368 52.728 30.632 53.536 30.632 54.56C30.632 55.408 30.4 56.184 29.936 56.888C29.488 57.576 28.792 58.128 27.848 58.544C26.904 58.944 25.744 59.144 24.368 59.144ZM36.3313 43.736H30.4273V42.2H44.0113V43.736H38.1073V59H36.3313V43.736ZM55.3408 54.512H45.9808L43.9648 59H42.1168L49.7968 42.2H51.5488L59.2288 59H57.3568L55.3408 54.512ZM54.6928 53.072L50.6608 44.048L46.6288 53.072H54.6928ZM72.2799 59L68.4399 53.6C68.0079 53.648 67.5599 53.672 67.0959 53.672H62.5839V59H60.8079V42.2H67.0959C69.2399 42.2 70.9199 42.712 72.1359 43.736C73.3519 44.76 73.9599 46.168 73.9599 47.96C73.9599 49.272 73.6239 50.384 72.9519 51.296C72.2959 52.192 71.3519 52.84 70.1199 53.24L74.2239 59H72.2799ZM67.0479 52.16C68.7119 52.16 69.9839 51.792 70.8639 51.056C71.7439 50.32 72.1839 49.288 72.1839 47.96C72.1839 46.6 71.7439 45.56 70.8639 44.84C69.9839 44.104 68.7119 43.736 67.0479 43.736H62.5839V52.16H67.0479ZM79.9813 43.736H74.0773V42.2H87.6613V43.736H81.7573V59H79.9813V43.736Z" fill="var(--c10two)"/>
+          <path d="M50 0C22.4292 0 0 22.4292 0 50C0 77.5708 22.4292 100 50 100C77.5708 100 100 77.5708 100 50C100 22.4292 77.5708 0 50 0ZM50 2.77778C76.0389 2.77778 97.2222 23.9611 97.2222 50C97.2222 76.0389 76.0389 97.2222 50 97.2222C23.9611 97.2222 2.77778 76.0389 2.77778 50C2.77778 23.9611 23.9611 2.77778 50 2.77778ZM50 6.94444C26.2583 6.94444 6.94444 26.2597 6.94444 50C6.94444 73.7403 26.2583 93.0555 50 93.0555C73.7417 93.0555 93.0555 73.7403 93.0555 50C93.0555 37.8889 87.911 26.2707 78.9388 18.1207C78.6569 17.8637 78.2192 17.8834 77.9595 18.1668C77.7012 18.4515 77.7209 18.8904 78.0056 19.1488C86.6876 27.0349 91.6667 38.2792 91.6667 50C91.6667 72.975 72.975 91.6667 50 91.6667C27.025 91.6667 8.33333 72.975 8.33333 50C8.33333 27.025 27.025 8.33333 50 8.33333C54.9319 8.33333 59.7571 9.18503 64.3446 10.867C64.7043 11.0003 65.1051 10.8158 65.2371 10.4546C65.369 10.0935 65.1832 9.69683 64.822 9.56489C60.0818 7.82739 55.0944 6.94444 50 6.94444ZM68.7907 11.3118C68.5212 11.296 68.2542 11.4377 68.1261 11.697C67.9566 12.0415 68.0977 12.4567 68.4408 12.6275C69.3685 13.0858 70.2863 13.5823 71.1724 14.1059C71.2835 14.1726 71.4069 14.2036 71.5278 14.2036C71.7653 14.2036 71.9954 14.0825 72.1246 13.8645C72.319 13.5339 72.2096 13.1082 71.8804 12.9123C70.9651 12.3693 70.0135 11.856 69.0565 11.3824C68.9715 11.3407 68.8805 11.3171 68.7907 11.3118ZM74.1862 14.6186C74.0112 14.649 73.8483 14.7451 73.7386 14.9034C73.5178 15.2173 73.5929 15.651 73.9068 15.8719C74.3693 16.1969 74.824 16.5271 75.2713 16.8701C75.3977 16.966 75.5472 17.0139 75.6944 17.0139C75.9028 17.0139 76.1103 16.9204 76.2478 16.7426C76.4798 16.4371 76.4232 16.0007 76.1176 15.7688C75.6537 15.4146 75.1835 15.0673 74.7043 14.7325C74.5474 14.6235 74.3612 14.5882 74.1862 14.6186Z" fill="var(--c10two)"/>
+        </svg>          
+      </button>
+      <!--конец кнопки Start-->
+    </form>
+
+  </section>
+  
+</main>
+
+<!-- ОБРЕЗКА ИЗОБРАЖЕНИЙ МОДАЛКА -->
+<div class="img_modal" id="modalCrop">
+    <div class="modal-cropper-wrapper">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" id="crop-close" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img id="image" src="" alt="The image to preview" style="width: 274.129px; height: 274.129px; transform: translateX(-13.0647px);"></span>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="btn-l-wrapper">
+                <div class="btn-group pull-left" role="group" style="margin-right: 5px;">
+                    <button type="button" class="btn btn-default js-zoom-in">
+                        <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 18L6 13" stroke="var(--c60)"/>
+                            <circle cx="11" cy="8" r="7.5" stroke="var(--c60)"/>
+                            <path d="M11 4V12M15 8H7" stroke="var(--c60)"/>
+                        </svg>
+                    </button>
+                    <button type="button" class="btn btn-default js-zoom-out">
+                        <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 18L6 13" stroke="var(--c60)"/>
+                            <circle cx="11" cy="8" r="7.5" stroke="var(--c60)"/>
+                            <path d="M15 8H7" stroke="var(--c60)"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="btn-group pull-left" role="group">
+                    <button type="button" class="btn btn-default js-pic-up">
+                        <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10 1L1 10M10 1L19 10M10 1V19" stroke="var(--c60)"/>
+                        </svg>
+                    </button>
+                    <button type="button" class="btn btn-default js-pic-down">
+                        <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10 18L19 9M10 18L1 9M10 18V0" stroke="black"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="btn-r-wrapper">
+                <button type="button" class="btn btn-default back-crop-js" data-dismiss="modal">Отмена</button>
+                <button type="button" class="btn btn-primary js-crop-and-upload">Загрузить</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="{% static 'redesign/js/cropper.min.js' %}?{{ csrf_token }}"></script>
+<!-- КОНЕЦ ОБРЕЗКИ ИЗОБРАЖЕНИЙ МОДАЛКА -->
+
+<!-- ГЛОБАЛЬНОЕ МОДАЛЬНОЕ ОКНО -->
+<div class="modal">
+	<div class="modal__inner-window">
+		<h2 class="modal__header ct__nickname">
+			<span>
+				Пополнение энергии
+			</span>
+		</h2>
+		<p class="modal__text"></p>
+		<div class="modal__btn-wrapper">
+		<button class="modal__ok">
+			<svg width="144" height="30" viewBox="0 0 144 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<mask id="mask0_259_325" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+				<path d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z" fill="var(--c10two)"/>
+				</mask>
+				<g mask="url(#mask0_259_325)">
+				<path d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" fill="var(--c10one)"/>
+				</g>
+			</svg>
+			<span>ok</span>
+		</button>
+		<button class="modal__cancel ct__mid-btn">
+			<svg width="144" height="30" viewBox="0 0 144 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<mask id="mask0_259_3199" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+					<path d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z" fill="var(--c10two)"/>
+				</mask>
+				<g mask="url(#mask0_259_3199)">
+					<path d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" fill="var(--c10two)"/>
+					<path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"/>
+					<path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"/>
+					<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
+				</g>
+			</svg>
+			<span>отмена</span>
+		</button>
+		<div class="modal__decor ct__decor-border">
+			<svg width="360" height="194" viewBox="0 0 360 194" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<g opacity="0.75">
+				<path d="M6 6.99999L150 7L156 1" stroke="var(--c10two)"/>
+				<path d="M12 1L12 13L0 13" stroke="var(--c10two)"/>
+				<path d="M6.00001 7L6 151L0 157" stroke="var(--c10two)"/>
+				<path d="M2.62268e-06 163L6 157L6 169L1.57361e-06 175M1.04907e-06 181L6 175L6 181L5.24537e-07 187M0 193L6 187" stroke="var(--c10two)"/>
+				</g>
+				<g opacity="0.75">
+				<path d="M354 7.00001L210 7L204 1" stroke="var(--c10two)"/>
+				<path d="M348 1L348 13L360 13" stroke="var(--c10two)"/>
+				<path d="M354 7L354 151L360 157" stroke="var(--c10two)"/>
+				<path d="M360 163L354 157L354 169L360 175M360 181L354 175L354 181L360 187M360 193L354 187" stroke="var(--c10two)"/>
+				</g>
+			</svg>
+		</div>
+		</div>
+	</div>
+</div>
+<!-- КОНЕЦ ГЛОБАЛЬНОГО МОДАЛЬНОГО ОКНА -->
+
+<script src='{% static "redesign/js/new_char.js" %}'></script>
+<script src="{% static 'redesign/js/header.js' %}?{{ csrf_token }}"></script>
+<script src="{% static 'redesign/js/cropper.js' %}?{{ csrf_token }}"></script>
+</body>
+</html>
