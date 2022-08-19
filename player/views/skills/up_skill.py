@@ -71,9 +71,15 @@ def up_skill(request):
         skill_cnt = SkillTraining.objects.filter(player=player, skill=skill).count()
 
         if skill_cls:
-            skill_obj = skill_cls.objects.get(player=player)
+            if skill_cls.objects.filter(player=player).exists():
+                skill_obj = skill_cls.objects.get(player=player)
 
-            if skill_obj.level + skill_cnt >= skill_obj.max_level:
+                if skill_obj:
+                    cur_level = getattr(skill_obj, 'level')
+                else:
+                    cur_level = 0
+
+            if cur_level + skill_cnt >= skill_cls.max_level:
                 data = {
                     # 'response': _('positive_enrg_req'),
                     'response': 'Данный навык изучен полностью или полностью запланирован',
@@ -122,7 +128,7 @@ def up_skill(request):
             if player.premium > timezone.now():
                 time_delta = datetime.timedelta(seconds=(getattr(player, skill) + skill_cnt + 1) * 2400)
         else:
-            if skill_cls.objects.filter(player=player).exists():
+            if skill_obj:
                 cur_level = getattr(skill_obj, 'level')
 
             else:
