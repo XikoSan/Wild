@@ -11,17 +11,17 @@ class Finance(Skill):
         {
             'skill': 'power',
             'skill_name': 'Сила',
-            'level': 25,
+            'level': 20,
         },
         {
             'skill': 'knowledge',
             'skill_name': 'Знания',
-            'level': 25,
+            'level': 20,
         },
         {
             'skill': 'endurance',
             'skill_name': 'Выносливость',
-            'level': 25,
+            'level': 20,
         },
     ]
 
