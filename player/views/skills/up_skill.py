@@ -25,6 +25,7 @@ def up_skill(request):
 
         skill_cls = None
         skill_obj = None
+        cur_level = 0
 
         premium = False
 
