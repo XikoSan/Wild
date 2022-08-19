@@ -42,7 +42,7 @@
 </div>
 <div class="row" style="margin-top: 1%">
     <div class="col-xs-12 col-sm-12 col-md-12" align="center">
-        <button type="submit" {% if not train or premium and has_slot  %} onclick="up_skill('power')" {% else %} disabled {% endif %} class="save btn btn-default" style="width: 50%;border-color: FF0000!important;">
+            <button type="submit" {% if not train or premium and has_slot  %} onclick="up_skill('power')" {% else %} disabled {% endif %} class="save btn btn-default" style="width: 50%;border-color: FF0000!important;">
             {% if train %}
                 {% if premium %}
                     {% if has_slot %}
@@ -179,6 +179,14 @@
         </button>
     </div>
 </div>
+<hr>
+<div class="row" style="margin-top: 1%">
+    <div class="col-xs-12 col-sm-12 col-md-12" align="center">
+        <button type="submit" onclick="window.location.href = '{% url 'skills_list' %}'" class="save btn btn-default" style="width: 80%;">
+            Перейти к навыкам
+        </button>
+    </div>
+</div>
 {% if premium %}
 <hr>
 <div class="row" style="margin-top: 1%">
@@ -212,6 +220,10 @@
              color: 18D04C!important;
              background-color: 18D04C!important;
              border-color: 18D04C!important;
+        {% else %}
+             color: EAC200!important;
+             background-color: EAC200!important;
+             border-color: EAC200!important;
         {% endif %}
         ">
             +
@@ -232,14 +244,4 @@
     {% endwith %}
     {% endif %}
 </div>
-{% endif %}
-{% if queue_need %}
-<!--<hr>-->
-<!--<div class="row" style="margin-top: 1%">-->
-<!--    <div class="col-xs-12 col-sm-12 col-md-12" align="center">-->
-<!--        <button type="submit" onclick="window.location.href = '{% url 'skill_queue' %}'" class="save btn btn-default" style="width: 80%;">-->
-<!--            Перейти к списку навыков-->
-<!--        </button>-->
-<!--    </div>-->
-<!--</div>-->
 {% endif %}

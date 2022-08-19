@@ -9,6 +9,9 @@ from player.logs.cash_log import CashLog
 from player.logs.skill_training import SkillTraining
 from player.player import Player
 from wild_politics.settings import JResponse
+from player.views.get_subclasses import get_subclasses
+from skill.models.skill import Skill
+from skill.models.excavation import Excavation
 
 
 # изучить навык
@@ -27,7 +30,15 @@ def up_skill(request):
 
         skill = request.POST.get('skill')
 
-        if skill not in ['power', 'knowledge', 'endurance']:
+
+        skills_list = ['power', 'knowledge', 'endurance']
+
+        skill_classes = get_subclasses(Skill)
+
+        for skill_cl in skill_classes:
+            skills_list.append(skill_cl.__name__)
+
+        if skill not in skills_list:
             data = {
                 # 'response': _('positive_enrg_req'),
                 'response': 'Нет такого навыка',
@@ -39,14 +50,15 @@ def up_skill(request):
         # считаем, сколько у нас изучается навыков с этим именем
         skill_cnt = SkillTraining.objects.filter(player=player, skill=skill).count()
 
-        if player.cash < (getattr(player, skill) + skill_cnt + 1) * 1000:
-            data = {
-                # 'response': _('positive_enrg_req'),
-                'response': 'Недостаточно денег, необходимо: ' + str((getattr(player, skill) + skill_cnt + 1) * 1000),
-                'header': 'Изучение навыка',
-                'grey_btn': 'Закрыть',
-            }
-            return JResponse(data)
+        if skill in ['power', 'knowledge', 'endurance']:
+            if player.cash < (getattr(player, skill) + skill_cnt + 1) * 1000:
+                data = {
+                    # 'response': _('positive_enrg_req'),
+                    'response': 'Недостаточно денег, необходимо: ' + str((getattr(player, skill) + skill_cnt + 1) * 1000),
+                    'header': 'Изучение навыка',
+                    'grey_btn': 'Закрыть',
+                }
+                return JResponse(data)
 
         if not premium and SkillTraining.objects.filter(player=player).exists():
             data = {
@@ -64,17 +76,36 @@ def up_skill(request):
             }
             return JResponse(data)
 
-        player.cash -= (getattr(player, skill) + skill_cnt + 1) * 1000
+        if skill in ['power', 'knowledge', 'endurance']:
+            player.cash -= (getattr(player, skill) + skill_cnt + 1) * 1000
 
-        cash_log = CashLog(player=player, cash=0 - (getattr(player, skill) + skill_cnt + 1) * 1000,
-                           activity_txt='skill')
-        cash_log.save()
+            cash_log = CashLog(player=player, cash=0 - (getattr(player, skill) + skill_cnt + 1) * 1000,
+                               activity_txt='skill')
+            cash_log.save()
 
-        # время изучения навыка без према
-        time_delta = datetime.timedelta(hours=(getattr(player, skill) + skill_cnt + 1))
-        # с премом
-        if player.premium > timezone.now():
-            time_delta = datetime.timedelta(seconds=(getattr(player, skill) + skill_cnt + 1) * 2400)
+        if skill in ['power', 'knowledge', 'endurance']:
+            # время изучения навыка без према
+            time_delta = datetime.timedelta(hours=(getattr(player, skill) + skill_cnt + 1))
+            # с премом
+            if player.premium > timezone.now():
+                time_delta = datetime.timedelta(seconds=(getattr(player, skill) + skill_cnt + 1) * 2400)
+        else:
+            skill_cls = None
+            skill_obj = None
+
+            for skill_cl in skill_classes:
+                if skill == skill_cl.__name__:
+                    skill_cls = skill_cl
+                    break
+
+            if skill_cls.objects.filter(player=player).exists():
+                skill_obj = skill_cls.objects.get(player=player)
+
+            # время изучения навыка без према
+            time_delta = datetime.timedelta(hours=(getattr(skill_obj, 'level') + skill_cnt + 1))
+            # с премом
+            if player.premium > timezone.now():
+                time_delta = datetime.timedelta(seconds=(getattr(skill_obj, 'level') + skill_cnt + 1) * 2400)
 
         start = timezone.now()
         if SkillTraining.objects.filter(player=player).exists():

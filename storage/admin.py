@@ -40,7 +40,9 @@ class GoodLockAdmin(admin.ModelAdmin):
 
 
 class StorageAdmin(admin.ModelAdmin):
+    search_fields = ['owner__nickname', 'region__region_name']
     raw_id_fields = ('owner', 'region',)
+    list_display = ['owner', 'region', ]
 
 
 class CashLockAdmin(admin.ModelAdmin):

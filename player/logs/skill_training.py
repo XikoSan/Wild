@@ -5,27 +5,16 @@ from django.db import models
 from django.utils.translation import gettext_lazy
 from django.utils import timezone
 from player.logs.log import Log
-
+from player.views.get_subclasses import get_subclasses
+from skill.models.skill import Skill
+from skill.models.excavation import Excavation
+from skill.models.finance import Finance
 
 # запись об изучаемом навыке
+# новые классы навыков надо импортировать сюда
 class SkillTraining(Log):
 
-    skills_tree = {
-        'power':
-            {
-                'require': None,
-            },
-
-        'knowledge':
-            {
-                'require': None,
-            },
-
-        'endurance':
-            {
-                'require': None,
-            },
-    }
+    skill_classes = get_subclasses(Skill)
 
     #навык
     activityChoices = (
@@ -33,6 +22,10 @@ class SkillTraining(Log):
         ('knowledge',  'Знания'),
         ('endurance',  'Выносливость'),
     )
+
+    for skill_cl in skill_classes:
+        activityChoices = activityChoices + ((skill_cl.__name__, skill_cl._meta.verbose_name_raw),)
+
     skill = models.CharField(
         max_length=20,
         choices=activityChoices,

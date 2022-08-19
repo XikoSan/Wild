@@ -1,0 +1,73 @@
+{% extends 'player/header.html' %}
+{% load static %}
+{% load dict_key %}
+{% load get_sum %}
+{% load get_mul %}
+{% load get_hh_mm_ss %}
+{% load has_key %}
+{% load get_attr %}
+{% load get_class_name %}
+{% block content %}
+<script src='{% static "overview_skills.js" %}?{{ csrf_token }}'></script>
+<div id="over" class="tabcontent">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                {% for skill_cl in skills_classes %}
+                <div class="row" align="center" style="margin-top: 1%">
+                    {% with cl_name=skill_cl|get_class_name %}
+                    {% with q_level=queue_dict|dict_key:cl_name %}
+                    <button type="submit"
+                            {% if not train or premium and has_slot  %}
+                                {% if not skills_dict|has_key:cl_name or skills_dict|dict_key:cl_name|get_sum:q_level >= skill_cl|get_attr:'max_level' %}
+                                    disabled
+                                {% else %}
+                                    onclick="up_skill('{{ cl_name }}')"
+                                {% endif %}
+                            {% else %} disabled {% endif %}
+                        class="btn btn-default" style="border-color: EAC200!important;">
+
+                        <h4><b>{{ names_dict|dict_key:cl_name }}</b></h4>
+                        <i>{{ skill_cl|get_attr:'description' }}</i>
+                        <div align="center">
+                        {% if skills_dict|has_key:cl_name %}
+                            уровень {{ skills_dict|dict_key:cl_name }} / {{ skill_cl|get_attr:'max_level' }} {% if q_level %}({{ q_level }} в очереди){% endif %}
+                            {% if not train or premium and has_slot  %}
+                                {% if skills_dict|dict_key:cl_name|get_sum:q_level != skill_cl|get_attr:'max_level' %}
+                                <br>
+                                время изучения:
+                                    {% if premium %}
+                                    {{ skills_dict|dict_key:cl_name|get_sum:q_level|get_sum:1|get_mul:2400|get_hh_mm_ss }}
+                                    {% else %}
+                                    {{ skills_dict|dict_key:cl_name|get_sum:q_level|get_sum:1|get_mul:3600|get_hh_mm_ss }}
+                                    {% endif %}
+                                {% endif %}
+                            {% else %}
+                                <br>
+                                недоступно
+                            {% endif %}
+                        {% else %}
+                            <div>
+                                <b>требуется:</b>
+                            </div>
+                            {% for req in skill_cl|get_attr:'requires' %}
+                            <div>
+                                {{ req|dict_key:'skill_name' }}: {{ req|dict_key:'level' }}
+                                {% with attr=req|dict_key:'skill' %}
+                                {% if player|get_attr:attr >= req|dict_key:'level' %}
+                                    <div class="glyphicon glyphicon-ok">
+                                    </div>
+                                {% endif %}
+                                {% endwith %}
+                            </div>
+                            {% endfor %}
+                        {% endif %}
+                        </div>
+                    </button>
+                    {% endwith %}
+                    {% endwith %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+</div>
+{% endblock %}

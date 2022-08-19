@@ -154,7 +154,24 @@ class Player(models.Model):
 
             for skill in skills:
                 if skill.end_dtime <= timezone.now():
-                    setattr(player, skill.skill, getattr(player, skill.skill) + 1)
+
+                    if skill.skill in ['power', 'knowledge', 'endurance']:
+                        setattr(player, skill.skill, getattr(player, skill.skill) + 1)
+
+                    else:
+                        skill_cl = apps.get_model('skill.' + skill.skill)
+                        if skill_cl.objects.filter(player=player).exists():
+                            perk = skill_cl.objects.get(player=player)
+                            perk.level += 1
+                            perk.save()
+
+                        else:
+                            perk = skill_cl(
+                                player=player,
+                                level=1
+                            )
+                            perk.save()
+
                     # навык изучен, удаляем запись
                     skill.delete()
 
@@ -223,6 +240,11 @@ class Player(models.Model):
         taxed_count = State.get_taxes(self.region, count, 'cash', 'cash')
 
         if timezone.now().date() < datetime.date(2022, 8, 22):
+            if count != 0 and daily_procent == 100:
+                taxed_count += daily_limit
+
+        Finance = apps.get_model('skill.Finance')
+        if Finance.objects.filter(player=self, level__gt=0).exists():
             if count != 0 and daily_procent == 100:
                 taxed_count += daily_limit
 
