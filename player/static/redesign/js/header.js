@@ -1,15 +1,17 @@
-const modalNavButton = document.getElementById('burger');
-const modalNav = document.getElementById('modal-nav');
+if (document.querySelector('#burger')) {
+    const modalNavButton = document.getElementById('burger');
+    const modalNav = document.getElementById('modal-nav');
 
-modalNavButton.addEventListener('click', () => {
-  if (modalNavButton.classList.contains('burgeractive')) {
-    modalNavButton.classList.remove('burgeractive');
-    modalNav.classList.remove('active');
-  } else {
-    modalNavButton.classList.add('burgeractive');
-    modalNav.classList.add('active');
-  }
-})
+    modalNavButton.addEventListener('click', () => {
+      if (modalNavButton.classList.contains('burgeractive')) {
+        modalNavButton.classList.remove('burgeractive');
+        modalNav.classList.remove('active');
+      } else {
+        modalNavButton.classList.add('burgeractive');
+        modalNav.classList.add('active');
+      }
+    })
+}
 
 // Tabs
 function toggleTabs(tabOneClass, tabTwoClass, wrapperClass) {
