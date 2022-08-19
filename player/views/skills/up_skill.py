@@ -23,6 +23,9 @@ def up_skill(request):
         # получаем персонажа
         player = Player.get_instance(account=request.user)
 
+        skill_cls = None
+        skill_obj = None
+
         premium = False
 
         if player.premium > timezone.now():
@@ -47,8 +50,37 @@ def up_skill(request):
             }
             return JResponse(data)
 
+        for skill_cl in skill_classes:
+            if skill == skill_cl.__name__:
+                skill_cls = skill_cl
+                break
+
+        if skill_cls:
+            has_right = skill_cls.check_has_right(player)
+
+            if not has_right:
+                data = {
+                    # 'response': _('positive_enrg_req'),
+                    'response': 'Ваш уровень характеристик недостаточен',
+                    'header': 'Изучение навыка',
+                    'grey_btn': 'Закрыть',
+                }
+                return JResponse(data)
+
         # считаем, сколько у нас изучается навыков с этим именем
         skill_cnt = SkillTraining.objects.filter(player=player, skill=skill).count()
+
+        if skill_cls:
+            skill_obj = skill_cls.objects.get(player=player)
+
+            if skill_obj.level + skill_cnt >= skill_obj.max_level:
+                data = {
+                    # 'response': _('positive_enrg_req'),
+                    'response': 'Данный навык изучен полностью или полностью запланирован',
+                    'header': 'Изучение навыка',
+                    'grey_btn': 'Закрыть',
+                }
+                return JResponse(data)
 
         if skill in ['power', 'knowledge', 'endurance']:
             if player.cash < (getattr(player, skill) + skill_cnt + 1) * 1000:
@@ -90,22 +122,17 @@ def up_skill(request):
             if player.premium > timezone.now():
                 time_delta = datetime.timedelta(seconds=(getattr(player, skill) + skill_cnt + 1) * 2400)
         else:
-            skill_cls = None
-            skill_obj = None
-
-            for skill_cl in skill_classes:
-                if skill == skill_cl.__name__:
-                    skill_cls = skill_cl
-                    break
-
             if skill_cls.objects.filter(player=player).exists():
-                skill_obj = skill_cls.objects.get(player=player)
+                cur_level = getattr(skill_obj, 'level')
+
+            else:
+                cur_level = 0
 
             # время изучения навыка без према
-            time_delta = datetime.timedelta(hours=(getattr(skill_obj, 'level') + skill_cnt + 1))
+            time_delta = datetime.timedelta(hours=(cur_level + skill_cnt + 1))
             # с премом
             if player.premium > timezone.now():
-                time_delta = datetime.timedelta(seconds=(getattr(skill_obj, 'level') + skill_cnt + 1) * 2400)
+                time_delta = datetime.timedelta(seconds=(cur_level + skill_cnt + 1) * 2400)
 
         start = timezone.now()
         if SkillTraining.objects.filter(player=player).exists():
