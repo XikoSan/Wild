@@ -222,7 +222,7 @@ class Player(models.Model):
 
         taxed_count = State.get_taxes(self.region, count, 'cash', 'cash')
 
-        if timezone.now().date() < datetime.date(2022, 7, 20):
+        if timezone.now().date() < datetime.date(2022, 8, 22):
             if count != 0 and daily_procent == 100:
                 taxed_count += daily_limit
 
