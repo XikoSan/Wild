@@ -9,6 +9,7 @@ from player.views.get_subclasses import get_subclasses
 from skill.models.skill import Skill
 from skill.models.excavation import Excavation
 from skill.models.finance import Finance
+from skill.models.standardization import Standardization
 
 # запись об изучаемом навыке
 # новые классы навыков надо импортировать сюда

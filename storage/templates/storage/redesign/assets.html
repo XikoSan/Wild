@@ -17,7 +17,7 @@
 				<path d="M2.46447 11.5355L11.5355 2.46447C12.4732 1.52678 13.745 1 15.0711 1H308C310.761 1 313 3.23858 313 6V151C313 153.761 310.761 156 308 156H6C3.23858 156 1 153.761 1 151V15.0711C1 13.745 1.52678 12.4732 2.46447 11.5355Z" fill="var(--c30)" stroke="var(--c30)"/>
 			</svg>
 			<!--Выбор действия-->
-      <label>
+      <label class="ct__wide-label-select">
         <select name="assets_actions" id="assets_actions">
           <option disabled selected>выбор действия</option>
           <option value="transfer">Передать</option>
@@ -44,7 +44,7 @@
             </label>
         </div>
         <!--Выбор склада-->
-      <label class="transfer_bloc">
+      <label class="ct__wide-label-select transfer_bloc">
         <select name="storage_options" id="storage_options" disabled>
             <option value="storage_none" disabled selected>выберите склад</option>
             {% for storage in storages %}

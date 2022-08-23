@@ -12,6 +12,10 @@
 {% block content %}
 <script>
 
+    var count = 0;
+
+    var consignment = {{ consignment }};
+
     var groups_n_goods = {};
 
     {% for group in categories %}
@@ -120,7 +124,7 @@
                 </div>
                 <div class="col-xs-2 col-sm-2 col-md-2" align="left">
                     <input disabled id="count" type="number" min="0" max="2147483647" value="0" step="1" name="count" maxlength="3"
-                        oninput="setAnotherValues(this.value)">
+                        oninput="setInputValue(this.value)">
                 </div>
             </div>
             <div class="row" style="margin-top: 1%;">

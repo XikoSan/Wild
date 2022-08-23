@@ -8,6 +8,8 @@ from player.player import Player
 
 
 # абстрактный навык
+# новые навыки добавлять в:
+# модель player.skillTraining
 class Skill(models.Model):
 
     description = ''

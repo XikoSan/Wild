@@ -27,10 +27,6 @@ class Finance(Skill):
 
     max_level = 1
 
-    def apply(self, args):
-
-        return args['sum'] * ( 1 + self.level * 0.1 )
-
 
     class Meta:
         verbose_name = "Подпольное финансирование"

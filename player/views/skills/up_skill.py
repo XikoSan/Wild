@@ -13,7 +13,6 @@ from player.views.get_subclasses import get_subclasses
 from skill.models.skill import Skill
 from skill.models.excavation import Excavation
 
-
 # изучить навык
 @login_required(login_url='/')
 @check_player

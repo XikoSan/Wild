@@ -2,37 +2,70 @@ function insertAfter(newNode, existingNode) {
     existingNode.parentNode.insertBefore(newNode, existingNode.nextSibling);
 }
 
-function setAnotherValues(count){
+function setInputValue(val){
+    count = val;
+    setAnotherValues();
+}
 
+function setEnergyValue(child){
+
+    if (Math.ceil( count / consignment ) * $(child.getElementsByClassName("crude_count")[0]).attr('step') > child.getElementsByClassName("crude_count")[0].max){
+        child.getElementsByClassName("crude_count")[0].value = child.getElementsByClassName("crude_count")[0].max
+    }
+    else{
+        child.getElementsByClassName("crude_count")[0].value = Math.ceil( count / consignment ) * $(child.getElementsByClassName("crude_count")[0]).attr('step');
+    }
+    child.getElementsByClassName("crude_amount")[0].value = Math.ceil( count / consignment ) * $(child.getElementsByClassName("crude_amount")[0]).attr('step');
+
+}
+
+function setAnotherValues(){
+
+    document.getElementById('count').value = count;
     var elements = document.getElementById('storage_info_block').querySelectorAll('.cloned_line');
 
     for (var i = 0; i < elements.length; i++) {
         var tableChild = elements[i];
 
-        if (count * $(tableChild.getElementsByClassName("crude_count")[0]).attr('step') > tableChild.getElementsByClassName("crude_count")[0].max){
-            tableChild.getElementsByClassName("crude_count")[0].value = tableChild.getElementsByClassName("crude_count")[0].max
+        if (tableChild.getElementsByClassName("energy_count").length){
+            setEnergyValue(tableChild);
         }
         else{
-            tableChild.getElementsByClassName("crude_count")[0].value = count * $(tableChild.getElementsByClassName("crude_count")[0]).attr('step');
+            if (count * $(tableChild.getElementsByClassName("crude_count")[0]).attr('step') > tableChild.getElementsByClassName("crude_count")[0].max){
+                tableChild.getElementsByClassName("crude_count")[0].value = tableChild.getElementsByClassName("crude_count")[0].max
+            }
+            else{
+                tableChild.getElementsByClassName("crude_count")[0].value = count * $(tableChild.getElementsByClassName("crude_count")[0]).attr('step');
+            }
+            tableChild.getElementsByClassName("crude_amount")[0].value = count * $(tableChild.getElementsByClassName("crude_amount")[0]).attr('step');
         }
-        tableChild.getElementsByClassName("crude_amount")[0].value = count * $(tableChild.getElementsByClassName("crude_amount")[0]).attr('step');
     }
-
-    document.getElementById('count').value = count;
 }
 
 function setAmountValue(line, target){
     line.getElementsByClassName("crude_amount")[0].value = target.value;
 
-    var count = target.value / $(target).attr('step');
-    setAnotherValues(count);
+    if (target.classList.contains("energy_count")){
+        count = target.value / $(target).attr('step') * consignment;
+    }
+    else{
+        count = target.value / $(target).attr('step');
+    }
+
+    setAnotherValues();
 }
 
 function setCountValue(line, target){
     line.getElementsByClassName("crude_count")[0].value = target.value;
 
-    var count = target.value / $(target).attr('step');
-    setAnotherValues(count);
+    if (target.classList.contains("energy_count")){
+        count = target.value / $(target).attr('step') * consignment;
+    }
+    else{
+        count = target.value / $(target).attr('step');
+    }
+
+    setAnotherValues();
 }
 
 jQuery(document).ready(function ($) {
@@ -162,6 +195,12 @@ jQuery(document).ready(function ($) {
             else{
                 max_value = Math.floor(total_stocks[$('#storage').val()][crude]/schema[crude]) * schema[crude]
             }
+
+            if(crude == 'energy'){
+                cloned_line.getElementsByClassName("crude_count")[0].classList.add("energy_count");
+                cloned_line.getElementsByClassName("crude_amount")[0].classList.add("energy_count");
+            }
+
             $(cloned_line.getElementsByClassName("crude_count")[0]).attr('max', max_value);
             $(cloned_line.getElementsByClassName("crude_amount")[0]).attr('max', max_value);
 
@@ -198,7 +237,8 @@ jQuery(document).ready(function ($) {
             $('#' + crude + '_line').show();
         }
 
-        setAnotherValues(document.getElementById('count').value)
+        count = document.getElementById('count').value;
+        setAnotherValues();
     });
 
 

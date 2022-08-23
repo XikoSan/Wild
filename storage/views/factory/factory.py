@@ -1,3 +1,4 @@
+from django.apps import apps
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
@@ -10,6 +11,7 @@ from player.decorators.player import check_player
 from player.player import Player
 from storage.models.factory.project import Project
 from storage.models.storage import Storage
+
 
 @login_required(login_url='/')
 @check_player
@@ -29,6 +31,13 @@ def factory(request):
 
     storages = Storage.actual.filter(owner=player).values(*fields_list)
 
+    # сколько игрок может производить на единичные затраты энергии
+    consignment = 1
+
+    Standardization = apps.get_model('skill.Standardization')
+    if Standardization.objects.filter(player=player, level__gt=0).exists():
+        consignment += Standardization.objects.get(player=player).level
+
     # отправляем в форму
     response = render(request, 'storage/factory/factory.html', {
         'page_name': _('Производство'),
@@ -37,6 +46,7 @@ def factory(request):
         'project_cl': Project,
         'storage_cl': Storage,
         'storages': storages,
+        'consignment': consignment,
         'categories': ['materials', 'equipments', 'units'],
         'crude_list': ['valut', 'minerals', 'oils', 'materials', 'equipments'],
     })

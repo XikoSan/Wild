@@ -2,14 +2,14 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.humanize.templatetags.humanize import intcomma
 from django.db import transaction
 from django.http import JsonResponse
-
+from django.apps import apps
 from player.decorators.player import check_player
 from player.player import Player
 from storage.models.factory.production_log import ProductionLog
 from storage.models.factory.project import Project
 from storage.models.storage import Storage
 from storage.views.storage.locks.get_storage import get_storage
-
+from math import ceil
 
 @login_required(login_url='/')
 @check_player
@@ -134,8 +134,17 @@ def produce_good(request):
 
         # получить по номеру схемы схему
         schema = getattr(Project, good)['resources'][schema_num - 1]
+
         # получить затраты энергии
         energy_cost = getattr(Project, good)['energy'] * count
+        # если изучена Стандартизация
+        Standardization = apps.get_model('skill.Standardization')
+        if Standardization.objects.filter(player=player, level__gt=0).exists():
+            # лимит производства на единицу энергии
+            consignment = Standardization.objects.get(player=player).level + 1
+            # новая стоимость в энергии - цена за "пачку", даже неполную
+            energy_cost = ceil(count / consignment) * getattr(Project, good)['energy']
+        
         # посчитать, хватает ли энергии для производства
         if energy_cost > player.energy \
                 or energy_cost > 100:
