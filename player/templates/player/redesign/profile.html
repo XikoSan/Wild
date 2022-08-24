@@ -48,7 +48,7 @@
 					</svg>
 				</span>
 
-				<img src="{% if player.image %}{{ player.image.url }}{% else %}{% static 'img/nopic.png' %}{% endif %}" class="profile__ava">
+				<img src="{% if player.image %}{{ player.image.url }}{% else %}{% static 'img/nopic.png' %}{% endif %}" class="profile__ava" {% if player.party %}{% if player.party.members_image %}style="background-image: url({{ player.party.members_image.url }}); background-size: cover;"{% endif %}{% endif %}>
 
 				<form method="post" enctype="multipart/form-data" id="formUpload">
 					{% csrf_token %}
