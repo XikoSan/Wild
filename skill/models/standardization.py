@@ -10,7 +10,7 @@ class Standardization(Skill):
     requires = [
         {
             'skill': 'knowledge',
-            'skill_name': 'Знания',
+            'skill_name': 'Интеллект',
             'level': 25,
         },
     ]
