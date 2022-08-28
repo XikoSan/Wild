@@ -10,12 +10,15 @@ class War(models.Model):
     squads_dict = {
         'infantry': 'Пехота',
         'lightvehicle': 'Легкая бронетехника',
-        'heavyvehicle': 'Тяжелая бронетехника'
+        'heavyvehicle': 'Тяжелая бронетехника',
+        'recon': 'Разведка'
     }
     # признак того что война идет сейчас
     running = models.BooleanField(default=False, verbose_name='Идёт война')
     # раунд войны
     round = models.IntegerField(default=0, verbose_name='Раунд войны')
+    # баланс разведки
+    recon_balance = models.FloatField(default=1, verbose_name='Баланс разведки')
 
     # время начала войны
     start_time = models.DateTimeField(default=None, blank=True, null=True, verbose_name='Начало войны')

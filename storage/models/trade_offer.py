@@ -95,6 +95,7 @@ class TradeOffer(models.Model):
         ('jet', 'Штурмовики'),
         ('pzrk', 'ПЗРК'),
         ('ifv', 'БМП'),
+        ('drone', 'Дроны'),
 
         ('wild_pass', 'Wild Pass'),
     )

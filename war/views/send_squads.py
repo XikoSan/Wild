@@ -20,15 +20,15 @@ def send_squads(request):
         # получаем персонажа
         player = Player.get_instance(account=request.user)
 
-        if not Storage.objects.filter(owner=player, region=player.region).exists():
+        if not Storage.objects.filter(owner=player, region__pk=12).exists():
             data = {
-                'response': 'Нет Склада отправки войск в регионе',
+                'response': 'Нет Склада отправки войск в Санкт-Петербурге',
                 'header': 'Отправка войск',
                 'grey_btn': 'Закрыть',
             }
             return JResponse(data)
 
-        storage = Storage.objects.select_for_update().get(owner=player, region=player.region)
+        storage = Storage.objects.select_for_update().get(owner=player, region__pk=12)
 
         # получаем войну
         try:
@@ -190,7 +190,7 @@ def send_squads(request):
 
             squad.save()
 
-        player.energy_cons(energy_sum)
+        player.energy_cons(energy_sum, 2)
 
         for unit in squads_count_class.keys():
 

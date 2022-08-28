@@ -2,7 +2,7 @@
 from django.db import models
 from django.utils.translation import gettext_lazy, ugettext as _
 
-from player.actual_manager import ActualManager
+from player.actual_manager import ActualStorageManager
 from player.player import Player
 from region.region import Region
 
@@ -23,7 +23,7 @@ from region.region import Region
 # - - Добавить в production_log.py
 class Storage(models.Model):
     objects = models.Manager()  # Менеджер по умолчанию
-    actual = ActualManager()  # Менеджер активных записей
+    actual = ActualStorageManager()  # Менеджер активных записей
 
     # ------vvvvvvv------Все типы товаров------vvvvvvv------
     types = {
@@ -82,6 +82,8 @@ class Storage(models.Model):
         'pzrk': gettext_lazy('ПЗРК'),
 
         'ifv': gettext_lazy('БМП'),
+
+        'drone': gettext_lazy('БПЛА'),
     }
 
     # владелец склада
@@ -178,23 +180,28 @@ class Storage(models.Model):
 
     # штурмовики
     jet = models.IntegerField(default=0, verbose_name=gettext_lazy('attack_air'))
-    # танки- максимум на складе
+    # штурмовики- максимум на складе
     jet_cap = models.IntegerField(default=1000, verbose_name='Штурмовики- максимум на складе')
 
     # орбитальные орудия
     station = models.IntegerField(default=0, verbose_name=gettext_lazy('orb_station'))
-    # танки- максимум на складе
+    # орудия- максимум на складе
     station_cap = models.IntegerField(default=10, verbose_name='Орбитальные орудия- максимум на складе')
 
     # ПЗРК
     pzrk = models.IntegerField(default=0, verbose_name=gettext_lazy('mpads'))
-    # танки- максимум на складе
+    # ПЗРК- максимум на складе
     pzrk_cap = models.IntegerField(default=1000, verbose_name='ПЗРК- максимум на складе')
 
-    # Гаубицы
+    # БМП
     ifv = models.IntegerField(default=0, verbose_name=gettext_lazy('БМП'))
-    # танки- максимум на складе
+    # БМП- максимум на складе
     ifv_cap = models.IntegerField(default=1000, verbose_name='БМП- максимум на складе')
+
+    # дроны
+    drone = models.IntegerField(default=0, verbose_name=gettext_lazy('Дроны'))
+    # дроны- максимум на складе
+    drone_cap = models.IntegerField(default=1000, verbose_name='Дроны- максимум на складе')
 
     # удалено
     deleted = models.BooleanField(default=False, verbose_name='Удалено')
@@ -293,7 +300,7 @@ class Storage(models.Model):
             except ValueError:
                 continue
         # списываем предметы
-        Storage.objects.filter(pk=self.pk).update(**data_dict)
+        Storage.actual.filter(pk=self.pk).update(**data_dict)
 
     # начислить предметы на Склад
     def unitsToStorageAdd(self, request, mode):
@@ -315,7 +322,7 @@ class Storage(models.Model):
             except ValueError:
                 continue
         # начисляем предметы
-        Storage.objects.filter(pk=self.pk).update(**data_dict)
+        Storage.actual.filter(pk=self.pk).update(**data_dict)
 
     def __str__(self):
         return self.owner.nickname + " в " + self.region.region_name

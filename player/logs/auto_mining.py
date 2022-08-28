@@ -70,7 +70,7 @@ class AutoMining(Log):
 
         # если у игрока нет Склада в этом регионе, то Нефть и Руду собирать он не сможет
         if self.resource in ['ore', 'oil'] \
-                and not Storage.objects.filter(owner=player, region=player.region).exists():
+                and not Storage.actual.filter(owner=player, region=player.region).exists():
             self.delete()
             return
 
@@ -87,7 +87,7 @@ class AutoMining(Log):
 
         storage = None
         if self.resource in ['ore', 'oil']:
-            storage = Storage.objects.get(owner=player, region=player.region)
+            storage = Storage.actual.get(owner=player, region=player.region)
 
         mined = False
 

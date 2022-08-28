@@ -18,7 +18,6 @@ from polls.models.poll import Poll
 from region.region import Region
 from wild_politics.settings import TIME_ZONE, sentry_environment
 
-
 # главная страница
 @login_required(login_url='/')
 @check_player

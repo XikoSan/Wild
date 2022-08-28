@@ -7,6 +7,7 @@
 {% load get_key_list %}
 {% load i18n %}{% load tz %}
 {% load get_class_name %}
+{% load get_mod %}
 
 {% block for_scripts_and_css %}
 <script src='{% static "js/start_war.js" %}?{{ csrf_token }}'></script>
@@ -73,7 +74,7 @@
                 Фаза войны: {% if war.round|get_sum:1 > 24 %}24{% else %}{{ war.round|get_sum:1 }}{% endif %} / 24
             </div>
             <div class="row">
-                Война завершится: {{ end_time|timezone:player.time_zone|date:"d.m.y H:i" }}
+                {% if not war.running %}<font color="red">Война завершилась</font>{% else %}Война завершится{% endif %}: {{ end_time|timezone:player.time_zone|date:"d.m.y H:i" }}
             </div>
             <div class="row" style="margin-top: 50px">
                 Прочность укреплений: {{ attrs_dict|dict_key:'hq_points' }}
@@ -110,6 +111,7 @@
             </div>
         </div>
     </div>
+    {% if war.running %}
     <div class="row" align="center" style="margin-top: 100px">Отправка войск</div>
     <div class="row" align="center" style="margin-top: 50px">
         <div class="col-xs-4 col-sm-4 col-md-4" align="center">
@@ -203,6 +205,50 @@
             <div class="row">
                 <input type="submit" class="btn btn-success" onclick="send_squads()" value="В бой"/>
             </div>
+
+            <div class="row" style="margin-top: 5%">
+                Отчёт разведки
+                <br>
+                <i>баланс разведки: {{ war.recon_balance }}</i>
+            </div>
+            <div class="row" style="margin-top: 5%">
+                <div class="col-xs-4 col-sm-4 col-md-4">
+                    Силы атакующих:
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-4"></div>
+                <div class="col-xs-4 col-sm-4 col-md-4">
+                    Силы обороны:
+                </div>
+            </div>
+            <div class="row">
+                {% for squad_type in war|get_attr:'squads_list' %}
+                <div class="row" style="margin-top: 5%; {% if forloop.counter|get_mod:2 == 1 %} background: #f1f3f4{% endif %}">
+                    <div class="col-xs-4 col-sm-4 col-md-4">
+                        {% if agr_recon_dict %}
+                            {% if agr_recon_dict|dict_key:squad_type %}
+                                {{ agr_recon_dict|dict_key:squad_type }}
+                            {% else %}
+                                отсутствуют
+                            {% endif %}
+                        {% else %}
+                            {% if forloop.counter == 1 %}
+                                нет разведданных
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-4">
+                        {{ war|get_attr:'squads_dict'|dict_key:squad_type }}
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-4">
+                        {% if def_recon_dict|dict_key:squad_type %}
+                            {{ def_recon_dict|dict_key:squad_type }}
+                        {% else %}
+                            отсутствуют
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
         </div>
         <div class="col-xs-4 col-sm-4 col-md-4" align="center">
             <div class="row" align="center">Отряды</div>
@@ -244,5 +290,6 @@
             </div>
         </div>
     </div>
+    {% endif %}
 </div>
 {% endblock %}

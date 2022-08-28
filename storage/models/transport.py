@@ -65,6 +65,9 @@ class Transport(Log):
 
         'ifv': 4,
         # 'ifv': 40,
+
+        'drone': 1,
+        # 'ifv': 10,
     }
 
     # регион отправки
@@ -177,6 +180,11 @@ class Transport(Log):
     ifv = models.IntegerField(default=0, verbose_name=gettext_lazy('БМП'))
     # Гаубица - кубов
     ifv_vol = models.IntegerField(default=0, verbose_name=gettext_lazy('БМП - кубов'))
+
+    # Дроны
+    drone = models.IntegerField(default=0, verbose_name=gettext_lazy('Дроны'))
+    # Дроны - кубов
+    drone_vol = models.IntegerField(default=0, verbose_name=gettext_lazy('Дроны - кубов'))
 
     def __str__(self):
         return self.storage_from.owner.nickname + " (" + self.storage_from.region.region_name + ") " + '-> ' + self.storage_to.owner.nickname + " (" + self.storage_to.region.region_name + ")"

@@ -99,6 +99,9 @@ class Treasury(models.Model):
     # БМП
     ifv = models.IntegerField(default=0, verbose_name=gettext_lazy('ifv'))
 
+    # Дроны
+    drone = models.IntegerField(default=0, verbose_name=gettext_lazy('drone'))
+
     # получить Казну с акутализированными значениями запасов
     # любые постоянные траты Казны должны быть прописаны тут
     @staticmethod

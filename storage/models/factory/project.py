@@ -222,6 +222,22 @@ class Project(models.Model):
         'time': 10,
         'energy': 2,
     }
+
+    drone = {
+        'title': _('БПЛА'),
+
+        'resources':
+            [
+                {
+                    'cash': 10,
+                    'gas': 1,
+                    'aluminium': 5,
+                },
+            ],
+
+        'time': 10,
+        'energy': 2,
+    }
     # -------------^^^^^^^---------------Производственные схемы---------------^^^^^^^---------------
     schemas = (
         ('gas', gas.get('title')),
@@ -239,6 +255,7 @@ class Project(models.Model):
         ('pzrk', pzrk.get('title')),
         ('antitank', antitank.get('title')),
         ('ifv', ifv.get('title')),
+        ('drone', drone.get('title')),
     )
 
     type = models.CharField(

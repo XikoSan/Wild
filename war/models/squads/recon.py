@@ -6,35 +6,35 @@ from player.actual_manager import ActualManager
 from war.models.squads.squad import Squad
 
 
-# отряд пехоты армии игрока
-class Infantry(Squad):
+# отряд разведки армии игрока
+class Recon(Squad):
     objects = models.Manager()  # Менеджер по умолчанию
     actual = ActualManager()  # Менеджер активных записей
 
     specs = {
-        'rifle':
+        'drone':
             {
-                'name': 'Автоматы',
+                'name': 'БПЛА',
                 'energy': 1,
                 'hp': 10,
                 'damage':
                     {
-                        'infantry': 6,
-                        'lightvehicle': 1,
-                        'heavyvehicle': 1,
-                        'recon': 2,
+                        'infantry': 0,
+                        'lightvehicle': 0,
+                        'heavyvehicle': 0,
+                        'recon': 6,
                     },
-                'price': 52,
+                'price': 20,
             },
     }
 
-    # Автоматы
-    rifle = models.IntegerField(default=0, verbose_name=gettext_lazy('Автоматы'))
+    # БПЛА
+    drone = models.IntegerField(default=0, verbose_name=gettext_lazy('БПЛА'))
 
     def __str__(self):
-        return 'Отряд пехоты'
+        return 'Отряд разведки'
 
     # Свойства класса
     class Meta:
-        verbose_name = "Отряд пехоты"
-        verbose_name_plural = "Отряды пехоты"
+        verbose_name = "Отряд разведки"
+        verbose_name_plural = "Отряды разведки"

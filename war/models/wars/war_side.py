@@ -23,6 +23,9 @@ class WarSide(models.Model):
         default='agr',
     )
 
+    # БПЛА
+    drone = models.IntegerField(default=0, verbose_name=gettext_lazy('Дроны'))
+
     # Автоматы
     rifle = models.IntegerField(default=0, verbose_name=gettext_lazy('Автоматы'))
     # БМП

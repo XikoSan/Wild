@@ -52,7 +52,7 @@ def start_auto(request):
             return JResponse(data)
 
         # если у игрока нет Склада в этом регионе, то Нефть и Руду собирать он не сможет
-        if resource in ['ore', 'oil'] and not Storage.objects.filter(owner=player, region=player.region).exists():
+        if resource in ['ore', 'oil'] and not Storage.actual.filter(owner=player, region=player.region).exists():
             data = {
                 # 'response': _('wait_flight_end'),
                 'response': 'У вас нет склада в этом регионе',

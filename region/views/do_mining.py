@@ -37,7 +37,7 @@ def do_mining(request):
 
         resource = request.POST.get('resource')
 
-        if not Storage.objects.filter(owner=player, region=player.region).exists() \
+        if not Storage.actual.filter(owner=player, region=player.region).exists() \
                 and resource != 'gold':
             data = {
                 'response': 'У вас нет склада в этом регионе',
@@ -90,7 +90,7 @@ def do_mining(request):
         mined_result = {}
 
         if resource != 'gold':
-            storage = Storage.objects.get(owner=player, region=player.region)
+            storage = Storage.actual.get(owner=player, region=player.region)
 
         if resource == 'gold':
             # если запасов ресурса недостаточно

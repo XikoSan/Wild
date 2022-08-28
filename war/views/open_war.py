@@ -8,6 +8,8 @@ from player.decorators.player import check_player
 from player.player import Player
 from war.models.squads.infantry import Infantry
 from war.models.wars.war import War
+from django.db.models import Sum
+from django.db.models import F
 
 
 # страница войн
@@ -36,12 +38,46 @@ def open_war(request, class_name, pk):
     squads_list = getattr(war, 'squads_list')
     squads_dict = {}
 
+    agr_recon_dict = {}
+    def_recon_dict = {}
+
     for squad_type in squads_list:
         if not hasattr(war, squad_type):
             continue
+
+        # если у игрока есть отряды этого типа
         if getattr(war, squad_type).filter(owner=player, object_id=war.pk, deleted=False).exists():
             # получаем все отряды текущего типа этой войны
             squads_dict[squad_type] = getattr(war, squad_type).filter(owner=player, object_id=war.pk, deleted=False)
+
+        # получаем сумму юнитов всех уже сформированных отрядов этого типа
+        param = None
+        # идем по всем юнитам этого типа отрядов
+        for par in getattr(
+                            apps.get_model('war', squad_type),
+                            'specs').keys():
+            if not param:
+                param = F(par)
+            else:
+                param = param + F(par)
+
+        args = [param,]
+
+        if war.recon_balance < 1:
+            # для атакующих
+            agr_recon_dict[squad_type] = getattr(war, squad_type).filter(side='agr',
+                                                                         object_id=war.pk,
+                                                                         deleted=False).aggregate(
+                                                                                                sum=Sum( *args )
+                                                                                              )['sum']
+        elif war.recon_balance > 1:
+            # для обороны
+            def_recon_dict[squad_type] = getattr(war, squad_type).filter(side='def',
+                                                                         object_id=war.pk,
+                                                                         deleted=False).aggregate(
+                                                                                                sum=Sum( *args )
+                                                                                              )['sum']
+
 
     # отправляем в форму
     return render(request, 'war/' + class_name + '.html', {
@@ -63,6 +99,10 @@ def open_war(request, class_name, pk):
 
         # мои отряды
         'squads_dict': squads_dict,
+
+        # результаты разведки
+        'agr_recon_dict': agr_recon_dict,
+        'def_recon_dict': def_recon_dict,
 
         # класс войны
         'war_cl': War,

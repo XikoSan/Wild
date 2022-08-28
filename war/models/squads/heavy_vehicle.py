@@ -22,6 +22,7 @@ class HeavyVehicle(Squad):
                         'infantry': 25,
                         'lightvehicle': 25,
                         'heavyvehicle': 25,
+                        'recon': 0,
                     },
                 'price': 905,
             },

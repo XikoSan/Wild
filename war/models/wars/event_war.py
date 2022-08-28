@@ -8,19 +8,22 @@ from django_celery_beat.models import PeriodicTask
 from war.models.squads.heavy_vehicle import HeavyVehicle
 from war.models.squads.infantry import Infantry
 from war.models.squads.light_vehicle import LightVehicle
+from war.models.squads.recon import Recon
 from war.models.wars.war import War
 from war.models.wars.war_side import WarSide
 
 
 # класс ивентовой войны
 class EventWar(War):
-    using_units = ['rifle', 'ifv', 'antitank', 'tank']
-    squads_list = ['infantry', 'lightvehicle', 'heavyvehicle']
+    using_units = ['rifle', 'ifv', 'antitank', 'tank', 'drone']
+    squads_list = ['infantry', 'lightvehicle', 'heavyvehicle', 'recon']
     # прочность Штаба
     hq_points = models.BigIntegerField(default=0, verbose_name='Прочность Штаба')
     # стороны войны
     war_side = GenericRelation(WarSide)
 
+    # отряды разведки
+    recon = GenericRelation(Recon)
     # отряды пихоты
     infantry = GenericRelation(Infantry)
     # отряды легкой бронетехники
@@ -310,6 +313,13 @@ class EventWar(War):
 
         agr_side.save()
         def_side.save()
+
+        if not def_side.drone and agr_side.drone > 0:
+            self.recon_balance = 100
+        elif not def_side.drone and not agr_side.drone:
+            self.recon_balance = 1
+        else:
+            self.recon_balance = agr_side.drone / def_side.drone
 
         for squad_type in squads_list:
             squads_dict[squad_type].update(deleted=True)
