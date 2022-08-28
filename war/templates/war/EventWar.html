@@ -240,10 +240,16 @@
                         {{ war|get_attr:'squads_dict'|dict_key:squad_type }}
                     </div>
                     <div class="col-xs-4 col-sm-4 col-md-4">
-                        {% if def_recon_dict|dict_key:squad_type %}
-                            {{ def_recon_dict|dict_key:squad_type }}
+                        {% if def_recon_dict %}
+                            {% if def_recon_dict|dict_key:squad_type %}
+                                {{ def_recon_dict|dict_key:squad_type }}
+                            {% else %}
+                                отсутствуют
+                            {% endif %}
                         {% else %}
-                            отсутствуют
+                            {% if forloop.counter == 1 %}
+                                нет разведданных
+                            {% endif %}
                         {% endif %}
                     </div>
                 </div>
