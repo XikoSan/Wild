@@ -8,7 +8,7 @@ from django.db import transaction
 from django.db.models.signals import post_delete, post_save
 from django.dispatch import receiver
 from django.utils import timezone
-from django_celery_beat.models import IntervalSchedule, PeriodicTask
+from django_celery_beat.models import IntervalSchedule, PeriodicTask, CrontabSchedule
 
 from player.logs.gold_log import GoldLog
 from player.logs.log import Log
@@ -43,10 +43,19 @@ class AutoMining(Log):
         schedule, created = IntervalSchedule.objects.get_or_create(every=10, period=IntervalSchedule.MINUTES)
         # schedule, created = IntervalSchedule.objects.get_or_create(every=1, period=IntervalSchedule.MINUTES)
 
+        schedule, created = CrontabSchedule.objects.get_or_create(
+                                                                    minute='*/10',
+                                                                    hour='*',
+                                                                    day_of_week='*',
+                                                                    day_of_month='*',
+                                                                    month_of_year='*',
+                                                                   )
+
         self.task = PeriodicTask.objects.create(
             name=self.player.nickname + ' собирает ' + self.get_resource_display(),
             task='crude_retrieve',
-            interval=schedule,
+            # interval=schedule,
+            crontab=schedule,
             args=json.dumps([self.pk]),
             start_time=timezone.now()
         )
