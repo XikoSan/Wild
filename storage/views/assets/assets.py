@@ -8,6 +8,7 @@ from player.player import Player
 from region.views.distance_counting import distance_counting
 from storage.models.storage import Storage
 from storage.models.transport import Transport
+from datetime import datetime
 
 
 # главная страница
@@ -23,7 +24,10 @@ def assets(request):
     trans_mul = {}
 
     # получаем все склады
-    storages = Storage.actual.filter(owner=player)
+    if datetime.now() > datetime(2022, 9, 1):
+        storages = Storage.actual.filter(owner=player)
+    else:
+        storages = Storage.objects.filter(owner=player)
 
     storage_alone = False
     if storages.count() == 1:

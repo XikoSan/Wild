@@ -21,8 +21,8 @@ def transfer_values(dest, values, prices):
     for storage in values.keys():
         # если в текущем Складе есть ресурсы
         if len(values.get(storage)):
-            source_dict[storage] = Storage.objects.get(pk=int(storage))
-            transport_dict[storage] = Transport(player=dest.owner, storage_from=Storage.objects.get(pk=int(storage)),
+            source_dict[storage] = Storage.actual.get(pk=int(storage))
+            transport_dict[storage] = Transport(player=dest.owner, storage_from=Storage.actual.get(pk=int(storage)),
                                                 storage_to=dest)
             transport_dict[storage].delivery_value = prices[int(storage)]
             # идём по списку товаров

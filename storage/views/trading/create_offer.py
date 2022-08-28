@@ -118,7 +118,7 @@ def create_offer(request):
                 }
                 return JsonResponse(data)
 
-            s_storage = Storage.objects.get(pk=int(souce_pk))
+            s_storage = Storage.actual.get(pk=int(souce_pk))
             lock = None
             cost = 0
             # если продажа:

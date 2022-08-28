@@ -25,8 +25,8 @@ def storage_status(request, pk):
 
         if pk == '0':
             storage_cash = 0
-            if Storage.objects.filter(owner=player, region=player.region).exists():
-                storage_cash = Storage.objects.get(owner=player, region=player.region).cash
+            if Storage.actual.filter(owner=player, region=player.region).exists():
+                storage_cash = Storage.actual.get(owner=player, region=player.region).cash
             data = {
                 'gold': player.gold,
                 'cash': player.cash,
@@ -50,16 +50,16 @@ def storage_status(request, pk):
                 }
         # получаем всё
         elif pk == 'all':
-            data = Storage.objects.get(owner=player, region=player.region).allStorageCount()
+            data = Storage.actual.get(owner=player, region=player.region).allStorageCount()
         # получаем ресурсы
         elif pk == 'resourses':
-            data = Storage.objects.get(owner=player, region=player.region).unitsOnStorageCount('resourses')
+            data = Storage.actual.get(owner=player, region=player.region).unitsOnStorageCount('resourses')
         # получаем материалы
         elif pk == 'materials':
-            data = Storage.objects.get(owner=player, region=player.region).unitsOnStorageCount('materials')
+            data = Storage.actual.get(owner=player, region=player.region).unitsOnStorageCount('materials')
         # получаем юнитов
         elif pk == 'units':
-            data = Storage.objects.get(owner=player, region=player.region).unitsOnStorageCount('units')
+            data = Storage.actual.get(owner=player, region=player.region).unitsOnStorageCount('units')
         else:
             data = {
                 'mode': 'notify',

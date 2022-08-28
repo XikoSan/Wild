@@ -11,7 +11,7 @@ from storage.models.storage import Storage
 def get_storage_action_line(request, type):
     # получаем персонажа
     player = Player.get_instance(account=request.user)
-    storage = Storage.objects.get(owner=player, region=player.region)
+    storage = Storage.actual.get(owner=player, region=player.region)
 
     return render(request, 'storage/storage_lines/' + type + '.html', {'player': player,
                                                                        'storage': storage,

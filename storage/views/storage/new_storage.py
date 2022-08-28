@@ -26,7 +26,7 @@ def new_storage(request):
         trans_mul = {}
 
         # находим Склад, с которого хотят списать материалы
-        if not Storage.objects.filter(pk=int(request.POST.get('storage')), owner=player):
+        if not Storage.actual.filter(pk=int(request.POST.get('storage')), owner=player):
             data = {
                 'header': 'Новый Склад',
                 'response': 'Не найден Склад',
@@ -34,13 +34,13 @@ def new_storage(request):
             }
             return JsonResponse(data)
 
-        paid_storage = Storage.objects.get(pk=int(request.POST.get('storage')))
+        paid_storage = Storage.actual.get(pk=int(request.POST.get('storage')))
         price_dict[paid_storage.pk] = {}
         trans_mul[0] = {}
         trans_mul[0][paid_storage.pk] = math.ceil(distance_counting(player.region, paid_storage.region) / 100)
         # считаем стоиомость создания нового Склада
         # она равна 500 * количество Складов сейчас
-        material_cost = 500 * Storage.objects.filter(owner=player).count()
+        material_cost = 500 * Storage.actual.filter(owner=player).count()
         price_dict[paid_storage.pk]['steel'] = price_dict[paid_storage.pk]['aluminium'] = material_cost
         # если ресурсов недостаточно
         if not (getattr(paid_storage, 'steel') >= material_cost \

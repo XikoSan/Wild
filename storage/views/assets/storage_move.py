@@ -36,13 +36,13 @@ def storage_move(request):
             return JsonResponse(data)
 
         # проверяем, есть ли целевой склад среди складов игрока
-        if not Storage.objects.filter(owner=player, pk=int(dest_pk)):
+        if not Storage.actual.filter(owner=player, pk=int(dest_pk)):
             data = {
                 'response': 'Указанный Склад вам не принадлежит',
             }
             return JsonResponse(data)
 
-        storage = Storage.objects.select_for_update().get(pk=int(dest_pk))
+        storage = Storage.actual.select_for_update().get(pk=int(dest_pk))
 
         if storage.region == player.region:
             data = {

@@ -36,11 +36,13 @@ def assets_action(request):
             if dest_pk == 'null':
                 data = {
                     'response': 'Целевой Склад не заполнен',
+                    'header': 'Перемещение товара',
+                    'grey_btn': 'Закрыть',
                 }
                 return JsonResponse(data)
 
             # проверяем, есть ли целевой склад среди складов игрока
-            storages = Storage.objects.filter(owner=player)
+            storages = Storage.actual.filter(owner=player)
             storages_pk = []
             # словарь склад - словарь стоимости до других регионов со складами, как в assets.py
             trans_mul = {}
@@ -61,6 +63,8 @@ def assets_action(request):
                     if not int(i_storg) in storages_pk:
                         data = {
                             'response': 'Склад ' + i_storg + ' вам не принадлежит',
+                            'header': 'Перемещение товара',
+                            'grey_btn': 'Закрыть',
                         }
                         return JsonResponse(data)
 
@@ -83,7 +87,7 @@ def assets_action(request):
                         if status:
                             # также нужно проверить, что в целевом Складе хватает места
                             status = False
-                            status, good, sent, exist_cap = check_cap_exists(Storage.objects.get(pk=int(dest_pk)),
+                            status, good, sent, exist_cap = check_cap_exists(Storage.actual.get(pk=int(dest_pk)),
                                                                              storages_values)
 
                             if status:
@@ -96,19 +100,23 @@ def assets_action(request):
                                     player.cash -= price
                                     player.save()
                                     # передача ресурсов
-                                    transfer_values(Storage.objects.get(pk=int(dest_pk)), storages_values, prices)
+                                    transfer_values(Storage.actual.get(pk=int(dest_pk)), storages_values, prices)
 
                                 else:
                                     data = {
                                         'response': 'Недостаточно средств для оплаты доставки',
+                                        'header': 'Перемещение товара',
+                                        'grey_btn': 'Закрыть',
                                     }
                                     return JsonResponse(data)
                             else:
                                 data = {
                                     'response': 'На складе в регионе ' + str(
-                                        Storage.objects.get(pk=int(dest_pk)).region.region_name) +
+                                        Storage.actual.get(pk=int(dest_pk)).region.region_name) +
                                                 ' недостаточно места для товара ' + str(good) + '\n' +
                                                 'Требуется: ' + str(sent) + ', в наличии: ' + str(exist_cap),
+                                    'header': 'Перемещение товара',
+                                    'grey_btn': 'Закрыть',
                                 }
                                 return JsonResponse(data)
                         else:
@@ -116,27 +124,35 @@ def assets_action(request):
                                 'response': 'На складе в регионе ' + str(ret_storg.region.region_name) +
                                             ' недостаточно товара ' + str(good) + ' для передачи.\n' +
                                             'Требуется: ' + str(required) + ', в наличии: ' + str(exist),
+                                'header': 'Перемещение товара',
+                                'grey_btn': 'Закрыть',
                             }
                             return JsonResponse(data)
                     else:
                         data = {
                             'response': 'Товары для передачи не выбраны',
+                            'header': 'Перемещение товара',
+                            'grey_btn': 'Закрыть',
                         }
                         return JsonResponse(data)
                 else:
                     data = {
                         'response': 'В целевом Складе заполнены значения',
+                        'header': 'Перемещение товара',
+                        'grey_btn': 'Закрыть',
                     }
                     return JsonResponse(data)
             else:
                 data = {
                     'response': 'Целевой Склад вам не принадлежит',
+                    'header': 'Перемещение товара',
+                    'grey_btn': 'Закрыть',
                 }
                 return JsonResponse(data)
 
         elif action == 'destroy':
             # проверяем, есть ли целевой склад среди складов игрока
-            storages = Storage.objects.filter(owner=player)
+            storages = Storage.actual.filter(owner=player)
             storages_pk = []
 
             for storage in storages:
@@ -148,6 +164,8 @@ def assets_action(request):
                 if not int(i_storg) in storages_pk:
                     data = {
                         'response': 'Склад ' + i_storg + ' вам не принадлежит',
+                        'header': 'Уничтожение товара',
+                        'grey_btn': 'Закрыть',
                     }
                     return JsonResponse(data)
 
@@ -164,9 +182,9 @@ def assets_action(request):
                 for storage in storages_values.keys():
                     # если в текущем Складе есть ресурсы
                     if len(storages_values.get(storage)):
-                        source_dict[storage] = Storage.objects.get(pk=int(storage))
+                        source_dict[storage] = Storage.actual.get(pk=int(storage))
                         destroy_dict[storage] = Destroy(player=player,
-                                                        storage_from=Storage.objects.get(pk=int(storage)))
+                                                        storage_from=Storage.actual.get(pk=int(storage)))
                         # идём по списку товаров
                         for good in storages_values.get(storage):
                             # списываем со склада-источника ресурсы
@@ -186,11 +204,15 @@ def assets_action(request):
                     'response': 'На складе в регионе ' + str(ret_storg.region.region_name) +
                                 ' недостаточно товара ' + str(good) + '.\n' +
                                 'Требуется: ' + str(required) + ', в наличии: ' + str(exist),
+                    'header': 'Уничтожение товара',
+                    'grey_btn': 'Закрыть',
                 }
                 return JsonResponse(data)
         else:
             data = {
                 'response': 'Некорректное действие',
+                'header': 'Операции с товарами',
+                'grey_btn': 'Закрыть',
             }
             return JsonResponse(data)
         data = {
@@ -202,5 +224,7 @@ def assets_action(request):
     else:
         data = {
             'response': 'Ты уверен что тебе сюда, путник?',
+            'header': 'Подумай ещё раз',
+            'grey_btn': 'Закрыть',
         }
         return JsonResponse(data)

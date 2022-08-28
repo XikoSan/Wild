@@ -14,8 +14,8 @@ def storage(request):
     player = Player.get_instance(account=request.user)
     storage = None
     # если склад есть
-    if Storage.objects.filter(owner=player, region=player.region).exists():
-        storage = Storage.objects.get(owner=player, region=player.region)
+    if Storage.actual.filter(owner=player, region=player.region).exists():
+        storage = Storage.actual.get(owner=player, region=player.region)
 
     groups = list(player.account.groups.all().values_list('name', flat=True))
     page = 'storage/storage.html'

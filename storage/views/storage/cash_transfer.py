@@ -43,10 +43,10 @@ def cash_transfer(request):
             return HttpResponse(_('Некорректное число денег Склада'), content_type='text/html')
 
         # если у игрока в этом регионе есть Склад
-        if not Storage.objects.filter(owner=player, region=player.region).exists():
+        if not Storage.actual.filter(owner=player, region=player.region).exists():
             return HttpResponse(_('В этом регионе нет Склада'), content_type='text/html')
         # склад игрока
-        storage = Storage.objects.get(owner=player, region=player.region)
+        storage = Storage.actual.get(owner=player, region=player.region)
         # проверки:
         # что количество денег до и после в обоих точках изменилось
         if player.cash != int(new_wallet) \
@@ -62,7 +62,7 @@ def cash_transfer(request):
                     # логируем
                     CashLog(player=player, cash=int(new_wallet) - player.cash, activity_txt='store').save()
                     # обновляем данные склада
-                    Storage.objects.filter(pk=storage.pk).update(
+                    Storage.actual.filter(pk=storage.pk).update(
                         cash=int(new_storage))
                     return HttpResponse('ok')
                 else:
