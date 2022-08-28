@@ -3,7 +3,7 @@ import json
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from django.utils import timezone
-from django_celery_beat.models import IntervalSchedule, PeriodicTask
+from django_celery_beat.models import IntervalSchedule, PeriodicTask, CrontabSchedule
 
 from player.decorators.player import check_player
 from player.player import Player
@@ -39,13 +39,29 @@ def start_war(request):
 
         war.save()
 
-        schedule, created = IntervalSchedule.objects.get_or_create(every=1, period=IntervalSchedule.HOURS)
-        # schedule, created = IntervalSchedule.objects.get_or_create(every=1, period=IntervalSchedule.MINUTES)
+        # schedule, created = IntervalSchedule.objects.get_or_create(every=1, period=IntervalSchedule.HOURS)
+
+        schedule, created = CrontabSchedule.objects.get_or_create(
+                                                                    minute=str(timezone.now().now().minute),
+                                                                    hour='*',
+                                                                    day_of_week='*',
+                                                                    day_of_month='*',
+                                                                    month_of_year='*',
+                                                                   )
+
+        # schedule, created = CrontabSchedule.objects.get_or_create(
+        #                                                             minute='*/1',
+        #                                                             hour='*',
+        #                                                             day_of_week='*',
+        #                                                             day_of_month='*',
+        #                                                             month_of_year='*',
+        #                                                            )
 
         war.task = PeriodicTask.objects.create(
             name=f'Война EventWar {war.pk}',
             task='war_round_task',
-            interval=schedule,
+            # interval=schedule,
+            crontab=schedule,
             args=json.dumps(['EventWar', war.pk, ]),
             start_time=timezone.now()
         )
