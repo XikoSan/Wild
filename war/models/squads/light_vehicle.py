@@ -36,7 +36,7 @@ class LightVehicle(Squad):
                     {
                         'infantry': 0,
                         'lightvehicle': 20,
-                        'heavyvehicle': 15,
+                        'heavyvehicle': 35,
                         'recon': 0,
                     },
                 'price': 335,
