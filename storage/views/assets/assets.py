@@ -24,7 +24,7 @@ def assets(request):
     trans_mul = {}
 
     # получаем все склады
-    storages = Storage.objects.filter(owner=player)
+    storages = Storage.actual.filter(owner=player)
 
     storage_alone = False
     if storages.count() == 1:
