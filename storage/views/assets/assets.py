@@ -24,10 +24,7 @@ def assets(request):
     trans_mul = {}
 
     # получаем все склады
-    if datetime.now() > datetime(2022, 9, 1):
-        storages = Storage.actual.filter(owner=player)
-    else:
-        storages = Storage.objects.filter(owner=player)
+    storages = Storage.objects.filter(owner=player)
 
     storage_alone = False
     if storages.count() == 1:
