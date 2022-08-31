@@ -129,8 +129,6 @@ class ChangeResidency(Bill):
 
         return data, 'state/gov/reviewed/change_residency.html'
 
-    def __str__(self):
-        return self.get_form_display()
 
     # Свойства класса
     class Meta:
