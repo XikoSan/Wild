@@ -1,6 +1,6 @@
 from celery import shared_task
 
-from django_celery_beat.models import PeriodicTask, PeriodicTasks, ClockedSchedule
+from django_celery_beat.models import PeriodicTask, PeriodicTasks, ClockedSchedule, CrontabSchedule
 import datetime
 
 from player.player import Player
@@ -46,14 +46,13 @@ def finish_primaries(party_id):
     leader.save()
 
     finish_task = PeriodicTask.objects.get(pk=primaries.task.pk)
+    finish_schedule = CrontabSchedule.objects.get(pk=finish_task.crontab.pk)
+    if finish_schedule.day_of_week != '*/7':
+    # if finish_schedule.minute != '*/8':
+        finish_schedule.day_of_week='*/7'
+        # finish_schedule.minute='*/8'
+        finish_schedule.save()
 
-    finish_schedule, created = ClockedSchedule.objects.get_or_create(pk=finish_task.clocked.pk)
-    finish_schedule.clocked_time = timezone.now() + datetime.timedelta(days=7)
-    # finish_schedule.clocked_time = timezone.now() + datetime.timedelta(minutes=7)
-    finish_schedule.save()
-
-    # PeriodicTask.objects.filter(pk=primaries.task.pk).update(enabled=True)
-    # PeriodicTasks.changed(primaries.task)
 
 
 # таска включающая праймериз
@@ -82,12 +81,7 @@ def start_primaries(party_id):
     primaries.running = True
     primaries.save()
 
-    start_task = PeriodicTask.objects.get(pk=party.task.pk)
-
-    start_schedule, created = ClockedSchedule.objects.get_or_create(pk=start_task.clocked.pk)
-    start_schedule.clocked_time = timezone.now() + datetime.timedelta(days=7)
-    # start_schedule.clocked_time = timezone.now() + datetime.timedelta(minutes=7)
-    start_schedule.save()
-
-    # PeriodicTask.objects.filter(pk=party.task.pk).update(enabled=True)
-    # PeriodicTasks.changed(party.task)
+    # start_task = PeriodicTask.objects.get(pk=party.task.pk)
+    # start_schedule, created = ClockedSchedule.objects.get_or_create(pk=start_task.clocked.pk)
+    # start_schedule.clocked_time = timezone.now() + datetime.timedelta(days=7)
+    # start_schedule.save()
