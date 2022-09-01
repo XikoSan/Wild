@@ -237,11 +237,12 @@ class Player(models.Model):
         if count < 0:
             count = 0
 
-        taxed_count = State.get_taxes(self.region, count, 'cash', 'cash')
+        # бонус по выходным
+        if timezone.now().date().weekday() == 5 or timezone.now().date().weekday() == 6:
+            if count != 0:
+                count += count
 
-        if timezone.now().date() < datetime.date(2022, 8, 22):
-            if count != 0 and daily_procent == 100:
-                taxed_count += daily_limit
+        taxed_count = State.get_taxes(self.region, count, 'cash', 'cash')
 
         Finance = apps.get_model('skill.Finance')
         if Finance.objects.filter(player=self, level__gt=0).exists():
