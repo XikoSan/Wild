@@ -137,13 +137,26 @@ def produce_good(request):
 
         # получить затраты энергии
         energy_cost = getattr(Project, good)['energy'] * count
-        # если изучена Стандартизация
-        Standardization = apps.get_model('skill.Standardization')
-        if Standardization.objects.filter(player=player, level__gt=0).exists():
-            # лимит производства на единицу энергии
-            consignment = Standardization.objects.get(player=player).level + 1
-            # новая стоимость в энергии - цена за "пачку", даже неполную
-            energy_cost = ceil(count / consignment) * getattr(Project, good)['energy']
+
+        # только для материалов
+        if good in getattr(Storage, 'materials').keys():
+            # если изучена Стандартизация
+            Standardization = apps.get_model('skill.Standardization')
+            if Standardization.objects.filter(player=player, level__gt=0).exists():
+                # лимит производства на единицу энергии
+                consignment = Standardization.objects.get(player=player).level + 1
+                # новая стоимость в энергии - цена за "пачку", даже неполную
+                energy_cost = ceil(count / consignment) * getattr(Project, good)['energy']
+
+        # только для юнитов
+        if good in getattr(Storage, 'units').keys():
+            # если изучено Режимное производство
+            MilitaryProduction = apps.get_model('skill.MilitaryProduction')
+            if MilitaryProduction.objects.filter(player=player, level__gt=0).exists():
+                # лимит производства на единицу энергии
+                consignment = MilitaryProduction.objects.get(player=player).level + 1
+                # новая стоимость в энергии - цена за "пачку", даже неполную
+                energy_cost = ceil(count / consignment) * getattr(Project, good)['energy']
         
         # посчитать, хватает ли энергии для производства
         if energy_cost > player.energy \

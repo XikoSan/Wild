@@ -32,11 +32,15 @@ def factory(request):
     storages = Storage.actual.filter(owner=player).values(*fields_list)
 
     # сколько игрок может производить на единичные затраты энергии
-    consignment = 1
+    consignment_dict = {}
 
     Standardization = apps.get_model('skill.Standardization')
     if Standardization.objects.filter(player=player, level__gt=0).exists():
-        consignment += Standardization.objects.get(player=player).level
+        consignment_dict['materials'] = 1 + Standardization.objects.get(player=player).level
+
+    MilitaryProduction = apps.get_model('skill.MilitaryProduction')
+    if MilitaryProduction.objects.filter(player=player, level__gt=0).exists():
+        consignment_dict['units'] = 1 + MilitaryProduction.objects.get(player=player).level
 
     # отправляем в форму
     response = render(request, 'storage/factory/factory.html', {
@@ -46,7 +50,7 @@ def factory(request):
         'project_cl': Project,
         'storage_cl': Storage,
         'storages': storages,
-        'consignment': consignment,
+        'consignment_dict': consignment_dict,
         'categories': ['materials', 'equipments', 'units'],
         'crude_list': ['valut', 'minerals', 'oils', 'materials', 'equipments'],
     })

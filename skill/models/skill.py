@@ -5,7 +5,7 @@ from django.db import models
 from django.utils.translation import gettext_lazy
 from django.utils import timezone
 from player.player import Player
-
+from django.apps import apps
 
 # абстрактный навык
 # новые навыки добавлять в:
@@ -33,8 +33,13 @@ class Skill(models.Model):
     def check_has_right(cls, player):
         has_right = True
         for req in cls.requires:
-            if getattr(player, req['skill']) < req['level']:
-                has_right = False
+            if req['skill'] in ['power', 'knowledge', 'endurance']:
+                if getattr(player, req['skill']) < req['level']:
+                    has_right = False
+            else:
+                skill_cl = apps.get_model('skill.' + req['skill'])
+                if not skill_cl.objects.filter(player=player, level__gte=req['level']).exists():
+                    has_right = False
 
         return has_right
 

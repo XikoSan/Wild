@@ -5,6 +5,7 @@
 {% load get_attr %}
 {% load get_len %}
 {% load get_sum %}
+{% load get_key_list %}
 {% load l10n %}{% load i18n %}
 {% block for_scripts_and_css %}
 <script src='{% static "js/factory.js" %}?{{ csrf_token }}'></script>
@@ -14,7 +15,12 @@
 
     var count = 0;
 
-    var consignment = {{ consignment }};
+    var consignment = 1;
+    var consignment_dict = {};
+
+    {% for group in consignment_dict|get_key_list %}
+        consignment_dict['{{ group }}'] = {{ consignment_dict|dict_key:group }};
+    {% endfor %}
 
     var groups_n_goods = {};
 

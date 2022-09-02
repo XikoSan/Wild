@@ -113,8 +113,15 @@ jQuery(document).ready(function ($) {
         var selected = $(e.target).val();
         for (good in groups_n_goods[selected]){
             $('#good_' + good ).show();
-
         }
+        // меняем размер пачки ресурсов при изменении группы
+        if(consignment_dict[selected] !== undefined){
+            consignment = consignment_dict[selected];
+        }
+        else{
+            consignment = 1;
+        }
+
         $("#good").attr("disabled", false);
     });
 
