@@ -52,12 +52,27 @@
                             {% for req in skill_cl|get_attr:'requires' %}
                             <div>
                                 {{ req|dict_key:'skill_name' }}: {{ req|dict_key:'level' }}
+
                                 {% with attr=req|dict_key:'skill' %}
-                                {% if player|get_attr:attr >= req|dict_key:'level' %}
-                                    <div class="glyphicon glyphicon-ok">
-                                    </div>
+                                {% if attr in attrs %}
+
+                                    {% if player|get_attr:attr >= req|dict_key:'level' %}
+                                        <div class="glyphicon glyphicon-ok">
+                                        </div>
+                                    {% endif %}
+
+                                {% else %}
+
+                                    {% if skills_dict|has_key:attr %}
+                                        {% if skills_dict|dict_key:attr == req|dict_key:'level' %}
+                                        <div class="glyphicon glyphicon-ok">
+                                        </div>
+                                        {% endif %}
+                                    {% endif %}
+
                                 {% endif %}
                                 {% endwith %}
+
                             </div>
                             {% endfor %}
                         {% endif %}

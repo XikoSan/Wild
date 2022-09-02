@@ -52,6 +52,8 @@ def skills_list(request):
     if player.premium > timezone.now():
         premium = True
 
+    attrs = ['power', 'knowledge', 'endurance']
+
     # отправляем в форму
     return render(request, 'skill/skill_list.html', {
         'page_name': _('Навыки'),
@@ -66,5 +68,7 @@ def skills_list(request):
         'premium': premium,
         'train': train,
         'has_slot': has_slot,
+
+        'attrs': attrs,
 
     })
