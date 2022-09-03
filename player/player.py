@@ -238,8 +238,10 @@ class Player(models.Model):
             count = 0
 
         # бонус по выходным
+        is_weekend = False
         if timezone.now().date().weekday() == 5 or timezone.now().date().weekday() == 6:
             if count != 0:
+                is_weekend = True
                 count += count
 
         taxed_count = State.get_taxes(self.region, count, 'cash', 'cash')
@@ -252,6 +254,8 @@ class Player(models.Model):
         # выдаем деньги
         self.cash += taxed_count
         # прибавляем деньги ДО НАЛОГОВ к уже выплаченным
+        if is_weekend:
+            count = count / 2
         self.paid_sum += count
         # добавляем потраченную энергию к оплаченной
         self.paid_consumption += self.energy_consumption
