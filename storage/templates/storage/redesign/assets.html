@@ -145,6 +145,7 @@
 <script src='{% static "js/assets_move.js" %}?{{ csrf_token }}'></script>
 {% endif %}
 <script>
+{% localize off %}
     var vol_map = new Map();
     {% for type in storage_cl|get_attr:'types' %}
         {% for good in transport|get_attr:type %}
@@ -173,6 +174,7 @@
     st_{{ storage.pk }}_map[{{ storage.pk }}] = 0;
     send_storages_map[{{ storage.pk }}] = st_{{ storage.pk }}_map;
     {% endfor %}
+{% endlocalize %}
 </script>
 <script src='{% static "js/redesign/assets.js" %}?{{ csrf_token }}'></script>
 {% endblock %}
