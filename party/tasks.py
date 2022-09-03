@@ -45,14 +45,46 @@ def finish_primaries(party_id):
     leader = PrimariesLeader(party=party, leader=current_leader)
     leader.save()
 
-    finish_task = PeriodicTask.objects.get(pk=primaries.task.pk)
-    finish_schedule = CrontabSchedule.objects.get(pk=finish_task.crontab.pk)
-    if finish_schedule.day_of_week != '*/7':
-    # if finish_schedule.minute != '*/8':
-        finish_schedule.day_of_week='*/7'
-        # finish_schedule.minute='*/8'
-        finish_schedule.save()
+    # finish_task = PeriodicTask.objects.get(pk=primaries.task.pk)
+    # finish_schedule = CrontabSchedule.objects.get(pk=finish_task.crontab.pk)
+    # # if finish_schedule.day_of_week != '*/7':
+    # if finish_schedule.hour != '*/2':
+    #     # finish_schedule.day_of_week='*/7'
+    #     finish_schedule.hour='*/2'
+    #     finish_schedule.save()
 
+    task_identificator = primaries.task.id
+    # убираем таску у экземпляра модели
+    Primaries.objects.select_related('task').filter(party=party, task__isnull=False).update(task=None)
+    # удаляем таску
+    pt = PeriodicTask.objects.get(pk=task_identificator)
+    pt.crontab.delete()
+
+    # schedule, created = CrontabSchedule.objects.get_or_create(
+    #     minute='*/7',
+    #     hour='*',
+    #     day_of_week='*',
+    #     day_of_month='*',
+    #     month_of_year='*',
+    # )
+    schedule, created = CrontabSchedule.objects.get_or_create(
+        minute=str(timezone.now().now().minute),
+        hour=str(timezone.now().now().hour),
+        day_of_week='*',
+        day_of_month='*/7',
+        month_of_year='*',
+    )
+
+    primaries.task = PeriodicTask.objects.create(
+        name=f'{primaries.party.title}, id {primaries.party.pk} party primaries',
+        task='finish_primaries',
+        crontab=schedule,
+        # clocked=clock,
+        # one_off=True,
+        args=json.dumps([primaries.party.pk]),
+        start_time=timezone.now(),
+    )
+    primaries.save()
 
 
 # таска включающая праймериз
