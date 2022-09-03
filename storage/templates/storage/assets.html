@@ -60,10 +60,10 @@
         <ul class="nav nav-tabs">
             {% for storage in storages %}
             <li {% if forloop.first %}class="active"{% endif %}>
-                <a data-toggle="tab" href="#{{ storage.pk }}">
+                <a data-toggle="tab" href="#{% localize off %}{{ storage.pk }}{% endlocalize %}">
                     {% if storage_alone and not storage.was_moved and player.region != storage.region %}
                     {{ storage.region }}
-                    <button type="submit" onclick="move_storage({{ storage.pk }})" class="save btn btn-default">
+                    <button type="submit" onclick="move_storage({% localize off %}{{ storage.pk }}{% endlocalize %})" class="save btn btn-default">
                         <img src="static/move_storage.png" width="15px" height="15px" alt="Переместить в текущий регион">
                     </button>
 
@@ -77,7 +77,7 @@
         </ul>
         <div class="tab-content">
             {% for storage in storages %}
-            <div class="tab-pane {% if forloop.first %}active{% endif %}" id="{{ storage.pk }}" style="height: 400px; overflow-y: auto; overflow-x: hidden;">
+            <div class="tab-pane {% if forloop.first %}active{% endif %}" id="{% localize off %}{{ storage.pk }}{% endlocalize %}" style="height: 400px; overflow-y: auto; overflow-x: hidden;">
                 <div class="row" style="margin-top: 3%;">
                     <div class="col-xs-2 col-sm-2 col-md-2">
                     {{ storage.valut|dict_key:'cash' }}:
@@ -95,7 +95,7 @@
                     {{ storage_cl|get_attr:group|dict_key:good }}:
                     </div>
                     <div class="col-xs-2 col-sm-2 col-md-2">
-                    <input style="width: 100%" type="number" class="good_input" data-good_name="{{ good }}" data-storage_id="{{ storage.pk }}" min="0" max="{% localize off %}{{ storage|get_attr:good }}{% endlocalize %}" value="0" step="1" name="{{ storage.pk }}_{{ good }}" maxlength="3">
+                    <input style="width: 100%" type="number" class="good_input" data-good_name="{{ good }}" data-storage_id="{% localize off %}{{ storage.pk }}{% endlocalize %}" min="0" max="{% localize off %}{{ storage|get_attr:good }}{% endlocalize %}" value="0" step="1" name="{% localize off %}{{ storage.pk }}{% endlocalize %}_{{ good }}" maxlength="3">
                     </div>
                     <div class="col-xs-2 col-sm-2 col-md-2">
                     / {{ storage|get_attr:good }}
@@ -107,7 +107,7 @@
                         Объём (ед.):
                     </div>
                     <div class="col-xs-2 col-sm-2 col-md-2">
-                        <div id="{{ storage.pk }}_{{ good }}_places" data-text="0">0</div>
+                        <div id="{% localize off %}{{ storage.pk }}{% endlocalize %}_{{ good }}_places" data-text="0">0</div>
                     </div>
                     {% endif %}
                 </div>
@@ -136,7 +136,7 @@
                     <select name="storage_options" id="storage_options">
                         <option disabled selected value="storage_none">Выберите склад</option>
                         {% for storage in storages %}
-                        <option id="storage_{{ storage.pk }}" value='{{ storage.pk }}'>{{ storage.region.region_name }}</option>
+                        <option id="storage_{% localize off %}{{ storage.pk }}{% endlocalize %}" value='{% localize off %}{{ storage.pk }}{% endlocalize %}'>{{ storage.region.region_name }}</option>
                         {% endfor %}
                     </select>
                 </div>
