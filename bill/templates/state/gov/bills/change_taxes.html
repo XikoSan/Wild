@@ -32,7 +32,7 @@
             {% else %}
             <img src="{% static 'img/congress.svg' %}" onclick="window.location.href = 'state/{{ bill.parliament.state.pk }}/'" align="left" style="cursor: pointer; width: 70px; height: 70px; margin-left: 5px">
             {% endif %}
-            Всё государство`
+            Всё государство
         {% else %}
             <img src="static/img/regions/{{ bill.region.on_map_id }}.png"  align="center"
                              style="width: 70px;">
