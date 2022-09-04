@@ -36,7 +36,7 @@
       {% csrf_token %}
       <!--Никнейм-->
       <h2>{% trans 'Никнейм' %}</h2>
-      <input type="text" id="your_name" name="nickname" maxlength="30">
+      <input type="text" id="your_name" name="nickname" value="{{ nickname }}" maxlength="30">
       <!--Аватар-->
       <h2>{% trans 'Аватар' %}</h2>
       <input type="file" name="image" accept="image/*" id="id_image">

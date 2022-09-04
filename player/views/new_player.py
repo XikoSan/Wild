@@ -16,6 +16,7 @@ from region.region import Region
 from storage.models.storage import Storage
 # from django.db.models import F
 from wild_politics.settings import JResponse
+from allauth.socialaccount.models import SocialAccount
 
 
 # Функция создания нового персонажа
@@ -103,9 +104,21 @@ def new_player(request):
                 return JResponse(data)
 
         # Если же это первый запрос к странице:
+        nickname = ''
+        if SocialAccount.objects.filter(user=request.user, provider='vk').exists():
+            account = SocialAccount.objects.filter(user=request.user, provider='vk')[0]
+            nickname = account.extra_data['first_name'] + ' ' + account.extra_data['last_name']
+
+        elif SocialAccount.objects.filter(user=request.user, provider='google').exists():
+            account = SocialAccount.objects.filter(user=request.user, provider='google')[0]
+            nickname = account.extra_data['name']
+
         groups = list(request.user.groups.all().values_list('name', flat=True))
         page = 'player/new_player.html'
         if 'redesign' not in groups:
             page = 'player/redesign/new_player.html'
 
-        return render(request, page, {'timezones': common, 'default': default, })
+        return render(request, page, {'timezones': common,
+                                      'default': default,
+                                      'nickname': nickname,
+                                      })
