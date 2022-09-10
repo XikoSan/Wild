@@ -2,7 +2,7 @@
 {% load l10n %}{% load i18n %}
 {% load floor_to_tens %}
 {% load static %}
-
+{% load tz %}
 {% block content %}
 <script>
     const var_mining_default = 'Добыча ресурсов';
@@ -63,7 +63,7 @@
             {% else %}
                 {% if premium %}
                 <button class="start_auto" onclick="start_auto(event, 'gold')" style="{% if auto_mining.resource == 'gold' %}display:none{% endif %}">авто</button>
-                <button class="cancel_auto" onclick="cancel_auto(event)" style="{% if not auto_mining or auto_mining.resource != 'gold' %}display:none {% endif %}">отмена</button>
+                <button class="cancel_auto" onclick="cancel_auto(event)" style="{% if not auto_mining or auto_mining.resource != 'gold' %}display:none {% endif %}">до {{ auto_mining.task.start_time|timezone:player.time_zone|date:"H:i" }}</button>
                 {% endif %}
             <button class="btn-mining">добыча</button>
             {% endif %}
@@ -83,7 +83,7 @@
                 {% else %}
                     {% if premium %}
                 <button class="start_auto" onclick="start_auto(event, 'oil')" style="{% if auto_mining.resource == 'oil' %}display:none{% endif %}">авто</button>
-                <button class="cancel_auto" onclick="cancel_auto(event)" style="{% if not auto_mining or auto_mining.resource != 'oil' %}display:none {% endif %}">отмена</button>
+                <button class="cancel_auto" onclick="cancel_auto(event)" style="{% if not auto_mining or auto_mining.resource != 'oil' %}display:none {% endif %}">до {{ auto_mining.task.start_time|timezone:player.time_zone|date:"H:i" }}</button>
                     {% endif %}
                 <button class="btn-mining">добыча</button>
                 {% endif %}
@@ -103,7 +103,7 @@
             {% else %}
                 {% if premium %}
             <button class="start_auto" onclick="start_auto(event, 'ore')" style="{% if auto_mining.resource == 'ore' %}display:none{% endif %}">авто</button>
-            <button class="cancel_auto" onclick="cancel_auto(event)" style="{% if not auto_mining or auto_mining.resource != 'ore' %}display:none {% endif %}">отмена</button>
+            <button class="cancel_auto" onclick="cancel_auto(event)" style="{% if not auto_mining or auto_mining.resource != 'ore' %}display:none {% endif %}">до {{ auto_mining.task.start_time|timezone:player.time_zone|date:"H:i" }}</button>
                 {% endif %}
             <button class="btn-mining">добыча</button>
             {% endif %}
