@@ -61,8 +61,8 @@ class Party(models.Model):
         schedule, created = CrontabSchedule.objects.get_or_create(
                                                                     minute=str(timezone.now().now().minute),
                                                                     hour=str(timezone.now().now().hour),
-                                                                    day_of_week='*/7',
-                                                                    day_of_month='*',
+                                                                    day_of_week='*',
+                                                                    day_of_month='*/7',
                                                                     month_of_year='*',
                                                                    )
         # schedule, created = CrontabSchedule.objects.get_or_create(
