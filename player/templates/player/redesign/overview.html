@@ -134,7 +134,7 @@
             {% if player.region.state %}
                 {% if player.region.state.image %}
                 <!--Картинка слева - герб-->
-                <img class="ct__view-info-image" src="{{ region.state.image.url }}" alt="">
+                <img class="ct__view-info-image" src="{{ player.region.state.image.url }}" alt="{{ player.region.state.title }}">
                 {% else %}
                 <!--SVG картинка слева заглушка государства-->
                 <svg class="ct__view-info-image" width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
