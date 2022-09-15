@@ -1,0 +1,177 @@
+{% load get_sum %}
+{% load get_sub %}
+{% load get_mul %}
+{% load i18n %}
+{% load tz %}
+{% load static %}
+{% load get_hh_mm_ss %}
+<script src='{% static "overview_skills.js" %}?{{ csrf_token }}'></script>
+<!--верхняя часть стат-->
+<div class="overview__love-stat-top">
+<!--Кнопка закрытия вкладки-->
+<button class="overview__love-stat-close" onclick="openPartiesTab()">
+  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M1 1L31 31M31 1L1.53571 30.4643" stroke="white"/>
+  </svg>
+</button>
+<!--сила-->
+<div class="overview__love-stat-content active">
+  <h2>Сила</h2>
+  <div style="background-color: tomato;"></div>
+  {% if train and train.skill == 'power' %}
+  <p class="overview__love-stat-timer">Завершение: {{ train.end_dtime|timezone:player.time_zone|date:"d.m.Y H:i" }}</p>
+  {% endif %}
+  <p>Стоимость: ${{ player.power|get_sum:power_count|get_sum:1|get_mul:1000 }}</p>
+  <span>Время изучения:
+        {% if premium %}
+            {{ player.power|get_sum:power_count|get_sum:1|get_mul:2400|get_hh_mm_ss }}
+        {% else %}
+            {{ player.power|get_sum:power_count|get_sum:1|get_mul:3600|get_hh_mm_ss }}
+        {% endif %}
+  </span>
+  <button class="overview__love-stat-learn" {% if not train or premium and has_slot  %} onclick="up_skill('power')" {% else %} disabled {% endif %}>
+    {% if train %}
+        {% if premium %}
+            {% if has_slot %}
+                в очередь
+            {% else %}
+                недоступно
+            {% endif %}
+        {% else %}
+            {% if train.skill == 'power' %}
+                изучается...
+            {% else %}
+                недоступно
+            {% endif %}
+        {% endif %}
+    {% else %}
+    изучить
+    {% endif %}
+  </button>
+</div>
+<!--интеллект-->
+<div class="overview__love-stat-content">
+  <h2>Интеллект</h2>
+  <div style="background-color: #4791FF;"></div>
+  {% if train and train.skill == 'knowledge' %}
+  <p class="overview__love-stat-timer">Завершение: {{ train.end_dtime|timezone:player.time_zone|date:"d.m.Y H:i" }}</p>
+  {% endif %}
+  <p>Стоимость: ${{ player.knowledge|get_sum:knowledge_count|get_sum:1|get_mul:1000 }}</p>
+  <span>Время изучения:
+        {% if premium %}
+            {{ player.knowledge|get_sum:knowledge_count|get_sum:1|get_mul:2400|get_hh_mm_ss }}
+        {% else %}
+            {{ player.knowledge|get_sum:knowledge_count|get_sum:1|get_mul:3600|get_hh_mm_ss }}
+        {% endif %}
+  </span>
+  <button class="overview__love-stat-learn" {% if not train or premium and has_slot  %} onclick="up_skill('knowledge')" {% else %} disabled {% endif %}>
+    {% if train %}
+        {% if premium %}
+            {% if has_slot %}
+                в очередь
+            {% else %}
+                недоступно
+            {% endif %}
+        {% else %}
+            {% if train.skill == 'power' %}
+                изучается...
+            {% else %}
+                недоступно
+            {% endif %}
+        {% endif %}
+    {% else %}
+    изучить
+    {% endif %}
+  </button>
+</div>
+<!--выносливость-->
+<div class="overview__love-stat-content">
+  <h2>Выносливость</h2>
+  <div style="background-color: #8DFF47;"></div>
+  {% if train and train.skill == 'endurance' %}
+  <p class="overview__love-stat-timer">Завершение: 02.12.2022 13:56</p>
+  {% endif %}
+  <p>Стоимость: ${{ player.endurance|get_sum:endurance_count|get_sum:1|get_mul:1000 }}</p>
+  <span>Время изучения:
+        {% if premium %}
+            {{ player.endurance|get_sum:endurance_count|get_sum:1|get_mul:2400|get_hh_mm_ss }}
+        {% else %}
+            {{ player.endurance|get_sum:endurance_count|get_sum:1|get_mul:3600|get_hh_mm_ss }}
+        {% endif %}
+  </span>
+  <button class="overview__love-stat-learn" {% if not train or premium and has_slot  %} onclick="up_skill('endurance')" {% else %} disabled {% endif %}>
+    {% if train %}
+        {% if premium %}
+            {% if has_slot %}
+                в очередь
+            {% else %}
+                недоступно
+            {% endif %}
+        {% else %}
+            {% if train.skill == 'power' %}
+                изучается...
+            {% else %}
+                недоступно
+            {% endif %}
+        {% endif %}
+    {% else %}
+    изучить
+    {% endif %}
+  </button>
+</div>
+
+<!--кнопка древа навыков-->
+<button class="overview__love-stat-three" onclick="window.location.href = '{% url 'skills_list' %}'">
+  <svg width="176" height="31" viewBox="0 0 176 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 6.26923L7.05128 0.5H176V23.5769L167.538 30.5H0V6.26923Z" fill="var(--c10one)"/>
+  </svg>
+  <span>дерево навыков</span>
+</button>
+{% if premium %}
+<!--прем блок-->
+<div class="overview__love-prem">
+    {% if queue %}
+    <!--таймер прем очереди-->
+    <p class="overview__love-prem-timer">Завершение: {{ last_skill.end_dtime|timezone:player.time_zone|date:"d.m.Y H:i" }}</p>
+    {% endif %}
+    <!--премиум очередь навыков-->
+    <ul class="overview__love-prem-list">
+    {% for perk in queue %}
+    <li class="overview__love-prem-item
+    {% if perk.skill == 'power' %}
+        str
+    {% elif perk.skill == 'knowledge' %}
+    int
+    {% elif perk.skill == 'endurance' %}
+    sta
+    {% else %}
+    skill
+    {% endif %}
+    ">
+      <svg width="37" height="37" viewBox="0 0 37 37" xmlns="http://www.w3.org/2000/svg">
+        <path class="pth" d="M0.5 35.9V6.27176L6.19269 0.5H35.9V30.696L30.7673 35.9H0.5Z"/>
+        <path class="pth" d="M18 11V25"/>
+        <path class="pth" d="M11 18L25 18"/>
+      </svg>
+    </li>
+    {% endfor %}
+
+    {% if has_slot %}
+    {% with 5|get_sub:skills_count as free_slots %}
+        {% with ''|center:free_slots as range %}
+            {% for _ in range %}
+    <li class="overview__love-prem-item">
+      <svg width="37" height="37" viewBox="0 0 37 37" xmlns="http://www.w3.org/2000/svg">
+        <path class="pth" d="M0.5 35.9V6.27176L6.19269 0.5H35.9V30.696L30.7673 35.9H0.5Z"/>
+        <path class="pth" d="M18 11V25"/>
+        <path class="pth" d="M11 18L25 18"/>
+      </svg>
+    </li>
+            {% endfor %}
+        {% endwith %}
+    {% endwith %}
+    {% endif %}
+    </ul>
+</div>
+{% endif %}
+</div>

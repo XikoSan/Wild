@@ -5,7 +5,7 @@ from player.logs.skill_training import SkillTraining
 import copy
 
 @register.inclusion_tag('player/overview_skills.html')
-def skills(player, queue_need):
+def skills(player):
     train = None
     has_slot = True
 
@@ -61,7 +61,4 @@ def skills(player, queue_need):
         'queue': queue,
         # последний навык в очереди изучения
         'last_skill': last_skill,
-
-        # выводить ссылку на очередь навыков
-        'queue_need': queue_need,
     }

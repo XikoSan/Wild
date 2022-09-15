@@ -1,14 +1,17 @@
 import json
 from datetime import datetime
-
+import random
 import pytz
 import redis
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.templatetags.static import static
 from django.utils.translation import ugettext as _
-
+from state.models.parliament.parliament_party import ParliamentParty
+from state.models.parliament.parliament import Parliament
 from chat.models.stickers_ownership import StickersOwnership
+from chat.models.sticker import Sticker
+from chat.models.sticker_pack import StickerPack
 from gov.models.president import President
 from gov.models.presidential_voting import PresidentialVoting
 from party.party import Party
@@ -16,6 +19,7 @@ from player.decorators.player import check_player
 from player.player import Player
 from polls.models.poll import Poll
 from region.region import Region
+from state.models.state import State
 from wild_politics.settings import TIME_ZONE, sentry_environment
 
 # главная страница
@@ -24,21 +28,48 @@ from wild_politics.settings import TIME_ZONE, sentry_environment
 def overview(request):
     player = Player.get_instance(account=request.user)
 
+    # регионы государства если они есть
+    if player.region.state:
+        regions_state = Region.objects.filter(state=player.region.state)
+    else:
+        regions_state = [player.region, ]
+
+    # партии
     region_parties = Party.objects.filter(deleted=False, region=player.region).count()
     world_parties = Party.objects.filter(deleted=False).count()
+    if player.region.state:
+        state_parties = Party.objects.filter(region__in=regions_state, deleted=False).count()
+    else:
+        state_parties = region_parties
 
+    # население
     world_pop = Player.objects.all().count()
     region_pop = Player.objects.filter(region=player.region).count()
-    state_pop = region_pop
-
-    region_parties_list = Party.objects.filter(deleted=False, region=player.region)
-
     if player.region.state:
-        reigions_state = Region.objects.filter(state=player.region.state)
-        state_pop = Player.objects.filter(region__in=reigions_state).count()
+        state_pop = Player.objects.filter(region__in=regions_state).count()
+    else:
+        state_pop = region_pop
+
+    # число стран
+    world_states = State.actual.all().count()
+
+    # партии
+    has_parl = False
+    p_parties_list = None
+    if player.region.state:
+        parties_list = Party.objects.filter(deleted=False, region__in=regions_state)
+        # парламентские партии
+        if Parliament.objects.filter(state=player.region.state).exists():
+            has_parl = True
+            p_parties_list = ParliamentParty.objects.filter(parliament=Parliament.objects.get(state=player.region.state))
+    else:
+        parties_list = Party.objects.filter(deleted=False, region=player.region)
 
     messages = []
-    stickers = None
+
+    stickers_dict = {}
+    stickers_header_dict = {}
+    header_img_dict = {}
 
     if not player.chat_ban:
         r = redis.StrictRedis(host='redis', port=6379, db=0)
@@ -73,11 +104,19 @@ def overview(request):
 
         stickers = StickersOwnership.objects.filter(owner=player)
 
+        for sticker_own in stickers:
+            # название пака
+            stickers_header_dict[sticker_own.pack.pk] = sticker_own.pack.title
+            #  получим рандомную картинку для заголовка
+            header_img_dict[sticker_own.pack.pk] = random.choice(Sticker.objects.filter(pack=sticker_own.pack)).image.url
+            # все остальные картинки - в словарь
+            stickers_dict[sticker_own.pack.pk] = Sticker.objects.filter(pack=sticker_own.pack)
+
     http_use = False
     if sentry_environment == "development":
         http_use = True
 
-    polls = Poll.actual.all()
+    # polls = Poll.actual.all()
 
     president_post = has_voting = None
     # если есть гос
@@ -91,31 +130,41 @@ def overview(request):
 
     groups = list(player.account.groups.all().values_list('name', flat=True))
     page = 'player/overview.html'
-    # if 'redesign' not in groups:
-    #     page = 'player/redesign/overview.html'
+    if 'redesign' not in groups:
+        page = 'player/redesign/overview.html'
 
     # отправляем в форму
     response = render(request, page, {
         'page_name': _('Обзор'),
 
         'player': player,
+
         'region_parties': region_parties,
         'world_parties': world_parties,
+        'state_parties': state_parties,
 
         'world_pop': world_pop,
         'state_pop': state_pop,
         'region_pop': region_pop,
 
-        'regions_count': Region.objects.all().count(),
+        'world_states': world_states,
 
-        'region_parties_list': region_parties_list,
+        'regions_count': Region.objects.all().count(),
+        'world_free': Region.objects.filter(state=None).count(),
+
+        'parties_list': parties_list,
+        'has_parl': has_parl,
+        'p_parties_list': p_parties_list,
 
         'messages': messages,
-        'stickers': stickers,
+
+        'stickers_header_dict': stickers_header_dict,
+        'header_img_dict': header_img_dict,
+        'stickers_dict': stickers_dict,
 
         'http_use': http_use,
 
-        'polls': polls,
+        # 'polls': polls,
 
         'has_voting': has_voting,
         'president': president_post,

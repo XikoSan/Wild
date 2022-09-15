@@ -4,9 +4,12 @@ from django.apps import apps
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.utils import timezone
-
+from player.actual_manager import ActualManager
 
 class State(models.Model):
+    objects = models.Manager()  # Менеджер по умолчанию
+    actual = ActualManager()  # Менеджер активных записей
+
     # название страны
     title = models.CharField(max_length=50, verbose_name='Название государства')
     # герб страны
