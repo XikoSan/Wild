@@ -56,14 +56,14 @@
           <div class="overview__view-info ct__view-info">
             <h2>мир</h2>
             <ul class="ct__view-info-list">
-              <li class="ct__view-info-item">
+              <li class="ct__view-info-item" onclick="window.location.href = '/world/players/'">
                 <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M9.29292 4C9.29292 4.78951 8.58303 5.5 7.61667 5.5C6.65032 5.5 5.94043 4.78951 5.94043 4C5.94043 3.21049 6.65032 2.5 7.61667 2.5C8.58303 2.5 9.29292 3.21049 9.29292 4Z" stroke="var(--c10two)"/>
                   <path d="M4.35254 12C4.35254 7.2 6.16608 6 7.61691 6C11.0989 6 10.8813 10 10.8813 12H4.35254Z" stroke="var(--c10two)"/>
                 </svg>
                 <span>{{ world_pop }}</span><!--Количество игроков-->
               </li>
-              <li class="ct__view-info-item">
+              <li class="ct__view-info-item" onclick="window.location.href = '/region/{{ player.region.pk }}/parties/'">
                 <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M9.4311 4C9.4311 4.78951 8.72121 5.5 7.75486 5.5C6.7885 5.5 6.07861 4.78951 6.07861 4C6.07861 3.21049 6.7885 2.5 7.75486 2.5C8.72121 2.5 9.4311 3.21049 9.4311 4Z" stroke="var(--c10two)"/>
                   <path d="M5.07882 4.5C5.07882 5.01337 4.61252 5.5 3.94664 5.5C3.28076 5.5 2.81445 5.01337 2.81445 4.5C2.81445 3.98663 3.28076 3.5 3.94664 3.5C4.61252 3.5 5.07882 3.98663 5.07882 4.5Z" stroke="var(--c10two)"/>
@@ -103,7 +103,7 @@
           </div>
           <!--Блок ГОСУДАРСТВО-->
           <div class="overview__view-info ct__view-info">
-            <h2>{% if player.region.state %}{{ player.region.state.title }}{% else %}независимый регион{% endif %}</h2>
+            <h2 {% if player.region.state %}onclick="window.location.href = 'state/{{ player.region.state.pk }}/'"{% endif %}>{% if player.region.state %}{{ player.region.state.title }}{% else %}независимый регион{% endif %}</h2>
             <ul class="ct__view-info-list">
               <li class="ct__view-info-item">
                 <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -112,13 +112,13 @@
                 </svg>
                 <span>{{ state_pop }}</span><!--Количество игроков-->
               </li>
-<!--              <li class="ct__view-info-item">-->
-<!--                <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">-->
-<!--                  <path d="M9.29292 4C9.29292 4.78951 8.58303 5.5 7.61667 5.5C6.65032 5.5 5.94043 4.78951 5.94043 4C5.94043 3.21049 6.65032 2.5 7.61667 2.5C8.58303 2.5 9.29292 3.21049 9.29292 4Z" stroke="var(&#45;&#45;c10one)"/>-->
-<!--                  <path d="M4.35254 12C4.35254 7.2 6.16608 6 7.61691 6C11.0989 6 10.8813 10 10.8813 12H4.35254Z" stroke="var(&#45;&#45;c10one)"/>-->
-<!--                </svg> -->
-<!--                <span>Null</span>&lt;!&ndash;Количество игроков online&ndash;&gt;-->
-<!--              </li>-->
+              <li class="ct__view-info-item">
+                <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M9.29292 4C9.29292 4.78951 8.58303 5.5 7.61667 5.5C6.65032 5.5 5.94043 4.78951 5.94043 4C5.94043 3.21049 6.65032 2.5 7.61667 2.5C8.58303 2.5 9.29292 3.21049 9.29292 4Z" stroke="var(--c10one)"/>
+                  <path d="M4.35254 12C4.35254 7.2 6.16608 6 7.61691 6C11.0989 6 10.8813 10 10.8813 12H4.35254Z" stroke="var(--c10one)"/>
+                </svg>
+                <span>{{ state_online }}</span><!--Количество игроков online-->
+              </li>
               <li class="ct__view-info-item">
                 <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M9.4311 4C9.4311 4.78951 8.72121 5.5 7.75486 5.5C6.7885 5.5 6.07861 4.78951 6.07861 4C6.07861 3.21049 6.7885 2.5 7.75486 2.5C8.72121 2.5 9.4311 3.21049 9.4311 4Z" stroke="var(--c10two)"/>
@@ -151,7 +151,7 @@
                 {% endif %}
             {% else %}
             <!--SVG картинка флага-->
-            <svg class="ct__view-info-image" width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg class="ct__view-info-image" width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg" onclick="window.location.href = 'state/{{ player.region.state.pk }}/'">
               <path d="M4.0083 19.9797C5.79935 15.9581 6.90009 11.8186 7.22658 10.2516C9.12957 11.108 11.3777 11.7255 12.2639 11.9272C14.6893 12.672 16.5394 11.1204 17.1613 10.2516C18.5046 8.20354 19.9909 7.31917 20.5661 7.13299C22.8796 6.61167 26.1632 7.90876 27.5158 8.62246C23.1874 11.1546 23.1003 16.1009 23.5979 18.2575C20.4262 16.1722 17.3634 16.5508 16.2284 17.0007C14.027 18.0434 13.0102 19.4211 12.777 19.9797C12.0307 21.7298 9.60532 21.826 8.48591 21.6553C6.5083 21.3574 4.67683 20.4141 4.0083 19.9797Z" fill="var(--c10one)"/>
               <path d="M18.1408 33.0126L27.9822 8.34319C28.5792 7.71017 28.915 8.26561 29.0083 8.62246L19.4001 33.0126H18.1408Z" fill="var(--c10one)"/>
               <path d="M0.5 17C0.5 7.88567 7.88567 0.5 17 0.5C26.1143 0.5 33.5 7.88567 33.5 17C33.5 26.1143 26.1143 33.5 17 33.5C7.88567 33.5 0.5 26.1143 0.5 17Z" stroke="var(--c10two)"/>
@@ -169,13 +169,13 @@
                 </svg>
                 <span>{{ region_pop }}</span><!--Количество игроков-->
               </li>
-<!--              <li class="ct__view-info-item">-->
-<!--                <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">-->
-<!--                  <path d="M9.29292 4C9.29292 4.78951 8.58303 5.5 7.61667 5.5C6.65032 5.5 5.94043 4.78951 5.94043 4C5.94043 3.21049 6.65032 2.5 7.61667 2.5C8.58303 2.5 9.29292 3.21049 9.29292 4Z" stroke="var(&#45;&#45;c10one)"/>-->
-<!--                  <path d="M4.35254 12C4.35254 7.2 6.16608 6 7.61691 6C11.0989 6 10.8813 10 10.8813 12H4.35254Z" stroke="var(&#45;&#45;c10one)"/>-->
-<!--                </svg> -->
-<!--                <span>Null</span>&lt;!&ndash;Количество игроков online&ndash;&gt;-->
-<!--              </li>-->
+              <li class="ct__view-info-item">
+                <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M9.29292 4C9.29292 4.78951 8.58303 5.5 7.61667 5.5C6.65032 5.5 5.94043 4.78951 5.94043 4C5.94043 3.21049 6.65032 2.5 7.61667 2.5C8.58303 2.5 9.29292 3.21049 9.29292 4Z" stroke="var(--c10one)"/>
+                  <path d="M4.35254 12C4.35254 7.2 6.16608 6 7.61691 6C11.0989 6 10.8813 10 10.8813 12H4.35254Z" stroke="var(--c10one)"/>
+                </svg>
+                <span>{{ region_online }}</span><!--Количество игроков online-->
+              </li>
               <li class="ct__view-info-item">
                 <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M9.4311 4C9.4311 4.78951 8.72121 5.5 7.75486 5.5C6.7885 5.5 6.07861 4.78951 6.07861 4C6.07861 3.21049 6.7885 2.5 7.75486 2.5C8.72121 2.5 9.4311 3.21049 9.4311 4Z" stroke="var(--c10two)"/>
@@ -406,10 +406,10 @@
                   <!--текст сообщения-->
                   {% if '/stickers/' in message|dict_key:'content' %}
                       {% autoescape off %}
-                  <p>{{ message|dict_key:'content' }}</p>
+                  <p {% if player.account.groups.all.0.name == "chat_moderator" %}class="moder"{% endif %}>{{ message|dict_key:'content' }}</p>
                       {% endautoescape %}
                   {% else %}
-                  <p>{{ message|dict_key:'content' }}</p>
+                  <p {% if player.account.groups.all.0.name == "chat_moderator" %}class="moder"{% endif %}>{{ message|dict_key:'content' }}</p>
                   {% endif %}
                   {% if player.account.groups.all.0.name == "chat_moderator" %}
                   <!--кнопки для модераторов-->
@@ -447,7 +447,7 @@
                 </div>
                 <div class="overview__chat-message-body">
                   <!--текст сообщения-->
-                  <p></p>
+                  <p {% if player.account.groups.all.0.name == "chat_moderator" %}class="moder"{% endif %}></p>
                   {% if player.account.groups.all.0.name == "chat_moderator" %}
                   <!--кнопки для модераторов-->
                   <div class="overview__chat-message-btns">
@@ -495,6 +495,7 @@
       <!--конец: Правая вкладка - ЧАТ-->
     <!--МОдальный выбор стикеров-->
     <div class="overview__stickers" id="overview__stickers">
+      <div class="overview__stickers-close-overlay" id="overview__stickers-close-overlay"></div>
       <div class="overview__stickers-header">
         <!--кнопка магазина-->
         <a href="{% url 'stickers_shop' %}" class="overview__stickers-shop">
@@ -578,6 +579,7 @@
 </main>
 
 <script>
+  const overviewStickers = document.getElementById('overview__stickers');
   // переключение главных блоков - обзор/чат
   const overviewMainBlock = {
     overview: document.getElementById('overview__view'),
@@ -588,6 +590,7 @@
     if (num === 0) {
       overviewMainBlock.overview.classList.add('active')
       overviewMainBlock.chat.classList.remove('active')
+      overviewStickers.classList.remove('active')
     } else {
       overviewMainBlock.overview.classList.remove('active')
       overviewMainBlock.chat.classList.add('active')
@@ -631,10 +634,13 @@
   }
 
   // стикеры
-  const overviewStickers = document.getElementById('overview__stickers');
+  const overviewStickersCloseOverlay = document.getElementById('overview__stickers-close-overlay');
   function showHideStickers() {
     overviewStickers.classList.toggle('active');
   }
+  overviewStickersCloseOverlay.addEventListener('click', () => {
+    overviewStickers.classList.remove('active');
+  })
   const overviewStickersTabs = document.querySelectorAll('.overview__stickers-tab');
   const overviewStickersContainers = document.querySelectorAll('.overview__stickers-container');
   overviewStickersTabs.forEach((tab, index) => {

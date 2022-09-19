@@ -168,6 +168,11 @@ html {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
           font-size: calc(100vw / 360);
+          position: relative;
+          margin: 0;
+          width: 100vw;
+          height: 100vh;
+          overflow: hidden;
 }
 *,
 *:before,
@@ -180,6 +185,11 @@ body {
   color: var(--c10one);
   background-color: var(--c60);
   min-height: 100vh;
+  position: relative;
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
 }
 main {
   position: relative;
@@ -1843,7 +1853,7 @@ a {
 
 .overview__love-stat-content {
   display: none;
-  padding-bottom: 10rem;
+  padding-bottom: 12rem;
 }
 
 .overview__love-stat-content.active {
@@ -1877,10 +1887,45 @@ a {
   text-align: center;
 }
 
+.overview__love-p-with-svg {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  font-weight: 400;
+  font-size: 14rem;
+  line-height: 20rem;
+  text-align: center;
+  letter-spacing: -0.04em;
+  color: var(--c10one);
+  text-align: center;
+}
+
+.overview__love-p-with-svg > svg {
+  flex-shrink: 0;
+  display: block;
+  width: 14rem;
+  height: 14rem;
+  margin-right: 4rem;
+}
+
+div.overview__love-stat-price-time {
+  display: flex;
+  padding: 0 24rem;
+  justify-content: space-between;
+  margin-bottom: 12rem;
+  height: auto;
+  padding-top: 16rem;
+}
+
 p.overview__love-stat-timer {
   font-size: 10rem;
   line-height: 15rem;
   letter-spacing: 0;
+  margin-bottom: 1rem;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content;
 }
 
 .overview__love-stat-content > span {
@@ -1914,7 +1959,7 @@ p.overview__love-stat-timer {
   position: relative;
   display: block;
   margin: 0 auto;
-  margin-bottom: 10rem;
+  margin-bottom: 12rem;
   padding: 0;
   width: 176rem;
   height: 31rem;
@@ -1975,6 +2020,11 @@ p.overview__love-stat-timer {
   text-align: center;
   color: var(--c10one);
   text-align: center;
+  margin-bottom: 4rem;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content;
 }
 
 .overview__love-prem-list {
@@ -1982,6 +2032,7 @@ p.overview__love-stat-timer {
   list-style: none;
   display: flex;
   justify-content: space-between;
+  padding-top: 19rem;
 }
 
 .overview__love-prem-item,
@@ -2120,7 +2171,7 @@ p.overview__love-stat-timer {
 }
 
 .overview__par-item {
-  padding: 2rem 0;
+  padding: 4rem 0;
 }
 
 .overview__par-link {
@@ -2147,6 +2198,7 @@ p.overview__love-stat-timer {
   line-height: 18rem;
   letter-spacing: -0.04em;
   color: var(--c10one);
+  padding-left: 8rem;
 }
 
 .overview__par-no {
@@ -2275,6 +2327,12 @@ p.overview__love-stat-timer {
   line-height: 18rem;
   letter-spacing: -0.04em;
   color: var(--c10one);
+  word-wrap: break-word;
+  width: 286rem;
+}
+
+.overview__chat-message-body p.moder {
+  width: 266rem;
 }
 
 .overview__chat-message-btns {
@@ -2347,6 +2405,7 @@ p.overview__love-stat-timer {
 }
 
 .overview__stickers {
+  z-index: 5;
   position: fixed;
   left: 0;
   bottom: 102rem;
@@ -2356,6 +2415,14 @@ p.overview__love-stat-timer {
   transition: all 0.25s ease;
   opacity: 0;
   pointer-events: none;
+}
+
+.overview__stickers-close-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(100vh - 320rem);
 }
 
 .overview__stickers.active {

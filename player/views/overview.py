@@ -21,6 +21,7 @@ from polls.models.poll import Poll
 from region.region import Region
 from state.models.state import State
 from wild_politics.settings import TIME_ZONE, sentry_environment
+from region.views.lists.get_regions_online import get_region_online
 
 # главная страница
 @login_required(login_url='/')
@@ -44,11 +45,21 @@ def overview(request):
 
     # население
     world_pop = Player.objects.all().count()
-    region_pop = Player.objects.filter(region=player.region).count()
+
+    # население и онлайн рега
+    region_pop, region_online = get_region_online(player.region)
+
+    # население и онлайн госа
     if player.region.state:
-        state_pop = Player.objects.filter(region__in=regions_state).count()
+        state_pop = 0
+        state_online = 0
+        for st_region in regions_state:
+            region_pop_t, region_online_t = get_region_online(st_region)
+            state_pop += region_pop_t
+            state_online += region_online_t
     else:
         state_pop = region_pop
+        state_online = region_online
 
     # число стран
     world_states = State.actual.all().count()
@@ -144,8 +155,12 @@ def overview(request):
         'state_parties': state_parties,
 
         'world_pop': world_pop,
+
         'state_pop': state_pop,
+        'state_online': state_online,
+
         'region_pop': region_pop,
+        'region_online': region_online,
 
         'world_states': world_states,
 
