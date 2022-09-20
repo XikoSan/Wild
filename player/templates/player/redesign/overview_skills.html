@@ -117,7 +117,7 @@
   <h2>Выносливость</h2>
   <div style="background-color: #8DFF47;"></div>
   {% if train and train.skill == 'endurance' %}
-  <p class="overview__love-stat-timer">Завершение: 02.12.2022 13:56</p>
+  <p class="overview__love-stat-timer">Завершение: {{ train.end_dtime|timezone:player.time_zone|date:"d.m.Y H:i" }}</p>
   {% endif %}
   <div class="overview__love-stat-price-time">
     <p class="overview__love-p-with-svg">
