@@ -1,0 +1,65 @@
+{% extends 'player/header.html' %}
+{% load static %}
+{% load dict_key %}
+{% load pagination %}
+{% block content %}
+<div id="over" class="tabcontent">
+        <div class="row">
+            <div class="col-xs-2 col-sm-2 col-md-2">
+            </div>
+            <div class="col-xs-8 col-sm-8 col-md-8">
+                <div class="row">
+                    <!--регион, войны, статы/чатик-->
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="row">
+                            <h3>Партий в государстве
+                                {% if request_state.image %}
+                                <img src="{{ request_state.image.url }}" width="25px" height="25px" onclick="window.location.href = 'state/{{ request_state.pk }}/'" align="left" style="cursor: pointer;">
+                                {% else %}
+                                <img src="{% static 'img/congress.svg' %}" width="25px" height="25px" onclick="window.location.href = 'state/{{ request_state.pk }}/'" align="left" style="cursor: pointer;">
+                                {% endif %}
+
+                                {{ request_state.title }}: {{ parties_count }}
+                            </h3>
+                        </div>
+                        <div class="row">
+                             <div class="col-xs-12 col-sm-12 col-md-12" style="height: 700px; overflow-y: auto;">
+                                {% for party in lines %}
+                                 <div class="row">
+                                    <div class="col-xs-2 col-sm-2 col-md-2">
+                                        <!--если пользователь загрузил аватарку-->
+                                        <a href='/party/{{ party.pk }}' target="_blank">
+                                        {% if party.image %}
+                                            <img src="{{ party.image.url }}" width="50" height="50" align="right">
+                                        {% else %}
+                                            <img src="{% static 'img/nopic_party.png' %}" width="50" height="50" align="right">
+                                        {% endif %}
+                                        </a>
+                                    </div>
+                                    <div class="col-xs-4 col-sm-4 col-md-4">
+                                        <h3 style="cursor: pointer" onclick="window.open('/party/{{ party.pk }}/', '_blank')">{{ party.title }}</h3>
+                                    </div>
+                                    <div class="col-xs-1 col-sm-1 col-md-1">
+                                        <h3>{{ sizes|dict_key:party }}</h3>
+                                    </div>
+                                    <div class="col-xs-1 col-sm-1 col-md-1">
+                                        <img src="/static/img/regions/{{ party.region.on_map_id }}.png" class='image' width='50' height='50'>
+                                    </div>
+                                    <div class="col-xs-4 col-sm-4 col-md-4">
+                                        <h3>{{ party.region.region_name }}</h3>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="row">
+                            {% pagination lines %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-2 col-sm-2 col-md-2">
+            </div>
+        </div>
+</div>
+{% endblock %}
