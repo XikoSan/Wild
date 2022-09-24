@@ -46,9 +46,9 @@ def open_war(request, class_name, pk):
             continue
 
         # если у игрока есть отряды этого типа
-        if getattr(war, squad_type).filter(owner=player, object_id=war.pk, deleted=False).exists():
+        if getattr(war, squad_type).filter(owner=player, object_id=war.pk, deployed=False, deleted=False).exists():
             # получаем все отряды текущего типа этой войны
-            squads_dict[squad_type] = getattr(war, squad_type).filter(owner=player, object_id=war.pk, deleted=False)
+            squads_dict[squad_type] = getattr(war, squad_type).filter(owner=player, object_id=war.pk, deployed=False, deleted=False)
 
         # получаем сумму юнитов всех уже сформированных отрядов этого типа
         param = None

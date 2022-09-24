@@ -39,8 +39,6 @@ def start_war(request):
 
         war.save()
 
-        # schedule, created = IntervalSchedule.objects.get_or_create(every=1, period=IntervalSchedule.HOURS)
-
         schedule, created = CrontabSchedule.objects.get_or_create(
                                                                     minute=str(timezone.now().now().minute),
                                                                     hour='*',

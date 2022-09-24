@@ -39,6 +39,8 @@ class Squad(models.Model):
     # время уничтожения отряда (после этого создается новый)
     destroy = models.DateTimeField(default=None, blank=True, null=True, verbose_name='Уничтожение')
 
+    # в бою
+    deployed = models.BooleanField(default=False, verbose_name='В бою')
     # удалено
     deleted = models.BooleanField(default=False, verbose_name='Удалено')
 

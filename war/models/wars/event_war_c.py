@@ -52,14 +52,12 @@ class EventWar(War):
         squads_dict = {}
 
         for squad_type in squads_list:
-            # сразу отмечаем что в бою
-            getattr(self, squad_type).filter(object_id=self.pk, deleted=False, deployed=False).update(deployed=True)
             # получаем все отряды текущего типа этой войны
             squads_dict[squad_type] = getattr(self, squad_type).filter(object_id=self.pk, deleted=False)
 
-        # from player.logs.print_log import log
-        # log('squads_dict')
-        # log(squads_dict)
+        from player.logs.print_log import log
+        log('squads_dict')
+        log(squads_dict)
 
         damage_dict = {}
         # по каждому типу отрядов получаем урон, наносимый ими
@@ -94,8 +92,8 @@ class EventWar(War):
         if not 'def' in damage_dict[squad_type]:
             damage_dict[squad_type]['def'] = {}
 
-        # log('damage_dict')
-        # log(damage_dict)
+        log('damage_dict')
+        log(damage_dict)
 
         hp_dict = {}
 
@@ -120,20 +118,73 @@ class EventWar(War):
                                 hp_dict[squad_type][squad.side] = getattr(squad, unit) * getattr(squad, 'specs')[unit][
                                     'hp']
 
-        # log('hp_dict')
-        # log(hp_dict)
+        log('hp_dict')
+        log(hp_dict)
 
+        side_damage_dict = {}
+        # узнаем сколько сейчас здоровья у юнитов на поле боя
+        for squad_type in squads_list:
+            side_damage_dict[squad_type] = {}
+            # по каждому юниту стороны боя
+            static_class = ContentType.objects.get(app_label="war", model=squad_type).model_class()
+            side_damage_dict[squad_type]['agr'] = {}
+            side_damage_dict[squad_type]['def'] = {}
+            for unit in getattr(static_class, 'specs').keys():
+                # для каждого типа юнитов, по которому этот юнит может бить
+                for target_type in getattr(static_class, 'specs')[unit]['damage'].keys():
+                    if target_type in side_damage_dict[squad_type]['agr']:
+                        side_damage_dict[squad_type]['agr'][target_type] += getattr(agr_side, unit) * \
+                                                                            getattr(static_class, 'specs')[
+                                                                                unit]['damage'][target_type]
+                    else:
+                        side_damage_dict[squad_type]['agr'][target_type] = getattr(agr_side, unit) * \
+                                                                           getattr(static_class, 'specs')[
+                                                                               unit]['damage'][target_type]
+
+                    if target_type in side_damage_dict[squad_type]['def']:
+                        side_damage_dict[squad_type]['def'][target_type] += getattr(def_side, unit) * \
+                                                                            getattr(static_class, 'specs')[
+                                                                                unit]['damage'][target_type]
+                    else:
+                        side_damage_dict[squad_type]['def'][target_type] = getattr(def_side, unit) * \
+                                                                           getattr(static_class, 'specs')[
+                                                                               unit]['damage'][target_type]
+
+        log('side_damage_dict')
+        log(side_damage_dict)
+
+        side_hp_dict = {}
+        # узнаем сколько сейчас здоровья у юнитов на поле боя
+        for squad_type in squads_list:
+            side_hp_dict[squad_type] = {}
+            # по каждому юниту стороны боя
+            static_class = ContentType.objects.get(app_label="war", model=squad_type).model_class()
+            for unit in getattr(static_class, 'specs').keys():
+                if 'agr' in side_hp_dict[squad_type]:
+                    side_hp_dict[squad_type]['agr'] += getattr(agr_side, unit) * \
+                                                       getattr(static_class, 'specs')[unit]['hp']
+                else:
+                    side_hp_dict[squad_type]['agr'] = getattr(agr_side, unit) * \
+                                                      getattr(static_class, 'specs')[unit]['hp']
+
+                if 'def' in side_hp_dict[squad_type]:
+                    side_hp_dict[squad_type]['def'] += getattr(def_side, unit) * \
+                                                       getattr(static_class, 'specs')[unit]['hp']
+                else:
+                    side_hp_dict[squad_type]['def'] = getattr(def_side, unit) * \
+                                                      getattr(static_class, 'specs')[unit]['hp']
+
+        log('side_hp_dict')
+        log(side_hp_dict)
         # =============================================================================================================
 
-        # отряды получают урон друг по другу
-        new_hp_dict = {}
-        free_dmg = {}
+        # юниты прошлой итерации боя получают урон от свежих юнитов текущей
+        # словарь новой прочности старых отрядов. По нему будем определять потери
+        new_side_hp_dict = {}
         for squad_type in squads_list:
             agr_damage = 0
             def_damage = 0
-            new_hp_dict[squad_type] = {}
-            free_dmg[squad_type] = {}
-
+            new_side_hp_dict[squad_type] = {}
             for source_type in squads_list:
                 # урон атакующему
                 if 'def' in damage_dict[source_type]:
@@ -144,31 +195,81 @@ class EventWar(War):
                     if squad_type in damage_dict[source_type]['agr']:
                         def_damage += damage_dict[source_type]['agr'][squad_type]
 
-            # считаем, сколько урона пройдет по укреплениям
-            if def_damage > hp_dict[squad_type]['def']:
-                free_dmg[squad_type]['agr'] = def_damage - hp_dict[squad_type]['def']
-            else:
-                free_dmg[squad_type]['agr'] = 0
+            new_side_hp_dict[squad_type]['agr'] = side_hp_dict[squad_type]['agr'] - agr_damage
+            new_side_hp_dict[squad_type]['def'] = side_hp_dict[squad_type]['def'] - def_damage
 
-            # считаем, сколько хп останется у отрядов в целом
+        # вносить урон от старой итерации по новой
+        # словарь новой прочности свежих отрядов. По нему будем определять потери
+        new_hp_dict = {}
+        for squad_type in squads_list:
+            agr_damage = 0
+            def_damage = 0
+            new_hp_dict[squad_type] = {}
+            for source_type in squads_list:
+                # урон атакующему
+                if squad_type in side_damage_dict[source_type]['def']:
+                    agr_damage += side_damage_dict[source_type]['def'][squad_type]
+                # урон обороняющемуся
+                if squad_type in side_damage_dict[source_type]['agr']:
+                    def_damage += side_damage_dict[source_type]['agr'][squad_type]
+
             new_hp_dict[squad_type]['agr'] = hp_dict[squad_type]['agr'] - agr_damage
             new_hp_dict[squad_type]['def'] = hp_dict[squad_type]['def'] - def_damage
 
-        # если урон у атакующих остался - его получают укрепления
+        # если урон остался - то свежие юниты противника получают остаток урона
+        free_dmg = {}
+        for squad_type in squads_list:
+            free_dmg[squad_type] = {}
+
+            if new_side_hp_dict[squad_type]['agr'] <= 0:
+                # узнаем, сколько урона ещё не реализованы
+                free_dmg[squad_type]['def'] = abs(new_side_hp_dict[squad_type]['agr'])
+            else:
+                free_dmg[squad_type]['def'] = 0
+
+            if new_side_hp_dict[squad_type]['def'] <= 0:
+                # узнаем, сколько урона ещё не реализованы
+                free_dmg[squad_type]['agr'] = abs(new_side_hp_dict[squad_type]['def'])
+            else:
+                free_dmg[squad_type]['agr'] = 0
+
+            # если у новых отрядов меньше прочности, чем у противника - атаки:
+            if new_hp_dict[squad_type]['agr'] < free_dmg[squad_type]['def']:
+                # запоминаем остаток атаки, зануляем ХП типа новых отрядов
+                free_dmg[squad_type]['def'] -= new_hp_dict[squad_type]['agr']
+                new_hp_dict[squad_type]['agr'] = 0
+            else:
+                new_hp_dict[squad_type]['agr'] = new_hp_dict[squad_type]['agr'] - free_dmg[squad_type]['def']
+                free_dmg[squad_type]['def'] = 0
+
+            if new_hp_dict[squad_type]['def'] < free_dmg[squad_type]['agr']:
+                free_dmg[squad_type]['agr'] -= new_hp_dict[squad_type]['def']
+                new_hp_dict[squad_type]['def'] = 0
+            else:
+                new_hp_dict[squad_type]['def'] = new_hp_dict[squad_type]['def'] - free_dmg[squad_type]['agr']
+                free_dmg[squad_type]['agr'] = 0
+
+        # если урон у атакующих ВСЁ ЕЩЁ остался - его получают укрепления
         agr_damage_sum = 0
         for squad_type in squads_list:
             if free_dmg[squad_type]['agr'] > 0:
                 agr_damage_sum += free_dmg[squad_type]['agr']
 
         # ==============================================================================================================
-        # разведки у атаки
-        drone_agr = 0
-        # разведки у защиты
-        drone_def = 0
-
-        # считаем, сколько юнитов полегло
+        # считаем, сколько процентов юнитов полегло
         for squad_type in squads_list:
             static_class = ContentType.objects.get(app_label="war", model=squad_type).model_class()
+            # узнаем процент выживших атаки:
+            if side_hp_dict[squad_type]['agr'] == 0:
+                side_lost_perc_agr = 0
+            else:
+                side_lost_perc_agr = new_side_hp_dict[squad_type]['agr'] / side_hp_dict[squad_type]['agr']
+
+            # узнаем процент выживших защиты:
+            if side_hp_dict[squad_type]['def'] == 0:
+                side_lost_perc_def = 0
+            else:
+                side_lost_perc_def = new_side_hp_dict[squad_type]['def'] / side_hp_dict[squad_type]['def']
 
             # узнаем процент выживших новых отрядов атаки:
             if hp_dict[squad_type]['agr'] == 0:
@@ -182,58 +283,46 @@ class EventWar(War):
             else:
                 lost_perc_def = new_hp_dict[squad_type]['def'] / hp_dict[squad_type]['def']
 
-            # занулить юнитов сторон боя
+            # по каждому юниту стороны боя
             for unit in getattr(static_class, 'specs').keys():
-                setattr(agr_side, unit, 0)
-                setattr(def_side, unit, 0)
+                if getattr(agr_side, unit) * side_lost_perc_agr < 0:
+                    setattr(agr_side, unit, 0)
+                else:
+                    setattr(agr_side, unit, int(getattr(agr_side, unit) * side_lost_perc_agr))
+                if getattr(def_side, unit) * side_lost_perc_def < 0:
+                    setattr(def_side, unit, 0)
+                else:
+                    setattr(def_side, unit, int(getattr(def_side, unit) * side_lost_perc_def))
 
             # по каждому отряду типа
             for squad in squads_dict[squad_type]:
                 # по каждому юниту отряда
-                has_units = False
                 for unit in getattr(squad, 'specs').keys():
                     if squad.side == 'agr':
                         if getattr(squad, unit) * lost_perc_agr < 0:
                             setattr(squad, unit, 0)
                         else:
-                            if int(getattr(squad, unit) * lost_perc_agr) > 0:
-                                has_units = True
-                                if unit == 'drone':
-                                    drone_agr += int(getattr(squad, unit) * lost_perc_agr)
-
                             setattr(squad, unit, int(getattr(squad, unit) * lost_perc_agr))
-                        # прописываем в стороны боя, чтобы можно было выводить
                         setattr(agr_side, unit, int(getattr(agr_side, unit) + getattr(squad, unit)))
-
                     else:
                         if getattr(squad, unit) * lost_perc_def < 0:
                             setattr(squad, unit, 0)
                         else:
-                            if int(getattr(squad, unit) * lost_perc_def) > 0:
-                                has_units = True
-                                if unit == 'drone':
-                                    drone_def += int(getattr(squad, unit) * lost_perc_def)
-
                             setattr(squad, unit, int(getattr(squad, unit) * lost_perc_def))
-                        # прописываем в стороны боя, чтобы можно было выводить
                         setattr(def_side, unit, int(getattr(def_side, unit) + getattr(squad, unit)))
-
-                # если все полегли
-                if not has_units:
-                    squad.destroy = timezone.now()
-                    squad.deleted = True
-                # сохраняем отряд с новым числом юнитов
-                squad.save()
 
         agr_side.save()
         def_side.save()
 
-        if not drone_def and drone_agr > 0:
+        if not def_side.drone and agr_side.drone > 0:
             self.recon_balance = 100
-        elif not drone_def and not drone_agr:
+        elif not def_side.drone and not agr_side.drone:
             self.recon_balance = 1
         else:
-            self.recon_balance = drone_agr / drone_def
+            self.recon_balance = agr_side.drone / def_side.drone
+
+        for squad_type in squads_list:
+            squads_dict[squad_type].update(deleted=True)
 
         if agr_damage_sum > self.hq_points:
             self.hq_points -= agr_damage_sum

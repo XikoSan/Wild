@@ -131,7 +131,7 @@ def send_squads(request):
                     # проверяем, известно ли нам о наличии или отсутсвии отряда такого типа
                     if not unit_class in squads_avail_dict:
                         # узнаем, нужен ли новый объект для юнитов. Если нужен будет, сделаем
-                        if unit_class.objects.filter(owner=player, object_id=war_pk, deleted=False,
+                        if unit_class.objects.filter(owner=player, object_id=war_pk, deployed=False, deleted=False,
                                                      side=request.POST.get('side')).exists():
                             squads_count_class[unit] = [unit_count, unit_class, True]
                             squads_avail_dict[unit_class] = True
@@ -168,7 +168,7 @@ def send_squads(request):
             # unit_list[2] - это наличие объекта отряда для юнита
             if unit_list[2]:
                 # unit_list[1] - это класс юнита
-                squad = unit_list[1].objects.select_for_update().get(owner=player, object_id=war_pk, deleted=False,
+                squad = unit_list[1].objects.select_for_update().get(owner=player, object_id=war_pk, deployed=False, deleted=False,
                                              side=request.POST.get('side'))
 
             else:
