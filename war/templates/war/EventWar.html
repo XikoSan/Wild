@@ -15,6 +15,11 @@
 {% endblock %}
 
 {% block content %}
+<style>
+  td, th {
+        padding: 15px;
+    }
+</style>
 <!-- Tab content -->
 <script>
     const war_id = '{{ war.pk }}';
@@ -38,264 +43,497 @@
 
 </script>
 <div id="over" class="tabcontent">
-    <div class="row">
-        <div class="col-xs-4 col-sm-4 col-md-4" align="center">
+    <ul class="nav nav-tabs">
+        <li class="active">
+            <a data-toggle="tab" href="#war_tab">Война</a>
+        </li>
+        <li>
+            <a data-toggle="tab" href="#war_report">Боевой отчет</a>
+        </li>
+    </ul>
+    <div class="tab-content" style="margin-top: 30px">
+        <div id="war_tab" class="tab-pane fade in active">
             <div class="row">
-                Атакует: <img src="/static/img/regions/{{ war.agr_region.on_map_id }}.png" width="25px" height="25px" alt="world_icon">{{ war.agr_region }}
-            </div>
-            <ul class="nav nav-tabs">
-                {% for squad_type in war|get_attr:'squads_list' %}
-                <li {% if forloop.counter0 == 0 %}class="active"{% endif %}><a data-toggle="tab" href="#agr_{{ squad_type }}">{{ war|get_attr:'squads_dict'|dict_key:squad_type }}</a></li>
-                {% endfor %}
-            </ul>
-            <div class="tab-content">
-                {% for squad_type in war|get_attr:'squads_list' %}
-                <div id="agr_{{ squad_type }}" class="tab-pane fade {% if forloop.counter0 == 0 %}in active{% endif %}">
-                {% with squad_cl=war|get_attr:squad_type|get_attr:'model' %}
-                    {% for unit in squad_cl|get_attr:'specs'|get_key_list %}
-                        {% if agr_side|get_attr:unit > 0 %}
-                    <div class="row" style="margin-top: 20px">
-                        <div class="col-xs-6 col-sm-6 col-md-6">
-                            {{ squad_cl|get_attr:'specs'|dict_key:unit|dict_key:'name' }}:
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6">
-                            {{ agr_side|get_attr:unit }}
-                        </div>
+                <div class="col-xs-4 col-sm-4 col-md-4" align="center">
+                    <div class="row">
+                        Атакует: <img src="/static/img/regions/{{ war.agr_region.on_map_id }}.png" width="25px" height="25px" alt="world_icon">{{ war.agr_region }}
                     </div>
-                        {% endif %}
-                    {% endfor %}
-                {% endwith %}
-                </div>
-                {% endfor %}
-            </div>
-        </div>
-        <div class="col-xs-4 col-sm-4 col-md-4" align="center">
-            <div class="row">
-                Фаза войны: {% if war.round|get_sum:1 > 24 %}24{% else %}{{ war.round|get_sum:1 }}{% endif %} / 24
-            </div>
-            <div class="row">
-                {% if not war.running %}<font color="red">Война завершилась</font>{% else %}Война завершится{% endif %}: {{ end_time|timezone:player.time_zone|date:"d.m.y H:i" }}
-            </div>
-            <div class="row" style="margin-top: 50px">
-                Прочность укреплений: {{ attrs_dict|dict_key:'hq_points' }}
-            </div>
-        </div>
-        <div class="col-xs-4 col-sm-4 col-md-4" align="center">
-            <div class="row">
-                Обороняется: <img src="/static/img/regions/{{ war.def_region.on_map_id }}.png" width="25px" height="25px">{{ war.def_region }}
-            </div>
-            <ul class="nav nav-tabs">
-                {% for squad_type in war|get_attr:'squads_list' %}
-                <li {% if forloop.counter0 == 0 %}class="active"{% endif %}><a data-toggle="tab" href="#def_{{ squad_type }}">{{ war|get_attr:'squads_dict'|dict_key:squad_type }}</a></li>
-                {% endfor %}
-            </ul>
-            <div class="tab-content">
-                {% for squad_type in war|get_attr:'squads_list' %}
-                <div id="def_{{ squad_type }}" class="tab-pane fade {% if forloop.counter0 == 0 %}in active{% endif %}">
-                {% with squad_cl=war|get_attr:squad_type|get_attr:'model' %}
-                    {% for unit in squad_cl|get_attr:'specs'|get_key_list %}
-                        {% if def_side|get_attr:unit > 0 %}
-                    <div class="row" style="margin-top: 20px">
-                        <div class="col-xs-6 col-sm-6 col-md-6">
-                            {{ squad_cl|get_attr:'specs'|dict_key:unit|dict_key:'name' }}:
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6">
-                            {{ def_side|get_attr:unit }}
-                        </div>
-                    </div>
-                        {% endif %}
-                    {% endfor %}
-                {% endwith %}
-                </div>
-                {% endfor %}
-            </div>
-        </div>
-    </div>
-    {% if war.running %}
-    <div class="row" align="center" style="margin-top: 100px">Отправка войск</div>
-    <div class="row" align="center" style="margin-top: 50px">
-        <div class="col-xs-4 col-sm-4 col-md-4" align="center">
-            <div class="row" align="center">Отправить на фронт</div>
-            <ul class="nav nav-tabs">
-                {% for squad_type in war|get_attr:'squads_list' %}
-                <li {% if forloop.counter0 == 0 %}class="active"{% endif %}><a data-toggle="tab" href="#units_{{ squad_type }}">{{ war|get_attr:'squads_dict'|dict_key:squad_type }}</a></li>
-                {% endfor %}
-            </ul>
-            <div class="tab-content">
-                {% for squad_type in war|get_attr:'squads_list' %}
-                <div id="units_{{ squad_type }}" class="tab-pane fade {% if forloop.counter0 == 0 %}in active{% endif %}">
-                    {% with squad_cl=war|get_attr:squad_type|get_attr:'model' %}
-                        {% for unit in squad_cl|get_attr:'specs'|get_key_list %}
-                    <div class="row unit_select_list" style="margin-top: 20px">
-                        <div class="col-xs-7 col-sm-7 col-md-7">
-                            <div class="row">
-                                {{ squad_cl|get_attr:'specs'|dict_key:unit|dict_key:'name' }}:
-                            </div>
-                            <div class="row">
-                                {% for dest_type in squad_cl|get_attr:'specs'|dict_key:unit|dict_key:'damage' %}
+                    <ul class="nav nav-tabs">
+                        {% for squad_type in war|get_attr:'squads_list' %}
+                        <li {% if forloop.counter0 == 0 %}class="active"{% endif %}><a data-toggle="tab" href="#agr_{{ squad_type }}">{{ war|get_attr:'squads_dict'|dict_key:squad_type }}</a></li>
+                        {% endfor %}
+                    </ul>
+                    <div class="tab-content">
+                        {% for squad_type in war|get_attr:'squads_list' %}
+                        <div id="agr_{{ squad_type }}" class="tab-pane fade {% if forloop.counter0 == 0 %}in active{% endif %}">
+                        {% with squad_cl=war|get_attr:squad_type|get_attr:'model' %}
+                            {% for unit in squad_cl|get_attr:'specs'|get_key_list %}
+                                {% if agr_side|get_attr:unit > 0 %}
+                            <div class="row" style="margin-top: 20px">
                                 <div class="col-xs-6 col-sm-6 col-md-6">
+                                    {{ squad_cl|get_attr:'specs'|dict_key:unit|dict_key:'name' }}:
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    {{ agr_side|get_attr:unit }}
+                                </div>
+                            </div>
+                                {% endif %}
+                            {% endfor %}
+                        {% endwith %}
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-4" align="center">
+                    <div class="row">
+                        Фаза войны: {% if war.round|get_sum:1 > 24 %}24{% else %}{{ war.round|get_sum:1 }}{% endif %} / 24
+                    </div>
+                    <div class="row">
+                        {% if not war.running %}<font color="red">Война завершилась</font>{% else %}Война завершится{% endif %}: {{ end_time|timezone:player.time_zone|date:"d.m.y H:i" }}
+                    </div>
+                    <div class="row" style="margin-top: 50px">
+                        Прочность укреплений: {{ attrs_dict|dict_key:'hq_points' }}
+                    </div>
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-4" align="center">
+                    <div class="row">
+                        Обороняется: <img src="/static/img/regions/{{ war.def_region.on_map_id }}.png" width="25px" height="25px">{{ war.def_region }}
+                    </div>
+                    <ul class="nav nav-tabs">
+                        {% for squad_type in war|get_attr:'squads_list' %}
+                        <li {% if forloop.counter0 == 0 %}class="active"{% endif %}><a data-toggle="tab" href="#def_{{ squad_type }}">{{ war|get_attr:'squads_dict'|dict_key:squad_type }}</a></li>
+                        {% endfor %}
+                    </ul>
+                    <div class="tab-content">
+                        {% for squad_type in war|get_attr:'squads_list' %}
+                        <div id="def_{{ squad_type }}" class="tab-pane fade {% if forloop.counter0 == 0 %}in active{% endif %}">
+                        {% with squad_cl=war|get_attr:squad_type|get_attr:'model' %}
+                            {% for unit in squad_cl|get_attr:'specs'|get_key_list %}
+                                {% if def_side|get_attr:unit > 0 %}
+                            <div class="row" style="margin-top: 20px">
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    {{ squad_cl|get_attr:'specs'|dict_key:unit|dict_key:'name' }}:
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    {{ def_side|get_attr:unit }}
+                                </div>
+                            </div>
+                                {% endif %}
+                            {% endfor %}
+                        {% endwith %}
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            {% if war.running %}
+            <div class="row" align="center" style="margin-top: 100px">Отправка войск</div>
+            <div class="row" align="center" style="margin-top: 50px">
+                <div class="col-xs-4 col-sm-4 col-md-4" align="center">
+                    <div class="row" align="center">Отправить на фронт</div>
+                    <ul class="nav nav-tabs">
+                        {% for squad_type in war|get_attr:'squads_list' %}
+                        <li {% if forloop.counter0 == 0 %}class="active"{% endif %}><a data-toggle="tab" href="#units_{{ squad_type }}">{{ war|get_attr:'squads_dict'|dict_key:squad_type }}</a></li>
+                        {% endfor %}
+                    </ul>
+                    <div class="tab-content">
+                        {% for squad_type in war|get_attr:'squads_list' %}
+                        <div id="units_{{ squad_type }}" class="tab-pane fade {% if forloop.counter0 == 0 %}in active{% endif %}">
+                            {% with squad_cl=war|get_attr:squad_type|get_attr:'model' %}
+                                {% for unit in squad_cl|get_attr:'specs'|get_key_list %}
+                            <div class="row unit_select_list" style="margin-top: 20px">
+                                <div class="col-xs-7 col-sm-7 col-md-7">
                                     <div class="row">
-                                        {{ war|get_attr:'squads_dict'|dict_key:dest_type }}
+                                        {{ squad_cl|get_attr:'specs'|dict_key:unit|dict_key:'name' }}:
                                     </div>
                                     <div class="row">
-                                    {{ squad_cl|get_attr:'specs'|dict_key:unit|dict_key:'damage'|dict_key:dest_type }}
+                                        {% for dest_type in squad_cl|get_attr:'specs'|dict_key:unit|dict_key:'damage' %}
+                                        <div class="col-xs-6 col-sm-6 col-md-6">
+                                            <div class="row">
+                                                {{ war|get_attr:'squads_dict'|dict_key:dest_type }}
+                                            </div>
+                                            <div class="row">
+                                            {{ squad_cl|get_attr:'specs'|dict_key:unit|dict_key:'damage'|dict_key:dest_type }}
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                    <div class="row">
+                                        Прочность: {{ squad_cl|get_attr:'specs'|dict_key:unit|dict_key:'hp' }}
                                     </div>
                                 </div>
+                                <div class="col-xs-2 col-sm-2 col-md-2">
+                                    Энергия: {{ squad_cl|get_attr:'specs'|dict_key:unit|dict_key:'energy' }}
+                                </div>
+                                <div class="col-xs-3 col-sm-3 col-md-3">
+                                    <input type="number" min="0" max="100" value="0" step="1" id="{{ unit }}" name="{{ unit }}" class="unit_input" maxlength="3">
+                                </div>
+                            </div>
                                 {% endfor %}
-                            </div>
-                            <div class="row">
-                                Прочность: {{ squad_cl|get_attr:'specs'|dict_key:unit|dict_key:'hp' }}
-                            </div>
+                            {% endwith %}
                         </div>
-                        <div class="col-xs-2 col-sm-2 col-md-2">
-                            Энергия: {{ squad_cl|get_attr:'specs'|dict_key:unit|dict_key:'energy' }}
-                        </div>
-                        <div class="col-xs-3 col-sm-3 col-md-3">
-                            <input type="number" min="0" max="100" value="0" step="1" id="{{ unit }}" name="{{ unit }}" class="unit_input" maxlength="3">
-                        </div>
-                    </div>
                         {% endfor %}
-                    {% endwith %}
-                </div>
-                {% endfor %}
-            </div>
-        </div>
-        <div class="col-xs-4 col-sm-4 col-md-4" align="center">
-            <div class="row">
-                <div class="col-xs-6 col-sm-6 col-md-6">
-                    Сторона боя:
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-6">
-                    <select name="war_side" id="war_side">
-                        <option id="side_default" value='default' disabled selected>Выберите сторону</option>
-                        <option id="side_agr" value='agr'>Атака</option>
-                        <option id="side_def" value='def'>Оборона</option>
-                    </select>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-6 col-sm-6 col-md-6">
-                    Количество:
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-6">
-                    <div id="units_count">0</div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-6 col-sm-6 col-md-6">
-                    Урон:
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-6 flex">
-                    {% for squad_type in war|get_attr:'squads_list' %}
-                    <div id="damage_{{ squad_type }}" style="display: inline-block">0</div>
-                        {% if not squad_type == war|get_attr:'squads_list'|last %}
-                    /
-                        {% endif %}
-                    {% endfor %}
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-6 col-sm-6 col-md-6">
-                    Затраты энергии:
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-6">
-                    <div id="energy_count">0</div>
-                </div>
-            </div>
-            <div class="row">
-                <input type="submit" class="btn btn-success" onclick="send_squads()" value="В бой"/>
-            </div>
-
-            <div class="row" style="margin-top: 5%">
-                Отчёт разведки
-                <br>
-                <i>баланс разведки: {{ war.recon_balance }}</i>
-            </div>
-            <div class="row" style="margin-top: 5%">
-                <div class="col-xs-4 col-sm-4 col-md-4">
-                    Силы атакующих:
-                </div>
-                <div class="col-xs-4 col-sm-4 col-md-4"></div>
-                <div class="col-xs-4 col-sm-4 col-md-4">
-                    Силы обороны:
-                </div>
-            </div>
-            <div class="row">
-                {% for squad_type in war|get_attr:'squads_list' %}
-                <div class="row" style="margin-top: 5%; {% if forloop.counter|get_mod:2 == 1 %} background: #f1f3f4{% endif %}">
-                    <div class="col-xs-4 col-sm-4 col-md-4">
-                        {% if agr_recon_dict %}
-                            {% if agr_recon_dict|dict_key:squad_type %}
-                                {{ agr_recon_dict|dict_key:squad_type }}
-                            {% else %}
-                                отсутствуют
-                            {% endif %}
-                        {% else %}
-                            {% if forloop.counter == 1 %}
-                                нет разведданных
-                            {% endif %}
-                        {% endif %}
-                    </div>
-                    <div class="col-xs-4 col-sm-4 col-md-4">
-                        {{ war|get_attr:'squads_dict'|dict_key:squad_type }}
-                    </div>
-                    <div class="col-xs-4 col-sm-4 col-md-4">
-                        {% if def_recon_dict %}
-                            {% if def_recon_dict|dict_key:squad_type %}
-                                {{ def_recon_dict|dict_key:squad_type }}
-                            {% else %}
-                                отсутствуют
-                            {% endif %}
-                        {% else %}
-                            {% if forloop.counter == 1 %}
-                                нет разведданных
-                            {% endif %}
-                        {% endif %}
                     </div>
                 </div>
-                {% endfor %}
-            </div>
-        </div>
-        <div class="col-xs-4 col-sm-4 col-md-4" align="center">
-            <div class="row" align="center">Отряды</div>
-
-
-            <ul class="nav nav-tabs">
-                {% for squad_type in war|get_attr:'squads_list' %}
-                <li {% if forloop.counter0 == 0 %}class="active"{% endif %}><a data-toggle="tab" href="#squad_{{ squad_type }}">{{ war|get_attr:'squads_dict'|dict_key:squad_type }}</a></li>
-                {% endfor %}
-            </ul>
-            <div class="tab-content">
-                {% for squad_type in war|get_attr:'squads_list' %}
-                <div id="squad_{{ squad_type }}" class="tab-pane fade {% if forloop.counter0 == 0 %}in active{% endif %}">
-                {% if squads_dict|has_key:squad_type %}
-                    {% for squad in squads_dict|dict_key:squad_type %}
-                    <div class="row" style="margin-top: 20px" align="center">
-                        {{ squad.get_side_display }}
-                    </div>
-                        {% for unit in squad|get_attr:'specs'|get_key_list %}
-                            {% if not squad|get_attr:unit == 0 %}
-                    <div class="row" style="margin-top: 20px">
+                <div class="col-xs-4 col-sm-4 col-md-4" align="center">
+                    <div class="row">
                         <div class="col-xs-6 col-sm-6 col-md-6">
-                            {{ squad|get_attr:'specs'|dict_key:unit|dict_key:'name' }}:
+                            Сторона боя:
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6">
-                            {{ squad|get_attr:unit }}
+                            <select name="war_side" id="war_side">
+                                <option id="side_default" value='default' disabled selected>Выберите сторону</option>
+                                <option id="side_agr" value='agr'>Атака</option>
+                                <option id="side_def" value='def'>Оборона</option>
+                            </select>
                         </div>
                     </div>
-                            {% endif %}
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            Количество:
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div id="units_count">0</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            Урон:
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6 flex">
+                            {% for squad_type in war|get_attr:'squads_list' %}
+                            <div id="damage_{{ squad_type }}" style="display: inline-block">0</div>
+                                {% if not squad_type == war|get_attr:'squads_list'|last %}
+                            /
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            Затраты энергии:
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div id="energy_count">0</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <input type="submit" class="btn btn-success" onclick="send_squads()" value="В бой"/>
+                    </div>
+
+                    <div class="row" style="margin-top: 5%">
+                        Отчёт разведки
+                        <br>
+                        <i>баланс разведки: {{ war.recon_balance }}</i>
+                    </div>
+                    <div class="row" style="margin-top: 5%">
+                        <div class="col-xs-4 col-sm-4 col-md-4">
+                            Силы атакующих:
+                        </div>
+                        <div class="col-xs-4 col-sm-4 col-md-4"></div>
+                        <div class="col-xs-4 col-sm-4 col-md-4">
+                            Силы обороны:
+                        </div>
+                    </div>
+                    <div class="row">
+                        {% for squad_type in war|get_attr:'squads_list' %}
+                        <div class="row" style="margin-top: 5%; {% if forloop.counter|get_mod:2 == 1 %} background: #f1f3f4{% endif %}">
+                            <div class="col-xs-4 col-sm-4 col-md-4">
+                                {% if agr_recon_dict %}
+                                    {% if agr_recon_dict|dict_key:squad_type %}
+                                        {{ agr_recon_dict|dict_key:squad_type }}
+                                    {% else %}
+                                        отсутствуют
+                                    {% endif %}
+                                {% else %}
+                                    {% if forloop.counter == 1 %}
+                                        нет разведданных
+                                    {% endif %}
+                                {% endif %}
+                            </div>
+                            <div class="col-xs-4 col-sm-4 col-md-4">
+                                {{ war|get_attr:'squads_dict'|dict_key:squad_type }}
+                            </div>
+                            <div class="col-xs-4 col-sm-4 col-md-4">
+                                {% if def_recon_dict %}
+                                    {% if def_recon_dict|dict_key:squad_type %}
+                                        {{ def_recon_dict|dict_key:squad_type }}
+                                    {% else %}
+                                        отсутствуют
+                                    {% endif %}
+                                {% else %}
+                                    {% if forloop.counter == 1 %}
+                                        нет разведданных
+                                    {% endif %}
+                                {% endif %}
+                            </div>
+                        </div>
                         {% endfor %}
-                    {% endfor %}
-                {% else %}
-                <div class="row" style="margin-top: 20px" align="center">
-                    нет укомплектованного отряда
+                    </div>
                 </div>
-                {% endif %}
+                <div class="col-xs-4 col-sm-4 col-md-4" align="center">
+                    <div class="row" align="center">Отряды</div>
+
+
+                    <ul class="nav nav-tabs">
+                        {% for squad_type in war|get_attr:'squads_list' %}
+                        <li {% if forloop.counter0 == 0 %}class="active"{% endif %}><a data-toggle="tab" href="#squad_{{ squad_type }}">{{ war|get_attr:'squads_dict'|dict_key:squad_type }}</a></li>
+                        {% endfor %}
+                    </ul>
+                    <div class="tab-content">
+                        {% for squad_type in war|get_attr:'squads_list' %}
+                        <div id="squad_{{ squad_type }}" class="tab-pane fade {% if forloop.counter0 == 0 %}in active{% endif %}">
+                        {% if squads_dict|has_key:squad_type %}
+                            {% for squad in squads_dict|dict_key:squad_type %}
+                            <div class="row" style="margin-top: 20px" align="center">
+                                {{ squad.get_side_display }}
+                            </div>
+                                {% for unit in squad|get_attr:'specs'|get_key_list %}
+                                    {% if not squad|get_attr:unit == 0 %}
+                            <div class="row" style="margin-top: 20px">
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    {{ squad|get_attr:'specs'|dict_key:unit|dict_key:'name' }}:
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    {{ squad|get_attr:unit }}
+                                </div>
+                            </div>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endfor %}
+                        {% else %}
+                        <div class="row" style="margin-top: 20px" align="center">
+                            нет укомплектованного отряда
+                        </div>
+                        {% endif %}
+                        </div>
+                        {% endfor %}
+                    </div>
                 </div>
-                {% endfor %}
             </div>
+            {% endif %}
+        </div>
+        <div id="war_report" class="tab-pane fade" style="height: 80vh; overflow-x: hidden; overflow-y: auto;">
+            {% autoescape off %}
+            {{ war.round_log }}
+            {% endautoescape %}
+<!--            <div class="row" align="center">Фаза войны: 1</div>-->
+<!--            <div class="row" align="center" style="margin-top: 10px">Силы атакующих:</div>-->
+<!--            <div class="row" align="center">-->
+<!--                <table>-->
+<!--                  <tr>-->
+<!--                    <th>Автоматы</th>-->
+<!--                    <th>БМП</th>-->
+<!--                    <th>ПТ-орудия</th>-->
+<!--                    <th>Танки</th>-->
+<!--                    <th>БПЛА</th>-->
+<!--                  </tr>-->
+<!--                  <tr>-->
+<!--                    <td>150</td>-->
+<!--                    <td>50</td>-->
+<!--                    <td>80</td>-->
+<!--                    <td>33</td>-->
+<!--                    <td>100</td>-->
+<!--                  </tr>-->
+<!--                </table>-->
+<!--            </div>-->
+<!--            <div class="row" align="center" style="margin-top: 10px">Силы обороны:</div>-->
+<!--            <div class="row" align="center">-->
+<!--                <table>-->
+<!--                  <tr>-->
+<!--                    <th>Автоматы</th>-->
+<!--                    <th>БМП</th>-->
+<!--                    <th>ПТ-орудия</th>-->
+<!--                    <th>Танки</th>-->
+<!--                    <th>БПЛА</th>-->
+<!--                  </tr>-->
+<!--                  <tr>-->
+<!--                    <td>150</td>-->
+<!--                    <td>50</td>-->
+<!--                    <td>80</td>-->
+<!--                    <td>33</td>-->
+<!--                    <td>100</td>-->
+<!--                  </tr>-->
+<!--                </table>-->
+<!--            </div>-->
+<!--            <div class="row" align="center" style="margin-top: 10px">Урон атакующих по родам войск:</div>-->
+<!--            <div class="row" align="center">-->
+<!--                <table>-->
+<!--                  <tr>-->
+<!--                    <th>Пехота</th>-->
+<!--                    <th>Легкая бронетехника</th>-->
+<!--                    <th>Тяжелая бронетехника</th>-->
+<!--                    <th>Разведка</th>-->
+<!--                  </tr>-->
+<!--                  <tr>-->
+<!--                    <td>150</td>-->
+<!--                    <td>50</td>-->
+<!--                    <td>80</td>-->
+<!--                    <td>33</td>-->
+<!--                  </tr>-->
+<!--                </table>-->
+<!--            </div>-->
+<!--            <div class="row" align="center" style="margin-top: 10px">Урон оброны по родам войск:</div>-->
+<!--            <div class="row" align="center">-->
+<!--                <table>-->
+<!--                  <tr>-->
+<!--                    <th>Пехота</th>-->
+<!--                    <th>Легкая бронетехника</th>-->
+<!--                    <th>Тяжелая бронетехника</th>-->
+<!--                    <th>Разведка</th>-->
+<!--                  </tr>-->
+<!--                  <tr>-->
+<!--                    <td>150</td>-->
+<!--                    <td>50</td>-->
+<!--                    <td>80</td>-->
+<!--                    <td>33</td>-->
+<!--                  </tr>-->
+<!--                </table>-->
+<!--            </div>-->
+<!--            <div class="row" align="center" style="margin-top: 10px">Прочность атакующих по родам войск:</div>-->
+<!--            <div class="row" align="center">-->
+<!--                <table>-->
+<!--                  <tr>-->
+<!--                    <th>Пехота</th>-->
+<!--                    <th>Легкая бронетехника</th>-->
+<!--                    <th>Тяжелая бронетехника</th>-->
+<!--                    <th>Разведка</th>-->
+<!--                  </tr>-->
+<!--                  <tr>-->
+<!--                    <td>150</td>-->
+<!--                    <td>50</td>-->
+<!--                    <td>80</td>-->
+<!--                    <td>33</td>-->
+<!--                  </tr>-->
+<!--                </table>-->
+<!--            </div>-->
+<!--            <div class="row" align="center" style="margin-top: 10px">Прочность оброны по родам войск:</div>-->
+<!--            <div class="row" align="center">-->
+<!--                <table>-->
+<!--                  <tr>-->
+<!--                    <th>Пехота</th>-->
+<!--                    <th>Легкая бронетехника</th>-->
+<!--                    <th>Тяжелая бронетехника</th>-->
+<!--                    <th>Разведка</th>-->
+<!--                  </tr>-->
+<!--                  <tr>-->
+<!--                    <td>150</td>-->
+<!--                    <td>50</td>-->
+<!--                    <td>80</td>-->
+<!--                    <td>33</td>-->
+<!--                  </tr>-->
+<!--                </table>-->
+<!--            </div>-->
+<!--            <div class="row" align="center" style="margin-top: 10px">Стороны боя наносят урон друг другу</div>-->
+<!--            <div class="row" align="center" style="margin-top: 10px">Прочность атакующих после нанесения урона:</div>-->
+<!--            <div class="row" align="center">-->
+<!--                <table>-->
+<!--                  <tr>-->
+<!--                    <th>Пехота</th>-->
+<!--                    <th>Легкая бронетехника</th>-->
+<!--                    <th>Тяжелая бронетехника</th>-->
+<!--                    <th>Разведка</th>-->
+<!--                  </tr>-->
+<!--                  <tr>-->
+<!--                    <td>150</td>-->
+<!--                    <td>50</td>-->
+<!--                    <td>80</td>-->
+<!--                    <td>33</td>-->
+<!--                  </tr>-->
+<!--                </table>-->
+<!--            </div>-->
+<!--            <div class="row" align="center" style="margin-top: 10px">Прочность обороны после нанесения урона:</div>-->
+<!--            <div class="row" align="center">-->
+<!--                <table>-->
+<!--                  <tr>-->
+<!--                    <th>Пехота</th>-->
+<!--                    <th>Легкая бронетехника</th>-->
+<!--                    <th>Тяжелая бронетехника</th>-->
+<!--                    <th>Разведка</th>-->
+<!--                  </tr>-->
+<!--                  <tr>-->
+<!--                    <td>150</td>-->
+<!--                    <td>50</td>-->
+<!--                    <td>80</td>-->
+<!--                    <td>33</td>-->
+<!--                  </tr>-->
+<!--                </table>-->
+<!--            </div>-->
+<!--            <div class="row" align="center" style="margin-top: 10px">Устанавливаем процент потерь по родам войск</div>-->
+<!--            <div class="row" align="center" style="margin-top: 10px">Процент потерь атакующих:</div>-->
+<!--            <div class="row" align="center">-->
+<!--                <table>-->
+<!--                  <tr>-->
+<!--                    <th>Пехота</th>-->
+<!--                    <th>Легкая бронетехника</th>-->
+<!--                    <th>Тяжелая бронетехника</th>-->
+<!--                    <th>Разведка</th>-->
+<!--                  </tr>-->
+<!--                  <tr>-->
+<!--                    <td>15%</td>-->
+<!--                    <td>50%</td>-->
+<!--                    <td>80%</td>-->
+<!--                    <td>33%</td>-->
+<!--                  </tr>-->
+<!--                </table>-->
+<!--            </div>-->
+<!--            <div class="row" align="center" style="margin-top: 10px">Процент потерь обороны:</div>-->
+<!--            <div class="row" align="center">-->
+<!--                <table>-->
+<!--                  <tr>-->
+<!--                    <th>Пехота</th>-->
+<!--                    <th>Легкая бронетехника</th>-->
+<!--                    <th>Тяжелая бронетехника</th>-->
+<!--                    <th>Разведка</th>-->
+<!--                  </tr>-->
+<!--                  <tr>-->
+<!--                    <td>15%</td>-->
+<!--                    <td>50%</td>-->
+<!--                    <td>80%</td>-->
+<!--                    <td>33%</td>-->
+<!--                  </tr>-->
+<!--                </table>-->
+<!--            </div>-->
+<!--            <div class="row" align="center" style="margin-top: 10px">Количество выживших войск в этом раунде</div>-->
+<!--            <div class="row" align="center" style="margin-top: 10px">Силы атакующих:</div>-->
+<!--            <div class="row" align="center">-->
+<!--                <table>-->
+<!--                  <tr>-->
+<!--                    <th>Автоматы</th>-->
+<!--                    <th>БМП</th>-->
+<!--                    <th>ПТ-орудия</th>-->
+<!--                    <th>Танки</th>-->
+<!--                    <th>БПЛА</th>-->
+<!--                  </tr>-->
+<!--                  <tr>-->
+<!--                    <td>150</td>-->
+<!--                    <td>50</td>-->
+<!--                    <td>80</td>-->
+<!--                    <td>33</td>-->
+<!--                    <td>100</td>-->
+<!--                  </tr>-->
+<!--                </table>-->
+<!--            </div>-->
+<!--            <div class="row" align="center" style="margin-top: 10px">Силы обороны:</div>-->
+<!--            <div class="row" align="center">-->
+<!--                <table>-->
+<!--                  <tr>-->
+<!--                    <th>Автоматы</th>-->
+<!--                    <th>БМП</th>-->
+<!--                    <th>ПТ-орудия</th>-->
+<!--                    <th>Танки</th>-->
+<!--                    <th>БПЛА</th>-->
+<!--                  </tr>-->
+<!--                  <tr>-->
+<!--                    <td>150</td>-->
+<!--                    <td>50</td>-->
+<!--                    <td>80</td>-->
+<!--                    <td>33</td>-->
+<!--                    <td>100</td>-->
+<!--                  </tr>-->
+<!--                </table>-->
+<!--            </div>-->
         </div>
     </div>
-    {% endif %}
 </div>
 {% endblock %}

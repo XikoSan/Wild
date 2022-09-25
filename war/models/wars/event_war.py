@@ -43,6 +43,7 @@ class EventWar(War):
     def war_round(self):
 
         self.round += 1
+        self.round_log = '<div class="row" align="center">Фаза войны: ' + str(self.round) + '</div>'
 
         # получаем стороны войны
         agr_side = self.war_side.get(side='agr', object_id=self.pk)
@@ -61,6 +62,15 @@ class EventWar(War):
         # log('squads_dict')
         # log(squads_dict)
 
+        units_dict = {
+                      'agr':{},
+                      'def':{}
+                      }
+        types_damage_dict = {
+                        'agr': {},
+                        'def': {}
+                      }
+
         damage_dict = {}
         # по каждому типу отрядов получаем урон, наносимый ими
         for squad_type in squads_list:
@@ -72,6 +82,13 @@ class EventWar(War):
                     damage_dict[squad_type][squad.side] = {}
                     # по каждому юниту отряда
                     for unit in getattr(squad, 'specs').keys():
+                        # vvvvvvvvvv логи vvvvvvvvvv
+                        if getattr(squad, 'specs')[unit]['name'] in units_dict[squad.side]:
+                            units_dict[squad.side][getattr(squad, 'specs')[unit]['name']] += getattr(squad, unit)
+                        else:
+                            units_dict[squad.side][getattr(squad, 'specs')[unit]['name']] = getattr(squad, unit)
+                        # ^^^^^^^^^^ логи ^^^^^^^^^^
+
                         # для каждого типа юнитов, по которому этот юнит может бить
                         for target_type in getattr(squad, 'specs')[unit]['damage'].keys():
                             if target_type in damage_dict[squad_type][squad.side]:
@@ -84,6 +101,19 @@ class EventWar(War):
                                                                                    getattr(squad, 'specs')[unit][
                                                                                        'damage'][
                                                                                        target_type]
+                            # vvvvvvvvvv логи vvvvvvvvvv
+                            if self.squads_dict[target_type] in types_damage_dict[squad.side]:
+                                types_damage_dict[squad.side][self.squads_dict[target_type]] += getattr(squad, unit) * \
+                                                                                    getattr(squad, 'specs')[unit][
+                                                                                        'damage'][
+                                                                                        target_type]
+                            else:
+                                types_damage_dict[squad.side][self.squads_dict[target_type]] = getattr(squad, unit) * \
+                                                                                    getattr(squad, 'specs')[unit][
+                                                                                        'damage'][
+                                                                                        target_type]
+                            # ^^^^^^^^^^ логи ^^^^^^^^^^
+
             else:
                 damage_dict[squad_type]['agr'] = {}
                 damage_dict[squad_type]['def'] = {}
@@ -94,10 +124,87 @@ class EventWar(War):
         if not 'def' in damage_dict[squad_type]:
             damage_dict[squad_type]['def'] = {}
 
+        # vvvvvvvvvv логи vvvvvvvvvv
+        self.round_log += '<hr>'
+        self.round_log += '<div class="row" align="center" style="margin-top: 10px">Силы атакующих:</div>'
+
+        if units_dict['agr']:
+            self.round_log += '<div class="row" align="center"><table><tr>'
+
+            for unit in units_dict['agr'].keys():
+                self.round_log += '<th>' + str(unit) + '</th>'
+            self.round_log += '</tr><tr>'
+
+            for unit in units_dict['agr'].keys():
+                self.round_log += '<td>' + str(units_dict['agr'][unit]) + '</td>'
+            self.round_log += '</tr></table></div>'
+
+        else:
+            self.round_log += '<div class="row" align="center" style="margin-top: 10px">нет войск</div>'
+
+        self.round_log += '<hr>'
+        self.round_log += '<div class="row" align="center" style="margin-top: 10px">Силы обороны:</div>'
+
+        if units_dict['def']:
+            self.round_log += '<div class="row" align="center"><table><tr>'
+
+            for unit in units_dict['def'].keys():
+                self.round_log += '<th>' + str(unit) + '</th>'
+            self.round_log += '</tr><tr>'
+
+            for unit in units_dict['def'].keys():
+                self.round_log += '<td>' + str(units_dict['def'][unit]) + '</td>'
+            self.round_log += '</tr></table></div>'
+
+        else:
+            self.round_log += '<div class="row" align="center" style="margin-top: 10px">нет войск</div>'
+
+        self.round_log += '<hr>'
+        self.round_log += '<div class="row" align="center" style="margin-top: 10px">Урон атакующих по родам войск:</div>'
+
+        if types_damage_dict['agr']:
+            self.round_log += '<div class="row" align="center"><table><tr>'
+
+            for unit in types_damage_dict['agr'].keys():
+                self.round_log += '<th>' + str(unit) + '</th>'
+            self.round_log += '</tr><tr>'
+
+            for unit in types_damage_dict['agr'].keys():
+                self.round_log += '<td>' + str(types_damage_dict['agr'][unit]) + '</td>'
+
+            self.round_log += '</tr></table></div>'
+
+        else:
+            self.round_log += '<div class="row" align="center" style="margin-top: 10px">нет урона</div>'
+
+        self.round_log += '<hr>'
+        self.round_log += '<div class="row" align="center" style="margin-top: 10px">Урон оброны по родам войск:</div>'
+
+        if types_damage_dict['def']:
+            self.round_log += '<div class="row" align="center"><table><tr>'
+
+            for unit in types_damage_dict['def'].keys():
+                self.round_log += '<th>' + str(unit) + '</th>'
+            self.round_log += '</tr><tr>'
+
+            for unit in types_damage_dict['def'].keys():
+                self.round_log += '<td>' + str(types_damage_dict['def'][unit]) + '</td>'
+
+            self.round_log += '</tr></table></div>'
+
+        else:
+            self.round_log += '<div class="row" align="center" style="margin-top: 10px">нет урона</div>'
+        # ^^^^^^^^^^ логи ^^^^^^^^^^
+
         # log('damage_dict')
         # log(damage_dict)
 
         hp_dict = {}
+
+        hp_log_dict = {
+            'agr': {},
+            'def': {}
+        }
 
         for squad_type in squads_list:
             hp_dict[squad_type] = {}
@@ -120,14 +227,67 @@ class EventWar(War):
                                 hp_dict[squad_type][squad.side] = getattr(squad, unit) * getattr(squad, 'specs')[unit][
                                     'hp']
 
+                            # vvvvvvvvvv логи vvvvvvvvvv
+                            if self.squads_dict[squad_type] in hp_log_dict[squad.side]:
+                                hp_log_dict[squad.side][self.squads_dict[squad_type]] += getattr(squad, unit) * getattr(squad, 'specs')[unit][
+                                    'hp']
+                            else:
+                                hp_log_dict[squad.side][self.squads_dict[squad_type]] = getattr(squad, unit) * getattr(squad, 'specs')[unit][
+                                    'hp']
+                            # ^^^^^^^^^^ логи ^^^^^^^^^^
+
         # log('hp_dict')
         # log(hp_dict)
+
+        # vvvvvvvvvv логи vvvvvvvvvv
+        self.round_log += '<hr>'
+        self.round_log += '<div class="row" align="center" style="margin-top: 10px">Прочность атакующих по родам войск:</div>'
+
+        if hp_log_dict['agr']:
+            self.round_log += '<div class="row" align="center"><table><tr>'
+
+            for squad_type in hp_log_dict['agr'].keys():
+                self.round_log += '<th>' + str(squad_type) + '</th>'
+            self.round_log += '</tr><tr>'
+
+            for squad_type in hp_log_dict['agr'].keys():
+                self.round_log += '<td>' + str(hp_log_dict['agr'][squad_type]) + '</td>'
+
+            self.round_log += '</tr></table></div>'
+
+        else:
+            self.round_log += '<div class="row" align="center" style="margin-top: 10px">нет войск</div>'
+
+        self.round_log += '<hr>'
+        self.round_log += '<div class="row" align="center" style="margin-top: 10px">Прочность обороны по родам войск:</div>'
+
+        if hp_log_dict['def']:
+            self.round_log += '<div class="row" align="center"><table><tr>'
+
+            for squad_type in hp_log_dict['def'].keys():
+                self.round_log += '<th>' + str(squad_type) + '</th>'
+            self.round_log += '</tr><tr>'
+
+            for squad_type in hp_log_dict['def'].keys():
+                self.round_log += '<td>' + str(hp_log_dict['def'][squad_type]) + '</td>'
+
+            self.round_log += '</tr></table></div>'
+
+        else:
+            self.round_log += '<div class="row" align="center" style="margin-top: 10px">нет войск</div>'
+        # ^^^^^^^^^^ логи ^^^^^^^^^^
 
         # =============================================================================================================
 
         # отряды получают урон друг по другу
         new_hp_dict = {}
         free_dmg = {}
+
+        new_hp_log_dict = {
+            'agr': {},
+            'def': {}
+        }
+
         for squad_type in squads_list:
             agr_damage = 0
             def_damage = 0
@@ -154,6 +314,52 @@ class EventWar(War):
             new_hp_dict[squad_type]['agr'] = hp_dict[squad_type]['agr'] - agr_damage
             new_hp_dict[squad_type]['def'] = hp_dict[squad_type]['def'] - def_damage
 
+            new_hp_log_dict['agr'][self.squads_dict[squad_type]] = hp_dict[squad_type]['agr'] - agr_damage
+            new_hp_log_dict['def'][self.squads_dict[squad_type]] = hp_dict[squad_type]['def'] - def_damage
+
+
+        # vvvvvvvvvv логи vvvvvvvvvv
+        self.round_log += '<hr>'
+        self.round_log += '<div class="row" align="center" style="margin-top: 10px">Стороны боя наносят урон друг другу</div>'
+        self.round_log += '<hr>'
+        self.round_log += '<div class="row" align="center" style="margin-top: 10px">Прочность атакующих после нанесения урона:</div>'
+
+        if new_hp_log_dict['agr']:
+            self.round_log += '<div class="row" align="center"><table><tr>'
+
+            for squad_type in new_hp_log_dict['agr'].keys():
+                self.round_log += '<th>' + str(squad_type) + '</th>'
+            self.round_log += '</tr><tr>'
+
+            for squad_type in new_hp_log_dict['agr'].keys():
+                self.round_log += '<td>' + str(new_hp_log_dict['agr'][squad_type]) + '</td>'
+
+            self.round_log += '</tr></table></div>'
+
+        else:
+            self.round_log += '<div class="row" align="center" style="margin-top: 10px">нет войск</div>'
+
+
+        self.round_log += '<hr>'
+        self.round_log += '<div class="row" align="center" style="margin-top: 10px">Прочность обороны после нанесения урона:</div>'
+
+        if new_hp_log_dict['def']:
+            self.round_log += '<div class="row" align="center"><table><tr>'
+
+            for squad_type in new_hp_log_dict['def'].keys():
+                self.round_log += '<th>' + str(squad_type) + '</th>'
+            self.round_log += '</tr><tr>'
+
+            for squad_type in new_hp_log_dict['def'].keys():
+                self.round_log += '<td>' + str(new_hp_log_dict['def'][squad_type]) + '</td>'
+
+            self.round_log += '</tr></table></div>'
+
+        else:
+            self.round_log += '<div class="row" align="center" style="margin-top: 10px">нет войск</div>'
+
+        # ^^^^^^^^^^ логи ^^^^^^^^^^
+
         # если урон у атакующих остался - его получают укрепления
         agr_damage_sum = 0
         for squad_type in squads_list:
@@ -166,6 +372,16 @@ class EventWar(War):
         # разведки у защиты
         drone_def = 0
 
+        lost_per_log_dict = {
+            'agr': {},
+            'def': {}
+        }
+
+        surv_log_dict = {
+            'agr': {},
+            'def': {}
+        }
+
         # считаем, сколько юнитов полегло
         for squad_type in squads_list:
             static_class = ContentType.objects.get(app_label="war", model=squad_type).model_class()
@@ -173,14 +389,18 @@ class EventWar(War):
             # узнаем процент выживших новых отрядов атаки:
             if hp_dict[squad_type]['agr'] == 0:
                 lost_perc_agr = 0
+                lost_per_log_dict['agr'][self.squads_dict[squad_type]] = 0
             else:
                 lost_perc_agr = new_hp_dict[squad_type]['agr'] / hp_dict[squad_type]['agr']
+                lost_per_log_dict['agr'][self.squads_dict[squad_type]] = int(new_hp_dict[squad_type]['agr'] / hp_dict[squad_type]['agr'] * 100)
 
             # узнаем процент выживших новых отрядов защиты:
             if hp_dict[squad_type]['def'] == 0:
                 lost_perc_def = 0
+                lost_per_log_dict['def'][self.squads_dict[squad_type]] = 0
             else:
                 lost_perc_def = new_hp_dict[squad_type]['def'] / hp_dict[squad_type]['def']
+                lost_per_log_dict['def'][self.squads_dict[squad_type]] = int(new_hp_dict[squad_type]['def'] / hp_dict[squad_type]['def'] * 100)
 
             # занулить юнитов сторон боя
             for unit in getattr(static_class, 'specs').keys():
@@ -218,12 +438,106 @@ class EventWar(War):
                         # прописываем в стороны боя, чтобы можно было выводить
                         setattr(def_side, unit, int(getattr(def_side, unit) + getattr(squad, unit)))
 
+                    if unit in surv_log_dict[squad.side].keys():
+                        if squad.side == 'agr':
+                            surv_log_dict[squad.side][getattr(squad, 'specs')[unit]['name']] += int(getattr(squad, unit) * lost_perc_agr)
+                        else:
+                            surv_log_dict[squad.side][getattr(squad, 'specs')[unit]['name']] += int(getattr(squad, unit) * lost_perc_def)
+                    else:
+                        if squad.side == 'agr':
+                            surv_log_dict[squad.side][getattr(squad, 'specs')[unit]['name']] = int(getattr(squad, unit) * lost_perc_agr)
+                        else:
+                            surv_log_dict[squad.side][getattr(squad, 'specs')[unit]['name']] = int(getattr(squad, unit) * lost_perc_def)
+
                 # если все полегли
                 if not has_units:
                     squad.destroy = timezone.now()
                     squad.deleted = True
                 # сохраняем отряд с новым числом юнитов
                 squad.save()
+
+        # vvvvvvvvvv логи vvvvvvvvvv
+        self.round_log += '<hr>'
+        self.round_log += '<div class="row" align="center" style="margin-top: 10px">Устанавливаем процент выживших по родам войск</div>'
+        self.round_log += '<hr>'
+        self.round_log += '<div class="row" align="center" style="margin-top: 10px">Процент выживших среди атакующих:</div>'
+
+        if lost_per_log_dict['agr']:
+            self.round_log += '<div class="row" align="center"><table><tr>'
+
+            for squad_type in lost_per_log_dict['agr'].keys():
+                self.round_log += '<th>' + str(squad_type) + '</th>'
+            self.round_log += '</tr><tr>'
+
+            for squad_type in lost_per_log_dict['agr'].keys():
+                self.round_log += '<td>' + str(lost_per_log_dict['agr'][squad_type]) + '%</td>'
+
+            self.round_log += '</tr></table></div>'
+
+        else:
+            self.round_log += '<div class="row" align="center" style="margin-top: 10px">нет войск</div>'
+
+        self.round_log += '<hr>'
+        self.round_log += '<div class="row" align="center" style="margin-top: 10px">Процент выживших среди обороны:</div>'
+
+        if lost_per_log_dict['def']:
+            self.round_log += '<div class="row" align="center"><table><tr>'
+
+            for squad_type in lost_per_log_dict['def'].keys():
+                self.round_log += '<th>' + str(squad_type) + '</th>'
+            self.round_log += '</tr><tr>'
+
+            for squad_type in lost_per_log_dict['def'].keys():
+                self.round_log += '<td>' + str(lost_per_log_dict['def'][squad_type]) + '%</td>'
+
+            self.round_log += '</tr></table></div>'
+
+        else:
+            self.round_log += '<div class="row" align="center" style="margin-top: 10px">нет войск</div>'
+
+        self.round_log += '<hr>'
+        self.round_log += '<div class="row" align="center" style="margin-top: 10px">Количество выживших войск в этом раунде</div>'
+        self.round_log += '<hr>'
+        self.round_log += '<div class="row" align="center" style="margin-top: 10px">Силы атакующих:</div>'
+
+        if surv_log_dict['agr']:
+            self.round_log += '<div class="row" align="center"><table><tr>'
+
+            for unit in surv_log_dict['agr'].keys():
+                self.round_log += '<th>' + str(unit) + '</th>'
+            self.round_log += '</tr><tr>'
+
+            for unit in surv_log_dict['agr'].keys():
+                self.round_log += '<td>' + str(surv_log_dict['agr'][unit]) + '</td>'
+
+            self.round_log += '</tr></table></div>'
+
+        else:
+            self.round_log += '<div class="row" align="center" style="margin-top: 10px">нет войск</div>'
+
+        self.round_log += '<hr>'
+        self.round_log += '<div class="row" align="center" style="margin-top: 10px">Силы обороны:</div>'
+
+        if surv_log_dict['def']:
+            self.round_log += '<div class="row" align="center"><table><tr>'
+
+            for unit in surv_log_dict['def'].keys():
+                self.round_log += '<th>' + str(unit) + '</th>'
+            self.round_log += '</tr><tr>'
+
+            for unit in surv_log_dict['def'].keys():
+                self.round_log += '<td>' + str(surv_log_dict['def'][unit]) + '</td>'
+
+            self.round_log += '</tr></table></div>'
+
+        else:
+            self.round_log += '<div class="row" align="center" style="margin-top: 10px">нет войск</div>'
+
+        if agr_damage_sum:
+            self.round_log += '<hr>'
+            self.round_log += '<div class="row" align="center" style="margin-top: 10px">Не распределённый по родам войск урон атакующих:</div>'
+            self.round_log += '<div class="row" align="center" style="margin-top: 10px">' + str(agr_damage_sum) + '</div>'
+        # ^^^^^^^^^^ логи ^^^^^^^^^^
 
         agr_side.save()
         def_side.save()

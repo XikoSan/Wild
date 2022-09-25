@@ -67,14 +67,18 @@ def open_war(request, class_name, pk):
             # для атакующих
             agr_recon_dict[squad_type] = getattr(war, squad_type).filter(side='agr',
                                                                          object_id=war.pk,
-                                                                         deleted=False).aggregate(
+                                                                         deleted=False,
+                                                                         deployed=False
+                                                                         ).aggregate(
                                                                                                 sum=Sum( *args )
                                                                                               )['sum']
         elif war.recon_balance > 1:
             # для обороны
             def_recon_dict[squad_type] = getattr(war, squad_type).filter(side='def',
                                                                          object_id=war.pk,
-                                                                         deleted=False).aggregate(
+                                                                         deleted=False,
+                                                                         deployed = False
+                                                                         ).aggregate(
                                                                                                 sum=Sum( *args )
                                                                                               )['sum']
 

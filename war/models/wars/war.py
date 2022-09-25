@@ -34,7 +34,9 @@ class War(models.Model):
 
     # урон - атакующие
     agr_dmg = models.BigIntegerField(default=0, verbose_name='Урон - атакующие')
-    # урон - оборона
+
+    # описание последнего раунда
+    round_log = models.TextField(default='', null=True, blank=True, verbose_name='Последний раунд')
 
     # таска
     task = models.OneToOneField(PeriodicTask, on_delete=models.SET_NULL, null=True, blank=True)
