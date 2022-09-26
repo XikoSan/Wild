@@ -438,7 +438,7 @@ class EventWar(War):
                         # прописываем в стороны боя, чтобы можно было выводить
                         setattr(def_side, unit, int(getattr(def_side, unit) + getattr(squad, unit)))
 
-                    if unit in surv_log_dict[squad.side].keys():
+                    if getattr(squad, 'specs')[unit]['name'] in surv_log_dict[squad.side].keys():
                         if squad.side == 'agr':
                             surv_log_dict[squad.side][getattr(squad, 'specs')[unit]['name']] += int(getattr(squad, unit) * lost_perc_agr)
                         else:
