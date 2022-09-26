@@ -311,6 +311,14 @@ class EventWar(War):
                 free_dmg[squad_type]['agr'] = 0
 
             # считаем, сколько хп останется у отрядов в целом
+            from player.logs.print_log import log
+
+            log('hp атакующего ' + str(squad_type))
+            log(str(hp_dict[squad_type]['agr']))
+
+            log('урон атакующему')
+            log(str(agr_damage))
+
             new_hp_dict[squad_type]['agr'] = hp_dict[squad_type]['agr'] - agr_damage
             new_hp_dict[squad_type]['def'] = hp_dict[squad_type]['def'] - def_damage
 
