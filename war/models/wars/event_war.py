@@ -58,10 +58,6 @@ class EventWar(War):
             # получаем все отряды текущего типа этой войны
             squads_dict[squad_type] = getattr(self, squad_type).filter(object_id=self.pk, deleted=False)
 
-        # from player.logs.print_log import log
-        # log('squads_dict')
-        # log(squads_dict)
-
         units_dict = {
                       'agr':{},
                       'def':{}
@@ -74,12 +70,14 @@ class EventWar(War):
         damage_dict = {}
         # по каждому типу отрядов получаем урон, наносимый ими
         for squad_type in squads_list:
-            damage_dict[squad_type] = {}
+            # damage_dict[squad_type] = {}
             # если есть хоть один отряд
             if squads_dict[squad_type]:
                 # по каждому отряду типа
                 for squad in squads_dict[squad_type]:
-                    damage_dict[squad_type][squad.side] = {}
+                    # damage_dict[squad_type][squad.side] = {}
+                    if not squad.side in damage_dict.keys():
+                        damage_dict[squad.side] = {}
                     # по каждому юниту отряда
                     for unit in getattr(squad, 'specs').keys():
                         # vvvvvvvvvv логи vvvvvvvvvv
@@ -91,13 +89,23 @@ class EventWar(War):
 
                         # для каждого типа юнитов, по которому этот юнит может бить
                         for target_type in getattr(squad, 'specs')[unit]['damage'].keys():
-                            if target_type in damage_dict[squad_type][squad.side]:
-                                damage_dict[squad_type][squad.side][target_type] += getattr(squad, unit) * \
+                            # if target_type in damage_dict[squad_type][squad.side]:
+                            #     damage_dict[squad_type][squad.side][target_type] += getattr(squad, unit) * \
+                            #                                                         getattr(squad, 'specs')[unit][
+                            #                                                             'damage'][
+                            #                                                             target_type]
+                            # else:
+                            #     damage_dict[squad_type][squad.side][target_type] = getattr(squad, unit) * \
+                            #                                                        getattr(squad, 'specs')[unit][
+                            #                                                            'damage'][
+                            #                                                            target_type]
+                            if target_type in damage_dict[squad.side]:
+                                damage_dict[squad.side][target_type] += getattr(squad, unit) * \
                                                                                     getattr(squad, 'specs')[unit][
                                                                                         'damage'][
                                                                                         target_type]
                             else:
-                                damage_dict[squad_type][squad.side][target_type] = getattr(squad, unit) * \
+                                damage_dict[squad.side][target_type] = getattr(squad, unit) * \
                                                                                    getattr(squad, 'specs')[unit][
                                                                                        'damage'][
                                                                                        target_type]
@@ -115,14 +123,14 @@ class EventWar(War):
                             # ^^^^^^^^^^ логи ^^^^^^^^^^
 
             else:
-                damage_dict[squad_type]['agr'] = {}
-                damage_dict[squad_type]['def'] = {}
+                damage_dict['agr'] = {}
+                damage_dict['def'] = {}
 
-        if not 'agr' in damage_dict[squad_type]:
-            damage_dict[squad_type]['agr'] = {}
+        if not 'agr' in damage_dict.keys():
+            damage_dict['agr'] = {}
 
-        if not 'def' in damage_dict[squad_type]:
-            damage_dict[squad_type]['def'] = {}
+        if not 'def' in damage_dict.keys():
+            damage_dict['def'] = {}
 
         # vvvvvvvvvv логи vvvvvvvvvv
         self.round_log += '<hr>'
@@ -196,9 +204,6 @@ class EventWar(War):
             self.round_log += '<div class="row" align="center" style="margin-top: 10px">нет урона</div>'
         # ^^^^^^^^^^ логи ^^^^^^^^^^
 
-        # log('damage_dict')
-        # log(damage_dict)
-
         hp_dict = {}
 
         hp_log_dict = {
@@ -235,9 +240,6 @@ class EventWar(War):
                                 hp_log_dict[squad.side][self.squads_dict[squad_type]] = getattr(squad, unit) * getattr(squad, 'specs')[unit][
                                     'hp']
                             # ^^^^^^^^^^ логи ^^^^^^^^^^
-
-        # log('hp_dict')
-        # log(hp_dict)
 
         # vvvvvvvvvv логи vvvvvvvvvv
         self.round_log += '<hr>'
@@ -294,15 +296,11 @@ class EventWar(War):
             new_hp_dict[squad_type] = {}
             free_dmg[squad_type] = {}
 
-            for source_type in squads_list:
-                # урон атакующему
-                if 'def' in damage_dict[source_type]:
-                    if squad_type in damage_dict[source_type]['def']:
-                        agr_damage += damage_dict[source_type]['def'][squad_type]
-                # урон обороняющемуся
-                if 'agr' in damage_dict[source_type]:
-                    if squad_type in damage_dict[source_type]['agr']:
-                        def_damage += damage_dict[source_type]['agr'][squad_type]
+            if squad_type in damage_dict['agr']:
+                def_damage += damage_dict['agr'][squad_type]
+
+            if squad_type in damage_dict['def']:
+                agr_damage += damage_dict['def'][squad_type]
 
             # считаем, сколько урона пройдет по укреплениям
             if def_damage > hp_dict[squad_type]['def']:
@@ -311,13 +309,6 @@ class EventWar(War):
                 free_dmg[squad_type]['agr'] = 0
 
             # считаем, сколько хп останется у отрядов в целом
-            from player.logs.print_log import log
-
-            log('hp атакующего ' + str(squad_type))
-            log(str(hp_dict[squad_type]['agr']))
-
-            log('урон атакующему')
-            log(str(agr_damage))
 
             new_hp_dict[squad_type]['agr'] = hp_dict[squad_type]['agr'] - agr_damage
             new_hp_dict[squad_type]['def'] = hp_dict[squad_type]['def'] - def_damage
@@ -446,16 +437,10 @@ class EventWar(War):
                         # прописываем в стороны боя, чтобы можно было выводить
                         setattr(def_side, unit, int(getattr(def_side, unit) + getattr(squad, unit)))
 
-                    if getattr(squad, 'specs')[unit]['name'] in surv_log_dict[squad.side].keys():
-                        if squad.side == 'agr':
-                            surv_log_dict[squad.side][getattr(squad, 'specs')[unit]['name']] += int(getattr(squad, unit) * lost_perc_agr)
-                        else:
-                            surv_log_dict[squad.side][getattr(squad, 'specs')[unit]['name']] += int(getattr(squad, unit) * lost_perc_def)
+                    if getattr(squad, 'specs')[unit]['name'] in surv_log_dict[squad.side]:
+                        surv_log_dict[squad.side][getattr(squad, 'specs')[unit]['name']] += getattr(squad, unit)
                     else:
-                        if squad.side == 'agr':
-                            surv_log_dict[squad.side][getattr(squad, 'specs')[unit]['name']] = int(getattr(squad, unit) * lost_perc_agr)
-                        else:
-                            surv_log_dict[squad.side][getattr(squad, 'specs')[unit]['name']] = int(getattr(squad, unit) * lost_perc_def)
+                        surv_log_dict[squad.side][getattr(squad, 'specs')[unit]['name']] = getattr(squad, unit)
 
                 # если все полегли
                 if not has_units:
