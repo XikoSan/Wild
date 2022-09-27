@@ -19,9 +19,9 @@ class HeavyVehicle(Squad):
                 'hp': 50,
                 'damage':
                     {
-                        'infantry': 15,
+                        'infantry': 10,
                         'lightvehicle': 15,
-                        'heavyvehicle': 15,
+                        'heavyvehicle': 10,
                         'recon': 0,
                     },
                 'price': 905,
