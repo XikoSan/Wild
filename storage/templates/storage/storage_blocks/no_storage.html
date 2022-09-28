@@ -28,7 +28,7 @@
         <div class="col-xs-4 col-sm-4 col-md-4" style="margin-top: 1%;" align="center">
             <select name="storage">
                 {% for storage in storages %}
-                <option {% if forloop.first %}selected{% endif %} value='{{ storage.pk }}'>{{ storage.region }}{% if not materials_exists|dict_key:storage %} - нехватка материалов!{% else %} - доставка ${{delivery_sum|dict_key:storage }}{% endif %}
+                <option {% if forloop.first %}selected{% endif %} value='{% localize off %}{{ storage.pk }}{% endlocalize %}'>{{ storage.region }}{% if not materials_exists|dict_key:storage %} - нехватка материалов!{% else %} - доставка ${{delivery_sum|dict_key:storage }}{% endif %}
                 </option>
                 {% endfor %}
             </select>
