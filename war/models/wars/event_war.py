@@ -9,6 +9,8 @@ from war.models.squads.heavy_vehicle import HeavyVehicle
 from war.models.squads.infantry import Infantry
 from war.models.squads.light_vehicle import LightVehicle
 from war.models.squads.recon import Recon
+from django.db.models.signals import post_delete
+from django.dispatch import receiver
 from war.models.wars.war import War
 from war.models.wars.war_side import WarSide
 
@@ -67,7 +69,10 @@ class EventWar(War):
                         'def': {}
                       }
 
-        damage_dict = {}
+        damage_dict = {
+                        'agr': {},
+                        'def': {}
+                      }
         # по каждому типу отрядов получаем урон, наносимый ими
         for squad_type in squads_list:
             # damage_dict[squad_type] = {}
@@ -76,8 +81,6 @@ class EventWar(War):
                 # по каждому отряду типа
                 for squad in squads_dict[squad_type]:
                     # damage_dict[squad_type][squad.side] = {}
-                    if not squad.side in damage_dict.keys():
-                        damage_dict[squad.side] = {}
                     # по каждому юниту отряда
                     for unit in getattr(squad, 'specs').keys():
                         # vvvvvvvvvv логи vvvvvvvvvv
@@ -89,16 +92,7 @@ class EventWar(War):
 
                         # для каждого типа юнитов, по которому этот юнит может бить
                         for target_type in getattr(squad, 'specs')[unit]['damage'].keys():
-                            # if target_type in damage_dict[squad_type][squad.side]:
-                            #     damage_dict[squad_type][squad.side][target_type] += getattr(squad, unit) * \
-                            #                                                         getattr(squad, 'specs')[unit][
-                            #                                                             'damage'][
-                            #                                                             target_type]
-                            # else:
-                            #     damage_dict[squad_type][squad.side][target_type] = getattr(squad, unit) * \
-                            #                                                        getattr(squad, 'specs')[unit][
-                            #                                                            'damage'][
-                            #                                                            target_type]
+
                             if target_type in damage_dict[squad.side]:
                                 damage_dict[squad.side][target_type] += getattr(squad, unit) * \
                                                                                     getattr(squad, 'specs')[unit][
@@ -121,16 +115,6 @@ class EventWar(War):
                                                                                         'damage'][
                                                                                         target_type]
                             # ^^^^^^^^^^ логи ^^^^^^^^^^
-
-            else:
-                damage_dict['agr'] = {}
-                damage_dict['def'] = {}
-
-        if not 'agr' in damage_dict.keys():
-            damage_dict['agr'] = {}
-
-        if not 'def' in damage_dict.keys():
-            damage_dict['def'] = {}
 
         # vvvvvvvvvv логи vvvvvvvvvv
         self.round_log += '<hr>'
@@ -315,7 +299,6 @@ class EventWar(War):
 
             new_hp_log_dict['agr'][self.squads_dict[squad_type]] = hp_dict[squad_type]['agr'] - agr_damage
             new_hp_log_dict['def'][self.squads_dict[squad_type]] = hp_dict[squad_type]['def'] - def_damage
-
 
         # vvvvvvvvvv логи vvvvvvvvvv
         self.round_log += '<hr>'
@@ -566,3 +549,11 @@ class EventWar(War):
         return {
             'hq_points': self.hq_points,
         }
+
+
+# сигнал прослушивающий создание партии, после этого формирующий таску
+@receiver(post_delete, sender=EventWar)
+def delete_post(sender, instance, **kwargs):
+
+    instance.task.delete()
+
