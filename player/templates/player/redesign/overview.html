@@ -194,8 +194,11 @@
             <img class="ct__view-info-image" src="/static/img/regions/{{ player.region.on_map_id }}.png" alt="{{ player.region.region_name }}" onclick="window.location.href = '/region/{{ player.region.pk }}/'">
           </div>
           <!--Блок ВОЙНА-->
-<!--          <a href="##" class="overview__war">-->
+          {% if war %}
+          <a href="/war/{{ war|get_class_name }}/{{ war.pk }}/" class="overview__war">
+          {% else %}
           <a class="overview__war">
+          {% endif %}
             {% if war %}
             <!--информация когда есть война-->
             <div class="overview__war-wrapper">
