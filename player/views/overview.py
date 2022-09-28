@@ -152,7 +152,7 @@ def overview(request):
     for type in war_types:
         # если есть активные войны этого типа
         if type.objects.filter(running=True, deleted=False).exists():
-            war_dict[type.__name__] = type.objects.filter(running=True, deleted=False).order_by('-start_time').first()
+            war_dict[type.__name__] = type.objects.filter(running=True, deleted=False).order_by('start_time').first()
 
     # находим войну, которая закончится раньше всех
     closest_war = None
