@@ -1,27 +1,31 @@
 import json
-from datetime import datetime
-import random
 import pytz
+import random
 import redis
+import datetime
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.templatetags.static import static
 from django.utils.translation import ugettext as _
-from state.models.parliament.parliament_party import ParliamentParty
-from state.models.parliament.parliament import Parliament
-from chat.models.stickers_ownership import StickersOwnership
+
 from chat.models.sticker import Sticker
 from chat.models.sticker_pack import StickerPack
+from chat.models.stickers_ownership import StickersOwnership
 from gov.models.president import President
 from gov.models.presidential_voting import PresidentialVoting
 from party.party import Party
 from player.decorators.player import check_player
 from player.player import Player
+from player.views.get_subclasses import get_subclasses
 from polls.models.poll import Poll
 from region.region import Region
-from state.models.state import State
-from wild_politics.settings import TIME_ZONE, sentry_environment
 from region.views.lists.get_regions_online import get_region_online
+from state.models.parliament.parliament import Parliament
+from state.models.parliament.parliament_party import ParliamentParty
+from state.models.state import State
+from war.models.wars.war import War
+from wild_politics.settings import TIME_ZONE, sentry_environment
+
 
 # главная страница
 @login_required(login_url='/')
@@ -72,7 +76,8 @@ def overview(request):
         # парламентские партии
         if Parliament.objects.filter(state=player.region.state).exists():
             has_parl = True
-            p_parties_list = ParliamentParty.objects.filter(parliament=Parliament.objects.get(state=player.region.state))
+            p_parties_list = ParliamentParty.objects.filter(
+                parliament=Parliament.objects.get(state=player.region.state))
     else:
         parties_list = Party.objects.filter(deleted=False, region=player.region)
 
@@ -101,7 +106,7 @@ def overview(request):
 
             author = Player.objects.filter(pk=int(b['author'])).only('id', 'nickname', 'image', 'time_zone').get()
             # сначала делаем из наивного времени aware, потом задаем ЧП игрока
-            b['dtime'] = datetime.fromtimestamp(int(b['dtime'])).replace(tzinfo=pytz.timezone(TIME_ZONE)).astimezone(
+            b['dtime'] = datetime.datetime.fromtimestamp(int(b['dtime'])).replace(tzinfo=pytz.timezone(TIME_ZONE)).astimezone(
                 tz=pytz.timezone(player.time_zone)).strftime("%H:%M")
             b['author'] = author.pk
             b['counter'] = int(scan[1])
@@ -119,7 +124,8 @@ def overview(request):
             # название пака
             stickers_header_dict[sticker_own.pack.pk] = sticker_own.pack.title
             #  получим рандомную картинку для заголовка
-            header_img_dict[sticker_own.pack.pk] = random.choice(Sticker.objects.filter(pack=sticker_own.pack)).image.url
+            header_img_dict[sticker_own.pack.pk] = random.choice(
+                Sticker.objects.filter(pack=sticker_own.pack)).image.url
             # все остальные картинки - в словарь
             stickers_dict[sticker_own.pack.pk] = Sticker.objects.filter(pack=sticker_own.pack)
 
@@ -138,6 +144,25 @@ def overview(request):
             # если идут выборы президента
             if PresidentialVoting.objects.filter(running=True, president=president_post).exists():
                 has_voting = True
+
+    # войны
+    war_dict = {}
+    war_types = get_subclasses(War)
+
+    for type in war_types:
+        # если есть активные войны этого типа
+        if type.objects.filter(running=True, deleted=False).exists():
+            war_dict[type.__name__] = type.objects.filter(running=True, deleted=False).order_by('-start_time').first()
+
+    # находим войну, которая закончится раньше всех
+    closest_war = None
+
+    for w_type in war_dict.keys():
+        if not closest_war:
+            closest_war = war_dict[w_type]
+        else:
+            if closest_war.start_time > war_dict[w_type]:
+                closest_war = war_dict[w_type]
 
     groups = list(player.account.groups.all().values_list('name', flat=True))
     page = 'player/overview.html'
@@ -178,6 +203,8 @@ def overview(request):
         'stickers_dict': stickers_dict,
 
         'http_use': http_use,
+
+        'war': closest_war,
 
         # 'polls': polls,
 
