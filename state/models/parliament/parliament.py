@@ -7,7 +7,7 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.utils import timezone
-from django_celery_beat.models import ClockedSchedule, PeriodicTask
+from django_celery_beat.models import ClockedSchedule, PeriodicTask, CrontabSchedule
 
 from state.models.state import State
 
@@ -23,15 +23,20 @@ class Parliament(models.Model):
 
     # формируем переодическую таску
     def setup_task(self):
-        start_time = timezone.now() + datetime.timedelta(days=7)
-        # start_time = timezone.now() + datetime.timedelta(minutes=7)
-        clock, created = ClockedSchedule.objects.get_or_create(clocked_time=start_time)
+
+        schedule, created = CrontabSchedule.objects.get_or_create(
+                                                                    minute=str(timezone.now().now().minute),
+                                                                    hour=str(timezone.now().now().hour),
+                                                                    day_of_week='*',
+                                                                    day_of_month='*/7',
+                                                                    month_of_year='*',
+                                                                   )
 
         self.task = PeriodicTask.objects.create(
             name=self.state.title + ', id парла ' + str(self.pk),
             task='start_elections',
-            clocked=clock,
-            one_off=True,
+            crontab=schedule,
+            # one_off=True,
             args=json.dumps([self.id]),
             start_time=timezone.now()
         )

@@ -7,7 +7,7 @@ from django.db.models.signals import post_save
 # from io import BytesIO
 from django.dispatch import receiver
 from django.utils import timezone
-from django_celery_beat.models import ClockedSchedule, PeriodicTask
+from django_celery_beat.models import ClockedSchedule, PeriodicTask, CrontabSchedule
 
 from state.models.parliament.parliament import Parliament
 
@@ -32,14 +32,20 @@ class ParliamentVoting(models.Model):
 
         if not PeriodicTask.objects.filter(
                 name=f'{self.parliament.state.title}, id {self.parliament.pk} parl primaries').exists():
-            start_time = timezone.now() + datetime.timedelta(days=1)
-            # start_time = timezone.now() + datetime.timedelta(minutes=1)
-            clock, created = ClockedSchedule.objects.get_or_create(clocked_time=start_time)
+
+            schedule, created = CrontabSchedule.objects.get_or_create(
+                minute=str(timezone.now().now().minute),
+                hour=str(timezone.now().now().hour),
+                day_of_week='*',
+                day_of_month='*/1',
+                month_of_year='*',
+            )
 
             self.task = PeriodicTask.objects.create(
                 name=f'{self.parliament.state.title}, id {self.parliament.pk} parl primaries',
                 task='finish_elections',
-                clocked=clock,
+                # clocked=clock,
+                crontab=schedule,
                 one_off=True,
                 args=json.dumps([self.parliament.pk]),
                 start_time=timezone.now(),

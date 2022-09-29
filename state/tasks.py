@@ -5,7 +5,7 @@ from math import floor
 import redis
 from celery import shared_task
 from django.utils import timezone
-from django_celery_beat.models import ClockedSchedule, PeriodicTask
+from django_celery_beat.models import ClockedSchedule, PeriodicTask, CrontabSchedule
 from gov.models.minister import Minister
 from party.party import Party
 from player.player import Player
@@ -184,11 +184,34 @@ def finish_elections(parl_id):
 
     # ================================================================
 
-    finish_task = PeriodicTask.objects.get(pk=elections.task.pk)
-    finish_schedule, created = ClockedSchedule.objects.get_or_create(pk=finish_task.clocked.pk)
-    # finish_schedule.clocked_time = timezone.now() + datetime.timedelta(minutes=7)
-    finish_schedule.clocked_time = timezone.now() + datetime.timedelta(days=7)
-    finish_schedule.save()
+    # finish_task = PeriodicTask.objects.get(pk=elections.task.pk)
+    # finish_schedule, created = ClockedSchedule.objects.get_or_create(pk=finish_task.clocked.pk)
+    # finish_schedule.clocked_time = timezone.now() + datetime.timedelta(days=7)
+    # finish_schedule.save()
+
+    task_identificator = elections.task.id
+    # убираем таску у экземпляра модели
+    ParliamentVoting.objects.select_related('task').filter(parliament=parliament, task__isnull=False).update(task=None)
+    # удаляем таску
+    pt = PeriodicTask.objects.get(pk=task_identificator)
+    pt.crontab.delete()
+
+    schedule, created = CrontabSchedule.objects.get_or_create(
+        minute=str(timezone.now().now().minute),
+        hour=str(timezone.now().now().hour),
+        day_of_week='*',
+        day_of_month='*/7',
+        month_of_year='*',
+    )
+
+    elections.task = PeriodicTask.objects.create(
+        name=f'{self.parliament.state.title}, id {self.parliament.pk} parl primaries',
+        task='finish_elections',
+        crontab=schedule,
+        args=json.dumps([self.parliament.pk]),
+        start_time=timezone.now(),
+    )
+    elections.save()
 
 
 # таска включающая выборы
@@ -216,14 +239,6 @@ def start_elections(parl_id):
         parliament_voting.task.save()
 
     parliament_voting.running = True
-    parliament_voting.save()
-
-    start_task = PeriodicTask.objects.get(pk=parliament.task.pk)
-
-    start_schedule, created = ClockedSchedule.objects.get_or_create(pk=start_task.clocked.pk)
-    start_schedule.clocked_time = timezone.now() + datetime.timedelta(days=7)
-    # start_schedule.clocked_time = timezone.now() + datetime.timedelta(minutes=7)
-    start_schedule.save()
 
 
 # таска выключающая выборы
@@ -287,11 +302,35 @@ def finish_presidential(pres_id):
 
     # ================================================================
 
-    finish_task = PeriodicTask.objects.get(pk=elections.task.pk)
-    finish_schedule, created = ClockedSchedule.objects.get_or_create(pk=finish_task.clocked.pk)
-    # finish_schedule.clocked_time = timezone.now() + datetime.timedelta(minutes=7)
-    finish_schedule.clocked_time = timezone.now() + datetime.timedelta(days=7)
-    finish_schedule.save()
+    # finish_task = PeriodicTask.objects.get(pk=elections.task.pk)
+    # finish_schedule, created = ClockedSchedule.objects.get_or_create(pk=finish_task.clocked.pk)
+    # # finish_schedule.clocked_time = timezone.now() + datetime.timedelta(minutes=7)
+    # finish_schedule.clocked_time = timezone.now() + datetime.timedelta(days=7)
+    # finish_schedule.save()
+
+    task_identificator = elections.task.id
+    # убираем таску у экземпляра модели
+    PresidentialVoting.objects.select_related('task').filter(president=president, task__isnull=False).update(task=None)
+    # удаляем таску
+    pt = PeriodicTask.objects.get(pk=task_identificator)
+    pt.crontab.delete()
+
+    schedule, created = CrontabSchedule.objects.get_or_create(
+        minute=str(timezone.now().now().minute),
+        hour=str(timezone.now().now().hour),
+        day_of_week='*',
+        day_of_month='*/7',
+        month_of_year='*',
+    )
+
+    elections.task = PeriodicTask.objects.create(
+        name=f'{self.president.state.title}, id {self.president.pk} pres elections',
+        task='finish_presidential',
+        crontab=schedule,
+        args=json.dumps([self.president.pk]),
+        start_time=timezone.now(),
+    )
+    elections.save()
 
 
 # таска включающая президентские выборы
@@ -326,10 +365,3 @@ def start_presidential(pres_id):
 
     voting.running = True
     voting.save()
-
-    start_task = PeriodicTask.objects.get(pk=president.task.pk)
-
-    start_schedule, created = ClockedSchedule.objects.get_or_create(pk=start_task.clocked.pk)
-    start_schedule.clocked_time = timezone.now() + datetime.timedelta(days=7)
-    # start_schedule.clocked_time = timezone.now() + datetime.timedelta(minutes=7)
-    start_schedule.save()
