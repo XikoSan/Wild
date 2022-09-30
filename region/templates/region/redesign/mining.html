@@ -13,7 +13,7 @@
     <h1 class="earn__title ct__page-title">Добыча</h1>
     <p class="earn__info">
         Потрать энергию и получи <br>
-        до <span>${{ daily_limit }}</span> за день!
+        до <span {% if gold_week %}class="info__gold"{% endif %}>${{ daily_limit }}</span> за день!
     </p>
     <div class="earn__energy-wrapper ct__widebar">
         <span>энергии потрачено:</span>

@@ -1,12 +1,15 @@
+import datetime
+import pytz
 from django.apps import apps
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.utils import timezone
+from django.utils.timezone import make_aware
 from django.utils.translation import ugettext as _
 
 from player.decorators.player import check_player
-from player.player import Player
 from player.logs.auto_mining import AutoMining
+from player.player import Player
 
 
 # главная страница
@@ -28,7 +31,6 @@ def mining(request):
         if not premium:
             auto_mining.delete()
             auto_mining = None
-
 
     # лимит денег, доступный игроку
     power = player.power
@@ -66,6 +68,17 @@ def mining(request):
     if player.energy_limit - player.paid_consumption > 0:
         daily_energy_limit = player.energy_limit - player.paid_consumption
 
+    # золотая неделя
+    gold_week = False
+
+    naive = datetime.datetime(2022, 10, 3)
+    start = make_aware(naive, timezone=pytz.timezone("Europe/Moscow"))
+    naive = datetime.datetime(2022, 10, 10)
+    finish = make_aware(naive, timezone=pytz.timezone("Europe/Moscow"))
+
+    if finish > timezone.now() > start:
+        gold_week = True
+
     groups = list(player.account.groups.all().values_list('name', flat=True))
     page = 'region/mining.html'
     if 'redesign' not in groups:
@@ -83,6 +96,8 @@ def mining(request):
         'daily_energy_limit': daily_energy_limit,
         'daily_procent': daily_procent,
         'daily_current_sum': daily_current_sum,
+
+        'gold_week': gold_week,
     })
 
     # if player_settings:

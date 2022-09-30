@@ -6,7 +6,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.utils import timezone
 from django_celery_beat.models import PeriodicTask
-
+from django.utils.timezone import make_aware
 from party.party import Party
 from party.position import PartyPosition
 from player.views.set_cah_log import set_cash_log
@@ -250,6 +250,19 @@ class Player(models.Model):
         if Finance.objects.filter(player=self, level__gt=0).exists():
             if count != 0 and daily_procent == 100:
                 taxed_count += daily_limit
+
+        # золотая неделя
+        naive = datetime.datetime(2022, 10, 3)
+        start = make_aware(naive, timezone=pytz.timezone("Europe/Moscow"))
+        naive = datetime.datetime(2022, 10, 10)
+        finish = make_aware(naive, timezone=pytz.timezone("Europe/Moscow"))
+
+        if finish > timezone.now() > start:
+            if count != 0 and daily_procent == 100:
+                if timezone.now().date().weekday() == 5 or timezone.now().date().weekday() == 6:
+                    self.gold += 250
+                else:
+                    self.gold += 100
 
         # выдаем деньги
         self.cash += taxed_count
