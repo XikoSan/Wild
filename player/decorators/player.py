@@ -5,7 +5,7 @@ import redis
 from django.db.models import Q
 from django.shortcuts import redirect
 from django.utils import timezone
-
+from django.utils.translation import check_for_language
 from player.player import Player
 
 
@@ -22,7 +22,6 @@ def check_player(func):
     # и, если надо, переменное кол-во других аргументов, позиционных - *args и именованных - **kwargs
     def checking(request, *args, **kwargs):
         # Проходим все необходимые проверки:
-        #                - - -
         # Если у игрока есть хоть один персонаж:
         if Player.objects.filter(account=request.user).exists():
             # Получаем игрока

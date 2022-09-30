@@ -8,7 +8,7 @@ from django.shortcuts import redirect, render
 from django.utils import timezone
 import traceback
 from player.forms import ImageForm
-# from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext as _
 #
 from player.forms import NewPlayerForm
 from player.player import Player
@@ -84,9 +84,9 @@ def new_player(request):
                     except Exception as e:
                         transaction.savepoint_rollback(sid)
                         data = {
-                            'response': str(type(e).__name__) + ': попробуйте создать персонажа, не загружая изображение',
-                            'header': 'Новый персонаж',
-                            'grey_btn': 'Закрыть',
+                            'response': str(type(e).__name__) + _(': попробуйте создать персонажа, не загружая изображение'),
+                            'header': _('Новый персонаж'),
+                            'grey_btn': _('Закрыть'),
                         }
                         return JResponse(data)
 
@@ -97,9 +97,9 @@ def new_player(request):
 
             else:
                 data = {
-                    'response': 'Ошибка в форме профиля',
-                    'header': 'Новый персонаж',
-                    'grey_btn': 'Закрыть',
+                    'response': _('Ошибка в форме профиля'),
+                    'header': _('Новый персонаж'),
+                    'grey_btn': _('Закрыть'),
                 }
                 return JResponse(data)
 
@@ -114,9 +114,7 @@ def new_player(request):
             nickname = account.extra_data['name']
 
         groups = list(request.user.groups.all().values_list('name', flat=True))
-        page = 'player/new_player.html'
-        if 'redesign' not in groups:
-            page = 'player/redesign/new_player.html'
+        page = 'player/redesign/new_player.html'
 
         return render(request, page, {'timezones': common,
                                       'default': default,

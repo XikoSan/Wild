@@ -25,9 +25,9 @@ def expense_energy(request):
         if end_time > cur_time:
             data = {
                 # 'response': _('positive_enrg_req'),
-                'response': 'Десять минут ещё не прошло',
-                'header': 'Пополнение энергии',
-                'grey_btn': 'Закрыть',
+                'response': _('Десять минут ещё не прошло'),
+                'header': _('Пополнение энергии'),
+                'grey_btn': _('Закрыть'),
             }
             return JResponse(data)
             # return HttpResponse(_('too_early'), content_type='text/html')
@@ -49,18 +49,18 @@ def expense_energy(request):
                 else:
                     data = {
                         # 'response': _('positive_enrg_req'),
-                        'response': 'Пополнение энергии не требуется',
-                        'header': 'Пополнение энергии',
-                        'grey_btn': 'Закрыть',
+                        'response': _('Пополнение энергии не требуется'),
+                        'header': _('Пополнение энергии'),
+                        'grey_btn': _('Закрыть'),
                     }
                     return JResponse(data)
                     # return HttpResponse(_('no_required'), content_type='text/html')
             else:
                 data = {
                     # 'response': _('positive_enrg_req'),
-                    'response': 'Недостаточно Энергетиков. Создайте их в Хранилище Склада',
-                    'header': 'Пополнение энергии',
-                    'grey_btn': 'Закрыть',
+                    'response': _('Недостаточно Энергетиков. Создайте их в Хранилище Склада'),
+                    'header': _('Пополнение энергии'),
+                    'grey_btn': _('Закрыть'),
                 }
                 return JResponse(data)
                 # return HttpResponse(_('no_batteries'), content_type='text/html')
@@ -69,8 +69,8 @@ def expense_energy(request):
     else:
         data = {
             # 'response': _('positive_enrg_req'),
-            'response': 'Ошибка типа запроса',
-            'header': 'Пополнение энергии',
-            'grey_btn': 'Закрыть',
+            'response': _('Ошибка типа запроса'),
+            'header': _('Пополнение энергии'),
+            'grey_btn': _('Закрыть'),
         }
         return JResponse(data)

@@ -16,10 +16,10 @@
 </button>
 <!--сила-->
 <div class="overview__love-stat-content">
-  <h2>Сила</h2>
+  <h2>{% trans 'Сила' %}</h2>
   <div style="background-color: tomato;"></div>
   {% if train and train.skill == 'power' %}
-  <p class="overview__love-stat-timer">Завершение: {{ train.end_dtime|timezone:player.time_zone|date:"d.m.Y H:i" }}</p>
+  <p class="overview__love-stat-timer">{% trans 'Завершение' %}: {{ train.end_dtime|timezone:player.time_zone|date:"d.m.Y H:i" }}</p>
   {% endif %}
   <div class="overview__love-stat-price-time">
     <p class="overview__love-p-with-svg">
@@ -47,28 +47,28 @@
     {% if train %}
         {% if premium %}
             {% if has_slot %}
-                в очередь
+                {% trans 'в очередь' context "skills" %}
             {% else %}
-                недоступно
+                {% trans 'недоступно' context "skills" %}
             {% endif %}
         {% else %}
             {% if train.skill == 'power' %}
-                изучается...
+                {% trans 'изучается...' context "skills" %}
             {% else %}
-                недоступно
+                {% trans 'недоступно' context "skills" %}
             {% endif %}
         {% endif %}
     {% else %}
-    изучить
+    {% trans 'изучить' %}
     {% endif %}
   </button>
 </div>
 <!--интеллект-->
 <div class="overview__love-stat-content">
-  <h2>Интеллект</h2>
+  <h2>{% trans 'Интеллект' %}</h2>
   <div style="background-color: #4791FF;"></div>
   {% if train and train.skill == 'knowledge' %}
-  <p class="overview__love-stat-timer">Завершение: {{ train.end_dtime|timezone:player.time_zone|date:"d.m.Y H:i" }}</p>
+  <p class="overview__love-stat-timer">{% trans 'Завершение' %}: {{ train.end_dtime|timezone:player.time_zone|date:"d.m.Y H:i" }}</p>
   {% endif %}
   <div class="overview__love-stat-price-time">
     <p class="overview__love-p-with-svg">
@@ -96,28 +96,28 @@
     {% if train %}
         {% if premium %}
             {% if has_slot %}
-                в очередь
+                {% trans 'в очередь' context "skills" %}
             {% else %}
-                недоступно
+                {% trans 'недоступно' context "skills" %}
             {% endif %}
         {% else %}
             {% if train.skill == 'power' %}
-                изучается...
+                {% trans 'изучается...' context "skills" %}
             {% else %}
-                недоступно
+                {% trans 'недоступно' context "skills" %}
             {% endif %}
         {% endif %}
     {% else %}
-    изучить
+    {% trans 'изучить' %}
     {% endif %}
   </button>
 </div>
 <!--выносливость-->
 <div class="overview__love-stat-content">
-  <h2>Выносливость</h2>
+  <h2>{% trans 'Выносливость' %}</h2>
   <div style="background-color: #8DFF47;"></div>
   {% if train and train.skill == 'endurance' %}
-  <p class="overview__love-stat-timer">Завершение: {{ train.end_dtime|timezone:player.time_zone|date:"d.m.Y H:i" }}</p>
+  <p class="overview__love-stat-timer">{% trans 'Завершение' %}: {{ train.end_dtime|timezone:player.time_zone|date:"d.m.Y H:i" }}</p>
   {% endif %}
   <div class="overview__love-stat-price-time">
     <p class="overview__love-p-with-svg">
@@ -145,19 +145,19 @@
     {% if train %}
         {% if premium %}
             {% if has_slot %}
-                в очередь
+                {% trans 'в очередь' context "skills" %}
             {% else %}
-                недоступно
+                {% trans 'недоступно' context "skills" %}
             {% endif %}
         {% else %}
             {% if train.skill == 'power' %}
-                изучается...
+                {% trans 'изучается...' context "skills" %}
             {% else %}
-                недоступно
+                {% trans 'недоступно' context "skills" %}
             {% endif %}
         {% endif %}
     {% else %}
-    изучить
+    {% trans 'изучить' %}
     {% endif %}
   </button>
 </div>
@@ -167,14 +167,14 @@
   <svg width="176" height="31" viewBox="0 0 176 31" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M0 6.26923L7.05128 0.5H176V23.5769L167.538 30.5H0V6.26923Z" fill="var(--c10one)"/>
   </svg>
-  <span>дерево навыков</span>
+  <span>{% trans 'дерево навыков' context "skills" %}</span>
 </button>
 {% if premium %}
 <!--прем блок-->
 <div class="overview__love-prem">
     {% if queue %}
     <!--таймер прем очереди-->
-    <p class="overview__love-prem-timer">Завершение: {{ last_skill.end_dtime|timezone:player.time_zone|date:"d.m.Y H:i" }}</p>
+    <p class="overview__love-prem-timer">{% trans 'Завершение' %}: {{ last_skill.end_dtime|timezone:player.time_zone|date:"d.m.Y H:i" }}</p>
     {% endif %}
     <!--премиум очередь навыков-->
     <ul class="overview__love-prem-list">

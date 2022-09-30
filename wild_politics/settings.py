@@ -141,6 +141,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
 ]
 
 
@@ -227,6 +228,7 @@ LANGUAGE_CODE = 'ru'
 LANGUAGES = (
     ('ru', 'Russian'),
     ('en', 'English'),
+    ('de', 'Deutsch'),
     # ('fr', 'French'),
     # ('it', 'Italian'),
     # ('es', 'Spanish'),

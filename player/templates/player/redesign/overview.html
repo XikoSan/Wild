@@ -31,7 +31,7 @@
             <path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
           </g>
         </svg>
-        <span>обзор</span>
+        <span>{% trans 'обзор' %}</span>
       </button>		
       <button class="ct__top-tab ct__top-tab2 ct__mid-btn" onclick="switchMainBlocks(1)">
         <svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
@@ -45,7 +45,7 @@
             <path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
           </g>
         </svg>
-        <span>чат</span>
+        <span>{% trans 'чат' %}</span>
       </button>
     </div>
 
@@ -56,7 +56,7 @@
         <div class="over-view__view-info-wrapper">
           <!--Блок МИР-->
           <div class="overview__view-info ct__view-info">
-            <h2>мир</h2>
+            <h2>{% trans 'мир' %}</h2>
             <ul class="ct__view-info-list">
               <li class="ct__view-info-item" onclick="window.location.href = '/world/players/'">
                 <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -105,7 +105,7 @@
           </div>
           <!--Блок ГОСУДАРСТВО-->
           <div class="overview__view-info ct__view-info">
-            <h2>{% if player.region.state %}{{ player.region.state.title }}{% else %}независимый регион{% endif %}</h2>
+            <h2>{% if player.region.state %}{{ player.region.state.title }}{% else %}{% trans 'независимый регион' %}{% endif %}</h2>
             <ul class="ct__view-info-list">
               <li class="ct__view-info-item">
                 <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -219,7 +219,7 @@
             </div>
             {% else %}
             <!--сообщение что войн нет-->
-            <p class="overview__war-no">войн нет</p>
+            <p class="overview__war-no">{% trans 'войн нет' %}</p>
             <!--иконка мира-->
             <svg class="overview__war-icon" width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
               <mask id="path-1-inside-1_758_442" fill="var(--c10one)">
@@ -267,17 +267,17 @@
           <!--Левая колонка-->
           <div class="overview__love-left">
             <button class="overview__love-stat-btn" onclick="setStatTab(0)">
-              <h3>сила</h3>
+              <h3>{% trans 'сила' context "overview" %}</h3>
               <div style="background-color: tomato;" class="overview__love-stat-btn-line"></div>
               <span>{{ player.power }}</span>
             </button>
             <button class="overview__love-stat-btn" onclick="setStatTab(1)">
-              <h3>инт</h3>
+              <h3>{% trans 'инт' context "overview" %}</h3>
               <div style="background-color: #4791FF;" class="overview__love-stat-btn-line"></div>
               <span>{{ player.knowledge }}</span>
             </button>
             <button class="overview__love-stat-btn"  onclick="setStatTab(2)">
-              <h3>вын</h3>
+              <h3>{% trans 'вын' context "overview" %}</h3>
               <div style="background-color: #8DFF47;" class="overview__love-stat-btn-line"></div>
               <span>{{ player.endurance }}</span>
             </button>
@@ -294,7 +294,7 @@
               <!--партии государства-->
               <div class="overview__par active">
                 <button class="overview__par-title" onclick="opentParBlock(0)">
-                  партии {% if player.region.state %}государства{% else %}региона{% endif %}
+                  {% trans 'партии' context "overview" %} {% if player.region.state %}{% trans 'государства' context "overview" %}{% else %}{% trans 'региона' context "overview" %}{% endif %}
                   <svg class="overview__par-title-svg" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect width="24" height="24" fill="var(--c10two)"/>
                     <path d="M2.3999 8.40002L11.9999 18L21.5999 8.40002" stroke="var(--c30)" stroke-width="2"/>
@@ -331,14 +331,14 @@
                 </ul>
                 {% else %}
                 <!--партий нет-->
-                <p class="overview__par-no"><span>партий нет</span></p>
+                <p class="overview__par-no"><span>{% trans 'партий нет' %}</span></p>
                 {% endif %}
               </div>
               {% if has_parl %}
               <!--парламент-->
               <div class="overview__par">
                 <button class="overview__par-title" onclick="opentParBlock(1)">
-                  парламент
+                  {% trans 'парламент' context "overview" %}
                   <svg class="overview__par-title-svg" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect width="24" height="24" fill="var(--c10two)"/>
                     <path d="M2.3999 8.40002L11.9999 18L21.5999 8.40002" stroke="var(--c30)" stroke-width="2"/>
@@ -376,7 +376,7 @@
                 </ul>
                 {% else %}
                 <!--партий нет-->
-                <p class="overview__par-no"><span>партий нет</span></p>
+                <p class="overview__par-no"><span>{% trans 'партий нет' %}</span></p>
                 {% endif %}
               </div>
               {% endif %}
@@ -552,7 +552,7 @@
         {% else %}
         <!--Информация когда стиков нет-->
         <div class="overview__stickers-no">
-          <p>У вас пока еще нет стикеров</p>
+          <p>{% trans 'У вас пока еще нет стикеров' %}</p>
           <a href="{% url 'stickers_shop' %}" class="overview__stickers-no-link active ct__mid-btn">
             <svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
               <mask id="mask0_2259_233177" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
@@ -565,7 +565,7 @@
                 <path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
               </g>
             </svg>
-            <span>магазин</span>
+            <span>{% trans 'магазин' context "overview" %}</span>
           </a>
         </div>
         {% endif %}

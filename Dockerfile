@@ -2,7 +2,10 @@ FROM python:3.8-alpine
 
 WORKDIR /app
 
-RUN apk add --no-cache gcc musl-dev libffi-dev postgresql-dev python3-dev jpeg-dev zlib-dev
+RUN apk add --no-cache gcc musl-dev libffi-dev postgresql-dev python3-dev jpeg-dev zlib-dev\
+    icu-dev \
+    gettext \
+    gettext-dev
 
 COPY requirements.txt ./
 RUN pip install -r requirements.txt
