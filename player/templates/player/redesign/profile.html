@@ -244,7 +244,7 @@
 						<span>о себе:</span>
 					</h2>
 					<p id="player_bio_view" class="ct__s-text" >{% if not player.bio %}{{ user_link }}{% else %}{{ player.bio }}{% endif %}</p>
-					<textarea id="player_bio" class="profile__s-textarea" cols="30" rows="10" style="display: none">
+					<textarea id="player_bio" class="profile__s-textarea" cols="30" rows="10" onfocus="hideProfileTop()" onblur="showProfileTop()" style="display: none">
 						{% if not player.bio %}{{ user_link }}{% else %}{{ player.bio }}{% endif %}
 					</textarea>
 				</div>
@@ -263,6 +263,17 @@
 
 	</section>
 
+<!--	<script>-->
+<!--	  const profileTopWrapper = document.querySelector('.profile__top-wrapper');-->
+<!--	  const profileInfoTab = document.querySelector('.profile__info-tab');-->
+<!--	  function hideProfileTop() {-->
+<!--		profileTopWrapper.classList.add('hidden');-->
+<!--		profileInfoTab.scrollTop(9999)-->
+<!--	  }-->
+<!--	  function showProfileTop() {-->
+<!--		profileTopWrapper.classList.remove('hidden');-->
+<!--	  }-->
+<!--	</script>-->
 
 	<!-- ОБРЕЗКА ИЗОБРАЖЕНИЙ МОДАЛКА -->
 	<div class="img_modal" id="modalCrop">
@@ -378,6 +389,7 @@
 		</form>
 	</div>
 	<!-- КОНЕЦ МОДАЛЬНОГО ОКНА НАСТРОЕК -->
+
 
 	<script src="{% static 'redesign/js/profile.js' %}?{{ csrf_token }}"></script>
 	<script src="{% static 'redesign/js/cropper.js' %}?{{ csrf_token }}"></script>

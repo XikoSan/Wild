@@ -135,7 +135,7 @@ def overview(request):
 
     # polls = Poll.actual.all()
 
-    president_post = has_voting = None
+    president_post = parliament = has_voting = has_parl_voting = None
     # если есть гос
     if player.region.state:
         # если в госе есть през
@@ -144,6 +144,14 @@ def overview(request):
             # если идут выборы президента
             if PresidentialVoting.objects.filter(running=True, president=president_post).exists():
                 has_voting = True
+
+        # если у государства есть парламент
+        if Parliament.objects.filter(state=player.region.state).exists():
+            parliament = Parliament.objects.get(state=player.region.state)
+
+            # если в парламенте идут выборы
+            if ParliamentVoting.objects.filter(running=True, parliament=parliament).exists():
+                has_parl_voting = True
 
     # войны
     war_dict = {}
@@ -164,10 +172,7 @@ def overview(request):
             if closest_war.start_time > war_dict[w_type]:
                 closest_war = war_dict[w_type]
 
-    groups = list(player.account.groups.all().values_list('name', flat=True))
-    page = 'player/overview.html'
-    if 'redesign' not in groups:
-        page = 'player/redesign/overview.html'
+    page = 'player/redesign/overview.html'
 
     # отправляем в форму
     response = render(request, page, {
@@ -210,6 +215,9 @@ def overview(request):
 
         'has_voting': has_voting,
         'president': president_post,
+
+        'has_parl_voting': has_parl_voting,
+        'parliament': parliament,
 
     })
 

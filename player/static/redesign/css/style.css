@@ -355,6 +355,12 @@ a {
   padding-right: 12rem;
   padding-left: 24rem;
   justify-content: space-between;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.profile__top-wrapper.hidden {
+  height: 0;
 }
 
 .profile__top-left {
@@ -570,7 +576,7 @@ a {
   top: 0;
   left: 0;
   width: 100vw;
-  height: calc(100vh - 60rem);
+  height: calc(100% - 60rem);
   background-color: var(--c60);
   transform: translateX(100vw);
   transition: all 0.5s ease;
@@ -2115,6 +2121,40 @@ p.overview__love-stat-timer {
   100% {opacity: 1;}
 }
 
+.overview__love-part-vote {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 24rem;
+  margin-bottom: 12rem;
+  font-weight: 400;
+  font-size: 18rem;
+  line-height: 24rem;
+  text-align: center;
+  letter-spacing: -0.04em;
+  color: var(--c10one);
+  background-color: var(--c30);
+  border: 0;
+  padding: 0;
+}
+
+.overview__love-part-vote-main {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 24rem;
+  margin-bottom: 12rem;
+  font-weight: 400;
+  font-size: 18rem;
+  line-height: 24rem;
+  text-align: center;
+  letter-spacing: -0.04em;
+  color: var(--c10one);
+  background-color: tomato;
+  border: 0;
+  padding: 0;
+}
+
 .overview__par {
   height: 24rem;
   overflow: hidden;
@@ -2126,7 +2166,7 @@ p.overview__love-stat-timer {
 }
 
 .overview__par.active {
-  height: calc(100vh - 410rem);
+  height: calc(100vh - 442rem);
 }
 
 .overview__par-title-svg {
@@ -2162,7 +2202,7 @@ p.overview__love-stat-timer {
   list-style: none;
   margin: 0;
   border: 1px solid var(--c30);
-  height: calc(100vh - 434rem);
+  height: calc(100vh - 467rem);
   overflow-y: auto;
 }
 
@@ -2240,7 +2280,6 @@ p.overview__love-stat-timer {
 }
 
 .overview__chat-wrapper {
-  height: calc(100vh - 114rem);
 }
 
 .overview__chat-messages {
@@ -3171,6 +3210,15 @@ p.overview__love-stat-timer {
   text-align: center;
   letter-spacing: -0.04em;
   border: none;
+}
+
+.ct__card button svg {
+  position: static;
+  width: 14rem;
+  height: 14rem;
+  display: block;
+  margin-right: 6rem;
+  margin-top: -2rem;
 }
 
 .ct__card button.cancel {

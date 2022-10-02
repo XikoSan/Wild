@@ -63,7 +63,13 @@
             {% else %}
                 {% if premium %}
                 <button class="start_auto" onclick="start_auto(event, 'gold')" style="{% if auto_mining.resource == 'gold' %}display:none{% endif %}">авто</button>
-                <button class="cancel_auto" onclick="cancel_auto(event)" style="{% if not auto_mining or auto_mining.resource != 'gold' %}display:none {% endif %}">до {{ auto_mining.task.start_time|timezone:player.time_zone|date:"H:i" }}</button>
+                <button class="cancel_auto" onclick="cancel_auto(event)" style="{% if not auto_mining or auto_mining.resource != 'gold' %}display:none {% endif %}">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<circle cx="7" cy="7" r="6.5" stroke="var(--c60)"></circle>
+						<path d="M7 2.24V7.07L10.71 10.78" stroke="var(--c60)"></path>
+					</svg>
+                    <span>{{ auto_mining.task.start_time|timezone:player.time_zone|date:"H:i" }}</span>
+                </button>
                 {% endif %}
             <button class="btn-mining">добыча</button>
             {% endif %}
@@ -83,7 +89,13 @@
                 {% else %}
                     {% if premium %}
                 <button class="start_auto" onclick="start_auto(event, 'oil')" style="{% if auto_mining.resource == 'oil' %}display:none{% endif %}">авто</button>
-                <button class="cancel_auto" onclick="cancel_auto(event)" style="{% if not auto_mining or auto_mining.resource != 'oil' %}display:none {% endif %}">до {{ auto_mining.task.start_time|timezone:player.time_zone|date:"H:i" }}</button>
+                <button class="cancel_auto" onclick="cancel_auto(event)" style="{% if not auto_mining or auto_mining.resource != 'oil' %}display:none {% endif %}">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<circle cx="7" cy="7" r="6.5" stroke="var(--c60)"></circle>
+						<path d="M7 2.24V7.07L10.71 10.78" stroke="var(--c60)"></path>
+					</svg>
+                    <span>{{ auto_mining.task.start_time|timezone:player.time_zone|date:"H:i" }}</span>
+                </button>
                     {% endif %}
                 <button class="btn-mining">добыча</button>
                 {% endif %}
@@ -103,7 +115,13 @@
             {% else %}
                 {% if premium %}
             <button class="start_auto" onclick="start_auto(event, 'ore')" style="{% if auto_mining.resource == 'ore' %}display:none{% endif %}">авто</button>
-            <button class="cancel_auto" onclick="cancel_auto(event)" style="{% if not auto_mining or auto_mining.resource != 'ore' %}display:none {% endif %}">до {{ auto_mining.task.start_time|timezone:player.time_zone|date:"H:i" }}</button>
+            <button class="cancel_auto" onclick="cancel_auto(event)" style="{% if not auto_mining or auto_mining.resource != 'ore' %}display:none {% endif %}">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="7" cy="7" r="6.5" stroke="var(--c60)"></circle>
+                    <path d="M7 2.24V7.07L10.71 10.78" stroke="var(--c60)"></path>
+                </svg>
+                <span>{{ auto_mining.task.start_time|timezone:player.time_zone|date:"H:i" }}</span>
+            </button>
                 {% endif %}
             <button class="btn-mining">добыча</button>
             {% endif %}

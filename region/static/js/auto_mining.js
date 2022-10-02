@@ -15,12 +15,15 @@ function start_auto(e, resource){
 
                 for (var i = 0; i < elements.length; i++) {
                     var child = elements[i];
-                    child.getElementsByClassName('start_auto')[0].style.display = 'inline-block';
+                    child.getElementsByClassName('start_auto')[0].style.display = 'flex';
                     child.getElementsByClassName('cancel_auto')[0].style.display = 'none';
                 }
 
                 e.target.closest(".mining_form").getElementsByClassName("start_auto")[0].style.display = 'none';
-                e.target.closest(".mining_form").getElementsByClassName("cancel_auto")[0].style.display = 'inline-block';
+
+                var currentdate = new Date();
+                e.target.closest(".mining_form").getElementsByClassName("cancel_auto")[0].querySelectorAll("span")[0].innerHTML = currentdate.getHours() + ":" + (currentdate.getMinutes()<10?'0':'') + currentdate.getMinutes();
+                e.target.closest(".mining_form").getElementsByClassName("cancel_auto")[0].style.display = 'flex';
             }
             else{
                 display_modal('notify', data.header, data.response, null, data.grey_btn);
@@ -40,7 +43,7 @@ function cancel_auto(e){
         cache: false,
         success: function(data){
             if (data.response == 'ok'){
-                e.target.closest(".mining_form").getElementsByClassName("start_auto")[0].style.display = 'inline-block';
+                e.target.closest(".mining_form").getElementsByClassName("start_auto")[0].style.display = 'flex';
                 e.target.closest(".mining_form").getElementsByClassName("cancel_auto")[0].style.display = 'none';
             }
             else{

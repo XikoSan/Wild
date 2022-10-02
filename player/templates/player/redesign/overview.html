@@ -291,6 +291,13 @@
             </div>
             <!--блок ПАРТИЙ и ПАРЛАМЕНТА-->
             <div class="overview__love-part active" id="overview__love-part">
+              {% if has_voting %}
+              <!-- кнопка выборов лидера -->
+              <a href="{% url 'pres_elections' pres_pk=president.pk %}" class="overview__love-part-vote-main">{% trans 'Выборы лидера' context "overview" %}</a>
+              {% elif has_parl_voting %}
+              <!-- кнопка выборов -->
+              <a href="{% url 'parl_elections' parl_pk=parliament.pk %}" class="overview__love-part-vote" style="display: none;">{% trans 'Выборы' context "overview" %}</a>
+              {% endif %}
               <!--партии государства-->
               <div class="overview__par active">
                 <button class="overview__par-title" onclick="opentParBlock(0)">
