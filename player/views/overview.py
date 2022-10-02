@@ -1,8 +1,8 @@
+import datetime
 import json
 import pytz
 import random
 import redis
-import datetime
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.templatetags.static import static
@@ -22,6 +22,7 @@ from region.region import Region
 from region.views.lists.get_regions_online import get_region_online
 from state.models.parliament.parliament import Parliament
 from state.models.parliament.parliament_party import ParliamentParty
+from state.models.parliament.parliament_voting import ParliamentVoting
 from state.models.state import State
 from war.models.wars.war import War
 from wild_politics.settings import TIME_ZONE, sentry_environment
@@ -106,7 +107,8 @@ def overview(request):
 
             author = Player.objects.filter(pk=int(b['author'])).only('id', 'nickname', 'image', 'time_zone').get()
             # сначала делаем из наивного времени aware, потом задаем ЧП игрока
-            b['dtime'] = datetime.datetime.fromtimestamp(int(b['dtime'])).replace(tzinfo=pytz.timezone(TIME_ZONE)).astimezone(
+            b['dtime'] = datetime.datetime.fromtimestamp(int(b['dtime'])).replace(
+                tzinfo=pytz.timezone(TIME_ZONE)).astimezone(
                 tz=pytz.timezone(player.time_zone)).strftime("%H:%M")
             b['author'] = author.pk
             b['counter'] = int(scan[1])
