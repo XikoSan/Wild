@@ -105,7 +105,7 @@
           </div>
           <!--Блок ГОСУДАРСТВО-->
           <div class="overview__view-info ct__view-info">
-            <h2>{% if player.region.state %}{{ player.region.state.title }}{% else %}{% trans 'независимый регион' %}{% endif %}</h2>
+            <h2>{% if player.region.state %}{{ player.region.state.title|truncatechars:24 }}{% else %}{% trans 'независимый регион' %}{% endif %}</h2>
             <ul class="ct__view-info-list">
               <li class="ct__view-info-item">
                 <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
