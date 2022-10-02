@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-10-01 01:43+0300\n"
-"PO-Revision-Date: 2022-10-01 23:09+0300\n"
+"PO-Revision-Date: 2022-10-02 14:33+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -28,7 +28,7 @@ msgstr "Staat"
 
 #: bill/models/change_taxes.py:38
 msgid "Финансирование"
-msgstr "Finanzierung"
+msgstr "Verkauf"
 
 #: bill/models/change_taxes.py:39 bill/models/explore_resources.py:25
 #: region/templates/region/region_info.html:82 storage/models/storage.py:31
@@ -106,7 +106,7 @@ msgstr "Vorwahlen_in_der_Partei"
 #: player/templates/player/redesign/menu.html:7
 msgctxt "menu"
 msgid "обзор"
-msgstr "Übersicht"
+msgstr "Startseite"
 
 #: player/templates/player/redesign/menu.html:18
 msgctxt "menu"
@@ -318,7 +318,7 @@ msgstr "seit"
 
 #: player/views/expense_energy.py:28
 msgid "Десять минут ещё не прошло"
-msgstr "Es sind noch keine zehn Minuten vergangen"
+msgstr "Es sind noch keine zehn Minuten vergangen."
 
 #: player/views/expense_energy.py:29 player/views/expense_energy.py:53
 #: player/views/expense_energy.py:62 player/views/expense_energy.py:73
@@ -345,7 +345,7 @@ msgstr "Fehler im Anfragetyp"
 
 #: player/views/lists/region_players.py:33
 msgid "Население региона"
-msgstr "Einwohner der Region"
+msgstr "Einwohner in der Region"
 
 #: player/views/lists/world_players.py:27
 msgid "Мировое население"
@@ -365,7 +365,7 @@ msgstr "Fehler im Profil"
 
 #: player/views/overview.py:174
 msgid "Обзор"
-msgstr "Übersicht"
+msgstr "Startseite"
 
 #: player/views/skills/skill_queue.py:30 skill/views/skills_list.py:59
 msgid "Навыки"
@@ -381,7 +381,7 @@ msgstr "Krankenhausrang"
 
 #: region/templates/region/buildings/power_plant.html:5
 msgid "Уровень ТЭЦ"
-msgstr "KH -Stufe"
+msgstr "KH - Niveau"
 
 #: region/templates/region/region_info.html:39
 msgid "Вы летите в"
@@ -440,26 +440,26 @@ msgstr "Erzvorräte"
 
 #: region/templates/region/region_view.html:165
 msgid "Качество руды (уголь/железо/бокситы)"
-msgstr "Qualität der Erze (Kohle/Eisen/Bauxit)"
+msgstr "Erzqualität (Kohle/Eisen/Bauxit)"
 
 #: region/templates/region/region_view.html:186
 msgid "Региональные налоги"
-msgstr "Regionalsteuern"
+msgstr "Regionale Steuern"
 
 #: region/templates/region/region_view.html:193
 #: state/templates/state/state_view.html:126
 msgid "На финансирование"
-msgstr "Für die Finanzierung"
+msgstr "Steuern"
 
 #: region/templates/region/region_view.html:205
 #: state/templates/state/state_view.html:138
 msgid "На добычу"
-msgstr "Zur Extraktion"
+msgstr "Steuern auf Fabrikerzeugnisse"
 
 #: region/templates/region/region_view.html:219
 #: state/templates/state/state_view.html:152
 msgid "На торговлю"
-msgstr "Über den Handel"
+msgstr "Steuern auf den Verkauf"
 
 #: region/views/lists/world_regions.py:116
 msgid "Регионы игры"
@@ -579,18 +579,18 @@ msgstr "Orb_Station"
 #: storage/models/factory/production_log.py:72
 #: storage/models/factory/project.py:179 storage/models/storage.py:192
 msgid "mpads"
-msgstr ""
+msgstr "Luftabwehrsystem"
 
 #: state/models/treasury.py:97 storage/models/destroy.py:66
 #: storage/models/factory/production_log.py:75
 #: storage/models/factory/project.py:195 storage/models/storage.py:172
 msgid "antitank"
-msgstr ""
+msgstr "Panzerabwehrsystem"
 
 #: state/models/treasury.py:100 storage/models/destroy.py:68
 #: storage/models/factory/production_log.py:78
 msgid "ifv"
-msgstr ""
+msgstr "Infanterie"
 
 #: state/models/treasury.py:103
 msgid "drone"
@@ -638,93 +638,93 @@ msgstr "Aluminium"
 
 #: storage/models/factory/project.py:116
 msgid "medical"
-msgstr "medizinisch"
+msgstr "Medizin"
 
 #: storage/models/factory/project.py:211 storage/models/storage.py:84
 #: storage/models/storage.py:197 storage/models/transport.py:180
 #: war/models/squads/light_vehicle.py:47 war/models/wars/war_side.py:32
 msgid "БМП"
-msgstr ""
+msgstr "BMP"
 
 #: storage/models/factory/project.py:227 storage/models/storage.py:86
 #: war/models/squads/recon.py:32
 msgid "БПЛА"
-msgstr ""
+msgstr "UAV"
 
 #: storage/models/storage.py:30
 msgid "Минералы"
-msgstr ""
+msgstr "Mineralien"
 
 #: storage/models/storage.py:32
 msgid "Материалы"
-msgstr ""
+msgstr "Materialien"
 
 #: storage/models/storage.py:33
 msgid "Оборудование"
-msgstr ""
+msgstr "Ausrüstung"
 
 #: storage/models/storage.py:34
 msgid "Оружие"
-msgstr ""
+msgstr "Waffen"
 
 #: storage/models/storage.py:38
 #: storage/templates/storage/storage_lines/cash_transfer.html:9
 msgid "Наличные"
-msgstr ""
+msgstr "Geld"
 
 #: storage/models/storage.py:45 storage/models/transport.py:93
 msgid "Железо"
-msgstr ""
+msgstr "Eisen"
 
 #: storage/models/storage.py:47 storage/models/transport.py:98
 msgid "Бокситы"
-msgstr ""
+msgstr "Bauxit"
 
 #: storage/models/storage.py:51 storage/models/transport.py:104
 msgid "Нефть WTI"
-msgstr ""
+msgstr "WTI-Öl"
 
 #: storage/models/storage.py:53 storage/models/transport.py:109
 msgid "Нефть Brent"
-msgstr ""
+msgstr "Brent-Öl"
 
 #: storage/models/storage.py:55 storage/models/transport.py:114
 msgid "Нефть Urals"
-msgstr ""
+msgstr "Ural-Öl"
 
 #: storage/models/storage.py:61
 msgid "Дизельное топливо"
-msgstr ""
+msgstr "Dieselkraftstoff"
 
 #: storage/models/storage.py:65 storage/models/transport.py:134
 msgid "Сталь"
-msgstr ""
+msgstr "Stahl"
 
 #: storage/models/storage.py:67 storage/models/transport.py:138
 msgid "Алюминий"
-msgstr ""
+msgstr "Aluminium"
 
 #: storage/models/storage.py:77 storage/models/transport.py:155
 #: war/models/squads/heavy_vehicle.py:32 war/models/wars/war_side.py:36
 msgid "Танки"
-msgstr ""
+msgstr "Panzer"
 
 #: storage/models/storage.py:78 war/models/squads/light_vehicle.py:49
 #: war/models/wars/war_side.py:34
 msgid "ПТ-орудия"
-msgstr ""
+msgstr "PT-Kanonen"
 
 #: storage/models/storage.py:79
 msgid "Орбитальные орудия"
-msgstr ""
+msgstr "Orbitalkanonen"
 
 #: storage/models/storage.py:81 storage/models/transport.py:160
 msgid "Штурмовики"
-msgstr ""
+msgstr "Sturmsoldaten"
 
 #: storage/models/storage.py:82 storage/models/transport.py:170
 msgid "ПЗРК"
-msgstr ""
+msgstr "MANPADS"
 
 #: storage/models/storage.py:107
 msgid "coal_cap"
@@ -780,7 +780,7 @@ msgstr ""
 
 #: storage/models/storage.py:255
 msgid "not_enough"
-msgstr ""
+msgstr "nicht_ausreichend"
 
 #: storage/models/transport.py:83
 msgid "Всего кубов"
@@ -860,7 +860,7 @@ msgstr ""
 
 #: storage/models/transport.py:175
 msgid "ПТ-пушка"
-msgstr ""
+msgstr "PT-Kanone"
 
 #: storage/models/transport.py:177
 msgid "ПТ-пушка - кубов"
@@ -884,7 +884,7 @@ msgstr ""
 
 #: storage/templates/storage/storage_lines/cash_transfer.html:26
 msgid "Передать"
-msgstr ""
+msgstr "Übertragen"
 
 #: storage/views/assets/assets.py:46
 msgid "Активы"
@@ -892,7 +892,7 @@ msgstr ""
 
 #: storage/views/factory/factory.py:47
 msgid "Производство"
-msgstr ""
+msgstr "Herstellung"
 
 #: storage/views/storage/cash_transfer.py:29
 msgid "Отрицательное число денег игрока"
@@ -912,11 +912,11 @@ msgstr ""
 
 #: storage/views/storage/cash_transfer.py:47
 msgid "В этом регионе нет Склада"
-msgstr ""
+msgstr "Es gibt kein Lagerhaus in dieser Region"
 
 #: storage/views/storage/cash_transfer.py:69
 msgid "Данные кошелька не совпадают с введенными"
-msgstr ""
+msgstr "Die Angaben zum Budget  stimmen nicht mit den eingegebenen Daten überein"
 
 #: storage/views/storage/cash_transfer.py:72
 msgid "Недопустим ввод отрицательных чисел"
@@ -924,8 +924,8 @@ msgstr ""
 
 #: storage/views/storage/cash_transfer.py:79
 msgid "incorrect_method"
-msgstr ""
+msgstr "fehlerhafte_Methode"
 
 #: storage/views/storage/storage.py:27
 msgid "Склад"
-msgstr ""
+msgstr "Lagerhaus"
