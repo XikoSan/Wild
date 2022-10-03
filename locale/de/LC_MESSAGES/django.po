@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-02 22:14+0300\n"
-"PO-Revision-Date: 2022-10-02 22:16+0300\n"
+"POT-Creation-Date: 2022-10-03 21:40+0300\n"
+"PO-Revision-Date: 2022-10-03 22:46+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -22,7 +22,7 @@ msgstr ""
 msgid "Регион"
 msgstr "Region"
 
-#: bill/models/change_taxes.py:22 region/templates/region/region_view.html:91
+#: bill/models/change_taxes.py:22 region/templates/region/region_view.html:99
 msgid "Государство"
 msgstr "Staat"
 
@@ -121,7 +121,7 @@ msgstr "Lagerhaus"
 #: player/templates/player/redesign/menu.html:39
 msgctxt "menu"
 msgid "активы"
-msgstr "Vermögen"
+msgstr "Lagerbestand"
 
 #: player/templates/player/redesign/menu.html:57
 msgctxt "menu"
@@ -172,6 +172,7 @@ msgstr "Zeitzone"
 #: player/templates/player/redesign/new_player.html:135
 #: player/templates/player/redesign/new_player.html:149
 #: player/templates/player/redesign/new_player.html:177
+#: player/templates/player/redesign/overview_skills.html:178
 msgid "Отмена"
 msgstr "löschen"
 
@@ -251,7 +252,7 @@ msgstr "Parlament"
 
 #: player/templates/player/redesign/overview.html:562
 msgid "У вас пока еще нет стикеров"
-msgstr "Sie haben noch keinen Sticker"
+msgstr "Sie haben noch keinen Sticker freigeschaltet"
 
 #: player/templates/player/redesign/overview.html:575
 msgctxt "overview"
@@ -265,7 +266,7 @@ msgstr "Stärke"
 #: player/templates/player/redesign/overview_skills.html:22
 #: player/templates/player/redesign/overview_skills.html:71
 #: player/templates/player/redesign/overview_skills.html:120
-#: player/templates/player/redesign/overview_skills.html:177
+#: player/templates/player/redesign/overview_skills.html:184
 msgid "Завершение"
 msgstr "Fertigstellung"
 
@@ -297,7 +298,7 @@ msgstr "im Gange..."
 #: player/templates/player/redesign/overview_skills.html:111
 #: player/templates/player/redesign/overview_skills.html:160
 msgid "изучить"
-msgstr "Aufwärten"
+msgstr "aufwerten"
 
 #: player/templates/player/redesign/overview_skills.html:68
 msgid "Интеллект"
@@ -311,6 +312,20 @@ msgstr "Ausdauer"
 msgctxt "skills"
 msgid "дерево навыков"
 msgstr "Fertigkeitsbaum"
+
+#: player/templates/player/redesign/overview_skills.html:175
+msgctxt "skill_cancel"
+msgid "Отмена изучения навыка"
+msgstr "Du kannst das Erlernen von Fähigkeiten abbrechen"
+
+#: player/templates/player/redesign/overview_skills.html:176
+msgctxt "skill_cancel"
+msgid "Изучение навыка будет отменено. Продолжить?"
+msgstr "Das Erlernen der Fähigkeit wird abgebrochen. Soll ich fortfahren?"
+
+#: player/templates/player/redesign/overview_skills.html:177
+msgid "Продолжить"
+msgstr "Fortfahren"
 
 #: player/templates/player/redesign/player_status.html:32
 #: player/templates/player/redesign/player_status.html:39
@@ -328,7 +343,7 @@ msgstr "seit"
 
 #: player/views/expense_energy.py:28
 msgid "Десять минут ещё не прошло"
-msgstr "Es sind noch keine zehn Minuten vergangen."
+msgstr "Es sind noch keine zehn Minuten vergangen"
 
 #: player/views/expense_energy.py:29 player/views/expense_energy.py:53
 #: player/views/expense_energy.py:62 player/views/expense_energy.py:73
@@ -338,6 +353,9 @@ msgstr "Auffüllen der Energie"
 #: player/views/expense_energy.py:30 player/views/expense_energy.py:54
 #: player/views/expense_energy.py:63 player/views/expense_energy.py:74
 #: player/views/new_player.py:89 player/views/new_player.py:102
+#: skill/views/skill_cancel.py:36 skill/views/skill_cancel.py:44
+#: skill/views/skill_cancel.py:52 skill/views/skill_cancel.py:62
+#: skill/views/skill_cancel.py:77
 msgid "Закрыть"
 msgstr "Schließen"
 
@@ -373,7 +391,7 @@ msgstr "Neuer Charakter"
 msgid "Ошибка в форме профиля"
 msgstr "Fehler im Profil"
 
-#: player/views/overview.py:179
+#: player/views/overview.py:181
 msgid "Обзор"
 msgstr "Startseite"
 
@@ -391,7 +409,7 @@ msgstr "Krankenhausrang"
 
 #: region/templates/region/buildings/power_plant.html:5
 msgid "Уровень ТЭЦ"
-msgstr "KH - Niveau"
+msgstr "Krankenhaus"
 
 #: region/templates/region/region_info.html:39
 msgid "Вы летите в"
@@ -413,7 +431,7 @@ msgstr "Minuten"
 #: region/templates/region/region_view.html:38
 #: region/templates/region/region_view.html:52
 msgid "Отправиться"
-msgstr "Gehe nach"
+msgstr "Fliege nach"
 
 #: region/templates/region/region_info.html:111
 msgid "reg_taxes"
@@ -427,46 +445,46 @@ msgstr ""
 msgid "reg_med_lvl"
 msgstr ""
 
-#: region/templates/region/region_view.html:103
+#: region/templates/region/region_view.html:111
 #, fuzzy
 msgid "Независимый регион"
 msgstr "unabhängige Region"
 
-#: region/templates/region/region_view.html:111
+#: region/templates/region/region_view.html:119
 msgid "Запасы золота"
 msgstr "Goldvorräte"
 
-#: region/templates/region/region_view.html:125
+#: region/templates/region/region_view.html:133
 msgid "Запасы нефти"
 msgstr "Ölvorräte"
 
-#: region/templates/region/region_view.html:139
+#: region/templates/region/region_view.html:147
 msgid "Марка нефти"
 msgstr "Ölqualität"
 
-#: region/templates/region/region_view.html:151
+#: region/templates/region/region_view.html:159
 msgid "Запасы руд"
 msgstr "Erzvorräte"
 
-#: region/templates/region/region_view.html:165
+#: region/templates/region/region_view.html:173
 msgid "Качество руды (уголь/железо/бокситы)"
 msgstr "Erzqualität (Kohle/Eisen/Bauxit)"
 
-#: region/templates/region/region_view.html:186
+#: region/templates/region/region_view.html:194
 msgid "Региональные налоги"
-msgstr "Regionale Steuern"
+msgstr "Steuern in der Region"
 
-#: region/templates/region/region_view.html:193
+#: region/templates/region/region_view.html:201
 #: state/templates/state/state_view.html:126
 msgid "На финансирование"
 msgstr "Steuern"
 
-#: region/templates/region/region_view.html:205
+#: region/templates/region/region_view.html:213
 #: state/templates/state/state_view.html:138
 msgid "На добычу"
 msgstr "Steuern auf Fabrikerzeugnisse"
 
-#: region/templates/region/region_view.html:219
+#: region/templates/region/region_view.html:227
 #: state/templates/state/state_view.html:152
 msgid "На торговлю"
 msgstr "Steuern auf den Verkauf"
@@ -492,6 +510,28 @@ msgstr "Ungültige Anfrage"
 #, fuzzy
 msgid "Добыча"
 msgstr "Arbeit"
+
+#: skill/views/skill_cancel.py:34
+msgid "ID навыка должен быть числом"
+msgstr "Gebe die Nummer der Perk-ID an"
+
+#: skill/views/skill_cancel.py:35 skill/views/skill_cancel.py:43
+#: skill/views/skill_cancel.py:51 skill/views/skill_cancel.py:61
+#: skill/views/skill_cancel.py:76
+msgid "Ошибка отмены навыка"
+msgstr "Es ist ein Fehler beim Abbrechen der Fertigkeit aufgetreten"
+
+#: skill/views/skill_cancel.py:42
+msgid "У вас нет активного премиум-аккаунта"
+msgstr "Du hast kein Premium aktiviert"
+
+#: skill/views/skill_cancel.py:50 skill/views/skill_cancel.py:60
+msgid "Нет навыков в очереди"
+msgstr "Keine Fähigkeiten in der Warteschlange"
+
+#: skill/views/skill_cancel.py:75
+msgid "Нет такого навыка"
+msgstr "Du hast diese Fähigkeit nicht erlernt"
 
 #: state/models/treasury.py:38 storage/models/factory/production_log.py:18
 #: storage/models/storage.py:101
@@ -612,7 +652,7 @@ msgstr "Spenden"
 
 #: state/templates/state/state_view.html:89
 msgid "Столица"
-msgstr "Kapital"
+msgstr "Hauptstadt"
 
 #: state/templates/state/state_view.html:119
 msgid "Государственные налоги"
@@ -704,7 +744,7 @@ msgstr "Ural-Öl"
 
 #: storage/models/storage.py:61
 msgid "Дизельное топливо"
-msgstr "Dieselkraftstoff"
+msgstr "Dieseltreibtstoff"
 
 #: storage/models/storage.py:65 storage/models/transport.py:134
 msgid "Сталь"
@@ -730,7 +770,7 @@ msgstr "Orbitalkanonen"
 
 #: storage/models/storage.py:81 storage/models/transport.py:160
 msgid "Штурмовики"
-msgstr "Sturmsoldaten"
+msgstr "Infanterie"
 
 #: storage/models/storage.py:82 storage/models/transport.py:170
 msgid "ПЗРК"
@@ -870,7 +910,7 @@ msgstr ""
 
 #: storage/models/transport.py:175
 msgid "ПТ-пушка"
-msgstr "PT-Kanone"
+msgstr "PT-Kanonen"
 
 #: storage/models/transport.py:177
 msgid "ПТ-пушка - кубов"
@@ -886,11 +926,11 @@ msgstr ""
 
 #: storage/templates/storage/storage_lines/cash_transfer.html:14
 msgid "Денег всего"
-msgstr ""
+msgstr "Ausschließlich Geld"
 
 #: storage/templates/storage/storage_lines/cash_transfer.html:21
 msgid "На Складе"
-msgstr ""
+msgstr "Im Lagerhaus"
 
 #: storage/templates/storage/storage_lines/cash_transfer.html:26
 msgid "Передать"
@@ -898,7 +938,7 @@ msgstr "Übertragen"
 
 #: storage/views/assets/assets.py:46
 msgid "Активы"
-msgstr ""
+msgstr "Lagerbestand"
 
 #: storage/views/factory/factory.py:47
 msgid "Производство"
@@ -906,19 +946,19 @@ msgstr "Herstellung"
 
 #: storage/views/storage/cash_transfer.py:29
 msgid "Отрицательное число денег игрока"
-msgstr ""
+msgstr "Du hast nicht ausreichend Geld"
 
 #: storage/views/storage/cash_transfer.py:32
 msgid "Некорректное число денег игрока"
-msgstr ""
+msgstr "Du hast die falsche Anzahl des Geldes angegeben"
 
 #: storage/views/storage/cash_transfer.py:40
 msgid "Отрицательное число денег Склада"
-msgstr ""
+msgstr "Du hast nicht ausreichend Geld im Lagerhaus"
 
 #: storage/views/storage/cash_transfer.py:43
 msgid "Некорректное число денег Склада"
-msgstr ""
+msgstr "Du hast die falsche Anzahl des Geldes im Lager angegeben"
 
 #: storage/views/storage/cash_transfer.py:47
 msgid "В этом регионе нет Склада"
@@ -926,11 +966,11 @@ msgstr "Es gibt kein Lagerhaus in dieser Region"
 
 #: storage/views/storage/cash_transfer.py:69
 msgid "Данные кошелька не совпадают с введенными"
-msgstr "Die Angaben zum Budget  stimmen nicht mit den eingegebenen Daten überein"
+msgstr "Die Angaben zum Budget stimmen nicht mit den angegebenen Daten überein"
 
 #: storage/views/storage/cash_transfer.py:72
 msgid "Недопустим ввод отрицательных чисел"
-msgstr ""
+msgstr "Minusbeträge können nicht eingegeben werden"
 
 #: storage/views/storage/cash_transfer.py:79
 msgid "incorrect_method"
