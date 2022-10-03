@@ -64,8 +64,7 @@ $(".sticker_img").click(function () {
     }));
 })
 
-$(".chat").on("click", ".massage__name", function(e){
-    console.log($(this).closest('.chat_window').find(".chat-message-input"));
-    elem = $(this).closest('.chat_window').find(".chat-message-input")
+$(".overview__chat").on("click", ".overview__chat-message-header > h3", function(e){
+    elem = $(this).closest('.overview__chat-wrapper').find(".overview__chat-controls-input")
     elem.val($(this).html() + ', ' + elem.val());
 });
