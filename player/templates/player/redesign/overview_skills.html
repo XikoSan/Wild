@@ -1,7 +1,7 @@
 {% load get_sum %}
 {% load get_sub %}
 {% load get_mul %}
-{% load i18n %}
+{% load l10n %}{% load i18n %}
 {% load tz %}
 {% load static %}
 {% load get_hh_mm_ss %}
@@ -170,6 +170,13 @@
   <span>{% trans 'дерево навыков' context "skills" %}</span>
 </button>
 {% if premium %}
+<script>
+    var cancel_skill_pk = null;
+    var cnl_header = '{% trans 'Отмена изучения навыка' context "skill_cancel" %}';
+    var cnl_text = '{% trans 'Изучение навыка будет отменено. Продолжить?' context "skill_cancel" %}';
+    var cnl_yes = '{% trans 'Продолжить' %}';
+    var cnl_cancel = '{% trans 'Отмена' %}';
+</script>
 <!--прем блок-->
 <div class="overview__love-prem">
     {% if queue %}
@@ -179,7 +186,7 @@
     <!--премиум очередь навыков-->
     <ul class="overview__love-prem-list">
     {% for perk in queue %}
-    <li class="overview__love-prem-item
+    <li {% if perk == last_skill %}onclick="skill_cancel(event, {% localize off %}{{ perk.pk }}{% endlocalize %})"{% endif %} class="overview__love-prem-item
     {% if perk.skill == 'power' %}
         str
     {% elif perk.skill == 'knowledge' %}

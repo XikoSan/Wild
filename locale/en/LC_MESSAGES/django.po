@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-02 22:14+0300\n"
-"PO-Revision-Date: 2022-10-02 22:16+0300\n"
+"POT-Creation-Date: 2022-10-03 21:40+0300\n"
+"PO-Revision-Date: 2022-10-03 21:46+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -22,7 +22,7 @@ msgstr ""
 msgid "Регион"
 msgstr "Region"
 
-#: bill/models/change_taxes.py:22 region/templates/region/region_view.html:91
+#: bill/models/change_taxes.py:22 region/templates/region/region_view.html:99
 msgid "Государство"
 msgstr "State"
 
@@ -172,6 +172,7 @@ msgstr "Timezone"
 #: player/templates/player/redesign/new_player.html:135
 #: player/templates/player/redesign/new_player.html:149
 #: player/templates/player/redesign/new_player.html:177
+#: player/templates/player/redesign/overview_skills.html:178
 msgid "Отмена"
 msgstr "Cancel"
 
@@ -265,7 +266,7 @@ msgstr "Strength"
 #: player/templates/player/redesign/overview_skills.html:22
 #: player/templates/player/redesign/overview_skills.html:71
 #: player/templates/player/redesign/overview_skills.html:120
-#: player/templates/player/redesign/overview_skills.html:177
+#: player/templates/player/redesign/overview_skills.html:184
 msgid "Завершение"
 msgstr "Ends at"
 
@@ -312,6 +313,20 @@ msgctxt "skills"
 msgid "дерево навыков"
 msgstr "skill tree"
 
+#: player/templates/player/redesign/overview_skills.html:175
+msgctxt "skill_cancel"
+msgid "Отмена изучения навыка"
+msgstr "Skill up cancel"
+
+#: player/templates/player/redesign/overview_skills.html:176
+msgctxt "skill_cancel"
+msgid "Изучение навыка будет отменено. Продолжить?"
+msgstr "Skill up will be canceled. Continue cancellation?"
+
+#: player/templates/player/redesign/overview_skills.html:177
+msgid "Продолжить"
+msgstr "Continue"
+
 #: player/templates/player/redesign/player_status.html:32
 #: player/templates/player/redesign/player_status.html:39
 msgctxt "status"
@@ -338,6 +353,9 @@ msgstr "Energy refill"
 #: player/views/expense_energy.py:30 player/views/expense_energy.py:54
 #: player/views/expense_energy.py:63 player/views/expense_energy.py:74
 #: player/views/new_player.py:89 player/views/new_player.py:102
+#: skill/views/skill_cancel.py:36 skill/views/skill_cancel.py:44
+#: skill/views/skill_cancel.py:52 skill/views/skill_cancel.py:62
+#: skill/views/skill_cancel.py:77
 msgid "Закрыть"
 msgstr "Close"
 
@@ -373,7 +391,7 @@ msgstr "New character"
 msgid "Ошибка в форме профиля"
 msgstr "Profile form error"
 
-#: player/views/overview.py:179
+#: player/views/overview.py:181
 msgid "Обзор"
 msgstr "Overview"
 
@@ -427,45 +445,45 @@ msgstr ""
 msgid "reg_med_lvl"
 msgstr ""
 
-#: region/templates/region/region_view.html:103
+#: region/templates/region/region_view.html:111
 msgid "Независимый регион"
 msgstr ""
 
-#: region/templates/region/region_view.html:111
+#: region/templates/region/region_view.html:119
 msgid "Запасы золота"
 msgstr ""
 
-#: region/templates/region/region_view.html:125
+#: region/templates/region/region_view.html:133
 msgid "Запасы нефти"
 msgstr ""
 
-#: region/templates/region/region_view.html:139
+#: region/templates/region/region_view.html:147
 msgid "Марка нефти"
 msgstr ""
 
-#: region/templates/region/region_view.html:151
+#: region/templates/region/region_view.html:159
 msgid "Запасы руд"
 msgstr ""
 
-#: region/templates/region/region_view.html:165
+#: region/templates/region/region_view.html:173
 msgid "Качество руды (уголь/железо/бокситы)"
 msgstr ""
 
-#: region/templates/region/region_view.html:186
+#: region/templates/region/region_view.html:194
 msgid "Региональные налоги"
 msgstr ""
 
-#: region/templates/region/region_view.html:193
+#: region/templates/region/region_view.html:201
 #: state/templates/state/state_view.html:126
 msgid "На финансирование"
 msgstr ""
 
-#: region/templates/region/region_view.html:205
+#: region/templates/region/region_view.html:213
 #: state/templates/state/state_view.html:138
 msgid "На добычу"
 msgstr ""
 
-#: region/templates/region/region_view.html:219
+#: region/templates/region/region_view.html:227
 #: state/templates/state/state_view.html:152
 msgid "На торговлю"
 msgstr ""
@@ -489,6 +507,28 @@ msgstr ""
 #: region/views/mining.py:89
 msgid "Добыча"
 msgstr ""
+
+#: skill/views/skill_cancel.py:34
+msgid "ID навыка должен быть числом"
+msgstr "Skill ID must be a number"
+
+#: skill/views/skill_cancel.py:35 skill/views/skill_cancel.py:43
+#: skill/views/skill_cancel.py:51 skill/views/skill_cancel.py:61
+#: skill/views/skill_cancel.py:76
+msgid "Ошибка отмены навыка"
+msgstr "Skill cancellation error"
+
+#: skill/views/skill_cancel.py:42
+msgid "У вас нет активного премиум-аккаунта"
+msgstr "You do not have an active premium account"
+
+#: skill/views/skill_cancel.py:50 skill/views/skill_cancel.py:60
+msgid "Нет навыков в очереди"
+msgstr "No skills in queue"
+
+#: skill/views/skill_cancel.py:75
+msgid "Нет такого навыка"
+msgstr "No such skill"
 
 #: state/models/treasury.py:38 storage/models/factory/production_log.py:18
 #: storage/models/storage.py:101
