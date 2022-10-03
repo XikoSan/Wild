@@ -33,6 +33,7 @@ def open_region(request, pk):
             res_request = ResidencyRequest.objects.get(char=player, region=region, state=region.state)
 
     players_count = Player.objects.filter(banned=False, region=region).count()
+    residents_count = Player.objects.filter(banned=False, residency=region).count()
 
     parties_count = Party.objects.filter(region=region, deleted=False).count()
 
@@ -58,6 +59,7 @@ def open_region(request, pk):
         'request': res_request,
 
         'players_count': players_count,
+        'residents_count': residents_count,
         'parties_count': parties_count,
 
         'building_classes': get_subclasses(Building),
