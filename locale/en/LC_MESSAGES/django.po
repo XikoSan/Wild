@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-03 21:40+0300\n"
-"PO-Revision-Date: 2022-10-03 21:46+0300\n"
+"POT-Creation-Date: 2022-10-04 19:18+0300\n"
+"PO-Revision-Date: 2022-10-04 19:19+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -173,10 +173,12 @@ msgstr "Timezone"
 #: player/templates/player/redesign/new_player.html:149
 #: player/templates/player/redesign/new_player.html:177
 #: player/templates/player/redesign/overview_skills.html:178
+#: player/templates/player/redesign/profile.html:325
 msgid "Отмена"
 msgstr "Cancel"
 
 #: player/templates/player/redesign/new_player.html:136
+#: player/templates/player/redesign/profile.html:326
 msgid "Загрузить"
 msgstr "Upload"
 
@@ -327,11 +329,188 @@ msgstr "Skill up will be canceled. Continue cancellation?"
 msgid "Продолжить"
 msgstr "Continue"
 
+#: player/templates/player/redesign/player_repost.html:4
+msgctxt "repost"
+msgid "золото за репост"
+msgstr "gold for repost"
+
+#: player/templates/player/redesign/player_repost.html:5
+msgctxt "repost"
+msgid "поддержи проект репостом и получай золото!"
+msgstr "support WP by a repost and get gold!"
+
+#: player/templates/player/redesign/player_repost.html:9
+msgctxt "repost"
+msgid "запись для репоста"
+msgstr "post for repost"
+
+#: player/templates/player/redesign/player_repost.html:11
+msgctxt "repost"
+msgid "перейти к записи (ссылка)"
+msgstr "go to post (link)"
+
+#: player/templates/player/redesign/player_repost.html:12
+msgctxt "repost"
+msgid "Для получения золота запись должна"
+msgstr "To receive gold, the repost must"
+
+#: player/templates/player/redesign/player_repost.html:13
+msgctxt "repost"
+msgid "быть первой сверху (или после закрепа)"
+msgstr "be first on top (or after pinning)"
+
+#: player/templates/player/redesign/player_repost.html:14
+msgctxt "repost"
+msgid "пробыть на стене не меньше часа"
+msgstr "stay in the VK profile for at least an hour"
+
+#: player/templates/player/redesign/player_repost.html:15
+msgctxt "repost"
+msgid "Бонус можно получить раз в сутки"
+msgstr "Bonus can be received once a day"
+
+#: player/templates/player/redesign/player_repost.html:19
+msgctxt "repost"
+msgid "репост не найден"
+msgstr "repost not found"
+
+#: player/templates/player/redesign/player_repost.html:21
+msgctxt "repost"
+msgid "репост найден"
+msgstr "repost found"
+
+#: player/templates/player/redesign/player_repost.html:24
+msgctxt "repost"
+msgid "Произошла ошибка API VK"
+msgstr "A VK API error has occurred"
+
+#: player/templates/player/redesign/player_repost.html:25
+msgctxt "repost"
+msgid "Обычно помогает повторный логин в игре"
+msgstr "Usually it helps to re-login in the game"
+
+#: player/templates/player/redesign/player_repost.html:26
+msgctxt "repost"
+msgid "Выйти из игры"
+msgstr "Quit"
+
+#: player/templates/player/redesign/player_repost.html:33
+msgctxt "repost"
+msgid "Получить"
+msgstr "Get gold"
+
+#: player/templates/player/redesign/player_repost.html:48
+msgctxt "repost"
+msgid "час не прошёл"
+msgstr "hour has not passed"
+
 #: player/templates/player/redesign/player_status.html:32
 #: player/templates/player/redesign/player_status.html:39
 msgctxt "status"
 msgid "пополнить"
 msgstr "refill"
+
+#: player/templates/player/redesign/profile.html:158
+msgid "настройки"
+msgstr "settings"
+
+#: player/templates/player/redesign/profile.html:168
+msgctxt "profile"
+msgid "премиум-аккаунт"
+msgstr "premium account"
+
+#: player/templates/player/redesign/profile.html:170
+msgctxt "profile"
+msgid "до"
+msgstr "until"
+
+#: player/templates/player/redesign/profile.html:170
+msgctxt "profile"
+msgid "не активен"
+msgstr "not active"
+
+#: player/templates/player/redesign/profile.html:175
+#: player/templates/player/redesign/view_profile.html:64
+msgctxt "profile"
+msgid "характеристики"
+msgstr "characteristics"
+
+#: player/templates/player/redesign/profile.html:187
+#: player/templates/player/redesign/view_profile.html:76
+msgctxt "profile"
+msgid "место жительства"
+msgstr "region"
+
+#: player/templates/player/redesign/profile.html:196
+#: player/templates/player/redesign/view_profile.html:85
+msgctxt "profile"
+msgid "прописка"
+msgstr "residency"
+
+#: player/templates/player/redesign/profile.html:205
+#: player/templates/player/redesign/view_profile.html:94
+msgid "партия"
+msgstr "party"
+
+#: player/templates/player/redesign/profile.html:207
+#: player/templates/player/redesign/profile.html:217
+#: player/templates/player/redesign/view_profile.html:96
+#: player/templates/player/redesign/view_profile.html:106
+msgid "беспартийный"
+msgstr "unaffiliated"
+
+#: player/templates/player/redesign/profile.html:209
+msgctxt "profile"
+msgid "(история)"
+msgstr "(history)"
+
+#: player/templates/player/redesign/profile.html:215
+#: player/templates/player/redesign/view_profile.html:104
+msgid "должность в партии"
+msgstr "position in the party"
+
+#: player/templates/player/redesign/profile.html:244
+#: player/templates/player/redesign/view_profile.html:112
+msgid "о себе"
+msgstr "bio"
+
+#: player/templates/player/redesign/profile.html:346
+msgctxt "profile"
+msgid "цвет фона"
+msgstr "background color"
+
+#: player/templates/player/redesign/profile.html:350
+msgctxt "profile"
+msgid "цвет блоков"
+msgstr "block color"
+
+#: player/templates/player/redesign/profile.html:354
+msgctxt "profile"
+msgid "цвет текста"
+msgstr "text color"
+
+#: player/templates/player/redesign/profile.html:358
+msgctxt "profile"
+msgid "цвет акцента"
+msgstr "accent color"
+
+#: player/templates/player/redesign/profile.html:373
+msgctxt "profile"
+msgid "стандарт"
+msgstr "standard"
+
+#: player/templates/player/redesign/profile.html:387
+msgid "сохранить"
+msgstr "save"
+
+#: player/templates/player/redesign/view_profile.html:57
+msgctxt "profile"
+msgid "был в сети"
+msgstr "was online"
+
+#: player/templates/player/redesign/view_profile.html:59
+msgid "давно"
+msgstr "long ago"
 
 #: player/templates/player/view_profile.html:22
 msgid "char_info"

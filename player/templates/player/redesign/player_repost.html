@@ -1,36 +1,36 @@
 {% load static %}{% load get_div %}{% load tz %}
 {% load l10n %}{% load i18n %}
 <div class="ct__s">
-    <h2 class="ct__s-title">золото за репост</h2>
-    <p class="ct__s-text">поддержи проект репостом и получай золото!</p>
+    <h2 class="ct__s-title">{% trans 'золото за репост' context "repost" %}</h2>
+    <p class="ct__s-text">{% trans 'поддержи проект репостом и получай золото!' context "repost" %}</p>
 </div>
 
 <div class="ct__s">
-    <h2 class="ct__s-title">запись для репоста</h2>
+    <h2 class="ct__s-title">{% trans 'запись для репоста' context "repost" %}</h2>
     <p class="ct__s-text">
-        <a href="https://vk.com/wall-164930433_3519">перейти к записи (ссылка)</a><br>
-        Для получения золота запись должна: <br>
-        - быть первой сверху (или после закрепа) <br>
-        - пробыть на стене не меньше часа <br>
-        Бонус можно получить раз в сутки
+        <a href="https://vk.com/wall-164930433_3519">{% trans 'перейти к записи (ссылка)' context "repost" %}</a><br>
+        {% trans 'Для получения золота запись должна' context "repost" %}: <br>
+        - {% trans 'быть первой сверху (или после закрепа)' context "repost" %} <br>
+        - {% trans 'пробыть на стене не меньше часа' context "repost" %} <br>
+        {% trans 'Бонус можно получить раз в сутки' context "repost" %}
     </p>
 </div>
 {% if not repost %}
-<p class="profile__repost-status">репост не найден</p>
+<p class="profile__repost-status">{% trans 'репост не найден' context "repost" %}</p>
 {% else %}
-<p class="profile__repost-status ok" style="display: none;">репост найден</p>
+<p class="profile__repost-status ok" style="display: none;">{% trans 'репост найден' context "repost" %}</p>
 {% endif %}
 {% if is_error %}
-<p>Произошла ошибка API VK</p>
-<p>Обычно помогает повторный логин в игре</p>
-<a href="/accounts/logout/" class="ct__long-btn">Выйти из игры</a>
+<p>{% trans 'Произошла ошибка API VK' context "repost" %}</p>
+<p>{% trans 'Обычно помогает повторный логин в игре' context "repost" %}</p>
+<a href="/accounts/logout/" class="ct__long-btn">{% trans 'Выйти из игры' context "repost" %}</a>
 {% endif %}
 {% if repost %}
 {% if now_dtime > need_dtime %}
 <form id="gold_4_repost" role="form" align="center">
     {% csrf_token %}
     <button class="profile__get-gold ct__long-btn">
-        <span>Получить 100 GOLD</span>
+        <span>{% trans 'Получить' context "repost" %} 100 GOLD</span>
         <svg width="176" height="31" viewBox="0 0 176 31" fill="none" xmlns="http://www.w3.org/2000/svg">
             <mask id="mask0_36_212" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="-1" width="176" height="32">
             <path d="M0 5.78935L5.78947 -0.00012207H176V23.1578L169.053 30.1051H0V5.78935Z" fill="var(--c10two)"/>
@@ -45,6 +45,6 @@
     </button>
 </form>
 {% else %}
-<p class="profile__repost-status">час не прошёл</p>
+<p class="profile__repost-status">{% trans 'час не прошёл' context "repost" %}</p>
 {% endif %}
 {% endif %}

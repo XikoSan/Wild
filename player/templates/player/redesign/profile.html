@@ -155,7 +155,7 @@
 				-116 85 -150 159 -83 182 5 385 196 454 67 24 177 23 246 -3z"/>
 				</g>
 				</svg>
-				<span>настройки</span>
+				<span>{% trans 'настройки' %}</span>
 			</button>
 
 		</div>
@@ -165,14 +165,14 @@
 			<div class="profile__info-tab">
 
 				<div class="ct__s">
-					<h2 class="ct__s-title">премиум-аккаунт</h2>
+					<h2 class="ct__s-title">{% trans 'премиум-аккаунт' context "profile" %}</h2>
 					<p class="ct__s-text">
-						{% if premium %}до {{ premium|timezone:player.time_zone|date:"d.m.Y H:i" }}{% else %}не активен{% endif %}
+						{% if premium %}{% trans 'до' context "profile" %} {{ premium|timezone:player.time_zone|date:"d.m.Y H:i" }}{% else %}{% trans 'не активен' context "profile" %}{% endif %}
 					</p>
 				</div>
 
 				<div class="ct__s">
-					<h2 class="ct__s-title">навыки</h2>
+					<h2 class="ct__s-title">{% trans 'характеристики' context "profile" %}</h2>
 					<p class="ct__s-text">
 						<font color="FF0000">{{ player.power }}</font>
 						/
@@ -184,7 +184,7 @@
 
 
 				<div class="ct__s">
-					<h2 class="ct__s-title">место жительства</h2>
+					<h2 class="ct__s-title">{% trans 'место жительства' context "profile" %}</h2>
 					<p class="ct__s-text">
 						<a href="/region/{{ player.region.pk }}/">
 							{{ player.region }}
@@ -193,7 +193,7 @@
 				</div>
 
 				<div class="ct__s">
-					<h2 class="ct__s-title">прописка</h2>
+					<h2 class="ct__s-title">{% trans 'прописка' context "profile" %}</h2>
 					<p class="ct__s-text">
 						<a href="/region/{{ player.residency.pk }}/">
 							{{ player.residency }}, с: {{ player.residency_date|timezone:player.time_zone|date:"d.m.Y H:i" }}
@@ -202,19 +202,19 @@
 				</div>
 
 				<div class="ct__s">
-					<h2 class="ct__s-title">партия</h2>
+					<h2 class="ct__s-title">{% trans 'партия' %}</h2>
 					<p class="ct__s-text">
-						{% if player.party %}{{ player.party.title }}{% else %}беспартийный{% endif %}
+						{% if player.party %}{{ player.party.title }}{% else %}{% trans 'беспартийный' %}{% endif %}
 						<a href="/party_history/{{ player.pk }}/">
-							(история)
+							{% trans '(история)' context "profile" %}
 						</a>
 					</p>
 				</div>
 
 				<div class="ct__s">
-					<h2 class="ct__s-title">должность в партии</h2>
+					<h2 class="ct__s-title">{% trans 'должность в партии' %}</h2>
 					<p class="ct__s-text">
-						{% if player.party_post %}{{ player.party_post.title }}{% else %}беспартийный{% endif %}
+						{% if player.party_post %}{{ player.party_post.title }}{% else %}{% trans 'беспартийный' %}{% endif %}
 					</p>
 				</div>
 
@@ -241,7 +241,7 @@
 								<path d="M2 10.8L8.8 17.6L22.4 4" stroke="var(--c60)" stroke-width="3"/>
 							</svg>
 						</button>
-						<span>о себе:</span>
+						<span>{% trans 'о себе' %}:</span>
 					</h2>
 					<p id="player_bio_view" class="ct__s-text" >{% if not player.bio %}{{ user_link }}{% else %}{{ player.bio }}{% endif %}</p>
 					<textarea id="player_bio" class="profile__s-textarea" cols="30" rows="10" onfocus="hideProfileTop()" onblur="showProfileTop()" style="display: none">
@@ -322,8 +322,8 @@
 					</div>
 				</div>
 				<div class="btn-r-wrapper">
-					<button type="button" class="btn btn-default back-crop-js" data-dismiss="modal">Отмена</button>
-					<button type="button" class="btn btn-primary js-crop-and-upload">Загрузить, -100 G</button>
+					<button type="button" class="btn btn-default back-crop-js" data-dismiss="modal">{% trans 'Отмена' %}</button>
+					<button type="button" class="btn btn-primary js-crop-and-upload">{% trans 'Загрузить' %}, -100 G</button>
 				</div>
 			</div>
 		</div>
@@ -343,19 +343,19 @@
 			<div class="m-sett__colors">
 				<label class="m-sett__l-color">
 					<input type="color" value="#{{ color_back }}" name="color_back" id="color_back">
-					<span>цвет фона</span>
+					<span>{% trans 'цвет фона' context "profile" %}</span>
 				</label>
 				<label class="m-sett__l-color">
 					<input type="color" value="#{{ color_block }}" name="color_block" id="color_block">
-					<span>цвет блоков</span>
+					<span>{% trans 'цвет блоков' context "profile" %}</span>
 				</label>
 				<label class="m-sett__l-color">
 					<input type="color" value="#{{ color_text }}" name="color_text" id="color_text">
-					<span>цвет текста</span>
+					<span>{% trans 'цвет текста' context "profile" %}</span>
 				</label>
 				<label class="m-sett__l-color">
 					<input type="color" value="#{{ color_acct }}" name="color_acct" id="color_acct">
-					<span>цвет акцента</span>
+					<span>{% trans 'цвет акцента' context "profile" %}</span>
 				</label>
 			</div>
 			<button class="m-sett__save ct__mid-btn" style="margin-top: 20rem" onclick="color_default(event)">
@@ -370,7 +370,7 @@
 						<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"></path>
 					</g>
 				</svg>
-				<span>стандарт</span>
+				<span>{% trans 'стандарт' context "profile" %}</span>
 			</button>
 			<button type="submit" class="m-sett__save ct__mid-btn">
 				<svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
@@ -384,7 +384,7 @@
 						<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
 					</g>
 				</svg>
-				<span>сохранить</span>
+				<span>{% trans 'сохранить' %}</span>
 			</button>
 		</form>
 	</div>
