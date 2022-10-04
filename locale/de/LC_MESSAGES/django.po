@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-03 21:40+0300\n"
-"PO-Revision-Date: 2022-10-03 22:46+0300\n"
+"POT-Creation-Date: 2022-10-04 19:18+0300\n"
+"PO-Revision-Date: 2022-10-04 21:09+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -131,7 +131,7 @@ msgstr "Markt"
 #: player/templates/player/redesign/menu.html:67
 msgctxt "menu"
 msgid "производство"
-msgstr "Herstellung"
+msgstr "Produktion"
 
 #: player/templates/player/redesign/menu.html:80
 msgctxt "menu"
@@ -173,10 +173,12 @@ msgstr "Zeitzone"
 #: player/templates/player/redesign/new_player.html:149
 #: player/templates/player/redesign/new_player.html:177
 #: player/templates/player/redesign/overview_skills.html:178
+#: player/templates/player/redesign/profile.html:325
 msgid "Отмена"
-msgstr "löschen"
+msgstr "abbrechen"
 
 #: player/templates/player/redesign/new_player.html:136
+#: player/templates/player/redesign/profile.html:326
 msgid "Загрузить"
 msgstr "hochladen"
 
@@ -194,11 +196,11 @@ msgstr "Welt"
 
 #: player/templates/player/redesign/overview.html:108
 msgid "независимый регион"
-msgstr "unabhängige Region"
+msgstr "Unabhängige Region"
 
 #: player/templates/player/redesign/overview.html:222
 msgid "войн нет"
-msgstr "es gibt keine Kriege"
+msgstr "es gibt aktuell keine Kriege"
 
 #: player/templates/player/redesign/overview.html:270
 msgctxt "overview"
@@ -252,7 +254,7 @@ msgstr "Parlament"
 
 #: player/templates/player/redesign/overview.html:562
 msgid "У вас пока еще нет стикеров"
-msgstr "Sie haben noch keinen Sticker freigeschaltet"
+msgstr "Du hast noch keinen Sticker freigeschaltet"
 
 #: player/templates/player/redesign/overview.html:575
 msgctxt "overview"
@@ -325,13 +327,193 @@ msgstr "Das Erlernen der Fähigkeit wird abgebrochen. Soll ich fortfahren?"
 
 #: player/templates/player/redesign/overview_skills.html:177
 msgid "Продолжить"
-msgstr "Fortfahren"
+msgstr "weiter"
+
+#: player/templates/player/redesign/player_repost.html:4
+msgctxt "repost"
+msgid "золото за репост"
+msgstr "Erhalte Gold für einen Repost"
+
+#: player/templates/player/redesign/player_repost.html:5
+msgctxt "repost"
+msgid "поддержи проект репостом и получай золото!"
+msgstr "Unterstütze WP durch eine Wiederveröffentlichung eines Beitrags und erhalte Gold!"
+
+#: player/templates/player/redesign/player_repost.html:9
+msgctxt "repost"
+msgid "запись для репоста"
+msgstr "Beitrag zum werben"
+
+#: player/templates/player/redesign/player_repost.html:11
+msgctxt "repost"
+msgid "перейти к записи (ссылка)"
+msgstr "Zum Beitrag, hier klicken... (link)"
+
+#: player/templates/player/redesign/player_repost.html:12
+msgctxt "repost"
+msgid "Для получения золота запись должна"
+msgstr "Um Gold zu erhalten, muss der Beitrag folgende Anforderungen erfüllen"
+
+#: player/templates/player/redesign/player_repost.html:13
+msgctxt "repost"
+msgid "быть первой сверху (или после закрепа)"
+msgstr "als Erster oben sein (oder angepinnt sein)"
+
+#: player/templates/player/redesign/player_repost.html:14
+msgctxt "repost"
+msgid "пробыть на стене не меньше часа"
+msgstr "mindestens eine Stunde im VK-Profil bleiben"
+
+#: player/templates/player/redesign/player_repost.html:15
+msgctxt "repost"
+msgid "Бонус можно получить раз в сутки"
+msgstr "Der Bonus kann einmal am Tag erhalten werden"
+
+#: player/templates/player/redesign/player_repost.html:19
+msgctxt "repost"
+msgid "репост не найден"
+msgstr "Beitrag konnte nicht gefunden werden"
+
+#: player/templates/player/redesign/player_repost.html:21
+msgctxt "repost"
+msgid "репост найден"
+msgstr "Beitrag wurde gefunden"
+
+#: player/templates/player/redesign/player_repost.html:24
+msgctxt "repost"
+msgid "Произошла ошибка API VK"
+msgstr "Es ist ein VK API-Fehler aufgetreten"
+
+#: player/templates/player/redesign/player_repost.html:25
+msgctxt "repost"
+msgid "Обычно помогает повторный логин в игре"
+msgstr "Ein erneuter Login in das Spiel hilft in der Regel"
+
+#: player/templates/player/redesign/player_repost.html:26
+msgctxt "repost"
+msgid "Выйти из игры"
+msgstr "verlassen"
+
+#: player/templates/player/redesign/player_repost.html:33
+msgctxt "repost"
+msgid "Получить"
+msgstr "Gold erhalten"
+
+#: player/templates/player/redesign/player_repost.html:48
+msgctxt "repost"
+msgid "час не прошёл"
+msgstr "Die Zeit ist noch nicht abgelaufen"
 
 #: player/templates/player/redesign/player_status.html:32
 #: player/templates/player/redesign/player_status.html:39
 msgctxt "status"
 msgid "пополнить"
 msgstr "auffüllen"
+
+#: player/templates/player/redesign/profile.html:158
+msgid "настройки"
+msgstr "Einstellungen"
+
+#: player/templates/player/redesign/profile.html:168
+msgctxt "profile"
+msgid "премиум-аккаунт"
+msgstr "Premium Status"
+
+#: player/templates/player/redesign/profile.html:170
+msgctxt "profile"
+msgid "до"
+msgstr "Ablaufdatum"
+
+#: player/templates/player/redesign/profile.html:170
+msgctxt "profile"
+msgid "не активен"
+msgstr "Du hast kein Premium aktiviert"
+
+#: player/templates/player/redesign/profile.html:175
+#: player/templates/player/redesign/view_profile.html:64
+msgctxt "profile"
+msgid "характеристики"
+msgstr "Fähigkeiten"
+
+#: player/templates/player/redesign/profile.html:187
+#: player/templates/player/redesign/view_profile.html:76
+msgctxt "profile"
+msgid "место жительства"
+msgstr "Region"
+
+#: player/templates/player/redesign/profile.html:196
+#: player/templates/player/redesign/view_profile.html:85
+msgctxt "profile"
+msgid "прописка"
+msgstr "Region des Wohnorts"
+
+#: player/templates/player/redesign/profile.html:205
+#: player/templates/player/redesign/view_profile.html:94
+#, fuzzy
+#| msgctxt "menu"
+#| msgid "партия"
+msgid "партия"
+msgstr "Partei"
+
+#: player/templates/player/redesign/profile.html:207
+#: player/templates/player/redesign/profile.html:217
+#: player/templates/player/redesign/view_profile.html:96
+#: player/templates/player/redesign/view_profile.html:106
+msgid "беспартийный"
+msgstr "Parteilos"
+
+#: player/templates/player/redesign/profile.html:209
+msgctxt "profile"
+msgid "(история)"
+msgstr "(Geschichte)"
+
+#: player/templates/player/redesign/profile.html:215
+#: player/templates/player/redesign/view_profile.html:104
+msgid "должность в партии"
+msgstr "Position in der Partei"
+
+#: player/templates/player/redesign/profile.html:244
+#: player/templates/player/redesign/view_profile.html:112
+msgid "о себе"
+msgstr "Über mich"
+
+#: player/templates/player/redesign/profile.html:346
+msgctxt "profile"
+msgid "цвет фона"
+msgstr "Hintergrundfarbe"
+
+#: player/templates/player/redesign/profile.html:350
+msgctxt "profile"
+msgid "цвет блоков"
+msgstr "Blockfarbe"
+
+#: player/templates/player/redesign/profile.html:354
+msgctxt "profile"
+msgid "цвет текста"
+msgstr "Textfarbe"
+
+#: player/templates/player/redesign/profile.html:358
+msgctxt "profile"
+msgid "цвет акцента"
+msgstr "Akzentfarbe"
+
+#: player/templates/player/redesign/profile.html:373
+msgctxt "profile"
+msgid "стандарт"
+msgstr "Standard"
+
+#: player/templates/player/redesign/profile.html:387
+msgid "сохранить"
+msgstr "speichern"
+
+#: player/templates/player/redesign/view_profile.html:57
+msgctxt "profile"
+msgid "был в сети"
+msgstr "Letzte Aktivität"
+
+#: player/templates/player/redesign/view_profile.html:59
+msgid "давно"
+msgstr "vor langer Zeit"
 
 #: player/templates/player/view_profile.html:22
 msgid "char_info"
@@ -397,7 +579,7 @@ msgstr "Startseite"
 
 #: player/views/skills/skill_queue.py:30 skill/views/skills_list.py:59
 msgid "Навыки"
-msgstr "Fertigkeiten"
+msgstr "Fahigkeiten"
 
 #: region/templates/region/buildings/hospital.html:5
 msgid "Уровень Госпиталя"
@@ -446,9 +628,8 @@ msgid "reg_med_lvl"
 msgstr ""
 
 #: region/templates/region/region_view.html:111
-#, fuzzy
 msgid "Независимый регион"
-msgstr "unabhängige Region"
+msgstr "Unabhängige Region"
 
 #: region/templates/region/region_view.html:119
 msgid "Запасы золота"
@@ -494,7 +675,6 @@ msgid "Регионы игры"
 msgstr "Spielregionen"
 
 #: region/views/map/map.py:101
-#, fuzzy
 msgid "Карта"
 msgstr "Karte"
 
@@ -507,7 +687,6 @@ msgid "Некорректный запрос"
 msgstr "Ungültige Anfrage"
 
 #: region/views/mining.py:89
-#, fuzzy
 msgid "Добыча"
 msgstr "Arbeit"
 
@@ -599,7 +778,7 @@ msgstr "Aluminium"
 #: storage/models/factory/production_log.py:56 storage/models/storage.py:71
 #: storage/models/storage.py:161 storage/models/transport.py:144
 msgid "Койки"
-msgstr "Betten"
+msgstr "Barracken"
 
 #: state/models/treasury.py:82 storage/models/destroy.py:56
 #: storage/models/storage.py:75 storage/models/storage.py:167
@@ -942,7 +1121,7 @@ msgstr "Lagerbestand"
 
 #: storage/views/factory/factory.py:47
 msgid "Производство"
-msgstr "Herstellung"
+msgstr "Produktion"
 
 #: storage/views/storage/cash_transfer.py:29
 msgid "Отрицательное число денег игрока"
