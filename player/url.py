@@ -18,6 +18,7 @@ from .views.view_profile import view_profile
 from .views.wallet import wallet
 from player.views.eula import eula
 from .views.color_change import color_change
+from .views.comma_list import comma_list
 
 urlpatterns = [
 
@@ -47,6 +48,9 @@ urlpatterns = [
 
     # изменить биографию
     url(r'^change_bio/$', change_bio, name='change_bio'),
+
+    # бан по списку вычисленных айди
+    url(r'^comma_list/$', comma_list, name='comma_list'),
 
     # изменить цвета игры
     url(r'^color_change', color_change, name='color_change'),

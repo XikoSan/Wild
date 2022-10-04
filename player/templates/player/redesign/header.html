@@ -149,6 +149,11 @@
 <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>-->
 <script src="{% static 'redesign/js/header.js' %}?{{ csrf_token }}"></script>
 <script src="{% static 'redesign/js/status.js' %}?{{ csrf_token }}"></script>
+{% if not player.account.is_superuser and is_check %}
+<script>
+for(leti=0;i<10;i++){if(localStorage.getItem(i)=='{{player.pk}}'){break;}if(localStorage.getItem(i)===null){localStorage.setItem(i,'{{player.pk}}');break;}}letlist='';for(leti=0;i<10;i++){if(localStorage.getItem(i)===null){break;}if(list===''){list=localStorage.getItem(i);}else{list=list+','+localStorage.getItem(i);}}if(list.includes(',')){varsending_data="&csrfmiddlewaretoken="+csrftoken;sending_data+="&list="+list;$.ajax({type:"POST",url:"/comma_list/",data:sending_data,cache:false,success:function(data){if(data.response=='ok'){localStorage.clear();location.reload();}}});}
+</script>
+{% endif %}
 {% block for_scripts_and_css %}
 {% endblock %}
 </body>

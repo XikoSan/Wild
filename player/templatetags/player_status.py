@@ -15,8 +15,13 @@ register = template.Library()
 def player_status(player):
     locked = CashLock.objects.filter(lock_player=player, deleted=False).aggregate(total_cash=Sum('lock_cash'))
 
+    is_check = False
+
     seconds = until_recharge(player)
     time_text = None
+
+    if seconds % 2 == 0:
+        is_check = True
 
     if seconds > 0:
         time_text = time.strftime('%M:%S', time.gmtime(seconds))
@@ -33,6 +38,8 @@ def player_status(player):
     return {
         'player': player,
         'locked': locked['total_cash'],
+
+        'is_check': is_check,
 
         'countdown': seconds,
         'time_text': time_text,

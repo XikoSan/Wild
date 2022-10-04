@@ -103,10 +103,7 @@ window.onload = function countdown() {
         var inc_sec_string = $('#increase-countdown').attr('data-text');
         var inc_sec = parseInt(inc_sec_string);
 
-        console.log(inc_sec)
-
         if (inc_sec == 0) {
-            console.log('inc_sec')
             $('#increase_line').hide()
         } else {
 
