@@ -596,6 +596,12 @@
 </main>
 
 <script>
+  function ready() {
+      document.getElementById('chat-log-{{ LANGUAGE_CODE }}').scrollTop = document.getElementById('chat-log-{{ LANGUAGE_CODE }}').scrollHeight;
+  }
+
+  document.addEventListener("DOMContentLoaded", ready);
+
   const overviewStickers = document.getElementById('overview__stickers');
   // переключение главных блоков - обзор/чат
   const overviewMainBlock = {
