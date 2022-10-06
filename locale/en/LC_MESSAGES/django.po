@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-04 19:18+0300\n"
-"PO-Revision-Date: 2022-10-05 12:25+0300\n"
+"POT-Creation-Date: 2022-10-06 21:58+0300\n"
+"PO-Revision-Date: 2022-10-06 22:03+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -474,32 +474,42 @@ msgstr "position in the party"
 msgid "о себе"
 msgstr "bio"
 
-#: player/templates/player/redesign/profile.html:346
+#: player/templates/player/redesign/profile.html:359
+msgctxt "profile"
+msgid "часовой пояс"
+msgstr "timezone"
+
+#: player/templates/player/redesign/profile.html:381
+msgctxt "profile"
+msgid "показывать партийный фон"
+msgstr "show party background"
+
+#: player/templates/player/redesign/profile.html:390
 msgctxt "profile"
 msgid "цвет фона"
 msgstr "background color"
 
-#: player/templates/player/redesign/profile.html:350
+#: player/templates/player/redesign/profile.html:394
 msgctxt "profile"
 msgid "цвет блоков"
 msgstr "block color"
 
-#: player/templates/player/redesign/profile.html:354
+#: player/templates/player/redesign/profile.html:398
 msgctxt "profile"
 msgid "цвет текста"
 msgstr "text color"
 
-#: player/templates/player/redesign/profile.html:358
+#: player/templates/player/redesign/profile.html:402
 msgctxt "profile"
 msgid "цвет акцента"
 msgstr "accent color"
 
-#: player/templates/player/redesign/profile.html:373
+#: player/templates/player/redesign/profile.html:417
 msgctxt "profile"
 msgid "стандарт"
 msgstr "standard"
 
-#: player/templates/player/redesign/profile.html:387
+#: player/templates/player/redesign/profile.html:431
 msgid "сохранить"
 msgstr "save"
 
@@ -520,6 +530,29 @@ msgstr ""
 msgid "since"
 msgstr ""
 
+#: player/views/change_back_allow.py:41
+msgid "Некорректное значение"
+msgstr "Incorrect value"
+
+#: player/views/change_back_allow.py:42 player/views/change_back_allow.py:58
+msgid "Настройка партийного фона"
+msgstr "Party background switch"
+
+#: player/views/change_back_allow.py:43 player/views/change_back_allow.py:59
+#: player/views/expense_energy.py:30 player/views/expense_energy.py:54
+#: player/views/expense_energy.py:63 player/views/expense_energy.py:74
+#: player/views/new_player.py:89 player/views/new_player.py:102
+#: player/views/set_language.py:40 player/views/set_language.py:56
+#: skill/views/skill_cancel.py:36 skill/views/skill_cancel.py:44
+#: skill/views/skill_cancel.py:52 skill/views/skill_cancel.py:62
+#: skill/views/skill_cancel.py:77
+msgid "Закрыть"
+msgstr "Close"
+
+#: player/views/change_back_allow.py:57 player/views/set_language.py:54
+msgid "Ошибка метода"
+msgstr "Method error"
+
 #: player/views/expense_energy.py:28
 msgid "Десять минут ещё не прошло"
 msgstr "Ten minutes have not yet passed"
@@ -528,15 +561,6 @@ msgstr "Ten minutes have not yet passed"
 #: player/views/expense_energy.py:62 player/views/expense_energy.py:73
 msgid "Пополнение энергии"
 msgstr "Energy refill"
-
-#: player/views/expense_energy.py:30 player/views/expense_energy.py:54
-#: player/views/expense_energy.py:63 player/views/expense_energy.py:74
-#: player/views/new_player.py:89 player/views/new_player.py:102
-#: skill/views/skill_cancel.py:36 skill/views/skill_cancel.py:44
-#: skill/views/skill_cancel.py:52 skill/views/skill_cancel.py:62
-#: skill/views/skill_cancel.py:77
-msgid "Закрыть"
-msgstr "Close"
 
 #: player/views/expense_energy.py:52
 msgid "Пополнение энергии не требуется"
@@ -573,6 +597,14 @@ msgstr "Profile form error"
 #: player/views/overview.py:181
 msgid "Обзор"
 msgstr "Overview"
+
+#: player/views/set_language.py:38
+msgid "Такого языка в игре нет"
+msgstr "There is no such language"
+
+#: player/views/set_language.py:39 player/views/set_language.py:55
+msgid "Изменение языка"
+msgstr "Language change"
 
 #: player/views/skills/skill_queue.py:30 skill/views/skills_list.py:59
 msgid "Навыки"
