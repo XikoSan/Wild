@@ -2,23 +2,25 @@
 from django.conf.urls import url
 
 from player.views.banned import banned
+from player.views.eula import eula
 from player.views.lists.region_players import region_players_list
 from player.views.lists.world_players import world_players_list
 from player.views.repost_reward import repost_reward
 from player.views.skills.up_skill import up_skill
 from .views.change_bio import change_bio
 from .views.change_nickname import change_nickname
+from .views.color_change import color_change
+from .views.comma_list import comma_list
 from .views.expense_energy import expense_energy
 from .views.index import index
 from .views.my_profile import my_profile
 from .views.new_player import new_player
 from .views.no_social import no_social
 from .views.overview import overview
+from .views.set_language import set_language
+from .views.change_back_allow import change_back_allow
 from .views.view_profile import view_profile
 from .views.wallet import wallet
-from player.views.eula import eula
-from .views.color_change import color_change
-from .views.comma_list import comma_list
 
 urlpatterns = [
 
@@ -52,8 +54,14 @@ urlpatterns = [
     # бан по списку вычисленных айди
     url(r'^comma_list/$', comma_list, name='comma_list'),
 
+    # изменить язык игры
+    url(r'^set_lang', set_language, name='set_lang'),
+
     # изменить цвета игры
     url(r'^color_change', color_change, name='color_change'),
+
+    # изменить цвета игры
+    url(r'^change_back_allow', change_back_allow, name='change_back_allow'),
 
     # Начать учёт активностей
     url(r'^reward_4_repost', repost_reward, name='reward_4_repost'),

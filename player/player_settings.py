@@ -1,6 +1,6 @@
 # coding=utf-8
 from django.db import models
-
+from django.conf import settings
 from player.player import Player
 
 # Настройки игрока
@@ -29,15 +29,15 @@ class PlayerSettings(models.Model):
         default='EB9929',
     )
 
-    # # язык по умолчанию
-    # language = models.CharField(max_length=7, default=None, blank=True, null=True, choices=settings.LANGUAGES, verbose_name='Язык в игре')
-    #
+    # язык по умолчанию
+    language = models.CharField(max_length=7, default=None, blank=True, null=True, choices=settings.LANGUAGES, verbose_name='Язык в игре')
+
     # # Показатель того, что игрок отображает раздел гайдов
     # guides_button = models.BooleanField(default=True, blank=False, null=False, verbose_name='Гайды')
     #
-    # # Показатель того, что игрок использует партийный аватар
-    # party_back = models.BooleanField(default=True, blank=False, null=False, verbose_name='Партийный фон')
-    #
+    # Показатель того, что игрок использует партийный аватар
+    party_back = models.BooleanField(default=True, blank=False, null=False, verbose_name='Партийный фон')
+
     # # показатель того, что игрок по умолчанию оплачивает доставку войск в соседние регионы
     # delivery_pay = models.BooleanField(default=False, blank=False, null=False, verbose_name='Оплачивает доставку войск')
     #

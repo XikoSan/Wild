@@ -1,14 +1,15 @@
-from datetime import datetime
-
 import pytz
 import redis
 from allauth.socialaccount.models import SocialAccount
+from datetime import datetime
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils import timezone
+
 from gov.models.minister import Minister
 from player.decorators.player import check_player
 from player.player import Player
+from player.player_settings import PlayerSettings
 from wild_politics.settings import TIME_ZONE
 
 
@@ -56,16 +57,23 @@ def view_profile(request, pk):
     # cash_rating = cursor.fetchone()
     # ---------------------
 
+    party_back = True
+
+    if PlayerSettings.objects.filter(player=char).exists():
+        party_back = PlayerSettings.objects.get(player=char).party_back
+
     groups = list(player.account.groups.all().values_list('name', flat=True))
     page = 'player/view_profile.html'
     if 'redesign' not in groups:
         page = 'player/redesign/view_profile.html'
 
     return render(request, page, {'player': player,
-                                            'char': char,
-                                            'minister': minister,
-                                            'dtime': dtime,
-                                            'user_link': user_link,
+                                  'char': char,
+                                  'minister': minister,
+                                  'dtime': dtime,
+                                  'user_link': user_link,
 
-                                            'page_name': char.nickname,
-                                            })
+                                  'party_back': party_back,
+
+                                  'page_name': char.nickname,
+                                  })

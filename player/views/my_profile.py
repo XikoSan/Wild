@@ -1,3 +1,4 @@
+import pytz
 from PIL import Image
 from allauth.socialaccount.models import SocialAccount
 from django.contrib.auth.decorators import login_required
@@ -73,6 +74,8 @@ def my_profile(request):
     color_text = 'FFFFFF'
     color_acct = 'EB9929'
 
+    party_back = True
+
     if PlayerSettings.objects.filter(player=player).exists():
         setts = PlayerSettings.objects.get(player=player)
 
@@ -80,6 +83,8 @@ def my_profile(request):
         color_block = setts.color_block
         color_text = setts.color_text
         color_acct = setts.color_acct
+
+        party_back = setts.party_back
 
     # timezones = pytz.common_timezones
     #
@@ -102,19 +107,22 @@ def my_profile(request):
                                    'form': form,
 
                                    'premium': premium,
-                                                   'minister': minister,
+                                   'minister': minister,
 
                                    'user_link': user_link,
-                                   # 'timezones': timezones,
                                    # 'cash_rating': cash_rating[0],
                                    # 'player_settings': player_settings,
                                    # 'countdown': UntilRecharge(player)
                                    'page_name': player.nickname,
 
+                                    'timezones': pytz.common_timezones,
+
                                     'color_back': color_back,
                                     'color_block': color_block,
                                     'color_text': color_text,
                                     'color_acct': color_acct,
+
+                                    'party_back': party_back,
 
                                    })
     return response

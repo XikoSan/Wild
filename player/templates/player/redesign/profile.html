@@ -48,7 +48,7 @@
 					</svg>
 				</span>
 
-				<img src="{% if player.image %}{{ player.image.url }}{% else %}{% static 'img/nopic.png' %}{% endif %}" class="profile__ava" {% if player.party %}{% if player.party.members_image %}style="background-image: url({{ player.party.members_image.url }}); background-size: cover;"{% endif %}{% endif %}>
+				<img src="{% if player.image %}{{ player.image.url }}{% else %}{% static 'img/nopic.png' %}{% endif %}" class="profile__ava" {% if player.party %}{% if player.party.members_image %}{% if party_back %}style="background-image: url({{ player.party.members_image.url }}); background-size: cover;"{% endif %}{% endif %}{% endif %}>
 
 				<form method="post" enctype="multipart/form-data" id="formUpload">
 					{% csrf_token %}
@@ -339,23 +339,67 @@
 			</svg>
 		</button>
 		<form id="color_set" role="form" method="post" class="m-sett__form">
+			<!--выбор языка-->
+			<label class="m-sett__form-label ct__wide-modal-label-select">
+				<select id="lang_change">
+					{% get_current_language as LANGUAGE_CODE %}
+					{% get_available_languages as LANGUAGES %}
+					{% get_language_info_list for LANGUAGES as languages %}
+					{% for lang in languages %}
+					<option value='{{ lang.code }}' {% if lang.code == LANGUAGE_CODE %}selected{% endif %}>{{ lang.name_local }}</option>
+					{% endfor %}
+				</select>
+				<svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
+				</svg>
+			</label>
+<!--			&lt;!&ndash;выбор часового пояса&ndash;&gt;-->
+<!--			<label class="m-sett__form-label ct__wide-modal-label-select">-->
+<!--				<select>-->
+<!--					<option value="" disabled selected>{% trans 'часовой пояс' context "profile" %}</option>-->
+<!--					<option value="">часовой пояс 1</option>-->
+<!--					<option value="">часовой пояс 2</option>-->
+<!--					<option value="">часовой пояс 3</option>-->
+<!--				</select>-->
+<!--				<svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+<!--					<path d="M1 1L7.5 7L14 1" stroke="var(&#45;&#45;c10one)"/>-->
+<!--				</svg>-->
+<!--			</label>-->
+			<!--чекбокс-->
+			<div class="m-sett__form-check ct__check-box30">
+				<label for="ava_back_change">
+					<input id="ava_back_change" type="checkbox" class="visually-hidden" {% if party_back %}checked{% endif %}>
+					<svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(--c10two)"/>
+					</svg>
+					<span>
+						<svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(--c10two)"/>
+							<path d="M6.5 4.5L4.5 6.5V20.5H18.5L20.5 18.5V4.5H6.5Z" fill="var(--c10two)" stroke="var(--c10two)"/>
+						</svg>
+					</span>
+					{% trans 'показывать партийный фон' context "profile" %}
+				</label>
+			</div>
+
+
 			{% csrf_token %}
 			<div class="m-sett__colors">
 				<label class="m-sett__l-color">
 					<input type="color" value="#{{ color_back }}" name="color_back" id="color_back">
-					<span>{% trans 'цвет фона' context "profile" %}</span>
+<!--					<span>{% trans 'цвет фона' context "profile" %}</span>-->
 				</label>
 				<label class="m-sett__l-color">
 					<input type="color" value="#{{ color_block }}" name="color_block" id="color_block">
-					<span>{% trans 'цвет блоков' context "profile" %}</span>
+<!--					<span>{% trans 'цвет блоков' context "profile" %}</span>-->
 				</label>
 				<label class="m-sett__l-color">
 					<input type="color" value="#{{ color_text }}" name="color_text" id="color_text">
-					<span>{% trans 'цвет текста' context "profile" %}</span>
+<!--					<span>{% trans 'цвет текста' context "profile" %}</span>-->
 				</label>
 				<label class="m-sett__l-color">
 					<input type="color" value="#{{ color_acct }}" name="color_acct" id="color_acct">
-					<span>{% trans 'цвет акцента' context "profile" %}</span>
+<!--					<span>{% trans 'цвет акцента' context "profile" %}</span>-->
 				</label>
 			</div>
 			<button class="m-sett__save ct__mid-btn" style="margin-top: 20rem" onclick="color_default(event)">

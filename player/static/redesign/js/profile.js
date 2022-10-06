@@ -51,8 +51,44 @@ jQuery(document).ready(function ($) {
             }
         });
     });
+//  переключение языка
+    $('#lang_change').change(function(e){
+        e.preventDefault();
+        var sending_data = "&csrfmiddlewaretoken=" + csrftoken;
+        sending_data += "&lang=" + $(this).val();
 
+        $.ajax({
+            type: "POST",
+            url: "/set_lang",
+            data:  sending_data,
+            cache: false,
+            success: function(data){
+                if (data.response == 'ok'){
+                    location.reload();
+                }
+                else{
+                    display_modal('notify', data.header, data.response, null, data.grey_btn)
+                }
+            }
+        });
+    });
+//  Смена оторбражения партийного аватара
+    $('#ava_back_change').change(function() {
+        var sending_data;
+        sending_data += "&csrfmiddlewaretoken=" + csrftoken + "&show_party_back=" + this.checked;
 
+        $.ajax({
+            type: "POST",
+            url: "/change_back_allow",
+            data:  sending_data,
+            cache: false,
+            success: function(data){
+                if (data.response != 'ok'){
+                    display_modal('notify', data.header, data.response, null, data.grey_btn)
+                }
+            }
+        });
+    });
 });
 
 function color_default(e){

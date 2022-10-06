@@ -28,7 +28,7 @@
 					</svg>
 				</span>
 
-				<img src="{% if char.image %}{{ char.image.url }}{% else %}{% static 'img/nopic.png' %}{% endif %}" class="profile__ava" {% if char.party %}{% if char.party.members_image %}style="background-image: url({{ char.party.members_image.url }}); background-size: cover;"{% endif %}{% endif %}>
+				<img src="{% if char.image %}{{ char.image.url }}{% else %}{% static 'img/nopic.png' %}{% endif %}" class="profile__ava" {% if char.party %}{% if char.party.members_image %}{% if party_back %}style="background-image: url({{ char.party.members_image.url }}); background-size: cover;"{% endif %}{% endif %}{% endif %}>
 			</div>
 
 			<div class="profile__top-right">

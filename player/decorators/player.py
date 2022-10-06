@@ -7,7 +7,8 @@ from django.shortcuts import redirect
 from django.utils import timezone
 from django.utils.translation import check_for_language
 from player.player import Player
-
+from player.player_settings import PlayerSettings
+from django.utils import translation
 
 # Декоратор для проверки того, что:
 #   1. Игрок от даного аккаунта существует
@@ -27,6 +28,11 @@ def check_player(func):
             # Получаем игрока
             player = Player.objects.only('pk', 'user_ip', 'natural_refill', 'energy', 'region', 'last_top',
                                          'banned').get(account=request.user)
+            # язык из настроек
+            if PlayerSettings.objects.filter(player=player).exists():
+                player_settings = PlayerSettings.objects.get(player=player)
+                if player_settings.language:
+                    translation.activate(player_settings.language)
             # записываем время последнего онлайна
             r = redis.StrictRedis(host='redis', port=6379, db=0)
             r.hset('online', str(player.pk), str(timezone.now().timestamp()).split('.')[0])
