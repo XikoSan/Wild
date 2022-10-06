@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-06 21:58+0300\n"
-"PO-Revision-Date: 2022-10-06 22:03+0300\n"
+"POT-Creation-Date: 2022-10-06 22:26+0300\n"
+"PO-Revision-Date: 2022-10-06 22:27+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -474,42 +474,17 @@ msgstr "position in the party"
 msgid "о себе"
 msgstr "bio"
 
-#: player/templates/player/redesign/profile.html:359
-msgctxt "profile"
-msgid "часовой пояс"
-msgstr "timezone"
-
-#: player/templates/player/redesign/profile.html:381
+#: player/templates/player/redesign/profile.html:380
 msgctxt "profile"
 msgid "показывать партийный фон"
 msgstr "show party background"
 
-#: player/templates/player/redesign/profile.html:390
-msgctxt "profile"
-msgid "цвет фона"
-msgstr "background color"
-
-#: player/templates/player/redesign/profile.html:394
-msgctxt "profile"
-msgid "цвет блоков"
-msgstr "block color"
-
-#: player/templates/player/redesign/profile.html:398
-msgctxt "profile"
-msgid "цвет текста"
-msgstr "text color"
-
-#: player/templates/player/redesign/profile.html:402
-msgctxt "profile"
-msgid "цвет акцента"
-msgstr "accent color"
-
-#: player/templates/player/redesign/profile.html:417
+#: player/templates/player/redesign/profile.html:412
 msgctxt "profile"
 msgid "стандарт"
 msgstr "standard"
 
-#: player/templates/player/redesign/profile.html:431
+#: player/templates/player/redesign/profile.html:426
 msgid "сохранить"
 msgstr "save"
 
@@ -543,6 +518,7 @@ msgstr "Party background switch"
 #: player/views/expense_energy.py:63 player/views/expense_energy.py:74
 #: player/views/new_player.py:89 player/views/new_player.py:102
 #: player/views/set_language.py:40 player/views/set_language.py:56
+#: player/views/set_timezone.py:29 player/views/set_timezone.py:45
 #: skill/views/skill_cancel.py:36 skill/views/skill_cancel.py:44
 #: skill/views/skill_cancel.py:52 skill/views/skill_cancel.py:62
 #: skill/views/skill_cancel.py:77
@@ -550,6 +526,7 @@ msgid "Закрыть"
 msgstr "Close"
 
 #: player/views/change_back_allow.py:57 player/views/set_language.py:54
+#: player/views/set_timezone.py:43
 msgid "Ошибка метода"
 msgstr "Method error"
 
@@ -605,6 +582,14 @@ msgstr "There is no such language"
 #: player/views/set_language.py:39 player/views/set_language.py:55
 msgid "Изменение языка"
 msgstr "Language change"
+
+#: player/views/set_timezone.py:27
+msgid "Такого часового пояса в игре нет"
+msgstr "There is no such timezone"
+
+#: player/views/set_timezone.py:28 player/views/set_timezone.py:44
+msgid "Изменение часового пояса"
+msgstr "Timezone change"
 
 #: player/views/skills/skill_queue.py:30 skill/views/skills_list.py:59
 msgid "Навыки"
@@ -1187,3 +1172,23 @@ msgstr ""
 #: storage/views/storage/storage.py:27
 msgid "Склад"
 msgstr ""
+
+#~ msgctxt "profile"
+#~ msgid "часовой пояс"
+#~ msgstr "timezone"
+
+#~ msgctxt "profile"
+#~ msgid "цвет фона"
+#~ msgstr "background color"
+
+#~ msgctxt "profile"
+#~ msgid "цвет блоков"
+#~ msgstr "block color"
+
+#~ msgctxt "profile"
+#~ msgid "цвет текста"
+#~ msgstr "text color"
+
+#~ msgctxt "profile"
+#~ msgid "цвет акцента"
+#~ msgstr "accent color"

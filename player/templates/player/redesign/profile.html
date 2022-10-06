@@ -353,18 +353,17 @@
 					<path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
 				</svg>
 			</label>
-<!--			&lt;!&ndash;выбор часового пояса&ndash;&gt;-->
-<!--			<label class="m-sett__form-label ct__wide-modal-label-select">-->
-<!--				<select>-->
-<!--					<option value="" disabled selected>{% trans 'часовой пояс' context "profile" %}</option>-->
-<!--					<option value="">часовой пояс 1</option>-->
-<!--					<option value="">часовой пояс 2</option>-->
-<!--					<option value="">часовой пояс 3</option>-->
-<!--				</select>-->
-<!--				<svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">-->
-<!--					<path d="M1 1L7.5 7L14 1" stroke="var(&#45;&#45;c10one)"/>-->
-<!--				</svg>-->
-<!--			</label>-->
+			<!--выбор часового пояса-->
+			<label class="m-sett__form-label ct__wide-modal-label-select">
+				<select id="tz_change">
+					{% for tz in timezones %}
+					<option value="{{ tz }}" {% if tz == player.time_zone %}selected{% endif %}>{{ tz }}</option>
+					{% endfor %}
+				</select>
+				<svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
+				</svg>
+			</label>
 			<!--чекбокс-->
 			<div class="m-sett__form-check ct__check-box30">
 				<label for="ava_back_change">
@@ -387,19 +386,15 @@
 			<div class="m-sett__colors">
 				<label class="m-sett__l-color">
 					<input type="color" value="#{{ color_back }}" name="color_back" id="color_back">
-<!--					<span>{% trans 'цвет фона' context "profile" %}</span>-->
 				</label>
 				<label class="m-sett__l-color">
 					<input type="color" value="#{{ color_block }}" name="color_block" id="color_block">
-<!--					<span>{% trans 'цвет блоков' context "profile" %}</span>-->
 				</label>
 				<label class="m-sett__l-color">
 					<input type="color" value="#{{ color_text }}" name="color_text" id="color_text">
-<!--					<span>{% trans 'цвет текста' context "profile" %}</span>-->
 				</label>
 				<label class="m-sett__l-color">
 					<input type="color" value="#{{ color_acct }}" name="color_acct" id="color_acct">
-<!--					<span>{% trans 'цвет акцента' context "profile" %}</span>-->
 				</label>
 			</div>
 			<button class="m-sett__save ct__mid-btn" style="margin-top: 20rem" onclick="color_default(event)">

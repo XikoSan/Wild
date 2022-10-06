@@ -72,6 +72,27 @@ jQuery(document).ready(function ($) {
             }
         });
     });
+    //  переключение часового пояса
+    $('#tz_change').change(function(e){
+        e.preventDefault();
+        var sending_data = "&csrfmiddlewaretoken=" + csrftoken;
+        sending_data += "&timezone=" + $(this).val();
+
+        $.ajax({
+            type: "POST",
+            url: "/set_tz",
+            data:  sending_data,
+            cache: false,
+            success: function(data){
+                if (data.response == 'ok'){
+                    location.reload();
+                }
+                else{
+                    display_modal('notify', data.header, data.response, null, data.grey_btn)
+                }
+            }
+        });
+    });
 //  Смена оторбражения партийного аватара
     $('#ava_back_change').change(function() {
         var sending_data;

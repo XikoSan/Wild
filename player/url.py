@@ -18,6 +18,7 @@ from .views.new_player import new_player
 from .views.no_social import no_social
 from .views.overview import overview
 from .views.set_language import set_language
+from .views.set_timezone import set_timezone
 from .views.change_back_allow import change_back_allow
 from .views.view_profile import view_profile
 from .views.wallet import wallet
@@ -56,6 +57,9 @@ urlpatterns = [
 
     # изменить язык игры
     url(r'^set_lang', set_language, name='set_lang'),
+
+    # изменить часовой пояс игры
+    url(r'^set_tz', set_timezone, name='set_tz'),
 
     # изменить цвета игры
     url(r'^color_change', color_change, name='color_change'),
