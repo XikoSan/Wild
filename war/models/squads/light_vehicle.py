@@ -16,7 +16,7 @@ class LightVehicle(Squad):
             {
                 'name': 'БМП',
                 'energy': 2,
-                'hp': 25,
+                'hp': 40,
                 'damage':
                     {
                         'infantry': 16,
