@@ -87,6 +87,8 @@ class Player(models.Model):
     paid_consumption = models.IntegerField(default=0, verbose_name='Оплаченный расход энергии')
     # сумма, которую игрок уже забрал
     paid_sum = models.IntegerField(default=0, verbose_name='Оплачено сегодня')
+    # Показатель того, что прогрессия на сегодня завершена
+    daily_fin = models.BooleanField(default=False, null=False, verbose_name='Дейлик пройден')
 
     # -----------навыки игрока----------------
 
@@ -246,23 +248,30 @@ class Player(models.Model):
 
         taxed_count = State.get_taxes(self.region, count, 'cash', 'cash')
 
-        Finance = apps.get_model('skill.Finance')
-        if Finance.objects.filter(player=self, level__gt=0).exists():
-            if count != 0 and daily_procent == 100:
-                taxed_count += daily_limit
+        # если дейлик ещё не закрывался сегодня
+        if not self.daily_fin:
+            Finance = apps.get_model('skill.Finance')
+            if Finance.objects.filter(player=self, level__gt=0).exists():
+                if count != 0 and daily_procent == 100:
+                    taxed_count += daily_limit
 
-        # золотая неделя
-        naive = datetime.datetime(2022, 10, 3)
-        start = make_aware(naive, timezone=pytz.timezone("Europe/Moscow"))
-        naive = datetime.datetime(2022, 10, 10)
-        finish = make_aware(naive, timezone=pytz.timezone("Europe/Moscow"))
+            # золотая неделя
+            naive = datetime.datetime(2022, 10, 3)
+            start = make_aware(naive, timezone=pytz.timezone("Europe/Moscow"))
+            naive = datetime.datetime(2022, 10, 10)
+            finish = make_aware(naive, timezone=pytz.timezone("Europe/Moscow"))
 
-        if finish > timezone.now() > start:
-            if count != 0 and daily_procent == 100:
-                if timezone.now().date().weekday() == 5 or timezone.now().date().weekday() == 6:
-                    self.gold += 250
-                else:
-                    self.gold += 100
+            if finish > timezone.now() > start:
+                if count != 0 and daily_procent == 100:
+                    if timezone.now().date().weekday() == 5 or timezone.now().date().weekday() == 6:
+                        self.gold += 250
+                    else:
+                        self.gold += 100
+
+        # отмечаем, что  дейлик закрыт:
+        # если игрок прокачат навык, то не получит золотой бонус или Подпольное Финансирование
+        if daily_procent == 100:
+            self.daily_fin = True
 
         # выдаем деньги
         self.cash += taxed_count
@@ -290,6 +299,7 @@ class Player(models.Model):
                 # вынес потому что вызывает круговой импорт
                 set_cash_log(self, sum, 'daily', self.natural_refill)
             self.energy_consumption = self.paid_consumption = self.paid_sum = 0
+            self.daily_fin = False
 
         med_top = 1
 
