@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-04 19:18+0300\n"
-"PO-Revision-Date: 2022-10-05 12:52+0300\n"
+"POT-Creation-Date: 2022-10-06 22:26+0300\n"
+"PO-Revision-Date: 2022-10-07 12:42+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -337,7 +337,9 @@ msgstr "Erhalte Gold für einen Repost"
 #: player/templates/player/redesign/player_repost.html:5
 msgctxt "repost"
 msgid "поддержи проект репостом и получай золото!"
-msgstr "Unterstütze WP durch eine Wiederveröffentlichung eines Beitrags und erhalte Gold!"
+msgstr ""
+"Unterstütze WP durch eine Wiederveröffentlichung eines Beitrags und erhalte "
+"Gold!"
 
 #: player/templates/player/redesign/player_repost.html:9
 msgctxt "repost"
@@ -474,32 +476,17 @@ msgstr "Position in der Partei"
 msgid "о себе"
 msgstr "Über mich"
 
-#: player/templates/player/redesign/profile.html:346
+#: player/templates/player/redesign/profile.html:380
 msgctxt "profile"
-msgid "цвет фона"
-msgstr "Hintergrundfarbe"
+msgid "показывать партийный фон"
+msgstr "Parteihintergrund anzeigen"
 
-#: player/templates/player/redesign/profile.html:350
-msgctxt "profile"
-msgid "цвет блоков"
-msgstr "Blockfarbe"
-
-#: player/templates/player/redesign/profile.html:354
-msgctxt "profile"
-msgid "цвет текста"
-msgstr "Textfarbe"
-
-#: player/templates/player/redesign/profile.html:358
-msgctxt "profile"
-msgid "цвет акцента"
-msgstr "Akzentfarbe"
-
-#: player/templates/player/redesign/profile.html:373
+#: player/templates/player/redesign/profile.html:412
 msgctxt "profile"
 msgid "стандарт"
 msgstr "Standard"
 
-#: player/templates/player/redesign/profile.html:387
+#: player/templates/player/redesign/profile.html:426
 msgid "сохранить"
 msgstr "speichern"
 
@@ -520,6 +507,31 @@ msgstr "Spieler_info"
 msgid "since"
 msgstr "seit"
 
+#: player/views/change_back_allow.py:41
+msgid "Некорректное значение"
+msgstr "Fehlerhafter Wert"
+
+#: player/views/change_back_allow.py:42 player/views/change_back_allow.py:58
+msgid "Настройка партийного фона"
+msgstr "Lege den Parteihintergrund der Partei fest."
+
+#: player/views/change_back_allow.py:43 player/views/change_back_allow.py:59
+#: player/views/expense_energy.py:30 player/views/expense_energy.py:54
+#: player/views/expense_energy.py:63 player/views/expense_energy.py:74
+#: player/views/new_player.py:89 player/views/new_player.py:102
+#: player/views/set_language.py:40 player/views/set_language.py:56
+#: player/views/set_timezone.py:29 player/views/set_timezone.py:45
+#: skill/views/skill_cancel.py:36 skill/views/skill_cancel.py:44
+#: skill/views/skill_cancel.py:52 skill/views/skill_cancel.py:62
+#: skill/views/skill_cancel.py:77
+msgid "Закрыть"
+msgstr "Schließen"
+
+#: player/views/change_back_allow.py:57 player/views/set_language.py:54
+#: player/views/set_timezone.py:43
+msgid "Ошибка метода"
+msgstr "Es ist ein Fehler beim Abbrechen der Fertigkeit aufgetreten"
+
 #: player/views/expense_energy.py:28
 msgid "Десять минут ещё не прошло"
 msgstr "Es sind noch keine zehn Minuten vergangen"
@@ -529,22 +541,14 @@ msgstr "Es sind noch keine zehn Minuten vergangen"
 msgid "Пополнение энергии"
 msgstr "Auffüllen der Energie"
 
-#: player/views/expense_energy.py:30 player/views/expense_energy.py:54
-#: player/views/expense_energy.py:63 player/views/expense_energy.py:74
-#: player/views/new_player.py:89 player/views/new_player.py:102
-#: skill/views/skill_cancel.py:36 skill/views/skill_cancel.py:44
-#: skill/views/skill_cancel.py:52 skill/views/skill_cancel.py:62
-#: skill/views/skill_cancel.py:77
-msgid "Закрыть"
-msgstr "Schließen"
-
 #: player/views/expense_energy.py:52
 msgid "Пополнение энергии не требуется"
 msgstr "Kein Nachfüllen von Energie erforderlich"
 
 #: player/views/expense_energy.py:61
 msgid "Недостаточно Энергетиков. Создайте их в Хранилище Склада"
-msgstr "Es sind nicht genügend Energisers verfügbar. Erstellen Sie sie im Lagerhaus"
+msgstr ""
+"Es sind nicht genügend Energisers verfügbar. Erstellen Sie sie im Lagerhaus"
 
 #: player/views/expense_energy.py:72
 msgid "Ошибка типа запроса"
@@ -573,6 +577,22 @@ msgstr "Fehler im Profil"
 #: player/views/overview.py:181
 msgid "Обзор"
 msgstr "Startseite"
+
+#: player/views/set_language.py:38
+msgid "Такого языка в игре нет"
+msgstr "Es gibt keine solche Region"
+
+#: player/views/set_language.py:39 player/views/set_language.py:55
+msgid "Изменение языка"
+msgstr "Sprache wechseln"
+
+#: player/views/set_timezone.py:27
+msgid "Такого часового пояса в игре нет"
+msgstr "Es gibt keine solche Sprache"
+
+#: player/views/set_timezone.py:28 player/views/set_timezone.py:44
+msgid "Изменение часового пояса"
+msgstr "Änderung der Zeitzone"
 
 #: player/views/skills/skill_queue.py:30 skill/views/skills_list.py:59
 msgid "Навыки"
@@ -1155,3 +1175,25 @@ msgstr "fehlerhafte_Methode"
 #: storage/views/storage/storage.py:27
 msgid "Склад"
 msgstr "Lagerhaus"
+
+#, fuzzy
+#~| msgid "Часовой пояс"
+#~ msgctxt "profile"
+#~ msgid "часовой пояс"
+#~ msgstr "Zeitzone"
+
+#~ msgctxt "profile"
+#~ msgid "цвет фона"
+#~ msgstr "Hintergrundfarbe"
+
+#~ msgctxt "profile"
+#~ msgid "цвет блоков"
+#~ msgstr "Blockfarbe"
+
+#~ msgctxt "profile"
+#~ msgid "цвет текста"
+#~ msgstr "Textfarbe"
+
+#~ msgctxt "profile"
+#~ msgid "цвет акцента"
+#~ msgstr "Akzentfarbe"
