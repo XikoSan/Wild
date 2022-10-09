@@ -56,7 +56,7 @@
 
 
      var mymap = L.map('mapid').setView([{{ player.region.latitude }}, {{ player.region.longitude }}], {{ player.region.zoom }});
-     L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+     L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
      attribution: '',
      minZoom: 2,
      maxZoom: 18,
@@ -71,7 +71,7 @@
    {
        "type": "Feature",
        "properties": {
-            "color": "#{% if district.state.color %}{{ district.state.color }}{% else %}000000{% endif %}",
+            "color": "#{% if district.state.color %}{{ district.state.color }}{% else %}{% if district.is_off %}000000{% else %}ffffff{% endif %}{% endif %}",
        },
        "geometry": {
            "type": "Polygon",
@@ -84,7 +84,7 @@
      style: function(feature) {
          return {
          {% if district.is_off %}color: '#ffffff',{% else %}color: feature.properties.color,{% endif %}
-          {% if district.is_off %}fillOpacity: 0.5,{% endif %}
+          {% if district.is_off %}fillOpacity: 0.5,{% else %}fillOpacity: 0.8,{% endif %}
           fillColor: feature.properties.color,
           weight: 1
          };
