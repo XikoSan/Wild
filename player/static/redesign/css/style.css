@@ -405,7 +405,7 @@ a {
   padding-right: 12rem;
   padding-left: 24rem;
   justify-content: space-between;
-  overflow: hidden;
+  /* overflow: hidden; */
   transition: all 0.3s ease;
 }
 
@@ -452,7 +452,7 @@ a {
 .profile__ava {
   width: 200rem;
   height: 200rem;
-  object-fit: cover;
+  object-fit: contain;
   object-position: center;
 }
 
@@ -617,6 +617,39 @@ a {
   margin-left: 68rem;
   margin-top: 24rem;
   position: relative;
+}
+
+@media (min-width: 1200px) {
+  .profile {
+    margin-top: 100rem;
+    margin-left: 330rem;
+    width: initial;
+  }
+  .profile__tabs-wrapper {
+    width: initial;
+    height: calc(100vh - 398rem);
+  }
+  .profile__top-wrapper {
+    width: 100%;
+    height: initial;
+    flex-direction: column;
+    align-items: center;
+  }
+  .profile__top-right {
+    display: none;
+  }
+  .profile__repost-status {
+    margin: 0 auto;
+    margin-top: 20rem;
+    margin-bottom: 0;
+  }
+  .ct__long-btn {
+    margin: 0 auto;
+    margin-top: 24rem;
+  }
+  .profile__settings {
+    margin-bottom: 10rem;
+  }
 }
 
 /*! ----- nav ----- */
@@ -2717,6 +2750,9 @@ p.overview__love-stat-timer {
   .overview__par.active {
     height: 300rem;
   }
+  .overview__love-part.active {
+    display: grid;
+  }
   .overview__par-list {
     height: 276rem;
     scrollbar-color: var(--c30) transparent;
@@ -2748,6 +2784,9 @@ p.overview__love-stat-timer {
   }
   .overview__love {
     padding: 0 30rem;
+  }
+  .overview__love-stat {
+    display: block;
   }
   .overview__chat-controls {
     display: flex;
@@ -4166,6 +4205,10 @@ p.overview__love-stat-timer {
   right: 0;
   bottom: 0;
   left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   height: 100%;
   padding: 0 24rem;
@@ -4188,7 +4231,6 @@ p.overview__love-stat-timer {
 
 .m-sett__form {
   width: 100%;
-  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -4254,6 +4296,19 @@ p.overview__love-stat-timer {
 .m-sett__save {
   margin-top: 40rem;
   align-self: center;
+}
+
+@media (min-width: 1200px) {
+  .m-sett {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .m-sett__form {
+    width: 312rem;
+    height: initial;
+  }
 }
 
 /*! -----Служебные классы----- */
