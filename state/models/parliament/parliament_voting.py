@@ -17,7 +17,7 @@ from state.models.parliament.parliament import Parliament
 # время начала и конца выборов
 class ParliamentVoting(models.Model):
     # признак того что выборы активны
-    running = models.BooleanField(default=False, verbose_name='Идут сейчас')
+    running = models.BooleanField(default=True, verbose_name='Идут сейчас')
     # парламент, в который происходят выборы
     parliament = models.ForeignKey(Parliament, on_delete=models.CASCADE, verbose_name='Парламент')
     # время начала голосования

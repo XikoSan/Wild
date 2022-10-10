@@ -17,7 +17,7 @@ from gov.models.president import President
 # время начала и конца выборов
 class PresidentialVoting(models.Model):
     # признак того что выборы активны
-    running = models.BooleanField(default=False, verbose_name='Идут сейчас')
+    running = models.BooleanField(default=True, verbose_name='Идут сейчас')
     # парламент, в который происходят выборы
     president = models.ForeignKey(President, on_delete=models.CASCADE, verbose_name='Должность')
 

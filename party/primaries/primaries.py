@@ -17,7 +17,7 @@ from party.party import Party
 # время начала и конца выборов
 class Primaries(models.Model):
     # признак того что праймериз активны
-    running = models.BooleanField(default=False, verbose_name='Идут прямо сейчас')
+    running = models.BooleanField(default=True, verbose_name='Идут прямо сейчас')
     # парламент, в который происходят выборы
     party = models.ForeignKey(Party, on_delete=models.CASCADE, verbose_name='Праймериз в партии')
     # время начала голосования
