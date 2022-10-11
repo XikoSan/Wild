@@ -2,9 +2,11 @@ import pytz
 from PIL import Image
 from allauth.socialaccount.models import SocialAccount
 from django.contrib.auth.decorators import login_required
+from django.db import connection
 from django.shortcuts import redirect
 from django.shortcuts import render
 from django.utils import timezone
+
 from gov.models.minister import Minister
 from player.decorators.player import check_player
 from player.forms import ImageForm
@@ -92,9 +94,47 @@ def my_profile(request):
     #     player_settings = PlayerSettings.objects.get(player=player)
 
     # ---------------------
-    # cursor = connection.cursor()
-    # cursor.execute("SELECT COUNT(DISTINCT store.cash + player.cash) FROM gamecore_player AS player JOIN gamecore_storage AS store ON store.owner_id = player.id WHERE store.cash + player.cash >= (SELECT store.cash + player.cash FROM gamecore_player AS player JOIN gamecore_storage AS store ON store.owner_id = player.id WHERE player.id=%s LIMIT 1);", [player.pk])
-    # cash_rating = cursor.fetchone()
+    cursor = connection.cursor()
+
+    # ============================ селект, выводящий место игрока в рейтинге по деньгам
+    # with sum_limit(lim) as
+    #     (
+    #         select SUM(store.cash) + player.cash
+    #     from player_player as player
+    #     join storage_storage as store
+    #     on player.id = 68
+    #                 and store.owner_id = player.id
+    #                                      and store.deleted = false
+    #     group
+    #     by
+    #     player.id
+    #     ),
+    #
+    #     store_sum(owner_id, cash) as
+    #     (
+    #         select store.owner_id, sum(store.cash)
+    #     from storage_storage as store
+    #     where
+    #     store.deleted = false
+    #     group
+    #     by
+    #     store.owner_id
+    #     )
+    #
+    #     select
+    #     count(*) + 1
+    #     from player_player as player
+    #
+    #     join
+    #     store_sum as store
+    #     on
+    #     store.owner_id = player.id
+    #
+    #     where
+    #     store.cash + player.cash > (select lim from sum_limit);
+
+    cursor.execute("with sum_limit (lim) as ( select SUM(store.cash) + player.cash from player_player as player join storage_storage as store on player.id = %s and store.owner_id = player.id and store.deleted = false group by player.id ), store_sum (owner_id, cash) as ( select store.owner_id, sum(store.cash) from storage_storage as store where store.deleted = false group by store.owner_id ) select count ( * ) + 1 from player_player as player join store_sum as store on store.owner_id = player.id where store.cash + player.cash > ( select lim from sum_limit );", [player.pk])
+    cash_rating = cursor.fetchone()
     # ---------------------
 
     groups = list(player.account.groups.all().values_list('name', flat=True))
@@ -103,26 +143,26 @@ def my_profile(request):
         page = 'player/redesign/profile.html'
 
     response = render(request, page, {
-                                   'player': player,
-                                   'form': form,
+        'player': player,
+        'form': form,
 
-                                   'premium': premium,
-                                   'minister': minister,
+        'premium': premium,
+        'minister': minister,
 
-                                   'user_link': user_link,
-                                   # 'cash_rating': cash_rating[0],
-                                   # 'player_settings': player_settings,
-                                   # 'countdown': UntilRecharge(player)
-                                   'page_name': player.nickname,
+        'user_link': user_link,
+        'cash_rating': cash_rating[0],
+        # 'player_settings': player_settings,
+        # 'countdown': UntilRecharge(player)
+        'page_name': player.nickname,
 
-                                    'timezones': pytz.common_timezones,
+        'timezones': pytz.common_timezones,
 
-                                    'color_back': color_back,
-                                    'color_block': color_block,
-                                    'color_text': color_text,
-                                    'color_acct': color_acct,
+        'color_back': color_back,
+        'color_block': color_block,
+        'color_text': color_text,
+        'color_acct': color_acct,
 
-                                    'party_back': party_back,
+        'party_back': party_back,
 
-                                   })
+    })
     return response
