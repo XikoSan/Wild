@@ -23,12 +23,15 @@ jQuery(document).ready(function ($) {
     $('#minister_rights').change(function(){
         if(selected_minister !== null){
 
-            points = points + ministers[selected_minister]['rights'].length;
+            for (i = 0; i < ministers[selected_minister]['rights'].length; i++){
+                points = points + i * 2;
+            }
+
             ministers[selected_minister]['rights'] = [];
 
             for (i = 0; i < $(this).val().length; i++){
                 ministers[selected_minister]['rights'].push($(this).val()[i]);
-                points = points - 1;
+                points = points - i * 2;
             }
 
             document.getElementById("points").innerHTML = points;
@@ -103,7 +106,7 @@ function set_minister(){
         ministers[selected_deputate]['post_name'] = '';
         ministers[selected_deputate]['rights'] = [];
 
-        points = points - 3;
+        points = points - 1;
         document.getElementById("points").innerHTML = points;
 
         cloned_line.onclick = function() {
@@ -155,15 +158,17 @@ function unset_minister(){
             }
         }
 
-        points = points + ministers[selected_minister]['rights'].length;
+        for (i = 0; i < ministers[selected_minister]['rights'].length; i++){
+            points = points + i * 2;
+        }
 
         delete ministers[selected_minister];
 
-        points = points + 3;
+        points = points + 1;
         document.getElementById("points").innerHTML = points;
 
         cloned_line.onclick = function() {
-            select_deputate(event, selected_deputate);
+            select_deputate(event, selected_minister);
         }
 
         element.remove();
@@ -226,7 +231,9 @@ function view_minister(e, minister){
 function clear_rights(){
     if(selected_minister !== null){
 
-        points = points + ministers[selected_minister]['rights'].length;
+        for (i = 0; i < ministers[selected_minister]['rights'].length; i++){
+            points = points + i * 2;
+        }
         ministers[selected_minister]['rights'] = [];
         document.getElementById("points").innerHTML = points;
 

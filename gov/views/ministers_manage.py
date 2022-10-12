@@ -53,10 +53,12 @@ def ministers_manage(request):
             ).order_by('player')
 
         # число использованных очков
-        points = ministers.count() * 3
+        points = ministers.count()
 
         for minister in ministers:
-            points += minister.rights.count()
+            for i in range(minister.rights.count()):
+                points += i * 2
+
         # сколько очков осталось
         points = 10 - points
 
