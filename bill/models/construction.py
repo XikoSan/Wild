@@ -39,6 +39,17 @@ class Construction(Bill):
             },
     }
 
+    Defences = {
+        'title': 'Укрепления',
+
+        'resources':
+            {
+                'cash': 1000,
+                'steel': 100,
+                'coal': 50,
+            },
+    }
+
     # регион разведки
     region = models.ForeignKey(Region, on_delete=models.CASCADE, verbose_name='Регион строительства')
 

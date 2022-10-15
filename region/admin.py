@@ -4,6 +4,7 @@ from region.building.hospital import Hospital
 from region.building.power_plant import PowerPlant
 from region.neighbours import Neighbours
 from region.region import Region
+from region.building.defences import Defences
 
 
 def recount_rating(modeladmin, request, queryset):
@@ -29,7 +30,6 @@ class RateBuildingAdmin(BuildingAdmin):
 
 
 class PowerPlantAdmin(BuildingAdmin):
-    # list_display = ('get_region', 'level', 'level_on')
     list_display = ('get_region', 'level')
 
     def get_region(self, obj):
@@ -41,3 +41,4 @@ admin.site.register(Region)
 admin.site.register(Neighbours)
 admin.site.register(Hospital, RateBuildingAdmin)
 admin.site.register(PowerPlant, PowerPlantAdmin)
+admin.site.register(Defences, BuildingAdmin)

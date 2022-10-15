@@ -2,6 +2,7 @@
 {% load get_attr %}
 {% load get_sum %}
 {% load get_key_list %}
+{% load l10n %}{% load i18n %}
 <div class="row draft_row" id="Construction" style="display: none">
     <script>
         function insertAfter(newNode, existingNode) {
@@ -53,11 +54,11 @@
         var region_levels = {};
         {% with regions=data|dict_key:'regions' %}
             {% for region in regions %}
-        region_levels["{{ region.pk }}"] = {};
+        region_levels["{% localize off %}{{ region.pk }}{% endlocalize %}"] = {};
                 {% with schemas=data|dict_key:'schemas' %}
                     {% for schema in schemas|get_key_list %}
                         {% with buildings=data|dict_key:'buildings' %}
-        region_levels["{{ region.pk }}"]["{{ schema }}"] = {{ buildings|dict_key:schema|dict_key:region.pk }}
+        region_levels["{% localize off %}{{ region.pk }}{% endlocalize %}"]["{{ schema }}"] = {% localize off %}{{ buildings|dict_key:schema|dict_key:region.pk }}{% endlocalize %}
                         {% endwith %}
                     {% endfor %}
                 {% endwith %}
@@ -70,7 +71,7 @@
         building_schemas["{{ building }}"] = {};
                 {% with resources=schemas|dict_key:building|dict_key:'resources' %}
                     {% for resource in resources|get_key_list %}
-        building_schemas["{{ building }}"]["{{ resource }}"] = {{ resources|dict_key:resource }};
+        building_schemas["{{ building }}"]["{{ resource }}"] = {% localize off %}{{ resources|dict_key:resource }}{% endlocalize %};
                     {% endfor %}
                 {% endwith %}
             {% endfor %}
@@ -112,7 +113,7 @@
                     <select name="construction_regions" id="construction_regions" style="height: 20px; min-width: 20%">
                         <option id="construction_region_default" value='default' disabled selected value>Выберите регион строительства</option>
                         {% for region in regions %}
-                        <option id="construction_region_{{ region.pk }}" value="{{ region.pk }}">{{ region.region_name }}</option>
+                        <option id="construction_region_{% localize off %}{{ region.pk }}{% endlocalize %}" value="{% localize off %}{{ region.pk }}{% endlocalize %}">{{ region.region_name }}</option>
                         {% endfor %}
                     </select>
                     {% endwith %}
