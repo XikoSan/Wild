@@ -54,10 +54,9 @@ def government(request):
             if ParliamentVoting.objects.filter(running=True, parliament=parliament).exists():
                 has_voting = True
             else:
-                if ParliamentVoting.objects.filter(running=False, parliament=parliament, task__isnull=False).exists():
+                if ParliamentVoting.objects.filter(running=False, parliament=parliament).exists():
                     next_voting_date = \
-                        ParliamentVoting.objects.get(running=False, parliament=parliament,
-                                                     task__isnull=False).voting_start + timedelta(days=7)
+                        ParliamentVoting.objects.get(running=False, parliament=parliament).voting_start + timedelta(days=7)
                 else:
                     next_voting_date = state.foundation_date + timedelta(days=7)
 
