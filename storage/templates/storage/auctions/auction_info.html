@@ -15,9 +15,9 @@
         Владелец:
         {% with state=auction.treasury_lock.lock_treasury.state %}
             {% if state.image %}
-            <img src="{{ state.image.url }}" onclick="window.location.href = 'state/{{ state.pk }}/'" style="cursor: pointer;" width="50" height="50">
+            <img src="{{ state.image.url }}" onclick="window.location.href = 'state/{% localize off %}{{ state.pk }}{% endlocalize %}/'" style="cursor: pointer;" width="50" height="50">
             {% else %}
-            <img src="{% static 'img/congress.svg' %}" onclick="window.location.href = 'state/{{ state.pk }}/'" style="cursor: pointer;" width="50" height="50">
+            <img src="{% static 'img/congress.svg' %}" onclick="window.location.href = 'state/{% localize off %}{{ state.pk }}{% endlocalize %}/'" style="cursor: pointer;" width="50" height="50">
             {% endif %}
             {{ state.title }}
         {% endwith %}
@@ -82,7 +82,7 @@
         </div>
         <div class="col-xs-6 col-sm-6 col-md-6" align="center" style="border-right: solid #e2e2e2 1px;">
             <form class="set_bet_form" method="post">
-                <input type="hidden" name="lot_id" value="{{ lot.pk }}">
+                <input type="hidden" name="lot_id" value="{% localize off %}{{ lot.pk }}{% endlocalize %}">
                 <div class="row">
                     <div class="col-xs-6 col-sm-6 col-md-6" align="right">
                     Склад:
@@ -91,7 +91,7 @@
                     <td class="delivery">
                         <select name="source" data-type="sell">
                             {% for storage in storages %}
-                            <option {% if storage == storages|first %} selected {% endif %} value="{{ storage|dict_key:'pk' }}">{{ storage|dict_key:'region__region_name' }}</option>
+                            <option {% if storage == storages|first %} selected {% endif %} value="{% localize off %}{{ storage|dict_key:'pk' }}{% endlocalize %}">{{ storage|dict_key:'region__region_name' }}</option>
                             {% endfor %}
                         </select>
                     </div>
