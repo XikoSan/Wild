@@ -36,8 +36,27 @@ class PowerPlantAdmin(BuildingAdmin):
         return obj.region.region_name
 
 
+class RegionAdmin(admin.ModelAdmin):
+    list_display = ('region_name', 'get_state', 'get_gold', 'get_oil', 'get_ore', 'is_off')
+
+    def get_state(self, obj):
+        if obj.state:
+            return obj.state.title
+        else:
+            return ''
+
+    def get_gold(self, obj):
+        return str(obj.gold_has) + '/' + str(obj.gold_cap)
+
+    def get_oil(self, obj):
+        return str(obj.oil_has) + '/' + str(obj.oil_cap) + ' (' + str(obj.oil_type) + ')'
+
+    def get_ore(self, obj):
+        return str(obj.ore_has) + '/' + str(obj.ore_cap) + ' (' + str(obj.coal_proc) + '/' + str(obj.iron_proc) + '/' + str(obj.bauxite_proc) + ')'
+
+
 # Register your models here.
-admin.site.register(Region)
+admin.site.register(Region, RegionAdmin)
 admin.site.register(Neighbours)
 admin.site.register(Hospital, RateBuildingAdmin)
 admin.site.register(PowerPlant, PowerPlantAdmin)
