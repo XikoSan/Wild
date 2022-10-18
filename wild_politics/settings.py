@@ -229,6 +229,7 @@ LANGUAGES = (
     ('ru', 'Russian'),
     ('en', 'English'),
     ('de', 'Deutsch'),
+    ('be', 'Belarusian'),
     # ('fr', 'French'),
     # ('it', 'Italian'),
     # ('es', 'Spanish'),
