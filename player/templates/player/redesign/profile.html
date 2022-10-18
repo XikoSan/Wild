@@ -2,6 +2,7 @@
 {% load l10n %}{% load i18n %}
 {% load static %}
 {% load tz %}
+{% load capitalize %}
 {% load profile_blocks.redesign.repost_tab %}
 {% block content %}
 <section class="profile">
@@ -352,7 +353,7 @@
 				{% get_available_languages as LANGUAGES %}
 				{% get_language_info_list for LANGUAGES as languages %}
 				{% for lang in languages %}
-				<option value='{{ lang.code }}' {% if lang.code == LANGUAGE_CODE %}selected{% endif %}>{{ lang.name_local }}</option>
+				<option value='{{ lang.code }}' {% if lang.code == LANGUAGE_CODE %}selected{% endif %}>{{ lang.name_local|capitalize }}</option>
 				{% endfor %}
 			</select>
 			<svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
