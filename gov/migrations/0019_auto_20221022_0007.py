@@ -30,7 +30,7 @@ def crontask_remake(apps, schema_editor):
             
             PeriodicTask.objects.filter(pk=task_identificator).delete()
         
-        law = ChangeForm.objects.filter(parliament=Parliament.objects.get(state=president.state).first()
+        law = ChangeForm.objects.filter(parliament=Parliament.objects.get(state=president.state)).first()
         
         foundation_day = law.voting_end.weekday()
 
