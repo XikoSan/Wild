@@ -40,11 +40,18 @@ class PresidentialVoting(models.Model):
         if not PeriodicTask.objects.filter(
                 name=f'{self.president.state.title}, id {self.president.pk} pres elections').exists():
 
+            foundation_day = timezone.now().weekday()
+
+            if foundation_day == 6:
+                cron_day = 0
+            else:
+                cron_day = foundation_day + 1
+
             schedule, created = CrontabSchedule.objects.get_or_create(
                 minute=str(timezone.now().now().minute),
                 hour=str(timezone.now().now().hour),
-                day_of_week='*',
-                day_of_month='*/1',
+                day_of_week=cron_day,
+                day_of_month='*',
                 month_of_year='*',
             )
 
@@ -57,6 +64,15 @@ class PresidentialVoting(models.Model):
                 start_time=timezone.now(),
             )
             self.save()
+
+        else:
+            # убираем таску у экземпляра модели, чтобы ее могли забрать последующие
+            PresidentialVoting.objects.select_related('task').filter(president=president, task__isnull=False).update(
+                task=None)
+
+            self.task = PeriodicTask.objects.filter(name=f'{self.president.state.title}, id {self.president.pk} pres elections').first()
+            self.save()
+
 
     def delete_task(self):
         # проверяем есть ли таска

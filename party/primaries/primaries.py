@@ -32,15 +32,25 @@ class Primaries(models.Model):
 
         if not PeriodicTask.objects.filter(name=f'{self.party.title}, id {self.party.pk} party primaries').exists():
 
+            foundation_day = self.party.foundation_date.weekday()
+            # день недели для окончания - на один больше
+            if foundation_day == 6:
+                cron_day = 1
+            elif foundation_day == 5:
+                cron_day = 0
+            else:
+                cron_day = foundation_day + 1
+
             schedule, created = CrontabSchedule.objects.get_or_create(
                 minute=str(timezone.now().now().minute),
                 hour=str(timezone.now().now().hour),
-                day_of_week='*',
-                day_of_month='*/1',
+                day_of_week=cron_day,
+                day_of_month='*',
                 month_of_year='*',
             )
+
             # schedule, created = CrontabSchedule.objects.get_or_create(
-            #     minute='*/1',
+            #     minute='23',
             #     hour='*',
             #     day_of_week='*',
             #     day_of_month='*',
@@ -56,6 +66,13 @@ class Primaries(models.Model):
                 args=json.dumps([self.party.pk]),
                 start_time=timezone.now(),
             )
+            self.save()
+
+        else:
+            # убираем таску у экземпляра модели, чтобы ее могли забрать последующие
+            Primaries.objects.select_related('task').filter(party=self.party, task__isnull=False).update(task=None)
+
+            self.task = PeriodicTask.objects.filter(name=f'{self.party.title}, id {self.party.pk} party primaries').first()
             self.save()
 
 

@@ -24,11 +24,18 @@ class Parliament(models.Model):
     # формируем переодическую таску
     def setup_task(self):
 
+        foundation_day = self.state.foundation_date.weekday()
+
+        if foundation_day == 6:
+            cron_day = 0
+        else:
+            cron_day = foundation_day + 1
+
         schedule, created = CrontabSchedule.objects.get_or_create(
                                                                     minute=str(timezone.now().now().minute),
                                                                     hour=str(timezone.now().now().hour),
-                                                                    day_of_week='*',
-                                                                    day_of_month='*/7',
+                                                                    day_of_week=cron_day,
+                                                                    day_of_month='*',
                                                                     month_of_year='*',
                                                                    )
 

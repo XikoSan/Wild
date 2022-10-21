@@ -58,15 +58,22 @@ class Party(models.Model):
         # start_time = timezone.now() + datetime.timedelta(days=7)
         # clock, created = ClockedSchedule.objects.get_or_create(clocked_time=start_time)
 
+        foundation_day = self.foundation_date.weekday()
+
+        if foundation_day == 6:
+            cron_day = 0
+        else:
+            cron_day = foundation_day + 1
+
         schedule, created = CrontabSchedule.objects.get_or_create(
                                                                     minute=str(timezone.now().now().minute),
                                                                     hour=str(timezone.now().now().hour),
-                                                                    day_of_week='*',
-                                                                    day_of_month='*/7',
+                                                                    day_of_week=cron_day,
+                                                                    day_of_month='*',
                                                                     month_of_year='*',
                                                                    )
         # schedule, created = CrontabSchedule.objects.get_or_create(
-        #                                                             minute='*/7',
+        #                                                             minute='22',
         #                                                             hour='*',
         #                                                             day_of_week='*',
         #                                                             day_of_month='*',

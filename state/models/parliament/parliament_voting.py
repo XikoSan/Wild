@@ -33,11 +33,21 @@ class ParliamentVoting(models.Model):
         if not PeriodicTask.objects.filter(
                 name=f'{self.parliament.state.title}, id {self.parliament.pk} parl primaries').exists():
 
+            foundation_day = self.parliament.state.foundation_date.weekday()
+
+            # день недели для окончания - на один больше
+            if foundation_day == 6:
+                cron_day = 1
+            elif foundation_day == 5:
+                cron_day = 0
+            else:
+                cron_day = foundation_day + 1
+
             schedule, created = CrontabSchedule.objects.get_or_create(
                 minute=str(timezone.now().now().minute),
                 hour=str(timezone.now().now().hour),
-                day_of_week='*',
-                day_of_month='*/1',
+                day_of_week=cron_day,
+                day_of_month='*',
                 month_of_year='*',
             )
 
@@ -50,6 +60,14 @@ class ParliamentVoting(models.Model):
                 args=json.dumps([self.parliament.pk]),
                 start_time=timezone.now(),
             )
+            self.save()
+
+        else:
+            # убираем таску у экземпляра модели, чтобы ее могли забрать последующие
+            ParliamentVoting.objects.select_related('task').filter(parliament=self.parliament, task__isnull=False).update(
+                task=None)
+
+            self.task = PeriodicTask.objects.filter(name=f'{self.parliament.state.title}, id {self.parliament.pk} parl primaries').first()
             self.save()
 
     def delete_task(self):

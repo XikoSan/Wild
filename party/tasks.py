@@ -45,30 +45,6 @@ def finish_primaries(party_id):
     leader = PrimariesLeader(party=party, leader=current_leader)
     leader.save()
 
-    task_identificator = primaries.task.id
-    # убираем таску у экземпляра модели
-    Primaries.objects.select_related('task').filter(party=party, task__isnull=False).update(task=None)
-    # удаляем таску
-    pt = PeriodicTask.objects.get(pk=task_identificator)
-    pt.crontab.delete()
-
-    schedule, created = CrontabSchedule.objects.get_or_create(
-        minute=str(timezone.now().now().minute),
-        hour=str(timezone.now().now().hour),
-        day_of_week='*',
-        day_of_month='*/7',
-        month_of_year='*',
-    )
-
-    primaries.task = PeriodicTask.objects.create(
-        name=f'{primaries.party.title}, id {primaries.party.pk} party primaries',
-        task='finish_primaries',
-        crontab=schedule,
-        args=json.dumps([primaries.party.pk]),
-        start_time=timezone.now(),
-    )
-    primaries.save()
-
 
 # таска включающая праймериз
 @shared_task(name="start_primaries")
