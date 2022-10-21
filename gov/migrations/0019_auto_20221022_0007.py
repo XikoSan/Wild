@@ -48,7 +48,7 @@ def crontask_remake(apps, schema_editor):
                                                            )
                                                            
         task = PeriodicTask(
-            name=president.state.title + ', id преза ' + str(president.pk)
+            name=president.state.title + ', id преза ' + str(president.pk),
             task='start_presidential',
             crontab=schedule,
             args=json.dumps([president.id]),
