@@ -334,3 +334,30 @@ class Storage(models.Model):
         ]
         verbose_name = "Склад"
         verbose_name_plural = "Склады"
+
+    # =================================Запасы оружия во всех регионах игры
+    # select
+    # reg.region_name as "регион",
+    # SUM(rifle) as "автоматы",
+    # SUM(tank) as "танки",
+    # SUM(antitank) as "ПТ",
+    # SUM(station) as "орбиталки",
+    # SUM(jet) as "штурмы",
+    # SUM(pzrk) as "ПЗРК",
+    # SUM(ifv) as "БМП",
+    # SUM(drone) as "БПЛА"
+    #
+    # from storage_storage as st
+    #
+    # join
+    # region_region as reg
+    # on
+    # reg.id = st.region_id
+    # where
+    # region_id in (
+    #     select id from region_region
+    # )
+    # and deleted = false
+    # group
+    # by
+    # reg.region_name
