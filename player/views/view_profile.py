@@ -12,6 +12,7 @@ from player.decorators.player import check_player
 from player.player import Player
 from player.player_settings import PlayerSettings
 from wild_politics.settings import TIME_ZONE
+from ava_border.models.ava_border_ownership import AvaBorderOwnership
 
 
 @login_required(login_url='/')
@@ -58,6 +59,10 @@ def view_profile(request, pk):
     cash_rating = cursor.fetchone()
     # ---------------------
 
+    ava_border = None
+    if AvaBorderOwnership.objects.filter(in_use=True, owner=char).exists():
+        ava_border = AvaBorderOwnership.objects.get(in_use=True, owner=char).border
+
     party_back = True
 
     if PlayerSettings.objects.filter(player=char).exists():
@@ -78,4 +83,5 @@ def view_profile(request, pk):
                                   'party_back': party_back,
 
                                   'page_name': char.nickname,
+                                  'ava_border': ava_border,
                                   })

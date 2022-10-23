@@ -13,6 +13,7 @@ from player.forms import ImageForm
 from player.logs.gold_log import GoldLog
 from player.player import Player
 from player.player_settings import PlayerSettings
+from ava_border.models.ava_border_ownership import AvaBorderOwnership
 
 
 @login_required(login_url='/')
@@ -88,10 +89,10 @@ def my_profile(request):
 
         party_back = setts.party_back
 
-    # timezones = pytz.common_timezones
-    #
-    # if PlayerSettings.objects.filter(player=player).exists():
-    #     player_settings = PlayerSettings.objects.get(player=player)
+
+    ava_border = None
+    if AvaBorderOwnership.objects.filter(in_use=True, owner=player).exists():
+        ava_border = AvaBorderOwnership.objects.get(in_use=True, owner=player).border
 
     # ---------------------
     cursor = connection.cursor()
@@ -163,6 +164,7 @@ def my_profile(request):
         'color_acct': color_acct,
 
         'party_back': party_back,
+        'ava_border': ava_border,
 
     })
     return response

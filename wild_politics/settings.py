@@ -72,6 +72,7 @@ INSTALLED_APPS = [
     'debug_toolbar',
 
     'article',
+    'ava_border',
     'region',
     'party',
     'player',

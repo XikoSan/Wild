@@ -29,6 +29,9 @@
 				</span>
 
 				<img src="{% if char.image %}{{ char.image.url }}{% else %}{% static 'img/nopic.png' %}{% endif %}" class="profile__ava" {% if char.party %}{% if char.party.members_image %}{% if party_back %}style="background-image: url({{ char.party.members_image.url }}); background-size: cover;"{% endif %}{% endif %}{% endif %}>
+				{% if ava_border %}
+				<img src="{{ ava_border.image.url }}" class="profile__ava-border">
+				{% endif %}
 			</div>
 
 			<div class="profile__top-right">
