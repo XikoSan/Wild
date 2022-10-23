@@ -1,5 +1,6 @@
 {% extends 'player/redesign/header.html' %}
 {% load l10n %}{% load i18n %}
+{% load redesign.pagination %}
 {% load static %}
 {% load is_dict %}
 {% load get_attr %}
@@ -155,15 +156,7 @@
 	      </tbody>
 	    </table>
 			<!--пагинация-->
-			<div class="ct__js-table-pag">
-				<button class="ct__js-table-pag-prev">
-					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="var(--c10two)"><path d="M22 12l-20 12 5-12-5-12z"/></svg>
-				</button>
-				<span>1/10</span>
-				<button class="ct__js-table-pag-next">
-					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="var(--c10two)"><path d="M22 12l-20 12 5-12-5-12z"/></svg>
-				</button>
-			</div>
+			{% pagination lines %}
 			<!--конец: пагинация-->
     </div>
 
