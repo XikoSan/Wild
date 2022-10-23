@@ -22,11 +22,43 @@ def world_players_list(request):
     players = Player.objects.filter(banned=False).order_by('nickname')
     lines = get_thing_page(players, page, 50)
 
+    header = {
+
+        'image': {
+            'text': '',
+            'select_text': 'Аватар',
+            'visible': 'true'
+        },
+
+        'nickname': {
+            'text': 'Никнейм',
+            'select_text': 'Никнейм',
+            'visible': 'true'
+        },
+
+        'region':{
+            'on_map_id':
+            {
+                'text': '',
+                'select_text': 'Герб',
+                'visible': 'true'
+            },
+            'region_name':
+            {
+                'text': 'Регион',
+                'select_text': 'Регион',
+                'visible': 'true'
+            }
+        }
+    }
+
     # отправляем в форму
-    return render(request, 'lists/world_players_list.html', {
+    return render(request, 'player/redesign/lists/universal_list.html', {
         'page_name': _('Мировое население'),
 
         'player': player,
+
+        'header': header,
         'lines': lines,
 
         'parties_count': Party.objects.filter(deleted=False).count()})
