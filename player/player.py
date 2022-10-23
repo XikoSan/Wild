@@ -1,20 +1,22 @@
 # coding=utf-8
 import datetime
-from django.db import transaction
 import pytz
+from django.apps import apps
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
+from django.db import transaction
 from django.utils import timezone
-from django_celery_beat.models import PeriodicTask
 from django.utils.timezone import make_aware
+from django_celery_beat.models import PeriodicTask
+
 from party.party import Party
 from party.position import PartyPosition
 from player.views.set_cah_log import set_cash_log
-from django.apps import apps
 from region.building.hospital import Hospital
 from region.region import Region
 from state.models.state import State
 from wild_politics.settings import JResponse
+
 
 class Player(models.Model):
     # учетная запись игрока
@@ -133,6 +135,32 @@ class Player(models.Model):
         self.energy_consumption += value * mul
         self.energy -= value
         self.save()
+
+        GameEvent = apps.get_model('player.GameEvent')
+        EventPart = apps.get_model('player.EventPart')
+
+        if GameEvent.objects.filter(running=True, event_start__lt=timezone.now(), event_end__gt=timezone.now()).exists():
+            if EventPart.objects.filter(
+                    player=self,
+                    event=GameEvent.objects.get(running=True, event_start__lt=timezone.now(), event_end__gt=timezone.now())
+                                    ).exists():
+                event_part = EventPart.objects.get(
+                    player=self,
+                    event=GameEvent.objects.get(running=True, event_start__lt=timezone.now(), event_end__gt=timezone.now())
+                                    )
+                event_part.points += value
+                event_part.prize_check()
+                event_part.save()
+
+            else:
+                event_part = EventPart(
+                    player=self,
+                    event=GameEvent.objects.get(running=True, event_start__lt=timezone.now(),
+                                                event_end__gt=timezone.now()),
+                    points=value
+                )
+                event_part.prize_check()
+                event_part.save()
 
 
     # получить актуализированного Игрока
