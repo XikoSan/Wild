@@ -9,6 +9,8 @@ from player.logs.skill_training import SkillTraining
 from player.logs.auto_mining import AutoMining
 from .player import Player
 from .player_settings import PlayerSettings
+from player.game_event.game_event import GameEvent
+from player.game_event.event_part import EventPart
 
 
 class CashLogAdmin(admin.ModelAdmin):
@@ -52,6 +54,11 @@ class PlayerSettingsAdmin(admin.ModelAdmin):
     raw_id_fields = ('player',)
 
 
+class EventPartAdmin(admin.ModelAdmin):
+    search_fields = ['player__nickname', ]
+    raw_id_fields = ('player', 'event')
+
+
 class PLayerAdmin(admin.ModelAdmin):
     search_fields = ['nickname', 'user_ip']
     raw_id_fields = ('account', 'party',)
@@ -89,3 +96,6 @@ admin.site.register(CashLog, CashLogAdmin)
 admin.site.register(GoldLog, GoldLogAdmin)
 admin.site.register(SkillTraining, SkillTrainingAdmin)
 admin.site.register(AutoMining, AutoMiningAdmin)
+
+admin.site.register(GameEvent)
+admin.site.register(EventPart, EventPartAdmin)

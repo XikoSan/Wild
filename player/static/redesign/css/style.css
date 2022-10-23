@@ -1803,6 +1803,18 @@ a {
   margin-bottom: 12rem;
 }
 
+.overview__event {
+  position: relative;
+  display: block;
+  width: 336rem;
+  height: 46rem;
+  margin: 0 auto;
+  padding-top: 2rem;
+  padding-left: 6rem;
+  padding-right: 6rem;
+  background-image: linear-gradient(to right, transparent, var(--c30), transparent);
+}
+
 .overview__war {
   position: relative;
   display: block;
@@ -2204,6 +2216,10 @@ p.overview__love-stat-timer {
   color: var(--c10one);
   opacity: 0.5;
   width: max-content;
+}
+
+.overview__war-no.event {
+  opacity: 1;
 }
 
 .overview__war-no::before,

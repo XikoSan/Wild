@@ -6,6 +6,7 @@ import redis
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.templatetags.static import static
+from django.utils import timezone
 from django.utils.translation import ugettext as _
 
 from chat.models.sticker import Sticker
@@ -26,6 +27,8 @@ from state.models.parliament.parliament_voting import ParliamentVoting
 from state.models.state import State
 from war.models.wars.war import War
 from wild_politics.settings import TIME_ZONE, sentry_environment
+
+from player.game_event.game_event import GameEvent
 
 
 # главная страница
@@ -155,6 +158,10 @@ def overview(request):
             if ParliamentVoting.objects.filter(running=True, parliament=parliament).exists():
                 has_parl_voting = True
 
+    has_event = False
+    if GameEvent.objects.filter(running=True, event_start__lt=timezone.now(), event_end__gt=timezone.now()).exists():
+        has_event = True
+
     # войны
     war_dict = {}
     war_types = get_subclasses(War)
@@ -220,6 +227,8 @@ def overview(request):
 
         'has_parl_voting': has_parl_voting,
         'parliament': parliament,
+
+        'has_event': has_event,
 
     })
 
