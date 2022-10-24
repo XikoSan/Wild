@@ -30,7 +30,11 @@
 
 				<img src="{% if char.image %}{{ char.image.url }}{% else %}{% static 'img/nopic.png' %}{% endif %}" class="profile__ava" {% if char.party %}{% if char.party.members_image %}{% if party_back %}style="background-image: url({{ char.party.members_image.url }}); background-size: cover;"{% endif %}{% endif %}{% endif %}>
 				{% if ava_border %}
-				<img src="{{ ava_border.image.url }}" class="profile__ava-border">
+				<svg class="profile__ava-border" viewBox="0 0 {% localize off %}{{ ava_border.box_x }} {{ ava_border.box_y }}{% endlocalize %}">
+					{% autoescape off %}
+					{{ ava_border.shape }}
+					{% endautoescape %}
+				</svg>
 				{% endif %}
 			</div>
 

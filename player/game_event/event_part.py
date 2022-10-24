@@ -40,10 +40,17 @@ class EventPart(models.Model):
             else:
                 self.player.premium += datetime.timedelta(days=1)
 
-            AvaBorderOwnership(in_use=True,
-                               owner=self.player,
-                               border=AvaBorder.objects.get(pk=1)
-                               ).save()
+            if not AvaBorderOwnership.objects.filter(owner=self.player,
+                               border=AvaBorder.objects.get(pk=2)
+                               ).exists() or\
+                    not AvaBorderOwnership.objects.filter(owner=self.player,
+                               border=AvaBorder.objects.get(pk=3)
+                               ).exists():
+
+                AvaBorderOwnership(in_use=True,
+                                   owner=self.player,
+                                   border=AvaBorder.objects.get(pk=1)
+                                   ).save()
 
             self.paid_points = 4000
 
@@ -69,12 +76,17 @@ class EventPart(models.Model):
             else:
                 self.player.premium += datetime.timedelta(days=1)
 
-            AvaBorderOwnership.objects.filter(owner=self.player).update(in_use=False)
-
-            AvaBorderOwnership(in_use=True,
+            if not AvaBorderOwnership.objects.filter(
                                owner=self.player,
-                               border=AvaBorder.objects.get(pk=2)
-                               ).save()
+                               border=AvaBorder.objects.get(pk=3)
+                               ).exists():
+
+                AvaBorderOwnership.objects.filter(owner=self.player).update(in_use=False)
+
+                AvaBorderOwnership(in_use=True,
+                                   owner=self.player,
+                                   border=AvaBorder.objects.get(pk=2)
+                                   ).save()
 
             self.paid_points = 10000
 
