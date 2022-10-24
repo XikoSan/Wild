@@ -1,0 +1,260 @@
+{% extends 'player/redesign/header.html' %}
+{% load static %}
+{% load bootstrap3 %}
+{% load l10n %}{% load i18n %}{% load tz %}
+{% load tz %}
+{% load redesign.overview_blocks.skills %}
+{% block for_scripts_and_css %}
+{% endblock %}
+{% load dict_key %}
+{% load get_sum %}
+{% load get_attr %}
+{% load get_key_list %}
+{% load get_class_name %}
+
+{% block content %}
+<style>
+  .hw {
+    height: calc(100vh - 60rem);
+  }
+  .hw__main-pic {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .hw__progress {
+    position: relative;
+    height: calc(100vh - 213rem);
+    overflow-y: scroll;
+  }
+  .hw__bar-container {
+    position: relative;
+    height: 1400rem;
+    width: 5rem;
+    margin: 0 auto;
+  }
+  .hw__empty {
+    width: 100%;
+    height: 100%;
+    background-color: var(--c30);
+  }
+  .hw__filled {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--c10two);  
+  }
+  .hw__list {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 100rem 0;
+    list-style: none;
+  }
+  .hw__item {
+    height: 200rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .hw__item-empty {
+    width: 120rem;
+    height: 120rem;
+  }
+  .hw__border {
+    display: block;
+    width: 120rem;
+    height: 120rem;
+    border: 1px dashed var(--c10two);
+  }
+  .hw__item-point {
+    margin: 0 20rem;
+    width: 20rem;
+    height: 20rem;
+    transform: rotate(45deg);
+    background-color: var(--c30);
+  }
+  .hw__item-point.active {
+    background-color: var(--c10two);
+  }
+  .hw__item-text {
+    font-size: 16rem;
+    width: 120rem;
+  }
+  .hw__info-modal {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: var(--c30);
+    width: 100%;
+    padding: 24rem 16rem;
+    font-size: 16rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10rem 0 rgba(0, 0, 0, 0.8);
+  }
+  .hw__info-modal.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+  .hw__info-modal-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: block;
+    width: 30rem;
+    height: 30rem;
+    padding: 0;
+    background-color: transparent;
+    border: 0;
+  }
+  .hw__info-modal-close svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+</style>
+
+<main>
+
+  <section class="hw">
+    <!--тыковки-->
+    <img src="{% static 'img/tykva.png' %}?{{ csrf_token }}" class="hw__main-pic" alt="">
+    <!--заголовок-->
+		<h1 class="hw__title ct__page-title">{% trans 'Хэллоуинский ивент!' context "game_event" %}</h1>
+    <!--прогресс бар-->
+    <div class="hw__progress">
+      <!--полоска заполнения-->
+      <div class="hw__bar-container">
+        <div class="hw__empty"></div>
+        <div class="hw__filled"></div>
+      </div>
+      <!--Награды-->
+      <ul class="hw__list">
+        <li class="hw__item">
+          <div class="hw__item-empty"></div>
+          <div class="hw__item-point"></div>
+          <p class="hw__item-text">
+            2 000 {% trans 'очков' context "game_event" %}:<br>
+            1 {% trans 'премиум день' context "game_event" %}
+          </p>
+        </li>
+
+        <li class="hw__item">
+          <img class="hw__border" src="" alt="">
+          <div class="hw__item-point"></div>
+          <p class="hw__item-text">
+            4 000 {% trans 'очков' context "game_event" %}:<br>
+            1 {% trans 'премиум день' context "game_event" %}
+          </p>
+        </li>
+
+        <li class="hw__item">
+          <div class="hw__item-empty"></div>
+          <div class="hw__item-point"></div>
+          <p class="hw__item-text">
+            6 000 {% trans 'очков' context "game_event" %}:<br>
+            1 {% trans 'премиум день' context "game_event" %}
+          </p>
+        </li>
+
+        <li class="hw__item">
+          <div class="hw__item-empty"></div>
+          <div class="hw__item-point"></div>
+          <p class="hw__item-text">
+            8 000 {% trans 'очков' context "game_event" %}:<br>
+            1 {% trans 'премиум день' context "game_event" %}
+          </p>
+        </li>
+
+        <li class="hw__item">
+          <img class="hw__border" src="" alt="">
+          <div class="hw__item-point"></div>
+          <p class="hw__item-text">
+            10 000 {% trans 'очков' context "game_event" %}:<br>
+            1 {% trans 'премиум день' context "game_event" %}
+          </p>
+        </li>
+
+        <li class="hw__item">
+          <div class="hw__item-empty"></div>
+          <div class="hw__item-point"></div>
+          <p class="hw__item-text">
+            12 000 {% trans 'очков' context "game_event" %}:<br>
+            1 {% trans 'премиум день' context "game_event" %}
+          </p>
+        </li>
+
+        <li class="hw__item">
+          <img class="hw__border" src="" alt="">
+          <div class="hw__item-point"></div>
+          <p class="hw__item-text">
+            14 000 {% trans 'очков' context "game_event" %}:<br>
+            1 {% trans 'премиум день' context "game_event" %}
+          </p>
+        </li>
+      </ul>
+    </div>
+
+    <!--инфо модалка-->
+    <div class="hw__info-modal">
+      <button class="hw__info-modal-close">
+        <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M26 30H0V0H30V26L26 30Z" fill="var(--c10two)"/><path d="M4 4L26 26M4 26L26 4" stroke="var(--c60)" stroke-width="3"/>
+        </svg>
+      </button>
+  
+      <h3>{% trans 'Хэллоуинский ивент в WP:' context "game_event" %}</h3>
+      <p>{% trans 'играй как обычно - и получай награды!' context "game_event" %}</p>
+      <p>{% trans '- с 25.10 по 1.11 заполняй прогрессию события, расходуя энергию' context "game_event" %}</p>
+      <p>{% trans '- каждые 2 000 потраченной энергии открывают новые награды' context "game_event" %}</p>
+      <h3>{% trans 'Награды события:' context "game_event" %}</h3>
+      <p>{% trans '- до семи дней премиум аккаунта' context "game_event" %}</p>
+      <p>{% trans '- первая прогрессионная рамка для аватара в игре' context "game_event" %}</p>
+  </div>
+
+  </section>
+
+
+</main>
+
+<script>
+
+  const progressPoints = document.querySelectorAll('.hw__item-point')
+  const progressBar = document.querySelector('.hw__filled')
+  const MAX_SCORE = 14000;
+
+  function fillProgressBar(num) {
+    let userScore = num;
+    if (userScore > MAX_SCORE) userScore = MAX_SCORE
+    const filledPoints = Math.floor(userScore / 2000) - 1;
+    progressPoints.forEach((point, index) => {
+      if (index <= filledPoints) point.classList.add('active')
+    });
+    const filledPercent = userScore / MAX_SCORE;
+    progressBar.style.height = `${filledPercent * 100}%`;
+  }
+
+  // вызов функции для покраски прогресса
+  fillProgressBar({% localize off %}{{ points }}{% endlocalize %})
+
+
+  // инфомодалка
+  const infoModal = document.querySelector('.hw__info-modal')
+  const infoModalClose = document.querySelector('.hw__info-modal-close')
+
+  if (!localStorage.getItem('hw2022')) {
+    infoModal.classList.add('active')
+  }
+
+  infoModalClose.addEventListener('click', () => {
+    infoModal.classList.remove('active')
+    localStorage.setItem('hw2022', 'checked')
+  })
+
+</script>
+{% endblock %}

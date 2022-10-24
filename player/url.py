@@ -22,6 +22,7 @@ from .views.set_timezone import set_timezone
 from .views.change_back_allow import change_back_allow
 from .views.view_profile import view_profile
 from .views.wallet import wallet
+from player.views.game_event.halloween import halloween
 
 urlpatterns = [
 
@@ -81,4 +82,7 @@ urlpatterns = [
 
     # удаление аккаунтов, не имеющих соцсеть
     url(r'^no_social/$', no_social, name='no_social'),
+
+    # хэллоуинский ивент
+    url(r'^halloween/$', halloween, name='halloween'),
 ]
