@@ -56,7 +56,6 @@ class ParliamentVoting(models.Model):
                 task='finish_elections',
                 # clocked=clock,
                 crontab=schedule,
-                one_off=True,
                 args=json.dumps([self.parliament.pk]),
                 start_time=timezone.now(),
             )

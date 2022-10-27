@@ -7,7 +7,7 @@ from django.db.models.signals import post_save
 # from io import BytesIO
 from django.dispatch import receiver
 from django.utils import timezone
-from django_celery_beat.models import ClockedSchedule, PeriodicTask
+from django_celery_beat.models import ClockedSchedule, PeriodicTask, CrontabSchedule
 from player.player import Player
 from gov.models.president import President
 
