@@ -62,7 +62,7 @@ class Primaries(models.Model):
                 task='finish_primaries',
                 crontab=schedule,
                 # clocked=clock,
-                one_off=True,
+                one_off=False,
                 args=json.dumps([self.party.pk]),
                 start_time=timezone.now(),
             )
