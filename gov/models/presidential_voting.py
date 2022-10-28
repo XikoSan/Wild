@@ -59,7 +59,7 @@ class PresidentialVoting(models.Model):
                 name=f'{self.president.state.title}, id {self.president.pk} pres elections',
                 task='finish_presidential',
                 crontab=schedule,
-                one_off=True,
+                one_off=False,
                 args=json.dumps([self.president.pk]),
                 start_time=timezone.now(),
             )
