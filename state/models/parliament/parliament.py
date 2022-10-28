@@ -43,7 +43,7 @@ class Parliament(models.Model):
             name=self.state.title + ', id парла ' + str(self.pk),
             task='start_elections',
             crontab=schedule,
-            # one_off=True,
+            one_off=False,
             args=json.dumps([self.id]),
             start_time=timezone.now()
         )

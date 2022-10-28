@@ -11,7 +11,6 @@ from django_celery_beat.models import ClockedSchedule, PeriodicTask, CrontabSche
 
 from state.models.parliament.parliament import Parliament
 
-
 # класс выборы
 # parliament - парламент, в который проходят выборы
 # время начала и конца выборов
@@ -55,6 +54,7 @@ class ParliamentVoting(models.Model):
                 name=f'{self.parliament.state.title}, id {self.parliament.pk} parl primaries',
                 task='finish_elections',
                 # clocked=clock,
+                one_off=False,
                 crontab=schedule,
                 args=json.dumps([self.parliament.pk]),
                 start_time=timezone.now(),
