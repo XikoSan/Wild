@@ -23,6 +23,7 @@ from .views.change_back_allow import change_back_allow
 from .views.view_profile import view_profile
 from .views.wallet import wallet
 from player.views.game_event.halloween import halloween
+from .views.lists.region_citizens import region_citizens_list
 
 urlpatterns = [
 
@@ -39,6 +40,8 @@ urlpatterns = [
     url(r'^world/players/', world_players_list, name='world_players_list'),
     # открытие списка населения региона
     url(r'^region/(?P<region_pk>\d+)/players/', region_players_list, name='region_players_list'),
+    # открытие списка граждан региона
+    url(r'^region/(?P<region_pk>\d+)/citizens/', region_citizens_list, name='region_citizens_list'),
 
     # открытие "обзора"
     url(r'^overview$', overview, name='overview'),

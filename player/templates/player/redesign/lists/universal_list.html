@@ -4,6 +4,7 @@
 {% load static %}
 {% load is_dict %}
 {% load get_attr %}
+{% load check_object %}
 {% load is_list %}
 {% load has_key %}
 {% load lower %}
@@ -105,13 +106,12 @@
 			<tr>
 				{% for col in header|get_key_list %}
 					{% with elem=header|dict_key:col %}
-
 						<!--если это вложенный словарь-->
 						{% if not elem|has_key:'visible' %}
 							{% for sub_col in elem|get_key_list %}
 								{% with sub_obj=line|get_attr:col %}
-							  <td class="j-t-{{ col }}_{{ sub_col }}" style="cursor: pointer" onclick="window.open('/{% if sub_obj|get_class_name == 'Player' %}profile{% else %}{{ sub_obj|get_class_name|lower }}{% endif %}/{{ sub_obj.pk }}/')">
-
+							  <td class="j-t-{{ col }}_{{ sub_col }}" style="cursor: pointer" {% if sub_obj|check_object %}onclick="window.open('/{% if sub_obj|get_class_name == 'Player' %}profile{% else %}{{ sub_obj|get_class_name|lower }}{% endif %}/{{ sub_obj.pk }}/')"{% endif %}>
+								  {% if sub_obj|check_object %}
 								  		<!--картинка рега-->
 									  {% if col == 'region' and sub_col == 'on_map_id' %}
 											<img src="/static/img/regions/{{ sub_obj.on_map_id }}.png" alt="{{ col }}_{{ sub_col }}">
@@ -128,6 +128,7 @@
 									  {% else %}
 								  		{{ sub_obj|get_attr:sub_col }}
 									  {% endif %}
+								  {% endif %}
 							  </td>
 								  {% endwith %}
 							{% endfor %}

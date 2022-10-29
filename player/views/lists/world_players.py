@@ -19,7 +19,7 @@ def world_players_list(request):
 
     # получаем партии для текущей страницы
     page = request.GET.get('page')
-    players = Player.objects.filter(banned=False).order_by('nickname')
+    players = Player.objects.filter(banned=False).order_by('-pk')
     lines = get_thing_page(players, page, 50)
 
     header = {
@@ -60,5 +60,4 @@ def world_players_list(request):
 
         'header': header,
         'lines': lines,
-
-        'parties_count': Party.objects.filter(deleted=False).count()})
+    })
