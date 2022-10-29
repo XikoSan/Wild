@@ -7,7 +7,7 @@ from region.region import Region
 from player.player import Player
 from player.decorators.player import check_player
 from party.party import Party
-
+from party.views.lists.world_parties import PartyWithSize
 
 # список всех партий игры
 # page - открываемая страница
@@ -26,20 +26,64 @@ def region_parties_list(request, region_pk):
     # получаем партии для текущей страницы
     page = request.GET.get('page')
     parties = Party.objects.filter(deleted=False, region=request_region).order_by('foundation_date', 'title')
-    lines = get_thing_page(parties, page, 50)
 
-    party_sizes = {}
-    for party in lines:
-        party_sizes[party] = Player.objects.filter(party=party).count()
+    parties_with_size = []
+
+    for party in parties:
+        size_party = PartyWithSize(
+            pk = party.pk,
+            title = party.title,
+            image = party.image,
+            region = party.region
+        )
+        size_party.size = Player.objects.filter(party=party).count()
+
+        parties_with_size.append(size_party)
+
+    lines = get_thing_page(parties_with_size, page, 50)
+
+    header = {
+
+        'image': {
+            'text': '',
+            'select_text': 'Герб',
+            'visible': 'true'
+        },
+
+        'title': {
+            'text': 'Партия',
+            'select_text': 'Партия',
+            'visible': 'true'
+        },
+
+        'size': {
+            'text': 'Размер',
+            'select_text': 'Размер',
+            'visible': 'true'
+        },
+
+        'region': {
+            'on_map_id':
+                {
+                    'text': '',
+                    'select_text': 'Герб',
+                    'visible': 'true'
+                },
+            'region_name':
+                {
+                    'text': 'Регион',
+                    'select_text': 'Регион',
+                    'visible': 'true'
+                }
+        },
+    }
 
     # отправляем в форму
-    return render(request, 'lists/region_parties_list.html', {
+    return render(request, 'player/redesign/lists/universal_list.html', {
         'page_name': _('Партии региона'),
 
         'player': player,
+
+        'header': header,
         'lines': lines,
-        'sizes': party_sizes,
-
-        'request_region': request_region,
-
-        'parties_count': Party.objects.filter(deleted=False, region=request_region).count()})
+    })

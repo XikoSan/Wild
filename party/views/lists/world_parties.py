@@ -8,6 +8,9 @@ from player.player import Player
 from player.decorators.player import check_player
 from party.party import Party
 
+# класс партии, в котором её размер - это поле
+class PartyWithSize(Party):
+    size = 0
 
 # список всех партий игры
 # page - открываемая страница
@@ -20,18 +23,65 @@ def world_parties_list(request):
     # получаем партии для текущей страницы
     page = request.GET.get('page')
     parties = Party.objects.filter(deleted=False).order_by('foundation_date', 'title')
-    lines = get_thing_page(parties, page, 50)
 
-    party_sizes = {}
-    for party in lines:
-        party_sizes[party] = Player.objects.filter(party=party).count()
+    parties_with_size = []
+
+    for party in parties:
+        size_party = PartyWithSize(
+            pk = party.pk,
+            title = party.title,
+            image = party.image,
+            region = party.region
+        )
+        size_party.size = Player.objects.filter(party=party).count()
+
+        parties_with_size.append(size_party)
+
+    lines = get_thing_page(parties_with_size, page, 50)
+
+    header = {
+
+        'image': {
+            'text': '',
+            'select_text': 'Герб',
+            'visible': 'true'
+        },
+
+        'title': {
+            'text': 'Партия',
+            'select_text': 'Партия',
+            'visible': 'true'
+        },
+
+        'size': {
+            'text': 'Размер',
+            'select_text': 'Размер',
+            'visible': 'true'
+        },
+
+        'region':{
+            'on_map_id':
+            {
+                'text': '',
+                'select_text': 'Герб',
+                'visible': 'true'
+            },
+            'region_name':
+            {
+                'text': 'Регион',
+                'select_text': 'Регион',
+                'visible': 'true'
+            }
+        },
+    }
 
     # отправляем в форму
-    return render(request, 'lists/world_parties_list.html', {
+    return render(request, 'player/redesign/lists/universal_list.html', {
         'page_name': _('Партии мира'),
 
         'player': player,
-        'lines': lines,
-        'sizes': party_sizes,
 
-        'parties_count': Party.objects.filter(deleted=False).count()})
+        'header': header,
+        'lines': lines,
+
+    })
