@@ -4,6 +4,7 @@ from gov.models.president import President
 from regime.regime import Regime
 from state.models.parliament.parliament import Parliament
 from regime.temporary import Temporary
+from state.models.parliament.deputy_mandate import DeputyMandate
 
 # президентская республика
 class Presidential(Regime):
@@ -57,6 +58,10 @@ class Presidential(Regime):
 
     @staticmethod
     def set_leader(current_regime, state):
+
+        parl = Parliament.objects.get(state=state)
+        DeputyMandate.objects.create(parliament=parl, is_president=True)
+
         # если сейчас лидера нет
         if not current_regime.government['leader']:
             leader = President(
@@ -64,3 +69,24 @@ class Presidential(Regime):
             )
 
             leader.save()
+
+
+    @staticmethod
+    def dissolution(state):
+        # удаляем парламент
+        if Parliament.objects.filter(state=state).exists():
+            Parliament.objects.get(state=state).delete()
+
+        # удаление президента как объект
+        if President.objects.filter(state=state).exists():
+            President.objects.get(state=state).delete()
+
+        # удаляем столицу как объект
+        if Capital.objects.filter(state=state).exists():
+            Capital.objects.get(state=state).delete()
+
+        # удаляем казну как объект
+        if Treasury.objects.filter(state=state).exists():
+            tres = Treasury.objects.get(state=state)
+            tres.deleted = True
+            tres.save()
