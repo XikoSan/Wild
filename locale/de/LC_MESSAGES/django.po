@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-24 20:08+0300\n"
+"POT-Creation-Date: 2022-10-31 18:14+0300\n"
 "PO-Revision-Date: 2022-10-24 22:25+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -58,11 +58,11 @@ msgstr "alle ablehnen"
 msgid "primaries_in_party"
 msgstr "Vorwahlen_in_der_Partei"
 
-#: party/views/lists/region_parties.py:37 party/views/lists/state_parties.py:40
+#: party/views/lists/region_parties.py:83 party/views/lists/state_parties.py:40
 msgid "Партии региона"
 msgstr "Parteien in der Region"
 
-#: party/views/lists/world_parties.py:31
+#: party/views/lists/world_parties.py:80
 msgid "Партии мира"
 msgstr "Parteien in der Welt"
 
@@ -104,66 +104,66 @@ msgid "party_post"
 msgstr "Vorwahlen_in_der_Partei"
 
 #: player/templates/player/redesign/game_event/halloween.html:128
-#: player/views/game_event/halloween.py:37
+#: player/views/game_event/halloween.py:52
 msgctxt "game_event"
 msgid "Хэллоуинский ивент!"
 msgstr "Happy Halloween!"
 
 #: player/templates/player/redesign/game_event/halloween.html:142
-#: player/templates/player/redesign/game_event/halloween.html:151
-#: player/templates/player/redesign/game_event/halloween.html:160
-#: player/templates/player/redesign/game_event/halloween.html:169
-#: player/templates/player/redesign/game_event/halloween.html:178
-#: player/templates/player/redesign/game_event/halloween.html:187
-#: player/templates/player/redesign/game_event/halloween.html:196
+#: player/templates/player/redesign/game_event/halloween.html:153
+#: player/templates/player/redesign/game_event/halloween.html:162
+#: player/templates/player/redesign/game_event/halloween.html:171
+#: player/templates/player/redesign/game_event/halloween.html:182
+#: player/templates/player/redesign/game_event/halloween.html:191
+#: player/templates/player/redesign/game_event/halloween.html:202
 msgctxt "game_event"
 msgid "очков"
 msgstr "Punkte"
 
 #: player/templates/player/redesign/game_event/halloween.html:143
-#: player/templates/player/redesign/game_event/halloween.html:152
-#: player/templates/player/redesign/game_event/halloween.html:161
-#: player/templates/player/redesign/game_event/halloween.html:170
-#: player/templates/player/redesign/game_event/halloween.html:179
-#: player/templates/player/redesign/game_event/halloween.html:188
-#: player/templates/player/redesign/game_event/halloween.html:197
+#: player/templates/player/redesign/game_event/halloween.html:154
+#: player/templates/player/redesign/game_event/halloween.html:163
+#: player/templates/player/redesign/game_event/halloween.html:172
+#: player/templates/player/redesign/game_event/halloween.html:183
+#: player/templates/player/redesign/game_event/halloween.html:192
+#: player/templates/player/redesign/game_event/halloween.html:203
 msgctxt "game_event"
 msgid "премиум день"
 msgstr "tag Premium"
 
-#: player/templates/player/redesign/game_event/halloween.html:211
+#: player/templates/player/redesign/game_event/halloween.html:217
 msgctxt "game_event"
 msgid "Хэллоуинский ивент в WP:"
 msgstr "Halloween-Event in WP:"
 
-#: player/templates/player/redesign/game_event/halloween.html:212
+#: player/templates/player/redesign/game_event/halloween.html:218
 msgctxt "game_event"
 msgid "играй как обычно - и получай награды!"
 msgstr "wie gewohnt spielen - und Belohnungen erhalten!"
 
-#: player/templates/player/redesign/game_event/halloween.html:213
+#: player/templates/player/redesign/game_event/halloween.html:219
 msgctxt "game_event"
 msgid "- с 25.10 по 1.11 заполняй прогрессию события, расходуя энергию"
 msgstr ""
 "- vom 25.10 bis zum 01.11 hast du Zeit das Event abzuschließen, indem du "
 "Energie verbrauchst"
 
-#: player/templates/player/redesign/game_event/halloween.html:214
+#: player/templates/player/redesign/game_event/halloween.html:220
 msgctxt "game_event"
 msgid "- каждые 2 000 потраченной энергии открывают новые награды"
 msgstr "Verbrauche 2.000 Energie um eine neue Belohnung freizuschalten"
 
-#: player/templates/player/redesign/game_event/halloween.html:215
+#: player/templates/player/redesign/game_event/halloween.html:221
 msgctxt "game_event"
 msgid "Награды события:"
 msgstr "Belohnungen:"
 
-#: player/templates/player/redesign/game_event/halloween.html:216
+#: player/templates/player/redesign/game_event/halloween.html:222
 msgctxt "game_event"
 msgid "- до семи дней премиум аккаунта"
 msgstr "- bis zu sieben Tage Premiun"
 
-#: player/templates/player/redesign/game_event/halloween.html:217
+#: player/templates/player/redesign/game_event/halloween.html:223
 msgctxt "game_event"
 msgid "- первая прогрессионная рамка для аватара в игре"
 msgstr "- der erste Profilrahmen im Spiel"
@@ -238,12 +238,12 @@ msgstr "Zeitzone"
 #: player/templates/player/redesign/new_player.html:149
 #: player/templates/player/redesign/new_player.html:177
 #: player/templates/player/redesign/overview_skills.html:178
-#: player/templates/player/redesign/profile.html:335
+#: player/templates/player/redesign/profile.html:342
 msgid "Отмена"
 msgstr "abbrechen"
 
 #: player/templates/player/redesign/new_player.html:136
-#: player/templates/player/redesign/profile.html:336
+#: player/templates/player/redesign/profile.html:343
 msgid "Загрузить"
 msgstr "hochladen"
 
@@ -480,96 +480,105 @@ msgctxt "status"
 msgid "пополнить"
 msgstr "auffüllen"
 
-#: player/templates/player/redesign/profile.html:161
+#: player/templates/player/redesign/profile.html:165
 msgid "настройки"
 msgstr "Einstellungen"
 
-#: player/templates/player/redesign/profile.html:171
+#: player/templates/player/redesign/profile.html:175
 msgctxt "profile"
 msgid "премиум-аккаунт"
 msgstr "Premium Status"
 
-#: player/templates/player/redesign/profile.html:173
+#: player/templates/player/redesign/profile.html:177
 msgctxt "profile"
 msgid "до"
 msgstr "Ablaufdatum"
 
-#: player/templates/player/redesign/profile.html:173
+#: player/templates/player/redesign/profile.html:177
 msgctxt "profile"
 msgid "не активен"
 msgstr "kein Premmium"
 
-#: player/templates/player/redesign/profile.html:178
-#: player/templates/player/redesign/view_profile.html:67
+#: player/templates/player/redesign/profile.html:182
+#: player/templates/player/redesign/view_profile.html:71
 msgctxt "profile"
 msgid "место в рейтинге"
 msgstr "Rangliste"
 
-#: player/templates/player/redesign/profile.html:185
-#: player/templates/player/redesign/view_profile.html:74
+#: player/templates/player/redesign/profile.html:186
+#: player/templates/player/redesign/view_profile.html:75
+#, fuzzy
+#| msgctxt "profile"
+#| msgid "место в рейтинге"
+msgctxt "profile"
+msgid "(к рейтингу)"
+msgstr "Rangliste"
+
+#: player/templates/player/redesign/profile.html:192
+#: player/templates/player/redesign/view_profile.html:81
 msgctxt "profile"
 msgid "характеристики"
 msgstr "Fähigkeiten"
 
-#: player/templates/player/redesign/profile.html:197
-#: player/templates/player/redesign/view_profile.html:86
+#: player/templates/player/redesign/profile.html:204
+#: player/templates/player/redesign/view_profile.html:93
 msgctxt "profile"
 msgid "место жительства"
 msgstr "Region"
 
-#: player/templates/player/redesign/profile.html:206
-#: player/templates/player/redesign/view_profile.html:95
+#: player/templates/player/redesign/profile.html:213
+#: player/templates/player/redesign/view_profile.html:102
 msgctxt "profile"
 msgid "прописка"
 msgstr "Region des Wohnorts"
 
-#: player/templates/player/redesign/profile.html:215
-#: player/templates/player/redesign/view_profile.html:104
+#: player/templates/player/redesign/profile.html:222
+#: player/templates/player/redesign/view_profile.html:111
 msgid "партия"
 msgstr "Partei"
 
-#: player/templates/player/redesign/profile.html:217
-#: player/templates/player/redesign/profile.html:227
-#: player/templates/player/redesign/view_profile.html:106
-#: player/templates/player/redesign/view_profile.html:116
+#: player/templates/player/redesign/profile.html:224
+#: player/templates/player/redesign/profile.html:234
+#: player/templates/player/redesign/view_profile.html:113
+#: player/templates/player/redesign/view_profile.html:123
 msgid "беспартийный"
 msgstr "Parteilos"
 
-#: player/templates/player/redesign/profile.html:219
+#: player/templates/player/redesign/profile.html:226
 msgctxt "profile"
 msgid "(история)"
 msgstr "(Geschichte)"
 
-#: player/templates/player/redesign/profile.html:225
-#: player/templates/player/redesign/view_profile.html:114
+#: player/templates/player/redesign/profile.html:232
+#: player/templates/player/redesign/view_profile.html:121
 msgid "должность в партии"
 msgstr "Position in der Partei"
 
-#: player/templates/player/redesign/profile.html:254
-#: player/templates/player/redesign/view_profile.html:122
+#: player/templates/player/redesign/profile.html:261
+#: player/templates/player/redesign/view_profile.html:129
 msgid "о себе"
 msgstr "Über mich"
 
-#: player/templates/player/redesign/profile.html:389
+#: player/templates/player/redesign/profile.html:396
 msgctxt "profile"
 msgid "показывать партийный фон"
 msgstr "Parteihintergrund anzeigen"
 
-#: player/templates/player/redesign/profile.html:420
+#: player/templates/player/redesign/profile.html:427
 msgctxt "profile"
 msgid "стандарт"
 msgstr "Standard"
 
-#: player/templates/player/redesign/profile.html:434
+#: player/templates/player/redesign/profile.html:441
 msgid "сохранить"
 msgstr "speichern"
 
-#: player/templates/player/redesign/view_profile.html:60
+#: player/templates/player/redesign/view_profile.html:64
 msgctxt "profile"
 msgid "был в сети"
 msgstr "Letzte Aktivität"
 
-#: player/templates/player/redesign/view_profile.html:62
+#: player/templates/player/redesign/view_profile.html:66
 msgid "давно"
 msgstr "vor langer Zeit"
 
@@ -626,6 +635,16 @@ msgstr "Du hast nicht genug Energie. Im Lagerhaus kannst du sie herstellen."
 #: player/views/expense_energy.py:72
 msgid "Ошибка типа запроса"
 msgstr "Fehler im Anfragetyp"
+
+#: player/views/lists/cash_top.py:83
+msgid "Топ богатейших"
+msgstr ""
+
+#: player/views/lists/region_citizens.py:63
+#, fuzzy
+#| msgid "Население региона"
+msgid "Граждане региона"
+msgstr "Einwohner in der Region"
 
 #: player/views/lists/region_players.py:33
 msgid "Население региона"

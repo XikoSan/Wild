@@ -24,6 +24,7 @@ from .views.view_profile import view_profile
 from .views.wallet import wallet
 from player.views.game_event.halloween import halloween
 from .views.lists.region_citizens import region_citizens_list
+from .views.lists.cash_top import cash_top
 
 urlpatterns = [
 
@@ -42,6 +43,9 @@ urlpatterns = [
     url(r'^region/(?P<region_pk>\d+)/players/', region_players_list, name='region_players_list'),
     # открытие списка граждан региона
     url(r'^region/(?P<region_pk>\d+)/citizens/', region_citizens_list, name='region_citizens_list'),
+
+    # список богатейших
+    url(r'^cash_top/', cash_top, name='cash_top'),
 
     # открытие "обзора"
     url(r'^overview$', overview, name='overview'),
