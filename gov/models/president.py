@@ -29,11 +29,10 @@ class President(models.Model):
         foundation_day = timezone.now().weekday()
 
         if foundation_day == 6:
-            cron_day = 1
-        elif foundation_day == 5:
             cron_day = 0
         else:
             cron_day = foundation_day + 1
+
 
         schedule, created = CrontabSchedule.objects.get_or_create(
                                                                     minute=str(timezone.now().now().minute),
