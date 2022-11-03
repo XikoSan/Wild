@@ -20,7 +20,7 @@ class GameEvent(models.Model):
     title = models.CharField(max_length=30, blank=False, verbose_name='Никнейм')
 
     # время начала ивента - если включен
-    event_start = models.DateTimeField(default=timezone.now, blank=True,
+    event_start = models.DateTimeField(default=None, blank=True, null=True,
                                         verbose_name='Время начала')
 
     event_end = models.DateTimeField(default=None, blank=True, null=True,

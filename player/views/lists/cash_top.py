@@ -12,6 +12,9 @@ from django.db import connection
 class PlayerWithTop(Player):
     top = 0
 
+    class Meta:
+        abstract = True
+
 # список богатейшего десятка
 # page - открываемая страница
 @login_required(login_url='/')

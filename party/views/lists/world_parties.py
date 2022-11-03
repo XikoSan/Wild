@@ -12,6 +12,9 @@ from party.party import Party
 class PartyWithSize(Party):
     size = 0
 
+    class Meta:
+        abstract = True
+
 # список всех партий игры
 # page - открываемая страница
 @login_required(login_url='/')
