@@ -48,7 +48,12 @@ def cash_top(request):
             nickname = line[1],
         )
 
+        from player.logs.print_log import log
+
         char.pk = line[0],
+        # почему-то строкой выше айди складывается в формате (123,)
+        char.pk = char.pk[0]
+
         char.top = index
 
         for pl_img in players_img:
@@ -81,6 +86,7 @@ def cash_top(request):
             'visible': 'true'
         },
     }
+
 
     # отправляем в форму
     return render(request, 'player/redesign/lists/universal_list.html', {

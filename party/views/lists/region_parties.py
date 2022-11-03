@@ -31,11 +31,14 @@ def region_parties_list(request, region_pk):
 
     for party in parties:
         size_party = PartyWithSize(
-            pk = party.pk,
             title = party.title,
             image = party.image,
             region = party.region
         )
+        size_party.pk = party.pk,
+        # почему-то строкой выше айди складывается в формате (123,)
+        size_party.pk = size_party.pk[0]
+
         size_party.size = Player.objects.filter(party=party).count()
 
         parties_with_size.append(size_party)
