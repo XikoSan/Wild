@@ -69,7 +69,7 @@ class PresidentialVoting(models.Model):
 
         else:
             # убираем таску у экземпляра модели, чтобы ее могли забрать последующие
-            PresidentialVoting.objects.select_related('task').filter(president=president, task__isnull=False).update(
+            PresidentialVoting.objects.select_related('task').filter(president=self.president, task__isnull=False).update(
                 task=None)
 
             self.task = PeriodicTask.objects.filter(name=f'{self.president.state.title}, id {self.president.pk} pres elections').first()
