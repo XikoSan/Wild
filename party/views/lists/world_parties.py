@@ -10,6 +10,7 @@ from party.party import Party
 
 # класс партии, в котором её размер - это поле
 class PartyWithSize(Party):
+    pk = 0
     size = 0
 
     class Meta:
@@ -31,11 +32,11 @@ def world_parties_list(request):
 
     for party in parties:
         size_party = PartyWithSize(
-            pk = party.pk,
             title = party.title,
             image = party.image,
             region = party.region
         )
+        size_party.pk = party.pk,
         size_party.size = Player.objects.filter(party=party).count()
 
         parties_with_size.append(size_party)

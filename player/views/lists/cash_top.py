@@ -10,6 +10,7 @@ from django.db import connection
 
 # класс партии, в котором её размер - это поле
 class PlayerWithTop(Player):
+    pk = 0
     top = 0
 
     class Meta:
@@ -44,10 +45,10 @@ def cash_top(request):
     for line in cash_top:
 
         char = PlayerWithTop(
-            pk = line[0],
             nickname = line[1],
         )
 
+        char.pk = line[0],
         char.top = index
 
         for pl_img in players_img:
