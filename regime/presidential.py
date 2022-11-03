@@ -8,6 +8,7 @@ from state.models.parliament.deputy_mandate import DeputyMandate
 
 # президентская республика
 class Presidential(Regime):
+
     allowed_source = [
         'Temporary',
     ]
@@ -20,6 +21,8 @@ class Presidential(Regime):
         'parliament': Parliament,
         # 'ministry': False,
     }
+
+    forbidden_bills = []
 
     @staticmethod
     def set_regime(state):

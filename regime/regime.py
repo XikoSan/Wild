@@ -7,6 +7,9 @@ from django.db import models
 # для получения подклассов  при помощи __subclasses__()
 # их надо импортировать в файл вызова
 class Regime(object):
+
+    forbidden_bills = []
+
     allowed_source = [
         'Temporary',
         'Presidential',

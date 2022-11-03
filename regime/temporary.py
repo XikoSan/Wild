@@ -6,6 +6,11 @@ from state.models.parliament.parliament import Parliament
 
 # временное правительство
 class Temporary(Regime):
+
+    forbidden_bills = [
+        'ChangeResidency'
+    ]
+
     allowed_source = [
     ]
 
