@@ -26,15 +26,17 @@
                     {% endif %}
                 </div>
                 <div class="row">
-                {% if not player.party %}
-                    {% if party.type == 'op' %}
-                        <a href="{% url 'party_joiner' plr_pk=player.pk pty_pk=party.pk %}" class="btn btn-success">Вступить</a>
-                    {% endif %}
-                    {% if party.type == 'pt' %}
-                        {% if has_request %}
-                            <a href="{% url 'party_cancel' plr_pk=player.pk pty_pk=party.pk %}" class="btn btn-danger">Отменить заявку</a>
-                        {% else %}
-                            <a href="{% url 'party_request' plr_pk=player.pk pty_pk=party.pk %}" class="btn btn-success">Подать заявку</a>
+                {% if not party.deleted %}
+                    {% if not player.party %}
+                        {% if party.type == 'op' %}
+                            <a href="{% url 'party_joiner' plr_pk=player.pk pty_pk=party.pk %}" class="btn btn-success">Вступить</a>
+                        {% endif %}
+                        {% if party.type == 'pt' %}
+                            {% if has_request %}
+                                <a href="{% url 'party_cancel' plr_pk=player.pk pty_pk=party.pk %}" class="btn btn-danger">Отменить заявку</a>
+                            {% else %}
+                                <a href="{% url 'party_request' plr_pk=player.pk pty_pk=party.pk %}" class="btn btn-success">Подать заявку</a>
+                            {% endif %}
                         {% endif %}
                     {% endif %}
                 {% endif %}
