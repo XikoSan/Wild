@@ -39,21 +39,31 @@ def start_war(request):
 
         war.save()
 
-        schedule, created = CrontabSchedule.objects.get_or_create(
-                                                                    minute=str(timezone.now().now().minute),
-                                                                    hour='*',
-                                                                    day_of_week='*',
-                                                                    day_of_month='*',
-                                                                    month_of_year='*',
-                                                                   )
+        if CrontabSchedule.objects.filter(
+                                            minute=str(timezone.now().now().minute),
+                                            hour='*',
+                                            day_of_week='*',
+                                            day_of_month='*',
+                                            month_of_year='*',
+                                       ).exists():
 
-        # schedule, created = CrontabSchedule.objects.get_or_create(
-        #                                                             minute='*/1',
-        #                                                             hour='*',
-        #                                                             day_of_week='*',
-        #                                                             day_of_month='*',
-        #                                                             month_of_year='*',
-        #                                                            )
+            schedule = CrontabSchedule.objects.filter(
+                                                        minute=str(timezone.now().now().minute),
+                                                        hour='*',
+                                                        day_of_week='*',
+                                                        day_of_month='*',
+                                                        month_of_year='*',
+                                                    ).first()
+
+        else:
+
+            schedule = CrontabSchedule.objects.create(
+                                                        minute=str(timezone.now().now().minute),
+                                                        hour='*',
+                                                        day_of_week='*',
+                                                        day_of_month='*',
+                                                        month_of_year='*',
+                                                       )
 
         war.task = PeriodicTask.objects.create(
             name=f'Война EventWar {war.pk}',

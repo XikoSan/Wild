@@ -40,16 +40,32 @@ class AutoMining(Log):
     # формируем переодическую таску
     def setup_task(self):
 
-        schedule, created = IntervalSchedule.objects.get_or_create(every=10, period=IntervalSchedule.MINUTES)
-        # schedule, created = IntervalSchedule.objects.get_or_create(every=1, period=IntervalSchedule.MINUTES)
 
-        schedule, created = CrontabSchedule.objects.get_or_create(
-                                                                    minute='*/10',
-                                                                    hour='*',
-                                                                    day_of_week='*',
-                                                                    day_of_month='*',
-                                                                    month_of_year='*',
-                                                                   )
+        if CrontabSchedule.objects.filter(
+                                                minute='*/10',
+                                                hour='*',
+                                                day_of_week='*',
+                                                day_of_month='*',
+                                                month_of_year='*',
+                                           ).exists():
+
+            schedule = CrontabSchedule.objects.filter(
+                                                        minute='*/10',
+                                                        hour='*',
+                                                        day_of_week='*',
+                                                        day_of_month='*',
+                                                        month_of_year='*',
+                                                    ).first()
+
+        else:
+
+            schedule = CrontabSchedule.objects.create(
+                                                        minute='*/10',
+                                                        hour='*',
+                                                        day_of_week='*',
+                                                        day_of_month='*',
+                                                        month_of_year='*',
+                                                       )
 
         self.task = PeriodicTask.objects.create(
             name=self.player.nickname + ' собирает ' + self.get_resource_display(),

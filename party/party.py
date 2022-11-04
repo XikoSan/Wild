@@ -65,20 +65,31 @@ class Party(models.Model):
         else:
             cron_day = foundation_day + 1
 
-        schedule, created = CrontabSchedule.objects.get_or_create(
-                                                                    minute=str(timezone.now().now().minute),
-                                                                    hour=str(timezone.now().now().hour),
-                                                                    day_of_week=cron_day,
-                                                                    day_of_month='*',
-                                                                    month_of_year='*',
-                                                                   )
-        # schedule, created = CrontabSchedule.objects.get_or_create(
-        #                                                             minute='22',
-        #                                                             hour='*',
-        #                                                             day_of_week='*',
-        #                                                             day_of_month='*',
-        #                                                             month_of_year='*',
-        #                                                            )
+        if CrontabSchedule.objects.filter(
+                                            minute=str(timezone.now().now().minute),
+                                            hour=str(timezone.now().now().hour),
+                                            day_of_week=cron_day,
+                                            day_of_month='*',
+                                            month_of_year='*',
+                                          ).exists():
+
+            schedule = CrontabSchedule.objects.filter(
+                                                        minute=str(timezone.now().now().minute),
+                                                        hour=str(timezone.now().now().hour),
+                                                        day_of_week=cron_day,
+                                                        day_of_month='*',
+                                                        month_of_year='*',
+                                                       ).first()
+
+        else:
+
+            schedule = CrontabSchedule.objects.create(
+                                                        minute=str(timezone.now().now().minute),
+                                                        hour=str(timezone.now().now().hour),
+                                                        day_of_week=cron_day,
+                                                        day_of_month='*',
+                                                        month_of_year='*',
+                                                       )
 
         self.task = PeriodicTask.objects.create(
             name=self.title + ', id ' + str(self.pk),
