@@ -61,7 +61,7 @@ class President(models.Model):
                                                        )
 
         self.task = PeriodicTask.objects.create(
-            name=self.state.title + ', id преза ' + str(self.pk),
+            name='Начало выборов, id преза ' + str(self.pk),
             task='start_presidential',
             crontab=schedule,
             args=json.dumps([self.id]),

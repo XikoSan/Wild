@@ -92,7 +92,7 @@ class Party(models.Model):
                                                        )
 
         self.task = PeriodicTask.objects.create(
-            name=self.title + ', id ' + str(self.pk),
+            name='Начало праймериз, id ' + str(self.pk),
             task='start_primaries',
             crontab=schedule,
             # clocked=clock,

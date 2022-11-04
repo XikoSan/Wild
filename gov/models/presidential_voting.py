@@ -38,7 +38,7 @@ class PresidentialVoting(models.Model):
     def setup_task(self):
 
         if not PeriodicTask.objects.filter(
-                name=f'{self.president.state.title}, id {self.president.pk} pres elections').exists():
+                name='Конец выборов, id преза ' + str(self.president.pk)).exists():
 
             foundation_day = timezone.now().weekday()
 
@@ -77,7 +77,7 @@ class PresidentialVoting(models.Model):
 
 
             self.task = PeriodicTask.objects.create(
-                name=f'{self.president.state.title}, id {self.president.pk} pres elections',
+                name='Конец выборов, id преза ' + str(self.president.pk),
                 task='finish_presidential',
                 crontab=schedule,
                 one_off=False,
@@ -91,7 +91,7 @@ class PresidentialVoting(models.Model):
             PresidentialVoting.objects.select_related('task').filter(president=self.president, task__isnull=False).update(
                 task=None)
 
-            self.task = PeriodicTask.objects.filter(name=f'{self.president.state.title}, id {self.president.pk} pres elections').first()
+            self.task = PeriodicTask.objects.filter(name='Конец выборов, id преза ' + str(self.president.pk)).first()
             self.save()
 
 

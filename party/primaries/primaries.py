@@ -30,7 +30,7 @@ class Primaries(models.Model):
     # формируем переодическую таску
     def setup_task(self):
 
-        if not PeriodicTask.objects.filter(name=f'{self.party.title}, id {self.party.pk} party primaries').exists():
+        if not PeriodicTask.objects.filter(name='Конец праймериз, id ' + str(self.party.pk)).exists():
 
             foundation_day = self.party.foundation_date.weekday()
             # день недели для окончания - на один больше
@@ -68,7 +68,7 @@ class Primaries(models.Model):
                 )
 
             self.task = PeriodicTask.objects.create(
-                name=f'{self.party.title}, id {self.party.pk} party primaries',
+                name='Конец праймериз, id ' + str(self.party.pk),
                 task='finish_primaries',
                 crontab=schedule,
                 # clocked=clock,
@@ -82,7 +82,7 @@ class Primaries(models.Model):
             # убираем таску у экземпляра модели, чтобы ее могли забрать последующие
             Primaries.objects.select_related('task').filter(party=self.party, task__isnull=False).update(task=None)
 
-            self.task = PeriodicTask.objects.filter(name=f'{self.party.title}, id {self.party.pk} party primaries').first()
+            self.task = PeriodicTask.objects.filter(name='Конец праймериз, id ' + str(self.party.pk)).first()
             self.save()
 
 

@@ -58,7 +58,7 @@ class Parliament(models.Model):
                                                        )
 
         self.task = PeriodicTask.objects.create(
-            name=self.state.title + ', id парла ' + str(self.pk),
+            name='Начало выборов, id парла ' + str(self.pk),
             task='start_elections',
             crontab=schedule,
             one_off=False,

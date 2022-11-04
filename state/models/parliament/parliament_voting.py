@@ -30,7 +30,7 @@ class ParliamentVoting(models.Model):
     def setup_task(self):
 
         if not PeriodicTask.objects.filter(
-                name=f'{self.parliament.state.title}, id {self.parliament.pk} parl primaries').exists():
+                name='Конец выборов, id парла ' + str(self.parliament.pk)).exists():
 
             foundation_day = self.parliament.state.foundation_date.weekday()
 
@@ -69,7 +69,7 @@ class ParliamentVoting(models.Model):
                 )
 
             self.task = PeriodicTask.objects.create(
-                name=f'{self.parliament.state.title}, id {self.parliament.pk} parl primaries',
+                name='Конец выборов, id парла ' + str(self.parliament.pk),
                 task='finish_elections',
                 # clocked=clock,
                 one_off=False,
@@ -84,7 +84,7 @@ class ParliamentVoting(models.Model):
             ParliamentVoting.objects.select_related('task').filter(parliament=self.parliament, task__isnull=False).update(
                 task=None)
 
-            self.task = PeriodicTask.objects.filter(name=f'{self.parliament.state.title}, id {self.parliament.pk} parl primaries').first()
+            self.task = PeriodicTask.objects.filter(name='Конец выборов, id парла ' + str(self.parliament.pk)).first()
             self.save()
 
     def delete_task(self):
