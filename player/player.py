@@ -26,7 +26,7 @@ class Player(models.Model):
     # Показатель того, что игрок забанен в чате
     chat_ban = models.BooleanField(default=False, null=False, verbose_name='Бан чата')
     # последний использовавшийся ip
-    user_ip = models.CharField(max_length=15, blank=True, verbose_name='IP пользователя')
+    user_ip = models.CharField(max_length=50, blank=True, verbose_name='IP пользователя')
     # никнейм игрока
     nickname = models.CharField(max_length=30, blank=False, verbose_name='Никнейм')
     # фото профиля игрока
