@@ -38,11 +38,13 @@ def set_ministers(request):
             }
             return JsonResponse(data)
 
+        
+
         # мандат президента
         pres_mandate = DeputyMandate.objects.get(player=player, is_president=True)
         # каждый министр - депутат того же парламента
         for minister in ministers.keys():
-            points += 3
+            points += 1
             # игрок вообще существует
             if not Player.objects.filter(pk=minister).exists():
                 data = {
@@ -70,9 +72,10 @@ def set_ministers(request):
 
             bills_classes_list.append('ForeignRights')
 
+            right_iter = 0
             # права министров совпадают с классами ЗП
             for right in ministers[minister]['rights']:
-                points += 1
+                points += right_iter * 2
                 if not right in bills_classes_list:
                     data = {
                         'header': 'Назначение министров',
@@ -80,6 +83,7 @@ def set_ministers(request):
                         'response': 'Указанного вида законопроектов не существует: ' + right,
                     }
                     return JsonResponse(data)
+                right_iter += 1
 
         # сумма очков не больше десяти
         if points > 10:
