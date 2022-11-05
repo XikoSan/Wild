@@ -5,8 +5,6 @@ from bill.models.bill import Bill
 from player.views.get_subclasses import get_subclasses
 
 from regime.regime import Regime
-from regime.temporary import Temporary
-from regime.presidential import Presidential
 
 @register.inclusion_tag('state/gov/new_bill.html')
 def new_bill(player, parliament):
