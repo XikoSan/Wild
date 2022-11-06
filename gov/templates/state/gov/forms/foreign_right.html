@@ -11,7 +11,7 @@
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="row" align="center" style="margin-top: 25px;">
             <b>
-                Запросы прописки
+                {% if requests %}Запросы прописки{% elif history %}Последние прописавшиеся{% endif %}
             </b>
         </div>
         {% with history=data|dict_key:'history' %}
