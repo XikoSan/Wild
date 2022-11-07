@@ -10,6 +10,10 @@ from player.player import Player
 from region.region import Region
 from wild_politics.settings import JResponse
 from gov.models.residency_request import ResidencyRequest
+from state.models.parliament.bulletin import Bulletin
+from state.models.parliament.parliament_voting import ParliamentVoting
+from gov.models.vote import Vote
+from gov.models.presidential_voting import PresidentialVoting
 
 # получить прописку
 @login_required(login_url='/')
@@ -74,6 +78,25 @@ def get_residency(request):
                     }
                     return JsonResponse(data)
             else:
+
+                if Bulletin.objects.filter(
+                                            voting__in=ParliamentVoting.objects.filter(running=True),
+                                            player=player
+                                                    ).exists():
+                    Bulletin.objects.filter(
+                        voting__in=ParliamentVoting.objects.filter(running=True),
+                        player=player
+                    ).delete()
+
+                if Vote.objects.filter(
+                        voting__in=PresidentialVoting.objects.filter(running=True),
+                        player=player
+                ).exists():
+                    Vote.objects.filter(
+                        voting__in=PresidentialVoting.objects.filter(running=True),
+                        player=player
+                    ).delete()
+
                 player.residency = Region.objects.get(pk=region.pk)
                 player.residency_date = timezone.now()
                 player.save()
