@@ -1338,6 +1338,38 @@ a {
   outline: none;
 }
 
+@media (min-width: 1200px) {
+  .store {
+    width: calc(100vw - 330rem);
+    height: calc(100vh - 100rem);
+    margin-left: 330rem;
+    margin-top: 100rem;
+  }
+  .store__wrapper-overflow {
+    width: 100%;
+  }
+  .store__left,
+  .store__right {
+    width: 50%;
+    flex-shrink: 0;
+  }
+  .store__tabs.ct__top-tabs {
+    display: none;
+  }
+  .store__list {
+    scrollbar-color: var(--c10two) var(--c30);
+    scrollbar-width: auto;
+    overflow-y: auto;
+  }
+  .store__list::-webkit-scrollbar {
+    width: 8rem;
+    background-color: var(--c30);
+  }
+  .store__list::-webkit-scrollbar-thumb {
+    background-color: var(--c10two);
+  }
+}
+
 /*! Trading */
 
 .trading {
@@ -1633,6 +1665,14 @@ a {
   height: calc(100vh - 329rem);
   overflow-y: auto;
   padding-bottom: 24rem;
+}
+
+@media (min-width: 1200px) {
+  .actives {
+    height: initial;
+    margin-left: 330rem;
+    margin-top: 100rem;
+  }
 }
 
 /*! create */
