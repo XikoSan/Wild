@@ -36,6 +36,7 @@
         <div class="row" align="center">
             <script>
                 const csrftoken = '{{ csrf_token }}';
+                var timer_id = 'timer';
             </script>
             <button type="submit" id="refill-countdown" data-text="{{ countdown }}" onclick="recharge()" class="save btn btn-default"
                     style="width: 100px;">

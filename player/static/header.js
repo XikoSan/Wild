@@ -48,11 +48,12 @@ function callable_countdown() {
         }
 
         //запускаем функцию с повторением раз 1 секунду
-        var id = setInterval(frame, 1000);
+        clearInterval(timer_id);
+        timer_id = setInterval(frame, 1000);
         function frame() {
             if (sec == 0) {
                 elem.textContent = refill_button_txt;
-                clearInterval(id);
+                clearInterval(timer_id);
             } else {
 
                 var h = sec/3600 ^ 0 ;
@@ -85,11 +86,12 @@ window.onload = function countdown() {
         }
 
         //запускаем функцию с повторением раз 1 секунду
-        var id = setInterval(frame, 1000);
+        clearInterval(timer_id);
+        timer_id = setInterval(frame, 1000);
         function frame() {
             if (sec == 0) {
                 elem.textContent = refill_button_txt;
-                clearInterval(id);
+                clearInterval(timer_id);
             } else {
 
                 var h = sec/3600 ^ 0 ;
@@ -120,6 +122,7 @@ window.onload = function countdown() {
 
 
             //запускаем функцию с повторением раз 1 секунду
+            clearInterval(timer_id);
             var inc_id = setInterval(increase_frame, 1000);
             function increase_frame() {
                 if (inc_sec == 0) {
@@ -239,7 +242,8 @@ function display_modal(mode, header, body, green_btn_txt, grey_btn_txt){
 function countdown() {
     if (document.getElementsByClassName("time_back") != undefined){
          //запускаем функцию с повторением раз 1 секунду
-        var id = setInterval(frame, 1000);
+        clearInterval(timer_id);
+        timer_id = setInterval(frame, 1000);
 
         unitblock = document.getElementsByClassName("time_back");
         function frame() {
