@@ -41,6 +41,9 @@ def open_war(request, class_name, pk):
     agr_recon_dict = {}
     def_recon_dict = {}
 
+    agr_char_list = []
+    def_char_list = []
+
     for squad_type in squads_list:
         if not hasattr(war, squad_type):
             continue
@@ -82,6 +85,17 @@ def open_war(request, class_name, pk):
                                                                                                 sum=Sum( *args )
                                                                                               )['sum']
 
+        # если уже отправленные войска такого типа есть
+        if getattr(war, squad_type).filter(object_id=war.pk, deployed=True, deleted=False).exists():
+            sended_squads = getattr(war, squad_type).only('owner', 'side').filter(object_id=war.pk, deployed=True, deleted=False)
+
+            for s_squad in sended_squads:
+                if s_squad.side == 'agr':
+                    if not s_squad.owner in agr_char_list:
+                        agr_char_list.append(s_squad.owner)
+                else:
+                    if not s_squad.owner in def_char_list:
+                        def_char_list.append(s_squad.owner)
 
     # отправляем в форму
     return render(request, 'war/' + class_name + '.html', {
@@ -97,6 +111,11 @@ def open_war(request, class_name, pk):
         'agr_side': agr_side,
         # сторона обороны
         'def_side': def_side,
+
+        # сторона атаки - игроки
+        'agr_char_list': agr_char_list,
+        # сторона обороны - игроки
+        'def_char_list': def_char_list,
 
         # атрибуты класса
         'attrs_dict': attrs_dict,
