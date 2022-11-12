@@ -26,8 +26,7 @@ def retrieve_cash(request):
             return failure
 
         else:
-            cash_log = CashLog(player=player, cash=sum, activity_txt='daily')
-            cash_log.save()
+            CashLog.create(player=player, cash=sum, activity_txt='daily')
 
             data = {
                 'response': 'ok',

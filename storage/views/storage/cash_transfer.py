@@ -60,7 +60,7 @@ def cash_transfer(request):
                     Player.objects.filter(pk=player.pk).update(
                         cash=int(new_wallet))
                     # логируем
-                    CashLog(player=player, cash=int(new_wallet) - player.cash, activity_txt='store').save()
+                    CashLog.create(player=player, cash=int(new_wallet) - player.cash, activity_txt='store')
                     # обновляем данные склада
                     Storage.actual.filter(pk=storage.pk).update(
                         cash=int(new_storage))

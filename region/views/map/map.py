@@ -55,8 +55,7 @@ def map(request):
                 player.cash -= cost
                 player.save()
 
-                cash_log = CashLog(player=player, cash=0 - cost, activity_txt='flyin')
-                cash_log.save()
+                CashLog.create(player=player, cash=0 - cost, activity_txt='flyin')
 
                 duration = time_in_flight(player, player.destination)
                 # move_to_another_region.apply_async((player.id,), countdown=duration)

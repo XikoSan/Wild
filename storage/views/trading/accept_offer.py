@@ -225,8 +225,8 @@ def accept_offer(request):
             offer.accepters.add(new_log)
 
             # создаем лог движения денег
-            CashLog(player=player, cash=0 - fin_sum, activity_txt='trade').save()
-            CashLog(player=offer_owner, cash=taxed_count, activity_txt='trade').save()
+            CashLog.create(player=player, cash=0 - fin_sum, activity_txt='trade')
+            CashLog.create(player=offer_owner, cash=taxed_count, activity_txt='trade')
 
             #   если продажа закрывает оффер:
             if offer.count == 0:
@@ -361,7 +361,7 @@ def accept_offer(request):
             offer.accepters.add(new_log)
 
             # создаем логи движения денег
-            CashLog(player=player, cash=taxed_sum - price, activity_txt='trade').save()
+            CashLog.create(player=player, cash=taxed_sum - price, activity_txt='trade')
 
         else:
             data = {

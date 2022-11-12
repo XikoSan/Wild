@@ -65,7 +65,7 @@ def new_storage(request):
             }
             return JsonResponse(data)
         # логируем
-        CashLog(player=player, cash=0 - price, activity_txt='n_str').save()
+        CashLog.create(player=player, cash=0 - price, activity_txt='n_str')
 
         paid_storage.save()
 

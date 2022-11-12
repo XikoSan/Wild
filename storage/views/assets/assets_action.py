@@ -95,7 +95,7 @@ def assets_action(request):
                                 price, prices = get_transfer_price(trans_mul, int(dest_pk), storages_values)
                                 if player.cash >= price:
                                     # логируем
-                                    CashLog(player=player, cash=0 - price, activity_txt='trans').save()
+                                    CashLog.create(player=player, cash=0 - price, activity_txt='trans')
                                     # оплата
                                     player.cash -= price
                                     player.save()

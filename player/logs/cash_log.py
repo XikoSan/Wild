@@ -3,7 +3,7 @@ from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
 from django.utils.translation import gettext_lazy
-
+from datetime import datetime, timedelta
 from player.logs.log import Log
 
 
@@ -34,6 +34,15 @@ class CashLog(Log):
         blank=True,
         null=True
     )
+
+    @staticmethod
+    def create(player, cash, activity_txt):
+        cash_log = CashLog(player=player, cash=cash, activity_txt=activity_txt)
+        cash_log.save()
+
+        interval = datetime.now() - timedelta(days=30)
+        CashLog.objects.filter(player=player, dtime__lt=interval).delete()
+
 
     def __str__(self):
         return str(self.cash) + ' за ' + str(self.get_activity_txt_display())

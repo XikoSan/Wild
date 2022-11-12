@@ -117,9 +117,7 @@ def up_skill(request):
         if skill in ['power', 'knowledge', 'endurance']:
             player.cash -= (getattr(player, skill) + skill_cnt + 1) * 1000
 
-            cash_log = CashLog(player=player, cash=0 - (getattr(player, skill) + skill_cnt + 1) * 1000,
-                               activity_txt='skill')
-            cash_log.save()
+            CashLog.create(player=player, cash=0 - (getattr(player, skill) + skill_cnt + 1) * 1000, activity_txt='skill')
 
         if skill in ['power', 'knowledge', 'endurance']:
             # время изучения навыка без према

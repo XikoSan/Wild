@@ -136,6 +136,21 @@ class Player(models.Model):
         self.energy -= value
         self.save()
 
+        PlayerRegionalExpense = apps.get_model('player.PlayerRegionalExpense')
+
+        if PlayerRegionalExpense.objects.filter(player=self, region=self.region).exists():
+            reg_exp = PlayerRegionalExpense.objects.get(player=self, region=self.region)
+            reg_exp.energy_consumption += value * mul
+
+        else:
+            reg_exp = PlayerRegionalExpense(
+                player=self,
+                region=self.region,
+                energy_consumption=value * mul
+            )
+
+        reg_exp.save()
+
         GameEvent = apps.get_model('player.GameEvent')
         EventPart = apps.get_model('player.EventPart')
 
@@ -274,7 +289,17 @@ class Player(models.Model):
                 is_weekend = True
                 count += count
 
-        taxed_count = State.get_taxes(self.region, count, 'cash', 'cash')
+        if timezone.now().date() < datetime.datetime(2022, 11, 13).date():
+            taxed_count = State.get_taxes(self.region, count, 'cash', 'cash')
+
+        else:
+            taxed_count = 0
+            PlayerRegionalExpense = apps.get_model('player.PlayerRegionalExpense')
+
+            for expense in PlayerRegionalExpense.objects.filter(player=self):
+                taxed_count += expense.get_taxes(count)
+
+            PlayerRegionalExpense.objects.filter(player=self).delete()
 
         # если дейлик ещё не закрывался сегодня
         if not self.daily_fin:
