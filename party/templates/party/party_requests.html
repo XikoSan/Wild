@@ -47,14 +47,14 @@
                 </div>
                 <div class="col-xs-6 col-sm-6 col-md-6">
                     <h3>
-                        <a href='/profile/{{ user.pk }}' target="_blank">{{ member.nickname }}</a>
+                        <a href='/profile/{% localize off %}{{ member.pk }}{% endlocalize %}' target="_blank">{{ member.nickname }}</a>
                     </h3>
                 </div>
                 <div class="col-xs-1 col-sm-1 col-md-1">
                     <h3>
                         <!--принять-->
                         <div class="glyphicon glyphicon-thumbs-up"
-                             onclick="window.location.href = '{% url 'party_accepter' plr_pk=member.pk %}'"
+                             onclick="{% localize off %}window.location.href = '{% url 'party_accepter' plr_pk=member.pk %}'{% endlocalize %}"
                              style="cursor: pointer;"></div>
                     </h3>
                 </div>
@@ -62,7 +62,7 @@
                     <h3>
                         <!--отклонить-->
                         <div class="glyphicon glyphicon-thumbs-down"
-                             onclick="window.location.href = '{% url 'party_rejecter' plr_pk=member.pk %}'"
+                             onclick="{% localize off %}window.location.href = '{% url 'party_rejecter' plr_pk=member.pk %}'{% endlocalize %}"
                              style="cursor: pointer;"></div>
                     </h3>
                 </div>
