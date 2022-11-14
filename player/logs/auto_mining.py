@@ -16,6 +16,7 @@ from player.player import Player
 from state.models.state import State
 from storage.models.storage import Storage
 from storage.views.storage.locks.get_storage import get_storage
+from player.player_settings import PlayerSettings
 
 
 # запись об изучаемом навыке
@@ -98,6 +99,16 @@ class AutoMining(Log):
                 and not Storage.actual.filter(owner=player, region=player.region).exists():
             self.delete()
             return
+
+        if PlayerSettings.objects.filter(player=player, full_auto=True).exists():
+            # время, когда можно перезаряжаться
+            if player.last_refill <= timezone.now():
+                if player.bottles >= 100 - player.energy:
+                    refill_value = 100 - player.energy
+
+                    player.bottles -= refill_value
+                    player.energy += refill_value
+                    player.last_refill = timezone.now() + datetime.timedelta(seconds=599)
 
         if player.energy < 10:
             # ждем следующего цикла

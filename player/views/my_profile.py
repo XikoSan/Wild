@@ -78,6 +78,7 @@ def my_profile(request):
     color_acct = 'EB9929'
 
     party_back = True
+    full_auto = False
 
     if PlayerSettings.objects.filter(player=player).exists():
         setts = PlayerSettings.objects.get(player=player)
@@ -88,6 +89,7 @@ def my_profile(request):
         color_acct = setts.color_acct
 
         party_back = setts.party_back
+        full_auto = setts.full_auto
 
 
     ava_border = None
@@ -164,6 +166,7 @@ def my_profile(request):
         'color_acct': color_acct,
 
         'party_back': party_back,
+        'full_auto': full_auto,
         'ava_border': ava_border,
 
     })

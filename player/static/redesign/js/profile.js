@@ -110,6 +110,23 @@ jQuery(document).ready(function ($) {
             }
         });
     });
+//  Использовать Энергетики в авто-добыче
+    $('#full_auto').change(function() {
+        var sending_data;
+        sending_data += "&csrfmiddlewaretoken=" + csrftoken + "&full_auto=" + this.checked;
+
+        $.ajax({
+            type: "POST",
+            url: "/full_auto_allow",
+            data:  sending_data,
+            cache: false,
+            success: function(data){
+                if (data.response != 'ok'){
+                    display_modal('notify', data.header, data.response, null, data.grey_btn)
+                }
+            }
+        });
+    });
 });
 
 function color_default(e){

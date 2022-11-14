@@ -38,6 +38,9 @@ class PlayerSettings(models.Model):
     # Показатель того, что игрок использует партийный аватар
     party_back = models.BooleanField(default=True, blank=False, null=False, verbose_name='Партийный фон')
 
+    # Показатель того, что игрок использует энергетики в авто
+    full_auto = models.BooleanField(default=False, blank=False, null=False, verbose_name='Энергетики в авто')
+
     # # показатель того, что игрок по умолчанию оплачивает доставку войск в соседние регионы
     # delivery_pay = models.BooleanField(default=False, blank=False, null=False, verbose_name='Оплачивает доставку войск')
     #

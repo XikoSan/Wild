@@ -25,6 +25,7 @@ from .views.wallet import wallet
 from player.views.game_event.halloween import halloween
 from .views.lists.region_citizens import region_citizens_list
 from .views.lists.cash_top import cash_top
+from .views.full_auto_allow import full_auto_allow
 
 urlpatterns = [
 
@@ -72,8 +73,11 @@ urlpatterns = [
     # изменить цвета игры
     url(r'^color_change', color_change, name='color_change'),
 
-    # изменить цвета игры
+    # смена отображения партийного аватара
     url(r'^change_back_allow', change_back_allow, name='change_back_allow'),
+
+    # использовать Энергетики в авто-добыче
+    url(r'^full_auto_allow', full_auto_allow, name='full_auto_allow'),
 
     # Начать учёт активностей
     url(r'^reward_4_repost', repost_reward, name='reward_4_repost'),

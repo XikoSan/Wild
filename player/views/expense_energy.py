@@ -36,7 +36,6 @@ def expense_energy(request):
             if player.bottles >= 100 - player.energy:
                 # количество энергии, которое необходимо восполнить
                 refill_value = 100 - player.energy
-                print(refill_value)
                 if refill_value > 0:
                     player.bottles -= refill_value
                     player.energy += refill_value
