@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-31 18:14+0300\n"
-"PO-Revision-Date: 2022-10-31 18:20+0300\n"
+"POT-Creation-Date: 2022-11-14 20:58+0300\n"
+"PO-Revision-Date: 2022-11-14 21:06+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.1.1\n"
 
-#: bill/models/change_taxes.py:21 party/templates/party/party_view.html:69
+#: bill/models/change_taxes.py:21 party/templates/party/party_view.html:71
 msgid "Регион"
 msgstr "Region"
 
@@ -58,11 +58,11 @@ msgstr "reject everything"
 msgid "primaries_in_party"
 msgstr "Primaries in party"
 
-#: party/views/lists/region_parties.py:83 party/views/lists/state_parties.py:40
+#: party/views/lists/region_parties.py:86 party/views/lists/state_parties.py:40
 msgid "Партии региона"
 msgstr "Region`s parties"
 
-#: party/views/lists/world_parties.py:80
+#: party/views/lists/world_parties.py:87
 msgid "Партии мира"
 msgstr "World`s parties"
 
@@ -561,12 +561,17 @@ msgctxt "profile"
 msgid "показывать партийный фон"
 msgstr "show party background"
 
-#: player/templates/player/redesign/profile.html:427
+#: player/templates/player/redesign/profile.html:412
+msgctxt "profile"
+msgid "Энергетики в авто-добыче"
+msgstr "Batteries in auto-mining"
+
+#: player/templates/player/redesign/profile.html:443
 msgctxt "profile"
 msgid "стандарт"
 msgstr "standard"
 
-#: player/templates/player/redesign/profile.html:441
+#: player/templates/player/redesign/profile.html:457
 msgid "сохранить"
 msgstr "save"
 
@@ -587,7 +592,7 @@ msgstr ""
 msgid "since"
 msgstr ""
 
-#: player/views/change_back_allow.py:41
+#: player/views/change_back_allow.py:41 player/views/full_auto_allow.py:41
 msgid "Некорректное значение"
 msgstr "Incorrect value"
 
@@ -596,8 +601,9 @@ msgid "Настройка партийного фона"
 msgstr "Party background switch"
 
 #: player/views/change_back_allow.py:43 player/views/change_back_allow.py:59
-#: player/views/expense_energy.py:30 player/views/expense_energy.py:54
-#: player/views/expense_energy.py:63 player/views/expense_energy.py:74
+#: player/views/expense_energy.py:30 player/views/expense_energy.py:53
+#: player/views/expense_energy.py:62 player/views/expense_energy.py:73
+#: player/views/full_auto_allow.py:43 player/views/full_auto_allow.py:59
 #: player/views/new_player.py:89 player/views/new_player.py:102
 #: player/views/set_language.py:40 player/views/set_language.py:56
 #: player/views/set_timezone.py:29 player/views/set_timezone.py:45
@@ -607,8 +613,8 @@ msgstr "Party background switch"
 msgid "Закрыть"
 msgstr "Close"
 
-#: player/views/change_back_allow.py:57 player/views/set_language.py:54
-#: player/views/set_timezone.py:43
+#: player/views/change_back_allow.py:57 player/views/full_auto_allow.py:57
+#: player/views/set_language.py:54 player/views/set_timezone.py:43
 msgid "Ошибка метода"
 msgstr "Method error"
 
@@ -616,24 +622,28 @@ msgstr "Method error"
 msgid "Десять минут ещё не прошло"
 msgstr "Ten minutes have not yet passed"
 
-#: player/views/expense_energy.py:29 player/views/expense_energy.py:53
-#: player/views/expense_energy.py:62 player/views/expense_energy.py:73
+#: player/views/expense_energy.py:29 player/views/expense_energy.py:52
+#: player/views/expense_energy.py:61 player/views/expense_energy.py:72
 msgid "Пополнение энергии"
 msgstr "Energy refill"
 
-#: player/views/expense_energy.py:52
+#: player/views/expense_energy.py:51
 msgid "Пополнение энергии не требуется"
 msgstr "Energy refill is not required"
 
-#: player/views/expense_energy.py:61
+#: player/views/expense_energy.py:60
 msgid "Недостаточно Энергетиков. Создайте их в Хранилище Склада"
 msgstr "Not enough Batteries. Create them at the Storage tab of Warehouse"
 
-#: player/views/expense_energy.py:72
+#: player/views/expense_energy.py:71
 msgid "Ошибка типа запроса"
 msgstr "Request type error"
 
-#: player/views/lists/cash_top.py:83
+#: player/views/full_auto_allow.py:42 player/views/full_auto_allow.py:58
+msgid "Энергетики в авто-добыче"
+msgstr "Use Batteries in auto-mining"
+
+#: player/views/lists/cash_top.py:93
 msgid "Топ богатейших"
 msgstr "Top of richest"
 
@@ -782,7 +792,7 @@ msgstr ""
 msgid "Регионы игры"
 msgstr ""
 
-#: region/views/map/map.py:101
+#: region/views/map/map.py:100
 msgid "Карта"
 msgstr ""
 
