@@ -33,7 +33,9 @@
                         <li class="active"><a data-toggle="tab" href="#data">Информация</a></li>
                         <li><a data-toggle="tab" href="#regions">Регионы</a></li>
                         <li><a data-toggle="tab" href="#parties">Партии</a></li>
+                        {% if president %}
                         <li><a data-toggle="tab" href="#ministers">Министры</a></li>
+                        {% endif %}
                         <li><a data-toggle="tab" href="#treasury">Казна</a></li>
     <!--                    <li><a data-toggle="tab" href="#donate">{% trans 'Donate' %}</a></li>-->
                     </ul>
@@ -260,6 +262,7 @@
                                 {% endfor %}
                             </div>
                         </div>
+                        {% if president %}
                         <div id="ministers" class="tab-pane fade" style="overflow-x: hidden; height: 500px">
                             <div class="row flex" style="margin-bottom: 1vh">
                                 <div class="col-xs-1 col-sm-1 col-md-1" align="center"></div>
@@ -302,6 +305,7 @@
                                 {% endfor %}
                             </div>
                         </div>
+                        {% endif %}
                         {% treasury state %}
                     </div>
                 </div>
