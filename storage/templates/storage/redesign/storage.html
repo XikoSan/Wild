@@ -8,7 +8,7 @@
 {% load l10n %}{% load i18n %}
 {% block content %}
 <section class="store">
-    <h1 class="store__title ct__page-title">Склад</h1>
+    <h1 class="store__title ct__page-title">{% trans 'Склад' context "storage" %}</h1>
 	<button class="store__title-settings ct__js-modal-sett-open" id="store__modal1-open">
 		<svg version="1.0" xmlns="http://www.w3.org/2000/svg"
 	width="80px" height="76px" viewBox="0 0 1280.000000 1276.000000"
@@ -75,7 +75,7 @@
                     <path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
                 </g>
             </svg>
-            <span>склад</span>
+            <span>{% trans 'склад' context "storage" %}</span>
         </button>
         <button class="ct__top-tab ct__top-tab2 ct__mid-btn">
             <svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
@@ -89,7 +89,7 @@
                     <path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
                 </g>
             </svg>
-            <span>хранилище</span>
+            <span>{% trans 'хранилище' context "storage" %}</span>
         </button>
     </div>
     <div class="store__wrapper-overflow">
@@ -104,18 +104,18 @@
 	      <!-- ВКЛАДКА ХРАНИЛИЩЕ -->
 	      <div class="store__right">
 					<h2 class="store__right-title">
-						энергетики:
+						{% trans 'энергетики' context "storage_assets" %}:
 						<label id="bottles">
 						{{ player.bottles }} <!--значение количества энергетиков-->
 						</label>
 					</h2>
 					<form method="POST" id="produce_energy_form" enctype="multipart/form-data" class="store__right-block">
 						{% csrf_token %}
-						<span>создать:</span>
+						<span>{% trans 'создать' context "storage_assets" %}:</span>
 						<label>
 						<input type="number" {% localize off %}min="{% if player.gold == 0 %}0{% else %}10{% endif %}" max="{{ player.gold|get_mul:10 }}"{% endlocalize %} step="10" name="energy_field" id="energy_field">
 						</label>
-						<span>стоимость:
+						<span>{% trans 'стоимость' context "storage_assets" %}:
 							<i id="gold_cost">100</i> <!--значение стоимость-->
 						</span>
 						<input type="range" id="energy_range" {% localize off %}min="{% if player.gold == 0 %}0{% else %}10{% endif %}" max="{{ player.gold|get_mul:10 }}"{% endlocalize %} step="10">
@@ -131,7 +131,7 @@
 									<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
 								</g>
 							</svg>
-							<span>создать</span>
+							<span>{% trans 'создать' context "storage_assets" %}</span>
 						</button>
 						<svg width="312" height="98" viewBox="0 0 314 100" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<path d="M2.46447 11.5355L11.5355 2.46447C12.4732 1.52678 13.745 1 15.0711 1H308C310.761 1 313 3.23857 313 6V94C313 96.7614 310.761 99 308 99H6C3.23858 99 1 96.7614 1 94V15.0711C1 13.745 1.52678 12.4732 2.46447 11.5355Z" fill="var(--c30)" stroke="var(--c30)"/>
@@ -143,7 +143,7 @@
 							<img src="{% static 'img/wild_pass.png' %}" alt="wild_pass">
 						</picture>
 						<div class="store__wp-wrapper-r">
-							<span>Количество: <label id="wp_count">{{ player.cards_count }}</label></span>
+							<span>{% trans 'Количество' context "storage_assets" %}: <label id="wp_count">{{ player.cards_count }}</label></span>
 							<button onclick="check_card()" {% if not player.cards_count > 0 %}disabled{% endif %} class="ct__mid-btn">
 								<svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
 									<mask id="mask0_259_320" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
@@ -156,7 +156,7 @@
 										<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
 									</g>
 								</svg>
-								<span>использовать</span>
+								<span>{% trans 'использовать' context "storage_assets" %}</span>
 							</button>
 						</div>
 					</div>
@@ -175,8 +175,8 @@
 		{% if single_storage and not single_storage.was_moved and player.region != single_storage.region %}
 		<!--перенести-->
 		<div class="store__modal1-container">
-			<h2 class="store__modal1-title">Перенос склада</h2>
-			<p>Вы можете перенести Склад в регион текущего местоположения (один раз)</p>
+			<h2 class="store__modal1-title">{% trans 'Перемещение Склада' context "storage_transfer" %}</h2>
+			<p>{% trans 'Вы можете перенести Склад в регион текущего местоположения (один раз)' context "storage_transfer" %}</p>
 			<button class="store__modal1-btn ct__mid-btn" onclick="move_storage(event, {% localize off %}{{ single_storage.pk }}{% endlocalize %})">
 				<svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
 					<mask id="mask0_259_320" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
@@ -189,7 +189,7 @@
 						<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
 					</g>
 				</svg>
-				<span>перенести</span>
+				<span>{% trans 'перенести' context "storage_transfer" %}</span>
 			</button>
 		</div>
 		{% endif %}
@@ -451,24 +451,24 @@
 <!--		</div>-->
 </section>
 <script>
-	var move_header = '{% if premium %}Продление{% else %}Активация{% endif %} премиум-аккаунта';
+	var wildpass_header = '{% if premium %}{% trans 'Продление' context "storage_assets" %}{% else %}{% trans 'Активация' context "storage_assets" %}{% endif %} {% trans 'премиум-аккаунта' context "storage_assets" %}';
 
 	{% if premium %}
-	var move_text = 'Ваш премиум-аккаунт будет продлён на один месяц. Данную операцию невозможно отменить. Продолжить?';
+	var wildpass_text = '{% trans 'Ваш премиум-аккаунт будет продлён на один месяц. Данную операцию невозможно отменить. Продолжить?' context "storage_assets" %}';
 	{% else %}
-	var move_text = 'Вы активируете премиум-аккаунт, длительностью один месяц. Данную операцию невозможно отменить. Продолжить?';
+	var wildpass_text = '{% trans 'Вы активируете премиум-аккаунт, длительностью один месяц. Данную операцию невозможно отменить. Продолжить?' context "storage_assets" %}';
 	{% endif %}
 
-	var move_yes = 'Продолжить';
-	var move_cancel = 'Отмена';
+	var wildpass_yes = '{% trans 'Продолжить' context "storage_assets" %}';
+	var wildpass_cancel = '{% trans 'Отмена' context "storage_assets" %}';
 </script>
 {% if single_storage %}
 <script>
     var move_storage_pk = null;
-    var move_header = 'Перемещение Склада';
-    var move_text = 'Склад будет перемещен в регион вашего местонахождения - {{ player.region.region_name }}. Больше этот Склад переместить не получится. Продолжить?';
-    var move_yes = 'Продолжить';
-    var move_cancel = 'Отмена';
+    var move_header = '{% trans 'Перемещение Склада' context "storage_transfer" %}';
+    var move_text = '{% trans 'Склад будет перемещен в регион вашего местонахождения' context "storage_transfer" %} - {{ player.region.region_name }}. {% trans 'Больше этот Склад переместить не получится. Продолжить?' context "storage_transfer" %}';
+    var move_yes = '{% trans 'Продолжить' context "storage_transfer" %}';
+    var move_cancel = '{% trans 'Отмена' context "storage_transfer" %}';
 </script>
 <script src='{% static "js/assets_move.js" %}?{{ csrf_token }}'></script>
 {% endif %}
@@ -483,10 +483,10 @@
 		openModalBtn: document.getElementById('store__modal1-open'),
 		closeModalBtn: document.getElementById('store__modal1-close'),
 	})
-	const storeModal2 = new ModalOpenClose({
-		main: document.getElementById('store__modal2'),
-		openModalBtn: document.getElementById('store__modal2-open'),
-		closeModalBtn: document.getElementById('store__modal2-close'),
-	})
+<!--	const storeModal2 = new ModalOpenClose({-->
+<!--		main: document.getElementById('store__modal2'),-->
+<!--		openModalBtn: document.getElementById('store__modal2-open'),-->
+<!--		closeModalBtn: document.getElementById('store__modal2-close'),-->
+<!--	})-->
 </script>
 {% endblock %}

@@ -4,22 +4,22 @@
 <div class="store__left">
     <!--БЛОК когда нет склада-->
     <div class="store__nostore">
-        <h2 class="store__notitle">склад в регионе <br>{{ player.region }}</h2>
+        <h2 class="store__notitle">{% trans 'склад в регионе' context "no_storage" %} <br>{{ player.region }}</h2>
         <div class="store__noblock">
-            <p>Стоимость создания:</p>
-            <p>{{ material_cost }} стали, {{ material_cost }} алюминия</p>
-            <p>(доставка оплачивается отдельно)</p>
+            <p>{% trans 'Стоимость создания' context "no_storage" %}:</p>
+            <p>{{ material_cost }} {% trans 'стали' context "no_storage" %}, {{ material_cost }} {% trans 'алюминия' context "no_storage" %}</p>
+            <p>({% trans 'доставка оплачивается отдельно' context "no_storage" %})</p>
             <svg width="314" height="100" viewBox="0 0 314 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M2.46447 11.5355L11.5355 2.46447C12.4732 1.52678 13.745 1 15.0711 1H308C310.761 1 313 3.23857 313 6V94C313 96.7614 310.761 99 308 99H6C3.23858 99 1 96.7614 1 94V15.0711C1 13.745 1.52678 12.4732 2.46447 11.5355Z" fill="var(--c30)" stroke="var(--c30)"/>
             </svg>
         </div>
-        <h3>выберите склад списания материалов:</h3>
+        <h3>{% trans 'выберите склад списания материалов' context "no_storage" %}:</h3>
         <form method="POST" id="new_storage_form" enctype="multipart/form-data" class="post-form" style="display: flex; flex-direction: column; align-items: center;">
             {% csrf_token %}
             <label class="store__noselect">
                 <select name="storage">
                 {% for storage in storages %}
-                    <option {% if forloop.first %}selected{% endif %} value='{% localize off %}{{ storage.pk }}{% endlocalize %}'>{{ storage.region }}{% if not materials_exists|dict_key:storage %} - нехватка материалов!{% else %} - доставка ${{delivery_sum|dict_key:storage }}{% endif %}
+                    <option {% if forloop.first %}selected{% endif %} value='{% localize off %}{{ storage.pk }}{% endlocalize %}'>{{ storage.region }}{% if not materials_exists|dict_key:storage %} - {% trans 'нехватка материалов!' context "no_storage" %}{% else %} - {% trans 'доставка' context "no_storage" %} ${{delivery_sum|dict_key:storage }}{% endif %}
                     </option>
                 {% endfor %}
                 </select>
@@ -41,7 +41,7 @@
                         <path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
                     </g>
                 </svg>
-                <span>создать</span>
+                <span>{% trans 'создать' context "no_storage" %}</span>
             </button>
         </form>
     </div>

@@ -23,19 +23,19 @@
     <div id="trade_tab">
         <form id="money_transfer_frm" role="form" class="store__exch-wrapper">
             {% csrf_token %}
-            <span class="store__exch-left-text">счёт</span>
+            <span class="store__exch-left-text">{% trans 'счёт' context "has_storage" %}</span>
             <button type="submit" id="do_transfer" disabled> <!--кнопка перевода средств на склад-->
                 <svg width="41" height="60" viewBox="0 0 41 60" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M41 0L-3.8147e-06 -1.79217e-06L-5.53219e-06 39.2917L20.5 59.7917L41 39.2917L41 0Z" fill="var(--c10two)"/>
                     <path d="M35.5 23L6.65384 23L5.5 23M35.5 23L27.4231 15M35.5 23L27.4231 31M5.5 23L13.5 15M5.5 23L13.5 31" stroke="var(--c60)" stroke-width="3"/>
                 </svg>
             </button> <!--конец кнопки перевода средств на склад-->
-            <span class="store__exch-right-text">наличные</span>
+            <span class="store__exch-right-text">{% trans 'наличные' context "has_storage" %}</span>
             <input class="store__num-left" type="number" min="0" value="{% localize off %}{{ player.cash }}{% endlocalize %}" name="cash_at_player" id="cash_at_player"> <!--инпут наличных-->
             <input class="store__num-right" type="number" min="0" value="{% localize off %}{{ storage|get_attr:'cash' }}{% endlocalize %}" name="cash_at_storage" id="cash_at_storage"> <!--инпут на складе-->
             <div id="storage_cash" {% localize off %}data-text="{{ storage.cash }}"{% endlocalize %} style="display: none"></div>
             <p>
-                <span>всего денег:</span>
+                <span>{% trans 'всего денег' context "has_storage" %}:</span>
                 <p>
                 {{ player.cash|get_sum:storage.cash }}
                 </p> <!--значение "всего денег"-->

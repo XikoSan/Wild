@@ -89,7 +89,7 @@ jQuery(document).ready(function ($) {
 function check_card(){
     $(".modal__ok").on( "click", use_card);
 
-    display_modal('ask', move_header, move_text, move_yes, move_cancel)
+    display_modal('ask', wildpass_header, wildpass_text, wildpass_yes, wildpass_cancel)
 };
 //wild pass - использование
 function use_card(){

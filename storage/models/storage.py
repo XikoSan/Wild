@@ -1,6 +1,6 @@
 # coding=utf-8
 from django.db import models
-from django.utils.translation import gettext_lazy, ugettext as _
+from django.utils.translation import gettext_lazy, pgettext_lazy, ugettext as _
 
 from player.actual_manager import ActualStorageManager
 from player.player import Player
@@ -27,63 +27,63 @@ class Storage(models.Model):
 
     # ------vvvvvvv------Все типы товаров------vvvvvvv------
     types = {
-        'minerals': gettext_lazy('Минералы'),
-        'oils': gettext_lazy('Нефть'),
-        'materials': gettext_lazy('Материалы'),
-        'equipments': gettext_lazy('Оборудование'),
-        'units': gettext_lazy('Оружие'),
+        'minerals': pgettext_lazy('goods', 'Минералы'),
+        'oils': pgettext_lazy('goods', 'Нефть'),
+        'materials': pgettext_lazy('goods', 'Материалы'),
+        'equipments': pgettext_lazy('goods', 'Оборудование'),
+        'units': pgettext_lazy('goods', 'Оружие'),
     }
     # ------vvvvvvv------Деньги на складе------vvvvvvv------
     valut = {
-        'cash': gettext_lazy('Наличные'),
+        'cash': pgettext_lazy('goods', 'Наличные'),
     }
     # ------vvvvvvv------Минералы на складе------vvvvvvv------
     minerals = {
         # Уголь
-        'coal': gettext_lazy('Уголь'),
+        'coal': pgettext_lazy('goods', 'Уголь'),
         # Железо
-        'iron': gettext_lazy('Железо'),
+        'iron': pgettext_lazy('goods', 'Железо'),
         # Бокситы
-        'bauxite': gettext_lazy('Бокситы'),
+        'bauxite': pgettext_lazy('goods', 'Бокситы'),
     }
     # ------vvvvvvv------Нефть на складе------vvvvvvv------
     oils = {
-        'wti_oil': gettext_lazy('Нефть WTI'),
+        'wti_oil': pgettext_lazy('goods', 'Нефть WTI'),
 
-        'brent_oil': gettext_lazy('Нефть Brent'),
+        'brent_oil': pgettext_lazy('goods', 'Нефть Brent'),
 
-        'urals_oil': gettext_lazy('Нефть Urals'),
+        'urals_oil': pgettext_lazy('goods', 'Нефть Urals'),
     }
     # ------vvvvvvv------Материалы на складе------vvvvvvv------
     materials = {
-        'gas': gettext_lazy('Бензин'),
+        'gas': pgettext_lazy('goods', 'Бензин'),
 
-        'diesel': gettext_lazy('Дизельное топливо'),
+        'diesel': pgettext_lazy('goods', 'Дизельное топливо'),
 
-        'plastic': gettext_lazy('Пластик'),
+        'plastic': pgettext_lazy('goods', 'Пластик'),
 
-        'steel': gettext_lazy('Сталь'),
+        'steel': pgettext_lazy('goods', 'Сталь'),
 
-        'aluminium': gettext_lazy('Алюминий'),
+        'aluminium': pgettext_lazy('goods', 'Алюминий'),
     }
     # ------vvvvvvv------Оборудование на складе------vvvvvvv------
     equipments = {
-        'medical': gettext_lazy('Койки'),
+        'medical': pgettext_lazy('goods', 'Койки'),
     }
     # ------vvvvvvv------Юниты на складе------vvvvvvv------
     units = {
-        'rifle': gettext_lazy('Автоматы'),
+        'rifle': pgettext_lazy('goods', 'Автоматы'),
 
-        'tank': gettext_lazy('Танки'),
-        'antitank': gettext_lazy('ПТ-орудия'),
-        'station': gettext_lazy('Орбитальные орудия'),
+        'tank': pgettext_lazy('goods', 'Танки'),
+        'antitank': pgettext_lazy('goods', 'ПТ-орудия'),
+        'station': pgettext_lazy('goods', 'Орбитальные орудия'),
 
-        'jet': gettext_lazy('Штурмовики'),
-        'pzrk': gettext_lazy('ПЗРК'),
+        'jet': pgettext_lazy('goods', 'Штурмовики'),
+        'pzrk': pgettext_lazy('goods', 'ПЗРК'),
 
-        'ifv': gettext_lazy('БМП'),
+        'ifv': pgettext_lazy('goods', 'БМП'),
 
-        'drone': gettext_lazy('БПЛА'),
+        'drone': pgettext_lazy('goods', 'БПЛА'),
     }
 
     # владелец склада
