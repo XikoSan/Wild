@@ -4,6 +4,8 @@
 {% load dict_key %}
 {% load has_key %}
 {% load government.treasury %}
+{% load get_all %}
+{% load get_mod %}
 
 {% block for_scripts_and_css %}
 <script src='{% static "js/region_view.js" %}?{{ csrf_token }}'></script>
@@ -31,6 +33,7 @@
                         <li class="active"><a data-toggle="tab" href="#data">Информация</a></li>
                         <li><a data-toggle="tab" href="#regions">Регионы</a></li>
                         <li><a data-toggle="tab" href="#parties">Партии</a></li>
+                        <li><a data-toggle="tab" href="#ministers">Министры</a></li>
                         <li><a data-toggle="tab" href="#treasury">Казна</a></li>
     <!--                    <li><a data-toggle="tab" href="#donate">{% trans 'Donate' %}</a></li>-->
                     </ul>
@@ -45,7 +48,7 @@
                                 </div>
                             </div>
                             {% if president %}
-                            <div class="row flex" >
+                            <div class="row flex">
                                 <div class="col-xs-6 col-sm-6 col-md-6" align="left">
                                     <b><font size="4">Президент:</font></b>
                                 </div>
@@ -66,6 +69,18 @@
                                     </b>
                                 </div>
                             </div>
+                                {% if last_voting %}
+                            <div class="row flex">
+                                <div class="col-xs-6 col-sm-6 col-md-6" align="left">
+                                    <b><font size="4">Начало срока:</font></b>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <b>
+                                        <font size="4">{{ last_voting.voting_end|timezone:player.time_zone|date:"d.m.Y H:i" }}</font>
+                                    </b>
+                                </div>
+                            </div>
+                                {% endif %}
                             {% endif %}
                             <hr>
                             <div class="row flex" style="margin-top: 15px">
@@ -160,7 +175,7 @@
                             </div>
                         </div>
                         <div id="regions" class="tab-pane fade" style="overflow-x: hidden; height: 500px">
-                            <div class="row flex">
+                            <div class="row flex" style="margin-bottom: 1vh">
                                 <div class="col-xs-6 col-sm-6 col-md-6" align="center">
                                     <font  size="4"><b>Регион</b></font>
                                 </div>
@@ -203,7 +218,7 @@
                             </div>
                         </div>
                         <div id="parties" class="tab-pane fade" style="overflow-x: hidden; height: 500px">
-                            <div class="row flex">
+                            <div class="row flex" style="margin-bottom: 1vh">
                                 <div class="col-xs-1 col-sm-1 col-md-1" align="center"></div>
                                 <div class="col-xs-4 col-sm-4 col-md-4" align="center">
                                     <font  size="4"><b>Название</b></font>
@@ -240,6 +255,45 @@
                                     </div>
                                     <div class="col-xs-4 col-sm-4 col-md-4">
                                         <font  size="4"><b>{{ party.region.region_name }}</b></font>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div id="ministers" class="tab-pane fade" style="overflow-x: hidden; height: 500px">
+                            <div class="row flex" style="margin-bottom: 1vh">
+                                <div class="col-xs-1 col-sm-1 col-md-1" align="center"></div>
+                                <div class="col-xs-4 col-sm-4 col-md-4" align="center">
+                                    <font  size="4"><b>Министр</b></font>
+                                </div>
+                                <div class="col-xs-7 col-sm-7 col-md-7" align="center">
+                                    <font  size="4"><b>Права</b></font>
+                                </div>
+                            </div>
+                            <div class="line"></div>
+                            <div style="overflow-y: auto; overflow-x: hidden;">
+                                 {% for minister in ministers %}
+                                 <div class="row flex" style="margin-bottom: 1vh; {% if forloop.counter|get_mod:2 == 1 %}background: #F1F3F4{% endif %}">
+                                    <div class="col-xs-1 col-sm-1 col-md-1">
+                                        <a href='/profile/{{ minister.player.pk }}' target="_blank">
+                                            {% if minister.player.image %}
+                                                <img src="{{ minister.player.image.url }}" width="30" height="30">
+                                            {% else %}
+                                                <img src="{% static 'img/nopic.png' %}" width="30" height="30">
+                                            {% endif %}
+                                        </a>
+                                    </div>
+                                    <div class="col-xs-4 co сl-sm-4 col-md-4">
+                                        <a href='/profile/{{ minister.player.pk }}' target="_blank">
+                                            <font size="4">{{ minister.player.nickname }}</font>
+                                        </a>
+                                    </div>
+                                    <div class="col-xs-7 col-sm-7 col-md-7" align="center">
+                                        {% for right in minister.rights|get_all %}
+                                        <div class="row flex">
+                                            <font  size="4"><b>{{ right.get_right_display }}</b></font>
+                                        </div>
+                                        {% endfor %}
                                     </div>
                                 </div>
                                 {% endfor %}

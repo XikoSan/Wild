@@ -8,6 +8,9 @@ from region.region import Region
 from state.models.capital import Capital
 from state.models.state import State
 from gov.models.president import President
+from gov.models.presidential_voting import PresidentialVoting
+from gov.models.minister import Minister
+
 
 @login_required(login_url='/')
 @check_player
@@ -21,8 +24,17 @@ def open_state(request, pk):
     capital = Capital.objects.get(state=state)
 
     president = None
+    last_voting = None
+    ministers = None
+
     if President.objects.filter(state=state).exists():
         president = President.objects.get(state=state)
+
+        if PresidentialVoting.objects.filter(president=president, running=False).exists():
+            last_voting = PresidentialVoting.objects.filter(president=president, running=False).order_by('-voting_end').first()
+
+        if Minister.objects.filter(state=state).exists():
+            ministers = Minister.objects.filter(state=state)
 
     regions_state = Region.objects.filter(state=state)
 
@@ -54,7 +66,11 @@ def open_state(request, pk):
         'player': player,
         'state': state,
         'capital': capital.region,
+
         'president': president,
+        'last_voting': last_voting,
+
+        'ministers': ministers,
 
         'players_count': players_count,
         'parties_count': parties_count,
