@@ -26,10 +26,6 @@ def assets(request):
     # получаем все склады
     storages = Storage.actual.filter(owner=player)
 
-    storage_alone = False
-    if storages.count() == 1:
-        storage_alone = True
-
     for storage in storages:
         trans_mul[storage.pk] = {}
         for dest in storages:
@@ -47,8 +43,6 @@ def assets(request):
 
         'player': player,
         'storages': storages,
-
-        'storage_alone': storage_alone,
 
         'transport': Transport,
         'storage_cl': Storage,

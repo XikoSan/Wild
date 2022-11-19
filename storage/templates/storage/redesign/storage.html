@@ -9,6 +9,59 @@
 {% block content %}
 <section class="store">
     <h1 class="store__title ct__page-title">Склад</h1>
+	<button class="store__title-settings ct__js-modal-sett-open" id="store__modal1-open">
+		<svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+	width="80px" height="76px" viewBox="0 0 1280.000000 1276.000000"
+	preserveAspectRatio="xMidYMid meet">
+	<g transform="translate(0.000000,1276.000000) scale(0.100000,-0.100000)"
+	fill="var(--c10two)" stroke="none">
+	<path d="M5975 12749 c-86 -6 -144 -14 -151 -22 -6 -6 -36 -95 -67 -197 -30
+	-102 -119 -396 -197 -655 -78 -258 -156 -516 -173 -571 l-30 -102 -188 -46
+	c-213 -52 -475 -135 -658 -208 -68 -27 -130 -47 -137 -44 -7 3 -301 221 -653
+	485 -353 265 -644 481 -649 481 -11 0 -250 -145 -362 -220 -206 -137 -422
+	-299 -608 -456 l-25 -21 271 -746 c150 -411 272 -752 272 -758 0 -6 -40 -56
+	-88 -112 -175 -202 -337 -420 -457 -615 -32 -52 -64 -96 -72 -99 -8 -3 -366 4
+	-796 16 -430 12 -794 21 -808 21 -23 0 -30 -9 -56 -67 -61 -137 -142 -353
+	-202 -538 -61 -186 -145 -494 -138 -502 2 -2 303 -204 668 -448 562 -377 665
+	-450 670 -473 3 -15 1 -72 -4 -127 -8 -99 -2 -525 11 -702 l7 -92 -668 -448
+	c-368 -246 -673 -450 -678 -453 -9 -6 22 -146 72 -320 71 -249 180 -554 284
+	-794 l17 -39 141 6 c78 4 443 14 810 24 l668 17 25 -29 c13 -17 68 -95 120
+	-174 113 -169 222 -314 350 -467 l93 -111 -275 -752 c-151 -414 -274 -757
+	-272 -761 5 -14 213 -185 361 -296 225 -170 606 -418 631 -412 7 2 299 219
+	649 482 l637 479 47 -15 c27 -9 84 -30 128 -48 183 -74 392 -141 619 -200 81
+	-21 149 -40 151 -42 3 -3 222 -724 386 -1273 38 -126 73 -239 78 -251 8 -18
+	24 -22 137 -33 314 -30 1078 -22 1110 12 6 7 36 95 67 197 30 102 119 396 197
+	655 78 259 156 516 173 571 l30 102 188 46 c213 52 475 135 658 208 68 27 130
+	47 137 44 7 -3 301 -221 653 -485 353 -265 644 -481 649 -481 11 0 250 145
+	362 220 206 137 422 299 608 456 l25 21 -271 746 c-150 411 -272 752 -272 758
+	0 6 40 56 88 112 175 202 337 420 457 615 32 52 64 96 72 99 8 3 366 -4 796
+	-16 430 -12 794 -21 808 -21 23 0 30 9 56 68 61 136 142 352 202 537 61 186
+	145 494 138 502 -2 2 -303 204 -668 448 -562 377 -665 450 -670 473 -3 15 -1
+	72 4 127 8 99 2 527 -11 702 l-7 92 668 448 c368 246 673 450 678 453 9 6 -22
+	146 -72 320 -71 249 -180 554 -284 794 l-17 39 -141 -6 c-78 -4 -443 -14 -810
+	-24 l-668 -17 -25 29 c-13 17 -68 95 -120 174 -113 169 -222 314 -350 467
+	l-93 111 275 752 c151 414 274 757 272 761 -5 14 -213 185 -361 296 -225 170
+	-606 418 -631 412 -7 -2 -299 -219 -649 -482 l-637 -479 -47 15 c-27 9 -84 30
+	-128 48 -183 74 -392 141 -619 200 -81 21 -149 40 -151 42 -3 3 -222 724 -386
+	1273 -38 127 -73 239 -78 251 -8 18 -24 22 -137 33 -164 16 -775 22 -959 10z
+	m2253 -2919 c73 -39 115 -83 151 -160 22 -46 26 -69 26 -140 0 -73 -4 -93 -28
+	-142 -32 -65 -95 -125 -165 -159 -70 -34 -198 -38 -274 -9 -259 97 -294 456
+	-58 598 76 45 102 52 200 49 74 -3 93 -7 148 -37z m-1586 -1425 c407 -47 749
+	-184 1073 -428 176 -133 407 -392 514 -575 177 -306 264 -594 291 -969 10
+	-128 9 -170 -5 -270 -45 -333 -152 -618 -334 -890 -437 -654 -1225 -1012
+	-2023 -918 -407 47 -749 184 -1073 428 -176 133 -407 392 -514 575 -177 306
+	-264 594 -291 969 -10 128 -9 170 5 270 33 241 90 435 190 639 274 563 772
+	963 1390 1119 244 62 523 80 777 50z m-3348 -134 c182 -89 246 -300 143 -472
+	-62 -103 -173 -163 -302 -162 -193 2 -335 144 -337 338 -3 248 268 409 496
+	296z m6489 -3167 c131 -46 218 -173 219 -321 1 -62 -4 -82 -31 -137 -37 -75
+	-92 -128 -170 -164 -81 -38 -202 -38 -282 -1 -79 37 -133 90 -171 167 -29 58
+	-33 77 -33 143 0 65 5 85 33 142 79 159 263 232 435 171z m-4919 -1565 c73
+	-27 148 -96 183 -167 24 -50 28 -69 28 -147 0 -73 -4 -99 -23 -136 -34 -70
+	-84 -122 -154 -160 -60 -32 -68 -34 -163 -34 -95 0 -103 2 -163 34 -74 40
+	-116 85 -150 159 -83 182 5 385 196 454 67 24 177 23 246 -3z"/>
+	</g>
+	</svg>
+	</button>
     <div class="store__tabs ct__top-tabs">
         <button class="ct__top-tab ct__top-tab1 active ct__mid-btn">
             <svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
@@ -111,6 +164,291 @@
 	      <!-- КОНЕЦ ВКЛАДКИ ХРАНИЛИЩЕ -->
 	    </div>
     </div>
+	<!--мдалка улучшения 1-->
+	<div class="store__modal1" id="store__modal1">
+		<!--закрыть модалку-->
+		<button class="store__modal1-close ct__square-mid-btn" id="store__modal1-close">
+			<svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path d="M26 30H0V0H30V26L26 30Z" fill="var(--c10two)"></path><path d="M4 4L26 26M4 26L26 4" stroke="var(--c60)" stroke-width="3"></path>
+			</svg>
+		</button>
+		{% if single_storage and not single_storage.was_moved and player.region != single_storage.region %}
+		<!--перенести-->
+		<div class="store__modal1-container">
+			<h2 class="store__modal1-title">Перенос склада</h2>
+			<p>Вы можете перенести Склад в регион текущего местоположения (один раз)</p>
+			<button class="store__modal1-btn ct__mid-btn" onclick="move_storage(event, {% localize off %}{{ single_storage.pk }}{% endlocalize %})">
+				<svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
+					<mask id="mask0_259_320" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+						<path d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"/>
+					</mask>
+					<g mask="url(#mask0_259_320)">
+						<path d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" fill="var(--c10two)"/>
+						<path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"/>
+						<path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"/>
+						<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
+					</g>
+				</svg>
+				<span>перенести</span>
+			</button>
+		</div>
+		{% endif %}
+
+<!--			&lt;!&ndash;линия&ndash;&gt;-->
+<!--			<div class="store__modal1-line ct__line"></div>-->
+
+<!--			&lt;!&ndash;улучшить&ndash;&gt;-->
+<!--			<div class="store__modal1-container">-->
+<!--				<h2 class="store__modal1-title">Улучшение склада</h2>-->
+<!--				<p>Вы можете улучшить Склад, расширив хранилища части товаров</p>-->
+<!--				<p>Стоимость: 500 сталь, 500 Алюминий</p>-->
+<!--				<button class="store__modal1-btn ct__mid-btn" id="store__modal2-open">-->
+<!--					<svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">-->
+<!--						<mask id="mask0_259_320" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">-->
+<!--							<path d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"/>-->
+<!--						</mask>-->
+<!--						<g mask="url(#mask0_259_320)">-->
+<!--							<path d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" fill="var(&#45;&#45;c10two)"/>-->
+<!--							<path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(&#45;&#45;c10one)"/>-->
+<!--							<path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(&#45;&#45;c10one)"/>-->
+<!--							<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(&#45;&#45;c10one)"/>-->
+<!--						</g>-->
+<!--					</svg>-->
+<!--					<span>улучшить</span>-->
+<!--				</button>-->
+<!--			</div>-->
+	</div>
+
+<!--		&lt;!&ndash;модалка улучшения 2&ndash;&gt;-->
+<!--		<div class="store__modal2" id="store__modal2">-->
+<!--			&lt;!&ndash;закрыть модалку&ndash;&gt;-->
+<!--			<button class="store__modal2-close ct__square-mid-btn" id="store__modal2-close">-->
+<!--				<svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+<!--					<path d="M26 30H0V0H30V26L26 30Z" fill="var(&#45;&#45;c10two)"></path><path d="M4 4L26 26M4 26L26 4" stroke="var(&#45;&#45;c60)" stroke-width="3"></path>-->
+<!--				</svg>-->
+<!--			</button>-->
+
+<!--			&lt;!&ndash;заголовок&ndash;&gt;-->
+<!--			<h2 class="store__modal2-title ct__page-title">Улучшение склада</h2>-->
+<!--			<p>Выберите до пяти товаров в каждой из категорий, ёмкость Склада для которых будет увеличина</p>-->
+
+<!--			&lt;!&ndash;линия&ndash;&gt;-->
+<!--			<div class="store__modal2-line ct__line"></div>-->
+
+<!--			&lt;!&ndash;список1&ndash;&gt;-->
+<!--			<div class="store__modal2-list-container">-->
+<!--				<h3>Большой объём запасов (+100к/ед.)</h3>-->
+<!--				<ul class="store__modal2-list">-->
+<!--					<li class="store__modal2-item">-->
+<!--						<div class="store__modal2-item-btns">-->
+<!--							<button><svg><use xlink:href="#minus"></use></svg></button>-->
+<!--							<span>0</span>-->
+<!--							<button><svg><use xlink:href="#plus"></use></svg></button>-->
+<!--						</div>-->
+<!--						<span class="store__modal2-item-text">уголь</span>-->
+<!--					</li>-->
+
+<!--					<li class="store__modal2-item">-->
+<!--						<div class="store__modal2-item-btns">-->
+<!--							<button><svg><use xlink:href="#minus"></use></svg></button>-->
+<!--							<span>0</span>-->
+<!--							<button><svg><use xlink:href="#plus"></use></svg></button>-->
+<!--						</div>-->
+<!--						<span class="store__modal2-item-text">нефть WTI</span>-->
+<!--					</li>-->
+
+<!--					<li class="store__modal2-item">-->
+<!--						<div class="store__modal2-item-btns">-->
+<!--							<button><svg><use xlink:href="#minus"></use></svg></button>-->
+<!--							<span>0</span>-->
+<!--							<button><svg><use xlink:href="#plus"></use></svg></button>-->
+<!--						</div>-->
+<!--						<span class="store__modal2-item-text">железо</span>-->
+<!--					</li>-->
+
+<!--					<li class="store__modal2-item">-->
+<!--						<div class="store__modal2-item-btns">-->
+<!--							<button><svg><use xlink:href="#minus"></use></svg></button>-->
+<!--							<span>0</span>-->
+<!--							<button><svg><use xlink:href="#plus"></use></svg></button>-->
+<!--						</div>-->
+<!--						<span class="store__modal2-item-text">нефть Brent</span>-->
+<!--					</li>-->
+
+<!--					<li class="store__modal2-item">-->
+<!--						<div class="store__modal2-item-btns">-->
+<!--							<button><svg><use xlink:href="#minus"></use></svg></button>-->
+<!--							<span>0</span>-->
+<!--							<button><svg><use xlink:href="#plus"></use></svg></button>-->
+<!--						</div>-->
+<!--						<span class="store__modal2-item-text">бокситы</span>-->
+<!--					</li>-->
+
+<!--					<li class="store__modal2-item">-->
+<!--						<div class="store__modal2-item-btns">-->
+<!--							<button><svg><use xlink:href="#minus"></use></svg></button>-->
+<!--							<span>0</span>-->
+<!--							<button><svg><use xlink:href="#plus"></use></svg></button>-->
+<!--						</div>-->
+<!--						<span class="store__modal2-item-text">нефть Urals</span>-->
+<!--					</li>-->
+<!--				</ul>-->
+<!--			</div>-->
+
+<!--			&lt;!&ndash;линия&ndash;&gt;-->
+<!--			<div class="store__modal2-line ct__line"></div>-->
+
+<!--			&lt;!&ndash;список2&ndash;&gt;-->
+<!--			<div class="store__modal2-list-container">-->
+<!--				<h3>Средний объём запасов (+10к/ед.)</h3>-->
+<!--				<ul class="store__modal2-list">-->
+<!--					<li class="store__modal2-item">-->
+<!--						<div class="store__modal2-item-btns">-->
+<!--							<button><svg><use xlink:href="#minus"></use></svg></button>-->
+<!--							<span>0</span>-->
+<!--							<button><svg><use xlink:href="#plus"></use></svg></button>-->
+<!--						</div>-->
+<!--						<span class="store__modal2-item-text">бензин</span>-->
+<!--					</li>-->
+
+<!--					<li class="store__modal2-item">-->
+<!--						<div class="store__modal2-item-btns">-->
+<!--							<button><svg><use xlink:href="#minus"></use></svg></button>-->
+<!--							<span>0</span>-->
+<!--							<button><svg><use xlink:href="#plus"></use></svg></button>-->
+<!--						</div>-->
+<!--						<span class="store__modal2-item-text">алюминий</span>-->
+<!--					</li>-->
+
+<!--					<li class="store__modal2-item">-->
+<!--						<div class="store__modal2-item-btns">-->
+<!--							<button><svg><use xlink:href="#minus"></use></svg></button>-->
+<!--							<span>0</span>-->
+<!--							<button><svg><use xlink:href="#plus"></use></svg></button>-->
+<!--						</div>-->
+<!--						<span class="store__modal2-item-text">диз. топливо</span>-->
+<!--					</li>-->
+
+<!--					<li class="store__modal2-item">-->
+<!--						<div class="store__modal2-item-btns">-->
+<!--							<button><svg><use xlink:href="#minus"></use></svg></button>-->
+<!--							<span>0</span>-->
+<!--							<button><svg><use xlink:href="#plus"></use></svg></button>-->
+<!--						</div>-->
+<!--						<span class="store__modal2-item-text">койки</span>-->
+<!--					</li>-->
+
+<!--					<li class="store__modal2-item">-->
+<!--						<div class="store__modal2-item-btns">-->
+<!--							<button><svg><use xlink:href="#minus"></use></svg></button>-->
+<!--							<span>0</span>-->
+<!--							<button><svg><use xlink:href="#plus"></use></svg></button>-->
+<!--						</div>-->
+<!--						<span class="store__modal2-item-text">пластик</span>-->
+<!--					</li>-->
+
+<!--					<li class="store__modal2-item">-->
+<!--						<div class="store__modal2-item-btns">-->
+<!--							<button><svg><use xlink:href="#minus"></use></svg></button>-->
+<!--							<span>0</span>-->
+<!--							<button><svg><use xlink:href="#plus"></use></svg></button>-->
+<!--						</div>-->
+<!--						<span class="store__modal2-item-text">автоматы</span>-->
+<!--					</li>-->
+
+<!--					<li class="store__modal2-item">-->
+<!--						<div class="store__modal2-item-btns">-->
+<!--							<button><svg><use xlink:href="#minus"></use></svg></button>-->
+<!--							<span>0</span>-->
+<!--							<button><svg><use xlink:href="#plus"></use></svg></button>-->
+<!--						</div>-->
+<!--						<span class="store__modal2-item-text">сталь</span>-->
+<!--					</li>-->
+<!--				</ul>-->
+<!--			</div>-->
+
+<!--			&lt;!&ndash;линия&ndash;&gt;-->
+<!--			<div class="store__modal2-line ct__line"></div>-->
+
+<!--			&lt;!&ndash;список3&ndash;&gt;-->
+<!--			<div class="store__modal2-list-container">-->
+<!--				<h3>Малый объём запасов (+1к/ед.)</h3>-->
+<!--				<ul class="store__modal2-list">-->
+<!--					<li class="store__modal2-item">-->
+<!--						<div class="store__modal2-item-btns">-->
+<!--							<button><svg><use xlink:href="#minus"></use></svg></button>-->
+<!--							<span>0</span>-->
+<!--							<button><svg><use xlink:href="#plus"></use></svg></button>-->
+<!--						</div>-->
+<!--						<span class="store__modal2-item-text">танки</span>-->
+<!--					</li>-->
+
+<!--					<li class="store__modal2-item">-->
+<!--						<div class="store__modal2-item-btns">-->
+<!--							<button><svg><use xlink:href="#minus"></use></svg></button>-->
+<!--							<span>0</span>-->
+<!--							<button><svg><use xlink:href="#plus"></use></svg></button>-->
+<!--						</div>-->
+<!--						<span class="store__modal2-item-text">ПЗРК</span>-->
+<!--					</li>-->
+
+<!--					<li class="store__modal2-item">-->
+<!--						<div class="store__modal2-item-btns">-->
+<!--							<button><svg><use xlink:href="#minus"></use></svg></button>-->
+<!--							<span>0</span>-->
+<!--							<button><svg><use xlink:href="#plus"></use></svg></button>-->
+<!--						</div>-->
+<!--						<span class="store__modal2-item-text">ПТ-орудия</span>-->
+<!--					</li>-->
+
+<!--					<li class="store__modal2-item">-->
+<!--						<div class="store__modal2-item-btns">-->
+<!--							<button><svg><use xlink:href="#minus"></use></svg></button>-->
+<!--							<span>0</span>-->
+<!--							<button><svg><use xlink:href="#plus"></use></svg></button>-->
+<!--						</div>-->
+<!--						<span class="store__modal2-item-text">БМП</span>-->
+<!--					</li>-->
+
+<!--					<li class="store__modal2-item">-->
+<!--						<div class="store__modal2-item-btns">-->
+<!--							<button><svg><use xlink:href="#minus"></use></svg></button>-->
+<!--							<span>0</span>-->
+<!--							<button><svg><use xlink:href="#plus"></use></svg></button>-->
+<!--						</div>-->
+<!--						<span class="store__modal2-item-text">штурмовики</span>-->
+<!--					</li>-->
+
+<!--					<li class="store__modal2-item">-->
+<!--						<div class="store__modal2-item-btns">-->
+<!--							<button><svg><use xlink:href="#minus"></use></svg></button>-->
+<!--							<span>0</span>-->
+<!--							<button><svg><use xlink:href="#plus"></use></svg></button>-->
+<!--						</div>-->
+<!--						<span class="store__modal2-item-text">БПЛА</span>-->
+<!--					</li>-->
+<!--				</ul>-->
+<!--			</div>-->
+
+<!--			&lt;!&ndash;линия&ndash;&gt;-->
+<!--			<div class="store__modal2-line store__modal2-line&#45;&#45;bottom-m ct__line"></div>-->
+
+<!--			<button class="store__modal1-btn ct__mid-btn">-->
+<!--				<svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">-->
+<!--					<mask id="mask0_259_320" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">-->
+<!--						<path d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"/>-->
+<!--					</mask>-->
+<!--					<g mask="url(#mask0_259_320)">-->
+<!--						<path d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" fill="var(&#45;&#45;c10two)"/>-->
+<!--						<path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(&#45;&#45;c10one)"/>-->
+<!--						<path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(&#45;&#45;c10one)"/>-->
+<!--						<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(&#45;&#45;c10one)"/>-->
+<!--					</g>-->
+<!--				</svg>-->
+<!--				<span>улучшить</span>-->
+<!--			</button>-->
+
+<!--		</div>-->
 </section>
 <script>
 	var move_header = '{% if premium %}Продление{% else %}Активация{% endif %} премиум-аккаунта';
@@ -124,6 +462,31 @@
 	var move_yes = 'Продолжить';
 	var move_cancel = 'Отмена';
 </script>
+{% if single_storage %}
+<script>
+    var move_storage_pk = null;
+    var move_header = 'Перемещение Склада';
+    var move_text = 'Склад будет перемещен в регион вашего местонахождения - {{ player.region.region_name }}. Больше этот Склад переместить не получится. Продолжить?';
+    var move_yes = 'Продолжить';
+    var move_cancel = 'Отмена';
+</script>
+<script src='{% static "js/assets_move.js" %}?{{ csrf_token }}'></script>
+{% endif %}
 <script src='{% static "js/storage.js" %}?{{ csrf_token }}'></script>
 <script src='{% static "js/redesign/vault.js" %}?{{ csrf_token }}'></script>
+{% endblock %}
+
+{% block for_scripts_and_css %}
+<script>
+	const storeModal1 = new ModalOpenClose({
+		main: document.getElementById('store__modal1'),
+		openModalBtn: document.getElementById('store__modal1-open'),
+		closeModalBtn: document.getElementById('store__modal1-close'),
+	})
+	const storeModal2 = new ModalOpenClose({
+		main: document.getElementById('store__modal2'),
+		openModalBtn: document.getElementById('store__modal2-open'),
+		closeModalBtn: document.getElementById('store__modal2-close'),
+	})
+</script>
 {% endblock %}

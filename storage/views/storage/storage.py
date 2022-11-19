@@ -13,9 +13,14 @@ from storage.models.storage import Storage
 def storage(request):
     player = Player.get_instance(account=request.user)
     storage = None
+
     # если склад есть
     if Storage.actual.filter(owner=player, region=player.region).exists():
         storage = Storage.actual.get(owner=player, region=player.region)
+
+    single_storage = None
+    if Storage.actual.filter(owner=player).count() == 1:
+        single_storage = Storage.actual.get(owner=player)
 
     groups = list(player.account.groups.all().values_list('name', flat=True))
     page = 'storage/storage.html'
@@ -28,6 +33,8 @@ def storage(request):
 
         'player': player,
         'storage': storage,
+
+        'single_storage': single_storage,
     })
 
     # if player_settings:

@@ -8,6 +8,17 @@
 {% load get_sum %}
 {% load static %}
 {% load l10n %}{% load i18n %}
+<svg style="display: none;">
+    <symbol viewBox="0 0 14 14" id="minus">
+            <rect width="14" height="14" fill="var(--c10two)"/>
+            <rect x="2" y="6" width="10" height="2" fill="var(--c30)"/>
+    </symbol>
+    <symbol viewBox="0 0 14 14" id="plus">
+        <rect width="14" height="14" fill="var(--c10two)"/>
+        <rect x="2" y="6" width="10" height="2" fill="var(--c30)"/>
+        <rect x="6" y="12" width="10" height="2" transform="rotate(-90 6 12)" fill="var(--c30)"/>
+    </symbol>
+</svg>
 <div class="store__left">
     <div id="trade_tab">
         <form id="money_transfer_frm" role="form" class="store__exch-wrapper">

@@ -1,17 +1,15 @@
-if (document.querySelector('#burger')) {
-    const modalNavButton = document.getElementById('burger');
-    const modalNav = document.getElementById('modal-nav');
+const modalNavButton = document.getElementById('burger');
+const modalNav = document.getElementById('modal-nav');
 
-    modalNavButton.addEventListener('click', () => {
-      if (modalNavButton.classList.contains('burgeractive')) {
-        modalNavButton.classList.remove('burgeractive');
-        modalNav.classList.remove('active');
-      } else {
-        modalNavButton.classList.add('burgeractive');
-        modalNav.classList.add('active');
-      }
-    })
-}
+modalNavButton.addEventListener('click', () => {
+  if (modalNavButton.classList.contains('burgeractive')) {
+    modalNavButton.classList.remove('burgeractive');
+    modalNav.classList.remove('active');
+  } else {
+    modalNavButton.classList.add('burgeractive');
+    modalNav.classList.add('active');
+  }
+})
 
 // Tabs
 function toggleTabs(tabOneClass, tabTwoClass, wrapperClass) {
@@ -85,4 +83,19 @@ modalCancel.addEventListener('click', () => modal.classList.remove('active'))
     closeMSettBtn.addEventListener('click', () => {
       mSettWindow.classList.remove('active');
     })
+  }
+
+  class ModalOpenClose {
+    constructor(data) {
+      this.domNodes = data;
+      this.domNodes.openModalBtn.addEventListener('click', () => {this.openModal()})
+      this.domNodes.closeModalBtn.addEventListener('click', () => {this.closeModal()})
+    }
+
+    openModal() {
+      this.domNodes.main.classList.add('active');
+    }
+    closeModal() {
+      this.domNodes.main.classList.remove('active');
+    }
   }
