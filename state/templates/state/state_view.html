@@ -273,19 +273,22 @@
                             <div class="line"></div>
                             <div style="overflow-y: auto; overflow-x: hidden;">
                                  {% for minister in ministers %}
-                                 <div class="row flex" style="margin-bottom: 1vh; {% if forloop.counter|get_mod:2 == 1 %}background: #F1F3F4{% endif %}">
+                                 <div class="row flex" style="margin-bottom: 1vh; display: flex; align-items: center;
+                                  {% if forloop.counter|get_mod:2 == 1 %}background: #F1F3F4{% endif %}">
                                     <div class="col-xs-1 col-sm-1 col-md-1">
                                         <a href='/profile/{{ minister.player.pk }}' target="_blank">
                                             {% if minister.player.image %}
-                                                <img src="{{ minister.player.image.url }}" width="30" height="30">
+                                                <img src="{{ minister.player.image.url }}" width="50" height="50">
                                             {% else %}
-                                                <img src="{% static 'img/nopic.png' %}" width="30" height="30">
+                                                <img src="{% static 'img/nopic.png' %}" width="50" height="50">
                                             {% endif %}
                                         </a>
                                     </div>
                                     <div class="col-xs-4 co сl-sm-4 col-md-4">
                                         <a href='/profile/{{ minister.player.pk }}' target="_blank">
-                                            <font size="4">{{ minister.player.nickname }}</font>
+                                            <b>
+                                                <font size="5">{{ minister.player.nickname }}</font>
+                                            </b>
                                         </a>
                                     </div>
                                     <div class="col-xs-7 col-sm-7 col-md-7" align="center">
