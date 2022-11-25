@@ -100,15 +100,17 @@ class AutoMining(Log):
             self.delete()
             return
 
-        # if PlayerSettings.objects.filter(player=player, full_auto=True).exists():
-        #     # время, когда можно перезаряжаться
-        #     if player.last_refill <= timezone.now():
-        #         if player.bottles >= 100 - player.energy:
-        #             refill_value = 100 - player.energy
-        #
-        #             player.bottles -= refill_value
-        #             player.energy += refill_value
-        #             player.last_refill = timezone.now() + datetime.timedelta(seconds=599)
+        if PlayerSettings.objects.filter(player=player, full_auto=True).exists():
+            # если дайлик еще не заполнен
+            if player.energy_consumption + player.paid_consumption < 3000:
+                # время, когда можно перезаряжаться
+                if player.last_refill <= timezone.now():
+                    if player.bottles >= 100 - player.energy:
+                        refill_value = 100 - player.energy
+
+                        player.bottles -= refill_value
+                        player.energy += refill_value
+                        player.last_refill = timezone.now() + datetime.timedelta(seconds=599)
 
         if player.energy < 10:
             # ждем следующего цикла
