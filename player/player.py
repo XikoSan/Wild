@@ -383,7 +383,7 @@ class Player(models.Model):
 
         self.save()
 
-    def __str_pgettext(self):
+    def __str__(self):
         return self.nickname
 
     # Свойства класса
