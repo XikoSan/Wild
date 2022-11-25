@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-19 19:28+0300\n"
-"PO-Revision-Date: 2022-10-31 19:15+0300\n"
+"POT-Creation-Date: 2022-11-25 17:30+0300\n"
+"PO-Revision-Date: 2022-11-22 22:05+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -69,6 +69,39 @@ msgstr "Parteien in der Welt"
 #: party/views/party.py:16
 msgid "Партия"
 msgstr "Partei"
+
+#: player/player.py:252 region/views/do_mining.py:31
+#: region/views/start_auto.py:26
+msgctxt "mining"
+msgid "Дождитесь конца полёта"
+msgstr ""
+
+#: player/player.py:253 player/player.py:275 region/views/retrieve_cash.py:40
+#, fuzzy
+#| msgid "Некорректный запрос"
+msgctxt "mining"
+msgid "Ошибка получения финансирования"
+msgstr "Ungültige Anfrage"
+
+#: player/player.py:254 player/player.py:276 region/views/cancel_auto.py:34
+#: region/views/do_mining.py:33 region/views/do_mining.py:46
+#: region/views/do_mining.py:56 region/views/do_mining.py:69
+#: region/views/do_mining.py:78 region/views/do_mining.py:87
+#: region/views/do_mining.py:103 region/views/do_mining.py:123
+#: region/views/do_mining.py:159 region/views/do_mining.py:216
+#: region/views/retrieve_cash.py:41 region/views/start_auto.py:28
+#: region/views/start_auto.py:36 region/views/start_auto.py:49
+#: region/views/start_auto.py:58 region/views/start_auto.py:80
+#, fuzzy
+#| msgid "Закрыть"
+msgctxt "mining"
+msgid "Закрыть"
+msgstr "Schließen"
+
+#: player/player.py:274
+msgctxt "mining"
+msgid "Нечего забирать"
+msgstr ""
 
 #: player/templates/player/profile.html:146
 msgid "player_info"
@@ -564,7 +597,7 @@ msgstr "Parteihintergrund anzeigen"
 #: player/templates/player/redesign/profile.html:412
 msgctxt "profile"
 msgid "Энергетики в авто-добыче"
-msgstr ""
+msgstr "Energietechniker im Bergbau"
 
 #: player/templates/player/redesign/profile.html:443
 msgctxt "profile"
@@ -615,6 +648,8 @@ msgstr "Schließen"
 
 #: player/views/change_back_allow.py:57 player/views/full_auto_allow.py:57
 #: player/views/set_language.py:54 player/views/set_timezone.py:43
+#: region/views/cancel_auto.py:35 region/views/retrieve_cash.py:42
+#: region/views/start_auto.py:81
 msgid "Ошибка метода"
 msgstr "Es ist ein Fehler beim Abbrechen der Fähigkeit aufgetreten"
 
@@ -641,7 +676,7 @@ msgstr "Fehler im Anfragetyp"
 
 #: player/views/full_auto_allow.py:42 player/views/full_auto_allow.py:58
 msgid "Энергетики в авто-добыче"
-msgstr ""
+msgstr "Energietechniker im Bergbau"
 
 #: player/views/lists/cash_top.py:93
 msgid "Топ богатейших"
@@ -695,6 +730,21 @@ msgstr "Änderung der Zeitzone"
 msgid "Навыки"
 msgstr "Fahigkeiten"
 
+#: region/region.py:89
+msgctxt "goods"
+msgid "WTI"
+msgstr ""
+
+#: region/region.py:90
+msgctxt "goods"
+msgid "Brent"
+msgstr ""
+
+#: region/region.py:91
+msgctxt "goods"
+msgid "Urals"
+msgstr ""
+
 #: region/templates/region/buildings/defences.html:5
 msgid "Уровень Укреплений"
 msgstr "Wehranlage"
@@ -710,6 +760,130 @@ msgstr "Krankenhausrang"
 #: region/templates/region/buildings/power_plant.html:5
 msgid "Уровень ТЭЦ"
 msgstr "Heizkraftwerk"
+
+#: region/templates/region/redesign/mining.html:9
+#, fuzzy
+#| msgid "Добыча"
+msgctxt "mining"
+msgid "Добыча"
+msgstr "Arbeit"
+
+#: region/templates/region/redesign/mining.html:11
+msgctxt "daily_header"
+msgid "Потрать энергию и получи"
+msgstr ""
+
+#: region/templates/region/redesign/mining.html:12
+#, fuzzy
+#| msgctxt "profile"
+#| msgid "до"
+msgctxt "daily_header"
+msgid "до"
+msgstr "Ablaufdatum"
+
+#: region/templates/region/redesign/mining.html:12
+msgctxt "daily_header"
+msgid "за день!"
+msgstr ""
+
+#: region/templates/region/redesign/mining.html:15
+#, fuzzy
+#| msgctxt "storage_assets"
+#| msgid "энергетики"
+msgctxt "daily_header"
+msgid "энергии потрачено"
+msgstr "Energie"
+
+#: region/templates/region/redesign/mining.html:25
+#: region/templates/region/redesign/mining.html:58
+#: region/templates/region/redesign/mining.html:84
+#: region/templates/region/redesign/mining.html:110
+msgctxt "daily_header"
+msgid "в полете"
+msgstr ""
+
+#: region/templates/region/redesign/mining.html:27
+#, fuzzy
+#| msgctxt "repost"
+#| msgid "Получить"
+msgctxt "daily_header"
+msgid "получаем"
+msgstr "Erhalte"
+
+#: region/templates/region/redesign/mining.html:28
+#, fuzzy
+#| msgctxt "repost"
+#| msgid "Получить"
+msgctxt "daily_header"
+msgid "получить"
+msgstr "Erhalte"
+
+#: region/templates/region/redesign/mining.html:46
+msgctxt "daily_header"
+msgid "уже получено"
+msgstr ""
+
+#: region/templates/region/redesign/mining.html:50
+#, fuzzy
+#| msgid "Золото"
+msgctxt "mining"
+msgid "Золото"
+msgstr "Gold"
+
+#: region/templates/region/redesign/mining.html:51
+#: region/templates/region/redesign/mining.html:77
+#: region/templates/region/redesign/mining.html:103
+#, fuzzy
+#| msgid "Запасы руд"
+msgctxt "mining"
+msgid "Запасы"
+msgstr "Erzvorräte"
+
+#: region/templates/region/redesign/mining.html:61
+#: region/templates/region/redesign/mining.html:87
+#: region/templates/region/redesign/mining.html:113
+msgctxt "mining"
+msgid "авто"
+msgstr ""
+
+#: region/templates/region/redesign/mining.html:70
+#: region/templates/region/redesign/mining.html:96
+#: region/templates/region/redesign/mining.html:122
+#, fuzzy
+#| msgctxt "menu"
+#| msgid "добыча"
+msgctxt "mining"
+msgid "добыча"
+msgstr "Arbeit"
+
+#: region/templates/region/redesign/mining.html:76
+#, fuzzy
+#| msgid "Нефть"
+msgctxt "mining"
+msgid "Нефть"
+msgstr "Öl"
+
+#: region/templates/region/redesign/mining.html:78
+#, fuzzy
+#| msgid "Марка нефти"
+msgctxt "mining"
+msgid "Марка нефти"
+msgstr "Ölqualität"
+
+#: region/templates/region/redesign/mining.html:102
+#, fuzzy
+#| msgid "Руда"
+msgctxt "mining"
+msgid "Руда"
+msgstr "Erz"
+
+#: region/templates/region/redesign/mining.html:104
+#, fuzzy
+#| msgctxt "storage_assets"
+#| msgid "Количество"
+msgctxt "mining"
+msgid "Качество руды"
+msgstr "Anzahl"
 
 #: region/templates/region/region_info.html:39
 msgid "Вы летите в"
@@ -774,19 +948,91 @@ msgid "Региональные налоги"
 msgstr "Steuern in der Region"
 
 #: region/templates/region/region_view.html:201
-#: state/templates/state/state_view.html:126
+#: state/templates/state/state_view.html:143
 msgid "На финансирование"
 msgstr "Steuern"
 
 #: region/templates/region/region_view.html:213
-#: state/templates/state/state_view.html:138
+#: state/templates/state/state_view.html:155
 msgid "На добычу"
 msgstr "Steuern auf Fabrikerzeugnisse"
 
 #: region/templates/region/region_view.html:227
-#: state/templates/state/state_view.html:152
+#: state/templates/state/state_view.html:169
 msgid "На торговлю"
 msgstr "Steuern auf den Verkauf"
+
+#: region/views/cancel_auto.py:33
+#, fuzzy
+#| msgid "Ошибка метода"
+msgctxt "mining"
+msgid "Ошибка при отмене"
+msgstr "Es ist ein Fehler beim Abbrechen der Fähigkeit aufgetreten"
+
+#: region/views/do_mining.py:32 region/views/do_mining.py:45
+#: region/views/do_mining.py:55 region/views/do_mining.py:68
+#: region/views/do_mining.py:77 region/views/do_mining.py:86
+#: region/views/do_mining.py:102 region/views/do_mining.py:122
+#: region/views/do_mining.py:158 region/views/do_mining.py:215
+#, fuzzy
+#| msgid "Некорректный запрос"
+msgctxt "mining"
+msgid "Ошибка добычи ресурсов"
+msgstr "Ungültige Anfrage"
+
+#: region/views/do_mining.py:44 region/views/start_auto.py:56
+#, fuzzy
+#| msgctxt "no_storage"
+#| msgid "склад в регионе"
+msgctxt "mining"
+msgid "У вас нет склада в этом регионе"
+msgstr "Lagerhaus in der Region"
+
+#: region/views/do_mining.py:57
+#, fuzzy
+#| msgid "Пополнение энергии не требуется"
+msgctxt "mining"
+msgid "Количество энергии - не число"
+msgstr "Energie muss noch nicht nachgefüllt werden."
+
+#: region/views/do_mining.py:67
+msgctxt "mining"
+msgid "Количество Энергии должно быть положительным"
+msgstr ""
+
+#: region/views/do_mining.py:76
+msgctxt "mining"
+msgid "Количество Энергии должно быть кратно десяти"
+msgstr ""
+
+#: region/views/do_mining.py:85
+#, fuzzy
+#| msgid "Пополнение энергии"
+msgctxt "mining"
+msgid "Недостаточно энергии"
+msgstr "Auffüllen der Energie"
+
+#: region/views/do_mining.py:101
+msgctxt "mining"
+msgid "Запасов золота в регионе недостаточно для добычи"
+msgstr ""
+
+#: region/views/do_mining.py:121
+msgctxt "mining"
+msgid "Запасов нефти в регионе недостаточно для добычи"
+msgstr ""
+
+#: region/views/do_mining.py:157
+msgctxt "mining"
+msgid "Запасов руды в регионе недостаточно для добычи"
+msgstr ""
+
+#: region/views/do_mining.py:217
+#, fuzzy
+#| msgid "Ошибка метода"
+msgctxt "mining"
+msgid "Ошибка метода"
+msgstr "Es ist ein Fehler beim Abbrechen der Fähigkeit aufgetreten"
 
 #: region/views/lists/world_regions.py:116
 msgid "Регионы игры"
@@ -807,6 +1053,27 @@ msgstr "Ungültige Anfrage"
 #: region/views/mining.py:89
 msgid "Добыча"
 msgstr "Arbeit"
+
+#: region/views/start_auto.py:27 region/views/start_auto.py:35
+#: region/views/start_auto.py:48 region/views/start_auto.py:57
+#: region/views/start_auto.py:79
+#, fuzzy
+#| msgid "Некорректный запрос"
+msgctxt "mining"
+msgid "Ошибка автоматической добычи ресурсов"
+msgstr "Ungültige Anfrage"
+
+#: region/views/start_auto.py:34
+msgctxt "mining"
+msgid "Премиум-аккаунт не активен. Продлите его"
+msgstr ""
+
+#: region/views/start_auto.py:47
+#, fuzzy
+#| msgid "Некорректный запрос"
+msgctxt "mining"
+msgid "Неизвестный тип ресурса"
+msgstr "Ungültige Anfrage"
 
 #: skill/views/skill_cancel.py:34
 msgid "ID навыка должен быть числом"
@@ -942,15 +1209,15 @@ msgstr "Infanterie"
 msgid "drone"
 msgstr "Drohne"
 
-#: state/templates/state/state_view.html:35
+#: state/templates/state/state_view.html:40
 msgid "Donate"
 msgstr "Spenden"
 
-#: state/templates/state/state_view.html:89
+#: state/templates/state/state_view.html:106
 msgid "Столица"
 msgstr "Hauptstadt"
 
-#: state/templates/state/state_view.html:119
+#: state/templates/state/state_view.html:136
 msgid "Государственные налоги"
 msgstr "Staatliche Steuern"
 
@@ -995,183 +1262,131 @@ msgid "БПЛА"
 msgstr "UAV"
 
 #: storage/models/storage.py:30
-#, fuzzy
-#| msgid "Минералы"
 msgctxt "goods"
 msgid "Минералы"
 msgstr "Mineralien"
 
 #: storage/models/storage.py:31
-#, fuzzy
-#| msgid "Нефть"
 msgctxt "goods"
 msgid "Нефть"
 msgstr "Öl"
 
 #: storage/models/storage.py:32
-#, fuzzy
-#| msgid "Материалы"
 msgctxt "goods"
 msgid "Материалы"
 msgstr "Materialien"
 
 #: storage/models/storage.py:33
-#, fuzzy
-#| msgid "Оборудование"
 msgctxt "goods"
 msgid "Оборудование"
 msgstr "Ausrüstung"
 
 #: storage/models/storage.py:34
-#, fuzzy
-#| msgid "Оружие"
 msgctxt "goods"
 msgid "Оружие"
 msgstr "Waffen"
 
 #: storage/models/storage.py:38
-#, fuzzy
-#| msgid "Наличные"
 msgctxt "goods"
 msgid "Наличные"
 msgstr "Geld"
 
 #: storage/models/storage.py:43
-#, fuzzy
-#| msgid "Уголь"
 msgctxt "goods"
 msgid "Уголь"
 msgstr "Kohle"
 
 #: storage/models/storage.py:45
-#, fuzzy
-#| msgid "Железо"
 msgctxt "goods"
 msgid "Железо"
 msgstr "Eisen"
 
 #: storage/models/storage.py:47
-#, fuzzy
-#| msgid "Бокситы"
 msgctxt "goods"
 msgid "Бокситы"
 msgstr "Bauxit"
 
 #: storage/models/storage.py:51
-#, fuzzy
-#| msgid "Нефть WTI"
 msgctxt "goods"
 msgid "Нефть WTI"
 msgstr "WTI-Öl"
 
 #: storage/models/storage.py:53
-#, fuzzy
-#| msgid "Нефть Brent"
 msgctxt "goods"
 msgid "Нефть Brent"
 msgstr "Brent-Öl"
 
 #: storage/models/storage.py:55
-#, fuzzy
-#| msgid "Нефть Urals"
 msgctxt "goods"
 msgid "Нефть Urals"
 msgstr "Ural-Öl"
 
 #: storage/models/storage.py:59
-#, fuzzy
-#| msgid "Бензин"
 msgctxt "goods"
 msgid "Бензин"
-msgstr "Kraftstoff"
+msgstr "Benzin"
 
 #: storage/models/storage.py:61
-#, fuzzy
-#| msgid "Дизельное топливо"
 msgctxt "goods"
 msgid "Дизельное топливо"
-msgstr "Dieseltreibtstoff"
+msgstr "Diesel"
 
 #: storage/models/storage.py:63
-#, fuzzy
-#| msgid "Пластик"
 msgctxt "goods"
 msgid "Пластик"
 msgstr "Plastik"
 
 #: storage/models/storage.py:65
-#, fuzzy
-#| msgid "Сталь"
 msgctxt "goods"
 msgid "Сталь"
 msgstr "Stahl"
 
 #: storage/models/storage.py:67
-#, fuzzy
-#| msgid "Алюминий"
 msgctxt "goods"
 msgid "Алюминий"
 msgstr "Aluminium"
 
 #: storage/models/storage.py:71
-#, fuzzy
-#| msgid "Койки"
 msgctxt "goods"
 msgid "Койки"
 msgstr "Barracken"
 
 #: storage/models/storage.py:75
-#, fuzzy
-#| msgid "Автоматы"
 msgctxt "goods"
 msgid "Автоматы"
 msgstr "Automaten"
 
 #: storage/models/storage.py:77
-#, fuzzy
-#| msgid "Танки"
 msgctxt "goods"
 msgid "Танки"
 msgstr "Panzer"
 
 #: storage/models/storage.py:78
-#, fuzzy
-#| msgid "ПТ-орудия"
 msgctxt "goods"
 msgid "ПТ-орудия"
-msgstr "PT-Kanonen"
+msgstr "PZ-Kanone"
 
 #: storage/models/storage.py:79
-#, fuzzy
-#| msgid "Орбитальные орудия"
 msgctxt "goods"
 msgid "Орбитальные орудия"
-msgstr "Orbitalkanonen"
+msgstr "Orbitalrakete"
 
 #: storage/models/storage.py:81
-#, fuzzy
-#| msgid "Штурмовики"
 msgctxt "goods"
 msgid "Штурмовики"
 msgstr "Infanterie"
 
 #: storage/models/storage.py:82
-#, fuzzy
-#| msgid "ПЗРК"
 msgctxt "goods"
 msgid "ПЗРК"
 msgstr "MANPADS"
 
 #: storage/models/storage.py:84
-#, fuzzy
-#| msgid "БМП"
 msgctxt "goods"
 msgid "БМП"
 msgstr "BMP"
 
 #: storage/models/storage.py:86
-#, fuzzy
-#| msgid "БПЛА"
 msgctxt "goods"
 msgid "БПЛА"
 msgstr "UAV"
@@ -1366,99 +1581,75 @@ msgid "Дроны - кубов"
 msgstr ""
 
 #: storage/templates/storage/redesign/storage.html:11
-#, fuzzy
-#| msgid "Склад"
 msgctxt "storage"
 msgid "Склад"
 msgstr "Lagerhaus"
 
 #: storage/templates/storage/redesign/storage.html:78
-#, fuzzy
-#| msgctxt "menu"
-#| msgid "склад"
 msgctxt "storage"
 msgid "склад"
-msgstr "Lagerhaus"
+msgstr "Lagerbestand"
 
 #: storage/templates/storage/redesign/storage.html:92
-#, fuzzy
-#| msgid "сохранить"
 msgctxt "storage"
 msgid "хранилище"
-msgstr "speichern"
+msgstr "Speicherort"
 
 #: storage/templates/storage/redesign/storage.html:107
-#, fuzzy
-#| msgctxt "profile"
-#| msgid "характеристики"
 msgctxt "storage_assets"
 msgid "энергетики"
-msgstr "Fähigkeiten"
+msgstr "Energie"
 
 #: storage/templates/storage/redesign/storage.html:114
 #: storage/templates/storage/redesign/storage.html:134
-#, fuzzy
-#| msgid "Передать"
 msgctxt "storage_assets"
 msgid "создать"
-msgstr "Übertragen"
+msgstr "aufbauen"
 
 #: storage/templates/storage/redesign/storage.html:118
-#, fuzzy
-#| msgid "Выносливость"
 msgctxt "storage_assets"
 msgid "стоимость"
-msgstr "Ausdauer"
+msgstr "Kosten"
 
 #: storage/templates/storage/redesign/storage.html:146
-#, fuzzy
-#| msgctxt "menu"
-#| msgid "правительство"
 msgctxt "storage_assets"
 msgid "Количество"
-msgstr "Regierung"
+msgstr "Anzahl"
 
 #: storage/templates/storage/redesign/storage.html:159
 msgctxt "storage_assets"
 msgid "использовать"
-msgstr ""
+msgstr "verwenden"
 
 #: storage/templates/storage/redesign/storage.html:178
 #: storage/templates/storage/redesign/storage.html:468
-#, fuzzy
-#| msgid "В этом регионе нет Склада"
 msgctxt "storage_transfer"
 msgid "Перемещение Склада"
-msgstr "Es gibt kein Lagerhaus in dieser Region"
+msgstr "Verlagerung des Lagers"
 
 #: storage/templates/storage/redesign/storage.html:179
 msgctxt "storage_transfer"
 msgid "Вы можете перенести Склад в регион текущего местоположения (один раз)"
 msgstr ""
+"Sie können das Lager in die Region des aktuellen Standorts verschieben "
+"(einmalig)"
 
 #: storage/templates/storage/redesign/storage.html:192
 msgctxt "storage_transfer"
 msgid "перенести"
-msgstr ""
+msgstr "bewegen"
 
 #: storage/templates/storage/redesign/storage.html:454
-#, fuzzy
-#| msgid "Продолжить"
 msgctxt "storage_assets"
 msgid "Продление"
-msgstr "weiter"
+msgstr "Erneuern"
 
 #: storage/templates/storage/redesign/storage.html:454
-#, fuzzy
-#| msgid "Активы"
 msgctxt "storage_assets"
 msgid "Активация"
-msgstr "Lagerbestand"
+msgstr "aktivieren"
 
 #: storage/templates/storage/redesign/storage.html:454
-#, fuzzy
-#| msgctxt "profile"
-#| msgid "премиум-аккаунт"
 msgctxt "storage_assets"
 msgid "премиум-аккаунта"
 msgstr "Premium Status"
@@ -1469,6 +1660,8 @@ msgid ""
 "Ваш премиум-аккаунт будет продлён на один месяц. Данную операцию невозможно "
 "отменить. Продолжить?"
 msgstr ""
+"Ihr Premium wird um einen Monat verlängert. Der Vorgang kann nicht "
+"abgebrochen werden. Soll ich fortfahren?"
 
 #: storage/templates/storage/redesign/storage.html:459
 msgctxt "storage_assets"
@@ -1476,17 +1669,15 @@ msgid ""
 "Вы активируете премиум-аккаунт, длительностью один месяц. Данную операцию "
 "невозможно отменить. Продолжить?"
 msgstr ""
+"Sie aktivieren 1 Monat Premium. Der Vorgang kann nicht abgebrochen werden. "
+"Soll ich fortfahren?"
 
 #: storage/templates/storage/redesign/storage.html:462
-#, fuzzy
-#| msgid "Продолжить"
 msgctxt "storage_assets"
 msgid "Продолжить"
 msgstr "weiter"
 
 #: storage/templates/storage/redesign/storage.html:463
-#, fuzzy
-#| msgid "Отмена"
 msgctxt "storage_assets"
 msgid "Отмена"
 msgstr "abbrechen"
@@ -1494,23 +1685,19 @@ msgstr "abbrechen"
 #: storage/templates/storage/redesign/storage.html:469
 msgctxt "storage_transfer"
 msgid "Склад будет перемещен в регион вашего местонахождения"
-msgstr ""
+msgstr "Das Lager wird in die Region verlegt, in der Sie sich befinden"
 
 #: storage/templates/storage/redesign/storage.html:469
 msgctxt "storage_transfer"
 msgid "Больше этот Склад переместить не получится. Продолжить?"
-msgstr ""
+msgstr "Sie können das Lagerhaus nicht mehr bewegen. Soll ich fortfahren?"
 
 #: storage/templates/storage/redesign/storage.html:470
-#, fuzzy
-#| msgid "Продолжить"
 msgctxt "storage_transfer"
 msgid "Продолжить"
 msgstr "weiter"
 
 #: storage/templates/storage/redesign/storage.html:471
-#, fuzzy
-#| msgid "Отмена"
 msgctxt "storage_transfer"
 msgid "Отмена"
 msgstr "abbrechen"
@@ -1518,11 +1705,9 @@ msgstr "abbrechen"
 #: storage/templates/storage/redesign/storage_blocks/has_storage.html:26
 msgctxt "has_storage"
 msgid "счёт"
-msgstr ""
+msgstr "Konto"
 
 #: storage/templates/storage/redesign/storage_blocks/has_storage.html:33
-#, fuzzy
-#| msgid "Наличные"
 msgctxt "has_storage"
 msgid "наличные"
 msgstr "Geld"
@@ -1530,30 +1715,24 @@ msgstr "Geld"
 #: storage/templates/storage/redesign/storage_blocks/has_storage.html:38
 msgctxt "has_storage"
 msgid "всего денег"
-msgstr ""
+msgstr "das gesamte Geld"
 
 #: storage/templates/storage/redesign/storage_blocks/no_storage.html:7
-#, fuzzy
-#| msgid "Население региона"
 msgctxt "no_storage"
 msgid "склад в регионе"
-msgstr "Einwohner in der Region"
+msgstr "Lagerhaus in der Region"
 
 #: storage/templates/storage/redesign/storage_blocks/no_storage.html:9
-#, fuzzy
-#| msgid "должность в партии"
 msgctxt "no_storage"
 msgid "Стоимость создания"
-msgstr "Position in der Partei"
+msgstr "Erstellungskosten"
 
 #: storage/templates/storage/redesign/storage_blocks/no_storage.html:10
 msgctxt "no_storage"
 msgid "стали"
-msgstr ""
+msgstr "Stahl"
 
 #: storage/templates/storage/redesign/storage_blocks/no_storage.html:10
-#, fuzzy
-#| msgid "Алюминий"
 msgctxt "no_storage"
 msgid "алюминия"
 msgstr "Aluminium"
@@ -1561,32 +1740,27 @@ msgstr "Aluminium"
 #: storage/templates/storage/redesign/storage_blocks/no_storage.html:11
 msgctxt "no_storage"
 msgid "доставка оплачивается отдельно"
-msgstr ""
+msgstr "Die Versandkosten sind separat zu zahlen."
 
 #: storage/templates/storage/redesign/storage_blocks/no_storage.html:16
 msgctxt "no_storage"
 msgid "выберите склад списания материалов"
-msgstr ""
+msgstr "ein Depot für abzuschreibende Materialien auswählen"
 
 #: storage/templates/storage/redesign/storage_blocks/no_storage.html:22
 msgctxt "no_storage"
 msgid "нехватка материалов!"
-msgstr ""
+msgstr "Mangel an Materialien!"
 
 #: storage/templates/storage/redesign/storage_blocks/no_storage.html:22
-#, fuzzy
-#| msgctxt "skills"
-#| msgid "недоступно"
 msgctxt "no_storage"
 msgid "доставка"
-msgstr "nicht verfügbar"
+msgstr "Zustellung"
 
 #: storage/templates/storage/redesign/storage_blocks/no_storage.html:44
-#, fuzzy
-#| msgid "Передать"
 msgctxt "no_storage"
 msgid "создать"
-msgstr "Übertragen"
+msgstr "aufstellen"
 
 #: storage/templates/storage/storage_lines/cash_transfer.html:9
 msgid "Наличные"

@@ -2,10 +2,6 @@ jQuery(document).ready(function ($) {
     $('.mining_form').submit(function(e){
         e.preventDefault();
 
-//        $(this).find('.btn').html('<img src="/static/img/clock.png"; width=100%; height=100% />');
-        btn = $(this).find('.btn')
-        btn.html(var_mining_process);
-
         $(".btn-mining").each(function() {
             $(this).prop( "disabled", true );
         });
@@ -29,7 +25,6 @@ jQuery(document).ready(function ($) {
                 $(".btn-mining").each(function() {
                     $(this).prop( "disabled", false );
                 });
-                btn.html(var_mining_default);
             }
         });
     });

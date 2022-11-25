@@ -12,6 +12,7 @@ from storage.models.storage import Storage
 from storage.views.storage.locks.get_storage import get_storage
 from wild_politics.settings import JResponse
 from skill.models.excavation import Excavation
+from django.utils.translation import pgettext
 
 
 # выкопать ресурсы по запросу игрока
@@ -26,10 +27,10 @@ def do_mining(request):
 
         if player.destination:
             data = {
-                # 'response': _('wait_flight_end'),
-                'response': 'Дождитесь конца полёта',
-                'header': 'Ошибка добычи ресурсов',
-                'grey_btn': 'Закрыть',
+                # 'response': pgettext('wait_flight_end'),
+                'response': pgettext('mining', 'Дождитесь конца полёта'),
+                'header': pgettext('mining', 'Ошибка добычи ресурсов'),
+                'grey_btn': pgettext('mining', 'Закрыть'),
             }
             # return JResponse(data)
             return JResponse(data)
@@ -40,9 +41,9 @@ def do_mining(request):
         if not Storage.actual.filter(owner=player, region=player.region).exists() \
                 and resource != 'gold':
             data = {
-                'response': 'У вас нет склада в этом регионе',
-                'header': 'Ошибка добычи ресурсов',
-                'grey_btn': 'Закрыть',
+                'response': pgettext('mining', 'У вас нет склада в этом регионе'),
+                'header': pgettext('mining', 'Ошибка добычи ресурсов'),
+                'grey_btn': pgettext('mining', 'Закрыть'),
             }
             return JResponse(data)
 
@@ -51,9 +52,9 @@ def do_mining(request):
 
         if not count.isdigit():
             data = {
-                'header': 'Ошибка при создании',
-                'grey_btn': 'Закрыть',
-                'response': 'Количество энергии - не число',
+                'header': pgettext('mining', 'Ошибка добычи ресурсов'),
+                'grey_btn': pgettext('mining', 'Закрыть'),
+                'response': pgettext('mining', 'Количество энергии - не число'),
             }
             return JResponse(data)
 
@@ -62,28 +63,28 @@ def do_mining(request):
         # Количество Энергии должно быть положительным
         if count <= 0:
             data = {
-                # 'response': _('positive_enrg_req'),
-                'response': 'Количество Энергии должно быть положительным',
-                'header': 'Ошибка добычи ресурсов',
-                'grey_btn': 'Закрыть',
+                # 'response': pgettext('positive_enrg_req'),
+                'response': pgettext('mining', 'Количество Энергии должно быть положительным'),
+                'header': pgettext('mining', 'Ошибка добычи ресурсов'),
+                'grey_btn': pgettext('mining', 'Закрыть'),
             }
             return JResponse(data)
         # Количество Энергии должно быть кратно десяти
         if count % 10 != 0:
             data = {
-                # 'response': _('mul_ten_enrg_req'),
-                'response': 'Количество Энергии должно быть кратно десяти',
-                'header': 'Ошибка добычи ресурсов',
-                'grey_btn': 'Закрыть',
+                # 'response': pgettext('mul_ten_enrg_req'),
+                'response': pgettext('mining', 'Количество Энергии должно быть кратно десяти'),
+                'header': pgettext('mining', 'Ошибка добычи ресурсов'),
+                'grey_btn': pgettext('mining', 'Закрыть'),
             }
             return JResponse(data)
 
         if count > player.energy:
             data = {
-                # 'response': _('mul_ten_enrg_req'),
-                'response': 'Недостаточно энергии',
-                'header': 'Ошибка добычи ресурсов',
-                'grey_btn': 'Закрыть',
+                # 'response': pgettext('mul_ten_enrg_req'),
+                'response': pgettext('mining', 'Недостаточно энергии'),
+                'header': pgettext('mining', 'Ошибка добычи ресурсов'),
+                'grey_btn': pgettext('mining', 'Закрыть'),
             }
             return JResponse(data)
 
@@ -96,10 +97,10 @@ def do_mining(request):
             # если запасов ресурса недостаточно
             if player.region.gold_has < Decimal((count / 10) * 0.01):
                 data = {
-                    # 'response': _('mul_ten_enrg_req'),
-                    'response': 'Запасов золота в регионе недостаточно для добычи',
-                    'header': 'Ошибка добычи ресурсов',
-                    'grey_btn': 'Закрыть',
+                    # 'response': pgettext('mul_ten_enrg_req'),
+                    'response': pgettext('mining', 'Запасов золота в регионе недостаточно для добычи'),
+                    'header': pgettext('mining', 'Ошибка добычи ресурсов'),
+                    'grey_btn': pgettext('mining', 'Закрыть'),
                 }
                 return JResponse(data)
 
@@ -116,10 +117,10 @@ def do_mining(request):
             # если запасов ресурса недостаточно
             if int(player.region.oil_has * 100) < count / 10:
                 data = {
-                    # 'response': _('mul_ten_enrg_req'),
-                    'response': 'Запасов нефти в регионе недостаточно для добычи',
-                    'header': 'Ошибка добычи ресурсов',
-                    'grey_btn': 'Закрыть',
+                    # 'response': pgettext('mul_ten_enrg_req'),
+                    'response': pgettext('mining', 'Запасов нефти в регионе недостаточно для добычи'),
+                    'header': pgettext('mining', 'Ошибка добычи ресурсов'),
+                    'grey_btn': pgettext('mining', 'Закрыть'),
                 }
                 return JResponse(data)
             # получаем запасы склада, с учетом блокировок
@@ -152,10 +153,10 @@ def do_mining(request):
             # если запасов ресурса недостаточноы
             if int(player.region.ore_has * 100) < count / 10:
                 data = {
-                    # 'response': _('mul_ten_enrg_req'),
-                    'response': 'Запасов руды в регионе недостаточно для добычи',
-                    'header': 'Ошибка добычи ресурсов',
-                    'grey_btn': 'Закрыть',
+                    # 'response': pgettext('mul_ten_enrg_req'),
+                    'response': pgettext('mining', 'Запасов руды в регионе недостаточно для добычи'),
+                    'header': pgettext('mining', 'Ошибка добычи ресурсов'),
+                    'grey_btn': pgettext('mining', 'Закрыть'),
                 }
                 return JResponse(data)
             goods = []
@@ -211,8 +212,8 @@ def do_mining(request):
 
     else:
         data = {
-            'header': 'Ошибка при создании',
-            'grey_btn': 'Закрыть',
-            'response': 'Ты уверен что тебе сюда, путник?',
+            'header': pgettext('mining', 'Ошибка добычи ресурсов'),
+            'grey_btn': pgettext('mining', 'Закрыть'),
+            'response': pgettext('mining', 'Ошибка метода'),
         }
         return JResponse(data)

@@ -9,6 +9,8 @@ from player.decorators.player import check_player
 from player.logs.cash_log import CashLog
 from player.player import Player
 from wild_politics.settings import JResponse
+from django.utils.translation import ugettext
+from django.utils.translation import pgettext
 
 
 # получение денег с дейлика
@@ -35,8 +37,8 @@ def retrieve_cash(request):
 
     else:
         data = {
-            'header': 'Ошибка получения финансирования',
-            'grey_btn': 'Закрыть',
-            'response': 'Ты уверен что тебе сюда, путник?',
+            'header': pgettext('mining', 'Ошибка получения финансирования'),
+            'grey_btn': pgettext('mining', 'Закрыть'),
+            'response': ugettext('Ошибка метода'),
         }
         return JResponse(data)

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-19 19:28+0300\n"
+"POT-Creation-Date: 2022-11-25 17:30+0300\n"
 "PO-Revision-Date: 2022-10-31 18:40+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -70,6 +70,39 @@ msgstr "Партыі сусьвету"
 #: party/views/party.py:16
 msgid "Партия"
 msgstr "Партыя"
+
+#: player/player.py:252 region/views/do_mining.py:31
+#: region/views/start_auto.py:26
+msgctxt "mining"
+msgid "Дождитесь конца полёта"
+msgstr ""
+
+#: player/player.py:253 player/player.py:275 region/views/retrieve_cash.py:40
+#, fuzzy
+#| msgid "Некорректный запрос"
+msgctxt "mining"
+msgid "Ошибка получения финансирования"
+msgstr "Некарэктны запрос"
+
+#: player/player.py:254 player/player.py:276 region/views/cancel_auto.py:34
+#: region/views/do_mining.py:33 region/views/do_mining.py:46
+#: region/views/do_mining.py:56 region/views/do_mining.py:69
+#: region/views/do_mining.py:78 region/views/do_mining.py:87
+#: region/views/do_mining.py:103 region/views/do_mining.py:123
+#: region/views/do_mining.py:159 region/views/do_mining.py:216
+#: region/views/retrieve_cash.py:41 region/views/start_auto.py:28
+#: region/views/start_auto.py:36 region/views/start_auto.py:49
+#: region/views/start_auto.py:58 region/views/start_auto.py:80
+#, fuzzy
+#| msgid "Закрыть"
+msgctxt "mining"
+msgid "Закрыть"
+msgstr "Закрыць"
+
+#: player/player.py:274
+msgctxt "mining"
+msgid "Нечего забирать"
+msgstr ""
 
 #: player/templates/player/profile.html:146
 msgid "player_info"
@@ -614,6 +647,8 @@ msgstr "Закрыць"
 
 #: player/views/change_back_allow.py:57 player/views/full_auto_allow.py:57
 #: player/views/set_language.py:54 player/views/set_timezone.py:43
+#: region/views/cancel_auto.py:35 region/views/retrieve_cash.py:42
+#: region/views/start_auto.py:81
 msgid "Ошибка метода"
 msgstr "Памылка мэтаду"
 
@@ -694,6 +729,21 @@ msgstr "Зьмяніць часавы пас"
 msgid "Навыки"
 msgstr "Навыкі"
 
+#: region/region.py:89
+msgctxt "goods"
+msgid "WTI"
+msgstr ""
+
+#: region/region.py:90
+msgctxt "goods"
+msgid "Brent"
+msgstr ""
+
+#: region/region.py:91
+msgctxt "goods"
+msgid "Urals"
+msgstr ""
+
 #: region/templates/region/buildings/defences.html:5
 msgid "Уровень Укреплений"
 msgstr "Узровень Узмацаваньняў"
@@ -709,6 +759,130 @@ msgstr "Рэйтынг Шпіталю"
 #: region/templates/region/buildings/power_plant.html:5
 msgid "Уровень ТЭЦ"
 msgstr "Узровень ЦЭС"
+
+#: region/templates/region/redesign/mining.html:9
+#, fuzzy
+#| msgid "Добыча"
+msgctxt "mining"
+msgid "Добыча"
+msgstr "Здабыча"
+
+#: region/templates/region/redesign/mining.html:11
+msgctxt "daily_header"
+msgid "Потрать энергию и получи"
+msgstr ""
+
+#: region/templates/region/redesign/mining.html:12
+#, fuzzy
+#| msgctxt "profile"
+#| msgid "до"
+msgctxt "daily_header"
+msgid "до"
+msgstr "да"
+
+#: region/templates/region/redesign/mining.html:12
+msgctxt "daily_header"
+msgid "за день!"
+msgstr ""
+
+#: region/templates/region/redesign/mining.html:15
+#, fuzzy
+#| msgctxt "profile"
+#| msgid "характеристики"
+msgctxt "daily_header"
+msgid "энергии потрачено"
+msgstr "характэрыстыкі"
+
+#: region/templates/region/redesign/mining.html:25
+#: region/templates/region/redesign/mining.html:58
+#: region/templates/region/redesign/mining.html:84
+#: region/templates/region/redesign/mining.html:110
+msgctxt "daily_header"
+msgid "в полете"
+msgstr ""
+
+#: region/templates/region/redesign/mining.html:27
+#, fuzzy
+#| msgctxt "repost"
+#| msgid "Получить"
+msgctxt "daily_header"
+msgid "получаем"
+msgstr "Атрымаць"
+
+#: region/templates/region/redesign/mining.html:28
+#, fuzzy
+#| msgctxt "repost"
+#| msgid "Получить"
+msgctxt "daily_header"
+msgid "получить"
+msgstr "Атрымаць"
+
+#: region/templates/region/redesign/mining.html:46
+msgctxt "daily_header"
+msgid "уже получено"
+msgstr ""
+
+#: region/templates/region/redesign/mining.html:50
+#, fuzzy
+#| msgid "Золото"
+msgctxt "mining"
+msgid "Золото"
+msgstr "Золата"
+
+#: region/templates/region/redesign/mining.html:51
+#: region/templates/region/redesign/mining.html:77
+#: region/templates/region/redesign/mining.html:103
+#, fuzzy
+#| msgid "Запасы руд"
+msgctxt "mining"
+msgid "Запасы"
+msgstr "Прыпас рудаў"
+
+#: region/templates/region/redesign/mining.html:61
+#: region/templates/region/redesign/mining.html:87
+#: region/templates/region/redesign/mining.html:113
+msgctxt "mining"
+msgid "авто"
+msgstr ""
+
+#: region/templates/region/redesign/mining.html:70
+#: region/templates/region/redesign/mining.html:96
+#: region/templates/region/redesign/mining.html:122
+#, fuzzy
+#| msgctxt "menu"
+#| msgid "добыча"
+msgctxt "mining"
+msgid "добыча"
+msgstr "здабыча"
+
+#: region/templates/region/redesign/mining.html:76
+#, fuzzy
+#| msgid "Нефть"
+msgctxt "mining"
+msgid "Нефть"
+msgstr "Нафта"
+
+#: region/templates/region/redesign/mining.html:78
+#, fuzzy
+#| msgid "Марка нефти"
+msgctxt "mining"
+msgid "Марка нефти"
+msgstr "Марка нафты"
+
+#: region/templates/region/redesign/mining.html:102
+#, fuzzy
+#| msgid "Руда"
+msgctxt "mining"
+msgid "Руда"
+msgstr "Руда"
+
+#: region/templates/region/redesign/mining.html:104
+#, fuzzy
+#| msgctxt "menu"
+#| msgid "правительство"
+msgctxt "mining"
+msgid "Качество руды"
+msgstr "урад"
 
 #: region/templates/region/region_info.html:39
 msgid "Вы летите в"
@@ -773,19 +947,90 @@ msgid "Региональные налоги"
 msgstr "Рэгіянальныя падаткі"
 
 #: region/templates/region/region_view.html:201
-#: state/templates/state/state_view.html:126
+#: state/templates/state/state_view.html:143
 msgid "На финансирование"
 msgstr "На фінансаваньне"
 
 #: region/templates/region/region_view.html:213
-#: state/templates/state/state_view.html:138
+#: state/templates/state/state_view.html:155
 msgid "На добычу"
 msgstr "На здабычу"
 
 #: region/templates/region/region_view.html:227
-#: state/templates/state/state_view.html:152
+#: state/templates/state/state_view.html:169
 msgid "На торговлю"
 msgstr "На гандаль"
+
+#: region/views/cancel_auto.py:33
+#, fuzzy
+#| msgid "Ошибка метода"
+msgctxt "mining"
+msgid "Ошибка при отмене"
+msgstr "Памылка мэтаду"
+
+#: region/views/do_mining.py:32 region/views/do_mining.py:45
+#: region/views/do_mining.py:55 region/views/do_mining.py:68
+#: region/views/do_mining.py:77 region/views/do_mining.py:86
+#: region/views/do_mining.py:102 region/views/do_mining.py:122
+#: region/views/do_mining.py:158 region/views/do_mining.py:215
+#, fuzzy
+#| msgid "Некорректный запрос"
+msgctxt "mining"
+msgid "Ошибка добычи ресурсов"
+msgstr "Некарэктны запрос"
+
+#: region/views/do_mining.py:44 region/views/start_auto.py:56
+#, fuzzy
+#| msgid "Население региона"
+msgctxt "mining"
+msgid "У вас нет склада в этом регионе"
+msgstr "Насельніцтва рэгіёну"
+
+#: region/views/do_mining.py:57
+#, fuzzy
+#| msgid "Пополнение энергии не требуется"
+msgctxt "mining"
+msgid "Количество энергии - не число"
+msgstr "Папаўненьне энэргіі не патрабуецца"
+
+#: region/views/do_mining.py:67
+msgctxt "mining"
+msgid "Количество Энергии должно быть положительным"
+msgstr ""
+
+#: region/views/do_mining.py:76
+msgctxt "mining"
+msgid "Количество Энергии должно быть кратно десяти"
+msgstr ""
+
+#: region/views/do_mining.py:85
+#, fuzzy
+#| msgid "Пополнение энергии"
+msgctxt "mining"
+msgid "Недостаточно энергии"
+msgstr "Папаўненьне энэргіі"
+
+#: region/views/do_mining.py:101
+msgctxt "mining"
+msgid "Запасов золота в регионе недостаточно для добычи"
+msgstr ""
+
+#: region/views/do_mining.py:121
+msgctxt "mining"
+msgid "Запасов нефти в регионе недостаточно для добычи"
+msgstr ""
+
+#: region/views/do_mining.py:157
+msgctxt "mining"
+msgid "Запасов руды в регионе недостаточно для добычи"
+msgstr ""
+
+#: region/views/do_mining.py:217
+#, fuzzy
+#| msgid "Ошибка метода"
+msgctxt "mining"
+msgid "Ошибка метода"
+msgstr "Памылка мэтаду"
 
 #: region/views/lists/world_regions.py:116
 msgid "Регионы игры"
@@ -806,6 +1051,27 @@ msgstr "Некарэктны запрос"
 #: region/views/mining.py:89
 msgid "Добыча"
 msgstr "Здабыча"
+
+#: region/views/start_auto.py:27 region/views/start_auto.py:35
+#: region/views/start_auto.py:48 region/views/start_auto.py:57
+#: region/views/start_auto.py:79
+#, fuzzy
+#| msgid "Некорректный запрос"
+msgctxt "mining"
+msgid "Ошибка автоматической добычи ресурсов"
+msgstr "Некарэктны запрос"
+
+#: region/views/start_auto.py:34
+msgctxt "mining"
+msgid "Премиум-аккаунт не активен. Продлите его"
+msgstr ""
+
+#: region/views/start_auto.py:47
+#, fuzzy
+#| msgid "Некорректный запрос"
+msgctxt "mining"
+msgid "Неизвестный тип ресурса"
+msgstr "Некарэктны запрос"
 
 #: skill/views/skill_cancel.py:34
 msgid "ID навыка должен быть числом"
@@ -941,15 +1207,15 @@ msgstr ""
 msgid "drone"
 msgstr ""
 
-#: state/templates/state/state_view.html:35
+#: state/templates/state/state_view.html:40
 msgid "Donate"
 msgstr ""
 
-#: state/templates/state/state_view.html:89
+#: state/templates/state/state_view.html:106
 msgid "Столица"
 msgstr "Сталіца"
 
-#: state/templates/state/state_view.html:119
+#: state/templates/state/state_view.html:136
 msgid "Государственные налоги"
 msgstr "Дзяржаўныя падаткі"
 

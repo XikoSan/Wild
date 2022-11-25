@@ -8,6 +8,8 @@ from player.logs.auto_mining import AutoMining
 from player.player import Player
 from storage.models.storage import Storage
 from wild_politics.settings import JResponse
+from django.utils.translation import ugettext
+from django.utils.translation import pgettext
 
 
 # выкопать ресурсы по запросу игрока
@@ -21,19 +23,17 @@ def start_auto(request):
 
         if player.destination:
             data = {
-                # 'response': _('wait_flight_end'),
-                'response': 'Дождитесь конца полёта',
-                'header': 'Ошибка автоматической добычи ресурсов',
-                'grey_btn': 'Закрыть',
+                'response': pgettext('mining', 'Дождитесь конца полёта'),
+                'header': pgettext('mining', 'Ошибка автоматической добычи ресурсов'),
+                'grey_btn': pgettext('mining', 'Закрыть'),
             }
             return JResponse(data)
 
         if player.premium < timezone.now():
             data = {
-                # 'response': _('wait_flight_end'),
-                'response': 'Премиум-аккаунт не активен. Продлите его',
-                'header': 'Ошибка автоматической добычи ресурсов',
-                'grey_btn': 'Закрыть',
+                'response': pgettext('mining', 'Премиум-аккаунт не активен. Продлите его'),
+                'header': pgettext('mining', 'Ошибка автоматической добычи ресурсов'),
+                'grey_btn': pgettext('mining', 'Закрыть'),
             }
             return JResponse(data)
 
@@ -44,20 +44,18 @@ def start_auto(request):
 
         if not resource in ['gold', 'oil', 'ore']:
             data = {
-                # 'response': _('wait_flight_end'),
-                'response': 'Неизвестный тип ресурса',
-                'header': 'Ошибка автоматической добычи ресурсов',
-                'grey_btn': 'Закрыть',
+                'response': pgettext('mining', 'Неизвестный тип ресурса'),
+                'header': pgettext('mining', 'Ошибка автоматической добычи ресурсов'),
+                'grey_btn': pgettext('mining', 'Закрыть'),
             }
             return JResponse(data)
 
         # если у игрока нет Склада в этом регионе, то Нефть и Руду собирать он не сможет
         if resource in ['ore', 'oil'] and not Storage.actual.filter(owner=player, region=player.region).exists():
             data = {
-                # 'response': _('wait_flight_end'),
-                'response': 'У вас нет склада в этом регионе',
-                'header': 'Ошибка автоматической добычи ресурсов',
-                'grey_btn': 'Закрыть',
+                'response': pgettext('mining', 'У вас нет склада в этом регионе'),
+                'header': pgettext('mining', 'Ошибка автоматической добычи ресурсов'),
+                'grey_btn': pgettext('mining', 'Закрыть'),
             }
             return JResponse(data)
 
@@ -78,8 +76,9 @@ def start_auto(request):
 
     else:
         data = {
-            'header': 'Ошибка автоматической добычи ресурсов',
-            'grey_btn': 'Закрыть',
-            'response': 'Ты уверен что тебе сюда, путник?',
+            'header': pgettext('mining', 'Ошибка автоматической добычи ресурсов'),
+            'grey_btn': pgettext('mining', 'Закрыть'),
+            'response': ugettext('Ошибка метода'),
+
         }
         return JResponse(data)

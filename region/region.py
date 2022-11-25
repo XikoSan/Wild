@@ -4,6 +4,7 @@ import math
 from django import forms
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
+from django.utils.translation import gettext_lazy, pgettext_lazy, ugettext as _
 
 from state.models.state import State
 from .actual_manager import ActualManager
@@ -85,9 +86,9 @@ class Region(models.Model):
 
     # марка добываемой нефти в регионе
     oil_type_choices = (
-        ('wti_oil', 'Нефть WTI'),
-        ('brent_oil', 'Нефть Brent'),
-        ('urals_oil', 'Нефть Urals'),
+        ('wti_oil', pgettext_lazy('goods', 'WTI')),
+        ('brent_oil', pgettext_lazy('goods', 'Brent')),
+        ('urals_oil', pgettext_lazy('goods', 'Urals')),
     )
     oil_type = models.CharField(
         max_length=10,

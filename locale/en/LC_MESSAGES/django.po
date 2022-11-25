@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-19 19:28+0300\n"
-"PO-Revision-Date: 2022-11-19 19:29+0300\n"
+"POT-Creation-Date: 2022-11-25 17:30+0300\n"
+"PO-Revision-Date: 2022-11-25 17:38+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -69,6 +69,35 @@ msgstr "World`s parties"
 #: party/views/party.py:16
 msgid "Партия"
 msgstr "Party"
+
+#: player/player.py:252 region/views/do_mining.py:31
+#: region/views/start_auto.py:26
+msgctxt "mining"
+msgid "Дождитесь конца полёта"
+msgstr ""
+
+#: player/player.py:253 player/player.py:275 region/views/retrieve_cash.py:40
+msgctxt "mining"
+msgid "Ошибка получения финансирования"
+msgstr "Daily Funding Error"
+
+#: player/player.py:254 player/player.py:276 region/views/cancel_auto.py:34
+#: region/views/do_mining.py:33 region/views/do_mining.py:46
+#: region/views/do_mining.py:56 region/views/do_mining.py:69
+#: region/views/do_mining.py:78 region/views/do_mining.py:87
+#: region/views/do_mining.py:103 region/views/do_mining.py:123
+#: region/views/do_mining.py:159 region/views/do_mining.py:216
+#: region/views/retrieve_cash.py:41 region/views/start_auto.py:28
+#: region/views/start_auto.py:36 region/views/start_auto.py:49
+#: region/views/start_auto.py:58 region/views/start_auto.py:80
+msgctxt "mining"
+msgid "Закрыть"
+msgstr "Close"
+
+#: player/player.py:274
+msgctxt "mining"
+msgid "Нечего забирать"
+msgstr "Nothing to get"
 
 #: player/templates/player/profile.html:146
 msgid "player_info"
@@ -615,6 +644,8 @@ msgstr "Close"
 
 #: player/views/change_back_allow.py:57 player/views/full_auto_allow.py:57
 #: player/views/set_language.py:54 player/views/set_timezone.py:43
+#: region/views/cancel_auto.py:35 region/views/retrieve_cash.py:42
+#: region/views/start_auto.py:81
 msgid "Ошибка метода"
 msgstr "Method error"
 
@@ -695,6 +726,21 @@ msgstr "Timezone change"
 msgid "Навыки"
 msgstr "Skills"
 
+#: region/region.py:89
+msgctxt "goods"
+msgid "WTI"
+msgstr ""
+
+#: region/region.py:90
+msgctxt "goods"
+msgid "Brent"
+msgstr ""
+
+#: region/region.py:91
+msgctxt "goods"
+msgid "Urals"
+msgstr ""
+
 #: region/templates/region/buildings/defences.html:5
 msgid "Уровень Укреплений"
 msgstr "Fortifications level"
@@ -710,6 +756,100 @@ msgstr "Hospital top"
 #: region/templates/region/buildings/power_plant.html:5
 msgid "Уровень ТЭЦ"
 msgstr "Power plant level"
+
+#: region/templates/region/redesign/mining.html:9
+msgctxt "mining"
+msgid "Добыча"
+msgstr "Work"
+
+#: region/templates/region/redesign/mining.html:11
+msgctxt "daily_header"
+msgid "Потрать энергию и получи"
+msgstr "Spend energy and get"
+
+#: region/templates/region/redesign/mining.html:12
+msgctxt "daily_header"
+msgid "до"
+msgstr "up to"
+
+#: region/templates/region/redesign/mining.html:12
+msgctxt "daily_header"
+msgid "за день!"
+msgstr "per day!"
+
+#: region/templates/region/redesign/mining.html:15
+msgctxt "daily_header"
+msgid "энергии потрачено"
+msgstr "energy spent"
+
+#: region/templates/region/redesign/mining.html:25
+#: region/templates/region/redesign/mining.html:58
+#: region/templates/region/redesign/mining.html:84
+#: region/templates/region/redesign/mining.html:110
+msgctxt "daily_header"
+msgid "в полете"
+msgstr "in flight"
+
+#: region/templates/region/redesign/mining.html:27
+msgctxt "daily_header"
+msgid "получаем"
+msgstr "receiving..."
+
+#: region/templates/region/redesign/mining.html:28
+msgctxt "daily_header"
+msgid "получить"
+msgstr "get"
+
+#: region/templates/region/redesign/mining.html:46
+msgctxt "daily_header"
+msgid "уже получено"
+msgstr "already received"
+
+#: region/templates/region/redesign/mining.html:50
+msgctxt "mining"
+msgid "Золото"
+msgstr "Gold"
+
+#: region/templates/region/redesign/mining.html:51
+#: region/templates/region/redesign/mining.html:77
+#: region/templates/region/redesign/mining.html:103
+msgctxt "mining"
+msgid "Запасы"
+msgstr "Stocks"
+
+#: region/templates/region/redesign/mining.html:61
+#: region/templates/region/redesign/mining.html:87
+#: region/templates/region/redesign/mining.html:113
+msgctxt "mining"
+msgid "авто"
+msgstr "auto"
+
+#: region/templates/region/redesign/mining.html:70
+#: region/templates/region/redesign/mining.html:96
+#: region/templates/region/redesign/mining.html:122
+msgctxt "mining"
+msgid "добыча"
+msgstr "work"
+
+#: region/templates/region/redesign/mining.html:76
+msgctxt "mining"
+msgid "Нефть"
+msgstr "Oil"
+
+#: region/templates/region/redesign/mining.html:78
+msgctxt "mining"
+msgid "Марка нефти"
+msgstr "Oil brand"
+
+#: region/templates/region/redesign/mining.html:102
+msgctxt "mining"
+msgid "Руда"
+msgstr "Ore"
+
+#: region/templates/region/redesign/mining.html:104
+msgctxt "mining"
+msgid "Качество руды"
+msgstr "Ore quality"
 
 #: region/templates/region/region_info.html:39
 msgid "Вы летите в"
@@ -774,19 +914,78 @@ msgid "Региональные налоги"
 msgstr ""
 
 #: region/templates/region/region_view.html:201
-#: state/templates/state/state_view.html:126
+#: state/templates/state/state_view.html:143
 msgid "На финансирование"
 msgstr ""
 
 #: region/templates/region/region_view.html:213
-#: state/templates/state/state_view.html:138
+#: state/templates/state/state_view.html:155
 msgid "На добычу"
 msgstr ""
 
 #: region/templates/region/region_view.html:227
-#: state/templates/state/state_view.html:152
+#: state/templates/state/state_view.html:169
 msgid "На торговлю"
 msgstr ""
+
+#: region/views/cancel_auto.py:33
+msgctxt "mining"
+msgid "Ошибка при отмене"
+msgstr "Error during cancellation"
+
+#: region/views/do_mining.py:32 region/views/do_mining.py:45
+#: region/views/do_mining.py:55 region/views/do_mining.py:68
+#: region/views/do_mining.py:77 region/views/do_mining.py:86
+#: region/views/do_mining.py:102 region/views/do_mining.py:122
+#: region/views/do_mining.py:158 region/views/do_mining.py:215
+msgctxt "mining"
+msgid "Ошибка добычи ресурсов"
+msgstr "Mining error"
+
+#: region/views/do_mining.py:44 region/views/start_auto.py:56
+msgctxt "mining"
+msgid "У вас нет склада в этом регионе"
+msgstr "You haven`t Warehouse in this region"
+
+#: region/views/do_mining.py:57
+msgctxt "mining"
+msgid "Количество энергии - не число"
+msgstr "Energy amount is not a number"
+
+#: region/views/do_mining.py:67
+msgctxt "mining"
+msgid "Количество Энергии должно быть положительным"
+msgstr "The amount of Energy must be positive"
+
+#: region/views/do_mining.py:76
+msgctxt "mining"
+msgid "Количество Энергии должно быть кратно десяти"
+msgstr "The amount of Energy must be a multiple of ten"
+
+#: region/views/do_mining.py:85
+msgctxt "mining"
+msgid "Недостаточно энергии"
+msgstr "Not enough energy"
+
+#: region/views/do_mining.py:101
+msgctxt "mining"
+msgid "Запасов золота в регионе недостаточно для добычи"
+msgstr "Gold reserves in the region are not enough for mining"
+
+#: region/views/do_mining.py:121
+msgctxt "mining"
+msgid "Запасов нефти в регионе недостаточно для добычи"
+msgstr "Oil reserves in the region are not enough for mining"
+
+#: region/views/do_mining.py:157
+msgctxt "mining"
+msgid "Запасов руды в регионе недостаточно для добычи"
+msgstr "Ore reserves in the region are not enough for mining"
+
+#: region/views/do_mining.py:217
+msgctxt "mining"
+msgid "Ошибка метода"
+msgstr "Method error"
 
 #: region/views/lists/world_regions.py:116
 msgid "Регионы игры"
@@ -807,6 +1006,23 @@ msgstr ""
 #: region/views/mining.py:89
 msgid "Добыча"
 msgstr ""
+
+#: region/views/start_auto.py:27 region/views/start_auto.py:35
+#: region/views/start_auto.py:48 region/views/start_auto.py:57
+#: region/views/start_auto.py:79
+msgctxt "mining"
+msgid "Ошибка автоматической добычи ресурсов"
+msgstr "Automatic mining error"
+
+#: region/views/start_auto.py:34
+msgctxt "mining"
+msgid "Премиум-аккаунт не активен. Продлите его"
+msgstr "Please renew premium account"
+
+#: region/views/start_auto.py:47
+msgctxt "mining"
+msgid "Неизвестный тип ресурса"
+msgstr "Unknown resource type"
 
 #: skill/views/skill_cancel.py:34
 msgid "ID навыка должен быть числом"
@@ -942,15 +1158,15 @@ msgstr ""
 msgid "drone"
 msgstr ""
 
-#: state/templates/state/state_view.html:35
+#: state/templates/state/state_view.html:40
 msgid "Donate"
 msgstr ""
 
-#: state/templates/state/state_view.html:89
+#: state/templates/state/state_view.html:106
 msgid "Столица"
 msgstr ""
 
-#: state/templates/state/state_view.html:119
+#: state/templates/state/state_view.html:136
 msgid "Государственные налоги"
 msgstr ""
 

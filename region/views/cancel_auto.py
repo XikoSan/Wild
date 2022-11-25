@@ -7,6 +7,8 @@ from player.decorators.player import check_player
 from player.logs.auto_mining import AutoMining
 from player.player import Player
 from wild_politics.settings import JResponse
+from django.utils.translation import ugettext
+from django.utils.translation import pgettext
 
 
 # выкопать ресурсы по запросу игрока
@@ -28,8 +30,8 @@ def cancel_auto(request):
 
     else:
         data = {
-            'header': 'Ошибка при создании',
-            'grey_btn': 'Закрыть',
-            'response': 'Ты уверен что тебе сюда, путник?',
+            'header': pgettext('mining', 'Ошибка при отмене'),
+            'grey_btn': pgettext('mining', 'Закрыть'),
+            'response': ugettext('Ошибка метода'),
         }
         return JResponse(data)

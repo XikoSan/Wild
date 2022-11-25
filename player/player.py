@@ -7,6 +7,7 @@ from django.db import models
 from django.db import transaction
 from django.utils import timezone
 from django.utils.timezone import make_aware
+from django.utils.translation import pgettext
 from django_celery_beat.models import PeriodicTask
 
 from party.party import Party
@@ -105,7 +106,7 @@ class Player(models.Model):
 
     # дата истечения премиум-акккаунта
     premium = models.DateTimeField(default=timezone.now, blank=True,
-                                 verbose_name='Премиум, до')
+                                   verbose_name='Премиум, до')
 
     # количество премиум-карточек Wild Pass
     cards_count = models.IntegerField(default=0, verbose_name='Премиум-карты')
@@ -154,15 +155,18 @@ class Player(models.Model):
         GameEvent = apps.get_model('player.GameEvent')
         EventPart = apps.get_model('player.EventPart')
 
-        if GameEvent.objects.filter(running=True, event_start__lt=timezone.now(), event_end__gt=timezone.now()).exists():
+        if GameEvent.objects.filter(running=True, event_start__lt=timezone.now(),
+                                    event_end__gt=timezone.now()).exists():
             if EventPart.objects.filter(
                     player=self,
-                    event=GameEvent.objects.get(running=True, event_start__lt=timezone.now(), event_end__gt=timezone.now())
-                                    ).exists():
+                    event=GameEvent.objects.get(running=True, event_start__lt=timezone.now(),
+                                                event_end__gt=timezone.now())
+            ).exists():
                 event_part = EventPart.objects.get(
                     player=self,
-                    event=GameEvent.objects.get(running=True, event_start__lt=timezone.now(), event_end__gt=timezone.now())
-                                    )
+                    event=GameEvent.objects.get(running=True, event_start__lt=timezone.now(),
+                                                event_end__gt=timezone.now())
+                )
                 event_part.points += value
                 event_part.prize_check()
                 event_part.save()
@@ -176,7 +180,6 @@ class Player(models.Model):
                 )
                 event_part.prize_check()
                 event_part.save()
-
 
     # получить актуализированного Игрока
     @staticmethod
@@ -241,14 +244,14 @@ class Player(models.Model):
         endurance = self.endurance
         if endurance > 100:
             endurance = 100
+
         daily_limit = 15000 + (power * 100) + (knowledge * 100) + (endurance * 100)
 
         if self.destination:
             data = {
-                # 'response': _('wait_flight_end'),
-                'response': 'Дождитесь конца полёта',
-                'header': 'Ошибка получения финансирования',
-                'grey_btn': 'Закрыть',
+                'response': pgettext('mining', 'Дождитесь конца полёта'),
+                'header': pgettext('mining', 'Ошибка получения финансирования'),
+                'grey_btn': pgettext('mining', 'Закрыть'),
             }
             # return JResponse(data)
             return JResponse(data), 0
@@ -268,10 +271,9 @@ class Player(models.Model):
 
         if daily_procent == 0 or (self.paid_consumption >= self.energy_limit and daily_limit - self.paid_sum == 0):
             data = {
-                # 'response': _('wait_flight_end'),
-                'response': 'Нечего забирать',
-                'header': 'Ошибка получения финансирования',
-                'grey_btn': 'Закрыть',
+                'response': pgettext('mining', 'Нечего забирать'),
+                'header': pgettext('mining', 'Ошибка получения финансирования'),
+                'grey_btn': pgettext('mining', 'Закрыть'),
             }
             # return JResponse(data)
             return JResponse(data), 0
@@ -289,17 +291,13 @@ class Player(models.Model):
                 is_weekend = True
                 count += count
 
-        if timezone.now().date() < datetime.datetime(2022, 11, 13).date():
-            taxed_count = State.get_taxes(self.region, count, 'cash', 'cash')
+        taxed_count = 0
+        PlayerRegionalExpense = apps.get_model('player.PlayerRegionalExpense')
 
-        else:
-            taxed_count = 0
-            PlayerRegionalExpense = apps.get_model('player.PlayerRegionalExpense')
+        for expense in PlayerRegionalExpense.objects.filter(player=self):
+            taxed_count += expense.get_taxes(count)
 
-            for expense in PlayerRegionalExpense.objects.filter(player=self):
-                taxed_count += expense.get_taxes(count)
-
-            PlayerRegionalExpense.objects.filter(player=self).delete()
+        PlayerRegionalExpense.objects.filter(player=self).delete()
 
         # если дейлик ещё не закрывался сегодня
         if not self.daily_fin:
@@ -307,19 +305,6 @@ class Player(models.Model):
             if Finance.objects.filter(player=self, level__gt=0).exists():
                 if count != 0 and daily_procent == 100:
                     taxed_count += daily_limit
-
-            # золотая неделя
-            naive = datetime.datetime(2022, 10, 3)
-            start = make_aware(naive, timezone=pytz.timezone("Europe/Moscow"))
-            naive = datetime.datetime(2022, 10, 10)
-            finish = make_aware(naive, timezone=pytz.timezone("Europe/Moscow"))
-
-            if finish > timezone.now() > start:
-                if count != 0 and daily_procent == 100:
-                    if timezone.now().date().weekday() == 5 or timezone.now().date().weekday() == 6:
-                        self.gold += 250
-                    else:
-                        self.gold += 100
 
         # отмечаем, что  дейлик закрыт:
         # если игрок прокачат навык, то не получит золотой бонус или Подпольное Финансирование
@@ -398,7 +383,7 @@ class Player(models.Model):
 
         self.save()
 
-    def __str__(self):
+    def __str_pgettext(self):
         return self.nickname
 
     # Свойства класса
