@@ -15,6 +15,7 @@ from storage.views.storage.check_cap_exists import check_cap_exists
 from storage.views.storage.check_goods_exists import check_goods_exists
 from storage.views.storage.get_transfer_price import get_transfer_price
 from storage.views.storage.transfer_values import transfer_values
+from django.utils.translation import pgettext
 
 
 # переименование партии
@@ -31,14 +32,18 @@ def storage_move(request):
 
         if dest_pk == 'null':
             data = {
-                'response': 'Склад не заполнен',
+                'header': pgettext('assets', 'Перемещение Склада'),
+                'grey_btn': pgettext('mining', 'Закрыть'),
+                'response': pgettext('assets', 'Склад не заполнен'),
             }
             return JsonResponse(data)
 
         # проверяем, есть ли целевой склад среди складов игрока
         if not Storage.actual.filter(owner=player, pk=int(dest_pk)):
             data = {
-                'response': 'Указанный Склад вам не принадлежит',
+                'header': pgettext('assets', 'Перемещение Склада'),
+                'grey_btn': pgettext('mining', 'Закрыть'),
+                'response': pgettext('assets', 'Указанный Склад вам не принадлежит'),
             }
             return JsonResponse(data)
 
@@ -46,7 +51,9 @@ def storage_move(request):
 
         if storage.region == player.region:
             data = {
-                'response': 'Указанный Склад уже в текущем регионе',
+                'header': pgettext('assets', 'Перемещение Склада'),
+                'grey_btn': pgettext('mining', 'Закрыть'),
+                'response': pgettext('assets', 'Указанный Склад уже в текущем регионе'),
             }
             return JsonResponse(data)
 
@@ -63,6 +70,8 @@ def storage_move(request):
     # если страницу только грузят
     else:
         data = {
-            'response': 'Ты уверен что тебе сюда, путник?',
+            'header': pgettext('mining', 'Перемещение Склада'),
+            'grey_btn': pgettext('mining', 'Закрыть'),
+            'response': pgettext('mining', 'Ошибка метода'),
         }
         return JsonResponse(data)

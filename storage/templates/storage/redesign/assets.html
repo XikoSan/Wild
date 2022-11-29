@@ -9,7 +9,7 @@
 <section class="actives">
     <form id="assets_actions_form" role="form">
     <!-- Заголовок -->
-    <h1 class="actives__title ct__page-title">Активы</h1>
+    <h1 class="actives__title ct__page-title">{% trans 'Активы' context "assets" %}</h1>
 
 		<!-- Верхний Блок -->
     <div class="actives__top-wrapper ct__two-select-wrapper">
@@ -19,9 +19,9 @@
 			<!--Выбор действия-->
       <label class="ct__wide-label-select">
         <select name="assets_actions" id="assets_actions">
-          <option disabled selected>выбор действия</option>
-          <option value="transfer">Передать</option>
-          <option value="destroy">Уничтожить</option>
+          <option disabled selected>{% trans 'выбор действия' context "assets" %}</option>
+          <option value="transfer">{% trans 'передать' context "assets" %}</option>
+          <option value="destroy">{% trans 'уничтожить' context "assets" %}</option>
         </select>
         <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
@@ -46,7 +46,7 @@
         <!--Выбор склада-->
       <label class="ct__wide-label-select transfer_bloc">
         <select name="storage_options" id="storage_options" disabled>
-            <option value="storage_none" disabled selected>выберите склад</option>
+            <option value="storage_none" disabled selected>{% trans 'выберите склад' context "assets" %}</option>
             {% for storage in storages %}
             <option id="storage_{% localize off %}{{ storage.pk }}{% endlocalize %}" value='{% localize off %}{{ storage.pk }}{% endlocalize %}'>{{ storage.region.region_name }}</option>
             {% endfor %}
@@ -57,9 +57,9 @@
       </label>
         <div class="ct__two-select-info-wrapper transfer_bloc">
             <!--Объем-->
-            <p>объём (ед): </p><p id="total_vol">0</p>
+            <p>{% trans 'объём (ед)' context "assets" %}: </p><p id="total_vol">0</p>
             <!--Стоимость-->
-            <p>стоимость: </p><p id="total_sum">0</p>
+            <p>{% trans 'стоимость' context "assets" %}: </p><p id="total_sum">0</p>
         </div>
         <!--Кнопка подтвердить-->
       <button class="actives__confirm-btn ct__mid-btn" id="accept" disabled>
@@ -74,7 +74,7 @@
             <path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
           </g>
         </svg>
-        <span>подтвердить</span>
+        <span>{% trans 'подтвердить' context "assets" %}</span>
       </button>
     </div>
 
@@ -112,7 +112,7 @@
 						<input type="number" value="0" step="1" min="0" max="{% localize off %}{{ storage|get_attr:good }}{% endlocalize %}" data-storage_id="{% localize off %}{{ storage.pk }}{% endlocalize %}" data-good_name="{{ good }}" class="good_input" name="{% localize off %}{{ storage.pk }}{% endlocalize %}_{{ good }}">
 					</label>
 					<span>/ {{ storage|get_attr:good }}</span>
-					<span>объем (ед): <span id="{% localize off %}{{ storage.pk }}{% endlocalize %}_{{ good }}_places" data-text="0">0</span></span>
+					<span>{% trans 'объём (ед)' context "assets" %}: <span id="{% localize off %}{{ storage.pk }}{% endlocalize %}_{{ good }}_places" data-text="0">0</span></span>
 				</div>
       </div>
             {% endif %}

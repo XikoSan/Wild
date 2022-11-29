@@ -15,6 +15,7 @@ from storage.views.storage.check_cap_exists import check_cap_exists
 from storage.views.storage.check_goods_exists import check_goods_exists
 from storage.views.storage.get_transfer_price import get_transfer_price
 from storage.views.storage.transfer_values import transfer_values
+from django.utils.translation import pgettext
 
 
 # переименование партии
@@ -35,9 +36,9 @@ def assets_action(request):
 
             if dest_pk == 'null':
                 data = {
-                    'response': 'Целевой Склад не заполнен',
-                    'header': 'Перемещение товара',
-                    'grey_btn': 'Закрыть',
+                    'response': pgettext('assets', 'Целевой Склад не заполнен'),
+                    'header': pgettext('assets', 'Перемещение товаров'),
+                    'grey_btn': pgettext('assets', 'Закрыть'),
                 }
                 return JsonResponse(data)
 
@@ -62,9 +63,9 @@ def assets_action(request):
                 for i_storg in storages_values.keys():
                     if not int(i_storg) in storages_pk:
                         data = {
-                            'response': 'Склад ' + i_storg + ' вам не принадлежит',
-                            'header': 'Перемещение товара',
-                            'grey_btn': 'Закрыть',
+                            'response': pgettext('assets', 'Склад') + ' ' + i_storg + ' ' + pgettext('assets', 'вам не принадлежит'),
+                            'header': pgettext('assets', 'Перемещение товара'),
+                            'grey_btn': pgettext('assets', 'Закрыть'),
                         }
                         return JsonResponse(data)
 
@@ -104,49 +105,49 @@ def assets_action(request):
 
                                 else:
                                     data = {
-                                        'response': 'Недостаточно средств для оплаты доставки',
-                                        'header': 'Перемещение товара',
-                                        'grey_btn': 'Закрыть',
+                                        'response': pgettext('assets', 'Недостаточно средств для оплаты доставки'),
+                                        'header': pgettext('assets', 'Перемещение товара'),
+                                        'grey_btn': pgettext('assets', 'Закрыть'),
                                     }
                                     return JsonResponse(data)
                             else:
                                 data = {
-                                    'response': 'На складе в регионе ' + str(
+                                    'response': pgettext('assets', 'На складе в регионе ') + str(
                                         Storage.actual.get(pk=int(dest_pk)).region.region_name) +
-                                                ' недостаточно места для товара ' + str(good) + '\n' +
-                                                'Требуется: ' + str(sent) + ', в наличии: ' + str(exist_cap),
-                                    'header': 'Перемещение товара',
-                                    'grey_btn': 'Закрыть',
+                                                pgettext('assets', ' недостаточно места для товара ') + str(good) + '\n' +
+                                                pgettext('assets', 'Требуется: ') + str(sent) + pgettext('assets', ', в наличии: ') + str(exist_cap),
+                                    'header': pgettext('assets', 'Перемещение товара'),
+                                    'grey_btn': pgettext('assets', 'Закрыть'),
                                 }
                                 return JsonResponse(data)
                         else:
                             data = {
-                                'response': 'На складе в регионе ' + str(ret_storg.region.region_name) +
-                                            ' недостаточно товара ' + str(good) + ' для передачи.\n' +
-                                            'Требуется: ' + str(required) + ', в наличии: ' + str(exist),
-                                'header': 'Перемещение товара',
-                                'grey_btn': 'Закрыть',
+                                'response': pgettext('assets', 'На складе в регионе ') + str(ret_storg.region.region_name) +
+                                            pgettext('assets', ' недостаточно товара ') + str(good) + pgettext('assets', ' для передачи.') + '\n' +
+                                            pgettext('assets', 'Требуется: ') + str(required) + pgettext('assets', ', в наличии: ') + str(exist),
+                                'header': pgettext('assets', 'Перемещение товара'),
+                                'grey_btn': pgettext('assets', 'Закрыть'),
                             }
                             return JsonResponse(data)
                     else:
                         data = {
-                            'response': 'Товары для передачи не выбраны',
-                            'header': 'Перемещение товара',
-                            'grey_btn': 'Закрыть',
+                            'response': pgettext('assets', 'Товары для передачи не выбраны'),
+                            'header': pgettext('assets', 'Перемещение товара'),
+                            'grey_btn': pgettext('assets', 'Закрыть'),
                         }
                         return JsonResponse(data)
                 else:
                     data = {
-                        'response': 'В целевом Складе заполнены значения',
-                        'header': 'Перемещение товара',
-                        'grey_btn': 'Закрыть',
+                        'response': pgettext('assets', 'В целевом Складе заполнены значения'),
+                        'header': pgettext('assets', 'Перемещение товара'),
+                        'grey_btn': pgettext('assets', 'Закрыть'),
                     }
                     return JsonResponse(data)
             else:
                 data = {
-                    'response': 'Целевой Склад вам не принадлежит',
-                    'header': 'Перемещение товара',
-                    'grey_btn': 'Закрыть',
+                    'response': pgettext('assets', 'Целевой Склад вам не принадлежит'),
+                    'header': pgettext('assets', 'Перемещение товара'),
+                    'grey_btn': pgettext('assets', 'Закрыть'),
                 }
                 return JsonResponse(data)
 
@@ -163,9 +164,9 @@ def assets_action(request):
             for i_storg in storages_values.keys():
                 if not int(i_storg) in storages_pk:
                     data = {
-                        'response': 'Склад ' + i_storg + ' вам не принадлежит',
-                        'header': 'Уничтожение товара',
-                        'grey_btn': 'Закрыть',
+                        'response': pgettext('assets', 'Склад') + ' ' + i_storg + ' ' + pgettext('assets', 'вам не принадлежит'),
+                        'header': pgettext('assets', 'Уничтожение товара'),
+                        'grey_btn': pgettext('assets', 'Закрыть'),
                     }
                     return JsonResponse(data)
 
@@ -201,18 +202,18 @@ def assets_action(request):
 
             else:
                 data = {
-                    'response': 'На складе в регионе ' + str(ret_storg.region.region_name) +
-                                ' недостаточно товара ' + str(good) + '.\n' +
-                                'Требуется: ' + str(required) + ', в наличии: ' + str(exist),
-                    'header': 'Уничтожение товара',
-                    'grey_btn': 'Закрыть',
+                    'response': pgettext('assets', 'На складе в регионе') + ' ' + str(ret_storg.region.region_name) +
+                                + ' ' + pgettext('assets', 'недостаточно товара') + ' ' + str(good) + '.\n' +
+                                pgettext('assets', 'Требуется:') + ' ' + str(required) + pgettext('assets', ', в наличии:') + ' ' + str(exist),
+                    'header': pgettext('assets', 'Уничтожение товара'),
+                    'grey_btn': pgettext('assets', 'Закрыть'),
                 }
                 return JsonResponse(data)
         else:
             data = {
-                'response': 'Некорректное действие',
-                'header': 'Операции с товарами',
-                'grey_btn': 'Закрыть',
+                'response': pgettext('assets', 'Некорректное действие'),
+                'header': pgettext('assets', 'Операции с товарами'),
+                'grey_btn': pgettext('assets', 'Закрыть'),
             }
             return JsonResponse(data)
         data = {
@@ -223,8 +224,8 @@ def assets_action(request):
     # если страницу только грузят
     else:
         data = {
-            'response': 'Ты уверен что тебе сюда, путник?',
-            'header': 'Подумай ещё раз',
-            'grey_btn': 'Закрыть',
+            'header': pgettext('assets', 'Операции с товарами'),
+            'grey_btn': pgettext('mining', 'Закрыть'),
+            'response': pgettext('mining', 'Ошибка метода'),
         }
         return JsonResponse(data)

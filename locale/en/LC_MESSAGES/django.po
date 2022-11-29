@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-25 17:30+0300\n"
-"PO-Revision-Date: 2022-11-25 17:38+0300\n"
+"POT-Creation-Date: 2022-11-29 20:04+0300\n"
+"PO-Revision-Date: 2022-11-29 20:03+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -90,6 +90,23 @@ msgstr "Daily Funding Error"
 #: region/views/retrieve_cash.py:41 region/views/start_auto.py:28
 #: region/views/start_auto.py:36 region/views/start_auto.py:49
 #: region/views/start_auto.py:58 region/views/start_auto.py:80
+#: storage/views/assets/assets_action.py:228
+#: storage/views/assets/storage_move.py:36
+#: storage/views/assets/storage_move.py:45
+#: storage/views/assets/storage_move.py:55
+#: storage/views/assets/storage_move.py:74
+#: storage/views/storage/cash_transfer.py:32
+#: storage/views/storage/cash_transfer.py:41
+#: storage/views/storage/cash_transfer.py:54
+#: storage/views/storage/cash_transfer.py:63
+#: storage/views/storage/cash_transfer.py:72
+#: storage/views/storage/cash_transfer.py:101
+#: storage/views/storage/cash_transfer.py:109
+#: storage/views/storage/cash_transfer.py:121
+#: storage/views/storage/new_storage.py:34
+#: storage/views/storage/new_storage.py:52
+#: storage/views/storage/new_storage.py:65
+#: storage/views/storage/new_storage.py:87
 msgctxt "mining"
 msgid "Закрыть"
 msgstr "Close"
@@ -729,17 +746,17 @@ msgstr "Skills"
 #: region/region.py:89
 msgctxt "goods"
 msgid "WTI"
-msgstr ""
+msgstr "WTI"
 
 #: region/region.py:90
 msgctxt "goods"
 msgid "Brent"
-msgstr ""
+msgstr "Brent"
 
 #: region/region.py:91
 msgctxt "goods"
 msgid "Urals"
-msgstr ""
+msgstr "Urals"
 
 #: region/templates/region/buildings/defences.html:5
 msgid "Уровень Укреплений"
@@ -982,7 +999,10 @@ msgctxt "mining"
 msgid "Запасов руды в регионе недостаточно для добычи"
 msgstr "Ore reserves in the region are not enough for mining"
 
-#: region/views/do_mining.py:217
+#: region/views/do_mining.py:217 storage/views/assets/assets_action.py:229
+#: storage/views/assets/storage_move.py:75
+#: storage/views/storage/cash_transfer.py:122
+#: storage/views/storage/new_storage.py:88
 msgctxt "mining"
 msgid "Ошибка метода"
 msgstr "Method error"
@@ -1529,7 +1549,50 @@ msgstr ""
 msgid "Дроны - кубов"
 msgstr ""
 
+#: storage/templates/storage/redesign/assets.html:12
+#: storage/views/assets/assets.py:42
+msgctxt "assets"
+msgid "Активы"
+msgstr "Assets"
+
+#: storage/templates/storage/redesign/assets.html:22
+msgctxt "assets"
+msgid "выбор действия"
+msgstr "action choice"
+
+#: storage/templates/storage/redesign/assets.html:23
+msgctxt "assets"
+msgid "передать"
+msgstr "transfer"
+
+#: storage/templates/storage/redesign/assets.html:24
+msgctxt "assets"
+msgid "уничтожить"
+msgstr "destroy"
+
+#: storage/templates/storage/redesign/assets.html:49
+msgctxt "assets"
+msgid "выберите склад"
+msgstr "choose warehouse"
+
+#: storage/templates/storage/redesign/assets.html:60
+#: storage/templates/storage/redesign/assets.html:115
+msgctxt "assets"
+msgid "объём (ед)"
+msgstr "volume"
+
+#: storage/templates/storage/redesign/assets.html:62
+msgctxt "assets"
+msgid "стоимость"
+msgstr "full price"
+
+#: storage/templates/storage/redesign/assets.html:77
+msgctxt "assets"
+msgid "подтвердить"
+msgstr "accept"
+
 #: storage/templates/storage/redesign/storage.html:11
+#: storage/views/storage/storage.py:32
 msgctxt "storage"
 msgid "Склад"
 msgstr "Warehouse"
@@ -1726,53 +1789,259 @@ msgstr ""
 msgid "Передать"
 msgstr ""
 
-#: storage/views/assets/assets.py:42
-msgid "Активы"
-msgstr ""
+#: storage/views/assets/assets_action.py:39
+msgctxt "assets"
+msgid "Целевой Склад не заполнен"
+msgstr "Target Warehouse is not full"
+
+#: storage/views/assets/assets_action.py:40
+msgctxt "assets"
+msgid "Перемещение товаров"
+msgstr "Warehouse move"
+
+#: storage/views/assets/assets_action.py:41
+#: storage/views/assets/assets_action.py:68
+#: storage/views/assets/assets_action.py:110
+#: storage/views/assets/assets_action.py:120
+#: storage/views/assets/assets_action.py:129
+#: storage/views/assets/assets_action.py:136
+#: storage/views/assets/assets_action.py:143
+#: storage/views/assets/assets_action.py:150
+#: storage/views/assets/assets_action.py:169
+#: storage/views/assets/assets_action.py:209
+#: storage/views/assets/assets_action.py:216
+msgctxt "assets"
+msgid "Закрыть"
+msgstr "Close"
+
+#: storage/views/assets/assets_action.py:66
+#: storage/views/assets/assets_action.py:167
+msgctxt "assets"
+msgid "Склад"
+msgstr "Warehouse"
+
+#: storage/views/assets/assets_action.py:66
+#: storage/views/assets/assets_action.py:167
+msgctxt "assets"
+msgid "вам не принадлежит"
+msgstr "does not belong to you"
+
+#: storage/views/assets/assets_action.py:67
+#: storage/views/assets/assets_action.py:109
+#: storage/views/assets/assets_action.py:119
+#: storage/views/assets/assets_action.py:128
+#: storage/views/assets/assets_action.py:135
+#: storage/views/assets/assets_action.py:142
+#: storage/views/assets/assets_action.py:149
+msgctxt "assets"
+msgid "Перемещение товара"
+msgstr "Goods transfer"
+
+#: storage/views/assets/assets_action.py:108
+msgctxt "assets"
+msgid "Недостаточно средств для оплаты доставки"
+msgstr "Insufficient funds to pay for shipping"
+
+#: storage/views/assets/assets_action.py:115
+#: storage/views/assets/assets_action.py:125
+msgctxt "assets"
+msgid "На складе в регионе "
+msgstr "At warehouse in the"
+
+#: storage/views/assets/assets_action.py:117
+msgctxt "assets"
+msgid " недостаточно места для товара "
+msgstr "insufficient space for goods"
+
+#: storage/views/assets/assets_action.py:118
+#: storage/views/assets/assets_action.py:127
+msgctxt "assets"
+msgid "Требуется: "
+msgstr "Required: "
+
+#: storage/views/assets/assets_action.py:118
+#: storage/views/assets/assets_action.py:127
+msgctxt "assets"
+msgid ", в наличии: "
+msgstr ", in stock: "
+
+#: storage/views/assets/assets_action.py:126
+msgctxt "assets"
+msgid " недостаточно товара "
+msgstr " not enough goods "
+
+#: storage/views/assets/assets_action.py:126
+msgctxt "assets"
+msgid " для передачи."
+msgstr "for transfer."
+
+#: storage/views/assets/assets_action.py:134
+msgctxt "assets"
+msgid "Товары для передачи не выбраны"
+msgstr "Goods to transfer are not selected"
+
+#: storage/views/assets/assets_action.py:141
+msgctxt "assets"
+msgid "В целевом Складе заполнены значения"
+msgstr "Values are filled in the target Warehouse"
+
+#: storage/views/assets/assets_action.py:148
+msgctxt "assets"
+msgid "Целевой Склад вам не принадлежит"
+msgstr "Target Warehouse does not belong to you"
+
+#: storage/views/assets/assets_action.py:168
+#: storage/views/assets/assets_action.py:208
+msgctxt "assets"
+msgid "Уничтожение товара"
+msgstr "Goods destruction"
+
+#: storage/views/assets/assets_action.py:205
+msgctxt "assets"
+msgid "На складе в регионе"
+msgstr "At warehouse in the"
+
+#: storage/views/assets/assets_action.py:206
+msgctxt "assets"
+msgid "недостаточно товара"
+msgstr "not enough goods"
+
+#: storage/views/assets/assets_action.py:207
+msgctxt "assets"
+msgid "Требуется:"
+msgstr "Required:"
+
+#: storage/views/assets/assets_action.py:207
+msgctxt "assets"
+msgid ", в наличии:"
+msgstr ", in stock:"
+
+#: storage/views/assets/assets_action.py:214
+msgctxt "assets"
+msgid "Некорректное действие"
+msgstr "Incorrect action"
+
+#: storage/views/assets/assets_action.py:215
+#: storage/views/assets/assets_action.py:227
+msgctxt "assets"
+msgid "Операции с товарами"
+msgstr "Operations with goods"
+
+#: storage/views/assets/storage_move.py:35
+#: storage/views/assets/storage_move.py:44
+#: storage/views/assets/storage_move.py:54
+msgctxt "assets"
+msgid "Перемещение Склада"
+msgstr "Warehouse move"
+
+#: storage/views/assets/storage_move.py:37
+msgctxt "assets"
+msgid "Склад не заполнен"
+msgstr "Warehouse not specified"
+
+#: storage/views/assets/storage_move.py:46
+msgctxt "assets"
+msgid "Указанный Склад вам не принадлежит"
+msgstr "The specified Warehouse does not belong to you"
+
+#: storage/views/assets/storage_move.py:56
+msgctxt "assets"
+msgid "Указанный Склад уже в текущем регионе"
+msgstr "The specified Warehouse is already in the current region"
+
+#: storage/views/assets/storage_move.py:73
+#, fuzzy
+#| msgctxt "storage_transfer"
+#| msgid "Перемещение Склада"
+msgctxt "mining"
+msgid "Перемещение Склада"
+msgstr "Warehouse move"
 
 #: storage/views/factory/factory.py:47
 msgid "Производство"
 msgstr ""
 
-#: storage/views/storage/cash_transfer.py:29
-msgid "Отрицательное число денег игрока"
-msgstr ""
-
-#: storage/views/storage/cash_transfer.py:32
-msgid "Некорректное число денег игрока"
-msgstr ""
-
+#: storage/views/storage/cash_transfer.py:31
 #: storage/views/storage/cash_transfer.py:40
+#: storage/views/storage/cash_transfer.py:53
+#: storage/views/storage/cash_transfer.py:62
+#: storage/views/storage/cash_transfer.py:71
+#: storage/views/storage/cash_transfer.py:100
+#: storage/views/storage/cash_transfer.py:108
+#: storage/views/storage/cash_transfer.py:120
+#: storage/views/storage/new_storage.py:86
+msgctxt "storage"
+msgid "Передача денег"
+msgstr "Cash transfer"
+
+#: storage/views/storage/cash_transfer.py:33
+msgctxt "storage"
+msgid "Отрицательное число денег игрока"
+msgstr "Negative player money"
+
+#: storage/views/storage/cash_transfer.py:42
+msgctxt "storage"
+msgid "Некорректное число денег игрока"
+msgstr "Incorrect amount of player money"
+
+#: storage/views/storage/cash_transfer.py:55
+msgctxt "storage"
 msgid "Отрицательное число денег Склада"
-msgstr ""
+msgstr "Negative number of Warehouse money"
 
-#: storage/views/storage/cash_transfer.py:43
+#: storage/views/storage/cash_transfer.py:64
+msgctxt "storage"
 msgid "Некорректное число денег Склада"
-msgstr ""
+msgstr "Incorrect number of Warehouse money"
 
-#: storage/views/storage/cash_transfer.py:47
+#: storage/views/storage/cash_transfer.py:73
+msgctxt "storage"
 msgid "В этом регионе нет Склада"
-msgstr ""
+msgstr "There is no Warehouse in this region"
 
-#: storage/views/storage/cash_transfer.py:69
+#: storage/views/storage/cash_transfer.py:102
+msgctxt "storage"
 msgid "Данные кошелька не совпадают с введенными"
-msgstr ""
+msgstr "Wallet data does not match the entered"
 
-#: storage/views/storage/cash_transfer.py:72
+#: storage/views/storage/cash_transfer.py:110
+msgctxt "storage"
 msgid "Недопустим ввод отрицательных чисел"
-msgstr ""
+msgstr "Entering negative numbers is not allowed"
 
-#: storage/views/storage/cash_transfer.py:79
-msgid "incorrect_method"
-msgstr ""
+#: storage/views/storage/new_storage.py:32
+#: storage/views/storage/new_storage.py:50
+#: storage/views/storage/new_storage.py:63
+msgctxt "storage"
+msgid "Новый Склад"
+msgstr "New warehouse"
 
-#: storage/views/storage/storage.py:32
-msgid "Склад"
-msgstr ""
+#: storage/views/storage/new_storage.py:33
+msgctxt "storage"
+msgid "Не найден Склад списания материалов"
+msgstr "Materials source warehouse not found"
+
+#: storage/views/storage/new_storage.py:51
+msgctxt "storage"
+msgid "Недостаточно ресурсов"
+msgstr "Not enough resources"
+
+#: storage/views/storage/new_storage.py:64
+msgctxt "storage"
+msgid "Недостаточно денег на транспортировку"
+msgstr "Not enough money for transportation"
 
 #: war/models/squads/light_vehicle.py:49 war/models/wars/war_side.py:34
 msgid "ПТ-орудия"
 msgstr ""
+
+#~ msgctxt "assets"
+#~ msgid "Склад №"
+#~ msgstr "Warehouse №"
+
+#~ msgctxt "mining"
+#~ msgid "Операции с товарами"
+#~ msgstr "Operations with goods"
 
 #, fuzzy
 #~| msgctxt "overview"

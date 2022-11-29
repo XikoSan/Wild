@@ -11,6 +11,7 @@ from player.player import Player
 from region.views.distance_counting import distance_counting
 from storage.models.storage import Storage
 from storage.views.storage.get_transfer_price import get_transfer_price
+from django.utils.translation import pgettext
 
 
 # переименование партии
@@ -28,9 +29,9 @@ def new_storage(request):
         # находим Склад, с которого хотят списать материалы
         if not Storage.actual.filter(pk=int(request.POST.get('storage')), owner=player):
             data = {
-                'header': 'Новый Склад',
-                'response': 'Не найден Склад',
-                'grey_btn': 'Закрыть',
+                'header': pgettext('storage', 'Новый Склад'),
+                'response': pgettext('storage', 'Не найден Склад списания материалов'),
+                'grey_btn': pgettext('mining', 'Закрыть'),
             }
             return JsonResponse(data)
 
@@ -46,9 +47,9 @@ def new_storage(request):
         if not (getattr(paid_storage, 'steel') >= material_cost \
                 and getattr(paid_storage, 'aluminium') >= material_cost):
             data = {
-                'header': 'Новый Склад',
-                'response': 'Недостаточно ресурсов',
-                'grey_btn': 'Закрыть',
+                'header': pgettext('storage', 'Новый Склад'),
+                'response': pgettext('storage', 'Недостаточно ресурсов'),
+                'grey_btn': pgettext('mining', 'Закрыть'),
             }
             return JsonResponse(data)
 
@@ -59,9 +60,9 @@ def new_storage(request):
         price, prices = get_transfer_price(trans_mul, 0, price_dict)
         if price > player.cash:
             data = {
-                'header': 'Новый Склад',
-                'response': 'Недостаточно денег на транспортировку',
-                'grey_btn': 'Закрыть',
+                'header': pgettext('storage', 'Новый Склад'),
+                'response': pgettext('storage', 'Недостаточно денег на транспортировку'),
+                'grey_btn': pgettext('mining', 'Закрыть'),
             }
             return JsonResponse(data)
         # логируем
@@ -82,6 +83,8 @@ def new_storage(request):
     # если страницу только грузят
     else:
         data = {
-            'response': 'Ты уверен что тебе сюда, путник?',
+            'header': pgettext('storage', 'Передача денег'),
+            'grey_btn': pgettext('mining', 'Закрыть'),
+            'response': pgettext('mining', 'Ошибка метода'),
         }
         return JsonResponse(data)

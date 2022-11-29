@@ -48,7 +48,7 @@ jQuery(document).ready(function ($) {
                     $("#do_transfer").attr("disabled", true);
                 }
                 else{
-                    alert(data);
+                    display_modal('notify', data.header, data.response, null, data.grey_btn);
                 }
                 //запрашиваем свежие данные состояния золота и энергетиков игрока
                 $.ajax({
@@ -69,28 +69,27 @@ jQuery(document).ready(function ($) {
        });
     });
 
- //  при передаче денег
-    $("#trade_tab").on("submit", ".replace_set", function(e){
-        e.preventDefault();
-        var sending_data = $(this).serialize();
-        sending_data += "&csrfmiddlewaretoken=" + csrftoken;
-        $.ajax({
-        type:'POST',
-        url:'/storage_replace/',
-        data: sending_data,
-        dataType: "html",
-        cache: false,
-        success: function(data){
-        result = JSON.parse(data);
-            if (result.responce == 'ok'){
-                location.reload();
-            }
-            else{
-                alert(result.responce);
-            }
-        }
-        })
-    })
+//    $("#trade_tab").on("submit", ".replace_set", function(e){
+//        e.preventDefault();
+//        var sending_data = $(this).serialize();
+//        sending_data += "&csrfmiddlewaretoken=" + csrftoken;
+//        $.ajax({
+//        type:'POST',
+//        url:'/storage_replace/',
+//        data: sending_data,
+//        dataType: "html",
+//        cache: false,
+//        success: function(data){
+//        result = JSON.parse(data);
+//            if (result.responce == 'ok'){
+//                location.reload();
+//            }
+//            else{
+//                alert(result.responce);
+//            }
+//        }
+//        })
+//    })
 
 });
 

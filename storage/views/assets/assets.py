@@ -1,7 +1,7 @@
 import math
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
-from django.utils.translation import ugettext as _
+from django.utils.translation import pgettext
 
 from player.decorators.player import check_player
 from player.player import Player
@@ -39,7 +39,7 @@ def assets(request):
 
     # отправляем в форму
     response = render(request, page, {
-        'page_name': _('Активы'),
+        'page_name': pgettext('assets', 'Активы'),
 
         'player': player,
         'storages': storages,

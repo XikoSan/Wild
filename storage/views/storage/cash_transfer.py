@@ -1,13 +1,14 @@
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from django.http import HttpResponse
+from django.http import JsonResponse
 from django.shortcuts import redirect
-from django.utils.translation import ugettext as _
 
 from player.decorators.player import check_player
 from player.logs.cash_log import CashLog
 from player.player import Player
 from storage.models.storage import Storage
+from django.utils.translation import pgettext
 
 
 # передача денег со склада/на склад
@@ -26,10 +27,21 @@ def cash_transfer(request):
             new_wallet_cnt = int(new_wallet)
             # передано отрицательное число
             if new_wallet_cnt < 0:
-                return HttpResponse(_('Отрицательное число денег игрока'), content_type='text/html')
+                data = {
+                    'header': pgettext('storage', 'Передача денег'),
+                    'grey_btn': pgettext('mining', 'Закрыть'),
+                    'response': pgettext('storage', 'Отрицательное число денег игрока'),
+                }
+                return JsonResponse(data)
+
         # нет юнита в запросе, ищем дальше
         except ValueError:
-            return HttpResponse(_('Некорректное число денег игрока'), content_type='text/html')
+            data = {
+                'header': pgettext('storage', 'Передача денег'),
+                'grey_btn': pgettext('mining', 'Закрыть'),
+                'response': pgettext('storage', 'Некорректное число денег игрока'),
+            }
+            return JsonResponse(data)
 
         new_storage = request.POST.get('cash_at_storage', '')
         # проверяем что передано целое положительное число
@@ -37,14 +49,31 @@ def cash_transfer(request):
             new_storage_cnt = int(new_storage)
             # передано отрицательное число
             if new_storage_cnt < 0:
-                return HttpResponse(_('Отрицательное число денег Склада'), content_type='text/html')
+                data = {
+                    'header': pgettext('storage', 'Передача денег'),
+                    'grey_btn': pgettext('mining', 'Закрыть'),
+                    'response': pgettext('storage', 'Отрицательное число денег Склада'),
+                }
+                return JsonResponse(data)
+            
         # нет юнита в запросе, ищем дальше
         except ValueError:
-            return HttpResponse(_('Некорректное число денег Склада'), content_type='text/html')
+            data = {
+                'header': pgettext('storage', 'Передача денег'),
+                'grey_btn': pgettext('mining', 'Закрыть'),
+                'response': pgettext('storage', 'Некорректное число денег Склада'),
+            }
+            return JsonResponse(data)
 
         # если у игрока в этом регионе есть Склад
         if not Storage.actual.filter(owner=player, region=player.region).exists():
-            return HttpResponse(_('В этом регионе нет Склада'), content_type='text/html')
+            data = {
+                'header': pgettext('storage', 'Передача денег'),
+                'grey_btn': pgettext('mining', 'Закрыть'),
+                'response': pgettext('storage', 'В этом регионе нет Склада'),
+            }
+            return JsonResponse(data)
+        
         # склад игрока
         storage = Storage.actual.get(owner=player, region=player.region)
         # проверки:
@@ -65,15 +94,31 @@ def cash_transfer(request):
                     Storage.actual.filter(pk=storage.pk).update(
                         cash=int(new_storage))
                     return HttpResponse('ok')
+                
                 else:
-                    return HttpResponse(_('Данные кошелька не совпадают с введенными'), content_type='text/html')
-                    # return HttpResponse('Данные кошелька не совпадают с введенными', content_type='text/html')
+                    data = {
+                        'header': pgettext('storage', 'Передача денег'),
+                        'grey_btn': pgettext('mining', 'Закрыть'),
+                        'response': pgettext('storage', 'Данные кошелька не совпадают с введенными'),
+                    }
+                    return JsonResponse(data)
+
             else:
-                return HttpResponse(_('Недопустим ввод отрицательных чисел'), content_type='text/html')
-            # 'Недопустим ввод отрицательных чисел'
+                data = {
+                    'header': pgettext('storage', 'Передача денег'),
+                    'grey_btn': pgettext('mining', 'Закрыть'),
+                    'response': pgettext('storage', 'Недопустим ввод отрицательных чисел'),
+                }
+                return JsonResponse(data)
+            
         else:
             return HttpResponse('ok')
 
     # если страницу только грузят
     else:
-        return HttpResponse(_('incorrect_method'), content_type='text/html')
+        data = {
+            'header': pgettext('storage', 'Передача денег'),
+            'grey_btn': pgettext('mining', 'Закрыть'),
+            'response': pgettext('mining', 'Ошибка метода'),
+        }
+        return JsonResponse(data)

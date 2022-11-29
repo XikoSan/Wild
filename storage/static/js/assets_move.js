@@ -25,7 +25,7 @@ function move_contunue() {
                 location.reload();
             }
             else{
-                alert(data.response);
+                display_modal('notify', data.header, data.response, null, data.grey_btn);
             }
         }
     });
