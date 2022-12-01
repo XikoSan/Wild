@@ -202,9 +202,9 @@ def assets_action(request):
 
             else:
                 data = {
-                    'response': pgettext('assets', 'На складе в регионе') + ' ' + str(ret_storg.region.region_name) + \
-                                + ' ' + pgettext('assets', 'недостаточно товара') + ' ' + str(good) + '.\n' + \
-                                pgettext('assets', 'Требуется:') + ' ' + str(required) + pgettext('assets', ', в наличии:') + ' ' + str(exist),
+                    'response': pgettext('assets', 'На складе в регионе') + ' ' + str(ret_storg.region.region_name) \
+                                + ' ' + pgettext('assets', 'недостаточно товара') + ' ' + str(good) + '.\n' \
+                               + pgettext('assets', 'Требуется:') + ' ' + str(required) + pgettext('assets', ', в наличии:') + ' ' + str(exist),
                     'header': pgettext('assets', 'Уничтожение товара'),
                     'grey_btn': pgettext('assets', 'Закрыть'),
                 }
