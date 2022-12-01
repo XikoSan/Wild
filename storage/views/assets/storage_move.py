@@ -70,7 +70,7 @@ def storage_move(request):
     # если страницу только грузят
     else:
         data = {
-            'header': pgettext('mining', 'Перемещение Склада'),
+            'header': pgettext('assets', 'Перемещение Склада'),
             'grey_btn': pgettext('mining', 'Закрыть'),
             'response': pgettext('mining', 'Ошибка метода'),
         }

@@ -37,21 +37,21 @@
 </script>
 <div class="col-xs-12 col-sm-12 col-md-10">
     <div id="goods_list" align="center">
-        <font id="offers_help" style="color: black">Выберите один или несколько критериев справа и нажмите "Поиск"</font>
-        <font id="offers_none" style="color: black; display: none">Ничего не найдено</font>
+        <font id="offers_help" style="color: black">{% trans 'Выберите один или несколько критериев справа и нажмите "Поиск"' context "w_trading" %}</font>
+        <font id="offers_none" style="color: black; display: none">{% trans 'Ничего не найдено' context "w_trading" %}</font>
 <!--        Выберите товары по критериям слева-->
         <table id="lines" class="sort" style="display: none">
 <!--        <table id="lines" class="sort">-->
           <thead>
             <tr>
-              <th data-sort-default role="columnheader">Товар</th>
-              <th role="columnheader">Владелец</th>
-              <th role="columnheader">Регион</th>
-              <th role="columnheader">Количество</th>
-              <th role="columnheader">Цена (шт.)</th>
-              <th role="columnheader">Доставка</th>
-              <th role="columnheader">Сумма</th>
-              <th role="columnheader">Действие</th>
+              <th data-sort-default role="columnheader">{% trans 'Товар' context "w_trading" %}</th>
+              <th role="columnheader">{% trans 'Владелец' context "w_trading" %}</th>
+              <th role="columnheader">{% trans 'Регион' context "w_trading" %}</th>
+              <th role="columnheader">{% trans 'Количество' context "w_trading" %}</th>
+              <th role="columnheader">{% trans 'Цена (шт.)' context "w_trading" %}</th>
+              <th role="columnheader">{% trans 'Доставка' context "w_trading" %}</th>
+              <th role="columnheader">{% trans 'Сумма' context "w_trading" %}</th>
+              <th role="columnheader">{% trans 'Действие' context "w_trading" %}</th>
             </tr>
           </thead>
           <tbody>
@@ -67,8 +67,8 @@
     <form id="offers_search_form" role="form">
         <div class="row" style="margin-top: 30%">
             <select name="trade_actions" id="trade_actions" style="width: 100%">
-                <option selected value='sell'>Продажа</option>
-                <option value='buy'>Покупка</option>
+                <option selected value='sell'>{% trans 'Продажа' context "w_trading" %}</option>
+                <option value='buy'>{% trans 'Покупка' context "w_trading" %}</option>
             </select>
         </div>
 <!--        <div class="row" style="margin-top: 5%">-->
@@ -81,9 +81,9 @@
 <!--        </div>-->
         <div class="row" style="margin-top: 5%">
             <select name="trade_owner" id="trade_owner" style="width: 100%">
-                <option selected value='all'>Все</option>
-                <option value='party'>Партия</option>
-                <option value='mine'>Мои</option>
+                <option selected value='all'>{% trans 'Все' context "w_trading" %}</option>
+                <option value='party'>{% trans 'Партия' context "w_trading" %}</option>
+                <option value='mine'>{% trans 'Мои' context "w_trading" %}</option>
             </select>
         </div>
         <div class="row" style="margin-top: 5%">
@@ -106,11 +106,11 @@
             </select>
         </div>
         <div class="row" style="margin-top: 5%;">
-            <button id="accept" type="submit" enctype="multipart/form-data" class="save btn btn-info" style="width: 100%">Поиск</button>
+            <button id="accept" type="submit" enctype="multipart/form-data" class="save btn btn-info" style="width: 100%">{% trans 'Поиск' context "w_trading" %}</button>
         </div>
     </form>
     <div class="row" style="margin-top: 15%;">
-        <a class="save btn btn-success" style="width: 100%" href="/new_offer">Создать</a>
+        <a class="save btn btn-success" style="width: 100%" href="/new_offer">{% trans 'Создать' context "w_trading" %}</a>
     </div>
 </div>
 {% endblock %}

@@ -11,6 +11,8 @@ from storage.models.good_lock import GoodLock
 from storage.models.storage import Storage
 from storage.models.trade_offer import TradeOffer
 from player.logs.print_log import log
+from django.utils.translation import pgettext
+
 
 @login_required(login_url='/')
 @check_player
@@ -32,9 +34,9 @@ def get_offers(request):
 
         if not (action == 'sell' or action == 'buy'):
             data = {
-                'response': 'Некорректное действие',
-                'header': 'Ошибка получения офферов',
-                'grey_btn': 'Закрыть',
+                'header': pgettext('w_trading', 'Получение офферов'),
+                'grey_btn': pgettext('mining', 'Закрыть'),
+                'response': pgettext('w_trading_new', 'Некорректное действие'),
             }
             return JsonResponse(data)
         else:
@@ -54,9 +56,9 @@ def get_offers(request):
 
         if not (owner in ['all', 'mine', 'party']):
             data = {
-                'response': 'Некорректный владелец',
-                'header': 'Ошибка получения офферов',
-                'grey_btn': 'Закрыть',
+                'header': pgettext('w_trading', 'Получение офферов'),
+                'grey_btn': pgettext('mining', 'Закрыть'),
+                'response': pgettext('w_trading', 'Некорректный владелец'),
             }
             return JsonResponse(data)
         else:
@@ -167,8 +169,8 @@ def get_offers(request):
     # если страницу только грузят
     else:
         data = {
-            'response': 'Ты уверен что тебе сюда, путник?',
-            'header': 'Ошибка получения офферов',
-            'grey_btn': 'Закрыть',
+            'header': pgettext('w_trading', 'Получение офферов'),
+            'grey_btn': pgettext('mining', 'Закрыть'),
+            'response': pgettext('mining', 'Ошибка метода'),
         }
         return JsonResponse(data)

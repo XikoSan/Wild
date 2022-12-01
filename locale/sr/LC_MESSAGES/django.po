@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-01 15:41+0300\n"
+"POT-Creation-Date: 2022-12-01 21:24+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -108,6 +108,63 @@ msgstr ""
 #: storage/views/storage/new_storage.py:52
 #: storage/views/storage/new_storage.py:65
 #: storage/views/storage/new_storage.py:87
+#: storage/views/trading/accept_offer.py:42
+#: storage/views/trading/accept_offer.py:50
+#: storage/views/trading/accept_offer.py:63
+#: storage/views/trading/accept_offer.py:76
+#: storage/views/trading/accept_offer.py:84
+#: storage/views/trading/accept_offer.py:92
+#: storage/views/trading/accept_offer.py:108
+#: storage/views/trading/accept_offer.py:124
+#: storage/views/trading/accept_offer.py:133
+#: storage/views/trading/accept_offer.py:141
+#: storage/views/trading/accept_offer.py:155
+#: storage/views/trading/accept_offer.py:177
+#: storage/views/trading/accept_offer.py:201
+#: storage/views/trading/accept_offer.py:250
+#: storage/views/trading/accept_offer.py:258
+#: storage/views/trading/accept_offer.py:270
+#: storage/views/trading/accept_offer.py:278
+#: storage/views/trading/accept_offer.py:287
+#: storage/views/trading/accept_offer.py:299
+#: storage/views/trading/accept_offer.py:370
+#: storage/views/trading/accept_offer.py:377
+#: storage/views/trading/accept_offer.py:386
+#: storage/views/trading/cancel_offer.py:40
+#: storage/views/trading/cancel_offer.py:53
+#: storage/views/trading/cancel_offer.py:61
+#: storage/views/trading/cancel_offer.py:74
+#: storage/views/trading/cancel_offer.py:87
+#: storage/views/trading/cancel_offer.py:105
+#: storage/views/trading/cancel_offer.py:124
+#: storage/views/trading/cancel_offer.py:148
+#: storage/views/trading/create_offer.py:30
+#: storage/views/trading/create_offer.py:41
+#: storage/views/trading/create_offer.py:58
+#: storage/views/trading/create_offer.py:68
+#: storage/views/trading/create_offer.py:79
+#: storage/views/trading/create_offer.py:89
+#: storage/views/trading/create_offer.py:97
+#: storage/views/trading/create_offer.py:108
+#: storage/views/trading/create_offer.py:116
+#: storage/views/trading/create_offer.py:131
+#: storage/views/trading/create_offer.py:144
+#: storage/views/trading/create_offer.py:160
+#: storage/views/trading/create_offer.py:168
+#: storage/views/trading/create_offer.py:201
+#: storage/views/trading/create_offer.py:208
+#: storage/views/trading/create_offer.py:217
+#: storage/views/trading/get_offers.py:38
+#: storage/views/trading/get_offers.py:60
+#: storage/views/trading/get_offers.py:173
+#: storage/views/trading/premium_trading.py:26
+#: storage/views/trading/premium_trading.py:38
+#: storage/views/trading/premium_trading.py:84
+#: storage/views/trading/premium_trading.py:97
+#: storage/views/trading/premium_trading.py:109
+#: storage/views/trading/premium_trading.py:117
+#: storage/views/trading/premium_trading.py:175
+#: storage/views/trading/premium_trading.py:182
 msgctxt "mining"
 msgid "Закрыть"
 msgstr ""
@@ -1002,6 +1059,10 @@ msgstr ""
 #: storage/views/assets/storage_move.py:75
 #: storage/views/storage/cash_transfer.py:122
 #: storage/views/storage/new_storage.py:88
+#: storage/views/trading/accept_offer.py:387
+#: storage/views/trading/cancel_offer.py:149
+#: storage/views/trading/create_offer.py:218
+#: storage/views/trading/get_offers.py:174
 msgctxt "mining"
 msgid "Ошибка метода"
 msgstr ""
@@ -1066,105 +1127,105 @@ msgid "Нет такого навыка"
 msgstr ""
 
 #: state/models/treasury.py:38 storage/models/factory/production_log.py:18
-#: storage/models/storage.py:110
+#: storage/models/storage.py:101
 msgid "storage_cash"
 msgstr ""
 
 #: state/models/treasury.py:42 storage/models/destroy.py:18
-#: storage/models/factory/production_log.py:22 storage/models/storage.py:114
+#: storage/models/factory/production_log.py:22 storage/models/storage.py:105
 #: storage/models/transport.py:88
 msgid "Уголь"
 msgstr ""
 
 #: state/models/treasury.py:45 storage/models/destroy.py:21
-#: storage/models/factory/production_log.py:25 storage/models/storage.py:119
+#: storage/models/factory/production_log.py:25 storage/models/storage.py:110
 msgid "iron"
 msgstr ""
 
 #: state/models/treasury.py:48 storage/models/destroy.py:24
-#: storage/models/factory/production_log.py:28 storage/models/storage.py:124
+#: storage/models/factory/production_log.py:28 storage/models/storage.py:115
 msgid "bauxite"
 msgstr ""
 
 #: state/models/treasury.py:52 storage/models/destroy.py:28
-#: storage/models/factory/production_log.py:32 storage/models/storage.py:130
+#: storage/models/factory/production_log.py:32 storage/models/storage.py:121
 msgid "wti_oil"
 msgstr ""
 
 #: state/models/treasury.py:55 storage/models/destroy.py:31
-#: storage/models/factory/production_log.py:35 storage/models/storage.py:135
+#: storage/models/factory/production_log.py:35 storage/models/storage.py:126
 msgid "brent_oil"
 msgstr ""
 
 #: state/models/treasury.py:58 storage/models/destroy.py:34
-#: storage/models/factory/production_log.py:38 storage/models/storage.py:140
+#: storage/models/factory/production_log.py:38 storage/models/storage.py:131
 msgid "urals_oil"
 msgstr ""
 
 #: state/models/treasury.py:62 storage/models/destroy.py:38
-#: storage/models/factory/production_log.py:42 storage/models/storage.py:146
+#: storage/models/factory/production_log.py:42 storage/models/storage.py:137
 msgid "gas"
 msgstr ""
 
 #: state/models/treasury.py:65 storage/models/destroy.py:41
-#: storage/models/factory/production_log.py:45 storage/models/storage.py:151
+#: storage/models/factory/production_log.py:45 storage/models/storage.py:142
 msgid "diesel"
 msgstr ""
 
 #: state/models/treasury.py:68 storage/models/destroy.py:44
-#: storage/models/factory/production_log.py:48 storage/models/storage.py:156
+#: storage/models/factory/production_log.py:48 storage/models/storage.py:147
 msgid "plastic"
 msgstr ""
 
 #: state/models/treasury.py:71 storage/models/destroy.py:46
 #: storage/models/factory/production_log.py:50
-#: storage/models/factory/project.py:85 storage/models/storage.py:160
+#: storage/models/factory/project.py:85 storage/models/storage.py:151
 msgid "steel"
 msgstr ""
 
 #: state/models/treasury.py:74 storage/models/destroy.py:48
-#: storage/models/factory/production_log.py:52 storage/models/storage.py:164
+#: storage/models/factory/production_log.py:52 storage/models/storage.py:155
 msgid "alumunuim"
 msgstr ""
 
 #: state/models/treasury.py:78 storage/models/destroy.py:52
-#: storage/models/factory/production_log.py:56 storage/models/storage.py:170
+#: storage/models/factory/production_log.py:56 storage/models/storage.py:161
 #: storage/models/transport.py:144
 msgid "Койки"
 msgstr ""
 
 #: state/models/treasury.py:82 storage/models/destroy.py:56
-#: storage/models/storage.py:176 storage/models/transport.py:150
+#: storage/models/storage.py:167 storage/models/transport.py:150
 #: war/models/squads/infantry.py:32 war/models/wars/war_side.py:30
 msgid "Автоматы"
 msgstr ""
 
 #: state/models/treasury.py:85 storage/models/destroy.py:58
 #: storage/models/factory/production_log.py:63
-#: storage/models/factory/project.py:147 storage/models/storage.py:186
+#: storage/models/factory/project.py:147 storage/models/storage.py:177
 msgid "tank"
 msgstr ""
 
 #: state/models/treasury.py:88 storage/models/destroy.py:60
 #: storage/models/factory/production_log.py:66
-#: storage/models/factory/project.py:163 storage/models/storage.py:191
+#: storage/models/factory/project.py:163 storage/models/storage.py:182
 msgid "attack_air"
 msgstr ""
 
 #: state/models/treasury.py:91 storage/models/destroy.py:62
-#: storage/models/factory/production_log.py:69 storage/models/storage.py:196
+#: storage/models/factory/production_log.py:69 storage/models/storage.py:187
 msgid "orb_station"
 msgstr ""
 
 #: state/models/treasury.py:94 storage/models/destroy.py:64
 #: storage/models/factory/production_log.py:72
-#: storage/models/factory/project.py:179 storage/models/storage.py:201
+#: storage/models/factory/project.py:179 storage/models/storage.py:192
 msgid "mpads"
 msgstr ""
 
 #: state/models/treasury.py:97 storage/models/destroy.py:66
 #: storage/models/factory/production_log.py:75
-#: storage/models/factory/project.py:195 storage/models/storage.py:181
+#: storage/models/factory/project.py:195 storage/models/storage.py:172
 msgid "antitank"
 msgstr ""
 
@@ -1189,7 +1250,7 @@ msgstr ""
 msgid "Государственные налоги"
 msgstr ""
 
-#: storage/models/destroy.py:70 storage/models/storage.py:211
+#: storage/models/destroy.py:70 storage/models/storage.py:202
 #: storage/models/transport.py:185 war/models/wars/war_side.py:27
 msgid "Дроны"
 msgstr ""
@@ -1219,7 +1280,7 @@ msgstr ""
 msgid "medical"
 msgstr ""
 
-#: storage/models/factory/project.py:211 storage/models/storage.py:206
+#: storage/models/factory/project.py:211 storage/models/storage.py:197
 #: storage/models/transport.py:180 war/models/squads/light_vehicle.py:47
 #: war/models/wars/war_side.py:32
 msgid "БМП"
@@ -1360,62 +1421,58 @@ msgid "БПЛА"
 msgstr ""
 
 #: storage/models/storage.py:107
-msgid "Уровень"
-msgstr ""
-
-#: storage/models/storage.py:116
 msgid "coal_cap"
 msgstr ""
 
-#: storage/models/storage.py:121
+#: storage/models/storage.py:112
 msgid "iron_cap"
 msgstr ""
 
-#: storage/models/storage.py:126
+#: storage/models/storage.py:117
 msgid "bauxite_cap"
 msgstr ""
 
-#: storage/models/storage.py:132
+#: storage/models/storage.py:123
 msgid "wti_oil_cap"
 msgstr ""
 
-#: storage/models/storage.py:137
+#: storage/models/storage.py:128
 msgid "brent_oil_cap"
 msgstr ""
 
-#: storage/models/storage.py:142
+#: storage/models/storage.py:133
 msgid "urals_oil_cap"
 msgstr ""
 
-#: storage/models/storage.py:148
+#: storage/models/storage.py:139
 msgid "gas_cap"
 msgstr ""
 
-#: storage/models/storage.py:153
+#: storage/models/storage.py:144
 msgid "diesel_cap"
 msgstr ""
 
-#: storage/models/storage.py:158
+#: storage/models/storage.py:149
 msgid "plastic_cap"
 msgstr ""
 
-#: storage/models/storage.py:162
+#: storage/models/storage.py:153
 msgid "steel_cap"
 msgstr ""
 
-#: storage/models/storage.py:166
+#: storage/models/storage.py:157
 msgid "alumunuim_cap"
 msgstr ""
 
-#: storage/models/storage.py:172
+#: storage/models/storage.py:163
 msgid "medical_cap"
 msgstr ""
 
-#: storage/models/storage.py:259
+#: storage/models/storage.py:250
 msgid "positive_spend_stock_req"
 msgstr ""
 
-#: storage/models/storage.py:264
+#: storage/models/storage.py:255
 msgid "not_enough"
 msgstr ""
 
@@ -1594,119 +1651,119 @@ msgctxt "assets"
 msgid "подтвердить"
 msgstr ""
 
-#: storage/templates/storage/redesign/storage.html:13
-#: storage/views/storage/storage.py:34
+#: storage/templates/storage/redesign/storage.html:11
+#: storage/views/storage/storage.py:32
 msgctxt "storage"
 msgid "Склад"
 msgstr ""
 
-#: storage/templates/storage/redesign/storage.html:80
+#: storage/templates/storage/redesign/storage.html:78
 msgctxt "storage"
 msgid "склад"
 msgstr ""
 
-#: storage/templates/storage/redesign/storage.html:94
+#: storage/templates/storage/redesign/storage.html:92
 msgctxt "storage"
 msgid "хранилище"
 msgstr ""
 
-#: storage/templates/storage/redesign/storage.html:109
+#: storage/templates/storage/redesign/storage.html:107
 msgctxt "storage_assets"
 msgid "энергетики"
 msgstr ""
 
-#: storage/templates/storage/redesign/storage.html:116
-#: storage/templates/storage/redesign/storage.html:136
+#: storage/templates/storage/redesign/storage.html:114
+#: storage/templates/storage/redesign/storage.html:134
 msgctxt "storage_assets"
 msgid "создать"
 msgstr ""
 
-#: storage/templates/storage/redesign/storage.html:120
+#: storage/templates/storage/redesign/storage.html:118
 msgctxt "storage_assets"
 msgid "стоимость"
 msgstr ""
 
-#: storage/templates/storage/redesign/storage.html:148
+#: storage/templates/storage/redesign/storage.html:146
 msgctxt "storage_assets"
 msgid "Количество"
 msgstr ""
 
-#: storage/templates/storage/redesign/storage.html:161
+#: storage/templates/storage/redesign/storage.html:159
 msgctxt "storage_assets"
 msgid "использовать"
 msgstr ""
 
-#: storage/templates/storage/redesign/storage.html:180
-#: storage/templates/storage/redesign/storage.html:335
+#: storage/templates/storage/redesign/storage.html:178
+#: storage/templates/storage/redesign/storage.html:468
 msgctxt "storage_transfer"
 msgid "Перемещение Склада"
 msgstr ""
 
-#: storage/templates/storage/redesign/storage.html:181
+#: storage/templates/storage/redesign/storage.html:179
 msgctxt "storage_transfer"
 msgid "Вы можете перенести Склад в регион текущего местоположения (один раз)"
 msgstr ""
 
-#: storage/templates/storage/redesign/storage.html:194
+#: storage/templates/storage/redesign/storage.html:192
 msgctxt "storage_transfer"
 msgid "перенести"
 msgstr ""
 
-#: storage/templates/storage/redesign/storage.html:321
+#: storage/templates/storage/redesign/storage.html:454
 msgctxt "storage_assets"
 msgid "Продление"
 msgstr ""
 
-#: storage/templates/storage/redesign/storage.html:321
+#: storage/templates/storage/redesign/storage.html:454
 msgctxt "storage_assets"
 msgid "Активация"
 msgstr ""
 
-#: storage/templates/storage/redesign/storage.html:321
+#: storage/templates/storage/redesign/storage.html:454
 msgctxt "storage_assets"
 msgid "премиум-аккаунта"
 msgstr ""
 
-#: storage/templates/storage/redesign/storage.html:324
+#: storage/templates/storage/redesign/storage.html:457
 msgctxt "storage_assets"
 msgid ""
 "Ваш премиум-аккаунт будет продлён на один месяц. Данную операцию невозможно "
 "отменить. Продолжить?"
 msgstr ""
 
-#: storage/templates/storage/redesign/storage.html:326
+#: storage/templates/storage/redesign/storage.html:459
 msgctxt "storage_assets"
 msgid ""
 "Вы активируете премиум-аккаунт, длительностью один месяц. Данную операцию "
 "невозможно отменить. Продолжить?"
 msgstr ""
 
-#: storage/templates/storage/redesign/storage.html:329
+#: storage/templates/storage/redesign/storage.html:462
 msgctxt "storage_assets"
 msgid "Продолжить"
 msgstr ""
 
-#: storage/templates/storage/redesign/storage.html:330
+#: storage/templates/storage/redesign/storage.html:463
 msgctxt "storage_assets"
 msgid "Отмена"
 msgstr ""
 
-#: storage/templates/storage/redesign/storage.html:336
+#: storage/templates/storage/redesign/storage.html:469
 msgctxt "storage_transfer"
 msgid "Склад будет перемещен в регион вашего местонахождения"
 msgstr ""
 
-#: storage/templates/storage/redesign/storage.html:336
+#: storage/templates/storage/redesign/storage.html:469
 msgctxt "storage_transfer"
 msgid "Больше этот Склад переместить не получится. Продолжить?"
 msgstr ""
 
-#: storage/templates/storage/redesign/storage.html:337
+#: storage/templates/storage/redesign/storage.html:470
 msgctxt "storage_transfer"
 msgid "Продолжить"
 msgstr ""
 
-#: storage/templates/storage/redesign/storage.html:338
+#: storage/templates/storage/redesign/storage.html:471
 msgctxt "storage_transfer"
 msgid "Отмена"
 msgstr ""
@@ -1785,6 +1842,154 @@ msgstr ""
 
 #: storage/templates/storage/storage_lines/cash_transfer.html:26
 msgid "Передать"
+msgstr ""
+
+#: storage/templates/storage/trading/new_offer.html:38
+msgctxt "w_trading_new"
+msgid "Новое торговое предложение"
+msgstr ""
+
+#: storage/templates/storage/trading/new_offer.html:43
+msgctxt "w_trading_new"
+msgid "Доступно"
+msgstr ""
+
+#: storage/templates/storage/trading/new_offer.html:48
+msgctxt "w_trading_new"
+msgid "+5 за каждый Склад"
+msgstr ""
+
+#: storage/templates/storage/trading/new_offer.html:53
+#: storage/templates/storage/trading/trading.html:54
+msgctxt "w_trading"
+msgid "Действие"
+msgstr ""
+
+#: storage/templates/storage/trading/new_offer.html:57
+msgctxt "w_trading_new"
+msgid "Продажа"
+msgstr ""
+
+#: storage/templates/storage/trading/new_offer.html:58
+msgctxt "w_trading_new"
+msgid "Покупка"
+msgstr ""
+
+#: storage/templates/storage/trading/new_offer.html:64
+msgctxt "w_trading_new"
+msgid "Склад"
+msgstr ""
+
+#: storage/templates/storage/trading/new_offer.html:76
+msgctxt "w_trading_new"
+msgid "Группа товаров"
+msgstr ""
+
+#: storage/templates/storage/trading/new_offer.html:80
+msgctxt "w_trading_new"
+msgid "Выберите группу"
+msgstr ""
+
+#: storage/templates/storage/trading/new_offer.html:90
+msgctxt "w_trading_new"
+msgid "Товар"
+msgstr ""
+
+#: storage/templates/storage/trading/new_offer.html:94
+msgctxt "w_trading_new"
+msgid "Выберите товар"
+msgstr ""
+
+#: storage/templates/storage/trading/new_offer.html:106
+#: storage/templates/storage/trading/trading.html:50
+msgctxt "w_trading"
+msgid "Количество"
+msgstr ""
+
+#: storage/templates/storage/trading/new_offer.html:118
+#: storage/templates/storage/trading/trading.html:51
+msgctxt "w_trading"
+msgid "Цена (шт.)"
+msgstr ""
+
+#: storage/templates/storage/trading/new_offer.html:126
+msgctxt "w_trading_new"
+msgid "Будет заблокировано"
+msgstr ""
+
+#: storage/templates/storage/trading/new_offer.html:136
+msgctxt "w_trading_new"
+msgid "Создать"
+msgstr ""
+
+#: storage/templates/storage/trading/trading.html:40
+msgctxt "w_trading"
+msgid "Выберите один или несколько критериев справа и нажмите \"Поиск\""
+msgstr ""
+
+#: storage/templates/storage/trading/trading.html:41
+msgctxt "w_trading"
+msgid "Ничего не найдено"
+msgstr ""
+
+#: storage/templates/storage/trading/trading.html:47
+msgctxt "w_trading"
+msgid "Товар"
+msgstr ""
+
+#: storage/templates/storage/trading/trading.html:48
+msgctxt "w_trading"
+msgid "Владелец"
+msgstr ""
+
+#: storage/templates/storage/trading/trading.html:49
+msgctxt "w_trading"
+msgid "Регион"
+msgstr ""
+
+#: storage/templates/storage/trading/trading.html:52
+msgctxt "w_trading"
+msgid "Доставка"
+msgstr ""
+
+#: storage/templates/storage/trading/trading.html:53
+msgctxt "w_trading"
+msgid "Сумма"
+msgstr ""
+
+#: storage/templates/storage/trading/trading.html:70
+msgctxt "w_trading"
+msgid "Продажа"
+msgstr ""
+
+#: storage/templates/storage/trading/trading.html:71
+msgctxt "w_trading"
+msgid "Покупка"
+msgstr ""
+
+#: storage/templates/storage/trading/trading.html:84
+msgctxt "w_trading"
+msgid "Все"
+msgstr ""
+
+#: storage/templates/storage/trading/trading.html:85
+msgctxt "w_trading"
+msgid "Партия"
+msgstr ""
+
+#: storage/templates/storage/trading/trading.html:86
+msgctxt "w_trading"
+msgid "Мои"
+msgstr ""
+
+#: storage/templates/storage/trading/trading.html:109
+msgctxt "w_trading"
+msgid "Поиск"
+msgstr ""
+
+#: storage/templates/storage/trading/trading.html:113
+msgctxt "w_trading"
+msgid "Создать"
 msgstr ""
 
 #: storage/views/assets/assets_action.py:39
@@ -1928,6 +2133,7 @@ msgstr ""
 #: storage/views/assets/storage_move.py:35
 #: storage/views/assets/storage_move.py:44
 #: storage/views/assets/storage_move.py:54
+#: storage/views/assets/storage_move.py:73
 msgctxt "assets"
 msgid "Перемещение Склада"
 msgstr ""
@@ -1945,11 +2151,6 @@ msgstr ""
 #: storage/views/assets/storage_move.py:56
 msgctxt "assets"
 msgid "Указанный Склад уже в текущем регионе"
-msgstr ""
-
-#: storage/views/assets/storage_move.py:73
-msgctxt "mining"
-msgid "Перемещение Склада"
 msgstr ""
 
 #: storage/views/factory/factory.py:47
@@ -2024,6 +2225,284 @@ msgstr ""
 #: storage/views/storage/new_storage.py:64
 msgctxt "storage"
 msgid "Недостаточно денег на транспортировку"
+msgstr ""
+
+#: storage/views/trading/accept_offer.py:41
+#: storage/views/trading/accept_offer.py:49
+#: storage/views/trading/accept_offer.py:62
+#: storage/views/trading/accept_offer.py:75
+#: storage/views/trading/accept_offer.py:83
+#: storage/views/trading/accept_offer.py:91
+#: storage/views/trading/accept_offer.py:107
+#: storage/views/trading/accept_offer.py:123
+#: storage/views/trading/accept_offer.py:132
+#: storage/views/trading/accept_offer.py:140
+#: storage/views/trading/accept_offer.py:154
+#: storage/views/trading/accept_offer.py:176
+#: storage/views/trading/accept_offer.py:200
+#: storage/views/trading/accept_offer.py:249
+#: storage/views/trading/accept_offer.py:257
+#: storage/views/trading/accept_offer.py:269
+#: storage/views/trading/accept_offer.py:277
+#: storage/views/trading/accept_offer.py:286
+#: storage/views/trading/accept_offer.py:298
+#: storage/views/trading/accept_offer.py:369
+#: storage/views/trading/accept_offer.py:376
+#: storage/views/trading/accept_offer.py:385
+msgctxt "w_trading"
+msgid "Принятие оффера"
+msgstr ""
+
+#: storage/views/trading/accept_offer.py:43
+msgctxt "w_trading"
+msgid "В поле количество должно быть число"
+msgstr ""
+
+#: storage/views/trading/accept_offer.py:51
+msgctxt "w_trading"
+msgid "В поле количество должно быть положительное число"
+msgstr ""
+
+#: storage/views/trading/accept_offer.py:64
+#: storage/views/trading/cancel_offer.py:41
+msgctxt "w_trading"
+msgid "ID оффера должно быть числом"
+msgstr ""
+
+#: storage/views/trading/accept_offer.py:77
+msgctxt "w_trading"
+msgid "Нельзя принять собственный оффер"
+msgstr ""
+
+#: storage/views/trading/accept_offer.py:85
+msgctxt "w_trading"
+msgid "Оффер изменился, или вы ввели некорректное число"
+msgstr ""
+
+#: storage/views/trading/accept_offer.py:93
+#: storage/views/trading/cancel_offer.py:62
+msgctxt "w_trading"
+msgid "Оффер не существует или уже принят"
+msgstr ""
+
+#: storage/views/trading/accept_offer.py:109
+#: storage/views/trading/cancel_offer.py:75
+msgctxt "w_trading"
+msgid "ID склада должно быть числом"
+msgstr ""
+
+#: storage/views/trading/accept_offer.py:125
+msgctxt "w_trading"
+msgid "На выбранном складе недостаточно места для товара"
+msgstr ""
+
+#: storage/views/trading/accept_offer.py:134
+msgctxt "w_trading"
+msgid "На выбранном складе недостаточно товара"
+msgstr ""
+
+#: storage/views/trading/accept_offer.py:142
+#: storage/views/trading/accept_offer.py:156
+#: storage/views/trading/cancel_offer.py:88
+msgctxt "w_trading"
+msgid "Выбранного склада игрока не существует"
+msgstr ""
+
+#: storage/views/trading/accept_offer.py:178
+#: storage/views/trading/accept_offer.py:288
+#: storage/views/trading/premium_trading.py:39
+msgctxt "w_trading"
+msgid "Недостаточно средств. Требуется $"
+msgstr ""
+
+#: storage/views/trading/accept_offer.py:202
+#: storage/views/trading/accept_offer.py:271
+#: storage/views/trading/cancel_offer.py:106
+#: storage/views/trading/cancel_offer.py:125
+#: storage/views/trading/premium_trading.py:110
+msgctxt "w_trading"
+msgid "Не удалось получить блокировку по офферу"
+msgstr ""
+
+#: storage/views/trading/accept_offer.py:251
+msgctxt "w_trading"
+msgid "Ваши расходы на доставку больше прибыли"
+msgstr ""
+
+#: storage/views/trading/accept_offer.py:259
+#: storage/views/trading/premium_trading.py:98
+msgctxt "w_trading"
+msgid "В торговом предложении недостаточно средств"
+msgstr ""
+
+#: storage/views/trading/accept_offer.py:279
+#: storage/views/trading/premium_trading.py:118
+msgctxt "w_trading"
+msgid "В связанной блокировке недостаточно средств"
+msgstr ""
+
+#: storage/views/trading/accept_offer.py:300
+msgctxt "w_trading"
+msgid "Выбранного склада оффера не существует"
+msgstr ""
+
+#: storage/views/trading/accept_offer.py:371
+#: storage/views/trading/premium_trading.py:176
+msgctxt "w_trading"
+msgid "Оффера такого типа не существует"
+msgstr ""
+
+#: storage/views/trading/accept_offer.py:378
+#: storage/views/trading/premium_trading.py:183
+msgctxt "w_trading"
+msgid "Торговое предложение успешно принято"
+msgstr ""
+
+#: storage/views/trading/cancel_offer.py:39
+#: storage/views/trading/cancel_offer.py:52
+#: storage/views/trading/cancel_offer.py:60
+#: storage/views/trading/cancel_offer.py:73
+#: storage/views/trading/cancel_offer.py:86
+#: storage/views/trading/cancel_offer.py:104
+#: storage/views/trading/cancel_offer.py:123
+#: storage/views/trading/cancel_offer.py:147
+msgctxt "w_trading"
+msgid "Отмена оффера"
+msgstr ""
+
+#: storage/views/trading/cancel_offer.py:54
+msgctxt "w_trading"
+msgid "Можно отменить только свой собственный оффер"
+msgstr ""
+
+#: storage/views/trading/create_offer.py:29
+#: storage/views/trading/create_offer.py:40
+#: storage/views/trading/create_offer.py:57
+#: storage/views/trading/create_offer.py:67
+#: storage/views/trading/create_offer.py:78
+#: storage/views/trading/create_offer.py:88
+#: storage/views/trading/create_offer.py:96
+#: storage/views/trading/create_offer.py:107
+#: storage/views/trading/create_offer.py:115
+#: storage/views/trading/create_offer.py:130
+#: storage/views/trading/create_offer.py:143
+#: storage/views/trading/create_offer.py:159
+#: storage/views/trading/create_offer.py:167
+#: storage/views/trading/create_offer.py:200
+#: storage/views/trading/create_offer.py:207
+#: storage/views/trading/create_offer.py:216
+msgctxt "w_trading_new"
+msgid "Создание оффера"
+msgstr ""
+
+#: storage/views/trading/create_offer.py:31
+#: storage/views/trading/get_offers.py:39
+msgctxt "w_trading_new"
+msgid "Некорректное действие"
+msgstr ""
+
+#: storage/views/trading/create_offer.py:42
+msgctxt "w_trading_new"
+msgid "Склад не указан"
+msgstr ""
+
+#: storage/views/trading/create_offer.py:59
+msgctxt "w_trading_new"
+msgid "Достигнут лимит торговых предложений"
+msgstr ""
+
+#: storage/views/trading/create_offer.py:69
+msgctxt "w_trading_new"
+msgid "Указанный товар не существует"
+msgstr ""
+
+#: storage/views/trading/create_offer.py:80
+msgctxt "w_trading_new"
+msgid "Количество - не число"
+msgstr ""
+
+#: storage/views/trading/create_offer.py:90
+msgctxt "w_trading_new"
+msgid "Количество товара должно быть положительным числом"
+msgstr ""
+
+#: storage/views/trading/create_offer.py:98
+msgctxt "w_trading_new"
+msgid "Количество товара слишком велико"
+msgstr ""
+
+#: storage/views/trading/create_offer.py:109
+msgctxt "w_trading_new"
+msgid "Цена товара должна быть положительным числом"
+msgstr ""
+
+#: storage/views/trading/create_offer.py:117
+msgctxt "w_trading_new"
+msgid "Цена товара слишком велика"
+msgstr ""
+
+#: storage/views/trading/create_offer.py:132
+msgctxt "w_trading_new"
+msgid "Недостаточно Wild Pass для продажи"
+msgstr ""
+
+#: storage/views/trading/create_offer.py:145
+msgctxt "w_trading_new"
+msgid "Недостаточно ресурса для продажи"
+msgstr ""
+
+#: storage/views/trading/create_offer.py:161
+msgctxt "w_trading_new"
+msgid "Стоимость товара слишком велика"
+msgstr ""
+
+#: storage/views/trading/create_offer.py:169
+msgctxt "w_trading_new"
+msgid "Недостаточно средств"
+msgstr ""
+
+#: storage/views/trading/create_offer.py:202
+msgctxt "w_trading_new"
+msgid "Указанный Склад вам не принадлежит"
+msgstr ""
+
+#: storage/views/trading/create_offer.py:209
+msgctxt "w_trading_new"
+msgid "Торговое предложение успешно создано"
+msgstr ""
+
+#: storage/views/trading/get_offers.py:37
+#: storage/views/trading/get_offers.py:59
+#: storage/views/trading/get_offers.py:172
+msgctxt "w_trading"
+msgid "Получение офферов"
+msgstr ""
+
+#: storage/views/trading/get_offers.py:61
+msgctxt "w_trading"
+msgid "Некорректный владелец"
+msgstr ""
+
+#: storage/views/trading/premium_trading.py:25
+#: storage/views/trading/premium_trading.py:37
+#: storage/views/trading/premium_trading.py:83
+#: storage/views/trading/premium_trading.py:96
+#: storage/views/trading/premium_trading.py:108
+#: storage/views/trading/premium_trading.py:116
+#: storage/views/trading/premium_trading.py:174
+#: storage/views/trading/premium_trading.py:181
+msgctxt "w_trading"
+msgid "Торговля Wild Pass"
+msgstr ""
+
+#: storage/views/trading/premium_trading.py:27
+msgctxt "w_trading"
+msgid "Не удалось получить владельца торгового предложения"
+msgstr ""
+
+#: storage/views/trading/premium_trading.py:85
+msgctxt "w_trading"
+msgid "У вас недостаточно Wild Pass"
 msgstr ""
 
 #: war/models/squads/light_vehicle.py:49 war/models/wars/war_side.py:34

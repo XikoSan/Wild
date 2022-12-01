@@ -17,6 +17,7 @@ from storage.views.storage.locks.get_storage import get_storage
 from django.contrib.humanize.templatetags.humanize import number_format
 from storage.models.trading_log import TradingLog
 from player.logs.cash_log import CashLog
+from django.utils.translation import pgettext
 
 
 @login_required(login_url='/')
@@ -35,9 +36,9 @@ def cancel_offer(request):
 
         except ValueError:
             data = {
-                'header': 'Оффер - не число',
-                'grey_btn': 'Закрыть',
-                'response': 'ID оффера должно быть числом',
+                'header': pgettext('w_trading', 'Отмена оффера'),
+                'grey_btn': pgettext('mining', 'Закрыть'),
+                'response': pgettext('w_trading', 'ID оффера должно быть числом'),
             }
             return JsonResponse(data)
 
@@ -48,17 +49,17 @@ def cancel_offer(request):
 
             if not offer.owner_storage.owner == player:
                 data = {
-                    'header': 'Только свой оффер',
-                    'grey_btn': 'Закрыть',
-                    'response': 'Можно отменить только свой собственный оффер',
+                    'header': pgettext('w_trading', 'Отмена оффера'),
+                    'grey_btn': pgettext('mining', 'Закрыть'),
+                    'response': pgettext('w_trading', 'Можно отменить только свой собственный оффер'),
                 }
                 return JsonResponse(data)
 
         else:
             data = {
-                'header': 'Нет оффера',
-                'grey_btn': 'Закрыть',
-                'response': 'Оффер не существует или уже принят',
+                'header': pgettext('w_trading', 'Отмена оффера'),
+                'grey_btn': pgettext('mining', 'Закрыть'),
+                'response': pgettext('w_trading', 'Оффер не существует или уже принят'),
             }
             return JsonResponse(data)
 
@@ -69,9 +70,9 @@ def cancel_offer(request):
 
         except ValueError:
             data = {
-                'header': 'Склад - не число',
-                'grey_btn': 'Закрыть',
-                'response': 'ID склада должно быть числом',
+                'header': pgettext('w_trading', 'Отмена оффера'),
+                'grey_btn': pgettext('mining', 'Закрыть'),
+                'response': pgettext('w_trading', 'ID склада должно быть числом'),
             }
             return JsonResponse(data)
 
@@ -82,9 +83,9 @@ def cancel_offer(request):
 
         else:
             data = {
-                'header': 'Нет склада игрока',
-                'grey_btn': 'Закрыть',
-                'response': 'Выбранного склада игрока не существует',
+                'header': pgettext('w_trading', 'Отмена оффера'),
+                'grey_btn': pgettext('mining', 'Закрыть'),
+                'response': pgettext('w_trading', 'Выбранного склада игрока не существует'),
             }
             return JsonResponse(data)
 
@@ -100,9 +101,9 @@ def cancel_offer(request):
                     offer_good_lock = GoodLock.objects.select_for_update().get(lock_offer=offer, deleted=False)
                 else:
                     data = {
-                        'header': 'Получение блокировки',
-                        'grey_btn': 'Закрыть',
-                        'response': 'Не удалось получить блокировку по офферу',
+                        'header': pgettext('w_trading', 'Отмена оффера'),
+                        'grey_btn': pgettext('mining', 'Закрыть'),
+                        'response': pgettext('w_trading', 'Не удалось получить блокировку по офферу'),
                     }
                     return JsonResponse(data)
 
@@ -119,9 +120,9 @@ def cancel_offer(request):
                 offer_cash_lock = CashLock.objects.select_for_update().get(lock_offer=offer, deleted=False)
             else:
                 data = {
-                    'header': 'Получение блокировки',
-                    'grey_btn': 'Закрыть',
-                    'response': 'Не удалось получить блокировку по офферу',
+                    'header': pgettext('w_trading', 'Отмена оффера'),
+                    'grey_btn': pgettext('mining', 'Закрыть'),
+                    'response': pgettext('w_trading', 'Не удалось получить блокировку по офферу'),
                 }
                 return JsonResponse(data)
 
@@ -143,8 +144,8 @@ def cancel_offer(request):
     # если страницу только грузят
     else:
         data = {
-            'header': 'Ошибка при создании',
-            'grey_btn': 'Закрыть',
-            'response': 'Ты уверен что тебе сюда, путник?',
+            'header': pgettext('w_trading', 'Отмена оффера'),
+            'grey_btn': pgettext('mining', 'Закрыть'),
+            'response': pgettext('mining', 'Ошибка метода'),
         }
         return JsonResponse(data)
