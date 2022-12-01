@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-29 20:04+0300\n"
+"POT-Creation-Date: 2022-12-01 15:41+0300\n"
 "PO-Revision-Date: 2022-11-22 22:05+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -88,7 +88,7 @@ msgstr "Ungültige Anfrage"
 #: region/views/do_mining.py:56 region/views/do_mining.py:69
 #: region/views/do_mining.py:78 region/views/do_mining.py:87
 #: region/views/do_mining.py:103 region/views/do_mining.py:123
-#: region/views/do_mining.py:159 region/views/do_mining.py:216
+#: region/views/do_mining.py:164 region/views/do_mining.py:225
 #: region/views/retrieve_cash.py:41 region/views/start_auto.py:28
 #: region/views/start_auto.py:36 region/views/start_auto.py:49
 #: region/views/start_auto.py:58 region/views/start_auto.py:80
@@ -990,7 +990,7 @@ msgstr "Es ist ein Fehler beim Abbrechen der Fähigkeit aufgetreten"
 #: region/views/do_mining.py:55 region/views/do_mining.py:68
 #: region/views/do_mining.py:77 region/views/do_mining.py:86
 #: region/views/do_mining.py:102 region/views/do_mining.py:122
-#: region/views/do_mining.py:158 region/views/do_mining.py:215
+#: region/views/do_mining.py:163 region/views/do_mining.py:224
 #, fuzzy
 #| msgid "Некорректный запрос"
 msgctxt "mining"
@@ -1039,12 +1039,12 @@ msgctxt "mining"
 msgid "Запасов нефти в регионе недостаточно для добычи"
 msgstr ""
 
-#: region/views/do_mining.py:157
+#: region/views/do_mining.py:162
 msgctxt "mining"
 msgid "Запасов руды в регионе недостаточно для добычи"
 msgstr ""
 
-#: region/views/do_mining.py:217 storage/views/assets/assets_action.py:229
+#: region/views/do_mining.py:226 storage/views/assets/assets_action.py:229
 #: storage/views/assets/storage_move.py:75
 #: storage/views/storage/cash_transfer.py:122
 #: storage/views/storage/new_storage.py:88
@@ -1118,105 +1118,105 @@ msgid "Нет такого навыка"
 msgstr "Du hast diese Fähigkeit nicht erlernt"
 
 #: state/models/treasury.py:38 storage/models/factory/production_log.py:18
-#: storage/models/storage.py:101
+#: storage/models/storage.py:110
 msgid "storage_cash"
 msgstr "lager_geld"
 
 #: state/models/treasury.py:42 storage/models/destroy.py:18
-#: storage/models/factory/production_log.py:22 storage/models/storage.py:105
+#: storage/models/factory/production_log.py:22 storage/models/storage.py:114
 #: storage/models/transport.py:88
 msgid "Уголь"
 msgstr "Kohle"
 
 #: state/models/treasury.py:45 storage/models/destroy.py:21
-#: storage/models/factory/production_log.py:25 storage/models/storage.py:110
+#: storage/models/factory/production_log.py:25 storage/models/storage.py:119
 msgid "iron"
 msgstr "Eisen"
 
 #: state/models/treasury.py:48 storage/models/destroy.py:24
-#: storage/models/factory/production_log.py:28 storage/models/storage.py:115
+#: storage/models/factory/production_log.py:28 storage/models/storage.py:124
 msgid "bauxite"
 msgstr "Bauxite"
 
 #: state/models/treasury.py:52 storage/models/destroy.py:28
-#: storage/models/factory/production_log.py:32 storage/models/storage.py:121
+#: storage/models/factory/production_log.py:32 storage/models/storage.py:130
 msgid "wti_oil"
 msgstr ""
 
 #: state/models/treasury.py:55 storage/models/destroy.py:31
-#: storage/models/factory/production_log.py:35 storage/models/storage.py:126
+#: storage/models/factory/production_log.py:35 storage/models/storage.py:135
 msgid "brent_oil"
 msgstr ""
 
 #: state/models/treasury.py:58 storage/models/destroy.py:34
-#: storage/models/factory/production_log.py:38 storage/models/storage.py:131
+#: storage/models/factory/production_log.py:38 storage/models/storage.py:140
 msgid "urals_oil"
 msgstr ""
 
 #: state/models/treasury.py:62 storage/models/destroy.py:38
-#: storage/models/factory/production_log.py:42 storage/models/storage.py:137
+#: storage/models/factory/production_log.py:42 storage/models/storage.py:146
 msgid "gas"
 msgstr "Gas"
 
 #: state/models/treasury.py:65 storage/models/destroy.py:41
-#: storage/models/factory/production_log.py:45 storage/models/storage.py:142
+#: storage/models/factory/production_log.py:45 storage/models/storage.py:151
 msgid "diesel"
 msgstr "Diesel"
 
 #: state/models/treasury.py:68 storage/models/destroy.py:44
-#: storage/models/factory/production_log.py:48 storage/models/storage.py:147
+#: storage/models/factory/production_log.py:48 storage/models/storage.py:156
 msgid "plastic"
 msgstr "Plastik"
 
 #: state/models/treasury.py:71 storage/models/destroy.py:46
 #: storage/models/factory/production_log.py:50
-#: storage/models/factory/project.py:85 storage/models/storage.py:151
+#: storage/models/factory/project.py:85 storage/models/storage.py:160
 msgid "steel"
 msgstr "Stahl"
 
 #: state/models/treasury.py:74 storage/models/destroy.py:48
-#: storage/models/factory/production_log.py:52 storage/models/storage.py:155
+#: storage/models/factory/production_log.py:52 storage/models/storage.py:164
 msgid "alumunuim"
 msgstr "Aluminium"
 
 #: state/models/treasury.py:78 storage/models/destroy.py:52
-#: storage/models/factory/production_log.py:56 storage/models/storage.py:161
+#: storage/models/factory/production_log.py:56 storage/models/storage.py:170
 #: storage/models/transport.py:144
 msgid "Койки"
 msgstr "Barracken"
 
 #: state/models/treasury.py:82 storage/models/destroy.py:56
-#: storage/models/storage.py:167 storage/models/transport.py:150
+#: storage/models/storage.py:176 storage/models/transport.py:150
 #: war/models/squads/infantry.py:32 war/models/wars/war_side.py:30
 msgid "Автоматы"
 msgstr "Automaten"
 
 #: state/models/treasury.py:85 storage/models/destroy.py:58
 #: storage/models/factory/production_log.py:63
-#: storage/models/factory/project.py:147 storage/models/storage.py:177
+#: storage/models/factory/project.py:147 storage/models/storage.py:186
 msgid "tank"
 msgstr "Tank"
 
 #: state/models/treasury.py:88 storage/models/destroy.py:60
 #: storage/models/factory/production_log.py:66
-#: storage/models/factory/project.py:163 storage/models/storage.py:182
+#: storage/models/factory/project.py:163 storage/models/storage.py:191
 msgid "attack_air"
 msgstr "angriff_luft"
 
 #: state/models/treasury.py:91 storage/models/destroy.py:62
-#: storage/models/factory/production_log.py:69 storage/models/storage.py:187
+#: storage/models/factory/production_log.py:69 storage/models/storage.py:196
 msgid "orb_station"
 msgstr "Orb_Station"
 
 #: state/models/treasury.py:94 storage/models/destroy.py:64
 #: storage/models/factory/production_log.py:72
-#: storage/models/factory/project.py:179 storage/models/storage.py:192
+#: storage/models/factory/project.py:179 storage/models/storage.py:201
 msgid "mpads"
 msgstr "Luftabwehrsystem"
 
 #: state/models/treasury.py:97 storage/models/destroy.py:66
 #: storage/models/factory/production_log.py:75
-#: storage/models/factory/project.py:195 storage/models/storage.py:172
+#: storage/models/factory/project.py:195 storage/models/storage.py:181
 msgid "antitank"
 msgstr "Panzerabwehrsystem"
 
@@ -1241,7 +1241,7 @@ msgstr "Hauptstadt"
 msgid "Государственные налоги"
 msgstr "Staatliche Steuern"
 
-#: storage/models/destroy.py:70 storage/models/storage.py:202
+#: storage/models/destroy.py:70 storage/models/storage.py:211
 #: storage/models/transport.py:185 war/models/wars/war_side.py:27
 msgid "Дроны"
 msgstr "Drohnen"
@@ -1271,7 +1271,7 @@ msgstr "Aluminium"
 msgid "medical"
 msgstr "Medizin"
 
-#: storage/models/factory/project.py:211 storage/models/storage.py:197
+#: storage/models/factory/project.py:211 storage/models/storage.py:206
 #: storage/models/transport.py:180 war/models/squads/light_vehicle.py:47
 #: war/models/wars/war_side.py:32
 msgid "БМП"
@@ -1412,58 +1412,64 @@ msgid "БПЛА"
 msgstr "UAV"
 
 #: storage/models/storage.py:107
+#, fuzzy
+#| msgid "Уровень ТЭЦ"
+msgid "Уровень"
+msgstr "Heizkraftwerk"
+
+#: storage/models/storage.py:116
 msgid "coal_cap"
 msgstr ""
 
-#: storage/models/storage.py:112
+#: storage/models/storage.py:121
 msgid "iron_cap"
 msgstr ""
 
-#: storage/models/storage.py:117
+#: storage/models/storage.py:126
 msgid "bauxite_cap"
 msgstr ""
 
-#: storage/models/storage.py:123
+#: storage/models/storage.py:132
 msgid "wti_oil_cap"
 msgstr ""
 
-#: storage/models/storage.py:128
+#: storage/models/storage.py:137
 msgid "brent_oil_cap"
 msgstr ""
 
-#: storage/models/storage.py:133
+#: storage/models/storage.py:142
 msgid "urals_oil_cap"
 msgstr ""
 
-#: storage/models/storage.py:139
+#: storage/models/storage.py:148
 msgid "gas_cap"
 msgstr ""
 
-#: storage/models/storage.py:144
+#: storage/models/storage.py:153
 msgid "diesel_cap"
 msgstr ""
 
-#: storage/models/storage.py:149
+#: storage/models/storage.py:158
 msgid "plastic_cap"
 msgstr ""
 
-#: storage/models/storage.py:153
+#: storage/models/storage.py:162
 msgid "steel_cap"
 msgstr ""
 
-#: storage/models/storage.py:157
+#: storage/models/storage.py:166
 msgid "alumunuim_cap"
 msgstr ""
 
-#: storage/models/storage.py:163
+#: storage/models/storage.py:172
 msgid "medical_cap"
 msgstr ""
 
-#: storage/models/storage.py:250
+#: storage/models/storage.py:259
 msgid "positive_spend_stock_req"
 msgstr ""
 
-#: storage/models/storage.py:255
+#: storage/models/storage.py:264
 msgid "not_enough"
 msgstr "nicht_ausreichend"
 
@@ -1656,82 +1662,82 @@ msgctxt "assets"
 msgid "подтвердить"
 msgstr ""
 
-#: storage/templates/storage/redesign/storage.html:11
-#: storage/views/storage/storage.py:32
+#: storage/templates/storage/redesign/storage.html:13
+#: storage/views/storage/storage.py:34
 msgctxt "storage"
 msgid "Склад"
 msgstr "Lagerhaus"
 
-#: storage/templates/storage/redesign/storage.html:78
+#: storage/templates/storage/redesign/storage.html:80
 msgctxt "storage"
 msgid "склад"
 msgstr "Lagerbestand"
 
-#: storage/templates/storage/redesign/storage.html:92
+#: storage/templates/storage/redesign/storage.html:94
 msgctxt "storage"
 msgid "хранилище"
 msgstr "Speicherort"
 
-#: storage/templates/storage/redesign/storage.html:107
+#: storage/templates/storage/redesign/storage.html:109
 msgctxt "storage_assets"
 msgid "энергетики"
 msgstr "Energie"
 
-#: storage/templates/storage/redesign/storage.html:114
-#: storage/templates/storage/redesign/storage.html:134
+#: storage/templates/storage/redesign/storage.html:116
+#: storage/templates/storage/redesign/storage.html:136
 msgctxt "storage_assets"
 msgid "создать"
 msgstr "aufbauen"
 
-#: storage/templates/storage/redesign/storage.html:118
+#: storage/templates/storage/redesign/storage.html:120
 msgctxt "storage_assets"
 msgid "стоимость"
 msgstr "Kosten"
 
-#: storage/templates/storage/redesign/storage.html:146
+#: storage/templates/storage/redesign/storage.html:148
 msgctxt "storage_assets"
 msgid "Количество"
 msgstr "Anzahl"
 
-#: storage/templates/storage/redesign/storage.html:159
+#: storage/templates/storage/redesign/storage.html:161
 msgctxt "storage_assets"
 msgid "использовать"
 msgstr "verwenden"
 
-#: storage/templates/storage/redesign/storage.html:178
-#: storage/templates/storage/redesign/storage.html:468
+#: storage/templates/storage/redesign/storage.html:180
+#: storage/templates/storage/redesign/storage.html:335
 msgctxt "storage_transfer"
 msgid "Перемещение Склада"
 msgstr "Verlagerung des Lagers"
 
-#: storage/templates/storage/redesign/storage.html:179
+#: storage/templates/storage/redesign/storage.html:181
 msgctxt "storage_transfer"
 msgid "Вы можете перенести Склад в регион текущего местоположения (один раз)"
 msgstr ""
 "Sie können das Lager in die Region des aktuellen Standorts verschieben "
 "(einmalig)"
 
-#: storage/templates/storage/redesign/storage.html:192
+#: storage/templates/storage/redesign/storage.html:194
 msgctxt "storage_transfer"
 msgid "перенести"
 msgstr "bewegen"
 
-#: storage/templates/storage/redesign/storage.html:454
+#: storage/templates/storage/redesign/storage.html:321
 msgctxt "storage_assets"
 msgid "Продление"
 msgstr "Erneuern"
 
-#: storage/templates/storage/redesign/storage.html:454
+#: storage/templates/storage/redesign/storage.html:321
 msgctxt "storage_assets"
 msgid "Активация"
 msgstr "aktivieren"
 
-#: storage/templates/storage/redesign/storage.html:454
+#: storage/templates/storage/redesign/storage.html:321
 msgctxt "storage_assets"
 msgid "премиум-аккаунта"
 msgstr "Premium Status"
 
-#: storage/templates/storage/redesign/storage.html:457
+#: storage/templates/storage/redesign/storage.html:324
 msgctxt "storage_assets"
 msgid ""
 "Ваш премиум-аккаунт будет продлён на один месяц. Данную операцию невозможно "
@@ -1740,7 +1746,7 @@ msgstr ""
 "Ihr Premium wird um einen Monat verlängert. Der Vorgang kann nicht "
 "abgebrochen werden. Soll ich fortfahren?"
 
-#: storage/templates/storage/redesign/storage.html:459
+#: storage/templates/storage/redesign/storage.html:326
 msgctxt "storage_assets"
 msgid ""
 "Вы активируете премиум-аккаунт, длительностью один месяц. Данную операцию "
@@ -1749,32 +1755,32 @@ msgstr ""
 "Sie aktivieren 1 Monat Premium. Der Vorgang kann nicht abgebrochen werden. "
 "Soll ich fortfahren?"
 
-#: storage/templates/storage/redesign/storage.html:462
+#: storage/templates/storage/redesign/storage.html:329
 msgctxt "storage_assets"
 msgid "Продолжить"
 msgstr "weiter"
 
-#: storage/templates/storage/redesign/storage.html:463
+#: storage/templates/storage/redesign/storage.html:330
 msgctxt "storage_assets"
 msgid "Отмена"
 msgstr "abbrechen"
 
-#: storage/templates/storage/redesign/storage.html:469
+#: storage/templates/storage/redesign/storage.html:336
 msgctxt "storage_transfer"
 msgid "Склад будет перемещен в регион вашего местонахождения"
 msgstr "Das Lager wird in die Region verlegt, in der Sie sich befinden"
 
-#: storage/templates/storage/redesign/storage.html:469
+#: storage/templates/storage/redesign/storage.html:336
 msgctxt "storage_transfer"
 msgid "Больше этот Склад переместить не получится. Продолжить?"
 msgstr "Sie können das Lagerhaus nicht mehr bewegen. Soll ich fortfahren?"
 
-#: storage/templates/storage/redesign/storage.html:470
+#: storage/templates/storage/redesign/storage.html:337
 msgctxt "storage_transfer"
 msgid "Продолжить"
 msgstr "weiter"
 
-#: storage/templates/storage/redesign/storage.html:471
+#: storage/templates/storage/redesign/storage.html:338
 msgctxt "storage_transfer"
 msgid "Отмена"
 msgstr "abbrechen"
@@ -2170,6 +2176,12 @@ msgstr "Auffüllen der Energie"
 #: war/models/squads/light_vehicle.py:49 war/models/wars/war_side.py:34
 msgid "ПТ-орудия"
 msgstr "PT-Kanonen"
+
+#, fuzzy
+#~| msgctxt "storage"
+#~| msgid "Склад"
+#~ msgid "Склад"
+#~ msgstr "Lagerhaus"
 
 #, fuzzy
 #~| msgid "Склад"

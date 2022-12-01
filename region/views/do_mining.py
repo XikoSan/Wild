@@ -137,15 +137,20 @@ def do_mining(request):
                 setattr(storage, player.region.oil_type,
                         getattr(storage, player.region.oil_type) + taxed_oil)
             else:
-                # если места нет или его меньше чем пак ресурсов, забиваем под крышку
-                mined_result[player.region.oil_type] = getattr(storage, player.region.oil_type + '_cap') - getattr(
-                    lock_storage, player.region.oil_type)
-                # устанавливаем новое значение как остаток до полного склада с учетом блокировок + старое значение ресурса
-                setattr(storage, player.region.oil_type,
-                        (getattr(storage, player.region.oil_type + '_cap') - getattr(lock_storage,
-                                                                                     player.region.oil_type)) +
-                        getattr(storage, player.region.oil_type)
-                        )
+                # если склад забит больше, чем его размер - пропускам ресурс
+                if getattr(lock_storage, player.region.oil_type) > getattr(storage, player.region.oil_type + '_cap'):
+                    mined_result[player.region.oil_type] = 0
+
+                else:
+                    # если места нет или его меньше чем пак ресурсов, забиваем под крышку
+                    mined_result[player.region.oil_type] = getattr(storage, player.region.oil_type + '_cap') - getattr(
+                        lock_storage, player.region.oil_type)
+                    # устанавливаем новое значение как остаток до полного склада с учетом блокировок + старое значение ресурса
+                    setattr(storage, player.region.oil_type,
+                            (getattr(storage, player.region.oil_type + '_cap') - getattr(lock_storage,
+                                                                                         player.region.oil_type)) +
+                            getattr(storage, player.region.oil_type)
+                            )
 
             player.region.oil_has -= Decimal((count / 10) * 0.01)
 
@@ -180,6 +185,10 @@ def do_mining(request):
                     setattr(storage, mineral,
                             getattr(storage, mineral) + taxed_ore)
                 else:
+                    # если склад забит больше, чем его размер - пропускам ресурс
+                    if getattr(lock_storage, mineral) > getattr(storage, mineral + '_cap'):
+                        ined_result[mineral] = 0
+
                     # если места нет или его меньше чем пак ресурсов, забиваем под крышку
                     if taxed_ore > 0:
                         mined_result[mineral] = getattr(storage, mineral + '_cap') - getattr(lock_storage, mineral)

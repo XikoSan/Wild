@@ -236,8 +236,10 @@ LANGUAGES = (
     # ('es', 'Spanish'),
     # ('pl', 'Polish'),
     # ('uk', 'Ukrainian'),
-    # ('tr', 'Turkish'),
-    # ('pt', 'Portuguese'),
+    ('tr', 'Turkish'),
+    ('sr', 'Serbian'),
+    ('id', 'Indonesian'),
+    ('pt-br', 'Portuguese (Brazil)'),
 )
 
 TIME_ZONE = 'Europe/Moscow'
