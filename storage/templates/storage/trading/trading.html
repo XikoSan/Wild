@@ -62,7 +62,7 @@
 </div>
 <div class="col-xs-2 col-sm-2 col-md-2" align="center">
     <div class="row" style="margin-top: 5%;">
-        <a class="save btn btn-success" style="width: 100%" href="/auctions">Государственнные закупки</a>
+        <a class="save btn btn-success" style="width: 100%" href="/auctions">{% trans 'Государственнные закупки' context "w_trading" %}</a>
     </div>
     <form id="offers_search_form" role="form">
         <div class="row" style="margin-top: 30%">
@@ -96,7 +96,7 @@
         </div>
         <div class="row" style="margin-top: 5%">
             <select name="cc" id="trade_goods" style="width: 100%">
-                <option id="good_default" value='default' disabled selected value>Выберите товар</option>
+                <option id="good_default" value='default' disabled selected value>{% trans 'Выберите товар' context "w_trading" %}</option>
                 {% for group in storage_cl|get_attr:'types' %}
                     {% for good in storage_cl|get_attr:group %}
                 <option id="good_{{ good }}" value='{{ good }}' style="display: none">{{ storage_cl|get_attr:group|dict_key:good }}</option>
