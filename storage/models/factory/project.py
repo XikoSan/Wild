@@ -3,7 +3,7 @@ import datetime
 from datetime import timedelta
 from django.db import models
 from django.utils import timezone
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext, pgettext
 
 
 # Абстрактный класс задачи на производство
@@ -13,8 +13,8 @@ class Project(models.Model):
     running = models.BooleanField(default=False, verbose_name='Производится')
     # -------------vvvvvvv---------------Производственные схемы---------------vvvvvvv---------------
     gas = {
-        'title': _('Бензин'),
-        # 'title': _('gas'),
+        'title': pgettext('goods', 'Бензин'),
+        # 'title': pgettext('goods', 'gas'),
 
         'resources':
             [
@@ -36,8 +36,8 @@ class Project(models.Model):
         'energy': 1,
     }
     plastic = {
-        'title': _('Пластик'),
-        # 'title': _('plastic'),
+        'title': pgettext('goods', 'Пластик'),
+        # 'title': pgettext('goods', 'plastic'),
 
         'resources':
             [
@@ -59,8 +59,8 @@ class Project(models.Model):
         'energy': 1,
     }
     diesel = {
-        'title': _('Дизель'),
-        # 'title': _('plastic'),
+        'title': pgettext('goods', 'Дизель'),
+        # 'title': pgettext('goods', 'plastic'),
 
         'resources':
             [
@@ -82,7 +82,7 @@ class Project(models.Model):
         'energy': 1,
     }
     steel = {
-        'title': _('steel'),
+        'title': pgettext('goods', 'Сталь'),
 
         'resources':
             [
@@ -98,7 +98,7 @@ class Project(models.Model):
     }
 
     aluminium = {
-        'title': _('aluminium'),
+        'title': pgettext('goods', 'Алюминий'),
 
         'resources':
             [
@@ -113,7 +113,7 @@ class Project(models.Model):
     }
 
     medical = {
-        'title': _('medical'),
+        'title': pgettext('goods', 'Медикаменты'),
 
         'resources':
             [
@@ -129,7 +129,7 @@ class Project(models.Model):
     }
 
     rifle = {
-        'title': _('rifle'),
+        'title': pgettext('goods', 'Автоматы'),
 
         'resources':
             [
@@ -144,7 +144,7 @@ class Project(models.Model):
     }
 
     tank = {
-        'title': _('tank'),
+        'title': pgettext('goods', 'Танки'),
 
         'resources':
             [
@@ -160,7 +160,7 @@ class Project(models.Model):
     }
 
     jet = {
-        'title': _('attack_air'),
+        'title': pgettext('goods', 'Штурмовики'),
 
         'resources':
             [
@@ -176,7 +176,7 @@ class Project(models.Model):
     }
 
     pzrk = {
-        'title': _('mpads'),
+        'title': pgettext('goods', 'ПЗРК'),
 
         'resources':
             [
@@ -192,7 +192,7 @@ class Project(models.Model):
     }
 
     antitank = {
-        'title': _('antitank'),
+        'title': pgettext('goods', 'ПТ-орудия'),
 
         'resources':
             [
@@ -208,7 +208,7 @@ class Project(models.Model):
     }
 
     ifv = {
-        'title': _('БМП'),
+        'title': pgettext('goods', 'БМП'),
 
         'resources':
             [
@@ -224,7 +224,7 @@ class Project(models.Model):
     }
 
     drone = {
-        'title': _('БПЛА'),
+        'title': pgettext('goods', 'БПЛА'),
 
         'resources':
             [

@@ -3,7 +3,7 @@ import datetime
 
 from django.db import models
 from django.utils import timezone
-from django.utils.translation import gettext_lazy
+from django.utils.translation import gettext_lazy, pgettext_lazy
 
 from region.region import Region
 from state.models.state import State
@@ -27,7 +27,7 @@ class Treasury(models.Model):
     # ------vvvvvvv------Электростанция------vvvvvvv------
 
     # удалено
-    power_on = models.BooleanField(default=False, verbose_name='Электроскть работает')
+    power_on = models.BooleanField(default=False, verbose_name='Электросеть работает')
 
     # дата актуализации
     power_actualize = models.DateTimeField(default=None, null=True, blank=True, verbose_name='Акутализация электросети')
@@ -35,72 +35,72 @@ class Treasury(models.Model):
     # ------^^^^^^^------Электростанция------^^^^^^^------
 
     # наличные на складе
-    cash = models.BigIntegerField(default=0, verbose_name=gettext_lazy('storage_cash'))
+    cash = models.BigIntegerField(default=0, verbose_name=pgettext_lazy('goods', 'Наличные'))
 
     # ------vvvvvvv------Минералы на складе------vvvvvvv------
     # Уголь
-    coal = models.IntegerField(default=0, verbose_name=gettext_lazy('Уголь'))
+    coal = models.IntegerField(default=0, verbose_name=pgettext_lazy('goods', 'Уголь'))
 
     # Железо
-    iron = models.IntegerField(default=0, verbose_name=gettext_lazy('iron'))
+    iron = models.IntegerField(default=0, verbose_name=pgettext_lazy('goods', 'Железо'))
 
     # Бокситы
-    bauxite = models.IntegerField(default=0, verbose_name=gettext_lazy('bauxite'))
+    bauxite = models.IntegerField(default=0, verbose_name=pgettext_lazy('goods', 'Бокситы'))
 
     # ------vvvvvvv------Нефть на складе------vvvvvvv------
     # Нефть WTI
-    wti_oil = models.IntegerField(default=0, verbose_name=gettext_lazy('wti_oil'))
+    wti_oil = models.IntegerField(default=0, verbose_name=pgettext_lazy('goods', 'Нефть WTI'))
 
     # Нефть Brent
-    brent_oil = models.IntegerField(default=0, verbose_name=gettext_lazy('brent_oil'))
+    brent_oil = models.IntegerField(default=0, verbose_name=pgettext_lazy('goods', 'Нефть Brent'))
 
     # Нефть Urals
-    urals_oil = models.IntegerField(default=0, verbose_name=gettext_lazy('urals_oil'))
+    urals_oil = models.IntegerField(default=0, verbose_name=pgettext_lazy('goods', 'Нефть Urals'))
 
     # ------vvvvvvv------Материалы на складе------vvvvvvv------
     # бензин
-    gas = models.IntegerField(default=0, verbose_name=gettext_lazy('gas'))
+    gas = models.IntegerField(default=0, verbose_name=pgettext_lazy('goods', 'Бензин'))
 
     # дизель
-    diesel = models.IntegerField(default=0, verbose_name=gettext_lazy('diesel'))
+    diesel = models.IntegerField(default=0, verbose_name=pgettext_lazy('goods', 'Дизельное топливо'))
 
     # пластик
-    plastic = models.IntegerField(default=0, verbose_name=gettext_lazy('plastic'))
+    plastic = models.IntegerField(default=0, verbose_name=pgettext_lazy('goods', 'Пластик'))
 
     # сталь
-    steel = models.IntegerField(default=0, verbose_name=gettext_lazy('steel'))
+    steel = models.IntegerField(default=0, verbose_name=pgettext_lazy('goods', 'Сталь'))
 
     # алюминий
-    aluminium = models.IntegerField(default=0, verbose_name=gettext_lazy('alumunuim'))
+    aluminium = models.IntegerField(default=0, verbose_name=pgettext_lazy('goods', 'Алюминий'))
 
     # ------vvvvvvv------Оборудование на складе------vvvvvvv------
-    # койки
-    medical = models.IntegerField(default=0, verbose_name=gettext_lazy('Койки'))
+    # Медикаменты
+    medical = models.IntegerField(default=0, verbose_name=pgettext_lazy('goods', 'Медикаменты'))
 
     # ------vvvvvvv------Юниты на складе------vvvvvvv------
     # Автоматы
-    rifle = models.IntegerField(default=0, verbose_name=gettext_lazy('Автоматы'))
+    rifle = models.IntegerField(default=0, verbose_name=pgettext_lazy('goods', 'Автоматы'))
 
     # танки
-    tank = models.IntegerField(default=0, verbose_name=gettext_lazy('tank'))
+    tank = models.IntegerField(default=0, verbose_name=pgettext_lazy('goods', 'Танки'))
 
     # штурмовики
-    jet = models.IntegerField(default=0, verbose_name=gettext_lazy('attack_air'))
+    jet = models.IntegerField(default=0, verbose_name=pgettext_lazy('goods', 'Штурмовики'))
 
     # орбитальные орудия
-    station = models.IntegerField(default=0, verbose_name=gettext_lazy('orb_station'))
+    station = models.IntegerField(default=0, verbose_name=pgettext_lazy('goods', 'Орбитальные орудия'))
 
     # ПЗРК
-    pzrk = models.IntegerField(default=0, verbose_name=gettext_lazy('mpads'))
+    pzrk = models.IntegerField(default=0, verbose_name=pgettext_lazy('goods', 'ПЗРК'))
 
     # ПТ-пушки
-    antitank = models.IntegerField(default=0, verbose_name=gettext_lazy('antitank'))
+    antitank = models.IntegerField(default=0, verbose_name=pgettext_lazy('goods', 'ПТ-орудия'))
 
     # БМП
-    ifv = models.IntegerField(default=0, verbose_name=gettext_lazy('ifv'))
+    ifv = models.IntegerField(default=0, verbose_name=pgettext_lazy('goods', 'БМП'))
 
     # Дроны
-    drone = models.IntegerField(default=0, verbose_name=gettext_lazy('drone'))
+    drone = models.IntegerField(default=0, verbose_name=pgettext_lazy('goods', 'БПЛА'))
 
     # получить Казну с акутализированными значениями запасов
     # любые постоянные траты Казны должны быть прописаны тут

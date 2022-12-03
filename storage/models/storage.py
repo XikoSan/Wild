@@ -68,7 +68,7 @@ class Storage(models.Model):
     }
     # ------vvvvvvv------Оборудование на складе------vvvvvvv------
     equipments = {
-        'medical': pgettext_lazy('goods', 'Койки'),
+        'medical': pgettext_lazy('goods', 'Медикаменты'),
     }
     # ------vvvvvvv------Юниты на складе------vvvvvvv------
     units = {
@@ -157,10 +157,10 @@ class Storage(models.Model):
     aluminium_cap = models.IntegerField(default=10000, verbose_name=pgettext_lazy('goods', 'Алюминий - лимит'))
 
     # ------vvvvvvv------Оборудование на складе------vvvvvvv------
-    # койки
-    medical = models.IntegerField(default=0, verbose_name=pgettext_lazy('goods', 'Койки'))
-    # койки- максимум на складе
-    medical_cap = models.IntegerField(default=10000, verbose_name=pgettext_lazy('goods', 'Койки - лимит'))
+    # Медикаменты
+    medical = models.IntegerField(default=0, verbose_name=pgettext_lazy('goods', 'Медикаменты'))
+    # Медикаменты- максимум на складе
+    medical_cap = models.IntegerField(default=10000, verbose_name=pgettext_lazy('goods', 'Медикаменты - лимит'))
 
     # ------vvvvvvv------Юниты на складе------vvvvvvv------
     # Автоматы

@@ -85,7 +85,7 @@ class TradeOffer(models.Model):
         ('steel', pgettext_lazy('goods', 'Сталь')),
         ('aluminium', pgettext_lazy('goods', 'Алюминий')),
 
-        ('medical', pgettext_lazy('goods', 'Койки')),
+        ('medical', pgettext_lazy('goods', 'Медикаменты')),
 
         ('rifle', pgettext_lazy('goods', 'Автоматы')),
         ('tank', pgettext_lazy('goods', 'Танки')),

@@ -36,7 +36,7 @@ class GoodLock(models.Model):
         ('steel', 'Сталь'),
         ('aluminium', 'Алюминий'),
 
-        ('medical', 'Койки'),
+        ('medical', 'Медикаменты'),
 
         ('rifle', 'Автоматы'),
         ('tank', 'Танки'),
