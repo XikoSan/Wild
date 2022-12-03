@@ -206,9 +206,9 @@
 		{% endif %}
 		<!--улучшить-->
 		<div class="store__modal1-container">
-			<h2 class="store__modal1-title">Улучшение склада</h2>
-			<p>Вы можете улучшить Склад, расширив хранилища части товаров</p>
-			<p>Стоимость: 500 сталь, 500 Алюминий</p>
+			<h2 class="store__modal1-title">{% trans 'Улучшение склада' context "storage_upgrade" %}</h2>
+			<p>{% trans 'Вы можете улучшить Склад, расширив хранилища части товаров' context "storage_upgrade" %}</p>
+			<p>{% trans 'Стоимость' context "storage_upgrade" %}: 500 {% trans 'Сталь' context "goods" %}, 500 {% trans 'Алюминий' context "goods" %}</p>
 			{% if limit_upgrade %}
 			<h2 class="store__modal1-title" style="color: var(--c10two);">Максимальный уровень</h2>
 
@@ -248,15 +248,15 @@
 		</button>
 
 		<!--заголовок-->
-		<h2 class="store__modal2-title ct__page-title">Улучшение склада</h2>
-		<p>Выберите товары в каждой из категорий, ёмкость Склада для которых будет увеличена</p>
+		<h2 class="store__modal2-title ct__page-title">{% trans 'Улучшение склада' context "storage_upgrade" %}</h2>
+		<p>{% trans 'Выберите товары в каждой из категорий, ёмкость Склада для которых будет увеличена' context "storage_upgrade" %}</p>
 
 		<!--линия-->
 		<div class="store__modal2-line ct__line"></div>
 
 		<!--список1-->
 		<div class="store__modal2-list-container">
-			<h3>Большой объём запасов</h3>
+			<h3>{% trans 'Большой объём запасов' context "storage_upgrade" %}</h3>
 			<div><div id="large_upgrade_counter" style="display: inline-block">0</div> / {{ large_limit }} </div>
 			<ul class="store__modal2-list">
 				{% for good in storage|get_attr:'sizes'|dict_key:'large' %}
@@ -283,7 +283,7 @@
 
 		<!--список2-->
 		<div class="store__modal2-list-container">
-			<h3>Средний объём запасов</h3>
+			<h3>{% trans 'Средний объём запасов' context "storage_upgrade" %}</h3>
 			<div><div id="medium_upgrade_counter" style="display: inline-block">0</div> / {{ medium_limit }} </div>
 			<ul class="store__modal2-list">
 				{% for good in storage|get_attr:'sizes'|dict_key:'medium' %}
@@ -310,7 +310,7 @@
 
 		<!--список3-->
 		<div class="store__modal2-list-container">
-			<h3>Малый объём запасов</h3>
+			<h3>{% trans 'Малый объём запасов' context "storage_upgrade" %}</h3>
 			<div><div id="small_upgrade_counter" style="display: inline-block">0</div> / {{ small_limit }} </div>
 			<ul class="store__modal2-list">
 				{% for good in storage|get_attr:'sizes'|dict_key:'small' %}
@@ -347,7 +347,7 @@
 					<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
 				</g>
 			</svg>
-			<span>улучшить</span>
+			<span>{% trans 'улучшить' context "storage_upgrade" %}</span>
 		</button>
 
 	</div>

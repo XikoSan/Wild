@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-03 20:09+0300\n"
-"PO-Revision-Date: 2022-12-03 20:14+0300\n"
+"POT-Creation-Date: 2022-12-04 01:18+0300\n"
+"PO-Revision-Date: 2022-12-04 01:19+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -107,6 +107,13 @@ msgstr "Daily Funding Error"
 #: storage/views/storage/new_storage.py:52
 #: storage/views/storage/new_storage.py:65
 #: storage/views/storage/new_storage.py:87
+#: storage/views/storage/upgrade_storage.py:33
+#: storage/views/storage/upgrade_storage.py:43
+#: storage/views/storage/upgrade_storage.py:52
+#: storage/views/storage/upgrade_storage.py:87
+#: storage/views/storage/upgrade_storage.py:104
+#: storage/views/storage/upgrade_storage.py:112
+#: storage/views/storage/upgrade_storage.py:156
 #: storage/views/trading/accept_offer.py:42
 #: storage/views/trading/accept_offer.py:50
 #: storage/views/trading/accept_offer.py:63
@@ -1060,6 +1067,7 @@ msgstr "Ore reserves in the region are not enough for mining"
 #: storage/views/assets/storage_move.py:75
 #: storage/views/storage/cash_transfer.py:122
 #: storage/views/storage/new_storage.py:88
+#: storage/views/storage/upgrade_storage.py:157
 #: storage/views/trading/accept_offer.py:387
 #: storage/views/trading/cancel_offer.py:149
 #: storage/views/trading/create_offer.py:218
@@ -1128,13 +1136,13 @@ msgid "Нет такого навыка"
 msgstr "No such skill"
 
 #: state/models/treasury.py:38 storage/models/factory/production_log.py:22
-#: storage/models/storage.py:38 storage/models/storage.py:101
+#: storage/models/storage.py:38 storage/models/storage.py:110
 msgctxt "goods"
 msgid "Наличные"
 msgstr "Cash"
 
 #: state/models/treasury.py:42 storage/models/destroy.py:18
-#: storage/models/storage.py:43 storage/models/storage.py:105
+#: storage/models/storage.py:43 storage/models/storage.py:114
 #: storage/models/trade_offer.py:74 storage/models/transport.py:88
 msgctxt "goods"
 msgid "Уголь"
@@ -1142,7 +1150,7 @@ msgstr "Coal"
 
 #: state/models/treasury.py:45 storage/models/destroy.py:21
 #: storage/models/factory/production_log.py:25 storage/models/storage.py:45
-#: storage/models/storage.py:110 storage/models/trade_offer.py:75
+#: storage/models/storage.py:119 storage/models/trade_offer.py:75
 #: storage/models/transport.py:93
 msgctxt "goods"
 msgid "Железо"
@@ -1150,7 +1158,7 @@ msgstr "Iron"
 
 #: state/models/treasury.py:48 storage/models/destroy.py:24
 #: storage/models/factory/production_log.py:28 storage/models/storage.py:47
-#: storage/models/storage.py:115 storage/models/trade_offer.py:76
+#: storage/models/storage.py:124 storage/models/trade_offer.py:76
 #: storage/models/transport.py:98
 msgctxt "goods"
 msgid "Бокситы"
@@ -1158,7 +1166,7 @@ msgstr "Bauxites"
 
 #: state/models/treasury.py:52 storage/models/destroy.py:28
 #: storage/models/factory/production_log.py:32 storage/models/storage.py:51
-#: storage/models/storage.py:121 storage/models/trade_offer.py:78
+#: storage/models/storage.py:130 storage/models/trade_offer.py:78
 #: storage/models/transport.py:104
 msgctxt "goods"
 msgid "Нефть WTI"
@@ -1166,7 +1174,7 @@ msgstr "WTI Oil"
 
 #: state/models/treasury.py:55 storage/models/destroy.py:31
 #: storage/models/factory/production_log.py:35 storage/models/storage.py:53
-#: storage/models/storage.py:126 storage/models/trade_offer.py:79
+#: storage/models/storage.py:135 storage/models/trade_offer.py:79
 #: storage/models/transport.py:109
 msgctxt "goods"
 msgid "Нефть Brent"
@@ -1174,7 +1182,7 @@ msgstr "Brent Oil"
 
 #: state/models/treasury.py:58 storage/models/destroy.py:34
 #: storage/models/factory/production_log.py:38 storage/models/storage.py:55
-#: storage/models/storage.py:131 storage/models/trade_offer.py:80
+#: storage/models/storage.py:140 storage/models/trade_offer.py:80
 #: storage/models/transport.py:114
 msgctxt "goods"
 msgid "Нефть Urals"
@@ -1183,7 +1191,7 @@ msgstr "Urals Oil"
 #: state/models/treasury.py:62 storage/models/destroy.py:38
 #: storage/models/factory/production_log.py:42
 #: storage/models/factory/project.py:16 storage/models/storage.py:59
-#: storage/models/storage.py:137 storage/models/trade_offer.py:82
+#: storage/models/storage.py:146 storage/models/trade_offer.py:82
 #: storage/models/transport.py:120
 msgctxt "goods"
 msgid "Бензин"
@@ -1191,7 +1199,7 @@ msgstr "Gas"
 
 #: state/models/treasury.py:65 storage/models/destroy.py:41
 #: storage/models/factory/production_log.py:45 storage/models/storage.py:61
-#: storage/models/storage.py:142 storage/models/trade_offer.py:83
+#: storage/models/storage.py:151 storage/models/trade_offer.py:83
 msgctxt "goods"
 msgid "Дизельное топливо"
 msgstr "Diesel"
@@ -1199,7 +1207,7 @@ msgstr "Diesel"
 #: state/models/treasury.py:68 storage/models/destroy.py:44
 #: storage/models/factory/production_log.py:48
 #: storage/models/factory/project.py:39 storage/models/storage.py:63
-#: storage/models/storage.py:147 storage/models/trade_offer.py:84
+#: storage/models/storage.py:156 storage/models/trade_offer.py:84
 #: storage/models/transport.py:130
 msgctxt "goods"
 msgid "Пластик"
@@ -1208,8 +1216,9 @@ msgstr "Plastic"
 #: state/models/treasury.py:71 storage/models/destroy.py:46
 #: storage/models/factory/production_log.py:50
 #: storage/models/factory/project.py:85 storage/models/storage.py:65
-#: storage/models/storage.py:151 storage/models/trade_offer.py:85
+#: storage/models/storage.py:160 storage/models/trade_offer.py:85
 #: storage/models/transport.py:134
+#: storage/templates/storage/redesign/storage.html:211
 msgctxt "goods"
 msgid "Сталь"
 msgstr "Steel"
@@ -1217,8 +1226,9 @@ msgstr "Steel"
 #: state/models/treasury.py:74 storage/models/destroy.py:48
 #: storage/models/factory/production_log.py:52
 #: storage/models/factory/project.py:101 storage/models/storage.py:67
-#: storage/models/storage.py:155 storage/models/trade_offer.py:86
+#: storage/models/storage.py:164 storage/models/trade_offer.py:86
 #: storage/models/transport.py:138
+#: storage/templates/storage/redesign/storage.html:211
 msgctxt "goods"
 msgid "Алюминий"
 msgstr "Aluminium"
@@ -1226,7 +1236,7 @@ msgstr "Aluminium"
 #: state/models/treasury.py:78 storage/models/destroy.py:52
 #: storage/models/factory/production_log.py:56
 #: storage/models/factory/project.py:116 storage/models/storage.py:71
-#: storage/models/storage.py:161 storage/models/trade_offer.py:88
+#: storage/models/storage.py:170 storage/models/trade_offer.py:88
 #: storage/models/transport.py:144
 msgctxt "goods"
 msgid "Медикаменты"
@@ -1235,7 +1245,7 @@ msgstr "Medicines"
 #: state/models/treasury.py:82 storage/models/destroy.py:56
 #: storage/models/factory/production_log.py:60
 #: storage/models/factory/project.py:132 storage/models/storage.py:75
-#: storage/models/storage.py:167 storage/models/trade_offer.py:90
+#: storage/models/storage.py:176 storage/models/trade_offer.py:90
 #: storage/models/transport.py:150
 msgctxt "goods"
 msgid "Автоматы"
@@ -1244,7 +1254,7 @@ msgstr "Rifles"
 #: state/models/treasury.py:85 storage/models/destroy.py:58
 #: storage/models/factory/production_log.py:63
 #: storage/models/factory/project.py:147 storage/models/storage.py:77
-#: storage/models/storage.py:177 storage/models/trade_offer.py:91
+#: storage/models/storage.py:186 storage/models/trade_offer.py:91
 #: storage/models/transport.py:155
 msgctxt "goods"
 msgid "Танки"
@@ -1253,7 +1263,7 @@ msgstr "Tanks"
 #: state/models/treasury.py:88 storage/models/destroy.py:60
 #: storage/models/factory/production_log.py:66
 #: storage/models/factory/project.py:163 storage/models/storage.py:81
-#: storage/models/storage.py:182 storage/models/trade_offer.py:94
+#: storage/models/storage.py:191 storage/models/trade_offer.py:94
 #: storage/models/transport.py:160
 msgctxt "goods"
 msgid "Штурмовики"
@@ -1261,7 +1271,7 @@ msgstr "Attack planes"
 
 #: state/models/treasury.py:91 storage/models/destroy.py:62
 #: storage/models/factory/production_log.py:69 storage/models/storage.py:79
-#: storage/models/storage.py:187 storage/models/trade_offer.py:93
+#: storage/models/storage.py:196 storage/models/trade_offer.py:93
 msgctxt "goods"
 msgid "Орбитальные орудия"
 msgstr "Orbital cannons"
@@ -1269,7 +1279,7 @@ msgstr "Orbital cannons"
 #: state/models/treasury.py:94 storage/models/destroy.py:64
 #: storage/models/factory/production_log.py:72
 #: storage/models/factory/project.py:179 storage/models/storage.py:82
-#: storage/models/storage.py:192 storage/models/trade_offer.py:95
+#: storage/models/storage.py:201 storage/models/trade_offer.py:95
 #: storage/models/transport.py:170
 msgctxt "goods"
 msgid "ПЗРК"
@@ -1278,7 +1288,7 @@ msgstr "MPADS"
 #: state/models/treasury.py:97 storage/models/destroy.py:66
 #: storage/models/factory/production_log.py:75
 #: storage/models/factory/project.py:195 storage/models/storage.py:78
-#: storage/models/storage.py:172 storage/models/trade_offer.py:92
+#: storage/models/storage.py:181 storage/models/trade_offer.py:92
 msgctxt "goods"
 msgid "ПТ-орудия"
 msgstr "AT-canon"
@@ -1286,7 +1296,7 @@ msgstr "AT-canon"
 #: state/models/treasury.py:100 storage/models/destroy.py:68
 #: storage/models/factory/production_log.py:78
 #: storage/models/factory/project.py:211 storage/models/storage.py:84
-#: storage/models/storage.py:197 storage/models/trade_offer.py:96
+#: storage/models/storage.py:206 storage/models/trade_offer.py:96
 #: storage/models/transport.py:180
 msgctxt "goods"
 msgid "БМП"
@@ -1294,7 +1304,7 @@ msgstr "IFV"
 
 #: state/models/treasury.py:103 storage/models/destroy.py:70
 #: storage/models/factory/project.py:227 storage/models/storage.py:86
-#: storage/models/storage.py:202 storage/models/trade_offer.py:97
+#: storage/models/storage.py:211 storage/models/trade_offer.py:97
 msgctxt "goods"
 msgid "БПЛА"
 msgstr "UAV"
@@ -1346,110 +1356,116 @@ msgid "Оружие"
 msgstr "Weapon"
 
 #: storage/models/storage.py:107
+#, fuzzy
+#| msgid "Уровень ТЭЦ"
+msgid "Уровень"
+msgstr "Power plant level"
+
+#: storage/models/storage.py:116
 msgctxt "goods"
 msgid "Уголь - лимит"
 msgstr "Coal - limit"
 
-#: storage/models/storage.py:112
+#: storage/models/storage.py:121
 msgctxt "goods"
 msgid "Железо - лимит"
 msgstr "Iron - limit"
 
-#: storage/models/storage.py:117
+#: storage/models/storage.py:126
 msgctxt "goods"
 msgid "Бокситы - лимит"
 msgstr "Bauxites - limit"
 
-#: storage/models/storage.py:123
+#: storage/models/storage.py:132
 msgctxt "goods"
 msgid "Нефть WTI - лимит"
 msgstr "WTI Oil - limit"
 
-#: storage/models/storage.py:128
+#: storage/models/storage.py:137
 msgctxt "goods"
 msgid "Нефть Brent - лимит"
 msgstr "Brent Oil - limit"
 
-#: storage/models/storage.py:133
+#: storage/models/storage.py:142
 msgctxt "goods"
 msgid "Нефть Urals - лимит"
 msgstr "Urals Oil - limit"
 
-#: storage/models/storage.py:139
+#: storage/models/storage.py:148
 msgctxt "goods"
 msgid "Бензин - лимит"
 msgstr "Gas - limit"
 
-#: storage/models/storage.py:144
+#: storage/models/storage.py:153
 msgctxt "goods"
 msgid "Дизельное топливо - лимит"
 msgstr "Diesel - limit"
 
-#: storage/models/storage.py:149
+#: storage/models/storage.py:158
 msgctxt "goods"
 msgid "Пластик - лимит"
 msgstr "Plastic - limit"
 
-#: storage/models/storage.py:153
+#: storage/models/storage.py:162
 msgctxt "goods"
 msgid "Сталь - лимит"
 msgstr "Steel - limit"
 
-#: storage/models/storage.py:157
+#: storage/models/storage.py:166
 msgctxt "goods"
 msgid "Алюминий - лимит"
 msgstr "Aluminium - limit"
 
-#: storage/models/storage.py:163
+#: storage/models/storage.py:172
 msgctxt "goods"
 msgid "Медикаменты - лимит"
 msgstr "Medicines - limit"
 
-#: storage/models/storage.py:169
+#: storage/models/storage.py:178
 msgctxt "goods"
 msgid "Автоматы - лимит"
 msgstr "Fifles - limit"
 
-#: storage/models/storage.py:174
+#: storage/models/storage.py:183
 msgctxt "goods"
 msgid "ПТ-орудия - лимит"
 msgstr "AT-cannons - limit"
 
-#: storage/models/storage.py:179
+#: storage/models/storage.py:188
 msgctxt "goods"
 msgid "Танки - лимит"
 msgstr "Tanks - limit"
 
-#: storage/models/storage.py:184
+#: storage/models/storage.py:193
 msgctxt "goods"
 msgid "Штурмовики - лимит"
 msgstr "Attack planes - limit"
 
-#: storage/models/storage.py:189
+#: storage/models/storage.py:198
 msgctxt "goods"
 msgid "Орбитальные орудия - лимит"
 msgstr "Orbital cannons - limit"
 
-#: storage/models/storage.py:194
+#: storage/models/storage.py:203
 msgctxt "goods"
 msgid "ПЗРК - лимит"
 msgstr "MPADS - limit"
 
-#: storage/models/storage.py:199
+#: storage/models/storage.py:208
 msgctxt "goods"
 msgid "БМП - лимит"
 msgstr "IFV - limit"
 
-#: storage/models/storage.py:204
+#: storage/models/storage.py:213
 msgctxt "goods"
 msgid "БПЛА - лимит"
 msgstr "UAV - limit"
 
-#: storage/models/storage.py:250
+#: storage/models/storage.py:259
 msgid "positive_spend_stock_req"
 msgstr ""
 
-#: storage/models/storage.py:255
+#: storage/models/storage.py:264
 msgid "not_enough"
 msgstr ""
 
@@ -1736,81 +1752,127 @@ msgctxt "assets"
 msgid "подтвердить"
 msgstr "accept"
 
-#: storage/templates/storage/redesign/storage.html:11
-#: storage/views/storage/storage.py:32
+#: storage/templates/storage/redesign/storage.html:22
+#: storage/views/storage/storage.py:66
 msgctxt "storage"
 msgid "Склад"
 msgstr "Warehouse"
 
-#: storage/templates/storage/redesign/storage.html:78
+#: storage/templates/storage/redesign/storage.html:89
 msgctxt "storage"
 msgid "склад"
 msgstr "warehouse"
 
-#: storage/templates/storage/redesign/storage.html:92
+#: storage/templates/storage/redesign/storage.html:103
 msgctxt "storage"
 msgid "хранилище"
 msgstr "vault"
 
-#: storage/templates/storage/redesign/storage.html:107
+#: storage/templates/storage/redesign/storage.html:118
 msgctxt "storage_assets"
 msgid "энергетики"
 msgstr "batteries"
 
-#: storage/templates/storage/redesign/storage.html:114
-#: storage/templates/storage/redesign/storage.html:134
+#: storage/templates/storage/redesign/storage.html:125
+#: storage/templates/storage/redesign/storage.html:145
 msgctxt "storage_assets"
 msgid "создать"
 msgstr "create"
 
-#: storage/templates/storage/redesign/storage.html:118
+#: storage/templates/storage/redesign/storage.html:129
 msgctxt "storage_assets"
 msgid "стоимость"
 msgstr "price"
 
-#: storage/templates/storage/redesign/storage.html:146
+#: storage/templates/storage/redesign/storage.html:157
 msgctxt "storage_assets"
 msgid "Количество"
 msgstr "Count"
 
-#: storage/templates/storage/redesign/storage.html:159
+#: storage/templates/storage/redesign/storage.html:170
 msgctxt "storage_assets"
 msgid "использовать"
 msgstr "use Wild Pass"
 
-#: storage/templates/storage/redesign/storage.html:178
-#: storage/templates/storage/redesign/storage.html:468
+#: storage/templates/storage/redesign/storage.html:189
+#: storage/templates/storage/redesign/storage.html:371
 msgctxt "storage_transfer"
 msgid "Перемещение Склада"
 msgstr "Warehouse move"
 
-#: storage/templates/storage/redesign/storage.html:179
+#: storage/templates/storage/redesign/storage.html:190
 msgctxt "storage_transfer"
 msgid "Вы можете перенести Склад в регион текущего местоположения (один раз)"
 msgstr ""
 "You can move the Warehouse to the region of the current location (once)"
 
-#: storage/templates/storage/redesign/storage.html:192
+#: storage/templates/storage/redesign/storage.html:203
 msgctxt "storage_transfer"
 msgid "перенести"
 msgstr "move"
 
-#: storage/templates/storage/redesign/storage.html:454
+#: storage/templates/storage/redesign/storage.html:209
+#: storage/templates/storage/redesign/storage.html:251
+msgctxt "storage_upgrade"
+msgid "Улучшение склада"
+msgstr "Warehouse upgrade"
+
+#: storage/templates/storage/redesign/storage.html:210
+msgctxt "storage_upgrade"
+msgid "Вы можете улучшить Склад, расширив хранилища части товаров"
+msgstr ""
+"You can improve the Warehouse by expanding inventory of a part of the goods"
+
+#: storage/templates/storage/redesign/storage.html:211
+msgctxt "storage_upgrade"
+msgid "Стоимость"
+msgstr "Price"
+
+#: storage/templates/storage/redesign/storage.html:252
+msgctxt "storage_upgrade"
+msgid ""
+"Выберите товары в каждой из категорий, ёмкость Склада для которых будет "
+"увеличена"
+msgstr ""
+"Select goods in each category for which the Warehouse capacity will be "
+"upgraded"
+
+#: storage/templates/storage/redesign/storage.html:259
+msgctxt "storage_upgrade"
+msgid "Большой объём запасов"
+msgstr "Large inventory"
+
+#: storage/templates/storage/redesign/storage.html:286
+msgctxt "storage_upgrade"
+msgid "Средний объём запасов"
+msgstr "Meduim inventory"
+
+#: storage/templates/storage/redesign/storage.html:313
+msgctxt "storage_upgrade"
+msgid "Малый объём запасов"
+msgstr "Small inventory"
+
+#: storage/templates/storage/redesign/storage.html:350
+msgctxt "storage_upgrade"
+msgid "улучшить"
+msgstr "upgrade"
+
+#: storage/templates/storage/redesign/storage.html:357
 msgctxt "storage_assets"
 msgid "Продление"
 msgstr "Renewal"
 
-#: storage/templates/storage/redesign/storage.html:454
+#: storage/templates/storage/redesign/storage.html:357
 msgctxt "storage_assets"
 msgid "Активация"
 msgstr "Activation"
 
-#: storage/templates/storage/redesign/storage.html:454
+#: storage/templates/storage/redesign/storage.html:357
 msgctxt "storage_assets"
 msgid "премиум-аккаунта"
 msgstr "of Premium account"
 
-#: storage/templates/storage/redesign/storage.html:457
+#: storage/templates/storage/redesign/storage.html:360
 msgctxt "storage_assets"
 msgid ""
 "Ваш премиум-аккаунт будет продлён на один месяц. Данную операцию невозможно "
@@ -1819,7 +1881,7 @@ msgstr ""
 "Your premium account will be renewed for one month. This operation cannot be "
 "undone. Proceed?"
 
-#: storage/templates/storage/redesign/storage.html:459
+#: storage/templates/storage/redesign/storage.html:362
 msgctxt "storage_assets"
 msgid ""
 "Вы активируете премиум-аккаунт, длительностью один месяц. Данную операцию "
@@ -1828,32 +1890,32 @@ msgstr ""
 "You will activate a premium account, lasting one month. This operation "
 "cannot be undone. Proceed?"
 
-#: storage/templates/storage/redesign/storage.html:462
+#: storage/templates/storage/redesign/storage.html:365
 msgctxt "storage_assets"
 msgid "Продолжить"
 msgstr "Continue"
 
-#: storage/templates/storage/redesign/storage.html:463
+#: storage/templates/storage/redesign/storage.html:366
 msgctxt "storage_assets"
 msgid "Отмена"
 msgstr "Cancel"
 
-#: storage/templates/storage/redesign/storage.html:469
+#: storage/templates/storage/redesign/storage.html:372
 msgctxt "storage_transfer"
 msgid "Склад будет перемещен в регион вашего местонахождения"
 msgstr "The warehouse will be moved to the region of your location"
 
-#: storage/templates/storage/redesign/storage.html:469
+#: storage/templates/storage/redesign/storage.html:372
 msgctxt "storage_transfer"
 msgid "Больше этот Склад переместить не получится. Продолжить?"
 msgstr "This Warehouse can no longer be moved. Proceed?"
 
-#: storage/templates/storage/redesign/storage.html:470
+#: storage/templates/storage/redesign/storage.html:373
 msgctxt "storage_transfer"
 msgid "Продолжить"
 msgstr "Continue"
 
-#: storage/templates/storage/redesign/storage.html:471
+#: storage/templates/storage/redesign/storage.html:374
 msgctxt "storage_transfer"
 msgid "Отмена"
 msgstr "Cancel"
@@ -2218,6 +2280,7 @@ msgstr ""
 #: storage/views/storage/cash_transfer.py:108
 #: storage/views/storage/cash_transfer.py:120
 #: storage/views/storage/new_storage.py:86
+#: storage/views/storage/upgrade_storage.py:155
 msgctxt "storage"
 msgid "Передача денег"
 msgstr "Cash transfer"
@@ -2243,6 +2306,7 @@ msgid "Некорректное число денег Склада"
 msgstr "Incorrect number of Warehouse money"
 
 #: storage/views/storage/cash_transfer.py:73
+#: storage/views/storage/upgrade_storage.py:34
 msgctxt "storage"
 msgid "В этом регионе нет Склада"
 msgstr "There is no Warehouse in this region"
@@ -2278,6 +2342,49 @@ msgstr "Not enough resources"
 msgctxt "storage"
 msgid "Недостаточно денег на транспортировку"
 msgstr "Not enough money for transportation"
+
+#: storage/views/storage/upgrade_storage.py:32
+#: storage/views/storage/upgrade_storage.py:42
+#: storage/views/storage/upgrade_storage.py:51
+#: storage/views/storage/upgrade_storage.py:86
+#: storage/views/storage/upgrade_storage.py:103
+#: storage/views/storage/upgrade_storage.py:111
+#, fuzzy
+#| msgctxt "storage_transfer"
+#| msgid "Перемещение Склада"
+msgctxt "storage_upgrade"
+msgid "Улучшение Склада"
+msgstr "Warehouse move"
+
+#: storage/views/storage/upgrade_storage.py:44
+#, fuzzy
+#| msgid "Уровень Укреплений"
+msgctxt "storage_upgrade"
+msgid "Уровень Склада - максимальный"
+msgstr "Fortifications level"
+
+#: storage/views/storage/upgrade_storage.py:53
+#, fuzzy
+#| msgctxt "mining"
+#| msgid "Недостаточно энергии"
+msgctxt "storage_upgrade"
+msgid "Недостаточно материала: "
+msgstr "Not enough energy"
+
+#: storage/views/storage/upgrade_storage.py:88
+msgctxt "storage_upgrade"
+msgid "Максимально улучшено: "
+msgstr ""
+
+#: storage/views/storage/upgrade_storage.py:105
+msgctxt "storage_upgrade"
+msgid "Превышение числа позиций для улучшения"
+msgstr ""
+
+#: storage/views/storage/upgrade_storage.py:113
+msgctxt "storage_upgrade"
+msgid "Указаны не все позиции для улучшения"
+msgstr ""
 
 #: storage/views/trading/accept_offer.py:41
 #: storage/views/trading/accept_offer.py:49
@@ -2630,11 +2737,6 @@ msgstr ""
 #~ msgctxt "mining"
 #~ msgid "Перемещение Склада"
 #~ msgstr "Warehouse move"
-
-#, fuzzy
-#~| msgid "Уровень ТЭЦ"
-#~ msgid "Уровень"
-#~ msgstr "Power plant level"
 
 #~ msgctxt "assets"
 #~ msgid "Склад №"
