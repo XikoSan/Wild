@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-04 01:18+0300\n"
+"POT-Creation-Date: 2022-12-04 01:58+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1354,6 +1354,7 @@ msgid "Оружие"
 msgstr ""
 
 #: storage/models/storage.py:107
+msgctxt "storage"
 msgid "Уровень"
 msgstr ""
 
@@ -1822,6 +1823,22 @@ msgctxt "storage_upgrade"
 msgid "Стоимость"
 msgstr ""
 
+#: storage/templates/storage/redesign/storage.html:213
+msgctxt "storage_upgrade"
+msgid "Максимальный уровень"
+msgstr ""
+
+#: storage/templates/storage/redesign/storage.html:230
+#: storage/templates/storage/redesign/storage.html:350
+msgctxt "storage_upgrade"
+msgid "улучшить"
+msgstr ""
+
+#: storage/templates/storage/redesign/storage.html:233
+msgctxt "storage_upgrade"
+msgid "Недостаточно материалов"
+msgstr ""
+
 #: storage/templates/storage/redesign/storage.html:252
 msgctxt "storage_upgrade"
 msgid ""
@@ -1842,11 +1859,6 @@ msgstr ""
 #: storage/templates/storage/redesign/storage.html:313
 msgctxt "storage_upgrade"
 msgid "Малый объём запасов"
-msgstr ""
-
-#: storage/templates/storage/redesign/storage.html:350
-msgctxt "storage_upgrade"
-msgid "улучшить"
 msgstr ""
 
 #: storage/templates/storage/redesign/storage.html:357

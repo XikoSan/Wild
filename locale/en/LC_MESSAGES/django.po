@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-04 01:18+0300\n"
-"PO-Revision-Date: 2022-12-04 01:19+0300\n"
+"POT-Creation-Date: 2022-12-04 01:58+0300\n"
+"PO-Revision-Date: 2022-12-04 02:00+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -1356,10 +1356,9 @@ msgid "Оружие"
 msgstr "Weapon"
 
 #: storage/models/storage.py:107
-#, fuzzy
-#| msgid "Уровень ТЭЦ"
+msgctxt "storage"
 msgid "Уровень"
-msgstr "Power plant level"
+msgstr "Level"
 
 #: storage/models/storage.py:116
 msgctxt "goods"
@@ -1828,6 +1827,22 @@ msgctxt "storage_upgrade"
 msgid "Стоимость"
 msgstr "Price"
 
+#: storage/templates/storage/redesign/storage.html:213
+msgctxt "storage_upgrade"
+msgid "Максимальный уровень"
+msgstr ""
+
+#: storage/templates/storage/redesign/storage.html:230
+#: storage/templates/storage/redesign/storage.html:350
+msgctxt "storage_upgrade"
+msgid "улучшить"
+msgstr "upgrade"
+
+#: storage/templates/storage/redesign/storage.html:233
+msgctxt "storage_upgrade"
+msgid "Недостаточно материалов"
+msgstr "Not enough materials"
+
 #: storage/templates/storage/redesign/storage.html:252
 msgctxt "storage_upgrade"
 msgid ""
@@ -1851,11 +1866,6 @@ msgstr "Meduim inventory"
 msgctxt "storage_upgrade"
 msgid "Малый объём запасов"
 msgstr "Small inventory"
-
-#: storage/templates/storage/redesign/storage.html:350
-msgctxt "storage_upgrade"
-msgid "улучшить"
-msgstr "upgrade"
 
 #: storage/templates/storage/redesign/storage.html:357
 msgctxt "storage_assets"
@@ -2349,42 +2359,34 @@ msgstr "Not enough money for transportation"
 #: storage/views/storage/upgrade_storage.py:86
 #: storage/views/storage/upgrade_storage.py:103
 #: storage/views/storage/upgrade_storage.py:111
-#, fuzzy
-#| msgctxt "storage_transfer"
-#| msgid "Перемещение Склада"
 msgctxt "storage_upgrade"
 msgid "Улучшение Склада"
-msgstr "Warehouse move"
+msgstr "Warehouse upgrade"
 
 #: storage/views/storage/upgrade_storage.py:44
-#, fuzzy
-#| msgid "Уровень Укреплений"
 msgctxt "storage_upgrade"
 msgid "Уровень Склада - максимальный"
-msgstr "Fortifications level"
+msgstr "Maximum level"
 
 #: storage/views/storage/upgrade_storage.py:53
-#, fuzzy
-#| msgctxt "mining"
-#| msgid "Недостаточно энергии"
 msgctxt "storage_upgrade"
 msgid "Недостаточно материала: "
-msgstr "Not enough energy"
+msgstr "Not enough material:"
 
 #: storage/views/storage/upgrade_storage.py:88
 msgctxt "storage_upgrade"
 msgid "Максимально улучшено: "
-msgstr ""
+msgstr "Maximum upgraded: "
 
 #: storage/views/storage/upgrade_storage.py:105
 msgctxt "storage_upgrade"
 msgid "Превышение числа позиций для улучшения"
-msgstr ""
+msgstr "Exceeding number of positions for improvement"
 
 #: storage/views/storage/upgrade_storage.py:113
 msgctxt "storage_upgrade"
 msgid "Указаны не все позиции для улучшения"
-msgstr ""
+msgstr "Not all positions for improvement indicated"
 
 #: storage/views/trading/accept_offer.py:41
 #: storage/views/trading/accept_offer.py:49

@@ -104,7 +104,7 @@ class Storage(models.Model):
     was_moved = models.BooleanField(default=False, null=False, verbose_name='Переносился')
 
     # уровень прокачки. 1 - только пострен
-    level = models.IntegerField(default=1, verbose_name=gettext_lazy('Уровень'))
+    level = models.IntegerField(default=1, verbose_name=pgettext_lazy('storage', 'Уровень'))
 
     # наличные на складе
     cash = models.BigIntegerField(default=0, verbose_name=pgettext_lazy('goods', 'Наличные'))

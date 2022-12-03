@@ -210,7 +210,7 @@
 			<p>{% trans 'Вы можете улучшить Склад, расширив хранилища части товаров' context "storage_upgrade" %}</p>
 			<p>{% trans 'Стоимость' context "storage_upgrade" %}: 500 {% trans 'Сталь' context "goods" %}, 500 {% trans 'Алюминий' context "goods" %}</p>
 			{% if limit_upgrade %}
-			<h2 class="store__modal1-title" style="color: var(--c10two);">Максимальный уровень</h2>
+			<h2 class="store__modal1-title" style="color: var(--c10two);">{% trans 'Максимальный уровень' context "storage_upgrade" %}</h2>
 
 			{% else %}
 
@@ -227,10 +227,10 @@
 						<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
 					</g>
 				</svg>
-				<span>улучшить</span>
+				<span>{% trans 'улучшить' context "storage_upgrade" %}</span>
 			</button>
 			{% else %}
-			<h2 class="store__modal1-title" style="color: var(--c10two);">Недостаточно материалов</h2>
+			<h2 class="store__modal1-title" style="color: var(--c10two);">{% trans 'Недостаточно материалов' context "storage_upgrade" %}</h2>
 			{% endif %}
 
 			{% endif %}
