@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-02 17:18+0300\n"
-"PO-Revision-Date: 2022-11-22 22:05+0300\n"
+"POT-Creation-Date: 2022-12-03 19:22+0300\n"
+"PO-Revision-Date: 2022-12-03 16:14+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -604,7 +604,7 @@ msgstr "Ablaufdatum"
 #: player/templates/player/redesign/profile.html:177
 msgctxt "profile"
 msgid "не активен"
-msgstr "kein Premmium"
+msgstr "kein Premium aktiv"
 
 #: player/templates/player/redesign/profile.html:182
 #: player/templates/player/redesign/view_profile.html:71
@@ -616,7 +616,7 @@ msgstr "Rangliste"
 #: player/templates/player/redesign/view_profile.html:75
 msgctxt "profile"
 msgid "(к рейтингу)"
-msgstr "(zur Top-reiche)"
+msgstr "(zu Top-reiche)"
 
 #: player/templates/player/redesign/profile.html:192
 #: player/templates/player/redesign/view_profile.html:81
@@ -836,8 +836,6 @@ msgid "Уровень ТЭЦ"
 msgstr "Heizkraftwerk"
 
 #: region/templates/region/redesign/mining.html:9
-#, fuzzy
-#| msgid "Добыча"
 msgctxt "mining"
 msgid "Добыча"
 msgstr "Arbeit"
@@ -848,25 +846,19 @@ msgid "Потрать энергию и получи"
 msgstr ""
 
 #: region/templates/region/redesign/mining.html:12
-#, fuzzy
-#| msgctxt "profile"
-#| msgid "до"
 msgctxt "daily_header"
 msgid "до"
-msgstr "Ablaufdatum"
+msgstr "bis"
 
 #: region/templates/region/redesign/mining.html:12
 msgctxt "daily_header"
 msgid "за день!"
-msgstr ""
+msgstr "an einem Tag!"
 
 #: region/templates/region/redesign/mining.html:15
-#, fuzzy
-#| msgctxt "storage_assets"
-#| msgid "энергетики"
 msgctxt "daily_header"
 msgid "энергии потрачено"
-msgstr "Energie"
+msgstr "verbrauchte Energie"
 
 #: region/templates/region/redesign/mining.html:25
 #: region/templates/region/redesign/mining.html:58
@@ -874,20 +866,14 @@ msgstr "Energie"
 #: region/templates/region/redesign/mining.html:110
 msgctxt "daily_header"
 msgid "в полете"
-msgstr ""
+msgstr "während des Fluges"
 
 #: region/templates/region/redesign/mining.html:27
-#, fuzzy
-#| msgctxt "repost"
-#| msgid "Получить"
 msgctxt "daily_header"
 msgid "получаем"
-msgstr "Erhalte"
+msgstr "abrufen"
 
 #: region/templates/region/redesign/mining.html:28
-#, fuzzy
-#| msgctxt "repost"
-#| msgid "Получить"
 msgctxt "daily_header"
 msgid "получить"
 msgstr "Erhalte"
@@ -895,11 +881,9 @@ msgstr "Erhalte"
 #: region/templates/region/redesign/mining.html:46
 msgctxt "daily_header"
 msgid "уже получено"
-msgstr ""
+msgstr "bereits erhalten"
 
 #: region/templates/region/redesign/mining.html:50
-#, fuzzy
-#| msgid "Золото"
 msgctxt "mining"
 msgid "Золото"
 msgstr "Gold"
@@ -907,57 +891,43 @@ msgstr "Gold"
 #: region/templates/region/redesign/mining.html:51
 #: region/templates/region/redesign/mining.html:77
 #: region/templates/region/redesign/mining.html:103
-#, fuzzy
-#| msgid "Запасы руд"
 msgctxt "mining"
 msgid "Запасы"
-msgstr "Erzvorräte"
+msgstr "Vorrat"
 
 #: region/templates/region/redesign/mining.html:61
 #: region/templates/region/redesign/mining.html:87
 #: region/templates/region/redesign/mining.html:113
 msgctxt "mining"
 msgid "авто"
-msgstr ""
+msgstr "auto"
 
 #: region/templates/region/redesign/mining.html:70
 #: region/templates/region/redesign/mining.html:96
 #: region/templates/region/redesign/mining.html:122
-#, fuzzy
-#| msgctxt "menu"
-#| msgid "добыча"
 msgctxt "mining"
 msgid "добыча"
-msgstr "Arbeit"
+msgstr "Abbau"
 
 #: region/templates/region/redesign/mining.html:76
-#, fuzzy
-#| msgid "Нефть"
 msgctxt "mining"
 msgid "Нефть"
 msgstr "Öl"
 
 #: region/templates/region/redesign/mining.html:78
-#, fuzzy
-#| msgid "Марка нефти"
 msgctxt "mining"
 msgid "Марка нефти"
 msgstr "Ölqualität"
 
 #: region/templates/region/redesign/mining.html:102
-#, fuzzy
-#| msgid "Руда"
 msgctxt "mining"
 msgid "Руда"
 msgstr "Erz"
 
 #: region/templates/region/redesign/mining.html:104
-#, fuzzy
-#| msgctxt "storage_assets"
-#| msgid "Количество"
 msgctxt "mining"
 msgid "Качество руды"
-msgstr "Anzahl"
+msgstr "Qualität der Erze"
 
 #: region/templates/region/region_info.html:39
 msgid "Вы летите в"
@@ -1037,8 +1007,6 @@ msgid "На торговлю"
 msgstr "Steuern auf den Verkauf"
 
 #: region/views/cancel_auto.py:33
-#, fuzzy
-#| msgid "Ошибка метода"
 msgctxt "mining"
 msgid "Ошибка при отмене"
 msgstr "Es ist ein Fehler beim Abbrechen der Fähigkeit aufgetreten"
@@ -1048,58 +1016,49 @@ msgstr "Es ist ein Fehler beim Abbrechen der Fähigkeit aufgetreten"
 #: region/views/do_mining.py:77 region/views/do_mining.py:86
 #: region/views/do_mining.py:102 region/views/do_mining.py:122
 #: region/views/do_mining.py:163 region/views/do_mining.py:224
-#, fuzzy
-#| msgid "Некорректный запрос"
 msgctxt "mining"
 msgid "Ошибка добычи ресурсов"
-msgstr "Ungültige Anfrage"
+msgstr "Fehler bei der Ressourcengewinnung"
 
 #: region/views/do_mining.py:44 region/views/start_auto.py:56
-#, fuzzy
-#| msgctxt "no_storage"
-#| msgid "склад в регионе"
 msgctxt "mining"
 msgid "У вас нет склада в этом регионе"
-msgstr "Lagerhaus in der Region"
+msgstr "Sie besitzen kein Lager in dieser Region"
 
 #: region/views/do_mining.py:57
-#, fuzzy
-#| msgid "Пополнение энергии не требуется"
 msgctxt "mining"
 msgid "Количество энергии - не число"
-msgstr "Energie muss noch nicht nachgefüllt werden."
+msgstr "Keine Anzahl der Energiemenge"
 
 #: region/views/do_mining.py:67
 msgctxt "mining"
 msgid "Количество Энергии должно быть положительным"
-msgstr ""
+msgstr "Falsche Angabe der Energiemenge"
 
 #: region/views/do_mining.py:76
 msgctxt "mining"
 msgid "Количество Энергии должно быть кратно десяти"
-msgstr ""
+msgstr "Der Betrag der Energie muss ein Vielfaches von zehn sein."
 
 #: region/views/do_mining.py:85
-#, fuzzy
-#| msgid "Пополнение энергии"
 msgctxt "mining"
 msgid "Недостаточно энергии"
-msgstr "Auffüllen der Energie"
+msgstr "Nicht genug Energie"
 
 #: region/views/do_mining.py:101
 msgctxt "mining"
 msgid "Запасов золота в регионе недостаточно для добычи"
-msgstr ""
+msgstr "In der Region gibt es nicht genügend Goldreserven, um sie abzubauen."
 
 #: region/views/do_mining.py:121
 msgctxt "mining"
 msgid "Запасов нефти в регионе недостаточно для добычи"
-msgstr ""
+msgstr "Die Ölreserven in der Region reichen für die Produktion nicht aus"
 
 #: region/views/do_mining.py:162
 msgctxt "mining"
 msgid "Запасов руды в регионе недостаточно для добычи"
-msgstr ""
+msgstr "Die Erzreserven in der Region reichen für den Abbau nicht aus"
 
 #: region/views/do_mining.py:226 storage/views/assets/assets_action.py:229
 #: storage/views/assets/storage_move.py:75
@@ -1109,11 +1068,9 @@ msgstr ""
 #: storage/views/trading/cancel_offer.py:149
 #: storage/views/trading/create_offer.py:218
 #: storage/views/trading/get_offers.py:174
-#, fuzzy
-#| msgid "Ошибка метода"
 msgctxt "mining"
 msgid "Ошибка метода"
-msgstr "Es ist ein Fehler beim Abbrechen der Fähigkeit aufgetreten"
+msgstr "Methodenfehler"
 
 #: region/views/lists/world_regions.py:116
 msgid "Регионы игры"
@@ -1138,23 +1095,19 @@ msgstr "Arbeit"
 #: region/views/start_auto.py:27 region/views/start_auto.py:35
 #: region/views/start_auto.py:48 region/views/start_auto.py:57
 #: region/views/start_auto.py:79
-#, fuzzy
-#| msgid "Некорректный запрос"
 msgctxt "mining"
 msgid "Ошибка автоматической добычи ресурсов"
-msgstr "Ungültige Anfrage"
+msgstr "Fehler bei der automatischen Ressourcenextraktion"
 
 #: region/views/start_auto.py:34
 msgctxt "mining"
 msgid "Премиум-аккаунт не активен. Продлите его"
-msgstr ""
+msgstr "Premium ist nicht aktiv"
 
 #: region/views/start_auto.py:47
-#, fuzzy
-#| msgid "Некорректный запрос"
 msgctxt "mining"
 msgid "Неизвестный тип ресурса"
-msgstr "Ungültige Anfrage"
+msgstr "Unbekannter Ressourcentyp"
 
 #: skill/views/skill_cancel.py:34
 msgid "ID навыка должен быть числом"
@@ -1179,105 +1132,102 @@ msgid "Нет такого навыка"
 msgstr "Du hast diese Fähigkeit nicht erlernt"
 
 #: state/models/treasury.py:38 storage/models/factory/production_log.py:18
-#: storage/models/storage.py:101
 msgid "storage_cash"
 msgstr "lager_geld"
 
 #: state/models/treasury.py:42 storage/models/destroy.py:18
-#: storage/models/factory/production_log.py:22 storage/models/storage.py:105
-#: storage/models/transport.py:88
+#: storage/models/factory/production_log.py:22 storage/models/transport.py:88
 msgid "Уголь"
 msgstr "Kohle"
 
 #: state/models/treasury.py:45 storage/models/destroy.py:21
-#: storage/models/factory/production_log.py:25 storage/models/storage.py:110
+#: storage/models/factory/production_log.py:25
 msgid "iron"
 msgstr "Eisen"
 
 #: state/models/treasury.py:48 storage/models/destroy.py:24
-#: storage/models/factory/production_log.py:28 storage/models/storage.py:115
+#: storage/models/factory/production_log.py:28
 msgid "bauxite"
 msgstr "Bauxite"
 
 #: state/models/treasury.py:52 storage/models/destroy.py:28
-#: storage/models/factory/production_log.py:32 storage/models/storage.py:121
+#: storage/models/factory/production_log.py:32
 msgid "wti_oil"
 msgstr ""
 
 #: state/models/treasury.py:55 storage/models/destroy.py:31
-#: storage/models/factory/production_log.py:35 storage/models/storage.py:126
+#: storage/models/factory/production_log.py:35
 msgid "brent_oil"
 msgstr ""
 
 #: state/models/treasury.py:58 storage/models/destroy.py:34
-#: storage/models/factory/production_log.py:38 storage/models/storage.py:131
+#: storage/models/factory/production_log.py:38
 msgid "urals_oil"
 msgstr ""
 
 #: state/models/treasury.py:62 storage/models/destroy.py:38
-#: storage/models/factory/production_log.py:42 storage/models/storage.py:137
+#: storage/models/factory/production_log.py:42
 msgid "gas"
 msgstr "Gas"
 
 #: state/models/treasury.py:65 storage/models/destroy.py:41
-#: storage/models/factory/production_log.py:45 storage/models/storage.py:142
+#: storage/models/factory/production_log.py:45
 msgid "diesel"
 msgstr "Diesel"
 
 #: state/models/treasury.py:68 storage/models/destroy.py:44
-#: storage/models/factory/production_log.py:48 storage/models/storage.py:147
+#: storage/models/factory/production_log.py:48
 msgid "plastic"
 msgstr "Plastik"
 
 #: state/models/treasury.py:71 storage/models/destroy.py:46
 #: storage/models/factory/production_log.py:50
-#: storage/models/factory/project.py:85 storage/models/storage.py:151
+#: storage/models/factory/project.py:85
 msgid "steel"
 msgstr "Stahl"
 
 #: state/models/treasury.py:74 storage/models/destroy.py:48
-#: storage/models/factory/production_log.py:52 storage/models/storage.py:155
+#: storage/models/factory/production_log.py:52
 msgid "alumunuim"
 msgstr "Aluminium"
 
 #: state/models/treasury.py:78 storage/models/destroy.py:52
-#: storage/models/factory/production_log.py:56 storage/models/storage.py:161
-#: storage/models/transport.py:144
+#: storage/models/factory/production_log.py:56 storage/models/transport.py:144
 msgid "Койки"
 msgstr "Barracken"
 
 #: state/models/treasury.py:82 storage/models/destroy.py:56
-#: storage/models/storage.py:167 storage/models/transport.py:150
-#: war/models/squads/infantry.py:32 war/models/wars/war_side.py:30
+#: storage/models/transport.py:150 war/models/squads/infantry.py:32
+#: war/models/wars/war_side.py:30
 msgid "Автоматы"
 msgstr "Automaten"
 
 #: state/models/treasury.py:85 storage/models/destroy.py:58
 #: storage/models/factory/production_log.py:63
-#: storage/models/factory/project.py:147 storage/models/storage.py:177
+#: storage/models/factory/project.py:147
 msgid "tank"
 msgstr "Tank"
 
 #: state/models/treasury.py:88 storage/models/destroy.py:60
 #: storage/models/factory/production_log.py:66
-#: storage/models/factory/project.py:163 storage/models/storage.py:182
+#: storage/models/factory/project.py:163
 msgid "attack_air"
 msgstr "angriff_luft"
 
 #: state/models/treasury.py:91 storage/models/destroy.py:62
-#: storage/models/factory/production_log.py:69 storage/models/storage.py:187
+#: storage/models/factory/production_log.py:69
 msgid "orb_station"
 msgstr "Orb_Station"
 
 #: state/models/treasury.py:94 storage/models/destroy.py:64
 #: storage/models/factory/production_log.py:72
-#: storage/models/factory/project.py:179 storage/models/storage.py:192
+#: storage/models/factory/project.py:179
 msgid "mpads"
 msgstr "Luftabwehrsystem"
 
 #: state/models/treasury.py:97 storage/models/destroy.py:66
 #: storage/models/factory/production_log.py:75
-#: storage/models/factory/project.py:195 storage/models/storage.py:172
+#: storage/models/factory/project.py:195
 msgid "antitank"
 msgstr "Panzerabwehrsystem"
 
@@ -1302,8 +1252,8 @@ msgstr "Hauptstadt"
 msgid "Государственные налоги"
 msgstr "Staatliche Steuern"
 
-#: storage/models/destroy.py:70 storage/models/storage.py:202
-#: storage/models/transport.py:185 war/models/wars/war_side.py:27
+#: storage/models/destroy.py:70 storage/models/transport.py:185
+#: war/models/wars/war_side.py:27
 msgid "Дроны"
 msgstr "Drohnen"
 
@@ -1332,9 +1282,8 @@ msgstr "Aluminium"
 msgid "medical"
 msgstr "Medizin"
 
-#: storage/models/factory/project.py:211 storage/models/storage.py:197
-#: storage/models/transport.py:180 war/models/squads/light_vehicle.py:47
-#: war/models/wars/war_side.py:32
+#: storage/models/factory/project.py:211 storage/models/transport.py:180
+#: war/models/squads/light_vehicle.py:47 war/models/wars/war_side.py:32
 msgid "БМП"
 msgstr "BMP"
 
@@ -1367,158 +1316,287 @@ msgctxt "goods"
 msgid "Оружие"
 msgstr "Waffen"
 
-#: storage/models/storage.py:38
+#: storage/models/storage.py:38 storage/models/storage.py:101
 msgctxt "goods"
 msgid "Наличные"
 msgstr "Geld"
 
-#: storage/models/storage.py:43
+#: storage/models/storage.py:43 storage/models/storage.py:105
+#: storage/models/trade_offer.py:74
 msgctxt "goods"
 msgid "Уголь"
 msgstr "Kohle"
 
-#: storage/models/storage.py:45
+#: storage/models/storage.py:45 storage/models/storage.py:110
+#: storage/models/trade_offer.py:75
 msgctxt "goods"
 msgid "Железо"
 msgstr "Eisen"
 
-#: storage/models/storage.py:47
+#: storage/models/storage.py:47 storage/models/storage.py:115
+#: storage/models/trade_offer.py:76
 msgctxt "goods"
 msgid "Бокситы"
 msgstr "Bauxit"
 
-#: storage/models/storage.py:51
+#: storage/models/storage.py:51 storage/models/storage.py:121
+#: storage/models/trade_offer.py:78
 msgctxt "goods"
 msgid "Нефть WTI"
 msgstr "WTI-Öl"
 
-#: storage/models/storage.py:53
+#: storage/models/storage.py:53 storage/models/storage.py:126
+#: storage/models/trade_offer.py:79
 msgctxt "goods"
 msgid "Нефть Brent"
 msgstr "Brent-Öl"
 
-#: storage/models/storage.py:55
+#: storage/models/storage.py:55 storage/models/storage.py:131
+#: storage/models/trade_offer.py:80
 msgctxt "goods"
 msgid "Нефть Urals"
 msgstr "Ural-Öl"
 
-#: storage/models/storage.py:59
+#: storage/models/storage.py:59 storage/models/storage.py:137
+#: storage/models/trade_offer.py:82
 msgctxt "goods"
 msgid "Бензин"
 msgstr "Benzin"
 
-#: storage/models/storage.py:61
+#: storage/models/storage.py:61 storage/models/storage.py:142
+#: storage/models/trade_offer.py:83
 msgctxt "goods"
 msgid "Дизельное топливо"
 msgstr "Diesel"
 
-#: storage/models/storage.py:63
+#: storage/models/storage.py:63 storage/models/storage.py:147
+#: storage/models/trade_offer.py:84
 msgctxt "goods"
 msgid "Пластик"
 msgstr "Plastik"
 
-#: storage/models/storage.py:65
+#: storage/models/storage.py:65 storage/models/storage.py:151
+#: storage/models/trade_offer.py:85
 msgctxt "goods"
 msgid "Сталь"
 msgstr "Stahl"
 
-#: storage/models/storage.py:67
+#: storage/models/storage.py:67 storage/models/storage.py:155
+#: storage/models/trade_offer.py:86
 msgctxt "goods"
 msgid "Алюминий"
 msgstr "Aluminium"
 
-#: storage/models/storage.py:71
+#: storage/models/storage.py:71 storage/models/storage.py:161
+#: storage/models/trade_offer.py:88
 msgctxt "goods"
 msgid "Койки"
 msgstr "Barracken"
 
-#: storage/models/storage.py:75
+#: storage/models/storage.py:75 storage/models/storage.py:167
+#: storage/models/trade_offer.py:90
 msgctxt "goods"
 msgid "Автоматы"
 msgstr "Automaten"
 
-#: storage/models/storage.py:77
+#: storage/models/storage.py:77 storage/models/storage.py:177
+#: storage/models/trade_offer.py:91
 msgctxt "goods"
 msgid "Танки"
 msgstr "Panzer"
 
-#: storage/models/storage.py:78
+#: storage/models/storage.py:78 storage/models/storage.py:172
+#: storage/models/trade_offer.py:92
 msgctxt "goods"
 msgid "ПТ-орудия"
 msgstr "PZ-Kanone"
 
-#: storage/models/storage.py:79
+#: storage/models/storage.py:79 storage/models/storage.py:187
+#: storage/models/trade_offer.py:93
 msgctxt "goods"
 msgid "Орбитальные орудия"
 msgstr "Orbitalrakete"
 
-#: storage/models/storage.py:81
+#: storage/models/storage.py:81 storage/models/storage.py:182
+#: storage/models/trade_offer.py:94
 msgctxt "goods"
 msgid "Штурмовики"
 msgstr "Infanterie"
 
-#: storage/models/storage.py:82
+#: storage/models/storage.py:82 storage/models/storage.py:192
+#: storage/models/trade_offer.py:95
 msgctxt "goods"
 msgid "ПЗРК"
 msgstr "MANPADS"
 
-#: storage/models/storage.py:84
+#: storage/models/storage.py:84 storage/models/storage.py:197
+#: storage/models/trade_offer.py:96
 msgctxt "goods"
 msgid "БМП"
 msgstr "BMP"
 
-#: storage/models/storage.py:86
+#: storage/models/storage.py:86 storage/models/storage.py:202
+#: storage/models/trade_offer.py:97
 msgctxt "goods"
 msgid "БПЛА"
 msgstr "UAV"
 
 #: storage/models/storage.py:107
-msgid "coal_cap"
-msgstr ""
+#, fuzzy
+#| msgid "Уголь"
+msgctxt "goods"
+msgid "Уголь - лимит"
+msgstr "Kohle"
 
 #: storage/models/storage.py:112
-msgid "iron_cap"
-msgstr ""
+#, fuzzy
+#| msgctxt "goods"
+#| msgid "Железо"
+msgctxt "goods"
+msgid "Железо - лимит"
+msgstr "Eisen"
 
 #: storage/models/storage.py:117
-msgid "bauxite_cap"
-msgstr ""
+#, fuzzy
+#| msgctxt "goods"
+#| msgid "Бокситы"
+msgctxt "goods"
+msgid "Бокситы - лимит"
+msgstr "Bauxit"
 
 #: storage/models/storage.py:123
-msgid "wti_oil_cap"
-msgstr ""
+#, fuzzy
+#| msgctxt "goods"
+#| msgid "Нефть WTI"
+msgctxt "goods"
+msgid "Нефть WTI - лимит"
+msgstr "WTI-Öl"
 
 #: storage/models/storage.py:128
-msgid "brent_oil_cap"
-msgstr ""
+#, fuzzy
+#| msgctxt "goods"
+#| msgid "Нефть Brent"
+msgctxt "goods"
+msgid "Нефть Brent - лимит"
+msgstr "Brent-Öl"
 
 #: storage/models/storage.py:133
-msgid "urals_oil_cap"
-msgstr ""
+#, fuzzy
+#| msgctxt "goods"
+#| msgid "Нефть Urals"
+msgctxt "goods"
+msgid "Нефть Urals - лимит"
+msgstr "Ural-Öl"
 
 #: storage/models/storage.py:139
-msgid "gas_cap"
-msgstr ""
+#, fuzzy
+#| msgctxt "goods"
+#| msgid "Железо"
+msgctxt "goods"
+msgid "Бензин - лимит"
+msgstr "Eisen"
 
 #: storage/models/storage.py:144
-msgid "diesel_cap"
-msgstr ""
+#, fuzzy
+#| msgctxt "goods"
+#| msgid "Дизельное топливо"
+msgctxt "goods"
+msgid "Дизельное топливо - лимит"
+msgstr "Diesel"
 
 #: storage/models/storage.py:149
-msgid "plastic_cap"
-msgstr ""
+#, fuzzy
+#| msgctxt "goods"
+#| msgid "Бокситы"
+msgctxt "goods"
+msgid "Пластик - лимит"
+msgstr "Bauxit"
 
 #: storage/models/storage.py:153
-msgid "steel_cap"
-msgstr ""
+#, fuzzy
+#| msgid "Уголь"
+msgctxt "goods"
+msgid "Сталь - лимит"
+msgstr "Kohle"
 
 #: storage/models/storage.py:157
-msgid "alumunuim_cap"
-msgstr ""
+#, fuzzy
+#| msgctxt "goods"
+#| msgid "Алюминий"
+msgctxt "goods"
+msgid "Алюминий - лимит"
+msgstr "Aluminium"
 
 #: storage/models/storage.py:163
-msgid "medical_cap"
-msgstr ""
+#, fuzzy
+#| msgctxt "goods"
+#| msgid "Бокситы"
+msgctxt "goods"
+msgid "Койки - лимит"
+msgstr "Bauxit"
+
+#: storage/models/storage.py:169
+#, fuzzy
+#| msgctxt "goods"
+#| msgid "Бокситы"
+msgctxt "goods"
+msgid "Автоматы - лимит"
+msgstr "Bauxit"
+
+#: storage/models/storage.py:174
+#, fuzzy
+#| msgctxt "goods"
+#| msgid "Бокситы"
+msgctxt "goods"
+msgid "ПТ-орудия - лимит"
+msgstr "Bauxit"
+
+#: storage/models/storage.py:179
+#, fuzzy
+#| msgctxt "goods"
+#| msgid "Бокситы"
+msgctxt "goods"
+msgid "Танки - лимит"
+msgstr "Bauxit"
+
+#: storage/models/storage.py:184
+#, fuzzy
+#| msgctxt "goods"
+#| msgid "Штурмовики"
+msgctxt "goods"
+msgid "Штурмовики - лимит"
+msgstr "Infanterie"
+
+#: storage/models/storage.py:189
+#, fuzzy
+#| msgctxt "goods"
+#| msgid "Орбитальные орудия"
+msgctxt "goods"
+msgid "Орбитальные орудия - лимит"
+msgstr "Orbitalrakete"
+
+#: storage/models/storage.py:194
+#, fuzzy
+#| msgid "Уголь"
+msgctxt "goods"
+msgid "ПЗРК - лимит"
+msgstr "Kohle"
+
+#: storage/models/storage.py:199
+#, fuzzy
+#| msgctxt "goods"
+#| msgid "Железо"
+msgctxt "goods"
+msgid "БМП - лимит"
+msgstr "Eisen"
+
+#: storage/models/storage.py:204
+#, fuzzy
+#| msgctxt "goods"
+#| msgid "Железо"
+msgctxt "goods"
+msgid "БПЛА - лимит"
+msgstr "Eisen"
 
 #: storage/models/storage.py:250
 msgid "positive_spend_stock_req"
@@ -1661,53 +1739,179 @@ msgstr ""
 msgid "Дроны - кубов"
 msgstr ""
 
+#: storage/templates/storage/auctions/auction_info.html:15
+#: storage/templates/storage/auctions/auctions.html:38
+#: storage/templates/storage/trading/trading.html:48
+msgctxt "w_trading"
+msgid "Владелец"
+msgstr "Besitzer"
+
+#: storage/templates/storage/auctions/auction_info.html:26
+#: storage/templates/storage/auctions/auctions.html:36
+#: storage/templates/storage/trading/trading.html:47
+msgctxt "w_trading"
+msgid "Товар"
+msgstr "Produkt"
+
+#: storage/templates/storage/auctions/auction_info.html:29
+#, fuzzy
+#| msgid "Завершение"
+msgctxt "w_auctions"
+msgid "Завершение"
+msgstr "Fertigstellung"
+
+#: storage/templates/storage/auctions/auction_info.html:34
+msgctxt "w_auctions"
+msgid "Лоты"
+msgstr ""
+
+#: storage/templates/storage/auctions/auction_info.html:43
+#: storage/templates/storage/auctions/auctions.html:39
+#: storage/templates/storage/trading/new_offer.html:106
+#: storage/templates/storage/trading/trading.html:50
+msgctxt "w_trading"
+msgid "Количество"
+msgstr "Anzahl"
+
+#: storage/templates/storage/auctions/auction_info.html:51
+#: storage/templates/storage/auctions/auction_info.html:101
+#, fuzzy
+#| msgctxt "no_storage"
+#| msgid "доставка"
+msgctxt "w_auctions"
+msgid "Ставка"
+msgstr "Zustellung"
+
+#: storage/templates/storage/auctions/auction_info.html:57
+msgctxt "w_auctions"
+msgid "начальная"
+msgstr ""
+
+#: storage/templates/storage/auctions/auction_info.html:63
+msgctxt "w_auctions"
+msgid "Лидер"
+msgstr ""
+
+#: storage/templates/storage/auctions/auction_info.html:77
+msgctxt "w_auctions"
+msgid "отсутствует"
+msgstr ""
+
+#: storage/templates/storage/auctions/auction_info.html:88
+#, fuzzy
+#| msgctxt "storage"
+#| msgid "Склад"
+msgctxt "w_auctions"
+msgid "Склад"
+msgstr "Lagerhaus"
+
+#: storage/templates/storage/auctions/auction_info.html:118
+#, fuzzy
+#| msgctxt "no_storage"
+#| msgid "доставка"
+msgctxt "w_auctions"
+msgid "Сделать ставку"
+msgstr "Zustellung"
+
+#: storage/templates/storage/auctions/auctions.html:29
+#: storage/templates/storage/trading/trading.html:40
+msgctxt "w_trading"
+msgid "Выберите один или несколько критериев справа и нажмите \"Поиск\""
+msgstr ""
+"Wählen Sie ein oder mehrere Kriterien auf der rechten Seite und drücken Sie "
+"\"Suchen\"."
+
+#: storage/templates/storage/auctions/auctions.html:30
+#: storage/templates/storage/trading/trading.html:41
+msgctxt "w_trading"
+msgid "Ничего не найдено"
+msgstr "Nicht gefunden"
+
+#: storage/templates/storage/auctions/auctions.html:37
+#, fuzzy
+#| msgctxt "no_storage"
+#| msgid "Стоимость создания"
+msgctxt "w_auctions"
+msgid "Дата создания"
+msgstr "Erstellungskosten"
+
+#: storage/templates/storage/auctions/auctions.html:40
+#: storage/templates/storage/trading/new_offer.html:118
+#: storage/templates/storage/trading/trading.html:51
+msgctxt "w_trading"
+msgid "Цена (шт.)"
+msgstr "Preis (Stk.)"
+
+#: storage/templates/storage/auctions/auctions.html:41
+msgctxt "w_trading"
+msgid "Лотов"
+msgstr ""
+
+#: storage/templates/storage/auctions/auctions.html:42
+msgctxt "w_trading"
+msgid "Ставка (мин)"
+msgstr ""
+
+#: storage/templates/storage/auctions/auctions.html:43
+msgctxt "w_trading"
+msgid "Ставка (макс)"
+msgstr ""
+
+#: storage/templates/storage/auctions/auctions.html:44
+#: storage/templates/storage/trading/new_offer.html:53
+#: storage/templates/storage/trading/trading.html:54
+msgctxt "w_trading"
+msgid "Действие"
+msgstr "Aktion"
+
+#: storage/templates/storage/auctions/auctions.html:77
+#: storage/templates/storage/trading/trading.html:99
+#, fuzzy
+#| msgctxt "w_trading_new"
+#| msgid "Выберите товар"
+msgctxt "w_trading"
+msgid "Выберите товар"
+msgstr "Wählen Sie ein Produkt aus"
+
+#: storage/templates/storage/auctions/auctions.html:86
+#: storage/templates/storage/trading/trading.html:109
+msgctxt "w_trading"
+msgid "Поиск"
+msgstr "Suche"
+
 #: storage/templates/storage/redesign/assets.html:12
 #: storage/views/assets/assets.py:42
-#, fuzzy
-#| msgid "Активы"
 msgctxt "assets"
 msgid "Активы"
 msgstr "Lagerbestand"
 
 #: storage/templates/storage/redesign/assets.html:22
-#, fuzzy
-#| msgctxt "overview"
-#| msgid "Выборы лидера"
 msgctxt "assets"
 msgid "выбор действия"
 msgstr "Präsidentschaftswahlen"
 
 #: storage/templates/storage/redesign/assets.html:23
-#, fuzzy
-#| msgid "Передать"
 msgctxt "assets"
 msgid "передать"
 msgstr "Übertragen"
 
 #: storage/templates/storage/redesign/assets.html:24
-#, fuzzy
-#| msgid "Продолжить"
 msgctxt "assets"
 msgid "уничтожить"
-msgstr "weiter"
+msgstr "zerstören"
 
 #: storage/templates/storage/redesign/assets.html:49
-#, fuzzy
-#| msgid "Вы летите в"
 msgctxt "assets"
 msgid "выберите склад"
-msgstr "Du fliegst nach"
+msgstr "Wählen Sie ein Lagerhaus"
 
 #: storage/templates/storage/redesign/assets.html:60
 #: storage/templates/storage/redesign/assets.html:115
 msgctxt "assets"
 msgid "объём (ед)"
-msgstr ""
+msgstr "Menge (Einheiten)"
 
 #: storage/templates/storage/redesign/assets.html:62
-#, fuzzy
-#| msgctxt "storage_assets"
-#| msgid "стоимость"
 msgctxt "assets"
 msgid "стоимость"
 msgstr "Kosten"
@@ -1715,7 +1919,7 @@ msgstr "Kosten"
 #: storage/templates/storage/redesign/assets.html:77
 msgctxt "assets"
 msgid "подтвердить"
-msgstr ""
+msgstr "bestätigen."
 
 #: storage/templates/storage/redesign/storage.html:11
 #: storage/views/storage/storage.py:32
@@ -1917,156 +2121,79 @@ msgid "Передать"
 msgstr "Übertragen"
 
 #: storage/templates/storage/trading/new_offer.html:38
-#, fuzzy
-#| msgid "Мировое население"
 msgctxt "w_trading_new"
 msgid "Новое торговое предложение"
-msgstr "Gesamtbevölkerung"
+msgstr "Ein neues Verkaufsangebot"
 
 #: storage/templates/storage/trading/new_offer.html:43
-#, fuzzy
-#| msgctxt "skills"
-#| msgid "недоступно"
 msgctxt "w_trading_new"
 msgid "Доступно"
-msgstr "nicht verfügbar"
+msgstr "Erhältlich von"
 
 #: storage/templates/storage/trading/new_offer.html:48
-#, fuzzy
-#| msgid "На Складе"
 msgctxt "w_trading_new"
 msgid "+5 за каждый Склад"
-msgstr "Im Lagerhaus"
-
-#: storage/templates/storage/trading/new_offer.html:53
-#: storage/templates/storage/trading/trading.html:54
-#, fuzzy
-#| msgctxt "overview"
-#| msgid "Выборы лидера"
-msgctxt "w_trading"
-msgid "Действие"
-msgstr "Präsidentschaftswahlen"
+msgstr "+5 für jedes Lagerhaus"
 
 #: storage/templates/storage/trading/new_offer.html:57
-#, fuzzy
-#| msgid "Продолжить"
 msgctxt "w_trading_new"
 msgid "Продажа"
-msgstr "weiter"
+msgstr "Zu verkaufen"
 
 #: storage/templates/storage/trading/new_offer.html:58
 msgctxt "w_trading_new"
 msgid "Покупка"
-msgstr ""
+msgstr "Kaufen"
 
 #: storage/templates/storage/trading/new_offer.html:64
-#, fuzzy
-#| msgctxt "storage"
-#| msgid "Склад"
 msgctxt "w_trading_new"
 msgid "Склад"
 msgstr "Lagerhaus"
 
 #: storage/templates/storage/trading/new_offer.html:76
-#, fuzzy
-#| msgctxt "storage_transfer"
-#| msgid "Перемещение Склада"
 msgctxt "w_trading_new"
 msgid "Группа товаров"
-msgstr "Verlagerung des Lagers"
+msgstr "Produktgruppe"
 
 #: storage/templates/storage/trading/new_offer.html:80
-#, fuzzy
-#| msgid "Вы летите в"
 msgctxt "w_trading_new"
 msgid "Выберите группу"
-msgstr "Du fliegst nach"
+msgstr "Wählen Sie eine Gruppe aus"
 
 #: storage/templates/storage/trading/new_offer.html:90
 msgctxt "w_trading_new"
 msgid "Товар"
-msgstr ""
+msgstr "Produkt"
 
 #: storage/templates/storage/trading/new_offer.html:94
-#, fuzzy
-#| msgid "Вы летите в"
 msgctxt "w_trading_new"
 msgid "Выберите товар"
-msgstr "Du fliegst nach"
-
-#: storage/templates/storage/trading/new_offer.html:106
-#: storage/templates/storage/trading/trading.html:50
-#, fuzzy
-#| msgctxt "storage_assets"
-#| msgid "Количество"
-msgctxt "w_trading"
-msgid "Количество"
-msgstr "Anzahl"
-
-#: storage/templates/storage/trading/new_offer.html:118
-#: storage/templates/storage/trading/trading.html:51
-msgctxt "w_trading"
-msgid "Цена (шт.)"
-msgstr ""
+msgstr "Wählen Sie ein Produkt aus"
 
 #: storage/templates/storage/trading/new_offer.html:126
-#, fuzzy
-#| msgctxt "profile"
-#| msgid "цвет блоков"
 msgctxt "w_trading_new"
 msgid "Будет заблокировано"
-msgstr "Blockfarbe"
+msgstr "Wird blockiert"
 
 #: storage/templates/storage/trading/new_offer.html:136
-#, fuzzy
-#| msgctxt "storage_assets"
-#| msgid "создать"
 msgctxt "w_trading_new"
 msgid "Создать"
-msgstr "aufbauen"
-
-#: storage/templates/storage/trading/trading.html:40
-msgctxt "w_trading"
-msgid "Выберите один или несколько критериев справа и нажмите \"Поиск\""
-msgstr ""
-
-#: storage/templates/storage/trading/trading.html:41
-#, fuzzy
-#| msgctxt "repost"
-#| msgid "репост не найден"
-msgctxt "w_trading"
-msgid "Ничего не найдено"
-msgstr "Beitrag konnte nicht gefunden werden"
-
-#: storage/templates/storage/trading/trading.html:47
-msgctxt "w_trading"
-msgid "Товар"
-msgstr ""
-
-#: storage/templates/storage/trading/trading.html:48
-msgctxt "w_trading"
-msgid "Владелец"
-msgstr ""
+msgstr "erstellen."
 
 #: storage/templates/storage/trading/trading.html:49
-#, fuzzy
-#| msgid "Регион"
 msgctxt "w_trading"
 msgid "Регион"
 msgstr "Region"
 
 #: storage/templates/storage/trading/trading.html:52
-#, fuzzy
-#| msgctxt "no_storage"
-#| msgid "доставка"
 msgctxt "w_trading"
 msgid "Доставка"
-msgstr "Zustellung"
+msgstr "Lieferung"
 
 #: storage/templates/storage/trading/trading.html:53
 msgctxt "w_trading"
 msgid "Сумма"
-msgstr ""
+msgstr "Betrag"
 
 #: storage/templates/storage/trading/trading.html:65
 #, fuzzy
@@ -2076,68 +2203,44 @@ msgid "Государственнные закупки"
 msgstr "Staatliche Steuern"
 
 #: storage/templates/storage/trading/trading.html:70
-#, fuzzy
-#| msgid "Продолжить"
 msgctxt "w_trading"
 msgid "Продажа"
-msgstr "weiter"
+msgstr "Zu verkaufen"
 
 #: storage/templates/storage/trading/trading.html:71
 msgctxt "w_trading"
 msgid "Покупка"
-msgstr ""
+msgstr "Kaufen"
 
 #: storage/templates/storage/trading/trading.html:84
 msgctxt "w_trading"
 msgid "Все"
-msgstr ""
+msgstr "Alle"
 
 #: storage/templates/storage/trading/trading.html:85
-#, fuzzy
-#| msgid "Партия"
 msgctxt "w_trading"
 msgid "Партия"
 msgstr "Partei"
 
 #: storage/templates/storage/trading/trading.html:86
-#, fuzzy
-#| msgid "Койки"
 msgctxt "w_trading"
 msgid "Мои"
-msgstr "Barracken"
-
-#: storage/templates/storage/trading/trading.html:99
-#, fuzzy
-#| msgid "Вы летите в"
-msgctxt "w_trading"
-msgid "Выберите товар"
-msgstr "Du fliegst nach"
-
-#: storage/templates/storage/trading/trading.html:109
-msgctxt "w_trading"
-msgid "Поиск"
-msgstr ""
+msgstr "Meine"
 
 #: storage/templates/storage/trading/trading.html:113
-#, fuzzy
-#| msgctxt "storage_assets"
-#| msgid "создать"
 msgctxt "w_trading"
 msgid "Создать"
-msgstr "aufbauen"
+msgstr "erstellen"
 
 #: storage/views/assets/assets_action.py:39
 msgctxt "assets"
 msgid "Целевой Склад не заполнен"
-msgstr ""
+msgstr "Ziellager nicht befüllt"
 
 #: storage/views/assets/assets_action.py:40
-#, fuzzy
-#| msgctxt "storage_transfer"
-#| msgid "Перемещение Склада"
 msgctxt "assets"
 msgid "Перемещение товаров"
-msgstr "Verlagerung des Lagers"
+msgstr "Verlagerung der Ware"
 
 #: storage/views/assets/assets_action.py:41
 #: storage/views/assets/assets_action.py:68
@@ -2150,16 +2253,12 @@ msgstr "Verlagerung des Lagers"
 #: storage/views/assets/assets_action.py:169
 #: storage/views/assets/assets_action.py:209
 #: storage/views/assets/assets_action.py:216
-#, fuzzy
-#| msgid "Закрыть"
 msgctxt "assets"
 msgid "Закрыть"
 msgstr "Schließen"
 
 #: storage/views/assets/assets_action.py:66
 #: storage/views/assets/assets_action.py:167
-#, fuzzy
-#| msgid "Склад"
 msgctxt "assets"
 msgid "Склад"
 msgstr "Lagerhaus"
@@ -2168,7 +2267,7 @@ msgstr "Lagerhaus"
 #: storage/views/assets/assets_action.py:167
 msgctxt "assets"
 msgid "вам не принадлежит"
-msgstr ""
+msgstr "Sie gehören nicht dazu"
 
 #: storage/views/assets/assets_action.py:67
 #: storage/views/assets/assets_action.py:109
@@ -2177,159 +2276,122 @@ msgstr ""
 #: storage/views/assets/assets_action.py:135
 #: storage/views/assets/assets_action.py:142
 #: storage/views/assets/assets_action.py:149
-#, fuzzy
-#| msgctxt "storage_transfer"
-#| msgid "Перемещение Склада"
 msgctxt "assets"
 msgid "Перемещение товара"
-msgstr "Verlagerung des Lagers"
+msgstr "Verlagerung der Ware"
 
 #: storage/views/assets/assets_action.py:108
 msgctxt "assets"
 msgid "Недостаточно средств для оплаты доставки"
-msgstr ""
+msgstr "Unzureichende Mittel für die Bezahlung der Lieferung"
 
 #: storage/views/assets/assets_action.py:115
 #: storage/views/assets/assets_action.py:125
-#, fuzzy
-#| msgctxt "no_storage"
-#| msgid "склад в регионе"
 msgctxt "assets"
 msgid "На складе в регионе "
-msgstr "Lagerhaus in der Region"
+msgstr "In der Region vorrätig"
 
 #: storage/views/assets/assets_action.py:117
-#, fuzzy
-#| msgid "Пополнение энергии"
 msgctxt "assets"
 msgid " недостаточно места для товара "
-msgstr "Auffüllen der Energie"
+msgstr "unzureichender Platz für die Ware"
 
 #: storage/views/assets/assets_action.py:118
 #: storage/views/assets/assets_action.py:127
 msgctxt "assets"
 msgid "Требуется: "
-msgstr ""
+msgstr "Erforderlich:"
 
 #: storage/views/assets/assets_action.py:118
 #: storage/views/assets/assets_action.py:127
-#, fuzzy
-#| msgctxt "has_storage"
-#| msgid "наличные"
 msgctxt "assets"
 msgid ", в наличии: "
-msgstr "Geld"
+msgstr "verfügbar:"
 
 #: storage/views/assets/assets_action.py:126
-#, fuzzy
-#| msgid "Пополнение энергии"
 msgctxt "assets"
 msgid " недостаточно товара "
-msgstr "Auffüllen der Energie"
+msgstr "nicht genügend Waren"
 
 #: storage/views/assets/assets_action.py:126
-#, fuzzy
-#| msgctxt "storage_transfer"
-#| msgid "перенести"
 msgctxt "assets"
 msgid " для передачи."
-msgstr "bewegen"
+msgstr " für die Übertragung"
 
 #: storage/views/assets/assets_action.py:134
 msgctxt "assets"
 msgid "Товары для передачи не выбраны"
-msgstr ""
+msgstr "Nicht für die Übertragung ausgewählte Waren"
 
 #: storage/views/assets/assets_action.py:141
 msgctxt "assets"
 msgid "В целевом Складе заполнены значения"
-msgstr ""
+msgstr "Der Zielbestand wird mit Werten aufgefüllt"
 
 #: storage/views/assets/assets_action.py:148
 msgctxt "assets"
 msgid "Целевой Склад вам не принадлежит"
-msgstr ""
+msgstr "Gezieltes Lager, das Sie nicht besitzen"
 
 #: storage/views/assets/assets_action.py:168
 #: storage/views/assets/assets_action.py:208
-#, fuzzy
-#| msgid "Пополнение энергии"
 msgctxt "assets"
 msgid "Уничтожение товара"
-msgstr "Auffüllen der Energie"
+msgstr "Vernichtung der Waren"
 
 #: storage/views/assets/assets_action.py:205
-#, fuzzy
-#| msgctxt "no_storage"
-#| msgid "склад в регионе"
 msgctxt "assets"
 msgid "На складе в регионе"
-msgstr "Lagerhaus in der Region"
+msgstr "In der Region auf Lager"
 
 #: storage/views/assets/assets_action.py:206
-#, fuzzy
-#| msgid "Пополнение энергии"
 msgctxt "assets"
 msgid "недостаточно товара"
-msgstr "Auffüllen der Energie"
+msgstr "nicht genügend Waren"
 
 #: storage/views/assets/assets_action.py:207
 msgctxt "assets"
 msgid "Требуется:"
-msgstr ""
+msgstr "Erforderlich:"
 
 #: storage/views/assets/assets_action.py:207
-#, fuzzy
-#| msgctxt "has_storage"
-#| msgid "наличные"
 msgctxt "assets"
 msgid ", в наличии:"
-msgstr "Geld"
+msgstr "verfügbar:"
 
 #: storage/views/assets/assets_action.py:214
-#, fuzzy
-#| msgid "Некорректное значение"
 msgctxt "assets"
 msgid "Некорректное действие"
-msgstr "Fehlerhafter Wert"
+msgstr "Falsche Aktion"
 
 #: storage/views/assets/assets_action.py:215
 #: storage/views/assets/assets_action.py:227
 msgctxt "assets"
 msgid "Операции с товарами"
-msgstr ""
+msgstr "Transaktionen mit Waren"
 
 #: storage/views/assets/storage_move.py:35
 #: storage/views/assets/storage_move.py:44
 #: storage/views/assets/storage_move.py:54
 #: storage/views/assets/storage_move.py:73
-#, fuzzy
-#| msgctxt "storage_transfer"
-#| msgid "Перемещение Склада"
 msgctxt "assets"
 msgid "Перемещение Склада"
 msgstr "Verlagerung des Lagers"
 
 #: storage/views/assets/storage_move.py:37
-#, fuzzy
-#| msgctxt "no_storage"
-#| msgid "склад в регионе"
 msgctxt "assets"
 msgid "Склад не заполнен"
-msgstr "Lagerhaus in der Region"
+msgstr "Lager ist nicht voll"
 
 #: storage/views/assets/storage_move.py:46
 msgctxt "assets"
 msgid "Указанный Склад вам не принадлежит"
-msgstr ""
+msgstr "Das betreffende Lagerhaus gehört Ihnen nicht"
 
 #: storage/views/assets/storage_move.py:56
-#, fuzzy
-#| msgctxt "no_storage"
-#| msgid "склад в регионе"
 msgctxt "assets"
 msgid "Указанный Склад уже в текущем регионе"
-msgstr "Lagerhaus in der Region"
+msgstr "Das angegebene Lagerhaus befindet sich bereits in der aktuellen Region"
 
 #: storage/views/factory/factory.py:47
 msgid "Производство"
@@ -2344,58 +2406,41 @@ msgstr "Produktion"
 #: storage/views/storage/cash_transfer.py:108
 #: storage/views/storage/cash_transfer.py:120
 #: storage/views/storage/new_storage.py:86
-#, fuzzy
-#| msgctxt "has_storage"
-#| msgid "всего денег"
 msgctxt "storage"
 msgid "Передача денег"
-msgstr "das gesamte Geld"
+msgstr "Geld übertragen"
 
 #: storage/views/storage/cash_transfer.py:33
-#, fuzzy
-#| msgid "Отрицательное число денег игрока"
 msgctxt "storage"
 msgid "Отрицательное число денег игрока"
 msgstr "Du hast nicht ausreichend Geld"
 
 #: storage/views/storage/cash_transfer.py:42
-#, fuzzy
-#| msgid "Некорректное число денег игрока"
 msgctxt "storage"
 msgid "Некорректное число денег игрока"
 msgstr "Du hast die falsche Anzahl des Geldes angegeben"
 
 #: storage/views/storage/cash_transfer.py:55
-#, fuzzy
-#| msgid "Отрицательное число денег Склада"
 msgctxt "storage"
 msgid "Отрицательное число денег Склада"
 msgstr "Du hast nicht ausreichend Geld im Lagerhaus"
 
 #: storage/views/storage/cash_transfer.py:64
-#, fuzzy
-#| msgid "Некорректное число денег Склада"
 msgctxt "storage"
 msgid "Некорректное число денег Склада"
 msgstr "Du hast die falsche Anzahl des Geldes im Lager angegeben"
 
 #: storage/views/storage/cash_transfer.py:73
-#, fuzzy
-#| msgid "В этом регионе нет Склада"
 msgctxt "storage"
 msgid "В этом регионе нет Склада"
 msgstr "Es gibt kein Lagerhaus in dieser Region"
 
 #: storage/views/storage/cash_transfer.py:102
-#, fuzzy
-#| msgid "Данные кошелька не совпадают с введенными"
 msgctxt "storage"
 msgid "Данные кошелька не совпадают с введенными"
 msgstr "Die Angaben zum Budget stimmen nicht mit den angegebenen Daten überein"
 
 #: storage/views/storage/cash_transfer.py:110
-#, fuzzy
-#| msgid "Недопустим ввод отрицательных чисел"
 msgctxt "storage"
 msgid "Недопустим ввод отрицательных чисел"
 msgstr "Minusbeträge können nicht eingegeben werden"
@@ -2403,33 +2448,24 @@ msgstr "Minusbeträge können nicht eingegeben werden"
 #: storage/views/storage/new_storage.py:32
 #: storage/views/storage/new_storage.py:50
 #: storage/views/storage/new_storage.py:63
-#, fuzzy
-#| msgid "На Складе"
 msgctxt "storage"
 msgid "Новый Склад"
-msgstr "Im Lagerhaus"
+msgstr "Neues Lagerhaus"
 
 #: storage/views/storage/new_storage.py:33
-#, fuzzy
-#| msgctxt "no_storage"
-#| msgid "выберите склад списания материалов"
 msgctxt "storage"
 msgid "Не найден Склад списания материалов"
-msgstr "ein Depot für abzuschreibende Materialien auswählen"
+msgstr "ein Depot für die Materialien auswählen"
 
 #: storage/views/storage/new_storage.py:51
-#, fuzzy
-#| msgid "Пополнение энергии"
 msgctxt "storage"
 msgid "Недостаточно ресурсов"
-msgstr "Auffüllen der Energie"
+msgstr "nicht genügend Ressourcen"
 
 #: storage/views/storage/new_storage.py:64
-#, fuzzy
-#| msgid "Пополнение энергии"
 msgctxt "storage"
 msgid "Недостаточно денег на транспортировку"
-msgstr "Auffüllen der Energie"
+msgstr "Nicht genug Geld für den Transport"
 
 #: storage/views/trading/accept_offer.py:41
 #: storage/views/trading/accept_offer.py:49
@@ -2455,81 +2491,71 @@ msgstr "Auffüllen der Energie"
 #: storage/views/trading/accept_offer.py:385
 msgctxt "w_trading"
 msgid "Принятие оффера"
-msgstr ""
+msgstr "Annahme des Angebots"
 
 #: storage/views/trading/accept_offer.py:43
-#, fuzzy
-#| msgid "ID навыка должен быть числом"
 msgctxt "w_trading"
 msgid "В поле количество должно быть число"
-msgstr "Gebe die Nummer der Perk-ID an"
+msgstr "Das Mengenfeld muss eine Zahl enthalten"
 
 #: storage/views/trading/accept_offer.py:51
 msgctxt "w_trading"
 msgid "В поле количество должно быть положительное число"
-msgstr ""
+msgstr "Das Mengenfeld muss eine positive Zahl sein"
 
 #: storage/views/trading/accept_offer.py:64
 #: storage/views/trading/cancel_offer.py:41
-#, fuzzy
-#| msgid "ID навыка должен быть числом"
 msgctxt "w_trading"
 msgid "ID оффера должно быть числом"
-msgstr "Gebe die Nummer der Perk-ID an"
+msgstr "Die Anbieter-ID muss eine Zahl sein"
 
 #: storage/views/trading/accept_offer.py:77
 msgctxt "w_trading"
 msgid "Нельзя принять собственный оффер"
-msgstr ""
+msgstr "Sie können Ihr eigenes Angebot nicht annehmen"
 
 #: storage/views/trading/accept_offer.py:85
 msgctxt "w_trading"
 msgid "Оффер изменился, или вы ввели некорректное число"
 msgstr ""
+"Das Angebot hat sich geändert oder Sie haben eine falsche Nummer eingegeben"
 
 #: storage/views/trading/accept_offer.py:93
 #: storage/views/trading/cancel_offer.py:62
 msgctxt "w_trading"
 msgid "Оффер не существует или уже принят"
-msgstr ""
+msgstr "Das Angebot existiert nicht oder wurde bereits angenommen"
 
 #: storage/views/trading/accept_offer.py:109
 #: storage/views/trading/cancel_offer.py:75
-#, fuzzy
-#| msgid "ID навыка должен быть числом"
 msgctxt "w_trading"
 msgid "ID склада должно быть числом"
-msgstr "Gebe die Nummer der Perk-ID an"
+msgstr "Die Lager-ID muss eine Zahl sein"
 
 #: storage/views/trading/accept_offer.py:125
-#, fuzzy
-#| msgid "Пополнение энергии"
 msgctxt "w_trading"
 msgid "На выбранном складе недостаточно места для товара"
-msgstr "Auffüllen der Energie"
+msgstr ""
+"In dem ausgewählten Lager ist nicht genügend Platz für die Waren vorhanden"
 
 #: storage/views/trading/accept_offer.py:134
-#, fuzzy
-#| msgid "Пополнение энергии"
 msgctxt "w_trading"
 msgid "На выбранном складе недостаточно товара"
-msgstr "Auffüllen der Energie"
+msgstr "Nicht genügend Waren im ausgewählten Lager"
 
 #: storage/views/trading/accept_offer.py:142
 #: storage/views/trading/accept_offer.py:156
 #: storage/views/trading/cancel_offer.py:88
 msgctxt "w_trading"
 msgid "Выбранного склада игрока не существует"
-msgstr ""
+msgstr "Das Lager des ausgewählten Spielers existiert nicht"
 
 #: storage/views/trading/accept_offer.py:178
 #: storage/views/trading/accept_offer.py:288
 #: storage/views/trading/premium_trading.py:39
-#, fuzzy
-#| msgid "Пополнение энергии"
 msgctxt "w_trading"
 msgid "Недостаточно средств. Требуется $"
-msgstr "Auffüllen der Energie"
+msgstr "Unzureichende Mittel. Nicht genügend Mittel."
 
 #: storage/views/trading/accept_offer.py:202
 #: storage/views/trading/accept_offer.py:271
@@ -2538,45 +2564,41 @@ msgstr "Auffüllen der Energie"
 #: storage/views/trading/premium_trading.py:110
 msgctxt "w_trading"
 msgid "Не удалось получить блокировку по офферу"
-msgstr ""
+msgstr "Das Angebot wurde nicht blockiert"
 
 #: storage/views/trading/accept_offer.py:251
 msgctxt "w_trading"
 msgid "Ваши расходы на доставку больше прибыли"
-msgstr ""
+msgstr "Ihre Lieferkosten sind höher als Ihre Gewinne"
 
 #: storage/views/trading/accept_offer.py:259
 #: storage/views/trading/premium_trading.py:98
-#, fuzzy
-#| msgid "Мировое население"
 msgctxt "w_trading"
 msgid "В торговом предложении недостаточно средств"
-msgstr "Gesamtbevölkerung"
+msgstr "Das Handelsangebot enthält nicht genügend Mittel"
 
 #: storage/views/trading/accept_offer.py:279
 #: storage/views/trading/premium_trading.py:118
 msgctxt "w_trading"
 msgid "В связанной блокировке недостаточно средств"
-msgstr ""
+msgstr "In der verknüpften Blockchain sind nicht genügend Mittel vorhanden"
 
 #: storage/views/trading/accept_offer.py:300
 msgctxt "w_trading"
 msgid "Выбранного склада оффера не существует"
-msgstr ""
+msgstr "Der ausgewählte Bestand des Angebots ist nicht vorhanden"
 
 #: storage/views/trading/accept_offer.py:371
 #: storage/views/trading/premium_trading.py:176
 msgctxt "w_trading"
 msgid "Оффера такого типа не существует"
-msgstr ""
+msgstr "Ein solches Angebot gibt es nicht."
 
 #: storage/views/trading/accept_offer.py:378
 #: storage/views/trading/premium_trading.py:183
-#, fuzzy
-#| msgid "Мировое население"
 msgctxt "w_trading"
 msgid "Торговое предложение успешно принято"
-msgstr "Gesamtbevölkerung"
+msgstr "Tauschangebot erfolgreich akzeptiert"
 
 #: storage/views/trading/cancel_offer.py:39
 #: storage/views/trading/cancel_offer.py:52
@@ -2586,16 +2608,14 @@ msgstr "Gesamtbevölkerung"
 #: storage/views/trading/cancel_offer.py:104
 #: storage/views/trading/cancel_offer.py:123
 #: storage/views/trading/cancel_offer.py:147
-#, fuzzy
-#| msgid "Отмена"
 msgctxt "w_trading"
 msgid "Отмена оффера"
-msgstr "abbrechen"
+msgstr "Stornierung eines Angebots"
 
 #: storage/views/trading/cancel_offer.py:54
 msgctxt "w_trading"
 msgid "Можно отменить только свой собственный оффер"
-msgstr ""
+msgstr "Sie können nur Ihr eigenes Angebot stornieren"
 
 #: storage/views/trading/create_offer.py:29
 #: storage/views/trading/create_offer.py:40
@@ -2613,136 +2633,116 @@ msgstr ""
 #: storage/views/trading/create_offer.py:200
 #: storage/views/trading/create_offer.py:207
 #: storage/views/trading/create_offer.py:216
-#, fuzzy
-#| msgid "Создание персонажа"
 msgctxt "w_trading_new"
 msgid "Создание оффера"
-msgstr "Erstellen eines Charakters"
+msgstr "Angebot erstellen"
 
 #: storage/views/trading/create_offer.py:31
 #: storage/views/trading/get_offers.py:39
-#, fuzzy
-#| msgid "Некорректное значение"
 msgctxt "w_trading_new"
 msgid "Некорректное действие"
 msgstr "Fehlerhafter Wert"
 
 #: storage/views/trading/create_offer.py:42
-#, fuzzy
-#| msgctxt "no_storage"
-#| msgid "склад в регионе"
 msgctxt "w_trading_new"
 msgid "Склад не указан"
-msgstr "Lagerhaus in der Region"
+msgstr "Lager nicht angegeben"
 
 #: storage/views/trading/create_offer.py:59
-#, fuzzy
-#| msgid "Мировое население"
 msgctxt "w_trading_new"
 msgid "Достигнут лимит торговых предложений"
-msgstr "Gesamtbevölkerung"
+msgstr "Das Limit der Handelsangebote ist erreicht"
 
 #: storage/views/trading/create_offer.py:69
-#, fuzzy
-#| msgctxt "no_storage"
-#| msgid "склад в регионе"
 msgctxt "w_trading_new"
 msgid "Указанный товар не существует"
-msgstr "Lagerhaus in der Region"
+msgstr "Der betreffende Gegenstand existiert nicht"
 
 #: storage/views/trading/create_offer.py:80
-#, fuzzy
-#| msgid "Пополнение энергии не требуется"
 msgctxt "w_trading_new"
 msgid "Количество - не число"
-msgstr "Energie muss noch nicht nachgefüllt werden."
+msgstr "Menge - nicht Anzahl"
 
 #: storage/views/trading/create_offer.py:90
-#, fuzzy
-#| msgid "Пополнение энергии не требуется"
 msgctxt "w_trading_new"
 msgid "Количество товара должно быть положительным числом"
-msgstr "Energie muss noch nicht nachgefüllt werden."
+msgstr "Die Warenmenge muss eine positive Zahl sein"
 
 #: storage/views/trading/create_offer.py:98
-#, fuzzy
-#| msgid "Пополнение энергии не требуется"
 msgctxt "w_trading_new"
 msgid "Количество товара слишком велико"
-msgstr "Energie muss noch nicht nachgefüllt werden."
+msgstr "Die Menge der Waren ist zu groß"
 
 #: storage/views/trading/create_offer.py:109
-#, fuzzy
-#| msgid "ID навыка должен быть числом"
 msgctxt "w_trading_new"
 msgid "Цена товара должна быть положительным числом"
-msgstr "Gebe die Nummer der Perk-ID an"
+msgstr "Der Preis eines Artikels muss eine positive Zahl sein"
 
 #: storage/views/trading/create_offer.py:117
 msgctxt "w_trading_new"
 msgid "Цена товара слишком велика"
-msgstr ""
+msgstr "Der Preis des Produkts ist zu hoch"
 
 #: storage/views/trading/create_offer.py:132
-#, fuzzy
-#| msgid "Пополнение энергии"
 msgctxt "w_trading_new"
 msgid "Недостаточно Wild Pass для продажи"
-msgstr "Auffüllen der Energie"
+msgstr "Nicht genug Wild Pass für den Verkauf"
 
 #: storage/views/trading/create_offer.py:145
-#, fuzzy
-#| msgid "Пополнение энергии"
 msgctxt "w_trading_new"
 msgid "Недостаточно ресурса для продажи"
-msgstr "Auffüllen der Energie"
+msgstr "Nicht genügend Ressourcen für den Verkauf"
 
 #: storage/views/trading/create_offer.py:161
-#, fuzzy
-#| msgctxt "no_storage"
-#| msgid "Стоимость создания"
 msgctxt "w_trading_new"
 msgid "Стоимость товара слишком велика"
-msgstr "Erstellungskosten"
+msgstr "Die Kosten der Waren sind zu hoch"
 
 #: storage/views/trading/create_offer.py:169
-#, fuzzy
-#| msgid "Пополнение энергии"
 msgctxt "w_trading_new"
 msgid "Недостаточно средств"
-msgstr "Auffüllen der Energie"
+msgstr "Unzureichende Mittel"
 
 #: storage/views/trading/create_offer.py:202
-#, fuzzy
-#| msgctxt "no_storage"
-#| msgid "склад в регионе"
 msgctxt "w_trading_new"
 msgid "Указанный Склад вам не принадлежит"
-msgstr "Lagerhaus in der Region"
+msgstr "Das betreffende Lager gehört Ihnen nicht"
 
 #: storage/views/trading/create_offer.py:209
-#, fuzzy
-#| msgid "Мировое население"
 msgctxt "w_trading_new"
 msgid "Торговое предложение успешно создано"
-msgstr "Gesamtbevölkerung"
+msgstr "Handelsangebot wurde erfolgreich erstellt"
 
 #: storage/views/trading/get_offers.py:37
 #: storage/views/trading/get_offers.py:59
 #: storage/views/trading/get_offers.py:172
-#, fuzzy
-#| msgctxt "storage_transfer"
-#| msgid "Перемещение Склада"
 msgctxt "w_trading"
 msgid "Получение офферов"
-msgstr "Verlagerung des Lagers"
+msgstr "Empfang der Angebote"
 
 #: storage/views/trading/get_offers.py:61
-#, fuzzy
-#| msgid "Некорректный запрос"
 msgctxt "w_trading"
 msgid "Некорректный владелец"
-msgstr "Ungültige Anfrage"
+msgstr "Falscher Besitzer"
+
+#: storage/views/trading/get_offers.py:153
+#, fuzzy
+#| msgid "Отмена"
+msgctxt "w_trading"
+msgid "Отменить"
+msgstr "abbrechen"
+
+#: storage/views/trading/get_offers.py:157
+msgctxt "w_trading"
+msgid "Купить"
+msgstr ""
+
+#: storage/views/trading/get_offers.py:159
+#, fuzzy
+#| msgid "Передать"
+msgctxt "w_trading"
+msgid "Продать"
+msgstr "Übertragen"
 
 #: storage/views/trading/premium_trading.py:25
 #: storage/views/trading/premium_trading.py:37
@@ -2752,25 +2752,19 @@ msgstr "Ungültige Anfrage"
 #: storage/views/trading/premium_trading.py:116
 #: storage/views/trading/premium_trading.py:174
 #: storage/views/trading/premium_trading.py:181
-#, fuzzy
-#| msgid "Торговля"
 msgctxt "w_trading"
 msgid "Торговля Wild Pass"
-msgstr "Markt"
+msgstr "Wild Pass Handel"
 
 #: storage/views/trading/premium_trading.py:27
-#, fuzzy
-#| msgid "Мировое население"
 msgctxt "w_trading"
 msgid "Не удалось получить владельца торгового предложения"
-msgstr "Gesamtbevölkerung"
+msgstr "Der Inhaber des Handelsangebots ist nicht zu ermitteln"
 
 #: storage/views/trading/premium_trading.py:85
-#, fuzzy
-#| msgid "Пополнение энергии"
 msgctxt "w_trading"
 msgid "У вас недостаточно Wild Pass"
-msgstr "Auffüllen der Energie"
+msgstr "Sie haben nicht genügend Wild Pass"
 
 #: war/models/squads/light_vehicle.py:49 war/models/wars/war_side.py:34
 msgid "ПТ-орудия"

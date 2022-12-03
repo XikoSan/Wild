@@ -26,22 +26,22 @@
 </script>
 <div class="col-xs-12 col-sm-12 col-md-10">
     <div id="goods_list" align="center">
-        <font id="offers_help" style="color: black">Выберите один или несколько критериев справа и нажмите "Поиск"</font>
-        <font id="offers_none" style="color: black; display: none">Ничего не найдено</font>
+        <font id="offers_help" style="color: black">{% trans 'Выберите один или несколько критериев справа и нажмите "Поиск"' context "w_trading" %}</font>
+        <font id="offers_none" style="color: black; display: none">{% trans 'Ничего не найдено' context "w_trading" %}</font>
 
         <table id="lines" class="sort" style="display: none">
 <!--        <table id="lines" class="sort">-->
           <thead>
             <tr>
-              <th data-sort-default role="columnheader">Товар</th>
-              <th role="columnheader">Дата создания</th>
-              <th role="columnheader">Владелец</th>
-              <th role="columnheader">Количество</th>
-              <th role="columnheader">Цена (шт.)</th>
-              <th role="columnheader">Лотов</th>
-              <th role="columnheader">Ставка (мин)</th>
-              <th role="columnheader">Ставка (макс)</th>
-              <th role="columnheader">Действие</th>
+              <th data-sort-default role="columnheader">{% trans 'Товар' context "w_trading" %}</th>
+              <th role="columnheader">{% trans 'Дата создания' context "w_auctions" %}</th>
+              <th role="columnheader">{% trans 'Владелец' context "w_trading" %}</th>
+              <th role="columnheader">{% trans 'Количество' context "w_trading" %}</th>
+              <th role="columnheader">{% trans 'Цена (шт.)' context "w_trading" %}</th>
+              <th role="columnheader">{% trans 'Лотов' context "w_trading" %}</th>
+              <th role="columnheader">{% trans 'Ставка (мин)' context "w_trading" %}</th>
+              <th role="columnheader">{% trans 'Ставка (макс)' context "w_trading" %}</th>
+              <th role="columnheader">{% trans 'Действие' context "w_trading" %}</th>
             </tr>
           </thead>
           <tbody>
@@ -74,7 +74,7 @@
         </div>
         <div class="row" style="margin-top: 5%">
             <select name="cc" id="trade_goods" style="width: 100%">
-                <option id="good_default" value='default' disabled selected value>Выберите товар</option>
+                <option id="good_default" value='default' disabled selected value>{% trans 'Выберите товар' context "w_trading" %}</option>
                 {% for group in storage_cl|get_attr:'types' %}
                     {% for good in storage_cl|get_attr:group %}
                 <option id="good_{{ good }}" value='{{ good }}' style="display: none">{{ storage_cl|get_attr:group|dict_key:good }}</option>
@@ -83,7 +83,7 @@
             </select>
         </div>
         <div class="row" style="margin-top: 5%;">
-            <button id="accept" type="submit" enctype="multipart/form-data" class="save btn btn-info" style="width: 100%">Поиск</button>
+            <button id="accept" type="submit" enctype="multipart/form-data" class="save btn btn-info" style="width: 100%">{% trans 'Поиск' context "w_trading" %}</button>
         </div>
     </form>
 </div>

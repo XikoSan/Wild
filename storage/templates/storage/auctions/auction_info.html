@@ -12,7 +12,7 @@
 {% block content %}
 <div class="row">
     <div class="col-xs-4 col-sm-4 col-md-4" align="center">
-        Владелец:
+        {% trans 'Владелец' context "w_trading" %}:
         {% with state=auction.treasury_lock.lock_treasury.state %}
             {% if state.image %}
             <img src="{{ state.image.url }}" onclick="window.location.href = '/state/{% localize off %}{{ state.pk }}{% endlocalize %}/'" style="cursor: pointer;" width="50" height="50">
@@ -23,15 +23,15 @@
         {% endwith %}
     </div>
     <div class="col-xs-4 col-sm-4 col-md-4" align="center">
-        Ресурс: {{ auction.get_good_display }}
+        {% trans 'Товар' context "w_trading" %}: {{ auction.get_good_display }}
     </div>
     <div class="col-xs-4 col-sm-4 col-md-4" align="center">
-        Завершение: {{ auction.create_date|timezone:player.time_zone|date:"d.m H:i" }}
+        {% trans 'Завершение' context "w_auctions" %}: {{ auction.create_date|timezone:player.time_zone|date:"d.m H:i" }}
     </div>
 </div>
 <div class="row" style="margin-top: 30px">
     <div class="col-xs-12 col-sm-12 col-md-12" align="center">
-        Лоты:
+        {% trans 'Лоты' context "w_auctions" %}:
     </div>
 </div>
 <div id="all_lots" style=" height: 640px; overflow-y: auto; overflow-x: hidden;">
@@ -40,7 +40,7 @@
         <div class="col-xs-6 col-sm-6 col-md-6" align="center" style="border-right: solid #e2e2e2 1px;">
             <div class="row">
                 <div class="col-xs-6 col-sm-6 col-md-6" align="right">
-                Количество:
+                {% trans 'Количество' context "w_trading" %}:
                 </div>
                 <div class="col-xs-6 col-sm-6 col-md-6" align="left">
                 {{ lot.count }}
@@ -48,19 +48,19 @@
             </div>
             <div class="row" style="margin-top: 5px">
                 <div class="col-xs-6 col-sm-6 col-md-6" align="right">
-                Ставка:
+                {% trans 'Ставка' context "w_auctions" %}:
                 </div>
                 <div class="col-xs-6 col-sm-6 col-md-6" align="left">
                     {% if bets_dict|has_key:lot.pk %}
                         {{ bets_dict|dict_key:lot.pk|dict_key:'price' }}
                     {% else %}
-                        {{ lot.start_price }} <text style="color: #85bb65">(начальная)</text>
+                        {{ lot.start_price }} <text style="color: #85bb65">({% trans 'начальная' context "w_auctions" %})</text>
                     {% endif %}
                 </div>
             </div>
             <div class="row" style="margin-top: 5px">
                 <div class="col-xs-6 col-sm-6 col-md-6" align="right">
-                Лидер:
+                {% trans 'Лидер' context "w_auctions" %}:
                 </div>
                 <div class="col-xs-6 col-sm-6 col-md-6" align="left">
                     <div class="row">
@@ -74,7 +74,7 @@
                             {{ owner.nickname }}
                             {% endwith %}
                         {% else %}
-                            <p style="color: #85bb65">отсутствует</p>
+                            <p style="color: #85bb65">{% trans 'отсутствует' context "w_auctions" %}</p>
                         {% endif %}
                     </div>
                 </div>
@@ -85,7 +85,7 @@
                 <input type="hidden" name="lot_id" value="{% localize off %}{{ lot.pk }}{% endlocalize %}">
                 <div class="row">
                     <div class="col-xs-6 col-sm-6 col-md-6" align="right">
-                    Склад:
+                    {% trans 'Склад' context "w_auctions" %}:
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6" align="left">
                     <td class="delivery">
@@ -98,7 +98,7 @@
                 </div>
                 <div class="row" style="margin-top: 10px">
                     <div class="col-xs-6 col-sm-6 col-md-6" align="right">
-                    Ставка:
+                    {% trans 'Ставка' context "w_auctions" %}:
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6" align="left">
                         <input id="count"
@@ -115,7 +115,7 @@
                     <div class="col-xs-6 col-sm-6 col-md-6" align="right">
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6" align="left">
-                        <button type="submit">Сделать ставку</button>
+                        <button type="submit">{% trans 'Сделать ставку' context "w_auctions" %}</button>
                     </div>
                 </div>
             </form>

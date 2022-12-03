@@ -1,8 +1,7 @@
 # coding=utf-8
 import datetime
 from django.db import models
-from django.utils.translation import gettext_lazy
-from django.utils.translation import ugettext as _
+from django.utils.translation import gettext_lazy, pgettext, pgettext_lazy, ugettext as _
 
 from player.actual_manager import ActualManager
 from player.player import Player
@@ -72,30 +71,30 @@ class TradeOffer(models.Model):
 
     # товар
     goodsChoises = (
-        ('coal', 'Уголь'),
-        ('iron', 'Железо'),
-        ('bauxite', 'Бокситы'),
+        ('coal', pgettext_lazy('goods', 'Уголь')),
+        ('iron', pgettext_lazy('goods', 'Железо')),
+        ('bauxite', pgettext_lazy('goods', 'Бокситы')),
 
-        ('wti_oil', 'Нефть WTI'),
-        ('brent_oil', 'Нефть Brent'),
-        ('urals_oil', 'Нефть Urals'),
+        ('wti_oil', pgettext_lazy('goods', 'Нефть WTI')),
+        ('brent_oil', pgettext_lazy('goods', 'Нефть Brent')),
+        ('urals_oil', pgettext_lazy('goods', 'Нефть Urals')),
 
-        ('gas', 'Бензин'),
-        ('diesel', 'Дизельное топливо'),
-        ('plastic', 'Пластик'),
-        ('steel', 'Сталь'),
-        ('aluminium', 'Алюминий'),
+        ('gas', pgettext_lazy('goods', 'Бензин')),
+        ('diesel', pgettext_lazy('goods', 'Дизельное топливо')),
+        ('plastic', pgettext_lazy('goods', 'Пластик')),
+        ('steel', pgettext_lazy('goods', 'Сталь')),
+        ('aluminium', pgettext_lazy('goods', 'Алюминий')),
 
-        ('medical', 'Койки'),
+        ('medical', pgettext_lazy('goods', 'Койки')),
 
-        ('rifle', 'Автоматы'),
-        ('tank', 'Танки'),
-        ('antitank', 'ПТ-орудия'),
-        ('station', 'Орбитальные орудия'),
-        ('jet', 'Штурмовики'),
-        ('pzrk', 'ПЗРК'),
-        ('ifv', 'БМП'),
-        ('drone', 'Дроны'),
+        ('rifle', pgettext_lazy('goods', 'Автоматы')),
+        ('tank', pgettext_lazy('goods', 'Танки')),
+        ('antitank', pgettext_lazy('goods', 'ПТ-орудия')),
+        ('station', pgettext_lazy('goods', 'Орбитальные орудия')),
+        ('jet', pgettext_lazy('goods', 'Штурмовики')),
+        ('pzrk', pgettext_lazy('goods', 'ПЗРК')),
+        ('ifv', pgettext_lazy('goods', 'БМП')),
+        ('drone', pgettext_lazy('goods', 'БПЛА')),
 
         ('wild_pass', 'Wild Pass'),
     )

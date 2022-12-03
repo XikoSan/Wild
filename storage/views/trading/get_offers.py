@@ -150,13 +150,13 @@ def get_offers(request):
 
             if offer.owner_storage.owner == player:
                 offer_dict['my_offer'] = True
-                offer_dict['type_action'] = 'Отменить'
+                offer_dict['type_action'] = pgettext('w_trading', 'Отменить')
             else:
                 offer_dict['my_offer'] = False
                 if offer.type == 'sell':
-                    offer_dict['type_action'] = 'Купить'
+                    offer_dict['type_action'] = pgettext('w_trading', 'Купить')
                 else:
-                    offer_dict['type_action'] = 'Продать'
+                    offer_dict['type_action'] = pgettext('w_trading', 'Продать')
 
             offer_dict['id'] = offer.pk
 
