@@ -41,7 +41,7 @@ def new_storage(request):
         trans_mul[0][paid_storage.pk] = math.ceil(distance_counting(player.region, paid_storage.region) / 100)
         # считаем стоиомость создания нового Склада
         # она равна 500 * количество Складов сейчас
-        material_cost = 500 * Storage.actual.filter(owner=player).count()
+        material_cost = 500
         price_dict[paid_storage.pk]['steel'] = price_dict[paid_storage.pk]['aluminium'] = material_cost
         # если ресурсов недостаточно
         if not (getattr(paid_storage, 'steel') >= material_cost \
