@@ -29,11 +29,12 @@ def storage(request):
 
     limit_upgrade = True
 
-    if storage.aluminium >= 500 and storage.steel >= 500:
-        can_upgrade = True
+    if storage:
+        if storage.aluminium >= 500 and storage.steel >= 500:
+            can_upgrade = True
 
-    if storage.level < 5:
-        limit_upgrade = False
+        if storage.level < 5:
+            limit_upgrade = False
 
     # ------------
     large_limit = 5
