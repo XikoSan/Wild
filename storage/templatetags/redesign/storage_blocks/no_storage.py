@@ -21,7 +21,7 @@ def no_storage(player):
 
     # считаем стоиомость создания нового Склада
     # она равна 500 * количество Складов сейчас
-    material_cost = 500 * Storage.actual.filter(owner=player).count()
+    material_cost = 500
 
     # получаем Склады игрока
     storages = Storage.actual.filter(owner=player)
