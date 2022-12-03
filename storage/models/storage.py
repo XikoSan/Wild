@@ -86,6 +86,12 @@ class Storage(models.Model):
         'drone': pgettext_lazy('goods', 'БПЛА'),
     }
 
+    sizes = {
+        'large': ['coal', 'iron', 'bauxite', 'wti_oil', 'brent_oil', 'urals_oil' ],
+        'medium': ['gas', 'diesel', 'plastic', 'steel', 'aluminium', 'medical', 'rifle' ],
+        'small': ['tank', 'antitank', 'jet', 'pzrk', 'ifv', 'drone'],
+    }
+
     # владелец склада
     owner = models.ForeignKey(Player, default=None, null=True, on_delete=models.CASCADE, verbose_name='Владелец',
                               related_name="owner")
@@ -97,6 +103,9 @@ class Storage(models.Model):
     # Показатель того, что склад уже переносился хоть раз
     was_moved = models.BooleanField(default=False, null=False, verbose_name='Переносился')
 
+    # уровень прокачки. 1 - только пострен
+    level = models.IntegerField(default=1, verbose_name=gettext_lazy('Уровень'))
+
     # наличные на складе
     cash = models.BigIntegerField(default=0, verbose_name=pgettext_lazy('goods', 'Наличные'))
 
@@ -104,84 +113,84 @@ class Storage(models.Model):
     # Уголь
     coal = models.IntegerField(default=0, verbose_name=pgettext_lazy('goods', 'Уголь'))
     # Уголь- максимум на складе
-    coal_cap = models.IntegerField(default=100000, verbose_name=pgettext_lazy('goods', 'Уголь - лимит'))
+    coal_cap = models.IntegerField(default=10000, verbose_name=pgettext_lazy('goods', 'Уголь - лимит'))
 
     # Железо
     iron = models.IntegerField(default=0, verbose_name=pgettext_lazy('goods', 'Железо'))
     # Железо- максимум на складе
-    iron_cap = models.IntegerField(default=100000, verbose_name=pgettext_lazy('goods', 'Железо - лимит'))
+    iron_cap = models.IntegerField(default=10000, verbose_name=pgettext_lazy('goods', 'Железо - лимит'))
 
     # Бокситы
     bauxite = models.IntegerField(default=0, verbose_name=pgettext_lazy('goods', 'Бокситы'))
     # Бокситы- максимум на складе
-    bauxite_cap = models.IntegerField(default=100000, verbose_name=pgettext_lazy('goods', 'Бокситы - лимит'))
+    bauxite_cap = models.IntegerField(default=10000, verbose_name=pgettext_lazy('goods', 'Бокситы - лимит'))
 
     # ------vvvvvvv------Нефть на складе------vvvvvvv------
     # Нефть WTI
     wti_oil = models.IntegerField(default=0, verbose_name=pgettext_lazy('goods', 'Нефть WTI'))
     # Нефть WTI- максимум на складе
-    wti_oil_cap = models.IntegerField(default=100000, verbose_name=pgettext_lazy('goods', 'Нефть WTI - лимит'))
+    wti_oil_cap = models.IntegerField(default=10000, verbose_name=pgettext_lazy('goods', 'Нефть WTI - лимит'))
 
     # Нефть Brent
     brent_oil = models.IntegerField(default=0, verbose_name=pgettext_lazy('goods', 'Нефть Brent'))
     # Нефть Brent- максимум на складе
-    brent_oil_cap = models.IntegerField(default=100000, verbose_name=pgettext_lazy('goods', 'Нефть Brent - лимит'))
+    brent_oil_cap = models.IntegerField(default=10000, verbose_name=pgettext_lazy('goods', 'Нефть Brent - лимит'))
 
     # Нефть Urals
     urals_oil = models.IntegerField(default=0, verbose_name=pgettext_lazy('goods', 'Нефть Urals'))
     # Нефть Urals- максимум на складе
-    urals_oil_cap = models.IntegerField(default=100000, verbose_name=pgettext_lazy('goods', 'Нефть Urals - лимит'))
+    urals_oil_cap = models.IntegerField(default=10000, verbose_name=pgettext_lazy('goods', 'Нефть Urals - лимит'))
 
     # ------vvvvvvv------Материалы на складе------vvvvvvv------
     # бензин
     gas = models.IntegerField(default=0, verbose_name=pgettext_lazy('goods', 'Бензин'))
     # бензин- максимум на складе
-    gas_cap = models.IntegerField(default=10000, verbose_name=pgettext_lazy('goods', 'Бензин - лимит'))
+    gas_cap = models.IntegerField(default=1000, verbose_name=pgettext_lazy('goods', 'Бензин - лимит'))
 
     # бензин
     diesel = models.IntegerField(default=0, verbose_name=pgettext_lazy('goods', 'Дизельное топливо'))
     # бензин- максимум на складе
-    diesel_cap = models.IntegerField(default=10000, verbose_name=pgettext_lazy('goods', 'Дизельное топливо - лимит'))
+    diesel_cap = models.IntegerField(default=1000, verbose_name=pgettext_lazy('goods', 'Дизельное топливо - лимит'))
 
     # пластик
     plastic = models.IntegerField(default=0, verbose_name=pgettext_lazy('goods', 'Пластик'))
     # пластик- максимум на складе
-    plastic_cap = models.IntegerField(default=10000, verbose_name=pgettext_lazy('goods', 'Пластик - лимит'))
+    plastic_cap = models.IntegerField(default=1000, verbose_name=pgettext_lazy('goods', 'Пластик - лимит'))
 
     steel = models.IntegerField(default=0, verbose_name=pgettext_lazy('goods', 'Сталь'))
     # сталь- максимум на складе
-    steel_cap = models.IntegerField(default=10000, verbose_name=pgettext_lazy('goods', 'Сталь - лимит'))
+    steel_cap = models.IntegerField(default=1000, verbose_name=pgettext_lazy('goods', 'Сталь - лимит'))
 
     aluminium = models.IntegerField(default=0, verbose_name=pgettext_lazy('goods', 'Алюминий'))
     # сталь- максимум на складе
-    aluminium_cap = models.IntegerField(default=10000, verbose_name=pgettext_lazy('goods', 'Алюминий - лимит'))
+    aluminium_cap = models.IntegerField(default=1000, verbose_name=pgettext_lazy('goods', 'Алюминий - лимит'))
 
     # ------vvvvvvv------Оборудование на складе------vvvvvvv------
     # Медикаменты
     medical = models.IntegerField(default=0, verbose_name=pgettext_lazy('goods', 'Медикаменты'))
     # Медикаменты- максимум на складе
-    medical_cap = models.IntegerField(default=10000, verbose_name=pgettext_lazy('goods', 'Медикаменты - лимит'))
+    medical_cap = models.IntegerField(default=1000, verbose_name=pgettext_lazy('goods', 'Медикаменты - лимит'))
 
     # ------vvvvvvv------Юниты на складе------vvvvvvv------
     # Автоматы
     rifle = models.IntegerField(default=0, verbose_name=pgettext_lazy('goods', 'Автоматы'))
     # Автоматы- максимум на складе
-    rifle_cap = models.IntegerField(default=10000, verbose_name=pgettext_lazy('goods', 'Автоматы - лимит'))
+    rifle_cap = models.IntegerField(default=1000, verbose_name=pgettext_lazy('goods', 'Автоматы - лимит'))
 
     # ПТ-пушка
     antitank = models.IntegerField(default=0, verbose_name=pgettext_lazy('goods', 'ПТ-орудия'))
     # танки- максимум на складе
-    antitank_cap = models.IntegerField(default=1000, verbose_name=pgettext_lazy('goods', 'ПТ-орудия - лимит'))
+    antitank_cap = models.IntegerField(default=100, verbose_name=pgettext_lazy('goods', 'ПТ-орудия - лимит'))
 
     # танки
     tank = models.IntegerField(default=0, verbose_name=pgettext_lazy('goods', 'Танки'))
     # танки- максимум на складе
-    tank_cap = models.IntegerField(default=1000, verbose_name=pgettext_lazy('goods', 'Танки - лимит'))
+    tank_cap = models.IntegerField(default=100, verbose_name=pgettext_lazy('goods', 'Танки - лимит'))
 
     # штурмовики
     jet = models.IntegerField(default=0, verbose_name=pgettext_lazy('goods', 'Штурмовики'))
     # штурмовики- максимум на складе
-    jet_cap = models.IntegerField(default=1000, verbose_name=pgettext_lazy('goods', 'Штурмовики - лимит'))
+    jet_cap = models.IntegerField(default=100, verbose_name=pgettext_lazy('goods', 'Штурмовики - лимит'))
 
     # орбитальные орудия
     station = models.IntegerField(default=0, verbose_name=pgettext_lazy('goods', 'Орбитальные орудия'))
@@ -191,17 +200,17 @@ class Storage(models.Model):
     # ПЗРК
     pzrk = models.IntegerField(default=0, verbose_name=pgettext_lazy('goods', 'ПЗРК'))
     # ПЗРК- максимум на складе
-    pzrk_cap = models.IntegerField(default=1000, verbose_name=pgettext_lazy('goods', 'ПЗРК - лимит'))
+    pzrk_cap = models.IntegerField(default=100, verbose_name=pgettext_lazy('goods', 'ПЗРК - лимит'))
 
     # БМП
     ifv = models.IntegerField(default=0, verbose_name=pgettext_lazy('goods', 'БМП'))
     # БМП- максимум на складе
-    ifv_cap = models.IntegerField(default=1000, verbose_name=pgettext_lazy('goods', 'БМП - лимит'))
+    ifv_cap = models.IntegerField(default=100, verbose_name=pgettext_lazy('goods', 'БМП - лимит'))
 
     # дроны
     drone = models.IntegerField(default=0, verbose_name=pgettext_lazy('goods', 'БПЛА'))
     # дроны- максимум на складе
-    drone_cap = models.IntegerField(default=1000, verbose_name=pgettext_lazy('goods', 'БПЛА - лимит'))
+    drone_cap = models.IntegerField(default=100, verbose_name=pgettext_lazy('goods', 'БПЛА - лимит'))
 
     # удалено
     deleted = models.BooleanField(default=False, verbose_name='Удалено')

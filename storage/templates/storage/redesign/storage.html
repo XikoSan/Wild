@@ -2,11 +2,22 @@
 {% load redesign.storage_blocks.has_storage %}
 {% load redesign.storage_blocks.no_storage %}
 {% load static %}
+{% load get_attr %}
 {% load get_mul %}
+{% load get_verbose %}
+{% load check_up_limit %}
 {% load dict_key %}
 {% load static %}
 {% load l10n %}{% load i18n %}
 {% block content %}
+<style>
+	.up_plus {
+		cursor: pointer;
+	}
+	.up_minus {
+		cursor: pointer;
+	}
+</style>
 <section class="store">
     <h1 class="store__title ct__page-title">{% trans 'Склад' context "storage" %}</h1>
 	<button class="store__title-settings ct__js-modal-sett-open" id="store__modal1-open">
@@ -193,262 +204,154 @@
 			</button>
 		</div>
 		{% endif %}
+		<!--улучшить-->
+		<div class="store__modal1-container">
+			<h2 class="store__modal1-title">Улучшение склада</h2>
+			<p>Вы можете улучшить Склад, расширив хранилища части товаров</p>
+			<p>Стоимость: 500 сталь, 500 Алюминий</p>
+			{% if limit_upgrade %}
+			<h2 class="store__modal1-title" style="color: var(--c10two);">Максимальный уровень</h2>
 
-<!--			&lt;!&ndash;линия&ndash;&gt;-->
-<!--			<div class="store__modal1-line ct__line"></div>-->
+			{% else %}
 
-<!--			&lt;!&ndash;улучшить&ndash;&gt;-->
-<!--			<div class="store__modal1-container">-->
-<!--				<h2 class="store__modal1-title">Улучшение склада</h2>-->
-<!--				<p>Вы можете улучшить Склад, расширив хранилища части товаров</p>-->
-<!--				<p>Стоимость: 500 сталь, 500 Алюминий</p>-->
-<!--				<button class="store__modal1-btn ct__mid-btn" id="store__modal2-open">-->
-<!--					<svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">-->
-<!--						<mask id="mask0_259_320" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">-->
-<!--							<path d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"/>-->
-<!--						</mask>-->
-<!--						<g mask="url(#mask0_259_320)">-->
-<!--							<path d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" fill="var(&#45;&#45;c10two)"/>-->
-<!--							<path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(&#45;&#45;c10one)"/>-->
-<!--							<path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(&#45;&#45;c10one)"/>-->
-<!--							<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(&#45;&#45;c10one)"/>-->
-<!--						</g>-->
-<!--					</svg>-->
-<!--					<span>улучшить</span>-->
-<!--				</button>-->
-<!--			</div>-->
+			{% if can_upgrade %}
+			<button class="store__modal1-btn ct__mid-btn" id="store__modal2-open">
+				<svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
+					<mask id="mask0_259_320" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+						<path d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"/>
+					</mask>
+					<g mask="url(#mask0_259_320)">
+						<path d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" fill="var(--c10two)"/>
+						<path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"/>
+						<path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"/>
+						<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
+					</g>
+				</svg>
+				<span>улучшить</span>
+			</button>
+			{% else %}
+			<h2 class="store__modal1-title" style="color: var(--c10two);">Недостаточно материалов</h2>
+			{% endif %}
+
+			{% endif %}
+		</div>
 	</div>
 
-<!--		&lt;!&ndash;модалка улучшения 2&ndash;&gt;-->
-<!--		<div class="store__modal2" id="store__modal2">-->
-<!--			&lt;!&ndash;закрыть модалку&ndash;&gt;-->
-<!--			<button class="store__modal2-close ct__square-mid-btn" id="store__modal2-close">-->
-<!--				<svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">-->
-<!--					<path d="M26 30H0V0H30V26L26 30Z" fill="var(&#45;&#45;c10two)"></path><path d="M4 4L26 26M4 26L26 4" stroke="var(&#45;&#45;c60)" stroke-width="3"></path>-->
-<!--				</svg>-->
-<!--			</button>-->
+	{% if can_upgrade %}
+	<!--модалка улучшения 2-->
+	<div class="store__modal2" id="store__modal2">
+		<!--закрыть модалку-->
+		<button class="store__modal2-close ct__square-mid-btn" id="store__modal2-close">
+			<svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path d="M26 30H0V0H30V26L26 30Z" fill="var(--c10two)"></path><path d="M4 4L26 26M4 26L26 4" stroke="var(--c60)" stroke-width="3"></path>
+			</svg>
+		</button>
 
-<!--			&lt;!&ndash;заголовок&ndash;&gt;-->
-<!--			<h2 class="store__modal2-title ct__page-title">Улучшение склада</h2>-->
-<!--			<p>Выберите до пяти товаров в каждой из категорий, ёмкость Склада для которых будет увеличина</p>-->
+		<!--заголовок-->
+		<h2 class="store__modal2-title ct__page-title">Улучшение склада</h2>
+		<p>Выберите товары в каждой из категорий, ёмкость Склада для которых будет увеличена</p>
 
-<!--			&lt;!&ndash;линия&ndash;&gt;-->
-<!--			<div class="store__modal2-line ct__line"></div>-->
+		<!--линия-->
+		<div class="store__modal2-line ct__line"></div>
 
-<!--			&lt;!&ndash;список1&ndash;&gt;-->
-<!--			<div class="store__modal2-list-container">-->
-<!--				<h3>Большой объём запасов (+100к/ед.)</h3>-->
-<!--				<ul class="store__modal2-list">-->
-<!--					<li class="store__modal2-item">-->
-<!--						<div class="store__modal2-item-btns">-->
-<!--							<button><svg><use xlink:href="#minus"></use></svg></button>-->
-<!--							<span>0</span>-->
-<!--							<button><svg><use xlink:href="#plus"></use></svg></button>-->
-<!--						</div>-->
-<!--						<span class="store__modal2-item-text">уголь</span>-->
-<!--					</li>-->
+		<!--список1-->
+		<div class="store__modal2-list-container">
+			<h3>Большой объём запасов</h3>
+			<div><div id="large_upgrade_counter" style="display: inline-block">0</div> / {{ large_limit }} </div>
+			<ul class="store__modal2-list">
+				{% for good in storage|get_attr:'sizes'|dict_key:'large' %}
+					{% with 'large' as size %}
+						{% check_up_limit storage good size as limited %}
 
-<!--					<li class="store__modal2-item">-->
-<!--						<div class="store__modal2-item-btns">-->
-<!--							<button><svg><use xlink:href="#minus"></use></svg></button>-->
-<!--							<span>0</span>-->
-<!--							<button><svg><use xlink:href="#plus"></use></svg></button>-->
-<!--						</div>-->
-<!--						<span class="store__modal2-item-text">нефть WTI</span>-->
-<!--					</li>-->
+						{% if not limited %}
+				<li class="store__modal2-item">
+					<div class="store__modal2-item-btns">
+						<button data-good="{{ good }}" class="up_minus"><svg><use xlink:href="#minus"></use></svg></button>
+						<span data-size="large" class="up_count">0</span>
+						<button data-good="{{ good }}" class="up_plus"><svg><use xlink:href="#plus"></use></svg></button>
+					</div>
+					<span class="store__modal2-item-text">{{ good|get_verbose }}</span>
+				</li>
+						{% endif %}
+					{% endwith %}
+				{% endfor %}
+			</ul>
+		</div>
 
-<!--					<li class="store__modal2-item">-->
-<!--						<div class="store__modal2-item-btns">-->
-<!--							<button><svg><use xlink:href="#minus"></use></svg></button>-->
-<!--							<span>0</span>-->
-<!--							<button><svg><use xlink:href="#plus"></use></svg></button>-->
-<!--						</div>-->
-<!--						<span class="store__modal2-item-text">железо</span>-->
-<!--					</li>-->
+		<!--линия-->
+		<div class="store__modal2-line ct__line"></div>
 
-<!--					<li class="store__modal2-item">-->
-<!--						<div class="store__modal2-item-btns">-->
-<!--							<button><svg><use xlink:href="#minus"></use></svg></button>-->
-<!--							<span>0</span>-->
-<!--							<button><svg><use xlink:href="#plus"></use></svg></button>-->
-<!--						</div>-->
-<!--						<span class="store__modal2-item-text">нефть Brent</span>-->
-<!--					</li>-->
+		<!--список2-->
+		<div class="store__modal2-list-container">
+			<h3>Средний объём запасов</h3>
+			<div><div id="medium_upgrade_counter" style="display: inline-block">0</div> / {{ medium_limit }} </div>
+			<ul class="store__modal2-list">
+				{% for good in storage|get_attr:'sizes'|dict_key:'medium' %}
+					{% with 'medium' as size %}
+						{% check_up_limit storage good size as limited %}
 
-<!--					<li class="store__modal2-item">-->
-<!--						<div class="store__modal2-item-btns">-->
-<!--							<button><svg><use xlink:href="#minus"></use></svg></button>-->
-<!--							<span>0</span>-->
-<!--							<button><svg><use xlink:href="#plus"></use></svg></button>-->
-<!--						</div>-->
-<!--						<span class="store__modal2-item-text">бокситы</span>-->
-<!--					</li>-->
+						{% if not limited %}
+				<li class="store__modal2-item">
+					<div class="store__modal2-item-btns">
+						<button data-good="{{ good }}" class="up_minus"><svg><use xlink:href="#minus"></use></svg></button>
+						<span data-size="medium" class="up_count">0</span>
+						<button data-good="{{ good }}" class="up_plus"><svg><use xlink:href="#plus"></use></svg></button>
+					</div>
+					<span class="store__modal2-item-text">{{ good|get_verbose }}</span>
+				</li>
+						{% endif %}
+					{% endwith %}
+				{% endfor %}
+			</ul>
+		</div>
 
-<!--					<li class="store__modal2-item">-->
-<!--						<div class="store__modal2-item-btns">-->
-<!--							<button><svg><use xlink:href="#minus"></use></svg></button>-->
-<!--							<span>0</span>-->
-<!--							<button><svg><use xlink:href="#plus"></use></svg></button>-->
-<!--						</div>-->
-<!--						<span class="store__modal2-item-text">нефть Urals</span>-->
-<!--					</li>-->
-<!--				</ul>-->
-<!--			</div>-->
+		<!--линия-->
+		<div class="store__modal2-line ct__line"></div>
 
-<!--			&lt;!&ndash;линия&ndash;&gt;-->
-<!--			<div class="store__modal2-line ct__line"></div>-->
+		<!--список3-->
+		<div class="store__modal2-list-container">
+			<h3>Малый объём запасов</h3>
+			<div><div id="small_upgrade_counter" style="display: inline-block">0</div> / {{ small_limit }} </div>
+			<ul class="store__modal2-list">
+				{% for good in storage|get_attr:'sizes'|dict_key:'small' %}
+					{% with 'small' as size %}
+						{% check_up_limit storage good size as limited %}
 
-<!--			&lt;!&ndash;список2&ndash;&gt;-->
-<!--			<div class="store__modal2-list-container">-->
-<!--				<h3>Средний объём запасов (+10к/ед.)</h3>-->
-<!--				<ul class="store__modal2-list">-->
-<!--					<li class="store__modal2-item">-->
-<!--						<div class="store__modal2-item-btns">-->
-<!--							<button><svg><use xlink:href="#minus"></use></svg></button>-->
-<!--							<span>0</span>-->
-<!--							<button><svg><use xlink:href="#plus"></use></svg></button>-->
-<!--						</div>-->
-<!--						<span class="store__modal2-item-text">бензин</span>-->
-<!--					</li>-->
+						{% if not limited %}
+				<li class="store__modal2-item">
+					<div class="store__modal2-item-btns">
+						<button data-good="{{ good }}" class="up_minus"><svg><use xlink:href="#minus"></use></svg></button>
+						<span data-size="small" class="up_count">0</span>
+						<button data-good="{{ good }}" class="up_plus"><svg><use xlink:href="#plus"></use></svg></button>
+					</div>
+					<span class="store__modal2-item-text">{{ good|get_verbose }}</span>
+				</li>
+						{% endif %}
+					{% endwith %}
+				{% endfor %}
+			</ul>
+		</div>
 
-<!--					<li class="store__modal2-item">-->
-<!--						<div class="store__modal2-item-btns">-->
-<!--							<button><svg><use xlink:href="#minus"></use></svg></button>-->
-<!--							<span>0</span>-->
-<!--							<button><svg><use xlink:href="#plus"></use></svg></button>-->
-<!--						</div>-->
-<!--						<span class="store__modal2-item-text">алюминий</span>-->
-<!--					</li>-->
+		<!--линия-->
+		<div class="store__modal2-line store__modal2-line--bottom-m ct__line"></div>
 
-<!--					<li class="store__modal2-item">-->
-<!--						<div class="store__modal2-item-btns">-->
-<!--							<button><svg><use xlink:href="#minus"></use></svg></button>-->
-<!--							<span>0</span>-->
-<!--							<button><svg><use xlink:href="#plus"></use></svg></button>-->
-<!--						</div>-->
-<!--						<span class="store__modal2-item-text">диз. топливо</span>-->
-<!--					</li>-->
+		<button onclick="up_storage()" class="store__modal1-btn ct__mid-btn">
+			<svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
+				<mask id="mask0_259_320" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+					<path d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"/>
+				</mask>
+				<g mask="url(#mask0_259_320)">
+					<path d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" fill="var(--c10two)"/>
+					<path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"/>
+					<path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"/>
+					<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
+				</g>
+			</svg>
+			<span>улучшить</span>
+		</button>
 
-<!--					<li class="store__modal2-item">-->
-<!--						<div class="store__modal2-item-btns">-->
-<!--							<button><svg><use xlink:href="#minus"></use></svg></button>-->
-<!--							<span>0</span>-->
-<!--							<button><svg><use xlink:href="#plus"></use></svg></button>-->
-<!--						</div>-->
-<!--						<span class="store__modal2-item-text">койки</span>-->
-<!--					</li>-->
-
-<!--					<li class="store__modal2-item">-->
-<!--						<div class="store__modal2-item-btns">-->
-<!--							<button><svg><use xlink:href="#minus"></use></svg></button>-->
-<!--							<span>0</span>-->
-<!--							<button><svg><use xlink:href="#plus"></use></svg></button>-->
-<!--						</div>-->
-<!--						<span class="store__modal2-item-text">пластик</span>-->
-<!--					</li>-->
-
-<!--					<li class="store__modal2-item">-->
-<!--						<div class="store__modal2-item-btns">-->
-<!--							<button><svg><use xlink:href="#minus"></use></svg></button>-->
-<!--							<span>0</span>-->
-<!--							<button><svg><use xlink:href="#plus"></use></svg></button>-->
-<!--						</div>-->
-<!--						<span class="store__modal2-item-text">автоматы</span>-->
-<!--					</li>-->
-
-<!--					<li class="store__modal2-item">-->
-<!--						<div class="store__modal2-item-btns">-->
-<!--							<button><svg><use xlink:href="#minus"></use></svg></button>-->
-<!--							<span>0</span>-->
-<!--							<button><svg><use xlink:href="#plus"></use></svg></button>-->
-<!--						</div>-->
-<!--						<span class="store__modal2-item-text">сталь</span>-->
-<!--					</li>-->
-<!--				</ul>-->
-<!--			</div>-->
-
-<!--			&lt;!&ndash;линия&ndash;&gt;-->
-<!--			<div class="store__modal2-line ct__line"></div>-->
-
-<!--			&lt;!&ndash;список3&ndash;&gt;-->
-<!--			<div class="store__modal2-list-container">-->
-<!--				<h3>Малый объём запасов (+1к/ед.)</h3>-->
-<!--				<ul class="store__modal2-list">-->
-<!--					<li class="store__modal2-item">-->
-<!--						<div class="store__modal2-item-btns">-->
-<!--							<button><svg><use xlink:href="#minus"></use></svg></button>-->
-<!--							<span>0</span>-->
-<!--							<button><svg><use xlink:href="#plus"></use></svg></button>-->
-<!--						</div>-->
-<!--						<span class="store__modal2-item-text">танки</span>-->
-<!--					</li>-->
-
-<!--					<li class="store__modal2-item">-->
-<!--						<div class="store__modal2-item-btns">-->
-<!--							<button><svg><use xlink:href="#minus"></use></svg></button>-->
-<!--							<span>0</span>-->
-<!--							<button><svg><use xlink:href="#plus"></use></svg></button>-->
-<!--						</div>-->
-<!--						<span class="store__modal2-item-text">ПЗРК</span>-->
-<!--					</li>-->
-
-<!--					<li class="store__modal2-item">-->
-<!--						<div class="store__modal2-item-btns">-->
-<!--							<button><svg><use xlink:href="#minus"></use></svg></button>-->
-<!--							<span>0</span>-->
-<!--							<button><svg><use xlink:href="#plus"></use></svg></button>-->
-<!--						</div>-->
-<!--						<span class="store__modal2-item-text">ПТ-орудия</span>-->
-<!--					</li>-->
-
-<!--					<li class="store__modal2-item">-->
-<!--						<div class="store__modal2-item-btns">-->
-<!--							<button><svg><use xlink:href="#minus"></use></svg></button>-->
-<!--							<span>0</span>-->
-<!--							<button><svg><use xlink:href="#plus"></use></svg></button>-->
-<!--						</div>-->
-<!--						<span class="store__modal2-item-text">БМП</span>-->
-<!--					</li>-->
-
-<!--					<li class="store__modal2-item">-->
-<!--						<div class="store__modal2-item-btns">-->
-<!--							<button><svg><use xlink:href="#minus"></use></svg></button>-->
-<!--							<span>0</span>-->
-<!--							<button><svg><use xlink:href="#plus"></use></svg></button>-->
-<!--						</div>-->
-<!--						<span class="store__modal2-item-text">штурмовики</span>-->
-<!--					</li>-->
-
-<!--					<li class="store__modal2-item">-->
-<!--						<div class="store__modal2-item-btns">-->
-<!--							<button><svg><use xlink:href="#minus"></use></svg></button>-->
-<!--							<span>0</span>-->
-<!--							<button><svg><use xlink:href="#plus"></use></svg></button>-->
-<!--						</div>-->
-<!--						<span class="store__modal2-item-text">БПЛА</span>-->
-<!--					</li>-->
-<!--				</ul>-->
-<!--			</div>-->
-
-<!--			&lt;!&ndash;линия&ndash;&gt;-->
-<!--			<div class="store__modal2-line store__modal2-line&#45;&#45;bottom-m ct__line"></div>-->
-
-<!--			<button class="store__modal1-btn ct__mid-btn">-->
-<!--				<svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">-->
-<!--					<mask id="mask0_259_320" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">-->
-<!--						<path d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"/>-->
-<!--					</mask>-->
-<!--					<g mask="url(#mask0_259_320)">-->
-<!--						<path d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" fill="var(&#45;&#45;c10two)"/>-->
-<!--						<path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(&#45;&#45;c10one)"/>-->
-<!--						<path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(&#45;&#45;c10one)"/>-->
-<!--						<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(&#45;&#45;c10one)"/>-->
-<!--					</g>-->
-<!--				</svg>-->
-<!--				<span>улучшить</span>-->
-<!--			</button>-->
-
-<!--		</div>-->
+	</div>
+	{% endif %}
 </section>
 <script>
 	var wildpass_header = '{% if premium %}{% trans 'Продление' context "storage_assets" %}{% else %}{% trans 'Активация' context "storage_assets" %}{% endif %} {% trans 'премиум-аккаунта' context "storage_assets" %}';
@@ -474,6 +377,9 @@
 {% endif %}
 <script src='{% static "js/storage.js" %}?{{ csrf_token }}'></script>
 <script src='{% static "js/redesign/vault.js" %}?{{ csrf_token }}'></script>
+{% if can_upgrade %}
+<script src='{% static "js/redesign/up_storage.js" %}?{{ csrf_token }}'></script>
+{% endif %}
 {% endblock %}
 
 {% block for_scripts_and_css %}
@@ -483,10 +389,34 @@
 		openModalBtn: document.getElementById('store__modal1-open'),
 		closeModalBtn: document.getElementById('store__modal1-close'),
 	})
-<!--	const storeModal2 = new ModalOpenClose({-->
-<!--		main: document.getElementById('store__modal2'),-->
-<!--		openModalBtn: document.getElementById('store__modal2-open'),-->
-<!--		closeModalBtn: document.getElementById('store__modal2-close'),-->
-<!--	})-->
+	const storeModal2 = new ModalOpenClose({
+		main: document.getElementById('store__modal2'),
+		openModalBtn: document.getElementById('store__modal2-open'),
+		closeModalBtn: document.getElementById('store__modal2-close'),
+	})
+
+	{% if can_upgrade %}
+
+	large_upgrade_counter = 0;
+	medium_upgrade_counter = 0;
+	small_upgrade_counter = 0;
+
+	large_counter_limit = {{ large_limit }};
+	medium_counter_limit = {{ medium_limit }};
+	small_counter_limit = {{ small_limit }};
+
+	var upgrade_dict = {
+        {% for good in storage|get_attr:'sizes'|dict_key:'large' %}
+            {{ good }}: 0,
+        {% endfor %}
+		{% for good in storage|get_attr:'sizes'|dict_key:'medium' %}
+            {{ good }}: 0,
+        {% endfor %}
+		{% for good in storage|get_attr:'sizes'|dict_key:'small' %}
+            {{ good }}: 0,
+        {% endfor %}
+    };
+
+	{% endif %}
 </script>
 {% endblock %}

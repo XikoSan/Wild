@@ -5,6 +5,7 @@ from django.utils.translation import pgettext
 from player.decorators.player import check_player
 from player.player import Player
 from storage.models.storage import Storage
+from storage.templatetags.check_up_limit import check_up_limit
 
 
 # главная страница
@@ -18,23 +19,62 @@ def storage(request):
     if Storage.actual.filter(owner=player, region=player.region).exists():
         storage = Storage.actual.get(owner=player, region=player.region)
 
+    # для переноса склада - должен быть один
     single_storage = None
     if Storage.actual.filter(owner=player).count() == 1:
         single_storage = Storage.actual.get(owner=player)
 
-    groups = list(player.account.groups.all().values_list('name', flat=True))
-    page = 'storage/storage.html'
-    if 'redesign' not in groups:
-        page = 'storage/redesign/storage.html'
+    # наличие алюминия и стали на текущем складе - для прокачки
+    can_upgrade = False
+
+    limit_upgrade = True
+
+    if storage.aluminium >= 500 and storage.steel >= 500:
+        can_upgrade = True
+
+    if storage.level < 5:
+        limit_upgrade = False
+
+    # ------------
+    large_limit = 5
+    medium_limit = 6
+    small_limit = 5
+
+    # # проверяем, сколько полей можно улучшить
+    # for size in Storage.sizes:
+    #     limited = 0
+    #     for good in Storage.sizes[size]:
+    #         # узнаем, поле в лимите или нет
+    #         if check_up_limit(storage, good, size):
+    #             limited += 1
+    #
+    #     if size == 'large':
+    #         if limited == 5:
+    #             large_limit = 1
+    #
+    #     if size == 'small':
+    #         if limited == 5:
+    #             small_limit = 1
+    #
+    #     if size == 'medium':
+    #         if limited == 6:
+    #             medium_limit = 1
 
     # отправляем в форму
-    response = render(request, page, {
+    response = render(request, 'storage/redesign/storage.html', {
         'page_name': pgettext('storage', 'Склад'),
 
         'player': player,
         'storage': storage,
 
         'single_storage': single_storage,
+
+        'can_upgrade': can_upgrade,
+        'limit_upgrade': limit_upgrade,
+
+        'large_limit': large_limit,
+        'medium_limit': medium_limit,
+        'small_limit': small_limit,
     })
 
     # if player_settings:

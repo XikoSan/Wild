@@ -44,6 +44,21 @@ class StorageAdmin(admin.ModelAdmin):
     raw_id_fields = ('owner', 'region',)
     list_display = ['owner', 'region', ]
 
+    fields = ['get_fields',]
+
+    def get_fields(self, req, obj):
+        fields = (
+            ('owner', 'region'),
+            ('deleted'),
+            ('level', 'was_moved'),
+            ('cash'),
+        )
+        for type in Storage.types:
+            for good in getattr(Storage, type):
+                fields = fields + ((good, good + '_cap'),)
+
+        return fields
+
 
 class CashLockAdmin(admin.ModelAdmin):
     raw_id_fields = ('lock_player', 'lock_offer',)
