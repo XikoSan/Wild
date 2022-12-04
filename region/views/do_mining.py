@@ -188,6 +188,7 @@ def do_mining(request):
                     # если склад забит больше, чем его размер - пропускам ресурс
                     if getattr(lock_storage, mineral) > getattr(storage, mineral + '_cap'):
                         mined_result[mineral] = 0
+                        continue
 
                     # если места нет или его меньше чем пак ресурсов, забиваем под крышку
                     if taxed_ore > 0:
