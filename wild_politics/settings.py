@@ -237,7 +237,7 @@ LANGUAGES = (
     # ('pl', 'Polish'),
     # ('uk', 'Ukrainian'),
     ('tr', 'Turkish'),
-    ('sr', 'Serbian'),
+    # ('sr', 'Serbian'),
     ('id', 'Indonesian'),
     ('pt-br', 'Portuguese (Brazil)'),
 )
