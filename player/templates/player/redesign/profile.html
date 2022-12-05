@@ -40,7 +40,7 @@
 
 			<div class="profile__top-left">
 
-				<span class="profile__id">
+				<span class="profile__id" onclick="copyTextToClipboard('{{ request.get_host }}/profile/{% autoescape off %}{{ player.pk }}{% endautoescape %}')">
 					<span>
 						ID: {{ player.pk }} <!-- значение ID игрока -->
 					</span>
@@ -459,8 +459,7 @@
 		</form>
 	</div>
 	<!-- КОНЕЦ МОДАЛЬНОГО ОКНА НАСТРОЕК -->
-
-
+	<script src="{% static 'redesign/js/copy_to_clip.js' %}?{{ csrf_token }}"></script>
 	<script src="{% static 'redesign/js/profile.js' %}?{{ csrf_token }}"></script>
 	<script src="{% static 'redesign/js/cropper.js' %}?{{ csrf_token }}"></script>
 
