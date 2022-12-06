@@ -41,9 +41,19 @@ class AutoMining(Log):
     # формируем переодическую таску
     def setup_task(self):
 
+        min = None
+        if len(str(timezone.now().minute)) == 1:
+            min = str(timezone.now().minute)
+        else:
+            min = str(timezone.now().minute)[1]
+
+        steps = min
+
+        for dec in ['1', '2', '3', '4', '5']:
+            steps += ', ' + dec + min
 
         if CrontabSchedule.objects.filter(
-                                                minute='*/10',
+                                                minute=steps,
                                                 hour='*',
                                                 day_of_week='*',
                                                 day_of_month='*',
@@ -51,7 +61,7 @@ class AutoMining(Log):
                                            ).exists():
 
             schedule = CrontabSchedule.objects.filter(
-                                                        minute='*/10',
+                                                        minute=steps,
                                                         hour='*',
                                                         day_of_week='*',
                                                         day_of_month='*',
@@ -61,7 +71,7 @@ class AutoMining(Log):
         else:
 
             schedule = CrontabSchedule.objects.create(
-                                                        minute='*/10',
+                                                        minute=steps,
                                                         hour='*',
                                                         day_of_week='*',
                                                         day_of_month='*',

@@ -39,9 +39,6 @@ def start_auto(request):
 
         resource = request.POST.get('resource')
 
-        from player.logs.print_log import log
-        log(resource)
-
         if not resource in ['gold', 'oil', 'ore']:
             data = {
                 'response': pgettext('mining', 'Неизвестный тип ресурса'),
