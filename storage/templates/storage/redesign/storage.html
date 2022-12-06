@@ -256,8 +256,8 @@
 
 		<!--список1-->
 		<div class="store__modal2-list-container">
-			<h3>{% trans 'Большой объём запасов' context "storage_upgrade" %}</h3>
-			<div><div id="large_upgrade_counter" style="display: inline-block">0</div> / {{ large_limit }} </div>
+			<h3 style="display: inline-block">{% trans 'Большой объём запасов' context "storage_upgrade" %}</h3>
+			(<div style="display: inline-block"><div id="large_upgrade_counter" style="display: inline-block">0</div> / {{ large_limit }} </div>)
 			<ul class="store__modal2-list">
 				{% for good in storage|get_attr:'sizes'|dict_key:'large' %}
 					{% with 'large' as size %}
@@ -270,7 +270,7 @@
 						<span data-size="large" class="up_count">0</span>
 						<button data-good="{{ good }}" class="up_plus"><svg><use xlink:href="#plus"></use></svg></button>
 					</div>
-					<span class="store__modal2-item-text">{{ good|get_verbose }}</span>
+					<span class="store__modal2-item-text">{{ good|get_verbose|truncatechars:12 }}</span>
 				</li>
 						{% endif %}
 					{% endwith %}
@@ -283,8 +283,8 @@
 
 		<!--список2-->
 		<div class="store__modal2-list-container">
-			<h3>{% trans 'Средний объём запасов' context "storage_upgrade" %}</h3>
-			<div><div id="medium_upgrade_counter" style="display: inline-block">0</div> / {{ medium_limit }} </div>
+			<h3 style="display: inline-block">{% trans 'Средний объём запасов' context "storage_upgrade" %}</h3>
+			(<div style="display: inline-block"><div id="medium_upgrade_counter" style="display: inline-block">0</div> / {{ medium_limit }} </div>)
 			<ul class="store__modal2-list">
 				{% for good in storage|get_attr:'sizes'|dict_key:'medium' %}
 					{% with 'medium' as size %}
@@ -297,7 +297,7 @@
 						<span data-size="medium" class="up_count">0</span>
 						<button data-good="{{ good }}" class="up_plus"><svg><use xlink:href="#plus"></use></svg></button>
 					</div>
-					<span class="store__modal2-item-text">{{ good|get_verbose }}</span>
+					<span class="store__modal2-item-text">{{ good|get_verbose|truncatechars:9 }}</span>
 				</li>
 						{% endif %}
 					{% endwith %}
@@ -310,8 +310,8 @@
 
 		<!--список3-->
 		<div class="store__modal2-list-container">
-			<h3>{% trans 'Малый объём запасов' context "storage_upgrade" %}</h3>
-			<div><div id="small_upgrade_counter" style="display: inline-block">0</div> / {{ small_limit }} </div>
+			<h3 style="display: inline-block">{% trans 'Малый объём запасов' context "storage_upgrade" %}</h3>
+			(<div style="display: inline-block"><div id="small_upgrade_counter" style="display: inline-block">0</div> / {{ small_limit }} </div>)
 			<ul class="store__modal2-list">
 				{% for good in storage|get_attr:'sizes'|dict_key:'small' %}
 					{% with 'small' as size %}
@@ -324,7 +324,7 @@
 						<span data-size="small" class="up_count">0</span>
 						<button data-good="{{ good }}" class="up_plus"><svg><use xlink:href="#plus"></use></svg></button>
 					</div>
-					<span class="store__modal2-item-text">{{ good|get_verbose }}</span>
+					<span class="store__modal2-item-text">{{ good|get_verbose|truncatechars:9 }}</span>
 				</li>
 						{% endif %}
 					{% endwith %}
