@@ -428,11 +428,14 @@ a {
   height: 24rem;
   display: flex;
   align-items: center;
+  padding: 0;
   padding-left: 12rem;
   font-weight: 400;
   font-size: 14rem;
   line-height: 14rem;
   color: var(--c10one);
+  border: 0;
+  background-color: transparent;
 }
 
 .profile__id span {
@@ -440,7 +443,26 @@ a {
   position: relative;
 }
 
-.profile__id svg {
+.profile__id-copyed {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 24rem;
+  height: 24rem;
+}
+
+.profile__id.active .profile__id-copyed {
+  animation: copyed 1s ease-in;
+}
+
+@keyframes copyed {
+  0% {transform: translateX(0) scale(1); opacity: 0;}
+  50% {transform: translateX(-100%) scale(1); opacity: 1;}
+  100% {transform: translateX(-100%) scale(1.25); opacity: 0;}
+}
+
+.profile__id-corner {
   z-index: 1;
   position: absolute;
   top: 0;
@@ -1354,11 +1376,27 @@ a {
   align-items: center;
   width: 100%;
   height: calc(100% - 60rem);
+  overflow-x: hidden;
+  overflow-y: auto;
   background-color: var(--c30);
   padding: 24rem;
   transition: all 0.3s ease;
   font-size: 14rem;
   text-align: center;
+  scrollbar-color: var(--c10two) var(--c30);
+  scrollbar-width: auto;
+  overflow-y: auto;
+}
+
+.store__modal1::-webkit-scrollbar,
+.store__modal2::-webkit-scrollbar {
+  width: 4rem;
+  background-color: var(--c30);
+}
+
+.store__modal1::-webkit-scrollbar-thumb,
+.store__modal2::-webkit-scrollbar-thumb {
+  background-color: var(--c10two);
 }
 
 .store__modal2 {
@@ -1383,6 +1421,7 @@ a {
 }
 
 .store__modal1-btn {
+  flex-shrink: 0;
   align-self: center;
   margin: 0 auto;
 }

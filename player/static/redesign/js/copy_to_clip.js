@@ -1,38 +1,54 @@
-function copyTextToClipboard(text) {
-  var textArea = document.createElement("textarea");
+const profileTopWrapper = document.querySelector('.profile__top-wrapper');
+const profileInfoTab = document.querySelector('.profile__info-tab');
+function hideProfileTop() {
+    profileTopWrapper.classList.add('hidden');
+    profileInfoTab.scrollTop(9999)
+}
+function showProfileTop() {
+    profileTopWrapper.classList.remove('hidden');
+}
 
-  // Place in the top-left corner of screen regardless of scroll position.
-  textArea.style.position = 'fixed';
-  textArea.style.top = 0;
-  textArea.style.left = 0;
+class IdCopy {
+    constructor(text) {
+        this.text = text;
 
-  // Ensure it has a small width and height. Setting to 1px / 1em
-  // doesn't work as this gives a negative w/h on some browsers.
-  textArea.style.width = '2em';
-  textArea.style.height = '2em';
+        this.button = document.getElementById('profile__id');
+        this.timerForActiveClass = null;
+        this.isCopyBlocked = false;
 
-  // We don't need padding, reducing the size if it does flash render.
-  textArea.style.padding = 0;
+        this.button.addEventListener('click', () => {
+            if (this.isCopyBlocked) return;
+            this.mainAction(this.text);
+        })
+    }
 
-  // Clean up any borders.
-  textArea.style.border = 'none';
-  textArea.style.outline = 'none';
-  textArea.style.boxShadow = 'none';
-
-  // Avoid flash of the white box if rendered for any reason.
-  textArea.style.background = 'transparent';
-
-  textArea.value = text;
-
-  document.body.appendChild(textArea);
-  textArea.focus();
-  textArea.select();
-
-  try {
-    var successful = document.execCommand('copy');
-  } catch (err) {
-    console.log('Oops, unable to copy');
-  }
-
-  document.body.removeChild(textArea);
+    mainAction(text) {
+        const textArea = document.createElement("textarea");
+        textArea.style.position = 'fixed';
+        textArea.style.top = 0;
+        textArea.style.left = 0;
+        textArea.style.width = '2em';
+        textArea.style.height = '2em';
+        textArea.style.padding = 0;
+        textArea.style.border = 'none';
+        textArea.style.outline = 'none';
+        textArea.style.boxShadow = 'none';
+        textArea.style.background = 'transparent';
+        textArea.value = text;
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        try {
+            var successful = document.execCommand('copy');
+            this.isCopyBlocked = true;
+            this.button.classList.add('active');
+            this.timerForActiveClass = setTimeout(() => {
+                this.isCopyBlocked = false;
+                this.button.classList.remove('active')
+            }, 1000);
+        } catch (err) {
+            console.log('Oops, unable to copy');
+        }
+        document.body.removeChild(textArea);
+    }
 }

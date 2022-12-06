@@ -256,7 +256,7 @@
 
 		<!--список1-->
 		<div class="store__modal2-list-container">
-			<h3 style="display: inline-block">{% trans 'Большой объём запасов' context "storage_upgrade" %}</h3>
+			<h3>{% trans 'Большой объём запасов' context "storage_upgrade" %}</h3>
 			(<div style="display: inline-block"><div id="large_upgrade_counter" style="display: inline-block">0</div> / {{ large_limit }} </div>)
 			<ul class="store__modal2-list">
 				{% for good in storage|get_attr:'sizes'|dict_key:'large' %}
@@ -283,7 +283,7 @@
 
 		<!--список2-->
 		<div class="store__modal2-list-container">
-			<h3 style="display: inline-block">{% trans 'Средний объём запасов' context "storage_upgrade" %}</h3>
+			<h3>{% trans 'Средний объём запасов' context "storage_upgrade" %}</h3>
 			(<div style="display: inline-block"><div id="medium_upgrade_counter" style="display: inline-block">0</div> / {{ medium_limit }} </div>)
 			<ul class="store__modal2-list">
 				{% for good in storage|get_attr:'sizes'|dict_key:'medium' %}
@@ -310,7 +310,7 @@
 
 		<!--список3-->
 		<div class="store__modal2-list-container">
-			<h3 style="display: inline-block">{% trans 'Малый объём запасов' context "storage_upgrade" %}</h3>
+			<h3>{% trans 'Малый объём запасов' context "storage_upgrade" %}</h3>
 			(<div style="display: inline-block"><div id="small_upgrade_counter" style="display: inline-block">0</div> / {{ small_limit }} </div>)
 			<ul class="store__modal2-list">
 				{% for good in storage|get_attr:'sizes'|dict_key:'small' %}
