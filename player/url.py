@@ -26,6 +26,7 @@ from player.views.game_event.halloween import halloween
 from .views.lists.region_citizens import region_citizens_list
 from .views.lists.cash_top import cash_top
 from .views.full_auto_allow import full_auto_allow
+from .views.game_event.new_year import new_year
 
 urlpatterns = [
 
@@ -96,4 +97,6 @@ urlpatterns = [
 
     # хэллоуинский ивент
     url(r'^halloween/$', halloween, name='halloween'),
+    # новый год
+    url(r'^new_year/$', new_year, name='new_year'),
 ]

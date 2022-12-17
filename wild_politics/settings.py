@@ -233,7 +233,7 @@ LANGUAGES = (
     ('be', 'Belarusian'),
     # ('fr', 'French'),
     # ('it', 'Italian'),
-    # ('es', 'Spanish'),
+    ('es', 'Spanish'),
     # ('pl', 'Polish'),
     # ('uk', 'Ukrainian'),
     ('tr', 'Turkish'),

@@ -158,9 +158,9 @@ def overview(request):
             if ParliamentVoting.objects.filter(running=True, parliament=parliament).exists():
                 has_parl_voting = True
 
-    has_event = False
+    has_event = None
     if GameEvent.objects.filter(running=True, event_start__lt=timezone.now(), event_end__gt=timezone.now()).exists():
-        has_event = True
+        has_event = GameEvent.objects.get(running=True, event_start__lt=timezone.now(), event_end__gt=timezone.now())
 
     # войны
     war_dict = {}

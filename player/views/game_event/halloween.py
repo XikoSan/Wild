@@ -27,9 +27,9 @@ def halloween(request):
     ava_border_2 = None
     ava_border_3 = None
 
-    if GameEvent.objects.filter(running=True, event_start__lt=timezone.now(), event_end__gt=timezone.now()).exists():
+    if GameEvent.objects.filter(running=True, type='hl', event_start__lt=timezone.now(), event_end__gt=timezone.now()).exists():
 
-        event = GameEvent.objects.filter(running=True, event_start__lt=timezone.now(), event_end__gt=timezone.now()).first()
+        event = GameEvent.objects.filter(running=True, type='hl', event_start__lt=timezone.now(), event_end__gt=timezone.now()).first()
 
         if EventPart.objects.filter(player=player, event=event).exists():
             points = EventPart.objects.get(player=player, event=event).points

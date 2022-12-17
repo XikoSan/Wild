@@ -24,51 +24,34 @@ class EventPart(models.Model):
     # очков события
     paid_points = models.IntegerField(default=0, verbose_name='Последний оплаченный этап')
 
+    # очков события
+    global_paid_points = models.IntegerField(default=0, verbose_name='Глобальный оплаченный этап')
+
     def prize_check(self):
 
-        if self.points >= 2000 > self.paid_points:
+        if self.points >= 2500 > self.paid_points:
             if self.player.premium < timezone.now():
                 Player.objects.filter(pk=self.player.pk).update(premium=timezone.now() + datetime.timedelta(days=1))
             else:
                 Player.objects.filter(pk=self.player.pk).update(premium=F('premium') + datetime.timedelta(days=1))
 
-            self.paid_points = 2000
+            self.paid_points = 2500
 
-        elif self.points >= 4000 > self.paid_points:
+        elif self.points >= 5000 > self.paid_points:
             if self.player.premium < timezone.now():
                 Player.objects.filter(pk=self.player.pk).update(premium=timezone.now() + datetime.timedelta(days=1))
             else:
                 Player.objects.filter(pk=self.player.pk).update(premium=F('premium') + datetime.timedelta(days=1))
 
-            if not AvaBorderOwnership.objects.filter(owner=self.player,
-                               border=AvaBorder.objects.get(pk=2)
-                               ).exists() or\
-                    not AvaBorderOwnership.objects.filter(owner=self.player,
-                               border=AvaBorder.objects.get(pk=3)
-                               ).exists():
+            self.paid_points = 5000
 
-                AvaBorderOwnership(in_use=True,
-                                   owner=self.player,
-                                   border=AvaBorder.objects.get(pk=1)
-                                   ).save()
-
-            self.paid_points = 4000
-
-        elif self.points >= 6000 > self.paid_points:
+        elif self.points >= 7500 > self.paid_points:
             if self.player.premium < timezone.now():
                 Player.objects.filter(pk=self.player.pk).update(premium=timezone.now() + datetime.timedelta(days=1))
             else:
                 Player.objects.filter(pk=self.player.pk).update(premium=F('premium') + datetime.timedelta(days=1))
 
-            self.paid_points = 6000
-
-        elif self.points >= 8000 > self.paid_points:
-            if self.player.premium < timezone.now():
-                Player.objects.filter(pk=self.player.pk).update(premium=timezone.now() + datetime.timedelta(days=1))
-            else:
-                Player.objects.filter(pk=self.player.pk).update(premium=F('premium') + datetime.timedelta(days=1))
-
-            self.paid_points = 8000
+            self.paid_points = 7500
 
         elif self.points >= 10000 > self.paid_points:
             if self.player.premium < timezone.now():
@@ -76,42 +59,98 @@ class EventPart(models.Model):
             else:
                 Player.objects.filter(pk=self.player.pk).update(premium=F('premium') + datetime.timedelta(days=1))
 
-            if not AvaBorderOwnership.objects.filter(
-                               owner=self.player,
-                               border=AvaBorder.objects.get(pk=3)
-                               ).exists():
-
-                AvaBorderOwnership.objects.filter(owner=self.player).update(in_use=False)
-
-                AvaBorderOwnership(in_use=True,
-                                   owner=self.player,
-                                   border=AvaBorder.objects.get(pk=2)
-                                   ).save()
-
-            self.paid_points = 10000
-
-        elif self.points >= 12000 > self.paid_points:
-            if self.player.premium < timezone.now():
-                Player.objects.filter(pk=self.player.pk).update(premium=timezone.now() + datetime.timedelta(days=1))
-            else:
-                Player.objects.filter(pk=self.player.pk).update(premium=F('premium') + datetime.timedelta(days=1))
-
-            self.paid_points = 12000
-
-        elif self.points >= 14000 > self.paid_points:
-            if self.player.premium < timezone.now():
-                Player.objects.filter(pk=self.player.pk).update(premium=timezone.now() + datetime.timedelta(days=1))
-            else:
-                Player.objects.filter(pk=self.player.pk).update(premium=F('premium') + datetime.timedelta(days=1))
-
-            AvaBorderOwnership.objects.filter(owner=self.player).update(in_use=False)
+            AvaBorderOwnership.objects.filter(owner=self.player,
+                               in_use=True,
+                               ).update(in_use=False)
 
             AvaBorderOwnership(in_use=True,
                                owner=self.player,
-                               border=AvaBorder.objects.get(pk=3)
+                               border=AvaBorder.objects.get(pk=4)
                                ).save()
 
-            self.paid_points = 14000
+            self.paid_points = 10000
+
+        elif self.points >= 12500 > self.paid_points:
+            if self.player.premium < timezone.now():
+                Player.objects.filter(pk=self.player.pk).update(premium=timezone.now() + datetime.timedelta(days=1))
+            else:
+                Player.objects.filter(pk=self.player.pk).update(premium=F('premium') + datetime.timedelta(days=1))
+
+            self.paid_points = 12500
+
+        elif self.points >= 15000 > self.paid_points:
+            if self.player.premium < timezone.now():
+                Player.objects.filter(pk=self.player.pk).update(premium=timezone.now() + datetime.timedelta(days=1))
+            else:
+                Player.objects.filter(pk=self.player.pk).update(premium=F('premium') + datetime.timedelta(days=1))
+
+            self.paid_points = 15000
+
+        elif self.points >= 17500 > self.paid_points:
+            if self.player.premium < timezone.now():
+                Player.objects.filter(pk=self.player.pk).update(premium=timezone.now() + datetime.timedelta(days=1))
+            else:
+                Player.objects.filter(pk=self.player.pk).update(premium=F('premium') + datetime.timedelta(days=1))
+
+            self.paid_points = 17500
+
+        elif self.points >= 20000 > self.paid_points:
+            if self.player.premium < timezone.now():
+                Player.objects.filter(pk=self.player.pk).update(premium=timezone.now() + datetime.timedelta(days=1))
+            else:
+                Player.objects.filter(pk=self.player.pk).update(premium=F('premium') + datetime.timedelta(days=1))
+
+            AvaBorderOwnership.objects.filter(owner=self.player,
+                               in_use=True,
+                               ).update(in_use=False)
+
+            AvaBorderOwnership(in_use=True,
+                               owner=self.player,
+                               border=AvaBorder.objects.get(pk=5)
+                               ).save()
+
+            self.paid_points = 20000
+
+        elif self.points >= 22500 > self.paid_points:
+            if self.player.premium < timezone.now():
+                Player.objects.filter(pk=self.player.pk).update(premium=timezone.now() + datetime.timedelta(days=1))
+            else:
+                Player.objects.filter(pk=self.player.pk).update(premium=F('premium') + datetime.timedelta(days=1))
+
+            self.paid_points = 22500
+
+        elif self.points >= 25000 > self.paid_points:
+            if self.player.premium < timezone.now():
+                Player.objects.filter(pk=self.player.pk).update(premium=timezone.now() + datetime.timedelta(days=1))
+            else:
+                Player.objects.filter(pk=self.player.pk).update(premium=F('premium') + datetime.timedelta(days=1))
+
+            self.paid_points = 25000
+
+        elif self.points >= 27500 > self.paid_points:
+            if self.player.premium < timezone.now():
+                Player.objects.filter(pk=self.player.pk).update(premium=timezone.now() + datetime.timedelta(days=1))
+            else:
+                Player.objects.filter(pk=self.player.pk).update(premium=F('premium') + datetime.timedelta(days=1))
+
+            self.paid_points = 27500
+
+        elif self.points >= 30000 > self.paid_points:
+            if self.player.premium < timezone.now():
+                Player.objects.filter(pk=self.player.pk).update(premium=timezone.now() + datetime.timedelta(days=1))
+            else:
+                Player.objects.filter(pk=self.player.pk).update(premium=F('premium') + datetime.timedelta(days=1))
+
+            AvaBorderOwnership.objects.filter(owner=self.player,
+                               in_use=True,
+                               ).update(in_use=False)
+
+            AvaBorderOwnership(in_use=True,
+                               owner=self.player,
+                               border=AvaBorder.objects.get(pk=6)
+                               ).save()
+
+            self.paid_points = 30000
 
     def __str__(self):
         return self.player.nickname

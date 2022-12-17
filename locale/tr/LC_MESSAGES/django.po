@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-04 14:09+0300\n"
+"POT-Creation-Date: 2022-12-18 01:53+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -70,26 +70,26 @@ msgstr ""
 msgid "Партия"
 msgstr ""
 
-#: player/player.py:252 region/views/do_mining.py:31
+#: player/player.py:282 region/views/do_mining.py:31
 #: region/views/start_auto.py:26
 msgctxt "mining"
 msgid "Дождитесь конца полёта"
 msgstr ""
 
-#: player/player.py:253 player/player.py:275 region/views/retrieve_cash.py:40
+#: player/player.py:283 player/player.py:305 region/views/retrieve_cash.py:40
 msgctxt "mining"
 msgid "Ошибка получения финансирования"
 msgstr ""
 
-#: player/player.py:254 player/player.py:276 region/views/cancel_auto.py:34
+#: player/player.py:284 player/player.py:306 region/views/cancel_auto.py:34
 #: region/views/do_mining.py:33 region/views/do_mining.py:46
 #: region/views/do_mining.py:56 region/views/do_mining.py:69
 #: region/views/do_mining.py:78 region/views/do_mining.py:87
 #: region/views/do_mining.py:103 region/views/do_mining.py:123
-#: region/views/do_mining.py:164 region/views/do_mining.py:225
+#: region/views/do_mining.py:164 region/views/do_mining.py:226
 #: region/views/retrieve_cash.py:41 region/views/start_auto.py:28
-#: region/views/start_auto.py:36 region/views/start_auto.py:49
-#: region/views/start_auto.py:58 region/views/start_auto.py:80
+#: region/views/start_auto.py:36 region/views/start_auto.py:46
+#: region/views/start_auto.py:55 region/views/start_auto.py:77
 #: storage/views/assets/assets_action.py:228
 #: storage/views/assets/storage_move.py:36
 #: storage/views/assets/storage_move.py:45
@@ -175,7 +175,7 @@ msgctxt "mining"
 msgid "Закрыть"
 msgstr ""
 
-#: player/player.py:274
+#: player/player.py:304
 msgctxt "mining"
 msgid "Нечего забирать"
 msgstr ""
@@ -276,6 +276,74 @@ msgctxt "game_event"
 msgid "- первая прогрессионная рамка для аватара в игре"
 msgstr ""
 
+#: player/templates/player/redesign/game_event/newyear.html:218
+msgctxt "game_event"
+msgid "С новым годом!"
+msgstr ""
+
+#: player/templates/player/redesign/game_event/newyear.html:221
+msgctxt "game_event"
+msgid "общий"
+msgstr ""
+
+#: player/templates/player/redesign/game_event/newyear.html:222
+msgctxt "game_event"
+msgid "личный"
+msgstr ""
+
+#: player/templates/player/redesign/game_event/newyear.html:390
+msgctxt "game_event"
+msgid "Новогоднее событие в WP:"
+msgstr ""
+
+#: player/templates/player/redesign/game_event/newyear.html:391
+msgctxt "game_event"
+msgid "игровые ценности и новые рамки для аватара в двух прогрессиях!"
+msgstr ""
+
+#: player/templates/player/redesign/game_event/newyear.html:392
+msgctxt "game_event"
+msgid "Личная прогрессия события"
+msgstr ""
+
+#: player/templates/player/redesign/game_event/newyear.html:393
+msgctxt "game_event"
+msgid ""
+"Заполняется расходованием энергии, как и ежедневное финансирование, и "
+"зависит только от твоих личных усилий."
+msgstr ""
+
+#: player/templates/player/redesign/game_event/newyear.html:394
+msgctxt "game_event"
+msgid ""
+"Она позволит получить тебе премиум-аккаунт для комфортной игры, а также один "
+"из трёх этапов зимней прогрессионой рамки аватара."
+msgstr ""
+
+#: player/templates/player/redesign/game_event/newyear.html:395
+msgctxt "game_event"
+msgid "Общая прогрессия события"
+msgstr ""
+
+#: player/templates/player/redesign/game_event/newyear.html:396
+msgctxt "game_event"
+msgid "Заполняется усилиями всех игроков сервера."
+msgstr ""
+
+#: player/templates/player/redesign/game_event/newyear.html:397
+msgctxt "game_event"
+msgid ""
+"Ты не сможешь собрать награды, открытые в общей прогрессии, пока не пройдёшь "
+"соответствующий этап личной."
+msgstr ""
+
+#: player/templates/player/redesign/game_event/newyear.html:398
+msgctxt "game_event"
+msgid ""
+"Когда будет открыт очередной этап общей прогрессии, потрать энергию, чтобы "
+"получить свою награду"
+msgstr ""
+
 #: player/templates/player/redesign/menu.html:7
 msgctxt "menu"
 msgid "обзор"
@@ -346,12 +414,12 @@ msgstr ""
 #: player/templates/player/redesign/new_player.html:149
 #: player/templates/player/redesign/new_player.html:177
 #: player/templates/player/redesign/overview_skills.html:178
-#: player/templates/player/redesign/profile.html:342
+#: player/templates/player/redesign/profile.html:345
 msgid "Отмена"
 msgstr ""
 
 #: player/templates/player/redesign/new_player.html:136
-#: player/templates/player/redesign/profile.html:343
+#: player/templates/player/redesign/profile.html:346
 msgid "Загрузить"
 msgstr ""
 
@@ -375,66 +443,71 @@ msgstr ""
 msgid "войн нет"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:267
+#: player/templates/player/redesign/overview.html:268
 msgctxt "overview"
 msgid "Хэллоуинский ивент"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:283
+#: player/templates/player/redesign/overview.html:275
+msgctxt "overview"
+msgid "С новым годом!"
+msgstr ""
+
+#: player/templates/player/redesign/overview.html:441
 msgctxt "overview"
 msgid "сила"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:288
+#: player/templates/player/redesign/overview.html:446
 msgctxt "overview"
 msgid "инт"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:293
+#: player/templates/player/redesign/overview.html:451
 msgctxt "overview"
 msgid "вын"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:309
+#: player/templates/player/redesign/overview.html:467
 msgctxt "overview"
 msgid "Выборы лидера"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:312
+#: player/templates/player/redesign/overview.html:470
 msgctxt "overview"
 msgid "Выборы"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:317
+#: player/templates/player/redesign/overview.html:475
 msgctxt "overview"
 msgid "партии"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:317
+#: player/templates/player/redesign/overview.html:475
 msgctxt "overview"
 msgid "государства"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:317
+#: player/templates/player/redesign/overview.html:475
 msgctxt "overview"
 msgid "региона"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:354
-#: player/templates/player/redesign/overview.html:399
+#: player/templates/player/redesign/overview.html:512
+#: player/templates/player/redesign/overview.html:557
 msgid "партий нет"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:361
+#: player/templates/player/redesign/overview.html:519
 msgctxt "overview"
 msgid "парламент"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:575
+#: player/templates/player/redesign/overview.html:733
 msgid "У вас пока еще нет стикеров"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:588
+#: player/templates/player/redesign/overview.html:746
 msgctxt "overview"
 msgid "магазин"
 msgstr ""
@@ -588,107 +661,107 @@ msgctxt "status"
 msgid "пополнить"
 msgstr ""
 
-#: player/templates/player/redesign/profile.html:165
+#: player/templates/player/redesign/profile.html:168
 msgid "настройки"
 msgstr ""
 
-#: player/templates/player/redesign/profile.html:175
+#: player/templates/player/redesign/profile.html:178
 msgctxt "profile"
 msgid "премиум-аккаунт"
 msgstr ""
 
-#: player/templates/player/redesign/profile.html:177
+#: player/templates/player/redesign/profile.html:180
 msgctxt "profile"
 msgid "до"
 msgstr ""
 
-#: player/templates/player/redesign/profile.html:177
+#: player/templates/player/redesign/profile.html:180
 msgctxt "profile"
 msgid "не активен"
 msgstr ""
 
-#: player/templates/player/redesign/profile.html:182
-#: player/templates/player/redesign/view_profile.html:71
+#: player/templates/player/redesign/profile.html:185
+#: player/templates/player/redesign/view_profile.html:74
 msgctxt "profile"
 msgid "место в рейтинге"
 msgstr ""
 
-#: player/templates/player/redesign/profile.html:186
-#: player/templates/player/redesign/view_profile.html:75
+#: player/templates/player/redesign/profile.html:189
+#: player/templates/player/redesign/view_profile.html:78
 msgctxt "profile"
 msgid "(к рейтингу)"
 msgstr ""
 
-#: player/templates/player/redesign/profile.html:192
-#: player/templates/player/redesign/view_profile.html:81
+#: player/templates/player/redesign/profile.html:195
+#: player/templates/player/redesign/view_profile.html:84
 msgctxt "profile"
 msgid "характеристики"
 msgstr ""
 
-#: player/templates/player/redesign/profile.html:204
-#: player/templates/player/redesign/view_profile.html:93
+#: player/templates/player/redesign/profile.html:207
+#: player/templates/player/redesign/view_profile.html:96
 msgctxt "profile"
 msgid "место жительства"
 msgstr ""
 
-#: player/templates/player/redesign/profile.html:213
-#: player/templates/player/redesign/view_profile.html:102
+#: player/templates/player/redesign/profile.html:216
+#: player/templates/player/redesign/view_profile.html:105
 msgctxt "profile"
 msgid "прописка"
 msgstr ""
 
-#: player/templates/player/redesign/profile.html:222
-#: player/templates/player/redesign/view_profile.html:111
+#: player/templates/player/redesign/profile.html:225
+#: player/templates/player/redesign/view_profile.html:114
 msgid "партия"
 msgstr ""
 
-#: player/templates/player/redesign/profile.html:224
-#: player/templates/player/redesign/profile.html:234
-#: player/templates/player/redesign/view_profile.html:113
-#: player/templates/player/redesign/view_profile.html:123
+#: player/templates/player/redesign/profile.html:227
+#: player/templates/player/redesign/profile.html:237
+#: player/templates/player/redesign/view_profile.html:116
+#: player/templates/player/redesign/view_profile.html:126
 msgid "беспартийный"
 msgstr ""
 
-#: player/templates/player/redesign/profile.html:226
+#: player/templates/player/redesign/profile.html:229
 msgctxt "profile"
 msgid "(история)"
 msgstr ""
 
-#: player/templates/player/redesign/profile.html:232
-#: player/templates/player/redesign/view_profile.html:121
+#: player/templates/player/redesign/profile.html:235
+#: player/templates/player/redesign/view_profile.html:124
 msgid "должность в партии"
 msgstr ""
 
-#: player/templates/player/redesign/profile.html:261
-#: player/templates/player/redesign/view_profile.html:129
+#: player/templates/player/redesign/profile.html:264
+#: player/templates/player/redesign/view_profile.html:132
 msgid "о себе"
 msgstr ""
 
-#: player/templates/player/redesign/profile.html:396
+#: player/templates/player/redesign/profile.html:399
 msgctxt "profile"
 msgid "показывать партийный фон"
 msgstr ""
 
-#: player/templates/player/redesign/profile.html:412
+#: player/templates/player/redesign/profile.html:415
 msgctxt "profile"
 msgid "Энергетики в авто-добыче"
 msgstr ""
 
-#: player/templates/player/redesign/profile.html:443
+#: player/templates/player/redesign/profile.html:446
 msgctxt "profile"
 msgid "стандарт"
 msgstr ""
 
-#: player/templates/player/redesign/profile.html:457
+#: player/templates/player/redesign/profile.html:460
 msgid "сохранить"
 msgstr ""
 
-#: player/templates/player/redesign/view_profile.html:64
+#: player/templates/player/redesign/view_profile.html:67
 msgctxt "profile"
 msgid "был в сети"
 msgstr ""
 
-#: player/templates/player/redesign/view_profile.html:66
+#: player/templates/player/redesign/view_profile.html:69
 msgid "давно"
 msgstr ""
 
@@ -724,7 +797,7 @@ msgstr ""
 #: player/views/change_back_allow.py:57 player/views/full_auto_allow.py:57
 #: player/views/set_language.py:54 player/views/set_timezone.py:43
 #: region/views/cancel_auto.py:35 region/views/retrieve_cash.py:42
-#: region/views/start_auto.py:81
+#: region/views/start_auto.py:78
 msgid "Ошибка метода"
 msgstr ""
 
@@ -751,6 +824,11 @@ msgstr ""
 
 #: player/views/full_auto_allow.py:42 player/views/full_auto_allow.py:58
 msgid "Энергетики в авто-добыче"
+msgstr ""
+
+#: player/views/game_event/new_year.py:57
+msgctxt "game_event_ny"
+msgid "С новым годом!"
 msgstr ""
 
 #: player/views/lists/cash_top.py:93
@@ -1016,12 +1094,12 @@ msgstr ""
 #: region/views/do_mining.py:55 region/views/do_mining.py:68
 #: region/views/do_mining.py:77 region/views/do_mining.py:86
 #: region/views/do_mining.py:102 region/views/do_mining.py:122
-#: region/views/do_mining.py:163 region/views/do_mining.py:224
+#: region/views/do_mining.py:163 region/views/do_mining.py:225
 msgctxt "mining"
 msgid "Ошибка добычи ресурсов"
 msgstr ""
 
-#: region/views/do_mining.py:44 region/views/start_auto.py:56
+#: region/views/do_mining.py:44 region/views/start_auto.py:53
 msgctxt "mining"
 msgid "У вас нет склада в этом регионе"
 msgstr ""
@@ -1061,7 +1139,7 @@ msgctxt "mining"
 msgid "Запасов руды в регионе недостаточно для добычи"
 msgstr ""
 
-#: region/views/do_mining.py:226 storage/views/assets/assets_action.py:229
+#: region/views/do_mining.py:227 storage/views/assets/assets_action.py:229
 #: storage/views/assets/storage_move.py:75
 #: storage/views/storage/cash_transfer.py:122
 #: storage/views/storage/new_storage.py:88
@@ -1095,8 +1173,8 @@ msgid "Добыча"
 msgstr ""
 
 #: region/views/start_auto.py:27 region/views/start_auto.py:35
-#: region/views/start_auto.py:48 region/views/start_auto.py:57
-#: region/views/start_auto.py:79
+#: region/views/start_auto.py:45 region/views/start_auto.py:54
+#: region/views/start_auto.py:76
 msgctxt "mining"
 msgid "Ошибка автоматической добычи ресурсов"
 msgstr ""
@@ -1106,7 +1184,7 @@ msgctxt "mining"
 msgid "Премиум-аккаунт не активен. Продлите его"
 msgstr ""
 
-#: region/views/start_auto.py:47
+#: region/views/start_auto.py:44
 msgctxt "mining"
 msgid "Неизвестный тип ресурса"
 msgstr ""

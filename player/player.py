@@ -154,14 +154,19 @@ class Player(models.Model):
 
         GameEvent = apps.get_model('player.GameEvent')
         EventPart = apps.get_model('player.EventPart')
+        GlobalPart = apps.get_model('player.GlobalPart')
 
         if GameEvent.objects.filter(running=True, event_start__lt=timezone.now(),
                                     event_end__gt=timezone.now()).exists():
+
+            event_part = None
+
             if EventPart.objects.filter(
                     player=self,
                     event=GameEvent.objects.get(running=True, event_start__lt=timezone.now(),
                                                 event_end__gt=timezone.now())
             ).exists():
+
                 event_part = EventPart.objects.get(
                     player=self,
                     event=GameEvent.objects.get(running=True, event_start__lt=timezone.now(),
@@ -180,6 +185,31 @@ class Player(models.Model):
                 )
                 event_part.prize_check()
                 event_part.save()
+
+    #       ---- общий счет ----
+            if GlobalPart.objects.filter(
+                    event=GameEvent.objects.get(running=True, event_start__lt=timezone.now(),
+                                                event_end__gt=timezone.now())
+            ).exists():
+
+                global_part = GlobalPart.objects.get(
+                    event=GameEvent.objects.get(running=True, event_start__lt=timezone.now(),
+                                                event_end__gt=timezone.now())
+                )
+                global_part.points += value
+                event_part = global_part.prize_check(event_part)
+                event_part.save()
+                global_part.save()
+
+            else:
+                global_part = GlobalPart(
+                    event=GameEvent.objects.get(running=True, event_start__lt=timezone.now(),
+                                                event_end__gt=timezone.now()),
+                    points=value
+                )
+                event_part = global_part.prize_check(event_part)
+                event_part.save()
+                global_part.save()
 
     # получить актуализированного Игрока
     @staticmethod

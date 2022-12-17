@@ -11,6 +11,7 @@ from .player import Player
 from .player_settings import PlayerSettings
 from player.game_event.game_event import GameEvent
 from player.game_event.event_part import EventPart
+from player.game_event.global_part import GlobalPart
 from player.player_regional_expence import PlayerRegionalExpense
 
 
@@ -66,6 +67,10 @@ class EventPartAdmin(admin.ModelAdmin):
     raw_id_fields = ('player', 'event')
 
 
+class GlobalPartAdmin(admin.ModelAdmin):
+    raw_id_fields = ('event', )
+
+
 class PLayerAdmin(admin.ModelAdmin):
     search_fields = ['nickname', 'user_ip']
     raw_id_fields = ('account', 'party',)
@@ -107,3 +112,4 @@ admin.site.register(AutoMining, AutoMiningAdmin)
 
 admin.site.register(GameEvent)
 admin.site.register(EventPart, EventPartAdmin)
+admin.site.register(GlobalPart, GlobalPartAdmin)

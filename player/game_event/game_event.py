@@ -19,6 +19,18 @@ class GameEvent(models.Model):
     # название
     title = models.CharField(max_length=30, blank=False, verbose_name='Никнейм')
 
+    # праздник
+    holiday_Choices = (
+        ('hl', 'Хэллоуин'),
+        ('ny', 'Новый год'),
+    )
+    type = models.CharField(
+        max_length=2,
+        choices=holiday_Choices,
+        default='hl',
+        verbose_name='Праздник',
+    )
+
     # время начала ивента - если включен
     event_start = models.DateTimeField(default=None, blank=True, null=True,
                                         verbose_name='Время начала')
