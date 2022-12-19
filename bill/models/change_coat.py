@@ -8,7 +8,7 @@ from django import forms
 from django.conf import settings
 from django.core.files.base import ContentFile
 from django.db import models
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 from django.utils import timezone
 
@@ -147,6 +147,13 @@ def save_post(sender, instance, created, **kwargs):
         instance.setup_task()
 
 
+# сигнал удаляющий таску
+@receiver(post_delete, sender=ChangeCoat)
+def delete_post(sender, instance, using, **kwargs):
+    if instance.task:
+        instance.task.delete()
+
+
 class ImageForm(forms.ModelForm):
     x = forms.FloatField(widget=forms.HiddenInput())
     y = forms.FloatField(widget=forms.HiddenInput())
@@ -156,3 +163,4 @@ class ImageForm(forms.ModelForm):
     class Meta:
         model = ChangeCoat
         fields = ('image', 'x', 'y', 'width', 'height',)
+

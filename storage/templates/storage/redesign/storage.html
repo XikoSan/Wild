@@ -187,6 +187,9 @@
 		<!--перенести-->
 		<div class="store__modal1-container">
 			<h2 class="store__modal1-title">{% trans 'Перемещение Склада' context "storage_transfer" %}</h2>
+			{% if war_there %}
+			<p>{% trans 'Нельзя вывезти Склад из региона боевых действий' context "storage_transfer" %}</p>
+			{% else %}
 			<p>{% trans 'Вы можете перенести Склад в регион текущего местоположения (один раз)' context "storage_transfer" %}</p>
 			<button class="store__modal1-btn ct__mid-btn" onclick="move_storage(event, {% localize off %}{{ single_storage.pk }}{% endlocalize %})">
 				<svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
@@ -202,8 +205,10 @@
 				</svg>
 				<span>{% trans 'перенести' context "storage_transfer" %}</span>
 			</button>
+			{% endif %}
 		</div>
 		{% endif %}
+		{% if storage %}
 		<!--улучшить-->
 		<div class="store__modal1-container">
 			<h2 class="store__modal1-title">{% trans 'Улучшение склада' context "storage_upgrade" %}</h2>
@@ -235,6 +240,7 @@
 
 			{% endif %}
 		</div>
+		{% endif %}
 	</div>
 
 	{% if can_upgrade %}

@@ -16,6 +16,8 @@ from storage.views.storage.check_goods_exists import check_goods_exists
 from storage.views.storage.get_transfer_price import get_transfer_price
 from storage.views.storage.transfer_values import transfer_values
 from django.utils.translation import pgettext
+from war.models.wars.war import War
+from player.views.get_subclasses import get_subclasses
 
 
 # переименование партии
@@ -58,13 +60,33 @@ def assets_action(request):
 
             if int(dest_pk) in storages_pk:
 
+                iv_storages_pk = []
                 storages_values = json.loads(request.POST.get('storages'))
                 # проверяем, что все склады принадлежат игроку
                 for i_storg in storages_values.keys():
+                    iv_storages_pk.append(int(i_storg))
+
                     if not int(i_storg) in storages_pk:
                         data = {
                             'response': pgettext('assets', 'Склад') + ' ' + i_storg + ' ' + pgettext('assets', 'вам не принадлежит'),
                             'header': pgettext('assets', 'Перемещение товара'),
+                            'grey_btn': pgettext('assets', 'Закрыть'),
+                        }
+                        return JsonResponse(data)
+
+                sources_reg = []
+                for sources_pk in iv_storages_pk:
+                    if storages.get(pk=sources_pk).region not in sources_reg:
+                        sources_reg.append(storages.get(pk=sources_pk).region)
+
+                # классы всех типов войн
+                war_classes = get_subclasses(War)
+                for war_cl in war_classes:
+                    # если есть войны за этот рег
+                    if war_cl.objects.filter(running=True, def_region__in=sources_reg).exists():
+                        data = {
+                            'response': pgettext('assets', 'Запрещено вывозить товары из атакованных регионов'),
+                            'header': pgettext('assets', 'Уничтожение товара'),
                             'grey_btn': pgettext('assets', 'Закрыть'),
                         }
                         return JsonResponse(data)
@@ -162,6 +184,7 @@ def assets_action(request):
             storages_values = json.loads(request.POST.get('storages'))
             # проверяем, что все склады принадлежат игроку
             for i_storg in storages_values.keys():
+
                 if not int(i_storg) in storages_pk:
                     data = {
                         'response': pgettext('assets', 'Склад') + ' ' + i_storg + ' ' + pgettext('assets', 'вам не принадлежит'),

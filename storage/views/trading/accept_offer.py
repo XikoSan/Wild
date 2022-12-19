@@ -20,6 +20,8 @@ from storage.models.trading_log import TradingLog
 from player.logs.cash_log import CashLog
 from storage.views.trading.premium_trading import premium_trading
 from django.utils.translation import pgettext
+from war.models.wars.war import War
+from player.views.get_subclasses import get_subclasses
 
 
 @login_required(login_url='/')
@@ -67,6 +69,27 @@ def accept_offer(request):
 
         offer = None
         if TradeOffer.actual.filter(pk=offer_id, count__gt=0).exists():
+
+            ex_kwargs = {}
+            dest_regions = []
+            war_classes = get_subclasses(War)
+            for war_cl in war_classes:
+                # если есть войны за этот рег
+                if war_cl.objects.filter(running=True).exists():
+                    # айдишники всех целевых регов
+                    tmp_war_list = war_cl.objects.filter(running=True).values_list('def_region__pk')
+                    for dest_pk in tmp_war_list:
+                        if not dest_pk[0] in dest_regions:
+                            dest_regions.append(dest_pk[0])
+            ex_kwargs['owner_storage__region__pk__in'] = dest_regions
+
+            if not TradeOffer.actual.filter(pk=offer_id, count__gt=0).exclude(**ex_kwargs).exists():
+                data = {
+                    'header': pgettext('w_trading', 'Принятие оффера'),
+                    'grey_btn': pgettext('mining', 'Закрыть'),
+                    'response': pgettext('w_trading', 'Нельзя принять оффер из атакованного региона'),
+                }
+                return JsonResponse(data)
 
             offer = TradeOffer.actual.select_for_update().get(pk=offer_id)
 

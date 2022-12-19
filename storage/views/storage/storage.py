@@ -6,6 +6,8 @@ from player.decorators.player import check_player
 from player.player import Player
 from storage.models.storage import Storage
 from storage.templatetags.check_up_limit import check_up_limit
+from war.models.wars.war import War
+from player.views.get_subclasses import get_subclasses
 
 
 # главная страница
@@ -15,6 +17,8 @@ def storage(request):
     player = Player.get_instance(account=request.user)
     storage = None
 
+    war_there = False
+
     # если склад есть
     if Storage.actual.filter(owner=player, region=player.region).exists():
         storage = Storage.actual.get(owner=player, region=player.region)
@@ -23,6 +27,14 @@ def storage(request):
     single_storage = None
     if Storage.actual.filter(owner=player).count() == 1:
         single_storage = Storage.actual.get(owner=player)
+
+        # если идет война за этот регион
+        war_classes = get_subclasses(War)
+        for war_cl in war_classes:
+            # если есть войны за этот рег
+            if war_cl.objects.filter(running=True, def_region=single_storage.region).exists():
+                war_there = True
+                break
 
     # наличие алюминия и стали на текущем складе - для прокачки
     can_upgrade = False
@@ -41,32 +53,14 @@ def storage(request):
     medium_limit = 6
     small_limit = 5
 
-    # # проверяем, сколько полей можно улучшить
-    # for size in Storage.sizes:
-    #     limited = 0
-    #     for good in Storage.sizes[size]:
-    #         # узнаем, поле в лимите или нет
-    #         if check_up_limit(storage, good, size):
-    #             limited += 1
-    #
-    #     if size == 'large':
-    #         if limited == 5:
-    #             large_limit = 1
-    #
-    #     if size == 'small':
-    #         if limited == 5:
-    #             small_limit = 1
-    #
-    #     if size == 'medium':
-    #         if limited == 6:
-    #             medium_limit = 1
-
     # отправляем в форму
     response = render(request, 'storage/redesign/storage.html', {
         'page_name': pgettext('storage', 'Склад'),
 
         'player': player,
         'storage': storage,
+
+        'war_there': war_there,
 
         'single_storage': single_storage,
 

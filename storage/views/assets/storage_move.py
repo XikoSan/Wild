@@ -16,7 +16,8 @@ from storage.views.storage.check_goods_exists import check_goods_exists
 from storage.views.storage.get_transfer_price import get_transfer_price
 from storage.views.storage.transfer_values import transfer_values
 from django.utils.translation import pgettext
-
+from war.models.wars.war import War
+from player.views.get_subclasses import get_subclasses
 
 # переименование партии
 @login_required(login_url='/')
@@ -56,6 +57,18 @@ def storage_move(request):
                 'response': pgettext('assets', 'Указанный Склад уже в текущем регионе'),
             }
             return JsonResponse(data)
+
+        # если идет война за этот регион
+        war_classes = get_subclasses(War)
+        for war_cl in war_classes:
+            # если есть войны за этот рег
+            if war_cl.objects.filter(running=True, def_region=storage.region).exists():
+                data = {
+                    'header': pgettext('assets', 'Перемещение Склада'),
+                    'grey_btn': pgettext('mining', 'Закрыть'),
+                    'response': pgettext('assets', 'Нельзя переместить Склад из атакованного региона'),
+                }
+                return JsonResponse(data)
 
         storage.region = player.region
         storage.was_moved = True

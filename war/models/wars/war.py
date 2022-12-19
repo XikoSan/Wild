@@ -27,10 +27,10 @@ class War(models.Model):
 
     # регион-агрессор
     agr_region = models.ForeignKey(Region, default=None, null=True, on_delete=models.SET_NULL, blank=True,
-                                   verbose_name='Регион-агрессор', related_name="agr_region")
+                                   verbose_name='Регион-агрессор', related_name="%(class)s_agr_region")
     # регион обороняющихся
     def_region = models.ForeignKey(Region, default=None, null=True, on_delete=models.SET_NULL, blank=True,
-                                   verbose_name='Регион обороняющихся', related_name="def_region")
+                                   verbose_name='Регион обороняющихся', related_name="%(class)s_def_region")
 
     # урон - атакующие
     agr_dmg = models.BigIntegerField(default=0, verbose_name='Урон - атакующие')

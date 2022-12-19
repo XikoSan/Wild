@@ -3,7 +3,7 @@ import datetime
 import json
 from django.apps import apps
 from django.db import models
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 from django.utils import timezone
 from django_celery_beat.models import ClockedSchedule, PeriodicTask
@@ -14,6 +14,7 @@ from storage.models.storage import Storage
 
 
 # Аукцион покупки
+# todo: когда будешь делать аукцион продажи, пропиши его в войнах
 class BuyAuction(models.Model):
     objects = models.Manager()  # Менеджер по умолчанию
     actual = ActualManager()  # Менеджер активных записей
@@ -100,6 +101,16 @@ class BuyAuction(models.Model):
         )
         self.save()
 
+
+    def delete_task(self):
+        # проверяем есть ли таска
+        if self.task is not None:
+            task_identificator = self.task.id
+            # убираем таску у экземпляра модели
+            BuyAuction.objects.select_related('task').filter(pk=self.pk).update(task=None, deleted=True)
+            # удаляем таску
+            PeriodicTask.objects.filter(pk=task_identificator).delete()
+
     def __str__(self):
         return "Закупочный аукцион"
 
@@ -114,3 +125,10 @@ class BuyAuction(models.Model):
 def save_post(sender, instance, created, **kwargs):
     if created:
         instance.setup_task()
+
+
+# сигнал удаляющий таску
+@receiver(post_delete, sender=BuyAuction)
+def delete_post(sender, instance, using, **kwargs):
+    if instance.task:
+        instance.task.delete()

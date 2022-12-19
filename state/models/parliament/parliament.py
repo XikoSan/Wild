@@ -4,7 +4,7 @@ import json
 
 from django.core.validators import MinValueValidator
 from django.db import models
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 from django.utils import timezone
 from django_celery_beat.models import ClockedSchedule, PeriodicTask, CrontabSchedule
@@ -90,3 +90,10 @@ class Parliament(models.Model):
 def save_post(sender, instance, created, **kwargs):
     if created:
         instance.setup_task()
+
+
+# сигнал удаляющий таску
+@receiver(post_delete, sender=Parliament)
+def delete_post(sender, instance, using, **kwargs):
+    if instance.task:
+        instance.task.delete()

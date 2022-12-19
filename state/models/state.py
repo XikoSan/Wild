@@ -5,6 +5,8 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.utils import timezone
 from player.actual_manager import ActualManager
+from regime.regime import Regime
+
 
 class State(models.Model):
     objects = models.Manager()  # Менеджер по умолчанию
@@ -58,7 +60,26 @@ class State(models.Model):
     # id фонового процесса (начала или конца праймериз)
     # task_id = models.CharField(max_length=150, blank=True, null=True, verbose_name='id фонового процесса')
 
-    # проверить налог с указанной суммы указанного ресурса
+    # роспуск правительства данного государства, в зависимости от формы правления
+    def dissolution(self):
+        current_regime_cl = None
+        # получаем текущий режим из свойств госа
+        for regime_cl in Regime.__subclasses__():
+            if self.type == regime_cl.__name__:
+                current_regime_cl = regime_cl
+                break
+
+        if current_regime_cl:
+            current_regime_cl.dissolution(self)
+
+            Region = apps.get_model('region', 'Region')
+            Region.objects.filter(state=self).update(state=None)
+
+            self.deleted = True
+            self.save()
+
+
+    # получить налог с указанной суммы указанного ресурса
     @staticmethod
     def check_taxes(region, sum, mode):
         taxed_sum = sum

@@ -9,6 +9,8 @@ from player.logs.cash_log import CashLog
 from player.player import Player
 from storage.models.storage import Storage
 from django.utils.translation import pgettext
+from war.models.wars.war import War
+from player.views.get_subclasses import get_subclasses
 
 
 # передача денег со склада/на склад
@@ -85,6 +87,24 @@ def cash_transfer(request):
                     and int(new_storage) >= 0:
                 # что количество денег в сумме не изменилось
                 if player.cash + storage.cash == int(new_wallet) + int(new_storage):
+
+                    # если идет война за этот регион
+                    war_there = False
+                    war_classes = get_subclasses(War)
+                    for war_cl in war_classes:
+                        # если есть войны за этот рег
+                        if war_cl.objects.filter(running=True, def_region=storage.region).exists():
+                            war_there = True
+                            break
+                    # нельзя выводить наличку из атакованного рега
+                    if war_there and int(new_storage) < storage.cash:
+                        data = {
+                            'header': pgettext('storage', 'Передача денег'),
+                            'grey_btn': pgettext('mining', 'Закрыть'),
+                            'response': pgettext('storage', 'Нельзя вывести деньги из атакованного региона'),
+                        }
+                        return JsonResponse(data)
+
                     # обновляем данные игрока
                     Player.objects.filter(pk=player.pk).update(
                         cash=int(new_wallet))
@@ -94,6 +114,8 @@ def cash_transfer(request):
                     Storage.actual.filter(pk=storage.pk).update(
                         cash=int(new_storage))
                     return HttpResponse('ok')
+
+
                 
                 else:
                     data = {

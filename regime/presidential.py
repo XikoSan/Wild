@@ -5,6 +5,8 @@ from regime.regime import Regime
 from state.models.parliament.parliament import Parliament
 from regime.temporary import Temporary
 from state.models.parliament.deputy_mandate import DeputyMandate
+from state.models.capital import Capital
+from state.models.treasury import Treasury
 
 # президентская республика
 class Presidential(Regime):

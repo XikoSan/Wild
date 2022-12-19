@@ -12,7 +12,8 @@ from storage.models.storage import Storage
 from storage.models.trade_offer import TradeOffer
 from player.logs.print_log import log
 from django.utils.translation import pgettext
-
+from war.models.wars.war import War
+from player.views.get_subclasses import get_subclasses
 
 @login_required(login_url='/')
 @check_player
@@ -27,6 +28,7 @@ def get_offers(request):
             storages = Storage.actual.filter(owner=player)
 
         kwargs = {}
+        ex_kwargs = {}
         dis_args = ['owner_storage', 'price', 'view_type', 'good']
 
         # узнаём действие, которое игрок хочет совершить
@@ -97,7 +99,21 @@ def get_offers(request):
             if goods_list:
                 kwargs['good__in'] = goods_list
 
-        offers = TradeOffer.actual.filter(**kwargs).order_by('price').distinct(*dis_args)
+        # отсекаем Склады, в регионах которых идёт война, если выбирают не личные предложения
+        if owner != 'mine':
+            dest_regions = []
+            war_classes = get_subclasses(War)
+            for war_cl in war_classes:
+                # если есть войны за этот рег
+                if war_cl.objects.filter(running=True).exists():
+                    # айдишники всех целевых регов
+                    tmp_war_list = war_cl.objects.filter(running=True).values_list('def_region__pk')
+                    for dest_pk in tmp_war_list:
+                        if not dest_pk[0] in dest_regions:
+                            dest_regions.append(dest_pk[0])
+            ex_kwargs['owner_storage__region__pk__in'] = dest_regions
+
+        offers = TradeOffer.actual.filter(**kwargs).exclude(**ex_kwargs).order_by('price').distinct(*dis_args)
 
         offers_list = []
 

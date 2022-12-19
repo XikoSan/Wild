@@ -3,7 +3,7 @@ import datetime
 import json
 
 from django.db import models
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, post_delete
 # from io import BytesIO
 from django.dispatch import receiver
 from django.utils import timezone
@@ -110,3 +110,11 @@ class ParliamentVoting(models.Model):
 def save_post(sender, instance, created, **kwargs):
     if created:
         instance.setup_task()
+
+
+# сигнал удаляющий таску
+@receiver(post_delete, sender=ParliamentVoting)
+def delete_post(sender, instance, using, **kwargs):
+    if instance.task:
+        instance.task.delete()
+

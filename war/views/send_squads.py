@@ -20,15 +20,15 @@ def send_squads(request):
         # получаем персонажа
         player = Player.get_instance(account=request.user)
 
-        if not Storage.objects.filter(owner=player, region__pk=12).exists():
+        if not Storage.objects.filter(owner=player, region=player.region).exists():
             data = {
-                'response': 'Нет Склада отправки войск в Санкт-Петербурге',
+                'response': 'Нет Склада отправки войск в данном регионе',
                 'header': 'Отправка войск',
                 'grey_btn': 'Закрыть',
             }
             return JResponse(data)
 
-        storage = Storage.objects.select_for_update().get(owner=player, region__pk=12)
+        storage = Storage.objects.select_for_update().get(owner=player, region=player.region)
 
         # получаем войну
         try:

@@ -2,7 +2,8 @@
 
 from regime.regime import Regime
 from state.models.parliament.parliament import Parliament
-
+from state.models.capital import Capital
+from state.models.treasury import Treasury
 
 # временное правительство
 class Temporary(Regime):
@@ -62,3 +63,20 @@ class Temporary(Regime):
     def set_leader(current_regime, state):
         # todo: удалять лидера при помощи метода текущего режима
         pass
+
+    @staticmethod
+    def dissolution(state):
+        # удаляем парламент
+        if Parliament.objects.filter(state=state).exists():
+            Parliament.objects.get(state=state).delete()
+
+        # удаляем столицу как объект
+        if Capital.objects.filter(state=state).exists():
+            Capital.objects.get(state=state).delete()
+
+        # удаляем казну как объект
+        if Treasury.objects.filter(state=state).exists():
+            tres = Treasury.objects.get(state=state)
+            tres.deleted = True
+            tres.save()
+

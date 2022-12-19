@@ -41,3 +41,8 @@ class Regime(object):
     @staticmethod
     def set_leader(current_regime, state):
         return
+
+    @staticmethod
+    def dissolution(state):
+        return
+
