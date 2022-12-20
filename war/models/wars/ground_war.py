@@ -779,8 +779,9 @@ class GroundWar(War):
                         lock.save()
                         # связанное торговое предложение
                         lock.lock_offer.accept_date = timezone.now()
-                        lock.lock_offer.deleted = True
-                        lock.lock_offer.save()
+                        if lock.lock_offer:
+                            lock.lock_offer.deleted = True
+                            lock.lock_offer.save()
 
                 agr_tres.save()
                 storg.save()
