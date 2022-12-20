@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-18 18:19+0300\n"
+"POT-Creation-Date: 2022-12-20 16:26+0300\n"
 "PO-Revision-Date: 2022-12-01 16:31+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -90,19 +90,21 @@ msgstr "Pendanaan Harian Gagal"
 #: region/views/retrieve_cash.py:41 region/views/start_auto.py:28
 #: region/views/start_auto.py:36 region/views/start_auto.py:46
 #: region/views/start_auto.py:55 region/views/start_auto.py:77
-#: storage/views/assets/assets_action.py:228
-#: storage/views/assets/storage_move.py:36
-#: storage/views/assets/storage_move.py:45
-#: storage/views/assets/storage_move.py:55
-#: storage/views/assets/storage_move.py:74
-#: storage/views/storage/cash_transfer.py:32
-#: storage/views/storage/cash_transfer.py:41
-#: storage/views/storage/cash_transfer.py:54
-#: storage/views/storage/cash_transfer.py:63
-#: storage/views/storage/cash_transfer.py:72
-#: storage/views/storage/cash_transfer.py:101
-#: storage/views/storage/cash_transfer.py:109
-#: storage/views/storage/cash_transfer.py:121
+#: storage/views/assets/assets_action.py:251
+#: storage/views/assets/storage_move.py:37
+#: storage/views/assets/storage_move.py:46
+#: storage/views/assets/storage_move.py:56
+#: storage/views/assets/storage_move.py:68
+#: storage/views/assets/storage_move.py:87
+#: storage/views/storage/cash_transfer.py:34
+#: storage/views/storage/cash_transfer.py:43
+#: storage/views/storage/cash_transfer.py:56
+#: storage/views/storage/cash_transfer.py:65
+#: storage/views/storage/cash_transfer.py:74
+#: storage/views/storage/cash_transfer.py:103
+#: storage/views/storage/cash_transfer.py:123
+#: storage/views/storage/cash_transfer.py:131
+#: storage/views/storage/cash_transfer.py:143
 #: storage/views/storage/new_storage.py:34
 #: storage/views/storage/new_storage.py:52
 #: storage/views/storage/new_storage.py:65
@@ -114,28 +116,29 @@ msgstr "Pendanaan Harian Gagal"
 #: storage/views/storage/upgrade_storage.py:104
 #: storage/views/storage/upgrade_storage.py:112
 #: storage/views/storage/upgrade_storage.py:156
-#: storage/views/trading/accept_offer.py:42
-#: storage/views/trading/accept_offer.py:50
-#: storage/views/trading/accept_offer.py:63
-#: storage/views/trading/accept_offer.py:76
-#: storage/views/trading/accept_offer.py:84
-#: storage/views/trading/accept_offer.py:92
-#: storage/views/trading/accept_offer.py:108
-#: storage/views/trading/accept_offer.py:124
-#: storage/views/trading/accept_offer.py:133
-#: storage/views/trading/accept_offer.py:141
-#: storage/views/trading/accept_offer.py:155
-#: storage/views/trading/accept_offer.py:177
-#: storage/views/trading/accept_offer.py:201
-#: storage/views/trading/accept_offer.py:250
-#: storage/views/trading/accept_offer.py:258
-#: storage/views/trading/accept_offer.py:270
-#: storage/views/trading/accept_offer.py:278
-#: storage/views/trading/accept_offer.py:287
-#: storage/views/trading/accept_offer.py:299
-#: storage/views/trading/accept_offer.py:370
-#: storage/views/trading/accept_offer.py:377
-#: storage/views/trading/accept_offer.py:386
+#: storage/views/trading/accept_offer.py:44
+#: storage/views/trading/accept_offer.py:52
+#: storage/views/trading/accept_offer.py:65
+#: storage/views/trading/accept_offer.py:89
+#: storage/views/trading/accept_offer.py:99
+#: storage/views/trading/accept_offer.py:107
+#: storage/views/trading/accept_offer.py:115
+#: storage/views/trading/accept_offer.py:131
+#: storage/views/trading/accept_offer.py:147
+#: storage/views/trading/accept_offer.py:156
+#: storage/views/trading/accept_offer.py:164
+#: storage/views/trading/accept_offer.py:178
+#: storage/views/trading/accept_offer.py:200
+#: storage/views/trading/accept_offer.py:224
+#: storage/views/trading/accept_offer.py:273
+#: storage/views/trading/accept_offer.py:281
+#: storage/views/trading/accept_offer.py:293
+#: storage/views/trading/accept_offer.py:301
+#: storage/views/trading/accept_offer.py:310
+#: storage/views/trading/accept_offer.py:322
+#: storage/views/trading/accept_offer.py:393
+#: storage/views/trading/accept_offer.py:400
+#: storage/views/trading/accept_offer.py:409
 #: storage/views/trading/cancel_offer.py:40
 #: storage/views/trading/cancel_offer.py:53
 #: storage/views/trading/cancel_offer.py:61
@@ -160,9 +163,9 @@ msgstr "Pendanaan Harian Gagal"
 #: storage/views/trading/create_offer.py:201
 #: storage/views/trading/create_offer.py:208
 #: storage/views/trading/create_offer.py:217
-#: storage/views/trading/get_offers.py:38
-#: storage/views/trading/get_offers.py:60
-#: storage/views/trading/get_offers.py:173
+#: storage/views/trading/get_offers.py:40
+#: storage/views/trading/get_offers.py:62
+#: storage/views/trading/get_offers.py:189
 #: storage/views/trading/premium_trading.py:26
 #: storage/views/trading/premium_trading.py:38
 #: storage/views/trading/premium_trading.py:84
@@ -456,75 +459,82 @@ msgstr "dunia"
 msgid "независимый регион"
 msgstr "wilayah merdeka"
 
-#: player/templates/player/redesign/overview.html:223
+#: player/templates/player/redesign/overview.html:198
+#, fuzzy
+#| msgctxt "profile"
+#| msgid "место в рейтинге"
+msgid "Тестовый сервер войн"
+msgstr "peringkat"
+
+#: player/templates/player/redesign/overview.html:232
 msgid "войн нет"
 msgstr "tidak ada perang"
 
-#: player/templates/player/redesign/overview.html:268
+#: player/templates/player/redesign/overview.html:277
 msgctxt "overview"
 msgid "Хэллоуинский ивент"
 msgstr "Event Halloween"
 
-#: player/templates/player/redesign/overview.html:275
+#: player/templates/player/redesign/overview.html:284
 msgctxt "overview"
 msgid "С новым годом!"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:441
+#: player/templates/player/redesign/overview.html:451
 msgctxt "overview"
 msgid "сила"
 msgstr "str"
 
-#: player/templates/player/redesign/overview.html:446
+#: player/templates/player/redesign/overview.html:456
 msgctxt "overview"
 msgid "инт"
 msgstr "int"
 
-#: player/templates/player/redesign/overview.html:451
+#: player/templates/player/redesign/overview.html:461
 msgctxt "overview"
 msgid "вын"
 msgstr "end"
 
-#: player/templates/player/redesign/overview.html:467
+#: player/templates/player/redesign/overview.html:477
 msgctxt "overview"
 msgid "Выборы лидера"
 msgstr "Pemilihan presiden"
 
-#: player/templates/player/redesign/overview.html:470
+#: player/templates/player/redesign/overview.html:480
 msgctxt "overview"
 msgid "Выборы"
 msgstr "Pemilihan"
 
-#: player/templates/player/redesign/overview.html:475
+#: player/templates/player/redesign/overview.html:485
 msgctxt "overview"
 msgid "партии"
 msgstr "partai"
 
-#: player/templates/player/redesign/overview.html:475
+#: player/templates/player/redesign/overview.html:485
 msgctxt "overview"
 msgid "государства"
 msgstr "negara bagian"
 
-#: player/templates/player/redesign/overview.html:475
+#: player/templates/player/redesign/overview.html:485
 msgctxt "overview"
 msgid "региона"
 msgstr "wilayah"
 
-#: player/templates/player/redesign/overview.html:512
-#: player/templates/player/redesign/overview.html:557
+#: player/templates/player/redesign/overview.html:522
+#: player/templates/player/redesign/overview.html:567
 msgid "партий нет"
 msgstr "tidak ada partai"
 
-#: player/templates/player/redesign/overview.html:519
+#: player/templates/player/redesign/overview.html:529
 msgctxt "overview"
 msgid "парламент"
 msgstr "parlemen"
 
-#: player/templates/player/redesign/overview.html:733
+#: player/templates/player/redesign/overview.html:743
 msgid "У вас пока еще нет стикеров"
 msgstr "Kamu belum memiliki stiker"
 
-#: player/templates/player/redesign/overview.html:746
+#: player/templates/player/redesign/overview.html:756
 msgctxt "overview"
 msgid "магазин"
 msgstr "toko"
@@ -1159,15 +1169,15 @@ msgid "Запасов руды в регионе недостаточно для
 msgstr ""
 "Sumber daya mineral di wilayah ini tidak cukup untuk melakukan penambangan"
 
-#: region/views/do_mining.py:227 storage/views/assets/assets_action.py:229
-#: storage/views/assets/storage_move.py:75
-#: storage/views/storage/cash_transfer.py:122
+#: region/views/do_mining.py:227 storage/views/assets/assets_action.py:252
+#: storage/views/assets/storage_move.py:88
+#: storage/views/storage/cash_transfer.py:144
 #: storage/views/storage/new_storage.py:88
 #: storage/views/storage/upgrade_storage.py:157
-#: storage/views/trading/accept_offer.py:387
+#: storage/views/trading/accept_offer.py:410
 #: storage/views/trading/cancel_offer.py:149
 #: storage/views/trading/create_offer.py:218
-#: storage/views/trading/get_offers.py:174
+#: storage/views/trading/get_offers.py:190
 msgctxt "mining"
 msgid "Ошибка метода"
 msgstr "Metode gagal"
@@ -1314,7 +1324,7 @@ msgstr "Plastik"
 #: storage/models/factory/project.py:85 storage/models/storage.py:65
 #: storage/models/storage.py:160 storage/models/trade_offer.py:85
 #: storage/models/transport.py:134
-#: storage/templates/storage/redesign/storage.html:211
+#: storage/templates/storage/redesign/storage.html:216
 msgctxt "goods"
 msgid "Сталь"
 msgstr "Baja"
@@ -1324,7 +1334,7 @@ msgstr "Baja"
 #: storage/models/factory/project.py:101 storage/models/storage.py:67
 #: storage/models/storage.py:164 storage/models/trade_offer.py:86
 #: storage/models/transport.py:138
-#: storage/templates/storage/redesign/storage.html:211
+#: storage/templates/storage/redesign/storage.html:216
 msgctxt "goods"
 msgid "Алюминий"
 msgstr "Alumunium"
@@ -1996,7 +2006,7 @@ msgid "подтвердить"
 msgstr "terima"
 
 #: storage/templates/storage/redesign/storage.html:22
-#: storage/views/storage/storage.py:66
+#: storage/views/storage/storage.py:58
 msgctxt "storage"
 msgid "Склад"
 msgstr "Penyimpanan"
@@ -2038,23 +2048,28 @@ msgid "использовать"
 msgstr "gunakan Wild Pass"
 
 #: storage/templates/storage/redesign/storage.html:189
-#: storage/templates/storage/redesign/storage.html:371
+#: storage/templates/storage/redesign/storage.html:377
 msgctxt "storage_transfer"
 msgid "Перемещение Склада"
 msgstr "Pindahkan penyimpanan"
 
-#: storage/templates/storage/redesign/storage.html:190
+#: storage/templates/storage/redesign/storage.html:191
+msgctxt "storage_transfer"
+msgid "Нельзя вывезти Склад из региона боевых действий"
+msgstr ""
+
+#: storage/templates/storage/redesign/storage.html:193
 msgctxt "storage_transfer"
 msgid "Вы можете перенести Склад в регион текущего местоположения (один раз)"
 msgstr "Kamu bisa memindahkan penyimpanan ke lokasimu saat ini (sekali)"
 
-#: storage/templates/storage/redesign/storage.html:203
+#: storage/templates/storage/redesign/storage.html:206
 msgctxt "storage_transfer"
 msgid "перенести"
 msgstr "pindahkan"
 
-#: storage/templates/storage/redesign/storage.html:209
-#: storage/templates/storage/redesign/storage.html:251
+#: storage/templates/storage/redesign/storage.html:214
+#: storage/templates/storage/redesign/storage.html:257
 #, fuzzy
 #| msgctxt "storage_transfer"
 #| msgid "Перемещение Склада"
@@ -2062,12 +2077,12 @@ msgctxt "storage_upgrade"
 msgid "Улучшение склада"
 msgstr "Pindahkan penyimpanan"
 
-#: storage/templates/storage/redesign/storage.html:210
+#: storage/templates/storage/redesign/storage.html:215
 msgctxt "storage_upgrade"
 msgid "Вы можете улучшить Склад, расширив хранилища части товаров"
 msgstr ""
 
-#: storage/templates/storage/redesign/storage.html:211
+#: storage/templates/storage/redesign/storage.html:216
 #, fuzzy
 #| msgctxt "assets"
 #| msgid "стоимость"
@@ -2075,18 +2090,18 @@ msgctxt "storage_upgrade"
 msgid "Стоимость"
 msgstr "harga"
 
-#: storage/templates/storage/redesign/storage.html:213
+#: storage/templates/storage/redesign/storage.html:218
 msgctxt "storage_upgrade"
 msgid "Максимальный уровень"
 msgstr ""
 
-#: storage/templates/storage/redesign/storage.html:230
-#: storage/templates/storage/redesign/storage.html:350
+#: storage/templates/storage/redesign/storage.html:235
+#: storage/templates/storage/redesign/storage.html:356
 msgctxt "storage_upgrade"
 msgid "улучшить"
 msgstr ""
 
-#: storage/templates/storage/redesign/storage.html:233
+#: storage/templates/storage/redesign/storage.html:238
 #, fuzzy
 #| msgctxt "mining"
 #| msgid "Недостаточно энергии"
@@ -2094,44 +2109,44 @@ msgctxt "storage_upgrade"
 msgid "Недостаточно материалов"
 msgstr "Energi tidak cukup"
 
-#: storage/templates/storage/redesign/storage.html:252
+#: storage/templates/storage/redesign/storage.html:258
 msgctxt "storage_upgrade"
 msgid ""
 "Выберите товары в каждой из категорий, ёмкость Склада для которых будет "
 "увеличена"
 msgstr ""
 
-#: storage/templates/storage/redesign/storage.html:259
+#: storage/templates/storage/redesign/storage.html:265
 msgctxt "storage_upgrade"
 msgid "Большой объём запасов"
 msgstr ""
 
-#: storage/templates/storage/redesign/storage.html:286
+#: storage/templates/storage/redesign/storage.html:292
 msgctxt "storage_upgrade"
 msgid "Средний объём запасов"
 msgstr ""
 
-#: storage/templates/storage/redesign/storage.html:313
+#: storage/templates/storage/redesign/storage.html:319
 msgctxt "storage_upgrade"
 msgid "Малый объём запасов"
 msgstr ""
 
-#: storage/templates/storage/redesign/storage.html:357
+#: storage/templates/storage/redesign/storage.html:363
 msgctxt "storage_assets"
 msgid "Продление"
 msgstr "Pembaruan"
 
-#: storage/templates/storage/redesign/storage.html:357
+#: storage/templates/storage/redesign/storage.html:363
 msgctxt "storage_assets"
 msgid "Активация"
 msgstr "Aktivasi"
 
-#: storage/templates/storage/redesign/storage.html:357
+#: storage/templates/storage/redesign/storage.html:363
 msgctxt "storage_assets"
 msgid "премиум-аккаунта"
 msgstr "akun premium"
 
-#: storage/templates/storage/redesign/storage.html:360
+#: storage/templates/storage/redesign/storage.html:366
 msgctxt "storage_assets"
 msgid ""
 "Ваш премиум-аккаунт будет продлён на один месяц. Данную операцию невозможно "
@@ -2140,7 +2155,7 @@ msgstr ""
 "Akun premium -mu akan diperbarui selama satu bulan. Tindakan ini tidak dapat "
 "dibatalkan. Lanjutkan?"
 
-#: storage/templates/storage/redesign/storage.html:362
+#: storage/templates/storage/redesign/storage.html:368
 msgctxt "storage_assets"
 msgid ""
 "Вы активируете премиум-аккаунт, длительностью один месяц. Данную операцию "
@@ -2149,32 +2164,32 @@ msgstr ""
 "Kamu akan mengaktifkan akun premium selama satu bulan. Tindakan ini tidak "
 "dapat dibatalkan. Lanjutkan?"
 
-#: storage/templates/storage/redesign/storage.html:365
+#: storage/templates/storage/redesign/storage.html:371
 msgctxt "storage_assets"
 msgid "Продолжить"
 msgstr "Lanjutkan"
 
-#: storage/templates/storage/redesign/storage.html:366
+#: storage/templates/storage/redesign/storage.html:372
 msgctxt "storage_assets"
 msgid "Отмена"
 msgstr "Batalkan"
 
-#: storage/templates/storage/redesign/storage.html:372
+#: storage/templates/storage/redesign/storage.html:378
 msgctxt "storage_transfer"
 msgid "Склад будет перемещен в регион вашего местонахождения"
 msgstr "Penyimpanan akan dipindahkan ke wilayahmu saat ini"
 
-#: storage/templates/storage/redesign/storage.html:372
+#: storage/templates/storage/redesign/storage.html:378
 msgctxt "storage_transfer"
 msgid "Больше этот Склад переместить не получится. Продолжить?"
 msgstr "Penyimpanan tidak dapat dipindahkan lagi. Lanjutkan?"
 
-#: storage/templates/storage/redesign/storage.html:373
+#: storage/templates/storage/redesign/storage.html:379
 msgctxt "storage_transfer"
 msgid "Продолжить"
 msgstr "Continue"
 
-#: storage/templates/storage/redesign/storage.html:374
+#: storage/templates/storage/redesign/storage.html:380
 msgctxt "storage_transfer"
 msgid "Отмена"
 msgstr "Cancel"
@@ -2406,217 +2421,238 @@ msgctxt "w_trading"
 msgid "Создать"
 msgstr "membuat"
 
-#: storage/views/assets/assets_action.py:39
+#: storage/views/assets/assets_action.py:41
 msgctxt "assets"
 msgid "Целевой Склад не заполнен"
 msgstr "Penyimpanan yang dipilih belum penuh"
 
-#: storage/views/assets/assets_action.py:40
+#: storage/views/assets/assets_action.py:42
 msgctxt "assets"
 msgid "Перемещение товаров"
 msgstr "Pemindahan penyimpanan"
 
-#: storage/views/assets/assets_action.py:41
-#: storage/views/assets/assets_action.py:68
-#: storage/views/assets/assets_action.py:110
-#: storage/views/assets/assets_action.py:120
-#: storage/views/assets/assets_action.py:129
-#: storage/views/assets/assets_action.py:136
-#: storage/views/assets/assets_action.py:143
-#: storage/views/assets/assets_action.py:150
-#: storage/views/assets/assets_action.py:169
-#: storage/views/assets/assets_action.py:209
-#: storage/views/assets/assets_action.py:216
+#: storage/views/assets/assets_action.py:43
+#: storage/views/assets/assets_action.py:73
+#: storage/views/assets/assets_action.py:90
+#: storage/views/assets/assets_action.py:132
+#: storage/views/assets/assets_action.py:142
+#: storage/views/assets/assets_action.py:151
+#: storage/views/assets/assets_action.py:158
+#: storage/views/assets/assets_action.py:165
+#: storage/views/assets/assets_action.py:172
+#: storage/views/assets/assets_action.py:192
+#: storage/views/assets/assets_action.py:232
+#: storage/views/assets/assets_action.py:239
 msgctxt "assets"
 msgid "Закрыть"
 msgstr "Tutup"
 
-#: storage/views/assets/assets_action.py:66
-#: storage/views/assets/assets_action.py:167
+#: storage/views/assets/assets_action.py:71
+#: storage/views/assets/assets_action.py:190
 msgctxt "assets"
 msgid "Склад"
 msgstr "Penyimpanan"
 
-#: storage/views/assets/assets_action.py:66
-#: storage/views/assets/assets_action.py:167
+#: storage/views/assets/assets_action.py:71
+#: storage/views/assets/assets_action.py:190
 msgctxt "assets"
 msgid "вам не принадлежит"
 msgstr "bukan kepemilikanmu"
 
-#: storage/views/assets/assets_action.py:67
-#: storage/views/assets/assets_action.py:109
-#: storage/views/assets/assets_action.py:119
-#: storage/views/assets/assets_action.py:128
-#: storage/views/assets/assets_action.py:135
-#: storage/views/assets/assets_action.py:142
-#: storage/views/assets/assets_action.py:149
+#: storage/views/assets/assets_action.py:72
+#: storage/views/assets/assets_action.py:131
+#: storage/views/assets/assets_action.py:141
+#: storage/views/assets/assets_action.py:150
+#: storage/views/assets/assets_action.py:157
+#: storage/views/assets/assets_action.py:164
+#: storage/views/assets/assets_action.py:171
 msgctxt "assets"
 msgid "Перемещение товара"
 msgstr "Pemindahan barang"
 
-#: storage/views/assets/assets_action.py:108
+#: storage/views/assets/assets_action.py:88
 msgctxt "assets"
-msgid "Недостаточно средств для оплаты доставки"
-msgstr "Uang tidak cukup untuk membayar pengiriman"
+msgid "Запрещено вывозить товары из атакованных регионов"
+msgstr ""
 
-#: storage/views/assets/assets_action.py:115
-#: storage/views/assets/assets_action.py:125
-msgctxt "assets"
-msgid "На складе в регионе "
-msgstr "Dalam penyimpanan di "
-
-#: storage/views/assets/assets_action.py:117
-msgctxt "assets"
-msgid " недостаточно места для товара "
-msgstr " tidak cukup ruang untuk barang "
-
-#: storage/views/assets/assets_action.py:118
-#: storage/views/assets/assets_action.py:127
-msgctxt "assets"
-msgid "Требуется: "
-msgstr "Yang dibutuhkan : "
-
-#: storage/views/assets/assets_action.py:118
-#: storage/views/assets/assets_action.py:127
-msgctxt "assets"
-msgid ", в наличии: "
-msgstr ", persediaan : "
-
-#: storage/views/assets/assets_action.py:126
-msgctxt "assets"
-msgid " недостаточно товара "
-msgstr " barang tidak cukup "
-
-#: storage/views/assets/assets_action.py:126
-msgctxt "assets"
-msgid " для передачи."
-msgstr " untuk pengiriman."
-
-#: storage/views/assets/assets_action.py:134
-msgctxt "assets"
-msgid "Товары для передачи не выбраны"
-msgstr "Barang belum dipilih"
-
-#: storage/views/assets/assets_action.py:141
-msgctxt "assets"
-msgid "В целевом Складе заполнены значения"
-msgstr "Isi jumlah pada tujuan penyimpanan"
-
-#: storage/views/assets/assets_action.py:148
-msgctxt "assets"
-msgid "Целевой Склад вам не принадлежит"
-msgstr "Penyimpanan tujuan bukan milikmu"
-
-#: storage/views/assets/assets_action.py:168
-#: storage/views/assets/assets_action.py:208
+#: storage/views/assets/assets_action.py:89
+#: storage/views/assets/assets_action.py:191
+#: storage/views/assets/assets_action.py:231
 msgctxt "assets"
 msgid "Уничтожение товара"
 msgstr "Menghancurkan barang"
 
-#: storage/views/assets/assets_action.py:205
+#: storage/views/assets/assets_action.py:130
+msgctxt "assets"
+msgid "Недостаточно средств для оплаты доставки"
+msgstr "Uang tidak cukup untuk membayar pengiriman"
+
+#: storage/views/assets/assets_action.py:137
+#: storage/views/assets/assets_action.py:147
+msgctxt "assets"
+msgid "На складе в регионе "
+msgstr "Dalam penyimpanan di "
+
+#: storage/views/assets/assets_action.py:139
+msgctxt "assets"
+msgid " недостаточно места для товара "
+msgstr " tidak cukup ruang untuk barang "
+
+#: storage/views/assets/assets_action.py:140
+#: storage/views/assets/assets_action.py:149
+msgctxt "assets"
+msgid "Требуется: "
+msgstr "Yang dibutuhkan : "
+
+#: storage/views/assets/assets_action.py:140
+#: storage/views/assets/assets_action.py:149
+msgctxt "assets"
+msgid ", в наличии: "
+msgstr ", persediaan : "
+
+#: storage/views/assets/assets_action.py:148
+msgctxt "assets"
+msgid " недостаточно товара "
+msgstr " barang tidak cukup "
+
+#: storage/views/assets/assets_action.py:148
+msgctxt "assets"
+msgid " для передачи."
+msgstr " untuk pengiriman."
+
+#: storage/views/assets/assets_action.py:156
+msgctxt "assets"
+msgid "Товары для передачи не выбраны"
+msgstr "Barang belum dipilih"
+
+#: storage/views/assets/assets_action.py:163
+msgctxt "assets"
+msgid "В целевом Складе заполнены значения"
+msgstr "Isi jumlah pada tujuan penyimpanan"
+
+#: storage/views/assets/assets_action.py:170
+msgctxt "assets"
+msgid "Целевой Склад вам не принадлежит"
+msgstr "Penyimpanan tujuan bukan milikmu"
+
+#: storage/views/assets/assets_action.py:228
 msgctxt "assets"
 msgid "На складе в регионе"
 msgstr "Pada penyimpanan dalam"
 
-#: storage/views/assets/assets_action.py:206
+#: storage/views/assets/assets_action.py:229
 msgctxt "assets"
 msgid "недостаточно товара"
 msgstr "barang tidak cukup"
 
-#: storage/views/assets/assets_action.py:207
+#: storage/views/assets/assets_action.py:230
 msgctxt "assets"
 msgid "Требуется:"
 msgstr "Membutuhkan:"
 
-#: storage/views/assets/assets_action.py:207
+#: storage/views/assets/assets_action.py:230
 msgctxt "assets"
 msgid ", в наличии:"
 msgstr ", Persediaan:"
 
-#: storage/views/assets/assets_action.py:214
+#: storage/views/assets/assets_action.py:237
 msgctxt "assets"
 msgid "Некорректное действие"
 msgstr "Tindakan salah"
 
-#: storage/views/assets/assets_action.py:215
-#: storage/views/assets/assets_action.py:227
+#: storage/views/assets/assets_action.py:238
+#: storage/views/assets/assets_action.py:250
 msgctxt "assets"
 msgid "Операции с товарами"
 msgstr "Pengoperasian barang"
 
-#: storage/views/assets/storage_move.py:35
-#: storage/views/assets/storage_move.py:44
-#: storage/views/assets/storage_move.py:54
-#: storage/views/assets/storage_move.py:73
+#: storage/views/assets/storage_move.py:36
+#: storage/views/assets/storage_move.py:45
+#: storage/views/assets/storage_move.py:55
+#: storage/views/assets/storage_move.py:67
+#: storage/views/assets/storage_move.py:86
 msgctxt "assets"
 msgid "Перемещение Склада"
 msgstr "Memindahkan penyimpanan"
 
-#: storage/views/assets/storage_move.py:37
+#: storage/views/assets/storage_move.py:38
 msgctxt "assets"
 msgid "Склад не заполнен"
 msgstr "Penyimpanan tidak spesifik"
 
-#: storage/views/assets/storage_move.py:46
+#: storage/views/assets/storage_move.py:47
 msgctxt "assets"
 msgid "Указанный Склад вам не принадлежит"
 msgstr "Penyimpanan bukan milikmu"
 
-#: storage/views/assets/storage_move.py:56
+#: storage/views/assets/storage_move.py:57
 msgctxt "assets"
 msgid "Указанный Склад уже в текущем регионе"
 msgstr "Penyimpanan telah berada di wilayah saat ini"
+
+#: storage/views/assets/storage_move.py:69
+#, fuzzy
+#| msgid "Некорректное значение"
+msgctxt "assets"
+msgid "Нельзя переместить Склад из атакованного региона"
+msgstr "Nominal salah"
 
 #: storage/views/factory/factory.py:47
 msgid "Производство"
 msgstr "Produksi"
 
-#: storage/views/storage/cash_transfer.py:31
-#: storage/views/storage/cash_transfer.py:40
-#: storage/views/storage/cash_transfer.py:53
-#: storage/views/storage/cash_transfer.py:62
-#: storage/views/storage/cash_transfer.py:71
-#: storage/views/storage/cash_transfer.py:100
-#: storage/views/storage/cash_transfer.py:108
-#: storage/views/storage/cash_transfer.py:120
+#: storage/views/storage/cash_transfer.py:33
+#: storage/views/storage/cash_transfer.py:42
+#: storage/views/storage/cash_transfer.py:55
+#: storage/views/storage/cash_transfer.py:64
+#: storage/views/storage/cash_transfer.py:73
+#: storage/views/storage/cash_transfer.py:102
+#: storage/views/storage/cash_transfer.py:122
+#: storage/views/storage/cash_transfer.py:130
+#: storage/views/storage/cash_transfer.py:142
 #: storage/views/storage/new_storage.py:86
 #: storage/views/storage/upgrade_storage.py:155
 msgctxt "storage"
 msgid "Передача денег"
 msgstr "Memindahkan uang"
 
-#: storage/views/storage/cash_transfer.py:33
+#: storage/views/storage/cash_transfer.py:35
 msgctxt "storage"
 msgid "Отрицательное число денег игрока"
 msgstr "Uang pemain minus"
 
-#: storage/views/storage/cash_transfer.py:42
+#: storage/views/storage/cash_transfer.py:44
 msgctxt "storage"
 msgid "Некорректное число денег игрока"
 msgstr "Jumlah uang salah"
 
-#: storage/views/storage/cash_transfer.py:55
+#: storage/views/storage/cash_transfer.py:57
 msgctxt "storage"
 msgid "Отрицательное число денег Склада"
 msgstr "Jumlah uang penyimpanan minus"
 
-#: storage/views/storage/cash_transfer.py:64
+#: storage/views/storage/cash_transfer.py:66
 msgctxt "storage"
 msgid "Некорректное число денег Склада"
 msgstr "Jumlah uang dalam penyimpanan salah"
 
-#: storage/views/storage/cash_transfer.py:73
+#: storage/views/storage/cash_transfer.py:75
 #: storage/views/storage/upgrade_storage.py:34
 msgctxt "storage"
 msgid "В этом регионе нет Склада"
 msgstr "Tidak terdapat penyimpanan di wilayah ini"
 
-#: storage/views/storage/cash_transfer.py:102
+#: storage/views/storage/cash_transfer.py:104
+msgctxt "storage"
+msgid "Нельзя вывести деньги из атакованного региона"
+msgstr ""
+
+#: storage/views/storage/cash_transfer.py:124
 msgctxt "storage"
 msgid "Данные кошелька не совпадают с введенными"
 msgstr "Jumlah uang tidak sesuai dengan yang dimasukkan"
 
-#: storage/views/storage/cash_transfer.py:110
+#: storage/views/storage/cash_transfer.py:132
 msgctxt "storage"
 msgid "Недопустим ввод отрицательных чисел"
 msgstr "Memasukkan angka negatif tidak diperbolehkan"
@@ -2686,40 +2722,41 @@ msgctxt "storage_upgrade"
 msgid "Указаны не все позиции для улучшения"
 msgstr ""
 
-#: storage/views/trading/accept_offer.py:41
-#: storage/views/trading/accept_offer.py:49
-#: storage/views/trading/accept_offer.py:62
-#: storage/views/trading/accept_offer.py:75
-#: storage/views/trading/accept_offer.py:83
-#: storage/views/trading/accept_offer.py:91
-#: storage/views/trading/accept_offer.py:107
-#: storage/views/trading/accept_offer.py:123
-#: storage/views/trading/accept_offer.py:132
-#: storage/views/trading/accept_offer.py:140
-#: storage/views/trading/accept_offer.py:154
-#: storage/views/trading/accept_offer.py:176
-#: storage/views/trading/accept_offer.py:200
-#: storage/views/trading/accept_offer.py:249
-#: storage/views/trading/accept_offer.py:257
-#: storage/views/trading/accept_offer.py:269
-#: storage/views/trading/accept_offer.py:277
-#: storage/views/trading/accept_offer.py:286
-#: storage/views/trading/accept_offer.py:298
-#: storage/views/trading/accept_offer.py:369
-#: storage/views/trading/accept_offer.py:376
-#: storage/views/trading/accept_offer.py:385
+#: storage/views/trading/accept_offer.py:43
+#: storage/views/trading/accept_offer.py:51
+#: storage/views/trading/accept_offer.py:64
+#: storage/views/trading/accept_offer.py:88
+#: storage/views/trading/accept_offer.py:98
+#: storage/views/trading/accept_offer.py:106
+#: storage/views/trading/accept_offer.py:114
+#: storage/views/trading/accept_offer.py:130
+#: storage/views/trading/accept_offer.py:146
+#: storage/views/trading/accept_offer.py:155
+#: storage/views/trading/accept_offer.py:163
+#: storage/views/trading/accept_offer.py:177
+#: storage/views/trading/accept_offer.py:199
+#: storage/views/trading/accept_offer.py:223
+#: storage/views/trading/accept_offer.py:272
+#: storage/views/trading/accept_offer.py:280
+#: storage/views/trading/accept_offer.py:292
+#: storage/views/trading/accept_offer.py:300
+#: storage/views/trading/accept_offer.py:309
+#: storage/views/trading/accept_offer.py:321
+#: storage/views/trading/accept_offer.py:392
+#: storage/views/trading/accept_offer.py:399
+#: storage/views/trading/accept_offer.py:408
 msgctxt "w_trading"
 msgid "Принятие оффера"
 msgstr ""
 
-#: storage/views/trading/accept_offer.py:43
+#: storage/views/trading/accept_offer.py:45
 #, fuzzy
 #| msgid "ID навыка должен быть числом"
 msgctxt "w_trading"
 msgid "В поле количество должно быть число"
 msgstr "Kemampuan ID harus berbentuk angka"
 
-#: storage/views/trading/accept_offer.py:51
+#: storage/views/trading/accept_offer.py:53
 #, fuzzy
 #| msgctxt "mining"
 #| msgid "Количество Энергии должно быть положительным"
@@ -2727,7 +2764,7 @@ msgctxt "w_trading"
 msgid "В поле количество должно быть положительное число"
 msgstr "Jumlah energi tidak boleh minus"
 
-#: storage/views/trading/accept_offer.py:64
+#: storage/views/trading/accept_offer.py:66
 #: storage/views/trading/cancel_offer.py:41
 #, fuzzy
 #| msgid "ID навыка должен быть числом"
@@ -2735,23 +2772,28 @@ msgctxt "w_trading"
 msgid "ID оффера должно быть числом"
 msgstr "Kemampuan ID harus berbentuk angka"
 
-#: storage/views/trading/accept_offer.py:77
+#: storage/views/trading/accept_offer.py:90
+msgctxt "w_trading"
+msgid "Нельзя принять оффер из атакованного региона"
+msgstr ""
+
+#: storage/views/trading/accept_offer.py:100
 msgctxt "w_trading"
 msgid "Нельзя принять собственный оффер"
 msgstr ""
 
-#: storage/views/trading/accept_offer.py:85
+#: storage/views/trading/accept_offer.py:108
 msgctxt "w_trading"
 msgid "Оффер изменился, или вы ввели некорректное число"
 msgstr ""
 
-#: storage/views/trading/accept_offer.py:93
+#: storage/views/trading/accept_offer.py:116
 #: storage/views/trading/cancel_offer.py:62
 msgctxt "w_trading"
 msgid "Оффер не существует или уже принят"
 msgstr ""
 
-#: storage/views/trading/accept_offer.py:109
+#: storage/views/trading/accept_offer.py:132
 #: storage/views/trading/cancel_offer.py:75
 #, fuzzy
 #| msgid "ID навыка должен быть числом"
@@ -2759,7 +2801,7 @@ msgctxt "w_trading"
 msgid "ID склада должно быть числом"
 msgstr "Kemampuan ID harus berbentuk angka"
 
-#: storage/views/trading/accept_offer.py:125
+#: storage/views/trading/accept_offer.py:148
 #, fuzzy
 #| msgctxt "assets"
 #| msgid " недостаточно места для товара "
@@ -2767,7 +2809,7 @@ msgctxt "w_trading"
 msgid "На выбранном складе недостаточно места для товара"
 msgstr " tidak cukup ruang untuk barang "
 
-#: storage/views/trading/accept_offer.py:134
+#: storage/views/trading/accept_offer.py:157
 #, fuzzy
 #| msgctxt "assets"
 #| msgid " недостаточно товара "
@@ -2775,15 +2817,15 @@ msgctxt "w_trading"
 msgid "На выбранном складе недостаточно товара"
 msgstr " barang tidak cukup "
 
-#: storage/views/trading/accept_offer.py:142
-#: storage/views/trading/accept_offer.py:156
+#: storage/views/trading/accept_offer.py:165
+#: storage/views/trading/accept_offer.py:179
 #: storage/views/trading/cancel_offer.py:88
 msgctxt "w_trading"
 msgid "Выбранного склада игрока не существует"
 msgstr ""
 
-#: storage/views/trading/accept_offer.py:178
-#: storage/views/trading/accept_offer.py:288
+#: storage/views/trading/accept_offer.py:201
+#: storage/views/trading/accept_offer.py:311
 #: storage/views/trading/premium_trading.py:39
 #, fuzzy
 #| msgctxt "assets"
@@ -2792,8 +2834,8 @@ msgctxt "w_trading"
 msgid "Недостаточно средств. Требуется $"
 msgstr "Uang tidak cukup untuk membayar pengiriman"
 
-#: storage/views/trading/accept_offer.py:202
-#: storage/views/trading/accept_offer.py:271
+#: storage/views/trading/accept_offer.py:225
+#: storage/views/trading/accept_offer.py:294
 #: storage/views/trading/cancel_offer.py:106
 #: storage/views/trading/cancel_offer.py:125
 #: storage/views/trading/premium_trading.py:110
@@ -2801,12 +2843,12 @@ msgctxt "w_trading"
 msgid "Не удалось получить блокировку по офферу"
 msgstr ""
 
-#: storage/views/trading/accept_offer.py:251
+#: storage/views/trading/accept_offer.py:274
 msgctxt "w_trading"
 msgid "Ваши расходы на доставку больше прибыли"
 msgstr ""
 
-#: storage/views/trading/accept_offer.py:259
+#: storage/views/trading/accept_offer.py:282
 #: storage/views/trading/premium_trading.py:98
 #, fuzzy
 #| msgctxt "mining"
@@ -2816,7 +2858,7 @@ msgid "В торговом предложении недостаточно ср�
 msgstr ""
 "Sumber daya emas di wilayah ini tidak cukup untuk melakukan penambangan"
 
-#: storage/views/trading/accept_offer.py:279
+#: storage/views/trading/accept_offer.py:302
 #: storage/views/trading/premium_trading.py:118
 #, fuzzy
 #| msgctxt "mining"
@@ -2826,18 +2868,18 @@ msgid "В связанной блокировке недостаточно ср�
 msgstr ""
 "Sumber daya emas di wilayah ini tidak cukup untuk melakukan penambangan"
 
-#: storage/views/trading/accept_offer.py:300
+#: storage/views/trading/accept_offer.py:323
 msgctxt "w_trading"
 msgid "Выбранного склада оффера не существует"
 msgstr ""
 
-#: storage/views/trading/accept_offer.py:371
+#: storage/views/trading/accept_offer.py:394
 #: storage/views/trading/premium_trading.py:176
 msgctxt "w_trading"
 msgid "Оффера такого типа не существует"
 msgstr ""
 
-#: storage/views/trading/accept_offer.py:378
+#: storage/views/trading/accept_offer.py:401
 #: storage/views/trading/premium_trading.py:183
 #, fuzzy
 #| msgid "Некорректное значение"
@@ -2885,7 +2927,7 @@ msgid "Создание оффера"
 msgstr ""
 
 #: storage/views/trading/create_offer.py:31
-#: storage/views/trading/get_offers.py:39
+#: storage/views/trading/get_offers.py:41
 #, fuzzy
 #| msgctxt "assets"
 #| msgid "Некорректное действие"
@@ -3000,9 +3042,9 @@ msgctxt "w_trading_new"
 msgid "Торговое предложение успешно создано"
 msgstr "Nominal salah"
 
-#: storage/views/trading/get_offers.py:37
-#: storage/views/trading/get_offers.py:59
-#: storage/views/trading/get_offers.py:172
+#: storage/views/trading/get_offers.py:39
+#: storage/views/trading/get_offers.py:61
+#: storage/views/trading/get_offers.py:188
 #, fuzzy
 #| msgctxt "assets"
 #| msgid "Перемещение товаров"
@@ -3010,26 +3052,26 @@ msgctxt "w_trading"
 msgid "Получение офферов"
 msgstr "Pemindahan penyimpanan"
 
-#: storage/views/trading/get_offers.py:61
+#: storage/views/trading/get_offers.py:63
 #, fuzzy
 #| msgid "Некорректное значение"
 msgctxt "w_trading"
 msgid "Некорректный владелец"
 msgstr "Nominal salah"
 
-#: storage/views/trading/get_offers.py:153
+#: storage/views/trading/get_offers.py:169
 #, fuzzy
 #| msgid "Отмена"
 msgctxt "w_trading"
 msgid "Отменить"
 msgstr "Batal"
 
-#: storage/views/trading/get_offers.py:157
+#: storage/views/trading/get_offers.py:173
 msgctxt "w_trading"
 msgid "Купить"
 msgstr ""
 
-#: storage/views/trading/get_offers.py:159
+#: storage/views/trading/get_offers.py:175
 #, fuzzy
 #| msgctxt "assets"
 #| msgid "передать"
