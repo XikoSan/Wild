@@ -64,7 +64,8 @@ def assets_action(request):
                 storages_values = json.loads(request.POST.get('storages'))
                 # проверяем, что все склады принадлежат игроку
                 for i_storg in storages_values.keys():
-                    iv_storages_pk.append(int(i_storg))
+                    if len(storages_values.get(i_storg)):
+                        iv_storages_pk.append(int(i_storg))
 
                     if not int(i_storg) in storages_pk:
                         data = {
