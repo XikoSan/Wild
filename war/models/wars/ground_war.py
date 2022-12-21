@@ -873,7 +873,8 @@ class GroundWar(War):
 # сигнал прослушивающий создание партии, после этого формирующий таску
 @receiver(post_delete, sender=GroundWar)
 def delete_post(sender, instance, **kwargs):
-    instance.task.delete()
+    if instance.task:
+        instance.task.delete()
 
 
 # сигнал прослушивающий создание
