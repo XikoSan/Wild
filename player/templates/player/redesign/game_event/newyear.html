@@ -430,7 +430,7 @@
   fillProgressBar({% localize off %}{{ global_points }}{% endlocalize %}, progressPoints1, progressBar1, MAX_SCORE1, STEP1);
   // вызов функции для покраски прогресса ЛИЧНЫЙ
   fillProgressBar({% localize off %}{{ points }}{% endlocalize %}, progressPoints2, progressBar2, MAX_SCORE2, STEP2);
-
+  localStorage.setItem('ny2022', 'checked')
 
   // инфомодалка
   const infoModal = document.querySelector('.ny__info-modal')
