@@ -178,7 +178,7 @@ def overview(request):
         if not closest_war:
             closest_war = war_dict[w_type]
         else:
-            if closest_war.start_time > war_dict[w_type]:
+            if closest_war.start_time > war_dict[w_type].start_time:
                 closest_war = war_dict[w_type]
 
     page = 'player/redesign/overview.html'
