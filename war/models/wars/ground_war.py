@@ -1,6 +1,7 @@
 # coding=utf-8
 import json
 import math
+import datetime
 from django.contrib.contenttypes.fields import GenericRelation
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
@@ -116,6 +117,7 @@ class GroundWar(War):
             args=json.dumps(['GroundWar', self.pk, ]),
             start_time=timezone.now()
         )
+        self.start_time = timezone.now() + datetime.timedelta(minutes=minute-timezone.now().minute)
         self.save()
 
         war_side_agr = WarSide(
