@@ -359,23 +359,6 @@ class Player(models.Model):
     # расчет естественного прироста с учётом уровня медицины в текущем регионе
     # прирост медки используется в mining.py
     def increase_calc(self):
-        # бонус неделя према если последний прирост был больше месяца назад
-        from player.logs.print_log import log
-        if self.natural_refill:
-            dif = timezone.now() - self.natural_refill
-            log(dif.days)
-            if dif.days > 29:
-                if self.premium < timezone.now():
-                    self.premium = timezone.now() + datetime.timedelta(days=7)
-                else:
-                    self.premium = self.premium + datetime.timedelta(days=7)
-                self.save()
-            else:
-                if self.premium < timezone.now():
-                    self.premium = timezone.now() + datetime.timedelta(days=1)
-
-                self.save()
-
         # нужно очистить дейлик
         if self.natural_refill \
                 and timezone.now().date() > self.natural_refill.date():
