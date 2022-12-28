@@ -10,6 +10,7 @@ from bill.models.explore_resources import ExploreResources
 from bill.models.purchase_auction import PurchaseAuction
 from bill.models.change_form import ChangeForm
 from bill.models.change_residency import ChangeResidency
+from bill.models.start_war import StartWar
 
 
 class BillAdmin(admin.ModelAdmin):
@@ -42,4 +43,5 @@ admin.site.register(ChangeCoat, BillAdmin)
 admin.site.register(ChangeTaxes, BillAdmin)
 admin.site.register(ChangeForm, BillAdmin)
 admin.site.register(ChangeResidency, BillAdmin)
+admin.site.register(StartWar, BillAdmin)
 admin.site.register(PurchaseAuction, AuctionAdmin)

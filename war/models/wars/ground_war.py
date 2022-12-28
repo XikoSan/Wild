@@ -40,6 +40,7 @@ from storage.models.trade_offer import TradeOffer
 from region.building.rate_building import RateBuilding
 from state.models.capital import Capital
 from gov.models.president import President
+from region.building.defences import Defences
 
 
 # класс наземной войны
@@ -70,6 +71,9 @@ class GroundWar(War):
 
     # создаем всё, что требуется после создания войны: стороны, периодическую таску
     def after_save(self):
+        # проставляем укрпления обороны
+        if Defences.objects.filter(region=self.def_region).exists():
+            self.hq_points = Defences.objects.get(region=self.def_region).level * 1000
         # признак что эта минута свободна, можно создавать
         free_min = False
         # признак что для этого типа войны минута свободна
@@ -707,7 +711,7 @@ class GroundWar(War):
 
         # удаляем все ЗП, связанные с регионом
         # зп, содержащие регион
-        bills_req_list = ['ChangeTaxes', 'ExploreResources', 'Construction']
+        bills_req_list = ['ChangeTaxes', 'ExploreResources', 'Construction', 'StartWar']
         bills_classes = get_subclasses(Bill)
         for type in bills_classes:
             if type.__name__ in bills_req_list:
