@@ -68,8 +68,8 @@ def ministers_manage(request):
         bills_classes_tmp = copy.copy(bills_classes)
 
         for cl in bills_classes:
-            # менять форму правления быстро нельзя
-            if cl.__name__ in ['ChangeForm']:
+            # если нельзя принять досрочно, то и министру не поставить
+            if not cl.accept_ahead:
                 bills_classes_tmp.remove(cl)
 
         bills_classes = copy.copy(bills_classes_tmp)
