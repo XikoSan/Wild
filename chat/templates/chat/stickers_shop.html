@@ -89,7 +89,7 @@
             {% with set=stickers_dict|dict_key:pack.pk %}
                 {% for sticker in set %}
                 <img src="{{ sticker.image.url }}" alt="{{ sticker.description }}" width="250" height="250"
-                     style="margin: 5px;">
+                     style="pointer-events: none; margin: 5px;">
                 {% endfor %}
             {% endwith %}
             </div>
