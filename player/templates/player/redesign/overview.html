@@ -756,6 +756,7 @@
     {% if player.account.groups.all.0.name == "chat_moderator" %}
     <script src='{% static "redesign/js/chat_admin.js" %}?{{ csrf_token }}'></script>
     {% endif %}
+    <audio id="padoru" preload="auto"><source src='{% static "redesign/audio/padoru.mp3" %}?{{ csrf_token }}'></audio>
     </div>
     <!--конец Враппера двух вкладок-->
 
@@ -766,8 +767,26 @@
 </main>
 
 <script>
+  var audio;
+
   function ready() {
       document.getElementById('chat-log-{{ LANGUAGE_CODE }}').scrollTop = document.getElementById('chat-log-{{ LANGUAGE_CODE }}').scrollHeight;
+  }
+
+  function audio_play(pk) {
+    if(audio){
+      audio.pause();
+      audio.currentTime = 0;
+      audio = null;
+    }
+    else{
+      audio = document.getElementById(pk);
+      audio.play();
+
+      setTimeout(function (){
+          audio = null;
+      }, 11000);
+    }
   }
 
   document.addEventListener("DOMContentLoaded", ready);
