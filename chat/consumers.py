@@ -72,7 +72,7 @@ def _get_awa(image):
 def _append_message(chat_id, author, text):
     message = {'author': author.pk,
                'content': text,
-               'dtime': str(timezone.now().timestamp()).split('.')[0]
+               'dtime': str(datetime.now().timestamp()).split('.')[0]
                }
 
     r = redis.StrictRedis(host='redis', port=6379, db=0)

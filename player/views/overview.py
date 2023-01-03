@@ -109,8 +109,7 @@ def overview(request):
 
             author = Player.objects.filter(pk=int(b['author'])).only('id', 'nickname', 'image', 'time_zone').get()
             # сначала делаем из наивного времени aware, потом задаем ЧП игрока
-            b['dtime'] = datetime.datetime.fromtimestamp(int(b['dtime'])).replace(
-                tzinfo=pytz.timezone(TIME_ZONE)).astimezone(
+            b['dtime'] = datetime.datetime.fromtimestamp(int(b['dtime'])).astimezone(
                 tz=pytz.timezone(player.time_zone)).strftime("%H:%M")
             b['author'] = author.pk
             b['counter'] = int(scan[1])
