@@ -13,6 +13,7 @@ from django.db.models.signals import post_delete
 from django.dispatch import receiver
 from war.models.wars.war import War
 from war.models.wars.war_side import WarSide
+from skill.models.scouting import Scouting
 
 
 # класс ивентовой войны
@@ -93,27 +94,33 @@ class EventWar(War):
                         # для каждого типа юнитов, по которому этот юнит может бить
                         for target_type in getattr(squad, 'specs')[unit]['damage'].keys():
 
-                            if target_type in damage_dict[squad.side]:
-                                damage_dict[squad.side][target_type] += getattr(squad, unit) * \
-                                                                                    getattr(squad, 'specs')[unit][
-                                                                                        'damage'][
-                                                                                        target_type]
+                            # vvv--- знание местности ---vvv
+                            if Scouting.objects.filter(player=squad.owner, level__gt=0).exists():
+                                scouting = Scouting.objects.get(player=squad.owner)
+
+                                sum = getattr(squad, unit) * \
+                                      getattr(squad, 'specs')[unit][
+                                          'damage'][
+                                          target_type]
+
+                                sq_dmg = scouting.apply({'sum': sum})
+
                             else:
-                                damage_dict[squad.side][target_type] = getattr(squad, unit) * \
-                                                                                   getattr(squad, 'specs')[unit][
-                                                                                       'damage'][
-                                                                                       target_type]
+                                sq_dmg = getattr(squad, unit) * \
+                                                getattr(squad, 'specs')[unit][
+                                                    'damage'][
+                                                    target_type]
+                            # ^^^--- знание местности ---^^^
+
+                            if target_type in damage_dict[squad.side]:
+                                damage_dict[squad.side][target_type] += sq_dmg
+                            else:
+                                damage_dict[squad.side][target_type] = sq_dmg
                             # vvvvvvvvvv логи vvvvvvvvvv
                             if self.squads_dict[target_type] in types_damage_dict[squad.side]:
-                                types_damage_dict[squad.side][self.squads_dict[target_type]] += getattr(squad, unit) * \
-                                                                                    getattr(squad, 'specs')[unit][
-                                                                                        'damage'][
-                                                                                        target_type]
+                                types_damage_dict[squad.side][self.squads_dict[target_type]] += sq_dmg
                             else:
-                                types_damage_dict[squad.side][self.squads_dict[target_type]] = getattr(squad, unit) * \
-                                                                                    getattr(squad, 'specs')[unit][
-                                                                                        'damage'][
-                                                                                        target_type]
+                                types_damage_dict[squad.side][self.squads_dict[target_type]] = sq_dmg
                             # ^^^^^^^^^^ логи ^^^^^^^^^^
 
         # vvvvvvvvvv логи vvvvvvvvvv
@@ -554,6 +561,6 @@ class EventWar(War):
 # сигнал прослушивающий создание партии, после этого формирующий таску
 @receiver(post_delete, sender=EventWar)
 def delete_post(sender, instance, **kwargs):
-
-    instance.task.delete()
+    if instance.task:
+        instance.task.delete()
 

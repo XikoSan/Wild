@@ -10,6 +10,7 @@ from django.utils import timezone
 def war_round_task(type, id):
     war_class = apps.get_model('war', type)
     war = war_class.objects.get(pk=id)
-    if war.start_time + datetime.timedelta(minutes=59) > timezone.now():
+    if type != 'EventWar'\
+            and war.start_time + datetime.timedelta(minutes=59) > timezone.now():
         return
     war.war_round()

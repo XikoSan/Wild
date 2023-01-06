@@ -41,6 +41,7 @@ from region.building.rate_building import RateBuilding
 from state.models.capital import Capital
 from gov.models.president import President
 from region.building.defences import Defences
+from skill.models.scouting import Scouting
 
 
 # класс наземной войны
@@ -188,29 +189,35 @@ class GroundWar(War):
                         # для каждого типа юнитов, по которому этот юнит может бить
                         for target_type in getattr(squad, 'specs')[unit]['damage'].keys():
 
-                            if target_type in damage_dict[squad.side]:
-                                damage_dict[squad.side][target_type] += getattr(squad, unit) * \
-                                                                        getattr(squad, 'specs')[unit][
-                                                                            'damage'][
-                                                                            target_type]
+                            # vvv--- знание местности ---vvv
+                            if Scouting.objects.filter(player=squad.owner, level__gt=0).exists():
+                                scouting = Scouting.objects.get(player=squad.owner)
+
+                                sum = getattr(squad, unit) * \
+                                      getattr(squad, 'specs')[unit][
+                                          'damage'][
+                                          target_type]
+
+                                sq_dmg = scouting.apply({'sum': sum})
+
                             else:
-                                damage_dict[squad.side][target_type] = getattr(squad, unit) * \
-                                                                       getattr(squad, 'specs')[unit][
-                                                                           'damage'][
-                                                                           target_type]
+                                sq_dmg = getattr(squad, unit) * \
+                                                getattr(squad, 'specs')[unit][
+                                                    'damage'][
+                                                    target_type]
+                            # ^^^--- знание местности ---^^^
+
+                            if target_type in damage_dict[squad.side]:
+                                damage_dict[squad.side][target_type] += sq_dmg
+
+                            else:
+                                damage_dict[squad.side][target_type] = sq_dmg
+
                             # vvvvvvvvvv логи vvvvvvvvvv
                             if self.squads_dict[target_type] in types_damage_dict[squad.side]:
-                                types_damage_dict[squad.side][self.squads_dict[target_type]] += getattr(squad, unit) * \
-                                                                                                getattr(squad, 'specs')[
-                                                                                                    unit][
-                                                                                                    'damage'][
-                                                                                                    target_type]
+                                types_damage_dict[squad.side][self.squads_dict[target_type]] += sq_dmg
                             else:
-                                types_damage_dict[squad.side][self.squads_dict[target_type]] = getattr(squad, unit) * \
-                                                                                               getattr(squad, 'specs')[
-                                                                                                   unit][
-                                                                                                   'damage'][
-                                                                                                   target_type]
+                                types_damage_dict[squad.side][self.squads_dict[target_type]] = sq_dmg
                             # ^^^^^^^^^^ логи ^^^^^^^^^^
 
         # vvvvvvvvvv логи vvvvvvvvvv

@@ -3,6 +3,7 @@
 {% load dict_key %}
 {% load has_key %}
 {% load get_attr %}
+{% load scouting %}
 {% load get_sum %}
 {% load get_key_list %}
 {% load i18n %}{% load tz %}
@@ -29,16 +30,29 @@
     var units_damage = {};
 
         {% for squad_type in war|get_attr:'squads_list' %}
+
             {% with squad_cl=war|get_attr:squad_type|get_attr:'model' %}
+
                 {% for unit in squad_cl|get_attr:'specs'|get_key_list %}
+
         units_energy['{{ unit }}'] = {{ squad_cl|get_attr:'specs'|dict_key:unit|dict_key:'energy' }};
+
         units_damage['{{ unit }}'] = {
                         {% for dest_type in squad_cl|get_attr:'specs'|dict_key:unit|dict_key:'damage' %}
-            {{ dest_type }}: {{ squad_cl|get_attr:'specs'|dict_key:unit|dict_key:'damage'|dict_key:dest_type }},
+
+                            {% with squad_dmg=squad_cl|get_attr:'specs'|dict_key:unit|dict_key:'damage'|dict_key:dest_type %}
+
+            {{ dest_type }}: {{ squad_dmg|scouting:player }},
+
+                            {% endwith %}
+
                         {% endfor %}
         };
+
                 {% endfor %}
+
             {% endwith %}
+
         {% endfor %}
 
 </script>
@@ -163,7 +177,9 @@
                                                         {{ war|get_attr:'squads_dict'|dict_key:dest_type }}
                                                     </div>
                                                     <div class="row">
-                                                    {{ squad_cl|get_attr:'specs'|dict_key:unit|dict_key:'damage'|dict_key:dest_type }}
+                                                    {% with squad_dmg=squad_cl|get_attr:'specs'|dict_key:unit|dict_key:'damage'|dict_key:dest_type %}
+                                                        {{ squad_dmg|scouting:player|floatformat:1 }}
+                                                    {% endwith %}
                                                     </div>
                                                 </div>
                                                 {% endfor %}

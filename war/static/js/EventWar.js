@@ -12,10 +12,10 @@ jQuery(document).ready(function ($) {
 
             for(dest_type in units_damage[obj.id]){
                 if ( damage_dict.hasOwnProperty(dest_type) ){
-                    damage_dict[dest_type] += units_damage[obj.id][dest_type] * obj.value;
+                    damage_dict[dest_type] += Math.floor(units_damage[obj.id][dest_type] * obj.value);
                 }
                 else{
-                    damage_dict[dest_type] = units_damage[obj.id][dest_type] * obj.value;
+                    damage_dict[dest_type] = Math.floor(units_damage[obj.id][dest_type] * obj.value);
                 }
             }
 
