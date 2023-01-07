@@ -27,7 +27,7 @@ def cash_top(request):
     cursor = connection.cursor()
 
     # получаем партии для текущей страницы
-    cursor.execute("with sum_limit(lim) as ( select SUM(store.cash) + player.cash  from player_player as player join storage_storage as store on player.id = 20 and store.owner_id = player.id and store.deleted = false group by player.id ), store_sum(owner_id, cash) as (  select store.owner_id, sum(store.cash) from storage_storage as store where store.deleted = false group by store.owner_id ) select id, nickname from player_player as player join store_sum as store on store.owner_id = player.id where store.cash + player.cash > (select lim from sum_limit) order by store.cash + player.cash desc limit 10;")
+    cursor.execute("with sum_limit(lim) as ( select SUM(store.cash) + player.cash  from player_player as player join storage_storage as store on player.id = 20 and store.owner_id = player.id and store.deleted = false group by player.id ), store_sum(owner_id, cash) as (  select store.owner_id, sum(store.cash) from storage_storage as store where store.deleted = false group by store.owner_id ) select id, nickname from player_player as player join store_sum as store on store.owner_id = player.id order by store.cash + player.cash desc limit 10;")
     cash_top = cursor.fetchall()
 
     #  ----------- нужно тупо чтобы выбрать картинки и не заморачиваться
@@ -36,7 +36,7 @@ def cash_top(request):
     for line in cash_top:
         players_pk.append(line[0])
 
-    players_img = Player.objects.only('pk', 'image').filter(pk__in=players_pk)
+    players_img = Player.objects.only('pk', 'image', 'party').filter(pk__in=players_pk)
     #  -----------
 
     players = []
@@ -59,6 +59,7 @@ def cash_top(request):
         for pl_img in players_img:
             if pl_img.pk == line[0]:
                 char.image = pl_img.image
+                char.party = pl_img.party   
                 break
 
         players.append(char)
@@ -85,6 +86,21 @@ def cash_top(request):
             'select_text': 'Никнейм',
             'visible': 'true'
         },
+
+        'party':{
+            'image':
+            {
+                'text': '',
+                'select_text': 'Герб',
+                'visible': 'true'
+            },
+            'title':
+            {
+                'text': 'Партия',
+                'select_text': 'Партия',
+                'visible': 'false'
+            }
+        }
     }
 
 
