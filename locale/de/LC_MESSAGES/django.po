@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-01-08 19:17+0300\n"
-"PO-Revision-Date: 2022-12-04 22:37+0300\n"
+"PO-Revision-Date: 2023-01-08 23:19+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -79,66 +79,46 @@ msgid "Партия"
 msgstr "Partei"
 
 #: player/logs/cash_log.py:21
-#, fuzzy
-#| msgid "Финансирование"
 msgctxt "cash_log"
 msgid "Финансирование"
-msgstr "Verkauf"
+msgstr "Finanzierung"
 
 #: player/logs/cash_log.py:22
 msgctxt "cash_log"
 msgid "Майнинг"
-msgstr ""
+msgstr "Bergbau"
 
 #: player/logs/cash_log.py:23
-#, fuzzy
-#| msgid "Передать"
 msgctxt "cash_log"
 msgid "Перелёт"
-msgstr "Übertragen"
+msgstr "Flug"
 
 #: player/logs/cash_log.py:24
-#, fuzzy
-#| msgctxt "storage"
-#| msgid "Новый Склад"
 msgctxt "cash_log"
 msgid "Новый Склад"
 msgstr "Neues Lagerhaus"
 
 #: player/logs/cash_log.py:25
-#, fuzzy
-#| msgctxt "assets"
-#| msgid "Операции с товарами"
 msgctxt "cash_log"
 msgid "Операции со Складом"
-msgstr "Transaktionen mit Waren"
+msgstr "Lagerbetrieb"
 
 #: player/logs/cash_log.py:26
-#, fuzzy
-#| msgctxt "assets"
-#| msgid "Перемещение товаров"
 msgctxt "cash_log"
 msgid "Передача товаров"
-msgstr "Verlagerung der Ware"
+msgstr "Übertragung von Waren"
 
 #: player/logs/cash_log.py:27
-#, fuzzy
-#| msgid "Торговля"
 msgctxt "cash_log"
 msgid "Торговля"
 msgstr "Markt"
 
 #: player/logs/cash_log.py:28
-#, fuzzy
-#| msgctxt "w_trading_new"
-#| msgid "Покупка"
 msgctxt "cash_log"
 msgid "Гос. закупки"
-msgstr "Kaufen"
+msgstr "Öffentliche Aufträge"
 
 #: player/logs/cash_log.py:29
-#, fuzzy
-#| msgid "Навыки"
 msgctxt "cash_log"
 msgid "Навыки"
 msgstr "Fahigkeiten"
@@ -357,43 +337,32 @@ msgstr "- der erste Profilrahmen im Spiel"
 #: player/templates/player/redesign/game_event/newyear.html:218
 msgctxt "game_event"
 msgid "С новым годом!"
-msgstr ""
+msgstr "Ein frohes neues Jahr!"
 
 #: player/templates/player/redesign/game_event/newyear.html:221
 msgctxt "game_event"
 msgid "общий"
-msgstr ""
+msgstr "allgemein"
 
 #: player/templates/player/redesign/game_event/newyear.html:222
-#, fuzzy
-#| msgid "Наличные"
 msgctxt "game_event"
 msgid "личный"
-msgstr "Geld"
+msgstr "persönlich"
 
 #: player/templates/player/redesign/game_event/newyear.html:390
-#, fuzzy
-#| msgctxt "game_event"
-#| msgid "Награды события:"
 msgctxt "game_event"
 msgid "Новогоднее событие в WP:"
-msgstr "Belohnungen:"
+msgstr "Silvesterfeier bei WP:"
 
 #: player/templates/player/redesign/game_event/newyear.html:391
-#, fuzzy
-#| msgctxt "game_event"
-#| msgid "- первая прогрессионная рамка для аватара в игре"
 msgctxt "game_event"
 msgid "игровые ценности и новые рамки для аватара в двух прогрессиях!"
-msgstr "- der erste Profilrahmen im Spiel"
+msgstr "Spielwerte und neue Avatar-Rahmen in zwei Abstufungen!"
 
 #: player/templates/player/redesign/game_event/newyear.html:392
-#, fuzzy
-#| msgctxt "game_event"
-#| msgid "Награды события:"
 msgctxt "game_event"
 msgid "Личная прогрессия события"
-msgstr "Belohnungen:"
+msgstr "Persönlicher Verlauf des Ereignisses"
 
 #: player/templates/player/redesign/game_event/newyear.html:393
 msgctxt "game_event"
@@ -401,6 +370,8 @@ msgid ""
 "Заполняется расходованием энергии, как и ежедневное финансирование, и "
 "зависит только от твоих личных усилий."
 msgstr ""
+"Voller Energieaufwand, wie die tägliche Finanzierung, und nur von Ihren "
+"persönlichen Anstrengungen abhängig."
 
 #: player/templates/player/redesign/game_event/newyear.html:394
 msgctxt "game_event"
@@ -408,19 +379,18 @@ msgid ""
 "Она позволит получить тебе премиум-аккаунт для комфортной игры, а также один "
 "из трёх этапов зимней прогрессионой рамки аватара."
 msgstr ""
+"Damit erhalten Sie einen Premium-Account, mit dem Sie bequem spielen können, "
+"sowie eine der drei Stufen des Avatar-Winterrahmens."
 
 #: player/templates/player/redesign/game_event/newyear.html:395
-#, fuzzy
-#| msgctxt "game_event"
-#| msgid "Награды события:"
 msgctxt "game_event"
 msgid "Общая прогрессия события"
-msgstr "Belohnungen:"
+msgstr "Allgemeiner Ablauf des Ereignisses"
 
 #: player/templates/player/redesign/game_event/newyear.html:396
 msgctxt "game_event"
 msgid "Заполняется усилиями всех игроков сервера."
-msgstr ""
+msgstr "Wird durch die Bemühungen aller Spieler auf dem Server ausgefüllt."
 
 #: player/templates/player/redesign/game_event/newyear.html:397
 msgctxt "game_event"
@@ -428,6 +398,8 @@ msgid ""
 "Ты не сможешь собрать награды, открытые в общей прогрессии, пока не пройдёшь "
 "соответствующий этап личной."
 msgstr ""
+"Die in der allgemeinen Progression freigeschalteten Belohnungen können Sie "
+"erst erhalten, wenn Sie die entsprechende persönliche Stufe erreicht haben."
 
 #: player/templates/player/redesign/game_event/newyear.html:398
 msgctxt "game_event"
@@ -435,6 +407,8 @@ msgid ""
 "Когда будет открыт очередной этап общей прогрессии, потрать энергию, чтобы "
 "получить свою награду"
 msgstr ""
+"Wenn die nächste Stufe der allgemeinen Progression geöffnet wird, verbrauche "
+"Energie, um deine Belohnung zu erhalten."
 
 #: player/templates/player/redesign/menu.html:7
 msgctxt "menu"
@@ -543,7 +517,7 @@ msgstr "Halloween-Event"
 #: player/templates/player/redesign/overview.html:274
 msgctxt "overview"
 msgid "С новым годом!"
-msgstr ""
+msgstr "Ein frohes neues Jahr!"
 
 #: player/templates/player/redesign/overview.html:440
 msgctxt "overview"
@@ -620,7 +594,7 @@ msgstr "Fertigstellung"
 #: player/templates/player/redesign/overview_skills.html:148
 msgctxt "skills"
 msgid "в очередь"
-msgstr "in Wartezeit"
+msgstr "aufwerten"
 
 #: player/templates/player/redesign/overview_skills.html:52
 #: player/templates/player/redesign/overview_skills.html:58
@@ -837,7 +811,7 @@ msgstr "Parteihintergrund anzeigen"
 #: player/templates/player/redesign/profile.html:415
 msgctxt "profile"
 msgid "Энергетики в авто-добыче"
-msgstr "Energieträger im Auto-Bergbau"
+msgstr "Energie automatisch auffüllen"
 
 #: player/templates/player/redesign/profile.html:446
 msgctxt "profile"
@@ -859,28 +833,20 @@ msgstr "vor langer Zeit"
 
 #: player/templates/player/redesign/wallet.html:26
 #: player/templatetags/redesign/wallet_operations.py:37
-#, fuzzy
-#| msgctxt "assets"
-#| msgid "Операции с товарами"
 msgctxt "wallet"
 msgid "Операции"
-msgstr "Transaktionen mit Waren"
+msgstr "Operationen"
 
 #: player/templates/player/redesign/wallet.html:41
 #: player/templatetags/redesign/wallet_locks.py:40
-#, fuzzy
-#| msgctxt "w_trading_new"
-#| msgid "Будет заблокировано"
 msgctxt "wallet"
 msgid "Блокировки"
-msgstr "Wird blockiert"
+msgstr "Sperren"
 
 #: player/templates/player/redesign/wallet.html:56
 #: player/templatetags/redesign/wallet_cash.py:24
 #: player/templatetags/redesign/wallet_cash.py:25
 #: player/templatetags/redesign/wallet_cash.py:31
-#, fuzzy
-#| msgid "Наличные"
 msgctxt "wallet"
 msgid "Наличные"
 msgstr "Geld"
@@ -895,63 +861,45 @@ msgstr "seit"
 
 #: player/templatetags/redesign/wallet_cash.py:18
 #: player/templatetags/redesign/wallet_cash.py:19
-#, fuzzy
-#| msgid "Регион"
 msgctxt "wallet"
 msgid "Регион"
 msgstr "Region"
 
 #: player/templatetags/redesign/wallet_locks.py:21
 #: player/templatetags/redesign/wallet_locks.py:22
-#, fuzzy
-#| msgctxt "w_trading"
-#| msgid "Товар"
 msgctxt "wallet"
 msgid "Товар"
 msgstr "Produkt"
 
 #: player/templatetags/redesign/wallet_locks.py:26
 #: player/templatetags/redesign/wallet_locks.py:27
-#, fuzzy
-#| msgctxt "w_trading"
-#| msgid "Количество"
 msgctxt "wallet"
 msgid "Количество"
 msgstr "Anzahl"
 
 #: player/templatetags/redesign/wallet_locks.py:33
 #: player/templatetags/redesign/wallet_locks.py:34
-#, fuzzy
-#| msgctxt "w_trading_new"
-#| msgid "Будет заблокировано"
 msgctxt "wallet"
 msgid "Блокировано"
-msgstr "Wird blockiert"
+msgstr "Blockiert"
 
 #: player/templatetags/redesign/wallet_operations.py:18
 #: player/templatetags/redesign/wallet_operations.py:19
-#, fuzzy
-#| msgid "Время полёта"
 msgctxt "wallet"
 msgid "Время"
-msgstr "Flugzeit"
+msgstr "Zeit"
 
 #: player/templatetags/redesign/wallet_operations.py:24
 #: player/templatetags/redesign/wallet_operations.py:25
-#, fuzzy
-#| msgid "Изменение языка"
 msgctxt "wallet"
 msgid "Изменение"
-msgstr "Sprache wechseln"
+msgstr "ändern"
 
 #: player/templatetags/redesign/wallet_operations.py:30
 #: player/templatetags/redesign/wallet_operations.py:31
-#, fuzzy
-#| msgctxt "goods"
-#| msgid "Оборудование"
 msgctxt "wallet"
 msgid "Описание"
-msgstr "Ausrüstung"
+msgstr "Beschreibung"
 
 #: player/views/change_back_allow.py:41 player/views/full_auto_allow.py:41
 msgid "Некорректное значение"
@@ -983,7 +931,7 @@ msgstr "Es ist ein Fehler beim Abbrechen der Fähigkeit aufgetreten"
 
 #: player/views/expense_energy.py:28
 msgid "Десять минут ещё не прошло"
-msgstr "Es sind noch keine 10 Minuten vergangen"
+msgstr "Zehn Minuten sind noch nicht vorbei"
 
 #: player/views/expense_energy.py:29 player/views/expense_energy.py:52
 #: player/views/expense_energy.py:61 player/views/expense_energy.py:72
@@ -1004,12 +952,12 @@ msgstr "Fehler im Anfragetyp"
 
 #: player/views/full_auto_allow.py:42 player/views/full_auto_allow.py:58
 msgid "Энергетики в авто-добыче"
-msgstr "Energieträger im Auto-Bergbau"
+msgstr "Energie automatisch auffüllen"
 
 #: player/views/game_event/new_year.py:57
 msgctxt "game_event_ny"
 msgid "С новым годом!"
-msgstr ""
+msgstr "Ein frohes neues Jahr!"
 
 #: player/views/lists/cash_top.py:109
 msgid "Топ богатейших"
@@ -1064,33 +1012,31 @@ msgid "Навыки"
 msgstr "Fahigkeiten"
 
 #: player/views/wallet.py:21
-#, fuzzy
-#| msgid "Финансирование"
 msgid "Финансы"
-msgstr "Verkauf"
+msgstr "Finanzen"
 
 #: region/region.py:89
 msgctxt "goods"
 msgid "WTI"
-msgstr ""
+msgstr "WTI"
 
 #: region/region.py:90
 msgctxt "goods"
 msgid "Brent"
-msgstr ""
+msgstr "Brent"
 
 #: region/region.py:91
 msgctxt "goods"
 msgid "Urals"
-msgstr ""
+msgstr "Urals"
 
 #: region/templates/region/buildings/defences.html:5
 msgid "Уровень Укреплений"
-msgstr "Wehranlage"
+msgstr "Verteidigungsanlage"
 
 #: region/templates/region/buildings/hospital.html:5
 msgid "Уровень Госпиталя"
-msgstr "Krankenhausstufe"
+msgstr "Krankenhaus"
 
 #: region/templates/region/buildings/hospital.html:17
 msgid "Рейтинг Госпиталя"
@@ -1108,7 +1054,7 @@ msgstr "Arbeit"
 #: region/templates/region/redesign/mining.html:11
 msgctxt "daily_header"
 msgid "Потрать энергию и получи"
-msgstr ""
+msgstr "Energie verbrauchen und erhalten"
 
 #: region/templates/region/redesign/mining.html:12
 msgctxt "daily_header"
@@ -1283,12 +1229,12 @@ msgstr "Es ist ein Fehler beim Abbrechen der Fähigkeit aufgetreten"
 #: region/views/do_mining.py:163 region/views/do_mining.py:225
 msgctxt "mining"
 msgid "Ошибка добычи ресурсов"
-msgstr "Fehler bei der Ressourcengewinnung"
+msgstr "Fehler beim Arbeiten"
 
 #: region/views/do_mining.py:44 region/views/start_auto.py:53
 msgctxt "mining"
 msgid "У вас нет склада в этом регионе"
-msgstr "Sie besitzen kein Lager in dieser Region"
+msgstr "Sie besitzen kein Lagerhaus in dieser Region"
 
 #: region/views/do_mining.py:57
 msgctxt "mining"
@@ -1363,7 +1309,7 @@ msgstr "Arbeit"
 #: region/views/start_auto.py:76
 msgctxt "mining"
 msgid "Ошибка автоматической добычи ресурсов"
-msgstr "Fehler bei der automatischen Ressourcenextraktion"
+msgstr "Fehler bei auto-Arbeit"
 
 #: region/views/start_auto.py:34
 msgctxt "mining"
@@ -1511,7 +1457,7 @@ msgstr "Medikamente"
 #: storage/models/transport.py:150
 msgctxt "goods"
 msgid "Автоматы"
-msgstr "Automaten"
+msgstr "Gewehre"
 
 #: state/models/treasury.py:85 storage/models/destroy.py:58
 #: storage/models/factory/production_log.py:63
@@ -1529,7 +1475,7 @@ msgstr "Panzer"
 #: storage/models/transport.py:160
 msgctxt "goods"
 msgid "Штурмовики"
-msgstr "Infanterie"
+msgstr "Kampfflugzeuge"
 
 #: state/models/treasury.py:91 storage/models/destroy.py:62
 #: storage/models/factory/production_log.py:69 storage/models/storage.py:79
@@ -1545,7 +1491,7 @@ msgstr "Orbitalrakete"
 #: storage/models/transport.py:170
 msgctxt "goods"
 msgid "ПЗРК"
-msgstr "MANPADS"
+msgstr "MPADS"
 
 #: state/models/treasury.py:97 storage/models/destroy.py:66
 #: storage/models/factory/production_log.py:75
@@ -1562,14 +1508,14 @@ msgstr "PZ-Kanone"
 #: storage/models/transport.py:180
 msgctxt "goods"
 msgid "БМП"
-msgstr "BMP"
+msgstr "Schützenpanzer"
 
 #: state/models/treasury.py:103 storage/models/destroy.py:70
 #: storage/models/factory/project.py:227 storage/models/storage.py:86
 #: storage/models/storage.py:211 storage/models/trade_offer.py:97
 msgctxt "goods"
 msgid "БПЛА"
-msgstr "UAV"
+msgstr "Drohnen"
 
 #: state/templates/state/state_view.html:40
 msgid "Donate"
@@ -1685,7 +1631,7 @@ msgstr "Medikamente - Limit"
 #: storage/models/storage.py:178
 msgctxt "goods"
 msgid "Автоматы - лимит"
-msgstr "Automaten - Limit"
+msgstr "Gewehre - Limit"
 
 #: storage/models/storage.py:183
 msgctxt "goods"
@@ -1700,7 +1646,7 @@ msgstr "Panzer - Limit"
 #: storage/models/storage.py:193
 msgctxt "goods"
 msgid "Штурмовики - лимит"
-msgstr "Infanterie - Limit"
+msgstr "Kampfflugzeuge - Limit"
 
 #: storage/models/storage.py:198
 msgctxt "goods"
@@ -1710,17 +1656,17 @@ msgstr "Orbitalrakete - Limit"
 #: storage/models/storage.py:203
 msgctxt "goods"
 msgid "ПЗРК - лимит"
-msgstr "MANPADS - Limit"
+msgstr "MPADS - Limit"
 
 #: storage/models/storage.py:208
 msgctxt "goods"
 msgid "БМП - лимит"
-msgstr "BMP - Limit"
+msgstr "Schützenpanzer - Limit"
 
 #: storage/models/storage.py:213
 msgctxt "goods"
 msgid "БПЛА - лимит"
-msgstr "UAV - Limit"
+msgstr "Drohnen - Limit"
 
 #: storage/models/storage.py:259
 msgid "positive_spend_stock_req"
@@ -1738,77 +1684,77 @@ msgstr "gesamte Menge"
 #: storage/models/transport.py:90
 msgctxt "goods"
 msgid "Уголь - кубов"
-msgstr "Kohle - Kubikmeter"
+msgstr "Kohle - Menge"
 
 #: storage/models/transport.py:95
 msgctxt "goods"
 msgid "Железо - кубов"
-msgstr "Eisen - Kubikmeter"
+msgstr "Eisen - Menge"
 
 #: storage/models/transport.py:100
 msgctxt "goods"
 msgid "Бокситы - кубов"
-msgstr "Bauxit - Kubikmeter"
+msgstr "Bauxit - Menge"
 
 #: storage/models/transport.py:106
 msgctxt "goods"
 msgid "WTI - кубов"
-msgstr "WTI-Öl - Kubikmeter"
+msgstr "WTI-Öl - Menge"
 
 #: storage/models/transport.py:111
 msgctxt "goods"
 msgid "Brent - кубов"
-msgstr "Brent-Öl - Kubikmeter"
+msgstr "Brent-Öl - Menge"
 
 #: storage/models/transport.py:116
 msgctxt "goods"
 msgid "Urals - кубов"
-msgstr "Ural-Öl - Kubikmeter"
+msgstr "Ural-Öl - Menge"
 
 #: storage/models/transport.py:122
 msgctxt "goods"
 msgid "Бензин - кубов"
-msgstr "Benzin - Kubikmeter"
+msgstr "Benzin - Menge"
 
 #: storage/models/transport.py:127
 msgctxt "goods"
 msgid "Дизель - кубов"
-msgstr "Diesel - Kubikmeter"
+msgstr "Diesel - Menge"
 
 #: storage/models/transport.py:132
 msgctxt "goods"
 msgid "Пластик - кубов"
-msgstr "Plastik - Kubikmeter"
+msgstr "Plastik - Menge"
 
 #: storage/models/transport.py:136
 msgctxt "goods"
 msgid "Сталь - кубов"
-msgstr "Stahl - Kubikmeter"
+msgstr "Stahl - Menge"
 
 #: storage/models/transport.py:140
 msgctxt "goods"
 msgid "Алюминий - кубов"
-msgstr "Aluminium - Kubikmeter"
+msgstr "Aluminium - Menge"
 
 #: storage/models/transport.py:146
 msgctxt "goods"
 msgid "Медикаменты - кубов"
-msgstr "Medikamente - Kubikmeter"
+msgstr "Medikamente - Menge"
 
 #: storage/models/transport.py:152
 msgctxt "goods"
 msgid "Автоматы - кубов"
-msgstr "Automaten - Kubikmeter"
+msgstr "Gewehre - Menge"
 
 #: storage/models/transport.py:157
 msgctxt "goods"
 msgid "Танки - кубов"
-msgstr "Panzer - Kubikmeter"
+msgstr "Panzer - Menge"
 
 #: storage/models/transport.py:162
 msgctxt "goods"
 msgid "Штурмовики - кубов"
-msgstr "Infanterie - Kubikmeter"
+msgstr "Schützenpanzer - Menge"
 
 #: storage/models/transport.py:165
 msgctxt "goods"
@@ -1818,27 +1764,27 @@ msgstr "Orbitalrakete"
 #: storage/models/transport.py:167
 msgctxt "goods"
 msgid "Орбиталки - кубов"
-msgstr "Orbitalrakete - Kubikmeter"
+msgstr "Orbitalrakete - Menge"
 
 #: storage/models/transport.py:172
 msgctxt "goods"
 msgid "ПЗРК - кубов"
-msgstr "MANPADS - Kubikmeter"
+msgstr "MPADS - Menge"
 
 #: storage/models/transport.py:175
 msgctxt "goods"
 msgid "ПТ-пушка"
-msgstr "PT-Kanonen"
+msgstr "PZ-Kanonen"
 
 #: storage/models/transport.py:177
 msgctxt "goods"
 msgid "ПТ-пушка - кубов"
-msgstr "PT-Kanonen - Kubikmeter"
+msgstr "PT-Kanonen - Menge"
 
 #: storage/models/transport.py:182
 msgctxt "goods"
 msgid "БМП - кубов"
-msgstr "BMP - Kubikmeter"
+msgstr "Schützenpanzer - Menge"
 
 #: storage/models/transport.py:185
 msgctxt "goods"
@@ -1848,7 +1794,7 @@ msgstr "Drohnen"
 #: storage/models/transport.py:187
 msgctxt "goods"
 msgid "Дроны - кубов"
-msgstr "Drohnen - Kubikmeter"
+msgstr "Drohnen - Menge"
 
 #: storage/templates/storage/auctions/auction_info.html:15
 #: storage/templates/storage/auctions/auctions.html:38
@@ -2055,13 +2001,13 @@ msgstr "Anzahl"
 #: storage/templates/storage/redesign/storage.html:170
 msgctxt "storage_assets"
 msgid "использовать"
-msgstr "verwenden"
+msgstr "Wild Pass verwenden"
 
 #: storage/templates/storage/redesign/storage.html:189
 #: storage/templates/storage/redesign/storage.html:377
 msgctxt "storage_transfer"
 msgid "Перемещение Склада"
-msgstr "Verlagerung des Lagers"
+msgstr "Lagerhaus verlegen"
 
 #: storage/templates/storage/redesign/storage.html:191
 msgctxt "storage_transfer"
@@ -2072,7 +2018,7 @@ msgstr ""
 msgctxt "storage_transfer"
 msgid "Вы можете перенести Склад в регион текущего местоположения (один раз)"
 msgstr ""
-"Sie können das Lager in die Region des aktuellen Standorts verschieben "
+"Sie können das Lagerhaus in die Region des aktuellen Standorts verschieben "
 "(einmalig)"
 
 #: storage/templates/storage/redesign/storage.html:206
@@ -2120,13 +2066,13 @@ msgid ""
 "Выберите товары в каждой из категорий, ёмкость Склада для которых будет "
 "увеличена"
 msgstr ""
-"Wählen Sie die Produkte in jeder Kategorie aus, für die die Lagerkapazität "
-"erhöht werden soll"
+"Wählen Sie die Waren in jeder Kategorie aus, für die die Lagerkapazität "
+"erhöht werden soll."
 
 #: storage/templates/storage/redesign/storage.html:265
 msgctxt "storage_upgrade"
 msgid "Большой объём запасов"
-msgstr "Große Lagerbestände"
+msgstr "Großer Lagerbestand"
 
 #: storage/templates/storage/redesign/storage.html:292
 msgctxt "storage_upgrade"
@@ -2280,7 +2226,7 @@ msgstr "Übertragen"
 #: storage/templates/storage/trading/new_offer.html:38
 msgctxt "w_trading_new"
 msgid "Новое торговое предложение"
-msgstr "Ein neues Verkaufsangebot"
+msgstr "Neues Handelsangebot"
 
 #: storage/templates/storage/trading/new_offer.html:43
 msgctxt "w_trading_new"
@@ -2295,12 +2241,12 @@ msgstr "+5 für jedes Lagerhaus"
 #: storage/templates/storage/trading/new_offer.html:57
 msgctxt "w_trading_new"
 msgid "Продажа"
-msgstr "Zu verkaufen"
+msgstr "verkaufen"
 
 #: storage/templates/storage/trading/new_offer.html:58
 msgctxt "w_trading_new"
 msgid "Покупка"
-msgstr "Kaufen"
+msgstr "kaufen"
 
 #: storage/templates/storage/trading/new_offer.html:64
 msgctxt "w_trading_new"
@@ -2310,12 +2256,12 @@ msgstr "Lagerhaus"
 #: storage/templates/storage/trading/new_offer.html:76
 msgctxt "w_trading_new"
 msgid "Группа товаров"
-msgstr "Produktgruppe"
+msgstr "Kategorie der Waren"
 
 #: storage/templates/storage/trading/new_offer.html:80
 msgctxt "w_trading_new"
 msgid "Выберите группу"
-msgstr "Wählen Sie eine Gruppe aus"
+msgstr "Kategorie auswählen"
 
 #: storage/templates/storage/trading/new_offer.html:90
 msgctxt "w_trading_new"
@@ -2325,7 +2271,7 @@ msgstr "Produkt"
 #: storage/templates/storage/trading/new_offer.html:94
 msgctxt "w_trading_new"
 msgid "Выберите товар"
-msgstr "Wählen Sie ein Produkt aus"
+msgstr "Wähle ein Produkt aus"
 
 #: storage/templates/storage/trading/new_offer.html:126
 msgctxt "w_trading_new"
@@ -2557,12 +2503,9 @@ msgid "Указанный Склад уже в текущем регионе"
 msgstr "Das angegebene Lagerhaus befindet sich bereits in der aktuellen Region"
 
 #: storage/views/assets/storage_move.py:69
-#, fuzzy
-#| msgctxt "w_trading"
-#| msgid "Не удалось получить владельца торгового предложения"
 msgctxt "assets"
 msgid "Нельзя переместить Склад из атакованного региона"
-msgstr "Der Inhaber des Handelsangebots ist nicht zu ermitteln"
+msgstr "Sie können das Lagerhaus nicht in einer angegriffenen Region verlegen."
 
 #: storage/views/factory/factory.py:47
 msgid "Производство"
@@ -2725,12 +2668,10 @@ msgid "ID оффера должно быть числом"
 msgstr "Die Anbieter-ID muss eine Zahl sein"
 
 #: storage/views/trading/accept_offer.py:90
-#, fuzzy
-#| msgctxt "w_trading"
-#| msgid "Нельзя принять собственный оффер"
 msgctxt "w_trading"
 msgid "Нельзя принять оффер из атакованного региона"
-msgstr "Sie können Ihr eigenes Angebot nicht annehmen"
+msgstr ""
+"Ein Angebot aus einer angegriffenen Region kann nicht angenommen werden"
 
 #: storage/views/trading/accept_offer.py:100
 msgctxt "w_trading"
@@ -2941,7 +2882,7 @@ msgstr "Handelsangebot wurde erfolgreich erstellt"
 #: storage/views/trading/get_offers.py:188
 msgctxt "w_trading"
 msgid "Получение офферов"
-msgstr "Empfang der Angebote"
+msgstr "Angebote erhalten"
 
 #: storage/views/trading/get_offers.py:63
 msgctxt "w_trading"
@@ -2991,19 +2932,19 @@ msgstr "Panzer"
 
 #: war/models/squads/infantry.py:32 war/models/wars/war_side.py:30
 msgid "Автоматы"
-msgstr "Automaten"
+msgstr "Gewehre"
 
 #: war/models/squads/light_vehicle.py:47 war/models/wars/war_side.py:32
 msgid "БМП"
-msgstr "BMP"
+msgstr "Schützenpanzer"
 
 #: war/models/squads/light_vehicle.py:49 war/models/wars/war_side.py:34
 msgid "ПТ-орудия"
-msgstr "PT-Kanonen"
+msgstr "PZ-Kanone"
 
 #: war/models/squads/recon.py:32
 msgid "БПЛА"
-msgstr "UAV"
+msgstr "Drohnen"
 
 #: war/models/wars/war_side.py:27
 msgid "Дроны"
