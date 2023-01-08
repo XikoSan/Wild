@@ -7,9 +7,9 @@
 	</a>
 
 	<div class="info__left-col">
-		<p class="info__money">
+		<p class="info__money" onclick="window.location.href = '/wallet/'" style="cursor: pointer;">
 			$
-			<span id="cash"{% localize off %} data-text="{{ player.cash }}" {% endlocalize %} onclick="window.location.href = '/wallet/'">
+			<span id="cash"{% localize off %} data-text="{{ player.cash }}" {% endlocalize %}>
 				{{ player.cash }} <!-- значение денег -->
 			</span>
 		</p>
