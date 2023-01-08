@@ -2,7 +2,7 @@
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
-from django.utils.translation import gettext_lazy
+from django.utils.translation import gettext_lazy, pgettext_lazy
 from datetime import datetime, timedelta
 from player.logs.log import Log
 
@@ -18,15 +18,15 @@ class CashLog(Log):
     activity = GenericForeignKey('content_type', 'object_id')
     # текст активности
     activityChoices = (
-        ('daily',  'Финансирование'),
-        ('mine',  'Майнинг'),
-        ('flyin', 'Перелёт'),
-        ('n_str', 'Новый Склад'),
-        ('store', 'Операции со Складом'),
-        ('trans', 'Передача товаров'),
-        ('trade', 'Торговля'),
-        ('auct', 'Гос. закупки'),
-        ('skill', 'Навыки'),
+        ('daily',  pgettext_lazy('cash_log', 'Финансирование')),
+        ('mine',  pgettext_lazy('cash_log', 'Майнинг')),
+        ('flyin', pgettext_lazy('cash_log', 'Перелёт')),
+        ('n_str', pgettext_lazy('cash_log', 'Новый Склад')),
+        ('store', pgettext_lazy('cash_log', 'Операции со Складом')),
+        ('trans', pgettext_lazy('cash_log', 'Передача товаров')),
+        ('trade', pgettext_lazy('cash_log', 'Торговля')),
+        ('auct', pgettext_lazy('cash_log', 'Гос. закупки')),
+        ('skill', pgettext_lazy('cash_log', 'Навыки')),
     )
     activity_txt = models.CharField(
         max_length=5,

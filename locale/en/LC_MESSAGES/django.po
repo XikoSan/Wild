@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-20 16:26+0300\n"
-"PO-Revision-Date: 2022-12-20 16:26+0300\n"
+"POT-Creation-Date: 2023-01-08 19:17+0300\n"
+"PO-Revision-Date: 2023-01-08 19:19+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -49,6 +49,14 @@ msgstr "Trading"
 msgid "Золото"
 msgstr "Gold"
 
+#: bill/templates/state/gov/drafts/start_war.html:22
+msgid "no_border_regions"
+msgstr ""
+
+#: bill/templates/state/gov/drafts/start_war.html:80
+msgid "no_common_borders"
+msgstr ""
+
 #: gov/templates/state/gov/forms/foreign_right.html:21
 #: party/templates/party/party_requests.html:36
 msgid "отклонить всё"
@@ -70,6 +78,51 @@ msgstr "World`s parties"
 msgid "Партия"
 msgstr "Party"
 
+#: player/logs/cash_log.py:21
+msgctxt "cash_log"
+msgid "Финансирование"
+msgstr "Daily financing"
+
+#: player/logs/cash_log.py:22
+msgctxt "cash_log"
+msgid "Майнинг"
+msgstr "Mining"
+
+#: player/logs/cash_log.py:23
+msgctxt "cash_log"
+msgid "Перелёт"
+msgstr "Flying"
+
+#: player/logs/cash_log.py:24
+msgctxt "cash_log"
+msgid "Новый Склад"
+msgstr "New Warehouse"
+
+#: player/logs/cash_log.py:25
+msgctxt "cash_log"
+msgid "Операции со Складом"
+msgstr "Operations with Warehouse"
+
+#: player/logs/cash_log.py:26
+msgctxt "cash_log"
+msgid "Передача товаров"
+msgstr "Transportation"
+
+#: player/logs/cash_log.py:27
+msgctxt "cash_log"
+msgid "Торговля"
+msgstr "Trading"
+
+#: player/logs/cash_log.py:28
+msgctxt "cash_log"
+msgid "Гос. закупки"
+msgstr "Public procurement"
+
+#: player/logs/cash_log.py:29
+msgctxt "cash_log"
+msgid "Навыки"
+msgstr "Skills"
+
 #: player/player.py:282 region/views/do_mining.py:31
 #: region/views/start_auto.py:26
 msgctxt "mining"
@@ -90,7 +143,7 @@ msgstr "Daily Funding Error"
 #: region/views/retrieve_cash.py:41 region/views/start_auto.py:28
 #: region/views/start_auto.py:36 region/views/start_auto.py:46
 #: region/views/start_auto.py:55 region/views/start_auto.py:77
-#: storage/views/assets/assets_action.py:251
+#: storage/views/assets/assets_action.py:252
 #: storage/views/assets/storage_move.py:37
 #: storage/views/assets/storage_move.py:46
 #: storage/views/assets/storage_move.py:56
@@ -436,95 +489,91 @@ msgstr "Cancel"
 msgid "Загрузить"
 msgstr "Upload"
 
-#: player/templates/player/redesign/overview.html:34
+#: player/templates/player/redesign/overview.html:33
 msgid "обзор"
 msgstr "overview"
 
-#: player/templates/player/redesign/overview.html:48
+#: player/templates/player/redesign/overview.html:47
 msgid "чат"
 msgstr "chat"
 
-#: player/templates/player/redesign/overview.html:59
+#: player/templates/player/redesign/overview.html:58
 msgid "мир"
 msgstr "World"
 
-#: player/templates/player/redesign/overview.html:108
+#: player/templates/player/redesign/overview.html:107
 msgid "независимый регион"
 msgstr "free region"
 
-#: player/templates/player/redesign/overview.html:198
-msgid "Тестовый сервер войн"
-msgstr "War test server"
-
-#: player/templates/player/redesign/overview.html:232
+#: player/templates/player/redesign/overview.html:222
 msgid "войн нет"
 msgstr "no wars"
 
-#: player/templates/player/redesign/overview.html:277
+#: player/templates/player/redesign/overview.html:267
 msgctxt "overview"
 msgid "Хэллоуинский ивент"
 msgstr "Halloween event"
 
-#: player/templates/player/redesign/overview.html:284
+#: player/templates/player/redesign/overview.html:274
 msgctxt "overview"
 msgid "С новым годом!"
 msgstr "Happy New Year!"
 
-#: player/templates/player/redesign/overview.html:451
+#: player/templates/player/redesign/overview.html:440
 msgctxt "overview"
 msgid "сила"
 msgstr "STR"
 
-#: player/templates/player/redesign/overview.html:456
+#: player/templates/player/redesign/overview.html:445
 msgctxt "overview"
 msgid "инт"
 msgstr "INT"
 
-#: player/templates/player/redesign/overview.html:461
+#: player/templates/player/redesign/overview.html:450
 msgctxt "overview"
 msgid "вын"
 msgstr "END"
 
-#: player/templates/player/redesign/overview.html:477
+#: player/templates/player/redesign/overview.html:466
 msgctxt "overview"
 msgid "Выборы лидера"
 msgstr "Presidential elections"
 
-#: player/templates/player/redesign/overview.html:480
+#: player/templates/player/redesign/overview.html:469
 msgctxt "overview"
 msgid "Выборы"
 msgstr "Elections"
 
-#: player/templates/player/redesign/overview.html:485
+#: player/templates/player/redesign/overview.html:474
 msgctxt "overview"
 msgid "партии"
 msgstr "parties"
 
-#: player/templates/player/redesign/overview.html:485
+#: player/templates/player/redesign/overview.html:474
 msgctxt "overview"
 msgid "государства"
 msgstr "of state"
 
-#: player/templates/player/redesign/overview.html:485
+#: player/templates/player/redesign/overview.html:474
 msgctxt "overview"
 msgid "региона"
 msgstr "of region"
 
-#: player/templates/player/redesign/overview.html:522
-#: player/templates/player/redesign/overview.html:567
+#: player/templates/player/redesign/overview.html:511
+#: player/templates/player/redesign/overview.html:556
 msgid "партий нет"
 msgstr "no parties"
 
-#: player/templates/player/redesign/overview.html:529
+#: player/templates/player/redesign/overview.html:518
 msgctxt "overview"
 msgid "парламент"
 msgstr "parliament"
 
-#: player/templates/player/redesign/overview.html:743
+#: player/templates/player/redesign/overview.html:732
 msgid "У вас пока еще нет стикеров"
 msgstr "You don't have stickers yet"
 
-#: player/templates/player/redesign/overview.html:756
+#: player/templates/player/redesign/overview.html:745
 msgctxt "overview"
 msgid "магазин"
 msgstr "shop"
@@ -782,6 +831,26 @@ msgstr "was online"
 msgid "давно"
 msgstr "long ago"
 
+#: player/templates/player/redesign/wallet.html:26
+#: player/templatetags/redesign/wallet_operations.py:37
+msgctxt "wallet"
+msgid "Операции"
+msgstr "Operations"
+
+#: player/templates/player/redesign/wallet.html:41
+#: player/templatetags/redesign/wallet_locks.py:40
+msgctxt "wallet"
+msgid "Блокировки"
+msgstr "Locks"
+
+#: player/templates/player/redesign/wallet.html:56
+#: player/templatetags/redesign/wallet_cash.py:24
+#: player/templatetags/redesign/wallet_cash.py:25
+#: player/templatetags/redesign/wallet_cash.py:31
+msgctxt "wallet"
+msgid "Наличные"
+msgstr "Cash"
+
 #: player/templates/player/view_profile.html:22
 msgid "char_info"
 msgstr ""
@@ -789,6 +858,48 @@ msgstr ""
 #: player/templates/player/view_profile.html:78
 msgid "since"
 msgstr ""
+
+#: player/templatetags/redesign/wallet_cash.py:18
+#: player/templatetags/redesign/wallet_cash.py:19
+msgctxt "wallet"
+msgid "Регион"
+msgstr "Region"
+
+#: player/templatetags/redesign/wallet_locks.py:21
+#: player/templatetags/redesign/wallet_locks.py:22
+msgctxt "wallet"
+msgid "Товар"
+msgstr "Good"
+
+#: player/templatetags/redesign/wallet_locks.py:26
+#: player/templatetags/redesign/wallet_locks.py:27
+msgctxt "wallet"
+msgid "Количество"
+msgstr "Quantity"
+
+#: player/templatetags/redesign/wallet_locks.py:33
+#: player/templatetags/redesign/wallet_locks.py:34
+msgctxt "wallet"
+msgid "Блокировано"
+msgstr "Locked"
+
+#: player/templatetags/redesign/wallet_operations.py:18
+#: player/templatetags/redesign/wallet_operations.py:19
+msgctxt "wallet"
+msgid "Время"
+msgstr "Time"
+
+#: player/templatetags/redesign/wallet_operations.py:24
+#: player/templatetags/redesign/wallet_operations.py:25
+msgctxt "wallet"
+msgid "Изменение"
+msgstr "Change"
+
+#: player/templatetags/redesign/wallet_operations.py:30
+#: player/templatetags/redesign/wallet_operations.py:31
+msgctxt "wallet"
+msgid "Описание"
+msgstr "Description"
 
 #: player/views/change_back_allow.py:41 player/views/full_auto_allow.py:41
 msgid "Некорректное значение"
@@ -848,7 +959,7 @@ msgctxt "game_event_ny"
 msgid "С новым годом!"
 msgstr ""
 
-#: player/views/lists/cash_top.py:93
+#: player/views/lists/cash_top.py:109
 msgid "Топ богатейших"
 msgstr "Top of richest"
 
@@ -876,7 +987,7 @@ msgstr "New character"
 msgid "Ошибка в форме профиля"
 msgstr "Profile form error"
 
-#: player/views/overview.py:188
+#: player/views/overview.py:186
 msgid "Обзор"
 msgstr "Overview"
 
@@ -899,6 +1010,10 @@ msgstr "Timezone change"
 #: player/views/skills/skill_queue.py:30 skill/views/skills_list.py:59
 msgid "Навыки"
 msgstr "Skills"
+
+#: player/views/wallet.py:21
+msgid "Финансы"
+msgstr "Funds"
 
 #: region/region.py:89
 msgctxt "goods"
@@ -1156,7 +1271,7 @@ msgctxt "mining"
 msgid "Запасов руды в регионе недостаточно для добычи"
 msgstr "Ore reserves in the region are not enough for mining"
 
-#: region/views/do_mining.py:227 storage/views/assets/assets_action.py:252
+#: region/views/do_mining.py:227 storage/views/assets/assets_action.py:253
 #: storage/views/assets/storage_move.py:88
 #: storage/views/storage/cash_transfer.py:144
 #: storage/views/storage/new_storage.py:88
@@ -2225,136 +2340,136 @@ msgid "Перемещение товаров"
 msgstr "Warehouse move"
 
 #: storage/views/assets/assets_action.py:43
+#: storage/views/assets/assets_action.py:74
+#: storage/views/assets/assets_action.py:91
+#: storage/views/assets/assets_action.py:133
+#: storage/views/assets/assets_action.py:143
+#: storage/views/assets/assets_action.py:152
+#: storage/views/assets/assets_action.py:159
+#: storage/views/assets/assets_action.py:166
+#: storage/views/assets/assets_action.py:173
+#: storage/views/assets/assets_action.py:193
+#: storage/views/assets/assets_action.py:233
+#: storage/views/assets/assets_action.py:240
+msgctxt "assets"
+msgid "Закрыть"
+msgstr "Close"
+
+#: storage/views/assets/assets_action.py:72
+#: storage/views/assets/assets_action.py:191
+msgctxt "assets"
+msgid "Склад"
+msgstr "Warehouse"
+
+#: storage/views/assets/assets_action.py:72
+#: storage/views/assets/assets_action.py:191
+msgctxt "assets"
+msgid "вам не принадлежит"
+msgstr "does not belong to you"
+
 #: storage/views/assets/assets_action.py:73
-#: storage/views/assets/assets_action.py:90
 #: storage/views/assets/assets_action.py:132
 #: storage/views/assets/assets_action.py:142
 #: storage/views/assets/assets_action.py:151
 #: storage/views/assets/assets_action.py:158
 #: storage/views/assets/assets_action.py:165
 #: storage/views/assets/assets_action.py:172
-#: storage/views/assets/assets_action.py:192
-#: storage/views/assets/assets_action.py:232
-#: storage/views/assets/assets_action.py:239
-msgctxt "assets"
-msgid "Закрыть"
-msgstr "Close"
-
-#: storage/views/assets/assets_action.py:71
-#: storage/views/assets/assets_action.py:190
-msgctxt "assets"
-msgid "Склад"
-msgstr "Warehouse"
-
-#: storage/views/assets/assets_action.py:71
-#: storage/views/assets/assets_action.py:190
-msgctxt "assets"
-msgid "вам не принадлежит"
-msgstr "does not belong to you"
-
-#: storage/views/assets/assets_action.py:72
-#: storage/views/assets/assets_action.py:131
-#: storage/views/assets/assets_action.py:141
-#: storage/views/assets/assets_action.py:150
-#: storage/views/assets/assets_action.py:157
-#: storage/views/assets/assets_action.py:164
-#: storage/views/assets/assets_action.py:171
 msgctxt "assets"
 msgid "Перемещение товара"
 msgstr "Goods transfer"
 
-#: storage/views/assets/assets_action.py:88
+#: storage/views/assets/assets_action.py:89
 msgctxt "assets"
 msgid "Запрещено вывозить товары из атакованных регионов"
 msgstr ""
 
-#: storage/views/assets/assets_action.py:89
-#: storage/views/assets/assets_action.py:191
-#: storage/views/assets/assets_action.py:231
+#: storage/views/assets/assets_action.py:90
+#: storage/views/assets/assets_action.py:192
+#: storage/views/assets/assets_action.py:232
 msgctxt "assets"
 msgid "Уничтожение товара"
 msgstr "Goods destruction"
 
-#: storage/views/assets/assets_action.py:130
+#: storage/views/assets/assets_action.py:131
 msgctxt "assets"
 msgid "Недостаточно средств для оплаты доставки"
 msgstr "Insufficient funds to pay for shipping"
 
-#: storage/views/assets/assets_action.py:137
-#: storage/views/assets/assets_action.py:147
+#: storage/views/assets/assets_action.py:138
+#: storage/views/assets/assets_action.py:148
 msgctxt "assets"
 msgid "На складе в регионе "
 msgstr "At warehouse in the"
 
-#: storage/views/assets/assets_action.py:139
+#: storage/views/assets/assets_action.py:140
 msgctxt "assets"
 msgid " недостаточно места для товара "
 msgstr "insufficient space for goods"
 
-#: storage/views/assets/assets_action.py:140
-#: storage/views/assets/assets_action.py:149
+#: storage/views/assets/assets_action.py:141
+#: storage/views/assets/assets_action.py:150
 msgctxt "assets"
 msgid "Требуется: "
 msgstr "Required: "
 
-#: storage/views/assets/assets_action.py:140
-#: storage/views/assets/assets_action.py:149
+#: storage/views/assets/assets_action.py:141
+#: storage/views/assets/assets_action.py:150
 msgctxt "assets"
 msgid ", в наличии: "
 msgstr ", in stock: "
 
-#: storage/views/assets/assets_action.py:148
+#: storage/views/assets/assets_action.py:149
 msgctxt "assets"
 msgid " недостаточно товара "
 msgstr " not enough goods "
 
-#: storage/views/assets/assets_action.py:148
+#: storage/views/assets/assets_action.py:149
 msgctxt "assets"
 msgid " для передачи."
 msgstr "for transfer."
 
-#: storage/views/assets/assets_action.py:156
+#: storage/views/assets/assets_action.py:157
 msgctxt "assets"
 msgid "Товары для передачи не выбраны"
 msgstr "Goods to transfer are not selected"
 
-#: storage/views/assets/assets_action.py:163
+#: storage/views/assets/assets_action.py:164
 msgctxt "assets"
 msgid "В целевом Складе заполнены значения"
 msgstr "Values are filled in the target Warehouse"
 
-#: storage/views/assets/assets_action.py:170
+#: storage/views/assets/assets_action.py:171
 msgctxt "assets"
 msgid "Целевой Склад вам не принадлежит"
 msgstr "Target Warehouse does not belong to you"
 
-#: storage/views/assets/assets_action.py:228
+#: storage/views/assets/assets_action.py:229
 msgctxt "assets"
 msgid "На складе в регионе"
 msgstr "At warehouse in the"
 
-#: storage/views/assets/assets_action.py:229
+#: storage/views/assets/assets_action.py:230
 msgctxt "assets"
 msgid "недостаточно товара"
 msgstr "not enough goods"
 
-#: storage/views/assets/assets_action.py:230
+#: storage/views/assets/assets_action.py:231
 msgctxt "assets"
 msgid "Требуется:"
 msgstr "Required:"
 
-#: storage/views/assets/assets_action.py:230
+#: storage/views/assets/assets_action.py:231
 msgctxt "assets"
 msgid ", в наличии:"
 msgstr ", in stock:"
 
-#: storage/views/assets/assets_action.py:237
+#: storage/views/assets/assets_action.py:238
 msgctxt "assets"
 msgid "Некорректное действие"
 msgstr "Incorrect action"
 
-#: storage/views/assets/assets_action.py:238
-#: storage/views/assets/assets_action.py:250
+#: storage/views/assets/assets_action.py:239
+#: storage/views/assets/assets_action.py:251
 msgctxt "assets"
 msgid "Операции с товарами"
 msgstr "Operations with goods"
@@ -2384,12 +2499,9 @@ msgid "Указанный Склад уже в текущем регионе"
 msgstr "The specified Warehouse is already in the current region"
 
 #: storage/views/assets/storage_move.py:69
-#, fuzzy
-#| msgctxt "w_trading"
-#| msgid "Не удалось получить владельца торгового предложения"
 msgctxt "assets"
 msgid "Нельзя переместить Склад из атакованного региона"
-msgstr "Failed to get trade offer owner"
+msgstr "Cant move Warehouse from region under attack"
 
 #: storage/views/factory/factory.py:47
 msgid "Производство"
@@ -2552,12 +2664,9 @@ msgid "ID оффера должно быть числом"
 msgstr "Offer ID must be a number"
 
 #: storage/views/trading/accept_offer.py:90
-#, fuzzy
-#| msgctxt "w_trading"
-#| msgid "Нельзя принять собственный оффер"
 msgctxt "w_trading"
 msgid "Нельзя принять оффер из атакованного региона"
-msgstr "Can't accept own offer"
+msgstr "Can't accept offer from region under attack"
 
 #: storage/views/trading/accept_offer.py:100
 msgctxt "w_trading"
@@ -2833,6 +2942,27 @@ msgstr ""
 #: war/models/wars/war_side.py:27
 msgid "Дроны"
 msgstr ""
+
+#, fuzzy
+#~| msgid "Финансирование"
+#~ msgctxt "goods"
+#~ msgid "Финансирование"
+#~ msgstr "Financing"
+
+#, fuzzy
+#~| msgid "Торговля"
+#~ msgctxt "goods"
+#~ msgid "Торговля"
+#~ msgstr "Trading"
+
+#, fuzzy
+#~| msgid "Навыки"
+#~ msgctxt "goods"
+#~ msgid "Навыки"
+#~ msgstr "Skills"
+
+#~ msgid "Тестовый сервер войн"
+#~ msgstr "War test server"
 
 #, fuzzy
 #~| msgctxt "goods"

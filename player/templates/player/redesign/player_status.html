@@ -9,7 +9,7 @@
 	<div class="info__left-col">
 		<p class="info__money">
 			$
-			<span id="cash"{% localize off %} data-text="{{ player.cash }}" {% endlocalize %}>
+			<span id="cash"{% localize off %} data-text="{{ player.cash }}" {% endlocalize %} onclick="window.location.href = '/wallet/'">
 				{{ player.cash }} <!-- значение денег -->
 			</span>
 		</p>
