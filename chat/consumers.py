@@ -155,7 +155,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                     desc = '\'' + desc + '\''
                     message = '<img src="' + link + '" width="250" height="250" onclick="audio_play(' + desc +')">'
                 else:
-                    message = '<img src="' + link + '" width="250" height="250" style="pointer-events: none;" alt="{{ desc }}">'
+                    message = '<img src="' + link + '" width="250" height="250" style="pointer-events: none;" alt="' + desc +'">'
 
         counter = await sync_to_async(_append_message, thread_sensitive=True)(chat_id=self.room_name,
                                                                               author=self.player,
