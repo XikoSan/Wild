@@ -1,0 +1,92 @@
+{% extends 'player/redesign/header.html' %}
+{% load l10n %}{% load i18n %}
+{% load static %}
+{% load redesign.skill_top.power_top %}
+{% load redesign.skill_top.knowledge_top %}
+{% load redesign.skill_top.endurance_top %}
+{% load tz %}
+{% block content %}
+<section class="tlist">
+
+    <!--кнопки-->
+    <div class="tlist__buttons">
+
+      <button class="ct__top-tab ct__mid-btn active">
+        <svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
+          <mask id="mask0_259_317" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+            <path class="geometry1" d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"/>
+          </mask>
+          <g mask="url(#mask0_259_317)">
+            <path class="geometry2" d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z"/>
+            <path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"/>
+            <path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"/>
+            <path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
+          </g>
+        </svg>
+        <span>{% trans 'Сила' %}</span>
+      </button>
+
+      <button class="ct__top-tab ct__mid-btn">
+        <svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
+          <mask id="mask0_259_318" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+            <path class="geometry1" d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"/>
+          </mask>
+          <g mask="url(#mask0_259_318)">
+            <path class="geometry2" d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z"/>
+            <path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"/>
+            <path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"/>
+            <path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
+          </g>
+        </svg>
+        <span>{% trans 'Интеллект' %}</span>
+      </button>
+
+      <button class="ct__top-tab ct__mid-btn">
+        <svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
+          <mask id="mask0_259_319" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+            <path class="geometry1" d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"/>
+          </mask>
+          <g mask="url(#mask0_259_319)">
+            <path class="geometry2" d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z"/>
+            <path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"/>
+            <path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"/>
+            <path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
+          </g>
+        </svg>
+        <span>{% trans 'Выносливость' %}</span>
+      </button>
+
+    </div>
+
+    <div class="tlist__tab-container">
+      <!--СПИСОК 1-->
+      <div class="tlist__tab custom-scroll active">
+        {% power_top request player %}
+      </div>
+
+      <!--СПИСОК 2-->
+      <div class="tlist__tab custom-scroll">
+        {% knowledge_top request player %}
+      </div>
+
+      <!--СПИСОК 3-->
+      <div class="tlist__tab custom-scroll">
+        {% endurance_top request player %}
+      </div>
+    </div>
+
+</section>
+<script>
+
+const btns = document.querySelectorAll('.ct__mid-btn');
+const tabs = document.querySelectorAll('.tlist__tab')
+
+btns.forEach((btn, index) => btn.addEventListener('click', () => {
+  btns.forEach((el) => el.classList.remove('active'));
+  btns[index].classList.add('active');
+  tabs.forEach((el) => el.classList.remove('active'));
+  tabs[index].classList.add('active');
+}))
+
+</script>
+{% endblock %}

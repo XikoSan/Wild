@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-08 19:17+0300\n"
+"POT-Creation-Date: 2023-01-09 21:36+0300\n"
 "PO-Revision-Date: 2023-01-08 23:19+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -74,7 +74,8 @@ msgstr "Parteien in der Region"
 msgid "Партии мира"
 msgstr "Parteien in der Welt"
 
-#: party/views/party.py:16
+#: party/views/party.py:16 player/views/lists/cash_top.py:99
+#: player/views/lists/cash_top.py:100
 msgid "Партия"
 msgstr "Partei"
 
@@ -410,6 +411,23 @@ msgstr ""
 "Wenn die nächste Stufe der allgemeinen Progression geöffnet wird, verbrauche "
 "Energie, um deine Belohnung zu erhalten."
 
+#: player/templates/player/redesign/lists/skill_top.html:26
+#: player/templates/player/redesign/overview_skills.html:19
+#: player/templatetags/redesign/skill_top/power_top.py:64
+#: player/templatetags/redesign/skill_top/power_top.py:65
+msgid "Сила"
+msgstr "Stärke"
+
+#: player/templates/player/redesign/lists/skill_top.html:41
+#: player/templates/player/redesign/overview_skills.html:68
+msgid "Интеллект"
+msgstr "Bildung"
+
+#: player/templates/player/redesign/lists/skill_top.html:56
+#: player/templates/player/redesign/overview_skills.html:117
+msgid "Выносливость"
+msgstr "Ausdauer"
+
 #: player/templates/player/redesign/menu.html:7
 msgctxt "menu"
 msgid "обзор"
@@ -465,10 +483,21 @@ msgid "Создание персонажа"
 msgstr "Erstellen eines Charakters"
 
 #: player/templates/player/redesign/new_player.html:38
+#: player/templatetags/redesign/skill_top/endurance_top.py:58
+#: player/templatetags/redesign/skill_top/endurance_top.py:59
+#: player/templatetags/redesign/skill_top/knowledge_top.py:58
+#: player/templatetags/redesign/skill_top/knowledge_top.py:59
+#: player/templatetags/redesign/skill_top/power_top.py:58
+#: player/templatetags/redesign/skill_top/power_top.py:59
+#: player/views/lists/cash_top.py:85 player/views/lists/cash_top.py:86
 msgid "Никнейм"
 msgstr "Nickname"
 
 #: player/templates/player/redesign/new_player.html:41
+#: player/templatetags/redesign/skill_top/endurance_top.py:53
+#: player/templatetags/redesign/skill_top/knowledge_top.py:53
+#: player/templatetags/redesign/skill_top/power_top.py:53
+#: player/views/lists/cash_top.py:80
 msgid "Аватар"
 msgstr "Avatar"
 
@@ -578,10 +607,6 @@ msgctxt "overview"
 msgid "магазин"
 msgstr "Shop"
 
-#: player/templates/player/redesign/overview_skills.html:19
-msgid "Сила"
-msgstr "Stärke"
-
 #: player/templates/player/redesign/overview_skills.html:22
 #: player/templates/player/redesign/overview_skills.html:71
 #: player/templates/player/redesign/overview_skills.html:120
@@ -618,14 +643,6 @@ msgstr "im Gange..."
 #: player/templates/player/redesign/overview_skills.html:160
 msgid "изучить"
 msgstr "aufwerten"
-
-#: player/templates/player/redesign/overview_skills.html:68
-msgid "Интеллект"
-msgstr "Bildung"
-
-#: player/templates/player/redesign/overview_skills.html:117
-msgid "Выносливость"
-msgstr "Ausdauer"
 
 #: player/templates/player/redesign/overview_skills.html:170
 msgctxt "skills"
@@ -859,6 +876,51 @@ msgstr "Spieler_info"
 msgid "since"
 msgstr "seit"
 
+#: player/templatetags/redesign/skill_top/endurance_top.py:46
+#: player/templatetags/redesign/skill_top/endurance_top.py:47
+#: player/templatetags/redesign/skill_top/knowledge_top.py:46
+#: player/templatetags/redesign/skill_top/knowledge_top.py:47
+#: player/templatetags/redesign/skill_top/power_top.py:46
+#: player/templatetags/redesign/skill_top/power_top.py:47
+#: player/views/lists/cash_top.py:73 player/views/lists/cash_top.py:74
+msgid "Место"
+msgstr ""
+
+#: player/templatetags/redesign/skill_top/endurance_top.py:64
+#: player/templatetags/redesign/skill_top/endurance_top.py:65
+#, fuzzy
+#| msgctxt "overview"
+#| msgid "вын"
+msgid "Вын"
+msgstr "Ausd."
+
+#: player/templatetags/redesign/skill_top/endurance_top.py:71
+#, fuzzy
+#| msgid "Выносливость"
+msgctxt "skill_top"
+msgid "Топ по Выносливости"
+msgstr "Ausdauer"
+
+#: player/templatetags/redesign/skill_top/knowledge_top.py:64
+#: player/templatetags/redesign/skill_top/knowledge_top.py:65
+#, fuzzy
+#| msgctxt "overview"
+#| msgid "инт"
+msgid "Инт"
+msgstr "Bld."
+
+#: player/templatetags/redesign/skill_top/knowledge_top.py:71
+#, fuzzy
+#| msgid "Интеллект"
+msgctxt "skill_top"
+msgid "Топ по Интеллекту"
+msgstr "Bildung"
+
+#: player/templatetags/redesign/skill_top/power_top.py:71
+msgctxt "skill_top"
+msgid "Топ по Силе"
+msgstr ""
+
 #: player/templatetags/redesign/wallet_cash.py:18
 #: player/templatetags/redesign/wallet_cash.py:19
 msgctxt "wallet"
@@ -959,6 +1021,10 @@ msgctxt "game_event_ny"
 msgid "С новым годом!"
 msgstr "Ein frohes neues Jahr!"
 
+#: player/views/lists/cash_top.py:94
+msgid "Герб"
+msgstr ""
+
 #: player/views/lists/cash_top.py:109
 msgid "Топ богатейших"
 msgstr "Top Reiche"
@@ -970,6 +1036,13 @@ msgstr "Bewohner"
 #: player/views/lists/region_players.py:33
 msgid "Население региона"
 msgstr "Einwohner in der Region"
+
+#: player/views/lists/skill_top.py:21
+#, fuzzy
+#| msgctxt "profile"
+#| msgid "характеристики"
+msgid "Топ по характеристикам"
+msgstr "Fähigkeiten"
 
 #: player/views/lists/world_players.py:57
 msgid "Мировое население"

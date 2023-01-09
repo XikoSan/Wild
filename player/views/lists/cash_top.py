@@ -8,7 +8,7 @@ from player.player import Player
 from player.decorators.player import check_player
 from django.db import connection
 
-# класс партии, в котором её размер - это поле
+# класс игрока, с местом в рейтинге
 class PlayerWithTop(Player):
     pk = 0
     top = 0
@@ -70,20 +70,20 @@ def cash_top(request):
     header = {
 
         'top': {
-            'text': 'Место',
-            'select_text': 'Место',
+            'text': _('Место'),
+            'select_text': _('Место'),
             'visible': 'true'
         },
 
         'image': {
             'text': '',
-            'select_text': 'Аватар',
+            'select_text': _('Аватар'),
             'visible': 'true'
         },
 
         'nickname': {
-            'text': 'Никнейм',
-            'select_text': 'Никнейм',
+            'text': _('Никнейм'),
+            'select_text': _('Никнейм'),
             'visible': 'true'
         },
 
@@ -91,13 +91,13 @@ def cash_top(request):
             'image':
             {
                 'text': '',
-                'select_text': 'Герб',
+                'select_text': _('Герб'),
                 'visible': 'true'
             },
             'title':
             {
-                'text': 'Партия',
-                'select_text': 'Партия',
+                'text': _('Партия'),
+                'select_text': _('Партия'),
                 'visible': 'false'
             }
         }
