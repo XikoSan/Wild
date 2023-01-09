@@ -150,7 +150,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                                                                                    packs=self.sticker_packs)
 
             if link:
-                message = '<img src="' + link + '" width="250" height="250" style="pointer-events: none;" alt="' + desc +'">'
+                message = '<img src="' + link + '" width="250" height="250" style="pointer-events: none;">'
 
         counter = await sync_to_async(_append_message, thread_sensitive=True)(chat_id=self.room_name,
                                                                               author=self.player,
