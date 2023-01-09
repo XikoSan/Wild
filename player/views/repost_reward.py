@@ -39,7 +39,7 @@ def repost_reward(request):
 
                 if 'copy_history' in item \
                         and item['copy_history'][0]['owner_id'] == -164930433 \
-                        and item['copy_history'][0]['id'] == 3519:
+                        and item['copy_history'][0]['id'] == 4379:
                     repost = True
                     # берем TIMESTAMP из ВК, приводим его к часовому поясу сервера, потом - к поясу игрока и прибавляем час
                     need_dtime = datetime.fromtimestamp(item['date'], tz=pytz.timezone(TIME_ZONE)).astimezone(
@@ -75,9 +75,9 @@ def repost_reward(request):
                 }
                 return JResponse(data)
 
-            gold_log = GoldLog(player=player, gold=100, activity_txt='reward')
+            gold_log = GoldLog(player=player, gold=250, activity_txt='reward')
             gold_log.save()
-            Player.objects.filter(pk=player.pk).update(gold=F('gold') + 100)
+            Player.objects.filter(pk=player.pk).update(gold=F('gold') + 250)
 
             data = {
                 'response': 'ok',
