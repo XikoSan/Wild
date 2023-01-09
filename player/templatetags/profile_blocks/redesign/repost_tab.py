@@ -33,7 +33,7 @@ def repost_tab(player):
 
                 if 'copy_history' in item \
                         and item['copy_history'][0]['owner_id'] == -164930433 \
-                        and item['copy_history'][0]['id'] == 3519:
+                        and item['copy_history'][0]['id'] == 4379:
                     repost = True
                     # берем TIMESTAMP из ВК, приводим его к часовому поясу сервера, потом - к поясу игрока и прибавляем час
                     need_dtime = datetime.fromtimestamp(item['date'], tz=pytz.timezone(TIME_ZONE)).astimezone(pytz.timezone(player.time_zone)) + timedelta(hours=1)
