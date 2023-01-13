@@ -5,8 +5,8 @@ from django.http import JsonResponse
 from django.apps import apps
 from player.decorators.player import check_player
 from player.player import Player
-from storage.models.factory.production_log import ProductionLog
-from storage.models.factory.project import Project
+from factory.models.production_log import ProductionLog
+from factory.models.project import Project
 from storage.models.storage import Storage
 from storage.views.storage.locks.get_storage import get_storage
 from math import ceil

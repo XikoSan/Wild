@@ -80,6 +80,7 @@ INSTALLED_APPS = [
     'gov',
     'state',
     'storage',
+    'factory',
     'war',
     'chat',
     'polls',

@@ -9,7 +9,7 @@ from django.utils.translation import ugettext as _
 
 from player.decorators.player import check_player
 from player.player import Player
-from storage.models.factory.project import Project
+from factory.models.project import Project
 from storage.models.storage import Storage
 
 

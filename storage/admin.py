@@ -7,7 +7,7 @@ from storage.models.auction.auction_bet import AuctionBet
 from storage.models.auction.auction_lot import AuctionLot
 from storage.models.cash_lock import CashLock
 from storage.models.destroy import Destroy
-from storage.models.factory.production_log import ProductionLog
+from factory.models.production_log import ProductionLog
 from storage.models.good_lock import GoodLock
 from storage.models.storage import Storage
 from storage.models.trade_offer import TradeOffer
