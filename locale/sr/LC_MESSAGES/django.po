@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-09 21:36+0300\n"
+"POT-Creation-Date: 2023-01-13 16:13+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -56,6 +56,160 @@ msgstr ""
 
 #: bill/templates/state/gov/drafts/start_war.html:80
 msgid "no_common_borders"
+msgstr ""
+
+#: factory/models/production_log.py:18
+msgid "storage_cash"
+msgstr ""
+
+#: factory/models/production_log.py:22 state/models/treasury.py:38
+#: storage/models/storage.py:38 storage/models/storage.py:110
+msgctxt "goods"
+msgid "Наличные"
+msgstr ""
+
+#: factory/models/production_log.py:25 state/models/treasury.py:45
+#: storage/models/destroy.py:21 storage/models/storage.py:45
+#: storage/models/storage.py:119 storage/models/trade_offer.py:75
+#: storage/models/transport.py:93
+msgctxt "goods"
+msgid "Железо"
+msgstr ""
+
+#: factory/models/production_log.py:28 state/models/treasury.py:48
+#: storage/models/destroy.py:24 storage/models/storage.py:47
+#: storage/models/storage.py:124 storage/models/trade_offer.py:76
+#: storage/models/transport.py:98
+msgctxt "goods"
+msgid "Бокситы"
+msgstr ""
+
+#: factory/models/production_log.py:32 state/models/treasury.py:52
+#: storage/models/destroy.py:28 storage/models/storage.py:51
+#: storage/models/storage.py:130 storage/models/trade_offer.py:78
+#: storage/models/transport.py:104
+msgctxt "goods"
+msgid "Нефть WTI"
+msgstr ""
+
+#: factory/models/production_log.py:35 state/models/treasury.py:55
+#: storage/models/destroy.py:31 storage/models/storage.py:53
+#: storage/models/storage.py:135 storage/models/trade_offer.py:79
+#: storage/models/transport.py:109
+msgctxt "goods"
+msgid "Нефть Brent"
+msgstr ""
+
+#: factory/models/production_log.py:38 state/models/treasury.py:58
+#: storage/models/destroy.py:34 storage/models/storage.py:55
+#: storage/models/storage.py:140 storage/models/trade_offer.py:80
+#: storage/models/transport.py:114
+msgctxt "goods"
+msgid "Нефть Urals"
+msgstr ""
+
+#: factory/models/production_log.py:42 state/models/treasury.py:62
+#: storage/models/destroy.py:38 storage/models/factory/project.py:16
+#: storage/models/storage.py:59 storage/models/storage.py:146
+#: storage/models/trade_offer.py:82 storage/models/transport.py:120
+msgctxt "goods"
+msgid "Бензин"
+msgstr ""
+
+#: factory/models/production_log.py:45 state/models/treasury.py:65
+#: storage/models/destroy.py:41 storage/models/storage.py:61
+#: storage/models/storage.py:151 storage/models/trade_offer.py:83
+msgctxt "goods"
+msgid "Дизельное топливо"
+msgstr ""
+
+#: factory/models/production_log.py:48 state/models/treasury.py:68
+#: storage/models/destroy.py:44 storage/models/factory/project.py:39
+#: storage/models/storage.py:63 storage/models/storage.py:156
+#: storage/models/trade_offer.py:84 storage/models/transport.py:130
+msgctxt "goods"
+msgid "Пластик"
+msgstr ""
+
+#: factory/models/production_log.py:50 state/models/treasury.py:71
+#: storage/models/destroy.py:46 storage/models/factory/project.py:85
+#: storage/models/storage.py:65 storage/models/storage.py:160
+#: storage/models/trade_offer.py:85 storage/models/transport.py:134
+#: storage/templates/storage/redesign/storage.html:216
+msgctxt "goods"
+msgid "Сталь"
+msgstr ""
+
+#: factory/models/production_log.py:52 state/models/treasury.py:74
+#: storage/models/destroy.py:48 storage/models/factory/project.py:101
+#: storage/models/storage.py:67 storage/models/storage.py:164
+#: storage/models/trade_offer.py:86 storage/models/transport.py:138
+#: storage/templates/storage/redesign/storage.html:216
+msgctxt "goods"
+msgid "Алюминий"
+msgstr ""
+
+#: factory/models/production_log.py:56 state/models/treasury.py:78
+#: storage/models/destroy.py:52 storage/models/factory/project.py:116
+#: storage/models/storage.py:71 storage/models/storage.py:170
+#: storage/models/trade_offer.py:88 storage/models/transport.py:144
+msgctxt "goods"
+msgid "Медикаменты"
+msgstr ""
+
+#: factory/models/production_log.py:60 state/models/treasury.py:82
+#: storage/models/destroy.py:56 storage/models/factory/project.py:132
+#: storage/models/storage.py:75 storage/models/storage.py:176
+#: storage/models/trade_offer.py:90 storage/models/transport.py:150
+msgctxt "goods"
+msgid "Автоматы"
+msgstr ""
+
+#: factory/models/production_log.py:63 state/models/treasury.py:85
+#: storage/models/destroy.py:58 storage/models/factory/project.py:147
+#: storage/models/storage.py:77 storage/models/storage.py:186
+#: storage/models/trade_offer.py:91 storage/models/transport.py:155
+msgctxt "goods"
+msgid "Танки"
+msgstr ""
+
+#: factory/models/production_log.py:66 state/models/treasury.py:88
+#: storage/models/destroy.py:60 storage/models/factory/project.py:163
+#: storage/models/storage.py:81 storage/models/storage.py:191
+#: storage/models/trade_offer.py:94 storage/models/transport.py:160
+msgctxt "goods"
+msgid "Штурмовики"
+msgstr ""
+
+#: factory/models/production_log.py:69 state/models/treasury.py:91
+#: storage/models/destroy.py:62 storage/models/storage.py:79
+#: storage/models/storage.py:196 storage/models/trade_offer.py:93
+msgctxt "goods"
+msgid "Орбитальные орудия"
+msgstr ""
+
+#: factory/models/production_log.py:72 state/models/treasury.py:94
+#: storage/models/destroy.py:64 storage/models/factory/project.py:179
+#: storage/models/storage.py:82 storage/models/storage.py:201
+#: storage/models/trade_offer.py:95 storage/models/transport.py:170
+msgctxt "goods"
+msgid "ПЗРК"
+msgstr ""
+
+#: factory/models/production_log.py:75 state/models/treasury.py:97
+#: storage/models/destroy.py:66 storage/models/factory/project.py:195
+#: storage/models/storage.py:78 storage/models/storage.py:181
+#: storage/models/trade_offer.py:92
+msgctxt "goods"
+msgid "ПТ-орудия"
+msgstr ""
+
+#: factory/models/production_log.py:78 state/models/treasury.py:100
+#: storage/models/destroy.py:68 storage/models/factory/project.py:211
+#: storage/models/storage.py:84 storage/models/storage.py:206
+#: storage/models/trade_offer.py:96 storage/models/transport.py:180
+msgctxt "goods"
+msgid "БМП"
 msgstr ""
 
 #: gov/templates/state/gov/forms/foreign_right.html:21
@@ -1394,171 +1548,11 @@ msgstr ""
 msgid "Нет такого навыка"
 msgstr ""
 
-#: state/models/treasury.py:38 storage/models/factory/production_log.py:22
-#: storage/models/storage.py:38 storage/models/storage.py:110
-msgctxt "goods"
-msgid "Наличные"
-msgstr ""
-
 #: state/models/treasury.py:42 storage/models/destroy.py:18
 #: storage/models/storage.py:43 storage/models/storage.py:114
 #: storage/models/trade_offer.py:74 storage/models/transport.py:88
 msgctxt "goods"
 msgid "Уголь"
-msgstr ""
-
-#: state/models/treasury.py:45 storage/models/destroy.py:21
-#: storage/models/factory/production_log.py:25 storage/models/storage.py:45
-#: storage/models/storage.py:119 storage/models/trade_offer.py:75
-#: storage/models/transport.py:93
-msgctxt "goods"
-msgid "Железо"
-msgstr ""
-
-#: state/models/treasury.py:48 storage/models/destroy.py:24
-#: storage/models/factory/production_log.py:28 storage/models/storage.py:47
-#: storage/models/storage.py:124 storage/models/trade_offer.py:76
-#: storage/models/transport.py:98
-msgctxt "goods"
-msgid "Бокситы"
-msgstr ""
-
-#: state/models/treasury.py:52 storage/models/destroy.py:28
-#: storage/models/factory/production_log.py:32 storage/models/storage.py:51
-#: storage/models/storage.py:130 storage/models/trade_offer.py:78
-#: storage/models/transport.py:104
-msgctxt "goods"
-msgid "Нефть WTI"
-msgstr ""
-
-#: state/models/treasury.py:55 storage/models/destroy.py:31
-#: storage/models/factory/production_log.py:35 storage/models/storage.py:53
-#: storage/models/storage.py:135 storage/models/trade_offer.py:79
-#: storage/models/transport.py:109
-msgctxt "goods"
-msgid "Нефть Brent"
-msgstr ""
-
-#: state/models/treasury.py:58 storage/models/destroy.py:34
-#: storage/models/factory/production_log.py:38 storage/models/storage.py:55
-#: storage/models/storage.py:140 storage/models/trade_offer.py:80
-#: storage/models/transport.py:114
-msgctxt "goods"
-msgid "Нефть Urals"
-msgstr ""
-
-#: state/models/treasury.py:62 storage/models/destroy.py:38
-#: storage/models/factory/production_log.py:42
-#: storage/models/factory/project.py:16 storage/models/storage.py:59
-#: storage/models/storage.py:146 storage/models/trade_offer.py:82
-#: storage/models/transport.py:120
-msgctxt "goods"
-msgid "Бензин"
-msgstr ""
-
-#: state/models/treasury.py:65 storage/models/destroy.py:41
-#: storage/models/factory/production_log.py:45 storage/models/storage.py:61
-#: storage/models/storage.py:151 storage/models/trade_offer.py:83
-msgctxt "goods"
-msgid "Дизельное топливо"
-msgstr ""
-
-#: state/models/treasury.py:68 storage/models/destroy.py:44
-#: storage/models/factory/production_log.py:48
-#: storage/models/factory/project.py:39 storage/models/storage.py:63
-#: storage/models/storage.py:156 storage/models/trade_offer.py:84
-#: storage/models/transport.py:130
-msgctxt "goods"
-msgid "Пластик"
-msgstr ""
-
-#: state/models/treasury.py:71 storage/models/destroy.py:46
-#: storage/models/factory/production_log.py:50
-#: storage/models/factory/project.py:85 storage/models/storage.py:65
-#: storage/models/storage.py:160 storage/models/trade_offer.py:85
-#: storage/models/transport.py:134
-#: storage/templates/storage/redesign/storage.html:216
-msgctxt "goods"
-msgid "Сталь"
-msgstr ""
-
-#: state/models/treasury.py:74 storage/models/destroy.py:48
-#: storage/models/factory/production_log.py:52
-#: storage/models/factory/project.py:101 storage/models/storage.py:67
-#: storage/models/storage.py:164 storage/models/trade_offer.py:86
-#: storage/models/transport.py:138
-#: storage/templates/storage/redesign/storage.html:216
-msgctxt "goods"
-msgid "Алюминий"
-msgstr ""
-
-#: state/models/treasury.py:78 storage/models/destroy.py:52
-#: storage/models/factory/production_log.py:56
-#: storage/models/factory/project.py:116 storage/models/storage.py:71
-#: storage/models/storage.py:170 storage/models/trade_offer.py:88
-#: storage/models/transport.py:144
-msgctxt "goods"
-msgid "Медикаменты"
-msgstr ""
-
-#: state/models/treasury.py:82 storage/models/destroy.py:56
-#: storage/models/factory/production_log.py:60
-#: storage/models/factory/project.py:132 storage/models/storage.py:75
-#: storage/models/storage.py:176 storage/models/trade_offer.py:90
-#: storage/models/transport.py:150
-msgctxt "goods"
-msgid "Автоматы"
-msgstr ""
-
-#: state/models/treasury.py:85 storage/models/destroy.py:58
-#: storage/models/factory/production_log.py:63
-#: storage/models/factory/project.py:147 storage/models/storage.py:77
-#: storage/models/storage.py:186 storage/models/trade_offer.py:91
-#: storage/models/transport.py:155
-msgctxt "goods"
-msgid "Танки"
-msgstr ""
-
-#: state/models/treasury.py:88 storage/models/destroy.py:60
-#: storage/models/factory/production_log.py:66
-#: storage/models/factory/project.py:163 storage/models/storage.py:81
-#: storage/models/storage.py:191 storage/models/trade_offer.py:94
-#: storage/models/transport.py:160
-msgctxt "goods"
-msgid "Штурмовики"
-msgstr ""
-
-#: state/models/treasury.py:91 storage/models/destroy.py:62
-#: storage/models/factory/production_log.py:69 storage/models/storage.py:79
-#: storage/models/storage.py:196 storage/models/trade_offer.py:93
-msgctxt "goods"
-msgid "Орбитальные орудия"
-msgstr ""
-
-#: state/models/treasury.py:94 storage/models/destroy.py:64
-#: storage/models/factory/production_log.py:72
-#: storage/models/factory/project.py:179 storage/models/storage.py:82
-#: storage/models/storage.py:201 storage/models/trade_offer.py:95
-#: storage/models/transport.py:170
-msgctxt "goods"
-msgid "ПЗРК"
-msgstr ""
-
-#: state/models/treasury.py:97 storage/models/destroy.py:66
-#: storage/models/factory/production_log.py:75
-#: storage/models/factory/project.py:195 storage/models/storage.py:78
-#: storage/models/storage.py:181 storage/models/trade_offer.py:92
-msgctxt "goods"
-msgid "ПТ-орудия"
-msgstr ""
-
-#: state/models/treasury.py:100 storage/models/destroy.py:68
-#: storage/models/factory/production_log.py:78
-#: storage/models/factory/project.py:211 storage/models/storage.py:84
-#: storage/models/storage.py:206 storage/models/trade_offer.py:96
-#: storage/models/transport.py:180
-msgctxt "goods"
-msgid "БМП"
 msgstr ""
 
 #: state/models/treasury.py:103 storage/models/destroy.py:70
@@ -1578,10 +1572,6 @@ msgstr ""
 
 #: state/templates/state/state_view.html:136
 msgid "Государственные налоги"
-msgstr ""
-
-#: storage/models/factory/production_log.py:18
-msgid "storage_cash"
 msgstr ""
 
 #: storage/models/factory/project.py:62 storage/models/transport.py:125
