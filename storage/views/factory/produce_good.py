@@ -1,15 +1,19 @@
+import datetime
+from django.apps import apps
 from django.contrib.auth.decorators import login_required
 from django.contrib.humanize.templatetags.humanize import intcomma
 from django.db import transaction
 from django.http import JsonResponse
-from django.apps import apps
-from player.decorators.player import check_player
-from player.player import Player
+from django.utils import timezone
+from math import ceil
+
 from factory.models.production_log import ProductionLog
 from factory.models.project import Project
+from player.decorators.player import check_player
+from player.player import Player
 from storage.models.storage import Storage
 from storage.views.storage.locks.get_storage import get_storage
-from math import ceil
+
 
 @login_required(login_url='/')
 @check_player
@@ -157,7 +161,7 @@ def produce_good(request):
                 consignment = MilitaryProduction.objects.get(player=player).level + 1
                 # новая стоимость в энергии - цена за "пачку", даже неполную
                 energy_cost = ceil(count / consignment) * getattr(Project, good)['energy']
-        
+
         # посчитать, хватает ли энергии для производства
         if energy_cost > player.energy \
                 or energy_cost > 100:
@@ -191,22 +195,32 @@ def produce_good(request):
         # списать энергию игрока
         player.energy_cons(energy_cost, 2)
         # создаём лог производства
-        production_log = ProductionLog(player=player, prod_storage=storage, prod_result=good)
+        ProductionLog.objects.create(player=player,
+                                     prod_storage=storage,
+                                     good_move='incom',
+                                     good=good,
+                                     prod_value=count,
+                                     )
         # для каждого сырья в схеме
         for material in schema.keys():
             # установить новое значени склада
             setattr(storage, material, getattr(storage, material) - (schema[material] * count))
             # залогировать траты со склада
-            setattr(production_log, material, 0 - schema[material] * count)
+            # создаём лог производства
+            ProductionLog.objects.create(player=player,
+                                         prod_storage=storage,
+                                         good_move='outcm',
+                                         good=material,
+                                         prod_value=schema[material] * count,
+                                         )
 
         # добавить товар на склад
         setattr(storage, good, getattr(storage, good) + count)
-        # залогировать приход на склад
-        setattr(production_log, good, count)
         # сохранить склад
         storage.save()
-        # сохранить лог
-        production_log.save()
+
+        # удаляем записи старше месяца
+        ProductionLog.objects.filter(player=player, dtime__lt=timezone.now() - datetime.timedelta(days=30)).delete()
 
         data = {
             'response': 'ok',
