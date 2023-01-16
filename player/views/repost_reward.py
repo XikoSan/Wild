@@ -75,9 +75,9 @@ def repost_reward(request):
                 }
                 return JResponse(data)
 
-            gold_log = GoldLog(player=player, gold=250, activity_txt='reward')
+            gold_log = GoldLog(player=player, gold=100, activity_txt='reward')
             gold_log.save()
-            Player.objects.filter(pk=player.pk).update(gold=F('gold') + 250)
+            Player.objects.filter(pk=player.pk).update(gold=F('gold') + 100)
 
             data = {
                 'response': 'ok',
