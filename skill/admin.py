@@ -1,6 +1,6 @@
 from django.contrib import admin
 from skill.models.excavation import Excavation
-from skill.models.finance import Finance
+# from skill.models.finance import Finance
 from skill.models.standardization import Standardization
 from skill.models.military_production import MilitaryProduction
 from skill.models.scouting import Scouting
@@ -12,7 +12,7 @@ class SkillAdmin(admin.ModelAdmin):
 
 # Register your models here.
 admin.site.register(Excavation, SkillAdmin)
-admin.site.register(Finance, SkillAdmin)
+# admin.site.register(Finance, SkillAdmin)
 admin.site.register(Standardization, SkillAdmin)
 admin.site.register(MilitaryProduction, SkillAdmin)
 admin.site.register(Scouting, SkillAdmin)

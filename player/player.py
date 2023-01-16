@@ -329,12 +329,12 @@ class Player(models.Model):
 
         PlayerRegionalExpense.objects.filter(player=self).delete()
 
-        # если дейлик ещё не закрывался сегодня
-        if not self.daily_fin:
-            Finance = apps.get_model('skill.Finance')
-            if Finance.objects.filter(player=self, level__gt=0).exists():
-                if count != 0 and daily_procent == 100:
-                    taxed_count += daily_limit
+        # # если дейлик ещё не закрывался сегодня
+        # if not self.daily_fin:
+        #     Finance = apps.get_model('skill.Finance')
+        #     if Finance.objects.filter(player=self, level__gt=0).exists():
+        #         if count != 0 and daily_procent == 100:
+        #             taxed_count += daily_limit
 
         # отмечаем, что  дейлик закрыт:
         # если игрок прокачат навык, то не получит золотой бонус или Подпольное Финансирование

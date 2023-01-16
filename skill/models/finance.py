@@ -31,3 +31,4 @@ class Finance(Skill):
     class Meta:
         verbose_name = "Подпольное финансирование"
         verbose_name_plural = "Подпольное финансирование"
+        abstract = True
