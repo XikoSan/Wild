@@ -12,11 +12,13 @@
                 {% for resource in resources|get_key_list %}
 
                     {% with res_has=resource|get_sum:'_has' %}
-                        total_stocks["{{ region.pk }}"]["{{ resource }}_has"] = {{ region|get_attr:res_has }};
-                    {% endwith %}
-
                     {% with res_cap=resource|get_sum:'_cap' %}
+
+                        total_stocks["{{ region.pk }}"]["{{ resource }}_has"] = {{ region|get_attr:res_has }};
+
                         total_stocks["{{ region.pk }}"]["{{ resource }}_cap"] = {{ region|get_attr:res_cap }};
+
+                    {% endwith %}
                     {% endwith %}
 
                 {% endfor %}

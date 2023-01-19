@@ -65,8 +65,8 @@ class Region(models.Model):
     # разведано
     gold_cap = models.DecimalField(default=00.00, max_digits=5, decimal_places=2, verbose_name='Золото: максимум')
 
-    # потрачено пунктов разведки за сегодня
-    # gold_explored = models.DecimalField(default=00.00, max_digits=5, decimal_places=2, verbose_name='Золото: разведано')
+    # истощение
+    gold_depletion = models.DecimalField(default=00.00, max_digits=5, decimal_places=2, verbose_name='Истощение')
 
     # предел разведки
     # gold_explore_cap = models.DecimalField(default=00.00, max_digits=5, decimal_places=2, verbose_name='Золото: предел разведки')
@@ -78,8 +78,8 @@ class Region(models.Model):
     # максимум запасов
     oil_cap = models.DecimalField(default=00.00, max_digits=5, decimal_places=2, verbose_name='Нефть: максимум')
 
-    # потрачено пунктов разведки за сегодня
-    # oil_explored = models.DecimalField(default=00.00, max_digits=5, decimal_places=2, verbose_name='Нефть: разведано')
+    # истощение
+    oil_depletion = models.DecimalField(default=00.00, max_digits=5, decimal_places=2, verbose_name='истощение')
 
     # предел разведки
     # oil_explore_cap = models.DecimalField(default=00.00, max_digits=5, decimal_places=2, verbose_name='Нефть: предел разведки')
@@ -103,9 +103,9 @@ class Region(models.Model):
     # максимум запасов
     ore_cap = models.DecimalField(default=00.00, max_digits=5, decimal_places=2, verbose_name='Руда: максимум')
 
-    # # потрачено пунктов разведки за сегодня
-    # ore_explored = models.DecimalField(default=00.00, max_digits=5, decimal_places=2, verbose_name='Руда: разведано')
-    #
+    # потрачено пунктов разведки за сегодня
+    ore_depletion = models.DecimalField(default=00.00, max_digits=5, decimal_places=2, verbose_name='истощение')
+
     # # предел разведки
     # ore_explore_cap = models.DecimalField(default=00.00, max_digits=5, decimal_places=2, verbose_name='Руда: предел разведки')
 

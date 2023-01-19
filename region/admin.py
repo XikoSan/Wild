@@ -39,6 +39,27 @@ class PowerPlantAdmin(BuildingAdmin):
 class RegionAdmin(admin.ModelAdmin):
     list_display = ('region_name', 'get_state', 'get_gold', 'get_oil', 'get_ore', 'is_off')
 
+    fields = (
+        # шапка
+        ('is_off'),
+        ('region_name', 'on_map_id'),
+        # координаты
+        ('is_north', 'north', 'is_east', 'east'),
+        # централизация
+        ('longitude', 'latitude', 'zoom'),
+        # гос
+        ('state'),
+        # налоги
+        ('cash_tax', 'oil_tax', 'ore_tax', 'trade_tax'),
+        # ресы
+        ('gold_has', 'gold_cap', 'gold_depletion'),
+        ('oil_has', 'oil_cap', 'oil_depletion', 'oil_type'),
+        ('ore_has', 'ore_cap', 'ore_depletion'),
+        ('coal_proc', 'iron_proc', 'bauxite_proc'),
+        # форма
+        ('shape'),
+    )
+
     def get_state(self, obj):
         if obj.state:
             return obj.state.title
