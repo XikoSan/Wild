@@ -34,12 +34,13 @@ urlpatterns = [
                   url(r'', include('player.urls.skills')),
                   url(r'', include('region.urls')),
 
-                  url(r'', include('storage.urls.factory')),
                   url(r'', include('storage.urls.storage')),
                   url(r'', include('storage.urls.assets')),
                   url(r'', include('storage.urls.trading')),
                   url(r'', include('storage.urls.auctions')),
                   url(r'', include('storage.urls.vault')),
+
+                  url(r'', include('factory.urls.factory')),
 
                   url(r'', include('party.urls.party')),
                   url(r'', include('party.urls.list')),

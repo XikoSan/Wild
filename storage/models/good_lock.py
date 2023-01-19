@@ -37,6 +37,7 @@ class GoodLock(models.Model):
         ('aluminium', 'Алюминий'),
 
         ('medical', 'Медикаменты'),
+        ('drilling', 'Буровые установки'),
 
         ('rifle', 'Автоматы'),
         ('tank', 'Танки'),

@@ -1,8 +1,8 @@
 # coding=utf-8
 from django.conf.urls import include, url
 
-from storage.views.factory.factory import factory
-from storage.views.factory.produce_good import produce_good
+from factory.views.factory import factory
+from factory.views.produce_good import produce_good
 
 urlpatterns = [
 

@@ -69,6 +69,7 @@ class Storage(models.Model):
     # ------vvvvvvv------Оборудование на складе------vvvvvvv------
     equipments = {
         'medical': pgettext_lazy('goods', 'Медикаменты'),
+        'drilling': pgettext_lazy('goods', 'Буровые установки'),
     }
     # ------vvvvvvv------Юниты на складе------vvvvvvv------
     units = {
@@ -89,7 +90,7 @@ class Storage(models.Model):
     sizes = {
         'large': ['coal', 'iron', 'bauxite', 'wti_oil', 'brent_oil', 'urals_oil' ],
         'medium': ['gas', 'diesel', 'plastic', 'steel', 'aluminium', 'medical', 'rifle' ],
-        'small': ['tank', 'antitank', 'jet', 'pzrk', 'ifv', 'drone'],
+        'small': ['tank', 'antitank', 'jet', 'pzrk', 'ifv', 'drone', 'drilling'],
     }
 
     # владелец склада
@@ -170,6 +171,11 @@ class Storage(models.Model):
     medical = models.IntegerField(default=0, verbose_name=pgettext_lazy('goods', 'Медикаменты'))
     # Медикаменты- максимум на складе
     medical_cap = models.IntegerField(default=1000, verbose_name=pgettext_lazy('goods', 'Медикаменты - лимит'))
+
+    # Буровые установки
+    drilling = models.IntegerField(default=0, verbose_name=pgettext_lazy('goods', 'Буровые установки'))
+    # Буры- максимум на складе
+    drilling_cap = models.IntegerField(default=1000, verbose_name=pgettext_lazy('goods', 'Буры - лимит'))
 
     # ------vvvvvvv------Юниты на складе------vvvvvvv------
     # Автоматы

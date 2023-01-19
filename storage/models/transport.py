@@ -48,6 +48,7 @@ class Transport(Log):
     equipments = {
         # 'medical': 5,
         'medical': 0.5,
+        'drilling': 2,
     }
     # ------vvvvvvv------Юниты на складе------vvvvvvv------
     units = {

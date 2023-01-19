@@ -43,7 +43,7 @@ def factory(request):
         consignment_dict['units'] = 1 + MilitaryProduction.objects.get(player=player).level
 
     # отправляем в форму
-    response = render(request, 'storage/factory/factory.html', {
+    response = render(request, 'factory/factory.html', {
         'page_name': _('Производство'),
 
         'player': player,

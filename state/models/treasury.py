@@ -77,6 +77,9 @@ class Treasury(models.Model):
     # Медикаменты
     medical = models.IntegerField(default=0, verbose_name=pgettext_lazy('goods', 'Медикаменты'))
 
+    # Буровые установки
+    drilling = models.IntegerField(default=0, verbose_name=pgettext_lazy('goods', 'Буровые установки'))
+
     # ------vvvvvvv------Юниты на складе------vvvvvvv------
     # Автоматы
     rifle = models.IntegerField(default=0, verbose_name=pgettext_lazy('goods', 'Автоматы'))

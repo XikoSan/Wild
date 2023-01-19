@@ -50,6 +50,8 @@ class Destroy(Log):
     # ------vvvvvvv------Материалы на складе------vvvvvvv------
     # Медикаменты
     medical = models.IntegerField(default=0, verbose_name=pgettext_lazy('goods', 'Медикаменты'))
+    # Буры
+    drilling = models.IntegerField(default=0, verbose_name=pgettext_lazy('goods', 'Буровые установки'))
 
     # ------vvvvvvv------Юниты на складе------vvvvvvv------
     # автоматы

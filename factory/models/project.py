@@ -128,6 +128,22 @@ class Project(models.Model):
         'energy': 1,
     }
 
+    drilling = {
+        'title': pgettext('goods', 'Буровые установки'),
+
+        'resources':
+            [
+                {
+                    'cash': 50,
+                    'aluminium': 10,
+                    'steel': 1,
+                },
+            ],
+
+        'time': 10,
+        'energy': 2,
+    }
+
     rifle = {
         'title': pgettext('goods', 'Автоматы'),
 
@@ -248,6 +264,7 @@ class Project(models.Model):
         ('aluminium', aluminium.get('title')),
 
         ('medical', aluminium.get('title')),
+        ('drilling', aluminium.get('title')),
 
         ('rifle', rifle.get('title')),
         ('tank', tank.get('title')),
