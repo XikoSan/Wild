@@ -11,6 +11,7 @@ from bill.models.purchase_auction import PurchaseAuction
 from bill.models.change_form import ChangeForm
 from bill.models.change_residency import ChangeResidency
 from bill.models.start_war import StartWar
+from bill.models.geological_surveys import GeologicalSurveys
 
 
 class BillAdmin(admin.ModelAdmin):
@@ -37,6 +38,7 @@ class AuctionAdmin(BillAdmin):
 
 # Register your models here.
 admin.site.register(ExploreResources, BillAdmin)
+admin.site.register(GeologicalSurveys, BillAdmin)
 admin.site.register(Construction, BillAdmin)
 admin.site.register(ChangeTitle, BillAdmin)
 admin.site.register(ChangeCoat, BillAdmin)

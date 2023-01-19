@@ -70,7 +70,7 @@ def vote_bill(request):
                                     #           то принимаем законопроект
                                     if bill.votes_pro.count() * 100 / DeputyMandate.objects.filter(player__isnull=False, parliament=parliament).count() >= bill.ahead_percent \
                                             or bill.votes_con.count() * 100 / DeputyMandate.objects.filter(player__isnull=False, parliament=parliament).count() >= bill.ahead_percent:
-                                        run_bill.apply_async(
+                                        run_bill.apply_async(у
                                             (bill.__class__.__name__, bill.pk),
                                             retry=False
                                         )
