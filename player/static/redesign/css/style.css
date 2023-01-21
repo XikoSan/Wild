@@ -685,7 +685,7 @@ a {
 /*! ----- nav ----- */
 
 .nav {
-  z-index: 5;
+  z-index: 1000;
   position: fixed;
   top: 0;
   left: 0;
@@ -3961,6 +3961,255 @@ p.overview__love-stat-timer {
   background-color: transparent;
 }
 
+/*! map */
+
+.map {
+  position: relative;
+  height: calc(100vh - 60rem);
+  display: flex;
+  flex-direction: column;
+}
+
+.map__leaflet-container {
+  width: 100%;
+  height: 100%;
+  flex-grow: 1;
+}
+
+.map__tops {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60rem;
+  background-color: var(--c30);
+  padding-top: 9rem;
+  padding-left: 12rem;
+  padding-right: 64rem;
+}
+
+.map__tops.active {
+  display: block;
+}
+
+.map__top {
+  display: none;
+}
+
+.map__top.active {
+  display: block;
+}
+
+.map__top h2 {
+  margin: 0;
+  margin-bottom: 3rem;
+  font-weight: 400;
+  font-size: 12rem;
+  line-height: 14rem;
+  text-align: center;
+  letter-spacing: -0.04em;
+}
+
+.map__top-bar {
+  height: 8rem;
+  width: 100%;
+  margin-bottom: 4rem;
+  background-image: linear-gradient(to right, #FE1E00, #01FE21);
+}
+
+.map__top-text {
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  font-weight: 400;
+  font-size: 12rem;
+  line-height: 14rem;
+}
+
+.map__filter-open {
+  position: absolute;
+  top: 10rem;
+  right: 12rem;
+  width: 40rem;
+  height: 40rem;
+  padding: 0;
+  background: none;
+  border: 0;
+}
+
+.map__filter-open svg {
+  width: 100%;
+  height: 100%;
+}
+
+.map__modfilter {
+  position: absolute;
+  top: 60rem;
+  left: 0;
+  width: 100%;
+  display: none;
+  align-items: flex-start;
+  padding-left: 100rem;
+  flex-direction: column;
+  padding-top: 24rem;
+}
+
+.map__modfilter.active {
+  display: flex;
+  background: var(--c30);
+}
+
+.map__info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 60rem;
+  padding: 0 0rem;
+  background-image: linear-gradient(to right, var(--c60), var(--c30));
+}
+
+.map__info > img {
+  display: block;
+  width: 50rem;
+  height: 50rem;
+}
+
+.map__info-mid {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  padding: 0px 11rem;
+}
+
+.map__info-mid h2 {
+  margin: 0;
+  font-weight: 400;
+  font-size: 12rem;
+  line-height: 14rem;
+  text-align: center;
+}
+
+.map__info-mid-botttom {
+  display: flex;
+}
+
+.map__info-list {
+  padding-left: 0;
+  padding-top: 2rem;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  margin-right: 16rem;
+}
+
+.map__info-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.map__info-item:not(:last-of-type) {
+  margin-right: 20rem;
+}
+
+.map__info-item img {
+  display: block;
+  width: 16rem;
+  height: 16rem;
+  margin-bottom: 1rem;
+}
+
+.map__info-item span {
+  font-weight: 500;
+  font-size: 8rem;
+  line-height: 11rem;
+}
+
+.map__info-btn-block {
+  padding-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  width: 94rem;
+  justify-content: space-around;
+}
+
+.map__info-btn-block > button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 94rem;
+  height: 17.5rem;
+  padding: 0;
+  border: 0;
+  background-color: var(--c10two);
+  color: var(--c60);
+  font-size: 8rem;
+  line-height: 1;
+  margin-bottom: 5rem;
+}
+
+.map__info-btn-time {
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  font-size: 8rem;
+  line-height: 10rem;
+}
+
+.map__info-btn-time svg {
+  width: 10rem;
+  height: 10rem;
+  margin-right: 4rem;
+}
+
+.map__info-btn-cost {
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  font-size: 8rem;
+  line-height: 10rem;
+}
+
+.map__info-btn-cost svg {
+  width: 6rem;
+  height: 10rem;
+  margin-right: 4rem;
+}
+
+@media (min-width: 1200px) {
+  .map {
+    margin-top: 100rem;
+    margin-left: 330rem;
+    height: calc(100vh - 100rem);
+    width: calc(100vw - 330rem);
+  }
+  .map__info {
+    width: 360rem;
+    top: 0;
+    left: 0;
+    bottom: initial;
+    transform: scale(1.5);
+    transform-origin: top left;
+  }
+  .map__modfilter {
+    top: 90rem;
+    left: initial;
+    right: 0;
+    width: 360rem;
+  }
+  .map__tops {
+    width: 360rem;
+    transform: scale(1.5);
+    left: initial;
+    right: 0;
+    transform-origin: top right;
+  }
+}
+
 /*! ct__two-select-wrapper */
 
 .ct__two-select-wrapper {
@@ -5118,7 +5367,7 @@ p.overview__love-stat-timer {
 /*! ----- M-sett ----- */
 
 .m-sett {
-  z-index: 10;
+  z-index: 1001;
   position: fixed;
   top: 0;
   right: 0;

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-20 00:46+0300\n"
-"PO-Revision-Date: 2023-01-20 00:48+0300\n"
+"POT-Creation-Date: 2023-01-22 02:13+0300\n"
+"PO-Revision-Date: 2023-01-22 02:13+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -31,11 +31,13 @@ msgid "Финансирование"
 msgstr "Financing"
 
 #: bill/models/change_taxes.py:39 bill/models/explore_resources.py:26
+#: bill/models/geological_surveys.py:27
 #: region/templates/region/region_info.html:82
 msgid "Нефть"
 msgstr "Oil"
 
 #: bill/models/change_taxes.py:40 bill/models/explore_resources.py:27
+#: bill/models/geological_surveys.py:28
 #: region/templates/region/region_info.html:96
 msgid "Руда"
 msgstr "Ore"
@@ -44,7 +46,7 @@ msgstr "Ore"
 msgid "Торговля"
 msgstr "Trading"
 
-#: bill/models/explore_resources.py:25
+#: bill/models/explore_resources.py:25 bill/models/geological_surveys.py:26
 #: region/templates/region/region_info.html:68
 msgid "Золото"
 msgstr "Gold"
@@ -1279,6 +1281,7 @@ msgid "уже получено"
 msgstr "already received"
 
 #: region/templates/region/redesign/mining.html:50
+#: region/templates/region/redesign/region_info.html:20
 msgctxt "mining"
 msgid "Золото"
 msgstr "Gold"
@@ -1305,6 +1308,7 @@ msgid "добыча"
 msgstr "work"
 
 #: region/templates/region/redesign/mining.html:76
+#: region/templates/region/redesign/region_info.html:31
 msgctxt "mining"
 msgid "Нефть"
 msgstr "Oil"
@@ -1315,6 +1319,7 @@ msgid "Марка нефти"
 msgstr "Oil brand"
 
 #: region/templates/region/redesign/mining.html:102
+#: region/templates/region/redesign/region_info.html:42
 msgctxt "mining"
 msgid "Руда"
 msgstr "Ore"
@@ -1323,6 +1328,16 @@ msgstr "Ore"
 msgctxt "mining"
 msgid "Качество руды"
 msgstr "Ore quality"
+
+#: region/templates/region/redesign/region_info.html:65
+msgctxt "map"
+msgid "Вы здесь"
+msgstr "you are here"
+
+#: region/templates/region/redesign/region_info.html:71
+msgctxt "map"
+msgid "отправиться"
+msgstr "go fly"
 
 #: region/templates/region/region_info.html:39
 msgid "Вы летите в"
@@ -1472,15 +1487,15 @@ msgstr "Method error"
 msgid "Регионы игры"
 msgstr ""
 
-#: region/views/map/map.py:100
+#: region/views/map/map.py:105
 msgid "Карта"
 msgstr ""
 
-#: region/views/map/region_info.py:34
+#: region/views/map/region_info.py:42
 msgid "Такого региона нет"
 msgstr ""
 
-#: region/views/map/region_info.py:40
+#: region/views/map/region_info.py:48
 msgid "Некорректный запрос"
 msgstr ""
 

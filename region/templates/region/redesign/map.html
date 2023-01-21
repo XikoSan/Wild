@@ -1,0 +1,300 @@
+{% extends 'player/redesign/header.html' %}
+{% load l10n %}{% load i18n %}
+{% load floor_to_tens %}
+{% load static %}
+{% load tz %}
+{% block content %}
+<script src='{% static "js/map.js" %}?{{ csrf_token }}'></script>
+<script src='{% static "js/leaflet.js" %}?{{ csrf_token }}'></script>
+<link rel="stylesheet" href="{% static 'css/leaflet.css' %}?{{ csrf_token }}"/>
+<section class="map">
+
+    <!--КОНТЕЙНЕР ДЛЯ КАРТЫ-->
+    <div class="map__leaflet-container" id="mapid">
+    </div>
+
+    <!--ВЕРХНЯЯ ПЛАШКА-->
+    <div class="map__tops" style="z-index: 999">
+      <div class="map__top" data-name="population">
+        <h2>Население</h2>
+        <div class="map__top-bar"></div>
+        <p class="map__top-text">
+          <span>0</span>
+          <span>150</span>
+        </p>
+      </div>
+
+      <div class="map__top" data-name="number of parties">
+        <h2>Число партий</h2>
+        <div class="map__top-bar"></div>
+        <p class="map__top-text">
+          <span>0</span>
+          <span>150</span>
+        </p>
+      </div>
+
+      <div class="map__top" data-name="number of factories">
+        <h2>Число фабрик</h2>
+        <div class="map__top-bar"></div>
+        <p class="map__top-text">
+          <span>0</span>
+          <span>150</span>
+        </p>
+      </div>
+
+      <div class="map__top" data-name="wars">
+        <h2>Войны</h2>
+        <div class="map__top-bar"></div>
+        <p class="map__top-text">
+          <span>0</span>
+          <span>150</span>
+        </p>
+      </div>
+    </div>
+
+    <!--КНОПКА ОТКРЫТИЯ ФИЛЬТРОВ-->
+<!--    <button class="map__filter-open" onclick="openFilters()" style="z-index: 999">-->
+<!--      <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+<!--        <rect width="40" height="40" fill="var(&#45;&#45;c10two)"/>-->
+<!--        <path d="M3.65667 26.265C3.65667 26.265 16.2467 33.3417 18.8067 34.78C19.0817 34.935 19.3617 35 19.6267 35C19.9233 35 20.2 34.9183 20.4333 34.7883C23.01 33.35 35.6917 26.2667 35.6917 26.2667C36.1017 26.0367 36.3333 25.6117 36.3333 25.1733C36.3333 24.23 35.31 23.6167 34.4733 24.0833C34.4733 24.0833 22.72 30.68 20.2417 32.0333C19.89 32.225 19.5017 32.3017 19.0383 32.0433C16.29 30.4967 4.88167 24.085 4.88167 24.085C4.045 23.615 3.02 24.2267 3.02 25.1733C3.02 25.61 3.24833 26.035 3.65667 26.265ZM3.65667 21.0767C3.65667 21.0767 16.2467 28.1533 18.8067 29.5917C19.0817 29.7467 19.3617 29.8117 19.6267 29.8117C19.9233 29.8117 20.2 29.73 20.4333 29.6C23.01 28.1617 35.6917 21.0783 35.6917 21.0783C36.1017 20.8483 36.3333 20.4233 36.3333 19.985C36.3333 19.0417 35.31 18.4283 34.4733 18.895C34.4733 18.895 22.72 25.4917 20.2417 26.845C19.89 27.0367 19.5017 27.1133 19.0383 26.855C16.9285 25.6677 9.71518 21.6133 6.47734 19.7935C5.49744 19.2427 4.88167 18.8967 4.88167 18.8967C4.47086 18.6659 4.01465 18.6959 3.65667 18.8983C3.28556 19.1081 3.02 19.5031 3.02 19.985C3.02 20.4217 3.24833 20.8467 3.65667 21.0767ZM20.775 5.31833C20.365 5.105 19.99 5 19.6217 5C19.25 5 18.8833 5.10833 18.4967 5.31833L3.69 13.66C3.23 13.965 3 14.4 3 14.8233C3 15.25 3.23167 15.665 3.69 15.93L18.4967 24.2733C18.865 24.495 19.2417 24.6117 19.6267 24.6117C19.9983 24.6117 20.38 24.5033 20.775 24.2733L35.5817 15.93C36.0733 15.6533 36.3333 15.2283 36.3333 14.7967C36.3333 14.38 36.0917 13.9583 35.5817 13.66L20.775 5.31833ZM6.76833 14.795L19.6367 7.54667L32.5033 14.795L19.6367 22.045L6.76833 14.795Z" fill="#28353E"/>-->
+<!--      </svg>-->
+<!--    </button>-->
+
+    <!--МОДАЛКА С ФИЛЬТРАМИ-->
+    <div class="map__modfilter" id="filters" style="z-index: 999">
+
+      <div class="m-sett__form-check ct__check-box30">
+        <label>
+          <input value="population" type="radio" name="map-layer" class="visually-hidden">
+          <svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(--c10two)"/>
+          </svg>
+          <span>
+            <svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(--c10two)"/>
+              <path d="M6.5 4.5L4.5 6.5V20.5H18.5L20.5 18.5V4.5H6.5Z" fill="var(--c10two)" stroke="var(--c10two)"/>
+            </svg>
+          </span>
+          Население
+        </label>
+      </div>
+
+      <div class="m-sett__form-check ct__check-box30">
+        <label>
+          <input value="number of parties" type="radio" name="map-layer" class="visually-hidden">
+          <svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(--c10two)"/>
+          </svg>
+          <span>
+            <svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(--c10two)"/>
+              <path d="M6.5 4.5L4.5 6.5V20.5H18.5L20.5 18.5V4.5H6.5Z" fill="var(--c10two)" stroke="var(--c10two)"/>
+            </svg>
+          </span>
+          Число партий
+        </label>
+      </div>
+
+      <div class="m-sett__form-check ct__check-box30">
+        <label>
+          <input value="number of factories" type="radio" name="map-layer" class="visually-hidden">
+          <svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(--c10two)"/>
+          </svg>
+          <span>
+            <svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(--c10two)"/>
+              <path d="M6.5 4.5L4.5 6.5V20.5H18.5L20.5 18.5V4.5H6.5Z" fill="var(--c10two)" stroke="var(--c10two)"/>
+            </svg>
+          </span>
+          Число фабрик
+        </label>
+      </div>
+
+      <div class="m-sett__form-check ct__check-box30">
+        <label>
+          <input value="wars" type="radio" name="map-layer" class="visually-hidden">
+          <svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(--c10two)"/>
+          </svg>
+          <span>
+            <svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(--c10two)"/>
+              <path d="M6.5 4.5L4.5 6.5V20.5H18.5L20.5 18.5V4.5H6.5Z" fill="var(--c10two)" stroke="var(--c10two)"/>
+            </svg>
+          </span>
+          Войны
+        </label>
+      </div>
+
+      <div class="m-sett__form-check ct__check-box30">
+        <label>
+          <input value="none" type="radio" name="map-layer" class="visually-hidden">
+          <svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(--c10two)"/>
+          </svg>
+          <span>
+            <svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(--c10two)"/>
+              <path d="M6.5 4.5L4.5 6.5V20.5H18.5L20.5 18.5V4.5H6.5Z" fill="var(--c10two)" stroke="var(--c10two)"/>
+            </svg>
+          </span>
+          Без фильтра
+        </label>
+      </div>
+
+    </div>
+
+    <!--НИЖНЯЯ ИНФО ПЛАШКА-->
+    <div id="district_info" class="map__info" style="z-index: 1000; display: none; justify-content: center;">
+
+    </div>
+
+	</section>
+
+{% endblock %}
+
+{% block for_scripts_and_css %}
+<script>
+  function toggleActiveClass(element) {
+    element.classList.toggle('active');
+    if (element.classList.contains('active')) {
+      element.style.height = `${element.scrollHeight + 1}px`;
+    } else {
+      element.style.height = '';
+    }
+  }
+
+  function openFilters() {
+    document.getElementById('filters').classList.toggle('active')
+  }
+
+  const filters = document.querySelectorAll('input[name="map-layer"]');
+
+  function getCheckedInput() {
+    let checkedInput;
+    filters.forEach((filter) => {
+      if (filter.checked) checkedInput = filter;
+    })
+    return checkedInput;
+  }
+
+  document.getElementById('filters').addEventListener('input', (evt) => {
+    const checkedInputValue = getCheckedInput().value;
+    if (checkedInputValue === 'none') {
+      document.querySelector('.map__tops').classList.remove('active');
+    } else {
+      document.querySelector('.map__tops').classList.add('active');
+      document.querySelectorAll('.map__top').forEach((block) => {
+        block.classList.remove('active');
+        const dataName = block.getAttribute('data-name');
+        if (dataName === checkedInputValue) {
+          block.classList.add('active');
+        }
+      })
+    }
+  })
+</script>
+<script>
+ // сделать из цвета его темную версию
+ const pSBC=(p,c0,c1,l)=>{
+     let r,g,b,P,f,t,h,i=parseInt,m=Math.round,a=typeof(c1)=="string";
+     if(typeof(p)!="number"||p<-1||p>1||typeof(c0)!="string"||(c0[0]!='r'&&c0[0]!='#')||(c1&&!a))return null;
+     if(!this.pSBCr)this.pSBCr=(d)=>{
+         let n=d.length,x={};
+         if(n>9){
+             [r,g,b,a]=d=d.split(","),n=d.length;
+             if(n<3||n>4)return null;
+             x.r=i(r[3]=="a"?r.slice(5):r.slice(4)),x.g=i(g),x.b=i(b),x.a=a?parseFloat(a):-1
+         }else{
+             if(n==8||n==6||n<4)return null;
+             if(n<6)d="#"+d[1]+d[1]+d[2]+d[2]+d[3]+d[3]+(n>4?d[4]+d[4]:"");
+             d=i(d.slice(1),16);
+             if(n==9||n==5)x.r=d>>24&255,x.g=d>>16&255,x.b=d>>8&255,x.a=m((d&255)/0.255)/1000;
+             else x.r=d>>16,x.g=d>>8&255,x.b=d&255,x.a=-1
+         }return x};
+     h=c0.length>9,h=a?c1.length>9?true:c1=="c"?!h:false:h,f=this.pSBCr(c0),P=p<0,t=c1&&c1!="c"?this.pSBCr(c1):P?{r:0,g:0,b:0,a:-1}:{r:255,g:255,b:255,a:-1},p=P?p*-1:p,P=1-p;
+     if(!f||!t)return null;
+     if(l)r=m(P*f.r+p*t.r),g=m(P*f.g+p*t.g),b=m(P*f.b+p*t.b);
+     else r=m((P*f.r**2+p*t.r**2)**0.5),g=m((P*f.g**2+p*t.g**2)**0.5),b=m((P*f.b**2+p*t.b**2)**0.5);
+     a=f.a,t=t.a,f=a>=0||t>=0,a=f?a<0?t:t<0?a:a*P+t*p:0;
+     if(h)return"rgb"+(f?"a(":"(")+r+","+g+","+b+(f?","+m(a*1000)/1000:"")+")";
+     else return"#"+(4294967296+r*16777216+g*65536+b*256+(f?m(a*255):0)).toString(16).slice(1,f?undefined:-2)
+ }
+
+ function get_district_info(event) {
+     var id = event.target.options.data.id;
+
+     $.ajax({
+       type: "GET",
+       url: "info/region/"+id,
+       dataType: "html",
+       cache: false,
+       success: function(data){
+
+           region_infos = document.getElementsByClassName("region_info");
+           for (i = 0; i < region_infos.length; i++) {
+               region_infos[i].remove();
+           }
+
+           var div = document.createElement('div');
+           div.className = 'region_info';
+           div.id = id + '_info';
+
+           div.innerHTML = data;
+           div.style.display = "flex";
+
+           if ( div.getElementsByClassName("to_fly").length > 0 ){
+               var button = div.getElementsByClassName("to_fly")[0];
+               button.addEventListener ("click", to_fly)
+           }
+           document.getElementById('district_info').appendChild(div);
+           document.getElementById('district_info').style.display = "flex";
+       }
+     });
+ }
+
+
+     var mymap = L.map('mapid', { zoomControl: false }).setView([{{ player.region.latitude }}, {{ player.region.longitude }}], {{ player.region.zoom }});
+     L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+     attribution: '',
+     minZoom: 2,
+     maxZoom: 18,
+     id: 'mapbox/streets-v11',
+     tileSize: 256,
+     accessToken: 'your.mapbox.access.token'
+ }).addTo(mymap);
+
+ {% for district in regions %}
+ var region = [
+   {
+       "type": "Feature",
+       "properties": {
+            "color": "#{% if district.state.color %}{{ district.state.color }}{% else %}{% if district.is_off %}000000{% else %}ffffff{% endif %}{% endif %}",
+       },
+       "geometry": {
+           "type": "Polygon",
+           "coordinates": {{ district.shape }}
+       }
+   },
+ ];
+
+ region_poly_{{ district.pk }} = L.geoJSON(region, {
+     style: function(feature) {
+         return {
+         {% if district.is_off %}color: '#ffffff',{% else %}color: pSBC( -0.4, feature.properties.color, false, true ),{% endif %}
+          {% if district.is_off %}fillOpacity: 0.5,{% else %}fillOpacity: 0.8,{% endif %}
+          fillColor: feature.properties.color,
+          weight: 1
+         };
+     },
+     data:{
+          "id": "{{ district.on_map_id }}",
+       },
+ }){% if not district.is_off %}.on('click', get_district_info){% endif %};
+
+ region_poly_{{ district.pk }}.addTo(mymap);
+
+ {% endfor %}
+ </script>
+{% endblock %}

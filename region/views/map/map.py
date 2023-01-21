@@ -96,7 +96,12 @@ def map(request):
 
     else:
 
-        response = render(request, 'region/map.html', {
+        groups = list(player.account.groups.all().values_list('name', flat=True))
+        page = 'region/map.html'
+        if 'redesign' not in groups:
+            page = 'region/redesign/map.html'
+
+        response = render(request, page, {
             'page_name': _('Карта'),
 
             'player': player,

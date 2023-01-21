@@ -1,10 +1,12 @@
+import datetime
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.http import JsonResponse
 from django.shortcuts import redirect
 from django.shortcuts import render, get_object_or_404
 from django.utils.translation import ugettext as _
-
+from time import gmtime
+from time import strftime
 from player.decorators.player import check_player
 from player.player import Player
 from region.region import Region
@@ -22,10 +24,16 @@ def region_info(request, id):
 
             cost = round(distance_counting(player.region, Region.objects.get(on_map_id=id)))
 
-            return render(request, 'region/region_info.html', {
+            groups = list(player.account.groups.all().values_list('name', flat=True))
+            page = 'region/region_info.html'
+            if 'redesign' not in groups:
+                page = 'region/redesign/region_info.html'
+
+            return render(request, page, {
                 'player': player,
                 'region': Region.objects.get(on_map_id=id),
                 'duration': round(time_in_flight(player, Region.objects.get(on_map_id=id)) / 60, 1),
+                'time': strftime("%M:%S", gmtime(time_in_flight(player, Region.objects.get(on_map_id=id)))),
                 'cost': cost
             })
 
