@@ -4,19 +4,19 @@
 {% load get_key_list %}
 <div class="row draft_row" id="GeologicalSurveys" style="display: none">
     <script>
-        var total_stocks = {};
+        var survey_total_stocks = {};
     {% with regions=data|dict_key:'regions' %}
         {% for region in regions %}
-            total_stocks["{{ region.pk }}"] = {};
+            survey_total_stocks["{{ region.pk }}"] = {};
             {% with resources=data|dict_key:'resources' %}
                 {% for resource in resources|get_key_list %}
 
                     {% with res_cap=resource|get_sum:'_cap' %}
                     {% with res_depletion=resource|get_sum:'_depletion' %}
 
-                        total_stocks["{{ region.pk }}"]["{{ resource }}_cap"] = {{ region|get_attr:res_cap }};
+                        survey_total_stocks["{{ region.pk }}"]["{{ resource }}_cap"] = {{ region|get_attr:res_cap }};
 
-                        total_stocks["{{ region.pk }}"]["{{ resource }}_depletion"] = {{ region|get_attr:res_depletion }};
+                        survey_total_stocks["{{ region.pk }}"]["{{ resource }}_depletion"] = {{ region|get_attr:res_depletion }};
 
                     {% endwith %}
                     {% endwith %}
@@ -33,10 +33,10 @@
             $('#survey_sum_line').hide();
             // если значение ресурса не пустое
             if($('#survey_resources').val() != null){
-                $('#survey_res_cap').html(total_stocks[$(e.target).val()][$('#survey_resources').val()+'_cap'])
-                $('#survey_res_depletion').html(total_stocks[$(e.target).val()][$('#survey_resources').val()+'_depletion'])
+                $('#survey_res_cap').html(survey_total_stocks[$(e.target).val()][$('#survey_resources').val()+'_cap'])
+                $('#survey_res_depletion').html(survey_total_stocks[$(e.target).val()][$('#survey_resources').val()+'_depletion'])
 
-                need_val = parseInt(total_stocks[$(e.target).val()][$('#survey_resources').val()+'_depletion'])
+                need_val = parseInt(survey_total_stocks[$(e.target).val()][$('#survey_resources').val()+'_depletion'])
                 need_sum = parseInt((need_val).toFixed(2) * 10)
                 $('#survey_sum').html(numberWithSpaces(need_sum))
 
@@ -49,10 +49,10 @@
             $('#survey_sum_line').hide();
             // если значение ресурса не пустое
             if($('#survey_regions').val() != null){
-                $('#survey_res_cap').html(total_stocks[$('#survey_regions').val()][$(e.target).val()+'_cap'])
-                $('#survey_res_depletion').html(total_stocks[$('#survey_regions').val()][$(e.target).val()+'_depletion'])
+                $('#survey_res_cap').html(survey_total_stocks[$('#survey_regions').val()][$(e.target).val()+'_cap'])
+                $('#survey_res_depletion').html(survey_total_stocks[$('#survey_regions').val()][$(e.target).val()+'_depletion'])
 
-                need_val = parseInt(total_stocks[$('#survey_regions').val()][$(e.target).val()+'_depletion'])
+                need_val = parseInt(survey_total_stocks[$('#survey_regions').val()][$(e.target).val()+'_depletion'])
                 need_sum = parseInt((need_val).toFixed(2) * 10)
                 $('#survey_sum').html(numberWithSpaces(need_sum))
 
