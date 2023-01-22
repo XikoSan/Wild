@@ -253,9 +253,9 @@
        }
      });
  }
+     bounds = new L.LatLngBounds(new L.LatLng(90, 200), new L.LatLng(-90, -200));
 
-
-     var mymap = L.map('mapid', { zoomControl: false }).setView([{{ player.region.latitude }}, {{ player.region.longitude }}], {{ player.region.zoom }});
+     var mymap = L.map('mapid', { zoomControl: false, maxBounds: bounds, maxBoundsViscosity: 1.0, minZoom: 2 }).setView([{{ player.region.latitude }}, {{ player.region.longitude }}], {{ player.region.zoom }});
      L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
      attribution: '',
      minZoom: 2,
@@ -264,6 +264,9 @@
      tileSize: 256,
      accessToken: 'your.mapbox.access.token'
  }).addTo(mymap);
+
+ var latlngs = L.rectangle(bounds).getLatLngs();
+<!--  L.polyline(latlngs[0].concat(latlngs[0][0])).addTo(mymap);-->
 
  {% for district in regions %}
  var region = [
