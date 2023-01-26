@@ -24,10 +24,12 @@ def vote_elections(request, parl_pk, party_pk):
     regions_of_state = Region.objects.filter(state=state)
     # право голосовать на текущих выборах.
     # Появляется, если с момента взятия прописки прошли сутки
+    # Если сумма характеристик у игрока равна 10
     votingRight = False
     regions_of_state = Region.objects.filter(state=state)
     if regions_of_state.filter(pk=player.residency.pk).exists() \
-            and player.residency_date + timedelta(days=1) < timezone.now():
+            and player.residency_date + timedelta(days=1) < timezone.now()\
+                and player.power + player.knowledge + player.endurance >= 10:
         votingRight = True
     # если у игрока есть прописка в государстве,
     #  а также существуют АКТИВНЫЕ выборы,
