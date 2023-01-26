@@ -22,6 +22,7 @@ body {
 }
 main {
   display: block;
+  height: 100%;
 }
 h1 {
   font-size: 2em;
@@ -187,6 +188,16 @@ body {
   width: 100vw;
   height: 100vh;
 }
+.mainwrapper {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
 @media (min-width: 1200px) {
   html {
     font-size: calc(100vw / 1600);
@@ -194,6 +205,15 @@ body {
   body {
     position: relative;
     overflow: hidden;
+  }
+  .mainwrapper {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
   }
 }
 main {
@@ -2037,11 +2057,20 @@ a {
 /*! overview */
 
 .overview {
+  position: fixed;
   padding-top: 12rem;
+  height: calc(100% - 60rem);
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .overview__tabs {
   margin-bottom: 12rem;
+}
+
+.overview__wrapper {
+  display: flex;
+  height: calc(100% - 42rem);
 }
 
 .overview__view {
@@ -2673,6 +2702,7 @@ p.overview__love-stat-timer {
 
 .overview__chat {
   display: none;
+  height: 100%;
 }
 
 .overview__chat.active {
@@ -2681,6 +2711,8 @@ p.overview__love-stat-timer {
 }
 
 .overview__chat-wrapper {
+  display: grid;
+  grid-template-rows: 1fr 42rem;
 }
 
 .overview__chat-messages {
@@ -2801,6 +2833,11 @@ p.overview__love-stat-timer {
 }
 
 .overview__chat-controls {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--c60);
   display: flex;
   justify-content: space-between;
   padding: 12rem;
@@ -3079,6 +3116,7 @@ p.overview__love-stat-timer {
     display: block;
   }
   .overview__chat-controls {
+    position: static;
     display: flex;
     justify-content: space-between;
     padding: 30rem 0;
@@ -3964,8 +4002,11 @@ p.overview__love-stat-timer {
 /*! map */
 
 .map {
-  position: relative;
-  height: calc(100vh - 60rem);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(100% - 60rem);
   display: flex;
   flex-direction: column;
 }
