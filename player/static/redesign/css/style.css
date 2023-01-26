@@ -371,6 +371,10 @@ a {
   background-color: var(--c10two);
 }
 
+.info__soc-list {
+  display: none;
+}
+
 @media (min-width: 1200px) {
   .info {
     bottom: initial;
@@ -409,6 +413,30 @@ a {
     width: 100rem;
     padding: 0 6rem;
     flex-shrink: 0;
+  }
+  .info__soc-list {
+    display: flex;
+    position: absolute;
+    top: 50%;
+    right: 27rem;
+    transform: translateY(-50%);
+    padding-left: 0;
+    margin: 0;
+    list-style: none;
+  }
+  .info__soc-item {}
+  .info__soc-item:not(:last-of-type) {
+    margin-right: 20rem;
+  }
+  .info__soc-link {
+    display: block;
+    width: 40rem;
+    height: 40rem;
+  }
+  .info__soc-link svg {
+    display: block;
+    width: 100%;
+    height: 100%;
   }
 }
 
@@ -2067,7 +2095,24 @@ a {
 }
 
 .overview__tabs {
+  position: relative;
   margin-bottom: 12rem;
+}
+
+.overview__tabs-wiki {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: block;
+  width: 30rem;
+  height: 30rem;
+}
+
+.overview__tabs-wiki svg {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .overview__wrapper {
@@ -3056,6 +3101,9 @@ p.overview__love-stat-timer {
   .overview__tabs {
     margin-bottom: 12rem;
     display: none !important;
+  }
+  .overview__tabs-wiki {
+    display: none;
   }
   .overview__wrapper {
     display: flex;
