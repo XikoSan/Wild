@@ -22,6 +22,9 @@ from state.models.parliament.parliament_voting import ParliamentVoting
 def open_elections(request, parl_pk):
     # получаем персонажа
     player = Player.get_instance(account=request.user)
+    # если есть такое парламент
+    if not Parliament.objects.filter(pk=parl_pk).exists():
+        return redirect('government')
     # если существуют АКТИВНЫЕ выборы
     if ParliamentVoting.objects.filter(parliament=Parliament.objects.get(pk=parl_pk), running=True).exists():
         vote = None
