@@ -55,6 +55,7 @@ def check_player(func):
                     players = Player.objects.filter(user_ip=cur_ip)
                     for it_player in players:
                         it_player.banned = True
+                        it_player.reason = 'один айпи'
                         it_player.save()
                     player.banned = True
 

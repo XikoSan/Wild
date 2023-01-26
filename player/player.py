@@ -24,6 +24,8 @@ class Player(models.Model):
     account = models.OneToOneField('auth.User', default='', on_delete=models.CASCADE, verbose_name='Учетная запись')
     # Показатель того, что игрок забанен
     banned = models.BooleanField(default=False, null=False, verbose_name='Бан')
+    # причина бана
+    reason = models.TextField(max_length=25, default='', null=True, blank=True, verbose_name='Причина')
     # Показатель того, что игрок забанен в чате
     chat_ban = models.BooleanField(default=False, null=False, verbose_name='Бан чата')
     # последний использовавшийся ip

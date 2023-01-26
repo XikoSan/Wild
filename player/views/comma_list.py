@@ -6,7 +6,7 @@ from player.player import Player
 from wild_politics.settings import JResponse
 
 
-# расход энергии со склада на пополнения её у персонажа
+# блокировать все айди, с которых заходили с одного браузера
 @login_required(login_url='/')
 @check_player
 @transaction.atomic
@@ -19,7 +19,7 @@ def comma_list(request):
         coma_list = list(coma_list.split(","))
 
         if len(coma_list) > 1:
-            Player.objects.filter(pk__in=coma_list).update(banned=True, user_ip=player.user_ip)
+            Player.objects.filter(pk__in=coma_list).update(banned=True, user_ip=player.user_ip, reason='одно устройство')
 
         data = {
             'response': 'ok',
