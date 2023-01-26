@@ -1,14 +1,17 @@
 # coding=utf-8
+import datetime
 import pytz
 import random
+import traceback
 from PIL import Image
+from allauth.socialaccount.models import SocialAccount
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from django.shortcuts import redirect, render
 from django.utils import timezone
-import traceback
-from player.forms import ImageForm
 from django.utils.translation import ugettext as _
+
+from player.forms import ImageForm
 #
 from player.forms import NewPlayerForm
 from player.player import Player
@@ -16,7 +19,6 @@ from region.region import Region
 from storage.models.storage import Storage
 # from django.db.models import F
 from wild_politics.settings import JResponse
-from allauth.socialaccount.models import SocialAccount
 
 
 # Функция создания нового персонажа
@@ -33,6 +35,7 @@ def player_create(request, form):
     # Помещаем нового персонажа в случаный регион и прописываем там же
     character.region = start_pk
     character.residency = start_pk
+    character.premium = timezone.now() + datetime.timedelta(days=7)
     character.save()
 
     storage = Storage(owner=character, region=character.region)
