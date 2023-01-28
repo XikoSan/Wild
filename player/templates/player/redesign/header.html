@@ -36,6 +36,7 @@
 <body>
 
 
+<div class="mainwrapper">
 {% if player %}
     {% if not player.banned %}
 <!-- ИНФОРМАЦИЯ ОБ ИГРОКЕ ВНИЗУ ЭКРАНА -->
@@ -88,6 +89,7 @@
 <!-- МОДАЛЬНОЕ МЕНЮ-НАВИГАЦИЯ -->
 {% menu %}
 <!-- конец МОДАЛЬНОГО МЕНЮ-НАВИГАЦИИ -->
+
 
 <!-- ГЛОБАЛЬНОЕ МОДАЛЬНОЕ ОКНО -->
 <div class="modal">
@@ -144,8 +146,8 @@
 	</div>
 </div>
 <!-- КОНЕЦ ГЛОБАЛЬНОГО МОДАЛЬНОГО ОКНА -->
+</div>
 
-<footer></footer>
 <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>-->
 <script src="{% static 'redesign/js/header.js' %}?{{ csrf_token }}"></script>
 <script src="{% static 'redesign/js/status.js' %}?{{ csrf_token }}"></script>

@@ -455,7 +455,7 @@ a {
   padding-right: 12rem;
   padding-left: 24rem;
   justify-content: space-between;
-  /* overflow: hidden; */
+  overflow: hidden;
   transition: all 0.3s ease;
 }
 
@@ -529,11 +529,11 @@ a {
 }
 
 .profile__ava-border {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 200rem;
-    height: 200rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200rem;
+  height: 200rem;
 }
 
 .profile__load-img {
@@ -567,18 +567,18 @@ a {
   border-top: 1px solid var(--c10two);
   border-bottom: 1px solid var(--c10two);
   border-right: 1px solid var(--c10two);
+  border-left: 1px solid var(--c10two);
   margin-top: 24rem;
-  margin-left: 12rem;
-  width: 312rem;
+  width: 324rem;
   height: 24rem;
 }
 
 .profile__settings svg {
   position: absolute;
-  left: -12rem;
-  top: -8rem;
-  width: 40rem;
-  height: 40rem;
+  left: 1rem;
+  top: 1rem;
+  width: 20rem;
+  height: 20rem;
   transform: rotate(24deg);
 }
 
@@ -658,6 +658,8 @@ a {
   width: 100vw;
   padding-left: 24rem;
   padding-bottom: 24rem;
+  height: calc(100% - 50rem);
+  overflow-y: auto;
 }
 
 .profile__s-textarea {
@@ -5715,4 +5717,19 @@ p.overview__love-stat-timer {
 
 .fade.in {
   opacity: 1;
+}
+
+/*! svg-reload */
+
+.svg-reload {
+  z-index: 99999;
+  position: fixed;
+  top: 0;
+  left: calc(50% - 25rem);
+  display: block;
+  width: 50rem;
+  height: 50rem;
+  transform: translateY(-110%) scaleX(-1);
+  border-radius: 50%;
+  background-color: var(--c60);
 }
