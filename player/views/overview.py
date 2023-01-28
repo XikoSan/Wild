@@ -28,6 +28,7 @@ from state.models.parliament.parliament_voting import ParliamentVoting
 from state.models.state import State
 from war.models.wars.war import War
 from wild_politics.settings import TIME_ZONE
+from player.player_settings import PlayerSettings
 
 
 # главная страница
@@ -35,6 +36,9 @@ from wild_politics.settings import TIME_ZONE
 @check_player
 def overview(request):
     player = Player.get_instance(account=request.user)
+
+    if PlayerSettings.objects.filter(player=player).exists():
+        wiki_hide = PlayerSettings.objects.get(player=player).wiki_hide
 
     # регионы государства если они есть
     if player.region.state:
@@ -186,6 +190,7 @@ def overview(request):
         'page_name': _('Обзор'),
 
         'player': player,
+        'wiki_hide': wiki_hide,
 
         'region_parties': region_parties,
         'world_parties': world_parties,

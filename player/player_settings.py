@@ -41,6 +41,9 @@ class PlayerSettings(models.Model):
     # Показатель того, что игрок использует энергетики в авто
     full_auto = models.BooleanField(default=False, blank=False, null=False, verbose_name='Энергетики в авто')
 
+    # Скрыть кнопку Wiki
+    wiki_hide = models.BooleanField(default=False, blank=False, null=False, verbose_name='Скрыть кнопку Wiki')
+
     # # показатель того, что игрок по умолчанию оплачивает доставку войск в соседние регионы
     # delivery_pay = models.BooleanField(default=False, blank=False, null=False, verbose_name='Оплачивает доставку войск')
     #

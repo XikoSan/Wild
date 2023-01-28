@@ -11,6 +11,7 @@ from player.views.skills.up_skill import up_skill
 from .views.change_back_allow import change_back_allow
 from .views.change_bio import change_bio
 from .views.change_nickname import change_nickname
+from .views.change_wiki_hide_allow import change_wiki_hide_allow
 from .views.color_change import color_change
 from .views.comma_list import comma_list
 from .views.expense_energy import expense_energy
@@ -82,6 +83,9 @@ urlpatterns = [
 
     # использовать Энергетики в авто-добыче
     url(r'^full_auto_allow', full_auto_allow, name='full_auto_allow'),
+
+    # Скрыть кнопку Wiki
+    url(r'^wiki_hide_allow', change_wiki_hide_allow, name='change_wiki_hide_allow'),
 
     # Начать учёт активностей
     url(r'^reward_4_repost', repost_reward, name='reward_4_repost'),

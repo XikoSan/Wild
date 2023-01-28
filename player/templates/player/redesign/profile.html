@@ -415,6 +415,22 @@
 				{% trans 'Энергетики в авто-добыче' context "profile" %}
 			</label>
 		</div>
+		<!--чекбокс-->
+		<div class="m-sett__form-check ct__check-box30">
+			<label for="wiki_hide">
+				<input id="wiki_hide" type="checkbox" class="visually-hidden" {% if wiki_hide %}checked{% endif %}>
+				<svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(--c10two)"/>
+				</svg>
+				<span>
+					<svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(--c10two)"/>
+						<path d="M6.5 4.5L4.5 6.5V20.5H18.5L20.5 18.5V4.5H6.5Z" fill="var(--c10two)" stroke="var(--c10two)"/>
+					</svg>
+				</span>
+				{% trans 'Скрыть кнопку Wiki' context "profile" %}
+			</label>
+		</div>
 		<form id="color_set" role="form" method="post" class="m-sett__form">
 			{% csrf_token %}
 			<div class="m-sett__colors">

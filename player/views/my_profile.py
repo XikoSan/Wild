@@ -79,6 +79,7 @@ def my_profile(request):
 
     party_back = True
     full_auto = False
+    wiki_hide = False
 
     if PlayerSettings.objects.filter(player=player).exists():
         setts = PlayerSettings.objects.get(player=player)
@@ -90,6 +91,7 @@ def my_profile(request):
 
         party_back = setts.party_back
         full_auto = setts.full_auto
+        wiki_hide = setts.wiki_hide
 
 
     ava_border = None
@@ -167,6 +169,7 @@ def my_profile(request):
 
         'party_back': party_back,
         'full_auto': full_auto,
+        'wiki_hide': wiki_hide,
         'ava_border': ava_border,
 
     })
