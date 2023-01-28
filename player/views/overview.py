@@ -36,6 +36,7 @@ from player.player_settings import PlayerSettings
 @check_player
 def overview(request):
     player = Player.get_instance(account=request.user)
+    wiki_hide = False
 
     if PlayerSettings.objects.filter(player=player).exists():
         wiki_hide = PlayerSettings.objects.get(player=player).wiki_hide
