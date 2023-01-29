@@ -878,7 +878,7 @@ a {
 .earn {
   padding-top: 14rem;
   padding-bottom: 24rem;
-  height: calc(100vh - 60rem);
+  height: calc(100% - 60rem);
   overflow-y: auto;
 }
 
@@ -939,7 +939,7 @@ a {
   .earn {
     padding-top: 30rem;
     padding-bottom: 30rem;
-    height: initial;
+    height: calc(100vh - 100rem);
     margin-top: 100rem;
     margin-left: 330rem;
   }
@@ -3724,7 +3724,7 @@ p.overview__love-stat-timer {
 .tlist {
   padding-top: 24rem;
   display: grid;
-  grid-template-rows: 30rem 1fr;
+  grid-template-rows: 24rem 1fr;
   gap: 24rem;
   height: calc(100% - 60rem);
 }
@@ -3753,6 +3753,7 @@ p.overview__love-stat-timer {
 
 @media (min-width: 1200px) {
   .tlist {
+    display: block;
     height: calc(100vh - 100rem);
     margin-left: 330rem;
     margin-top: 100rem;
