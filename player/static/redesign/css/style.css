@@ -3723,6 +3723,10 @@ p.overview__love-stat-timer {
 
 .tlist {
   padding-top: 24rem;
+  display: grid;
+  grid-template-rows: 30rem 1fr;
+  gap: 24rem;
+  height: calc(100% - 60rem);
 }
 
 .tlist__buttons {
@@ -3730,14 +3734,17 @@ p.overview__love-stat-timer {
   grid-template-columns: repeat(3, 1fr);
   gap: 6rem;
   padding: 0 12rem;
-  margin-bottom: 24rem;
   transform: scale(0.77);
   transform-origin: left top;
 }
 
+.tlist__tab-container {
+  width: 100vw;
+  padding-bottom: 24rem;
+}
+
 .tlist__tab {
   display: none;
-  height: calc(100vh - 137rem);
 }
 
 .tlist__tab.active {
@@ -3758,6 +3765,7 @@ p.overview__love-stat-timer {
     grid-template-columns: 1fr 1fr 1fr;
     gap: 32rem;
     width: max-content;
+    padding-bottom: 0;
     margin: 0 auto;
   }
   .tlist__tab {
