@@ -3190,6 +3190,7 @@ p.overview__love-stat-timer {
   .overview__chat-message-body p {
     width: 100%;
     font-size: 16rem;
+    word-wrap: break-word;
   }
   .overview__chat-ava-link {
     flex-shrink: 0;
@@ -3209,6 +3210,8 @@ p.overview__love-stat-timer {
   }
   .overview__chat-message-body p.moder {
     width: 100%;
+    flex-grow: 1;
+    word-wrap: break-word;
   }
   .overview__line {
     display: none;
@@ -5365,7 +5368,7 @@ p.overview__love-stat-timer {
 /*! -----глобальное модальное окно ----- */
 
 .modal, .img_modal {
-  z-index: 5;
+  z-index: 1001;
   position: fixed;
   left: 0;
   top: 0;
