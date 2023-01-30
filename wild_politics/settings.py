@@ -269,7 +269,7 @@ MEDIA_URL = '/media/'
 SESSION_COOKIE_AGE = 43200
 
 # 5 мегабайт. Нужно, чтобы загружать контуры регов
-DATA_UPLOAD_MAX_MEMORY_SIZE = 5242880
+DATA_UPLOAD_MAX_MEMORY_SIZE = 20971520
 
 # отладочная печать в Docker
 level = 'WARNING'
