@@ -10,9 +10,7 @@ class MapShape(models.Model):
     region = models.ForeignKey(Region, blank=False, on_delete=models.CASCADE,
                               verbose_name='Регион', related_name="reg_map")
 
-    # название региона
-    on_map_id = models.CharField(max_length=50, verbose_name='ID на карте')
-
+    # контуры
     shape = models.TextField(default='', verbose_name='Вид на карте')
 
     # масштаб карты при открытии региона

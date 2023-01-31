@@ -20,6 +20,9 @@ class Region(models.Model):
     # название региона
     region_name = models.CharField(max_length=50, default=None, blank=True, null=True, verbose_name='Название региона')
 
+    # название региона
+    on_map_id = models.CharField(max_length=50, default='', verbose_name='ID на карте')
+
     # признак того что регион северный
     is_north = models.BooleanField(default=True, verbose_name='Северной широты')
     # координата широты

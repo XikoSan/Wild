@@ -37,6 +37,10 @@ class PowerPlantAdmin(BuildingAdmin):
         return obj.region.region_name
 
 
+class MapShapeAdmin(admin.ModelAdmin):
+    raw_id_fields = ('region',)
+
+
 class RegionAdmin(admin.ModelAdmin):
     list_display = ('region_name', 'get_state', 'get_gold', 'get_oil', 'get_ore', 'is_off')
 
@@ -47,7 +51,7 @@ class RegionAdmin(admin.ModelAdmin):
         # координаты
         ('is_north', 'north', 'is_east', 'east'),
         # централизация
-        ('longitude', 'latitude', 'zoom'),
+        ('longitude', 'latitude'),
         # гос
         ('state'),
         # налоги
@@ -57,8 +61,6 @@ class RegionAdmin(admin.ModelAdmin):
         ('oil_has', 'oil_cap', 'oil_depletion', 'oil_type'),
         ('ore_has', 'ore_cap', 'ore_depletion'),
         ('coal_proc', 'iron_proc', 'bauxite_proc'),
-        # форма
-        ('shape'),
     )
 
     def get_state(self, obj):
@@ -79,7 +81,7 @@ class RegionAdmin(admin.ModelAdmin):
 
 # Register your models here.
 admin.site.register(Region, RegionAdmin)
-admin.site.register(MapShape)
+admin.site.register(MapShape, MapShapeAdmin)
 admin.site.register(Neighbours)
 admin.site.register(Hospital, RateBuildingAdmin)
 admin.site.register(PowerPlant, PowerPlantAdmin)
