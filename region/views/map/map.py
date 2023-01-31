@@ -16,6 +16,7 @@ from region.region import Region
 from region.views.distance_counting import distance_counting
 from region.views.time_in_flight import time_in_flight
 from wild_politics.settings import JResponse
+from region.map_shape import MapShape
 
 
 # главная страница
@@ -95,6 +96,11 @@ def map(request):
             return JResponse(data)
 
     else:
+        shapes_dict = {}
+        shapes = MapShape.objects.all()
+
+        for region in regions:
+            shapes_dict[region.pk] = shapes.get(region=region)
 
         groups = list(player.account.groups.all().values_list('name', flat=True))
         page = 'region/map.html'
@@ -106,6 +112,7 @@ def map(request):
 
             'player': player,
             'regions': regions,
+            'shapes_dict': shapes_dict,
         })
 
         # if player_settings:

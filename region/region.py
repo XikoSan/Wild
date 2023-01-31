@@ -19,8 +19,6 @@ class Region(models.Model):
 
     # название региона
     region_name = models.CharField(max_length=50, default=None, blank=True, null=True, verbose_name='Название региона')
-    # название региона
-    on_map_id = models.CharField(max_length=50, verbose_name='ID на карте')
 
     # признак того что регион северный
     is_north = models.BooleanField(default=True, verbose_name='Северной широты')
@@ -116,12 +114,9 @@ class Region(models.Model):
     # процент добываемого в регионе Грокцита
     bauxite_proc = models.IntegerField(default=25, verbose_name='Процент бокситов')
 
-    shape = models.TextField(default='', verbose_name='Вид на карте')
     # централизация на карте
     longitude = models.DecimalField(default=00.00, max_digits=10, decimal_places=7, verbose_name='Долгота - центр')
     latitude = models.DecimalField(default=00.00, max_digits=10, decimal_places=7, verbose_name='Широта - центр')
-    # масштаб карты при открытии региона
-    zoom = models.IntegerField(default=1, verbose_name='Масштаб карты')
 
     # сохранение профиля с изменением размеров и названия картинки профиля
     def save(self):

@@ -1,6 +1,6 @@
 {% extends 'player/header.html' %}
 {% load floor_to_tens %}
-
+{% load dict_key %}
 {% block content %}
 
 {% load static %}
@@ -80,8 +80,9 @@
      });
  }
 
-
-     var mymap = L.map('mapid').setView([{{ player.region.latitude }}, {{ player.region.longitude }}], {{ player.region.zoom }});
+        {% with map_shape=shapes_dict|dict_key:player.region.pk %}
+     var mymap = L.map('mapid').setView([{{ player.region.latitude }}, {{ player.region.longitude }}], {{ map_shape.zoom }});
+        {% endwith %}
      L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
      attribution: '',
      minZoom: 2,
@@ -92,6 +93,7 @@
  }).addTo(mymap);
 
  {% for district in regions %}
+ {% with map_shape=shapes_dict|dict_key:district.pk %}
  var region = [
    {
        "type": "Feature",
@@ -100,7 +102,8 @@
        },
        "geometry": {
            "type": "Polygon",
-           "coordinates": {{ district.shape }}
+           "coordinates": {{ map_shape.shape }}
+
        }
    },
  ];
@@ -115,12 +118,12 @@
          };
      },
      data:{
-          "id": "{{ district.on_map_id }}",
+          "id": "{{ map_shape.on_map_id }}",
        },
  }){% if not district.is_off %}.on('click', get_district_info){% endif %};
 
  region_poly_{{ district.pk }}.addTo(mymap);
-
+ {% endwith %}
  {% endfor %}
  </script>
 {% endblock %}

@@ -5,6 +5,7 @@ from region.building.power_plant import PowerPlant
 from region.neighbours import Neighbours
 from region.region import Region
 from region.building.defences import Defences
+from region.map_shape import MapShape
 
 
 def recount_rating(modeladmin, request, queryset):
@@ -78,6 +79,7 @@ class RegionAdmin(admin.ModelAdmin):
 
 # Register your models here.
 admin.site.register(Region, RegionAdmin)
+admin.site.register(MapShape)
 admin.site.register(Neighbours)
 admin.site.register(Hospital, RateBuildingAdmin)
 admin.site.register(PowerPlant, PowerPlantAdmin)

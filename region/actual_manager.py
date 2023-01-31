@@ -5,4 +5,4 @@ class ActualManager(models.Manager):
     use_in_migrations = True
 
     def get_queryset(self):
-        return super().get_queryset().defer("shape").filter(is_off=False)
+        return super().get_queryset().filter(is_off=False)
