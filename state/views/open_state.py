@@ -1,5 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, redirect, render
 from region.building.power_plant import PowerPlant
 from party.party import Party
 from player.decorators.player import check_player
@@ -19,8 +19,14 @@ def open_state(request, pk):
     # Получаем объект персонажа, по его ключу
     # Текущий пользователь
     player = Player.get_instance(account=request.user)
+    state = None
 
-    state = get_object_or_404(State, pk=pk)
+    if State.actual.filter(pk=pk).exists():
+        state = State.actual.get(pk=pk)
+
+    else:
+        return redirect('overview')
+
     capital = Capital.objects.get(state=state)
 
     president = None
