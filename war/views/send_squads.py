@@ -190,7 +190,7 @@ def send_squads(request):
 
             squad.save()
 
-        player.energy_cons(energy_sum, 2)
+        player.energy_cons(energy_sum)
 
         for unit in squads_count_class.keys():
 
