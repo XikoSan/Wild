@@ -371,6 +371,10 @@ class Player(models.Model):
             self.energy_consumption = self.paid_consumption = self.paid_sum = 0
             self.daily_fin = False
 
+            EnergySpent = apps.get_model('player.EnergySpent')
+            if EnergySpent.objects.filter(player=self).exists():
+                EnergySpent.objects.filter(player=self).update(points=0, fin=False)
+
         med_top = 1
 
         if Hospital.objects.filter(region=self.region).exists():

@@ -28,6 +28,7 @@ class GoldLog(Log):
         ('stick', 'Покупка стикеров'),
         ('energy', 'Энергетики'),
         ('party', 'Новая партия'),
+        ('ivent', 'Ивент'),
     )
     activity_txt = models.CharField(
         max_length=6,

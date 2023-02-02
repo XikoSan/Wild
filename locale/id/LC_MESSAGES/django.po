@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-22 02:13+0300\n"
+"POT-Creation-Date: 2023-02-02 20:27+0300\n"
 "PO-Revision-Date: 2022-12-01 16:31+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -188,6 +188,169 @@ msgstr "UAV"
 msgid "Производство"
 msgstr "Produksi"
 
+#: factory/views/produce_good.py:31
+msgctxt "factory"
+msgid "Дождитесь конца полёта"
+msgstr ""
+
+#: factory/views/produce_good.py:32 factory/views/produce_good.py:43
+#: factory/views/produce_good.py:59 factory/views/produce_good.py:71
+#: factory/views/produce_good.py:85 factory/views/produce_good.py:95
+#: factory/views/produce_good.py:106 factory/views/produce_good.py:116
+#: factory/views/produce_good.py:124 factory/views/produce_good.py:132
+#: factory/views/produce_good.py:170 factory/views/produce_good.py:189
+#, fuzzy
+#| msgctxt "menu"
+#| msgid "производство"
+msgctxt "factory"
+msgid "Ошибка производства"
+msgstr "produksi"
+
+#: factory/views/produce_good.py:33 factory/views/produce_good.py:44
+#: factory/views/produce_good.py:60 factory/views/produce_good.py:72
+#: factory/views/produce_good.py:86 factory/views/produce_good.py:96
+#: factory/views/produce_good.py:107 factory/views/produce_good.py:117
+#: factory/views/produce_good.py:125 factory/views/produce_good.py:133
+#: factory/views/produce_good.py:171 factory/views/produce_good.py:190
+#, fuzzy
+#| msgid "Закрыть"
+msgctxt "storage"
+msgid "Закрыть"
+msgstr "Tutup"
+
+#: factory/views/produce_good.py:42
+#, fuzzy
+#| msgctxt "assets"
+#| msgid "Склад не заполнен"
+msgctxt "factory"
+msgid "Склад не заполнен"
+msgstr "Penyimpanan tidak spesifik"
+
+#: factory/views/produce_good.py:58
+#, fuzzy
+#| msgctxt "assets"
+#| msgid "Указанный Склад вам не принадлежит"
+msgctxt "factory"
+msgid "Указанный Склад вам не принадлежит"
+msgstr "Penyimpanan bukan milikmu"
+
+#: factory/views/produce_good.py:70
+#, fuzzy
+#| msgctxt "assets"
+#| msgid "Указанный Склад уже в текущем регионе"
+msgctxt "factory"
+msgid "Указанный товар не существует"
+msgstr "Penyimpanan telah berada di wilayah saat ini"
+
+#: factory/views/produce_good.py:84
+#, fuzzy
+#| msgctxt "mining"
+#| msgid "Количество энергии - не число"
+msgctxt "factory"
+msgid "Номер схемы - не число"
+msgstr "Jumlah energi bukanlah angka"
+
+#: factory/views/produce_good.py:94
+#, fuzzy
+#| msgctxt "assets"
+#| msgid "Указанный Склад уже в текущем регионе"
+msgctxt "factory"
+msgid "Указанной схемы не существует"
+msgstr "Penyimpanan telah berada di wilayah saat ini"
+
+#: factory/views/produce_good.py:105
+#, fuzzy
+#| msgctxt "mining"
+#| msgid "Количество энергии - не число"
+msgctxt "factory"
+msgid "Количество - не число"
+msgstr "Jumlah energi bukanlah angka"
+
+#: factory/views/produce_good.py:115
+#, fuzzy
+#| msgctxt "mining"
+#| msgid "Количество Энергии должно быть положительным"
+msgctxt "factory"
+msgid "Количество товара должно быть положительным числом"
+msgstr "Jumlah energi tidak boleh minus"
+
+#: factory/views/produce_good.py:123
+#, fuzzy
+#| msgctxt "mining"
+#| msgid "Количество энергии - не число"
+msgctxt "factory"
+msgid "Количество товара слишком велико"
+msgstr "Jumlah energi bukanlah angka"
+
+#: factory/views/produce_good.py:134
+#, fuzzy
+#| msgctxt "assets"
+#| msgid " недостаточно места для товара "
+msgctxt "factory"
+msgid "Недостаточно места на складе для товара. В наличии "
+msgstr " tidak cukup ruang untuk barang "
+
+#: factory/views/produce_good.py:135 factory/views/produce_good.py:172
+#: factory/views/produce_good.py:192
+#, fuzzy
+#| msgctxt "assets"
+#| msgid "Требуется: "
+msgctxt "factory"
+msgid ", требуется "
+msgstr "Yang dibutuhkan : "
+
+#: factory/views/produce_good.py:172
+#, fuzzy
+#| msgctxt "mining"
+#| msgid "Недостаточно энергии"
+msgctxt "factory"
+msgid "Недостаточно энергии. В наличии "
+msgstr "Energi tidak cukup"
+
+#: factory/views/produce_good.py:191
+#, fuzzy
+#| msgctxt "mining"
+#| msgid "Недостаточно энергии"
+msgctxt "factory"
+msgid "Недостаточно "
+msgstr "Energi tidak cukup"
+
+#: factory/views/produce_good.py:191
+#, fuzzy
+#| msgctxt "assets"
+#| msgid ", в наличии: "
+msgctxt "factory"
+msgid ". В наличии "
+msgstr ", persediaan : "
+
+#: factory/views/produce_good.py:242
+msgctxt "factory"
+msgid "Внезапно!"
+msgstr ""
+
+#: factory/views/produce_good.py:243
+#, fuzzy
+#| msgctxt "goods"
+#| msgid "Наличные"
+msgctxt "factory"
+msgid "Отлично!"
+msgstr "Uang"
+
+#: factory/views/produce_good.py:244
+#, fuzzy
+#| msgctxt "daily_header"
+#| msgid "получаем"
+msgctxt "factory"
+msgid "Вы получили "
+msgstr "menerima"
+
+#: factory/views/produce_good.py:244
+#, fuzzy
+#| msgid "Золото"
+msgctxt "factory"
+msgid " золота"
+msgstr "Emas"
+
 #: gov/templates/state/gov/forms/foreign_right.html:21
 #: party/templates/party/party_requests.html:36
 msgid "отклонить всё"
@@ -272,18 +435,18 @@ msgctxt "cash_log"
 msgid "Навыки"
 msgstr "Kemampuan"
 
-#: player/player.py:282 region/views/do_mining.py:31
+#: player/player.py:284 region/views/do_mining.py:31
 #: region/views/start_auto.py:26
 msgctxt "mining"
 msgid "Дождитесь конца полёта"
 msgstr ""
 
-#: player/player.py:283 player/player.py:305 region/views/retrieve_cash.py:40
+#: player/player.py:285 player/player.py:307 region/views/retrieve_cash.py:40
 msgctxt "mining"
 msgid "Ошибка получения финансирования"
 msgstr "Pendanaan Harian Gagal"
 
-#: player/player.py:284 player/player.py:306 region/views/cancel_auto.py:34
+#: player/player.py:286 player/player.py:308 region/views/cancel_auto.py:34
 #: region/views/do_mining.py:33 region/views/do_mining.py:46
 #: region/views/do_mining.py:56 region/views/do_mining.py:69
 #: region/views/do_mining.py:78 region/views/do_mining.py:87
@@ -380,7 +543,7 @@ msgctxt "mining"
 msgid "Закрыть"
 msgstr "Ditutup"
 
-#: player/player.py:304
+#: player/player.py:306
 msgctxt "mining"
 msgid "Нечего забирать"
 msgstr "Tidak mendapatkan apapun"
@@ -677,87 +840,87 @@ msgstr "Unggah"
 msgid "обзор"
 msgstr "beranda"
 
-#: player/templates/player/redesign/overview.html:47
+#: player/templates/player/redesign/overview.html:54
 msgid "чат"
 msgstr "obrolan"
 
-#: player/templates/player/redesign/overview.html:58
+#: player/templates/player/redesign/overview.html:65
 msgid "мир"
 msgstr "dunia"
 
-#: player/templates/player/redesign/overview.html:107
+#: player/templates/player/redesign/overview.html:114
 msgid "независимый регион"
 msgstr "wilayah merdeka"
 
-#: player/templates/player/redesign/overview.html:222
+#: player/templates/player/redesign/overview.html:229
 msgid "войн нет"
 msgstr "tidak ada perang"
 
-#: player/templates/player/redesign/overview.html:267
+#: player/templates/player/redesign/overview.html:274
 msgctxt "overview"
 msgid "Хэллоуинский ивент"
 msgstr "Event Halloween"
 
-#: player/templates/player/redesign/overview.html:274
+#: player/templates/player/redesign/overview.html:281
 msgctxt "overview"
 msgid "С новым годом!"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:440
+#: player/templates/player/redesign/overview.html:447
 msgctxt "overview"
 msgid "сила"
 msgstr "str"
 
-#: player/templates/player/redesign/overview.html:445
+#: player/templates/player/redesign/overview.html:452
 msgctxt "overview"
 msgid "инт"
 msgstr "int"
 
-#: player/templates/player/redesign/overview.html:450
+#: player/templates/player/redesign/overview.html:457
 msgctxt "overview"
 msgid "вын"
 msgstr "end"
 
-#: player/templates/player/redesign/overview.html:466
+#: player/templates/player/redesign/overview.html:473
 msgctxt "overview"
 msgid "Выборы лидера"
 msgstr "Pemilihan presiden"
 
-#: player/templates/player/redesign/overview.html:469
+#: player/templates/player/redesign/overview.html:476
 msgctxt "overview"
 msgid "Выборы"
 msgstr "Pemilihan"
 
-#: player/templates/player/redesign/overview.html:474
+#: player/templates/player/redesign/overview.html:481
 msgctxt "overview"
 msgid "партии"
 msgstr "partai"
 
-#: player/templates/player/redesign/overview.html:474
+#: player/templates/player/redesign/overview.html:481
 msgctxt "overview"
 msgid "государства"
 msgstr "negara bagian"
 
-#: player/templates/player/redesign/overview.html:474
+#: player/templates/player/redesign/overview.html:481
 msgctxt "overview"
 msgid "региона"
 msgstr "wilayah"
 
-#: player/templates/player/redesign/overview.html:511
-#: player/templates/player/redesign/overview.html:556
+#: player/templates/player/redesign/overview.html:518
+#: player/templates/player/redesign/overview.html:563
 msgid "партий нет"
 msgstr "tidak ada partai"
 
-#: player/templates/player/redesign/overview.html:518
+#: player/templates/player/redesign/overview.html:525
 msgctxt "overview"
 msgid "парламент"
 msgstr "parlemen"
 
-#: player/templates/player/redesign/overview.html:732
+#: player/templates/player/redesign/overview.html:739
 msgid "У вас пока еще нет стикеров"
 msgstr "Kamu belum memiliki stiker"
 
-#: player/templates/player/redesign/overview.html:745
+#: player/templates/player/redesign/overview.html:752
 msgctxt "overview"
 msgid "магазин"
 msgstr "toko"
@@ -985,12 +1148,17 @@ msgctxt "profile"
 msgid "Энергетики в авто-добыче"
 msgstr "Batrai dalam penambangan otomatis"
 
-#: player/templates/player/redesign/profile.html:446
+#: player/templates/player/redesign/profile.html:431
+msgctxt "profile"
+msgid "Скрыть кнопку Wiki"
+msgstr ""
+
+#: player/templates/player/redesign/profile.html:462
 msgctxt "profile"
 msgid "стандарт"
 msgstr "standar"
 
-#: player/templates/player/redesign/profile.html:460
+#: player/templates/player/redesign/profile.html:476
 msgid "сохранить"
 msgstr "menyimpan"
 
@@ -1138,7 +1306,8 @@ msgctxt "wallet"
 msgid "Описание"
 msgstr "Perlengkapan"
 
-#: player/views/change_back_allow.py:41 player/views/full_auto_allow.py:41
+#: player/views/change_back_allow.py:41
+#: player/views/change_wiki_hide_allow.py:41 player/views/full_auto_allow.py:41
 msgid "Некорректное значение"
 msgstr "Nominal salah"
 
@@ -1147,24 +1316,31 @@ msgid "Настройка партийного фона"
 msgstr "Ganti deskripsi partai"
 
 #: player/views/change_back_allow.py:43 player/views/change_back_allow.py:59
-#: player/views/expense_energy.py:30 player/views/expense_energy.py:53
-#: player/views/expense_energy.py:62 player/views/expense_energy.py:73
-#: player/views/full_auto_allow.py:43 player/views/full_auto_allow.py:59
-#: player/views/new_player.py:89 player/views/new_player.py:102
-#: player/views/set_language.py:40 player/views/set_language.py:56
-#: player/views/set_timezone.py:29 player/views/set_timezone.py:45
-#: skill/views/skill_cancel.py:36 skill/views/skill_cancel.py:44
-#: skill/views/skill_cancel.py:52 skill/views/skill_cancel.py:62
-#: skill/views/skill_cancel.py:77
+#: player/views/change_wiki_hide_allow.py:43
+#: player/views/change_wiki_hide_allow.py:59 player/views/expense_energy.py:30
+#: player/views/expense_energy.py:53 player/views/expense_energy.py:62
+#: player/views/expense_energy.py:73 player/views/full_auto_allow.py:43
+#: player/views/full_auto_allow.py:59 player/views/new_player.py:92
+#: player/views/new_player.py:105 player/views/set_language.py:40
+#: player/views/set_language.py:56 player/views/set_timezone.py:29
+#: player/views/set_timezone.py:45 skill/views/skill_cancel.py:36
+#: skill/views/skill_cancel.py:44 skill/views/skill_cancel.py:52
+#: skill/views/skill_cancel.py:62 skill/views/skill_cancel.py:77
 msgid "Закрыть"
 msgstr "Tutup"
 
-#: player/views/change_back_allow.py:57 player/views/full_auto_allow.py:57
+#: player/views/change_back_allow.py:57
+#: player/views/change_wiki_hide_allow.py:57 player/views/full_auto_allow.py:57
 #: player/views/set_language.py:54 player/views/set_timezone.py:43
 #: region/views/cancel_auto.py:35 region/views/retrieve_cash.py:42
 #: region/views/start_auto.py:78
 msgid "Ошибка метода"
 msgstr "Metode error"
+
+#: player/views/change_wiki_hide_allow.py:42
+#: player/views/change_wiki_hide_allow.py:58
+msgid "Скрыть кнопку Wiki"
+msgstr ""
 
 #: player/views/expense_energy.py:28
 msgid "Десять минут ещё не прошло"
@@ -1223,19 +1399,19 @@ msgstr "karakteristik"
 msgid "Мировое население"
 msgstr ""
 
-#: player/views/new_player.py:87
+#: player/views/new_player.py:90
 msgid ": попробуйте создать персонажа, не загружая изображение"
 msgstr ": sedang membuat karakter tanpa memuat gambar"
 
-#: player/views/new_player.py:88 player/views/new_player.py:101
+#: player/views/new_player.py:91 player/views/new_player.py:104
 msgid "Новый персонаж"
 msgstr "Karakter baru"
 
-#: player/views/new_player.py:100
+#: player/views/new_player.py:103
 msgid "Ошибка в форме профиля"
 msgstr "Pembuatan profil gagal"
 
-#: player/views/overview.py:186
+#: player/views/overview.py:192
 msgid "Обзор"
 msgstr "Beranda"
 
@@ -1265,17 +1441,17 @@ msgstr "Kemampuan"
 msgid "Финансы"
 msgstr "Keuangan"
 
-#: region/region.py:89
+#: region/region.py:90
 msgctxt "goods"
 msgid "WTI"
 msgstr "WTI"
 
-#: region/region.py:90
+#: region/region.py:91
 msgctxt "goods"
 msgid "Brent"
 msgstr "Brent"
 
-#: region/region.py:91
+#: region/region.py:92
 msgctxt "goods"
 msgid "Urals"
 msgstr "Urals"
@@ -1553,11 +1729,11 @@ msgctxt "mining"
 msgid "Ошибка метода"
 msgstr "Metode gagal"
 
-#: region/views/lists/world_regions.py:116
+#: region/views/lists/world_regions.py:45
 msgid "Регионы игры"
 msgstr ""
 
-#: region/views/map/map.py:105
+#: region/views/map/map.py:111
 msgid "Карта"
 msgstr ""
 

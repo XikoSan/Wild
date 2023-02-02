@@ -13,6 +13,7 @@ from player.game_event.game_event import GameEvent
 from player.game_event.event_part import EventPart
 from player.game_event.global_part import GlobalPart
 from player.player_regional_expence import PlayerRegionalExpense
+from player.game_event.energy_spent import EnergySpent
 
 
 class CashLogAdmin(admin.ModelAdmin):
@@ -71,6 +72,11 @@ class GlobalPartAdmin(admin.ModelAdmin):
     raw_id_fields = ('event', )
 
 
+class EnergySpentAdmin(admin.ModelAdmin):
+    search_fields = ['player__nickname', ]
+    raw_id_fields = ('player', )
+
+
 class PLayerAdmin(admin.ModelAdmin):
     search_fields = ['nickname', 'user_ip']
     raw_id_fields = ('account', 'party',)
@@ -113,3 +119,5 @@ admin.site.register(AutoMining, AutoMiningAdmin)
 admin.site.register(GameEvent)
 admin.site.register(EventPart, EventPartAdmin)
 admin.site.register(GlobalPart, GlobalPartAdmin)
+
+admin.site.register(EnergySpent, EnergySpentAdmin)
