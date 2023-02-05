@@ -369,6 +369,7 @@ class Player(models.Model):
                 # вынес потому что вызывает круговой импорт
                 set_cash_log(self, sum, 'daily', self.natural_refill)
             self.energy_consumption = self.paid_consumption = self.paid_sum = 0
+            PlayerRegionalExpense = apps.get_model('player.PlayerRegionalExpense')
             PlayerRegionalExpense.objects.filter(player=self).delete()
 
             self.daily_fin = False
