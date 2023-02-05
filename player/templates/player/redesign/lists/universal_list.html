@@ -110,7 +110,7 @@
 						{% if not elem|has_key:'visible' %}
 							{% for sub_col in elem|get_key_list %}
 								{% with sub_obj=line|get_attr:col %}
-							  <td class="j-t-{{ col }}_{{ sub_col }}" style="cursor: pointer" {% if sub_obj|check_object %}onclick="window.open('/{% if sub_obj|get_class_name == 'Player' %}profile{% elif sub_obj|get_class_name == 'PartyWithSize' %}party{% else %}{{ sub_obj|get_class_name|lower }}{% endif %}/{{ sub_obj.pk }}/')"{% endif %}>
+							  <td class="j-t-{{ col }}_{{ sub_col }}" style="cursor: pointer" {% if sub_obj|check_object %}onclick="window.open('/{% if sub_obj|get_class_name == 'Player' %}profile{% elif sub_obj|get_class_name == 'PartyWithSize' %}party{% else %}{{ sub_obj|get_class_name|lower }}{% endif %}/{% localize off %}{{ sub_obj.pk }}{% endlocalize %}/')"{% endif %}>
 								  {% if sub_obj|check_object %}
 								  		<!--картинка рега-->
 									  {% if col == 'region' and sub_col == 'on_map_id' %}
@@ -134,7 +134,7 @@
 							{% endfor %}
 
 						{% else %}
-						  <td class="j-t-{{ col }}" style="cursor: pointer" onclick="window.open('/{% if line|get_class_name == 'Player' or line|get_class_name == 'PlayerWithTop' %}profile{% elif line|get_class_name == 'PartyWithSize' %}party{% else %}{{ line|get_class_name|lower }}{% endif %}/{{ line.pk }}/')">
+						  <td class="j-t-{{ col }}" style="cursor: pointer" onclick="window.open('/{% if line|get_class_name == 'Player' or line|get_class_name == 'PlayerWithTop' %}profile{% elif line|get_class_name == 'PartyWithSize' %}party{% else %}{{ line|get_class_name|lower }}{% endif %}/{% localize off %}{{ sub_obj.pk }}{% endlocalize %}/')">
 						  <!--картинка рега-->
 						  {% if col == 'on_map_id' %}
 								<img src="/static/img/regions/{{ line.on_map_id }}.png" alt="{{ col }}">
