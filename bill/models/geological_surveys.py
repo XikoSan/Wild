@@ -119,43 +119,47 @@ class GeologicalSurveys(Bill):
 
             region = Region.objects.get(pk=self.region.pk)
 
-            drilling_cost = int(getattr(region, self.resource + '_depletion')) * self.exp_price
+            if region.state == self.parliament.state:
 
-            if drilling_cost <= treasury.drilling:
-                volume = int(getattr(region, self.resource + '_cap') + getattr(region, self.resource + '_depletion'))
-                # обновляем запасы в регионе до максимума
-                setattr(region, self.resource + '_cap', volume)
-                setattr(region, self.resource + '_depletion', 0)
+                drilling_cost = int(getattr(region, self.resource + '_depletion')) * self.exp_price
 
-                self.drilling_cost = drilling_cost
-                self.exp_value = volume
-                setattr(treasury, 'drilling', getattr(treasury, 'drilling') - self.drilling_cost)
-                b_type = 'ac'
+                if drilling_cost <= treasury.drilling:
+                    volume = int(getattr(region, self.resource + '_cap') + getattr(region, self.resource + '_depletion'))
+                    # обновляем запасы в регионе до максимума
+                    setattr(region, self.resource + '_cap', volume)
+                    setattr(region, self.resource + '_depletion', 0)
 
-            else:
-                # узнаем, сколько можем разведать максимум
-                exp_points = treasury.drilling // self.exp_price
-
-                # если есть хотя бы 10 штук
-                if exp_points >= 1:
-                    # обновляем запасы в регионе
-                    setattr(region, self.resource + '_cap', getattr(region, self.resource + '_cap') + exp_points)
-                    setattr(region, self.resource + '_depletion', getattr(region, self.resource + '_depletion') - exp_points)
-
-                    self.drilling_cost = exp_points * self.exp_price
-                    self.exp_value = exp_points * self.exp_price
-                    setattr(treasury, 'drilling', treasury.drilling - self.drilling_cost)
+                    self.drilling_cost = drilling_cost
+                    self.exp_value = volume
+                    setattr(treasury, 'drilling', getattr(treasury, 'drilling') - self.drilling_cost)
                     b_type = 'ac'
 
                 else:
-                    b_type = 'rj'
+                    # узнаем, сколько можем разведать максимум
+                    exp_points = treasury.drilling // self.exp_price
 
-            # если закон принят
-            if b_type == 'ac':
-                self.save()
-                treasury.save()
-                region.save()
+                    # если есть хотя бы 10 штук
+                    if exp_points >= 1:
+                        # обновляем запасы в регионе
+                        setattr(region, self.resource + '_cap', getattr(region, self.resource + '_cap') + exp_points)
+                        setattr(region, self.resource + '_depletion', getattr(region, self.resource + '_depletion') - exp_points)
 
+                        self.drilling_cost = exp_points * self.exp_price
+                        self.exp_value = exp_points * self.exp_price
+                        setattr(treasury, 'drilling', treasury.drilling - self.drilling_cost)
+                        b_type = 'ac'
+
+                    else:
+                        b_type = 'rj'
+
+                # если закон принят
+                if b_type == 'ac':
+                    self.save()
+                    treasury.save()
+                    region.save()
+
+            else:
+                b_type = 'rj'
         else:
             b_type = 'rj'
 

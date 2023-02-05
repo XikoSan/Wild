@@ -175,35 +175,39 @@ class StartWar(Bill):
     def do_bill(self):
         b_type = None
 
-        # получим классы всех войн
-        war_classes = get_subclasses(War)
-        war_class = None
+        if region.state == self.parliament.state:
 
-        for war_cl in war_classes:
-            if war_cl.__name__ == self.war_type:
-                war_class = war_cl
-                break
+            # получим классы всех войн
+            war_classes = get_subclasses(War)
+            war_class = None
 
-        if war_class.objects.filter(
-                running=True,
-                agr_region=self.region,
-                def_region=self.region_to,
-                deleted=False
-        ).exists():
-            b_type = 'rj'
+            for war_cl in war_classes:
+                if war_cl.__name__ == self.war_type:
+                    war_class = war_cl
+                    break
+    
+            if war_class.objects.filter(
+                    running=True,
+                    agr_region=self.region,
+                    def_region=self.region_to,
+                    deleted=False
+            ).exists():
+                b_type = 'rj'
 
+            else:
+                b_type = 'ac'
+
+            # если закон принят
+            if b_type == 'ac':
+                new_war = war_class(
+                    running=True,
+                    agr_region=self.region,
+                    def_region=self.region_to,
+                )
+
+                new_war.save()
         else:
-            b_type = 'ac'
-
-        # если закон принят
-        if b_type == 'ac':
-            new_war = war_class(
-                running=True,
-                agr_region=self.region,
-                def_region=self.region_to,
-            )
-
-            new_war.save()
+            b_type = 'rj'
 
         StartWar.objects.filter(pk=self.pk).update(type=b_type, running=False, voting_end=timezone.now())
 

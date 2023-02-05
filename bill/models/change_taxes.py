@@ -167,16 +167,21 @@ class ChangeTaxes(Bill):
                 region.save()
 
             state.save()
+            b_type = 'ac'
 
         else:
             region = Region.objects.get(pk=self.region.pk)
 
-            old_tax = getattr(region, self.tax_mod + '_tax')
+            if region.state == self.parliament.state:
 
-            setattr(region, self.tax_mod + '_tax', self.new_tax)
-            region.save()
+                old_tax = getattr(region, self.tax_mod + '_tax')
 
-        b_type = 'ac'
+                setattr(region, self.tax_mod + '_tax', self.new_tax)
+                region.save()
+                b_type = 'ac'
+
+            else:
+                b_type = 'rj'
 
         ChangeTaxes.objects.filter(pk=self.pk).update(type=b_type, running=False, old_tax=old_tax, voting_end=timezone.now())
 

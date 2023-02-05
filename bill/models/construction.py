@@ -164,59 +164,62 @@ class Construction(Bill):
         for building_cl in building_classes:
             building_dict[building_cl.__name__] = building_cl
 
-        # если такой тип строений существует
-        if self.building in building_dict:
+        if region.state == self.parliament.state:
+            # если такой тип строений существует
+            if self.building in building_dict:
 
-            if treasury.cash != 0:
+                if treasury.cash != 0:
 
-                if self.building:
+                    if self.building:
 
-                    if building_dict[self.building].objects.filter(region=self.region).exists():
-                        building = building_dict[self.building].objects.get(region=self.region)
+                        if building_dict[self.building].objects.filter(region=self.region).exists():
+                            building = building_dict[self.building].objects.get(region=self.region)
 
-                    else:
-                        building = building_dict[self.building](region=self.region)
+                        else:
+                            building = building_dict[self.building](region=self.region)
 
-                    # проверяем наличие всех ресурсов в казне, для стройки
-                    all_exists = True
+                        # проверяем наличие всех ресурсов в казне, для стройки
+                        all_exists = True
 
-                    for component in getattr(self, self.building)['resources'].keys():
-                        if getattr(treasury, component) < getattr(self, self.building)['resources'][component] * self.exp_value:
-                            all_exists = False
-                            break
+                        for component in getattr(self, self.building)['resources'].keys():
+                            if getattr(treasury, component) < getattr(self, self.building)['resources'][component] * self.exp_value:
+                                all_exists = False
+                                break
 
-                    if all_exists:
-                        setattr(building, 'level', getattr(building, 'level') + self.exp_value)
+                        if all_exists:
+                            setattr(building, 'level', getattr(building, 'level') + self.exp_value)
 
-                        for resource in getattr(self, self.building)['resources'].keys():
-                            setattr(treasury, resource,
-                                    getattr(treasury, resource) - (
-                                                getattr(self, self.building)['resources'][resource] * self.exp_value))
+                            for resource in getattr(self, self.building)['resources'].keys():
+                                setattr(treasury, resource,
+                                        getattr(treasury, resource) - (
+                                                    getattr(self, self.building)['resources'][resource] * self.exp_value))
 
-                        b_type = 'ac'
+                            b_type = 'ac'
 
+                        else:
+                            b_type = 'rj'
                     else:
                         b_type = 'rj'
+
+                    # если закон принят
+                    if b_type == 'ac':
+                        self.save()
+                        treasury.save()
+                        building.save()
+
+                        # если это рейтинговое строение
+                        if RateBuilding in building_dict[self.building].__bases__:
+                            # пересчитаем рейтинг
+                            building_dict[self.building].recount_rating()
+
+                        elif self.building == 'PowerPlant':
+                            for building_cl in building_classes:
+                                if RateBuilding in building_cl.__bases__:
+                                    # пересчитаем рейтинг
+                                    building_cl.recount_rating()
+
                 else:
                     b_type = 'rj'
-
-                # если закон принят
-                if b_type == 'ac':
-                    self.save()
-                    treasury.save()
-                    building.save()
-
-                    # если это рейтинговое строение
-                    if RateBuilding in building_dict[self.building].__bases__:
-                        # пересчитаем рейтинг
-                        building_dict[self.building].recount_rating()
-
-                    elif self.building == 'PowerPlant':
-                        for building_cl in building_classes:
-                            if RateBuilding in building_cl.__bases__:
-                                # пересчитаем рейтинг
-                                building_cl.recount_rating()
-
             else:
                 b_type = 'rj'
         else:

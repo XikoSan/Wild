@@ -116,52 +116,56 @@ class ExploreResources(Bill):
 
             region = Region.objects.get(pk=self.region.pk)
 
-            cash_cost = float(
-                getattr(region, self.resource + '_cap') - getattr(region, self.resource + '_has')) * self.exp_price
+            if region.state == self.parliament.state:
 
-            if cash_cost <= treasury.cash:
-                volume = getattr(region, self.resource + '_cap') - getattr(region, self.resource + '_has')
-                # обновляем запасы в регионе до максимума
-                setattr(region, self.resource + '_has', getattr(region, self.resource + '_cap'))
+                cash_cost = float(
+                    getattr(region, self.resource + '_cap') - getattr(region, self.resource + '_has')) * self.exp_price
 
-                # истощение: смотрим, сколько десятков пунктов разведывают
-                depletion = int(ceil(volume / 10))
-                # уменьшаем лимит в регионе
-                setattr(region, self.resource + '_cap', getattr(region, self.resource + '_cap') - depletion)
-                # увеличиваем истощение
-                setattr(region, self.resource + '_depletion', getattr(region, self.resource + '_depletion') + depletion)
+                if cash_cost <= treasury.cash:
+                    volume = getattr(region, self.resource + '_cap') - getattr(region, self.resource + '_has')
+                    # обновляем запасы в регионе до максимума
+                    setattr(region, self.resource + '_has', getattr(region, self.resource + '_cap'))
 
-                self.cash_cost = cash_cost
-                self.exp_value = Decimal(volume)
-                setattr(treasury, 'cash', getattr(treasury, 'cash') - self.cash_cost)
-                b_type = 'ac'
-
-            else:
-                # узнаем, сколько можем разведать максимум
-                hund_price = self.exp_price / 100
-                hund_points = treasury.cash // hund_price
-
-                price = hund_points * hund_price
-
-                # если эта величина - как минимум один пункт
-                if hund_points >= 1:
                     # истощение: смотрим, сколько десятков пунктов разведывают
-                    depletion = int(ceil(hund_points / 1000))
+                    depletion = int(ceil(volume / 10))
                     # уменьшаем лимит в регионе
                     setattr(region, self.resource + '_cap', getattr(region, self.resource + '_cap') - depletion)
                     # увеличиваем истощение
                     setattr(region, self.resource + '_depletion', getattr(region, self.resource + '_depletion') + depletion)
 
-                    # обновляем запасы в регионе
-                    setattr(region, self.resource + '_has', getattr(region, self.resource + '_has') + Decimal(hund_points/100))
-
-                    self.cash_cost = treasury.cash
-                    self.exp_value = Decimal(hund_points/100)
-                    setattr(treasury, 'cash', treasury.cash - price)
+                    self.cash_cost = cash_cost
+                    self.exp_value = Decimal(volume)
+                    setattr(treasury, 'cash', getattr(treasury, 'cash') - self.cash_cost)
                     b_type = 'ac'
 
                 else:
-                    b_type = 'rj'
+                    # узнаем, сколько можем разведать максимум
+                    hund_price = self.exp_price / 100
+                    hund_points = treasury.cash // hund_price
+
+                    price = hund_points * hund_price
+
+                    # если эта величина - как минимум один пункт
+                    if hund_points >= 1:
+                        # истощение: смотрим, сколько десятков пунктов разведывают
+                        depletion = int(ceil(hund_points / 1000))
+                        # уменьшаем лимит в регионе
+                        setattr(region, self.resource + '_cap', getattr(region, self.resource + '_cap') - depletion)
+                        # увеличиваем истощение
+                        setattr(region, self.resource + '_depletion', getattr(region, self.resource + '_depletion') + depletion)
+
+                        # обновляем запасы в регионе
+                        setattr(region, self.resource + '_has', getattr(region, self.resource + '_has') + Decimal(hund_points/100))
+
+                        self.cash_cost = treasury.cash
+                        self.exp_value = Decimal(hund_points/100)
+                        setattr(treasury, 'cash', treasury.cash - price)
+                        b_type = 'ac'
+
+                    else:
+                        b_type = 'rj'
+            else:
+                b_type = 'rj'
 
             # если закон принят
             if b_type == 'ac':
