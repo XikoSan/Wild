@@ -20,9 +20,9 @@ class EnergySpent(models.Model):
     fin = models.BooleanField(default=False, null=False, verbose_name='Награда выдана')
 
     def claim_reward(self):
-        if self.points >= 1000 and not self.fin:
+        if self.points >= 300 and not self.fin:
 
-            sum = random.choices([5, 10, 50, 100, 500, 1000, 5000, 10000,], weights=[30, 25, 15, 12, 8, 5, 3, 2,])
+            sum = random.choices([5, 10, 50, 100, 500, 1000, 5000,], weights=[30, 25, 15, 12, 8, 6, 4,])
             sum = sum[0]
 
             Player.objects.filter(pk=self.player.pk).update(gold=F('gold') + sum)
