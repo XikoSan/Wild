@@ -134,7 +134,7 @@
 							{% endfor %}
 
 						{% else %}
-						  <td class="j-t-{{ col }}" style="cursor: pointer" onclick="window.open('/{% if line|get_class_name == 'Player' or line|get_class_name == 'PlayerWithTop' %}profile{% elif line|get_class_name == 'PartyWithSize' %}party{% else %}{{ line|get_class_name|lower }}{% endif %}/{% localize off %}{{ sub_obj.pk }}{% endlocalize %}/')">
+						  <td class="j-t-{{ col }}" style="cursor: pointer" onclick="window.open('/{% if line|get_class_name == 'Player' or line|get_class_name == 'PlayerWithTop' %}profile{% elif line|get_class_name == 'PartyWithSize' %}party{% else %}{{ line|get_class_name|lower }}{% endif %}/{% localize off %}{{ line.pk }}{% endlocalize %}/')">
 						  <!--картинка рега-->
 						  {% if col == 'on_map_id' %}
 								<img src="/static/img/regions/{{ line.on_map_id }}.png" alt="{{ col }}">
