@@ -1,0 +1,19 @@
+{% load dict_key %}
+{% load get_attr %}
+{% load get_sum %}
+{% load get_key_list %}
+{% load l10n %}{% load i18n %}
+<div class="row draft_row" id="Independence" style="display: none">
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="row" style="margin-top: 25px;">
+            {% with regions=data|dict_key:'regions' %}
+            <select name="independence_regions" id="independence_regions" style="height: 20px; min-width: 20%">
+                <option id="independence_region_default" value='default' disabled selected value>Выберите регион</option>
+                {% for region in regions %}
+                <option id="independence_region_{% localize off %}{{ region.pk }}{% endlocalize %}" value="{% localize off %}{{ region.pk }}{% endlocalize %}">{{ region.region_name }}</option>
+                {% endfor %}
+            </select>
+            {% endwith %}
+        </div>
+    </div>
+</div>

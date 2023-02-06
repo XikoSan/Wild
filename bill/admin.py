@@ -12,6 +12,7 @@ from bill.models.change_form import ChangeForm
 from bill.models.change_residency import ChangeResidency
 from bill.models.start_war import StartWar
 from bill.models.geological_surveys import GeologicalSurveys
+from bill.models.independence import Independence
 
 
 class BillAdmin(admin.ModelAdmin):
@@ -47,3 +48,4 @@ admin.site.register(ChangeForm, BillAdmin)
 admin.site.register(ChangeResidency, BillAdmin)
 admin.site.register(StartWar, BillAdmin)
 admin.site.register(PurchaseAuction, AuctionAdmin)
+admin.site.register(Independence, BillAdmin)
