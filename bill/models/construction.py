@@ -164,7 +164,7 @@ class Construction(Bill):
         for building_cl in building_classes:
             building_dict[building_cl.__name__] = building_cl
 
-        if region.state == self.parliament.state:
+        if self.region.state == self.parliament.state:
             # если такой тип строений существует
             if self.building in building_dict:
 

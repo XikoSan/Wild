@@ -116,7 +116,7 @@ class ExploreResources(Bill):
 
             region = Region.objects.get(pk=self.region.pk)
 
-            if region.state == self.parliament.state:
+            if self.region.state == self.parliament.state:
 
                 cash_cost = float(
                     getattr(region, self.resource + '_cap') - getattr(region, self.resource + '_has')) * self.exp_price

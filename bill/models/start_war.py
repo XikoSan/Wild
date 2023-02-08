@@ -175,7 +175,7 @@ class StartWar(Bill):
     def do_bill(self):
         b_type = None
 
-        if region.state == self.parliament.state:
+        if self.region.state == self.parliament.state:
 
             # получим классы всех войн
             war_classes = get_subclasses(War)
