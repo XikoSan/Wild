@@ -5,6 +5,7 @@
 {% load get_mul %}
 {% load get_key_list %}
 {% load tz %}
+{% load l10n %}{% load i18n %}
 
 <div class="row bill_row" style="margin-top: 25px">
     {% with title=data|dict_key:'title' %}
@@ -32,7 +33,7 @@
         {% endif %}
     </div>
     <div class="col-xs-2 col-sm-2 col-md-2">
-    <a href='/profile/{{ bill.initiator.pk }}' target="_blank">{{ bill.initiator }}</a>
+    <a href='/profile/{% localize off %}{{ bill.initiator.pk }}{% endlocalize %}' target="_blank">{{ bill.initiator }}</a>
     </div>
     <div class="col-xs-2 col-sm-2 col-md-2">
         <div class="row">

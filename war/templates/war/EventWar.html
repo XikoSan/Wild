@@ -6,7 +6,8 @@
 {% load scouting %}
 {% load get_sum %}
 {% load get_key_list %}
-{% load i18n %}{% load tz %}
+{% load tz %}
+{% load l10n %}{% load i18n %}
 {% load get_class_name %}
 {% load get_mod %}
 
@@ -347,7 +348,7 @@
                         {% for character in agr_char_list %}
                          <div class="row">
                             <div class="col-xs-2 col-sm-2 col-md-2">
-                                <a href='/profile/{{ character.pk }}' target="_blank">
+                                <a href='/profile/{% localize off %}{{ character.pk }}{% endlocalize %}' target="_blank">
                                     <!--если пользователь загрузил аватарку-->
                                     {% if character.image %}
                                     <img src="{{ character.image.url }}" width="50" height="50" align="right">
@@ -357,7 +358,7 @@
                                 </a>
                             </div>
                             <div class="col-xs-10 col-sm-10 col-md-10">
-                                <a href='/profile/{{ character.pk }}' target="_blank">
+                                <a href='/profile/{% localize off %}{{ character.pk }}{% endlocalize %}' target="_blank">
                                     <h3>{{ character.nickname }}</h3>
                                 </a>
                             </div>
@@ -371,7 +372,7 @@
                         {% for character in def_char_list %}
                          <div class="row">
                             <div class="col-xs-2 col-sm-2 col-md-2">
-                                <a href='/profile/{{ character.pk }}' target="_blank">
+                                <a href='/profile/{% localize off %}{{ character.pk }}{% endlocalize %}' target="_blank">
                                     <!--если пользователь загрузил аватарку-->
                                     {% if character.image %}
                                     <img src="{{ character.image.url }}" width="50" height="50" align="right">
@@ -381,7 +382,7 @@
                                 </a>
                             </div>
                             <div class="col-xs-10 col-sm-10 col-md-10">
-                                <a href='/profile/{{ character.pk }}' target="_blank">
+                                <a href='/profile/{% localize off %}{{ character.pk }}{% endlocalize %}' target="_blank">
                                     <h3>{{ character.nickname }}</h3>
                                 </a>
                             </div>

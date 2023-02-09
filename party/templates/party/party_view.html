@@ -1,6 +1,6 @@
 {% extends 'player/header.html' %}
 {% load static %}
-{% load i18n %}{% load tz %}
+{% load l10n %}{% load i18n %}{% load tz %}
 {% load dict_key %}
 {% load has_key %}
 {% load government.treasury %}
@@ -91,7 +91,7 @@
                             {% for member in party_characters %}
                                 <div class="row flex" style="margin-top: 1%;">
                                     <div class="col-xs-2 col-sm-2 col-md-2">
-                                        <a href='/profile/{{ member.pk }}' target="_blank">
+                                        <a href='/profile/{% localize off %}{{ member.pk }}{% endlocalize %}' target="_blank">
                                             {% if member.image %}
                                             <img src="{{ member.image.url }}" width="50" height="50" align="left">
                                             {% else %}
@@ -100,7 +100,7 @@
                                         </a>
                                     </div>
                                     <div class="col-xs-4 col-sm-4 col-md-4">
-                                        <a href='/profile/{{ member.pk }}' target="_blank">
+                                        <a href='/profile/{% localize off %}{{ member.pk }}{% endlocalize %}' target="_blank">
                                             <font size="4"><b>{{ member.nickname }}</b></font>
                                         </a>
                                     </div>

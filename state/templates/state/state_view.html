@@ -1,6 +1,7 @@
 {% extends 'player/header.html' %}
 {% load static %}
-{% load i18n %}{% load tz %}
+{% load tz %}
+{% load l10n %}{% load i18n %}
 {% load dict_key %}
 {% load has_key %}
 {% load government.treasury %}
@@ -57,7 +58,7 @@
                                 <div class="col-xs-6 col-sm-6 col-md-6">
                                     <b>
                                         {% if president.leader %}
-                                        <a href='/profile/{{ president.leader.pk }}' target="_blank">
+                                        <a href='/profile/{% localize off %}{{ president.leader.pk }}{% endlocalize %}' target="_blank">
                                             {% if president.leader.image %}
                                                 <img src="{{ president.leader.image.url }}" width="30" height="30">
                                             {% else %}
@@ -279,7 +280,7 @@
                                  <div class="row flex" style="margin-bottom: 1vh; display: flex; align-items: center;
                                   {% if forloop.counter|get_mod:2 == 1 %}background: #F1F3F4{% endif %}">
                                     <div class="col-xs-1 col-sm-1 col-md-1">
-                                        <a href='/profile/{{ minister.player.pk }}' target="_blank">
+                                        <a href='/profile/{% localize off %}{{ minister.player.pk }}{% endlocalize %}' target="_blank">
                                             {% if minister.player.image %}
                                                 <img src="{{ minister.player.image.url }}" width="50" height="50">
                                             {% else %}
@@ -288,7 +289,7 @@
                                         </a>
                                     </div>
                                     <div class="col-xs-4 co сl-sm-4 col-md-4">
-                                        <a href='/profile/{{ minister.player.pk }}' target="_blank">
+                                        <a href='/profile/{% localize off %}{{ minister.player.pk }}{% endlocalize %}' target="_blank">
                                             <b>
                                                 <font size="5">{{ minister.player.nickname }}</font>
                                             </b>

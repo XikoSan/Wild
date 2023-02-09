@@ -1,6 +1,6 @@
 {% load dict_key %}
 {% load static %}
-{% load tz %}
+{% load l10n %}{% load i18n %}{% load tz %}
 <div class="row">
     <div class="col-xs-2 col-sm-2 col-md-2">
     </div>
@@ -84,7 +84,7 @@
         <div class="row flex">
             <div class="col-xs-1 col-sm-1 col-md-1">
                 <!--если пользователь загрузил аватарку-->
-                <a href='profile/{{ member.pk }}' target="_blank">
+                <a href='profile/{% localize off %}{{ member.pk }}{% endlocalize %}' target="_blank">
                     {% if member.image %}
                     <img src="{{ member.image.url }}" width="50" height="50" align="right">
                     {% else %}
@@ -94,7 +94,7 @@
             </div>
             <div class="col-xs-4 col-sm-4 col-md-4">
                 <h3>
-                <a href='profile/{{ member.pk }}' target="_blank">{{ member.nickname }}</a>
+                <a href='profile/{% localize off %}{{ member.pk }}{% endlocalize %}' target="_blank">{{ member.nickname }}</a>
                 {% if member == prev_lead.leader %}
                     <!--отметка лидера праймериз-->
                     <div class="glyphicon glyphicon-star-empty">

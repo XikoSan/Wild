@@ -587,7 +587,7 @@
             <!--сообщение-->
             <div class="overview__chat-message" {% localize off %} data-counter='{{  message|dict_key:"counter" }}' {% endlocalize %} data-sender='{{  message|dict_key:"author" }}'>
               <!--аватарка-->
-              <a class="overview__chat-ava-link" href='/profile/{{  message|dict_key:"author" }}'>
+              <a class="overview__chat-ava-link" href='/profile/{% localize off %}{{  message|dict_key:"author" }}{% endlocalize %}'>
                 <img src="{{  message|dict_key:'image_link'  }}" class="overview__chat-ava">
               </a>
               <div class="overview__chat-message-wrapper">

@@ -32,7 +32,7 @@
             </div>
             <div class="col-xs-3 col-sm-3 col-md-3">
                 <h3>
-                    <a href='/profile/{{ request.char.pk }}' target="_blank">{{ request.char.nickname }}</a>
+                    <a href='/profile/{% localize off %{{ request.char.pk }}{% endlocalize %}' target="_blank">{{ request.char.nickname }}</a>
                 </h3>
             </div>
             <div class="col-xs-2 col-sm-2 col-md-2">
@@ -77,7 +77,7 @@
                 </div>
                 <div class="col-xs-4 col-sm-4 col-md-4">
                     <h3>
-                        <a href='/profile/{{ char.pk }}' target="_blank">{{ char.nickname }}</a>
+                        <a href='/profile/{% localize off %}{{ char.pk }}{% endlocalize %}' target="_blank">{{ char.nickname }}</a>
                     </h3>
                 </div>
                 <div class="col-xs-2 col-sm-2 col-md-2">

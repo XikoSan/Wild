@@ -1,6 +1,7 @@
 {% extends 'player/header.html' %}
 {% load static %}
-{% load l10n %}
+{% load tz %}
+{% load l10n %}{% load i18n %}
 {% block for_scripts_and_css %}
 <link rel="stylesheet" type="text/css" href='{% static "css/overview.css" %}'/>
 <script src="{% static 'js/primaries.js' %}?{{ csrf_token }}"></script>
@@ -41,7 +42,7 @@
                     <div class="row" style="border: 1px solid white;">
                         <div class="col-xs-2 col-sm-2 col-md-2">
                             <!--если пользователь загрузил аватарку-->
-                            <a href='/profile/{{ candidate.pk }}' target="_blank">
+                            <a href='/profile/{% localize off %}{{ candidate.pk }}{% endlocalize %}' target="_blank">
                             {% if candidate.image %}
                                 <img src="{{ candidate.image.url }}" width="50" height="50" align="right">
                             {% else %}
@@ -50,7 +51,7 @@
                             </a>
                         </div>
                         <div class="col-xs-8 col-sm-8 col-md-8">
-                            <h3 style="cursor: pointer" onclick="window.open('/profile/{{ candidate.pk }}', '_blank')">{{ candidate.nickname }}</h3>
+                            <h3 style="cursor: pointer" onclick="window.open('/profile/{% localize off %}{{ candidate.pk }}{% endlocalize %}', '_blank')">{{ candidate.nickname }}</h3>
                         </div>
                         <div class="col-xs-2 col-sm-2 col-md-2">
                             {% if vote %}
