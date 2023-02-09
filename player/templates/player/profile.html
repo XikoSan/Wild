@@ -1,7 +1,7 @@
 {% extends 'player/header.html' %}
 {% load static %}
 {% load bootstrap3 %}
-{% load i18n %}
+{% load l10n %}{% load i18n %}
 {% load tz %}
 {% load get_len %}
 {% load get_all %}
@@ -226,7 +226,7 @@
                                     <b><font size="5" >беспартийный</font></b>
 <!--                                    <b><font size="5" >{% trans 'unaffiliated' %}</font></b>-->
                                 {% endif %}
-                                <b> <font size="3" onclick="window.location.href = '/party_history/{{ player.pk }}/'" style="cursor: pointer">( история )</font></b>
+                                <b> <font size="3" onclick="window.location.href = '/party_history/{% localize off %}{{ player.pk }}{% endlocalize %}/'" style="cursor: pointer">( история )</font></b>
                             </div>
                         </div>
                         <!--партия-->

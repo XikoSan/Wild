@@ -100,7 +100,7 @@
                                     <b><font size="5" >беспартийный</font></b>
 <!--                                    <b><font size="5" >{% trans 'unaffiliated' %}</font></b>-->
                                 {% endif %}
-                                <b> <font size="3" onclick="window.location.href = '/party_history/{{ char.pk }}/'" style="cursor: pointer">( история )</font></b>
+                                <b> <font size="3" onclick="window.location.href = '/party_history/{% localize off %}{{ char.pk }}{% endlocalize %}/'" style="cursor: pointer">( история )</font></b>
                             </div>
                         </div>
                         <!--партия-->
