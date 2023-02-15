@@ -880,6 +880,7 @@ a {
   padding-bottom: 24rem;
   height: calc(100% - 60rem);
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .earn__title {
@@ -948,9 +949,11 @@ a {
 /*! Store */
 
 .store {
+  position: relative;
   padding-top: 14rem;
   padding-bottom: 24rem;
   height: calc(100% - 60rem);
+  overflow-x: hidden;
 }
 
 .store__title-settings {
@@ -1081,8 +1084,6 @@ a {
   row-gap: 12rem;
   font-size: 14rem;
   color: var(--c10one);
-  height: calc(100vh - 306rem);
-  overflow-y: scroll;
   padding-bottom: 24rem;
 }
 
@@ -1654,6 +1655,7 @@ a {
   padding-top: 14rem;
   padding-bottom: 24rem;
   height: calc(100% - 60rem);
+  overflow-x: hidden;
 }
 
 .trading__tabs {
@@ -1894,6 +1896,7 @@ a {
   padding-top: 14rem;
   padding-bottom: 24rem;
   height: calc(100% - 60rem);
+  overflow-x: hidden;
 }
 
 .actives__title {
@@ -3285,6 +3288,7 @@ p.overview__love-stat-timer {
   padding-bottom: 24rem;
   height: calc(100% - 60rem);
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .war__title {
@@ -4519,6 +4523,7 @@ p.overview__love-stat-timer {
   left: 0;
   width: 100%;
   height: calc(100% - 60rem);
+  overflow-x: hidden;
   display: flex;
   flex-direction: column;
 }
@@ -5413,7 +5418,7 @@ p.overview__love-stat-timer {
   width: 100%;
   border-collapse: collapse;
   font-size: 14rem;
-  line-height: 1.5;
+  line-height: 1.25;
 }
 
 .ct__js-table img {
@@ -5518,6 +5523,15 @@ p.overview__love-stat-timer {
 .ct__js-table-pag > span {
   font-size: 18rem;
   margin: 0 20rem;
+}
+
+.ct__js-color-btn {
+  display: block;
+  width: max-content;
+  text-align: center;
+  padding: 3rem;
+  background-color: var(--c10two);
+  color: var(--c60);
 }
 
 .ct__js-table-pag-prev,
