@@ -60,7 +60,7 @@ class Independence(Bill):
                 }
 
             # его казна
-            if Treasury.objects.filter(region=region).exists():
+            if Treasury.objects.filter(region=region, deleted=False).exists():
                 return {
                     'response': 'В регионе размещена казна государства',
                     'header': 'Новый законопроект',
