@@ -18,7 +18,7 @@ class SquadAdmin(admin.ModelAdmin):
         war_class = obj.content_type.model_class()
 
         if war_class.objects.filter(pk=obj.object_id).exists():
-            return str(workplace_class.objects.get(pk=obj.object_id).agr_region.region_name)
+            return str(war_class.objects.get(pk=obj.object_id).agr_region.region_name)
         else:
             return ''
 
@@ -26,7 +26,7 @@ class SquadAdmin(admin.ModelAdmin):
         war_class = obj.content_type.model_class()
 
         if war_class.objects.filter(pk=obj.object_id).exists():
-            return str(workplace_class.objects.get(pk=obj.object_id).def_region.region_name)
+            return str(war_class.objects.get(pk=obj.object_id).def_region.region_name)
         else:
             return ''
 
