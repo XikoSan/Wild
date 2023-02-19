@@ -1,0 +1,148 @@
+{% extends 'player/redesign/header.html' %}
+{% load static %}
+{% load bootstrap3 %}
+{% load l10n %}{% load i18n %}{% load tz %}
+{% load dict_key %}
+{% load get_sum %}
+{% load get_attr %}
+{% load get_key_list %}
+{% load get_class_name %}
+
+{% load party_blocks.no_party %}
+{% load redesign.party_blocks.has_party %}
+
+{% block content %}
+    {% if player.party %}
+       {% has_party player %}
+    {% else %}
+        {% no_party player %}
+    {% endif %}
+{% endblock %}
+
+{% block for_scripts_and_css %}
+<script src='{% static "js/party.js" %}?{{ csrf_token }}'></script>
+<!-- РЕДАКТИРОВАНИЕ ДОЛЖНОСТИ -->
+<div class="rank-edit" id="rank-edit">
+
+	<div class="rank-edit__overlay" id="overlay"></div>
+
+	<div class="rank-edit__content">
+
+		<div class="ct__two-select-wrapper-check ct__two-select-wrapper-check--min">
+			<label>
+				<input type="radio" name="rank" class="visually-hidden">
+				<svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(--c10two)"/>
+				</svg>
+				<span>
+					<svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(--c10two)"/>
+						<path d="M6.5 4.5L4.5 6.5V20.5H18.5L20.5 18.5V4.5H6.5Z" fill="var(--c10two)" stroke="var(--c10two)"/>
+					</svg>
+				</span>
+				s должность1
+			</label>
+		</div>
+
+		<div class="ct__two-select-wrapper-check ct__two-select-wrapper-check--min">
+			<label>
+				<input type="radio" name="rank" class="visually-hidden">
+				<svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(--c10two)"/>
+				</svg>
+				<span>
+					<svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(--c10two)"/>
+						<path d="M6.5 4.5L4.5 6.5V20.5H18.5L20.5 18.5V4.5H6.5Z" fill="var(--c10two)" stroke="var(--c10two)"/>
+					</svg>
+				</span>
+				должно asdasd сть2
+			</label>
+		</div>
+
+		<div class="ct__two-select-wrapper-check ct__two-select-wrapper-check--min">
+			<label>
+				<input type="radio" name="rank" class="visually-hidden">
+				<svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(--c10two)"/>
+				</svg>
+				<span>
+					<svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(--c10two)"/>
+						<path d="M6.5 4.5L4.5 6.5V20.5H18.5L20.5 18.5V4.5H6.5Z" fill="var(--c10two)" stroke="var(--c10two)"/>
+					</svg>
+				</span>
+				должнsdsdость3
+			</label>
+		</div>
+
+		<div class="ct__two-select-wrapper-check ct__two-select-wrapper-check--min">
+			<label>
+				<input type="radio" name="rank" class="visually-hidden">
+				<svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(--c10two)"/>
+				</svg>
+				<span>
+					<svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(--c10two)"/>
+						<path d="M6.5 4.5L4.5 6.5V20.5H18.5L20.5 18.5V4.5H6.5Z" fill="var(--c10two)" stroke="var(--c10two)"/>
+					</svg>
+				</span>
+				должность dsdsdsdsds 4
+			</label>
+		</div>
+
+		<div class="ct__two-select-wrapper-check ct__two-select-wrapper-check--min">
+			<label>
+				<input type="radio" name="rank" class="visually-hidden">
+				<svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(--c10two)"/>
+				</svg>
+				<span>
+					<svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(--c10two)"/>
+						<path d="M6.5 4.5L4.5 6.5V20.5H18.5L20.5 18.5V4.5H6.5Z" fill="var(--c10two)" stroke="var(--c10two)"/>
+					</svg>
+				</span>
+				должноs сть5
+			</label>
+		</div>
+
+		<div class="party__mmid-line"></div>
+
+		<a class="rank-edit__delete ct__mid-btn" href="##">
+			<svg width="144" height="30" viewBox="0 0 144 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<mask id="mask0_259_319" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+					<path d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z" fill="var(--c10two)"/>
+				</mask>
+				<g mask="url(#mask0_259_319)">
+					<path d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" fill="var(--c10two)"/>
+					<path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"/>
+					<path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"/>
+					<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
+				</g>
+			</svg>
+			<span>исключить</span>
+		</a>
+
+
+	</div>
+</div>
+
+<script>
+
+	const rankEditModal = document.getElementById('rank-edit');
+	const rankEditDeleteLink = rankEditModal.querySelector('.rank-edit__delete')
+
+	function openEditModal(targetElement) {
+		rankEditModal.classList.add('active');
+		const playerId = targetElement.getAttribute('data-char-id');
+		rankEditDeleteLink.href = `/kick/${playerId}/`;
+	}
+
+	document.getElementById('overlay').addEventListener('click', (evt) => {
+		rankEditModal.classList.remove('active');
+	})
+
+</script>
+{% endblock %}

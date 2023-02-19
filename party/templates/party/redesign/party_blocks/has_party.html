@@ -1,0 +1,171 @@
+{% load dict_key %}
+{% load static %}
+{% load l10n %}{% load i18n %}{% load tz %}
+
+<section class="party custom-scroll">
+
+	<!-- Заголовок -->
+	<h1 class="party__title ct__page-title">Партия</h1>
+
+    <!--ТОП БЛОК-->
+    <div class="party__top">
+      <!--аватар-->
+		{% if player.party.image %}
+		<!--Картинка партии-->
+	  	<img class="party__top-ava" src="{{ player.party.image.url }}" alt="{{ player.party.title }}">
+		{% else %}
+	  	<img class="party__top-ava" src="{% static 'img/nopic_party.png' %}" alt="{{ player.party.title }}">
+		{% endif %}
+
+      <!--инфа в топ блоке-->
+      <div class="party__top-content">
+        <h2 class="party__top-name">{{ player.party.title }}</h2>
+
+        <!--кнопки-->
+        <div class="party__top-btns">
+			{% if primaries != None %}
+          <!--праймериз-->
+          <button style="cursor: pointer" class="party__primer">
+			<svg width="26" height="30" viewBox="0 0 26 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path d="M3 27.5V2.5H23V16.9288C23 22.0625 15.5 20 15.5 20C15.5 20 17.3975 27.5 12.2025 27.5H3ZM25.5 17.9825V0H0.5V30H13.2362C17.19 30 25.5 20.9712 25.5 17.9825ZM11.7912 18.75C14.6137 13.6875 16.5737 11.0875 19.25 8.75125L18.9025 7.95C15.6575 9.97 13.9112 11.4912 11.27 14.4887C9.86375 13.4862 9.07 13.0275 7.82 12.4213L6.75 13.4113C8.88875 15.3925 10.05 16.7 11.7912 18.75Z" fill="var(--c10two)"/>
+			</svg>
+          </button>
+			{% endif %}
+
+			{% if player.party_post.party_lead or player.party_post.party_sec %}
+                {% if player.party.type == 'pt' %}
+                    {% if requests_count %}
+						<a href="{% url 'party_requests' %}" class="party__requests">+{{ requests_count }}</a>
+                    {% endif %}
+                {% endif %}
+            {% endif %}
+
+			{% if player.party_post.party_lead %}
+          <!--настройки-->
+          <button style="cursor: pointer" class="party__top-sett">
+            <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+            width="80px" height="76px" viewBox="0 0 1280.000000 1276.000000"
+            preserveAspectRatio="xMidYMid meet">
+            <g transform="translate(0.000000,1276.000000) scale(0.100000,-0.100000)"
+            fill="var(--c10two)" stroke="none">
+            <path d="M5975 12749 c-86 -6 -144 -14 -151 -22 -6 -6 -36 -95 -67 -197 -30
+            -102 -119 -396 -197 -655 -78 -258 -156 -516 -173 -571 l-30 -102 -188 -46
+            c-213 -52 -475 -135 -658 -208 -68 -27 -130 -47 -137 -44 -7 3 -301 221 -653
+            485 -353 265 -644 481 -649 481 -11 0 -250 -145 -362 -220 -206 -137 -422
+            -299 -608 -456 l-25 -21 271 -746 c150 -411 272 -752 272 -758 0 -6 -40 -56
+            -88 -112 -175 -202 -337 -420 -457 -615 -32 -52 -64 -96 -72 -99 -8 -3 -366 4
+            -796 16 -430 12 -794 21 -808 21 -23 0 -30 -9 -56 -67 -61 -137 -142 -353
+            -202 -538 -61 -186 -145 -494 -138 -502 2 -2 303 -204 668 -448 562 -377 665
+            -450 670 -473 3 -15 1 -72 -4 -127 -8 -99 -2 -525 11 -702 l7 -92 -668 -448
+            c-368 -246 -673 -450 -678 -453 -9 -6 22 -146 72 -320 71 -249 180 -554 284
+            -794 l17 -39 141 6 c78 4 443 14 810 24 l668 17 25 -29 c13 -17 68 -95 120
+            -174 113 -169 222 -314 350 -467 l93 -111 -275 -752 c-151 -414 -274 -757
+            -272 -761 5 -14 213 -185 361 -296 225 -170 606 -418 631 -412 7 2 299 219
+            649 482 l637 479 47 -15 c27 -9 84 -30 128 -48 183 -74 392 -141 619 -200 81
+            -21 149 -40 151 -42 3 -3 222 -724 386 -1273 38 -126 73 -239 78 -251 8 -18
+            24 -22 137 -33 314 -30 1078 -22 1110 12 6 7 36 95 67 197 30 102 119 396 197
+            655 78 259 156 516 173 571 l30 102 188 46 c213 52 475 135 658 208 68 27 130
+            47 137 44 7 -3 301 -221 653 -485 353 -265 644 -481 649 -481 11 0 250 145
+            362 220 206 137 422 299 608 456 l25 21 -271 746 c-150 411 -272 752 -272 758
+            0 6 40 56 88 112 175 202 337 420 457 615 32 52 64 96 72 99 8 3 366 -4 796
+            -16 430 -12 794 -21 808 -21 23 0 30 9 56 68 61 136 142 352 202 537 61 186
+            145 494 138 502 -2 2 -303 204 -668 448 -562 377 -665 450 -670 473 -3 15 -1
+            72 4 127 8 99 2 527 -11 702 l-7 92 668 448 c368 246 673 450 678 453 9 6 -22
+            146 -72 320 -71 249 -180 554 -284 794 l-17 39 -141 -6 c-78 -4 -443 -14 -810
+            -24 l-668 -17 -25 29 c-13 17 -68 95 -120 174 -113 169 -222 314 -350 467
+            l-93 111 275 752 c151 414 274 757 272 761 -5 14 -213 185 -361 296 -225 170
+            -606 418 -631 412 -7 -2 -299 -219 -649 -482 l-637 -479 -47 15 c-27 9 -84 30
+            -128 48 -183 74 -392 141 -619 200 -81 21 -149 40 -151 42 -3 3 -222 724 -386
+            1273 -38 127 -73 239 -78 251 -8 18 -24 22 -137 33 -164 16 -775 22 -959 10z
+            m2253 -2919 c73 -39 115 -83 151 -160 22 -46 26 -69 26 -140 0 -73 -4 -93 -28
+            -142 -32 -65 -95 -125 -165 -159 -70 -34 -198 -38 -274 -9 -259 97 -294 456
+            -58 598 76 45 102 52 200 49 74 -3 93 -7 148 -37z m-1586 -1425 c407 -47 749
+            -184 1073 -428 176 -133 407 -392 514 -575 177 -306 264 -594 291 -969 10
+            -128 9 -170 -5 -270 -45 -333 -152 -618 -334 -890 -437 -654 -1225 -1012
+            -2023 -918 -407 47 -749 184 -1073 428 -176 133 -407 392 -514 575 -177 306
+            -264 594 -291 969 -10 128 -9 170 5 270 33 241 90 435 190 639 274 563 772
+            963 1390 1119 244 62 523 80 777 50z m-3348 -134 c182 -89 246 -300 143 -472
+            -62 -103 -173 -163 -302 -162 -193 2 -335 144 -337 338 -3 248 268 409 496
+            296z m6489 -3167 c131 -46 218 -173 219 -321 1 -62 -4 -82 -31 -137 -37 -75
+            -92 -128 -170 -164 -81 -38 -202 -38 -282 -1 -79 37 -133 90 -171 167 -29 58
+            -33 77 -33 143 0 65 5 85 33 142 79 159 263 232 435 171z m-4919 -1565 c73
+            -27 148 -96 183 -167 24 -50 28 -69 28 -147 0 -73 -4 -99 -23 -136 -34 -70
+            -84 -122 -154 -160 -60 -32 -68 -34 -163 -34 -95 0 -103 2 -163 34 -74 40
+            -116 85 -150 159 -83 182 5 385 196 454 67 24 177 23 246 -3z"/>
+            </g>
+            </svg>
+          </button>
+			{% else %}
+			<form class="party__exit" id="leave_party_form" role="form">
+				 {% csrf_token %}
+				<input class="visually-hidden" type="hidden" name="party_id" id="party_id" value="{{ player.party.pk }}">
+				<button style="cursor: pointer" type="submit" class="btn btn-danger" value="Покинуть партию">
+					<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" fill="var(--c10two)"><path d="M11 21h8v-2l1-1v4h-9v2l-10-3v-18l10-3v2h9v5l-1-1v-3h-8v18zm10.053-9l-3.293-3.293.707-.707 4.5 4.5-4.5 4.5-.707-.707 3.293-3.293h-9.053v-1h9.053z"/></svg>
+				</button>
+			</form>
+			{% endif %}
+
+        </div><!--кнопки конец-->
+
+        <div class="party__region">
+          <img src="static/img/regions/{{ player.party.region.on_map_id }}">
+          <p>{{ player.party.region.region_name }}</p>
+        </div>
+
+      </div><!--конец инфа в топ блоке-->
+
+    </div><!--конец ТОП блок-->
+
+		<!--БЛОК ТАБЛИЦА-->
+		<div class="ct__js-table-container" id="js-ct-table-1">
+			<!--таблица-->
+			<table class="ct__js-table">
+				<tbody>
+
+					<tr>
+						<td class="j-t-one"></td>
+						<td class="j-t-two">Никнейм</td>
+						<td class="j-t-three">Был в сети</td>
+						<td class="j-t-four">Должность</td>
+					</tr>
+					{% for member in players_list %}
+					<tr>
+						<td class="j-t-one">
+							<a href='profile/{% localize off %}{{ member.pk }}{% endlocalize %}'>
+								{% if member.image %}
+								<img src="{{ member.image.url }}">
+								{% else %}
+								<img src="{% static 'img/nopic.png' %}">
+								{% endif %}
+							</a>
+						</td>
+						<td class="j-t-two">
+							{% if member == prev_lead.leader %}
+<!--							символ лидера праймериз -->
+							⭐
+							{% endif %}
+							{{ member.nickname }}
+						</td>
+						<td class="j-t-three">{% if online_dict|dict_key:member.pk %}{{ online_dict|dict_key:member.pk }}{% else %}давно{% endif %}</td>
+<!--						<td class="j-t-four" data-char-id="20" onclick="openEditModal(this)" style="color: var(&#45;&#45;c10two);">-->
+						<td class="j-t-four" data-char-id="20">
+							{{ member.party_post.title }}
+						</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+			<!--пагинация-->
+<!--			<div class="ct__js-table-pag">-->
+<!--				<button style="cursor: pointer" class="ct__js-table-pag-prev">-->
+<!--					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="var(&#45;&#45;c10two)"><path d="M22 12l-20 12 5-12-5-12z"/></svg>-->
+<!--				</button>-->
+<!--				<span>1/10</span>-->
+<!--				<button style="cursor: pointer" class="ct__js-table-pag-next">-->
+<!--					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="var(&#45;&#45;c10two)"><path d="M22 12l-20 12 5-12-5-12z"/></svg>-->
+<!--				</button>-->
+<!--			</div>-->
+			<!--конец: пагинация-->
+		</div>
+
+	</section>

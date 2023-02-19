@@ -127,7 +127,7 @@ def leave_party(request):
             # если персонаж был депутатом
             if DeputyMandate.objects.filter(player=player).exists():
                 # предварительно получим парламент, из мандата игрока
-                parliament = DeputyMandate.objects.get(party=player.party, player=player).parliament
+                parliament = DeputyMandate.objects.get(player=player).parliament
 
                 # УБИРАЕМ ЕГО ГОЛОСА ИЗ АКТИВНЫХ ЗП В ПАРЛАМЕНТЕ:
                 bills_classes = get_subclasses(Bill)

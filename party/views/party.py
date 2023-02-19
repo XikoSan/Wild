@@ -11,8 +11,16 @@ from player.player import Player
 @check_player
 def party(request):
     player = Player.get_instance(account=request.user)
+
+    groups = list(player.account.groups.all().values_list('name', flat=True))
+
+    page = 'party/party.html'
+    if player.party and not player.party_post.party_lead:
+        if 'redesign' not in groups:
+            page = 'party/redesign/party.html'
+
     # отправляем в форму
-    response = render(request, 'party/party.html', {
+    response = render(request, page, {
         'page_name': _('Партия'),
 
         'player': player,
