@@ -25,7 +25,7 @@
         <div class="party__top-btns">
 			{% if primaries != None %}
           <!--праймериз-->
-          <button style="cursor: pointer" class="party__primer">
+          <button style="cursor: pointer" class="party__primer" onclick="window.location.href = '{% url 'start_primaries' party_pk=player.party.pk %}'">
 			<svg width="26" height="30" viewBox="0 0 26 30" fill="none" xmlns="http://www.w3.org/2000/svg">
 				<path d="M3 27.5V2.5H23V16.9288C23 22.0625 15.5 20 15.5 20C15.5 20 17.3975 27.5 12.2025 27.5H3ZM25.5 17.9825V0H0.5V30H13.2362C17.19 30 25.5 20.9712 25.5 17.9825ZM11.7912 18.75C14.6137 13.6875 16.5737 11.0875 19.25 8.75125L18.9025 7.95C15.6575 9.97 13.9112 11.4912 11.27 14.4887C9.86375 13.4862 9.07 13.0275 7.82 12.4213L6.75 13.4113C8.88875 15.3925 10.05 16.7 11.7912 18.75Z" fill="var(--c10two)"/>
 			</svg>
