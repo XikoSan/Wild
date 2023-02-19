@@ -1,0 +1,32 @@
+
+        with store_sum(owner_id, cash) as
+        (
+            select store.owner_id, sum(store.cash)
+        from storage_storage as store
+        where
+        store.deleted = false
+        group
+        by
+        store.owner_id
+        ),
+
+       sum_cash(owner_id, cash) as
+         (
+        select
+        store.owner_id, sum(player.cash) + sum(store.cash)
+        from player_player as player
+
+        join
+        store_sum as store
+        on
+        store.owner_id = player.id
+
+        where player.cash <> 10000
+         and player.natural_refill >= '02.05.2023'
+
+         group by store.owner_id
+         )
+
+        select
+        percentile_disc(0.5) WITHIN GROUP (ORDER BY sum_cash.cash)
+        from sum_cash;
