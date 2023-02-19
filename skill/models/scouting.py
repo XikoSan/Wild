@@ -34,7 +34,7 @@ class Scouting(Skill):
 
     def apply(self, args):
         if self.player.arrival + timedelta(days=1) < timezone.now():
-            if not args['not_floor']:
+            if not 'not_floor' in args:
                 return math.floor(args['sum'] * (1 + self.level * 0.02))
             else:
                 return args['sum'] * (1 + self.level * 0.02)
