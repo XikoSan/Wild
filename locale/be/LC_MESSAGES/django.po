@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-02 20:27+0300\n"
+"POT-Creation-Date: 2023-02-20 22:59+0300\n"
 "PO-Revision-Date: 2022-10-31 18:40+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -367,6 +367,61 @@ msgstr "Золата"
 msgid "отклонить всё"
 msgstr "адхіліць усё"
 
+#: party/templates/party/redesign/party_blocks/has_party.html:8
+#, fuzzy
+#| msgid "Партия"
+msgctxt "has_party"
+msgid "Партия"
+msgstr "Партыя"
+
+#: party/templates/party/redesign/party_blocks/has_party.html:126
+#, fuzzy
+#| msgid "Никнейм"
+msgctxt "has_party"
+msgid "Никнейм"
+msgstr "Нікнэйм"
+
+#: party/templates/party/redesign/party_blocks/has_party.html:127
+#, fuzzy
+#| msgctxt "profile"
+#| msgid "был в сети"
+msgctxt "has_party"
+msgid "Был в сети"
+msgstr "апошні анлайн"
+
+#: party/templates/party/redesign/party_blocks/has_party.html:128
+#, fuzzy
+#| msgid "Выносливость"
+msgctxt "has_party"
+msgid "Должность"
+msgstr "Цягавітасьць"
+
+#: party/templates/party/redesign/party_blocks/has_party.html:172
+#, fuzzy
+#| msgid "должность в партии"
+msgctxt "has_party"
+msgid "Покинуть партию?"
+msgstr "пасада ў партыі"
+
+#: party/templates/party/redesign/party_blocks/has_party.html:173
+msgctxt "has_party"
+msgid "Вы покинете партию, а также все связанные должности. Продолжить?"
+msgstr ""
+
+#: party/templates/party/redesign/party_blocks/has_party.html:174
+#, fuzzy
+#| msgid "Продолжить"
+msgctxt "has_party"
+msgid "Продолжить"
+msgstr "Падцьвердзіць"
+
+#: party/templates/party/redesign/party_blocks/has_party.html:175
+#, fuzzy
+#| msgid "Отмена"
+msgctxt "has_party"
+msgid "Отмена"
+msgstr "Скасаваць"
+
 #: party/templates/primaries/primaries.html:25
 msgid "primaries_in_party"
 msgstr "Праймарыс у партыі"
@@ -379,86 +434,18 @@ msgstr "Партыі рэгіёну"
 msgid "Партии мира"
 msgstr "Партыі сусьвету"
 
-#: party/views/party.py:16 player/views/lists/cash_top.py:99
-#: player/views/lists/cash_top.py:100
-msgid "Партия"
-msgstr "Партыя"
-
-#: player/logs/cash_log.py:21
+#: party/views/management/staff/leave_party.py:33
+#: party/views/management/staff/leave_party.py:167
 #, fuzzy
-#| msgid "Финансирование"
-msgctxt "cash_log"
-msgid "Финансирование"
-msgstr "Фінансаваньне"
+#| msgctxt "repost"
+#| msgid "Выйти из игры"
+msgctxt "party"
+msgid "Выход из партии"
+msgstr "Выйсьці з гульні"
 
-#: player/logs/cash_log.py:22
-msgctxt "cash_log"
-msgid "Майнинг"
-msgstr ""
-
-#: player/logs/cash_log.py:23
-#, fuzzy
-#| msgid "Передать"
-msgctxt "cash_log"
-msgid "Перелёт"
-msgstr "Перадаць"
-
-#: player/logs/cash_log.py:24
-#, fuzzy
-#| msgid "На Складе"
-msgctxt "cash_log"
-msgid "Новый Склад"
-msgstr "У кладоўні"
-
-#: player/logs/cash_log.py:25
-#, fuzzy
-#| msgid "В этом регионе нет Склада"
-msgctxt "cash_log"
-msgid "Операции со Складом"
-msgstr "У гэтым рэгіёне няма Кладоўні"
-
-#: player/logs/cash_log.py:26
-#, fuzzy
-#| msgid "В этом регионе нет Склада"
-msgctxt "cash_log"
-msgid "Передача товаров"
-msgstr "У гэтым рэгіёне няма Кладоўні"
-
-#: player/logs/cash_log.py:27
-#, fuzzy
-#| msgid "Торговля"
-msgctxt "cash_log"
-msgid "Торговля"
-msgstr "Гандаль"
-
-#: player/logs/cash_log.py:28
-#, fuzzy
-#| msgid "Государственные налоги"
-msgctxt "cash_log"
-msgid "Гос. закупки"
-msgstr "Дзяржаўныя падаткі"
-
-#: player/logs/cash_log.py:29
-#, fuzzy
-#| msgid "Навыки"
-msgctxt "cash_log"
-msgid "Навыки"
-msgstr "Навыкі"
-
-#: player/player.py:284 region/views/do_mining.py:31
-#: region/views/start_auto.py:26
-msgctxt "mining"
-msgid "Дождитесь конца полёта"
-msgstr ""
-
-#: player/player.py:285 player/player.py:307 region/views/retrieve_cash.py:40
-#, fuzzy
-#| msgid "Некорректный запрос"
-msgctxt "mining"
-msgid "Ошибка получения финансирования"
-msgstr "Некарэктны запрос"
-
-#: player/player.py:286 player/player.py:308 region/views/cancel_auto.py:34
+#: party/views/management/staff/leave_party.py:34
+#: party/views/management/staff/leave_party.py:168 player/player.py:286
+#: player/player.py:308 region/views/cancel_auto.py:34
 #: region/views/do_mining.py:33 region/views/do_mining.py:46
 #: region/views/do_mining.py:56 region/views/do_mining.py:69
 #: region/views/do_mining.py:78 region/views/do_mining.py:87
@@ -556,6 +543,95 @@ msgstr "Некарэктны запрос"
 msgctxt "mining"
 msgid "Закрыть"
 msgstr "Закрыць"
+
+#: party/views/management/staff/leave_party.py:35
+msgctxt "party"
+msgid "Вы не исключили всех однопартийцев"
+msgstr ""
+
+#: party/views/management/staff/leave_party.py:169
+msgctxt "party"
+msgid "Вы не состоите в указанной партии"
+msgstr ""
+
+#: party/views/party.py:24 player/views/lists/cash_top.py:99
+#: player/views/lists/cash_top.py:100
+msgid "Партия"
+msgstr "Партыя"
+
+#: player/logs/cash_log.py:21
+#, fuzzy
+#| msgid "Финансирование"
+msgctxt "cash_log"
+msgid "Финансирование"
+msgstr "Фінансаваньне"
+
+#: player/logs/cash_log.py:22
+msgctxt "cash_log"
+msgid "Майнинг"
+msgstr ""
+
+#: player/logs/cash_log.py:23
+#, fuzzy
+#| msgid "Передать"
+msgctxt "cash_log"
+msgid "Перелёт"
+msgstr "Перадаць"
+
+#: player/logs/cash_log.py:24
+#, fuzzy
+#| msgid "На Складе"
+msgctxt "cash_log"
+msgid "Новый Склад"
+msgstr "У кладоўні"
+
+#: player/logs/cash_log.py:25
+#, fuzzy
+#| msgid "В этом регионе нет Склада"
+msgctxt "cash_log"
+msgid "Операции со Складом"
+msgstr "У гэтым рэгіёне няма Кладоўні"
+
+#: player/logs/cash_log.py:26
+#, fuzzy
+#| msgid "В этом регионе нет Склада"
+msgctxt "cash_log"
+msgid "Передача товаров"
+msgstr "У гэтым рэгіёне няма Кладоўні"
+
+#: player/logs/cash_log.py:27
+#, fuzzy
+#| msgid "Торговля"
+msgctxt "cash_log"
+msgid "Торговля"
+msgstr "Гандаль"
+
+#: player/logs/cash_log.py:28
+#, fuzzy
+#| msgid "Государственные налоги"
+msgctxt "cash_log"
+msgid "Гос. закупки"
+msgstr "Дзяржаўныя падаткі"
+
+#: player/logs/cash_log.py:29
+#, fuzzy
+#| msgid "Навыки"
+msgctxt "cash_log"
+msgid "Навыки"
+msgstr "Навыкі"
+
+#: player/player.py:284 region/views/do_mining.py:31
+#: region/views/start_auto.py:26
+msgctxt "mining"
+msgid "Дождитесь конца полёта"
+msgstr ""
+
+#: player/player.py:285 player/player.py:307 region/views/retrieve_cash.py:40
+#, fuzzy
+#| msgid "Некорректный запрос"
+msgctxt "mining"
+msgid "Ошибка получения финансирования"
+msgstr "Некарэктны запрос"
 
 #: player/player.py:306
 msgctxt "mining"
@@ -1419,7 +1495,7 @@ msgstr "Новы пэрсанаж"
 msgid "Ошибка в форме профиля"
 msgstr "Памылка ў форме профілю"
 
-#: player/views/overview.py:192
+#: player/views/overview.py:191
 msgid "Обзор"
 msgstr "Агляд"
 
@@ -1684,17 +1760,17 @@ msgid "Региональные налоги"
 msgstr "Рэгіянальныя падаткі"
 
 #: region/templates/region/region_view.html:201
-#: state/templates/state/state_view.html:143
+#: state/templates/state/state_view.html:144
 msgid "На финансирование"
 msgstr "На фінансаваньне"
 
 #: region/templates/region/region_view.html:213
-#: state/templates/state/state_view.html:155
+#: state/templates/state/state_view.html:156
 msgid "На добычу"
 msgstr "На здабычу"
 
 #: region/templates/region/region_view.html:227
-#: state/templates/state/state_view.html:169
+#: state/templates/state/state_view.html:170
 msgid "На торговлю"
 msgstr "На гандаль"
 
@@ -1912,15 +1988,15 @@ msgctxt "goods"
 msgid "Орбитальные орудия"
 msgstr "Арбітальная зброя"
 
-#: state/templates/state/state_view.html:40
+#: state/templates/state/state_view.html:41
 msgid "Donate"
 msgstr ""
 
-#: state/templates/state/state_view.html:106
+#: state/templates/state/state_view.html:107
 msgid "Столица"
 msgstr "Сталіца"
 
-#: state/templates/state/state_view.html:136
+#: state/templates/state/state_view.html:137
 msgid "Государственные налоги"
 msgstr "Дзяржаўныя падаткі"
 

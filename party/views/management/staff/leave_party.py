@@ -14,7 +14,7 @@ from player.player import Player
 from player.views.get_subclasses import get_subclasses
 from bill.models.bill import Bill
 from state.models.parliament.deputy_mandate import DeputyMandate
-
+from django.utils.translation import pgettext
 
 # буферная страница выхода из партии
 @login_required(login_url='/')
@@ -30,7 +30,9 @@ def leave_party(request):
             # if Player.objects.filter(party=Party.objects.get(pk=party_id)).count() > 1:
             if Player.objects.filter(party=Party.objects.get(pk=request.POST.get('party_id'))).count() > 1:
                 data = {
-                    'response': 'Вы не исключили всех однопартийев',
+                    'header': pgettext('party', 'Выход из партии'),
+                    'grey_btn': pgettext('mining', 'Закрыть'),
+                    'response': pgettext('party', 'Вы не исключили всех однопартийцев'),
                 }
                 return JsonResponse(data)
             # предварительно получаем партию для удаления
@@ -162,6 +164,8 @@ def leave_party(request):
             return JsonResponse(data)
     else:
         data = {
-            'response': 'Вы пытаетесь покинуть чужую партию. Это как вообще?',
+            'header': pgettext('party', 'Выход из партии'),
+            'grey_btn': pgettext('mining', 'Закрыть'),
+            'response': pgettext('party', 'Вы не состоите в указанной партии'),
         }
         return JsonResponse(data)

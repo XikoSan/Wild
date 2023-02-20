@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-02 20:27+0300\n"
+"POT-Creation-Date: 2023-02-20 22:59+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -299,6 +299,46 @@ msgstr ""
 msgid "отклонить всё"
 msgstr ""
 
+#: party/templates/party/redesign/party_blocks/has_party.html:8
+msgctxt "has_party"
+msgid "Партия"
+msgstr ""
+
+#: party/templates/party/redesign/party_blocks/has_party.html:126
+msgctxt "has_party"
+msgid "Никнейм"
+msgstr ""
+
+#: party/templates/party/redesign/party_blocks/has_party.html:127
+msgctxt "has_party"
+msgid "Был в сети"
+msgstr ""
+
+#: party/templates/party/redesign/party_blocks/has_party.html:128
+msgctxt "has_party"
+msgid "Должность"
+msgstr ""
+
+#: party/templates/party/redesign/party_blocks/has_party.html:172
+msgctxt "has_party"
+msgid "Покинуть партию?"
+msgstr ""
+
+#: party/templates/party/redesign/party_blocks/has_party.html:173
+msgctxt "has_party"
+msgid "Вы покинете партию, а также все связанные должности. Продолжить?"
+msgstr ""
+
+#: party/templates/party/redesign/party_blocks/has_party.html:174
+msgctxt "has_party"
+msgid "Продолжить"
+msgstr ""
+
+#: party/templates/party/redesign/party_blocks/has_party.html:175
+msgctxt "has_party"
+msgid "Отмена"
+msgstr ""
+
 #: party/templates/primaries/primaries.html:25
 msgid "primaries_in_party"
 msgstr ""
@@ -311,68 +351,15 @@ msgstr ""
 msgid "Партии мира"
 msgstr ""
 
-#: party/views/party.py:16 player/views/lists/cash_top.py:99
-#: player/views/lists/cash_top.py:100
-msgid "Партия"
+#: party/views/management/staff/leave_party.py:33
+#: party/views/management/staff/leave_party.py:167
+msgctxt "party"
+msgid "Выход из партии"
 msgstr ""
 
-#: player/logs/cash_log.py:21
-msgctxt "cash_log"
-msgid "Финансирование"
-msgstr ""
-
-#: player/logs/cash_log.py:22
-msgctxt "cash_log"
-msgid "Майнинг"
-msgstr ""
-
-#: player/logs/cash_log.py:23
-msgctxt "cash_log"
-msgid "Перелёт"
-msgstr ""
-
-#: player/logs/cash_log.py:24
-msgctxt "cash_log"
-msgid "Новый Склад"
-msgstr ""
-
-#: player/logs/cash_log.py:25
-msgctxt "cash_log"
-msgid "Операции со Складом"
-msgstr ""
-
-#: player/logs/cash_log.py:26
-msgctxt "cash_log"
-msgid "Передача товаров"
-msgstr ""
-
-#: player/logs/cash_log.py:27
-msgctxt "cash_log"
-msgid "Торговля"
-msgstr ""
-
-#: player/logs/cash_log.py:28
-msgctxt "cash_log"
-msgid "Гос. закупки"
-msgstr ""
-
-#: player/logs/cash_log.py:29
-msgctxt "cash_log"
-msgid "Навыки"
-msgstr ""
-
-#: player/player.py:284 region/views/do_mining.py:31
-#: region/views/start_auto.py:26
-msgctxt "mining"
-msgid "Дождитесь конца полёта"
-msgstr ""
-
-#: player/player.py:285 player/player.py:307 region/views/retrieve_cash.py:40
-msgctxt "mining"
-msgid "Ошибка получения финансирования"
-msgstr ""
-
-#: player/player.py:286 player/player.py:308 region/views/cancel_auto.py:34
+#: party/views/management/staff/leave_party.py:34
+#: party/views/management/staff/leave_party.py:168 player/player.py:286
+#: player/player.py:308 region/views/cancel_auto.py:34
 #: region/views/do_mining.py:33 region/views/do_mining.py:46
 #: region/views/do_mining.py:56 region/views/do_mining.py:69
 #: region/views/do_mining.py:78 region/views/do_mining.py:87
@@ -467,6 +454,77 @@ msgstr ""
 #: storage/views/trading/premium_trading.py:182
 msgctxt "mining"
 msgid "Закрыть"
+msgstr ""
+
+#: party/views/management/staff/leave_party.py:35
+msgctxt "party"
+msgid "Вы не исключили всех однопартийцев"
+msgstr ""
+
+#: party/views/management/staff/leave_party.py:169
+msgctxt "party"
+msgid "Вы не состоите в указанной партии"
+msgstr ""
+
+#: party/views/party.py:24 player/views/lists/cash_top.py:99
+#: player/views/lists/cash_top.py:100
+msgid "Партия"
+msgstr ""
+
+#: player/logs/cash_log.py:21
+msgctxt "cash_log"
+msgid "Финансирование"
+msgstr ""
+
+#: player/logs/cash_log.py:22
+msgctxt "cash_log"
+msgid "Майнинг"
+msgstr ""
+
+#: player/logs/cash_log.py:23
+msgctxt "cash_log"
+msgid "Перелёт"
+msgstr ""
+
+#: player/logs/cash_log.py:24
+msgctxt "cash_log"
+msgid "Новый Склад"
+msgstr ""
+
+#: player/logs/cash_log.py:25
+msgctxt "cash_log"
+msgid "Операции со Складом"
+msgstr ""
+
+#: player/logs/cash_log.py:26
+msgctxt "cash_log"
+msgid "Передача товаров"
+msgstr ""
+
+#: player/logs/cash_log.py:27
+msgctxt "cash_log"
+msgid "Торговля"
+msgstr ""
+
+#: player/logs/cash_log.py:28
+msgctxt "cash_log"
+msgid "Гос. закупки"
+msgstr ""
+
+#: player/logs/cash_log.py:29
+msgctxt "cash_log"
+msgid "Навыки"
+msgstr ""
+
+#: player/player.py:284 region/views/do_mining.py:31
+#: region/views/start_auto.py:26
+msgctxt "mining"
+msgid "Дождитесь конца полёта"
+msgstr ""
+
+#: player/player.py:285 player/player.py:307 region/views/retrieve_cash.py:40
+msgctxt "mining"
+msgid "Ошибка получения финансирования"
 msgstr ""
 
 #: player/player.py:306
@@ -1287,7 +1345,7 @@ msgstr ""
 msgid "Ошибка в форме профиля"
 msgstr ""
 
-#: player/views/overview.py:192
+#: player/views/overview.py:191
 msgid "Обзор"
 msgstr ""
 
@@ -1516,17 +1574,17 @@ msgid "Региональные налоги"
 msgstr ""
 
 #: region/templates/region/region_view.html:201
-#: state/templates/state/state_view.html:143
+#: state/templates/state/state_view.html:144
 msgid "На финансирование"
 msgstr ""
 
 #: region/templates/region/region_view.html:213
-#: state/templates/state/state_view.html:155
+#: state/templates/state/state_view.html:156
 msgid "На добычу"
 msgstr ""
 
 #: region/templates/region/region_view.html:227
-#: state/templates/state/state_view.html:169
+#: state/templates/state/state_view.html:170
 msgid "На торговлю"
 msgstr ""
 
@@ -1712,15 +1770,15 @@ msgctxt "goods"
 msgid "Орбитальные орудия"
 msgstr ""
 
-#: state/templates/state/state_view.html:40
+#: state/templates/state/state_view.html:41
 msgid "Donate"
 msgstr ""
 
-#: state/templates/state/state_view.html:106
+#: state/templates/state/state_view.html:107
 msgid "Столица"
 msgstr ""
 
-#: state/templates/state/state_view.html:136
+#: state/templates/state/state_view.html:137
 msgid "Государственные налоги"
 msgstr ""
 

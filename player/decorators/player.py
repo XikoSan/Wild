@@ -58,6 +58,7 @@ def check_player(func):
                         it_player.reason = 'один айпи'
                         it_player.save()
                     player.banned = True
+                    player.reason = 'один айпи'
 
                 # Если игрок не забанен:
                 if not player.banned:

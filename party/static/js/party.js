@@ -18,26 +18,28 @@ jQuery(document).ready(function ($) {
     });
 });
 
+// выход из партии - вопрос
+function leave_check(){
+    $(".modal__ok").on( "click", leave_confirm);
 
-//Покинуть партию
+    display_modal('ask', leave_header, leave_text, leave_yes, leave_cancel)
+};
 
-jQuery(document).ready(function ($) {
-    $('#leave_party_form').submit(function(e){
-        e.preventDefault();
-        var sending_data = $(this).serialize();
-        $.ajax({
-            type: "POST",
-            url: "/leave/",
-            data:  sending_data,
-            cache: false,
-            success: function(data){
-                if (data.response == 'ok'){
-                    window.location = '/party'
-                }
-                else{
-                    alert(data.response);
-                }
+// выход из партии - окончательный
+function leave_confirm(){
+    var sending_data = '&party_id=' + $('#party_id').val() + "&csrfmiddlewaretoken=" + csrftoken;
+    $.ajax({
+        type: "POST",
+        url: "/leave/",
+        data:  sending_data,
+        cache: false,
+        success: function(data){
+            if (data.response == 'ok'){
+                window.location = '/party'
             }
-        });
+            else{
+                display_modal('notify', data.header, data.response, null, data.grey_btn);
+            }
+        }
     });
-});
+};

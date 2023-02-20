@@ -5,7 +5,7 @@
 <section class="party custom-scroll">
 
 	<!-- Заголовок -->
-	<h1 class="party__title ct__page-title">Партия</h1>
+	<h1 class="party__title ct__page-title">{% trans 'Партия' context "has_party" %}</h1>
 
     <!--ТОП БЛОК-->
     <div class="party__top">
@@ -96,13 +96,12 @@
             </svg>
           </button>
 			{% else %}
-			<form class="party__exit" id="leave_party_form" role="form">
-				 {% csrf_token %}
+			<div class="party__exit" id="leave_party_form" role="form">
 				<input class="visually-hidden" type="hidden" name="party_id" id="party_id" value="{{ player.party.pk }}">
-				<button style="cursor: pointer" type="submit" class="btn btn-danger" value="Покинуть партию">
+				<button style="cursor: pointer" onclick="leave_check()" class="btn btn-danger" value="Покинуть партию">
 					<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" fill="var(--c10two)"><path d="M11 21h8v-2l1-1v4h-9v2l-10-3v-18l10-3v2h9v5l-1-1v-3h-8v18zm10.053-9l-3.293-3.293.707-.707 4.5 4.5-4.5 4.5-.707-.707 3.293-3.293h-9.053v-1h9.053z"/></svg>
 				</button>
-			</form>
+			</div>
 			{% endif %}
 
         </div><!--кнопки конец-->
@@ -124,9 +123,9 @@
 
 					<tr>
 						<td class="j-t-one"></td>
-						<td class="j-t-two">Никнейм</td>
-						<td class="j-t-three">Был в сети</td>
-						<td class="j-t-four">Должность</td>
+						<td class="j-t-two">{% trans 'Никнейм' context "has_party" %}</td>
+						<td class="j-t-three">{% trans 'Был в сети' context "has_party" %}</td>
+						<td class="j-t-four">{% trans 'Должность' context "has_party" %}</td>
 					</tr>
 					{% for member in players_list %}
 					<tr>
@@ -169,3 +168,9 @@
 		</div>
 
 	</section>
+	<script>
+		var leave_header = '{% trans 'Покинуть партию?' context "has_party" %}';
+		var leave_text = '{% trans 'Вы покинете партию, а также все связанные должности. Продолжить?' context "has_party" %}';
+		var leave_yes = '{% trans 'Продолжить' context "has_party" %}';
+		var leave_cancel = '{% trans 'Отмена' context "has_party" %}';
+	</script>
