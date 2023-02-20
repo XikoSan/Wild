@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-02-20 22:59+0300\n"
-"PO-Revision-Date: 2023-02-20 13:20+0300\n"
+"PO-Revision-Date: 2023-02-20 23:59+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -300,57 +300,43 @@ msgid "отклонить всё"
 msgstr "alle ablehnen"
 
 #: party/templates/party/redesign/party_blocks/has_party.html:8
-#, fuzzy
-#| msgid "Партия"
 msgctxt "has_party"
 msgid "Партия"
 msgstr "Partei"
 
 #: party/templates/party/redesign/party_blocks/has_party.html:126
-#, fuzzy
-#| msgid "Никнейм"
 msgctxt "has_party"
 msgid "Никнейм"
 msgstr "Nickname"
 
 #: party/templates/party/redesign/party_blocks/has_party.html:127
-#, fuzzy
-#| msgctxt "profile"
-#| msgid "был в сети"
 msgctxt "has_party"
 msgid "Был в сети"
 msgstr "Letzte Aktivität"
 
 #: party/templates/party/redesign/party_blocks/has_party.html:128
-#, fuzzy
-#| msgctxt "storage_upgrade"
-#| msgid "Стоимость"
 msgctxt "has_party"
 msgid "Должность"
-msgstr "Kosten"
+msgstr "Position"
 
 #: party/templates/party/redesign/party_blocks/has_party.html:172
-#, fuzzy
-#| msgid "должность в партии"
 msgctxt "has_party"
 msgid "Покинуть партию?"
-msgstr "Position in der Partei"
+msgstr "Die Partei verlassen?"
 
 #: party/templates/party/redesign/party_blocks/has_party.html:173
 msgctxt "has_party"
 msgid "Вы покинете партию, а также все связанные должности. Продолжить?"
 msgstr ""
+"Sie werden die Partei verlassen, ebenso wie alle damit verbundenen "
+"Positionen aufgeben. Weiter?"
 
 #: party/templates/party/redesign/party_blocks/has_party.html:174
-#, fuzzy
-#| msgid "Продолжить"
 msgctxt "has_party"
 msgid "Продолжить"
 msgstr "weiter"
 
 #: party/templates/party/redesign/party_blocks/has_party.html:175
-#, fuzzy
-#| msgid "Отмена"
 msgctxt "has_party"
 msgid "Отмена"
 msgstr "abbrechen"
@@ -369,12 +355,9 @@ msgstr "Parteien in der Welt"
 
 #: party/views/management/staff/leave_party.py:33
 #: party/views/management/staff/leave_party.py:167
-#, fuzzy
-#| msgctxt "repost"
-#| msgid "Выйти из игры"
 msgctxt "party"
 msgid "Выход из партии"
-msgstr "verlassen"
+msgstr "Partei verlassen"
 
 #: party/views/management/staff/leave_party.py:34
 #: party/views/management/staff/leave_party.py:168 player/player.py:286
@@ -478,12 +461,12 @@ msgstr "Schließen"
 #: party/views/management/staff/leave_party.py:35
 msgctxt "party"
 msgid "Вы не исключили всех однопартийцев"
-msgstr ""
+msgstr "Sie haben nicht alle Parteimitglieder ausgeschlossen"
 
 #: party/views/management/staff/leave_party.py:169
 msgctxt "party"
 msgid "Вы не состоите в указанной партии"
-msgstr ""
+msgstr "Sie sind kein Mitglied der angegebenen Partei"
 
 #: party/views/party.py:24 player/views/lists/cash_top.py:99
 #: player/views/lists/cash_top.py:100
@@ -493,7 +476,7 @@ msgstr "Partei"
 #: player/logs/cash_log.py:21
 msgctxt "cash_log"
 msgid "Финансирование"
-msgstr "Finanzierung"
+msgstr "tägliche Finanzierung"
 
 #: player/logs/cash_log.py:22
 msgctxt "cash_log"
@@ -2584,7 +2567,7 @@ msgstr "Öffentliche Aufträge"
 #: storage/templates/storage/trading/trading.html:70
 msgctxt "w_trading"
 msgid "Продажа"
-msgstr "Zu verkaufen"
+msgstr "Verkaufen"
 
 #: storage/templates/storage/trading/trading.html:71
 msgctxt "w_trading"
@@ -2663,7 +2646,7 @@ msgstr "Verlagerung der Ware"
 #: storage/views/assets/assets_action.py:89
 msgctxt "assets"
 msgid "Запрещено вывозить товары из атакованных регионов"
-msgstr ""
+msgstr "Verbot der Ausfuhr von Waren aus angegriffenen Regionen"
 
 #: storage/views/assets/assets_action.py:90
 #: storage/views/assets/assets_action.py:192
