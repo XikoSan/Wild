@@ -140,10 +140,10 @@ class Independence(Bill):
                             for bill in type.objects.filter(parliament=self.parliament, running=True):
                                 for deputate in deputates:
 
-                                    if deputate in bill.votes_pro:
+                                    if deputate in bill.votes_pro.all():
                                         bill.votes_pro.remove()
 
-                                    elif deputate in bill.votes_pro:
+                                    elif deputate in bill.votes_pro.all():
                                         bill.votes_con.remove()
 
                     # теперь можно чистить депутатов
