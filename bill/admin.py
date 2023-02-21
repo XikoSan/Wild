@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.contrib.admin import widgets
 from django.db import models
+from django_celery_beat.models import PeriodicTask
 
 from bill.models.change_coat import ChangeCoat
 from bill.models.change_taxes import ChangeTaxes
@@ -17,6 +18,12 @@ from bill.models.independence import Independence
 def recount_rating(modeladmin, request, queryset):
     for bill in queryset:
         bill.do_bill()
+
+        task_identificator = bill.task.id
+        # убираем таску у экземпляра модели
+        queryset.model.objects.select_related('task').filter(pk=bill.pk).update(task=None)
+        # удаляем таску
+        PeriodicTask.objects.filter(pk=task_identificator).delete()
 
 recount_rating.short_description = 'Выполнить досрочно'
 
