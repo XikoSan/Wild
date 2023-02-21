@@ -110,7 +110,7 @@ class Independence(Bill):
                 b_type = 'rj'
 
             # его казна
-            elif Treasury.objects.filter(region=self.region).exists():
+            elif Treasury.objects.filter(region=self.region, deleted=False).exists():
                 b_type = 'rj'
 
             else:
