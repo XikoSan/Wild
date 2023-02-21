@@ -14,6 +14,12 @@ from bill.models.start_war import StartWar
 from bill.models.geological_surveys import GeologicalSurveys
 from bill.models.independence import Independence
 
+def recount_rating(modeladmin, request, queryset):
+    for bill in queryset:
+        bill.do_bill()
+
+recount_rating.short_description = 'Выполнить досрочно'
+
 
 class BillAdmin(admin.ModelAdmin):
     search_fields = ['initiator', 'parliament']
@@ -21,6 +27,8 @@ class BillAdmin(admin.ModelAdmin):
     list_filter = ("running", "type",)
 
     list_display = ['get_obj_name', 'running', 'type', ]
+
+    actions = [recount_rating]
 
     def get_obj_name(self, obj):
         return obj.__str__()
