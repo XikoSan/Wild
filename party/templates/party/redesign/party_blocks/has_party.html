@@ -42,7 +42,7 @@
 
 			{% if player.party_post.party_lead %}
           <!--настройки-->
-          <button style="cursor: pointer" class="party__top-sett">
+          <button style="cursor: pointer" class="party__top-sett" onclick="window.location.href = '{% url 'party_management' %}'">
             <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
             width="80px" height="76px" viewBox="0 0 1280.000000 1276.000000"
             preserveAspectRatio="xMidYMid meet">
@@ -145,26 +145,29 @@
 							{% endif %}
 							{{ member.nickname }}
 						</td>
-						<td class="j-t-three">{% if online_dict|dict_key:member.pk %}{{ online_dict|dict_key:member.pk }}{% else %}давно{% endif %}</td>
-<!--						<td class="j-t-four" data-char-id="20" onclick="openEditModal(this)" style="color: var(&#45;&#45;c10two);">-->
-						<td class="j-t-four" data-char-id="20">
+						<td class="j-t-three">{% if online_dict|dict_key:member.pk %}{{ online_dict|dict_key:member.pk }}{% else %}{% trans 'давно' context "has_party" %}{% endif %}</td>
+<!--					Если ИГРОК - лидер или секретарь	-->
+<!--						Если сопартиец - не лидер или сопартиец = игрок	-->
+<!--							Если у них обоих должность секретаря - не даем редачить	-->
+<!--							Иначе - можно	-->
+						<td class="j-t-four" data-char-id="{% localize off %}{{ member.pk }}{% endlocalize %}"
+											 data-char-post="{% localize off %}{{ member.party_post.pk }}{% endlocalize %}"
+
+							{% if player.party_post.party_lead or player.party_post.party_sec %}
+								{% if not member.party_post.party_lead and not member == player %}
+									{% if member.party_post.party_sec == player.party_post.party_sec and player.party_post.party_sec %}
+									{% else %}
+							onclick="openEditModal(this)" style="color: var(--c10two); cursor: pointer"
+									{% endif %}
+								{% endif %}
+							{% endif %}
+						>
 							{{ member.party_post.title }}
 						</td>
 					</tr>
 					{% endfor %}
 				</tbody>
 			</table>
-			<!--пагинация-->
-<!--			<div class="ct__js-table-pag">-->
-<!--				<button style="cursor: pointer" class="ct__js-table-pag-prev">-->
-<!--					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="var(&#45;&#45;c10two)"><path d="M22 12l-20 12 5-12-5-12z"/></svg>-->
-<!--				</button>-->
-<!--				<span>1/10</span>-->
-<!--				<button style="cursor: pointer" class="ct__js-table-pag-next">-->
-<!--					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="var(&#45;&#45;c10two)"><path d="M22 12l-20 12 5-12-5-12z"/></svg>-->
-<!--				</button>-->
-<!--			</div>-->
-			<!--конец: пагинация-->
 		</div>
 
 	</section>

@@ -18,6 +18,21 @@ jQuery(document).ready(function ($) {
     });
 });
 
+function set_role(member_id, role_id){
+    var sending_data = '&member_id=' + member_id + '&role_id=' + role_id + "&csrfmiddlewaretoken=" + csrftoken;
+    $.ajax({
+        type: "POST",
+        url: "/set_role/",
+        data:  sending_data,
+        cache: false,
+        success: function(data){
+            if (data.response != 'ok'){
+                display_modal('notify', data.header, data.response, null, data.grey_btn)
+            }
+        }
+    });
+};
+
 // выход из партии - вопрос
 function leave_check(){
     $(".modal__ok").on( "click", leave_confirm);

@@ -27,10 +27,10 @@
 	<div class="rank-edit__overlay" id="overlay"></div>
 
 	<div class="rank-edit__content">
-
+			{% for position in positions %}
 		<div class="ct__two-select-wrapper-check ct__two-select-wrapper-check--min">
 			<label>
-				<input type="radio" name="rank" class="visually-hidden">
+				<input type="radio" id="post_{% localize off %}{{ position.pk }}{% endlocalize %}" name="post" value="{% localize off %}{{ position.pk }}{% endlocalize %}" class="party_post visually-hidden">
 				<svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(--c10two)"/>
 				</svg>
@@ -40,74 +40,10 @@
 						<path d="M6.5 4.5L4.5 6.5V20.5H18.5L20.5 18.5V4.5H6.5Z" fill="var(--c10two)" stroke="var(--c10two)"/>
 					</svg>
 				</span>
-				s должность1
+				{{ position.title }}
 			</label>
 		</div>
-
-		<div class="ct__two-select-wrapper-check ct__two-select-wrapper-check--min">
-			<label>
-				<input type="radio" name="rank" class="visually-hidden">
-				<svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(--c10two)"/>
-				</svg>
-				<span>
-					<svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(--c10two)"/>
-						<path d="M6.5 4.5L4.5 6.5V20.5H18.5L20.5 18.5V4.5H6.5Z" fill="var(--c10two)" stroke="var(--c10two)"/>
-					</svg>
-				</span>
-				должно asdasd сть2
-			</label>
-		</div>
-
-		<div class="ct__two-select-wrapper-check ct__two-select-wrapper-check--min">
-			<label>
-				<input type="radio" name="rank" class="visually-hidden">
-				<svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(--c10two)"/>
-				</svg>
-				<span>
-					<svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(--c10two)"/>
-						<path d="M6.5 4.5L4.5 6.5V20.5H18.5L20.5 18.5V4.5H6.5Z" fill="var(--c10two)" stroke="var(--c10two)"/>
-					</svg>
-				</span>
-				должнsdsdость3
-			</label>
-		</div>
-
-		<div class="ct__two-select-wrapper-check ct__two-select-wrapper-check--min">
-			<label>
-				<input type="radio" name="rank" class="visually-hidden">
-				<svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(--c10two)"/>
-				</svg>
-				<span>
-					<svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(--c10two)"/>
-						<path d="M6.5 4.5L4.5 6.5V20.5H18.5L20.5 18.5V4.5H6.5Z" fill="var(--c10two)" stroke="var(--c10two)"/>
-					</svg>
-				</span>
-				должность dsdsdsdsds 4
-			</label>
-		</div>
-
-		<div class="ct__two-select-wrapper-check ct__two-select-wrapper-check--min">
-			<label>
-				<input type="radio" name="rank" class="visually-hidden">
-				<svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(--c10two)"/>
-				</svg>
-				<span>
-					<svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(--c10two)"/>
-						<path d="M6.5 4.5L4.5 6.5V20.5H18.5L20.5 18.5V4.5H6.5Z" fill="var(--c10two)" stroke="var(--c10two)"/>
-					</svg>
-				</span>
-				должноs сть5
-			</label>
-		</div>
-
+		{% endfor %}
 		<div class="party__mmid-line"></div>
 
 		<a class="rank-edit__delete ct__mid-btn" href="##">
@@ -122,7 +58,7 @@
 					<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
 				</g>
 			</svg>
-			<span>исключить</span>
+			<span>{% trans 'исключить' context "has_party" %}</span>
 		</a>
 
 
@@ -133,16 +69,33 @@
 
 	const rankEditModal = document.getElementById('rank-edit');
 	const rankEditDeleteLink = rankEditModal.querySelector('.rank-edit__delete')
+	var playerId = null;
+	var prev_post = null;
 
 	function openEditModal(targetElement) {
 		rankEditModal.classList.add('active');
-		const playerId = targetElement.getAttribute('data-char-id');
+		playerId = targetElement.getAttribute('data-char-id');
 		rankEditDeleteLink.href = `/kick/${playerId}/`;
+
+		const playerPost = targetElement.getAttribute('data-char-post');
+		prev_post = playerPost;
+		document.getElementById("post_" + playerPost).checked = true;
 	}
 
 	document.getElementById('overlay').addEventListener('click', (evt) => {
 		rankEditModal.classList.remove('active');
+		playerId = null;
+		prev_post = null;
 	})
+
+	var rad = document.getElementsByClassName("party_post");
+	for (var i = 0; i < rad.length; i++) {
+		rad[i].addEventListener('change', function() {
+			if (this !== prev_post) {
+				set_role(playerId, this.value);
+			}
+		});
+	}
 
 </script>
 {% endblock %}

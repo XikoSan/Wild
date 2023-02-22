@@ -4,6 +4,7 @@ from django.utils.translation import ugettext as _
 
 from player.decorators.player import check_player
 from player.player import Player
+from party.position import PartyPosition
 
 
 # главная страница
@@ -14,16 +15,21 @@ def party(request):
 
     groups = list(player.account.groups.all().values_list('name', flat=True))
 
+    # должности этой партии
+    positions = None
+    if player.party:
+        positions = PartyPosition.objects.filter(party=player.party).exclude(party_lead=True)
+
     page = 'party/party.html'
-    if player.party and not player.party_post.party_lead:
-        if 'redesign' not in groups:
-            page = 'party/redesign/party.html'
+    if 'redesign' not in groups:
+        page = 'party/redesign/party.html'
 
     # отправляем в форму
     response = render(request, page, {
         'page_name': _('Партия'),
 
         'player': player,
+        'positions': positions,
     })
 
     # if player_settings:

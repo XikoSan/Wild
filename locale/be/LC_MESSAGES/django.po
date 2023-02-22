@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-20 22:59+0300\n"
+"POT-Creation-Date: 2023-02-22 23:25+0300\n"
 "PO-Revision-Date: 2022-10-31 18:40+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -367,6 +367,14 @@ msgstr "Золата"
 msgid "отклонить всё"
 msgstr "адхіліць усё"
 
+#: party/templates/party/redesign/party.html:61
+#, fuzzy
+#| msgctxt "repost"
+#| msgid "Получить"
+msgctxt "has_party"
+msgid "исключить"
+msgstr "Атрымаць"
+
 #: party/templates/party/redesign/party_blocks/has_party.html:8
 #, fuzzy
 #| msgid "Партия"
@@ -396,26 +404,33 @@ msgctxt "has_party"
 msgid "Должность"
 msgstr "Цягавітасьць"
 
-#: party/templates/party/redesign/party_blocks/has_party.html:172
+#: party/templates/party/redesign/party_blocks/has_party.html:148
+#, fuzzy
+#| msgid "давно"
+msgctxt "has_party"
+msgid "давно"
+msgstr "даўно"
+
+#: party/templates/party/redesign/party_blocks/has_party.html:175
 #, fuzzy
 #| msgid "должность в партии"
 msgctxt "has_party"
 msgid "Покинуть партию?"
 msgstr "пасада ў партыі"
 
-#: party/templates/party/redesign/party_blocks/has_party.html:173
+#: party/templates/party/redesign/party_blocks/has_party.html:176
 msgctxt "has_party"
 msgid "Вы покинете партию, а также все связанные должности. Продолжить?"
 msgstr ""
 
-#: party/templates/party/redesign/party_blocks/has_party.html:174
+#: party/templates/party/redesign/party_blocks/has_party.html:177
 #, fuzzy
 #| msgid "Продолжить"
 msgctxt "has_party"
 msgid "Продолжить"
 msgstr "Падцьвердзіць"
 
-#: party/templates/party/redesign/party_blocks/has_party.html:175
+#: party/templates/party/redesign/party_blocks/has_party.html:178
 #, fuzzy
 #| msgid "Отмена"
 msgctxt "has_party"
@@ -554,7 +569,7 @@ msgctxt "party"
 msgid "Вы не состоите в указанной партии"
 msgstr ""
 
-#: party/views/party.py:24 player/views/lists/cash_top.py:99
+#: party/views/party.py:29 player/views/lists/cash_top.py:99
 #: player/views/lists/cash_top.py:100
 msgid "Партия"
 msgstr "Партыя"
