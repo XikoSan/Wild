@@ -1,0 +1,196 @@
+{% load dict_key %}
+{% load static %}
+{% load l10n %}{% load i18n %}{% load tz %}
+
+<section class="party custom-scroll">
+
+	<!-- Заголовок -->
+	<h1 class="party__title ct__page-title">{% trans 'Партия' context "has_party" %}</h1>
+
+    <!--ТОП БЛОК-->
+    <div class="party__top-no">
+
+      <p>{% trans 'Вы не состоите в партии' context "no_party" %}</p>
+      <p>{% trans 'Доступные партии' context "no_party" %}: 35, {% trans 'в регионе' context "no_party" %} {{ player.region }}: {{ regional_count }}</p>
+
+	{% if player.destination %}
+		<a class="party__top-no-create">{% trans 'вы в полете' context "no_party" %}</a>
+	{% else %}
+		<a href="/new_party" class="party__top-no-create">{% trans 'создать партию' context "no_party" %}</a>
+	{% endif %}
+
+      <!--Табы-->
+      <div class="party__tabs ct__top-tabs ct__top-tabs--wide">
+        <button class="ct__top-tab ct__top-tab1 active ct__mid-btn" onclick="switchMainBlocks(0)">
+          <svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
+            <mask id="mask0_259_317" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+              <path class="geometry1" d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"/>
+            </mask>
+            <g mask="url(#mask0_259_317)">
+              <path class="geometry2" d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z"/>
+              <path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"/>
+              <path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"/>
+              <path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
+            </g>
+          </svg>
+          <span>{% trans 'все партии' context "no_party" %}</span>
+        </button>
+
+        <button class="ct__top-tab ct__top-tab2 ct__mid-btn" onclick="switchMainBlocks(1)">
+          <svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
+            <mask id="mask0_259_318" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+              <path class="geometry1" d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"/>
+            </mask>
+            <g mask="url(#mask0_259_318)">
+              <path class="geometry2" d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z"/>
+              <path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"/>
+              <path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"/>
+              <path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
+            </g>
+          </svg>
+          <span>{% trans 'региональные' context "no_party" %}</span>
+        </button>
+      </div>
+
+    </div><!--конец ТОП блок-->
+
+    <div class="party__mmid-line"></div>
+
+	<!--БЛОК ТАБЛИЦА #1-->
+	<div class="ct__js-table-container" id="js-ct-table-1">
+		<!--таблица-->
+		<table class="ct__js-table">
+			<tbody>
+				<tr>
+					<td class="j-t-one"></td>
+					<td class="j-t-two">{% trans 'Партия' context "no_party" %}</td>
+					<td class="j-t-three">
+					  <svg style="display: block; margin: 0 auto; width: 20rem; height: 18rem;" width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M9.4311 4C9.4311 4.78951 8.72121 5.5 7.75486 5.5C6.7885 5.5 6.07861 4.78951 6.07861 4C6.07861 3.21049 6.7885 2.5 7.75486 2.5C8.72121 2.5 9.4311 3.21049 9.4311 4Z" stroke="var(--c10one)"/>
+						<path d="M5.07882 4.5C5.07882 5.01337 4.61252 5.5 3.94664 5.5C3.28076 5.5 2.81445 5.01337 2.81445 4.5C2.81445 3.98663 3.28076 3.5 3.94664 3.5C4.61252 3.5 5.07882 3.98663 5.07882 4.5Z" stroke="var(--c10one)"/>
+						<path d="M12.695 4.5C12.695 5.01337 12.2287 5.5 11.5628 5.5C10.897 5.5 10.4307 5.01337 10.4307 4.5C10.4307 3.98663 10.897 3.5 11.5628 3.5C12.2287 3.5 12.695 3.98663 12.695 4.5Z" stroke="var(--c10one)"/>
+						<path d="M4.49023 12C4.49023 7.2 6.30377 6 7.7546 6C11.2366 6 11.019 10 11.019 12H4.49023Z" stroke="var(--c10one)"/>
+						<path d="M1.22607 11C1.22607 7 2.73673 6 3.94526 6C4.87949 6 5.17473 6.47545 5.57856 7C4.52823 8.0963 4.52193 10.0802 4.49044 11H1.22607Z" stroke="var(--c10one)"/>
+						<path d="M14.4468 11C14.4468 7 12.9361 6 11.7276 6C10.7934 6 10.4981 6.47545 10.0943 7C11.1446 8.0963 11.1509 10.0802 11.1824 11H14.4468Z" stroke="var(--c10one)"/>
+					  </svg>
+					</td>
+					<td class="j-t-four" style="text-align: right;">{% trans 'Действие' context "no_party" %}</td>
+				</tr>
+				{% if party_count != 0 %}
+					{% for party in all_parties %}
+				<tr>
+					<td class="j-t-one" onclick="window.open('/party/{{ party.pk }}/')">
+                    {% if party.image %}
+                        <img src="{{ party.image.url }}">
+                    {% else %}
+					  <svg style="display: block; width: 30rem; height: 30rem;" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M9.4311 4C9.4311 4.78951 8.72121 5.5 7.75486 5.5C6.7885 5.5 6.07861 4.78951 6.07861 4C6.07861 3.21049 6.7885 2.5 7.75486 2.5C8.72121 2.5 9.4311 3.21049 9.4311 4Z" stroke="var(--c10one)"/>
+						<path d="M5.07882 4.5C5.07882 5.01337 4.61252 5.5 3.94664 5.5C3.28076 5.5 2.81445 5.01337 2.81445 4.5C2.81445 3.98663 3.28076 3.5 3.94664 3.5C4.61252 3.5 5.07882 3.98663 5.07882 4.5Z" stroke="var(--c10one)"/>
+						<path d="M12.695 4.5C12.695 5.01337 12.2287 5.5 11.5628 5.5C10.897 5.5 10.4307 5.01337 10.4307 4.5C10.4307 3.98663 10.897 3.5 11.5628 3.5C12.2287 3.5 12.695 3.98663 12.695 4.5Z" stroke="var(--c10one)"/>
+						<path d="M4.49023 12C4.49023 7.2 6.30377 6 7.7546 6C11.2366 6 11.019 10 11.019 12H4.49023Z" stroke="var(--c10one)"/>
+						<path d="M1.22607 11C1.22607 7 2.73673 6 3.94526 6C4.87949 6 5.17473 6.47545 5.57856 7C4.52823 8.0963 4.52193 10.0802 4.49044 11H1.22607Z" stroke="var(--c10one)"/>
+						<path d="M14.4468 11C14.4468 7 12.9361 6 11.7276 6C10.7934 6 10.4981 6.47545 10.0943 7C11.1446 8.0963 11.1509 10.0802 11.1824 11H14.4468Z" stroke="var(--c10one)"/>
+					  </svg>
+                    {% endif %}
+					</td>
+					<td class="j-t-two" onclick="window.open('/party/{{ party.pk }}/')">
+						{{ party.title }}
+					</td>
+					<td class="j-t-three" style="text-align: center;">{{ sizes|dict_key:party }}</td>
+
+					<td class="j-t-four">
+						{% if party.type == 'op' %}
+							<a href="{% url 'party_joiner' plr_pk=player.pk pty_pk=party.pk %}" class="ct__js-color-btn">{% trans 'Вступить' context "no_party" %}</a>
+						{% endif %}
+						{% if party.type == 'pt' %}
+							{% if requests|dict_key:party %}
+								<a href="{% url 'party_cancel' plr_pk=player.pk pty_pk=party.pk %}" class="ct__js-color-btn">{% trans 'Отменить заявку' context "no_party" %}</a>
+							{% else %}
+								<a href="{% url 'party_request' plr_pk=player.pk pty_pk=party.pk %}" class="ct__js-color-btn">{% trans 'Подать заявку' context "no_party" %}</a>
+							{% endif %}
+						{% endif %}
+					</td>
+				</tr>
+					{% endfor %}
+				{% endif %}
+			</tbody>
+		</table>
+	</div>
+
+	<!--БЛОК ТАБЛИЦА #2-->
+	<div class="ct__js-table-container" style="display: none;" id="js-ct-table-2">
+		<!--таблица-->
+		<table class="ct__js-table">
+			<tbody>
+				<tr>
+					<td class="j-t-one"></td>
+					<td class="j-t-two">{% trans 'Партия' context "no_party" %}</td>
+					<td class="j-t-three">
+					  <svg style="display: block; margin: 0 auto; width: 20rem; height: 18rem;" width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M9.4311 4C9.4311 4.78951 8.72121 5.5 7.75486 5.5C6.7885 5.5 6.07861 4.78951 6.07861 4C6.07861 3.21049 6.7885 2.5 7.75486 2.5C8.72121 2.5 9.4311 3.21049 9.4311 4Z" stroke="var(--c10one)"/>
+						<path d="M5.07882 4.5C5.07882 5.01337 4.61252 5.5 3.94664 5.5C3.28076 5.5 2.81445 5.01337 2.81445 4.5C2.81445 3.98663 3.28076 3.5 3.94664 3.5C4.61252 3.5 5.07882 3.98663 5.07882 4.5Z" stroke="var(--c10one)"/>
+						<path d="M12.695 4.5C12.695 5.01337 12.2287 5.5 11.5628 5.5C10.897 5.5 10.4307 5.01337 10.4307 4.5C10.4307 3.98663 10.897 3.5 11.5628 3.5C12.2287 3.5 12.695 3.98663 12.695 4.5Z" stroke="var(--c10one)"/>
+						<path d="M4.49023 12C4.49023 7.2 6.30377 6 7.7546 6C11.2366 6 11.019 10 11.019 12H4.49023Z" stroke="var(--c10one)"/>
+						<path d="M1.22607 11C1.22607 7 2.73673 6 3.94526 6C4.87949 6 5.17473 6.47545 5.57856 7C4.52823 8.0963 4.52193 10.0802 4.49044 11H1.22607Z" stroke="var(--c10one)"/>
+						<path d="M14.4468 11C14.4468 7 12.9361 6 11.7276 6C10.7934 6 10.4981 6.47545 10.0943 7C11.1446 8.0963 11.1509 10.0802 11.1824 11H14.4468Z" stroke="var(--c10one)"/>
+					  </svg>
+					</td>
+					<td class="j-t-four" style="text-align: right;">{% trans 'Действие' context "no_party" %}</td>
+				</tr>
+				{% if party_count != 0 %}
+					{% for party in regional_parties %}
+				<tr>
+					<td class="j-t-one" onclick="window.open('/party/{{ party.pk }}/')">
+                    {% if party.image %}
+                        <img src="{{ party.image.url }}">
+                    {% else %}
+                        <img src="{% static 'img/nopic_party.png' %}">
+                    {% endif %}
+					</td>
+					<td class="j-t-two" onclick="window.open('/party/{{ party.pk }}/')">
+						{{ party.title }}
+					</td>
+					<td class="j-t-three" style="text-align: center;">{{ sizes|dict_key:party }}</td>
+
+					<td class="j-t-four">
+						{% if party.type == 'op' %}
+							<a href="{% url 'party_joiner' plr_pk=player.pk pty_pk=party.pk %}" class="ct__js-color-btn">{% trans 'Вступить' context "no_party" %}</a>
+						{% endif %}
+						{% if party.type == 'pt' %}
+							{% if requests|dict_key:party %}
+								<a href="{% url 'party_cancel' plr_pk=player.pk pty_pk=party.pk %}" class="ct__js-color-btn">{% trans 'Отменить заявку' context "no_party" %}</a>
+							{% else %}
+								<a href="{% url 'party_request' plr_pk=player.pk pty_pk=party.pk %}" class="ct__js-color-btn">{% trans 'Подать заявку' context "no_party" %}</a>
+							{% endif %}
+						{% endif %}
+					</td>
+				</tr>
+					{% endfor %}
+				{% endif %}
+			</tbody>
+		</table>
+	</div>
+
+	<script>
+
+	 // переключение таблиц
+	 const blocks = {
+		table1: document.getElementById('js-ct-table-1'),
+		table2: document.getElementById('js-ct-table-2'),
+		tabs: document.querySelectorAll('.party__tabs > button')
+	  }
+	  function switchMainBlocks(num) {
+		if (num === 0) {
+		  blocks.table1.style.display = '';
+		  blocks.table2.style.display = 'none';
+		} else {
+		  blocks.table1.style.display = 'none';
+		  blocks.table2.style.display = '';
+		}
+		blocks.tabs.forEach((btn) => btn.classList.remove('active'));
+		blocks.tabs[num].classList.add('active');
+	  }
+
+	</script>
+
+</section>

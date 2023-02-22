@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-22 23:25+0300\n"
+"POT-Creation-Date: 2023-02-23 00:15+0300\n"
 "PO-Revision-Date: 2022-10-31 18:40+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -376,6 +376,7 @@ msgid "исключить"
 msgstr "Атрымаць"
 
 #: party/templates/party/redesign/party_blocks/has_party.html:8
+#: party/templates/party/redesign/party_blocks/no_party.html:8
 #, fuzzy
 #| msgid "Партия"
 msgctxt "has_party"
@@ -436,6 +437,102 @@ msgstr "Падцьвердзіць"
 msgctxt "has_party"
 msgid "Отмена"
 msgstr "Скасаваць"
+
+#: party/templates/party/redesign/party_blocks/no_party.html:13
+#, fuzzy
+#| msgctxt "repost"
+#| msgid "Выйти из игры"
+msgctxt "no_party"
+msgid "Вы не состоите в партии"
+msgstr "Выйсьці з гульні"
+
+#: party/templates/party/redesign/party_blocks/no_party.html:14
+#, fuzzy
+#| msgid "должность в партии"
+msgctxt "no_party"
+msgid "Доступные партии"
+msgstr "пасада ў партыі"
+
+#: party/templates/party/redesign/party_blocks/no_party.html:14
+#, fuzzy
+#| msgctxt "overview"
+#| msgid "региона"
+msgctxt "no_party"
+msgid "в регионе"
+msgstr "рэгіёна"
+
+#: party/templates/party/redesign/party_blocks/no_party.html:17
+#, fuzzy
+#| msgid "Время полёта"
+msgctxt "no_party"
+msgid "вы в полете"
+msgstr "Час палёту"
+
+#: party/templates/party/redesign/party_blocks/no_party.html:19
+#, fuzzy
+#| msgid "должность в партии"
+msgctxt "no_party"
+msgid "создать партию"
+msgstr "пасада ў партыі"
+
+#: party/templates/party/redesign/party_blocks/no_party.html:36
+#, fuzzy
+#| msgctxt "overview"
+#| msgid "партии"
+msgctxt "no_party"
+msgid "все партии"
+msgstr "партыі"
+
+#: party/templates/party/redesign/party_blocks/no_party.html:51
+#, fuzzy
+#| msgctxt "overview"
+#| msgid "региона"
+msgctxt "no_party"
+msgid "региональные"
+msgstr "рэгіёна"
+
+#: party/templates/party/redesign/party_blocks/no_party.html:66
+#: party/templates/party/redesign/party_blocks/no_party.html:127
+#, fuzzy
+#| msgid "Партия"
+msgctxt "no_party"
+msgid "Партия"
+msgstr "Партыя"
+
+#: party/templates/party/redesign/party_blocks/no_party.html:77
+#: party/templates/party/redesign/party_blocks/no_party.html:138
+#, fuzzy
+#| msgctxt "overview"
+#| msgid "Выборы лидера"
+msgctxt "no_party"
+msgid "Действие"
+msgstr "Прэзыдэнцкія выбары"
+
+#: party/templates/party/redesign/party_blocks/no_party.html:103
+#: party/templates/party/redesign/party_blocks/no_party.html:157
+#, fuzzy
+#| msgctxt "skills"
+#| msgid "недоступно"
+msgctxt "no_party"
+msgid "Вступить"
+msgstr "недаступна"
+
+#: party/templates/party/redesign/party_blocks/no_party.html:107
+#: party/templates/party/redesign/party_blocks/no_party.html:161
+#, fuzzy
+#| msgid "Отмена"
+msgctxt "no_party"
+msgid "Отменить заявку"
+msgstr "Скасаваць"
+
+#: party/templates/party/redesign/party_blocks/no_party.html:109
+#: party/templates/party/redesign/party_blocks/no_party.html:163
+#, fuzzy
+#| msgctxt "skills"
+#| msgid "недоступно"
+msgctxt "no_party"
+msgid "Подать заявку"
+msgstr "недаступна"
 
 #: party/templates/primaries/primaries.html:25
 msgid "primaries_in_party"
