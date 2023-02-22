@@ -17,6 +17,7 @@ from state.models.state import State
 from storage.models.storage import Storage
 from storage.views.storage.locks.get_storage import get_storage
 from player.player_settings import PlayerSettings
+from skill.models.excavation import Excavation
 
 
 # запись об изучаемом навыке
@@ -197,6 +198,10 @@ class AutoMining(Log):
             for mineral in storage.minerals.keys():
                 # облагаем налогом добытую руду
                 total_ore = (count / 100) * getattr(player.region, mineral + '_proc')
+                # экскавация
+                if Excavation.objects.filter(player=player, level__gt=0).exists():
+                    total_ore = Excavation.objects.get(player=player).apply({'sum': total_ore})
+
                 taxed_ore = State.get_taxes(player.region, total_ore, 'ore', mineral)
 
                 # проверяем есть ли место на складе
