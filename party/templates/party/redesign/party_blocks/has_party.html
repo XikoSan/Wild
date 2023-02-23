@@ -129,7 +129,7 @@
 					</tr>
 					{% for member in players_list %}
 					<tr>
-						<td class="j-t-one">
+						<td class="j-t-one" style="text-align: center;">
 							<a href='profile/{% localize off %}{{ member.pk }}{% endlocalize %}'>
 								{% if member.image %}
 								<img src="{{ member.image.url }}">
@@ -138,7 +138,7 @@
 								{% endif %}
 							</a>
 						</td>
-						<td class="j-t-two">
+						<td class="j-t-two" onclick="{% localize off %}window.location.href = '/profile/{{ member.pk }}'{% endlocalize %}" style="cursor: pointer;">
 							{% if member == prev_lead.leader %}
 <!--							символ лидера праймериз -->
 							⭐
