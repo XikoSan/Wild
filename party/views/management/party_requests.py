@@ -38,7 +38,12 @@ def party_requests(request):
                 else:
                     candidates = can_player
 
-            return render(request, 'party/party_requests.html',
+            groups = list(player.account.groups.all().values_list('name', flat=True))
+            page = 'party/party_requests.html'
+            if 'redesign' not in groups:
+                page = 'party/redesign/party_requests.html'
+
+            return render(request, page,
                           {'player': player,
                            'players_list': candidates
                            })

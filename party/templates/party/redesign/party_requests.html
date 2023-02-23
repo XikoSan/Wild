@@ -1,0 +1,57 @@
+{% extends 'player/redesign/header.html' %}
+{% load static %}
+{% load bootstrap3 %}
+{% load l10n %}{% load i18n %}{% load tz %}
+{% load dict_key %}
+{% load get_sum %}
+{% load get_attr %}
+{% load get_key_list %}
+{% load get_class_name %}
+
+{% block content %}
+<section class="party custom-scroll">
+
+	<!-- Заголовок -->
+	<h1 class="party__title ct__page-title">{% trans 'Заявки в партию' context "party_requests" %}</h1>
+	{% if players_list %}
+    <button style="cursor: pointer;" onclick="window.location.href = '{% url 'party_reject_all' %}'" class="party__decline-all ct__btn-half-screen">{% trans 'Отклонить всё' context "party_requests" %}</button>
+	{% else %}
+	<button disabled class="party__decline-all ct__btn-half-screen">{% trans 'заявок нет' context "party_requests" %}</button>
+	{% endif %}
+	{% if players_list %}
+		<!--БЛОК ТАБЛИЦА-->
+		<div class="ct__js-table-container" id="js-ct-table-1">
+			<!--таблица-->
+			<table class="ct__js-table">
+				<tbody>
+					<tr>
+						<td class="j-t-one"></td>
+						<td class="j-t-two">{% trans 'Никнейм' context "has_party" %}</td>
+						<td class="j-t-three" align="center">{% trans 'Принять' context "party_requests" %}</td>
+						<td class="j-t-four" align="center">{% trans 'Отклонить' context "party_requests" %}</td>
+					</tr>
+					{% for member in players_list %}
+					<tr>
+						<td class="j-t-one" onclick="{% localize off %}window.location.href = '/profile/{{ member.pk }}'{% endlocalize %}" style="text-align: center; cursor: pointer;">
+							{% if member.image %}
+							<img src="{{ member.image.url }}">
+							{% else %}
+							<img src="{% static 'img/nopic.png' %}">
+							{% endif %}
+						</td>
+						<td class="j-t-two" onclick="{% localize off %}window.location.href = '/profile/{{ member.pk }}'{% endlocalize %}" style="cursor: pointer;">
+							{{ member.nickname }}
+						</td>
+						<td class="j-t-three" style="text-align: center;"><a href="{% localize off %}{% url 'party_accepter' plr_pk=member.pk %}{% endlocalize %}">✔️</a></td>
+						<td class="j-t-four" style="text-align: center;"><a href="{% localize off %}{% url 'party_rejecter' plr_pk=member.pk %}{% endlocalize %}">❌</a></td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	{% endif %}
+	</section>
+{% endblock %}
+
+{% block for_scripts_and_css %}
+{% endblock %}
