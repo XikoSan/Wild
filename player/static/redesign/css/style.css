@@ -2763,13 +2763,14 @@ p.overview__love-stat-timer {
 .overview__chat-wrapper {
   display: grid;
   grid-template-rows: 1fr 42rem;
+  height: 100%;
 }
 
 .overview__chat-messages {
   padding: 12rem;
-  padding-bottom: 60rem;
+  padding-bottom: 20rem;
   overflow-y: auto;
-  height: calc(100vh - 157rem);
+  height: 100%;
   display: flex;
   flex-direction: column;
 }
