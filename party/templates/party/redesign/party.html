@@ -66,6 +66,10 @@
 </div>
 
 <script>
+	var posts = {};
+	{% for position in positions %}
+		posts[{% localize off %}{{ position.pk }}{% endlocalize %}] = '{{ position.title }}';
+	{% endfor %}
 
 	const rankEditModal = document.getElementById('rank-edit');
 	const rankEditDeleteLink = rankEditModal.querySelector('.rank-edit__delete')

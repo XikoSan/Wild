@@ -29,6 +29,9 @@ function set_role(member_id, role_id){
             if (data.response != 'ok'){
                 display_modal('notify', data.header, data.response, null, data.grey_btn)
             }
+            else{
+                document.getElementsByClassName("member_" + member_id + "_post")[0].innerHTML = posts[role_id];
+            }
         }
     });
 };

@@ -150,7 +150,7 @@
 <!--						Если сопартиец - не лидер или сопартиец = игрок	-->
 <!--							Если у них обоих должность секретаря - не даем редачить	-->
 <!--							Иначе - можно	-->
-						<td class="j-t-four" data-char-id="{% localize off %}{{ member.pk }}{% endlocalize %}"
+						<td class="j-t-four member_{% localize off %}{{ member.pk }}{% endlocalize %}_post" data-char-id="{% localize off %}{{ member.pk }}{% endlocalize %}"
 											 data-char-post="{% localize off %}{{ member.party_post.pk }}{% endlocalize %}"
 
 							{% if player.party_post.party_lead or player.party_post.party_sec %}
