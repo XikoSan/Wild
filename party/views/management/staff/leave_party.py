@@ -15,6 +15,9 @@ from player.views.get_subclasses import get_subclasses
 from bill.models.bill import Bill
 from state.models.parliament.deputy_mandate import DeputyMandate
 from django.utils.translation import pgettext
+from gov.models.presidential_voting import PresidentialVoting
+from gov.models.president import President
+from gov.models.vote import Vote
 
 # буферная страница выхода из партии
 @login_required(login_url='/')
@@ -79,6 +82,21 @@ def leave_party(request):
 
                 # лишаем его такого счастья
                 DeputyMandate.objects.filter(party=player.party).update(player=None)
+
+            # президентские выборы - если был кандидатом
+            # если есть гос
+            if player.party.region.state:
+                # если в нем есть президент
+                if President.objects.filter(state=player.party.region.state).exists():
+                    pres = President.objects.get(state=player.party.region.state)
+                    if PresidentialVoting.objects.filter(running=True, president=pres).exists():
+                        voting = PresidentialVoting.objects.get(running=True, president=pres)
+                        if player in voting.candidates.all():
+                            # удаляем кандидата
+                            voting.candidates.remove(player)
+                            voting.save()
+                            # если есть голоса за него - удаляем
+                            Vote.objects.filter(voting=voting, challenger=player).delete()
 
             # отклоняем все заявки в партию
             reject_all_requests(request)
@@ -148,6 +166,21 @@ def leave_party(request):
                 mandate = DeputyMandate.objects.get(player=player)
                 mandate.player = None
                 mandate.save()
+
+            # президентские выборы - если был кандидатом
+            # если есть гос
+            if player.party.region.state:
+                # если в нем есть президент
+                if President.objects.filter(state=player.party.region.state).exists():
+                    pres = President.objects.get(state=player.party.region.state)
+                    if PresidentialVoting.objects.filter(running=True, president=pres).exists():
+                        voting = PresidentialVoting.objects.get(running=True, president=pres)
+                        if player in voting.candidates.all():
+                            # удаляем кандидата
+                            voting.candidates.remove(player)
+                            voting.save()
+                            # если есть голоса за него - удаляем
+                            Vote.objects.filter(voting=voting, challenger=player).delete()
 
             # Логировние: меянем запись об партийной активности
             MembershipLog.objects.filter(player=player, party=player.party, exit_dtime=None).update(
