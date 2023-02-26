@@ -46,7 +46,7 @@ jQuery(document).ready(function ($) {
             <select name="candidate" id="candidates">
                 <option disabled selected value>Выберите кандидата</option>
                 {% for candidate in candidates %}
-                    <option value='{{ candidate.pk }}'>{{ candidate.nickname }}</option>
+                    <option value='{% localize off %}{{ candidate.pk }}{% endlocalize %}'>{{ candidate.nickname }}</option>
                 {% endfor %}
             </select>
         </div>
