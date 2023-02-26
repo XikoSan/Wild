@@ -20,7 +20,7 @@ def factory(request):
     # получаем персонажа
     player = Player.get_instance(account=request.user)
 
-    fields_list = ['pk', 'region__region_name', 'cash', ]
+    fields_list = ['pk', 'region__pk', 'region__region_name', 'cash', ]
     # собираем из Склада все поля ресурсов
     for category in Storage.types.keys():
         for good in getattr(Storage, category).keys():
