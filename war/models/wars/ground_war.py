@@ -664,8 +664,8 @@ class GroundWar(War):
         agr_tres = Treasury.objects.get(state=self.agr_region.state)
 
         # Захват Казны врага
-        if Treasury.objects.filter(region=self.def_region).exists():
-            tres = Treasury.objects.get(region=self.def_region)
+        if Treasury.objects.filter(region=self.def_region, deleted=False).exists():
+            tres = Treasury.objects.get(region=self.def_region, deleted=False)
             # половина сгорит, ещё половину - разграбляем
             agr_tres.cash += math.ceil(getattr(tres, 'cash') / 4)
             # сжигаем оставшееся
