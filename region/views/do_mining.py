@@ -13,7 +13,7 @@ from storage.views.storage.locks.get_storage import get_storage
 from wild_politics.settings import JResponse
 from skill.models.excavation import Excavation
 from django.utils.translation import pgettext
-
+import redis
 
 # выкопать ресурсы по запросу игрока
 @login_required(login_url='/')
@@ -130,6 +130,14 @@ def do_mining(request):
             total_oil = (count / 10) * 10
             taxed_oil = State.get_taxes(player.region, total_oil, 'oil', player.region.oil_type)
 
+            # сохраняем информацию о том, сколько добыто за день
+            r = redis.StrictRedis(host='redis', port=6379, db=0)
+            if r.exists("daily_" + player.region.oil_type):
+                r.set("daily_" + player.region.oil_type, int(float(r.get("daily_" + player.region.oil_type))) + int(taxed_oil))
+
+            else:
+                r.set("daily_" + player.region.oil_type, int(taxed_oil))
+
             # проверяем есть ли для него место на складе, с учетом блокировок
             if lock_storage.capacity_check(player.region.oil_type, taxed_oil):
                 # начислить нефть
@@ -177,6 +185,15 @@ def do_mining(request):
                     total_ore = Excavation.objects.get(player=player).apply({'sum': total_ore})
 
                 taxed_ore = State.get_taxes(player.region, total_ore, 'ore', mineral)
+
+                # сохраняем информацию о том, сколько добыто за день
+                r = redis.StrictRedis(host='redis', port=6379, db=0)
+                if r.exists("daily_" + mineral):
+                    r.set("daily_" + mineral,
+                          int(float(r.get("daily_" + mineral))) + int(taxed_ore))
+
+                else:
+                    r.set("daily_" + mineral, int(taxed_ore))
 
                 # проверяем есть ли место на складе
                 if lock_storage.capacity_check(mineral, taxed_ore):

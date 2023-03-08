@@ -85,6 +85,7 @@ INSTALLED_APPS = [
     'chat',
     'polls',
     'skill',
+    'metrics',
 
     'django_cleanup',
     'fixture_magic',

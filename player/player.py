@@ -1,6 +1,7 @@
 # coding=utf-8
 import datetime
 import pytz
+import redis
 from django.apps import apps
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
@@ -355,6 +356,14 @@ class Player(models.Model):
         self.energy_consumption = 0
 
         self.save()
+
+        # сохраняем информацию о том, сколько добыто за день
+        r = redis.StrictRedis(host='redis', port=6379, db=0)
+        if r.exists("daily_cash"):
+            r.set("daily_cash", int(r.get("daily_cash")) + taxed_count)
+
+        else:
+            r.set("daily_cash", taxed_count)
 
         return False, taxed_count
 
