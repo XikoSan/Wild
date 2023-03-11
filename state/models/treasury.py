@@ -105,6 +105,9 @@ class Treasury(models.Model):
     # Дроны
     drone = models.IntegerField(default=0, verbose_name=pgettext_lazy('goods', 'БПЛА'))
 
+    # режим прописок - id фонового процесса
+    residency_id = models.CharField(max_length=150, blank=True, null=True, verbose_name='закрытые прописки')
+
     # получить Казну с акутализированными значениями запасов
     # любые постоянные траты Казны должны быть прописаны тут
     @staticmethod
@@ -115,27 +118,26 @@ class Treasury(models.Model):
         # получаем запрошенную инстанцию Склада
         if Treasury.objects.filter(**params).exists():
             treasury = Treasury.objects.select_for_update().get(**params)
-        else:
-            return treasury
-
-        # если дата последней актуализации пуста
-        if not treasury.actualize_dtime:
-            # запоминаем дату
-            treasury.actualize_dtime = timezone.now()
-
-        # инчае если с момента последней актуализации прошла минута
-        elif (timezone.now() - treasury.actualize_dtime).total_seconds() >= 60:
-            # узнаем сколько раз по минуте прошло
-            counts = (timezone.now() - treasury.actualize_dtime).total_seconds() // 60
-
-            # остаток от деления понадобится чтобы указать время обновления
-            modulo = (timezone.now() - treasury.actualize_dtime).total_seconds() % 60
-
-            # запоминаем дату
-            treasury.actualize_dtime = timezone.now() - datetime.timedelta(seconds=modulo)
-
-        treasury.save()
         return treasury
+
+        # # если дата последней актуализации пуста
+        # if not treasury.actualize_dtime:
+        #     # запоминаем дату
+        #     treasury.actualize_dtime = timezone.now()
+        #
+        # # инчае если с момента последней актуализации прошла минута
+        # elif (timezone.now() - treasury.actualize_dtime).total_seconds() >= 60:
+        #     # узнаем сколько раз по минуте прошло
+        #     counts = (timezone.now() - treasury.actualize_dtime).total_seconds() // 60
+        #
+        #     # остаток от деления понадобится чтобы указать время обновления
+        #     modulo = (timezone.now() - treasury.actualize_dtime).total_seconds() % 60
+        #
+        #     # запоминаем дату
+        #     treasury.actualize_dtime = timezone.now() - datetime.timedelta(seconds=modulo)
+        #
+        # treasury.save()
+        # return treasury
 
     def __str__(self):
         return self.state.title

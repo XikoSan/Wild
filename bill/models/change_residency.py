@@ -1,23 +1,27 @@
 # coding=utf-8
 
+import json
+from django.apps import apps
 from django.db import models
 from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 from django.utils import timezone
-from django.apps import apps
+from django_celery_beat.models import PeriodicTask, CrontabSchedule
+
 from bill.models.bill import Bill
+from regime.presidential import Presidential
+from regime.regime import Regime
+from regime.temporary import Temporary
+from region.region import Region
 from state.models.parliament.deputy_mandate import DeputyMandate
 from state.models.parliament.parliament import Parliament
 from state.models.state import State
+from state.models.treasury import Treasury
 
-from regime.regime import Regime
-from regime.temporary import Temporary
-from regime.presidential import Presidential
 
 # Изменить способ получения прописки в государстве
 # Не оптимизировать код хоткеями - ЗАТИРАЕТ ИМПОРТЫ !!
 class ChangeResidency(Bill):
-
     # тип государства
     residencyTypeChoices = (
         ('free', 'Свободная'),
@@ -29,6 +33,10 @@ class ChangeResidency(Bill):
         choices=residencyTypeChoices,
         default='free',
     )
+
+    # стоимость
+    rifle_cost = models.IntegerField(default=1, verbose_name='Стоимость - автоматы')
+    drone_cost = models.IntegerField(default=1, verbose_name='Стоимость - дроны')
 
     @staticmethod
     def new_bill(request, player, parliament):
@@ -91,12 +99,61 @@ class ChangeResidency(Bill):
         state.residency = self.residency
         state.save()
 
-        ChangeResidency.objects.filter(pk=self.pk).update(type='ac', running=False, voting_end=timezone.now())
+        b_type = 'ac'
+
+        rifle_cost = 0
+        drone_cost = 0
+
+        if state.residency == 'issue':
+
+            treasury = Treasury.get_instance(state=state)
+            regions_cnt = Region.objects.filter(state=treasury.state).count()
+
+            rifle_cost = 5 * regions_cnt
+            drone_cost = 2 * regions_cnt
+
+            if treasury.rifle >= rifle_cost and treasury.drone >= drone_cost:
+
+                schedule, created = CrontabSchedule.objects.get_or_create(
+                    minute=str(timezone.now().minute),
+                    hour='*',
+                    day_of_week='*',
+                    day_of_month='*',
+                    month_of_year='*',
+                )
+
+                task = PeriodicTask(
+                    name='прописка, id госа ' + str(state.pk),
+                    task='residency_pay',
+                    crontab=schedule,
+                    args=json.dumps([treasury.id]),
+                    start_time=timezone.now()
+                )
+                task.save()
+
+                setattr(treasury, 'rifle', getattr(treasury, 'rifle') - (5 * regions_cnt))
+                setattr(treasury, 'drone', getattr(treasury, 'drone') - (2 * regions_cnt))
+
+                treasury.residency_id = task.id
+                treasury.save()
+
+            else:
+                b_type = 'rj'
+
+        ChangeResidency.objects.filter(pk=self.pk).update(
+            type=b_type, running=False, voting_end=timezone.now(),
+            rifle_cost=rifle_cost, drone_cost=drone_cost
+        )
 
     @staticmethod
     def get_draft(state):
 
-        data = {}
+        regions_cnt = Region.objects.filter(state=state).count()
+
+        data = {
+            'rifle_cost': 5 * regions_cnt,
+            'drone_cost': 2 * regions_cnt,
+        }
 
         return data, 'state/gov/drafts/change_residency.html'
 
@@ -109,6 +166,8 @@ class ChangeResidency(Bill):
                     has_right = True
                     break
 
+        regions_cnt = Region.objects.filter(state=player.region.state).count()
+
         data = {
             'bill': self,
             'title': self._meta.verbose_name_raw,
@@ -118,6 +177,9 @@ class ChangeResidency(Bill):
             # проверяем, депутат ли этого парла игрок или нет
             'is_deputy': DeputyMandate.objects.filter(player=player, parliament=Parliament.objects.get(
                 state=player.region.state)).exists(),
+
+            'rifle_cost': 5 * regions_cnt,
+            'drone_cost': 2 * regions_cnt,
         }
 
         return data, 'state/gov/bills/change_residency.html'
@@ -125,10 +187,11 @@ class ChangeResidency(Bill):
     # получить шаблон рассмотренного законопроекта
     def get_reviewed_bill(self, player):
 
-        data = {'bill': self, 'title': self._meta.verbose_name_raw, 'player': player}
+        regions_cnt = Region.objects.filter(state=player.region.state).count()
+
+        data = {'bill': self, 'title': self._meta.verbose_name_raw, 'player': player,}
 
         return data, 'state/gov/reviewed/change_residency.html'
-
 
     # Свойства класса
     class Meta:

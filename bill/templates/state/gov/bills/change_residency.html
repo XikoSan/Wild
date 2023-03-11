@@ -25,11 +25,30 @@
     {% endwith %}
 
     {% with bill=data|dict_key:'bill' %}
-    <div class="col-xs-6 col-sm-6 col-md-6">
+    <div class="col-xs-3 col-sm-3 col-md-3">
         {% if bill.residency == 'issue' %}
         Выдаётся министром
         {% else %}
         Свободная
+        {% endif %}
+    </div>
+    <div class="col-xs-3 col-sm-3 col-md-3">
+        {% if bill.residency == 'issue' %}
+        <div class="row" align="center">
+            Стоимость:
+        </div>
+            {% with rifle_cost=data|dict_key:'rifle_cost' %}
+        <div class="row">
+            {% trans 'Автоматы' context "goods" %}: {{ rifle_cost }}
+        </div>
+            {% endwith %}
+            {% with drone_cost=data|dict_key:'drone_cost' %}
+        <div class="row">
+            {% trans 'БПЛА' context "goods" %}: {{ drone_cost }}
+        </div>
+            {% endwith %}
+        {% else %}
+        Бесплатно
         {% endif %}
     </div>
     <div class="col-xs-2 col-sm-2 col-md-2">
