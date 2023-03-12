@@ -11,15 +11,12 @@ from state.models.treasury import Treasury
 @shared_task(name="residency_pay")
 def residency_pay(treasury_pk):
 
-    rifle_price = 5
-    drone_price = 2
-
     treasury = Treasury.get_instance(pk=treasury_pk)
 
     regions_cnt = Region.objects.filter(state=treasury.state).count()
 
-    if getattr(treasury, 'rifle') - (rifle_price*regions_cnt) < 0\
-            or getattr(treasury, 'drone') - (drone_price*regions_cnt) < 0:
+    if getattr(treasury, 'rifle') - (Treasury.rifle_price*regions_cnt) < 0\
+            or getattr(treasury, 'drone') - (Treasury.drone_price*regions_cnt) < 0:
 
         treasury.state.residency = 'free'
         treasury.state.save()
@@ -28,7 +25,7 @@ def residency_pay(treasury_pk):
         treasury.residency_id = None
 
     else:
-        setattr(treasury, 'rifle', getattr(treasury, 'rifle') - (rifle_price*regions_cnt))
-        setattr(treasury, 'drone', getattr(treasury, 'drone') - (drone_price*regions_cnt))
+        setattr(treasury, 'rifle', getattr(treasury, 'rifle') - (Treasury.rifle_price*regions_cnt))
+        setattr(treasury, 'drone', getattr(treasury, 'drone') - (Treasury.drone_price*regions_cnt))
 
     treasury.save()
