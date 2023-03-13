@@ -11,6 +11,7 @@ from storage.models.storage import Storage
 def save_daily():
     r = redis.StrictRedis(host='redis', port=6379, db=0)
 
+    # ----------- деньги -----------
     cash = 0
     if r.exists("daily_cash"):
         cash = int(r.get("daily_cash"))
@@ -19,7 +20,12 @@ def save_daily():
     DailyCash.objects.create(
         cash=cash
     )
+    # очищаем информацию по регионам
+    for region in Region.objects.all():
+        if r.exists("daily_cash_" + str(region.pk)):
+            r.delete("daily_cash_" + str(region.pk))
 
+    # ----------- нефть -----------
     for oil_type in Region.oil_type_choices:
         oil = 0
         if r.exists("daily_" + oil_type[0]):
@@ -31,6 +37,13 @@ def save_daily():
             type=oil_type[0]
         )
 
+    # очищаем информацию по регионам
+    for region in Region.objects.all():
+        for oil_type in Region.oil_type_choices:
+            if r.exists("daily_" + str(region.pk) + '_' + oil_type[0]):
+                r.delete("daily_" + str(region.pk) + '_' + oil_type[0])
+
+    # ----------- руды -----------
     for mineral in Storage.minerals.keys():
         ore = 0
         if r.exists("daily_" + mineral):
@@ -41,3 +54,9 @@ def save_daily():
             ore=ore,
             type=mineral
         )
+
+    # очищаем информацию по регионам
+    for region in Region.objects.all():
+        for mineral in Storage.minerals.keys():
+            if r.exists("daily_" + str(region.pk) + '_' + mineral):
+                r.delete("daily_" + str(region.pk) + '_' + mineral)

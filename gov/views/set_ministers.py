@@ -71,6 +71,7 @@ def set_ministers(request):
                 bills_classes_list.append(bill_cl.__name__)
 
             bills_classes_list.append('ForeignRights')
+            bills_classes_list.append('MiningStats')
 
             right_iter = 0
             # права министров совпадают с классами ЗП
@@ -80,7 +81,7 @@ def set_ministers(request):
                     data = {
                         'header': 'Назначение министров',
                         'grey_btn': 'Закрыть',
-                        'response': 'Указанного вида законопроектов не существует: ' + right,
+                        'response': 'Указанного права министров не существует: ' + right,
                     }
                     return JsonResponse(data)
                 right_iter += 1

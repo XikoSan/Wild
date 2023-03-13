@@ -361,9 +361,13 @@ class Player(models.Model):
         r = redis.StrictRedis(host='redis', port=6379, db=0)
         if r.exists("daily_cash"):
             r.set("daily_cash", int(r.get("daily_cash")) + taxed_count)
-
         else:
             r.set("daily_cash", taxed_count)
+        # регион
+        if r.exists("daily_cash_" + str(self.region.pk)):
+            r.set("daily_cash_" + str(self.region.pk), int(r.get("daily_cash_" + str(self.region.pk))) + taxed_count)
+        else:
+            r.set("daily_cash_" + str(self.region.pk), taxed_count)
 
         return False, taxed_count
 
