@@ -196,18 +196,18 @@ def produce_good(request):
         # списать энергию игрока
         player.energy_cons(energy_cost)
 
-        from player.game_event.energy_spent import EnergySpent
-        from django.contrib.humanize.templatetags.humanize import number_format
-        sum = None
-
-        if EnergySpent.objects.filter(player=player).exists():
-            e_spent = EnergySpent.objects.get(player=player)
-            e_spent.points += energy_cost
-            sum = e_spent.claim_reward()
-
-        else:
-            e_spent = EnergySpent(player=player, points=energy_cost)
-            e_spent.save()
+        # from player.game_event.energy_spent import EnergySpent
+        # from django.contrib.humanize.templatetags.humanize import number_format
+        # sum = None
+        #
+        # if EnergySpent.objects.filter(player=player).exists():
+        #     e_spent = EnergySpent.objects.get(player=player)
+        #     e_spent.points += energy_cost
+        #     sum = e_spent.claim_reward()
+        #
+        # else:
+        #     e_spent = EnergySpent(player=player, points=energy_cost)
+        #     e_spent.save()
 
         # создаём лог производства
         ProductionLog.objects.create(player=player,
