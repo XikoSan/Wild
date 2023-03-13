@@ -127,7 +127,7 @@ def do_mining(request):
             goods = [player.region.oil_type]
             lock_storage = get_storage(storage, goods)
             # облагаем налогом добытую нефть
-            total_oil = (count / 10) * 10
+            total_oil = (count / 10) * 100
             taxed_oil = State.get_taxes(player.region, total_oil, 'oil', player.region.oil_type)
 
             # сохраняем информацию о том, сколько добыто за день
@@ -179,7 +179,7 @@ def do_mining(request):
 
             for mineral in storage.minerals.keys():
                 # облагаем налогом добытую руду
-                total_ore = (count / 100) * getattr(player.region, mineral + '_proc')
+                total_ore = (count / 10) * getattr(player.region, mineral + '_proc')
                 # экскавация
                 if Excavation.objects.filter(player=player, level__gt=0).exists():
                     total_ore = Excavation.objects.get(player=player).apply({'sum': total_ore})
