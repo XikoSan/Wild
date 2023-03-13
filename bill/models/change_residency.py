@@ -155,7 +155,7 @@ class ChangeResidency(Bill):
 
         data = {
             'rifle_cost': ChangeResidency.rifle_price * regions_cnt,
-            'drone_cost': drone_price * regions_cnt,
+            'drone_cost': ChangeResidency.drone_price * regions_cnt,
         }
 
         return data, 'state/gov/drafts/change_residency.html'
