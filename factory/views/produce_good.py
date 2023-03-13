@@ -237,13 +237,13 @@ def produce_good(request):
         # удаляем записи старше месяца
         ProductionLog.objects.filter(player=player, dtime__lt=timezone.now() - datetime.timedelta(days=30)).delete()
 
-        if sum:
-            data = {
-                'header': pgettext('factory', 'Внезапно!'),
-                'grey_btn': pgettext('factory', 'Отлично!'),
-                'response': pgettext('factory', 'Вы получили ') + number_format(sum) + pgettext('factory', ' золота'),
-            }
-            return JsonResponse(data)
+        # if sum:
+        #     data = {
+        #         'header': pgettext('factory', 'Внезапно!'),
+        #         'grey_btn': pgettext('factory', 'Отлично!'),
+        #         'response': pgettext('factory', 'Вы получили ') + number_format(sum) + pgettext('factory', ' золота'),
+        #     }
+        #     return JsonResponse(data)
 
         data = {
             'response': 'ok',
