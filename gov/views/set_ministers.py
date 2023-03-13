@@ -86,11 +86,11 @@ def set_ministers(request):
                 right_iter += 1
 
         # сумма очков не больше десяти
-        if points > 10:
+        if points > 13:
             data = {
                 'header': 'Назначение министров',
                 'grey_btn': 'Закрыть',
-                'response': 'Сумма очков назначения министров превышает 10',
+                'response': 'Сумма очков назначения министров превышает 13',
             }
             return JsonResponse(data)
 
