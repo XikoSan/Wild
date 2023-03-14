@@ -89,10 +89,10 @@ def up_skill(request):
                 return JResponse(data)
 
         if skill in ['power', 'knowledge', 'endurance']:
-            if player.cash < (getattr(player, skill) + skill_cnt + 1) * 1000:
+            if player.cash < ( (getattr(player, skill) + skill_cnt + 1) ** 2 ) * 10:
                 data = {
                     # 'response': _('positive_enrg_req'),
-                    'response': 'Недостаточно денег, необходимо: ' + str((getattr(player, skill) + skill_cnt + 1) * 1000),
+                    'response': 'Недостаточно денег, необходимо: ' + str(((getattr(player, skill) + skill_cnt + 1) ** 2 ) * 10),
                     'header': 'Изучение навыка',
                     'grey_btn': 'Закрыть',
                 }
@@ -115,9 +115,9 @@ def up_skill(request):
             return JResponse(data)
 
         if skill in ['power', 'knowledge', 'endurance']:
-            player.cash -= (getattr(player, skill) + skill_cnt + 1) * 1000
+            player.cash -= ((getattr(player, skill) + skill_cnt + 1) ** 2 ) * 10
 
-            CashLog.create(player=player, cash=0 - (getattr(player, skill) + skill_cnt + 1) * 1000, activity_txt='skill')
+            CashLog.create(player=player, cash=0 - ((getattr(player, skill) + skill_cnt + 1) ** 2 ) * 10, activity_txt='skill')
 
         if skill in ['power', 'knowledge', 'endurance']:
             # время изучения навыка без према
