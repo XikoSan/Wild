@@ -7,6 +7,7 @@ from metrics.models.daily_ore import DailyOre
 from region.region import Region
 from storage.models.storage import Storage
 from state.models.treasury import Treasury
+from bill.models.change_residency import ChangeResidency
 
 @shared_task(name="residency_pay")
 def residency_pay(treasury_pk):
@@ -15,8 +16,8 @@ def residency_pay(treasury_pk):
 
     regions_cnt = Region.objects.filter(state=treasury.state).count()
 
-    if getattr(treasury, 'rifle') - (Treasury.rifle_price*regions_cnt) < 0\
-            or getattr(treasury, 'drone') - (Treasury.drone_price*regions_cnt) < 0:
+    if getattr(treasury, 'rifle') - (ChangeResidency.rifle_price*regions_cnt) < 0\
+            or getattr(treasury, 'drone') - (ChangeResidency.drone_price*regions_cnt) < 0:
 
         treasury.state.residency = 'free'
         treasury.state.save()
@@ -25,7 +26,7 @@ def residency_pay(treasury_pk):
         treasury.residency_id = None
 
     else:
-        setattr(treasury, 'rifle', getattr(treasury, 'rifle') - (Treasury.rifle_price*regions_cnt))
-        setattr(treasury, 'drone', getattr(treasury, 'drone') - (Treasury.drone_price*regions_cnt))
+        setattr(treasury, 'rifle', getattr(treasury, 'rifle') - (ChangeResidency.rifle_price*regions_cnt))
+        setattr(treasury, 'drone', getattr(treasury, 'drone') - (ChangeResidency.drone_price*regions_cnt))
 
     treasury.save()
