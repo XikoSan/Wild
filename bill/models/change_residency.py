@@ -113,7 +113,7 @@ class ChangeResidency(Bill):
             regions_cnt = Region.objects.filter(state=treasury.state).count()
 
             rifle_cost = ChangeResidency.rifle_price * regions_cnt
-            drone_cost = drone_price * regions_cnt
+            drone_cost = ChangeResidency.drone_price * regions_cnt
 
             if treasury.rifle >= rifle_cost and treasury.drone >= drone_cost:
 
@@ -135,7 +135,7 @@ class ChangeResidency(Bill):
                 task.save()
 
                 setattr(treasury, 'rifle', getattr(treasury, 'rifle') - (ChangeResidency.rifle_price * regions_cnt))
-                setattr(treasury, 'drone', getattr(treasury, 'drone') - (drone_price * regions_cnt))
+                setattr(treasury, 'drone', getattr(treasury, 'drone') - (ChangeResidency.drone_price * regions_cnt))
 
                 treasury.residency_id = task.id
                 treasury.save()
@@ -182,7 +182,7 @@ class ChangeResidency(Bill):
                 state=player.region.state)).exists(),
 
             'rifle_cost': ChangeResidency.rifle_price * regions_cnt,
-            'drone_cost': self.drone_price * regions_cnt,
+            'drone_cost': ChangeResidency.drone_price * regions_cnt,
         }
 
         return data, 'state/gov/bills/change_residency.html'
