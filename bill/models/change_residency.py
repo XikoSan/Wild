@@ -182,7 +182,7 @@ class ChangeResidency(Bill):
                 state=player.region.state)).exists(),
 
             'rifle_cost': ChangeResidency.rifle_price * regions_cnt,
-            'drone_cost': drone_price * regions_cnt,
+            'drone_cost': self.drone_price * regions_cnt,
         }
 
         return data, 'state/gov/bills/change_residency.html'
