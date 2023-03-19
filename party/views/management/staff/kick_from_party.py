@@ -13,6 +13,7 @@ from state.models.parliament.deputy_mandate import DeputyMandate
 from gov.models.presidential_voting import PresidentialVoting
 from gov.models.president import President
 from gov.models.vote import Vote
+from gov.models.minister import Minister
 
 # процедура исключения из партии
 @login_required(login_url='/')
@@ -74,6 +75,10 @@ def kick_from_party(request, pk):
                     mandate = DeputyMandate.objects.get(player=kickin_player)
                     mandate.player = None
                     mandate.save()
+
+                # если персонаж был министром
+                if Minister.objects.filter(player=kickin_player).exists():
+                    Minister.objects.filter(player=kickin_player).delete()
 
                 # президентские выборы - если был кандидатом
                 # если есть гос

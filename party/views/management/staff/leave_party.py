@@ -18,6 +18,7 @@ from django.utils.translation import pgettext
 from gov.models.presidential_voting import PresidentialVoting
 from gov.models.president import President
 from gov.models.vote import Vote
+from gov.models.minister import Minister
 
 # буферная страница выхода из партии
 @login_required(login_url='/')
@@ -82,6 +83,10 @@ def leave_party(request):
 
                 # лишаем его такого счастья
                 DeputyMandate.objects.filter(party=player.party).update(player=None)
+
+            # если персонаж был министром
+            if Minister.objects.filter(player=player).exists():
+                Minister.objects.filter(player=player).delete()
 
             # президентские выборы - если был кандидатом
             # если есть гос
@@ -166,6 +171,10 @@ def leave_party(request):
                 mandate = DeputyMandate.objects.get(player=player)
                 mandate.player = None
                 mandate.save()
+
+            # если персонаж был министром
+            if Minister.objects.filter(player=player).exists():
+                Minister.objects.filter(player=player).delete()
 
             # президентские выборы - если был кандидатом
             # если есть гос
