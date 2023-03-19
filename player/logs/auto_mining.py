@@ -169,11 +169,19 @@ class AutoMining(Log):
 
             # сохраняем информацию о том, сколько добыто за день
             r = redis.StrictRedis(host='redis', port=6379, db=0)
+            # общее
             if r.exists("daily_" + player.region.oil_type):
                 r.set("daily_" + player.region.oil_type, int(float(r.get("daily_" + player.region.oil_type))) + int(taxed_oil))
 
             else:
                 r.set("daily_" + player.region.oil_type, int(taxed_oil))
+            # регион
+            if r.exists("daily_" + str(player.region.pk) + '_' + player.region.oil_type):
+                r.set("daily_" + str(player.region.pk) + '_' + player.region.oil_type,
+                      int(float(r.get("daily_" + str(player.region.pk) + '_' + player.region.oil_type))) + int(
+                          taxed_oil))
+            else:
+                r.set("daily_" + str(player.region.pk) + '_' + player.region.oil_type, int(taxed_oil))
 
             # проверяем есть ли для него место на складе, с учетом блокировок
             if lock_storage.capacity_check(player.region.oil_type, taxed_oil):
@@ -218,6 +226,15 @@ class AutoMining(Log):
                 if r.exists("daily_" + mineral):
                     r.set("daily_" + mineral,
                           int(float(r.get("daily_" + mineral))) + int(taxed_ore))
+                else:
+                    r.set("daily_" + mineral, int(taxed_ore))
+                # регион
+                if r.exists("daily_" + str(player.region.pk) + '_' + mineral):
+
+                    r.set("daily_" + str(player.region.pk) + '_' + mineral,
+                          int(float(r.get("daily_" + str(player.region.pk) + '_' + mineral))) + int(taxed_ore))
+                else:
+                    r.set("daily_" + str(player.region.pk) + '_' + mineral, int(taxed_ore))
 
                 # проверяем есть ли место на складе
                 if lock_storage.capacity_check(mineral, taxed_ore):
