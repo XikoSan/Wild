@@ -205,6 +205,13 @@ def finish_elections(parl_id):
             # и выдаем мандаты
             set_mandates(ppty.pk, parliament.pk, seats_dic[ppty])
 
+        # удаляем министров, не получивших мандаты
+        players_deputates = []
+        for dm in DeputyMandate.objects.filter(parliament=parliament.pk):
+            players_deputates.append(dm.player)
+
+        Minister.objects.filter(state=parliament.state).exclude(player__in=players_deputates).delete()
+
 
 # таска включающая выборы
 @shared_task(name="start_elections")
