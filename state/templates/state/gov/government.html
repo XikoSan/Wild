@@ -102,7 +102,6 @@
                             <li><a data-toggle="tab" class="green_hover" href="#custom_rights">Министр</a></li>
                                 {% endif %}
                             {% endif %}
-                            <li><a data-toggle="tab" href="#bills_history">История</a></li>
                             <li><a data-toggle="tab" href="#parliament">Парламент</a></li>
                             {% endif %}
                             <li><a data-toggle="tab" href="#treasury">Казна</a></li>
@@ -118,8 +117,6 @@
                                         {% custom_rights player parliament.state %}
                                     {% endif %}
                                 {% endif %}
-                                <!--история законопроектов-->
-                                {% bills_history player parliament %}
                                 <!--парламент-->
                                 {% parliament player parliament %}
                             {% endif %}

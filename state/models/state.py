@@ -6,6 +6,7 @@ from django.db import models
 from django.utils import timezone
 from player.actual_manager import ActualManager
 from regime.regime import Regime
+from django.utils.translation import gettext_lazy
 
 
 class State(models.Model):
@@ -32,8 +33,8 @@ class State(models.Model):
     )
     # прописка
     residencyTypeChoices = (
-        ('free', 'Свободная'),
-        ('issue', 'Выдаётся министром'),
+        ('free', gettext_lazy('Свободная')),
+        ('issue', gettext_lazy('Выдаётся министром')),
     )
     residency = models.CharField(
         max_length=5,
