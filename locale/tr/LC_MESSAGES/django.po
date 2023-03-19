@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-23 00:15+0300\n"
+"POT-Creation-Date: 2023-03-19 22:37+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -49,6 +49,27 @@ msgstr ""
 #: bill/models/explore_resources.py:25 bill/models/geological_surveys.py:26
 #: region/templates/region/region_info.html:68
 msgid "Золото"
+msgstr ""
+
+#: bill/templates/state/gov/bills/change_residency.html:42
+#: bill/templates/state/gov/drafts/change_residency.html:21
+#: bill/templates/state/gov/reviewed/change_residency.html:41
+#: factory/models/project.py:148 state/models/treasury.py:85
+#: storage/models/destroy.py:58 storage/models/storage.py:76
+#: storage/models/storage.py:182 storage/models/trade_offer.py:91
+#: storage/models/transport.py:151
+msgctxt "goods"
+msgid "Автоматы"
+msgstr ""
+
+#: bill/templates/state/gov/bills/change_residency.html:47
+#: bill/templates/state/gov/drafts/change_residency.html:26
+#: bill/templates/state/gov/reviewed/change_residency.html:44
+#: factory/models/project.py:243 state/models/treasury.py:106
+#: storage/models/destroy.py:72 storage/models/storage.py:87
+#: storage/models/storage.py:217 storage/models/trade_offer.py:98
+msgctxt "goods"
+msgid "БПЛА"
 msgstr ""
 
 #: bill/templates/state/gov/drafts/start_war.html:22
@@ -125,14 +146,6 @@ msgctxt "goods"
 msgid "Буровые установки"
 msgstr ""
 
-#: factory/models/project.py:148 state/models/treasury.py:85
-#: storage/models/destroy.py:58 storage/models/storage.py:76
-#: storage/models/storage.py:182 storage/models/trade_offer.py:91
-#: storage/models/transport.py:151
-msgctxt "goods"
-msgid "Автоматы"
-msgstr ""
-
 #: factory/models/project.py:163 state/models/treasury.py:88
 #: storage/models/destroy.py:60 storage/models/storage.py:78
 #: storage/models/storage.py:192 storage/models/trade_offer.py:92
@@ -170,13 +183,6 @@ msgstr ""
 #: storage/models/transport.py:181
 msgctxt "goods"
 msgid "БМП"
-msgstr ""
-
-#: factory/models/project.py:243 state/models/treasury.py:106
-#: storage/models/destroy.py:72 storage/models/storage.py:87
-#: storage/models/storage.py:217 storage/models/trade_offer.py:98
-msgctxt "goods"
-msgid "БПЛА"
 msgstr ""
 
 #: factory/views/factory.py:47
@@ -274,26 +280,6 @@ msgctxt "factory"
 msgid ". В наличии "
 msgstr ""
 
-#: factory/views/produce_good.py:242
-msgctxt "factory"
-msgid "Внезапно!"
-msgstr ""
-
-#: factory/views/produce_good.py:243
-msgctxt "factory"
-msgid "Отлично!"
-msgstr ""
-
-#: factory/views/produce_good.py:244
-msgctxt "factory"
-msgid "Вы получили "
-msgstr ""
-
-#: factory/views/produce_good.py:244
-msgctxt "factory"
-msgid " золота"
-msgstr ""
-
 #: gov/templates/state/gov/forms/foreign_right.html:21
 #: party/templates/party/party_requests.html:36
 msgid "отклонить всё"
@@ -311,6 +297,7 @@ msgid "Партия"
 msgstr ""
 
 #: party/templates/party/redesign/party_blocks/has_party.html:126
+#: party/templates/party/redesign/party_requests.html:29
 msgctxt "has_party"
 msgid "Никнейм"
 msgstr ""
@@ -375,44 +362,69 @@ msgctxt "no_party"
 msgid "создать партию"
 msgstr ""
 
-#: party/templates/party/redesign/party_blocks/no_party.html:36
-msgctxt "no_party"
-msgid "все партии"
-msgstr ""
-
-#: party/templates/party/redesign/party_blocks/no_party.html:51
+#: party/templates/party/redesign/party_blocks/no_party.html:37
 msgctxt "no_party"
 msgid "региональные"
 msgstr ""
 
-#: party/templates/party/redesign/party_blocks/no_party.html:66
-#: party/templates/party/redesign/party_blocks/no_party.html:127
+#: party/templates/party/redesign/party_blocks/no_party.html:52
+msgctxt "no_party"
+msgid "все партии"
+msgstr ""
+
+#: party/templates/party/redesign/party_blocks/no_party.html:68
+#: party/templates/party/redesign/party_blocks/no_party.html:129
 msgctxt "no_party"
 msgid "Партия"
 msgstr ""
 
-#: party/templates/party/redesign/party_blocks/no_party.html:77
-#: party/templates/party/redesign/party_blocks/no_party.html:138
+#: party/templates/party/redesign/party_blocks/no_party.html:79
+#: party/templates/party/redesign/party_blocks/no_party.html:140
 msgctxt "no_party"
 msgid "Действие"
 msgstr ""
 
-#: party/templates/party/redesign/party_blocks/no_party.html:103
-#: party/templates/party/redesign/party_blocks/no_party.html:157
+#: party/templates/party/redesign/party_blocks/no_party.html:105
+#: party/templates/party/redesign/party_blocks/no_party.html:159
 msgctxt "no_party"
 msgid "Вступить"
-msgstr ""
-
-#: party/templates/party/redesign/party_blocks/no_party.html:107
-#: party/templates/party/redesign/party_blocks/no_party.html:161
-msgctxt "no_party"
-msgid "Отменить заявку"
 msgstr ""
 
 #: party/templates/party/redesign/party_blocks/no_party.html:109
 #: party/templates/party/redesign/party_blocks/no_party.html:163
 msgctxt "no_party"
+msgid "Отменить заявку"
+msgstr ""
+
+#: party/templates/party/redesign/party_blocks/no_party.html:111
+#: party/templates/party/redesign/party_blocks/no_party.html:165
+msgctxt "no_party"
 msgid "Подать заявку"
+msgstr ""
+
+#: party/templates/party/redesign/party_requests.html:15
+msgctxt "party_requests"
+msgid "Заявки в партию"
+msgstr ""
+
+#: party/templates/party/redesign/party_requests.html:17
+msgctxt "party_requests"
+msgid "Отклонить всё"
+msgstr ""
+
+#: party/templates/party/redesign/party_requests.html:19
+msgctxt "party_requests"
+msgid "заявок нет"
+msgstr ""
+
+#: party/templates/party/redesign/party_requests.html:30
+msgctxt "party_requests"
+msgid "Принять"
+msgstr ""
+
+#: party/templates/party/redesign/party_requests.html:31
+msgctxt "party_requests"
+msgid "Отклонить"
 msgstr ""
 
 #: party/templates/primaries/primaries.html:25
@@ -427,20 +439,20 @@ msgstr ""
 msgid "Партии мира"
 msgstr ""
 
-#: party/views/management/staff/leave_party.py:33
-#: party/views/management/staff/leave_party.py:167
+#: party/views/management/staff/leave_party.py:37
+#: party/views/management/staff/leave_party.py:209
 msgctxt "party"
 msgid "Выход из партии"
 msgstr ""
 
-#: party/views/management/staff/leave_party.py:34
-#: party/views/management/staff/leave_party.py:168 player/player.py:286
-#: player/player.py:308 region/views/cancel_auto.py:34
+#: party/views/management/staff/leave_party.py:38
+#: party/views/management/staff/leave_party.py:210 player/player.py:287
+#: player/player.py:309 region/views/cancel_auto.py:34
 #: region/views/do_mining.py:33 region/views/do_mining.py:46
 #: region/views/do_mining.py:56 region/views/do_mining.py:69
 #: region/views/do_mining.py:78 region/views/do_mining.py:87
 #: region/views/do_mining.py:103 region/views/do_mining.py:123
-#: region/views/do_mining.py:164 region/views/do_mining.py:226
+#: region/views/do_mining.py:177 region/views/do_mining.py:254
 #: region/views/retrieve_cash.py:41 region/views/start_auto.py:28
 #: region/views/start_auto.py:36 region/views/start_auto.py:46
 #: region/views/start_auto.py:55 region/views/start_auto.py:77
@@ -532,12 +544,12 @@ msgctxt "mining"
 msgid "Закрыть"
 msgstr ""
 
-#: party/views/management/staff/leave_party.py:35
+#: party/views/management/staff/leave_party.py:39
 msgctxt "party"
 msgid "Вы не исключили всех однопартийцев"
 msgstr ""
 
-#: party/views/management/staff/leave_party.py:169
+#: party/views/management/staff/leave_party.py:211
 msgctxt "party"
 msgid "Вы не состоите в указанной партии"
 msgstr ""
@@ -592,18 +604,18 @@ msgctxt "cash_log"
 msgid "Навыки"
 msgstr ""
 
-#: player/player.py:284 region/views/do_mining.py:31
+#: player/player.py:285 region/views/do_mining.py:31
 #: region/views/start_auto.py:26
 msgctxt "mining"
 msgid "Дождитесь конца полёта"
 msgstr ""
 
-#: player/player.py:285 player/player.py:307 region/views/retrieve_cash.py:40
+#: player/player.py:286 player/player.py:308 region/views/retrieve_cash.py:40
 msgctxt "mining"
 msgid "Ошибка получения финансирования"
 msgstr ""
 
-#: player/player.py:306
+#: player/player.py:307
 msgctxt "mining"
 msgid "Нечего забирать"
 msgstr ""
@@ -773,19 +785,19 @@ msgid ""
 msgstr ""
 
 #: player/templates/player/redesign/lists/skill_top.html:26
-#: player/templates/player/redesign/overview_skills.html:19
+#: player/templates/player/redesign/overview_skills.html:20
 #: player/templatetags/redesign/skill_top/power_top.py:64
 #: player/templatetags/redesign/skill_top/power_top.py:65
 msgid "Сила"
 msgstr ""
 
 #: player/templates/player/redesign/lists/skill_top.html:41
-#: player/templates/player/redesign/overview_skills.html:68
+#: player/templates/player/redesign/overview_skills.html:69
 msgid "Интеллект"
 msgstr ""
 
 #: player/templates/player/redesign/lists/skill_top.html:56
-#: player/templates/player/redesign/overview_skills.html:117
+#: player/templates/player/redesign/overview_skills.html:118
 msgid "Выносливость"
 msgstr ""
 
@@ -869,7 +881,7 @@ msgstr ""
 #: player/templates/player/redesign/new_player.html:135
 #: player/templates/player/redesign/new_player.html:149
 #: player/templates/player/redesign/new_player.html:177
-#: player/templates/player/redesign/overview_skills.html:178
+#: player/templates/player/redesign/overview_skills.html:179
 #: player/templates/player/redesign/profile.html:345
 msgid "Отмена"
 msgstr ""
@@ -968,59 +980,59 @@ msgctxt "overview"
 msgid "магазин"
 msgstr ""
 
-#: player/templates/player/redesign/overview_skills.html:22
-#: player/templates/player/redesign/overview_skills.html:71
-#: player/templates/player/redesign/overview_skills.html:120
-#: player/templates/player/redesign/overview_skills.html:184
+#: player/templates/player/redesign/overview_skills.html:23
+#: player/templates/player/redesign/overview_skills.html:72
+#: player/templates/player/redesign/overview_skills.html:121
+#: player/templates/player/redesign/overview_skills.html:185
 msgid "Завершение"
 msgstr ""
 
-#: player/templates/player/redesign/overview_skills.html:50
-#: player/templates/player/redesign/overview_skills.html:99
-#: player/templates/player/redesign/overview_skills.html:148
+#: player/templates/player/redesign/overview_skills.html:51
+#: player/templates/player/redesign/overview_skills.html:100
+#: player/templates/player/redesign/overview_skills.html:149
 msgctxt "skills"
 msgid "в очередь"
 msgstr ""
 
-#: player/templates/player/redesign/overview_skills.html:52
-#: player/templates/player/redesign/overview_skills.html:58
-#: player/templates/player/redesign/overview_skills.html:101
-#: player/templates/player/redesign/overview_skills.html:107
-#: player/templates/player/redesign/overview_skills.html:150
-#: player/templates/player/redesign/overview_skills.html:156
+#: player/templates/player/redesign/overview_skills.html:53
+#: player/templates/player/redesign/overview_skills.html:59
+#: player/templates/player/redesign/overview_skills.html:102
+#: player/templates/player/redesign/overview_skills.html:108
+#: player/templates/player/redesign/overview_skills.html:151
+#: player/templates/player/redesign/overview_skills.html:157
 msgctxt "skills"
 msgid "недоступно"
 msgstr ""
 
-#: player/templates/player/redesign/overview_skills.html:56
-#: player/templates/player/redesign/overview_skills.html:105
-#: player/templates/player/redesign/overview_skills.html:154
+#: player/templates/player/redesign/overview_skills.html:57
+#: player/templates/player/redesign/overview_skills.html:106
+#: player/templates/player/redesign/overview_skills.html:155
 msgctxt "skills"
 msgid "изучается..."
 msgstr ""
 
-#: player/templates/player/redesign/overview_skills.html:62
-#: player/templates/player/redesign/overview_skills.html:111
-#: player/templates/player/redesign/overview_skills.html:160
+#: player/templates/player/redesign/overview_skills.html:63
+#: player/templates/player/redesign/overview_skills.html:112
+#: player/templates/player/redesign/overview_skills.html:161
 msgid "изучить"
 msgstr ""
 
-#: player/templates/player/redesign/overview_skills.html:170
+#: player/templates/player/redesign/overview_skills.html:171
 msgctxt "skills"
 msgid "дерево навыков"
 msgstr ""
 
-#: player/templates/player/redesign/overview_skills.html:175
+#: player/templates/player/redesign/overview_skills.html:176
 msgctxt "skill_cancel"
 msgid "Отмена изучения навыка"
 msgstr ""
 
-#: player/templates/player/redesign/overview_skills.html:176
+#: player/templates/player/redesign/overview_skills.html:177
 msgctxt "skill_cancel"
 msgid "Изучение навыка будет отменено. Продолжить?"
 msgstr ""
 
-#: player/templates/player/redesign/overview_skills.html:177
+#: player/templates/player/redesign/overview_skills.html:178
 msgid "Продолжить"
 msgstr ""
 
@@ -1650,17 +1662,17 @@ msgid "Региональные налоги"
 msgstr ""
 
 #: region/templates/region/region_view.html:201
-#: state/templates/state/state_view.html:144
+#: state/templates/state/state_view.html:154
 msgid "На финансирование"
 msgstr ""
 
 #: region/templates/region/region_view.html:213
-#: state/templates/state/state_view.html:156
+#: state/templates/state/state_view.html:166
 msgid "На добычу"
 msgstr ""
 
 #: region/templates/region/region_view.html:227
-#: state/templates/state/state_view.html:170
+#: state/templates/state/state_view.html:180
 msgid "На торговлю"
 msgstr ""
 
@@ -1673,7 +1685,7 @@ msgstr ""
 #: region/views/do_mining.py:55 region/views/do_mining.py:68
 #: region/views/do_mining.py:77 region/views/do_mining.py:86
 #: region/views/do_mining.py:102 region/views/do_mining.py:122
-#: region/views/do_mining.py:163 region/views/do_mining.py:225
+#: region/views/do_mining.py:176 region/views/do_mining.py:253
 msgctxt "mining"
 msgid "Ошибка добычи ресурсов"
 msgstr ""
@@ -1713,12 +1725,12 @@ msgctxt "mining"
 msgid "Запасов нефти в регионе недостаточно для добычи"
 msgstr ""
 
-#: region/views/do_mining.py:162
+#: region/views/do_mining.py:175
 msgctxt "mining"
 msgid "Запасов руды в регионе недостаточно для добычи"
 msgstr ""
 
-#: region/views/do_mining.py:227 storage/views/assets/assets_action.py:253
+#: region/views/do_mining.py:255 storage/views/assets/assets_action.py:253
 #: storage/views/assets/storage_move.py:88
 #: storage/views/storage/cash_transfer.py:144
 #: storage/views/storage/new_storage.py:88
@@ -1790,6 +1802,14 @@ msgstr ""
 msgid "Нет такого навыка"
 msgstr ""
 
+#: state/models/state.py:36
+msgid "Свободная"
+msgstr ""
+
+#: state/models/state.py:37
+msgid "Выдаётся министром"
+msgstr ""
+
 #: state/models/treasury.py:42 storage/models/destroy.py:18
 #: storage/models/storage.py:43 storage/models/storage.py:115
 #: storage/models/trade_offer.py:74 storage/models/transport.py:89
@@ -1854,7 +1874,11 @@ msgstr ""
 msgid "Столица"
 msgstr ""
 
-#: state/templates/state/state_view.html:137
+#: state/templates/state/state_view.html:118
+msgid "Прописка"
+msgstr ""
+
+#: state/templates/state/state_view.html:147
 msgid "Государственные налоги"
 msgstr ""
 
