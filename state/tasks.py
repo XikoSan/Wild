@@ -58,6 +58,7 @@ def run_bill(bill_type, bill_pk):
 
 @shared_task
 def set_mandates(pty_pk, parl_pk, places):
+    lv_places = places
     # все игроки партии-победителя
     players = Player.objects.filter(banned=False, party=Party.objects.get(pk=pty_pk)).order_by('pk')
 
@@ -80,11 +81,33 @@ def set_mandates(pty_pk, parl_pk, places):
     players = Player.objects.filter(banned=False, party=Party.objects.get(pk=pty_pk)).exclude(
         pk__in=exclude_list).order_by('pk')
 
-    # # если на всех мест хватает
-    # if places > players.count():
-    #     places = players.count()
+    # выбираем министров от этой партии
+    party_ministers = Minister.objects.filter(player__in=players)
 
-    for num in range(places):
+    # если есть министры, которые неактивны - удаляем их
+    if party_ministers.filter(player__pk__in=exclude_list).exists():
+        party_ministers.filter(player__pk__in=exclude_list).delete()
+        # и обновляем список
+        party_ministers = Minister.objects.filter(player__in=players)
+
+    # если у нас остались министры - выдадим им в первую очередь
+    if party_ministers:
+        for minister in party_ministers:
+            # удалим их из общего списка, чтобы не получили два мандата
+            players = player.exclude(pk=minister.player.pk)
+
+            if lv_places > 0:
+                # если у данного игрока есть мандат президента (в этом госе или где-то ещё)
+                if DeputyMandate.objects.filter(player=minister.player, is_president=True).exists():
+                    dm = DeputyMandate(player=None, party=Party.objects.get(pk=pty_pk),
+                                       parliament=Parliament.objects.get(pk=parl_pk))
+                else:
+                    dm = DeputyMandate(player=minister.player, party=Party.objects.get(pk=pty_pk),
+                                       parliament=Parliament.objects.get(pk=parl_pk))
+                dm.save()
+                lv_places -= 1
+
+    for num in range(lv_places):
 
         if num < len(players):
             # если у данного игрока есть мандат президента (в этом госе или где-то ещё)
