@@ -326,8 +326,18 @@ class Player(models.Model):
 
         taxed_count = 0
         PlayerRegionalExpense = apps.get_model('player.PlayerRegionalExpense')
+        # сохраняем информацию о том, сколько добыто за день
+        r = redis.StrictRedis(host='redis', port=6379, db=0)
 
         for expense in PlayerRegionalExpense.objects.filter(player=self):
+            taxed_sum = expense.get_taxes(count)
+            # региональная статистика
+            if r.exists("daily_cash_" + str(expense.region.pk)):
+                r.set("daily_cash_" + str(expense.region.pk),
+                      int(r.get("daily_cash_" + str(expense.region.pk))) + taxed_sum)
+            else:
+                r.set("daily_cash_" + str(expense.region.pk), taxed_sum)
+
             taxed_count += expense.get_taxes(count)
 
         PlayerRegionalExpense.objects.filter(player=self).delete()
@@ -357,17 +367,11 @@ class Player(models.Model):
 
         self.save()
 
-        # сохраняем информацию о том, сколько добыто за день
-        r = redis.StrictRedis(host='redis', port=6379, db=0)
+        # общая статистика
         if r.exists("daily_cash"):
             r.set("daily_cash", int(r.get("daily_cash")) + taxed_count)
         else:
             r.set("daily_cash", taxed_count)
-        # регион
-        if r.exists("daily_cash_" + str(self.region.pk)):
-            r.set("daily_cash_" + str(self.region.pk), int(r.get("daily_cash_" + str(self.region.pk))) + taxed_count)
-        else:
-            r.set("daily_cash_" + str(self.region.pk), taxed_count)
 
         return False, taxed_count
 
