@@ -94,7 +94,7 @@ def set_mandates(pty_pk, parl_pk, places):
     if party_ministers:
         for minister in party_ministers:
             # удалим их из общего списка, чтобы не получили два мандата
-            players = player.exclude(pk=minister.player.pk)
+            players = players.exclude(pk=minister.player.pk)
 
             if lv_places > 0:
                 # если у данного игрока есть мандат президента (в этом госе или где-то ещё)
