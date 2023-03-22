@@ -40,19 +40,20 @@ def bills_history(player, parliament):
             bills_dict[item[1]] = [item[0],]
 
     # словарь: имя класса из сырого SQL - объекты этого класса, которые были выбраны
-    billd_instances_dict = {}
+    bill_instances_dict = {}
     for type in bills_classes:
         if type.__name__ in bills_dict:
-            billd_instances_dict[type.__name__] = type.objects.filter(pk__in=bills_dict[type.__name__])
+            bill_instances_dict[type.__name__] = type.objects.filter(pk__in=bills_dict[type.__name__])
 
+    # расставляем объекты по имеющейся хронологии
     for item in raw_bills_hist:
         if bills_list:
             # добавляем в список на вывод
             bills_list = list(chain(bills_list,
-                                    billd_instances_dict[item[1]].filter(pk=item[0])
+                                    bill_instances_dict[item[1]].filter(pk=item[0])
                                     ))
         else:
-            bills_list = billd_instances_dict[item[1]].filter(pk=item[0])
+            bills_list = bill_instances_dict[item[1]].filter(pk=item[0])
 
     return {
         'player': player,
