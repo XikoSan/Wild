@@ -10,6 +10,7 @@ from django.utils import timezone
 from django.utils.timezone import make_aware
 from django.utils.translation import pgettext
 from django_celery_beat.models import PeriodicTask
+from dateutil.relativedelta import relativedelta
 
 from party.party import Party
 from party.position import PartyPosition
@@ -348,6 +349,18 @@ class Player(models.Model):
         #     if Finance.objects.filter(player=self, level__gt=0).exists():
         #         if count != 0 and daily_procent == 100:
         #             taxed_count += daily_limit
+
+        # если дейлик ещё не закрывался сегодня
+        if not self.daily_fin:
+            if count != 0 and daily_procent == 100:
+                # продлеваем премиум-аккаунт
+                # время, к которому прибавляем месяц
+                if self.premium > timezone.now():
+                    from_time = self.premium
+                else:
+                    from_time = timezone.now()
+
+                self.premium = from_time + relativedelta(hours=6)
 
         # отмечаем, что  дейлик закрыт:
         # если игрок прокачат навык, то не получит золотой бонус или Подпольное Финансирование
