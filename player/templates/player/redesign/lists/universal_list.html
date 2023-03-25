@@ -121,7 +121,7 @@
 								  			{% if sub_obj_img %}
 											<img src="{{ sub_obj_img|get_attr:'url' }}" alt="{{ col }}_{{ sub_col }}">
 								  			{% else %}
-								  			<img src="{% static 'img/nopic.png' %}" alt="{{ col }}_{{ sub_col }}">
+								  			<img src="{% static 'img/nopic.svg' %}" alt="{{ col }}_{{ sub_col }}">
 								  			{% endif %}
 										{% endwith %}
 										<!--что угодно-->
@@ -144,7 +144,11 @@
 								{% if obj_img %}
 								<img src="{{ obj_img|get_attr:'url' }}" alt="{{ col }}">
 								{% else %}
-								<img src="{% static 'img/nopic.png' %}" alt="{{ col }}">
+								  {% if line|get_class_name == 'Player' or line|get_class_name == 'PlayerWithTop' %}
+								  <img src="{% static 'img/nopic_list.svg' %}" alt="{{ col }}">
+								  {% elif line|get_class_name == 'PartyWithSize' %}
+								  <img src="{% static 'img/nopic_party_list.svg' %}" alt="{{ col }}">
+								  {% endif %}
 							    {% endif %}
 							{% endwith %}
 						  <!--что угодно-->

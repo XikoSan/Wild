@@ -174,7 +174,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                     destination = text_data_json['destination']
                     await sync_to_async(_set_player_banned, thread_sensitive=True)(pk=destination)
 
-                image_url = '/static/img/nopic.png'
+                image_url = '/static/img/nopic.svg'
                 if self.player.image:
                     image_url = self.player.image.url
 
@@ -197,7 +197,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
                 banned_player = await sync_to_async(_get_player_pk, thread_sensitive=True)(pk=destination)
 
-                banned_image_url = '/static/img/nopic.png'
+                banned_image_url = '/static/img/nopic.svg'
                 if banned_player.image:
                     banned_image_url = banned_player.image.url
 

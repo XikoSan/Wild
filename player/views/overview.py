@@ -122,7 +122,7 @@ def overview(request):
             if author.image:
                 b['image_link'] = author.image.url
             else:
-                b['image_link'] = static('img/nopic.png')
+                b['image_link'] = static('img/nopic.svg')
 
             messages.append(b)
 

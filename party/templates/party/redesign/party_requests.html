@@ -36,7 +36,7 @@
 							{% if member.image %}
 							<img src="{{ member.image.url }}">
 							{% else %}
-							<img src="{% static 'img/nopic.png' %}">
+							<img src="{% static 'img/nopic.svg' %}">
 							{% endif %}
 						</td>
 						<td class="j-t-two" onclick="{% localize off %}window.location.href = '/profile/{{ member.pk }}'{% endlocalize %}" style="cursor: pointer;">

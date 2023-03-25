@@ -15,7 +15,7 @@
 		<!--Картинка партии-->
 	  	<img class="party__top-ava" src="{{ player.party.image.url }}" alt="{{ player.party.title }}">
 		{% else %}
-	  	<img class="party__top-ava" src="{% static 'img/nopic_party.png' %}" alt="{{ player.party.title }}">
+	  	<img class="party__top-ava" src="{% static 'img/nopic_party.svg' %}" alt="{{ player.party.title }}">
 		{% endif %}
 
       <!--инфа в топ блоке-->
@@ -135,7 +135,7 @@
 								{% if member.image %}
 								<img src="{{ member.image.url }}">
 								{% else %}
-								<img src="{% static 'img/nopic.png' %}">
+								<img src="{% static 'img/nopic_list.svg' %}">
 								{% endif %}
 							</a>
 						</td>
