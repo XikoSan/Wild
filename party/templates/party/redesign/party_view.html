@@ -51,7 +51,7 @@
     <div class="partyblock1" id="partyblock1">
       <!--ТОП БЛОК-->
       <div class="party__top">
-        {% if player.party.image %}
+        {% if party.image %}
 		<!--Картинка партии-->
 	  	<img class="party__top-ava" src="{{ party.image.url }}">
 		{% else %}
@@ -71,7 +71,7 @@
       </div><!--конец ТОП блок-->
 
       <!--описание партии-->
-      <p class="party__join-desc">{{ party.description }}</p>
+      <p class="party__join-desc">{% if party.description %}{{ party.description }}{% endif %}</p>
 
       <!--инфотаблица-->
       <div class="ct__js-table-container">
