@@ -35,7 +35,12 @@ def open_party(request, pk):
                     tzinfo=pytz.timezone(TIME_ZONE)).astimezone(
                     tz=pytz.timezone(player.time_zone)).strftime("%d.%m.%Y")
 
-    return render(request, 'party/party_view.html', {
+    groups = list(player.account.groups.all().values_list('name', flat=True))
+    page = 'party/party_view.html'
+    if 'redesign' not in groups:
+        page = 'party/redesign/party_view.html'
+
+    return render(request, page, {
         'page_name': party.title,
         'player': player,
         'party': party,

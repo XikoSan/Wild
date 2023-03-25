@@ -224,7 +224,11 @@
 				<div class="ct__s">
 					<h2 class="ct__s-title">{% trans 'партия' %}</h2>
 					<p class="ct__s-text">
-						{% if player.party %}{{ player.party.title }}{% else %}{% trans 'беспартийный' %}{% endif %}
+						{% if player.party %}
+						<a href='/party/{% localize off %}{{ player.party.pk }}{% endlocalize %}' style="color: inherit;">
+							{{ player.party.title }}
+						</a>
+						{% else %}{% trans 'беспартийный' %}{% endif %}
 						<a href="/party_history/{% localize off %}{{ player.pk }}{% endlocalize %}/">
 							{% trans '(история)' context "profile" %}
 						</a>

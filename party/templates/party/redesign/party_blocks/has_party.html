@@ -1,4 +1,5 @@
 {% load dict_key %}
+{% load has_key %}
 {% load static %}
 {% load l10n %}{% load i18n %}{% load tz %}
 
@@ -139,13 +140,25 @@
 							</a>
 						</td>
 						<td class="j-t-two" onclick="{% localize off %}window.location.href = '/profile/{{ member.pk }}'{% endlocalize %}" style="cursor: pointer;">
+							<a href='profile/{% localize off %}{{ member.pk }}{% endlocalize %}' style="color: inherit;">
 							{% if member == prev_lead.leader %}
 <!--							символ лидера праймериз -->
 							⭐
 							{% endif %}
 							{{ member.nickname }}
+							</a>
 						</td>
-						<td class="j-t-three">{% if online_dict|dict_key:member.pk %}{{ online_dict|dict_key:member.pk }}{% else %}{% trans 'давно' context "has_party" %}{% endif %}</td>
+						<td class="j-t-three">
+												{% if online_dict|has_key:member.pk %}
+													{% if online_dict|dict_key:member.pk %}
+														{{ online_dict|dict_key:member.pk }}
+													{% else %}
+														{% trans 'давно' context "has_party" %}
+													{% endif %}
+												{% else %}
+													{% trans 'давно' context "has_party" %}
+												{% endif %}
+						</td>
 <!--					Если ИГРОК - лидер или секретарь	-->
 <!--						Если сопартиец - не лидер или сопартиец = игрок	-->
 <!--							Если у них обоих должность секретаря - не даем редачить	-->

@@ -113,7 +113,11 @@
 				<div class="ct__s">
 					<h2 class="ct__s-title">{% trans 'партия' %}</h2>
 					<p class="ct__s-text">
-						{% if char.party %}{{ char.party.title }}{% else %}{% trans 'беспартийный' %}{% endif %}
+						{% if char.party %}
+						<a href='/party/{% localize off %}{{ char.party.pk }}{% endlocalize %}' style="color: inherit;">
+							{{ char.party.title }}
+						</a>
+						{% else %}{% trans 'беспартийный' %}{% endif %}
 						<a href="/party_history/{% localize off %}{{ char.pk }}{% endlocalize %}/">
 							(история)
 						</a>

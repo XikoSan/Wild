@@ -1,0 +1,250 @@
+{% extends 'player/redesign/header.html' %}
+{% load static %}
+{% load bootstrap3 %}
+{% load l10n %}{% load i18n %}{% load tz %}
+{% load dict_key %}
+{% load has_key %}
+{% load get_sum %}
+{% load get_attr %}
+{% load get_key_list %}
+{% load get_class_name %}
+
+{% block content %}
+<section class="party custom-scroll">
+
+		<!-- Заголовок -->
+		<h1 class="party__title ct__page-title">{{ page_name }}</h1>
+
+    <!--Табы-->
+		<div class="party__tabs-management ct__top-tabs">
+			<button class="ct__top-tab ct__top-tab1 active ct__mid-btn" onclick="switchMainBlocks(0)">
+				<svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
+					<mask id="mask0_259_317" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+						<path class="geometry1" d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"/>
+					</mask>
+					<g mask="url(#mask0_259_317)">
+						<path class="geometry2" d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z"/>
+						<path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"/>
+						<path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"/>
+						<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
+					</g>
+				</svg>
+				<span>{% trans 'информация' context "party_view" %}</span>
+			</button>
+
+			<button class="ct__top-tab ct__top-tab2 ct__mid-btn" onclick="switchMainBlocks(1)">
+				<svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
+					<mask id="mask0_259_318" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+						<path class="geometry1" d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"/>
+					</mask>
+					<g mask="url(#mask0_259_318)">
+						<path class="geometry2" d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z"/>
+						<path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"/>
+						<path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"/>
+						<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
+					</g>
+				</svg>
+				<span>{% trans 'состав' context "party_view" %}</span>
+			</button>
+		</div>
+
+    <div class="partyblock1" id="partyblock1">
+      <!--ТОП БЛОК-->
+      <div class="party__top">
+        {% if player.party.image %}
+		<!--Картинка партии-->
+	  	<img class="party__top-ava" src="{{ party.image.url }}">
+		{% else %}
+	  	<img class="party__top-ava" src="{% static 'img/nopic_party.png' %}">
+		{% endif %}
+        <!--инфа в топ блоке-->
+        <div class="party__top-content party__top-content--join">
+          <h2 class="party__top-name">{{ party.title }}</h2>
+
+          <div class="party__region">
+            <img src="/static/img/regions/{{ party.region.on_map_id }}.png">
+            <p>{{ party.region.region_name }}</p>
+          </div>
+
+        </div><!--конец инфа в топ блоке-->
+
+      </div><!--конец ТОП блок-->
+
+      <!--описание партии-->
+      <p class="party__join-desc">{{ party.description }}</p>
+
+      <!--инфотаблица-->
+      <div class="ct__js-table-container">
+  			<!--таблица-->
+  			<table class="ct__js-table party__join-info-table">
+  				<tbody>
+  					<tr>
+  						<td class="j-t-one">
+                {% trans 'Участников' context "party_view" %}:
+  						</td>
+  						<td class="j-t-two">
+                            {{ players_count }}
+  						</td>
+  					</tr>
+  					<tr>
+  						<td class="j-t-one">
+                {% trans 'Тип' context "party_view" %}:
+  						</td>
+  						<td class="j-t-two">
+  							{{ party.get_type_display }}
+  						</td>
+  					</tr>
+  					<tr>
+  						<td class="j-t-one">
+                {% trans 'Дата основания' context "party_view" %}:
+  						</td>
+  						<td class="j-t-two">
+  							{{ party.foundation_date|timezone:player.time_zone|date:"d.m.Y H:i" }}
+  						</td>
+  					</tr>
+          </tbody>
+        </table>
+      </div>
+
+		{% if not party.deleted %}
+			{% if not player.party %}
+				{% if party.type == 'op' %}
+				    <a class="party__join-party-btn ct__mid-btn" href="{% url 'party_joiner' plr_pk=player.pk pty_pk=party.pk %}">
+						<svg width="144" height="30" viewBox="0 0 144 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<mask id="mask0_259_319" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+								<path d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z" fill="var(--c10two)"/>
+							</mask>
+							<g mask="url(#mask0_259_319)">
+								<path d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" fill="var(--c10two)"/>
+								<path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"/>
+								<path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"/>
+								<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
+							</g>
+						</svg>
+						<span>{% trans 'вступить' context "party_view" %}</span>
+					</a>
+				{% endif %}
+				{% if party.type == 'pt' %}
+					{% if has_request %}
+					<a class="party__join-party-btn ct__mid-btn" href="{% url 'party_cancel' plr_pk=player.pk pty_pk=party.pk %}">
+						<svg width="144" height="30" viewBox="0 0 144 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<mask id="mask0_259_319" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+								<path d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z" fill="var(--c10two)"/>
+							</mask>
+							<g mask="url(#mask0_259_319)">
+								<path d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" fill="var(--c10two)"/>
+								<path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"/>
+								<path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"/>
+								<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
+							</g>
+						</svg>
+						<span>{% trans 'отменить заявку' context "party_view" %}</span>
+					</a>
+					{% else %}
+					<a class="party__join-party-btn ct__mid-btn" href="{% url 'party_request' plr_pk=player.pk pty_pk=party.pk %}">
+						<svg width="144" height="30" viewBox="0 0 144 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<mask id="mask0_259_319" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+								<path d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z" fill="var(--c10two)"/>
+							</mask>
+							<g mask="url(#mask0_259_319)">
+								<path d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" fill="var(--c10two)"/>
+								<path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"/>
+								<path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"/>
+								<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
+							</g>
+						</svg>
+						<span>{% trans 'подать заявку' context "party_view" %}</span>
+					</a>
+					{% endif %}
+				{% endif %}
+			{% endif %}
+		{% endif %}
+    </div>
+
+		<div class="partyblock2" id="partyblock2" style="display: none;">
+		  <!--БЛОК ТАБЛИЦА-->
+  		<div class="ct__js-table-container" id="js-ct-table-1">
+  			<!--таблица-->
+  			<table class="ct__js-table">
+  				<tbody>
+
+  					<tr>
+  						<td class="j-t-one"></td>
+						<td class="j-t-two">{% trans 'Никнейм' context "has_party" %}</td>
+						<td class="j-t-three">{% trans 'Был в сети' context "has_party" %}</td>
+						<td class="j-t-four">{% trans 'Должность' context "has_party" %}</td>
+  					</tr>
+                    {% for member in party_characters %}
+  					<tr>
+  						<td class="j-t-one" style="text-align: center;">
+							<a href='/profile/{% localize off %}{{ member.pk }}{% endlocalize %}' style="color: inherit;">
+								{% if member.image %}
+								<img src="{{ member.image.url }}">
+								{% else %}
+								<img src="{% static 'img/nopic.png' %}">
+								{% endif %}
+							</a>
+  						</td>
+  						<td class="j-t-two">
+							<a href='/profile/{% localize off %}{{ member.pk }}{% endlocalize %}' style="color: inherit;">
+  							{{ member.nickname }}
+							</a>
+  						</td>
+  						<td class="j-t-three">
+												{% if online_dict|has_key:member.pk %}
+													{% if online_dict|dict_key:member.pk %}
+														{{ online_dict|dict_key:member.pk }}
+													{% else %}
+														{% trans 'давно' context "has_party" %}
+													{% endif %}
+												{% else %}
+													{% trans 'давно' context "has_party" %}
+												{% endif %}
+						</td>
+  						<td class="j-t-four" data-char-id="20">
+  							{{ member.party_post.title }}
+  						</td>
+  					</tr>
+                    {% endfor %}
+  				</tbody>
+  			</table>
+<!--  			&lt;!&ndash;пагинация&ndash;&gt;-->
+<!--  			<div class="ct__js-table-pag">-->
+<!--  				<button class="ct__js-table-pag-prev">-->
+<!--  					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="var(&#45;&#45;c10two)"><path d="M22 12l-20 12 5-12-5-12z"/></svg>-->
+<!--  				</button>-->
+<!--  				<span>1/10</span>-->
+<!--  				<button class="ct__js-table-pag-next">-->
+<!--  					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="var(&#45;&#45;c10two)"><path d="M22 12l-20 12 5-12-5-12z"/></svg>-->
+<!--  				</button>-->
+<!--  			</div>-->
+<!--  			&lt;!&ndash;конец: пагинация&ndash;&gt;-->
+  		</div>
+		</div>
+
+	</section>
+{% endblock %}
+
+{% block for_scripts_and_css %}
+<script>
+
+	 // переключение вкладок
+   const blocks = {
+    one: document.getElementById('partyblock1'),
+    two: document.getElementById('partyblock2'),
+    tabs: document.querySelectorAll('.party__tabs-management > button')
+  }
+  function switchMainBlocks(num) {
+    if (num === 0) {
+      blocks.one.style.display = '';
+      blocks.two.style.display = 'none';
+    } else {
+      blocks.one.style.display = 'none';
+      blocks.two.style.display = '';
+    }
+    blocks.tabs.forEach((btn) => btn.classList.remove('active'));
+    blocks.tabs[num].classList.add('active');
+  }
+
+</script>
+{% endblock %}
