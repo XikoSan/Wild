@@ -23,7 +23,7 @@ class Destroy(Log):
     # Бокситы
     bauxite = models.IntegerField(default=0, verbose_name=pgettext_lazy('goods', 'Бокситы'))
 
-    # ------vvvvvvv------чНефть на складе------vvvvvvv------
+    # ------vvvvvvv------Нефть на складе------vvvvvvv------
     # Нефть WTI
     wti_oil = models.IntegerField(default=0, verbose_name=pgettext_lazy('goods', 'Нефть WTI'))
 
@@ -66,6 +66,8 @@ class Destroy(Log):
     pzrk = models.IntegerField(default=0, verbose_name=pgettext_lazy('goods', 'ПЗРК'))
     # AT-cannon
     antitank = models.IntegerField(default=0, verbose_name=pgettext_lazy('goods', 'ПТ-орудия'))
+    # Мины
+    mines = models.IntegerField(default=0, verbose_name=pgettext_lazy('goods', 'Мины'))
     # гаубицы
     ifv = models.IntegerField(default=0, verbose_name=pgettext_lazy('goods', 'БМП'))
     # дроны

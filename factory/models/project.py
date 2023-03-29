@@ -169,6 +169,11 @@ class Project(models.Model):
                     'gas': 5,
                     'steel': 15,
                 },
+                {
+                    'cash': 80,
+                    'diesel': 5,
+                    'steel': 18,
+                },
             ],
 
         'time': 30,
@@ -215,6 +220,22 @@ class Project(models.Model):
                 {
                     'cash': 30,
                     'gas': 2,
+                    'steel': 2,
+                },
+            ],
+
+        'time': 10,
+        'energy': 1,
+    }
+
+    mines = {
+        'title': pgettext('goods', 'Мины'),
+
+        'resources':
+            [
+                {
+                    'cash': 20,
+                    'aluminium': 1,
                     'steel': 2,
                 },
             ],
@@ -271,6 +292,7 @@ class Project(models.Model):
         ('jet', jet.get('title')),
         ('pzrk', pzrk.get('title')),
         ('antitank', antitank.get('title')),
+        ('mines', mines.get('title')),
         ('ifv', ifv.get('title')),
         ('drone', drone.get('title')),
     )

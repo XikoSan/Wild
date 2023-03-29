@@ -26,6 +26,21 @@ class Infantry(Squad):
                     },
                 'price': 52,
             },
+
+        'mines':
+            {
+                'name': 'Мины',
+                'energy': 1,
+                'hp': 10,
+                'damage':
+                    {
+                        'infantry': 0,
+                        'lightvehicle': 25,
+                        'heavyvehicle': 0,
+                        'recon': 0,
+                    },
+                'price': 52,
+            },
     }
 
     # Автоматы

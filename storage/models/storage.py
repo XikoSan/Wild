@@ -83,6 +83,7 @@ class Storage(models.Model):
         'pzrk': pgettext_lazy('goods', 'ПЗРК'),
 
         'ifv': pgettext_lazy('goods', 'БМП'),
+        'mines': pgettext_lazy('goods', 'Мины'),
 
         'drone': pgettext_lazy('goods', 'БПЛА'),
     }
@@ -90,7 +91,7 @@ class Storage(models.Model):
     sizes = {
         'large': ['coal', 'iron', 'bauxite', 'wti_oil', 'brent_oil', 'urals_oil' ],
         'medium': ['gas', 'diesel', 'plastic', 'steel', 'aluminium', 'medical', 'rifle' ],
-        'small': ['tank', 'antitank', 'jet', 'pzrk', 'ifv', 'drone', 'drilling'],
+        'small': ['tank', 'mines', 'antitank', 'jet', 'pzrk', 'ifv', 'drone', 'drilling'],
     }
 
     # владелец склада
@@ -183,9 +184,14 @@ class Storage(models.Model):
     # Автоматы- максимум на складе
     rifle_cap = models.IntegerField(default=1000, verbose_name=pgettext_lazy('goods', 'Автоматы - лимит'))
 
+    # мины
+    mines = models.IntegerField(default=0, verbose_name=pgettext_lazy('goods', 'Мины'))
+    # мины - максимум на складе
+    mines_cap = models.IntegerField(default=100, verbose_name=pgettext_lazy('goods', 'Мины - лимит'))
+
     # ПТ-пушка
     antitank = models.IntegerField(default=0, verbose_name=pgettext_lazy('goods', 'ПТ-орудия'))
-    # танки- максимум на складе
+    # ПТ-пушка- максимум на складе
     antitank_cap = models.IntegerField(default=100, verbose_name=pgettext_lazy('goods', 'ПТ-орудия - лимит'))
 
     # танки

@@ -58,6 +58,8 @@ class Transport(Log):
         'tank': 10.5,
         'antitank': 5,
         # 'antitank': 50,
+        'mines': 4,
+        # 'antitank': 50,
 
         # 'jet': 150,
         'jet': 15,

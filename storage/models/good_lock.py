@@ -42,6 +42,7 @@ class GoodLock(models.Model):
         ('rifle', 'Автоматы'),
         ('tank', 'Танки'),
         ('antitank', 'ПТ-орудия'),
+        ('mines', 'Мины'),
         ('station', 'Орбитальные орудия'),
         ('jet', 'Штурмовики'),
         ('pzrk', 'ПЗРК'),

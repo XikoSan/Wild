@@ -99,6 +99,9 @@ class Treasury(models.Model):
     # ПТ-пушки
     antitank = models.IntegerField(default=0, verbose_name=pgettext_lazy('goods', 'ПТ-орудия'))
 
+    # ПТ-пушки
+    mines = models.IntegerField(default=0, verbose_name=pgettext_lazy('goods', 'Мины'))
+
     # БМП
     ifv = models.IntegerField(default=0, verbose_name=pgettext_lazy('goods', 'БМП'))
 

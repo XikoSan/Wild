@@ -91,6 +91,7 @@ class TradeOffer(models.Model):
         ('rifle', pgettext_lazy('goods', 'Автоматы')),
         ('tank', pgettext_lazy('goods', 'Танки')),
         ('antitank', pgettext_lazy('goods', 'ПТ-орудия')),
+        ('mines', pgettext_lazy('goods', 'Мины')),
         ('station', pgettext_lazy('goods', 'Орбитальные орудия')),
         ('jet', pgettext_lazy('goods', 'Штурмовики')),
         ('pzrk', pgettext_lazy('goods', 'ПЗРК')),
