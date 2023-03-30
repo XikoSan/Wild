@@ -179,6 +179,11 @@ class Transport(Log):
     # танки- максимум на складе
     antitank_vol = models.IntegerField(default=0, verbose_name=pgettext_lazy('goods', 'ПТ-пушка - кубов'))
 
+    # AT-cannon
+    mines = models.IntegerField(default=0, verbose_name=pgettext_lazy('goods', 'Мины'))
+    # танки- максимум на складе
+    mines_vol = models.IntegerField(default=0, verbose_name=pgettext_lazy('goods', 'Мины - кубов'))
+
     # Гаубица
     ifv = models.IntegerField(default=0, verbose_name=pgettext_lazy('goods', 'БМП'))
     # Гаубица - кубов
