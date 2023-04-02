@@ -350,19 +350,6 @@ class Player(models.Model):
         #         if count != 0 and daily_procent == 100:
         #             taxed_count += daily_limit
 
-        if datetime.datetime.now() < datetime.datetime(2023, 4, 1, 0, 0, 0):
-            # если дейлик ещё не закрывался сегодня
-            if not self.daily_fin:
-                if count != 0 and daily_procent == 100:
-                    # продлеваем премиум-аккаунт
-                    # время, к которому прибавляем месяц
-                    if self.premium > timezone.now():
-                        from_time = self.premium
-                    else:
-                        from_time = timezone.now()
-
-                    self.premium = from_time + relativedelta(hours=6)
-
         # отмечаем, что  дейлик закрыт:
         # если игрок прокачат навык, то не получит золотой бонус или Подпольное Финансирование
         if daily_procent == 100:
