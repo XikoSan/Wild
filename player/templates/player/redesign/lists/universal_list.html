@@ -11,6 +11,10 @@
 {% load get_class_name %}
 {% load get_key_list %}
 {% load dict_key %}
+
+{% load redesign.template_svg.nopic_party_list %}
+{% load redesign.template_svg.nopic_list %}
+
 {% block content %}
 <main>
 
@@ -121,7 +125,7 @@
 								  			{% if sub_obj_img %}
 											<img src="{{ sub_obj_img|get_attr:'url' }}" alt="{{ col }}_{{ sub_col }}">
 								  			{% else %}
-								  			<img src="{% static 'img/nopic.svg' %}" alt="{{ col }}_{{ sub_col }}">
+								  			{% nopic_list player '' %}
 								  			{% endif %}
 										{% endwith %}
 										<!--что угодно-->
@@ -145,9 +149,11 @@
 								<img src="{{ obj_img|get_attr:'url' }}" alt="{{ col }}">
 								{% else %}
 								  {% if line|get_class_name == 'Player' or line|get_class_name == 'PlayerWithTop' %}
-								  <img src="{% static 'img/nopic_list.svg' %}" alt="{{ col }}">
+							  		<!--нет картинки: игрок-->
+							  		{% nopic_list player '' %}
 								  {% elif line|get_class_name == 'PartyWithSize' %}
-								  <img src="{% static 'img/nopic_party_list.svg' %}" alt="{{ col }}">
+									<!--нет картинки: партия-->
+							  		{% nopic_party_list player '' %}
 								  {% endif %}
 							    {% endif %}
 							{% endwith %}

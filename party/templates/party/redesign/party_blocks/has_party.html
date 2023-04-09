@@ -3,6 +3,9 @@
 {% load static %}
 {% load l10n %}{% load i18n %}{% load tz %}
 
+{% load redesign.template_svg.nopic_party %}
+{% load redesign.template_svg.nopic_list %}
+
 <section class="party custom-scroll">
 
 	<!-- Заголовок -->
@@ -15,7 +18,7 @@
 		<!--Картинка партии-->
 	  	<img class="party__top-ava" src="{{ player.party.image.url }}" alt="{{ player.party.title }}">
 		{% else %}
-	  	<img class="party__top-ava" src="{% static 'img/nopic_party.svg' %}" alt="{{ player.party.title }}">
+		{% nopic_party player 'party__top-ava' %}
 		{% endif %}
 
       <!--инфа в топ блоке-->
@@ -135,7 +138,7 @@
 								{% if member.image %}
 								<img src="{{ member.image.url }}">
 								{% else %}
-								<img src="{% static 'img/nopic_list.svg' %}">
+								{% nopic_list player '' %}
 								{% endif %}
 							</a>
 						</td>

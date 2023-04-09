@@ -3,6 +3,7 @@
 {% load bootstrap3 %}
 {% load l10n %}{% load i18n %}{% load tz %}
 {% load redesign.overview_blocks.skills %}
+{% load redesign.template_svg.nopic %}
 {% block for_scripts_and_css %}
 {% endblock %}
 {% load dict_key %}
@@ -588,7 +589,11 @@
             <div class="overview__chat-message" {% localize off %} data-counter='{{  message|dict_key:"counter" }}' {% endlocalize %} data-sender='{{  message|dict_key:"author" }}'>
               <!--аватарка-->
               <a class="overview__chat-ava-link" href='/profile/{% localize off %}{{  message|dict_key:"author" }}{% endlocalize %}'>
-                <img src="{{  message|dict_key:'image_link'  }}" class="overview__chat-ava">
+                {% if message|dict_key:'image_link' == 'nopic' %}
+                  {% nopic player 'overview__chat-ava' %}
+                {% else %}
+                  <img src="{{  message|dict_key:'image_link'  }}" class="overview__chat-ava">
+                {% endif %}
               </a>
               <div class="overview__chat-message-wrapper">
                 <!--ник и дата-->

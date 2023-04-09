@@ -2,7 +2,7 @@ function insertAfter(newNode, existingNode) {
     existingNode.parentNode.insertBefore(newNode, existingNode.nextSibling);
 }
 
-//╨┐╨╡╤А╨╡╨╕╨╝╨╡╨╜╨╛╨▓╨░╨╜╨╕╨╡ ╨┐╨░╤А╤В╨╕╨╕
+//переименование партии
 jQuery(document).ready(function ($) {
     $('#rename_form').submit(function(e){
         e.preventDefault();
@@ -27,6 +27,7 @@ jQuery(document).ready(function ($) {
     });
 });
 
+//сменить описание партии
 jQuery(document).ready(function ($) {
     $('#deskr_form').submit(function(e){
         e.preventDefault();
@@ -51,8 +52,7 @@ jQuery(document).ready(function ($) {
     });
 });
 
-//╨Ф╨╛╨▒╨░╨▓╨╗╨╡╨╜╨╕╨╡ ╨┤╨╛╨╗╨╢╨╜╨╛╤Б╤В╨╕
-
+//добавить новую должность
 jQuery(document).ready(function ($) {
     $('#new_role_form').submit(function(e){
         e.preventDefault();
@@ -92,8 +92,7 @@ jQuery(document).ready(function ($) {
     });
 });
 
-//╨г╨┤╨░╨╗╨╡╨╜╨╕╨╡ ╨┤╨╛╨╗╨╢╨╜╨╛╤Б╤В╨╕
-
+//удалить должность
 jQuery(document).ready(function ($) {
     $("#roles_lines_placeholder").on("submit", ".rm_role_form", function(e){
         console.log('╨║╤А╤П');
@@ -122,8 +121,7 @@ jQuery(document).ready(function ($) {
     });
 });
 
-//╨Я╨╛╨║╨╕╨╜╤Г╤В╤М ╨┐╨░╤А╤В╨╕╤О
-
+//роспуск партии
 jQuery(document).ready(function ($) {
     $('#leave_party_form').submit(function(e){
         e.preventDefault();

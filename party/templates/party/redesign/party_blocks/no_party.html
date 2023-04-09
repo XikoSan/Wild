@@ -2,6 +2,8 @@
 {% load static %}
 {% load l10n %}{% load i18n %}{% load tz %}
 
+{% load redesign.template_svg.nopic_party %}
+
 <section class="party custom-scroll">
 
 	<!-- Заголовок -->
@@ -146,7 +148,7 @@
                     {% if party.image %}
                         <img src="{{ party.image.url }}">
                     {% else %}
-                        <img src="{% static 'img/nopic_party.svg' %}">
+						{% nopic_party player '' %}
                     {% endif %}
 					</td>
 					<td class="j-t-two" onclick="window.open('/party/{{ party.pk }}/')" style="cursor: pointer;">

@@ -1,9 +1,13 @@
 {% load l10n %}{% load i18n %}
+{% load redesign.template_svg.nopic %}
+
 {% load static %}
 <header class="info">
 
 	<a href="/profile" class="info__profile-link">
-		<img {% if player.image %}src="{{ player.image.url }}"{% else %}src="{% static 'img/nopic.svg' %}"{% endif %} class="info__ava"> <!-- аватар игрока -->
+		{% if player.image %}
+		<img src="{{ player.image.url }}" class="info__ava"> <!-- аватар игрока -->
+		{% else %}{% nopic player 'info__ava' %}{% endif %}
 	</a>
 
 	<div class="info__left-col">

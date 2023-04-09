@@ -8,6 +8,9 @@
 {% load get_key_list %}
 {% load get_class_name %}
 
+{% load redesign.template_svg.nopic_party %}
+{% load redesign.template_svg.noback_party %}
+
 {% block content %}
 
   <section class="party custom-scroll">
@@ -65,7 +68,9 @@
 				<div class="party__mana-avas">
 	
 					<div class="party__mana-ava-block">
-						<img src="{% if player.party.image %}{{ player.party.image.url }}{% else %}{% static 'img/nopic_party.svg' %}{% endif %}" alt="">
+						{% if player.party.image %}
+						<img src="{{ player.party.image.url }}" alt="">
+						{% else %}{% nopic_party player '' %}{% endif %}
 						<form method="post" enctype="multipart/form-data" id="formUpload1" class="imgUpload">
 							<label class="profile__load-img">
 								<input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
@@ -82,7 +87,9 @@
 					</div>
 	
 					<div class="party__mana-ava-block">
-						<img src="{% if player.party.members_image %}{{ player.party.members_image.url }}{% else %}{% static 'img/noback_party.svg' %}{% endif %}">
+						{% if player.party.members_image %}
+						<img src="{{ player.party.members_image.url }}">
+						{% else %}{% noback_party player '' %}{% endif %}
 						<form method="post" enctype="multipart/form-data" id="formUpload2" class="imgUpload">
 							<label class="profile__load-img">
 								<input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">

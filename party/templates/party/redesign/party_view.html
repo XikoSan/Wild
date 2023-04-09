@@ -9,6 +9,8 @@
 {% load get_key_list %}
 {% load get_class_name %}
 
+{% load redesign.template_svg.nopic_party %}
+
 {% block content %}
 <section class="party custom-scroll">
 
@@ -55,7 +57,7 @@
 		<!--Картинка партии-->
 	  	<img class="party__top-ava" src="{{ party.image.url }}">
 		{% else %}
-	  	<img class="party__top-ava" src="{% static 'img/nopic_party.svg' %}">
+		  {% nopic_party player 'party__top-ava' %}
 		{% endif %}
         <!--инфа в топ блоке-->
         <div class="party__top-content party__top-content--join">
