@@ -32,7 +32,7 @@
 				</button>
 				{% if char.image %}
 				<img src="{{ char.image.url }}" class="profile__ava" {% if char.party %}{% if char.party.members_image %}{% if party_back %}style="background-image: url({{ char.party.members_image.url }}); background-size: cover;"{% endif %}{% endif %}{% endif %}>
-				{% else %}{% nopic player '' %}{% endif %}
+				{% else %}{% nopic player 'profile__ava' %}{% endif %}
 
 				{% if ava_border %}
 				<svg class="profile__ava-border" viewBox="0 0 {% localize off %}{{ ava_border.box_x }} {{ ava_border.box_y }}{% endlocalize %}">
