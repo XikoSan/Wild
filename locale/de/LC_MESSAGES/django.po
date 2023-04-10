@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-02 16:51+0300\n"
+"POT-Creation-Date: 2023-04-10 23:46+0300\n"
 "PO-Revision-Date: 2023-04-06 12:04+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -293,127 +293,284 @@ msgstr ". Vorrätig "
 msgid "отклонить всё"
 msgstr "alle ablehnen"
 
+#: party/templates/party/redesign/manage.html:17
+#, fuzzy
+#| msgctxt "assets"
+#| msgid "Перемещение товаров"
+msgctxt "party_manage"
+msgid "Управление партией"
+msgstr "Verlagerung der Ware"
+
+#: party/templates/party/redesign/manage.html:32
+#, fuzzy
+#| msgid "партия"
+msgctxt "party_manage"
+msgid "партия"
+msgstr "Partei"
+
+#: party/templates/party/redesign/manage.html:47
+#, fuzzy
+#| msgctxt "has_party"
+#| msgid "Должность"
+msgctxt "party_manage"
+msgid "должности"
+msgstr "Position"
+
+#: party/templates/party/redesign/manage.html:117
+#, fuzzy
+#| msgctxt "no_party"
+#| msgid "все партии"
+msgctxt "party_manage"
+msgid "Тип партии"
+msgstr "alle Parteien"
+
+#: party/templates/party/redesign/manage.html:119
+#, fuzzy
+#| msgid "Закрыть"
+msgctxt "party_manage"
+msgid "открытая"
+msgstr "Schließen"
+
+#: party/templates/party/redesign/manage.html:119
+#, fuzzy
+#| msgid "Закрыть"
+msgctxt "party_manage"
+msgid "закрытая"
+msgstr "Schließen"
+
+#: party/templates/party/redesign/manage.html:119
+#, fuzzy
+#| msgctxt "w_trading"
+#| msgid "Отменить"
+msgctxt "party_manage"
+msgid "изменить"
+msgstr "abbrechen"
+
+#: party/templates/party/redesign/manage.html:124
+#, fuzzy
+#| msgctxt "no_party"
+#| msgid "Доступные партии"
+msgctxt "party_manage"
+msgid "Роспуск партии"
+msgstr "Verfügbare Parteien"
+
+#: party/templates/party/redesign/manage.html:129
+#, fuzzy
+#| msgctxt "assets"
+#| msgid "подтвердить"
+msgctxt "party_manage"
+msgid "подтвердить роспуск"
+msgstr "bestätigen."
+
+#: party/templates/party/redesign/manage.html:132
+msgctxt "party_manage"
+msgid "роспуск невозможен"
+msgstr ""
+
+#: party/templates/party/redesign/manage.html:153
+#, fuzzy
+#| msgid "должность в партии"
+msgctxt "party_manage"
+msgid "добавить описание партии"
+msgstr "Position in der Partei"
+
+#: party/templates/party/redesign/manage.html:168
+#, fuzzy
+#| msgctxt "has_party"
+#| msgid "Должность"
+msgctxt "party_manage"
+msgid "Добавить должность"
+msgstr "Position"
+
+#: party/templates/party/redesign/manage.html:183
+#: party/templates/party/redesign/manage.html:199
+msgctxt "party_manage"
+msgid "секретарь"
+msgstr ""
+
+#: party/templates/party/redesign/manage.html:186
+#, fuzzy
+#| msgctxt "map"
+#| msgid "отправиться"
+msgctxt "party_manage"
+msgid "добавить"
+msgstr "Fliege nach"
+
+#: party/templates/party/redesign/manage.html:198
+#, fuzzy
+#| msgid "Создание персонажа"
+msgctxt "party_manage"
+msgid "название должности"
+msgstr "Erstellen eines Charakters"
+
+#: party/templates/party/redesign/manage.html:200
+#, fuzzy
+#| msgctxt "no_party"
+#| msgid "Действие"
+msgctxt "party_manage"
+msgid "действия"
+msgstr "Aktion"
+
+#: party/templates/party/redesign/manage.html:250
+#, fuzzy
+#| msgctxt "skill_cancel"
+#| msgid "Отмена изучения навыка"
+msgctxt "party_manage"
+msgid "Смена названия партии"
+msgstr "Du kannst die Fähigkeit abbrechen"
+
+#: party/templates/party/redesign/manage.html:267
+#: party/templates/party/redesign/manage.html:295
+#, fuzzy
+#| msgid "сохранить"
+msgctxt "party_manage"
+msgid "сохранить"
+msgstr "speichern"
+
+#: party/templates/party/redesign/manage.html:278
+#, fuzzy
+#| msgctxt "skill_cancel"
+#| msgid "Отмена изучения навыка"
+msgctxt "party_manage"
+msgid "Смена описания партии"
+msgstr "Du kannst die Fähigkeit abbrechen"
+
+#: party/templates/party/redesign/manage.html:350
+#: player/templates/player/redesign/new_player.html:135
+#: player/templates/player/redesign/new_player.html:149
+#: player/templates/player/redesign/new_player.html:177
+#: player/templates/player/redesign/overview_skills.html:179
+#: player/templates/player/redesign/profile.html:359
+msgid "Отмена"
+msgstr "abbrechen"
+
+#: party/templates/party/redesign/manage.html:351
+#: player/templates/player/redesign/new_player.html:136
+#: player/templates/player/redesign/profile.html:360
+msgid "Загрузить"
+msgstr "hochladen"
+
 #: party/templates/party/redesign/party.html:61
 msgctxt "has_party"
 msgid "исключить"
 msgstr "ausschließen"
 
-#: party/templates/party/redesign/party_blocks/has_party.html:9
-#: party/templates/party/redesign/party_blocks/no_party.html:8
+#: party/templates/party/redesign/party_blocks/has_party.html:12
+#: party/templates/party/redesign/party_blocks/no_party.html:10
 msgctxt "has_party"
 msgid "Партия"
 msgstr "Partei"
 
-#: party/templates/party/redesign/party_blocks/has_party.html:127
+#: party/templates/party/redesign/party_blocks/has_party.html:130
 #: party/templates/party/redesign/party_requests.html:29
-#: party/templates/party/redesign/party_view.html:173
+#: party/templates/party/redesign/party_view.html:175
 msgctxt "has_party"
 msgid "Никнейм"
 msgstr "Nickname"
 
-#: party/templates/party/redesign/party_blocks/has_party.html:128
-#: party/templates/party/redesign/party_view.html:174
+#: party/templates/party/redesign/party_blocks/has_party.html:131
+#: party/templates/party/redesign/party_view.html:176
 msgctxt "has_party"
 msgid "Был в сети"
 msgstr "Letzte Aktivität"
 
-#: party/templates/party/redesign/party_blocks/has_party.html:129
-#: party/templates/party/redesign/party_view.html:175
+#: party/templates/party/redesign/party_blocks/has_party.html:132
+#: party/templates/party/redesign/party_view.html:177
 msgctxt "has_party"
 msgid "Должность"
 msgstr "Position"
 
-#: party/templates/party/redesign/party_blocks/has_party.html:156
 #: party/templates/party/redesign/party_blocks/has_party.html:159
-#: party/templates/party/redesign/party_view.html:198
-#: party/templates/party/redesign/party_view.html:201
+#: party/templates/party/redesign/party_blocks/has_party.html:162
+#: party/templates/party/redesign/party_view.html:200
+#: party/templates/party/redesign/party_view.html:203
 msgctxt "has_party"
 msgid "давно"
 msgstr "vor langer Zeit"
 
-#: party/templates/party/redesign/party_blocks/has_party.html:188
+#: party/templates/party/redesign/party_blocks/has_party.html:195
 msgctxt "has_party"
 msgid "Покинуть партию?"
 msgstr "Die Partei verlassen?"
 
-#: party/templates/party/redesign/party_blocks/has_party.html:189
+#: party/templates/party/redesign/party_blocks/has_party.html:196
 msgctxt "has_party"
 msgid "Вы покинете партию, а также все связанные должности. Продолжить?"
 msgstr ""
 "Sie werden die Partei verlassen, ebenso wie alle damit verbundenen "
 "Positionen aufgeben. Weiter?"
 
-#: party/templates/party/redesign/party_blocks/has_party.html:190
+#: party/templates/party/redesign/party_blocks/has_party.html:197
 msgctxt "has_party"
 msgid "Продолжить"
 msgstr "weiter"
 
-#: party/templates/party/redesign/party_blocks/has_party.html:191
+#: party/templates/party/redesign/party_blocks/has_party.html:198
 msgctxt "has_party"
 msgid "Отмена"
 msgstr "abbrechen"
 
-#: party/templates/party/redesign/party_blocks/no_party.html:13
+#: party/templates/party/redesign/party_blocks/no_party.html:15
 msgctxt "no_party"
 msgid "Вы не состоите в партии"
 msgstr "Sie sind kein Mitglied der angegebenen Partei"
 
-#: party/templates/party/redesign/party_blocks/no_party.html:14
+#: party/templates/party/redesign/party_blocks/no_party.html:16
 msgctxt "no_party"
 msgid "Доступные партии"
 msgstr "Verfügbare Parteien"
 
-#: party/templates/party/redesign/party_blocks/no_party.html:14
+#: party/templates/party/redesign/party_blocks/no_party.html:16
 msgctxt "no_party"
 msgid "в регионе"
 msgstr "in der Region"
 
-#: party/templates/party/redesign/party_blocks/no_party.html:17
+#: party/templates/party/redesign/party_blocks/no_party.html:19
 msgctxt "no_party"
 msgid "вы в полете"
 msgstr "während des Fluges"
 
-#: party/templates/party/redesign/party_blocks/no_party.html:19
+#: party/templates/party/redesign/party_blocks/no_party.html:21
 msgctxt "no_party"
 msgid "создать партию"
 msgstr "Erstelle eine Partei"
 
-#: party/templates/party/redesign/party_blocks/no_party.html:37
+#: party/templates/party/redesign/party_blocks/no_party.html:39
 msgctxt "no_party"
 msgid "региональные"
 msgstr "in der Region"
 
-#: party/templates/party/redesign/party_blocks/no_party.html:52
+#: party/templates/party/redesign/party_blocks/no_party.html:54
 msgctxt "no_party"
 msgid "все партии"
 msgstr "alle Parteien"
 
-#: party/templates/party/redesign/party_blocks/no_party.html:68
-#: party/templates/party/redesign/party_blocks/no_party.html:129
+#: party/templates/party/redesign/party_blocks/no_party.html:70
+#: party/templates/party/redesign/party_blocks/no_party.html:131
 msgctxt "no_party"
 msgid "Партия"
 msgstr "Partei"
 
-#: party/templates/party/redesign/party_blocks/no_party.html:79
-#: party/templates/party/redesign/party_blocks/no_party.html:140
+#: party/templates/party/redesign/party_blocks/no_party.html:81
+#: party/templates/party/redesign/party_blocks/no_party.html:142
 msgctxt "no_party"
 msgid "Действие"
 msgstr "Aktion"
 
-#: party/templates/party/redesign/party_blocks/no_party.html:105
-#: party/templates/party/redesign/party_blocks/no_party.html:159
+#: party/templates/party/redesign/party_blocks/no_party.html:107
+#: party/templates/party/redesign/party_blocks/no_party.html:161
 msgctxt "no_party"
 msgid "Вступить"
 msgstr "Beitreten"
 
-#: party/templates/party/redesign/party_blocks/no_party.html:109
-#: party/templates/party/redesign/party_blocks/no_party.html:163
+#: party/templates/party/redesign/party_blocks/no_party.html:111
+#: party/templates/party/redesign/party_blocks/no_party.html:165
 msgctxt "no_party"
 msgid "Отменить заявку"
 msgstr "Anfrage abbrechen"
 
-#: party/templates/party/redesign/party_blocks/no_party.html:111
-#: party/templates/party/redesign/party_blocks/no_party.html:165
+#: party/templates/party/redesign/party_blocks/no_party.html:113
+#: party/templates/party/redesign/party_blocks/no_party.html:167
 msgctxt "no_party"
 msgid "Подать заявку"
 msgstr "Bewerben"
@@ -443,42 +600,42 @@ msgctxt "party_requests"
 msgid "Отклонить"
 msgstr "ablehnen"
 
-#: party/templates/party/redesign/party_view.html:32
+#: party/templates/party/redesign/party_view.html:34
 msgctxt "party_view"
 msgid "информация"
 msgstr "Informationen"
 
-#: party/templates/party/redesign/party_view.html:47
+#: party/templates/party/redesign/party_view.html:49
 msgctxt "party_view"
 msgid "состав"
 msgstr "Mitglieder"
 
-#: party/templates/party/redesign/party_view.html:83
+#: party/templates/party/redesign/party_view.html:85
 msgctxt "party_view"
 msgid "Участников"
 msgstr "Mitgliederanzahl"
 
-#: party/templates/party/redesign/party_view.html:91
+#: party/templates/party/redesign/party_view.html:93
 msgctxt "party_view"
 msgid "Тип"
 msgstr "Typ"
 
-#: party/templates/party/redesign/party_view.html:99
+#: party/templates/party/redesign/party_view.html:101
 msgctxt "party_view"
 msgid "Дата основания"
 msgstr "Datum der Erstellung"
 
-#: party/templates/party/redesign/party_view.html:124
+#: party/templates/party/redesign/party_view.html:126
 msgctxt "party_view"
 msgid "вступить"
 msgstr "Beitreten"
 
-#: party/templates/party/redesign/party_view.html:141
+#: party/templates/party/redesign/party_view.html:143
 msgctxt "party_view"
 msgid "отменить заявку"
 msgstr "Anfrage abbrechen"
 
-#: party/templates/party/redesign/party_view.html:156
+#: party/templates/party/redesign/party_view.html:158
 msgctxt "party_view"
 msgid "подать заявку"
 msgstr "Beitreten"
@@ -494,6 +651,22 @@ msgstr "Parteien in der Region"
 #: party/views/lists/world_parties.py:87
 msgid "Партии мира"
 msgstr "Parteien in der Welt"
+
+#: party/views/management/new_party.py:44
+#, fuzzy
+#| msgctxt "no_party"
+#| msgid "все партии"
+msgctxt "party_manage"
+msgid "Глава партии"
+msgstr "alle Parteien"
+
+#: party/views/management/new_party.py:47
+#, fuzzy
+#| msgctxt "no_party"
+#| msgid "Доступные партии"
+msgctxt "party_manage"
+msgid "Новый игрок партии"
+msgstr "Verfügbare Parteien"
 
 #: party/views/management/staff/leave_party.py:37
 #: party/views/management/staff/leave_party.py:209
@@ -944,104 +1117,91 @@ msgstr "Avatar"
 msgid "Часовой пояс"
 msgstr "Zeitzone"
 
-#: player/templates/player/redesign/new_player.html:135
-#: player/templates/player/redesign/new_player.html:149
-#: player/templates/player/redesign/new_player.html:177
-#: player/templates/player/redesign/overview_skills.html:179
-#: player/templates/player/redesign/profile.html:351
-msgid "Отмена"
-msgstr "abbrechen"
-
-#: player/templates/player/redesign/new_player.html:136
-#: player/templates/player/redesign/profile.html:352
-msgid "Загрузить"
-msgstr "hochladen"
-
-#: player/templates/player/redesign/overview.html:33
+#: player/templates/player/redesign/overview.html:34
 msgid "обзор"
 msgstr "Startseite"
 
-#: player/templates/player/redesign/overview.html:54
+#: player/templates/player/redesign/overview.html:55
 msgid "чат"
 msgstr "Chat"
 
-#: player/templates/player/redesign/overview.html:65
+#: player/templates/player/redesign/overview.html:66
 msgid "мир"
 msgstr "Welt"
 
-#: player/templates/player/redesign/overview.html:114
+#: player/templates/player/redesign/overview.html:115
 msgid "независимый регион"
 msgstr "Unabhängige Region"
 
-#: player/templates/player/redesign/overview.html:229
+#: player/templates/player/redesign/overview.html:230
 msgid "войн нет"
 msgstr "es gibt aktuell keine Kriege"
 
-#: player/templates/player/redesign/overview.html:274
+#: player/templates/player/redesign/overview.html:275
 msgctxt "overview"
 msgid "Хэллоуинский ивент"
 msgstr "Halloween-Event"
 
-#: player/templates/player/redesign/overview.html:281
+#: player/templates/player/redesign/overview.html:282
 msgctxt "overview"
 msgid "С новым годом!"
 msgstr "Ein frohes neues Jahr!"
 
-#: player/templates/player/redesign/overview.html:447
+#: player/templates/player/redesign/overview.html:448
 msgctxt "overview"
 msgid "сила"
 msgstr "St."
 
-#: player/templates/player/redesign/overview.html:452
+#: player/templates/player/redesign/overview.html:453
 msgctxt "overview"
 msgid "инт"
 msgstr "Bld."
 
-#: player/templates/player/redesign/overview.html:457
+#: player/templates/player/redesign/overview.html:458
 msgctxt "overview"
 msgid "вын"
 msgstr "Ausd."
 
-#: player/templates/player/redesign/overview.html:473
+#: player/templates/player/redesign/overview.html:474
 msgctxt "overview"
 msgid "Выборы лидера"
 msgstr "Präsidentschaftswahlen"
 
-#: player/templates/player/redesign/overview.html:476
+#: player/templates/player/redesign/overview.html:477
 msgctxt "overview"
 msgid "Выборы"
 msgstr "Wahlen"
 
-#: player/templates/player/redesign/overview.html:481
+#: player/templates/player/redesign/overview.html:482
 msgctxt "overview"
 msgid "партии"
 msgstr "Parteien"
 
-#: player/templates/player/redesign/overview.html:481
+#: player/templates/player/redesign/overview.html:482
 msgctxt "overview"
 msgid "государства"
 msgstr "im Staat"
 
-#: player/templates/player/redesign/overview.html:481
+#: player/templates/player/redesign/overview.html:482
 msgctxt "overview"
 msgid "региона"
 msgstr "in der Region"
 
-#: player/templates/player/redesign/overview.html:518
-#: player/templates/player/redesign/overview.html:563
+#: player/templates/player/redesign/overview.html:519
+#: player/templates/player/redesign/overview.html:564
 msgid "партий нет"
 msgstr "keine Parteien"
 
-#: player/templates/player/redesign/overview.html:525
+#: player/templates/player/redesign/overview.html:526
 msgctxt "overview"
 msgid "парламент"
 msgstr "Parlament"
 
-#: player/templates/player/redesign/overview.html:739
+#: player/templates/player/redesign/overview.html:744
 msgid "У вас пока еще нет стикеров"
 msgstr "Du hast noch keinen Sticker freigeschaltet"
 
-#: player/templates/player/redesign/overview.html:752
+#: player/templates/player/redesign/overview.html:757
 msgctxt "overview"
 msgid "магазин"
 msgstr "Shop"
@@ -1177,118 +1337,124 @@ msgctxt "repost"
 msgid "час не прошёл"
 msgstr "Die Zeit ist noch nicht abgelaufen"
 
-#: player/templates/player/redesign/player_status.html:32
-#: player/templates/player/redesign/player_status.html:39
+#: player/templates/player/redesign/player_status.html:36
+#: player/templates/player/redesign/player_status.html:43
 msgctxt "status"
 msgid "пополнить"
 msgstr "auffüllen"
 
-#: player/templates/player/redesign/profile.html:168
+#: player/templates/player/redesign/profile.html:170
 msgid "настройки"
 msgstr "Einstellungen"
 
-#: player/templates/player/redesign/profile.html:178
+#: player/templates/player/redesign/profile.html:180
 msgctxt "profile"
 msgid "премиум-аккаунт"
 msgstr "Premium Status"
 
-#: player/templates/player/redesign/profile.html:180
+#: player/templates/player/redesign/profile.html:182
 msgctxt "profile"
 msgid "до"
 msgstr "Ablaufdatum"
 
-#: player/templates/player/redesign/profile.html:180
+#: player/templates/player/redesign/profile.html:182
 msgctxt "profile"
 msgid "не активен"
 msgstr "Bitte Premium erneuern"
 
-#: player/templates/player/redesign/profile.html:185
-#: player/templates/player/redesign/view_profile.html:74
+#: player/templates/player/redesign/profile.html:187
+#: player/templates/player/redesign/view_profile.html:76
 msgctxt "profile"
 msgid "место в рейтинге"
 msgstr "Rangliste"
 
-#: player/templates/player/redesign/profile.html:189
-#: player/templates/player/redesign/view_profile.html:78
+#: player/templates/player/redesign/profile.html:191
+#: player/templates/player/redesign/view_profile.html:80
 msgctxt "profile"
 msgid "(к рейтингу)"
 msgstr "(zu Top-reiche)"
 
-#: player/templates/player/redesign/profile.html:195
-#: player/templates/player/redesign/view_profile.html:84
+#: player/templates/player/redesign/profile.html:197
+#: player/templates/player/redesign/view_profile.html:86
 msgctxt "profile"
 msgid "характеристики"
 msgstr "Fähigkeiten"
 
-#: player/templates/player/redesign/profile.html:207
-#: player/templates/player/redesign/view_profile.html:96
+#: player/templates/player/redesign/profile.html:209
+#: player/templates/player/redesign/view_profile.html:98
 msgctxt "profile"
 msgid "место жительства"
 msgstr "Region"
 
-#: player/templates/player/redesign/profile.html:216
-#: player/templates/player/redesign/view_profile.html:105
+#: player/templates/player/redesign/profile.html:218
+#: player/templates/player/redesign/view_profile.html:107
 msgctxt "profile"
 msgid "прописка"
 msgstr "Region des Wohnorts"
 
-#: player/templates/player/redesign/profile.html:225
-#: player/templates/player/redesign/view_profile.html:114
+#: player/templates/player/redesign/profile.html:221
+#: player/templates/player/redesign/view_profile.html:110
+msgctxt "profile"
+msgid "с"
+msgstr ""
+
+#: player/templates/player/redesign/profile.html:227
+#: player/templates/player/redesign/view_profile.html:116
 msgid "партия"
 msgstr "Partei"
 
-#: player/templates/player/redesign/profile.html:231
-#: player/templates/player/redesign/profile.html:243
-#: player/templates/player/redesign/view_profile.html:120
-#: player/templates/player/redesign/view_profile.html:132
+#: player/templates/player/redesign/profile.html:233
+#: player/templates/player/redesign/profile.html:251
+#: player/templates/player/redesign/view_profile.html:122
+#: player/templates/player/redesign/view_profile.html:140
 msgid "беспартийный"
 msgstr "Parteilos"
 
-#: player/templates/player/redesign/profile.html:234
+#: player/templates/player/redesign/profile.html:236
 msgctxt "profile"
 msgid "история"
 msgstr "Geschichte"
 
-#: player/templates/player/redesign/profile.html:241
-#: player/templates/player/redesign/view_profile.html:130
+#: player/templates/player/redesign/profile.html:243
+#: player/templates/player/redesign/view_profile.html:132
 msgid "должность в партии"
 msgstr "Position in der Partei"
 
-#: player/templates/player/redesign/profile.html:270
-#: player/templates/player/redesign/view_profile.html:138
+#: player/templates/player/redesign/profile.html:278
+#: player/templates/player/redesign/view_profile.html:146
 msgid "о себе"
 msgstr "Über mich"
 
-#: player/templates/player/redesign/profile.html:405
+#: player/templates/player/redesign/profile.html:413
 msgctxt "profile"
 msgid "показывать партийный фон"
 msgstr "Parteihintergrund anzeigen"
 
-#: player/templates/player/redesign/profile.html:421
+#: player/templates/player/redesign/profile.html:429
 msgctxt "profile"
 msgid "Энергетики в авто-добыче"
 msgstr "Energie automatisch auffüllen"
 
-#: player/templates/player/redesign/profile.html:437
+#: player/templates/player/redesign/profile.html:445
 msgctxt "profile"
 msgid "Скрыть кнопку Wiki"
 msgstr "Wiki-Schaltfläche ausblenden"
 
-#: player/templates/player/redesign/profile.html:468
+#: player/templates/player/redesign/profile.html:476
 msgctxt "profile"
 msgid "стандарт"
 msgstr "Standard"
 
-#: player/templates/player/redesign/profile.html:482
+#: player/templates/player/redesign/profile.html:490
 msgid "сохранить"
 msgstr "speichern"
 
-#: player/templates/player/redesign/view_profile.html:67
+#: player/templates/player/redesign/view_profile.html:69
 msgctxt "profile"
 msgid "был в сети"
 msgstr "Letzte Aktivität"
 
-#: player/templates/player/redesign/view_profile.html:69
+#: player/templates/player/redesign/view_profile.html:71
 msgid "давно"
 msgstr "vor langer Zeit"
 
@@ -1558,6 +1724,65 @@ msgstr "Krankenhausrang"
 msgid "Уровень ТЭЦ"
 msgstr "Heizkraftwerk"
 
+#: region/templates/region/map.html:132
+msgctxt "regions_list"
+msgid "Тюрингия"
+msgstr ""
+
+#: region/templates/region/map.html:134
+msgctxt "regions_list"
+msgid "Саксония"
+msgstr ""
+
+#: region/templates/region/map.html:136
+msgctxt "regions_list"
+msgid "Чехия"
+msgstr ""
+
+#: region/templates/region/map.html:138
+#, fuzzy
+#| msgctxt "factory"
+#| msgid "Ошибка производства"
+msgctxt "regions_list"
+msgid "Нижнесилезское воеводство"
+msgstr "Produktionsfehler"
+
+#: region/templates/region/map.html:140
+#, fuzzy
+#| msgctxt "factory"
+#| msgid "Ошибка производства"
+msgctxt "regions_list"
+msgid "Любушское воеводство"
+msgstr "Produktionsfehler"
+
+#: region/templates/region/map.html:142
+msgctxt "regions_list"
+msgid "Бавария"
+msgstr ""
+
+#: region/templates/region/map.html:144
+msgctxt "regions_list"
+msgid "Бранденбург"
+msgstr ""
+
+#: region/templates/region/map.html:146
+msgctxt "regions_list"
+msgid "Саксония-Анхальт"
+msgstr ""
+
+#: region/templates/region/map.html:148
+msgctxt "regions_list"
+msgid "Австрия"
+msgstr ""
+
+#: region/templates/region/map.html:150
+#, fuzzy
+#| msgctxt "menu"
+#| msgid "производство"
+msgctxt "regions_list"
+msgid "Опольское воеводство"
+msgstr "Produktion"
+
 #: region/templates/region/redesign/mining.html:9
 msgctxt "mining"
 msgid "Добыча"
@@ -1809,7 +2034,7 @@ msgctxt "mining"
 msgid "Ошибка метода"
 msgstr "Methodenfehler"
 
-#: region/views/lists/world_regions.py:45
+#: region/views/lists/world_regions.py:90
 msgid "Регионы игры"
 msgstr "Spielregionen"
 

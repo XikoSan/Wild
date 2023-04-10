@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-19 22:37+0300\n"
+"POT-Creation-Date: 2023-04-10 23:46+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -57,8 +57,8 @@ msgstr ""
 #: bill/templates/state/gov/reviewed/change_residency.html:41
 #: factory/models/project.py:148 state/models/treasury.py:85
 #: storage/models/destroy.py:58 storage/models/storage.py:76
-#: storage/models/storage.py:182 storage/models/trade_offer.py:91
-#: storage/models/transport.py:151
+#: storage/models/storage.py:183 storage/models/trade_offer.py:91
+#: storage/models/transport.py:153
 msgctxt "goods"
 msgid "Автоматы"
 msgstr ""
@@ -66,9 +66,9 @@ msgstr ""
 #: bill/templates/state/gov/bills/change_residency.html:47
 #: bill/templates/state/gov/drafts/change_residency.html:26
 #: bill/templates/state/gov/reviewed/change_residency.html:44
-#: factory/models/project.py:243 state/models/treasury.py:106
-#: storage/models/destroy.py:72 storage/models/storage.py:87
-#: storage/models/storage.py:217 storage/models/trade_offer.py:98
+#: factory/models/project.py:264 state/models/treasury.py:109
+#: storage/models/destroy.py:74 storage/models/storage.py:88
+#: storage/models/storage.py:223 storage/models/trade_offer.py:99
 msgctxt "goods"
 msgid "БПЛА"
 msgstr ""
@@ -88,36 +88,36 @@ msgstr ""
 
 #: factory/models/production_log.py:29 factory/models/production_log.py:48
 #: state/models/treasury.py:38 storage/models/storage.py:38
-#: storage/models/storage.py:111
+#: storage/models/storage.py:112
 msgctxt "goods"
 msgid "Наличные"
 msgstr ""
 
 #: factory/models/project.py:16 state/models/treasury.py:62
 #: storage/models/destroy.py:38 storage/models/storage.py:59
-#: storage/models/storage.py:147 storage/models/trade_offer.py:82
-#: storage/models/transport.py:121
+#: storage/models/storage.py:148 storage/models/trade_offer.py:82
+#: storage/models/transport.py:123
 msgctxt "goods"
 msgid "Бензин"
 msgstr ""
 
 #: factory/models/project.py:39 state/models/treasury.py:68
 #: storage/models/destroy.py:44 storage/models/storage.py:63
-#: storage/models/storage.py:157 storage/models/trade_offer.py:84
-#: storage/models/transport.py:131
+#: storage/models/storage.py:158 storage/models/trade_offer.py:84
+#: storage/models/transport.py:133
 msgctxt "goods"
 msgid "Пластик"
 msgstr ""
 
-#: factory/models/project.py:62 storage/models/transport.py:126
+#: factory/models/project.py:62 storage/models/transport.py:128
 msgctxt "goods"
 msgid "Дизель"
 msgstr ""
 
 #: factory/models/project.py:85 state/models/treasury.py:71
 #: storage/models/destroy.py:46 storage/models/storage.py:65
-#: storage/models/storage.py:161 storage/models/trade_offer.py:85
-#: storage/models/transport.py:135
+#: storage/models/storage.py:162 storage/models/trade_offer.py:85
+#: storage/models/transport.py:137
 #: storage/templates/storage/redesign/storage.html:216
 msgctxt "goods"
 msgid "Сталь"
@@ -125,8 +125,8 @@ msgstr ""
 
 #: factory/models/project.py:101 state/models/treasury.py:74
 #: storage/models/destroy.py:48 storage/models/storage.py:67
-#: storage/models/storage.py:165 storage/models/trade_offer.py:86
-#: storage/models/transport.py:139
+#: storage/models/storage.py:166 storage/models/trade_offer.py:86
+#: storage/models/transport.py:141
 #: storage/templates/storage/redesign/storage.html:216
 msgctxt "goods"
 msgid "Алюминий"
@@ -134,54 +134,62 @@ msgstr ""
 
 #: factory/models/project.py:116 state/models/treasury.py:78
 #: storage/models/destroy.py:52 storage/models/storage.py:71
-#: storage/models/storage.py:171 storage/models/trade_offer.py:88
-#: storage/models/transport.py:145
+#: storage/models/storage.py:172 storage/models/trade_offer.py:88
+#: storage/models/transport.py:147
 msgctxt "goods"
 msgid "Медикаменты"
 msgstr ""
 
 #: factory/models/project.py:132 state/models/treasury.py:81
 #: storage/models/destroy.py:54 storage/models/storage.py:72
-#: storage/models/storage.py:176 storage/models/trade_offer.py:89
+#: storage/models/storage.py:177 storage/models/trade_offer.py:89
 msgctxt "goods"
 msgid "Буровые установки"
 msgstr ""
 
 #: factory/models/project.py:163 state/models/treasury.py:88
 #: storage/models/destroy.py:60 storage/models/storage.py:78
-#: storage/models/storage.py:192 storage/models/trade_offer.py:92
-#: storage/models/transport.py:156
+#: storage/models/storage.py:198 storage/models/trade_offer.py:92
+#: storage/models/transport.py:158
 msgctxt "goods"
 msgid "Танки"
 msgstr ""
 
-#: factory/models/project.py:179 state/models/treasury.py:91
+#: factory/models/project.py:184 state/models/treasury.py:91
 #: storage/models/destroy.py:62 storage/models/storage.py:82
-#: storage/models/storage.py:197 storage/models/trade_offer.py:95
-#: storage/models/transport.py:161
+#: storage/models/storage.py:203 storage/models/trade_offer.py:96
+#: storage/models/transport.py:163
 msgctxt "goods"
 msgid "Штурмовики"
 msgstr ""
 
-#: factory/models/project.py:195 state/models/treasury.py:97
+#: factory/models/project.py:200 state/models/treasury.py:97
 #: storage/models/destroy.py:66 storage/models/storage.py:83
-#: storage/models/storage.py:207 storage/models/trade_offer.py:96
-#: storage/models/transport.py:171
+#: storage/models/storage.py:213 storage/models/trade_offer.py:97
+#: storage/models/transport.py:173
 msgctxt "goods"
 msgid "ПЗРК"
 msgstr ""
 
-#: factory/models/project.py:211 state/models/treasury.py:100
+#: factory/models/project.py:216 state/models/treasury.py:100
 #: storage/models/destroy.py:68 storage/models/storage.py:79
-#: storage/models/storage.py:187 storage/models/trade_offer.py:93
+#: storage/models/storage.py:193 storage/models/trade_offer.py:93
 msgctxt "goods"
 msgid "ПТ-орудия"
 msgstr ""
 
-#: factory/models/project.py:227 state/models/treasury.py:103
-#: storage/models/destroy.py:70 storage/models/storage.py:85
-#: storage/models/storage.py:212 storage/models/trade_offer.py:97
-#: storage/models/transport.py:181
+#: factory/models/project.py:232 state/models/treasury.py:103
+#: storage/models/destroy.py:70 storage/models/storage.py:86
+#: storage/models/storage.py:188 storage/models/trade_offer.py:94
+#: storage/models/transport.py:183
+msgctxt "goods"
+msgid "Мины"
+msgstr ""
+
+#: factory/models/project.py:248 state/models/treasury.py:106
+#: storage/models/destroy.py:72 storage/models/storage.py:85
+#: storage/models/storage.py:218 storage/models/trade_offer.py:98
+#: storage/models/transport.py:188
 msgctxt "goods"
 msgid "БМП"
 msgstr ""
@@ -286,119 +294,237 @@ msgstr ""
 msgid "отклонить всё"
 msgstr ""
 
+#: party/templates/party/redesign/manage.html:17
+msgctxt "party_manage"
+msgid "Управление партией"
+msgstr ""
+
+#: party/templates/party/redesign/manage.html:32
+msgctxt "party_manage"
+msgid "партия"
+msgstr ""
+
+#: party/templates/party/redesign/manage.html:47
+msgctxt "party_manage"
+msgid "должности"
+msgstr ""
+
+#: party/templates/party/redesign/manage.html:117
+msgctxt "party_manage"
+msgid "Тип партии"
+msgstr ""
+
+#: party/templates/party/redesign/manage.html:119
+msgctxt "party_manage"
+msgid "открытая"
+msgstr ""
+
+#: party/templates/party/redesign/manage.html:119
+msgctxt "party_manage"
+msgid "закрытая"
+msgstr ""
+
+#: party/templates/party/redesign/manage.html:119
+msgctxt "party_manage"
+msgid "изменить"
+msgstr ""
+
+#: party/templates/party/redesign/manage.html:124
+msgctxt "party_manage"
+msgid "Роспуск партии"
+msgstr ""
+
+#: party/templates/party/redesign/manage.html:129
+msgctxt "party_manage"
+msgid "подтвердить роспуск"
+msgstr ""
+
+#: party/templates/party/redesign/manage.html:132
+msgctxt "party_manage"
+msgid "роспуск невозможен"
+msgstr ""
+
+#: party/templates/party/redesign/manage.html:153
+msgctxt "party_manage"
+msgid "добавить описание партии"
+msgstr ""
+
+#: party/templates/party/redesign/manage.html:168
+msgctxt "party_manage"
+msgid "Добавить должность"
+msgstr ""
+
+#: party/templates/party/redesign/manage.html:183
+#: party/templates/party/redesign/manage.html:199
+msgctxt "party_manage"
+msgid "секретарь"
+msgstr ""
+
+#: party/templates/party/redesign/manage.html:186
+msgctxt "party_manage"
+msgid "добавить"
+msgstr ""
+
+#: party/templates/party/redesign/manage.html:198
+msgctxt "party_manage"
+msgid "название должности"
+msgstr ""
+
+#: party/templates/party/redesign/manage.html:200
+msgctxt "party_manage"
+msgid "действия"
+msgstr ""
+
+#: party/templates/party/redesign/manage.html:250
+msgctxt "party_manage"
+msgid "Смена названия партии"
+msgstr ""
+
+#: party/templates/party/redesign/manage.html:267
+#: party/templates/party/redesign/manage.html:295
+msgctxt "party_manage"
+msgid "сохранить"
+msgstr ""
+
+#: party/templates/party/redesign/manage.html:278
+msgctxt "party_manage"
+msgid "Смена описания партии"
+msgstr ""
+
+#: party/templates/party/redesign/manage.html:350
+#: player/templates/player/redesign/new_player.html:135
+#: player/templates/player/redesign/new_player.html:149
+#: player/templates/player/redesign/new_player.html:177
+#: player/templates/player/redesign/overview_skills.html:179
+#: player/templates/player/redesign/profile.html:359
+msgid "Отмена"
+msgstr ""
+
+#: party/templates/party/redesign/manage.html:351
+#: player/templates/player/redesign/new_player.html:136
+#: player/templates/player/redesign/profile.html:360
+msgid "Загрузить"
+msgstr ""
+
 #: party/templates/party/redesign/party.html:61
 msgctxt "has_party"
 msgid "исключить"
 msgstr ""
 
-#: party/templates/party/redesign/party_blocks/has_party.html:8
-#: party/templates/party/redesign/party_blocks/no_party.html:8
+#: party/templates/party/redesign/party_blocks/has_party.html:12
+#: party/templates/party/redesign/party_blocks/no_party.html:10
 msgctxt "has_party"
 msgid "Партия"
 msgstr ""
 
-#: party/templates/party/redesign/party_blocks/has_party.html:126
+#: party/templates/party/redesign/party_blocks/has_party.html:130
 #: party/templates/party/redesign/party_requests.html:29
+#: party/templates/party/redesign/party_view.html:175
 msgctxt "has_party"
 msgid "Никнейм"
 msgstr ""
 
-#: party/templates/party/redesign/party_blocks/has_party.html:127
+#: party/templates/party/redesign/party_blocks/has_party.html:131
+#: party/templates/party/redesign/party_view.html:176
 msgctxt "has_party"
 msgid "Был в сети"
 msgstr ""
 
-#: party/templates/party/redesign/party_blocks/has_party.html:128
+#: party/templates/party/redesign/party_blocks/has_party.html:132
+#: party/templates/party/redesign/party_view.html:177
 msgctxt "has_party"
 msgid "Должность"
 msgstr ""
 
-#: party/templates/party/redesign/party_blocks/has_party.html:148
+#: party/templates/party/redesign/party_blocks/has_party.html:159
+#: party/templates/party/redesign/party_blocks/has_party.html:162
+#: party/templates/party/redesign/party_view.html:200
+#: party/templates/party/redesign/party_view.html:203
 msgctxt "has_party"
 msgid "давно"
 msgstr ""
 
-#: party/templates/party/redesign/party_blocks/has_party.html:175
+#: party/templates/party/redesign/party_blocks/has_party.html:195
 msgctxt "has_party"
 msgid "Покинуть партию?"
 msgstr ""
 
-#: party/templates/party/redesign/party_blocks/has_party.html:176
+#: party/templates/party/redesign/party_blocks/has_party.html:196
 msgctxt "has_party"
 msgid "Вы покинете партию, а также все связанные должности. Продолжить?"
 msgstr ""
 
-#: party/templates/party/redesign/party_blocks/has_party.html:177
+#: party/templates/party/redesign/party_blocks/has_party.html:197
 msgctxt "has_party"
 msgid "Продолжить"
 msgstr ""
 
-#: party/templates/party/redesign/party_blocks/has_party.html:178
+#: party/templates/party/redesign/party_blocks/has_party.html:198
 msgctxt "has_party"
 msgid "Отмена"
 msgstr ""
 
-#: party/templates/party/redesign/party_blocks/no_party.html:13
+#: party/templates/party/redesign/party_blocks/no_party.html:15
 msgctxt "no_party"
 msgid "Вы не состоите в партии"
 msgstr ""
 
-#: party/templates/party/redesign/party_blocks/no_party.html:14
+#: party/templates/party/redesign/party_blocks/no_party.html:16
 msgctxt "no_party"
 msgid "Доступные партии"
 msgstr ""
 
-#: party/templates/party/redesign/party_blocks/no_party.html:14
+#: party/templates/party/redesign/party_blocks/no_party.html:16
 msgctxt "no_party"
 msgid "в регионе"
 msgstr ""
 
-#: party/templates/party/redesign/party_blocks/no_party.html:17
+#: party/templates/party/redesign/party_blocks/no_party.html:19
 msgctxt "no_party"
 msgid "вы в полете"
 msgstr ""
 
-#: party/templates/party/redesign/party_blocks/no_party.html:19
+#: party/templates/party/redesign/party_blocks/no_party.html:21
 msgctxt "no_party"
 msgid "создать партию"
 msgstr ""
 
-#: party/templates/party/redesign/party_blocks/no_party.html:37
+#: party/templates/party/redesign/party_blocks/no_party.html:39
 msgctxt "no_party"
 msgid "региональные"
 msgstr ""
 
-#: party/templates/party/redesign/party_blocks/no_party.html:52
+#: party/templates/party/redesign/party_blocks/no_party.html:54
 msgctxt "no_party"
 msgid "все партии"
 msgstr ""
 
-#: party/templates/party/redesign/party_blocks/no_party.html:68
-#: party/templates/party/redesign/party_blocks/no_party.html:129
+#: party/templates/party/redesign/party_blocks/no_party.html:70
+#: party/templates/party/redesign/party_blocks/no_party.html:131
 msgctxt "no_party"
 msgid "Партия"
 msgstr ""
 
-#: party/templates/party/redesign/party_blocks/no_party.html:79
-#: party/templates/party/redesign/party_blocks/no_party.html:140
+#: party/templates/party/redesign/party_blocks/no_party.html:81
+#: party/templates/party/redesign/party_blocks/no_party.html:142
 msgctxt "no_party"
 msgid "Действие"
 msgstr ""
 
-#: party/templates/party/redesign/party_blocks/no_party.html:105
-#: party/templates/party/redesign/party_blocks/no_party.html:159
+#: party/templates/party/redesign/party_blocks/no_party.html:107
+#: party/templates/party/redesign/party_blocks/no_party.html:161
 msgctxt "no_party"
 msgid "Вступить"
 msgstr ""
 
-#: party/templates/party/redesign/party_blocks/no_party.html:109
-#: party/templates/party/redesign/party_blocks/no_party.html:163
+#: party/templates/party/redesign/party_blocks/no_party.html:111
+#: party/templates/party/redesign/party_blocks/no_party.html:165
 msgctxt "no_party"
 msgid "Отменить заявку"
 msgstr ""
 
-#: party/templates/party/redesign/party_blocks/no_party.html:111
-#: party/templates/party/redesign/party_blocks/no_party.html:165
+#: party/templates/party/redesign/party_blocks/no_party.html:113
+#: party/templates/party/redesign/party_blocks/no_party.html:167
 msgctxt "no_party"
 msgid "Подать заявку"
 msgstr ""
@@ -428,6 +554,46 @@ msgctxt "party_requests"
 msgid "Отклонить"
 msgstr ""
 
+#: party/templates/party/redesign/party_view.html:34
+msgctxt "party_view"
+msgid "информация"
+msgstr ""
+
+#: party/templates/party/redesign/party_view.html:49
+msgctxt "party_view"
+msgid "состав"
+msgstr ""
+
+#: party/templates/party/redesign/party_view.html:85
+msgctxt "party_view"
+msgid "Участников"
+msgstr ""
+
+#: party/templates/party/redesign/party_view.html:93
+msgctxt "party_view"
+msgid "Тип"
+msgstr ""
+
+#: party/templates/party/redesign/party_view.html:101
+msgctxt "party_view"
+msgid "Дата основания"
+msgstr ""
+
+#: party/templates/party/redesign/party_view.html:126
+msgctxt "party_view"
+msgid "вступить"
+msgstr ""
+
+#: party/templates/party/redesign/party_view.html:143
+msgctxt "party_view"
+msgid "отменить заявку"
+msgstr ""
+
+#: party/templates/party/redesign/party_view.html:158
+msgctxt "party_view"
+msgid "подать заявку"
+msgstr ""
+
 #: party/templates/primaries/primaries.html:25
 msgid "primaries_in_party"
 msgstr ""
@@ -440,6 +606,16 @@ msgstr ""
 msgid "Партии мира"
 msgstr ""
 
+#: party/views/management/new_party.py:44
+msgctxt "party_manage"
+msgid "Глава партии"
+msgstr ""
+
+#: party/views/management/new_party.py:47
+msgctxt "party_manage"
+msgid "Новый игрок партии"
+msgstr ""
+
 #: party/views/management/staff/leave_party.py:37
 #: party/views/management/staff/leave_party.py:209
 msgctxt "party"
@@ -447,8 +623,8 @@ msgid "Выход из партии"
 msgstr ""
 
 #: party/views/management/staff/leave_party.py:38
-#: party/views/management/staff/leave_party.py:210 player/player.py:287
-#: player/player.py:309 region/views/cancel_auto.py:34
+#: party/views/management/staff/leave_party.py:210 player/player.py:288
+#: player/player.py:310 region/views/cancel_auto.py:34
 #: region/views/do_mining.py:33 region/views/do_mining.py:46
 #: region/views/do_mining.py:56 region/views/do_mining.py:69
 #: region/views/do_mining.py:78 region/views/do_mining.py:87
@@ -605,18 +781,18 @@ msgctxt "cash_log"
 msgid "Навыки"
 msgstr ""
 
-#: player/player.py:285 region/views/do_mining.py:31
+#: player/player.py:286 region/views/do_mining.py:31
 #: region/views/start_auto.py:26
 msgctxt "mining"
 msgid "Дождитесь конца полёта"
 msgstr ""
 
-#: player/player.py:286 player/player.py:308 region/views/retrieve_cash.py:40
+#: player/player.py:287 player/player.py:309 region/views/retrieve_cash.py:40
 msgctxt "mining"
 msgid "Ошибка получения финансирования"
 msgstr ""
 
-#: player/player.py:307
+#: player/player.py:308
 msgctxt "mining"
 msgid "Нечего забирать"
 msgstr ""
@@ -879,104 +1055,91 @@ msgstr ""
 msgid "Часовой пояс"
 msgstr ""
 
-#: player/templates/player/redesign/new_player.html:135
-#: player/templates/player/redesign/new_player.html:149
-#: player/templates/player/redesign/new_player.html:177
-#: player/templates/player/redesign/overview_skills.html:179
-#: player/templates/player/redesign/profile.html:345
-msgid "Отмена"
-msgstr ""
-
-#: player/templates/player/redesign/new_player.html:136
-#: player/templates/player/redesign/profile.html:346
-msgid "Загрузить"
-msgstr ""
-
-#: player/templates/player/redesign/overview.html:33
+#: player/templates/player/redesign/overview.html:34
 msgid "обзор"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:54
+#: player/templates/player/redesign/overview.html:55
 msgid "чат"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:65
+#: player/templates/player/redesign/overview.html:66
 msgid "мир"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:114
+#: player/templates/player/redesign/overview.html:115
 msgid "независимый регион"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:229
+#: player/templates/player/redesign/overview.html:230
 msgid "войн нет"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:274
+#: player/templates/player/redesign/overview.html:275
 msgctxt "overview"
 msgid "Хэллоуинский ивент"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:281
+#: player/templates/player/redesign/overview.html:282
 msgctxt "overview"
 msgid "С новым годом!"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:447
+#: player/templates/player/redesign/overview.html:448
 msgctxt "overview"
 msgid "сила"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:452
+#: player/templates/player/redesign/overview.html:453
 msgctxt "overview"
 msgid "инт"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:457
+#: player/templates/player/redesign/overview.html:458
 msgctxt "overview"
 msgid "вын"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:473
+#: player/templates/player/redesign/overview.html:474
 msgctxt "overview"
 msgid "Выборы лидера"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:476
+#: player/templates/player/redesign/overview.html:477
 msgctxt "overview"
 msgid "Выборы"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:481
+#: player/templates/player/redesign/overview.html:482
 msgctxt "overview"
 msgid "партии"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:481
+#: player/templates/player/redesign/overview.html:482
 msgctxt "overview"
 msgid "государства"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:481
+#: player/templates/player/redesign/overview.html:482
 msgctxt "overview"
 msgid "региона"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:518
-#: player/templates/player/redesign/overview.html:563
+#: player/templates/player/redesign/overview.html:519
+#: player/templates/player/redesign/overview.html:564
 msgid "партий нет"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:525
+#: player/templates/player/redesign/overview.html:526
 msgctxt "overview"
 msgid "парламент"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:739
+#: player/templates/player/redesign/overview.html:744
 msgid "У вас пока еще нет стикеров"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:752
+#: player/templates/player/redesign/overview.html:757
 msgctxt "overview"
 msgid "магазин"
 msgstr ""
@@ -1112,118 +1275,124 @@ msgctxt "repost"
 msgid "час не прошёл"
 msgstr ""
 
-#: player/templates/player/redesign/player_status.html:32
-#: player/templates/player/redesign/player_status.html:39
+#: player/templates/player/redesign/player_status.html:36
+#: player/templates/player/redesign/player_status.html:43
 msgctxt "status"
 msgid "пополнить"
 msgstr ""
 
-#: player/templates/player/redesign/profile.html:168
+#: player/templates/player/redesign/profile.html:170
 msgid "настройки"
 msgstr ""
 
-#: player/templates/player/redesign/profile.html:178
+#: player/templates/player/redesign/profile.html:180
 msgctxt "profile"
 msgid "премиум-аккаунт"
 msgstr ""
 
-#: player/templates/player/redesign/profile.html:180
+#: player/templates/player/redesign/profile.html:182
 msgctxt "profile"
 msgid "до"
 msgstr ""
 
-#: player/templates/player/redesign/profile.html:180
+#: player/templates/player/redesign/profile.html:182
 msgctxt "profile"
 msgid "не активен"
 msgstr ""
 
-#: player/templates/player/redesign/profile.html:185
-#: player/templates/player/redesign/view_profile.html:74
+#: player/templates/player/redesign/profile.html:187
+#: player/templates/player/redesign/view_profile.html:76
 msgctxt "profile"
 msgid "место в рейтинге"
 msgstr ""
 
-#: player/templates/player/redesign/profile.html:189
-#: player/templates/player/redesign/view_profile.html:78
+#: player/templates/player/redesign/profile.html:191
+#: player/templates/player/redesign/view_profile.html:80
 msgctxt "profile"
 msgid "(к рейтингу)"
 msgstr ""
 
-#: player/templates/player/redesign/profile.html:195
-#: player/templates/player/redesign/view_profile.html:84
+#: player/templates/player/redesign/profile.html:197
+#: player/templates/player/redesign/view_profile.html:86
 msgctxt "profile"
 msgid "характеристики"
 msgstr ""
 
-#: player/templates/player/redesign/profile.html:207
-#: player/templates/player/redesign/view_profile.html:96
+#: player/templates/player/redesign/profile.html:209
+#: player/templates/player/redesign/view_profile.html:98
 msgctxt "profile"
 msgid "место жительства"
 msgstr ""
 
-#: player/templates/player/redesign/profile.html:216
-#: player/templates/player/redesign/view_profile.html:105
+#: player/templates/player/redesign/profile.html:218
+#: player/templates/player/redesign/view_profile.html:107
 msgctxt "profile"
 msgid "прописка"
 msgstr ""
 
-#: player/templates/player/redesign/profile.html:225
-#: player/templates/player/redesign/view_profile.html:114
-msgid "партия"
+#: player/templates/player/redesign/profile.html:221
+#: player/templates/player/redesign/view_profile.html:110
+msgctxt "profile"
+msgid "с"
 msgstr ""
 
 #: player/templates/player/redesign/profile.html:227
-#: player/templates/player/redesign/profile.html:237
 #: player/templates/player/redesign/view_profile.html:116
-#: player/templates/player/redesign/view_profile.html:126
+msgid "партия"
+msgstr ""
+
+#: player/templates/player/redesign/profile.html:233
+#: player/templates/player/redesign/profile.html:251
+#: player/templates/player/redesign/view_profile.html:122
+#: player/templates/player/redesign/view_profile.html:140
 msgid "беспартийный"
 msgstr ""
 
-#: player/templates/player/redesign/profile.html:229
+#: player/templates/player/redesign/profile.html:236
 msgctxt "profile"
-msgid "(история)"
+msgid "история"
 msgstr ""
 
-#: player/templates/player/redesign/profile.html:235
-#: player/templates/player/redesign/view_profile.html:124
+#: player/templates/player/redesign/profile.html:243
+#: player/templates/player/redesign/view_profile.html:132
 msgid "должность в партии"
 msgstr ""
 
-#: player/templates/player/redesign/profile.html:264
-#: player/templates/player/redesign/view_profile.html:132
+#: player/templates/player/redesign/profile.html:278
+#: player/templates/player/redesign/view_profile.html:146
 msgid "о себе"
 msgstr ""
 
-#: player/templates/player/redesign/profile.html:399
+#: player/templates/player/redesign/profile.html:413
 msgctxt "profile"
 msgid "показывать партийный фон"
 msgstr ""
 
-#: player/templates/player/redesign/profile.html:415
+#: player/templates/player/redesign/profile.html:429
 msgctxt "profile"
 msgid "Энергетики в авто-добыче"
 msgstr ""
 
-#: player/templates/player/redesign/profile.html:431
+#: player/templates/player/redesign/profile.html:445
 msgctxt "profile"
 msgid "Скрыть кнопку Wiki"
 msgstr ""
 
-#: player/templates/player/redesign/profile.html:462
+#: player/templates/player/redesign/profile.html:476
 msgctxt "profile"
 msgid "стандарт"
 msgstr ""
 
-#: player/templates/player/redesign/profile.html:476
+#: player/templates/player/redesign/profile.html:490
 msgid "сохранить"
 msgstr ""
 
-#: player/templates/player/redesign/view_profile.html:67
+#: player/templates/player/redesign/view_profile.html:69
 msgctxt "profile"
 msgid "был в сети"
 msgstr ""
 
-#: player/templates/player/redesign/view_profile.html:69
+#: player/templates/player/redesign/view_profile.html:71
 msgid "давно"
 msgstr ""
 
@@ -1493,6 +1662,56 @@ msgstr ""
 msgid "Уровень ТЭЦ"
 msgstr ""
 
+#: region/templates/region/map.html:132
+msgctxt "regions_list"
+msgid "Тюрингия"
+msgstr ""
+
+#: region/templates/region/map.html:134
+msgctxt "regions_list"
+msgid "Саксония"
+msgstr ""
+
+#: region/templates/region/map.html:136
+msgctxt "regions_list"
+msgid "Чехия"
+msgstr ""
+
+#: region/templates/region/map.html:138
+msgctxt "regions_list"
+msgid "Нижнесилезское воеводство"
+msgstr ""
+
+#: region/templates/region/map.html:140
+msgctxt "regions_list"
+msgid "Любушское воеводство"
+msgstr ""
+
+#: region/templates/region/map.html:142
+msgctxt "regions_list"
+msgid "Бавария"
+msgstr ""
+
+#: region/templates/region/map.html:144
+msgctxt "regions_list"
+msgid "Бранденбург"
+msgstr ""
+
+#: region/templates/region/map.html:146
+msgctxt "regions_list"
+msgid "Саксония-Анхальт"
+msgstr ""
+
+#: region/templates/region/map.html:148
+msgctxt "regions_list"
+msgid "Австрия"
+msgstr ""
+
+#: region/templates/region/map.html:150
+msgctxt "regions_list"
+msgid "Опольское воеводство"
+msgstr ""
+
 #: region/templates/region/redesign/mining.html:9
 msgctxt "mining"
 msgid "Добыча"
@@ -1744,7 +1963,7 @@ msgctxt "mining"
 msgid "Ошибка метода"
 msgstr ""
 
-#: region/views/lists/world_regions.py:45
+#: region/views/lists/world_regions.py:90
 msgid "Регионы игры"
 msgstr ""
 
@@ -1812,57 +2031,57 @@ msgid "Выдаётся министром"
 msgstr ""
 
 #: state/models/treasury.py:42 storage/models/destroy.py:18
-#: storage/models/storage.py:43 storage/models/storage.py:115
-#: storage/models/trade_offer.py:74 storage/models/transport.py:89
+#: storage/models/storage.py:43 storage/models/storage.py:116
+#: storage/models/trade_offer.py:74 storage/models/transport.py:91
 msgctxt "goods"
 msgid "Уголь"
 msgstr ""
 
 #: state/models/treasury.py:45 storage/models/destroy.py:21
-#: storage/models/storage.py:45 storage/models/storage.py:120
-#: storage/models/trade_offer.py:75 storage/models/transport.py:94
+#: storage/models/storage.py:45 storage/models/storage.py:121
+#: storage/models/trade_offer.py:75 storage/models/transport.py:96
 msgctxt "goods"
 msgid "Железо"
 msgstr ""
 
 #: state/models/treasury.py:48 storage/models/destroy.py:24
-#: storage/models/storage.py:47 storage/models/storage.py:125
-#: storage/models/trade_offer.py:76 storage/models/transport.py:99
+#: storage/models/storage.py:47 storage/models/storage.py:126
+#: storage/models/trade_offer.py:76 storage/models/transport.py:101
 msgctxt "goods"
 msgid "Бокситы"
 msgstr ""
 
 #: state/models/treasury.py:52 storage/models/destroy.py:28
-#: storage/models/storage.py:51 storage/models/storage.py:131
-#: storage/models/trade_offer.py:78 storage/models/transport.py:105
+#: storage/models/storage.py:51 storage/models/storage.py:132
+#: storage/models/trade_offer.py:78 storage/models/transport.py:107
 msgctxt "goods"
 msgid "Нефть WTI"
 msgstr ""
 
 #: state/models/treasury.py:55 storage/models/destroy.py:31
-#: storage/models/storage.py:53 storage/models/storage.py:136
-#: storage/models/trade_offer.py:79 storage/models/transport.py:110
+#: storage/models/storage.py:53 storage/models/storage.py:137
+#: storage/models/trade_offer.py:79 storage/models/transport.py:112
 msgctxt "goods"
 msgid "Нефть Brent"
 msgstr ""
 
 #: state/models/treasury.py:58 storage/models/destroy.py:34
-#: storage/models/storage.py:55 storage/models/storage.py:141
-#: storage/models/trade_offer.py:80 storage/models/transport.py:115
+#: storage/models/storage.py:55 storage/models/storage.py:142
+#: storage/models/trade_offer.py:80 storage/models/transport.py:117
 msgctxt "goods"
 msgid "Нефть Urals"
 msgstr ""
 
 #: state/models/treasury.py:65 storage/models/destroy.py:41
-#: storage/models/storage.py:61 storage/models/storage.py:152
+#: storage/models/storage.py:61 storage/models/storage.py:153
 #: storage/models/trade_offer.py:83
 msgctxt "goods"
 msgid "Дизельное топливо"
 msgstr ""
 
 #: state/models/treasury.py:94 storage/models/destroy.py:64
-#: storage/models/storage.py:80 storage/models/storage.py:202
-#: storage/models/trade_offer.py:94
+#: storage/models/storage.py:80 storage/models/storage.py:208
+#: storage/models/trade_offer.py:95
 msgctxt "goods"
 msgid "Орбитальные орудия"
 msgstr ""
@@ -1908,240 +2127,250 @@ msgctxt "goods"
 msgid "Оружие"
 msgstr ""
 
-#: storage/models/storage.py:108
+#: storage/models/storage.py:109
 msgctxt "storage"
 msgid "Уровень"
 msgstr ""
 
-#: storage/models/storage.py:117
+#: storage/models/storage.py:118
 msgctxt "goods"
 msgid "Уголь - лимит"
 msgstr ""
 
-#: storage/models/storage.py:122
+#: storage/models/storage.py:123
 msgctxt "goods"
 msgid "Железо - лимит"
 msgstr ""
 
-#: storage/models/storage.py:127
+#: storage/models/storage.py:128
 msgctxt "goods"
 msgid "Бокситы - лимит"
 msgstr ""
 
-#: storage/models/storage.py:133
+#: storage/models/storage.py:134
 msgctxt "goods"
 msgid "Нефть WTI - лимит"
 msgstr ""
 
-#: storage/models/storage.py:138
+#: storage/models/storage.py:139
 msgctxt "goods"
 msgid "Нефть Brent - лимит"
 msgstr ""
 
-#: storage/models/storage.py:143
+#: storage/models/storage.py:144
 msgctxt "goods"
 msgid "Нефть Urals - лимит"
 msgstr ""
 
-#: storage/models/storage.py:149
+#: storage/models/storage.py:150
 msgctxt "goods"
 msgid "Бензин - лимит"
 msgstr ""
 
-#: storage/models/storage.py:154
+#: storage/models/storage.py:155
 msgctxt "goods"
 msgid "Дизельное топливо - лимит"
 msgstr ""
 
-#: storage/models/storage.py:159
+#: storage/models/storage.py:160
 msgctxt "goods"
 msgid "Пластик - лимит"
 msgstr ""
 
-#: storage/models/storage.py:163
+#: storage/models/storage.py:164
 msgctxt "goods"
 msgid "Сталь - лимит"
 msgstr ""
 
-#: storage/models/storage.py:167
+#: storage/models/storage.py:168
 msgctxt "goods"
 msgid "Алюминий - лимит"
 msgstr ""
 
-#: storage/models/storage.py:173
+#: storage/models/storage.py:174
 msgctxt "goods"
 msgid "Медикаменты - лимит"
 msgstr ""
 
-#: storage/models/storage.py:178
+#: storage/models/storage.py:179
 msgctxt "goods"
 msgid "Буры - лимит"
 msgstr ""
 
-#: storage/models/storage.py:184
+#: storage/models/storage.py:185
 msgctxt "goods"
 msgid "Автоматы - лимит"
 msgstr ""
 
-#: storage/models/storage.py:189
+#: storage/models/storage.py:190
+msgctxt "goods"
+msgid "Мины - лимит"
+msgstr ""
+
+#: storage/models/storage.py:195
 msgctxt "goods"
 msgid "ПТ-орудия - лимит"
 msgstr ""
 
-#: storage/models/storage.py:194
+#: storage/models/storage.py:200
 msgctxt "goods"
 msgid "Танки - лимит"
 msgstr ""
 
-#: storage/models/storage.py:199
+#: storage/models/storage.py:205
 msgctxt "goods"
 msgid "Штурмовики - лимит"
 msgstr ""
 
-#: storage/models/storage.py:204
+#: storage/models/storage.py:210
 msgctxt "goods"
 msgid "Орбитальные орудия - лимит"
 msgstr ""
 
-#: storage/models/storage.py:209
+#: storage/models/storage.py:215
 msgctxt "goods"
 msgid "ПЗРК - лимит"
 msgstr ""
 
-#: storage/models/storage.py:214
+#: storage/models/storage.py:220
 msgctxt "goods"
 msgid "БМП - лимит"
 msgstr ""
 
-#: storage/models/storage.py:219
+#: storage/models/storage.py:225
 msgctxt "goods"
 msgid "БПЛА - лимит"
 msgstr ""
 
-#: storage/models/storage.py:265
+#: storage/models/storage.py:271
 msgid "positive_spend_stock_req"
 msgstr ""
 
-#: storage/models/storage.py:270
+#: storage/models/storage.py:276
 msgid "not_enough"
 msgstr ""
 
-#: storage/models/transport.py:84
+#: storage/models/transport.py:86
 msgctxt "goods"
 msgid "Всего кубов"
 msgstr ""
 
-#: storage/models/transport.py:91
+#: storage/models/transport.py:93
 msgctxt "goods"
 msgid "Уголь - кубов"
 msgstr ""
 
-#: storage/models/transport.py:96
+#: storage/models/transport.py:98
 msgctxt "goods"
 msgid "Железо - кубов"
 msgstr ""
 
-#: storage/models/transport.py:101
+#: storage/models/transport.py:103
 msgctxt "goods"
 msgid "Бокситы - кубов"
 msgstr ""
 
-#: storage/models/transport.py:107
+#: storage/models/transport.py:109
 msgctxt "goods"
 msgid "WTI - кубов"
 msgstr ""
 
-#: storage/models/transport.py:112
+#: storage/models/transport.py:114
 msgctxt "goods"
 msgid "Brent - кубов"
 msgstr ""
 
-#: storage/models/transport.py:117
+#: storage/models/transport.py:119
 msgctxt "goods"
 msgid "Urals - кубов"
 msgstr ""
 
-#: storage/models/transport.py:123
+#: storage/models/transport.py:125
 msgctxt "goods"
 msgid "Бензин - кубов"
 msgstr ""
 
-#: storage/models/transport.py:128
+#: storage/models/transport.py:130
 msgctxt "goods"
 msgid "Дизель - кубов"
 msgstr ""
 
-#: storage/models/transport.py:133
+#: storage/models/transport.py:135
 msgctxt "goods"
 msgid "Пластик - кубов"
 msgstr ""
 
-#: storage/models/transport.py:137
+#: storage/models/transport.py:139
 msgctxt "goods"
 msgid "Сталь - кубов"
 msgstr ""
 
-#: storage/models/transport.py:141
+#: storage/models/transport.py:143
 msgctxt "goods"
 msgid "Алюминий - кубов"
 msgstr ""
 
-#: storage/models/transport.py:147
+#: storage/models/transport.py:149
 msgctxt "goods"
 msgid "Медикаменты - кубов"
 msgstr ""
 
-#: storage/models/transport.py:153
+#: storage/models/transport.py:155
 msgctxt "goods"
 msgid "Автоматы - кубов"
 msgstr ""
 
-#: storage/models/transport.py:158
+#: storage/models/transport.py:160
 msgctxt "goods"
 msgid "Танки - кубов"
 msgstr ""
 
-#: storage/models/transport.py:163
+#: storage/models/transport.py:165
 msgctxt "goods"
 msgid "Штурмовики - кубов"
 msgstr ""
 
-#: storage/models/transport.py:166
+#: storage/models/transport.py:168
 msgctxt "goods"
 msgid "Орбиталки"
 msgstr ""
 
-#: storage/models/transport.py:168
+#: storage/models/transport.py:170
 msgctxt "goods"
 msgid "Орбиталки - кубов"
 msgstr ""
 
-#: storage/models/transport.py:173
+#: storage/models/transport.py:175
 msgctxt "goods"
 msgid "ПЗРК - кубов"
 msgstr ""
 
-#: storage/models/transport.py:176
+#: storage/models/transport.py:178
 msgctxt "goods"
 msgid "ПТ-пушка"
 msgstr ""
 
-#: storage/models/transport.py:178
+#: storage/models/transport.py:180
 msgctxt "goods"
 msgid "ПТ-пушка - кубов"
 msgstr ""
 
-#: storage/models/transport.py:183
+#: storage/models/transport.py:185
+msgctxt "goods"
+msgid "Мины - кубов"
+msgstr ""
+
+#: storage/models/transport.py:190
 msgctxt "goods"
 msgid "БМП - кубов"
 msgstr ""
 
-#: storage/models/transport.py:186
+#: storage/models/transport.py:193
 msgctxt "goods"
 msgid "Дроны"
 msgstr ""
 
-#: storage/models/transport.py:188
+#: storage/models/transport.py:195
 msgctxt "goods"
 msgid "Дроны - кубов"
 msgstr ""
@@ -3261,7 +3490,7 @@ msgstr ""
 msgid "Танки"
 msgstr ""
 
-#: war/models/squads/infantry.py:32 war/models/wars/war_side.py:30
+#: war/models/squads/infantry.py:47 war/models/wars/war_side.py:30
 msgid "Автоматы"
 msgstr ""
 
