@@ -1649,6 +1649,175 @@ a {
   content: '';
 }
 
+/*! Factory */
+
+.factory {
+  position: relative;
+  padding-top: 14rem;
+  padding-bottom: 48rem;
+  height: calc(100% - 60rem);
+  overflow-x: hidden;
+  font-size: 14rem;
+}
+
+.factory__topBlock {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 12rem;
+  margin: 0 auto;
+  width: 336rem;
+  padding: 18rem;
+  background-color: var(--c30);
+  margin-bottom: 24rem;
+}
+
+.factory__topBlock::before,
+.factory__topBlock::after {
+  position: absolute;
+  top: -2rem;
+  left: -2rem;
+  display: block;
+  width: 14rem;
+  height: 14rem;
+  content: '';
+  background-color: var(--c60);
+  clip-path: polygon(0% 0%, 100% 0%, 0% 100%);
+}
+
+.factory__topBlock::after {
+  top: initial;
+  left: initial;
+  right: -2rem;
+  bottom: -2rem;
+  transform: scale(-1);
+}
+
+.factory__top-row {
+  display: flex;
+  align-items: center;
+}
+
+.factory__topInput {
+  display: block;
+  width: 100%;
+  height: 24rem;
+  padding: 0 12rem;
+  color: var(--c10one);
+  line-height: 24rem;
+  background-color: transparent;
+  border: 0;
+}
+
+.factory__topInput::placeholder {
+  color: var(--c10one);
+}
+
+.factory__topLabelInput {
+  position: relative;
+}
+
+.factory__topLabelInput::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  content: '';
+  border: 1px solid var(--c10one);
+  opacity: 0.3;
+}
+
+.factory__topCreate {
+  margin: 0 auto;
+}
+
+.factory__block {
+  display: grid;
+  gap: 36rem;
+  padding: 0 12rem;
+  margin: 0;
+  list-style: none;
+}
+
+.factory__blockElement {
+  display: flex;
+  flex-direction: column;
+  gap: 12rem;
+}
+
+.factory__blockElement > h2 {
+  margin: 0;
+  font-size: 18rem;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  font-weight: 400;
+}
+
+.factory__blockRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.factory__blockRow input {
+  width: 60rem;
+  height: 18rem;
+  background-color: transparent;
+  padding: 0 6rem;
+  font-size: 14rem;
+  border: 0;
+  margin-right: 6rem;
+}
+
+.factory__inputBlock {
+  display: flex;
+  align-items: center;
+}
+
+.factory__inputBlockLabel {
+  position: relative;
+}
+
+.factory__inputBlockLabel::after {
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  content: '';
+  border: 1px solid var(--c10one);
+  opacity: 0.3;
+}
+
+.factory__range {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 2rem;
+}
+
+.factory__range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: 50%;
+  width: 20rem;
+  height: 20rem;
+  background: var(--c10two);
+  cursor: pointer;
+}
+
+@media (min-width: 1200px) {
+  .factory {
+    margin-top: 100rem;
+    margin-left: 330rem;
+    width: calc(100vw - 330rem);
+    height: calc(100vh - 100rem);
+  }
+}
+
 /*! Trading */
 
 .trading {
@@ -5174,6 +5343,11 @@ p.overview__love-stat-timer {
   align-items: center;
 }
 
+.ct__wide-modal-label-select--min {
+  height: 24rem;
+  width: 300rem;
+}
+
 .ct__wide-modal-label-select::after {
   position: absolute;
   left: 0;
@@ -5206,6 +5380,12 @@ p.overview__love-stat-timer {
   appearance: none;
 }
 
+.ct__wide-modal-label-select--min select {
+  line-height: 24rem;
+  background-color: var(--c30);
+  font-size: 14rem;
+}
+
 .ct__wide-modal-label-select select:focus {
   box-shadow: 0 0 1rem 0 var(--c10one);
 }
@@ -5217,6 +5397,10 @@ p.overview__love-stat-timer {
   width: 13rem;
   height: 6rem;
   pointer-events: none;
+}
+
+.ct__wide-modal-label-select--min svg {
+  top: 10rem;
 }
 
 /*! ct__select-region */
@@ -5925,6 +6109,116 @@ p.overview__love-stat-timer {
   animation: rotate360 10s linear infinite;
 }
 
+/*! ct__selectWithImage */
+
+.ct__selectWithImage {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  font-size: 14rem;
+  cursor: pointer;
+}
+
+.ct__selectWithImage-content {
+  display: none;
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  max-height: 110rem;
+  border: 1px solid var(--c60);
+}
+
+.ct__selectWithImage.active .ct__selectWithImage-content {
+  display: block;
+}
+
+.ct__selectWithImage-content div {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 6rem;
+  cursor: pointer;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: var(--c30);
+}
+
+.ct__selectWithImage-content div:not(:last-of-type) {
+  border-bottom: 1px solid var(--c60);
+}
+
+.ct__selectWithImage-content div::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  content: '';
+  background-color: rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.ct__selectWithImage-content div:hover::after {
+  opacity: 1;
+}
+
+.ct__selectWithImage-content img {
+  margin-right: 10rem;
+  height: 24rem;
+  width: 24rem;
+  object-fit: contain;
+  object-position: center;
+}
+
+.ct__selectWithImage-selected {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 6rem;
+}
+
+.ct__selectWithImage-selected::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  content: '';
+  border: 1px solid var(--c10one);
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.ct__selectWithImage-selected img {
+  margin-right: 10rem;
+  height: 24rem;
+  width: 24rem;
+  object-fit: contain;
+  object-position: center;
+}
+
+.ct__selectWithImage-firstText {
+  flex-grow: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 6rem;
+}
+
+.ct__selectWithImage-arrow {
+  display: inline-block;
+  width: 15rem;
+  height: 8rem;
+}
+
+.ct__selectWithImage.active .ct__selectWithImage-arrow {
+  transform: scaleY(-1);
+}
+
 /*! ct__top-tabs */
 
 .ct__top-tabs {
@@ -6283,9 +6577,17 @@ p.overview__love-stat-timer {
   overflow-y: auto;
 }
 
+.custom-scroll--alt {
+  scrollbar-color: var(--c10two) var(--c60);
+}
+
 .custom-scroll::-webkit-scrollbar {
   width: 4rem;
   background-color: var(--c30);
+}
+
+.custom-scroll--alt::-webkit-scrollbar {
+  background-color: var(--c60);
 }
 
 .custom-scroll::-webkit-scrollbar-thumb {
