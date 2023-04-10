@@ -128,6 +128,11 @@
 								  			{% nopic_list player '' %}
 								  			{% endif %}
 										{% endwith %}
+								  	  <!--название региона-->
+								  	  {% elif sub_col == 'region_name' %}
+								      	{% with sub_obj_name=sub_obj|get_attr:sub_col %}
+								  			{% trans sub_obj_name context "regions_list" %}
+										{% endwith %}
 										<!--что угодно-->
 									  {% else %}
 								  		{{ sub_obj|get_attr:sub_col }}
@@ -138,7 +143,7 @@
 							{% endfor %}
 
 						{% else %}
-						  <td class="j-t-{{ col }}" style="cursor: pointer" onclick="window.open('/{% if line|get_class_name == 'Player' or line|get_class_name == 'PlayerWithTop' %}profile{% elif line|get_class_name == 'PartyWithSize' %}party{% else %}{{ line|get_class_name|lower }}{% endif %}/{% localize off %}{{ line.pk }}{% endlocalize %}/')">
+						  <td class="j-t-{{ col }}" style="cursor: pointer" onclick="window.open('/{% if line|get_class_name == 'Player' or line|get_class_name == 'PlayerWithTop' %}profile{% elif line|get_class_name == 'PartyWithSize' %}party{% elif line|get_class_name == 'RegionWithPop' %}region{% else %}{{ line|get_class_name|lower }}{% endif %}/{% localize off %}{{ line.pk }}{% endlocalize %}/')">
 						  <!--картинка рега-->
 						  {% if col == 'on_map_id' %}
 								<img src="/static/img/regions/{{ line.on_map_id }}.png" alt="{{ col }}">
@@ -156,6 +161,11 @@
 							  		{% nopic_party_list player '' %}
 								  {% endif %}
 							    {% endif %}
+							{% endwith %}
+					  		<!--название региона-->
+						  {% elif col == 'region_name' %}
+							{% with obj_name=line|get_attr:col %}
+								{% trans obj_name context "regions_list" %}
 							{% endwith %}
 						  <!--что угодно-->
 						  {% else %}

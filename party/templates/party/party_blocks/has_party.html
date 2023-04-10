@@ -23,7 +23,7 @@
             <div>
                 <font color="black" size="4">регион: </font>
                 <img src='static/img/regions/{{ player.party.region.on_map_id }}.png' class='image' width='30' height='30'>
-                <font color="black" size="4">{{ player.party.region.region_name }}</font>
+                <font color="black" size="4">{% trans player.party.region.region_name context "regions_list" %}</font>
             </div>
             <br>
             <font color="black" size="4">Численность: {{ members_count }} человек</font>

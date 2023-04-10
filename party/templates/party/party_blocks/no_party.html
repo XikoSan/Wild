@@ -24,7 +24,7 @@
 
         <div class="row">
             <div class="col-xs-8 col-sm-8 col-md-8" align="left">
-                <b>Доступные партии: {{ party_count }}, в регионе {{ player.region }}: {{ regional_count }}</b>
+                <b>Доступные партии: {{ party_count }}, в регионе {% trans player.region.region_name context "regions_list" %}: {{ regional_count }}</b>
             </div>
         </div>
     </div>

@@ -48,7 +48,7 @@
         <select name="storage_options" id="storage_options" disabled>
             <option value="storage_none" disabled selected>{% trans 'выберите склад' context "assets" %}</option>
             {% for storage in storages %}
-            <option id="storage_{% localize off %}{{ storage.pk }}{% endlocalize %}" value='{% localize off %}{{ storage.pk }}{% endlocalize %}'>{{ storage.region.region_name }}</option>
+            <option id="storage_{% localize off %}{{ storage.pk }}{% endlocalize %}" value='{% localize off %}{{ storage.pk }}{% endlocalize %}'>{% trans storage.region.region_name context "regions_list" %}</option>
             {% endfor %}
         </select>
         <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">

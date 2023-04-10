@@ -11,6 +11,7 @@ from party.logs.party_apply import PartyApply
 from party.position import PartyPosition
 from player.logs.gold_log import GoldLog
 from player.player import Player
+from django.utils.translation import pgettext
 
 
 # вкладка "Партия" главной страницы
@@ -40,10 +41,10 @@ def new_party(request):
                     # new_party.task_id = task_id.__str__()
                     new_party.save()
                     # Создаём должность лидера партии
-                    leader_post = PartyPosition(title='Глава партии', party=new_party, based=True, party_lead=True)
+                    leader_post = PartyPosition(title=pgettext('party_manage', 'Глава партии'), party=new_party, based=True, party_lead=True)
                     leader_post.save()
                     # Создаём должность новичка в партии
-                    noob_post = PartyPosition(title='Новый игрок партии', party=new_party, based=True)
+                    noob_post = PartyPosition(title=pgettext('party_manage', 'Новый игрок партии'), party=new_party, based=True)
                     noob_post.save()
                     # вызываем фоновый процесс старта праймериз на 7 дней
                     # GoPrims.apply_async((new_party.pk,), countdown=604800, queue='government', task_id=task_id)

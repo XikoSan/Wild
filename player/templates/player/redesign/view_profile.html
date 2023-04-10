@@ -98,7 +98,7 @@
 					<h2 class="ct__s-title">{% trans 'место жительства' context "profile" %}</h2>
 					<p class="ct__s-text">
 						<a href="/region/{{ char.region.pk }}/">
-							{{ char.region }}
+							{% trans char.region.region_name context "regions_list" %}
 						</a>
 					</p>
 				</div>
@@ -107,7 +107,7 @@
 					<h2 class="ct__s-title">{% trans 'прописка' context "profile" %}</h2>
 					<p class="ct__s-text">
 						<a href="/region/{{ char.residency.pk }}/">
-							{{ char.residency }}, с: {{ char.residency_date|timezone:player.time_zone|date:"d.m.Y H:i" }}
+							{% trans char.residency.region_name context "regions_list" %}, {% trans 'с' context "profile" %}: {{ char.residency_date|timezone:player.time_zone|date:"d.m.Y H:i" }}
 						</a>
 					</p>
 				</div>
@@ -122,7 +122,7 @@
 						{% else %}{% trans 'беспартийный' %}{% endif %}
 						(
 						<a href="/party_history/{% localize off %}{{ char.pk }}{% endlocalize %}/">
-							история
+							{% trans 'история' context "profile" %}
 						</a>
 						)
 					</p>
@@ -131,7 +131,13 @@
 				<div class="ct__s">
 					<h2 class="ct__s-title">{% trans 'должность в партии' %}</h2>
 					<p class="ct__s-text">
-						{% if char.party_post %}{{ char.party_post.title }}{% else %}{% trans 'беспартийный' %}{% endif %}
+						{% if char.party_post %}
+							{% if char.party_post.based %}
+								{% trans char.party_post.title context "party_manage" %}
+							{% else %}
+								{{ char.party_post.title }}
+							{% endif %}
+						{% else %}{% trans 'беспартийный' %}{% endif %}
 					</p>
 				</div>
 

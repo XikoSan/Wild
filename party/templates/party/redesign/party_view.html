@@ -204,7 +204,11 @@
 												{% endif %}
 						</td>
   						<td class="j-t-four" data-char-id="20">
-  							{{ member.party_post.title }}
+							{% if member.party_post.based %}
+								{% trans member.party_post.title context "party_manage" %}
+							{% else %}
+								{{ member.party_post.title }}
+							{% endif %}
   						</td>
   					</tr>
                     {% endfor %}

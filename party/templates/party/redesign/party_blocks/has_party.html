@@ -112,7 +112,7 @@
 
         <div class="party__region" onclick="window.location.href = 'region/{{ player.party.region.pk }}/'">
           <img src="static/img/regions/{{ player.party.region.on_map_id }}.png">
-          <p>{{ player.party.region.region_name }}</p>
+          <p>{% trans player.party.region.region_name context "regions_list" %}</p>
         </div>
 
       </div><!--конец инфа в топ блоке-->
@@ -178,7 +178,11 @@
 								{% endif %}
 							{% endif %}
 						>
-							{{ member.party_post.title }}
+							{% if member.party_post.based %}
+								{% trans member.party_post.title context "party_manage" %}
+							{% else %}
+								{{ member.party_post.title }}
+							{% endif %}
 						</td>
 					</tr>
 					{% endfor %}

@@ -14,7 +14,7 @@
 {% block content %}
 
   <section class="party custom-scroll">
-		<h1 class="party__title ct__page-title">Партия</h1>
+		<h1 class="party__title ct__page-title">{% trans 'Управление партией' context "party_manage" %}</h1>
 	  
 		<div class="party__tabs-management ct__top-tabs">
 			<button class="ct__top-tab ct__top-tab1 active ct__mid-btn" onclick="switchMainBlocks(0)">
@@ -29,7 +29,7 @@
 						<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
 					</g>
 				</svg>
-				<span>партия</span>
+				<span>{% trans 'партия' context "party_manage" %}</span>
 			</button>		
 
 			<button class="ct__top-tab ct__top-tab2 ct__mid-btn" onclick="switchMainBlocks(1)">
@@ -44,7 +44,7 @@
 						<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
 					</g>
 				</svg>
-				<span>должности</span>
+				<span>{% trans 'должности' context "party_manage" %}</span>
 			</button>		
 		</div>
 
@@ -114,22 +114,22 @@
 				
 				<div class="party__mmid-split">
 					<div class="party__mmid-col">
-						<h2>Тип партии</h2>:</h2>
+						<h2>{% trans 'Тип партии' context "party_manage" %}</h2>:</h2>
 						<button class="ct__btn-half-screen" onclick="window.location.href = '{% url 'switch_party_type' %}'" style="cursor: pointer">
-							{% if player.party.type == 'op' %}открытая{% else %}закрытая{% endif %} (изменить)
+							{% if player.party.type == 'op' %}{% trans 'открытая' context "party_manage" %}{% else %}{% trans 'закрытая' context "party_manage" %}{% endif %} ({% trans 'изменить' context "party_manage" %})
 						</button>
 					</div>
 	
 					<div class="party__mmid-col party__mmid-col--r">
-						<h2>Роспуск партии:</h2>
+						<h2>{% trans 'Роспуск партии' context "party_manage" %}:</h2>
 						{% if members_count == 1 %}
 						<form id="leave_party_form" role="form">
                             {% csrf_token %}
                             <input type="hidden" name="party_id" id="party_id" value="{{ player.party.pk }}">
-							<button type="submit" class="ct__btn-half-screen" style="cursor: pointer">подтвердить роспуск</button>
+							<button type="submit" class="ct__btn-half-screen" style="cursor: pointer">{% trans 'подтвердить роспуск' context "party_manage" %}</button>
                         </form>
 						{% else %}
-						<button class="ct__btn-half-screen" style="opacity: 0.5">роспуск невозможен</button>
+						<button class="ct__btn-half-screen" style="opacity: 0.5">{% trans 'роспуск невозможен' context "party_manage" %}</button>
 						{% endif %}
 					</div>
 				</div>
@@ -150,7 +150,7 @@
 						{% if player.party.description %}
 							{{ player.party.description }}
 						{% else %}
-							добавить описание партии
+							{% trans 'добавить описание партии' context "party_manage" %}
 						{% endif %}
 					</p>
 				</div>
@@ -165,7 +165,7 @@
 				<div class="party__mmid-line"></div>
 	
 				<form id="new_role_form" class="party__mmid-add">
-					<h2>Добавить должность:</h2>
+					<h2>{% trans 'Добавить должность' context "party_manage" %}:</h2>
 					{% csrf_token %}
 					<input type="text" maxlength="30" name="new_role_name" id="new_role_name" style="color: var(--c10two)">
 					<div class="ct__two-select-wrapper-check ct__two-select-wrapper-check--min">
@@ -180,10 +180,10 @@
 									<path d="M6.5 4.5L4.5 6.5V20.5H18.5L20.5 18.5V4.5H6.5Z" fill="var(--c10two)" stroke="var(--c10two)"/>
 								</svg>					
 							</span>
-							секретарь
+							{% trans 'секретарь' context "party_manage" %}
 						</label>
 					</div>
-					<button type="submit" id="add_role" class="ct__btn-half-screen" style="cursor:pointer">добавить</button>
+					<button type="submit" id="add_role" class="ct__btn-half-screen" style="cursor:pointer">{% trans 'добавить' context "party_manage" %}</button>
 				</form>
 	
 				<div class="party__mmid-line"></div>
@@ -195,14 +195,18 @@
 					<tbody>
 		
 						<tr>
-							<td class="j-t-one">название должности</td>
-							<td class="j-t-two" style="text-align: center;">секретарь</td>
-							<td class="j-t-three" style="text-align: center;">действия</td>
+							<td class="j-t-one">{% trans 'название должности' context "party_manage" %}</td>
+							<td class="j-t-two" style="text-align: center;">{% trans 'секретарь' context "party_manage" %}</td>
+							<td class="j-t-three" style="text-align: center;">{% trans 'действия' context "party_manage" %}</td>
 						</tr>
 						{% for role in roles_list %}
 						<tr id="{% localize off %}{{ role.pk }}{% endlocalize %}_line" class="position_line">
 							<td class="j-t-one">
-								{{ role.title }}
+								{% if role.based %}
+									{% trans role.title context "party_manage" %}
+								{% else %}
+									{{ role.title }}
+								{% endif %}
 							</td>
 							<td class="j-t-two" style="text-align: center;">{% if role.party_sec %}⭐{% endif %}</td>
 							<td class="j-t-three" style="text-align: center;">
@@ -243,7 +247,7 @@
 		<div class="rank-edit__overlay" onclick="closeModalByRemoveClass('#party-name-edit')"></div>
 		<form id="rename_form" class="rank-edit__content">
 			{% csrf_token %}
-			<h2 class="rank-edit__title">Смена названия партии:</h2>
+			<h2 class="rank-edit__title">{% trans 'Смена названия партии' context "party_manage" %}:</h2>
 			<textarea maxlength="30" class="rank-edit__textarea" name="new_party_name" id="party-title-area" cols="30" rows="10">{{ player.party.title }}</textarea>
 			
 			<div class="party__mmid-line"></div>
@@ -260,7 +264,7 @@
 						<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
 					</g>
 				</svg>
-				<span>сохранить</span>
+				<span>{% trans 'сохранить' context "party_manage" %}</span>
 			</button>
 
 		</form>
@@ -271,7 +275,7 @@
 		<div class="rank-edit__overlay" onclick="closeModalByRemoveClass('#party-desc-edit')"></div>
 		<form id="deskr_form" class="rank-edit__content">
 			{% csrf_token %}
-			<h2 class="rank-edit__title">Смена описания партии:</h2>
+			<h2 class="rank-edit__title">{% trans 'Смена описания партии' context "party_manage" %}:</h2>
 			<textarea class="rank-edit__textarea" name="new_party_deskr" id="party-desc-area" cols="30" rows="10">{% if player.party.description %}{{ player.party.description }}{% endif %}</textarea>
 			
 			<div class="party__mmid-line"></div>
@@ -288,7 +292,7 @@
 						<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
 					</g>
 				</svg>
-				<span>сохранить</span>
+				<span>{% trans 'сохранить' context "party_manage" %}</span>
 			</button>
 
 		</form>
@@ -343,8 +347,8 @@
 							</div>
 						</div>
 						<div class="btn-r-wrapper">
-							<button type="button" class="btn btn-default back-crop-js" data-dismiss="modal">Отмена</button>
-							<button type="button" class="btn btn-primary js-crop-and-upload">Загрузить</button>
+							<button type="button" class="btn btn-default back-crop-js" data-dismiss="modal">{% trans 'Отмена' %}</button>
+							<button type="button" class="btn btn-primary js-crop-and-upload">{% trans 'Загрузить' %}</button>
 						</div>
 			</div>
 		</div>

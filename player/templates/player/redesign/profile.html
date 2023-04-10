@@ -209,7 +209,7 @@
 					<h2 class="ct__s-title">{% trans 'место жительства' context "profile" %}</h2>
 					<p class="ct__s-text">
 						<a href="/region/{{ player.region.pk }}/">
-							{{ player.region }}
+							{% trans player.region.region_name context "regions_list" %}
 						</a>
 					</p>
 				</div>
@@ -218,7 +218,7 @@
 					<h2 class="ct__s-title">{% trans 'прописка' context "profile" %}</h2>
 					<p class="ct__s-text">
 						<a href="/region/{{ player.residency.pk }}/">
-							{{ player.residency }}, с: {{ player.residency_date|timezone:player.time_zone|date:"d.m.Y H:i" }}
+							{% trans player.residency.region_name context "regions_list" %}, {% trans 'с' context "profile" %}: {{ player.residency_date|timezone:player.time_zone|date:"d.m.Y H:i" }}
 						</a>
 					</p>
 				</div>
@@ -242,7 +242,13 @@
 				<div class="ct__s">
 					<h2 class="ct__s-title">{% trans 'должность в партии' %}</h2>
 					<p class="ct__s-text">
-						{% if player.party_post %}{{ player.party_post.title }}{% else %}{% trans 'беспартийный' %}{% endif %}
+						{% if player.party_post %}
+							{% if player.party_post.based %}
+								{% trans player.party_post.title context "party_manage" %}
+							{% else %}
+								{{ player.party_post.title }}
+							{% endif %}
+						{% else %}{% trans 'беспартийный' %}{% endif %}
 					</p>
 				</div>
 

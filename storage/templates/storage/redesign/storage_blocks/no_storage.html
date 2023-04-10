@@ -19,7 +19,7 @@
             <label class="store__noselect">
                 <select name="storage">
                 {% for storage in storages %}
-                    <option {% if forloop.first %}selected{% endif %} value='{% localize off %}{{ storage.pk }}{% endlocalize %}'>{{ storage.region }}{% if not materials_exists|dict_key:storage %} - {% trans 'нехватка материалов!' context "no_storage" %}{% else %} - {% trans 'доставка' context "no_storage" %} ${{delivery_sum|dict_key:storage }}{% endif %}
+                    <option {% if forloop.first %}selected{% endif %} value='{% localize off %}{{ storage.pk }}{% endlocalize %}'>{% trans storage.region.region_name context "regions_list" %}{% if not materials_exists|dict_key:storage %} - {% trans 'нехватка материалов!' context "no_storage" %}{% else %} - {% trans 'доставка' context "no_storage" %} ${{delivery_sum|dict_key:storage }}{% endif %}
                     </option>
                 {% endfor %}
                 </select>

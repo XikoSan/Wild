@@ -73,7 +73,7 @@
                                 <div class="col-xs-6 col-sm-6 col-md-6">
                                     <b>
                                         <img src='/static/img/regions/{{ party.region.on_map_id }}.png' class='image' width='30' height='30' onclick="window.location.href = '/region/{{ party.region.pk }}/'" style="cursor: pointer">
-                                        <font size="4" onclick="window.location.href = '/region/{{ party.region.pk }}/'" style="cursor: pointer">{{ party.region.region_name }}</font>
+                                        <font size="4" onclick="window.location.href = '/region/{{ party.region.pk }}/'" style="cursor: pointer">{% trans party.region.region_name context "regions_list" %}</font>
                                     </b>
                                 </div>
                             </div>

@@ -8,6 +8,7 @@ from player.decorators.player import check_player
 from player.player import Player
 
 @login_required(login_url='/')
+@check_player
 def management(request):
     player = Player.get_instance(account=request.user)
     if player.party:
