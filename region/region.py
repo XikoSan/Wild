@@ -9,7 +9,7 @@ from django.utils.translation import gettext_lazy, pgettext_lazy, ugettext as _
 from state.models.state import State
 from .actual_manager import ActualManager
 
-
+# Чтобы перевод региона появился в PO файлах, требуется дописать его в конце html файла 'map'!
 class Region(models.Model):
     with_off = models.Manager()  # Менеджер по умолчанию
     objects = ActualManager()  # Менеджер активных записей
