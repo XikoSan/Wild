@@ -16,6 +16,16 @@ from region.region import Region
 from wild_politics.settings import TIME_ZONE
 from region.views.lists.get_regions_online import get_region_online
 
+
+# класс региона, в котором его онлайн и население - это поля
+class RegionWithPop(Region):
+    pk = 0
+    online = 0
+    pop = 0
+
+    class Meta:
+        abstract = True
+
 # список всех регионов игры
 # page - открываемая страница
 @login_required(login_url='/')
@@ -26,28 +36,61 @@ def world_regions_list(request):
 
     # получаем регионы для текущей страницы
     page = request.GET.get('page')
-    regions = Region.objects.only('pk', 'region_name', 'on_map_id').all().order_by('pk')
+    if page:
+        regions = Region.objects.only('pk', 'region_name', 'on_map_id').all().order_by('pk')[0+((page-1)*50):50*page]
+    else:
+        regions = Region.objects.only('pk', 'region_name', 'on_map_id').all().order_by('pk')[:50]
 
-    lines = get_thing_page(regions, page, 50)
+    regions_with_pop = []
 
-    pk_list = []
-    for line in lines:
-        pk_list.append(line.pk)
+    for region in regions:
+        pop_region = RegionWithPop(
+            region_name = region.region_name,
+            on_map_id = region.on_map_id
+        )
+        pop_region.pk = region.pk,
+        # почему-то строкой выше айди складывается в формате (123,)
+        pop_region.pk = pop_region.pk[0]
 
-    regions_pop = {}
-    regions_online = {}
+        pop_region.pop, pop_region.online = get_region_online(region)
 
-    for region in regions.filter(pk__in=pk_list):
-        regions_pop[region.pk], regions_online[region.pk] = get_region_online(region)
+        regions_with_pop.append(pop_region)
+
+    lines = get_thing_page(regions_with_pop, page, 50)
+
+    header = {
+
+        'on_map_id': {
+            'text': '',
+            'select_text': 'Герб',
+            'visible': 'true'
+        },
+
+        'region_name': {
+            'text': 'Регион',
+            'select_text': 'Регион',
+            'visible': 'true'
+        },
+
+        'online': {
+            'text': 'Онлайн',
+            'select_text': 'Онлайн',
+            'visible': 'true'
+        },
+
+        'pop': {
+            'text': 'Население',
+            'select_text': 'Население',
+            'visible': 'true'
+        }
+    }
 
     # отправляем в форму
-    return render(request, 'lists/world_regions_list.html', {
+    return render(request, 'player/redesign/lists/universal_list.html', {
         'page_name': _('Регионы игры'),
 
         'player': player,
-        'lines': lines,
-        'regions_pop': regions_pop,
-        'regions_online': regions_online,
 
-        'regions_count': Region.objects.all().count()
+        'header': header,
+        'lines': lines,
     })
