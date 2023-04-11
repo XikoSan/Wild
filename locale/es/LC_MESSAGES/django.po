@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-11 22:10+0300\n"
-"PO-Revision-Date: 2023-04-04 21:36+0300\n"
+"POT-Creation-Date: 2023-04-10 23:46+0300\n"
+"PO-Revision-Date: 2023-04-12 02:35+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es_ES\n"
@@ -294,147 +294,101 @@ msgid "отклонить всё"
 msgstr "rechazar todo"
 
 #: party/templates/party/redesign/manage.html:17
-#: party/views/management/management.py:27
-#, fuzzy
-#| msgctxt "assets"
-#| msgid "Перемещение товаров"
 msgctxt "party_manage"
 msgid "Управление партией"
-msgstr "Movimiento de mercancías"
+msgstr "Administrat Partido"
 
 #: party/templates/party/redesign/manage.html:32
-#, fuzzy
-#| msgid "партия"
 msgctxt "party_manage"
 msgid "партия"
 msgstr "partido"
 
 #: party/templates/party/redesign/manage.html:47
-#, fuzzy
-#| msgctxt "has_party"
-#| msgid "Должность"
 msgctxt "party_manage"
 msgid "должности"
-msgstr "Posición"
+msgstr "posición"
 
 #: party/templates/party/redesign/manage.html:117
-#, fuzzy
-#| msgctxt "no_party"
-#| msgid "все партии"
 msgctxt "party_manage"
 msgid "Тип партии"
-msgstr "Todos los partidos"
+msgstr "Tipo de partido"
 
 #: party/templates/party/redesign/manage.html:119
-#, fuzzy
-#| msgid "Закрыть"
 msgctxt "party_manage"
 msgid "открытая"
-msgstr "Cerrar"
+msgstr "Abrir"
 
 #: party/templates/party/redesign/manage.html:119
-#, fuzzy
-#| msgid "Закрыть"
 msgctxt "party_manage"
 msgid "закрытая"
-msgstr "Cerrar"
+msgstr "cerrar"
 
 #: party/templates/party/redesign/manage.html:119
-#, fuzzy
-#| msgctxt "w_trading"
-#| msgid "Отменить"
 msgctxt "party_manage"
 msgid "изменить"
-msgstr "Cancelar"
+msgstr "Cambiar"
 
 #: party/templates/party/redesign/manage.html:124
-#, fuzzy
-#| msgctxt "no_party"
-#| msgid "Доступные партии"
 msgctxt "party_manage"
 msgid "Роспуск партии"
-msgstr "Partidos disponiles"
+msgstr "Disolver partido"
 
 #: party/templates/party/redesign/manage.html:129
-#, fuzzy
-#| msgctxt "assets"
-#| msgid "подтвердить"
 msgctxt "party_manage"
 msgid "подтвердить роспуск"
-msgstr "aceptar"
+msgstr "confirmar"
 
 #: party/templates/party/redesign/manage.html:132
 msgctxt "party_manage"
 msgid "роспуск невозможен"
-msgstr ""
+msgstr "no disponible"
 
 #: party/templates/party/redesign/manage.html:153
-#, fuzzy
-#| msgid "должность в партии"
 msgctxt "party_manage"
 msgid "добавить описание партии"
-msgstr "posición en el partido"
+msgstr "añadir descripción"
 
 #: party/templates/party/redesign/manage.html:168
-#, fuzzy
-#| msgctxt "has_party"
-#| msgid "Должность"
 msgctxt "party_manage"
 msgid "Добавить должность"
-msgstr "Posición"
+msgstr "Crear posición"
 
 #: party/templates/party/redesign/manage.html:183
 #: party/templates/party/redesign/manage.html:199
 msgctxt "party_manage"
 msgid "секретарь"
-msgstr ""
+msgstr "secretario"
 
 #: party/templates/party/redesign/manage.html:186
-#, fuzzy
-#| msgctxt "map"
-#| msgid "отправиться"
 msgctxt "party_manage"
 msgid "добавить"
-msgstr "volar"
+msgstr "crear nuevo"
 
 #: party/templates/party/redesign/manage.html:198
-#, fuzzy
-#| msgid "Создание персонажа"
 msgctxt "party_manage"
 msgid "название должности"
-msgstr "Создание персонажа"
+msgstr "nombre de la posición"
 
 #: party/templates/party/redesign/manage.html:200
-#, fuzzy
-#| msgctxt "no_party"
-#| msgid "Действие"
 msgctxt "party_manage"
 msgid "действия"
 msgstr "Acción"
 
 #: party/templates/party/redesign/manage.html:250
-#, fuzzy
-#| msgctxt "skill_cancel"
-#| msgid "Отмена изучения навыка"
 msgctxt "party_manage"
 msgid "Смена названия партии"
-msgstr "Cancelar mejora de habilidad"
+msgstr "Cambiar nombbre"
 
 #: party/templates/party/redesign/manage.html:267
 #: party/templates/party/redesign/manage.html:295
-#, fuzzy
-#| msgid "сохранить"
 msgctxt "party_manage"
 msgid "сохранить"
 msgstr "guardar"
 
 #: party/templates/party/redesign/manage.html:278
-#, fuzzy
-#| msgctxt "skill_cancel"
-#| msgid "Отмена изучения навыка"
 msgctxt "party_manage"
 msgid "Смена описания партии"
-msgstr "Cancelar mejora de habilidad"
+msgstr "Cambiar descripción"
 
 #: party/templates/party/redesign/manage.html:350
 #: player/templates/player/redesign/new_player.html:135
@@ -652,20 +606,14 @@ msgid "Партии мира"
 msgstr "Partidos del mundo"
 
 #: party/views/management/new_party.py:44
-#, fuzzy
-#| msgctxt "no_party"
-#| msgid "все партии"
 msgctxt "party_manage"
 msgid "Глава партии"
-msgstr "Todos los partidos"
+msgstr "Líder del partido"
 
 #: party/views/management/new_party.py:47
-#, fuzzy
-#| msgctxt "no_party"
-#| msgid "Доступные партии"
 msgctxt "party_manage"
 msgid "Новый игрок партии"
-msgstr "Partidos disponiles"
+msgstr "Nuevo miembro del partido"
 
 #: party/views/management/staff/leave_party.py:37
 #: party/views/management/staff/leave_party.py:209
@@ -1394,7 +1342,7 @@ msgstr "residencia"
 #: player/templates/player/redesign/view_profile.html:110
 msgctxt "profile"
 msgid "с"
-msgstr ""
+msgstr "desde"
 
 #: player/templates/player/redesign/profile.html:227
 #: player/templates/player/redesign/view_profile.html:116
@@ -1409,7 +1357,6 @@ msgid "беспартийный"
 msgstr "sin afiliar"
 
 #: player/templates/player/redesign/profile.html:236
-#: player/templates/player/redesign/view_profile.html:125
 msgctxt "profile"
 msgid "история"
 msgstr "(historia)"
@@ -1725,64 +1672,55 @@ msgstr "Top de Hospitales"
 msgid "Уровень ТЭЦ"
 msgstr "Nivel de plantas eléctricas"
 
-#: region/templates/region/redesign/map.html:309
+#: region/templates/region/map.html:132
 msgctxt "regions_list"
 msgid "Тюрингия"
-msgstr ""
+msgstr "Turingia"
 
-#: region/templates/region/redesign/map.html:311
+#: region/templates/region/map.html:134
 msgctxt "regions_list"
 msgid "Саксония"
-msgstr ""
+msgstr "Sajonia"
 
-#: region/templates/region/redesign/map.html:313
+#: region/templates/region/map.html:136
 msgctxt "regions_list"
 msgid "Чехия"
-msgstr ""
+msgstr "República Checa"
 
-#: region/templates/region/redesign/map.html:315
-#, fuzzy
-#| msgctxt "factory"
-#| msgid "Ошибка производства"
+#: region/templates/region/map.html:138
 msgctxt "regions_list"
 msgid "Нижнесилезское воеводство"
-msgstr "Error de producción"
+msgstr "Voivodato de Baja Silesia"
 
-#: region/templates/region/redesign/map.html:317
-#, fuzzy
-#| msgctxt "factory"
-#| msgid "Ошибка производства"
+#: region/templates/region/map.html:140
 msgctxt "regions_list"
 msgid "Любушское воеводство"
-msgstr "Error de producción"
+msgstr "Voivodato de Lubusz"
 
-#: region/templates/region/redesign/map.html:319
+#: region/templates/region/map.html:142
 msgctxt "regions_list"
 msgid "Бавария"
-msgstr ""
+msgstr "Baviera"
 
-#: region/templates/region/redesign/map.html:321
+#: region/templates/region/map.html:144
 msgctxt "regions_list"
 msgid "Бранденбург"
-msgstr ""
+msgstr "Brandemburgo"
 
-#: region/templates/region/redesign/map.html:323
+#: region/templates/region/map.html:146
 msgctxt "regions_list"
 msgid "Саксония-Анхальт"
-msgstr ""
+msgstr "Sajonia-Anhalt"
 
-#: region/templates/region/redesign/map.html:325
+#: region/templates/region/map.html:148
 msgctxt "regions_list"
 msgid "Австрия"
-msgstr ""
+msgstr "Austria"
 
-#: region/templates/region/redesign/map.html:327
-#, fuzzy
-#| msgctxt "menu"
-#| msgid "производство"
+#: region/templates/region/map.html:150
 msgctxt "regions_list"
 msgid "Опольское воеводство"
-msgstr "producción"
+msgstr "Voivodato de Opole"
 
 #: region/templates/region/redesign/mining.html:9
 msgctxt "mining"
@@ -2428,12 +2366,9 @@ msgid "ПТ-пушка - кубов"
 msgstr "Cañones At - volumen"
 
 #: storage/models/transport.py:185
-#, fuzzy
-#| msgctxt "goods"
-#| msgid "Дроны - кубов"
 msgctxt "goods"
 msgid "Мины - кубов"
-msgstr "VANT - volumen"
+msgstr "Mina - volumen"
 
 #: storage/models/transport.py:190
 msgctxt "goods"
@@ -2815,7 +2750,7 @@ msgstr "todo el dinero"
 #: storage/templates/storage/redesign/storage_blocks/no_storage.html:7
 msgctxt "no_storage"
 msgid "склад в регионе"
-msgstr "Crear un almacén en"
+msgstr "Almacén en"
 
 #: storage/templates/storage/redesign/storage_blocks/no_storage.html:9
 msgctxt "no_storage"
@@ -3058,7 +2993,7 @@ msgstr "En el almacén de "
 #: storage/views/assets/assets_action.py:140
 msgctxt "assets"
 msgid " недостаточно места для товара "
-msgstr " no hay espacio suficiente para "
+msgstr " no hay espacio suficiente espacio para "
 
 #: storage/views/assets/assets_action.py:141
 #: storage/views/assets/assets_action.py:150
@@ -3070,7 +3005,7 @@ msgstr "Requiere: "
 #: storage/views/assets/assets_action.py:150
 msgctxt "assets"
 msgid ", в наличии: "
-msgstr ", en stock: "
+msgstr ", disponible: "
 
 #: storage/views/assets/assets_action.py:149
 msgctxt "assets"
