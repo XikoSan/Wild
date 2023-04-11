@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-04-10 23:46+0300\n"
-"PO-Revision-Date: 2023-04-06 12:04+0300\n"
+"PO-Revision-Date: 2023-04-11 22:04+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -294,146 +294,101 @@ msgid "отклонить всё"
 msgstr "alle ablehnen"
 
 #: party/templates/party/redesign/manage.html:17
-#, fuzzy
-#| msgctxt "assets"
-#| msgid "Перемещение товаров"
 msgctxt "party_manage"
 msgid "Управление партией"
-msgstr "Verlagerung der Ware"
+msgstr "Parteiverwaltung"
 
 #: party/templates/party/redesign/manage.html:32
-#, fuzzy
-#| msgid "партия"
 msgctxt "party_manage"
 msgid "партия"
 msgstr "Partei"
 
 #: party/templates/party/redesign/manage.html:47
-#, fuzzy
-#| msgctxt "has_party"
-#| msgid "Должность"
 msgctxt "party_manage"
 msgid "должности"
 msgstr "Position"
 
 #: party/templates/party/redesign/manage.html:117
-#, fuzzy
-#| msgctxt "no_party"
-#| msgid "все партии"
 msgctxt "party_manage"
 msgid "Тип партии"
-msgstr "alle Parteien"
+msgstr "Art der Partei"
 
 #: party/templates/party/redesign/manage.html:119
-#, fuzzy
-#| msgid "Закрыть"
 msgctxt "party_manage"
 msgid "открытая"
-msgstr "Schließen"
+msgstr "öffnen"
 
 #: party/templates/party/redesign/manage.html:119
-#, fuzzy
-#| msgid "Закрыть"
 msgctxt "party_manage"
 msgid "закрытая"
-msgstr "Schließen"
+msgstr "schließen"
 
 #: party/templates/party/redesign/manage.html:119
-#, fuzzy
-#| msgctxt "w_trading"
-#| msgid "Отменить"
 msgctxt "party_manage"
 msgid "изменить"
-msgstr "abbrechen"
+msgstr "wechseln"
 
 #: party/templates/party/redesign/manage.html:124
-#, fuzzy
-#| msgctxt "no_party"
-#| msgid "Доступные партии"
 msgctxt "party_manage"
 msgid "Роспуск партии"
-msgstr "Verfügbare Parteien"
+msgstr "Auflösung bestätigen"
 
 #: party/templates/party/redesign/manage.html:129
-#, fuzzy
-#| msgctxt "assets"
-#| msgid "подтвердить"
 msgctxt "party_manage"
 msgid "подтвердить роспуск"
-msgstr "bestätigen."
+msgstr "Auflösung bestätigen"
 
 #: party/templates/party/redesign/manage.html:132
 msgctxt "party_manage"
 msgid "роспуск невозможен"
-msgstr ""
+msgstr "nicht verfügbar"
 
 #: party/templates/party/redesign/manage.html:153
-#, fuzzy
-#| msgid "должность в партии"
 msgctxt "party_manage"
 msgid "добавить описание партии"
-msgstr "Position in der Partei"
+msgstr "Positionsbeschreibung hinzufügen"
 
 #: party/templates/party/redesign/manage.html:168
-#, fuzzy
-#| msgctxt "has_party"
-#| msgid "Должность"
 msgctxt "party_manage"
 msgid "Добавить должность"
-msgstr "Position"
+msgstr "Position erstellen"
 
 #: party/templates/party/redesign/manage.html:183
 #: party/templates/party/redesign/manage.html:199
 msgctxt "party_manage"
 msgid "секретарь"
-msgstr ""
+msgstr "Sekretär"
 
 #: party/templates/party/redesign/manage.html:186
-#, fuzzy
-#| msgctxt "map"
-#| msgid "отправиться"
 msgctxt "party_manage"
 msgid "добавить"
-msgstr "Fliege nach"
+msgstr "neu erstellen"
 
 #: party/templates/party/redesign/manage.html:198
-#, fuzzy
-#| msgid "Создание персонажа"
 msgctxt "party_manage"
 msgid "название должности"
-msgstr "Erstellen eines Charakters"
+msgstr "Positionsbezeichnung"
 
 #: party/templates/party/redesign/manage.html:200
-#, fuzzy
-#| msgctxt "no_party"
-#| msgid "Действие"
 msgctxt "party_manage"
 msgid "действия"
 msgstr "Aktion"
 
 #: party/templates/party/redesign/manage.html:250
-#, fuzzy
-#| msgctxt "skill_cancel"
-#| msgid "Отмена изучения навыка"
 msgctxt "party_manage"
 msgid "Смена названия партии"
-msgstr "Du kannst die Fähigkeit abbrechen"
+msgstr "Änderung des Parteititels"
 
 #: party/templates/party/redesign/manage.html:267
 #: party/templates/party/redesign/manage.html:295
-#, fuzzy
-#| msgid "сохранить"
 msgctxt "party_manage"
 msgid "сохранить"
 msgstr "speichern"
 
 #: party/templates/party/redesign/manage.html:278
-#, fuzzy
-#| msgctxt "skill_cancel"
-#| msgid "Отмена изучения навыка"
 msgctxt "party_manage"
 msgid "Смена описания партии"
-msgstr "Du kannst die Fähigkeit abbrechen"
+msgstr "Parteibeschreibung ändern"
 
 #: party/templates/party/redesign/manage.html:350
 #: player/templates/player/redesign/new_player.html:135
@@ -653,20 +608,14 @@ msgid "Партии мира"
 msgstr "Parteien in der Welt"
 
 #: party/views/management/new_party.py:44
-#, fuzzy
-#| msgctxt "no_party"
-#| msgid "все партии"
 msgctxt "party_manage"
 msgid "Глава партии"
-msgstr "alle Parteien"
+msgstr "Parteivorsitzender"
 
 #: party/views/management/new_party.py:47
-#, fuzzy
-#| msgctxt "no_party"
-#| msgid "Доступные партии"
 msgctxt "party_manage"
 msgid "Новый игрок партии"
-msgstr "Verfügbare Parteien"
+msgstr "Neues Parteimitglied"
 
 #: party/views/management/staff/leave_party.py:37
 #: party/views/management/staff/leave_party.py:209
@@ -1727,61 +1676,52 @@ msgstr "Heizkraftwerk"
 #: region/templates/region/map.html:132
 msgctxt "regions_list"
 msgid "Тюрингия"
-msgstr ""
+msgstr "Thüringen"
 
 #: region/templates/region/map.html:134
 msgctxt "regions_list"
 msgid "Саксония"
-msgstr ""
+msgstr "Sachsen"
 
 #: region/templates/region/map.html:136
 msgctxt "regions_list"
 msgid "Чехия"
-msgstr ""
+msgstr "Tschechische Republik"
 
 #: region/templates/region/map.html:138
-#, fuzzy
-#| msgctxt "factory"
-#| msgid "Ошибка производства"
 msgctxt "regions_list"
 msgid "Нижнесилезское воеводство"
-msgstr "Produktionsfehler"
+msgstr "Niederschlesien"
 
 #: region/templates/region/map.html:140
-#, fuzzy
-#| msgctxt "factory"
-#| msgid "Ошибка производства"
 msgctxt "regions_list"
 msgid "Любушское воеводство"
-msgstr "Produktionsfehler"
+msgstr "Lebus"
 
 #: region/templates/region/map.html:142
 msgctxt "regions_list"
 msgid "Бавария"
-msgstr ""
+msgstr "Bayern"
 
 #: region/templates/region/map.html:144
 msgctxt "regions_list"
 msgid "Бранденбург"
-msgstr ""
+msgstr "Brandenburg"
 
 #: region/templates/region/map.html:146
 msgctxt "regions_list"
 msgid "Саксония-Анхальт"
-msgstr ""
+msgstr "Sachsen-Anhalt"
 
 #: region/templates/region/map.html:148
 msgctxt "regions_list"
 msgid "Австрия"
-msgstr ""
+msgstr "Österreich"
 
 #: region/templates/region/map.html:150
-#, fuzzy
-#| msgctxt "menu"
-#| msgid "производство"
 msgctxt "regions_list"
 msgid "Опольское воеводство"
-msgstr "Produktion"
+msgstr "Opole"
 
 #: region/templates/region/redesign/mining.html:9
 msgctxt "mining"
@@ -2274,9 +2214,6 @@ msgid "Автоматы - лимит"
 msgstr "Gewehre - Limit"
 
 #: storage/models/storage.py:190
-#, fuzzy
-#| msgctxt "goods"
-#| msgid "БМП - лимит"
 msgctxt "goods"
 msgid "Мины - лимит"
 msgstr "Schützenpanzer - Limit"
