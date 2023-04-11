@@ -6,6 +6,7 @@ from party.party import Party
 from party.position import PartyPosition
 from player.decorators.player import check_player
 from player.player import Player
+from django.utils.translation import pgettext
 
 @login_required(login_url='/')
 @check_player
@@ -23,11 +24,13 @@ def management(request):
                     page = 'party/redesign/manage.html'
 
                 return render(request, page,
-                              {'player': player,
-                               'party': party,
-                               'members_count': Player.objects.filter(party=player.party).count(),
-                               'roles_list': PartyPosition.objects.filter(party=player.party),
-                               'roles_count': PartyPosition.objects.filter(party=player.party).count()
+                              {
+                                  'page_name': pgettext('party_manage', 'Управление партией'),
+                                  'player': player,
+                                  'party': party,
+                                  'members_count': Player.objects.filter(party=player.party).count(),
+                                  'roles_list': PartyPosition.objects.filter(party=player.party),
+                                  'roles_count': PartyPosition.objects.filter(party=player.party).count()
                                })
             else:
                 return redirect('party')
