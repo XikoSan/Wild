@@ -72,7 +72,12 @@ def new_party(request):
         # если страницу только грузят
         else:
             new_pty_frm = NewPartyForm()
+
+            groups = list(player.account.groups.all().values_list('name', flat=True))
+            page = 'party/new_party.html'
+            if 'redesign' not in groups:
+                page = 'party/redesign/new_party.html'
             # отправляем в форму
-            return render(request, 'party/new_party.html',
+            return render(request, page,
                           {'player': player, 'new_party_form': new_pty_frm
                            })
