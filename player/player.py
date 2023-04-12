@@ -73,7 +73,7 @@ class Player(models.Model):
     # -----------энергия----------------
 
     # текущее значение энергии
-    energy = models.IntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(100)],
+    energy = models.IntegerField(default=100, validators=[MinValueValidator(0), MaxValueValidator(100)],
                                  verbose_name='Энергии сейчас')
     # дата ближайшего возможного пополнения
     last_refill = models.DateTimeField(default=datetime.datetime(2020, 10, 28, 0, 0), blank=True,
