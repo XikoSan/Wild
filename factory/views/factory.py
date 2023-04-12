@@ -20,7 +20,7 @@ def factory(request):
     # получаем персонажа
     player = Player.get_instance(account=request.user)
 
-    fields_list = ['pk', 'region__pk', 'region__region_name', 'cash', ]
+    fields_list = ['pk', 'region__pk', 'region__region_name', 'region__on_map_id', 'cash', ]
     # собираем из Склада все поля ресурсов
     for category in Storage.types.keys():
         for good in getattr(Storage, category).keys():
@@ -42,8 +42,14 @@ def factory(request):
     if MilitaryProduction.objects.filter(player=player, level__gt=0).exists():
         consignment_dict['units'] = 1 + MilitaryProduction.objects.get(player=player).level
 
+    groups = list(player.account.groups.all().values_list('name', flat=True))
+    page = 'factory/factory.html'
+
+    if 'redesign' not in groups:
+        page = 'factory/redesign/factory.html'
+
     # отправляем в форму
-    response = render(request, 'factory/factory.html', {
+    response = render(request, page, {
         'page_name': _('Производство'),
 
         'player': player,

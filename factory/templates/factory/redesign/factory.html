@@ -1,0 +1,177 @@
+{% extends 'player/redesign/header.html' %}
+{% load static %}
+{% load bootstrap3 %}
+{% load l10n %}{% load i18n %}{% load tz %}
+{% load dict_key %}
+{% load get_sum %}
+{% load get_attr %}
+{% load get_key_list %}
+{% load get_class_name %}
+
+{% block content %}
+<section class="factory custom-scroll">
+    <h1 class="factory__title ct__page-title">Производство</h1>
+
+    <script>
+      {% localize off %}
+          var count = 0;
+
+          var consignment = 1;
+          var consignment_dict = {};
+
+          {% for group in consignment_dict|get_key_list %}
+              consignment_dict['{{ group }}'] = {{ consignment_dict|dict_key:group }};
+          {% endfor %}
+
+          var groups_n_goods = {};
+
+          {% for group in categories %}
+              groups_n_goods['{{ group }}'] = {};
+              {% for good in storage_cl|get_attr:group %}
+                  groups_n_goods['{{ group }}']['{{ good }}'] = '{{ storage_cl|get_attr:group|dict_key:good }}';
+              {% endfor %}
+          {% endfor %}
+
+          var goods_names = {};
+          goods_names['energy'] = 'Энергия';
+          {% for crude in crude_list %}
+              {% for good in storage_cl|get_attr:crude %}
+                  goods_names['{{ good }}'] = '{{ storage_cl|get_attr:crude|dict_key:good }}';
+              {% endfor %}
+          {% endfor %}
+
+          var total_stocks = {};
+          {% for storage in storages %}
+              total_stocks["{% localize off %}{{ storage|dict_key:'pk' }}{% endlocalize %}"] = {};
+              {% for group in crude_list %}
+                  {% for good in storage_cl|get_attr:group %}
+                      total_stocks["{% localize off %}{{ storage|dict_key:'pk' }}{% endlocalize %}"]['{{ good }}'] = {% localize off %}{{ storage|dict_key:good }}{% endlocalize %};
+                      {% if good != 'cash' %}
+                      {% with good_cap=good|get_sum:'_cap' %}
+                      total_stocks["{% localize off %}{{ storage|dict_key:'pk' }}{% endlocalize %}"]['{{ good }}_cap'] = {% localize off %}{{ storage|dict_key:good_cap }}{% endlocalize %};
+                      {% endwith %}
+                      {% endif %}
+                  {% endfor %}
+              {% endfor %}
+          {% endfor %}
+
+          var schemas = {};
+          {% for schema in project_cl|get_attr:'schemas' %}
+              schemas["{{ schema.0 }}"] = {};
+              schemas["{{ schema.0 }}"]['energy'] = {{ project_cl|get_attr:schema.0|dict_key:'energy' }};
+              {% for variant in project_cl|get_attr:schema.0|dict_key:'resources' %}
+                  schemas["{{ schema.0 }}"]["{{ forloop.counter }}"] = {};
+                  {% with counter=forloop.counter %}
+                      {% for good in variant %}
+                          schemas["{{ schema.0 }}"]["{{ counter }}"]["{{ good }}"] = {% localize off %}{{ variant|dict_key:good }}{% endlocalize %};
+                      {% endfor %}
+                  {% endwith %}
+              {% endfor %}
+          {% endfor %}
+      {% endlocalize %}
+      </script>
+
+    <form id="produce_form" role="form" class="factory__topBlock">
+
+      <div class="ct__selectWithImage">
+          {% with store_1=storages|first %}
+          <div class="ct__selectWithImage-selected" id="storage" data-value="{% localize off %}{{ store_1|dict_key:'pk' }}{% endlocalize %}">
+              <img src="static/img/regions/{{ store_1|dict_key:'region__on_map_id' }}.png">
+              <div class="ct__selectWithImage-firstText">
+                  <span>{{ store_1|dict_key:'region__region_name' }}</span>
+                  <svg class="ct__selectWithImage-arrow" width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
+                  </svg>
+              </div>
+          </div>
+          {% endwith %}
+          <div class="ct__selectWithImage-content custom-scroll custom-scroll--alt">
+              {% for storage in storages %}
+              <div data-value="{% localize off %}{{ storage|dict_key:'pk' }}{% endlocalize %}"><img src="static/img/regions/{{ storage|dict_key:'region__on_map_id' }}.png">{{ storage|dict_key:'region__region_name' }}</div>
+              {% endfor %}
+          </div>
+      </div>
+
+      <label class="factory__topLabel ct__wide-modal-label-select ct__wide-modal-label-select--min">
+        <select id="group">
+          <option id="group_default" value='default' disabled selected>выбор группы товаров</option>
+          {% for group in categories %}
+          <option value='{{ group }}'>{{ storage_cl|get_attr:'types'|dict_key:group }}</option>
+          {% endfor %}
+        </select>
+        <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
+        </svg>
+      </label>
+
+      <label class="factory__topLabel ct__wide-modal-label-select ct__wide-modal-label-select--min">
+        <select disabled name="good" id="good">
+          <option id="good_default" value='default' disabled selected>выбор товара</option>
+          {% for group in categories %}
+              {% for good in storage_cl|get_attr:group %}
+              {% if good != 'station' %}
+          <option id="good_{{ good }}" value='{{ good }}' style="display: none">{{ storage_cl|get_attr:group|dict_key:good }}</option>
+              {% endif %}
+              {% endfor %}
+          {% endfor %}
+        </select>
+        <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
+        </svg>
+      </label>
+
+      <label class="factory__topLabel ct__wide-modal-label-select ct__wide-modal-label-select--min">
+        <select disabled name="schema" id="schema">
+          <option id="schema_default" value='default' disabled selected>выбор схемы</option>
+        </select>
+        <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
+        </svg>
+      </label>
+
+      <label class="factory__topLabelInput">
+        <input disabled id="count" type="number" min="0" max="2147483647" value="0" step="1" name="count" maxlength="3"
+          class="factory__topInput" placeholder="введите количество" oninput="setInputValue(this.value)">
+      </label>
+
+      <button disabled id="accept" type="submit" class="factory__topCreate ct__mid-btn">
+        <svg width="144" height="30" viewBox="0 0 144 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <mask id="mask0_259_319" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+            <path d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z" fill="var(--c10two)"/>
+          </mask>
+          <g mask="url(#mask0_259_319)">
+            <path d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" fill="var(--c10two)"/>
+            <path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"/>
+            <path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"/>
+            <path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
+          </g>
+        </svg>
+        <span>создать</span>
+      </button>
+
+    </form>
+
+    <ul class="factory__block" id="storage_info_block">
+      <div id="crude_header" style="display: none"></div><!--  костыльный элемент, чтобы после него всякое пихать  -->
+      <li class="factory__blockElement" style="display: none" id="crude_line">
+        <h2 class="crude_name"></h2>
+        <div class="factory__blockRow">
+          <span class="crude_price"></span>
+          <div class="factory__inputBlock">
+            <label class="factory__inputBlockLabel">
+              <input type="number" class="crude_count" min="0" style="color: var(--c10one)">
+            </label>
+            <span style="padding-left: 1vh;padding-right: 1vh;">/</span>
+            <span class="storage_stocks"></span>
+          </div>
+        </div>
+        <input class="factory__range crude_amount" type="range" min="0" max="5" step="1">
+      </li>
+    </ul>
+
+	</section>
+{% endblock %}
+
+{% block for_scripts_and_css %}
+<script src='{% static "redesign/js/factory.js" %}?{{ csrf_token }}'></script>
+{% endblock %}
