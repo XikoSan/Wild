@@ -38,12 +38,12 @@
       <h2>{% trans 'Никнейм' %}</h2>
       <input type="text" id="your_name" name="nickname" value="{{ nickname }}" maxlength="30">
       <!--Аватар-->
-      <h2>{% trans 'Аватар' %}</h2>
-      <input type="file" name="image" accept="image/*" id="id_image">
-      <input type="hidden" name="x" id="id_x">
-      <input type="hidden" name="y" id="id_y">
-      <input type="hidden" name="width" id="id_width">
-      <input type="hidden" name="height" id="id_height">
+<!--      <h2>{% trans 'Аватар' %}</h2>-->
+<!--      <input type="file" name="image" accept="image/*" id="id_image">-->
+<!--      <input type="hidden" name="x" id="id_x">-->
+<!--      <input type="hidden" name="y" id="id_y">-->
+<!--      <input type="hidden" name="width" id="id_width">-->
+<!--      <input type="hidden" name="height" id="id_height">-->
       <!--Часовой пояс-->
       <h2>{% trans 'Часовой пояс' %}</h2>
       <label class="create__label">
@@ -71,7 +71,7 @@
 <!--				</svg>-->
 <!--      </label>-->
       <!--Кнопка Start-->
-      <button class="create__form-start">
+      <button class="create__form-start" style="cursor: pointer">
         <span class="visually-hidden"></span>
         <svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M24.368 59.144C23.12 59.144 21.92 58.944 20.768 58.544C19.632 58.144 18.752 57.616 18.128 56.96L18.824 55.592C19.432 56.2 20.24 56.696 21.248 57.08C22.256 57.448 23.296 57.632 24.368 57.632C25.872 57.632 27 57.36 27.752 56.816C28.504 56.256 28.88 55.536 28.88 54.656C28.88 53.984 28.672 53.448 28.256 53.048C27.856 52.648 27.36 52.344 26.768 52.136C26.176 51.912 25.352 51.672 24.296 51.416C23.032 51.096 22.024 50.792 21.272 50.504C20.52 50.2 19.872 49.744 19.328 49.136C18.8 48.528 18.536 47.704 18.536 46.664C18.536 45.816 18.76 45.048 19.208 44.36C19.656 43.656 20.344 43.096 21.272 42.68C22.2 42.264 23.352 42.056 24.728 42.056C25.688 42.056 26.624 42.192 27.536 42.464C28.464 42.72 29.264 43.08 29.936 43.544L29.336 44.96C28.632 44.496 27.88 44.152 27.08 43.928C26.28 43.688 25.496 43.568 24.728 43.568C23.256 43.568 22.144 43.856 21.392 44.432C20.656 44.992 20.288 45.72 20.288 46.616C20.288 47.288 20.488 47.832 20.888 48.248C21.304 48.648 21.816 48.96 22.424 49.184C23.048 49.392 23.88 49.624 24.92 49.88C26.152 50.184 27.144 50.488 27.896 50.792C28.664 51.08 29.312 51.528 29.84 52.136C30.368 52.728 30.632 53.536 30.632 54.56C30.632 55.408 30.4 56.184 29.936 56.888C29.488 57.576 28.792 58.128 27.848 58.544C26.904 58.944 25.744 59.144 24.368 59.144ZM36.3313 43.736H30.4273V42.2H44.0113V43.736H38.1073V59H36.3313V43.736ZM55.3408 54.512H45.9808L43.9648 59H42.1168L49.7968 42.2H51.5488L59.2288 59H57.3568L55.3408 54.512ZM54.6928 53.072L50.6608 44.048L46.6288 53.072H54.6928ZM72.2799 59L68.4399 53.6C68.0079 53.648 67.5599 53.672 67.0959 53.672H62.5839V59H60.8079V42.2H67.0959C69.2399 42.2 70.9199 42.712 72.1359 43.736C73.3519 44.76 73.9599 46.168 73.9599 47.96C73.9599 49.272 73.6239 50.384 72.9519 51.296C72.2959 52.192 71.3519 52.84 70.1199 53.24L74.2239 59H72.2799ZM67.0479 52.16C68.7119 52.16 69.9839 51.792 70.8639 51.056C71.7439 50.32 72.1839 49.288 72.1839 47.96C72.1839 46.6 71.7439 45.56 70.8639 44.84C69.9839 44.104 68.7119 43.736 67.0479 43.736H62.5839V52.16H67.0479ZM79.9813 43.736H74.0773V42.2H87.6613V43.736H81.7573V59H79.9813V43.736Z" fill="var(--c10two)"/>
@@ -86,59 +86,59 @@
 </main>
 
 <!-- ОБРЕЗКА ИЗОБРАЖЕНИЙ МОДАЛКА -->
-<div class="img_modal" id="modalCrop">
-    <div class="modal-cropper-wrapper">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" id="crop-close" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <img id="image" src="" alt="The image to preview" style="width: 274.129px; height: 274.129px; transform: translateX(-13.0647px);"></span>
-                </div>
-            </div>
-        </div>
-        <div class="modal-footer">
-            <div class="btn-l-wrapper">
-                <div class="btn-group pull-left" role="group" style="margin-right: 5px;">
-                    <button type="button" class="btn btn-default js-zoom-in">
-                        <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M1 18L6 13" stroke="var(--c60)"/>
-                            <circle cx="11" cy="8" r="7.5" stroke="var(--c60)"/>
-                            <path d="M11 4V12M15 8H7" stroke="var(--c60)"/>
-                        </svg>
-                    </button>
-                    <button type="button" class="btn btn-default js-zoom-out">
-                        <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M1 18L6 13" stroke="var(--c60)"/>
-                            <circle cx="11" cy="8" r="7.5" stroke="var(--c60)"/>
-                            <path d="M15 8H7" stroke="var(--c60)"/>
-                        </svg>
-                    </button>
-                </div>
-                <div class="btn-group pull-left" role="group">
-                    <button type="button" class="btn btn-default js-pic-up">
-                        <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M10 1L1 10M10 1L19 10M10 1V19" stroke="var(--c60)"/>
-                        </svg>
-                    </button>
-                    <button type="button" class="btn btn-default js-pic-down">
-                        <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M10 18L19 9M10 18L1 9M10 18V0" stroke="black"/>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-            <div class="btn-r-wrapper">
-                <button type="button" class="btn btn-default back-crop-js" data-dismiss="modal">{% trans 'Отмена' %}</button>
-                <button type="button" class="btn btn-primary js-crop-and-upload">{% trans 'Загрузить' %}</button>
-            </div>
-        </div>
-    </div>
-</div>
-<script src="{% static 'redesign/js/cropper.min.js' %}?{{ csrf_token }}"></script>
+<!--<div class="img_modal" id="modalCrop">-->
+<!--    <div class="modal-cropper-wrapper">-->
+<!--        <div class="modal-dialog">-->
+<!--            <div class="modal-content">-->
+<!--                <div class="modal-header">-->
+<!--                    <button type="button" class="close" id="crop-close" aria-label="Close">-->
+<!--                        <span aria-hidden="true">×</span>-->
+<!--                    </button>-->
+<!--                </div>-->
+<!--                <div class="modal-body">-->
+<!--                    <img id="image" src="" alt="The image to preview" style="width: 274.129px; height: 274.129px; transform: translateX(-13.0647px);"></span>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="modal-footer">-->
+<!--            <div class="btn-l-wrapper">-->
+<!--                <div class="btn-group pull-left" role="group" style="margin-right: 5px;">-->
+<!--                    <button type="button" class="btn btn-default js-zoom-in">-->
+<!--                        <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+<!--                            <path d="M1 18L6 13" stroke="var(&#45;&#45;c60)"/>-->
+<!--                            <circle cx="11" cy="8" r="7.5" stroke="var(&#45;&#45;c60)"/>-->
+<!--                            <path d="M11 4V12M15 8H7" stroke="var(&#45;&#45;c60)"/>-->
+<!--                        </svg>-->
+<!--                    </button>-->
+<!--                    <button type="button" class="btn btn-default js-zoom-out">-->
+<!--                        <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+<!--                            <path d="M1 18L6 13" stroke="var(&#45;&#45;c60)"/>-->
+<!--                            <circle cx="11" cy="8" r="7.5" stroke="var(&#45;&#45;c60)"/>-->
+<!--                            <path d="M15 8H7" stroke="var(&#45;&#45;c60)"/>-->
+<!--                        </svg>-->
+<!--                    </button>-->
+<!--                </div>-->
+<!--                <div class="btn-group pull-left" role="group">-->
+<!--                    <button type="button" class="btn btn-default js-pic-up">-->
+<!--                        <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+<!--                            <path d="M10 1L1 10M10 1L19 10M10 1V19" stroke="var(&#45;&#45;c60)"/>-->
+<!--                        </svg>-->
+<!--                    </button>-->
+<!--                    <button type="button" class="btn btn-default js-pic-down">-->
+<!--                        <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+<!--                            <path d="M10 18L19 9M10 18L1 9M10 18V0" stroke="black"/>-->
+<!--                        </svg>-->
+<!--                    </button>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="btn-r-wrapper">-->
+<!--                <button type="button" class="btn btn-default back-crop-js" data-dismiss="modal">{% trans 'Отмена' %}</button>-->
+<!--                <button type="button" class="btn btn-primary js-crop-and-upload">{% trans 'Загрузить' %}</button>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<!--<script src="{% static 'redesign/js/cropper.min.js' %}?{{ csrf_token }}"></script>-->
 <!-- КОНЕЦ ОБРЕЗКИ ИЗОБРАЖЕНИЙ МОДАЛКА -->
 
 <!-- ГЛОБАЛЬНОЕ МОДАЛЬНОЕ ОКНО -->
@@ -199,6 +199,6 @@
 
 <script src='{% static "redesign/js/new_char.js" %}'></script>
 <script src="{% static 'redesign/js/header.js' %}?{{ csrf_token }}"></script>
-<script src="{% static 'redesign/js/cropper.js' %}?{{ csrf_token }}"></script>
+<!--<script src="{% static 'redesign/js/cropper.js' %}?{{ csrf_token }}"></script>-->
 </body>
 </html>
