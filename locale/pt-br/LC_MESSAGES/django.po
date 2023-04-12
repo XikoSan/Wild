@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-11 22:10+0300\n"
+"POT-Creation-Date: 2023-04-12 22:44+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -293,7 +293,7 @@ msgid "отклонить всё"
 msgstr ""
 
 #: party/templates/party/redesign/manage.html:17
-#: party/views/management/management.py:27
+#: party/views/management/management.py:28
 msgctxt "party_manage"
 msgid "Управление партией"
 msgstr ""
@@ -613,6 +613,142 @@ msgstr ""
 #: party/views/management/new_party.py:47
 msgctxt "party_manage"
 msgid "Новый игрок партии"
+msgstr ""
+
+#: party/views/management/roles/new_role.py:48
+msgctxt "party_manage"
+msgid "Должность с таким названием уже есть"
+msgstr ""
+
+#: party/views/management/roles/new_role.py:49
+#: party/views/management/roles/new_role.py:56
+#: party/views/management/roles/new_role.py:64
+#: party/views/management/roles/new_role.py:71
+#: party/views/management/roles/new_role.py:79
+msgctxt "party_manage"
+msgid "Новая должность"
+msgstr ""
+
+#: party/views/management/roles/new_role.py:50
+#: party/views/management/roles/new_role.py:57
+#: party/views/management/roles/new_role.py:65
+#: party/views/management/roles/new_role.py:72
+#: party/views/management/roles/new_role.py:80
+#: party/views/management/roles/remove_role.py:24
+#: party/views/management/roles/remove_role.py:36
+#: party/views/management/roles/remove_role.py:45
+#: party/views/management/roles/remove_role.py:60
+#: party/views/management/roles/remove_role.py:68
+#: party/views/management/roles/remove_role.py:77
+#: party/views/management/roles/set_role.py:35
+#: party/views/management/roles/set_role.py:50
+#: party/views/management/roles/set_role.py:57
+#: party/views/management/roles/set_role.py:64
+#: player/views/change_back_allow.py:43 player/views/change_back_allow.py:59
+#: player/views/change_wiki_hide_allow.py:43
+#: player/views/change_wiki_hide_allow.py:59 player/views/color_change.py:31
+#: player/views/color_change.py:43 player/views/color_change.py:55
+#: player/views/color_change.py:67 player/views/color_change.py:103
+#: player/views/expense_energy.py:30 player/views/expense_energy.py:53
+#: player/views/expense_energy.py:62 player/views/expense_energy.py:73
+#: player/views/full_auto_allow.py:43 player/views/full_auto_allow.py:59
+#: player/views/new_player.py:92 player/views/new_player.py:105
+#: player/views/set_language.py:40 player/views/set_language.py:56
+#: player/views/set_timezone.py:29 player/views/set_timezone.py:45
+#: skill/views/skill_cancel.py:36 skill/views/skill_cancel.py:44
+#: skill/views/skill_cancel.py:52 skill/views/skill_cancel.py:62
+#: skill/views/skill_cancel.py:77
+msgid "Закрыть"
+msgstr ""
+
+#: party/views/management/roles/new_role.py:55
+msgctxt "party_manage"
+msgid "Название не может быть пустым"
+msgstr ""
+
+#: party/views/management/roles/new_role.py:63
+msgctxt "party_manage"
+msgid "Достигнуто ограничение на число должностей"
+msgstr ""
+
+#: party/views/management/roles/new_role.py:70
+msgctxt "party_manage"
+msgid "Недостаточно прав для создания должности"
+msgstr ""
+
+#: party/views/management/roles/new_role.py:78
+#: party/views/management/roles/remove_role.py:75
+#: player/views/color_change.py:101 region/views/do_mining.py:255
+#: storage/views/assets/assets_action.py:253
+#: storage/views/assets/storage_move.py:88
+#: storage/views/storage/cash_transfer.py:144
+#: storage/views/storage/new_storage.py:88
+#: storage/views/storage/upgrade_storage.py:157
+#: storage/views/trading/accept_offer.py:410
+#: storage/views/trading/cancel_offer.py:149
+#: storage/views/trading/create_offer.py:218
+#: storage/views/trading/get_offers.py:190
+msgctxt "mining"
+msgid "Ошибка метода"
+msgstr ""
+
+#: party/views/management/roles/remove_role.py:22
+msgctxt "party_manage"
+msgid "Должность не найдена"
+msgstr ""
+
+#: party/views/management/roles/remove_role.py:23
+#: party/views/management/roles/remove_role.py:35
+#: party/views/management/roles/remove_role.py:44
+#: party/views/management/roles/remove_role.py:59
+#: party/views/management/roles/remove_role.py:67
+#: party/views/management/roles/remove_role.py:76
+msgctxt "party_manage"
+msgid "Удаление должности"
+msgstr ""
+
+#: party/views/management/roles/remove_role.py:34
+msgctxt "party_manage"
+msgid "Это неудаляемая должность"
+msgstr ""
+
+#: party/views/management/roles/remove_role.py:43
+msgctxt "party_manage"
+msgid "Перед удалением должности её необходимо убрать у всех игроков!"
+msgstr ""
+
+#: party/views/management/roles/remove_role.py:58
+msgctxt "party_manage"
+msgid "Вы пытаетесь удалить должность другой партии!"
+msgstr ""
+
+#: party/views/management/roles/remove_role.py:66
+msgctxt "party_manage"
+msgid "Недостаточно прав для удаления должности"
+msgstr ""
+
+#: party/views/management/roles/set_role.py:33
+msgctxt "has_party"
+msgid "В партии может быть только один глава"
+msgstr ""
+
+#: party/views/management/roles/set_role.py:34
+#: party/views/management/roles/set_role.py:49
+#: party/views/management/roles/set_role.py:56
+#: party/views/management/roles/set_role.py:63
+msgctxt "has_party"
+msgid "Смена должности"
+msgstr ""
+
+#: party/views/management/roles/set_role.py:48
+#: party/views/management/roles/set_role.py:62
+msgctxt "has_party"
+msgid "Недостаточно прав для смены должности"
+msgstr ""
+
+#: party/views/management/roles/set_role.py:55
+msgctxt "has_party"
+msgid "Некорректная партия игрока"
 msgstr ""
 
 #: party/views/management/staff/leave_party.py:37
@@ -1510,20 +1646,6 @@ msgstr ""
 msgid "Настройка партийного фона"
 msgstr ""
 
-#: player/views/change_back_allow.py:43 player/views/change_back_allow.py:59
-#: player/views/change_wiki_hide_allow.py:43
-#: player/views/change_wiki_hide_allow.py:59 player/views/expense_energy.py:30
-#: player/views/expense_energy.py:53 player/views/expense_energy.py:62
-#: player/views/expense_energy.py:73 player/views/full_auto_allow.py:43
-#: player/views/full_auto_allow.py:59 player/views/new_player.py:92
-#: player/views/new_player.py:105 player/views/set_language.py:40
-#: player/views/set_language.py:56 player/views/set_timezone.py:29
-#: player/views/set_timezone.py:45 skill/views/skill_cancel.py:36
-#: skill/views/skill_cancel.py:44 skill/views/skill_cancel.py:52
-#: skill/views/skill_cancel.py:62 skill/views/skill_cancel.py:77
-msgid "Закрыть"
-msgstr ""
-
 #: player/views/change_back_allow.py:57
 #: player/views/change_wiki_hide_allow.py:57 player/views/full_auto_allow.py:57
 #: player/views/set_language.py:54 player/views/set_timezone.py:43
@@ -1535,6 +1657,37 @@ msgstr ""
 #: player/views/change_wiki_hide_allow.py:42
 #: player/views/change_wiki_hide_allow.py:58
 msgid "Скрыть кнопку Wiki"
+msgstr ""
+
+#: player/views/color_change.py:29
+msgctxt "profile"
+msgid "Некорректный код фона игры"
+msgstr ""
+
+#: player/views/color_change.py:30 player/views/color_change.py:42
+#: player/views/color_change.py:54 player/views/color_change.py:66
+msgctxt "profile"
+msgid "Некорректный код цвета"
+msgstr ""
+
+#: player/views/color_change.py:41
+msgctxt "profile"
+msgid "Некорректный код блоков игры"
+msgstr ""
+
+#: player/views/color_change.py:53
+msgctxt "profile"
+msgid "Некорректный код текста игры"
+msgstr ""
+
+#: player/views/color_change.py:65
+msgctxt "profile"
+msgid "Некорректный код акцентов игры"
+msgstr ""
+
+#: player/views/color_change.py:102
+msgctxt "party_manage"
+msgid "Ошибка изменения цветов игры"
 msgstr ""
 
 #: player/views/expense_energy.py:28
@@ -1948,19 +2101,6 @@ msgstr ""
 #: region/views/do_mining.py:175
 msgctxt "mining"
 msgid "Запасов руды в регионе недостаточно для добычи"
-msgstr ""
-
-#: region/views/do_mining.py:255 storage/views/assets/assets_action.py:253
-#: storage/views/assets/storage_move.py:88
-#: storage/views/storage/cash_transfer.py:144
-#: storage/views/storage/new_storage.py:88
-#: storage/views/storage/upgrade_storage.py:157
-#: storage/views/trading/accept_offer.py:410
-#: storage/views/trading/cancel_offer.py:149
-#: storage/views/trading/create_offer.py:218
-#: storage/views/trading/get_offers.py:190
-msgctxt "mining"
-msgid "Ошибка метода"
 msgstr ""
 
 #: region/views/lists/world_regions.py:90

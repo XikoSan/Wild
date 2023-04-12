@@ -6,6 +6,8 @@ from django.shortcuts import redirect
 from party.position import PartyPosition
 from player.decorators.player import check_player
 from player.player import Player
+from django.utils.translation import pgettext
+from django.utils.translation import ugettext as _
 
 
 # переименование игрока
@@ -19,7 +21,9 @@ def remove_role(request):
         if player.party_post.party_lead:
             if not PartyPosition.objects.filter(pk=request.POST.get('post_id')).exists():
                 data = {
-                    'response': 'Должность не найдена',
+                    'response': pgettext('party_manage', 'Должность не найдена'),
+                    'header': pgettext('party_manage', 'Удаление должности'),
+                    'grey_btn': _('Закрыть'),
                 }
                 return JsonResponse(data)
             # получаем роль на удаление
@@ -29,14 +33,18 @@ def remove_role(request):
                 # если это базовая роль (их удалять нельзя)
                 if rm_role.based == True:
                     data = {
-                        'response': 'Это неудаляемая должность',
+                        'response': pgettext('party_manage', 'Это неудаляемая должность'),
+                        'header': pgettext('party_manage', 'Удаление должности'),
+                        'grey_btn': _('Закрыть'),
                     }
                     return JsonResponse(data)
                 else:
                     # если роль кому-то назначена
                     if Player.objects.filter(party_post=rm_role).exists():
                         data = {
-                            'response': 'Перед удалением должности её необходимо убрать у всех игроков!',
+                            'response': pgettext('party_manage', 'Перед удалением должности её необходимо убрать у всех игроков!'),
+                            'header': pgettext('party_manage', 'Удаление должности'),
+                            'grey_btn': _('Закрыть'),
                         }
                     else:
                         # удаляем роль
@@ -48,18 +56,26 @@ def remove_role(request):
                     return JsonResponse(data)
             else:
                 data = {
-                    'response': 'Вы пытаетесь удалить должность другой партии!',
+                    'response': pgettext('party_manage',
+                                         'Вы пытаетесь удалить должность другой партии!'),
+                    'header': pgettext('party_manage', 'Удаление должности'),
+                    'grey_btn': _('Закрыть'),
                 }
                 return JsonResponse(data)
         else:
             data = {
-                'response': 'Недостаточно прав!',
+                'response': pgettext('party_manage',
+                                     'Недостаточно прав для удаления должности'),
+                'header': pgettext('party_manage', 'Удаление должности'),
+                'grey_btn': _('Закрыть'),
             }
             return JsonResponse(data)
 
     # если страницу только грузят
     else:
         data = {
-            'response': 'Ты уверен что тебе сюда, путник?',
+            'response': pgettext('mining', 'Ошибка метода'),
+            'header': pgettext('party_manage', 'Удаление должности'),
+            'grey_btn': _('Закрыть'),
         }
         return JsonResponse(data)

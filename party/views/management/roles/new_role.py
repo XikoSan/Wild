@@ -6,7 +6,8 @@ from django.shortcuts import redirect
 from party.position import PartyPosition
 from player.decorators.player import check_player
 from player.player import Player
-
+from django.utils.translation import pgettext
+from django.utils.translation import ugettext as _
 
 # добавить должность в партии
 @login_required(login_url='/')
@@ -45,28 +46,38 @@ def new_role(request):
                         return JsonResponse(data)
                     else:
                         data = {
-                            'response': 'Должность с таким названием уже есть',
+                            'response': pgettext('party_manage', 'Должность с таким названием уже есть'),
+                            'header': pgettext('party_manage', 'Новая должность'),
+                            'grey_btn': _('Закрыть'),
                         }
                         return JsonResponse(data)
                 else:
                     data = {
-                        'response': 'Название не может быть пустым',
+                        'response': pgettext('party_manage', 'Название не может быть пустым'),
+                        'header': pgettext('party_manage', 'Новая должность'),
+                        'grey_btn': _('Закрыть'),
                     }
                     return JsonResponse(data)
 
             else:
                 data = {
-                    'response': 'Достигнуто ограничение на число должностей',
+                    'response': pgettext('party_manage', 'Достигнуто ограничение на число должностей'),
+                    'header': pgettext('party_manage', 'Новая должность'),
+                    'grey_btn': _('Закрыть'),
                 }
                 return JsonResponse(data)
         else:
             data = {
-                'response': 'Недостаточно прав!',
+                'response': pgettext('party_manage', 'Недостаточно прав для создания должности'),
+                'header': pgettext('party_manage', 'Новая должность'),
+                'grey_btn': _('Закрыть'),
             }
             return JsonResponse(data)
     # если страницу только грузят
     else:
         data = {
-            'response': 'Ты уверен что тебе сюда, путник?',
+            'response': pgettext('mining', 'Ошибка метода'),
+            'header': pgettext('party_manage', 'Новая должность'),
+            'grey_btn': _('Закрыть'),
         }
         return JsonResponse(data)

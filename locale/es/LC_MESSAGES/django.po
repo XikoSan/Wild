@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-10 23:46+0300\n"
+"POT-Creation-Date: 2023-04-12 22:44+0300\n"
 "PO-Revision-Date: 2023-04-12 02:35+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -294,6 +294,7 @@ msgid "отклонить всё"
 msgstr "rechazar todo"
 
 #: party/templates/party/redesign/manage.html:17
+#: party/views/management/management.py:28
 msgctxt "party_manage"
 msgid "Управление партией"
 msgstr "Administrat Partido"
@@ -614,6 +615,172 @@ msgstr "Líder del partido"
 msgctxt "party_manage"
 msgid "Новый игрок партии"
 msgstr "Nuevo miembro del partido"
+
+#: party/views/management/roles/new_role.py:48
+msgctxt "party_manage"
+msgid "Должность с таким названием уже есть"
+msgstr ""
+
+#: party/views/management/roles/new_role.py:49
+#: party/views/management/roles/new_role.py:56
+#: party/views/management/roles/new_role.py:64
+#: party/views/management/roles/new_role.py:71
+#: party/views/management/roles/new_role.py:79
+#, fuzzy
+#| msgctxt "party_manage"
+#| msgid "Добавить должность"
+msgctxt "party_manage"
+msgid "Новая должность"
+msgstr "Crear posición"
+
+#: party/views/management/roles/new_role.py:50
+#: party/views/management/roles/new_role.py:57
+#: party/views/management/roles/new_role.py:65
+#: party/views/management/roles/new_role.py:72
+#: party/views/management/roles/new_role.py:80
+#: party/views/management/roles/remove_role.py:24
+#: party/views/management/roles/remove_role.py:36
+#: party/views/management/roles/remove_role.py:45
+#: party/views/management/roles/remove_role.py:60
+#: party/views/management/roles/remove_role.py:68
+#: party/views/management/roles/remove_role.py:77
+#: party/views/management/roles/set_role.py:35
+#: party/views/management/roles/set_role.py:50
+#: party/views/management/roles/set_role.py:57
+#: party/views/management/roles/set_role.py:64
+#: player/views/change_back_allow.py:43 player/views/change_back_allow.py:59
+#: player/views/change_wiki_hide_allow.py:43
+#: player/views/change_wiki_hide_allow.py:59 player/views/color_change.py:31
+#: player/views/color_change.py:43 player/views/color_change.py:55
+#: player/views/color_change.py:67 player/views/color_change.py:103
+#: player/views/expense_energy.py:30 player/views/expense_energy.py:53
+#: player/views/expense_energy.py:62 player/views/expense_energy.py:73
+#: player/views/full_auto_allow.py:43 player/views/full_auto_allow.py:59
+#: player/views/new_player.py:92 player/views/new_player.py:105
+#: player/views/set_language.py:40 player/views/set_language.py:56
+#: player/views/set_timezone.py:29 player/views/set_timezone.py:45
+#: skill/views/skill_cancel.py:36 skill/views/skill_cancel.py:44
+#: skill/views/skill_cancel.py:52 skill/views/skill_cancel.py:62
+#: skill/views/skill_cancel.py:77
+msgid "Закрыть"
+msgstr "Cerrar"
+
+#: party/views/management/roles/new_role.py:55
+#, fuzzy
+#| msgctxt "party_manage"
+#| msgid "название должности"
+msgctxt "party_manage"
+msgid "Название не может быть пустым"
+msgstr "nombre de la posición"
+
+#: party/views/management/roles/new_role.py:63
+msgctxt "party_manage"
+msgid "Достигнуто ограничение на число должностей"
+msgstr ""
+
+#: party/views/management/roles/new_role.py:70
+#, fuzzy
+#| msgctxt "assets"
+#| msgid "Недостаточно средств для оплаты доставки"
+msgctxt "party_manage"
+msgid "Недостаточно прав для создания должности"
+msgstr "Fondos insuficientes para pagar el envío"
+
+#: party/views/management/roles/new_role.py:78
+#: party/views/management/roles/remove_role.py:75
+#: player/views/color_change.py:101 region/views/do_mining.py:255
+#: storage/views/assets/assets_action.py:253
+#: storage/views/assets/storage_move.py:88
+#: storage/views/storage/cash_transfer.py:144
+#: storage/views/storage/new_storage.py:88
+#: storage/views/storage/upgrade_storage.py:157
+#: storage/views/trading/accept_offer.py:410
+#: storage/views/trading/cancel_offer.py:149
+#: storage/views/trading/create_offer.py:218
+#: storage/views/trading/get_offers.py:190
+msgctxt "mining"
+msgid "Ошибка метода"
+msgstr "Error de metodo"
+
+#: party/views/management/roles/remove_role.py:22
+#, fuzzy
+#| msgctxt "repost"
+#| msgid "репост не найден"
+msgctxt "party_manage"
+msgid "Должность не найдена"
+msgstr "repost no encontrado"
+
+#: party/views/management/roles/remove_role.py:23
+#: party/views/management/roles/remove_role.py:35
+#: party/views/management/roles/remove_role.py:44
+#: party/views/management/roles/remove_role.py:59
+#: party/views/management/roles/remove_role.py:67
+#: party/views/management/roles/remove_role.py:76
+#, fuzzy
+#| msgctxt "party_manage"
+#| msgid "название должности"
+msgctxt "party_manage"
+msgid "Удаление должности"
+msgstr "nombre de la posición"
+
+#: party/views/management/roles/remove_role.py:34
+#, fuzzy
+#| msgctxt "party_manage"
+#| msgid "Добавить должность"
+msgctxt "party_manage"
+msgid "Это неудаляемая должность"
+msgstr "Crear posición"
+
+#: party/views/management/roles/remove_role.py:43
+msgctxt "party_manage"
+msgid "Перед удалением должности её необходимо убрать у всех игроков!"
+msgstr ""
+
+#: party/views/management/roles/remove_role.py:58
+msgctxt "party_manage"
+msgid "Вы пытаетесь удалить должность другой партии!"
+msgstr ""
+
+#: party/views/management/roles/remove_role.py:66
+#, fuzzy
+#| msgctxt "assets"
+#| msgid "Недостаточно средств для оплаты доставки"
+msgctxt "party_manage"
+msgid "Недостаточно прав для удаления должности"
+msgstr "Fondos insuficientes para pagar el envío"
+
+#: party/views/management/roles/set_role.py:33
+msgctxt "has_party"
+msgid "В партии может быть только один глава"
+msgstr ""
+
+#: party/views/management/roles/set_role.py:34
+#: party/views/management/roles/set_role.py:49
+#: party/views/management/roles/set_role.py:56
+#: party/views/management/roles/set_role.py:63
+#, fuzzy
+#| msgctxt "party_manage"
+#| msgid "название должности"
+msgctxt "has_party"
+msgid "Смена должности"
+msgstr "nombre de la posición"
+
+#: party/views/management/roles/set_role.py:48
+#: party/views/management/roles/set_role.py:62
+#, fuzzy
+#| msgctxt "assets"
+#| msgid "Недостаточно средств для оплаты доставки"
+msgctxt "has_party"
+msgid "Недостаточно прав для смены должности"
+msgstr "Fondos insuficientes para pagar el envío"
+
+#: party/views/management/roles/set_role.py:55
+#, fuzzy
+#| msgctxt "storage"
+#| msgid "Некорректное число денег игрока"
+msgctxt "has_party"
+msgid "Некорректная партия игрока"
+msgstr "Cantidad de dinero del jugador incorrecta"
 
 #: party/views/management/staff/leave_party.py:37
 #: party/views/management/staff/leave_party.py:209
@@ -1357,6 +1524,7 @@ msgid "беспартийный"
 msgstr "sin afiliar"
 
 #: player/templates/player/redesign/profile.html:236
+#: player/templates/player/redesign/view_profile.html:125
 msgctxt "profile"
 msgid "история"
 msgstr "(historia)"
@@ -1518,20 +1686,6 @@ msgstr "Valor incorrecto"
 msgid "Настройка партийного фона"
 msgstr "Personalizar fondo del partido"
 
-#: player/views/change_back_allow.py:43 player/views/change_back_allow.py:59
-#: player/views/change_wiki_hide_allow.py:43
-#: player/views/change_wiki_hide_allow.py:59 player/views/expense_energy.py:30
-#: player/views/expense_energy.py:53 player/views/expense_energy.py:62
-#: player/views/expense_energy.py:73 player/views/full_auto_allow.py:43
-#: player/views/full_auto_allow.py:59 player/views/new_player.py:92
-#: player/views/new_player.py:105 player/views/set_language.py:40
-#: player/views/set_language.py:56 player/views/set_timezone.py:29
-#: player/views/set_timezone.py:45 skill/views/skill_cancel.py:36
-#: skill/views/skill_cancel.py:44 skill/views/skill_cancel.py:52
-#: skill/views/skill_cancel.py:62 skill/views/skill_cancel.py:77
-msgid "Закрыть"
-msgstr "Cerrar"
-
 #: player/views/change_back_allow.py:57
 #: player/views/change_wiki_hide_allow.py:57 player/views/full_auto_allow.py:57
 #: player/views/set_language.py:54 player/views/set_timezone.py:43
@@ -1544,6 +1698,55 @@ msgstr "Error de método"
 #: player/views/change_wiki_hide_allow.py:58
 msgid "Скрыть кнопку Wiki"
 msgstr ""
+
+#: player/views/color_change.py:29
+#, fuzzy
+#| msgctxt "w_trading"
+#| msgid "Некорректный владелец"
+msgctxt "profile"
+msgid "Некорректный код фона игры"
+msgstr "Dueño incorrecto"
+
+#: player/views/color_change.py:30 player/views/color_change.py:42
+#: player/views/color_change.py:54 player/views/color_change.py:66
+#, fuzzy
+#| msgctxt "w_trading"
+#| msgid "Некорректный владелец"
+msgctxt "profile"
+msgid "Некорректный код цвета"
+msgstr "Dueño incorrecto"
+
+#: player/views/color_change.py:41
+#, fuzzy
+#| msgctxt "w_trading"
+#| msgid "Некорректный владелец"
+msgctxt "profile"
+msgid "Некорректный код блоков игры"
+msgstr "Dueño incorrecto"
+
+#: player/views/color_change.py:53
+#, fuzzy
+#| msgctxt "assets"
+#| msgid "Некорректное действие"
+msgctxt "profile"
+msgid "Некорректный код текста игры"
+msgstr "Acción incorrecta"
+
+#: player/views/color_change.py:65
+#, fuzzy
+#| msgctxt "w_trading"
+#| msgid "Некорректный владелец"
+msgctxt "profile"
+msgid "Некорректный код акцентов игры"
+msgstr "Dueño incorrecto"
+
+#: player/views/color_change.py:102
+#, fuzzy
+#| msgctxt "mining"
+#| msgid "Ошибка получения финансирования"
+msgctxt "party_manage"
+msgid "Ошибка изменения цветов игры"
+msgstr "Error de financiación diaria"
 
 #: player/views/expense_energy.py:28
 msgid "Десять минут ещё не прошло"
@@ -1672,52 +1875,52 @@ msgstr "Top de Hospitales"
 msgid "Уровень ТЭЦ"
 msgstr "Nivel de plantas eléctricas"
 
-#: region/templates/region/map.html:132
+#: region/templates/region/redesign/map.html:309
 msgctxt "regions_list"
 msgid "Тюрингия"
 msgstr "Turingia"
 
-#: region/templates/region/map.html:134
+#: region/templates/region/redesign/map.html:311
 msgctxt "regions_list"
 msgid "Саксония"
 msgstr "Sajonia"
 
-#: region/templates/region/map.html:136
+#: region/templates/region/redesign/map.html:313
 msgctxt "regions_list"
 msgid "Чехия"
 msgstr "República Checa"
 
-#: region/templates/region/map.html:138
+#: region/templates/region/redesign/map.html:315
 msgctxt "regions_list"
 msgid "Нижнесилезское воеводство"
 msgstr "Voivodato de Baja Silesia"
 
-#: region/templates/region/map.html:140
+#: region/templates/region/redesign/map.html:317
 msgctxt "regions_list"
 msgid "Любушское воеводство"
 msgstr "Voivodato de Lubusz"
 
-#: region/templates/region/map.html:142
+#: region/templates/region/redesign/map.html:319
 msgctxt "regions_list"
 msgid "Бавария"
 msgstr "Baviera"
 
-#: region/templates/region/map.html:144
+#: region/templates/region/redesign/map.html:321
 msgctxt "regions_list"
 msgid "Бранденбург"
 msgstr "Brandemburgo"
 
-#: region/templates/region/map.html:146
+#: region/templates/region/redesign/map.html:323
 msgctxt "regions_list"
 msgid "Саксония-Анхальт"
 msgstr "Sajonia-Anhalt"
 
-#: region/templates/region/map.html:148
+#: region/templates/region/redesign/map.html:325
 msgctxt "regions_list"
 msgid "Австрия"
 msgstr "Austria"
 
-#: region/templates/region/map.html:150
+#: region/templates/region/redesign/map.html:327
 msgctxt "regions_list"
 msgid "Опольское воеводство"
 msgstr "Voivodato de Opole"
@@ -1959,19 +2162,6 @@ msgstr "Las reservas de petróleo en la región no son suficientes para minar"
 msgctxt "mining"
 msgid "Запасов руды в регионе недостаточно для добычи"
 msgstr "Las reservas de minerales en la región no son suficientes para minar"
-
-#: region/views/do_mining.py:255 storage/views/assets/assets_action.py:253
-#: storage/views/assets/storage_move.py:88
-#: storage/views/storage/cash_transfer.py:144
-#: storage/views/storage/new_storage.py:88
-#: storage/views/storage/upgrade_storage.py:157
-#: storage/views/trading/accept_offer.py:410
-#: storage/views/trading/cancel_offer.py:149
-#: storage/views/trading/create_offer.py:218
-#: storage/views/trading/get_offers.py:190
-msgctxt "mining"
-msgid "Ошибка метода"
-msgstr "Error de metodo"
 
 #: region/views/lists/world_regions.py:90
 msgid "Регионы игры"
@@ -3527,6 +3717,13 @@ msgstr ""
 #: war/models/wars/war_side.py:27
 msgid "Дроны"
 msgstr ""
+
+#, fuzzy
+#~| msgctxt "factory"
+#~| msgid "Недостаточно "
+#~ msgctxt "party_manage"
+#~ msgid "Недостаточно прав!"
+#~ msgstr "No hay suficiente "
 
 #~ msgctxt "factory"
 #~ msgid "Внезапно!"

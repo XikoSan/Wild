@@ -85,7 +85,7 @@ jQuery(document).ready(function ($) {
 
                 }
                 else{
-                    alert(data.response);
+                    display_modal('notify', data.header, data.response, null, data.grey_btn)
                 }
             }
         });
@@ -114,7 +114,7 @@ jQuery(document).ready(function ($) {
                     loc_array[loc_array.length - 1]
                 }
                 else{
-                    alert(data.response);
+                    display_modal('notify', data.header, data.response, null, data.grey_btn)
                 }
             }
         });
@@ -136,7 +136,7 @@ jQuery(document).ready(function ($) {
                     window.location = '/party'
                 }
                 else{
-                    alert(data.response);
+                    display_modal('notify', data.header, data.response, null, data.grey_btn)
                 }
             }
         });

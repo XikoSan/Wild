@@ -6,6 +6,8 @@ from django.shortcuts import redirect
 from party.position import PartyPosition
 from player.decorators.player import check_player
 from player.player import Player
+from django.utils.translation import pgettext
+from django.utils.translation import ugettext as _
 
 
 # переименование игрока
@@ -30,9 +32,9 @@ def set_role(request):
 
                     if role.party_lead:
                         data = {
-                            'header': 'Смена должности',
-                            'grey_btn': 'Закрыть',
-                            'response': 'В партии может быть только один глава',
+                            'response': pgettext('has_party', 'В партии может быть только один глава'),
+                            'header': pgettext('has_party', 'Смена должности'),
+                            'grey_btn': _('Закрыть'),
                         }
                         return JsonResponse(data)
 
@@ -45,23 +47,23 @@ def set_role(request):
                     return JsonResponse(data)
 
                 data = {
-                    'header': 'Смена должности',
-                    'grey_btn': 'Закрыть',
-                    'response': 'Твоих прав недостаточно для смены должности',
+                    'response': pgettext('has_party', 'Недостаточно прав для смены должности'),
+                    'header': pgettext('has_party', 'Смена должности'),
+                    'grey_btn': _('Закрыть'),
                 }
                 return JsonResponse(data)
 
             data = {
-                'header': 'Смена должности',
-                'grey_btn': 'Закрыть',
-                'response': 'Это не твоя партия!',
+                'response': pgettext('has_party', 'Некорректная партия игрока'),
+                'header': pgettext('has_party', 'Смена должности'),
+                'grey_btn': _('Закрыть'),
             }
             return JsonResponse(data)
 
         data = {
-            'header': 'Смена должности',
-            'grey_btn': 'Закрыть',
-            'response': 'У тебя недостаточно прав!',
+            'response': pgettext('has_party', 'Недостаточно прав для смены должности'),
+            'header': pgettext('has_party', 'Смена должности'),
+            'grey_btn': _('Закрыть'),
         }
         return JsonResponse(data)
 

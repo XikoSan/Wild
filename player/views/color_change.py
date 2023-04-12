@@ -8,6 +8,8 @@ from player.decorators.player import check_player
 from player.player import Player
 from player.player_settings import PlayerSettings
 import re
+from django.utils.translation import pgettext
+from django.utils.translation import ugettext as _
 
 # Начать учет активности
 @login_required(login_url='/')
@@ -25,9 +27,9 @@ def color_change(request):
 
         if not match:
             data = {
-                'response': 'Некорректный код фона игры',
-                'header': 'Некорректный код цвета',
-                'grey_btn': 'Закрыть',
+                'response': pgettext('profile', 'Некорректный код фона игры'),
+                'header': pgettext('profile', 'Некорректный код цвета'),
+                'grey_btn': _('Закрыть'),
             }
             return JResponse(data)
 
@@ -37,9 +39,9 @@ def color_change(request):
 
         if not match:
             data = {
-                'response': 'Некорректный код блоков игры',
-                'header': 'Некорректный код цвета',
-                'grey_btn': 'Закрыть',
+                'response': pgettext('profile', 'Некорректный код блоков игры'),
+                'header': pgettext('profile', 'Некорректный код цвета'),
+                'grey_btn': _('Закрыть'),
             }
             return JResponse(data)
 
@@ -49,9 +51,9 @@ def color_change(request):
 
         if not match:
             data = {
-                'response': 'Некорректный код текста игры',
-                'header': 'Некорректный код цвета',
-                'grey_btn': 'Закрыть',
+                'response': pgettext('profile', 'Некорректный код текста игры'),
+                'header': pgettext('profile', 'Некорректный код цвета'),
+                'grey_btn': _('Закрыть'),
             }
             return JResponse(data)
 
@@ -61,9 +63,9 @@ def color_change(request):
 
         if not match:
             data = {
-                'response': 'Некорректный код акцентов игры',
-                'header': 'Некорректный код цвета',
-                'grey_btn': 'Закрыть',
+                'response': pgettext('profile', 'Некорректный код акцентов игры'),
+                'header': pgettext('profile', 'Некорректный код цвета'),
+                'grey_btn': _('Закрыть'),
             }
             return JResponse(data)
 
@@ -97,8 +99,8 @@ def color_change(request):
     # если страницу только грузят
     else:
         data = {
-            'response': 'Ошибка метода',
-            'header': 'Ошибка изменения цветов игры',
-            'grey_btn': 'Закрыть',
+            'response': pgettext('mining', 'Ошибка метода'),
+            'header': pgettext('party_manage', 'Ошибка изменения цветов игры'),
+            'grey_btn': _('Закрыть'),
         }
         return JResponse(data)
