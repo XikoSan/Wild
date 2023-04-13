@@ -79,8 +79,9 @@ def skill_cancel(request):
             return JsonResponse(data)
 
         if last_skill.skill in ('power', 'knowledge', 'endurance'):
-            refund = (getattr(player, last_skill.skill) + SkillTraining.objects.filter(player=player,
-                                                                                       skill=last_skill.skill).count()) * 1000
+            refund = (
+                       (getattr(player, last_skill.skill) + SkillTraining.objects.filter(player=player, skill=last_skill.skill).count())
+                             ** 2 ) * 10
             player.cash += refund
 
         last_skill.delete()
