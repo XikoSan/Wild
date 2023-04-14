@@ -1,4 +1,16 @@
-docker-compose cp wildpolitics:./app/locale ./
+container_name="wild_politics-wildpolitics-1"
+container_dir="./app/locale"
+
+# Получаем ID контейнера
+container_id=$(docker ps -aqf "name=${container_name}")
+
+# Проверяем, что получили ID
+if [ "$container_id" == "" ]; then
+  echo "Контейнер не найден"
+  exit 1
+fi
+
+docker cp "${container_id}:${container_dir}" ./
 
 cd /root/wild-politics
 
