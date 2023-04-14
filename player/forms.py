@@ -38,3 +38,4 @@ class ImageForm(forms.ModelForm):
     #     resized_image.save(player.image.path)
     #
     #     return player
+

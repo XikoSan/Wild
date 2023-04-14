@@ -30,6 +30,9 @@ from .views.set_timezone import set_timezone
 from .views.view_profile import view_profile
 from .views.wallet import wallet
 
+from .views.translate import edit_translations
+from django.urls import path
+
 urlpatterns = [
 
     # приветственная страница
@@ -106,4 +109,7 @@ urlpatterns = [
     url(r'^halloween/$', halloween, name='halloween'),
     # новый год
     url(r'^new_year/$', new_year, name='new_year'),
+
+    # переводы
+    path('edit-translation/<str:lang>/<str:context>/', edit_translations, name='edit_translations'),
 ]

@@ -1,0 +1,38 @@
+{% extends 'player/header.html' %}
+{% load l10n %}
+{% load static %}
+{% load bootstrap3 %}
+{% load i18n %}
+{% load tz %}
+{% load get_mod %}
+{% load pagination %}
+
+{% block for_scripts_and_css %}
+{% endblock %}
+
+{% block content %}
+{% localize off %}
+<!-- translation_table.html -->
+<form method="POST" action="">
+    {% csrf_token %}
+    <input type="hidden" name="context" id="{{ context }}">
+    <input type="submit" value="Save">
+    {% if user.is_superuser %}<input type="checkbox" name="rebuild_mo_file">{% endif %}
+    <table>
+        <thead>
+            <tr>
+                <th>Original Text</th>
+                <th>Translation</th>
+            </tr>
+        </thead>
+        {% for entry in entries %}
+        <tr>
+            <td>{{ entry.msgid }}</td>
+            <td><textarea name="{{ entry.msgid }}">{{ entry.msgstr }}</textarea></td>
+        </tr>
+        {% endfor %}
+    </table>
+</form>
+{% endlocalize %}
+{% endblock %}
+
