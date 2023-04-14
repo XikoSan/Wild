@@ -14,6 +14,8 @@ cd /root/wild-politics
 
 git checkout translations
 
+git pull
+
 git add *.po *.mo
 
 git commit -m "Night backup"
