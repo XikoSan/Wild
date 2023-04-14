@@ -4,6 +4,8 @@ import polib
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from wild_politics import settings
+import gettext
+
 
 def edit_translations(request, lang, context):
     player = Player.get_instance(account=request.user)
@@ -21,7 +23,7 @@ def edit_translations(request, lang, context):
         # Принимаем данные из формы и сохраняем их в файл перевода
         form_data = request.POST.dict()
         del form_data['csrfmiddlewaretoken']  # Удаляем токен CSRF
-        save_translation_file(po_file_path, form_data, context)
+        save_translation_file(po_file_path, form_data, context, player)
 
         mo_file_path = os.path.join(settings.BASE_DIR, 'locale', lang, 'LC_MESSAGES', '{}.mo'.format(domain))
         if os.path.exists(mo_file_path):
@@ -48,17 +50,17 @@ def edit_translations(request, lang, context):
 
         return render(request, 'player/translate.html', {'player': player, 'entries': entries, 'context': context})
 
-def save_translation_file(file_path, data, context):
+def save_translation_file(file_path, data, context, player):
 
     # Загружаем файл с помощью polib и обновляем переводы
     po = polib.pofile(file_path)
-    from player.logs.print_log import log
+
     # log(data)
     for entry in po:
         if entry.msgid in data and entry.msgstr != data.get(entry.msgid):
             if entry.msgctxt == context or (not entry.msgctxt and 'None' == context):  # если контекст совпадает, то обновим msgstr
-                log('текст: ' + data.get(entry.msgid))
-                log('контекст: ' + context)
                 entry.msgstr = data.get(entry.msgid)
+                # добавляем комментарий с именем пользователя
+                entry.comment = gettext.gettext(f'Last modified by {player.nickname}, id {player.pk}')
 
     po.save()
