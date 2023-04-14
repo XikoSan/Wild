@@ -1,12 +1,10 @@
-container_name="wild_politics-wildpolitics-1"
+container_name="wild_politics-wildpolitics_1"
 container_dir="./app/locale"
 
-# Получаем ID контейнера
 container_id=$(docker ps -aqf "name=${container_name}")
 
-# Проверяем, что получили ID
 if [ "$container_id" == "" ]; then
-  echo "Контейнер не найден"
+  echo "Container not found"
   exit 1
 fi
 
@@ -18,7 +16,7 @@ git checkout translations
 
 git add *.po *.mo
 
-git commit -m "Ночной бэкап"
+git commit -m "Night backup"
 
 git remote set-url origin https://M4TPOCKUN:ATBBuK9bT5se38ab65J3TJwunWKa9E498D89@bitbucket.org/M4TPOCKUN/wild-politics.git
 
