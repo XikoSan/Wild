@@ -1,6 +1,10 @@
 container_name="wild-politics_wildpolitics_1"
 container_dir="./app/locale"
 
+cd /root/wild-politics
+
+git checkout translations
+
 container_id=$(docker ps -aqf "name=${container_name}")
 
 if [ "$container_id" == "" ]; then
@@ -9,10 +13,6 @@ if [ "$container_id" == "" ]; then
 fi
 
 docker cp "${container_id}:${container_dir}" ./
-
-cd /root/wild-politics
-
-git checkout translations
 
 git pull
 
