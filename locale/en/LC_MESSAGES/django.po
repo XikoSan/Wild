@@ -108,10 +108,11 @@ msgctxt "goods"
 msgid "Пластик"
 msgstr "Plastic"
 
+#. Last modified by Администратор, id 1
 #: factory/models/project.py:62 storage/models/transport.py:128
 msgctxt "goods"
 msgid "Дизель"
-msgstr ""
+msgstr "Diesel"
 
 #: factory/models/project.py:85 state/models/treasury.py:71
 #: storage/models/destroy.py:46 storage/models/storage.py:65
@@ -598,7 +599,8 @@ msgstr "apply"
 msgid "primaries_in_party"
 msgstr "Primaries in party"
 
-#: party/views/lists/region_parties.py:86 party/views/lists/state_parties.py:40
+#: party/views/lists/region_parties.py:86
+#: party/views/lists/state_parties.py:40
 msgid "Партии региона"
 msgstr "Region`s parties"
 
@@ -1067,14 +1069,14 @@ msgid ""
 "Заполняется расходованием энергии, как и ежедневное финансирование, и "
 "зависит только от твоих личных усилий."
 msgstr ""
-"It is filled with energy expenditure, like daily financing, and depends only "
-"on your personal efforts."
+"It is filled with energy expenditure, like daily financing, and depends only"
+" on your personal efforts."
 
 #: player/templates/player/redesign/game_event/newyear.html:394
 msgctxt "game_event"
 msgid ""
-"Она позволит получить тебе премиум-аккаунт для комфортной игры, а также один "
-"из трёх этапов зимней прогрессионой рамки аватара."
+"Она позволит получить тебе премиум-аккаунт для комфортной игры, а также один"
+" из трёх этапов зимней прогрессионой рамки аватара."
 msgstr ""
 "It will allow you to get a premium account for a comfortable game, as well "
 "as one of the three stages of the winter progression avatar frame."
@@ -1092,8 +1094,8 @@ msgstr "Fills with the efforts of all players on the server."
 #: player/templates/player/redesign/game_event/newyear.html:397
 msgctxt "game_event"
 msgid ""
-"Ты не сможешь собрать награды, открытые в общей прогрессии, пока не пройдёшь "
-"соответствующий этап личной."
+"Ты не сможешь собрать награды, открытые в общей прогрессии, пока не пройдёшь"
+" соответствующий этап личной."
 msgstr ""
 "You will not be able to collect rewards unlocked in the general progression "
 "until you complete the corresponding stage of the personal one."
@@ -1649,7 +1651,8 @@ msgid "Описание"
 msgstr "Description"
 
 #: player/views/change_back_allow.py:41
-#: player/views/change_wiki_hide_allow.py:41 player/views/full_auto_allow.py:41
+#: player/views/change_wiki_hide_allow.py:41
+#: player/views/full_auto_allow.py:41
 msgid "Некорректное значение"
 msgstr "Incorrect value"
 
@@ -1658,10 +1661,10 @@ msgid "Настройка партийного фона"
 msgstr "Party background switch"
 
 #: player/views/change_back_allow.py:57
-#: player/views/change_wiki_hide_allow.py:57 player/views/full_auto_allow.py:57
-#: player/views/set_language.py:54 player/views/set_timezone.py:43
-#: region/views/cancel_auto.py:35 region/views/retrieve_cash.py:42
-#: region/views/start_auto.py:78
+#: player/views/change_wiki_hide_allow.py:57
+#: player/views/full_auto_allow.py:57 player/views/set_language.py:54
+#: player/views/set_timezone.py:43 region/views/cancel_auto.py:35
+#: region/views/retrieve_cash.py:42 region/views/start_auto.py:78
 msgid "Ошибка метода"
 msgstr "Method error"
 
@@ -2831,8 +2834,8 @@ msgid ""
 "Ваш премиум-аккаунт будет продлён на один месяц. Данную операцию невозможно "
 "отменить. Продолжить?"
 msgstr ""
-"Your premium account will be renewed for one month. This operation cannot be "
-"undone. Proceed?"
+"Your premium account will be renewed for one month. This operation cannot be"
+" undone. Proceed?"
 
 #: storage/templates/storage/redesign/storage.html:368
 msgctxt "storage_assets"
@@ -3670,8 +3673,6 @@ msgid "Дроны"
 msgstr ""
 
 #, fuzzy
-#~| msgctxt "factory"
-#~| msgid "Недостаточно "
 #~ msgctxt "party_manage"
 #~ msgid "Недостаточно прав!"
 #~ msgstr "Not enough "
@@ -3693,19 +3694,16 @@ msgstr ""
 #~ msgstr " of Gold"
 
 #, fuzzy
-#~| msgid "Финансирование"
 #~ msgctxt "goods"
 #~ msgid "Финансирование"
 #~ msgstr "Financing"
 
 #, fuzzy
-#~| msgid "Торговля"
 #~ msgctxt "goods"
 #~ msgid "Торговля"
 #~ msgstr "Trading"
 
 #, fuzzy
-#~| msgid "Навыки"
 #~ msgctxt "goods"
 #~ msgid "Навыки"
 #~ msgstr "Skills"
@@ -3714,22 +3712,16 @@ msgstr ""
 #~ msgstr "War test server"
 
 #, fuzzy
-#~| msgctxt "goods"
-#~| msgid "Автоматы"
 #~ msgctxt "goods"
 #~ msgid "Автомат"
 #~ msgstr "Rifles"
 
 #, fuzzy
-#~| msgctxt "goods"
-#~| msgid "Танки"
 #~ msgctxt "goods"
 #~ msgid "Танк"
 #~ msgstr "Tanks"
 
 #, fuzzy
-#~| msgctxt "overview"
-#~| msgid "парламент"
 #~ msgid "Медикаменты"
 #~ msgstr "parliament"
 
@@ -3742,8 +3734,6 @@ msgstr ""
 #~ msgstr "Medicines - limit"
 
 #, fuzzy
-#~| msgctxt "storage_transfer"
-#~| msgid "Перемещение Склада"
 #~ msgctxt "mining"
 #~ msgid "Перемещение Склада"
 #~ msgstr "Warehouse move"
@@ -3757,8 +3747,6 @@ msgstr ""
 #~ msgstr "Operations with goods"
 
 #, fuzzy
-#~| msgctxt "overview"
-#~| msgid "Хэллоуинский ивент"
 #~ msgid "Хэллоуинский ивент"
 #~ msgstr "Halloween event"
 
