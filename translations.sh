@@ -14,7 +14,7 @@ fi
 
 docker cp "${container_id}:${container_dir}" ./
 
-git pull
+git pull -f
 
 git add *.po *.mo
 
