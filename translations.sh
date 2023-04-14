@@ -1,4 +1,4 @@
-container_name="wild_politics-wildpolitics_1"
+container_name="wild-politics-wildpolitics_1"
 container_dir="./app/locale"
 
 container_id=$(docker ps -aqf "name=${container_name}")
