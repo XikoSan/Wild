@@ -11,18 +11,18 @@
 {% block content %}
   <section class="party custom-scroll">
 
-		<!-- Заголовок -->
-		<h1 class="party__title ct__page-title">Партия</h1>
+    <!-- Заголовок -->
+    <h1 class="party__title ct__page-title">{% trans 'Новая партия' context "new_party" %}</h1>
 
     <div class="party__new-top">
 
-      <h2 class="party__new-title">Стоимость создания партии: <span style="font-weight: inherit;">10 G</span></h2>
+      <h2 class="party__new-title">{% trans 'Стоимость создания партии' context "new_party" %}: <span style="font-weight: inherit;">10 G</span></h2>
 
       <form method="POST" enctype="multipart/form-data" class="post-form">
         {% csrf_token %}
 
         <label class="party__new-label">
-          Название партии:
+          {% trans 'Название партии' context "new_party" %}:
           <input id="title" type="text" name="title" maxlength="30">
         </label>
 
@@ -38,7 +38,7 @@
               <path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
             </g>
           </svg>
-          <span>создать</span>
+          <span>{% trans 'создать партию' context "no_party" %}</span>
         </button>
 
       </form>

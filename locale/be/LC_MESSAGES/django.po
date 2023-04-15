@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-12 22:44+0300\n"
+"POT-Creation-Date: 2023-04-16 00:50+0300\n"
 "PO-Revision-Date: 2022-10-31 18:40+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -225,7 +225,7 @@ msgctxt "goods"
 msgid "БМП"
 msgstr "БМП"
 
-#: factory/views/factory.py:47
+#: factory/views/factory.py:53
 msgid "Производство"
 msgstr "Вытворчасьць"
 
@@ -503,6 +503,37 @@ msgstr "Скасаваць"
 msgid "Загрузить"
 msgstr "Запампаваць"
 
+#: party/templates/party/redesign/new_party.html:15
+#, fuzzy
+#| msgctxt "overview"
+#| msgid "партии"
+msgctxt "new_party"
+msgid "Новая партия"
+msgstr "партыі"
+
+#: party/templates/party/redesign/new_party.html:19
+#, fuzzy
+#| msgid "должность в партии"
+msgctxt "new_party"
+msgid "Стоимость создания партии"
+msgstr "пасада ў партыі"
+
+#: party/templates/party/redesign/new_party.html:25
+#, fuzzy
+#| msgctxt "overview"
+#| msgid "партии"
+msgctxt "new_party"
+msgid "Название партии"
+msgstr "партыі"
+
+#: party/templates/party/redesign/new_party.html:41
+#: party/templates/party/redesign/party_blocks/no_party.html:21
+#, fuzzy
+#| msgid "должность в партии"
+msgctxt "no_party"
+msgid "создать партию"
+msgstr "пасада ў партыі"
+
 #: party/templates/party/redesign/party.html:61
 #, fuzzy
 #| msgctxt "repost"
@@ -610,13 +641,6 @@ msgstr "рэгіёна"
 msgctxt "no_party"
 msgid "вы в полете"
 msgstr "Час палёту"
-
-#: party/templates/party/redesign/party_blocks/no_party.html:21
-#, fuzzy
-#| msgid "должность в партии"
-msgctxt "no_party"
-msgid "создать партию"
-msgstr "пасада ў партыі"
 
 #: party/templates/party/redesign/party_blocks/no_party.html:39
 #, fuzzy
@@ -792,42 +816,42 @@ msgctxt "party_manage"
 msgid "Новый игрок партии"
 msgstr "пасада ў партыі"
 
-#: party/views/management/roles/new_role.py:48
+#: party/views/management/roles/new_role.py:49
 msgctxt "party_manage"
 msgid "Должность с таким названием уже есть"
 msgstr ""
-
-#: party/views/management/roles/new_role.py:49
-#: party/views/management/roles/new_role.py:56
-#: party/views/management/roles/new_role.py:64
-#: party/views/management/roles/new_role.py:71
-#: party/views/management/roles/new_role.py:79
-#, fuzzy
-#| msgid "Выносливость"
-msgctxt "party_manage"
-msgid "Новая должность"
-msgstr "Цягавітасьць"
 
 #: party/views/management/roles/new_role.py:50
 #: party/views/management/roles/new_role.py:57
 #: party/views/management/roles/new_role.py:65
 #: party/views/management/roles/new_role.py:72
 #: party/views/management/roles/new_role.py:80
-#: party/views/management/roles/remove_role.py:24
-#: party/views/management/roles/remove_role.py:36
-#: party/views/management/roles/remove_role.py:45
-#: party/views/management/roles/remove_role.py:60
-#: party/views/management/roles/remove_role.py:68
-#: party/views/management/roles/remove_role.py:77
-#: party/views/management/roles/set_role.py:35
-#: party/views/management/roles/set_role.py:50
-#: party/views/management/roles/set_role.py:57
-#: party/views/management/roles/set_role.py:64
+#, fuzzy
+#| msgid "Выносливость"
+msgctxt "party_manage"
+msgid "Новая должность"
+msgstr "Цягавітасьць"
+
+#: party/views/management/roles/new_role.py:51
+#: party/views/management/roles/new_role.py:58
+#: party/views/management/roles/new_role.py:66
+#: party/views/management/roles/new_role.py:73
+#: party/views/management/roles/new_role.py:81
+#: party/views/management/roles/remove_role.py:26
+#: party/views/management/roles/remove_role.py:38
+#: party/views/management/roles/remove_role.py:47
+#: party/views/management/roles/remove_role.py:62
+#: party/views/management/roles/remove_role.py:70
+#: party/views/management/roles/remove_role.py:79
+#: party/views/management/roles/set_role.py:37
+#: party/views/management/roles/set_role.py:52
+#: party/views/management/roles/set_role.py:59
+#: party/views/management/roles/set_role.py:66
 #: player/views/change_back_allow.py:43 player/views/change_back_allow.py:59
 #: player/views/change_wiki_hide_allow.py:43
-#: player/views/change_wiki_hide_allow.py:59 player/views/color_change.py:31
-#: player/views/color_change.py:43 player/views/color_change.py:55
-#: player/views/color_change.py:67 player/views/color_change.py:103
+#: player/views/change_wiki_hide_allow.py:59 player/views/color_change.py:32
+#: player/views/color_change.py:44 player/views/color_change.py:56
+#: player/views/color_change.py:68 player/views/color_change.py:104
 #: player/views/expense_energy.py:30 player/views/expense_energy.py:53
 #: player/views/expense_energy.py:62 player/views/expense_energy.py:73
 #: player/views/full_auto_allow.py:43 player/views/full_auto_allow.py:59
@@ -840,28 +864,28 @@ msgstr "Цягавітасьць"
 msgid "Закрыть"
 msgstr "Закрыць"
 
-#: party/views/management/roles/new_role.py:55
+#: party/views/management/roles/new_role.py:56
 #, fuzzy
 #| msgid "Создание персонажа"
 msgctxt "party_manage"
 msgid "Название не может быть пустым"
 msgstr "Стварэньне пэрсанажу"
 
-#: party/views/management/roles/new_role.py:63
+#: party/views/management/roles/new_role.py:64
 msgctxt "party_manage"
 msgid "Достигнуто ограничение на число должностей"
 msgstr ""
 
-#: party/views/management/roles/new_role.py:70
+#: party/views/management/roles/new_role.py:71
 #, fuzzy
 #| msgid "Пополнение энергии"
 msgctxt "party_manage"
 msgid "Недостаточно прав для создания должности"
 msgstr "Папаўненьне энэргіі"
 
-#: party/views/management/roles/new_role.py:78
-#: party/views/management/roles/remove_role.py:75
-#: player/views/color_change.py:101 region/views/do_mining.py:255
+#: party/views/management/roles/new_role.py:79
+#: party/views/management/roles/remove_role.py:77
+#: player/views/color_change.py:102 region/views/do_mining.py:255
 #: storage/views/assets/assets_action.py:253
 #: storage/views/assets/storage_move.py:88
 #: storage/views/storage/cash_transfer.py:144
@@ -877,7 +901,7 @@ msgctxt "mining"
 msgid "Ошибка метода"
 msgstr "Памылка мэтаду"
 
-#: party/views/management/roles/remove_role.py:22
+#: party/views/management/roles/remove_role.py:24
 #, fuzzy
 #| msgctxt "repost"
 #| msgid "репост не найден"
@@ -885,66 +909,66 @@ msgctxt "party_manage"
 msgid "Должность не найдена"
 msgstr "рэпост ня знойдзены"
 
-#: party/views/management/roles/remove_role.py:23
-#: party/views/management/roles/remove_role.py:35
-#: party/views/management/roles/remove_role.py:44
-#: party/views/management/roles/remove_role.py:59
-#: party/views/management/roles/remove_role.py:67
-#: party/views/management/roles/remove_role.py:76
+#: party/views/management/roles/remove_role.py:25
+#: party/views/management/roles/remove_role.py:37
+#: party/views/management/roles/remove_role.py:46
+#: party/views/management/roles/remove_role.py:61
+#: party/views/management/roles/remove_role.py:69
+#: party/views/management/roles/remove_role.py:78
 #, fuzzy
 #| msgid "Создание персонажа"
 msgctxt "party_manage"
 msgid "Удаление должности"
 msgstr "Стварэньне пэрсанажу"
 
-#: party/views/management/roles/remove_role.py:34
+#: party/views/management/roles/remove_role.py:36
 #, fuzzy
 #| msgid "Выносливость"
 msgctxt "party_manage"
 msgid "Это неудаляемая должность"
 msgstr "Цягавітасьць"
 
-#: party/views/management/roles/remove_role.py:43
+#: party/views/management/roles/remove_role.py:45
 msgctxt "party_manage"
 msgid "Перед удалением должности её необходимо убрать у всех игроков!"
 msgstr ""
 
-#: party/views/management/roles/remove_role.py:58
+#: party/views/management/roles/remove_role.py:60
 msgctxt "party_manage"
 msgid "Вы пытаетесь удалить должность другой партии!"
 msgstr ""
 
-#: party/views/management/roles/remove_role.py:66
+#: party/views/management/roles/remove_role.py:68
 #, fuzzy
 #| msgid "Пополнение энергии"
 msgctxt "party_manage"
 msgid "Недостаточно прав для удаления должности"
 msgstr "Папаўненьне энэргіі"
 
-#: party/views/management/roles/set_role.py:33
+#: party/views/management/roles/set_role.py:35
 msgctxt "has_party"
 msgid "В партии может быть только один глава"
 msgstr ""
 
-#: party/views/management/roles/set_role.py:34
-#: party/views/management/roles/set_role.py:49
-#: party/views/management/roles/set_role.py:56
-#: party/views/management/roles/set_role.py:63
+#: party/views/management/roles/set_role.py:36
+#: party/views/management/roles/set_role.py:51
+#: party/views/management/roles/set_role.py:58
+#: party/views/management/roles/set_role.py:65
 #, fuzzy
 #| msgid "Создание персонажа"
 msgctxt "has_party"
 msgid "Смена должности"
 msgstr "Стварэньне пэрсанажу"
 
-#: party/views/management/roles/set_role.py:48
-#: party/views/management/roles/set_role.py:62
+#: party/views/management/roles/set_role.py:50
+#: party/views/management/roles/set_role.py:64
 #, fuzzy
 #| msgid "Пополнение энергии"
 msgctxt "has_party"
 msgid "Недостаточно прав для смены должности"
 msgstr "Папаўненьне энэргіі"
 
-#: party/views/management/roles/set_role.py:55
+#: party/views/management/roles/set_role.py:57
 #, fuzzy
 #| msgid "Некорректное число денег игрока"
 msgctxt "has_party"
@@ -1926,43 +1950,43 @@ msgstr "Памылка мэтаду"
 msgid "Скрыть кнопку Wiki"
 msgstr ""
 
-#: player/views/color_change.py:29
+#: player/views/color_change.py:30
 #, fuzzy
 #| msgid "Некорректный запрос"
 msgctxt "profile"
 msgid "Некорректный код фона игры"
 msgstr "Некарэктны запрос"
 
-#: player/views/color_change.py:30 player/views/color_change.py:42
-#: player/views/color_change.py:54 player/views/color_change.py:66
+#: player/views/color_change.py:31 player/views/color_change.py:43
+#: player/views/color_change.py:55 player/views/color_change.py:67
 #, fuzzy
 #| msgid "Некорректный запрос"
 msgctxt "profile"
 msgid "Некорректный код цвета"
 msgstr "Некарэктны запрос"
 
-#: player/views/color_change.py:41
+#: player/views/color_change.py:42
 #, fuzzy
 #| msgid "Некорректный запрос"
 msgctxt "profile"
 msgid "Некорректный код блоков игры"
 msgstr "Некарэктны запрос"
 
-#: player/views/color_change.py:53
+#: player/views/color_change.py:54
 #, fuzzy
 #| msgid "Некорректное значение"
 msgctxt "profile"
 msgid "Некорректный код текста игры"
 msgstr "Некарэктнае значэньне"
 
-#: player/views/color_change.py:65
+#: player/views/color_change.py:66
 #, fuzzy
 #| msgid "Некорректный запрос"
 msgctxt "profile"
 msgid "Некорректный код акцентов игры"
 msgstr "Некарэктны запрос"
 
-#: player/views/color_change.py:102
+#: player/views/color_change.py:103
 #, fuzzy
 #| msgid "Некорректный запрос"
 msgctxt "party_manage"
@@ -2061,6 +2085,11 @@ msgstr "Зьмяніць часавы пас"
 #: player/views/skills/skill_queue.py:30 skill/views/skills_list.py:59
 msgid "Навыки"
 msgstr "Навыкі"
+
+#: player/views/translate.py:64
+#, python-brace-format
+msgid "Last modified by {player.nickname}, id {player.pk}"
+msgstr ""
 
 #: player/views/wallet.py:21
 #, fuzzy
