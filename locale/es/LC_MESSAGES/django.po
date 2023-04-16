@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-16 00:50+0300\n"
+"POT-Creation-Date: 2023-04-16 18:54+0300\n"
 "PO-Revision-Date: 2023-04-12 02:35+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -192,6 +192,55 @@ msgstr "Minas"
 msgctxt "goods"
 msgid "БМП"
 msgstr "VCI"
+
+#: factory/templates/factory/redesign/factory.html:13
+#, fuzzy
+#| msgid "Производство"
+msgctxt "factory"
+msgid "Производство"
+msgstr "Producción"
+
+#: factory/templates/factory/redesign/factory.html:17
+msgctxt "factory"
+msgid "цена"
+msgstr ""
+
+#: factory/templates/factory/redesign/factory.html:38
+msgctxt "factory"
+msgid "Энергия"
+msgstr ""
+
+#: factory/templates/factory/redesign/factory.html:101
+#, fuzzy
+#| msgctxt "w_trading_new"
+#| msgid "Группа товаров"
+msgctxt "factory"
+msgid "выбор группы товаров"
+msgstr "Categoría de bienes"
+
+#: factory/templates/factory/redesign/factory.html:113
+#, fuzzy
+#| msgctxt "w_trading"
+#| msgid "Выберите товар"
+msgctxt "factory"
+msgid "выбор товара"
+msgstr "Escoger bienes"
+
+#: factory/templates/factory/redesign/factory.html:129
+#, fuzzy
+#| msgctxt "assets"
+#| msgid "выбор действия"
+msgctxt "factory"
+msgid "выбор схемы"
+msgstr "elegir acción"
+
+#: factory/templates/factory/redesign/factory.html:153
+#, fuzzy
+#| msgctxt "storage_assets"
+#| msgid "создать"
+msgctxt "factory"
+msgid "создать"
+msgstr "crear"
 
 #: factory/views/factory.py:53
 msgid "Производство"
@@ -407,6 +456,7 @@ msgid "Загрузить"
 msgstr "Subir"
 
 #: party/templates/party/redesign/new_party.html:15
+#: party/views/management/new_party.py:83
 #, fuzzy
 #| msgctxt "party_manage"
 #| msgid "Глава партии"
@@ -1865,7 +1915,7 @@ msgstr "Cambiar zona horaria"
 msgid "Навыки"
 msgstr "Habilidades"
 
-#: player/views/translate.py:64
+#: player/views/translate.py:68
 #, python-brace-format
 msgid "Last modified by {player.nickname}, id {player.pk}"
 msgstr ""

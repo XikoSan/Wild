@@ -79,5 +79,7 @@ def new_party(request):
                 page = 'party/redesign/new_party.html'
             # отправляем в форму
             return render(request, page,
-                          {'player': player, 'new_party_form': new_pty_frm
+                          {'player': player,
+                           'page_name': pgettext('new_party', 'Новая партия'),
+                           'new_party_form': new_pty_frm
                            })

@@ -5,7 +5,7 @@ from django.shortcuts import redirect
 from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
 from django.utils import translation
-from django.utils.translation import ugettext as _
+from django.utils.translation import pgettext
 
 from player.decorators.player import check_player
 from player.player import Player
@@ -50,7 +50,7 @@ def factory(request):
 
     # отправляем в форму
     response = render(request, page, {
-        'page_name': _('Производство'),
+        'page_name': pgettext('factory', 'Производство'),
 
         'player': player,
         'project_cl': Project,

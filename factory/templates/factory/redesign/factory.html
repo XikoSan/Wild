@@ -10,10 +10,12 @@
 
 {% block content %}
 <section class="factory custom-scroll">
-    <h1 class="factory__title ct__page-title">Производство</h1>
+    <h1 class="factory__title ct__page-title">{% trans 'Производство' context "factory" %}</h1>
 
     <script>
       {% localize off %}
+          var price_text = '{% trans 'цена' context "factory" %}';
+
           var count = 0;
 
           var consignment = 1;
@@ -33,7 +35,7 @@
           {% endfor %}
 
           var goods_names = {};
-          goods_names['energy'] = 'Энергия';
+          goods_names['energy'] = '{% trans 'Энергия' context "factory" %}';
           {% for crude in crude_list %}
               {% for good in storage_cl|get_attr:crude %}
                   goods_names['{{ good }}'] = '{{ storage_cl|get_attr:crude|dict_key:good }}';
@@ -78,7 +80,9 @@
           <div class="ct__selectWithImage-selected" id="storage" data-value="{% localize off %}{{ store_1|dict_key:'pk' }}{% endlocalize %}">
               <img src="static/img/regions/{{ store_1|dict_key:'region__on_map_id' }}.png">
               <div class="ct__selectWithImage-firstText">
-                  <span>{{ store_1|dict_key:'region__region_name' }}</span>
+                  {% with region_name=store_1|dict_key:'region__region_name' %}
+                  <span>{% trans region_name context "regions_list" %}</span>
+                  {% endwith %}
                   <svg class="ct__selectWithImage-arrow" width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
                   </svg>
@@ -87,14 +91,14 @@
           {% endwith %}
           <div class="ct__selectWithImage-content custom-scroll custom-scroll--alt">
               {% for storage in storages %}
-              <div data-value="{% localize off %}{{ storage|dict_key:'pk' }}{% endlocalize %}"><img src="static/img/regions/{{ storage|dict_key:'region__on_map_id' }}.png">{{ storage|dict_key:'region__region_name' }}</div>
+              <div data-value="{% localize off %}{{ storage|dict_key:'pk' }}{% endlocalize %}"><img src="static/img/regions/{{ storage|dict_key:'region__on_map_id' }}.png">{% with region_name=storage|dict_key:'region__region_name' %}{% trans region_name context "regions_list" %}{% endwith %}</div>
               {% endfor %}
           </div>
       </div>
 
       <label class="factory__topLabel ct__wide-modal-label-select ct__wide-modal-label-select--min">
         <select id="group">
-          <option id="group_default" value='default' disabled selected>выбор группы товаров</option>
+          <option id="group_default" value='default' disabled selected>{% trans 'выбор группы товаров' context "factory" %}</option>
           {% for group in categories %}
           <option value='{{ group }}'>{{ storage_cl|get_attr:'types'|dict_key:group }}</option>
           {% endfor %}
@@ -106,7 +110,7 @@
 
       <label class="factory__topLabel ct__wide-modal-label-select ct__wide-modal-label-select--min">
         <select disabled name="good" id="good">
-          <option id="good_default" value='default' disabled selected>выбор товара</option>
+          <option id="good_default" value='default' disabled selected>{% trans 'выбор товара' context "factory" %}</option>
           {% for group in categories %}
               {% for good in storage_cl|get_attr:group %}
               {% if good != 'station' %}
@@ -122,7 +126,7 @@
 
       <label class="factory__topLabel ct__wide-modal-label-select ct__wide-modal-label-select--min">
         <select disabled name="schema" id="schema">
-          <option id="schema_default" value='default' disabled selected>выбор схемы</option>
+          <option id="schema_default" value='default' disabled selected>{% trans 'выбор схемы' context "factory" %}</option>
         </select>
         <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
@@ -131,7 +135,7 @@
 
       <label class="factory__topLabelInput">
         <input disabled id="count" type="number" min="0" max="2147483647" value="0" step="1" name="count" maxlength="3"
-          class="factory__topInput" placeholder="введите количество" oninput="setInputValue(this.value)">
+          class="factory__topInput" oninput="setInputValue(this.value)">
       </label>
 
       <button disabled id="accept" type="submit" class="factory__topCreate ct__mid-btn">
@@ -146,7 +150,7 @@
             <path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
           </g>
         </svg>
-        <span>создать</span>
+        <span>{% trans 'создать' context "factory" %}</span>
       </button>
 
     </form>

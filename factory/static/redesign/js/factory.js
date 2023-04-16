@@ -231,7 +231,7 @@ jQuery(document).ready(function ($) {
             $(cloned_line.getElementsByClassName("crude_count")[0]).attr('step', schema[crude]);
             $(cloned_line.getElementsByClassName("crude_amount")[0]).attr('step', schema[crude]);
 
-            $(cloned_line.getElementsByClassName("crude_price")[0]).html('цена: ' + numberWithSpaces(schema[crude]));
+            $(cloned_line.getElementsByClassName("crude_price")[0]).html(price_text + ': ' + numberWithSpaces(schema[crude]));
 
             if (max_value == 0){
                 $(cloned_line.getElementsByClassName("crude_count")[0]).val(0);

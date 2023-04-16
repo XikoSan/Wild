@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-16 00:50+0300\n"
+"POT-Creation-Date: 2023-04-16 18:54+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -191,6 +191,41 @@ msgstr ""
 #: storage/models/transport.py:188
 msgctxt "goods"
 msgid "БМП"
+msgstr ""
+
+#: factory/templates/factory/redesign/factory.html:13
+msgctxt "factory"
+msgid "Производство"
+msgstr ""
+
+#: factory/templates/factory/redesign/factory.html:17
+msgctxt "factory"
+msgid "цена"
+msgstr ""
+
+#: factory/templates/factory/redesign/factory.html:38
+msgctxt "factory"
+msgid "Энергия"
+msgstr ""
+
+#: factory/templates/factory/redesign/factory.html:101
+msgctxt "factory"
+msgid "выбор группы товаров"
+msgstr ""
+
+#: factory/templates/factory/redesign/factory.html:113
+msgctxt "factory"
+msgid "выбор товара"
+msgstr ""
+
+#: factory/templates/factory/redesign/factory.html:129
+msgctxt "factory"
+msgid "выбор схемы"
+msgstr ""
+
+#: factory/templates/factory/redesign/factory.html:153
+msgctxt "factory"
+msgid "создать"
 msgstr ""
 
 #: factory/views/factory.py:53
@@ -407,6 +442,7 @@ msgid "Загрузить"
 msgstr ""
 
 #: party/templates/party/redesign/new_party.html:15
+#: party/views/management/new_party.py:83
 msgctxt "new_party"
 msgid "Новая партия"
 msgstr ""
@@ -1797,7 +1833,7 @@ msgstr ""
 msgid "Навыки"
 msgstr ""
 
-#: player/views/translate.py:64
+#: player/views/translate.py:68
 #, python-brace-format
 msgid "Last modified by {player.nickname}, id {player.pk}"
 msgstr ""
