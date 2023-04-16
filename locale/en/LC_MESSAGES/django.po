@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-16 18:54+0300\n"
+"POT-Creation-Date: 2023-04-16 22:53+0300\n"
 "PO-Revision-Date: 2023-04-16 18:59+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -194,6 +194,7 @@ msgid "БМП"
 msgstr "IFV"
 
 #: factory/templates/factory/redesign/factory.html:13
+#: factory/views/factory.py:53
 msgctxt "factory"
 msgid "Производство"
 msgstr "Production"
@@ -227,10 +228,6 @@ msgstr "schema selection"
 msgctxt "factory"
 msgid "создать"
 msgstr "produce"
-
-#: factory/views/factory.py:53
-msgid "Производство"
-msgstr ""
 
 #: factory/views/produce_good.py:31
 msgctxt "factory"
@@ -1583,6 +1580,7 @@ msgid "стандарт"
 msgstr "standard"
 
 #: player/templates/player/redesign/profile.html:490
+#: player/templates/player/translate/translate.html:35
 msgid "сохранить"
 msgstr "save"
 
@@ -1614,6 +1612,27 @@ msgstr "Locks"
 msgctxt "wallet"
 msgid "Наличные"
 msgstr "Cash"
+
+#: player/templates/player/translate/translate.html:17
+#, fuzzy
+#| msgctxt "profile"
+#| msgid "цвет текста"
+msgctxt "translations"
+msgid "без контекста"
+msgstr "text color"
+
+#: player/templates/player/translate/translate.html:42
+msgctxt "translations"
+msgid "Русский язык"
+msgstr ""
+
+#: player/templates/player/translate/translate.html:43
+#, fuzzy
+#| msgctxt "cash_log"
+#| msgid "Перелёт"
+msgctxt "translations"
+msgid "Перевод"
+msgstr "Flying"
 
 #: player/templates/player/view_profile.html:22
 msgid "char_info"
@@ -1843,7 +1862,7 @@ msgstr "Timezone change"
 msgid "Навыки"
 msgstr "Skills"
 
-#: player/views/translate.py:68
+#: player/views/translate/translate.py:73
 #, python-brace-format
 msgid "Last modified by {player.nickname}, id {player.pk}"
 msgstr ""
@@ -3811,10 +3830,6 @@ msgstr ""
 #~ msgctxt "profile"
 #~ msgid "цвет фона"
 #~ msgstr "background color"
-
-#~ msgctxt "profile"
-#~ msgid "цвет текста"
-#~ msgstr "text color"
 
 #~ msgctxt "profile"
 #~ msgid "цвет акцента"

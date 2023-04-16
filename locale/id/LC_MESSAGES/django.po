@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-16 18:54+0300\n"
+"POT-Creation-Date: 2023-04-16 22:53+0300\n"
 "PO-Revision-Date: 2022-12-01 16:31+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -199,6 +199,7 @@ msgid "БМП"
 msgstr "IFV"
 
 #: factory/templates/factory/redesign/factory.html:13
+#: factory/views/factory.py:53
 #, fuzzy
 #| msgid "Производство"
 msgctxt "factory"
@@ -246,10 +247,6 @@ msgstr "tindakan"
 msgctxt "factory"
 msgid "создать"
 msgstr "membuat"
-
-#: factory/views/factory.py:53
-msgid "Производство"
-msgstr "Produksi"
 
 #: factory/views/produce_good.py:31
 msgctxt "factory"
@@ -1836,6 +1833,7 @@ msgid "стандарт"
 msgstr "standar"
 
 #: player/templates/player/redesign/profile.html:490
+#: player/templates/player/translate/translate.html:35
 msgid "сохранить"
 msgstr "menyimpan"
 
@@ -1875,6 +1873,21 @@ msgstr "Keuangan"
 msgctxt "wallet"
 msgid "Наличные"
 msgstr "Uang"
+
+#: player/templates/player/translate/translate.html:17
+msgctxt "translations"
+msgid "без контекста"
+msgstr ""
+
+#: player/templates/player/translate/translate.html:42
+msgctxt "translations"
+msgid "Русский язык"
+msgstr ""
+
+#: player/templates/player/translate/translate.html:43
+msgctxt "translations"
+msgid "Перевод"
+msgstr ""
 
 #: player/templates/player/view_profile.html:22
 msgid "char_info"
@@ -2143,7 +2156,7 @@ msgstr "Perubahan zona waktu"
 msgid "Навыки"
 msgstr "Kemampuan"
 
-#: player/views/translate.py:68
+#: player/views/translate/translate.py:73
 #, python-brace-format
 msgid "Last modified by {player.nickname}, id {player.pk}"
 msgstr ""
@@ -4342,6 +4355,9 @@ msgstr ""
 #: war/models/wars/war_side.py:27
 msgid "Дроны"
 msgstr ""
+
+#~ msgid "Производство"
+#~ msgstr "Produksi"
 
 #, fuzzy
 #~| msgctxt "mining"

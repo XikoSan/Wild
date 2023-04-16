@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-16 18:54+0300\n"
+"POT-Creation-Date: 2023-04-16 22:53+0300\n"
 "PO-Revision-Date: 2022-10-31 18:40+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -226,6 +226,7 @@ msgid "БМП"
 msgstr "БМП"
 
 #: factory/templates/factory/redesign/factory.html:13
+#: factory/views/factory.py:53
 #, fuzzy
 #| msgid "Производство"
 msgctxt "factory"
@@ -270,10 +271,6 @@ msgstr "Прэзыдэнцкія выбары"
 msgctxt "factory"
 msgid "создать"
 msgstr "Перадаць"
-
-#: factory/views/factory.py:53
-msgid "Производство"
-msgstr "Вытворчасьць"
 
 #: factory/views/produce_good.py:31
 msgctxt "factory"
@@ -1831,6 +1828,7 @@ msgid "стандарт"
 msgstr "сбросіць"
 
 #: player/templates/player/redesign/profile.html:490
+#: player/templates/player/translate/translate.html:35
 msgid "сохранить"
 msgstr "захаваць"
 
@@ -1866,6 +1864,23 @@ msgstr "Фінансаваньне"
 msgctxt "wallet"
 msgid "Наличные"
 msgstr "Наяўныя"
+
+#: player/templates/player/translate/translate.html:17
+msgctxt "translations"
+msgid "без контекста"
+msgstr ""
+
+#: player/templates/player/translate/translate.html:42
+msgctxt "translations"
+msgid "Русский язык"
+msgstr ""
+
+#: player/templates/player/translate/translate.html:43
+#, fuzzy
+#| msgid "Передать"
+msgctxt "translations"
+msgid "Перевод"
+msgstr "Перадаць"
 
 #: player/templates/player/view_profile.html:22
 msgid "char_info"
@@ -2133,7 +2148,7 @@ msgstr "Зьмяніць часавы пас"
 msgid "Навыки"
 msgstr "Навыкі"
 
-#: player/views/translate.py:68
+#: player/views/translate/translate.py:73
 #, python-brace-format
 msgid "Last modified by {player.nickname}, id {player.pk}"
 msgstr ""
@@ -4440,6 +4455,9 @@ msgstr "БПЛА"
 #: war/models/wars/war_side.py:27
 msgid "Дроны"
 msgstr "Дроны"
+
+#~ msgid "Производство"
+#~ msgstr "Вытворчасьць"
 
 #, fuzzy
 #~| msgid "Пополнение энергии"

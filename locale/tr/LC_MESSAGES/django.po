@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-16 18:54+0300\n"
+"POT-Creation-Date: 2023-04-16 22:53+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -194,6 +194,7 @@ msgid "БМП"
 msgstr ""
 
 #: factory/templates/factory/redesign/factory.html:13
+#: factory/views/factory.py:53
 msgctxt "factory"
 msgid "Производство"
 msgstr ""
@@ -226,10 +227,6 @@ msgstr ""
 #: factory/templates/factory/redesign/factory.html:153
 msgctxt "factory"
 msgid "создать"
-msgstr ""
-
-#: factory/views/factory.py:53
-msgid "Производство"
 msgstr ""
 
 #: factory/views/produce_good.py:31
@@ -1573,6 +1570,7 @@ msgid "стандарт"
 msgstr ""
 
 #: player/templates/player/redesign/profile.html:490
+#: player/templates/player/translate/translate.html:35
 msgid "сохранить"
 msgstr ""
 
@@ -1603,6 +1601,21 @@ msgstr ""
 #: player/templatetags/redesign/wallet_cash.py:31
 msgctxt "wallet"
 msgid "Наличные"
+msgstr ""
+
+#: player/templates/player/translate/translate.html:17
+msgctxt "translations"
+msgid "без контекста"
+msgstr ""
+
+#: player/templates/player/translate/translate.html:42
+msgctxt "translations"
+msgid "Русский язык"
+msgstr ""
+
+#: player/templates/player/translate/translate.html:43
+msgctxt "translations"
+msgid "Перевод"
 msgstr ""
 
 #: player/templates/player/view_profile.html:22
@@ -1833,7 +1846,7 @@ msgstr ""
 msgid "Навыки"
 msgstr ""
 
-#: player/views/translate.py:68
+#: player/views/translate/translate.py:73
 #, python-brace-format
 msgid "Last modified by {player.nickname}, id {player.pk}"
 msgstr ""
