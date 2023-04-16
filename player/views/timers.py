@@ -21,13 +21,16 @@ def until_recharge(player):
 
 # подсчет времени до возможности есст. прироста энергии
 def until_increase(player):
-    if player.natural_refill:
-        # узнаем сколько раз по десять минут прошло
-        counts = (timezone.now() - player.natural_refill).total_seconds() // 600
-    else:
-        counts = 0
+
+    if not player.natural_refill:
+        player.natural_refill = timezone.now()
+
+    # узнаем сколько раз по десять минут прошло
+    counts = (timezone.now() - player.natural_refill).total_seconds() // 600
+
     # время в будущем, когда произойдет пополнение
     future_time = player.natural_refill + datetime.timedelta(seconds=(counts+1) * 600)
+
 
     if player.energy == 100:
         return 0

@@ -80,7 +80,7 @@ class Player(models.Model):
                                        verbose_name='Перезарядка будет доступна в')
 
     # дата последнего есстественного прироста
-    natural_refill = models.DateTimeField(default=None, null=True, blank=True, verbose_name='Время прироста')
+    natural_refill = models.DateTimeField(default=timezone.now, null=True, blank=True, verbose_name='Время прироста')
     # индекс во время последнего прироста
     last_top = models.IntegerField(default=0, null=True, blank=True,
                                    verbose_name='Рейтинг госпиталя при последнем приросте')
