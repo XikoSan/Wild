@@ -8,7 +8,11 @@ from django.utils.translation import get_language_info
 import gettext
 from django.shortcuts import redirect
 
+from django.contrib.auth.decorators import login_required
+from player.decorators.player import check_player
 
+@login_required(login_url='/')
+@check_player
 def edit_translations(request, lang, context):
 
     groups = list(request.user.groups.all().values_list('name', flat=True))

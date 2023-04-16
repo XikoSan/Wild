@@ -14,7 +14,7 @@
 {% localize off %}
 <section class="translate custom-scroll">
 
-    <h1 class="translate__title ct__page-title">{{ locale }}: {% if context == 'None' %}{% trans 'без контекста' context "translations" %}{% else %}context{% endif %}</h1>
+    <h1 class="translate__title ct__page-title">{{ locale }}: {% if context == 'None' %}{% trans 'без контекста' context "translations" %}{% else %}{{ context }}{% endif %}</h1>
 
     <form method="POST" action="">
         {% csrf_token %}

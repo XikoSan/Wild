@@ -1,0 +1,92 @@
+{% extends 'player/redesign/header.html' %}
+{% load l10n %}
+{% load static %}
+{% load bootstrap3 %}
+{% load i18n %}
+{% load tz %}
+{% load dict_key %}
+{% load get_key_list %}
+{% load get_mod %}
+{% load pagination %}
+
+{% block for_scripts_and_css %}
+<script>
+jQuery(document).ready(function ($) {
+
+  // Создаем новый экземпляр MutationObserver
+  const observer = new MutationObserver(mutations => {
+
+    mutations.forEach(mutation => {
+
+      if (mutation.attributeName === 'data-value') {
+
+        document.querySelectorAll('.js--lang').forEach(elem => {
+            elem.style.display = 'none';
+        });
+
+        document.getElementById(document.getElementById('language').getAttribute('data-value')).style.display = 'table';
+      }
+
+    });
+
+  });
+
+  observer.observe(document.getElementById("language"), { attributes: true });
+
+});
+</script>
+{% endblock %}
+
+{% block content %}
+{% localize off %}
+<section class="translate custom-scroll">
+
+    <div class="ct__selectWithImage">
+        <div class="ct__selectWithImage-selected" id="language" data-value="{% localize off %}{{ user_language }}{% endlocalize %}">
+            <img src="/static/img/languages/{{ user_language }}.png">
+            <div class="ct__selectWithImage-firstText">
+                <span>{{ languages_dict|dict_key:user_language }}</span>
+                <svg class="ct__selectWithImage-arrow" width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
+                </svg>
+            </div>
+        </div>
+        <div class="ct__selectWithImage-content custom-scroll custom-scroll--alt">
+            {% for language in languages_dict|get_key_list  %}
+            {% if language != 'ru' %}
+            <div data-value="{% localize off %}{{ language }}{% endlocalize %}">
+              <img src="/static/img/languages/{{ language }}.png">
+                {% if languages_dict|dict_key:language == 'беларуская' %}
+                    Беларуская
+                {% elif languages_dict|dict_key:language == 'español' %}
+                    Español
+                {% else %}
+                    {{ languages_dict|dict_key:language }}
+                {% endif %}
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    {% for language in languages_dict|get_key_list  %}
+    {% if language != 'ru' %}
+    <table style="{% if not language == user_language %}display: none{% endif %}" class="js--lang odd" id="{{ language }}" data-lang="{{ language }}">
+      <tbody>
+        {% for context in context_list %}
+        <tr>
+          <td>
+            <a href="/edit-translation/{{ language }}/{{ context }}/">{{ context }}</a>
+          </td>
+          <td>
+            <img src="/static/img/languages/{{ language }}.png" style="height: 24rem">
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% endif %}
+    {% endfor %}
+	</section>
+{% endlocalize %}
+{% endblock %}
+
