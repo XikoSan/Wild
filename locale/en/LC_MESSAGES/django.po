@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-16 00:50+0300\n"
-"PO-Revision-Date: 2023-04-16 01:13+0300\n"
+"POT-Creation-Date: 2023-04-16 22:53+0300\n"
+"PO-Revision-Date: 2023-04-16 18:59+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -100,7 +100,6 @@ msgctxt "goods"
 msgid "Бензин"
 msgstr "Gas"
 
-#. Last modified by Администратор, id 1
 #: factory/models/project.py:39 state/models/treasury.py:68
 #: storage/models/destroy.py:44 storage/models/storage.py:63
 #: storage/models/storage.py:158 storage/models/trade_offer.py:84
@@ -178,7 +177,6 @@ msgctxt "goods"
 msgid "ПТ-орудия"
 msgstr "AT-canon"
 
-#. Last modified by Администратор, id 1
 #: factory/models/project.py:232 state/models/treasury.py:103
 #: storage/models/destroy.py:70 storage/models/storage.py:86
 #: storage/models/storage.py:188 storage/models/trade_offer.py:94
@@ -195,9 +193,41 @@ msgctxt "goods"
 msgid "БМП"
 msgstr "IFV"
 
+#: factory/templates/factory/redesign/factory.html:13
 #: factory/views/factory.py:53
+msgctxt "factory"
 msgid "Производство"
-msgstr ""
+msgstr "Production"
+
+#: factory/templates/factory/redesign/factory.html:17
+msgctxt "factory"
+msgid "цена"
+msgstr "price"
+
+#: factory/templates/factory/redesign/factory.html:38
+msgctxt "factory"
+msgid "Энергия"
+msgstr "Energy"
+
+#: factory/templates/factory/redesign/factory.html:101
+msgctxt "factory"
+msgid "выбор группы товаров"
+msgstr "product group selection"
+
+#: factory/templates/factory/redesign/factory.html:113
+msgctxt "factory"
+msgid "выбор товара"
+msgstr "product selection"
+
+#: factory/templates/factory/redesign/factory.html:129
+msgctxt "factory"
+msgid "выбор схемы"
+msgstr "schema selection"
+
+#: factory/templates/factory/redesign/factory.html:153
+msgctxt "factory"
+msgid "создать"
+msgstr "produce"
 
 #: factory/views/produce_good.py:31
 msgctxt "factory"
@@ -408,22 +438,18 @@ msgstr "Cancel"
 msgid "Загрузить"
 msgstr "Upload"
 
-#. Last modified by Розмайн, id 20
 #: party/templates/party/redesign/new_party.html:15
+#: party/views/management/new_party.py:83
 msgctxt "new_party"
 msgid "Новая партия"
 msgstr "New party"
 
-#. Last modified by Розмайн, id 20
 #: party/templates/party/redesign/new_party.html:19
 msgctxt "new_party"
 msgid "Стоимость создания партии"
-msgstr "Party creation cost\r"
+msgstr "Party creation cost"
 
-#. Last modified by Розмайн, id 20
 #: party/templates/party/redesign/new_party.html:25
-#| msgctxt "party_manage"
-#| msgid "Глава партии"
 msgctxt "new_party"
 msgid "Название партии"
 msgstr "Party name"
@@ -1091,14 +1117,14 @@ msgid ""
 "Заполняется расходованием энергии, как и ежедневное финансирование, и "
 "зависит только от твоих личных усилий."
 msgstr ""
-"It is filled with energy expenditure, like daily financing, and depends "
-"only on your personal efforts."
+"It is filled with energy expenditure, like daily financing, and depends only"
+" on your personal efforts."
 
 #: player/templates/player/redesign/game_event/newyear.html:394
 msgctxt "game_event"
 msgid ""
-"Она позволит получить тебе премиум-аккаунт для комфортной игры, а также "
-"один из трёх этапов зимней прогрессионой рамки аватара."
+"Она позволит получить тебе премиум-аккаунт для комфортной игры, а также один"
+" из трёх этапов зимней прогрессионой рамки аватара."
 msgstr ""
 "It will allow you to get a premium account for a comfortable game, as well "
 "as one of the three stages of the winter progression avatar frame."
@@ -1116,8 +1142,8 @@ msgstr "Fills with the efforts of all players on the server."
 #: player/templates/player/redesign/game_event/newyear.html:397
 msgctxt "game_event"
 msgid ""
-"Ты не сможешь собрать награды, открытые в общей прогрессии, пока не "
-"пройдёшь соответствующий этап личной."
+"Ты не сможешь собрать награды, открытые в общей прогрессии, пока не пройдёшь"
+" соответствующий этап личной."
 msgstr ""
 "You will not be able to collect rewards unlocked in the general progression "
 "until you complete the corresponding stage of the personal one."
@@ -1555,6 +1581,7 @@ msgid "стандарт"
 msgstr "standard"
 
 #: player/templates/player/redesign/profile.html:490
+#: player/templates/player/translate/translate.html:35
 msgid "сохранить"
 msgstr "save"
 
@@ -1586,6 +1613,28 @@ msgstr "Locks"
 msgctxt "wallet"
 msgid "Наличные"
 msgstr "Cash"
+
+#. Last modified by Администратор, id 1
+#: player/templates/player/translate/translate.html:17
+#| msgctxt "profile"
+#| msgid "цвет текста"
+msgctxt "translations"
+msgid "без контекста"
+msgstr "no context"
+
+#. Last modified by Администратор, id 1
+#: player/templates/player/translate/translate.html:42
+msgctxt "translations"
+msgid "Русский язык"
+msgstr "Russian"
+
+#. Last modified by Администратор, id 1
+#: player/templates/player/translate/translate.html:43
+#| msgctxt "cash_log"
+#| msgid "Перелёт"
+msgctxt "translations"
+msgid "Перевод"
+msgstr "Translation"
 
 #: player/templates/player/view_profile.html:22
 msgid "char_info"
@@ -1816,7 +1865,7 @@ msgstr "Timezone change"
 msgid "Навыки"
 msgstr "Skills"
 
-#: player/views/translate.py:64
+#: player/views/translate/translate.py:73
 #, python-brace-format
 msgid "Last modified by {player.nickname}, id {player.pk}"
 msgstr ""
@@ -2260,7 +2309,6 @@ msgctxt "goods"
 msgid "Дизельное топливо"
 msgstr "Diesel"
 
-#. Last modified by Администратор, id 1
 #: state/models/treasury.py:94 storage/models/destroy.py:64
 #: storage/models/storage.py:80 storage/models/storage.py:208
 #: storage/models/trade_offer.py:95
@@ -2862,8 +2910,8 @@ msgid ""
 "Ваш премиум-аккаунт будет продлён на один месяц. Данную операцию невозможно "
 "отменить. Продолжить?"
 msgstr ""
-"Your premium account will be renewed for one month. This operation cannot "
-"be undone. Proceed?"
+"Your premium account will be renewed for one month. This operation cannot be"
+" undone. Proceed?"
 
 #: storage/templates/storage/redesign/storage.html:368
 msgctxt "storage_assets"
@@ -3139,7 +3187,6 @@ msgctxt "assets"
 msgid "Перемещение товара"
 msgstr "Goods transfer"
 
-#. Last modified by cheshiretail, id 350
 #: storage/views/assets/assets_action.py:89
 msgctxt "assets"
 msgid "Запрещено вывозить товары из атакованных регионов"
@@ -3786,10 +3833,6 @@ msgstr ""
 #~ msgctxt "profile"
 #~ msgid "цвет фона"
 #~ msgstr "background color"
-
-#~ msgctxt "profile"
-#~ msgid "цвет текста"
-#~ msgstr "text color"
 
 #~ msgctxt "profile"
 #~ msgid "цвет акцента"
