@@ -28,7 +28,10 @@ def player_status(player):
         increase_text = time.strftime('%M:%S', time.gmtime(increase_time))
 
     # величина ближайшнего прироста
-    increase_value = Hospital.indexes[player.last_top]
+    if player.last_top == 0:
+        increase_value = Hospital.indexes[Hospital.get_stat(player.region)[0]['top']]
+    else:
+        increase_value = Hospital.indexes[player.last_top]
 
     return {
         'player': player,

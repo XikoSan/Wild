@@ -421,8 +421,11 @@ class Player(models.Model):
             # остаток от деления понадобится чтобы указать время обновления
             modulo = (timezone.now() - self.natural_refill).total_seconds() % 600
 
-            # считаем, сколько энергии станет при последнем индексе
-            energy_sum = Hospital.indexes[self.last_top] * counts
+            if self.last_top == 0:
+                energy_sum = Hospital.indexes[Hospital.get_stat(self.region)[0]['top']] * counts
+            else:
+                # считаем, сколько энергии станет при последнем индексе
+                energy_sum = Hospital.indexes[self.last_top] * counts
 
             # если энергии заведомо больше ста
             if energy_sum > 100:
