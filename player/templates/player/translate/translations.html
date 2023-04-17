@@ -62,6 +62,8 @@ jQuery(document).ready(function ($) {
                     Español
                 {% elif languages_dict|dict_key:language == 'latviešu' %}
                     Latviešu
+                {% elif languages_dict|dict_key:language == 'polski' %}
+                    Polski
                 {% else %}
                     {{ languages_dict|dict_key:language }}
                 {% endif %}
