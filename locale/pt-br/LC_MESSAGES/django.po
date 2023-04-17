@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-16 22:53+0300\n"
+"POT-Creation-Date: 2023-04-17 17:58+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1569,7 +1569,7 @@ msgid "стандарт"
 msgstr ""
 
 #: player/templates/player/redesign/profile.html:490
-#: player/templates/player/translate/translate.html:35
+#: player/templates/player/translate/translate.html:36
 msgid "сохранить"
 msgstr ""
 
@@ -1607,12 +1607,17 @@ msgctxt "translations"
 msgid "без контекста"
 msgstr ""
 
-#: player/templates/player/translate/translate.html:42
+#: player/templates/player/translate/translate.html:51
+msgctxt "translations"
+msgid "Собрать"
+msgstr ""
+
+#: player/templates/player/translate/translate.html:61
 msgctxt "translations"
 msgid "Русский язык"
 msgstr ""
 
-#: player/templates/player/translate/translate.html:43
+#: player/templates/player/translate/translate.html:62
 msgctxt "translations"
 msgid "Перевод"
 msgstr ""
@@ -1845,7 +1850,7 @@ msgstr ""
 msgid "Навыки"
 msgstr ""
 
-#: player/views/translate/translate.py:73
+#: player/views/translate/translate.py:89
 #, python-brace-format
 msgid "Last modified by {player.nickname}, id {player.pk}"
 msgstr ""

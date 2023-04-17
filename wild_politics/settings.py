@@ -241,6 +241,7 @@ LANGUAGES = (
     ('tr', 'Turkish'),
     # ('sr', 'Serbian'),
     ('id', 'Indonesian'),
+    ('lv', 'Latvian'),
     ('pt-br', 'Portuguese (Brazil)'),
 )
 

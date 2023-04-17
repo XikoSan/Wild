@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-16 22:53+0300\n"
+"POT-Creation-Date: 2023-04-17 17:58+0300\n"
 "PO-Revision-Date: 2023-04-11 22:45+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -1635,7 +1635,7 @@ msgid "стандарт"
 msgstr "Standard"
 
 #: player/templates/player/redesign/profile.html:490
-#: player/templates/player/translate/translate.html:35
+#: player/templates/player/translate/translate.html:36
 msgid "сохранить"
 msgstr "speichern"
 
@@ -1676,12 +1676,20 @@ msgctxt "translations"
 msgid "без контекста"
 msgstr "Textfarbe"
 
-#: player/templates/player/translate/translate.html:42
+#: player/templates/player/translate/translate.html:51
+#, fuzzy
+#| msgctxt "mining"
+#| msgid "Нечего забирать"
+msgctxt "translations"
+msgid "Собрать"
+msgstr "Nichts zum Mitnehmen"
+
+#: player/templates/player/translate/translate.html:61
 msgctxt "translations"
 msgid "Русский язык"
 msgstr ""
 
-#: player/templates/player/translate/translate.html:43
+#: player/templates/player/translate/translate.html:62
 #, fuzzy
 #| msgid "Передать"
 msgctxt "translations"
@@ -1933,7 +1941,7 @@ msgstr "Änderung der Zeitzone"
 msgid "Навыки"
 msgstr "Fahigkeiten"
 
-#: player/views/translate/translate.py:73
+#: player/views/translate/translate.py:89
 #, python-brace-format
 msgid "Last modified by {player.nickname}, id {player.pk}"
 msgstr ""

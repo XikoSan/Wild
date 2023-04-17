@@ -60,6 +60,8 @@ jQuery(document).ready(function ($) {
                     Беларуская
                 {% elif languages_dict|dict_key:language == 'español' %}
                     Español
+                {% elif languages_dict|dict_key:language == 'latviešu' %}
+                    Latviešu
                 {% else %}
                     {{ languages_dict|dict_key:language }}
                 {% endif %}
