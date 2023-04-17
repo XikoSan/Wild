@@ -33,6 +33,13 @@ def player_status(player):
     else:
         increase_value = Hospital.indexes[player.last_top]
 
+    # узнаем, имеет ли игрок доступ к переводам
+    translator = False
+    groups = list(player.account.groups.all().values_list('name', flat=True))
+
+    if player.account.is_superuser or 'translator' in groups:
+        translator = True
+
     return {
         'player': player,
         'locked': locked['total_cash'],
@@ -43,4 +50,6 @@ def player_status(player):
         'increase_time': increase_time,
         'increase_text': increase_text,
         'increase_value': increase_value,
+
+        'translator': translator,
     }
