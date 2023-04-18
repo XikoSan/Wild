@@ -228,6 +228,24 @@ class Storage(models.Model):
     deleted = models.BooleanField(default=False, verbose_name='Удалено')
 
     @staticmethod
+    def get_good_text(good):
+        good_text = None
+        if good == 'cash':
+            good_text = pgettext_lazy('goods', 'Наличные')
+
+        else:
+            for mode in Storage.types.keys():
+                for unit in getattr(Storage, mode).keys():
+                    if good == unit:
+                        good_text = getattr(Storage, mode)[unit]
+                        break
+
+                if good_text:
+                    break
+
+        return good_text
+
+    @staticmethod
     def get_choises(mode=None):
         choises = []
 

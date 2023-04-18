@@ -77,7 +77,7 @@ def edit_translations(request, lang, context):
 def save_translation_file(file_path, data, context, player):
 
     # Загружаем файл с помощью polib и обновляем переводы
-    po = polib.pofile(file_path)
+    po = polib.pofile(pofile=file_path, wrapwidth=0)
 
     # log(data)
     for entry in po:
