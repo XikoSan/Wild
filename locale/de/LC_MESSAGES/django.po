@@ -139,12 +139,13 @@ msgctxt "goods"
 msgid "Медикаменты"
 msgstr "Medikamente"
 
+#. Last modified by Zay, id 547
 #: factory/models/project.py:132 state/models/treasury.py:81
 #: storage/models/destroy.py:54 storage/models/storage.py:72
 #: storage/models/storage.py:177 storage/models/trade_offer.py:89
 msgctxt "goods"
 msgid "Буровые установки"
-msgstr ""
+msgstr "Bohrinseln"
 
 #: factory/models/project.py:163 state/models/treasury.py:88
 #: storage/models/destroy.py:60 storage/models/storage.py:78
@@ -177,13 +178,14 @@ msgctxt "goods"
 msgid "ПТ-орудия"
 msgstr "PZ-Kanone"
 
+#. Last modified by Zay, id 547
 #: factory/models/project.py:232 state/models/treasury.py:103
 #: storage/models/destroy.py:70 storage/models/storage.py:86
 #: storage/models/storage.py:188 storage/models/trade_offer.py:94
 #: storage/models/transport.py:183
 msgctxt "goods"
 msgid "Мины"
-msgstr ""
+msgstr "Minen"
 
 #: factory/models/project.py:248 state/models/treasury.py:106
 #: storage/models/destroy.py:72 storage/models/storage.py:85
@@ -201,15 +203,17 @@ msgctxt "factory"
 msgid "Производство"
 msgstr "Produktion"
 
+#. Last modified by Zay, id 547
 #: factory/templates/factory/redesign/factory.html:17
 msgctxt "factory"
 msgid "цена"
-msgstr ""
+msgstr "Preis"
 
+#. Last modified by Zay, id 547
 #: factory/templates/factory/redesign/factory.html:38
 msgctxt "factory"
 msgid "Энергия"
-msgstr ""
+msgstr "Energie"
 
 #: factory/templates/factory/redesign/factory.html:101
 #, fuzzy
@@ -672,7 +676,8 @@ msgstr "Beitreten"
 msgid "primaries_in_party"
 msgstr "Vorwahlen_in_der_Partei"
 
-#: party/views/lists/region_parties.py:86 party/views/lists/state_parties.py:40
+#: party/views/lists/region_parties.py:86
+#: party/views/lists/state_parties.py:40
 msgid "Партии региона"
 msgstr "Parteien in der Region"
 
@@ -690,10 +695,11 @@ msgctxt "party_manage"
 msgid "Новый игрок партии"
 msgstr "Neues Parteimitglied"
 
+#. Last modified by Zay, id 547
 #: party/views/management/roles/new_role.py:49
 msgctxt "party_manage"
 msgid "Должность с таким названием уже есть"
-msgstr ""
+msgstr "Diese Position ist bereits vergeben"
 
 #: party/views/management/roles/new_role.py:50
 #: party/views/management/roles/new_role.py:57
@@ -747,10 +753,11 @@ msgctxt "party_manage"
 msgid "Название не может быть пустым"
 msgstr "Positionsbezeichnung"
 
+#. Last modified by Zay, id 547
 #: party/views/management/roles/new_role.py:64
 msgctxt "party_manage"
 msgid "Достигнуто ограничение на число должностей"
-msgstr ""
+msgstr "Anfragelimit erreicht"
 
 #: party/views/management/roles/new_role.py:71
 #, fuzzy
@@ -805,15 +812,19 @@ msgctxt "party_manage"
 msgid "Это неудаляемая должность"
 msgstr "Position erstellen"
 
+#. Last modified by Zay, id 547
 #: party/views/management/roles/remove_role.py:45
 msgctxt "party_manage"
 msgid "Перед удалением должности её необходимо убрать у всех игроков!"
 msgstr ""
+"Bevor eine Position gelöscht wird, muss sie von allen Spielern entfernt "
+"werden!"
 
+#. Last modified by Zay, id 547
 #: party/views/management/roles/remove_role.py:60
 msgctxt "party_manage"
 msgid "Вы пытаетесь удалить должность другой партии!"
-msgstr ""
+msgstr "Du versuchst, die Position einer anderen Partei zu entfernen!"
 
 #: party/views/management/roles/remove_role.py:68
 #, fuzzy
@@ -823,10 +834,11 @@ msgctxt "party_manage"
 msgid "Недостаточно прав для удаления должности"
 msgstr "Unzureichende Mittel für die Bezahlung der Lieferung"
 
+#. Last modified by Zay, id 547
 #: party/views/management/roles/set_role.py:35
 msgctxt "has_party"
 msgid "В партии может быть только один глава"
-msgstr ""
+msgstr "Es kann nur einen Anführer pro Partei geben."
 
 #: party/views/management/roles/set_role.py:36
 #: party/views/management/roles/set_role.py:51
@@ -1177,11 +1189,11 @@ msgstr ""
 #: player/templates/player/redesign/game_event/newyear.html:394
 msgctxt "game_event"
 msgid ""
-"Она позволит получить тебе премиум-аккаунт для комфортной игры, а также один "
-"из трёх этапов зимней прогрессионой рамки аватара."
+"Она позволит получить тебе премиум-аккаунт для комфортной игры, а также один"
+" из трёх этапов зимней прогрессионой рамки аватара."
 msgstr ""
-"Damit erhalten Sie einen Premium-Account, mit dem Sie bequem spielen können, "
-"sowie eine der drei Stufen des Avatar-Winterrahmens."
+"Damit erhalten Sie einen Premium-Account, mit dem Sie bequem spielen können,"
+" sowie eine der drei Stufen des Avatar-Winterrahmens."
 
 #: player/templates/player/redesign/game_event/newyear.html:395
 msgctxt "game_event"
@@ -1196,8 +1208,8 @@ msgstr "Wird durch die Bemühungen aller Spieler auf dem Server ausgefüllt."
 #: player/templates/player/redesign/game_event/newyear.html:397
 msgctxt "game_event"
 msgid ""
-"Ты не сможешь собрать награды, открытые в общей прогрессии, пока не пройдёшь "
-"соответствующий этап личной."
+"Ты не сможешь собрать награды, открытые в общей прогрессии, пока не пройдёшь"
+" соответствующий этап личной."
 msgstr ""
 "Die in der allgemeinen Progression freigeschalteten Belohnungen können Sie "
 "erst erhalten, wenn Sie die entsprechende persönliche Stufe erreicht haben."
@@ -1208,8 +1220,8 @@ msgid ""
 "Когда будет открыт очередной этап общей прогрессии, потрать энергию, чтобы "
 "получить свою награду"
 msgstr ""
-"Wenn die nächste Stufe der allgemeinen Progression geöffnet wird, verbrauche "
-"Energie, um deine Belohnung zu erhalten."
+"Wenn die nächste Stufe der allgemeinen Progression geöffnet wird, verbrauche"
+" Energie, um deine Belohnung zu erhalten."
 
 #: player/templates/player/redesign/lists/skill_top.html:26
 #: player/templates/player/redesign/overview_skills.html:20
@@ -1782,7 +1794,8 @@ msgid "Описание"
 msgstr "Beschreibung"
 
 #: player/views/change_back_allow.py:41
-#: player/views/change_wiki_hide_allow.py:41 player/views/full_auto_allow.py:41
+#: player/views/change_wiki_hide_allow.py:41
+#: player/views/full_auto_allow.py:41
 msgid "Некорректное значение"
 msgstr "Fehlerhafter Wert"
 
@@ -1791,10 +1804,10 @@ msgid "Настройка партийного фона"
 msgstr "Lege ein Partei Hintergrund fest."
 
 #: player/views/change_back_allow.py:57
-#: player/views/change_wiki_hide_allow.py:57 player/views/full_auto_allow.py:57
-#: player/views/set_language.py:54 player/views/set_timezone.py:43
-#: region/views/cancel_auto.py:35 region/views/retrieve_cash.py:42
-#: region/views/start_auto.py:78
+#: player/views/change_wiki_hide_allow.py:57
+#: player/views/full_auto_allow.py:57 player/views/set_language.py:54
+#: player/views/set_timezone.py:43 region/views/cancel_auto.py:35
+#: region/views/retrieve_cash.py:42 region/views/start_auto.py:78
 msgid "Ошибка метода"
 msgstr "Es ist ein Fehler beim Abbrechen der Fähigkeit aufgetreten"
 
@@ -3385,12 +3398,14 @@ msgstr "Das betreffende Lagerhaus gehört Ihnen nicht"
 #: storage/views/assets/storage_move.py:57
 msgctxt "assets"
 msgid "Указанный Склад уже в текущем регионе"
-msgstr "Das angegebene Lagerhaus befindet sich bereits in der aktuellen Region"
+msgstr ""
+"Das angegebene Lagerhaus befindet sich bereits in der aktuellen Region"
 
 #: storage/views/assets/storage_move.py:69
 msgctxt "assets"
 msgid "Нельзя переместить Склад из атакованного региона"
-msgstr "Sie können das Lagerhaus nicht in einer angegriffenen Region verlegen."
+msgstr ""
+"Sie können das Lagerhaus nicht in einer angegriffenen Region verlegen."
 
 #: storage/views/storage/cash_transfer.py:33
 #: storage/views/storage/cash_transfer.py:42
@@ -3433,15 +3448,17 @@ msgctxt "storage"
 msgid "В этом регионе нет Склада"
 msgstr "Es gibt kein Lagerhaus in dieser Region"
 
+#. Last modified by Zay, id 547
 #: storage/views/storage/cash_transfer.py:104
 msgctxt "storage"
 msgid "Нельзя вывести деньги из атакованного региона"
-msgstr ""
+msgstr "Du kannst kein Geld aus der angegriffenen Region abheben"
 
 #: storage/views/storage/cash_transfer.py:124
 msgctxt "storage"
 msgid "Данные кошелька не совпадают с введенными"
-msgstr "Die Angaben zum Budget stimmen nicht mit den angegebenen Daten überein"
+msgstr ""
+"Die Angaben zum Budget stimmen nicht mit den angegebenen Daten überein"
 
 #: storage/views/storage/cash_transfer.py:132
 msgctxt "storage"
@@ -3835,8 +3852,6 @@ msgstr "Drohnen"
 #~ msgstr "Produktion"
 
 #, fuzzy
-#~| msgctxt "factory"
-#~| msgid "Недостаточно "
 #~ msgctxt "party_manage"
 #~ msgid "Недостаточно прав!"
 #~ msgstr "Nicht ausreichend"
@@ -3861,39 +3876,30 @@ msgstr "Drohnen"
 #~ msgstr "lager_geld"
 
 #, fuzzy
-#~| msgid "Финансирование"
 #~ msgctxt "goods"
 #~ msgid "Финансирование"
 #~ msgstr "Verkauf"
 
 #, fuzzy
-#~| msgid "Торговля"
 #~ msgctxt "goods"
 #~ msgid "Торговля"
 #~ msgstr "Markt"
 
 #, fuzzy
-#~| msgid "Навыки"
 #~ msgctxt "goods"
 #~ msgid "Навыки"
 #~ msgstr "Fahigkeiten"
 
 #, fuzzy
-#~| msgctxt "profile"
-#~| msgid "место в рейтинге"
 #~ msgid "Тестовый сервер войн"
 #~ msgstr "Rangliste"
 
 #, fuzzy
-#~| msgctxt "goods"
-#~| msgid "Автоматы"
 #~ msgctxt "goods"
 #~ msgid "Автомат"
 #~ msgstr "Automaten"
 
 #, fuzzy
-#~| msgctxt "goods"
-#~| msgid "Танки"
 #~ msgctxt "goods"
 #~ msgid "Танк"
 #~ msgstr "Panzer"
@@ -3956,8 +3962,6 @@ msgstr "Drohnen"
 #~ msgstr "Aluminium"
 
 #, fuzzy
-#~| msgctxt "overview"
-#~| msgid "парламент"
 #~ msgid "Медикаменты"
 #~ msgstr "Parlament"
 
@@ -4001,22 +4005,16 @@ msgstr "Drohnen"
 #~ msgid "drone"
 #~ msgstr "Drohne"
 
-#, fuzzy
-#~| msgctxt "goods"
-#~| msgid "Бокситы"
 #~ msgctxt "goods"
 #~ msgid "Койки - лимит"
-#~ msgstr "Bauxit"
+#~ msgstr "Barracken - Grenzt"
 
 #, fuzzy
-#~| msgctxt "storage_transfer"
-#~| msgid "Перемещение Склада"
 #~ msgctxt "mining"
 #~ msgid "Перемещение Склада"
 #~ msgstr "Verlagerung des Lagers"
 
 #, fuzzy
-#~| msgid "Склад"
 #~ msgctxt "assets"
 #~ msgid "Склад №"
 #~ msgstr "Lagerhaus"
@@ -4025,13 +4023,10 @@ msgstr "Drohnen"
 #~ msgstr "fehlerhafte_Methode"
 
 #, fuzzy
-#~| msgctxt "overview"
-#~| msgid "Хэллоуинский ивент"
 #~ msgid "Хэллоуинский ивент"
 #~ msgstr "Halloween-Ereignis"
 
 #, fuzzy
-#~| msgid "Часовой пояс"
 #~ msgctxt "profile"
 #~ msgid "часовой пояс"
 #~ msgstr "Zeitzone"
