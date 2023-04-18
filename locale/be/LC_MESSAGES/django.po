@@ -15,8 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
 "X-Generator: Poedit 3.1.1\n"
 
 #: bill/models/change_taxes.py:21 party/templates/party/party_view.html:71
@@ -837,7 +836,8 @@ msgstr "недаступна"
 msgid "primaries_in_party"
 msgstr "Праймарыс у партыі"
 
-#: party/views/lists/region_parties.py:86 party/views/lists/state_parties.py:40
+#: party/views/lists/region_parties.py:86
+#: party/views/lists/state_parties.py:40
 msgid "Партии региона"
 msgstr "Партыі рэгіёну"
 
@@ -1370,8 +1370,8 @@ msgstr ""
 #: player/templates/player/redesign/game_event/newyear.html:394
 msgctxt "game_event"
 msgid ""
-"Она позволит получить тебе премиум-аккаунт для комфортной игры, а также один "
-"из трёх этапов зимней прогрессионой рамки аватара."
+"Она позволит получить тебе премиум-аккаунт для комфортной игры, а также один"
+" из трёх этапов зимней прогрессионой рамки аватара."
 msgstr ""
 
 #: player/templates/player/redesign/game_event/newyear.html:395
@@ -1390,8 +1390,8 @@ msgstr ""
 #: player/templates/player/redesign/game_event/newyear.html:397
 msgctxt "game_event"
 msgid ""
-"Ты не сможешь собрать награды, открытые в общей прогрессии, пока не пройдёшь "
-"соответствующий этап личной."
+"Ты не сможешь собрать награды, открытые в общей прогрессии, пока не пройдёшь"
+" соответствующий этап личной."
 msgstr ""
 
 #: player/templates/player/redesign/game_event/newyear.html:398
@@ -1740,11 +1740,12 @@ msgctxt "profile"
 msgid "не активен"
 msgstr "не актыўны"
 
+#. Last modified by Felix Kauffman, id 19
 #: player/templates/player/redesign/profile.html:187
 #: player/templates/player/redesign/view_profile.html:76
 msgctxt "profile"
 msgid "место в рейтинге"
-msgstr "мейсца ў рэйтынгу"
+msgstr "месца ў рэйтынгу"
 
 #: player/templates/player/redesign/profile.html:191
 #: player/templates/player/redesign/view_profile.html:80
@@ -1996,7 +1997,8 @@ msgid "Описание"
 msgstr "Абсталяваньне"
 
 #: player/views/change_back_allow.py:41
-#: player/views/change_wiki_hide_allow.py:41 player/views/full_auto_allow.py:41
+#: player/views/change_wiki_hide_allow.py:41
+#: player/views/full_auto_allow.py:41
 msgid "Некорректное значение"
 msgstr "Некарэктнае значэньне"
 
@@ -2005,10 +2007,10 @@ msgid "Настройка партийного фона"
 msgstr "Налады партыйнай асноведзі"
 
 #: player/views/change_back_allow.py:57
-#: player/views/change_wiki_hide_allow.py:57 player/views/full_auto_allow.py:57
-#: player/views/set_language.py:54 player/views/set_timezone.py:43
-#: region/views/cancel_auto.py:35 region/views/retrieve_cash.py:42
-#: region/views/start_auto.py:78
+#: player/views/change_wiki_hide_allow.py:57
+#: player/views/full_auto_allow.py:57 player/views/set_language.py:54
+#: player/views/set_timezone.py:43 region/views/cancel_auto.py:35
+#: region/views/retrieve_cash.py:42 region/views/start_auto.py:78
 msgid "Ошибка метода"
 msgstr "Памылка мэтаду"
 
@@ -2024,34 +2026,34 @@ msgctxt "profile"
 msgid "Некорректный код фона игры"
 msgstr "Некарэктны запрос"
 
+#. Last modified by Felix Kauffman, id 19
 #: player/views/color_change.py:31 player/views/color_change.py:43
 #: player/views/color_change.py:55 player/views/color_change.py:67
-#, fuzzy
 #| msgid "Некорректный запрос"
 msgctxt "profile"
 msgid "Некорректный код цвета"
-msgstr "Некарэктны запрос"
+msgstr "Некарэктны код коллеру"
 
+#. Last modified by Felix Kauffman, id 19
 #: player/views/color_change.py:42
-#, fuzzy
 #| msgid "Некорректный запрос"
 msgctxt "profile"
 msgid "Некорректный код блоков игры"
-msgstr "Некарэктны запрос"
+msgstr "Некарэктны код блокаў гульні"
 
+#. Last modified by Felix Kauffman, id 19
 #: player/views/color_change.py:54
-#, fuzzy
 #| msgid "Некорректное значение"
 msgctxt "profile"
 msgid "Некорректный код текста игры"
-msgstr "Некарэктнае значэньне"
+msgstr "Некарэктны код тэксту гульні"
 
+#. Last modified by Felix Kauffman, id 19
 #: player/views/color_change.py:66
-#, fuzzy
 #| msgid "Некорректный запрос"
 msgctxt "profile"
 msgid "Некорректный код акцентов игры"
-msgstr "Некарэктны запрос"
+msgstr "Некарэктны код акцэнтаў гульні"
 
 #: player/views/color_change.py:103
 #, fuzzy
@@ -4465,62 +4467,50 @@ msgstr "Дроны"
 #~ msgstr "Вытворчасьць"
 
 #, fuzzy
-#~| msgid "Пополнение энергии"
 #~ msgctxt "party_manage"
 #~ msgid "Недостаточно прав!"
 #~ msgstr "Папаўненьне энэргіі"
 
 #, fuzzy
-#~| msgid "Наличные"
 #~ msgctxt "factory"
 #~ msgid "Отлично!"
 #~ msgstr "Наяўныя"
 
 #, fuzzy
-#~| msgctxt "repost"
-#~| msgid "Получить"
 #~ msgctxt "factory"
 #~ msgid "Вы получили "
 #~ msgstr "Атрымаць"
 
 #, fuzzy
-#~| msgid "Золото"
 #~ msgctxt "factory"
 #~ msgid " золота"
 #~ msgstr "Золата"
 
 #, fuzzy
-#~| msgid "Финансирование"
 #~ msgctxt "goods"
 #~ msgid "Финансирование"
 #~ msgstr "Фінансаваньне"
 
 #, fuzzy
-#~| msgid "Торговля"
 #~ msgctxt "goods"
 #~ msgid "Торговля"
 #~ msgstr "Гандаль"
 
 #, fuzzy
-#~| msgid "Навыки"
 #~ msgctxt "goods"
 #~ msgid "Навыки"
 #~ msgstr "Навыкі"
 
 #, fuzzy
-#~| msgctxt "profile"
-#~| msgid "место в рейтинге"
 #~ msgid "Тестовый сервер войн"
 #~ msgstr "мейсца ў рэйтынгу"
 
 #, fuzzy
-#~| msgid "Автоматы - кубов"
 #~ msgctxt "goods"
 #~ msgid "Автомат"
 #~ msgstr "Аўтаматы - кубоў"
 
 #, fuzzy
-#~| msgid "Танки"
 #~ msgctxt "goods"
 #~ msgid "Танк"
 #~ msgstr "Танкі"
@@ -4559,8 +4549,6 @@ msgstr "Дроны"
 #~ msgstr "Алюмін"
 
 #, fuzzy
-#~| msgctxt "overview"
-#~| msgid "парламент"
 #~ msgid "Медикаменты"
 #~ msgstr "парлямэнт"
 
@@ -4571,7 +4559,6 @@ msgstr "Дроны"
 #~ msgstr "ПЗРК"
 
 #, fuzzy
-#~| msgid "настройки"
 #~ msgctxt "goods"
 #~ msgid "Койки"
 #~ msgstr "налады"
@@ -4580,25 +4567,20 @@ msgstr "Дроны"
 #~ msgstr "Койкі - кубоў"
 
 #, fuzzy
-#~| msgid "Бокситы - кубов"
 #~ msgctxt "goods"
 #~ msgid "Койки - лимит"
 #~ msgstr "Баксіты - кубоў"
 
 #, fuzzy
-#~| msgid "В этом регионе нет Склада"
 #~ msgctxt "mining"
 #~ msgid "Перемещение Склада"
 #~ msgstr "У гэтым рэгіёне няма Кладоўні"
 
 #, fuzzy
-#~| msgid "Склад"
 #~ msgctxt "assets"
 #~ msgid "Склад №"
 #~ msgstr "Кладоўня"
 
 #, fuzzy
-#~| msgctxt "overview"
-#~| msgid "Хэллоуинский ивент"
 #~ msgid "Хэллоуинский ивент"
 #~ msgstr "Хэлоўінскі івент"
