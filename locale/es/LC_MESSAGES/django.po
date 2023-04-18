@@ -108,10 +108,11 @@ msgctxt "goods"
 msgid "Пластик"
 msgstr "Plástico"
 
+#. Last modified by Subaru, id 768
 #: factory/models/project.py:62 storage/models/transport.py:128
 msgctxt "goods"
 msgid "Дизель"
-msgstr ""
+msgstr "Diesel"
 
 #: factory/models/project.py:85 state/models/treasury.py:71
 #: storage/models/destroy.py:46 storage/models/storage.py:65
@@ -610,10 +611,11 @@ msgctxt "party_view"
 msgid "информация"
 msgstr "información"
 
+#. Last modified by Subaru, id 768
 #: party/templates/party/redesign/party_view.html:49
 msgctxt "party_view"
 msgid "состав"
-msgstr "miemros"
+msgstr "componentes"
 
 #: party/templates/party/redesign/party_view.html:85
 msgctxt "party_view"
@@ -649,7 +651,8 @@ msgstr "aplicar"
 msgid "primaries_in_party"
 msgstr "Primarias del partido "
 
-#: party/views/lists/region_parties.py:86 party/views/lists/state_parties.py:40
+#: party/views/lists/region_parties.py:86
+#: party/views/lists/state_parties.py:40
 msgid "Партии региона"
 msgstr "Partidos de la región"
 
@@ -744,10 +747,11 @@ msgctxt "mining"
 msgid "Ошибка метода"
 msgstr "Error de metodo"
 
+#. Last modified by Subaru, id 768
 #: party/views/management/roles/remove_role.py:24
 msgctxt "party_manage"
 msgid "Должность не найдена"
-msgstr "Posición no encontrado"
+msgstr "Posición no encontrada"
 
 #: party/views/management/roles/remove_role.py:25
 #: party/views/management/roles/remove_role.py:37
@@ -759,10 +763,11 @@ msgctxt "party_manage"
 msgid "Удаление должности"
 msgstr "Quitar posición"
 
+#. Last modified by Subaru, id 768
 #: party/views/management/roles/remove_role.py:36
 msgctxt "party_manage"
 msgid "Это неудаляемая должность"
-msgstr "Esta es una posición no removible"
+msgstr "Esta es una posición no revocable"
 
 #: party/views/management/roles/remove_role.py:45
 msgctxt "party_manage"
@@ -1124,8 +1129,8 @@ msgstr ""
 #: player/templates/player/redesign/game_event/newyear.html:394
 msgctxt "game_event"
 msgid ""
-"Она позволит получить тебе премиум-аккаунт для комфортной игры, а также один "
-"из трёх этапов зимней прогрессионой рамки аватара."
+"Она позволит получить тебе премиум-аккаунт для комфортной игры, а также один"
+" из трёх этапов зимней прогрессионой рамки аватара."
 msgstr ""
 "Le permitirá obtener una cuenta premium para un juego cómodo, así como una "
 "de las tres etapas de progresión del marco de avatar de invierno."
@@ -1143,8 +1148,8 @@ msgstr "Se llena con los esfuerzos de todos los jugadores en el servidor."
 #: player/templates/player/redesign/game_event/newyear.html:397
 msgctxt "game_event"
 msgid ""
-"Ты не сможешь собрать награды, открытые в общей прогрессии, пока не пройдёшь "
-"соответствующий этап личной."
+"Ты не сможешь собрать награды, открытые в общей прогрессии, пока не пройдёшь"
+" соответствующий этап личной."
 msgstr ""
 "No podrás recoger las recompensas desbloqueadas en la progresión general "
 "hasta que completes la etapa correspondiente de la personal."
@@ -1312,15 +1317,17 @@ msgctxt "overview"
 msgid "партии"
 msgstr "Partidos"
 
+#. Last modified by Subaru, id 768
 #: player/templates/player/redesign/overview.html:482
 msgctxt "overview"
 msgid "государства"
-msgstr "de estado"
+msgstr "del estado"
 
+#. Last modified by Subaru, id 768
 #: player/templates/player/redesign/overview.html:482
 msgctxt "overview"
 msgid "региона"
-msgstr "de región"
+msgstr "de la región"
 
 #: player/templates/player/redesign/overview.html:519
 #: player/templates/player/redesign/overview.html:564
@@ -1545,11 +1552,12 @@ msgstr "partido"
 msgid "беспартийный"
 msgstr "sin afiliar"
 
+#. Last modified by Subaru, id 768
 #: player/templates/player/redesign/profile.html:236
 #: player/templates/player/redesign/view_profile.html:125
 msgctxt "profile"
 msgid "история"
-msgstr "(historia)"
+msgstr "historia"
 
 #: player/templates/player/redesign/profile.html:243
 #: player/templates/player/redesign/view_profile.html:132
@@ -1615,10 +1623,11 @@ msgctxt "wallet"
 msgid "Наличные"
 msgstr "Efectivo"
 
+#. Last modified by Subaru, id 768
 #: player/templates/player/translate/translate.html:17
 msgctxt "translations"
 msgid "без контекста"
-msgstr ""
+msgstr "sin contexto"
 
 #: player/templates/player/translate/translate.html:51
 #, fuzzy
@@ -1628,18 +1637,19 @@ msgctxt "translations"
 msgid "Собрать"
 msgstr "Nada que obtener"
 
+#. Last modified by Subaru, id 768
 #: player/templates/player/translate/translate.html:61
 msgctxt "translations"
 msgid "Русский язык"
-msgstr ""
+msgstr "Ruso"
 
+#. Last modified by Subaru, id 768
 #: player/templates/player/translate/translate.html:62
-#, fuzzy
 #| msgctxt "cash_log"
 #| msgid "Перелёт"
 msgctxt "translations"
 msgid "Перевод"
-msgstr "Volando"
+msgstr "Traducción"
 
 #: player/templates/player/view_profile.html:22
 msgid "char_info"
@@ -1727,7 +1737,8 @@ msgid "Описание"
 msgstr "Descripción"
 
 #: player/views/change_back_allow.py:41
-#: player/views/change_wiki_hide_allow.py:41 player/views/full_auto_allow.py:41
+#: player/views/change_wiki_hide_allow.py:41
+#: player/views/full_auto_allow.py:41
 msgid "Некорректное значение"
 msgstr "Valor incorrecto"
 
@@ -1736,10 +1747,10 @@ msgid "Настройка партийного фона"
 msgstr "Personalizar fondo del partido"
 
 #: player/views/change_back_allow.py:57
-#: player/views/change_wiki_hide_allow.py:57 player/views/full_auto_allow.py:57
-#: player/views/set_language.py:54 player/views/set_timezone.py:43
-#: region/views/cancel_auto.py:35 region/views/retrieve_cash.py:42
-#: region/views/start_auto.py:78
+#: player/views/change_wiki_hide_allow.py:57
+#: player/views/full_auto_allow.py:57 player/views/set_language.py:54
+#: player/views/set_timezone.py:43 region/views/cancel_auto.py:35
+#: region/views/retrieve_cash.py:42 region/views/start_auto.py:78
 msgid "Ошибка метода"
 msgstr "Error de método"
 
@@ -1748,46 +1759,46 @@ msgstr "Error de método"
 msgid "Скрыть кнопку Wiki"
 msgstr ""
 
+#. Last modified by Subaru, id 768
 #: player/views/color_change.py:30
-#, fuzzy
 #| msgctxt "w_trading"
 #| msgid "Некорректный владелец"
 msgctxt "profile"
 msgid "Некорректный код фона игры"
-msgstr "Dueño incorrecto"
+msgstr "Código de fondo del juego incorrecto"
 
+#. Last modified by Subaru, id 768
 #: player/views/color_change.py:31 player/views/color_change.py:43
 #: player/views/color_change.py:55 player/views/color_change.py:67
-#, fuzzy
 #| msgctxt "w_trading"
 #| msgid "Некорректный владелец"
 msgctxt "profile"
 msgid "Некорректный код цвета"
-msgstr "Dueño incorrecto"
+msgstr "Código de color incorrecto"
 
+#. Last modified by Subaru, id 768
 #: player/views/color_change.py:42
-#, fuzzy
 #| msgctxt "w_trading"
 #| msgid "Некорректный владелец"
 msgctxt "profile"
 msgid "Некорректный код блоков игры"
-msgstr "Dueño incorrecto"
+msgstr "Código de bloques de juego incorrecto"
 
+#. Last modified by Subaru, id 768
 #: player/views/color_change.py:54
-#, fuzzy
 #| msgctxt "assets"
 #| msgid "Некорректное действие"
 msgctxt "profile"
 msgid "Некорректный код текста игры"
-msgstr "Acción incorrecta"
+msgstr "Código de texto del juego incorrecto"
 
+#. Last modified by Subaru, id 768
 #: player/views/color_change.py:66
-#, fuzzy
 #| msgctxt "w_trading"
 #| msgid "Некорректный владелец"
 msgctxt "profile"
 msgid "Некорректный код акцентов игры"
-msgstr "Dueño incorrecto"
+msgstr "Código de acento del juego incorrecto"
 
 #: player/views/color_change.py:103
 msgctxt "party_manage"
@@ -2664,10 +2675,11 @@ msgctxt "w_auctions"
 msgid "Ставка"
 msgstr "Almacén"
 
+#. Last modified by Subaru, id 768
 #: storage/templates/storage/auctions/auction_info.html:57
 msgctxt "w_auctions"
 msgid "начальная"
-msgstr "precio inicial"
+msgstr "puja inicial"
 
 #: storage/templates/storage/auctions/auction_info.html:63
 msgctxt "w_auctions"
@@ -2684,17 +2696,17 @@ msgctxt "w_auctions"
 msgid "Склад"
 msgstr "Almacén"
 
+#. Last modified by Subaru, id 768
 #: storage/templates/storage/auctions/auction_info.html:118
 msgctxt "w_auctions"
 msgid "Сделать ставку"
-msgstr "Ofertar"
+msgstr "Pujar"
 
 #: storage/templates/storage/auctions/auctions.html:29
 #: storage/templates/storage/trading/trading.html:40
 msgctxt "w_trading"
 msgid "Выберите один или несколько критериев справа и нажмите \"Поиск\""
-msgstr ""
-"Selecciona uno o más criterios con el botón derecho y clikea \"Buscar\""
+msgstr "Selecciona uno o más criterios con el botón derecho y clikea \"Buscar\""
 
 #: storage/templates/storage/auctions/auctions.html:30
 #: storage/templates/storage/trading/trading.html:41
@@ -2719,15 +2731,17 @@ msgctxt "w_trading"
 msgid "Лотов"
 msgstr "Nº de lotes"
 
+#. Last modified by Subaru, id 768
 #: storage/templates/storage/auctions/auctions.html:42
 msgctxt "w_trading"
 msgid "Ставка (мин)"
-msgstr "Apuesta (mínima)"
+msgstr "Puja (mínima)"
 
+#. Last modified by Subaru, id 768
 #: storage/templates/storage/auctions/auctions.html:43
 msgctxt "w_trading"
 msgid "Ставка (макс)"
-msgstr "Apuesta (máxima)"
+msgstr "Puja (máxima)"
 
 #: storage/templates/storage/auctions/auctions.html:44
 #: storage/templates/storage/trading/new_offer.html:53
@@ -2764,10 +2778,11 @@ msgctxt "assets"
 msgid "передать"
 msgstr "transferir"
 
+#. Last modified by Subaru, id 768
 #: storage/templates/storage/redesign/assets.html:24
 msgctxt "assets"
 msgid "уничтожить"
-msgstr "detruir"
+msgstr "destruir"
 
 #: storage/templates/storage/redesign/assets.html:49
 msgctxt "assets"
@@ -3208,10 +3223,11 @@ msgctxt "assets"
 msgid "Перемещение товара"
 msgstr "Transferir bienes"
 
+#. Last modified by Subaru, id 768
 #: storage/views/assets/assets_action.py:89
 msgctxt "assets"
 msgid "Запрещено вывозить товары из атакованных регионов"
-msgstr ""
+msgstr "Esta prohibido exportar bienes de la región atacada"
 
 #: storage/views/assets/assets_action.py:90
 #: storage/views/assets/assets_action.py:192
@@ -3328,10 +3344,11 @@ msgctxt "assets"
 msgid "Указанный Склад уже в текущем регионе"
 msgstr "El Almacén especificado ya esta en la actual región"
 
+#. Last modified by Subaru, id 768
 #: storage/views/assets/storage_move.py:69
 msgctxt "assets"
 msgid "Нельзя переместить Склад из атакованного региона"
-msgstr "No puedo mover el Almacén a una región bajo ataque"
+msgstr "No puedes mover el Almacén de una región bajo ataque"
 
 #: storage/views/storage/cash_transfer.py:33
 #: storage/views/storage/cash_transfer.py:42
@@ -3421,15 +3438,17 @@ msgctxt "storage_upgrade"
 msgid "Улучшение Склада"
 msgstr "Mejora de almacén"
 
+#. Last modified by Subaru, id 768
 #: storage/views/storage/upgrade_storage.py:44
 msgctxt "storage_upgrade"
 msgid "Уровень Склада - максимальный"
-msgstr "Nivel mínimo"
+msgstr "Nivel máximo"
 
+#. Last modified by Subaru, id 768
 #: storage/views/storage/upgrade_storage.py:53
 msgctxt "storage_upgrade"
 msgid "Недостаточно материала: "
-msgstr "Nivel máximo: "
+msgstr "No hay suficiente material: "
 
 #: storage/views/storage/upgrade_storage.py:88
 msgctxt "storage_upgrade"
@@ -3583,6 +3602,7 @@ msgctxt "w_trading"
 msgid "Торговое предложение успешно принято"
 msgstr "Oferta de comercio aceptada exitósamnete"
 
+#. Last modified by Subaru, id 768
 #: storage/views/trading/cancel_offer.py:39
 #: storage/views/trading/cancel_offer.py:52
 #: storage/views/trading/cancel_offer.py:60
@@ -3593,7 +3613,7 @@ msgstr "Oferta de comercio aceptada exitósamnete"
 #: storage/views/trading/cancel_offer.py:147
 msgctxt "w_trading"
 msgid "Отмена оффера"
-msgstr "Cancelación de offerta"
+msgstr "Cancelación de oferta"
 
 #: storage/views/trading/cancel_offer.py:54
 msgctxt "w_trading"
@@ -3696,12 +3716,13 @@ msgctxt "w_trading_new"
 msgid "Торговое предложение успешно создано"
 msgstr "Oferta comercial creada correctamente"
 
+#. Last modified by Subaru, id 768
 #: storage/views/trading/get_offers.py:39
 #: storage/views/trading/get_offers.py:61
 #: storage/views/trading/get_offers.py:188
 msgctxt "w_trading"
 msgid "Получение офферов"
-msgstr "Obbteniendo ofertas"
+msgstr "Obteniendo ofertas"
 
 #: storage/views/trading/get_offers.py:63
 msgctxt "w_trading"
