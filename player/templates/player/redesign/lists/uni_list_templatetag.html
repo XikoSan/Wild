@@ -60,6 +60,11 @@
 									<!--картинка рега-->
 								  {% if col == 'region' and sub_col == 'on_map_id' %}
 										<img src="/static/img/regions/{{ sub_obj.on_map_id }}.png" alt="{{ col }}_{{ sub_col }}">
+								  <!--название региона-->
+								  {% elif sub_col == 'region_name' %}
+									{% with sub_obj_name=sub_obj|get_attr:sub_col %}
+										{% trans sub_obj_name context "regions_list" %}
+									{% endwith %}
 									<!--картинка-->
 								  {% elif sub_col == 'image' %}
 									{% with sub_obj_img=sub_obj|get_attr:sub_col %}
@@ -108,6 +113,11 @@
 					  <!--текст варианта-->
 					  {% elif col|get_len > 4 and col|get_n_chars:4 == 'get_' %}
 						{{ line|run_meth:col }}
+						<!--название региона-->
+					  {% elif col == 'region_name' %}
+						{% with obj_name=line|get_attr:col %}
+							{% trans obj_name context "regions_list" %}
+						{% endwith %}
 					  <!--что угодно-->
 					  {% else %}
 						{{ line|get_attr:col }}

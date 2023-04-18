@@ -10,14 +10,17 @@ register = template.Library()
 @register.inclusion_tag('player/redesign/lists/uni_list_templatetag.html')
 def wallet_cash(request, player):
     page = request.GET.get('page')
-    storages = Storage.actual.filter(owner=player).only('region', 'cash')
+    storages = Storage.actual.filter(owner=player).only('region__region_name', 'cash')
     lines = get_thing_page(storages, page, 50)
 
     header = {
         'region': {
-            'text': pgettext('wallet', 'Регион'),
-            'select_text': pgettext('wallet', 'Регион'),
-            'visible': 'true'
+            'region_name':
+                {
+                    'text': pgettext('wallet', 'Регион'),
+                    'select_text': pgettext('wallet', 'Регион'),
+                    'visible': 'true'
+                }
         },
 
         'cash': {
