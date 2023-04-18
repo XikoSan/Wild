@@ -137,7 +137,7 @@ def assets_action(request):
                                 data = {
                                     'response': pgettext('assets', 'На складе в регионе ') + str(
                                         Storage.actual.get(pk=int(dest_pk)).region.region_name) +
-                                                pgettext('assets', ' недостаточно места для товара ') + str(good) + '\n' +
+                                                pgettext('assets', ' недостаточно места для товара ') + str(Storage.get_good_text(good)) + '\n' +
                                                 pgettext('assets', 'Требуется: ') + str(sent) + pgettext('assets', ', в наличии: ') + str(exist_cap),
                                     'header': pgettext('assets', 'Перемещение товара'),
                                     'grey_btn': pgettext('assets', 'Закрыть'),
@@ -146,7 +146,7 @@ def assets_action(request):
                         else:
                             data = {
                                 'response': pgettext('assets', 'На складе в регионе ') + str(ret_storg.region.region_name) +
-                                            pgettext('assets', ' недостаточно товара ') + str(good) + pgettext('assets', ' для передачи.') + '\n' +
+                                            pgettext('assets', ' недостаточно товара ') + str(Storage.get_good_text(good)) + pgettext('assets', ' для передачи.') + '\n' +
                                             pgettext('assets', 'Требуется: ') + str(required) + pgettext('assets', ', в наличии: ') + str(exist),
                                 'header': pgettext('assets', 'Перемещение товара'),
                                 'grey_btn': pgettext('assets', 'Закрыть'),
@@ -227,7 +227,7 @@ def assets_action(request):
             else:
                 data = {
                     'response': pgettext('assets', 'На складе в регионе') + ' ' + str(ret_storg.region.region_name) \
-                                + ' ' + pgettext('assets', 'недостаточно товара') + ' ' + str(good) + '.\n' \
+                                + ' ' + pgettext('assets', 'недостаточно товара') + ' ' + str(Storage.get_good_text(good)) + '.\n' \
                                + pgettext('assets', 'Требуется:') + ' ' + str(required) + pgettext('assets', ', в наличии:') + ' ' + str(exist),
                     'header': pgettext('assets', 'Уничтожение товара'),
                     'grey_btn': pgettext('assets', 'Закрыть'),
