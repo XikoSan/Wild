@@ -121,7 +121,7 @@ def get_offers(request):
             offer_dict = {'good': offer.get_good_display(),
                           'good_name': offer.good,
                           'owner': offer.owner_storage.owner.nickname,
-                          'region': offer.owner_storage.region.region_name,
+                          'region': pgettext('regions_list', offer.owner_storage.region.region_name),
                           'region_img': offer.owner_storage.region.on_map_id,
                           'count': offer.count,
                           'price': offer.price

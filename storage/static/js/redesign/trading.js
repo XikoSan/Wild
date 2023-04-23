@@ -7,11 +7,25 @@ function fill_delivery(id, storage){
     var delivery_sum = parseInt(offers_dict[id]['storages'][storage] * Math.ceil( $("#offer_count").val() * parseFloat(vol_map.get(offers_dict[id]['good_key']))));
     document.getElementById("offer_delivery").innerHTML = '$' + numberWithSpaces(delivery_sum);
     document.getElementById("offer_sum").innerHTML = '$' + numberWithSpaces(offers_dict[id]['price'] * $("#offer_count").val());
-    document.getElementById("offer_total").innerHTML = '$' + numberWithSpaces(offers_dict[id]['price'] * $("#offer_count").val() + delivery_sum);
+    if (offers_dict[id]['type'] == 'sell'){
+        document.getElementById("offer_total").innerHTML = '$' + numberWithSpaces(offers_dict[id]['price'] * $("#offer_count").val() + delivery_sum);
+    }
+    else{
+        document.getElementById("offer_total").innerHTML = '$' + numberWithSpaces(offers_dict[id]['price'] * $("#offer_count").val() - delivery_sum);
+    }
 }
 
 function fill_by_offers_dict(id){
     active_offer = id;
+    // товар
+    if (offers_dict[id]['type'] == 'sell'){
+        document.getElementById("offer_header").innerHTML = offer_purchase_header;
+        document.getElementById("offer_action").innerHTML = offer_purchase_button;
+    }
+    else{
+        document.getElementById("offer_header").innerHTML = offer_sale_header;
+        document.getElementById("offer_action").innerHTML = offer_sale_button;
+    }
     // товар
     document.getElementById('offer_good').innerHTML = offers_dict[id]['good'];
     // владелец
@@ -46,7 +60,12 @@ function fill_by_offers_dict(id){
     }
     // итого
     var delivery_sum = parseInt(offers_dict[id]['storages'][storage] * Math.ceil( offers_dict[id]['count'] * parseFloat(vol_map.get(offers_dict[id]['good_key']))));
-    document.getElementById('offer_total').innerHTML = '$' + numberWithSpaces(offers_dict[id]['price'] * offers_dict[id]['count'] + delivery_sum);
+    if (offers_dict[id]['type'] == 'sell'){
+        document.getElementById('offer_total').innerHTML = '$' + numberWithSpaces(offers_dict[id]['price'] * offers_dict[id]['count'] + delivery_sum);
+    }
+    else{
+        document.getElementById('offer_total').innerHTML = '$' + numberWithSpaces(offers_dict[id]['price'] * offers_dict[id]['count'] - delivery_sum);
+    }
 }
 
 function confirm_offer(){
@@ -161,6 +180,8 @@ jQuery(document).ready(function ($) {
                         offers_dict = {};
                         data.offers_list.forEach(function (line, index) {
                             offers_dict[line['id']] = {};
+                            // тип: покупка или продажа
+                            offers_dict[line['id']]['type'] = line['type'];
                             // количество
                             offers_dict[line['id']]['count'] = line['count'];
                             // склады
@@ -254,6 +275,11 @@ jQuery(document).ready(function ($) {
         var delivery_sum = parseInt(offers_dict[id]['storages'][storage] * Math.ceil( $("#offer_count").val() * parseFloat(vol_map.get(offers_dict[id]['good_key']))));
         document.getElementById("offer_delivery").innerHTML = '$' + numberWithSpaces(delivery_sum);
         document.getElementById("offer_sum").innerHTML = '$' + numberWithSpaces(offers_dict[id]['price'] * $("#offer_count").val());
-        document.getElementById("offer_total").innerHTML = '$' + numberWithSpaces(offers_dict[id]['price'] * $("#offer_count").val() + delivery_sum);
+        if (offers_dict[id]['type'] == 'sell'){
+            document.getElementById("offer_total").innerHTML = '$' + numberWithSpaces(offers_dict[id]['price'] * $("#offer_count").val() + delivery_sum);
+        }
+        else{
+            document.getElementById("offer_total").innerHTML = '$' + numberWithSpaces(offers_dict[id]['price'] * $("#offer_count").val() - delivery_sum);
+        }
     });
 });

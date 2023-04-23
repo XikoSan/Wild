@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 from django.shortcuts import render, get_object_or_404
+from django.utils.translation import pgettext
 
 from player.decorators.player import check_player
 from player.player import Player
@@ -20,7 +21,8 @@ def trading(request):
         storages = Storage.actual.filter(owner=player)
 
     return render(request, 'storage/redesign/trading/trading.html', {'player': player,
-                                                            'storage_cl': Storage,
-                                                            'transport': Transport,
-                                                            'storages': storages,
-                                                            })
+                                                                     'page_name': pgettext('trading', 'Торговля'),
+                                                                     'storage_cl': Storage,
+                                                                     'transport': Transport,
+                                                                     'storages': storages,
+                                                                     })

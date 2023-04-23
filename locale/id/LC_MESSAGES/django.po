@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-17 18:13+0300\n"
+"POT-Creation-Date: 2023-04-24 02:06+0300\n"
 "PO-Revision-Date: 2022-12-01 16:31+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -89,7 +89,7 @@ msgstr "Level pembangkit listrik"
 
 #: factory/models/production_log.py:29 factory/models/production_log.py:48
 #: state/models/treasury.py:38 storage/models/storage.py:38
-#: storage/models/storage.py:112
+#: storage/models/storage.py:112 storage/models/storage.py:234
 msgctxt "goods"
 msgid "Наличные"
 msgstr "Uang"
@@ -936,10 +936,10 @@ msgstr "Uang tidak cukup untuk membayar pengiriman"
 #: storage/views/storage/cash_transfer.py:144
 #: storage/views/storage/new_storage.py:88
 #: storage/views/storage/upgrade_storage.py:157
-#: storage/views/trading/accept_offer.py:410
+#: storage/views/trading/accept_offer.py:408
 #: storage/views/trading/cancel_offer.py:149
 #: storage/views/trading/create_offer.py:218
-#: storage/views/trading/get_offers.py:190
+#: storage/views/trading/get_offers.py:201
 msgctxt "mining"
 msgid "Ошибка метода"
 msgstr "Metode gagal"
@@ -1091,8 +1091,7 @@ msgstr "Keluar"
 #: storage/views/trading/accept_offer.py:310
 #: storage/views/trading/accept_offer.py:322
 #: storage/views/trading/accept_offer.py:393
-#: storage/views/trading/accept_offer.py:400
-#: storage/views/trading/accept_offer.py:409
+#: storage/views/trading/accept_offer.py:407
 #: storage/views/trading/cancel_offer.py:40
 #: storage/views/trading/cancel_offer.py:53
 #: storage/views/trading/cancel_offer.py:61
@@ -1119,7 +1118,7 @@ msgstr "Keluar"
 #: storage/views/trading/create_offer.py:217
 #: storage/views/trading/get_offers.py:40
 #: storage/views/trading/get_offers.py:62
-#: storage/views/trading/get_offers.py:189
+#: storage/views/trading/get_offers.py:200
 #: storage/views/trading/premium_trading.py:26
 #: storage/views/trading/premium_trading.py:38
 #: storage/views/trading/premium_trading.py:84
@@ -1299,9 +1298,7 @@ msgstr "mainkan dan dapatkan hadiahnya!"
 #: player/templates/player/redesign/game_event/halloween.html:219
 msgctxt "game_event"
 msgid "- с 25.10 по 1.11 заполняй прогрессию события, расходуя энергию"
-msgstr ""
-"- dari tanggal 25.10 hingga 1.11, selesaikan kemajuan event dengan cara "
-"mennggunakan energi"
+msgstr "- dari tanggal 25.10 hingga 1.11, selesaikan kemajuan event dengan cara mennggunakan energi"
 
 #: player/templates/player/redesign/game_event/halloween.html:220
 msgctxt "game_event"
@@ -1367,16 +1364,12 @@ msgstr "Hadiah:"
 
 #: player/templates/player/redesign/game_event/newyear.html:393
 msgctxt "game_event"
-msgid ""
-"Заполняется расходованием энергии, как и ежедневное финансирование, и "
-"зависит только от твоих личных усилий."
+msgid "Заполняется расходованием энергии, как и ежедневное финансирование, и зависит только от твоих личных усилий."
 msgstr ""
 
 #: player/templates/player/redesign/game_event/newyear.html:394
 msgctxt "game_event"
-msgid ""
-"Она позволит получить тебе премиум-аккаунт для комфортной игры, а также один "
-"из трёх этапов зимней прогрессионой рамки аватара."
+msgid "Она позволит получить тебе премиум-аккаунт для комфортной игры, а также один из трёх этапов зимней прогрессионой рамки аватара."
 msgstr ""
 
 #: player/templates/player/redesign/game_event/newyear.html:395
@@ -1394,16 +1387,12 @@ msgstr ""
 
 #: player/templates/player/redesign/game_event/newyear.html:397
 msgctxt "game_event"
-msgid ""
-"Ты не сможешь собрать награды, открытые в общей прогрессии, пока не пройдёшь "
-"соответствующий этап личной."
+msgid "Ты не сможешь собрать награды, открытые в общей прогрессии, пока не пройдёшь соответствующий этап личной."
 msgstr ""
 
 #: player/templates/player/redesign/game_event/newyear.html:398
 msgctxt "game_event"
-msgid ""
-"Когда будет открыт очередной этап общей прогрессии, потрать энергию, чтобы "
-"получить свою награду"
+msgid "Когда будет открыт очередной этап общей прогрессии, потрать энергию, чтобы получить свою награду"
 msgstr ""
 
 #: player/templates/player/redesign/lists/skill_top.html:26
@@ -1864,9 +1853,9 @@ msgid "Блокировки"
 msgstr "Keuangan"
 
 #: player/templates/player/redesign/wallet.html:56
-#: player/templatetags/redesign/wallet_cash.py:24
-#: player/templatetags/redesign/wallet_cash.py:25
-#: player/templatetags/redesign/wallet_cash.py:31
+#: player/templatetags/redesign/wallet_cash.py:27
+#: player/templatetags/redesign/wallet_cash.py:28
+#: player/templatetags/redesign/wallet_cash.py:34
 #, fuzzy
 #| msgctxt "goods"
 #| msgid "Наличные"
@@ -1950,8 +1939,8 @@ msgctxt "skill_top"
 msgid "Топ по Силе"
 msgstr ""
 
-#: player/templatetags/redesign/wallet_cash.py:18
-#: player/templatetags/redesign/wallet_cash.py:19
+#: player/templatetags/redesign/wallet_cash.py:20
+#: player/templatetags/redesign/wallet_cash.py:21
 #, fuzzy
 #| msgid "Регион"
 msgctxt "wallet"
@@ -2494,20 +2483,17 @@ msgstr "Energi tidak cukup"
 #: region/views/do_mining.py:101
 msgctxt "mining"
 msgid "Запасов золота в регионе недостаточно для добычи"
-msgstr ""
-"Sumber daya emas di wilayah ini tidak cukup untuk melakukan penambangan"
+msgstr "Sumber daya emas di wilayah ini tidak cukup untuk melakukan penambangan"
 
 #: region/views/do_mining.py:121
 msgctxt "mining"
 msgid "Запасов нефти в регионе недостаточно для добычи"
-msgstr ""
-"Sumber daya minyak di wilayah ini tidak cukup untuk melakukan penambangan"
+msgstr "Sumber daya minyak di wilayah ini tidak cukup untuk melakukan penambangan"
 
 #: region/views/do_mining.py:175
 msgctxt "mining"
 msgid "Запасов руды в регионе недостаточно для добычи"
-msgstr ""
-"Sumber daya mineral di wilayah ini tidak cukup untuk melakukan penambangan"
+msgstr "Sumber daya mineral di wilayah ini tidak cukup untuk melakukan penambangan"
 
 #: region/views/lists/world_regions.py:90
 msgid "Регионы игры"
@@ -2859,11 +2845,11 @@ msgctxt "goods"
 msgid "БПЛА - лимит"
 msgstr "Besi"
 
-#: storage/models/storage.py:271
+#: storage/models/storage.py:289
 msgid "positive_spend_stock_req"
 msgstr ""
 
-#: storage/models/storage.py:276
+#: storage/models/storage.py:294
 msgid "not_enough"
 msgstr ""
 
@@ -3136,6 +3122,7 @@ msgid "Выберите один или несколько критериев с
 msgstr ""
 
 #: storage/templates/storage/auctions/auctions.html:30
+#: storage/templates/storage/redesign/trading/trading.html:73
 #: storage/templates/storage/trading/trading.html:41
 #, fuzzy
 #| msgctxt "repost"
@@ -3219,6 +3206,11 @@ msgstr "mengirim"
 msgctxt "assets"
 msgid "уничтожить"
 msgstr "menghancurkan"
+
+#: storage/templates/storage/redesign/assets.html:43
+msgctxt "assets"
+msgid "уверен"
+msgstr ""
 
 #: storage/templates/storage/redesign/assets.html:49
 msgctxt "assets"
@@ -3347,9 +3339,7 @@ msgstr "Energi tidak cukup"
 
 #: storage/templates/storage/redesign/storage.html:258
 msgctxt "storage_upgrade"
-msgid ""
-"Выберите товары в каждой из категорий, ёмкость Склада для которых будет "
-"увеличена"
+msgid "Выберите товары в каждой из категорий, ёмкость Склада для которых будет увеличена"
 msgstr ""
 
 #: storage/templates/storage/redesign/storage.html:265
@@ -3384,21 +3374,13 @@ msgstr "akun premium"
 
 #: storage/templates/storage/redesign/storage.html:366
 msgctxt "storage_assets"
-msgid ""
-"Ваш премиум-аккаунт будет продлён на один месяц. Данную операцию невозможно "
-"отменить. Продолжить?"
-msgstr ""
-"Akun premium -mu akan diperbarui selama satu bulan. Tindakan ini tidak dapat "
-"dibatalkan. Lanjutkan?"
+msgid "Ваш премиум-аккаунт будет продлён на один месяц. Данную операцию невозможно отменить. Продолжить?"
+msgstr "Akun premium -mu akan diperbarui selama satu bulan. Tindakan ini tidak dapat dibatalkan. Lanjutkan?"
 
 #: storage/templates/storage/redesign/storage.html:368
 msgctxt "storage_assets"
-msgid ""
-"Вы активируете премиум-аккаунт, длительностью один месяц. Данную операцию "
-"невозможно отменить. Продолжить?"
-msgstr ""
-"Kamu akan mengaktifkan akun premium selama satu bulan. Tindakan ini tidak "
-"dapat dibatalkan. Lanjutkan?"
+msgid "Вы активируете премиум-аккаунт, длительностью один месяц. Данную операцию невозможно отменить. Продолжить?"
+msgstr "Kamu akan mengaktifkan akun premium selama satu bulan. Tindakan ini tidak dapat dibatalkan. Lanjutkan?"
 
 #: storage/templates/storage/redesign/storage.html:371
 msgctxt "storage_assets"
@@ -3489,6 +3471,270 @@ msgstr "pengiriman"
 msgctxt "no_storage"
 msgid "создать"
 msgstr "pembuatan"
+
+#: storage/templates/storage/redesign/trading/trading.html:15
+#: storage/views/trading/trading.py:24
+#, fuzzy
+#| msgid "Торговля"
+msgctxt "trading"
+msgid "Торговля"
+msgstr "Perdagangan"
+
+#: storage/templates/storage/redesign/trading/trading.html:32
+#, fuzzy
+#| msgid "Государство"
+msgctxt "trading"
+msgid "госзакупки"
+msgstr "Negara"
+
+#: storage/templates/storage/redesign/trading/trading.html:46
+#, fuzzy
+#| msgctxt "storage_assets"
+#| msgid "создать"
+msgctxt "trading"
+msgid "создать"
+msgstr "membuat"
+
+#: storage/templates/storage/redesign/trading/trading.html:60
+#, fuzzy
+#| msgid "настройки"
+msgctxt "trading"
+msgid "настройки поиска"
+msgstr "pengaturan"
+
+#: storage/templates/storage/redesign/trading/trading.html:64
+#, fuzzy
+#| msgctxt "goods"
+#| msgid "Орбитальные орудия"
+msgctxt "trading"
+msgid "Выбранная категория"
+msgstr "Meriam orbit"
+
+#: storage/templates/storage/redesign/trading/trading.html:66
+#, fuzzy
+#| msgctxt "assets"
+#| msgid "выберите склад"
+msgctxt "trading"
+msgid "Выбранный товар"
+msgstr "pilih penyimpanan"
+
+#: storage/templates/storage/redesign/trading/trading.html:72
+msgctxt "w_trading"
+msgid "Выберите один или несколько критериев в настройках поиска"
+msgstr ""
+
+#: storage/templates/storage/redesign/trading/trading.html:77
+#: storage/templates/storage/redesign/trading/trading.html:311
+#, fuzzy
+#| msgctxt "overview"
+#| msgid "региона"
+msgctxt "trading"
+msgid "регион"
+msgstr "wilayah"
+
+#: storage/templates/storage/redesign/trading/trading.html:79
+#: storage/templates/storage/redesign/trading/trading.html:157
+#, fuzzy
+#| msgctxt "assets"
+#| msgid "выберите склад"
+msgctxt "trading"
+msgid "товар"
+msgstr "pilih penyimpanan"
+
+#: storage/templates/storage/redesign/trading/trading.html:80
+#: storage/templates/storage/redesign/trading/trading.html:306
+msgctxt "trading"
+msgid "цена"
+msgstr ""
+
+#: storage/templates/storage/redesign/trading/trading.html:81
+#, fuzzy
+#| msgid "Продолжить"
+msgctxt "trading"
+msgid "продавец"
+msgstr "Lanjutkan"
+
+#: storage/templates/storage/redesign/trading/trading.html:118
+#, fuzzy
+#| msgid "настройки"
+msgctxt "trading"
+msgid "Настройки поиска"
+msgstr "pengaturan"
+
+#: storage/templates/storage/redesign/trading/trading.html:120
+#, fuzzy
+#| msgid "Некорректное значение"
+msgctxt "trading"
+msgid "тип предложения"
+msgstr "Nominal salah"
+
+#: storage/templates/storage/redesign/trading/trading.html:123
+#: storage/templates/storage/trading/trading.html:70
+#, fuzzy
+#| msgid "Продолжить"
+msgctxt "w_trading"
+msgid "Продажа"
+msgstr "Lanjutkan"
+
+#: storage/templates/storage/redesign/trading/trading.html:124
+#: storage/templates/storage/trading/trading.html:71
+msgctxt "w_trading"
+msgid "Покупка"
+msgstr ""
+
+#: storage/templates/storage/redesign/trading/trading.html:131
+#, fuzzy
+#| msgctxt "storage_assets"
+#| msgid "создать"
+msgctxt "trading"
+msgid "создатель"
+msgstr "membuat"
+
+#: storage/templates/storage/redesign/trading/trading.html:134
+#: storage/templates/storage/trading/trading.html:84
+msgctxt "w_trading"
+msgid "Все"
+msgstr ""
+
+#: storage/templates/storage/redesign/trading/trading.html:135
+#: storage/templates/storage/trading/trading.html:85
+#, fuzzy
+#| msgid "Партия"
+msgctxt "w_trading"
+msgid "Партия"
+msgstr "Partai"
+
+#: storage/templates/storage/redesign/trading/trading.html:136
+#: storage/templates/storage/trading/trading.html:86
+#, fuzzy
+#| msgctxt "goods"
+#| msgid "Койки"
+msgctxt "w_trading"
+msgid "Мои"
+msgstr "Obat-obatan"
+
+#: storage/templates/storage/redesign/trading/trading.html:143
+#, fuzzy
+#| msgctxt "goods"
+#| msgid "Орбитальные орудия"
+msgctxt "trading"
+msgid "выбор категории"
+msgstr "Meriam orbit"
+
+#: storage/templates/storage/redesign/trading/trading.html:146
+#, fuzzy
+#| msgctxt "goods"
+#| msgid "Орбитальные орудия"
+msgctxt "trading"
+msgid "выберите категорию"
+msgstr "Meriam orbit"
+
+#: storage/templates/storage/redesign/trading/trading.html:160
+#, fuzzy
+#| msgctxt "assets"
+#| msgid "выберите склад"
+msgctxt "trading"
+msgid "выберите товар"
+msgstr "pilih penyimpanan"
+
+#: storage/templates/storage/redesign/trading/trading.html:185
+msgctxt "trading"
+msgid "поиск"
+msgstr ""
+
+#: storage/templates/storage/redesign/trading/trading.html:293
+#: storage/templates/storage/redesign/trading/trading.html:394
+#, fuzzy
+#| msgid "Государство"
+msgctxt "trading"
+msgid "покупка"
+msgstr "Negara"
+
+#: storage/templates/storage/redesign/trading/trading.html:297
+msgctxt "trading"
+msgid "владелец"
+msgstr ""
+
+#: storage/templates/storage/redesign/trading/trading.html:319
+#, fuzzy
+#| msgctxt "storage_assets"
+#| msgid "Количество"
+msgctxt "trading"
+msgid "количество"
+msgstr "Jumlah"
+
+#: storage/templates/storage/redesign/trading/trading.html:348
+#, fuzzy
+#| msgctxt "assets"
+#| msgid "стоимость"
+msgctxt "trading"
+msgid "стоимость"
+msgstr "harga"
+
+#: storage/templates/storage/redesign/trading/trading.html:353
+#, fuzzy
+#| msgctxt "no_storage"
+#| msgid "доставка"
+msgctxt "trading"
+msgid "доставка"
+msgstr "pengiriman"
+
+#: storage/templates/storage/redesign/trading/trading.html:360
+msgctxt "trading"
+msgid "итого"
+msgstr ""
+
+#: storage/templates/storage/redesign/trading/trading.html:376
+#: storage/templates/storage/redesign/trading/trading.html:395
+#, fuzzy
+#| msgctxt "skills"
+#| msgid "недоступно"
+msgctxt "trading"
+msgid "купить"
+msgstr "tidak tersedia"
+
+#: storage/templates/storage/redesign/trading/trading.html:391
+#, fuzzy
+#| msgid "Продолжить"
+msgctxt "trading"
+msgid "продажа"
+msgstr "Lanjutkan"
+
+#: storage/templates/storage/redesign/trading/trading.html:392
+#, fuzzy
+#| msgctxt "assets"
+#| msgid "передать"
+msgctxt "trading"
+msgid "продать"
+msgstr "mengirim"
+
+#: storage/templates/storage/redesign/trading/trading.html:398
+#, fuzzy
+#| msgid "Некорректное значение"
+msgctxt "trading"
+msgid "Отмена торгового предложения"
+msgstr "Nominal salah"
+
+#: storage/templates/storage/redesign/trading/trading.html:399
+#, fuzzy
+#| msgid "Некорректное значение"
+msgctxt "trading"
+msgid "Ваше торговое предложение будет удалено. Продолжить?"
+msgstr "Nominal salah"
+
+#: storage/templates/storage/redesign/trading/trading.html:400
+#, fuzzy
+#| msgid "Продолжить"
+msgctxt "trading"
+msgid "Продолжить"
+msgstr "Lanjutkan"
+
+#: storage/templates/storage/redesign/trading/trading.html:401
+#, fuzzy
+#| msgid "Отмена"
+msgctxt "trading"
+msgid "Отмена"
+msgstr "Batal"
 
 #: storage/templates/storage/storage_lines/cash_transfer.html:9
 msgid "Наличные"
@@ -3616,38 +3862,6 @@ msgstr ""
 msgctxt "w_trading"
 msgid "Государственнные закупки"
 msgstr "Negara"
-
-#: storage/templates/storage/trading/trading.html:70
-#, fuzzy
-#| msgid "Продолжить"
-msgctxt "w_trading"
-msgid "Продажа"
-msgstr "Lanjutkan"
-
-#: storage/templates/storage/trading/trading.html:71
-msgctxt "w_trading"
-msgid "Покупка"
-msgstr ""
-
-#: storage/templates/storage/trading/trading.html:84
-msgctxt "w_trading"
-msgid "Все"
-msgstr ""
-
-#: storage/templates/storage/trading/trading.html:85
-#, fuzzy
-#| msgid "Партия"
-msgctxt "w_trading"
-msgid "Партия"
-msgstr "Partai"
-
-#: storage/templates/storage/trading/trading.html:86
-#, fuzzy
-#| msgctxt "goods"
-#| msgid "Койки"
-msgctxt "w_trading"
-msgid "Мои"
-msgstr "Obat-obatan"
 
 #: storage/templates/storage/trading/trading.html:113
 #, fuzzy
@@ -3975,8 +4189,7 @@ msgstr ""
 #: storage/views/trading/accept_offer.py:309
 #: storage/views/trading/accept_offer.py:321
 #: storage/views/trading/accept_offer.py:392
-#: storage/views/trading/accept_offer.py:399
-#: storage/views/trading/accept_offer.py:408
+#: storage/views/trading/accept_offer.py:406
 msgctxt "w_trading"
 msgid "Принятие оффера"
 msgstr ""
@@ -4087,8 +4300,7 @@ msgstr ""
 #| msgid "Запасов золота в регионе недостаточно для добычи"
 msgctxt "w_trading"
 msgid "В торговом предложении недостаточно средств"
-msgstr ""
-"Sumber daya emas di wilayah ini tidak cukup untuk melakukan penambangan"
+msgstr "Sumber daya emas di wilayah ini tidak cukup untuk melakukan penambangan"
 
 #: storage/views/trading/accept_offer.py:302
 #: storage/views/trading/premium_trading.py:118
@@ -4097,8 +4309,7 @@ msgstr ""
 #| msgid "Запасов золота в регионе недостаточно для добычи"
 msgctxt "w_trading"
 msgid "В связанной блокировке недостаточно средств"
-msgstr ""
-"Sumber daya emas di wilayah ini tidak cukup untuk melakukan penambangan"
+msgstr "Sumber daya emas di wilayah ini tidak cukup untuk melakukan penambangan"
 
 #: storage/views/trading/accept_offer.py:323
 msgctxt "w_trading"
@@ -4110,14 +4321,6 @@ msgstr ""
 msgctxt "w_trading"
 msgid "Оффера такого типа не существует"
 msgstr ""
-
-#: storage/views/trading/accept_offer.py:401
-#: storage/views/trading/premium_trading.py:183
-#, fuzzy
-#| msgid "Некорректное значение"
-msgctxt "w_trading"
-msgid "Торговое предложение успешно принято"
-msgstr "Nominal salah"
 
 #: storage/views/trading/cancel_offer.py:39
 #: storage/views/trading/cancel_offer.py:52
@@ -4276,7 +4479,7 @@ msgstr "Nominal salah"
 
 #: storage/views/trading/get_offers.py:39
 #: storage/views/trading/get_offers.py:61
-#: storage/views/trading/get_offers.py:188
+#: storage/views/trading/get_offers.py:199
 #, fuzzy
 #| msgctxt "assets"
 #| msgid "Перемещение товаров"
@@ -4291,19 +4494,19 @@ msgctxt "w_trading"
 msgid "Некорректный владелец"
 msgstr "Nominal salah"
 
-#: storage/views/trading/get_offers.py:169
+#: storage/views/trading/get_offers.py:180
 #, fuzzy
 #| msgid "Отмена"
 msgctxt "w_trading"
 msgid "Отменить"
 msgstr "Batal"
 
-#: storage/views/trading/get_offers.py:173
+#: storage/views/trading/get_offers.py:184
 msgctxt "w_trading"
 msgid "Купить"
 msgstr ""
 
-#: storage/views/trading/get_offers.py:175
+#: storage/views/trading/get_offers.py:186
 #, fuzzy
 #| msgctxt "assets"
 #| msgid "передать"
@@ -4339,6 +4542,13 @@ msgstr "Nominal salah"
 msgctxt "w_trading"
 msgid "У вас недостаточно Wild Pass"
 msgstr " barang tidak cukup "
+
+#: storage/views/trading/premium_trading.py:183
+#, fuzzy
+#| msgid "Некорректное значение"
+msgctxt "w_trading"
+msgid "Торговое предложение успешно принято"
+msgstr "Nominal salah"
 
 #: war/models/squads/heavy_vehicle.py:32 war/models/wars/war_side.py:36
 msgid "Танки"

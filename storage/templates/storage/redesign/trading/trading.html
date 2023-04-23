@@ -12,7 +12,7 @@
 {% block content %}
   <section class="trading">
     <!--Заголовок страницы-->
-		<h1 class="trading__title ct__page-title">Торговля</h1>
+		<h1 class="trading__title ct__page-title">{% trans 'Торговля' context "trading" %}</h1>
     <div class="trading__flex-wrapper">
 			<div class="trading__left-col">
 				<!--Табы-->
@@ -29,7 +29,7 @@
 		          </linearGradient>
 		          </defs>
 		        </svg>
-		        <span>госзакупки</span>
+		        <span>{% trans 'госзакупки' context "trading" %}</span>
 		      </button>
               <!--Кнопка "создать"-->
 <!--		      <button class="ct__top-tab ct__top-tab2 ct__mid-btn" onclick="toggleActiveClass('search-create')" style="cursor: pointer;">-->
@@ -43,7 +43,7 @@
 		          </linearGradient>
 		          </defs>
 		        </svg>
-		        <span>создать</span>
+		        <span>{% trans 'создать' context "trading" %}</span>
 		      </button>
 		    </div>
 		    <!--Кнопка "настройки поиска"-->
@@ -57,13 +57,13 @@
 		        </linearGradient>
 		        </defs>
 		      </svg>
-		      <span>настройки поиска</span>
+		      <span>{% trans 'настройки поиска' context "trading" %}</span>
 		    </button>
 				<!--Активные фильтры-->
 				<div class="trading__actveFilters">
-					<h3 id='filter-cats-header' style="display: none">Выбранные категории:</h3>
+					<h3 id='filter-cats-header' style="display: none">{% trans 'Выбранная категория' context "trading" %}:</h3>
 					<ul id='filter-cats'></ul>
-					<h3 id='filter-good-header' style="display: none">Выбранный товар:</h3>
+					<h3 id='filter-good-header' style="display: none">{% trans 'Выбранный товар' context "trading" %}:</h3>
 					<ul id='filter-good'></ul>
 				</div>
 			</div>
@@ -74,11 +74,11 @@
 	      <table class="ct__js-table" style="display: none;" id="lines">
             <tbody>
                 <tr id="offers_header">
-                    <td class="j-t-one" style="width: max-content;">регион</td>
+                    <td class="j-t-one" style="width: max-content;">{% trans 'регион' context "trading" %}</td>
                     <td class="j-t-two ct__js-tablePC"></td>
-                    <td class="j-t-three" style="text-align: center;">товар</td>
-                    <td class="j-t-four" style="text-align: center;">цена</td>
-                    <td class="j-t-five" style="text-align: center;">продавец</td>
+                    <td class="j-t-three" style="text-align: center;">{% trans 'товар' context "trading" %}</td>
+                    <td class="j-t-four" style="text-align: center;">{% trans 'цена' context "trading" %}</td>
+                    <td class="j-t-five" style="text-align: center;">{% trans 'продавец' context "trading" %}</td>
                     <td class="j-t-six ct__js-tablePC" style="text-align: center;"></td>
                 </tr>
 
@@ -115,9 +115,9 @@
         </svg>
       </button>
       <!--Заголовок-->
-      <h2>Настройки поиска</h2>
+      <h2>{% trans 'Настройки поиска' context "trading" %}</h2>
       <!--Выбор действия-->
-      <h3>тип предложения:</h3>
+      <h3>{% trans 'тип предложения' context "trading" %}:</h3>
       <label class="search-modal__label ct__wide-modal-label-select">
         <select name="trade_actions" id="trade_actions">
 			<option selected value='sell'>{% trans 'Продажа' context "w_trading" %}</option>
@@ -128,7 +128,7 @@
 		</svg>
       </label>
       <!--Выбор источника-->
-      <h3>создатель:</h3>
+      <h3>{% trans 'создатель' context "trading" %}:</h3>
       <label class="search-modal__label ct__wide-modal-label-select">
         <select name="trade_owner" id="trade_owner">
             <option selected value='all'>{% trans 'Все' context "w_trading" %}</option>
@@ -140,10 +140,10 @@
         </svg>
       </label>
       <!--Выбор категорий-->
-      <h3>выбор категории:</h3>
+      <h3>{% trans 'выбор категории' context "trading" %}:</h3>
       <label class="search-modal__label ct__wide-modal-label-select">
         <select name="trade_groups" id="trade_groups">
-            <option id="group_default" value='default' disabled selected>выберите категорию</option>
+            <option id="group_default" value='default' disabled selected>{% trans 'выберите категорию' context "trading" %}</option>
             {% for group in storage_cl|get_attr:'types' %}
             <option value='{{ group }}'>{{ storage_cl|get_attr:'types'|dict_key:group }}</option>
             {% endfor %}
@@ -154,10 +154,10 @@
         </svg>
       </label>
       <!--Выбор товара-->
-      <h3>товар:</h3>
+      <h3>{% trans 'товар' context "trading" %}:</h3>
       <label class="search-modal__label ct__wide-modal-label-select">
         <select id="trade_goods">
-          <option id="good_default" value='default' disabled selected>выберите товар</option>
+          <option id="good_default" value='default' disabled selected>{% trans 'выберите товар' context "trading" %}</option>
             {% for group in storage_cl|get_attr:'types' %}
                 {% for good in storage_cl|get_attr:group %}
             <option id="good_{{ good }}" value='{{ good }}' style="display: none">{{ storage_cl|get_attr:group|dict_key:good }}</option>
@@ -182,7 +182,7 @@
             <path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
           </g>
         </svg>
-        <span>поиск</span>
+        <span>{% trans 'поиск' context "trading" %}</span>
       </button>
       <!--конец блока-->
     </div>
@@ -290,11 +290,11 @@
       </button>
       <!--Заголовок-->
       <h2>
-				покупка <br> <span id="offer_good">Орбитальные орудия</span>
+				<span id="offer_header" style="color: inherit;">{% trans 'покупка' context "trading" %}</span>  <br> <span id="offer_good">Орбитальные орудия</span>
 			</h2>
 			<!--владелец-->
 			<div class="search-modal__withImg">
-				<span class="search-modal__withImg-left">владелец</span>
+				<span class="search-modal__withImg-left">{% trans 'владелец' context "trading" %}</span>
 				<div class="search-modal__withImg-right">
 					<img class="search-modal__withImg-pic search-modal__withImg-img" src="" alt="">
                     {% nopic player 'search-modal__withImg-svg search-modal__withImg-img' 'display: none' %}
@@ -303,12 +303,12 @@
 			</div>
 			<!--цена-->
 			<div class="search-modal__twoText">
-				<span class="search-modal__twoText-left">цена</span>
+				<span class="search-modal__twoText-left">{% trans 'цена' context "trading" %}</span>
 				<span class="search-modal__twoText-right" id="offer_price">$400 000</span>
 			</div>
 			<!--регион-->
 			<div class="search-modal__withImg">
-				<span class="search-modal__withImg-left">Регион</span>
+				<span class="search-modal__withImg-left">{% trans 'регион' context "trading" %}</span>
 				<div class="search-modal__withImg-right">
 					<img class="search-modal__withImg-img" src="" id="region_img">
 					<span class="search-modal__withImg-text" id="offer_region">Брянская область</span>
@@ -316,7 +316,7 @@
 			</div>
 			<!--количество-->
 			<div class="search-modal__withInput">
-				<span class="search-modal__withInput-text">количество</span>
+				<span class="search-modal__withInput-text">{% trans 'количество' context "trading" %}</span>
 				<input type="number" class="search-modal__withInput-input" id="offer_count">
 			</div>
 			<!--Выбор склада-->
@@ -326,7 +326,7 @@
                 <div class="ct__selectWithImage-selected" id="offer_default_storage" data-value="{% localize off %}{{ storage.pk }}{% endlocalize %}">
                     <img id="offer_default_img" src="static/img/regions/{{ storage.region.on_map_id }}.png">
                     <div class="ct__selectWithImage-firstText">
-                        <span id="offer_default_region">{{ storage.region.region_name }}</span>
+                        <span id="offer_default_region">{% trans storage.region.region_name context "regions_list" %}</span>
                         <svg class="ct__selectWithImage-arrow" width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
                         </svg>
@@ -338,27 +338,27 @@
                     {% for storage in storages %}
                     <div id="storage_{% localize off %}{{ storage.pk }}{% endlocalize %}" {% if forloop.counter0 == 0 %}class="first_storage"{% endif %} data-value="{% localize off %}{{ storage.pk }}{% endlocalize %}">
                         <img class="offer_dummy_img" src="static/img/regions/{{ storage.region.on_map_id }}.png">
-                        <span class="offer_dummy_region">{{ storage.region.region_name }}</span>
+                        <span class="offer_dummy_region">{% trans storage.region.region_name context "regions_list" %}</span>
                     </div>
                     {% endfor %}
                 </div>
             </div>
 			<!--стоимость-->
 			<div class="search-modal__twoText">
-				<span class="search-modal__twoText-left">стоимость</span>
+				<span class="search-modal__twoText-left">{% trans 'стоимость' context "trading" %}</span>
 				<span class="search-modal__twoText-right" id="offer_sum">$400 000</span>
 			</div>
 			<!--доставка-->
 			<div class="search-modal__twoText">
-				<span class="search-modal__twoText-left">доставка</span>
+				<span class="search-modal__twoText-left">{% trans 'доставка' context "trading" %}</span>
 				<span class="search-modal__twoText-right" id="offer_delivery">$100 000</span>
 			</div>
 			<!--разделитель-->
 			<div class="party__mmid-line"></div>
 			<!--итого-->
 			<div class="search-modal__twoText search-modal__twoText--colored">
-				<span class="search-modal__twoText-left">итого</span>
-				<span class="search-modal__twoText-right" id="offer_total">$100 000</span>
+				<span class="search-modal__twoText-left">{% trans 'итого' context "trading" %}</span>
+				<span class="search-modal__twoText-right" id="offer_total"></span>
 			</div>
       <!--Кнопка ПОИСК-->
       <button class="search-modal__confirm-btn ct__mid-btn" onclick="confirm_offer()">
@@ -373,7 +373,7 @@
             <path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
           </g>
         </svg>
-        <span>купить</span>
+        <span id="offer_action">{% trans 'купить' context "trading" %}</span>
       </button>
       <!--конец блока-->
     </div>
@@ -388,10 +388,17 @@
 }
 </style>
 <script>
-    var offer_cancel_header = 'Отмена торгового предложения';
-    var offer_cancel_text = 'Ваше торговое предложение будет удалено. Продолжить?';
-    var offer_cancel_yes = 'Продолжить';
-    var offer_cancel_cancel = 'Отмена';
+    var offer_sale_header = '{% trans 'продажа' context "trading" %}';
+    var offer_sale_button = '{% trans 'продать' context "trading" %}';
+
+    var offer_purchase_header = '{% trans 'покупка' context "trading" %}';
+    var offer_purchase_button = '{% trans 'купить' context "trading" %}';
+
+
+    var offer_cancel_header = '{% trans 'Отмена торгового предложения' context "trading" %}';
+    var offer_cancel_text = '{% trans 'Ваше торговое предложение будет удалено. Продолжить?' context "trading" %}';
+    var offer_cancel_yes = '{% trans 'Продолжить' context "trading" %}';
+    var offer_cancel_cancel = '{% trans 'Отмена' context "trading" %}';
 
 
     var offers_dict = {};
@@ -505,7 +512,8 @@
 
 			if (this._good){
 			    this._goodFilter_head.style.display = 'block';
-			    this._goodFilter.insertAdjacentHTML('beforeend', `<li>${this._good}</li>`)
+			    var good_text = groups_n_goods[$('#trade_groups').val()][this._good];
+			    this._goodFilter.insertAdjacentHTML('beforeend', `<li>${good_text}</li>`)
             }
 		}
 	}
