@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-17 18:13+0300\n"
+"POT-Creation-Date: 2023-04-24 02:06+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,49 +18,56 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2);\n"
 
-#. Last modified by Артур Двинский, id 5
 #: bill/models/change_taxes.py:21 party/templates/party/party_view.html:71
 msgid "Регион"
 msgstr "Reģions"
 
-#. Last modified by Артур Двинский, id 5
 #: bill/models/change_taxes.py:22 region/templates/region/region_view.html:99
 msgid "Государство"
 msgstr "Valsts"
 
-#. Last modified by Артур Двинский, id 5
 #: bill/models/change_taxes.py:38
 msgid "Финансирование"
 msgstr "Finansējums"
 
-#. Last modified by Артур Двинский, id 5
-#: bill/models/change_taxes.py:39 bill/models/explore_resources.py:26 bill/models/geological_surveys.py:27 region/templates/region/region_info.html:82
+#: bill/models/change_taxes.py:39 bill/models/explore_resources.py:26
+#: bill/models/geological_surveys.py:27
+#: region/templates/region/region_info.html:82
 msgid "Нефть"
 msgstr "Nafta"
 
-#. Last modified by Артур Двинский, id 5
-#: bill/models/change_taxes.py:40 bill/models/explore_resources.py:27 bill/models/geological_surveys.py:28 region/templates/region/region_info.html:96
+#: bill/models/change_taxes.py:40 bill/models/explore_resources.py:27
+#: bill/models/geological_surveys.py:28
+#: region/templates/region/region_info.html:96
 msgid "Руда"
 msgstr "Rūda"
 
-#. Last modified by Артур Двинский, id 5
 #: bill/models/change_taxes.py:41
 msgid "Торговля"
 msgstr "Tirdzniecība"
 
-#. Last modified by Артур Двинский, id 5
-#: bill/models/explore_resources.py:25 bill/models/geological_surveys.py:26 region/templates/region/region_info.html:68
+#: bill/models/explore_resources.py:25 bill/models/geological_surveys.py:26
+#: region/templates/region/region_info.html:68
 msgid "Золото"
 msgstr "Zelts"
 
-#. Last modified by Артур Двинский, id 5
-#: bill/templates/state/gov/bills/change_residency.html:42 bill/templates/state/gov/drafts/change_residency.html:21 bill/templates/state/gov/reviewed/change_residency.html:41 factory/models/project.py:148 state/models/treasury.py:85 storage/models/destroy.py:58 storage/models/storage.py:76 storage/models/storage.py:183 storage/models/trade_offer.py:91 storage/models/transport.py:153
+#: bill/templates/state/gov/bills/change_residency.html:42
+#: bill/templates/state/gov/drafts/change_residency.html:21
+#: bill/templates/state/gov/reviewed/change_residency.html:41
+#: factory/models/project.py:148 state/models/treasury.py:85
+#: storage/models/destroy.py:58 storage/models/storage.py:76
+#: storage/models/storage.py:183 storage/models/trade_offer.py:91
+#: storage/models/transport.py:153
 msgctxt "goods"
 msgid "Автоматы"
 msgstr "Automāti"
 
-#. Last modified by Артур Двинский, id 5
-#: bill/templates/state/gov/bills/change_residency.html:47 bill/templates/state/gov/drafts/change_residency.html:26 bill/templates/state/gov/reviewed/change_residency.html:44 factory/models/project.py:264 state/models/treasury.py:109 storage/models/destroy.py:74 storage/models/storage.py:88 storage/models/storage.py:223 storage/models/trade_offer.py:99
+#: bill/templates/state/gov/bills/change_residency.html:47
+#: bill/templates/state/gov/drafts/change_residency.html:26
+#: bill/templates/state/gov/reviewed/change_residency.html:44
+#: factory/models/project.py:264 state/models/treasury.py:109
+#: storage/models/destroy.py:74 storage/models/storage.py:88
+#: storage/models/storage.py:223 storage/models/trade_offer.py:99
 msgctxt "goods"
 msgid "БПЛА"
 msgstr "BPLA"
@@ -73,586 +80,564 @@ msgstr ""
 msgid "no_common_borders"
 msgstr ""
 
-#. Last modified by Артур Двинский, id 5
 #: factory/models/factory/factory.py:29
 msgctxt "factory"
 msgid "Уровень"
 msgstr "Līmenis"
 
-#. Last modified by Артур Двинский, id 5
-#: factory/models/production_log.py:29 factory/models/production_log.py:48 state/models/treasury.py:38 storage/models/storage.py:38 storage/models/storage.py:112
+#: factory/models/production_log.py:29 factory/models/production_log.py:48
+#: state/models/treasury.py:38 storage/models/storage.py:38
+#: storage/models/storage.py:112 storage/models/storage.py:234
 msgctxt "goods"
 msgid "Наличные"
 msgstr "Skaidra nauda"
 
-#. Last modified by Артур Двинский, id 5
-#: factory/models/project.py:16 state/models/treasury.py:62 storage/models/destroy.py:38 storage/models/storage.py:59 storage/models/storage.py:148 storage/models/trade_offer.py:82 storage/models/transport.py:123
+#: factory/models/project.py:16 state/models/treasury.py:62
+#: storage/models/destroy.py:38 storage/models/storage.py:59
+#: storage/models/storage.py:148 storage/models/trade_offer.py:82
+#: storage/models/transport.py:123
 msgctxt "goods"
 msgid "Бензин"
 msgstr "Benzīns"
 
-#. Last modified by Артур Двинский, id 5
-#: factory/models/project.py:39 state/models/treasury.py:68 storage/models/destroy.py:44 storage/models/storage.py:63 storage/models/storage.py:158 storage/models/trade_offer.py:84 storage/models/transport.py:133
+#: factory/models/project.py:39 state/models/treasury.py:68
+#: storage/models/destroy.py:44 storage/models/storage.py:63
+#: storage/models/storage.py:158 storage/models/trade_offer.py:84
+#: storage/models/transport.py:133
 msgctxt "goods"
 msgid "Пластик"
 msgstr "Plastmasa"
 
-#. Last modified by Артур Двинский, id 5
 #: factory/models/project.py:62 storage/models/transport.py:128
 msgctxt "goods"
 msgid "Дизель"
 msgstr "Dīzelis"
 
-#. Last modified by Артур Двинский, id 5
-#: factory/models/project.py:85 state/models/treasury.py:71 storage/models/destroy.py:46 storage/models/storage.py:65 storage/models/storage.py:162 storage/models/trade_offer.py:85 storage/models/transport.py:137 storage/templates/storage/redesign/storage.html:216
+#: factory/models/project.py:85 state/models/treasury.py:71
+#: storage/models/destroy.py:46 storage/models/storage.py:65
+#: storage/models/storage.py:162 storage/models/trade_offer.py:85
+#: storage/models/transport.py:137
+#: storage/templates/storage/redesign/storage.html:216
 msgctxt "goods"
 msgid "Сталь"
 msgstr "Tērauds"
 
-#. Last modified by Артур Двинский, id 5
-#: factory/models/project.py:101 state/models/treasury.py:74 storage/models/destroy.py:48 storage/models/storage.py:67 storage/models/storage.py:166 storage/models/trade_offer.py:86 storage/models/transport.py:141 storage/templates/storage/redesign/storage.html:216
+#: factory/models/project.py:101 state/models/treasury.py:74
+#: storage/models/destroy.py:48 storage/models/storage.py:67
+#: storage/models/storage.py:166 storage/models/trade_offer.py:86
+#: storage/models/transport.py:141
+#: storage/templates/storage/redesign/storage.html:216
 msgctxt "goods"
 msgid "Алюминий"
 msgstr "Alumīnijs"
 
-#. Last modified by Артур Двинский, id 5
-#: factory/models/project.py:116 state/models/treasury.py:78 storage/models/destroy.py:52 storage/models/storage.py:71 storage/models/storage.py:172 storage/models/trade_offer.py:88 storage/models/transport.py:147
+#: factory/models/project.py:116 state/models/treasury.py:78
+#: storage/models/destroy.py:52 storage/models/storage.py:71
+#: storage/models/storage.py:172 storage/models/trade_offer.py:88
+#: storage/models/transport.py:147
 msgctxt "goods"
 msgid "Медикаменты"
 msgstr "Medikamenti"
 
-#. Last modified by Артур Двинский, id 5
-#: factory/models/project.py:132 state/models/treasury.py:81 storage/models/destroy.py:54 storage/models/storage.py:72 storage/models/storage.py:177 storage/models/trade_offer.py:89
+#: factory/models/project.py:132 state/models/treasury.py:81
+#: storage/models/destroy.py:54 storage/models/storage.py:72
+#: storage/models/storage.py:177 storage/models/trade_offer.py:89
 msgctxt "goods"
 msgid "Буровые установки"
 msgstr "Urbšanas iekārtas"
 
-#. Last modified by Артур Двинский, id 5
-#: factory/models/project.py:163 state/models/treasury.py:88 storage/models/destroy.py:60 storage/models/storage.py:78 storage/models/storage.py:198 storage/models/trade_offer.py:92 storage/models/transport.py:158
+#: factory/models/project.py:163 state/models/treasury.py:88
+#: storage/models/destroy.py:60 storage/models/storage.py:78
+#: storage/models/storage.py:198 storage/models/trade_offer.py:92
+#: storage/models/transport.py:158
 msgctxt "goods"
 msgid "Танки"
 msgstr "Tanki"
 
-#. Last modified by Артур Двинский, id 5
-#: factory/models/project.py:184 state/models/treasury.py:91 storage/models/destroy.py:62 storage/models/storage.py:82 storage/models/storage.py:203 storage/models/trade_offer.py:96 storage/models/transport.py:163
+#: factory/models/project.py:184 state/models/treasury.py:91
+#: storage/models/destroy.py:62 storage/models/storage.py:82
+#: storage/models/storage.py:203 storage/models/trade_offer.py:96
+#: storage/models/transport.py:163
 msgctxt "goods"
 msgid "Штурмовики"
 msgstr "Uzbrukuma lidmašīnas"
 
-#. Last modified by Артур Двинский, id 5
-#: factory/models/project.py:200 state/models/treasury.py:97 storage/models/destroy.py:66 storage/models/storage.py:83 storage/models/storage.py:213 storage/models/trade_offer.py:97 storage/models/transport.py:173
+#: factory/models/project.py:200 state/models/treasury.py:97
+#: storage/models/destroy.py:66 storage/models/storage.py:83
+#: storage/models/storage.py:213 storage/models/trade_offer.py:97
+#: storage/models/transport.py:173
 msgctxt "goods"
 msgid "ПЗРК"
 msgstr "PZRK"
 
-#. Last modified by Артур Двинский, id 5
-#: factory/models/project.py:216 state/models/treasury.py:100 storage/models/destroy.py:68 storage/models/storage.py:79 storage/models/storage.py:193 storage/models/trade_offer.py:93
+#: factory/models/project.py:216 state/models/treasury.py:100
+#: storage/models/destroy.py:68 storage/models/storage.py:79
+#: storage/models/storage.py:193 storage/models/trade_offer.py:93
 msgctxt "goods"
 msgid "ПТ-орудия"
 msgstr "Prettanku ieroči"
 
-#. Last modified by Артур Двинский, id 5
-#: factory/models/project.py:232 state/models/treasury.py:103 storage/models/destroy.py:70 storage/models/storage.py:86 storage/models/storage.py:188 storage/models/trade_offer.py:94 storage/models/transport.py:183
+#: factory/models/project.py:232 state/models/treasury.py:103
+#: storage/models/destroy.py:70 storage/models/storage.py:86
+#: storage/models/storage.py:188 storage/models/trade_offer.py:94
+#: storage/models/transport.py:183
 msgctxt "goods"
 msgid "Мины"
 msgstr "Mīnas"
 
-#. Last modified by Артур Двинский, id 5
-#: factory/models/project.py:248 state/models/treasury.py:106 storage/models/destroy.py:72 storage/models/storage.py:85 storage/models/storage.py:218 storage/models/trade_offer.py:98 storage/models/transport.py:188
+#: factory/models/project.py:248 state/models/treasury.py:106
+#: storage/models/destroy.py:72 storage/models/storage.py:85
+#: storage/models/storage.py:218 storage/models/trade_offer.py:98
+#: storage/models/transport.py:188
 msgctxt "goods"
 msgid "БМП"
 msgstr "Bruņu tehnika"
 
-#. Last modified by Артур Двинский, id 5
-#: factory/templates/factory/redesign/factory.html:13 factory/views/factory.py:53
+#: factory/templates/factory/redesign/factory.html:13
+#: factory/views/factory.py:53
 msgctxt "factory"
 msgid "Производство"
 msgstr "Ražošana"
 
-#. Last modified by Артур Двинский, id 5
 #: factory/templates/factory/redesign/factory.html:17
 msgctxt "factory"
 msgid "цена"
 msgstr "cena"
 
-#. Last modified by Артур Двинский, id 5
 #: factory/templates/factory/redesign/factory.html:38
 msgctxt "factory"
 msgid "Энергия"
 msgstr "Enerģija"
 
-#. Last modified by Артур Двинский, id 5
 #: factory/templates/factory/redesign/factory.html:101
 msgctxt "factory"
 msgid "выбор группы товаров"
 msgstr "preces grupas izvēle"
 
-#. Last modified by Артур Двинский, id 5
 #: factory/templates/factory/redesign/factory.html:113
 msgctxt "factory"
 msgid "выбор товара"
 msgstr "preces izvēle"
 
-#. Last modified by Артур Двинский, id 5
 #: factory/templates/factory/redesign/factory.html:129
 msgctxt "factory"
 msgid "выбор схемы"
 msgstr "shēmas izvēle"
 
-#. Last modified by Артур Двинский, id 5
 #: factory/templates/factory/redesign/factory.html:153
 msgctxt "factory"
 msgid "создать"
 msgstr "ražot"
 
-#. Last modified by Артур Двинский, id 5
 #: factory/views/produce_good.py:31
 msgctxt "factory"
 msgid "Дождитесь конца полёта"
 msgstr "Uzgaidiet līdz lidojuma beigām"
 
-#. Last modified by Артур Двинский, id 5
-#: factory/views/produce_good.py:32 factory/views/produce_good.py:43 factory/views/produce_good.py:59 factory/views/produce_good.py:71 factory/views/produce_good.py:85 factory/views/produce_good.py:95 factory/views/produce_good.py:106 factory/views/produce_good.py:116 factory/views/produce_good.py:124 factory/views/produce_good.py:132 factory/views/produce_good.py:170 factory/views/produce_good.py:189
+#: factory/views/produce_good.py:32 factory/views/produce_good.py:43
+#: factory/views/produce_good.py:59 factory/views/produce_good.py:71
+#: factory/views/produce_good.py:85 factory/views/produce_good.py:95
+#: factory/views/produce_good.py:106 factory/views/produce_good.py:116
+#: factory/views/produce_good.py:124 factory/views/produce_good.py:132
+#: factory/views/produce_good.py:170 factory/views/produce_good.py:189
 msgctxt "factory"
 msgid "Ошибка производства"
 msgstr "Ražošanas kļūda"
 
-#. Last modified by Артур Двинский, id 5
-#: factory/views/produce_good.py:33 factory/views/produce_good.py:44 factory/views/produce_good.py:60 factory/views/produce_good.py:72 factory/views/produce_good.py:86 factory/views/produce_good.py:96 factory/views/produce_good.py:107 factory/views/produce_good.py:117 factory/views/produce_good.py:125 factory/views/produce_good.py:133 factory/views/produce_good.py:171 factory/views/produce_good.py:190
+#: factory/views/produce_good.py:33 factory/views/produce_good.py:44
+#: factory/views/produce_good.py:60 factory/views/produce_good.py:72
+#: factory/views/produce_good.py:86 factory/views/produce_good.py:96
+#: factory/views/produce_good.py:107 factory/views/produce_good.py:117
+#: factory/views/produce_good.py:125 factory/views/produce_good.py:133
+#: factory/views/produce_good.py:171 factory/views/produce_good.py:190
 msgctxt "storage"
 msgid "Закрыть"
 msgstr "Aizvērt"
 
-#. Last modified by Артур Двинский, id 5
 #: factory/views/produce_good.py:42
 msgctxt "factory"
 msgid "Склад не заполнен"
 msgstr "Noliktava nav norādīta"
 
-#. Last modified by Артур Двинский, id 5
 #: factory/views/produce_good.py:58
 msgctxt "factory"
 msgid "Указанный Склад вам не принадлежит"
 msgstr "Jūms nepieder norādīta noliktava"
 
-#. Last modified by Артур Двинский, id 5
 #: factory/views/produce_good.py:70
 msgctxt "factory"
 msgid "Указанный товар не существует"
 msgstr "Norādīta prece neeksistē"
 
-#. Last modified by Артур Двинский, id 5
 #: factory/views/produce_good.py:84
 msgctxt "factory"
 msgid "Номер схемы - не число"
 msgstr "Shēmas numurs - nav skaitlis"
 
-#. Last modified by Артур Двинский, id 5
 #: factory/views/produce_good.py:94
 msgctxt "factory"
 msgid "Указанной схемы не существует"
 msgstr "Norādīta shēma neeksistē"
 
-#. Last modified by Артур Двинский, id 5
 #: factory/views/produce_good.py:105
 msgctxt "factory"
 msgid "Количество - не число"
 msgstr "Daudzums - nav skaitlis"
 
-#. Last modified by Артур Двинский, id 5
 #: factory/views/produce_good.py:115
 msgctxt "factory"
 msgid "Количество товара должно быть положительным числом"
 msgstr "Preces daudzumam jābūt pozitīvam skaitlim"
 
-#. Last modified by Артур Двинский, id 5
 #: factory/views/produce_good.py:123
 msgctxt "factory"
 msgid "Количество товара слишком велико"
 msgstr "Preces daudzums ir pārāk liels"
 
-#. Last modified by Артур Двинский, id 5
 #: factory/views/produce_good.py:134
 msgctxt "factory"
 msgid "Недостаточно места на складе для товара. В наличии "
 msgstr "Noliktavā nav vietas šai precei. Ir"
 
-#. Last modified by Артур Двинский, id 5
-#: factory/views/produce_good.py:135 factory/views/produce_good.py:172 factory/views/produce_good.py:192
+#: factory/views/produce_good.py:135 factory/views/produce_good.py:172
+#: factory/views/produce_good.py:192
 msgctxt "factory"
 msgid ", требуется "
 msgstr ", jābūt "
 
-#. Last modified by Артур Двинский, id 5
 #: factory/views/produce_good.py:172
 msgctxt "factory"
 msgid "Недостаточно энергии. В наличии "
 msgstr "Nepietiek enerģijas. Ir"
 
-#. Last modified by Артур Двинский, id 5
 #: factory/views/produce_good.py:191
 msgctxt "factory"
 msgid "Недостаточно "
 msgstr "Nepietiek"
 
-#. Last modified by я проклят FKEY, id 23
 #: factory/views/produce_good.py:191
 msgctxt "factory"
 msgid ". В наличии "
 msgstr ". Ir "
 
-#. Last modified by Артур Двинский, id 5
-#: gov/templates/state/gov/forms/foreign_right.html:21 party/templates/party/party_requests.html:36
+#: gov/templates/state/gov/forms/foreign_right.html:21
+#: party/templates/party/party_requests.html:36
 msgid "отклонить всё"
 msgstr "noraidīt visu"
 
-#. Last modified by я проклят FKEY, id 23
-#: party/templates/party/redesign/manage.html:17 party/views/management/management.py:28
+#: party/templates/party/redesign/manage.html:17
+#: party/views/management/management.py:28
 msgctxt "party_manage"
 msgid "Управление партией"
 msgstr "Partijas vadība "
 
-#. Last modified by я проклят FKEY, id 23
 #: party/templates/party/redesign/manage.html:32
 msgctxt "party_manage"
 msgid "партия"
 msgstr "partija"
 
-#. Last modified by Артур Двинский, id 5
 #: party/templates/party/redesign/manage.html:47
 msgctxt "party_manage"
 msgid "должности"
 msgstr "amati"
 
-#. Last modified by я проклят FKEY, id 23
 #: party/templates/party/redesign/manage.html:117
 msgctxt "party_manage"
 msgid "Тип партии"
 msgstr "Partijas veids"
 
-#. Last modified by я проклят FKEY, id 23
 #: party/templates/party/redesign/manage.html:119
 msgctxt "party_manage"
 msgid "открытая"
 msgstr "atvērta "
 
-#. Last modified by я проклят FKEY, id 23
 #: party/templates/party/redesign/manage.html:119
 msgctxt "party_manage"
 msgid "закрытая"
 msgstr "slēgta "
 
-#. Last modified by я проклят FKEY, id 23
 #: party/templates/party/redesign/manage.html:119
 msgctxt "party_manage"
 msgid "изменить"
 msgstr "mainīt "
 
-#. Last modified by я проклят FKEY, id 23
 #: party/templates/party/redesign/manage.html:124
 msgctxt "party_manage"
 msgid "Роспуск партии"
 msgstr "Partijas izjukšana"
 
-#. Last modified by я проклят FKEY, id 23
 #: party/templates/party/redesign/manage.html:129
 msgctxt "party_manage"
 msgid "подтвердить роспуск"
 msgstr "apstiprina izjukšanu"
 
-#. Last modified by я проклят FKEY, id 23
 #: party/templates/party/redesign/manage.html:132
 msgctxt "party_manage"
 msgid "роспуск невозможен"
 msgstr "izjukšana nav iespējama"
 
-#. Last modified by я проклят FKEY, id 23
 #: party/templates/party/redesign/manage.html:153
 msgctxt "party_manage"
 msgid "добавить описание партии"
 msgstr "pievienojiet pārtijas aprakstu"
 
-#. Last modified by я проклят FKEY, id 23
 #: party/templates/party/redesign/manage.html:168
 msgctxt "party_manage"
 msgid "Добавить должность"
 msgstr "Pievienot pozīciju"
 
-#. Last modified by я проклят FKEY, id 23
-#: party/templates/party/redesign/manage.html:183 party/templates/party/redesign/manage.html:199
+#: party/templates/party/redesign/manage.html:183
+#: party/templates/party/redesign/manage.html:199
 msgctxt "party_manage"
 msgid "секретарь"
 msgstr "sekretāre"
 
-#. Last modified by я проклят FKEY, id 23
 #: party/templates/party/redesign/manage.html:186
 msgctxt "party_manage"
 msgid "добавить"
 msgstr "pievienot"
 
-#. Last modified by я проклят FKEY, id 23
 #: party/templates/party/redesign/manage.html:198
 msgctxt "party_manage"
 msgid "название должности"
 msgstr "pozīcijas nosaukums "
 
-#. Last modified by я проклят FKEY, id 23
 #: party/templates/party/redesign/manage.html:200
 msgctxt "party_manage"
 msgid "действия"
 msgstr "darbības "
 
-#. Last modified by я проклят FKEY, id 23
 #: party/templates/party/redesign/manage.html:250
 msgctxt "party_manage"
 msgid "Смена названия партии"
 msgstr "Partijas nosaukuma maiņa"
 
-#. Last modified by я проклят FKEY, id 23
-#: party/templates/party/redesign/manage.html:267 party/templates/party/redesign/manage.html:295
+#: party/templates/party/redesign/manage.html:267
+#: party/templates/party/redesign/manage.html:295
 msgctxt "party_manage"
 msgid "сохранить"
 msgstr "saglabāt "
 
-#. Last modified by я проклят FKEY, id 23
 #: party/templates/party/redesign/manage.html:278
 msgctxt "party_manage"
 msgid "Смена описания партии"
 msgstr "Mainiet pārtijas aprakstu"
 
-#. Last modified by Артур Двинский, id 5
-#: party/templates/party/redesign/manage.html:350 player/templates/player/redesign/new_player.html:135 player/templates/player/redesign/new_player.html:149 player/templates/player/redesign/new_player.html:177 player/templates/player/redesign/overview_skills.html:179 player/templates/player/redesign/profile.html:359
+#: party/templates/party/redesign/manage.html:350
+#: player/templates/player/redesign/new_player.html:135
+#: player/templates/player/redesign/new_player.html:149
+#: player/templates/player/redesign/new_player.html:177
+#: player/templates/player/redesign/overview_skills.html:179
+#: player/templates/player/redesign/profile.html:359
 msgid "Отмена"
 msgstr "Atcelšana"
 
-#. Last modified by Артур Двинский, id 5
-#: party/templates/party/redesign/manage.html:351 player/templates/player/redesign/new_player.html:136 player/templates/player/redesign/profile.html:360
+#: party/templates/party/redesign/manage.html:351
+#: player/templates/player/redesign/new_player.html:136
+#: player/templates/player/redesign/profile.html:360
 msgid "Загрузить"
 msgstr "Ielādēt"
 
-#. Last modified by я проклят FKEY, id 23
-#: party/templates/party/redesign/new_party.html:15 party/views/management/new_party.py:83
+#: party/templates/party/redesign/new_party.html:15
+#: party/views/management/new_party.py:83
 msgctxt "new_party"
 msgid "Новая партия"
 msgstr "Jauna partija"
 
-#. Last modified by я проклят FKEY, id 23
 #: party/templates/party/redesign/new_party.html:19
 msgctxt "new_party"
 msgid "Стоимость создания партии"
 msgstr "Partijas izveides izmaksas"
 
-#. Last modified by я проклят FKEY, id 23
 #: party/templates/party/redesign/new_party.html:25
 msgctxt "new_party"
 msgid "Название партии"
 msgstr "Partijas nosaukums"
 
-#. Last modified by я проклят FKEY, id 23
-#: party/templates/party/redesign/new_party.html:41 party/templates/party/redesign/party_blocks/no_party.html:21
+#: party/templates/party/redesign/new_party.html:41
+#: party/templates/party/redesign/party_blocks/no_party.html:21
 msgctxt "no_party"
 msgid "создать партию"
 msgstr "Izveidot partiju"
 
-#. Last modified by Артур Двинский, id 5
 #: party/templates/party/redesign/party.html:61
 msgctxt "has_party"
 msgid "исключить"
 msgstr "izslēgt"
 
-#. Last modified by Артур Двинский, id 5
-#: party/templates/party/redesign/party_blocks/has_party.html:12 party/templates/party/redesign/party_blocks/no_party.html:10
+#: party/templates/party/redesign/party_blocks/has_party.html:12
+#: party/templates/party/redesign/party_blocks/no_party.html:10
 msgctxt "has_party"
 msgid "Партия"
 msgstr "Partija"
 
-#. Last modified by Артур Двинский, id 5
-#: party/templates/party/redesign/party_blocks/has_party.html:130 party/templates/party/redesign/party_requests.html:29 party/templates/party/redesign/party_view.html:175
+#: party/templates/party/redesign/party_blocks/has_party.html:130
+#: party/templates/party/redesign/party_requests.html:29
+#: party/templates/party/redesign/party_view.html:175
 msgctxt "has_party"
 msgid "Никнейм"
 msgstr "Nikneims"
 
-#. Last modified by Артур Двинский, id 5
-#: party/templates/party/redesign/party_blocks/has_party.html:131 party/templates/party/redesign/party_view.html:176
+#: party/templates/party/redesign/party_blocks/has_party.html:131
+#: party/templates/party/redesign/party_view.html:176
 msgctxt "has_party"
 msgid "Был в сети"
 msgstr "Bija tiešsaistē"
 
-#. Last modified by Артур Двинский, id 5
-#: party/templates/party/redesign/party_blocks/has_party.html:132 party/templates/party/redesign/party_view.html:177
+#: party/templates/party/redesign/party_blocks/has_party.html:132
+#: party/templates/party/redesign/party_view.html:177
 msgctxt "has_party"
 msgid "Должность"
 msgstr "Amats"
 
-#. Last modified by Артур Двинский, id 5
-#: party/templates/party/redesign/party_blocks/has_party.html:159 party/templates/party/redesign/party_blocks/has_party.html:162 party/templates/party/redesign/party_view.html:200 party/templates/party/redesign/party_view.html:203
+#: party/templates/party/redesign/party_blocks/has_party.html:159
+#: party/templates/party/redesign/party_blocks/has_party.html:162
+#: party/templates/party/redesign/party_view.html:200
+#: party/templates/party/redesign/party_view.html:203
 msgctxt "has_party"
 msgid "давно"
 msgstr "sen"
 
-#. Last modified by Артур Двинский, id 5
 #: party/templates/party/redesign/party_blocks/has_party.html:195
 msgctxt "has_party"
 msgid "Покинуть партию?"
 msgstr "Iziet no partijas?"
 
-#. Last modified by Артур Двинский, id 5
 #: party/templates/party/redesign/party_blocks/has_party.html:196
 msgctxt "has_party"
 msgid "Вы покинете партию, а также все связанные должности. Продолжить?"
 msgstr "Jūs \tiziesiet no partijas un atstāsiet savus amatus. Turpināt?"
 
-#. Last modified by Артур Двинский, id 5
 #: party/templates/party/redesign/party_blocks/has_party.html:197
 msgctxt "has_party"
 msgid "Продолжить"
 msgstr "Turpināt"
 
-#. Last modified by Артур Двинский, id 5
 #: party/templates/party/redesign/party_blocks/has_party.html:198
 msgctxt "has_party"
 msgid "Отмена"
 msgstr "Atcelt"
 
-#. Last modified by я проклят FKEY, id 23
 #: party/templates/party/redesign/party_blocks/no_party.html:15
 msgctxt "no_party"
 msgid "Вы не состоите в партии"
 msgstr "Jūs neesat partijas biedrs"
 
-#. Last modified by я проклят FKEY, id 23
 #: party/templates/party/redesign/party_blocks/no_party.html:16
 msgctxt "no_party"
 msgid "Доступные партии"
 msgstr "Pieejamās partijas"
 
-#. Last modified by я проклят FKEY, id 23
 #: party/templates/party/redesign/party_blocks/no_party.html:16
 msgctxt "no_party"
 msgid "в регионе"
 msgstr "reģionā"
 
-#. Last modified by я проклят FKEY, id 23
 #: party/templates/party/redesign/party_blocks/no_party.html:19
 msgctxt "no_party"
 msgid "вы в полете"
 msgstr "tu esi lidojumā"
 
-#. Last modified by я проклят FKEY, id 23
 #: party/templates/party/redesign/party_blocks/no_party.html:39
 msgctxt "no_party"
 msgid "региональные"
 msgstr "reģionālais"
 
-#. Last modified by я проклят FKEY, id 23
 #: party/templates/party/redesign/party_blocks/no_party.html:54
 msgctxt "no_party"
 msgid "все партии"
 msgstr "visas partijas"
 
-#. Last modified by я проклят FKEY, id 23
-#: party/templates/party/redesign/party_blocks/no_party.html:70 party/templates/party/redesign/party_blocks/no_party.html:131
+#: party/templates/party/redesign/party_blocks/no_party.html:70
+#: party/templates/party/redesign/party_blocks/no_party.html:131
 msgctxt "no_party"
 msgid "Партия"
 msgstr "Partija"
 
-#. Last modified by я проклят FKEY, id 23
-#: party/templates/party/redesign/party_blocks/no_party.html:81 party/templates/party/redesign/party_blocks/no_party.html:142
+#: party/templates/party/redesign/party_blocks/no_party.html:81
+#: party/templates/party/redesign/party_blocks/no_party.html:142
 msgctxt "no_party"
 msgid "Действие"
 msgstr "Darbība"
 
-#. Last modified by я проклят FKEY, id 23
-#: party/templates/party/redesign/party_blocks/no_party.html:107 party/templates/party/redesign/party_blocks/no_party.html:161
+#: party/templates/party/redesign/party_blocks/no_party.html:107
+#: party/templates/party/redesign/party_blocks/no_party.html:161
 msgctxt "no_party"
 msgid "Вступить"
 msgstr "Pievienojieties"
 
-#. Last modified by я проклят FKEY, id 23
-#: party/templates/party/redesign/party_blocks/no_party.html:111 party/templates/party/redesign/party_blocks/no_party.html:165
+#: party/templates/party/redesign/party_blocks/no_party.html:111
+#: party/templates/party/redesign/party_blocks/no_party.html:165
 msgctxt "no_party"
 msgid "Отменить заявку"
 msgstr "Atcelt pieteikumu"
 
-#. Last modified by я проклят FKEY, id 23
-#: party/templates/party/redesign/party_blocks/no_party.html:113 party/templates/party/redesign/party_blocks/no_party.html:167
+#: party/templates/party/redesign/party_blocks/no_party.html:113
+#: party/templates/party/redesign/party_blocks/no_party.html:167
 msgctxt "no_party"
 msgid "Подать заявку"
 msgstr "Iesniedz pieteikumu"
 
-#. Last modified by я проклят FKEY, id 23
 #: party/templates/party/redesign/party_requests.html:15
 msgctxt "party_requests"
 msgid "Заявки в партию"
 msgstr "Partiju pieteikumi"
 
-#. Last modified by я проклят FKEY, id 23
 #: party/templates/party/redesign/party_requests.html:17
 msgctxt "party_requests"
 msgid "Отклонить всё"
 msgstr "Noraidīt visus"
 
-#. Last modified by я проклят FKEY, id 23
 #: party/templates/party/redesign/party_requests.html:19
 msgctxt "party_requests"
 msgid "заявок нет"
 msgstr "nav pieteikumu"
 
-#. Last modified by я проклят FKEY, id 23
 #: party/templates/party/redesign/party_requests.html:30
 msgctxt "party_requests"
 msgid "Принять"
 msgstr "Pieņemt"
 
-#. Last modified by я проклят FKEY, id 23
 #: party/templates/party/redesign/party_requests.html:31
 msgctxt "party_requests"
 msgid "Отклонить"
 msgstr "Noraidīt"
 
-#. Last modified by я проклят FKEY, id 23
 #: party/templates/party/redesign/party_view.html:34
 msgctxt "party_view"
 msgid "информация"
 msgstr "informācija "
 
-#. Last modified by я проклят FKEY, id 23
 #: party/templates/party/redesign/party_view.html:49
 msgctxt "party_view"
 msgid "состав"
 msgstr "partijas sastāvs"
 
-#. Last modified by я проклят FKEY, id 23
 #: party/templates/party/redesign/party_view.html:85
 msgctxt "party_view"
 msgid "Участников"
 msgstr "dalībnieki"
 
-#. Last modified by я проклят FKEY, id 23
 #: party/templates/party/redesign/party_view.html:93
 msgctxt "party_view"
 msgid "Тип"
 msgstr "veids"
 
-#. Last modified by я проклят FKEY, id 23
 #: party/templates/party/redesign/party_view.html:101
 msgctxt "party_view"
 msgid "Дата основания"
 msgstr "dibināšanas datums"
 
-#. Last modified by я проклят FKEY, id 23
 #: party/templates/party/redesign/party_view.html:126
 msgctxt "party_view"
 msgid "вступить"
 msgstr "pievienoties partijai"
 
-#. Last modified by я проклят FKEY, id 23
 #: party/templates/party/redesign/party_view.html:143
 msgctxt "party_view"
 msgid "отменить заявку"
 msgstr "atcelt pieteikumu"
 
-#. Last modified by я проклят FKEY, id 23
 #: party/templates/party/redesign/party_view.html:158
 msgctxt "party_view"
 msgid "подать заявку"
@@ -662,225 +647,335 @@ msgstr "pieteikties"
 msgid "primaries_in_party"
 msgstr ""
 
-#. Last modified by Артур Двинский, id 5
 #: party/views/lists/region_parties.py:86 party/views/lists/state_parties.py:40
 msgid "Партии региона"
 msgstr "Partijas reģionā"
 
-#. Last modified by Артур Двинский, id 5
 #: party/views/lists/world_parties.py:87
 msgid "Партии мира"
 msgstr "Partijas pasaulē"
 
-#. Last modified by я проклят FKEY, id 23
 #: party/views/management/new_party.py:44
 msgctxt "party_manage"
 msgid "Глава партии"
 msgstr "Partijas vadītājs "
 
-#. Last modified by я проклят FKEY, id 23
 #: party/views/management/new_party.py:47
 msgctxt "party_manage"
 msgid "Новый игрок партии"
 msgstr "Jauns partijas spēlētājs"
 
-#. Last modified by Артур Двинский, id 5
 #: party/views/management/roles/new_role.py:49
 msgctxt "party_manage"
 msgid "Должность с таким названием уже есть"
 msgstr "Ar šo nosaukumu jau ir amats"
 
-#. Last modified by Артур Двинский, id 5
-#: party/views/management/roles/new_role.py:50 party/views/management/roles/new_role.py:57 party/views/management/roles/new_role.py:65 party/views/management/roles/new_role.py:72 party/views/management/roles/new_role.py:80
+#: party/views/management/roles/new_role.py:50
+#: party/views/management/roles/new_role.py:57
+#: party/views/management/roles/new_role.py:65
+#: party/views/management/roles/new_role.py:72
+#: party/views/management/roles/new_role.py:80
 msgctxt "party_manage"
 msgid "Новая должность"
 msgstr "Jauns amats "
 
-#. Last modified by Артур Двинский, id 5
-#: party/views/management/roles/new_role.py:51 party/views/management/roles/new_role.py:58 party/views/management/roles/new_role.py:66 party/views/management/roles/new_role.py:73 party/views/management/roles/new_role.py:81 party/views/management/roles/remove_role.py:26 party/views/management/roles/remove_role.py:38 party/views/management/roles/remove_role.py:47 party/views/management/roles/remove_role.py:62 party/views/management/roles/remove_role.py:70 party/views/management/roles/remove_role.py:79 party/views/management/roles/set_role.py:37 party/views/management/roles/set_role.py:52 party/views/management/roles/set_role.py:59 party/views/management/roles/set_role.py:66 player/views/change_back_allow.py:43 player/views/change_back_allow.py:59 player/views/change_wiki_hide_allow.py:43 player/views/change_wiki_hide_allow.py:59 player/views/color_change.py:32 player/views/color_change.py:44 player/views/color_change.py:56 player/views/color_change.py:68 player/views/color_change.py:104 player/views/expense_energy.py:30 player/views/expense_energy.py:53 player/views/expense_energy.py:62 player/views/expense_energy.py:73 player/views/full_auto_allow.py:43 player/views/full_auto_allow.py:59 player/views/new_player.py:92 player/views/new_player.py:105 player/views/set_language.py:40 player/views/set_language.py:56 player/views/set_timezone.py:29 player/views/set_timezone.py:45 skill/views/skill_cancel.py:36 skill/views/skill_cancel.py:44 skill/views/skill_cancel.py:52 skill/views/skill_cancel.py:62 skill/views/skill_cancel.py:77
+#: party/views/management/roles/new_role.py:51
+#: party/views/management/roles/new_role.py:58
+#: party/views/management/roles/new_role.py:66
+#: party/views/management/roles/new_role.py:73
+#: party/views/management/roles/new_role.py:81
+#: party/views/management/roles/remove_role.py:26
+#: party/views/management/roles/remove_role.py:38
+#: party/views/management/roles/remove_role.py:47
+#: party/views/management/roles/remove_role.py:62
+#: party/views/management/roles/remove_role.py:70
+#: party/views/management/roles/remove_role.py:79
+#: party/views/management/roles/set_role.py:37
+#: party/views/management/roles/set_role.py:52
+#: party/views/management/roles/set_role.py:59
+#: party/views/management/roles/set_role.py:66
+#: player/views/change_back_allow.py:43 player/views/change_back_allow.py:59
+#: player/views/change_wiki_hide_allow.py:43
+#: player/views/change_wiki_hide_allow.py:59 player/views/color_change.py:32
+#: player/views/color_change.py:44 player/views/color_change.py:56
+#: player/views/color_change.py:68 player/views/color_change.py:104
+#: player/views/expense_energy.py:30 player/views/expense_energy.py:53
+#: player/views/expense_energy.py:62 player/views/expense_energy.py:73
+#: player/views/full_auto_allow.py:43 player/views/full_auto_allow.py:59
+#: player/views/new_player.py:92 player/views/new_player.py:105
+#: player/views/set_language.py:40 player/views/set_language.py:56
+#: player/views/set_timezone.py:29 player/views/set_timezone.py:45
+#: skill/views/skill_cancel.py:36 skill/views/skill_cancel.py:44
+#: skill/views/skill_cancel.py:52 skill/views/skill_cancel.py:62
+#: skill/views/skill_cancel.py:77
 msgid "Закрыть"
 msgstr "Aizvērt"
 
-#. Last modified by я проклят FKEY, id 23
 #: party/views/management/roles/new_role.py:56
 msgctxt "party_manage"
 msgid "Название не может быть пустым"
 msgstr "Virsraksta lauks nedrīkst būt tukšs"
 
-#. Last modified by Артур Двинский, id 5
 #: party/views/management/roles/new_role.py:64
 msgctxt "party_manage"
 msgid "Достигнуто ограничение на число должностей"
 msgstr "Sasniegts amata skaitās limits"
 
-#. Last modified by я проклят FKEY, id 23
 #: party/views/management/roles/new_role.py:71
 msgctxt "party_manage"
 msgid "Недостаточно прав для создания должности"
 msgstr "Nepietiekamas tiesības, lai izveidotu pozīciju"
 
-#. Last modified by Артур Двинский, id 5
-#: party/views/management/roles/new_role.py:79 party/views/management/roles/remove_role.py:77 player/views/color_change.py:102 region/views/do_mining.py:255 storage/views/assets/assets_action.py:253 storage/views/assets/storage_move.py:88 storage/views/storage/cash_transfer.py:144 storage/views/storage/new_storage.py:88 storage/views/storage/upgrade_storage.py:157 storage/views/trading/accept_offer.py:410 storage/views/trading/cancel_offer.py:149 storage/views/trading/create_offer.py:218 storage/views/trading/get_offers.py:190
+#: party/views/management/roles/new_role.py:79
+#: party/views/management/roles/remove_role.py:77
+#: player/views/color_change.py:102 region/views/do_mining.py:255
+#: storage/views/assets/assets_action.py:253
+#: storage/views/assets/storage_move.py:88
+#: storage/views/storage/cash_transfer.py:144
+#: storage/views/storage/new_storage.py:88
+#: storage/views/storage/upgrade_storage.py:157
+#: storage/views/trading/accept_offer.py:408
+#: storage/views/trading/cancel_offer.py:149
+#: storage/views/trading/create_offer.py:218
+#: storage/views/trading/get_offers.py:201
 msgctxt "mining"
 msgid "Ошибка метода"
 msgstr "Metoda kļūda"
 
-#. Last modified by Артур Двинский, id 5
 #: party/views/management/roles/remove_role.py:24
 msgctxt "party_manage"
 msgid "Должность не найдена"
 msgstr "Amats nav atrasts"
 
-#. Last modified by Артур Двинский, id 5
-#: party/views/management/roles/remove_role.py:25 party/views/management/roles/remove_role.py:37 party/views/management/roles/remove_role.py:46 party/views/management/roles/remove_role.py:61 party/views/management/roles/remove_role.py:69 party/views/management/roles/remove_role.py:78
+#: party/views/management/roles/remove_role.py:25
+#: party/views/management/roles/remove_role.py:37
+#: party/views/management/roles/remove_role.py:46
+#: party/views/management/roles/remove_role.py:61
+#: party/views/management/roles/remove_role.py:69
+#: party/views/management/roles/remove_role.py:78
 msgctxt "party_manage"
 msgid "Удаление должности"
 msgstr "Amata dzēšana "
 
-#. Last modified by я проклят FKEY, id 23
 #: party/views/management/roles/remove_role.py:36
 msgctxt "party_manage"
 msgid "Это неудаляемая должность"
 msgstr "Šī ir nenoņemama ziņa."
 
-#. Last modified by Артур Двинский, id 5
 #: party/views/management/roles/remove_role.py:45
 msgctxt "party_manage"
 msgid "Перед удалением должности её необходимо убрать у всех игроков!"
 msgstr "Pirms amata dzēšanas tā ir jānoņem no visiem spēlētājiem!"
 
-#. Last modified by Артур Двинский, id 5
 #: party/views/management/roles/remove_role.py:60
 msgctxt "party_manage"
 msgid "Вы пытаетесь удалить должность другой партии!"
 msgstr "Jūs mēģināt noņemt citas partijas amatu!"
 
-#. Last modified by Артур Двинский, id 5
 #: party/views/management/roles/remove_role.py:68
 msgctxt "party_manage"
 msgid "Недостаточно прав для удаления должности"
 msgstr "Nepietiekamas tiesības amata dzēšanai"
 
-#. Last modified by Артур Двинский, id 5
 #: party/views/management/roles/set_role.py:35
 msgctxt "has_party"
 msgid "В партии может быть только один глава"
 msgstr "Partijā var būt tikai viens līderis"
 
-#. Last modified by Артур Двинский, id 5
-#: party/views/management/roles/set_role.py:36 party/views/management/roles/set_role.py:51 party/views/management/roles/set_role.py:58 party/views/management/roles/set_role.py:65
+#: party/views/management/roles/set_role.py:36
+#: party/views/management/roles/set_role.py:51
+#: party/views/management/roles/set_role.py:58
+#: party/views/management/roles/set_role.py:65
 msgctxt "has_party"
 msgid "Смена должности"
 msgstr "Amata maiņa"
 
-#. Last modified by Артур Двинский, id 5
-#: party/views/management/roles/set_role.py:50 party/views/management/roles/set_role.py:64
+#: party/views/management/roles/set_role.py:50
+#: party/views/management/roles/set_role.py:64
 msgctxt "has_party"
 msgid "Недостаточно прав для смены должности"
 msgstr "Jūms nav tiesību samainīt amatu"
 
-#. Last modified by Артур Двинский, id 5
 #: party/views/management/roles/set_role.py:57
 msgctxt "has_party"
 msgid "Некорректная партия игрока"
 msgstr "Nekorekta spēlētāja partija"
 
-#. Last modified by я проклят FKEY, id 23
-#: party/views/management/staff/leave_party.py:37 party/views/management/staff/leave_party.py:209
+#: party/views/management/staff/leave_party.py:37
+#: party/views/management/staff/leave_party.py:209
 msgctxt "party"
 msgid "Выход из партии"
 msgstr "Izstāšanās no partijas"
 
-#. Last modified by Артур Двинский, id 5
-#: party/views/management/staff/leave_party.py:38 party/views/management/staff/leave_party.py:210 player/player.py:288 player/player.py:310 region/views/cancel_auto.py:34 region/views/do_mining.py:33 region/views/do_mining.py:46 region/views/do_mining.py:56 region/views/do_mining.py:69 region/views/do_mining.py:78 region/views/do_mining.py:87 region/views/do_mining.py:103 region/views/do_mining.py:123 region/views/do_mining.py:177 region/views/do_mining.py:254 region/views/retrieve_cash.py:41 region/views/start_auto.py:28 region/views/start_auto.py:36 region/views/start_auto.py:46 region/views/start_auto.py:55 region/views/start_auto.py:77 storage/views/assets/assets_action.py:252 storage/views/assets/storage_move.py:37 storage/views/assets/storage_move.py:46 storage/views/assets/storage_move.py:56 storage/views/assets/storage_move.py:68 storage/views/assets/storage_move.py:87 storage/views/storage/cash_transfer.py:34 storage/views/storage/cash_transfer.py:43 storage/views/storage/cash_transfer.py:56 storage/views/storage/cash_transfer.py:65 storage/views/storage/cash_transfer.py:74 storage/views/storage/cash_transfer.py:103 storage/views/storage/cash_transfer.py:123 storage/views/storage/cash_transfer.py:131 storage/views/storage/cash_transfer.py:143 storage/views/storage/new_storage.py:34 storage/views/storage/new_storage.py:52 storage/views/storage/new_storage.py:65 storage/views/storage/new_storage.py:87 storage/views/storage/upgrade_storage.py:33 storage/views/storage/upgrade_storage.py:43 storage/views/storage/upgrade_storage.py:52 storage/views/storage/upgrade_storage.py:87 storage/views/storage/upgrade_storage.py:104 storage/views/storage/upgrade_storage.py:112 storage/views/storage/upgrade_storage.py:156 storage/views/trading/accept_offer.py:44 storage/views/trading/accept_offer.py:52 storage/views/trading/accept_offer.py:65 storage/views/trading/accept_offer.py:89 storage/views/trading/accept_offer.py:99 storage/views/trading/accept_offer.py:107 storage/views/trading/accept_offer.py:115 storage/views/trading/accept_offer.py:131 storage/views/trading/accept_offer.py:147 storage/views/trading/accept_offer.py:156 storage/views/trading/accept_offer.py:164 storage/views/trading/accept_offer.py:178 storage/views/trading/accept_offer.py:200 storage/views/trading/accept_offer.py:224 storage/views/trading/accept_offer.py:273 storage/views/trading/accept_offer.py:281 storage/views/trading/accept_offer.py:293 storage/views/trading/accept_offer.py:301 storage/views/trading/accept_offer.py:310 storage/views/trading/accept_offer.py:322 storage/views/trading/accept_offer.py:393 storage/views/trading/accept_offer.py:400 storage/views/trading/accept_offer.py:409 storage/views/trading/cancel_offer.py:40 storage/views/trading/cancel_offer.py:53 storage/views/trading/cancel_offer.py:61 storage/views/trading/cancel_offer.py:74 storage/views/trading/cancel_offer.py:87 storage/views/trading/cancel_offer.py:105 storage/views/trading/cancel_offer.py:124 storage/views/trading/cancel_offer.py:148 storage/views/trading/create_offer.py:30 storage/views/trading/create_offer.py:41 storage/views/trading/create_offer.py:58 storage/views/trading/create_offer.py:68 storage/views/trading/create_offer.py:79 storage/views/trading/create_offer.py:89 storage/views/trading/create_offer.py:97 storage/views/trading/create_offer.py:108 storage/views/trading/create_offer.py:116 storage/views/trading/create_offer.py:131 storage/views/trading/create_offer.py:144 storage/views/trading/create_offer.py:160 storage/views/trading/create_offer.py:168 storage/views/trading/create_offer.py:201 storage/views/trading/create_offer.py:208 storage/views/trading/create_offer.py:217 storage/views/trading/get_offers.py:40 storage/views/trading/get_offers.py:62 storage/views/trading/get_offers.py:189 storage/views/trading/premium_trading.py:26 storage/views/trading/premium_trading.py:38 storage/views/trading/premium_trading.py:84 storage/views/trading/premium_trading.py:97 storage/views/trading/premium_trading.py:109 storage/views/trading/premium_trading.py:117 storage/views/trading/premium_trading.py:175 storage/views/trading/premium_trading.py:182
+#: party/views/management/staff/leave_party.py:38
+#: party/views/management/staff/leave_party.py:210 player/player.py:288
+#: player/player.py:310 region/views/cancel_auto.py:34
+#: region/views/do_mining.py:33 region/views/do_mining.py:46
+#: region/views/do_mining.py:56 region/views/do_mining.py:69
+#: region/views/do_mining.py:78 region/views/do_mining.py:87
+#: region/views/do_mining.py:103 region/views/do_mining.py:123
+#: region/views/do_mining.py:177 region/views/do_mining.py:254
+#: region/views/retrieve_cash.py:41 region/views/start_auto.py:28
+#: region/views/start_auto.py:36 region/views/start_auto.py:46
+#: region/views/start_auto.py:55 region/views/start_auto.py:77
+#: storage/views/assets/assets_action.py:252
+#: storage/views/assets/storage_move.py:37
+#: storage/views/assets/storage_move.py:46
+#: storage/views/assets/storage_move.py:56
+#: storage/views/assets/storage_move.py:68
+#: storage/views/assets/storage_move.py:87
+#: storage/views/storage/cash_transfer.py:34
+#: storage/views/storage/cash_transfer.py:43
+#: storage/views/storage/cash_transfer.py:56
+#: storage/views/storage/cash_transfer.py:65
+#: storage/views/storage/cash_transfer.py:74
+#: storage/views/storage/cash_transfer.py:103
+#: storage/views/storage/cash_transfer.py:123
+#: storage/views/storage/cash_transfer.py:131
+#: storage/views/storage/cash_transfer.py:143
+#: storage/views/storage/new_storage.py:34
+#: storage/views/storage/new_storage.py:52
+#: storage/views/storage/new_storage.py:65
+#: storage/views/storage/new_storage.py:87
+#: storage/views/storage/upgrade_storage.py:33
+#: storage/views/storage/upgrade_storage.py:43
+#: storage/views/storage/upgrade_storage.py:52
+#: storage/views/storage/upgrade_storage.py:87
+#: storage/views/storage/upgrade_storage.py:104
+#: storage/views/storage/upgrade_storage.py:112
+#: storage/views/storage/upgrade_storage.py:156
+#: storage/views/trading/accept_offer.py:44
+#: storage/views/trading/accept_offer.py:52
+#: storage/views/trading/accept_offer.py:65
+#: storage/views/trading/accept_offer.py:89
+#: storage/views/trading/accept_offer.py:99
+#: storage/views/trading/accept_offer.py:107
+#: storage/views/trading/accept_offer.py:115
+#: storage/views/trading/accept_offer.py:131
+#: storage/views/trading/accept_offer.py:147
+#: storage/views/trading/accept_offer.py:156
+#: storage/views/trading/accept_offer.py:164
+#: storage/views/trading/accept_offer.py:178
+#: storage/views/trading/accept_offer.py:200
+#: storage/views/trading/accept_offer.py:224
+#: storage/views/trading/accept_offer.py:273
+#: storage/views/trading/accept_offer.py:281
+#: storage/views/trading/accept_offer.py:293
+#: storage/views/trading/accept_offer.py:301
+#: storage/views/trading/accept_offer.py:310
+#: storage/views/trading/accept_offer.py:322
+#: storage/views/trading/accept_offer.py:393
+#: storage/views/trading/accept_offer.py:407
+#: storage/views/trading/cancel_offer.py:40
+#: storage/views/trading/cancel_offer.py:53
+#: storage/views/trading/cancel_offer.py:61
+#: storage/views/trading/cancel_offer.py:74
+#: storage/views/trading/cancel_offer.py:87
+#: storage/views/trading/cancel_offer.py:105
+#: storage/views/trading/cancel_offer.py:124
+#: storage/views/trading/cancel_offer.py:148
+#: storage/views/trading/create_offer.py:30
+#: storage/views/trading/create_offer.py:41
+#: storage/views/trading/create_offer.py:58
+#: storage/views/trading/create_offer.py:68
+#: storage/views/trading/create_offer.py:79
+#: storage/views/trading/create_offer.py:89
+#: storage/views/trading/create_offer.py:97
+#: storage/views/trading/create_offer.py:108
+#: storage/views/trading/create_offer.py:116
+#: storage/views/trading/create_offer.py:131
+#: storage/views/trading/create_offer.py:144
+#: storage/views/trading/create_offer.py:160
+#: storage/views/trading/create_offer.py:168
+#: storage/views/trading/create_offer.py:201
+#: storage/views/trading/create_offer.py:208
+#: storage/views/trading/create_offer.py:217
+#: storage/views/trading/get_offers.py:40
+#: storage/views/trading/get_offers.py:62
+#: storage/views/trading/get_offers.py:200
+#: storage/views/trading/premium_trading.py:26
+#: storage/views/trading/premium_trading.py:38
+#: storage/views/trading/premium_trading.py:84
+#: storage/views/trading/premium_trading.py:97
+#: storage/views/trading/premium_trading.py:109
+#: storage/views/trading/premium_trading.py:117
+#: storage/views/trading/premium_trading.py:175
+#: storage/views/trading/premium_trading.py:182
 msgctxt "mining"
 msgid "Закрыть"
 msgstr "Aizvērt"
 
-#. Last modified by Артур Двинский, id 5
 #: party/views/management/staff/leave_party.py:39
 msgctxt "party"
 msgid "Вы не исключили всех однопартийцев"
 msgstr "Jūs neesat izslēgusi visus partijas biedrus"
 
-#. Last modified by Артур Двинский, id 5
 #: party/views/management/staff/leave_party.py:211
 msgctxt "party"
 msgid "Вы не состоите в указанной партии"
 msgstr "Jūs neesat norādītās partijas biedrs"
 
-#. Last modified by Артур Двинский, id 5
-#: party/views/party.py:29 player/views/lists/cash_top.py:99 player/views/lists/cash_top.py:100
+#: party/views/party.py:29 player/views/lists/cash_top.py:99
+#: player/views/lists/cash_top.py:100
 msgid "Партия"
 msgstr "Partija"
 
-#. Last modified by я проклят FKEY, id 23
 #: player/logs/cash_log.py:21
 msgctxt "cash_log"
 msgid "Финансирование"
 msgstr "Finansēšana"
 
-#. Last modified by я проклят FKEY, id 23
 #: player/logs/cash_log.py:22
 msgctxt "cash_log"
 msgid "Майнинг"
 msgstr "Kalnrūpniecība"
 
-#. Last modified by я проклят FKEY, id 23
 #: player/logs/cash_log.py:23
 msgctxt "cash_log"
 msgid "Перелёт"
 msgstr "Lidojums"
 
-#. Last modified by я проклят FKEY, id 23
 #: player/logs/cash_log.py:24
 msgctxt "cash_log"
 msgid "Новый Склад"
 msgstr "Jauna noliktava"
 
-#. Last modified by я проклят FKEY, id 23
 #: player/logs/cash_log.py:25
 msgctxt "cash_log"
 msgid "Операции со Складом"
 msgstr "Noliktavas operācijas"
 
-#. Last modified by я проклят FKEY, id 23
 #: player/logs/cash_log.py:26
 msgctxt "cash_log"
 msgid "Передача товаров"
 msgstr "Preču pārvietošana"
 
-#. Last modified by я проклят FKEY, id 23
 #: player/logs/cash_log.py:27
 msgctxt "cash_log"
 msgid "Торговля"
 msgstr "Tirdzniecība"
 
-#. Last modified by я проклят FKEY, id 23
 #: player/logs/cash_log.py:28
 msgctxt "cash_log"
 msgid "Гос. закупки"
 msgstr "Valsts iepirkumi"
 
-#. Last modified by я проклят FKEY, id 23
 #: player/logs/cash_log.py:29
 msgctxt "cash_log"
 msgid "Навыки"
 msgstr "Prasmes"
 
-#. Last modified by Артур Двинский, id 5
-#: player/player.py:286 region/views/do_mining.py:31 region/views/start_auto.py:26
+#: player/player.py:286 region/views/do_mining.py:31
+#: region/views/start_auto.py:26
 msgctxt "mining"
 msgid "Дождитесь конца полёта"
 msgstr "Uzgaidiet līdz lidojuma beigām"
 
-#. Last modified by Артур Двинский, id 5
 #: player/player.py:287 player/player.py:309 region/views/retrieve_cash.py:40
 msgctxt "mining"
 msgid "Ошибка получения финансирования"
 msgstr "Finansējuma saņemšanas kļūda"
 
-#. Last modified by Артур Двинский, id 5
 #: player/player.py:308
 msgctxt "mining"
 msgid "Нечего забирать"
@@ -890,123 +985,128 @@ msgstr "Nav ko saņemt"
 msgid "player_info"
 msgstr ""
 
-#: player/templates/player/profile.html:190 player/templates/player/view_profile.html:63
+#: player/templates/player/profile.html:190
+#: player/templates/player/view_profile.html:63
 msgid "region"
 msgstr ""
 
-#: player/templates/player/profile.html:200 player/templates/player/view_profile.html:73
+#: player/templates/player/profile.html:200
+#: player/templates/player/view_profile.html:73
 msgid "residency"
 msgstr ""
 
-#: player/templates/player/profile.html:211 player/templates/player/view_profile.html:85
+#: player/templates/player/profile.html:211
+#: player/templates/player/view_profile.html:85
 msgid "party"
 msgstr ""
 
-#: player/templates/player/profile.html:227 player/templates/player/profile.html:243 player/templates/player/view_profile.html:101 player/templates/player/view_profile.html:117
+#: player/templates/player/profile.html:227
+#: player/templates/player/profile.html:243
+#: player/templates/player/view_profile.html:101
+#: player/templates/player/view_profile.html:117
 msgid "unaffiliated"
 msgstr ""
 
-#: player/templates/player/profile.html:236 player/templates/player/profile.html:252 player/templates/player/view_profile.html:110 player/templates/player/view_profile.html:126
+#: player/templates/player/profile.html:236
+#: player/templates/player/profile.html:252
+#: player/templates/player/view_profile.html:110
+#: player/templates/player/view_profile.html:126
 msgid "party_post"
 msgstr ""
 
-#. Last modified by я проклят FKEY, id 23
-#: player/templates/player/redesign/game_event/halloween.html:128 player/views/game_event/halloween.py:52
+#: player/templates/player/redesign/game_event/halloween.html:128
+#: player/views/game_event/halloween.py:52
 msgctxt "game_event"
 msgid "Хэллоуинский ивент!"
 msgstr "Helovīna pasākums!"
 
-#. Last modified by я проклят FKEY, id 23
-#: player/templates/player/redesign/game_event/halloween.html:142 player/templates/player/redesign/game_event/halloween.html:153 player/templates/player/redesign/game_event/halloween.html:162 player/templates/player/redesign/game_event/halloween.html:171 player/templates/player/redesign/game_event/halloween.html:182 player/templates/player/redesign/game_event/halloween.html:191 player/templates/player/redesign/game_event/halloween.html:202
+#: player/templates/player/redesign/game_event/halloween.html:142
+#: player/templates/player/redesign/game_event/halloween.html:153
+#: player/templates/player/redesign/game_event/halloween.html:162
+#: player/templates/player/redesign/game_event/halloween.html:171
+#: player/templates/player/redesign/game_event/halloween.html:182
+#: player/templates/player/redesign/game_event/halloween.html:191
+#: player/templates/player/redesign/game_event/halloween.html:202
 msgctxt "game_event"
 msgid "очков"
 msgstr "punktus"
 
-#. Last modified by я проклят FKEY, id 23
-#: player/templates/player/redesign/game_event/halloween.html:143 player/templates/player/redesign/game_event/halloween.html:154 player/templates/player/redesign/game_event/halloween.html:163 player/templates/player/redesign/game_event/halloween.html:172 player/templates/player/redesign/game_event/halloween.html:183 player/templates/player/redesign/game_event/halloween.html:192 player/templates/player/redesign/game_event/halloween.html:203
+#: player/templates/player/redesign/game_event/halloween.html:143
+#: player/templates/player/redesign/game_event/halloween.html:154
+#: player/templates/player/redesign/game_event/halloween.html:163
+#: player/templates/player/redesign/game_event/halloween.html:172
+#: player/templates/player/redesign/game_event/halloween.html:183
+#: player/templates/player/redesign/game_event/halloween.html:192
+#: player/templates/player/redesign/game_event/halloween.html:203
 msgctxt "game_event"
 msgid "премиум день"
 msgstr "premium uz dienu"
 
-#. Last modified by я проклят FKEY, id 23
 #: player/templates/player/redesign/game_event/halloween.html:217
 msgctxt "game_event"
 msgid "Хэллоуинский ивент в WP:"
 msgstr "Helovīna pasākums WP:"
 
-#. Last modified by я проклят FKEY, id 23
 #: player/templates/player/redesign/game_event/halloween.html:218
 msgctxt "game_event"
 msgid "играй как обычно - и получай награды!"
 msgstr "spēlē kā parasti - un saņemiet balvas!"
 
-#. Last modified by я проклят FKEY, id 23
 #: player/templates/player/redesign/game_event/halloween.html:219
 msgctxt "game_event"
 msgid "- с 25.10 по 1.11 заполняй прогрессию события, расходуя энергию"
 msgstr "- no 25.10 līdz 1.11 pabeidz pasākuma norisi, tērējot enerģiju"
 
-#. Last modified by я проклят FKEY, id 23
 #: player/templates/player/redesign/game_event/halloween.html:220
 msgctxt "game_event"
 msgid "- каждые 2 000 потраченной энергии открывают новые награды"
 msgstr "- katras 2000 iztērētās enerģijas atver jaunas balvas"
 
-#. Last modified by я проклят FKEY, id 23
 #: player/templates/player/redesign/game_event/halloween.html:221
 msgctxt "game_event"
 msgid "Награды события:"
 msgstr "Pasākuma balvas:"
 
-#. Last modified by я проклят FKEY, id 23
 #: player/templates/player/redesign/game_event/halloween.html:222
 msgctxt "game_event"
 msgid "- до семи дней премиум аккаунта"
 msgstr "- prēmiju konts līdz septiņām dienām"
 
-#. Last modified by я проклят FKEY, id 23
 #: player/templates/player/redesign/game_event/halloween.html:223
 msgctxt "game_event"
 msgid "- первая прогрессионная рамка для аватара в игре"
 msgstr "- pirmais progresīvais iemiesojuma rāmis spēlē"
 
-#. Last modified by я проклят FKEY, id 23
 #: player/templates/player/redesign/game_event/newyear.html:218
 msgctxt "game_event"
 msgid "С новым годом!"
 msgstr "Ar Jauno gadu!"
 
-#. Last modified by я проклят FKEY, id 23
 #: player/templates/player/redesign/game_event/newyear.html:221
 msgctxt "game_event"
 msgid "общий"
 msgstr "kopējais "
 
-#. Last modified by я проклят FKEY, id 23
 #: player/templates/player/redesign/game_event/newyear.html:222
 msgctxt "game_event"
 msgid "личный"
 msgstr "personīgais"
 
-#. Last modified by я проклят FKEY, id 23
 #: player/templates/player/redesign/game_event/newyear.html:390
 msgctxt "game_event"
 msgid "Новогоднее событие в WP:"
 msgstr "Jaungada pasākums WP:"
 
-#. Last modified by я проклят FKEY, id 23
 #: player/templates/player/redesign/game_event/newyear.html:391
 msgctxt "game_event"
 msgid "игровые ценности и новые рамки для аватара в двух прогрессиях!"
 msgstr "spēles vērtības un jauni iemiesojuma kadri divās pakāpēs!"
 
-#. Last modified by я проклят FKEY, id 23
 #: player/templates/player/redesign/game_event/newyear.html:392
 msgctxt "game_event"
 msgid "Личная прогрессия события"
 msgstr "Tavs personīgais progress"
 
-#. Last modified by я проклят FKEY, id 23
 #: player/templates/player/redesign/game_event/newyear.html:393
 msgctxt "game_event"
 msgid "Заполняется расходованием энергии, как и ежедневное финансирование, и зависит только от твоих личных усилий."
@@ -1014,547 +1114,503 @@ msgstr ""
 "\r\n"
 "Piepildīts ar enerģiju un kā ikdienas finansējums, atkarīgs no jūsu pūlēm"
 
-#. Last modified by я проклят FKEY, id 23
 #: player/templates/player/redesign/game_event/newyear.html:394
 msgctxt "game_event"
 msgid "Она позволит получить тебе премиум-аккаунт для комфортной игры, а также один из трёх этапов зимней прогрессионой рамки аватара."
 msgstr "Tas ļaus jums iegūt premium kontu ērtai spēlei, kā arī vienu no trim ziemas progresa iemiesojuma rāmja posmiem."
 
-#. Last modified by я проклят FKEY, id 23
 #: player/templates/player/redesign/game_event/newyear.html:395
 msgctxt "game_event"
 msgid "Общая прогрессия события"
 msgstr "Kopējā notikumu attīstība"
 
-#. Last modified by я проклят FKEY, id 23
 #: player/templates/player/redesign/game_event/newyear.html:396
 msgctxt "game_event"
 msgid "Заполняется усилиями всех игроков сервера."
 msgstr "Piepildīts ar visiem servera spēlētājiem"
 
-#. Last modified by я проклят FKEY, id 23
 #: player/templates/player/redesign/game_event/newyear.html:397
 msgctxt "game_event"
 msgid "Ты не сможешь собрать награды, открытые в общей прогрессии, пока не пройдёшь соответствующий этап личной."
 msgstr "Jūs nevarēsit pieprasīt atbloķētas balvas, kamēr nebūsiet pabeidzis atbilstošo personīgo posmu."
 
-#. Last modified by я проклят FKEY, id 23
 #: player/templates/player/redesign/game_event/newyear.html:398
 msgctxt "game_event"
 msgid "Когда будет открыт очередной этап общей прогрессии, потрать энергию, чтобы получить свою награду"
 msgstr "Kad tiek atvērts nākamais vispārējās progresēšanas posms, tērējiet enerģiju, lai saņemtu savu atlīdzību"
 
-#. Last modified by Артур Двинский, id 5
-#: player/templates/player/redesign/lists/skill_top.html:26 player/templates/player/redesign/overview_skills.html:20 player/templatetags/redesign/skill_top/power_top.py:64 player/templatetags/redesign/skill_top/power_top.py:65
+#: player/templates/player/redesign/lists/skill_top.html:26
+#: player/templates/player/redesign/overview_skills.html:20
+#: player/templatetags/redesign/skill_top/power_top.py:64
+#: player/templatetags/redesign/skill_top/power_top.py:65
 msgid "Сила"
 msgstr "Spēks"
 
-#. Last modified by Артур Двинский, id 5
-#: player/templates/player/redesign/lists/skill_top.html:41 player/templates/player/redesign/overview_skills.html:69
+#: player/templates/player/redesign/lists/skill_top.html:41
+#: player/templates/player/redesign/overview_skills.html:69
 msgid "Интеллект"
 msgstr "Intelekts"
 
-#. Last modified by Артур Двинский, id 5
-#: player/templates/player/redesign/lists/skill_top.html:56 player/templates/player/redesign/overview_skills.html:118
+#: player/templates/player/redesign/lists/skill_top.html:56
+#: player/templates/player/redesign/overview_skills.html:118
 msgid "Выносливость"
 msgstr "Izturība"
 
-#. Last modified by я проклят FKEY, id 23
 #: player/templates/player/redesign/menu.html:7
 msgctxt "menu"
 msgid "обзор"
 msgstr "pārskats"
 
-#. Last modified by Артур Двинский, id 5
 #: player/templates/player/redesign/menu.html:17
 msgctxt "menu"
 msgid "добыча"
 msgstr "ieguve"
 
-#. Last modified by я проклят FKEY, id 23
 #: player/templates/player/redesign/menu.html:28
 msgctxt "menu"
 msgid "склад"
 msgstr "noliktava"
 
-#. Last modified by я проклят FKEY, id 23
 #: player/templates/player/redesign/menu.html:39
 msgctxt "menu"
 msgid "активы"
 msgstr "aktīvi"
 
-#. Last modified by я проклят FKEY, id 23
 #: player/templates/player/redesign/menu.html:57
 msgctxt "menu"
 msgid "торговля"
 msgstr "tirdzniecība"
 
-#. Last modified by я проклят FKEY, id 23
 #: player/templates/player/redesign/menu.html:67
 msgctxt "menu"
 msgid "производство"
 msgstr "ražošana"
 
-#. Last modified by я проклят FKEY, id 23
 #: player/templates/player/redesign/menu.html:80
 msgctxt "menu"
 msgid "карта"
 msgstr "karte"
 
-#. Last modified by я проклят FKEY, id 23
 #: player/templates/player/redesign/menu.html:90
 msgctxt "menu"
 msgid "партия"
 msgstr "partija"
 
-#. Last modified by я проклят FKEY, id 23
 #: player/templates/player/redesign/menu.html:105
 msgctxt "menu"
 msgid "правительство"
 msgstr "valdība"
 
-#. Last modified by я проклят FKEY, id 23
 #: player/templates/player/redesign/menu.html:119
 msgctxt "menu"
 msgid "войны"
 msgstr "kari"
 
-#. Last modified by Артур Двинский, id 5
 #: player/templates/player/redesign/new_player.html:34
 msgid "Создание персонажа"
 msgstr "Varoņa izveide"
 
-#. Last modified by Артур Двинский, id 5
-#: player/templates/player/redesign/new_player.html:38 player/templatetags/redesign/skill_top/endurance_top.py:58 player/templatetags/redesign/skill_top/endurance_top.py:59 player/templatetags/redesign/skill_top/knowledge_top.py:58 player/templatetags/redesign/skill_top/knowledge_top.py:59 player/templatetags/redesign/skill_top/power_top.py:58 player/templatetags/redesign/skill_top/power_top.py:59 player/views/lists/cash_top.py:85 player/views/lists/cash_top.py:86
+#: player/templates/player/redesign/new_player.html:38
+#: player/templatetags/redesign/skill_top/endurance_top.py:58
+#: player/templatetags/redesign/skill_top/endurance_top.py:59
+#: player/templatetags/redesign/skill_top/knowledge_top.py:58
+#: player/templatetags/redesign/skill_top/knowledge_top.py:59
+#: player/templatetags/redesign/skill_top/power_top.py:58
+#: player/templatetags/redesign/skill_top/power_top.py:59
+#: player/views/lists/cash_top.py:85 player/views/lists/cash_top.py:86
 msgid "Никнейм"
 msgstr "Nikneims"
 
-#. Last modified by Артур Двинский, id 5
-#: player/templates/player/redesign/new_player.html:41 player/templatetags/redesign/skill_top/endurance_top.py:53 player/templatetags/redesign/skill_top/knowledge_top.py:53 player/templatetags/redesign/skill_top/power_top.py:53 player/views/lists/cash_top.py:80
+#: player/templates/player/redesign/new_player.html:41
+#: player/templatetags/redesign/skill_top/endurance_top.py:53
+#: player/templatetags/redesign/skill_top/knowledge_top.py:53
+#: player/templatetags/redesign/skill_top/power_top.py:53
+#: player/views/lists/cash_top.py:80
 msgid "Аватар"
 msgstr "Profila bilde"
 
-#. Last modified by Артур Двинский, id 5
 #: player/templates/player/redesign/new_player.html:48
 msgid "Часовой пояс"
 msgstr "Laika josla"
 
-#. Last modified by Артур Двинский, id 5
 #: player/templates/player/redesign/overview.html:34
 msgid "обзор"
 msgstr "pārskats"
 
-#. Last modified by Артур Двинский, id 5
 #: player/templates/player/redesign/overview.html:55
 msgid "чат"
 msgstr "čats"
 
-#. Last modified by Артур Двинский, id 5
 #: player/templates/player/redesign/overview.html:66
 msgid "мир"
 msgstr "pasaule"
 
-#. Last modified by Артур Двинский, id 5
 #: player/templates/player/redesign/overview.html:115
 msgid "независимый регион"
 msgstr "neatkarīgais reģions"
 
-#. Last modified by Артур Двинский, id 5
 #: player/templates/player/redesign/overview.html:230
 msgid "войн нет"
 msgstr "karu nav"
 
-#. Last modified by я проклят FKEY, id 23
 #: player/templates/player/redesign/overview.html:275
 msgctxt "overview"
 msgid "Хэллоуинский ивент"
 msgstr "Helovīna pasākums"
 
-#. Last modified by я проклят FKEY, id 23
 #: player/templates/player/redesign/overview.html:282
 msgctxt "overview"
 msgid "С новым годом!"
 msgstr "Ar Jauno gadu!"
 
-#. Last modified by я проклят FKEY, id 23
 #: player/templates/player/redesign/overview.html:448
 msgctxt "overview"
 msgid "сила"
 msgstr "spēks"
 
-#. Last modified by я проклят FKEY, id 23
 #: player/templates/player/redesign/overview.html:453
 msgctxt "overview"
 msgid "инт"
 msgstr "intelekts"
 
-#. Last modified by я проклят FKEY, id 23
 #: player/templates/player/redesign/overview.html:458
 msgctxt "overview"
 msgid "вын"
 msgstr "izturība"
 
-#. Last modified by я проклят FKEY, id 23
 #: player/templates/player/redesign/overview.html:474
 msgctxt "overview"
 msgid "Выборы лидера"
 msgstr "Līdera vēlēšanas"
 
-#. Last modified by я проклят FKEY, id 23
 #: player/templates/player/redesign/overview.html:477
 msgctxt "overview"
 msgid "Выборы"
 msgstr "Vēlēšanas"
 
-#. Last modified by я проклят FKEY, id 23
 #: player/templates/player/redesign/overview.html:482
 msgctxt "overview"
 msgid "партии"
 msgstr "Partijas"
 
-#. Last modified by я проклят FKEY, id 23
 #: player/templates/player/redesign/overview.html:482
 msgctxt "overview"
 msgid "государства"
 msgstr "valstis"
 
-#. Last modified by я проклят FKEY, id 23
 #: player/templates/player/redesign/overview.html:482
 msgctxt "overview"
 msgid "региона"
 msgstr "novadi"
 
-#. Last modified by Артур Двинский, id 5
-#: player/templates/player/redesign/overview.html:519 player/templates/player/redesign/overview.html:564
+#: player/templates/player/redesign/overview.html:519
+#: player/templates/player/redesign/overview.html:564
 msgid "партий нет"
 msgstr "partiju nav"
 
-#. Last modified by я проклят FKEY, id 23
 #: player/templates/player/redesign/overview.html:526
 msgctxt "overview"
 msgid "парламент"
 msgstr "parlaments"
 
-#. Last modified by Артур Двинский, id 5
 #: player/templates/player/redesign/overview.html:744
 msgid "У вас пока еще нет стикеров"
 msgstr "Jūms pašlaik nav izlīmju"
 
-#. Last modified by я проклят FKEY, id 23
 #: player/templates/player/redesign/overview.html:757
 msgctxt "overview"
 msgid "магазин"
 msgstr "veikals"
 
-#. Last modified by Артур Двинский, id 5
-#: player/templates/player/redesign/overview_skills.html:23 player/templates/player/redesign/overview_skills.html:72 player/templates/player/redesign/overview_skills.html:121 player/templates/player/redesign/overview_skills.html:185
+#: player/templates/player/redesign/overview_skills.html:23
+#: player/templates/player/redesign/overview_skills.html:72
+#: player/templates/player/redesign/overview_skills.html:121
+#: player/templates/player/redesign/overview_skills.html:185
 msgid "Завершение"
 msgstr "Pabeigšana"
 
-#. Last modified by Артур Двинский, id 5
-#: player/templates/player/redesign/overview_skills.html:51 player/templates/player/redesign/overview_skills.html:100 player/templates/player/redesign/overview_skills.html:149
+#: player/templates/player/redesign/overview_skills.html:51
+#: player/templates/player/redesign/overview_skills.html:100
+#: player/templates/player/redesign/overview_skills.html:149
 msgctxt "skills"
 msgid "в очередь"
 msgstr "rindā"
 
-#. Last modified by Артур Двинский, id 5
-#: player/templates/player/redesign/overview_skills.html:53 player/templates/player/redesign/overview_skills.html:59 player/templates/player/redesign/overview_skills.html:102 player/templates/player/redesign/overview_skills.html:108 player/templates/player/redesign/overview_skills.html:151 player/templates/player/redesign/overview_skills.html:157
+#: player/templates/player/redesign/overview_skills.html:53
+#: player/templates/player/redesign/overview_skills.html:59
+#: player/templates/player/redesign/overview_skills.html:102
+#: player/templates/player/redesign/overview_skills.html:108
+#: player/templates/player/redesign/overview_skills.html:151
+#: player/templates/player/redesign/overview_skills.html:157
 msgctxt "skills"
 msgid "недоступно"
 msgstr "nepieejams"
 
-#. Last modified by Артур Двинский, id 5
-#: player/templates/player/redesign/overview_skills.html:57 player/templates/player/redesign/overview_skills.html:106 player/templates/player/redesign/overview_skills.html:155
+#: player/templates/player/redesign/overview_skills.html:57
+#: player/templates/player/redesign/overview_skills.html:106
+#: player/templates/player/redesign/overview_skills.html:155
 msgctxt "skills"
 msgid "изучается..."
 msgstr "pētījumā..."
 
-#. Last modified by Артур Двинский, id 5
-#: player/templates/player/redesign/overview_skills.html:63 player/templates/player/redesign/overview_skills.html:112 player/templates/player/redesign/overview_skills.html:161
+#: player/templates/player/redesign/overview_skills.html:63
+#: player/templates/player/redesign/overview_skills.html:112
+#: player/templates/player/redesign/overview_skills.html:161
 msgid "изучить"
 msgstr "izpētīt"
 
-#. Last modified by Артур Двинский, id 5
 #: player/templates/player/redesign/overview_skills.html:171
 msgctxt "skills"
 msgid "дерево навыков"
 msgstr "prasmju koks"
 
-#. Last modified by Артур Двинский, id 5
 #: player/templates/player/redesign/overview_skills.html:176
 msgctxt "skill_cancel"
 msgid "Отмена изучения навыка"
 msgstr "Prasmes izpētes atcelšana"
 
-#. Last modified by Артур Двинский, id 5
 #: player/templates/player/redesign/overview_skills.html:177
 msgctxt "skill_cancel"
 msgid "Изучение навыка будет отменено. Продолжить?"
 msgstr "Prasmes izpēte būs atcelta. Turpināt?"
 
-#. Last modified by Артур Двинский, id 5
 #: player/templates/player/redesign/overview_skills.html:178
 msgid "Продолжить"
 msgstr "Turpināt"
 
-#. Last modified by Артур Двинский, id 5
 #: player/templates/player/redesign/player_repost.html:4
 msgctxt "repost"
 msgid "золото за репост"
 msgstr "zelts par repostu"
 
-#. Last modified by Артур Двинский, id 5
 #: player/templates/player/redesign/player_repost.html:5
 msgctxt "repost"
 msgid "поддержи проект репостом и получай золото!"
 msgstr "atbalsti projektu un saņem zeltu!"
 
-#. Last modified by Артур Двинский, id 5
 #: player/templates/player/redesign/player_repost.html:9
 msgctxt "repost"
 msgid "запись для репоста"
 msgstr "pieraksts repostam"
 
-#. Last modified by Артур Двинский, id 5
 #: player/templates/player/redesign/player_repost.html:11
 msgctxt "repost"
 msgid "перейти к записи (ссылка)"
 msgstr "pāriet uz pierakstu (links)"
 
-#. Last modified by Артур Двинский, id 5
 #: player/templates/player/redesign/player_repost.html:12
 msgctxt "repost"
 msgid "Для получения золота запись должна"
 msgstr "Zelta saņemšanai pierakstam jābūt "
 
-#. Last modified by Артур Двинский, id 5
 #: player/templates/player/redesign/player_repost.html:13
 msgctxt "repost"
 msgid "быть первой сверху (или после закрепа)"
 msgstr "pirmajam no augšas (vai zem nostiprinātā pieraksta)"
 
-#. Last modified by Артур Двинский, id 5
 #: player/templates/player/redesign/player_repost.html:14
 msgctxt "repost"
 msgid "пробыть на стене не меньше часа"
 msgstr "jābūt uz siena ne mazāk par stundu"
 
-#. Last modified by Артур Двинский, id 5
 #: player/templates/player/redesign/player_repost.html:15
 msgctxt "repost"
 msgid "Бонус можно получить раз в сутки"
 msgstr "Bonusu var saņemt reizi diennaktī"
 
-#. Last modified by Артур Двинский, id 5
 #: player/templates/player/redesign/player_repost.html:19
 msgctxt "repost"
 msgid "репост не найден"
 msgstr "reposts nav atrasts"
 
-#. Last modified by Артур Двинский, id 5
 #: player/templates/player/redesign/player_repost.html:21
 msgctxt "repost"
 msgid "репост найден"
 msgstr "reposts ir atrasts"
 
-#. Last modified by Артур Двинский, id 5
 #: player/templates/player/redesign/player_repost.html:24
 msgctxt "repost"
 msgid "Произошла ошибка API VK"
 msgstr "Radās kļūda API VK"
 
-#. Last modified by Артур Двинский, id 5
 #: player/templates/player/redesign/player_repost.html:25
 msgctxt "repost"
 msgid "Обычно помогает повторный логин в игре"
 msgstr "Parasti var palīdzēt atkārtots logins"
 
-#. Last modified by Артур Двинский, id 5
 #: player/templates/player/redesign/player_repost.html:26
 msgctxt "repost"
 msgid "Выйти из игры"
 msgstr "Iziet no spēles"
 
-#. Last modified by Артур Двинский, id 5
 #: player/templates/player/redesign/player_repost.html:33
 msgctxt "repost"
 msgid "Получить"
 msgstr "Saņemt"
 
-#. Last modified by Артур Двинский, id 5
 #: player/templates/player/redesign/player_repost.html:48
 msgctxt "repost"
 msgid "час не прошёл"
 msgstr "stunda nav pagājusi"
 
-#. Last modified by Артур Двинский, id 5
-#: player/templates/player/redesign/player_status.html:36 player/templates/player/redesign/player_status.html:43
+#: player/templates/player/redesign/player_status.html:36
+#: player/templates/player/redesign/player_status.html:43
 msgctxt "status"
 msgid "пополнить"
 msgstr "papildināt"
 
-#. Last modified by Артур Двинский, id 5
 #: player/templates/player/redesign/profile.html:170
 msgid "настройки"
 msgstr "uzstādījumi"
 
-#. Last modified by Артур Двинский, id 5
 #: player/templates/player/redesign/profile.html:180
 msgctxt "profile"
 msgid "премиум-аккаунт"
 msgstr "premium konts"
 
-#. Last modified by Артур Двинский, id 5
 #: player/templates/player/redesign/profile.html:182
 msgctxt "profile"
 msgid "до"
 msgstr "līdz"
 
-#. Last modified by Артур Двинский, id 5
 #: player/templates/player/redesign/profile.html:182
 msgctxt "profile"
 msgid "не активен"
 msgstr "nav aktīvs"
 
-#. Last modified by Артур Двинский, id 5
-#: player/templates/player/redesign/profile.html:187 player/templates/player/redesign/view_profile.html:76
+#: player/templates/player/redesign/profile.html:187
+#: player/templates/player/redesign/view_profile.html:76
 msgctxt "profile"
 msgid "место в рейтинге"
 msgstr "vieta reitingā"
 
-#. Last modified by Артур Двинский, id 5
-#: player/templates/player/redesign/profile.html:191 player/templates/player/redesign/view_profile.html:80
+#: player/templates/player/redesign/profile.html:191
+#: player/templates/player/redesign/view_profile.html:80
 msgctxt "profile"
 msgid "(к рейтингу)"
 msgstr "(uz reitingu)"
 
-#. Last modified by Артур Двинский, id 5
-#: player/templates/player/redesign/profile.html:197 player/templates/player/redesign/view_profile.html:86
+#: player/templates/player/redesign/profile.html:197
+#: player/templates/player/redesign/view_profile.html:86
 msgctxt "profile"
 msgid "характеристики"
 msgstr "īpašības"
 
-#. Last modified by Артур Двинский, id 5
-#: player/templates/player/redesign/profile.html:209 player/templates/player/redesign/view_profile.html:98
+#: player/templates/player/redesign/profile.html:209
+#: player/templates/player/redesign/view_profile.html:98
 msgctxt "profile"
 msgid "место жительства"
 msgstr "dzīvesvieta"
 
-#. Last modified by Артур Двинский, id 5
-#: player/templates/player/redesign/profile.html:218 player/templates/player/redesign/view_profile.html:107
+#: player/templates/player/redesign/profile.html:218
+#: player/templates/player/redesign/view_profile.html:107
 msgctxt "profile"
 msgid "прописка"
 msgstr "deklarētā dzīvesvieta"
 
-#. Last modified by Артур Двинский, id 5
-#: player/templates/player/redesign/profile.html:221 player/templates/player/redesign/view_profile.html:110
+#: player/templates/player/redesign/profile.html:221
+#: player/templates/player/redesign/view_profile.html:110
 msgctxt "profile"
 msgid "с"
 msgstr "no"
 
-#. Last modified by Артур Двинский, id 5
-#: player/templates/player/redesign/profile.html:227 player/templates/player/redesign/view_profile.html:116
+#: player/templates/player/redesign/profile.html:227
+#: player/templates/player/redesign/view_profile.html:116
 msgid "партия"
 msgstr "partija"
 
-#. Last modified by Артур Двинский, id 5
-#: player/templates/player/redesign/profile.html:233 player/templates/player/redesign/profile.html:251 player/templates/player/redesign/view_profile.html:122 player/templates/player/redesign/view_profile.html:140
+#: player/templates/player/redesign/profile.html:233
+#: player/templates/player/redesign/profile.html:251
+#: player/templates/player/redesign/view_profile.html:122
+#: player/templates/player/redesign/view_profile.html:140
 msgid "беспартийный"
 msgstr "bezpartijisks"
 
-#. Last modified by Артур Двинский, id 5
-#: player/templates/player/redesign/profile.html:236 player/templates/player/redesign/view_profile.html:125
+#: player/templates/player/redesign/profile.html:236
+#: player/templates/player/redesign/view_profile.html:125
 msgctxt "profile"
 msgid "история"
 msgstr "vēsture"
 
-#. Last modified by Артур Двинский, id 5
-#: player/templates/player/redesign/profile.html:243 player/templates/player/redesign/view_profile.html:132
+#: player/templates/player/redesign/profile.html:243
+#: player/templates/player/redesign/view_profile.html:132
 msgid "должность в партии"
 msgstr "amats"
 
-#. Last modified by Артур Двинский, id 5
-#: player/templates/player/redesign/profile.html:278 player/templates/player/redesign/view_profile.html:146
+#: player/templates/player/redesign/profile.html:278
+#: player/templates/player/redesign/view_profile.html:146
 msgid "о себе"
 msgstr "par sevi"
 
-#. Last modified by Артур Двинский, id 5
 #: player/templates/player/redesign/profile.html:413
 msgctxt "profile"
 msgid "показывать партийный фон"
 msgstr "rādīt partijas fonu"
 
-#. Last modified by Артур Двинский, id 5
 #: player/templates/player/redesign/profile.html:429
 msgctxt "profile"
 msgid "Энергетики в авто-добыче"
 msgstr "Enerģētiķu patēriņš auto ieguvē"
 
-#. Last modified by Артур Двинский, id 5
 #: player/templates/player/redesign/profile.html:445
 msgctxt "profile"
 msgid "Скрыть кнопку Wiki"
 msgstr "Noslēpt Wiki pogu"
 
-#. Last modified by Артур Двинский, id 5
 #: player/templates/player/redesign/profile.html:476
 msgctxt "profile"
 msgid "стандарт"
 msgstr "standarts"
 
-#. Last modified by Артур Двинский, id 5
-#: player/templates/player/redesign/profile.html:490 player/templates/player/translate/translate.html:36
+#: player/templates/player/redesign/profile.html:490
+#: player/templates/player/translate/translate.html:36
 msgid "сохранить"
 msgstr "saglabāt"
 
-#. Last modified by Артур Двинский, id 5
 #: player/templates/player/redesign/view_profile.html:69
 msgctxt "profile"
 msgid "был в сети"
 msgstr "bija tiešsaistē"
 
-#. Last modified by Артур Двинский, id 5
 #: player/templates/player/redesign/view_profile.html:71
 msgid "давно"
 msgstr "sen"
 
-#. Last modified by Артур Двинский, id 5
-#: player/templates/player/redesign/wallet.html:26 player/templatetags/redesign/wallet_operations.py:37
+#: player/templates/player/redesign/wallet.html:26
+#: player/templatetags/redesign/wallet_operations.py:37
 msgctxt "wallet"
 msgid "Операции"
 msgstr "Operācijas"
 
-#. Last modified by Артур Двинский, id 5
-#: player/templates/player/redesign/wallet.html:41 player/templatetags/redesign/wallet_locks.py:40
+#: player/templates/player/redesign/wallet.html:41
+#: player/templatetags/redesign/wallet_locks.py:40
 msgctxt "wallet"
 msgid "Блокировки"
 msgstr "Bloķēšanas"
 
-#. Last modified by Артур Двинский, id 5
-#: player/templates/player/redesign/wallet.html:56 player/templatetags/redesign/wallet_cash.py:24 player/templatetags/redesign/wallet_cash.py:25 player/templatetags/redesign/wallet_cash.py:31
+#: player/templates/player/redesign/wallet.html:56
+#: player/templatetags/redesign/wallet_cash.py:27
+#: player/templatetags/redesign/wallet_cash.py:28
+#: player/templatetags/redesign/wallet_cash.py:34
 msgctxt "wallet"
 msgid "Наличные"
 msgstr "Skaidra nauda"
 
-#. Last modified by Артур Двинский, id 5
 #: player/templates/player/translate/translate.html:17
 msgctxt "translations"
 msgid "без контекста"
 msgstr "bez konteksta"
 
-#. Last modified by Артур Двинский, id 5
 #: player/templates/player/translate/translate.html:51
 msgctxt "translations"
 msgid "Собрать"
 msgstr "Savākt"
 
-#. Last modified by Артур Двинский, id 5
 #: player/templates/player/translate/translate.html:61
 msgctxt "translations"
 msgid "Русский язык"
 msgstr "Krievu valoda"
 
-#. Last modified by Артур Двинский, id 5
 #: player/templates/player/translate/translate.html:62
 msgctxt "translations"
 msgid "Перевод"
@@ -1568,244 +1624,222 @@ msgstr ""
 msgid "since"
 msgstr ""
 
-#. Last modified by Артур Двинский, id 5
-#: player/templatetags/redesign/skill_top/endurance_top.py:46 player/templatetags/redesign/skill_top/endurance_top.py:47 player/templatetags/redesign/skill_top/knowledge_top.py:46 player/templatetags/redesign/skill_top/knowledge_top.py:47 player/templatetags/redesign/skill_top/power_top.py:46 player/templatetags/redesign/skill_top/power_top.py:47 player/views/lists/cash_top.py:73 player/views/lists/cash_top.py:74
+#: player/templatetags/redesign/skill_top/endurance_top.py:46
+#: player/templatetags/redesign/skill_top/endurance_top.py:47
+#: player/templatetags/redesign/skill_top/knowledge_top.py:46
+#: player/templatetags/redesign/skill_top/knowledge_top.py:47
+#: player/templatetags/redesign/skill_top/power_top.py:46
+#: player/templatetags/redesign/skill_top/power_top.py:47
+#: player/views/lists/cash_top.py:73 player/views/lists/cash_top.py:74
 msgid "Место"
 msgstr "Vieta"
 
-#. Last modified by Артур Двинский, id 5
-#: player/templatetags/redesign/skill_top/endurance_top.py:64 player/templatetags/redesign/skill_top/endurance_top.py:65
+#: player/templatetags/redesign/skill_top/endurance_top.py:64
+#: player/templatetags/redesign/skill_top/endurance_top.py:65
 msgid "Вын"
 msgstr "Izt"
 
-#. Last modified by Артур Двинский, id 5
 #: player/templatetags/redesign/skill_top/endurance_top.py:71
 msgctxt "skill_top"
 msgid "Топ по Выносливости"
 msgstr "Izturības tops"
 
-#. Last modified by Артур Двинский, id 5
-#: player/templatetags/redesign/skill_top/knowledge_top.py:64 player/templatetags/redesign/skill_top/knowledge_top.py:65
+#: player/templatetags/redesign/skill_top/knowledge_top.py:64
+#: player/templatetags/redesign/skill_top/knowledge_top.py:65
 msgid "Инт"
 msgstr "Int"
 
-#. Last modified by Артур Двинский, id 5
 #: player/templatetags/redesign/skill_top/knowledge_top.py:71
 msgctxt "skill_top"
 msgid "Топ по Интеллекту"
 msgstr "Intelekta tops"
 
-#. Last modified by Артур Двинский, id 5
 #: player/templatetags/redesign/skill_top/power_top.py:71
 msgctxt "skill_top"
 msgid "Топ по Силе"
 msgstr "Spēka tops"
 
-#. Last modified by Артур Двинский, id 5
-#: player/templatetags/redesign/wallet_cash.py:18 player/templatetags/redesign/wallet_cash.py:19
+#: player/templatetags/redesign/wallet_cash.py:20
+#: player/templatetags/redesign/wallet_cash.py:21
 msgctxt "wallet"
 msgid "Регион"
 msgstr "Reģions"
 
-#. Last modified by Артур Двинский, id 5
-#: player/templatetags/redesign/wallet_locks.py:21 player/templatetags/redesign/wallet_locks.py:22
+#: player/templatetags/redesign/wallet_locks.py:21
+#: player/templatetags/redesign/wallet_locks.py:22
 msgctxt "wallet"
 msgid "Товар"
 msgstr "Prece"
 
-#. Last modified by Артур Двинский, id 5
-#: player/templatetags/redesign/wallet_locks.py:26 player/templatetags/redesign/wallet_locks.py:27
+#: player/templatetags/redesign/wallet_locks.py:26
+#: player/templatetags/redesign/wallet_locks.py:27
 msgctxt "wallet"
 msgid "Количество"
 msgstr "Daudzums"
 
-#. Last modified by Артур Двинский, id 5
-#: player/templatetags/redesign/wallet_locks.py:33 player/templatetags/redesign/wallet_locks.py:34
+#: player/templatetags/redesign/wallet_locks.py:33
+#: player/templatetags/redesign/wallet_locks.py:34
 msgctxt "wallet"
 msgid "Блокировано"
 msgstr "Bloķēts"
 
-#. Last modified by Артур Двинский, id 5
-#: player/templatetags/redesign/wallet_operations.py:18 player/templatetags/redesign/wallet_operations.py:19
+#: player/templatetags/redesign/wallet_operations.py:18
+#: player/templatetags/redesign/wallet_operations.py:19
 msgctxt "wallet"
 msgid "Время"
 msgstr "Laiks"
 
-#. Last modified by Артур Двинский, id 5
-#: player/templatetags/redesign/wallet_operations.py:24 player/templatetags/redesign/wallet_operations.py:25
+#: player/templatetags/redesign/wallet_operations.py:24
+#: player/templatetags/redesign/wallet_operations.py:25
 msgctxt "wallet"
 msgid "Изменение"
 msgstr "Izmaiņas"
 
-#. Last modified by Артур Двинский, id 5
-#: player/templatetags/redesign/wallet_operations.py:30 player/templatetags/redesign/wallet_operations.py:31
+#: player/templatetags/redesign/wallet_operations.py:30
+#: player/templatetags/redesign/wallet_operations.py:31
 msgctxt "wallet"
 msgid "Описание"
 msgstr "Apraksts"
 
-#. Last modified by Артур Двинский, id 5
-#: player/views/change_back_allow.py:41 player/views/change_wiki_hide_allow.py:41 player/views/full_auto_allow.py:41
+#: player/views/change_back_allow.py:41
+#: player/views/change_wiki_hide_allow.py:41 player/views/full_auto_allow.py:41
 msgid "Некорректное значение"
 msgstr "Nekorekta vērtība"
 
-#. Last modified by Артур Двинский, id 5
 #: player/views/change_back_allow.py:42 player/views/change_back_allow.py:58
 msgid "Настройка партийного фона"
 msgstr "Partijas fona uzstādijumi"
 
-#. Last modified by Артур Двинский, id 5
-#: player/views/change_back_allow.py:57 player/views/change_wiki_hide_allow.py:57 player/views/full_auto_allow.py:57 player/views/set_language.py:54 player/views/set_timezone.py:43 region/views/cancel_auto.py:35 region/views/retrieve_cash.py:42 region/views/start_auto.py:78
+#: player/views/change_back_allow.py:57
+#: player/views/change_wiki_hide_allow.py:57 player/views/full_auto_allow.py:57
+#: player/views/set_language.py:54 player/views/set_timezone.py:43
+#: region/views/cancel_auto.py:35 region/views/retrieve_cash.py:42
+#: region/views/start_auto.py:78
 msgid "Ошибка метода"
 msgstr "Metoda kļūda"
 
-#. Last modified by Артур Двинский, id 5
-#: player/views/change_wiki_hide_allow.py:42 player/views/change_wiki_hide_allow.py:58
+#: player/views/change_wiki_hide_allow.py:42
+#: player/views/change_wiki_hide_allow.py:58
 msgid "Скрыть кнопку Wiki"
 msgstr "Noslēpt Wiki pogu"
 
-#. Last modified by Артур Двинский, id 5
 #: player/views/color_change.py:30
 msgctxt "profile"
 msgid "Некорректный код фона игры"
 msgstr "Nekorekts spēles fona kods"
 
-#. Last modified by Артур Двинский, id 5
-#: player/views/color_change.py:31 player/views/color_change.py:43 player/views/color_change.py:55 player/views/color_change.py:67
+#: player/views/color_change.py:31 player/views/color_change.py:43
+#: player/views/color_change.py:55 player/views/color_change.py:67
 msgctxt "profile"
 msgid "Некорректный код цвета"
 msgstr "Nekorekts krāsas kods"
 
-#. Last modified by Артур Двинский, id 5
 #: player/views/color_change.py:42
 msgctxt "profile"
 msgid "Некорректный код блоков игры"
 msgstr "Nekorekts spēles bloku kods"
 
-#. Last modified by Артур Двинский, id 5
 #: player/views/color_change.py:54
 msgctxt "profile"
 msgid "Некорректный код текста игры"
 msgstr "Nekorekts spēles teksta kods"
 
-#. Last modified by Артур Двинский, id 5
 #: player/views/color_change.py:66
 msgctxt "profile"
 msgid "Некорректный код акцентов игры"
 msgstr "Nekorekts spēles akcentu kods"
 
-#. Last modified by я проклят FKEY, id 23
 #: player/views/color_change.py:103
 msgctxt "party_manage"
 msgid "Ошибка изменения цветов игры"
 msgstr "Mainot spēles krāsas, radās kļūda"
 
-#. Last modified by Артур Двинский, id 5
 #: player/views/expense_energy.py:28
 msgid "Десять минут ещё не прошло"
 msgstr "Vēl nav pagājušas desmit minūtes"
 
-#. Last modified by Артур Двинский, id 5
-#: player/views/expense_energy.py:29 player/views/expense_energy.py:52 player/views/expense_energy.py:61 player/views/expense_energy.py:72
+#: player/views/expense_energy.py:29 player/views/expense_energy.py:52
+#: player/views/expense_energy.py:61 player/views/expense_energy.py:72
 msgid "Пополнение энергии"
 msgstr "Enerģijas papildināšana"
 
-#. Last modified by Артур Двинский, id 5
 #: player/views/expense_energy.py:51
 msgid "Пополнение энергии не требуется"
 msgstr "Enerģijas papildināšana nav vajadzīga"
 
-#. Last modified by Артур Двинский, id 5
 #: player/views/expense_energy.py:60
 msgid "Недостаточно Энергетиков. Создайте их в Хранилище Склада"
 msgstr "Nepietiek enerģētiķu.  Ražojiet tos Noliktavas Krātuvē"
 
-#. Last modified by Артур Двинский, id 5
 #: player/views/expense_energy.py:71
 msgid "Ошибка типа запроса"
 msgstr "Vaicājuma tipa kļūda"
 
-#. Last modified by Артур Двинский, id 5
 #: player/views/full_auto_allow.py:42 player/views/full_auto_allow.py:58
 msgid "Энергетики в авто-добыче"
 msgstr "Enerģētiķi auto ieguvē"
 
-#. Last modified by Артур Двинский, id 5
 #: player/views/game_event/new_year.py:57
 msgctxt "game_event_ny"
 msgid "С новым годом!"
 msgstr "Laimīgu Jauno gadu!"
 
-#. Last modified by Артур Двинский, id 5
 #: player/views/lists/cash_top.py:94
 msgid "Герб"
 msgstr "Ģerbonis"
 
-#. Last modified by Артур Двинский, id 5
 #: player/views/lists/cash_top.py:109
 msgid "Топ богатейших"
 msgstr "Visbagātāko tops"
 
-#. Last modified by Артур Двинский, id 5
 #: player/views/lists/region_citizens.py:63
 msgid "Граждане региона"
 msgstr "Reģiona pilsoņi"
 
-#. Last modified by Артур Двинский, id 5
 #: player/views/lists/region_players.py:33
 msgid "Население региона"
 msgstr "Reģiona iedzīvotāji"
 
-#. Last modified by Артур Двинский, id 5
 #: player/views/lists/skill_top.py:21
 msgid "Топ по характеристикам"
 msgstr "Īpašību tops"
 
-#. Last modified by Артур Двинский, id 5
 #: player/views/lists/world_players.py:57
 msgid "Мировое население"
 msgstr "Pasaules iedzīvotāji"
 
-#. Last modified by Артур Двинский, id 5
 #: player/views/new_player.py:90
 msgid ": попробуйте создать персонажа, не загружая изображение"
 msgstr ": pamēģiniet izveidot varoni, neielādējot bildi"
 
-#. Last modified by Артур Двинский, id 5
 #: player/views/new_player.py:91 player/views/new_player.py:104
 msgid "Новый персонаж"
 msgstr "Jauns varonis"
 
-#. Last modified by Артур Двинский, id 5
 #: player/views/new_player.py:103
 msgid "Ошибка в форме профиля"
 msgstr "Kļūda profila formā"
 
-#. Last modified by Артур Двинский, id 5
 #: player/views/overview.py:191
 msgid "Обзор"
 msgstr "Pārskats"
 
-#. Last modified by Артур Двинский, id 5
 #: player/views/set_language.py:38
 msgid "Такого языка в игре нет"
 msgstr "Šajā spēlē nav tādas valodas"
 
-#. Last modified by Артур Двинский, id 5
 #: player/views/set_language.py:39 player/views/set_language.py:55
 msgid "Изменение языка"
 msgstr "Valodas nomaiņa"
 
-#. Last modified by Артур Двинский, id 5
 #: player/views/set_timezone.py:27
 msgid "Такого часового пояса в игре нет"
 msgstr "Šajā spēlē nav tādas laika joslas"
 
-#. Last modified by Артур Двинский, id 5
 #: player/views/set_timezone.py:28 player/views/set_timezone.py:44
 msgid "Изменение часового пояса"
 msgstr "Laika joslas nomaiņa"
 
-#. Last modified by Артур Двинский, id 5
 #: player/views/skills/skill_queue.py:30 skill/views/skills_list.py:59
 msgid "Навыки"
 msgstr "Prasmes"
@@ -1815,245 +1849,217 @@ msgstr "Prasmes"
 msgid "Last modified by {player.nickname}, id {player.pk}"
 msgstr ""
 
-#. Last modified by Артур Двинский, id 5
 #: player/views/wallet.py:21
 msgid "Финансы"
 msgstr "Finanses"
 
-#. Last modified by Артур Двинский, id 5
 #: region/region.py:90
 msgctxt "goods"
 msgid "WTI"
 msgstr "WTI"
 
-#. Last modified by Артур Двинский, id 5
 #: region/region.py:91
 msgctxt "goods"
 msgid "Brent"
 msgstr "Brent"
 
-#. Last modified by Артур Двинский, id 5
 #: region/region.py:92
 msgctxt "goods"
 msgid "Urals"
 msgstr "Urals"
 
-#. Last modified by Артур Двинский, id 5
 #: region/templates/region/buildings/defences.html:5
 msgid "Уровень Укреплений"
 msgstr "Nocietinājumu līmenis"
 
-#. Last modified by Артур Двинский, id 5
 #: region/templates/region/buildings/hospital.html:5
 msgid "Уровень Госпиталя"
 msgstr "Slimnīcu līmenis"
 
-#. Last modified by Артур Двинский, id 5
 #: region/templates/region/buildings/hospital.html:17
 msgid "Рейтинг Госпиталя"
 msgstr "Slimnīcu reitings"
 
-#. Last modified by Артур Двинский, id 5
 #: region/templates/region/buildings/power_plant.html:5
 msgid "Уровень ТЭЦ"
 msgstr "TEC līmenis"
 
-#. Last modified by я проклят FKEY, id 23
 #: region/templates/region/redesign/map.html:309
 msgctxt "regions_list"
 msgid "Тюрингия"
 msgstr "Tīringene"
 
-#. Last modified by я проклят FKEY, id 23
 #: region/templates/region/redesign/map.html:311
 msgctxt "regions_list"
 msgid "Саксония"
 msgstr "Saksija"
 
-#. Last modified by я проклят FKEY, id 23
 #: region/templates/region/redesign/map.html:313
 msgctxt "regions_list"
 msgid "Чехия"
 msgstr "Čehija"
 
-#. Last modified by я проклят FKEY, id 23
 #: region/templates/region/redesign/map.html:315
 msgctxt "regions_list"
 msgid "Нижнесилезское воеводство"
 msgstr "Lejassilēzijas vojevodiste"
 
-#. Last modified by я проклят FKEY, id 23
 #: region/templates/region/redesign/map.html:317
 msgctxt "regions_list"
 msgid "Любушское воеводство"
 msgstr "Lubušas vojevodiste"
 
-#. Last modified by я проклят FKEY, id 23
 #: region/templates/region/redesign/map.html:319
 msgctxt "regions_list"
 msgid "Бавария"
 msgstr "Bavārija"
 
-#. Last modified by я проклят FKEY, id 23
 #: region/templates/region/redesign/map.html:321
 msgctxt "regions_list"
 msgid "Бранденбург"
 msgstr "Brandenburga"
 
-#. Last modified by я проклят FKEY, id 23
 #: region/templates/region/redesign/map.html:323
 msgctxt "regions_list"
 msgid "Саксония-Анхальт"
 msgstr "Saksija-Anhalte"
 
-#. Last modified by я проклят FKEY, id 23
 #: region/templates/region/redesign/map.html:325
 msgctxt "regions_list"
 msgid "Австрия"
 msgstr "Austrija"
 
-#. Last modified by я проклят FKEY, id 23
 #: region/templates/region/redesign/map.html:327
 msgctxt "regions_list"
 msgid "Опольское воеводство"
 msgstr "Opoļu vojevodiste"
 
-#. Last modified by Артур Двинский, id 5
 #: region/templates/region/redesign/mining.html:9
 msgctxt "mining"
 msgid "Добыча"
 msgstr "Ieguve"
 
-#. Last modified by Артур Двинский, id 5
 #: region/templates/region/redesign/mining.html:11
 msgctxt "daily_header"
 msgid "Потрать энергию и получи"
 msgstr "Tērē naudu un saņem enerģiju"
 
-#. Last modified by Артур Двинский, id 5
 #: region/templates/region/redesign/mining.html:12
 msgctxt "daily_header"
 msgid "до"
 msgstr "līdz "
 
-#. Last modified by Артур Двинский, id 5
 #: region/templates/region/redesign/mining.html:12
 msgctxt "daily_header"
 msgid "за день!"
 msgstr "dienā!"
 
-#. Last modified by Артур Двинский, id 5
 #: region/templates/region/redesign/mining.html:15
 msgctxt "daily_header"
 msgid "энергии потрачено"
 msgstr "enerģijas patērēts"
 
-#. Last modified by Артур Двинский, id 5
-#: region/templates/region/redesign/mining.html:25 region/templates/region/redesign/mining.html:58 region/templates/region/redesign/mining.html:84 region/templates/region/redesign/mining.html:110
+#: region/templates/region/redesign/mining.html:25
+#: region/templates/region/redesign/mining.html:58
+#: region/templates/region/redesign/mining.html:84
+#: region/templates/region/redesign/mining.html:110
 msgctxt "daily_header"
 msgid "в полете"
 msgstr "lidojumā"
 
-#. Last modified by Артур Двинский, id 5
 #: region/templates/region/redesign/mining.html:27
 msgctxt "daily_header"
 msgid "получаем"
 msgstr "saņemam"
 
-#. Last modified by Артур Двинский, id 5
 #: region/templates/region/redesign/mining.html:28
 msgctxt "daily_header"
 msgid "получить"
 msgstr "saņemt"
 
-#. Last modified by Артур Двинский, id 5
 #: region/templates/region/redesign/mining.html:46
 msgctxt "daily_header"
 msgid "уже получено"
 msgstr "jau saņemts"
 
-#. Last modified by Артур Двинский, id 5
-#: region/templates/region/redesign/mining.html:50 region/templates/region/redesign/region_info.html:20
+#: region/templates/region/redesign/mining.html:50
+#: region/templates/region/redesign/region_info.html:20
 msgctxt "mining"
 msgid "Золото"
 msgstr "Zelts"
 
-#. Last modified by Артур Двинский, id 5
-#: region/templates/region/redesign/mining.html:51 region/templates/region/redesign/mining.html:77 region/templates/region/redesign/mining.html:103
+#: region/templates/region/redesign/mining.html:51
+#: region/templates/region/redesign/mining.html:77
+#: region/templates/region/redesign/mining.html:103
 msgctxt "mining"
 msgid "Запасы"
 msgstr "Krājumi"
 
-#. Last modified by Артур Двинский, id 5
-#: region/templates/region/redesign/mining.html:61 region/templates/region/redesign/mining.html:87 region/templates/region/redesign/mining.html:113
+#: region/templates/region/redesign/mining.html:61
+#: region/templates/region/redesign/mining.html:87
+#: region/templates/region/redesign/mining.html:113
 msgctxt "mining"
 msgid "авто"
 msgstr "auto"
 
-#. Last modified by Артур Двинский, id 5
-#: region/templates/region/redesign/mining.html:70 region/templates/region/redesign/mining.html:96 region/templates/region/redesign/mining.html:122
+#: region/templates/region/redesign/mining.html:70
+#: region/templates/region/redesign/mining.html:96
+#: region/templates/region/redesign/mining.html:122
 msgctxt "mining"
 msgid "добыча"
 msgstr "ieguve"
 
-#. Last modified by Артур Двинский, id 5
-#: region/templates/region/redesign/mining.html:76 region/templates/region/redesign/region_info.html:31
+#: region/templates/region/redesign/mining.html:76
+#: region/templates/region/redesign/region_info.html:31
 msgctxt "mining"
 msgid "Нефть"
 msgstr "Nafta"
 
-#. Last modified by Артур Двинский, id 5
 #: region/templates/region/redesign/mining.html:78
 msgctxt "mining"
 msgid "Марка нефти"
 msgstr "Naftas"
 
-#. Last modified by Артур Двинский, id 5
-#: region/templates/region/redesign/mining.html:102 region/templates/region/redesign/region_info.html:42
+#: region/templates/region/redesign/mining.html:102
+#: region/templates/region/redesign/region_info.html:42
 msgctxt "mining"
 msgid "Руда"
 msgstr "Rūda"
 
-#. Last modified by Артур Двинский, id 5
 #: region/templates/region/redesign/mining.html:104
 msgctxt "mining"
 msgid "Качество руды"
 msgstr "Rūdas kvalitāte"
 
-#. Last modified by я проклят FKEY, id 23
 #: region/templates/region/redesign/region_info.html:65
 msgctxt "map"
 msgid "Вы здесь"
 msgstr "Tu esi šeit"
 
-#. Last modified by я проклят FKEY, id 23
 #: region/templates/region/redesign/region_info.html:71
 msgctxt "map"
 msgid "отправиться"
 msgstr "doties"
 
-#. Last modified by Артур Двинский, id 5
 #: region/templates/region/region_info.html:39
 msgid "Вы летите в"
 msgstr "Jūs lidojat uz"
 
-#. Last modified by Артур Двинский, id 5
 #: region/templates/region/region_info.html:42
 msgid "Вы здесь"
 msgstr "Jūs esat šeit"
 
-#. Last modified by Артур Двинский, id 5
 #: region/templates/region/region_info.html:44
 msgid "Время полёта"
 msgstr "Lidojuma laiks"
 
-#. Last modified by Артур Двинский, id 5
 #: region/templates/region/region_info.html:44
 msgid "минут"
 msgstr "minūtes"
 
-#. Last modified by Артур Двинский, id 5
-#: region/templates/region/region_info.html:53 region/templates/region/region_view.html:38 region/templates/region/region_view.html:52
+#: region/templates/region/region_info.html:53
+#: region/templates/region/region_view.html:38
+#: region/templates/region/region_view.html:52
 msgid "Отправиться"
 msgstr "Doties"
 
@@ -2069,238 +2075,222 @@ msgstr ""
 msgid "reg_med_lvl"
 msgstr ""
 
-#. Last modified by Артур Двинский, id 5
 #: region/templates/region/region_view.html:111
 msgid "Независимый регион"
 msgstr "Neatkarīgais reģions"
 
-#. Last modified by Артур Двинский, id 5
 #: region/templates/region/region_view.html:119
 msgid "Запасы золота"
 msgstr "Zelta krājumi"
 
-#. Last modified by Артур Двинский, id 5
 #: region/templates/region/region_view.html:133
 msgid "Запасы нефти"
 msgstr "Naftas krājumi"
 
-#. Last modified by Артур Двинский, id 5
 #: region/templates/region/region_view.html:147
 msgid "Марка нефти"
 msgstr "Naftas marka"
 
-#. Last modified by Артур Двинский, id 5
 #: region/templates/region/region_view.html:159
 msgid "Запасы руд"
 msgstr "Rūdas krajumi"
 
-#. Last modified by Артур Двинский, id 5
 #: region/templates/region/region_view.html:173
 msgid "Качество руды (уголь/железо/бокситы)"
 msgstr "Rūdas kvalitāte"
 
-#. Last modified by Артур Двинский, id 5
 #: region/templates/region/region_view.html:194
 msgid "Региональные налоги"
 msgstr "Reģionālie nodokli"
 
-#. Last modified by Артур Двинский, id 5
-#: region/templates/region/region_view.html:201 state/templates/state/state_view.html:154
+#: region/templates/region/region_view.html:201
+#: state/templates/state/state_view.html:154
 msgid "На финансирование"
 msgstr "Uz finansējumu"
 
-#. Last modified by Артур Двинский, id 5
-#: region/templates/region/region_view.html:213 state/templates/state/state_view.html:166
+#: region/templates/region/region_view.html:213
+#: state/templates/state/state_view.html:166
 msgid "На добычу"
 msgstr "Uz ieguvi"
 
-#. Last modified by Артур Двинский, id 5
-#: region/templates/region/region_view.html:227 state/templates/state/state_view.html:180
+#: region/templates/region/region_view.html:227
+#: state/templates/state/state_view.html:180
 msgid "На торговлю"
 msgstr "Uz tirdzniecību"
 
-#. Last modified by Артур Двинский, id 5
 #: region/views/cancel_auto.py:33
 msgctxt "mining"
 msgid "Ошибка при отмене"
 msgstr "Atcelšanas kļūda"
 
-#. Last modified by Артур Двинский, id 5
-#: region/views/do_mining.py:32 region/views/do_mining.py:45 region/views/do_mining.py:55 region/views/do_mining.py:68 region/views/do_mining.py:77 region/views/do_mining.py:86 region/views/do_mining.py:102 region/views/do_mining.py:122 region/views/do_mining.py:176 region/views/do_mining.py:253
+#: region/views/do_mining.py:32 region/views/do_mining.py:45
+#: region/views/do_mining.py:55 region/views/do_mining.py:68
+#: region/views/do_mining.py:77 region/views/do_mining.py:86
+#: region/views/do_mining.py:102 region/views/do_mining.py:122
+#: region/views/do_mining.py:176 region/views/do_mining.py:253
 msgctxt "mining"
 msgid "Ошибка добычи ресурсов"
 msgstr "Resursu ieguves kļūda"
 
-#. Last modified by Артур Двинский, id 5
 #: region/views/do_mining.py:44 region/views/start_auto.py:53
 msgctxt "mining"
 msgid "У вас нет склада в этом регионе"
 msgstr "Jūms nav noliktavas šajā reģionā"
 
-#. Last modified by Артур Двинский, id 5
 #: region/views/do_mining.py:57
 msgctxt "mining"
 msgid "Количество энергии - не число"
 msgstr "Enerģijas skaits - nav skaitlis"
 
-#. Last modified by Артур Двинский, id 5
 #: region/views/do_mining.py:67
 msgctxt "mining"
 msgid "Количество Энергии должно быть положительным"
 msgstr "Enerģijas skaitam jābūt pozitīvam"
 
-#. Last modified by Артур Двинский, id 5
 #: region/views/do_mining.py:76
 msgctxt "mining"
 msgid "Количество Энергии должно быть кратно десяти"
 msgstr "Enerģijas skaitam jādalās ar desmit"
 
-#. Last modified by Артур Двинский, id 5
 #: region/views/do_mining.py:85
 msgctxt "mining"
 msgid "Недостаточно энергии"
 msgstr "Nepietiek enerģijas"
 
-#. Last modified by Артур Двинский, id 5
 #: region/views/do_mining.py:101
 msgctxt "mining"
 msgid "Запасов золота в регионе недостаточно для добычи"
 msgstr "Nepietiek zelta krājumu reģionā"
 
-#. Last modified by Артур Двинский, id 5
 #: region/views/do_mining.py:121
 msgctxt "mining"
 msgid "Запасов нефти в регионе недостаточно для добычи"
 msgstr "Nepietiek naftas krājumu reģionā"
 
-#. Last modified by Артур Двинский, id 5
 #: region/views/do_mining.py:175
 msgctxt "mining"
 msgid "Запасов руды в регионе недостаточно для добычи"
 msgstr "Nepietiek rūdas krājumu reģionā"
 
-#. Last modified by Артур Двинский, id 5
 #: region/views/lists/world_regions.py:90
 msgid "Регионы игры"
 msgstr "Spēles reģioni"
 
-#. Last modified by Артур Двинский, id 5
 #: region/views/map/map.py:111
 msgid "Карта"
 msgstr "Karte"
 
-#. Last modified by Артур Двинский, id 5
 #: region/views/map/region_info.py:42
 msgid "Такого региона нет"
 msgstr "Nav tāda reģiona"
 
-#. Last modified by Артур Двинский, id 5
 #: region/views/map/region_info.py:48
 msgid "Некорректный запрос"
 msgstr "Nekorekts vaicājums"
 
-#. Last modified by Артур Двинский, id 5
 #: region/views/mining.py:89
 msgid "Добыча"
 msgstr "Ieguve"
 
-#. Last modified by Артур Двинский, id 5
-#: region/views/start_auto.py:27 region/views/start_auto.py:35 region/views/start_auto.py:45 region/views/start_auto.py:54 region/views/start_auto.py:76
+#: region/views/start_auto.py:27 region/views/start_auto.py:35
+#: region/views/start_auto.py:45 region/views/start_auto.py:54
+#: region/views/start_auto.py:76
 msgctxt "mining"
 msgid "Ошибка автоматической добычи ресурсов"
 msgstr "Automātiskās resursu ieguves kļūda"
 
-#. Last modified by Артур Двинский, id 5
 #: region/views/start_auto.py:34
 msgctxt "mining"
 msgid "Премиум-аккаунт не активен. Продлите его"
 msgstr "Premium konts nav aktīvs. Pagariniet to"
 
-#. Last modified by Артур Двинский, id 5
 #: region/views/start_auto.py:44
 msgctxt "mining"
 msgid "Неизвестный тип ресурса"
 msgstr "Nezināmais resursu tips"
 
-#. Last modified by Артур Двинский, id 5
 #: skill/views/skill_cancel.py:34
 msgid "ID навыка должен быть числом"
 msgstr "Prasmju ID jābūt skaitlim"
 
-#. Last modified by Артур Двинский, id 5
-#: skill/views/skill_cancel.py:35 skill/views/skill_cancel.py:43 skill/views/skill_cancel.py:51 skill/views/skill_cancel.py:61 skill/views/skill_cancel.py:76
+#: skill/views/skill_cancel.py:35 skill/views/skill_cancel.py:43
+#: skill/views/skill_cancel.py:51 skill/views/skill_cancel.py:61
+#: skill/views/skill_cancel.py:76
 msgid "Ошибка отмены навыка"
 msgstr "Prasmes atcelšanas kļūda"
 
-#. Last modified by Артур Двинский, id 5
 #: skill/views/skill_cancel.py:42
 msgid "У вас нет активного премиум-аккаунта"
 msgstr "Jūms nav aktīva premium konta"
 
-#. Last modified by Артур Двинский, id 5
 #: skill/views/skill_cancel.py:50 skill/views/skill_cancel.py:60
 msgid "Нет навыков в очереди"
 msgstr "Nav prasmju rindā"
 
-#. Last modified by Артур Двинский, id 5
 #: skill/views/skill_cancel.py:75
 msgid "Нет такого навыка"
 msgstr "Nav tādas prasmes"
 
-#. Last modified by Артур Двинский, id 5
 #: state/models/state.py:36
 msgid "Свободная"
 msgstr "Brīva"
 
-#. Last modified by Артур Двинский, id 5
 #: state/models/state.py:37
 msgid "Выдаётся министром"
 msgstr "Izsniedz ministrs"
 
-#. Last modified by Артур Двинский, id 5
-#: state/models/treasury.py:42 storage/models/destroy.py:18 storage/models/storage.py:43 storage/models/storage.py:116 storage/models/trade_offer.py:74 storage/models/transport.py:91
+#: state/models/treasury.py:42 storage/models/destroy.py:18
+#: storage/models/storage.py:43 storage/models/storage.py:116
+#: storage/models/trade_offer.py:74 storage/models/transport.py:91
 msgctxt "goods"
 msgid "Уголь"
 msgstr "Ogle"
 
-#. Last modified by Артур Двинский, id 5
-#: state/models/treasury.py:45 storage/models/destroy.py:21 storage/models/storage.py:45 storage/models/storage.py:121 storage/models/trade_offer.py:75 storage/models/transport.py:96
+#: state/models/treasury.py:45 storage/models/destroy.py:21
+#: storage/models/storage.py:45 storage/models/storage.py:121
+#: storage/models/trade_offer.py:75 storage/models/transport.py:96
 msgctxt "goods"
 msgid "Железо"
 msgstr "Dzelzs"
 
-#. Last modified by Артур Двинский, id 5
-#: state/models/treasury.py:48 storage/models/destroy.py:24 storage/models/storage.py:47 storage/models/storage.py:126 storage/models/trade_offer.py:76 storage/models/transport.py:101
+#: state/models/treasury.py:48 storage/models/destroy.py:24
+#: storage/models/storage.py:47 storage/models/storage.py:126
+#: storage/models/trade_offer.py:76 storage/models/transport.py:101
 msgctxt "goods"
 msgid "Бокситы"
 msgstr "Boksīti"
 
-#. Last modified by Артур Двинский, id 5
-#: state/models/treasury.py:52 storage/models/destroy.py:28 storage/models/storage.py:51 storage/models/storage.py:132 storage/models/trade_offer.py:78 storage/models/transport.py:107
+#: state/models/treasury.py:52 storage/models/destroy.py:28
+#: storage/models/storage.py:51 storage/models/storage.py:132
+#: storage/models/trade_offer.py:78 storage/models/transport.py:107
 msgctxt "goods"
 msgid "Нефть WTI"
 msgstr "WTI nafta"
 
-#. Last modified by Артур Двинский, id 5
-#: state/models/treasury.py:55 storage/models/destroy.py:31 storage/models/storage.py:53 storage/models/storage.py:137 storage/models/trade_offer.py:79 storage/models/transport.py:112
+#: state/models/treasury.py:55 storage/models/destroy.py:31
+#: storage/models/storage.py:53 storage/models/storage.py:137
+#: storage/models/trade_offer.py:79 storage/models/transport.py:112
 msgctxt "goods"
 msgid "Нефть Brent"
 msgstr "Brent nafta"
 
-#. Last modified by Артур Двинский, id 5
-#: state/models/treasury.py:58 storage/models/destroy.py:34 storage/models/storage.py:55 storage/models/storage.py:142 storage/models/trade_offer.py:80 storage/models/transport.py:117
+#: state/models/treasury.py:58 storage/models/destroy.py:34
+#: storage/models/storage.py:55 storage/models/storage.py:142
+#: storage/models/trade_offer.py:80 storage/models/transport.py:117
 msgctxt "goods"
 msgid "Нефть Urals"
 msgstr "Urals nafta"
 
-#. Last modified by Артур Двинский, id 5
-#: state/models/treasury.py:65 storage/models/destroy.py:41 storage/models/storage.py:61 storage/models/storage.py:153 storage/models/trade_offer.py:83
+#: state/models/treasury.py:65 storage/models/destroy.py:41
+#: storage/models/storage.py:61 storage/models/storage.py:153
+#: storage/models/trade_offer.py:83
 msgctxt "goods"
 msgid "Дизельное топливо"
 msgstr "Dīzeļdegviela"
 
-#. Last modified by Артур Двинский, id 5
-#: state/models/treasury.py:94 storage/models/destroy.py:64 storage/models/storage.py:80 storage/models/storage.py:208 storage/models/trade_offer.py:95
+#: state/models/treasury.py:94 storage/models/destroy.py:64
+#: storage/models/storage.py:80 storage/models/storage.py:208
+#: storage/models/trade_offer.py:95
 msgctxt "goods"
 msgid "Орбитальные орудия"
 msgstr "Orbitālie ieroči"
@@ -2309,194 +2299,163 @@ msgstr "Orbitālie ieroči"
 msgid "Donate"
 msgstr ""
 
-#. Last modified by Артур Двинский, id 5
 #: state/templates/state/state_view.html:107
 msgid "Столица"
 msgstr "Galvaspilsēta"
 
-#. Last modified by Артур Двинский, id 5
 #: state/templates/state/state_view.html:118
 msgid "Прописка"
 msgstr "Deklarētā dzīvesvieta "
 
-#. Last modified by Артур Двинский, id 5
 #: state/templates/state/state_view.html:147
 msgid "Государственные налоги"
 msgstr "Valsts nodokli"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/models/storage.py:30
 msgctxt "goods"
 msgid "Минералы"
 msgstr "Minerāli"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/models/storage.py:31
 msgctxt "goods"
 msgid "Нефть"
 msgstr "Nafta"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/models/storage.py:32
 msgctxt "goods"
 msgid "Материалы"
 msgstr "Materiāli"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/models/storage.py:33
 msgctxt "goods"
 msgid "Оборудование"
 msgstr "Iekārtas"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/models/storage.py:34
 msgctxt "goods"
 msgid "Оружие"
 msgstr "Ieroči"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/models/storage.py:109
 msgctxt "storage"
 msgid "Уровень"
 msgstr "Līmenis"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/models/storage.py:118
 msgctxt "goods"
 msgid "Уголь - лимит"
 msgstr "Ogle - limits"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/models/storage.py:123
 msgctxt "goods"
 msgid "Железо - лимит"
 msgstr "Dzelzs - limits"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/models/storage.py:128
 msgctxt "goods"
 msgid "Бокситы - лимит"
 msgstr "Boksīti - limits"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/models/storage.py:134
 msgctxt "goods"
 msgid "Нефть WTI - лимит"
 msgstr "WTI nafta - limits"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/models/storage.py:139
 msgctxt "goods"
 msgid "Нефть Brent - лимит"
 msgstr "Brent nafta - limits"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/models/storage.py:144
 msgctxt "goods"
 msgid "Нефть Urals - лимит"
 msgstr "Urals nafta"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/models/storage.py:150
 msgctxt "goods"
 msgid "Бензин - лимит"
 msgstr "Benzīns - limits"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/models/storage.py:155
 msgctxt "goods"
 msgid "Дизельное топливо - лимит"
 msgstr "Dīzeļdegviela- limits"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/models/storage.py:160
 msgctxt "goods"
 msgid "Пластик - лимит"
 msgstr "Plastmasa - limits"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/models/storage.py:164
 msgctxt "goods"
 msgid "Сталь - лимит"
 msgstr "Tērauds - limits"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/models/storage.py:168
 msgctxt "goods"
 msgid "Алюминий - лимит"
 msgstr "Alumīnijs - limits"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/models/storage.py:174
 msgctxt "goods"
 msgid "Медикаменты - лимит"
 msgstr "Medikamenti - limits"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/models/storage.py:179
 msgctxt "goods"
 msgid "Буры - лимит"
 msgstr "Urbšanas iekārtas - limits"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/models/storage.py:185
 msgctxt "goods"
 msgid "Автоматы - лимит"
 msgstr "Automāti - limits"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/models/storage.py:190
 msgctxt "goods"
 msgid "Мины - лимит"
 msgstr "Mīnas - limits"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/models/storage.py:195
 msgctxt "goods"
 msgid "ПТ-орудия - лимит"
 msgstr "Prettanku ieroči - limits"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/models/storage.py:200
 msgctxt "goods"
 msgid "Танки - лимит"
 msgstr "Tanki - limits "
 
-#. Last modified by Артур Двинский, id 5
 #: storage/models/storage.py:205
 msgctxt "goods"
 msgid "Штурмовики - лимит"
 msgstr "Uzbrukuma lidmašīnas - limits"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/models/storage.py:210
 msgctxt "goods"
 msgid "Орбитальные орудия - лимит"
 msgstr "Orbitālie ieroči - limits"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/models/storage.py:215
 msgctxt "goods"
 msgid "ПЗРК - лимит"
 msgstr "PZRK - limits"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/models/storage.py:220
 msgctxt "goods"
 msgid "БМП - лимит"
 msgstr "Bruņu tehnika - limits"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/models/storage.py:225
 msgctxt "goods"
 msgid "БПЛА - лимит"
 msgstr "BPLA - limits"
 
-#: storage/models/storage.py:271
+#: storage/models/storage.py:289
 msgid "positive_spend_stock_req"
 msgstr ""
 
-#: storage/models/storage.py:276
+#: storage/models/storage.py:294
 msgid "not_enough"
 msgstr ""
 
@@ -2580,7 +2539,6 @@ msgctxt "goods"
 msgid "Штурмовики - кубов"
 msgstr ""
 
-#. Last modified by Артур Двинский, id 5
 #: storage/models/transport.py:168
 msgctxt "goods"
 msgid "Орбиталки"
@@ -2596,7 +2554,6 @@ msgctxt "goods"
 msgid "ПЗРК - кубов"
 msgstr ""
 
-#. Last modified by Артур Двинский, id 5
 #: storage/models/transport.py:178
 msgctxt "goods"
 msgid "ПТ-пушка"
@@ -2617,7 +2574,6 @@ msgctxt "goods"
 msgid "БМП - кубов"
 msgstr ""
 
-#. Last modified by Артур Двинский, id 5
 #: storage/models/transport.py:193
 msgctxt "goods"
 msgid "Дроны"
@@ -2628,12 +2584,16 @@ msgctxt "goods"
 msgid "Дроны - кубов"
 msgstr ""
 
-#: storage/templates/storage/auctions/auction_info.html:15 storage/templates/storage/auctions/auctions.html:38 storage/templates/storage/trading/trading.html:48
+#: storage/templates/storage/auctions/auction_info.html:15
+#: storage/templates/storage/auctions/auctions.html:38
+#: storage/templates/storage/trading/trading.html:48
 msgctxt "w_trading"
 msgid "Владелец"
 msgstr ""
 
-#: storage/templates/storage/auctions/auction_info.html:26 storage/templates/storage/auctions/auctions.html:36 storage/templates/storage/trading/trading.html:47
+#: storage/templates/storage/auctions/auction_info.html:26
+#: storage/templates/storage/auctions/auctions.html:36
+#: storage/templates/storage/trading/trading.html:47
 msgctxt "w_trading"
 msgid "Товар"
 msgstr ""
@@ -2648,12 +2608,16 @@ msgctxt "w_auctions"
 msgid "Лоты"
 msgstr ""
 
-#: storage/templates/storage/auctions/auction_info.html:43 storage/templates/storage/auctions/auctions.html:39 storage/templates/storage/trading/new_offer.html:106 storage/templates/storage/trading/trading.html:50
+#: storage/templates/storage/auctions/auction_info.html:43
+#: storage/templates/storage/auctions/auctions.html:39
+#: storage/templates/storage/trading/new_offer.html:106
+#: storage/templates/storage/trading/trading.html:50
 msgctxt "w_trading"
 msgid "Количество"
 msgstr ""
 
-#: storage/templates/storage/auctions/auction_info.html:51 storage/templates/storage/auctions/auction_info.html:101
+#: storage/templates/storage/auctions/auction_info.html:51
+#: storage/templates/storage/auctions/auction_info.html:101
 msgctxt "w_auctions"
 msgid "Ставка"
 msgstr ""
@@ -2683,12 +2647,15 @@ msgctxt "w_auctions"
 msgid "Сделать ставку"
 msgstr ""
 
-#: storage/templates/storage/auctions/auctions.html:29 storage/templates/storage/trading/trading.html:40
+#: storage/templates/storage/auctions/auctions.html:29
+#: storage/templates/storage/trading/trading.html:40
 msgctxt "w_trading"
 msgid "Выберите один или несколько критериев справа и нажмите \"Поиск\""
 msgstr ""
 
-#: storage/templates/storage/auctions/auctions.html:30 storage/templates/storage/trading/trading.html:41
+#: storage/templates/storage/auctions/auctions.html:30
+#: storage/templates/storage/redesign/trading/trading.html:73
+#: storage/templates/storage/trading/trading.html:41
 msgctxt "w_trading"
 msgid "Ничего не найдено"
 msgstr ""
@@ -2698,7 +2665,9 @@ msgctxt "w_auctions"
 msgid "Дата создания"
 msgstr ""
 
-#: storage/templates/storage/auctions/auctions.html:40 storage/templates/storage/trading/new_offer.html:118 storage/templates/storage/trading/trading.html:51
+#: storage/templates/storage/auctions/auctions.html:40
+#: storage/templates/storage/trading/new_offer.html:118
+#: storage/templates/storage/trading/trading.html:51
 msgctxt "w_trading"
 msgid "Цена (шт.)"
 msgstr ""
@@ -2718,148 +2687,141 @@ msgctxt "w_trading"
 msgid "Ставка (макс)"
 msgstr ""
 
-#: storage/templates/storage/auctions/auctions.html:44 storage/templates/storage/trading/new_offer.html:53 storage/templates/storage/trading/trading.html:54
+#: storage/templates/storage/auctions/auctions.html:44
+#: storage/templates/storage/trading/new_offer.html:53
+#: storage/templates/storage/trading/trading.html:54
 msgctxt "w_trading"
 msgid "Действие"
 msgstr ""
 
-#: storage/templates/storage/auctions/auctions.html:77 storage/templates/storage/trading/trading.html:99
+#: storage/templates/storage/auctions/auctions.html:77
+#: storage/templates/storage/trading/trading.html:99
 msgctxt "w_trading"
 msgid "Выберите товар"
 msgstr ""
 
-#: storage/templates/storage/auctions/auctions.html:86 storage/templates/storage/trading/trading.html:109
+#: storage/templates/storage/auctions/auctions.html:86
+#: storage/templates/storage/trading/trading.html:109
 msgctxt "w_trading"
 msgid "Поиск"
 msgstr ""
 
-#. Last modified by Артур Двинский, id 5
-#: storage/templates/storage/redesign/assets.html:12 storage/views/assets/assets.py:42
+#: storage/templates/storage/redesign/assets.html:12
+#: storage/views/assets/assets.py:42
 msgctxt "assets"
 msgid "Активы"
 msgstr "Aktīvi"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/templates/storage/redesign/assets.html:22
 msgctxt "assets"
 msgid "выбор действия"
 msgstr "darbības izvēle"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/templates/storage/redesign/assets.html:23
 msgctxt "assets"
 msgid "передать"
 msgstr "nodot"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/templates/storage/redesign/assets.html:24
 msgctxt "assets"
 msgid "уничтожить"
 msgstr "likvidēt"
 
-#. Last modified by Артур Двинский, id 5
+#: storage/templates/storage/redesign/assets.html:43
+msgctxt "assets"
+msgid "уверен"
+msgstr ""
+
 #: storage/templates/storage/redesign/assets.html:49
 msgctxt "assets"
 msgid "выберите склад"
 msgstr "izvēlējiet"
 
-#. Last modified by Артур Двинский, id 5
-#: storage/templates/storage/redesign/assets.html:60 storage/templates/storage/redesign/assets.html:115
+#: storage/templates/storage/redesign/assets.html:60
+#: storage/templates/storage/redesign/assets.html:115
 msgctxt "assets"
 msgid "объём (ед)"
 msgstr "daudzums (vien)"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/templates/storage/redesign/assets.html:62
 msgctxt "assets"
 msgid "стоимость"
 msgstr "cena"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/templates/storage/redesign/assets.html:77
 msgctxt "assets"
 msgid "подтвердить"
 msgstr "apstiprināt"
 
-#. Last modified by Артур Двинский, id 5
-#: storage/templates/storage/redesign/storage.html:22 storage/views/storage/storage.py:58
+#: storage/templates/storage/redesign/storage.html:22
+#: storage/views/storage/storage.py:58
 msgctxt "storage"
 msgid "Склад"
 msgstr "Noliktava"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/templates/storage/redesign/storage.html:89
 msgctxt "storage"
 msgid "склад"
 msgstr "noliktava"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/templates/storage/redesign/storage.html:103
 msgctxt "storage"
 msgid "хранилище"
 msgstr "krātuve"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/templates/storage/redesign/storage.html:118
 msgctxt "storage_assets"
 msgid "энергетики"
 msgstr "enerģētiķi"
 
-#. Last modified by Артур Двинский, id 5
-#: storage/templates/storage/redesign/storage.html:125 storage/templates/storage/redesign/storage.html:145
+#: storage/templates/storage/redesign/storage.html:125
+#: storage/templates/storage/redesign/storage.html:145
 msgctxt "storage_assets"
 msgid "создать"
 msgstr "izveidot"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/templates/storage/redesign/storage.html:129
 msgctxt "storage_assets"
 msgid "стоимость"
 msgstr "cena"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/templates/storage/redesign/storage.html:157
 msgctxt "storage_assets"
 msgid "Количество"
 msgstr "Daudzums"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/templates/storage/redesign/storage.html:170
 msgctxt "storage_assets"
 msgid "использовать"
 msgstr "lietot"
 
-#. Last modified by Артур Двинский, id 5
-#: storage/templates/storage/redesign/storage.html:189 storage/templates/storage/redesign/storage.html:377
+#: storage/templates/storage/redesign/storage.html:189
+#: storage/templates/storage/redesign/storage.html:377
 msgctxt "storage_transfer"
 msgid "Перемещение Склада"
 msgstr "Noliktavas pārvietošana"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/templates/storage/redesign/storage.html:191
 msgctxt "storage_transfer"
 msgid "Нельзя вывезти Склад из региона боевых действий"
 msgstr "Nedrīkst izvest noliktavu no karadarbības reģiona"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/templates/storage/redesign/storage.html:193
 msgctxt "storage_transfer"
 msgid "Вы можете перенести Склад в регион текущего местоположения (один раз)"
 msgstr "Jūs varat pārnest Noliktavu jūsu atrašanas reģionā (vienu reizi)"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/templates/storage/redesign/storage.html:206
 msgctxt "storage_transfer"
 msgid "перенести"
 msgstr "pārnest"
 
-#. Last modified by я проклят FKEY, id 23
-#: storage/templates/storage/redesign/storage.html:214 storage/templates/storage/redesign/storage.html:257
+#: storage/templates/storage/redesign/storage.html:214
+#: storage/templates/storage/redesign/storage.html:257
 msgctxt "storage_upgrade"
 msgid "Улучшение склада"
 msgstr "Noliktavas jauninājums"
 
-#. Last modified by я проклят FKEY, id 23
 #: storage/templates/storage/redesign/storage.html:215
 msgctxt "storage_upgrade"
 msgid "Вы можете улучшить Склад, расширив хранилища части товаров"
@@ -2867,279 +2829,500 @@ msgstr ""
 "\r\n"
 "Jūs varat uzlabot Noliktavu, paplašinot daļas preču uzglabāšanu"
 
-#. Last modified by я проклят FKEY, id 23
 #: storage/templates/storage/redesign/storage.html:216
 msgctxt "storage_upgrade"
 msgid "Стоимость"
 msgstr "Cena"
 
-#. Last modified by я проклят FKEY, id 23
 #: storage/templates/storage/redesign/storage.html:218
 msgctxt "storage_upgrade"
 msgid "Максимальный уровень"
 msgstr "Maksimālais līmenis"
 
-#. Last modified by я проклят FKEY, id 23
-#: storage/templates/storage/redesign/storage.html:235 storage/templates/storage/redesign/storage.html:356
+#: storage/templates/storage/redesign/storage.html:235
+#: storage/templates/storage/redesign/storage.html:356
 msgctxt "storage_upgrade"
 msgid "улучшить"
 msgstr "uzlabot"
 
-#. Last modified by я проклят FKEY, id 23
 #: storage/templates/storage/redesign/storage.html:238
 msgctxt "storage_upgrade"
 msgid "Недостаточно материалов"
 msgstr "Nepietiek materiālu"
 
-#. Last modified by я проклят FKEY, id 23
 #: storage/templates/storage/redesign/storage.html:258
 msgctxt "storage_upgrade"
 msgid "Выберите товары в каждой из категорий, ёмкость Склада для которых будет увеличена"
 msgstr "Atlasiet produktus katrā no kategorijām, kurām tiks palielināta noliktavas ietilpība"
 
-#. Last modified by я проклят FKEY, id 23
 #: storage/templates/storage/redesign/storage.html:265
 msgctxt "storage_upgrade"
 msgid "Большой объём запасов"
 msgstr "Liels inventārs"
 
-#. Last modified by я проклят FKEY, id 23
 #: storage/templates/storage/redesign/storage.html:292
 msgctxt "storage_upgrade"
 msgid "Средний объём запасов"
 msgstr "Vidējais inventārs"
 
-#. Last modified by я проклят FKEY, id 23
 #: storage/templates/storage/redesign/storage.html:319
 msgctxt "storage_upgrade"
 msgid "Малый объём запасов"
 msgstr "Neliels inventārs"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/templates/storage/redesign/storage.html:363
 msgctxt "storage_assets"
 msgid "Продление"
 msgstr "Pagarināšana"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/templates/storage/redesign/storage.html:363
 msgctxt "storage_assets"
 msgid "Активация"
 msgstr "Aktivācija"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/templates/storage/redesign/storage.html:363
 msgctxt "storage_assets"
 msgid "премиум-аккаунта"
 msgstr "premium konta"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/templates/storage/redesign/storage.html:366
 msgctxt "storage_assets"
 msgid "Ваш премиум-аккаунт будет продлён на один месяц. Данную операцию невозможно отменить. Продолжить?"
 msgstr "Jūsu premium konts būs pagarināts uz vienu mēnesi. Šo operāciju nevar atcelt. Turpināt?"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/templates/storage/redesign/storage.html:368
 msgctxt "storage_assets"
 msgid "Вы активируете премиум-аккаунт, длительностью один месяц. Данную операцию невозможно отменить. Продолжить?"
 msgstr "Jūs aktivēsiet premium kontu uz vienu mēnesi. Šo operāciju nevar atcelt. Turpināt?"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/templates/storage/redesign/storage.html:371
 msgctxt "storage_assets"
 msgid "Продолжить"
 msgstr "Turpināt"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/templates/storage/redesign/storage.html:372
 msgctxt "storage_assets"
 msgid "Отмена"
 msgstr "Atcelt"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/templates/storage/redesign/storage.html:378
 msgctxt "storage_transfer"
 msgid "Склад будет перемещен в регион вашего местонахождения"
 msgstr "Noliktava tiks pārnesta jūsu atrašanas reģionā"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/templates/storage/redesign/storage.html:378
 msgctxt "storage_transfer"
 msgid "Больше этот Склад переместить не получится. Продолжить?"
 msgstr "Jūs vairs nevarēsiet pārnest šo Noliktavu. Turpināt?"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/templates/storage/redesign/storage.html:379
 msgctxt "storage_transfer"
 msgid "Продолжить"
 msgstr "Turpināt"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/templates/storage/redesign/storage.html:380
 msgctxt "storage_transfer"
 msgid "Отмена"
 msgstr "Atcelt"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/templates/storage/redesign/storage_blocks/has_storage.html:26
 msgctxt "has_storage"
 msgid "счёт"
 msgstr "skaits"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/templates/storage/redesign/storage_blocks/has_storage.html:33
 msgctxt "has_storage"
 msgid "наличные"
 msgstr "skaidra nauda"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/templates/storage/redesign/storage_blocks/has_storage.html:38
 msgctxt "has_storage"
 msgid "всего денег"
 msgstr "naudas kopā"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/templates/storage/redesign/storage_blocks/no_storage.html:7
 msgctxt "no_storage"
 msgid "склад в регионе"
 msgstr "noliktava reģionā"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/templates/storage/redesign/storage_blocks/no_storage.html:9
 msgctxt "no_storage"
 msgid "Стоимость создания"
 msgstr "Izveides cena"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/templates/storage/redesign/storage_blocks/no_storage.html:10
 msgctxt "no_storage"
 msgid "стали"
 msgstr "tērauda"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/templates/storage/redesign/storage_blocks/no_storage.html:10
 msgctxt "no_storage"
 msgid "алюминия"
 msgstr "alumīnija"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/templates/storage/redesign/storage_blocks/no_storage.html:11
 msgctxt "no_storage"
 msgid "доставка оплачивается отдельно"
 msgstr "piegāde tiek apmaksāta atsevišķi"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/templates/storage/redesign/storage_blocks/no_storage.html:16
 msgctxt "no_storage"
 msgid "выберите склад списания материалов"
 msgstr "izvēlēties noliktavu materiālu norakstīšanai"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/templates/storage/redesign/storage_blocks/no_storage.html:22
 msgctxt "no_storage"
 msgid "нехватка материалов!"
 msgstr "pietrūkst materiālu!"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/templates/storage/redesign/storage_blocks/no_storage.html:22
 msgctxt "no_storage"
 msgid "доставка"
 msgstr "piegāde"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/templates/storage/redesign/storage_blocks/no_storage.html:44
 msgctxt "no_storage"
 msgid "создать"
 msgstr "izveidot"
 
-#. Last modified by Артур Двинский, id 5
+#: storage/templates/storage/redesign/trading/trading.html:15
+#: storage/views/trading/trading.py:24
+#, fuzzy
+#| msgid "Торговля"
+msgctxt "trading"
+msgid "Торговля"
+msgstr "Tirdzniecība"
+
+#: storage/templates/storage/redesign/trading/trading.html:32
+#, fuzzy
+#| msgctxt "cash_log"
+#| msgid "Гос. закупки"
+msgctxt "trading"
+msgid "госзакупки"
+msgstr "Valsts iepirkumi"
+
+#: storage/templates/storage/redesign/trading/trading.html:46
+#, fuzzy
+#| msgctxt "factory"
+#| msgid "создать"
+msgctxt "trading"
+msgid "создать"
+msgstr "ražot"
+
+#: storage/templates/storage/redesign/trading/trading.html:60
+#, fuzzy
+#| msgid "настройки"
+msgctxt "trading"
+msgid "настройки поиска"
+msgstr "uzstādījumi"
+
+#: storage/templates/storage/redesign/trading/trading.html:64
+#, fuzzy
+#| msgctxt "goods"
+#| msgid "Орбитальные орудия"
+msgctxt "trading"
+msgid "Выбранная категория"
+msgstr "Orbitālie ieroči"
+
+#: storage/templates/storage/redesign/trading/trading.html:66
+#, fuzzy
+#| msgctxt "w_trading_new"
+#| msgid "Выберите товар"
+msgctxt "trading"
+msgid "Выбранный товар"
+msgstr "Izvēlieties produktu"
+
+#: storage/templates/storage/redesign/trading/trading.html:72
+msgctxt "w_trading"
+msgid "Выберите один или несколько критериев в настройках поиска"
+msgstr ""
+
+#: storage/templates/storage/redesign/trading/trading.html:77
+#: storage/templates/storage/redesign/trading/trading.html:311
+#, fuzzy
+#| msgctxt "overview"
+#| msgid "региона"
+msgctxt "trading"
+msgid "регион"
+msgstr "novadi"
+
+#: storage/templates/storage/redesign/trading/trading.html:79
+#: storage/templates/storage/redesign/trading/trading.html:157
+#, fuzzy
+#| msgctxt "wallet"
+#| msgid "Товар"
+msgctxt "trading"
+msgid "товар"
+msgstr "Prece"
+
+#: storage/templates/storage/redesign/trading/trading.html:80
+#: storage/templates/storage/redesign/trading/trading.html:306
+#, fuzzy
+#| msgctxt "factory"
+#| msgid "цена"
+msgctxt "trading"
+msgid "цена"
+msgstr "cena"
+
+#: storage/templates/storage/redesign/trading/trading.html:81
+#, fuzzy
+#| msgctxt "w_trading_new"
+#| msgid "Продажа"
+msgctxt "trading"
+msgid "продавец"
+msgstr "Pardošana"
+
+#: storage/templates/storage/redesign/trading/trading.html:118
+#, fuzzy
+#| msgid "настройки"
+msgctxt "trading"
+msgid "Настройки поиска"
+msgstr "uzstādījumi"
+
+#: storage/templates/storage/redesign/trading/trading.html:120
+#, fuzzy
+#| msgctxt "w_trading_new"
+#| msgid "Новое торговое предложение"
+msgctxt "trading"
+msgid "тип предложения"
+msgstr "Jauns tirdzniecības piedāvājums"
+
+#: storage/templates/storage/redesign/trading/trading.html:123
+#: storage/templates/storage/trading/trading.html:70
+msgctxt "w_trading"
+msgid "Продажа"
+msgstr ""
+
+#: storage/templates/storage/redesign/trading/trading.html:124
+#: storage/templates/storage/trading/trading.html:71
+msgctxt "w_trading"
+msgid "Покупка"
+msgstr ""
+
+#: storage/templates/storage/redesign/trading/trading.html:131
+#, fuzzy
+#| msgctxt "factory"
+#| msgid "создать"
+msgctxt "trading"
+msgid "создатель"
+msgstr "ražot"
+
+#: storage/templates/storage/redesign/trading/trading.html:134
+#: storage/templates/storage/trading/trading.html:84
+msgctxt "w_trading"
+msgid "Все"
+msgstr ""
+
+#: storage/templates/storage/redesign/trading/trading.html:135
+#: storage/templates/storage/trading/trading.html:85
+msgctxt "w_trading"
+msgid "Партия"
+msgstr ""
+
+#: storage/templates/storage/redesign/trading/trading.html:136
+#: storage/templates/storage/trading/trading.html:86
+msgctxt "w_trading"
+msgid "Мои"
+msgstr ""
+
+#: storage/templates/storage/redesign/trading/trading.html:143
+#, fuzzy
+#| msgctxt "goods"
+#| msgid "Орбитальные орудия"
+msgctxt "trading"
+msgid "выбор категории"
+msgstr "Orbitālie ieroči"
+
+#: storage/templates/storage/redesign/trading/trading.html:146
+#, fuzzy
+#| msgctxt "goods"
+#| msgid "Орбитальные орудия"
+msgctxt "trading"
+msgid "выберите категорию"
+msgstr "Orbitālie ieroči"
+
+#: storage/templates/storage/redesign/trading/trading.html:160
+#, fuzzy
+#| msgctxt "w_trading_new"
+#| msgid "Выберите товар"
+msgctxt "trading"
+msgid "выберите товар"
+msgstr "Izvēlieties produktu"
+
+#: storage/templates/storage/redesign/trading/trading.html:185
+msgctxt "trading"
+msgid "поиск"
+msgstr ""
+
+#: storage/templates/storage/redesign/trading/trading.html:293
+#: storage/templates/storage/redesign/trading/trading.html:394
+#, fuzzy
+#| msgctxt "w_trading_new"
+#| msgid "Покупка"
+msgctxt "trading"
+msgid "покупка"
+msgstr "Pirkuns"
+
+#: storage/templates/storage/redesign/trading/trading.html:297
+msgctxt "trading"
+msgid "владелец"
+msgstr ""
+
+#: storage/templates/storage/redesign/trading/trading.html:319
+#, fuzzy
+#| msgctxt "wallet"
+#| msgid "Количество"
+msgctxt "trading"
+msgid "количество"
+msgstr "Daudzums"
+
+#: storage/templates/storage/redesign/trading/trading.html:348
+#, fuzzy
+#| msgctxt "assets"
+#| msgid "стоимость"
+msgctxt "trading"
+msgid "стоимость"
+msgstr "cena"
+
+#: storage/templates/storage/redesign/trading/trading.html:353
+#, fuzzy
+#| msgctxt "no_storage"
+#| msgid "доставка"
+msgctxt "trading"
+msgid "доставка"
+msgstr "piegāde"
+
+#: storage/templates/storage/redesign/trading/trading.html:360
+msgctxt "trading"
+msgid "итого"
+msgstr ""
+
+#: storage/templates/storage/redesign/trading/trading.html:376
+#: storage/templates/storage/redesign/trading/trading.html:395
+#, fuzzy
+#| msgctxt "no_party"
+#| msgid "Вступить"
+msgctxt "trading"
+msgid "купить"
+msgstr "Pievienojieties"
+
+#: storage/templates/storage/redesign/trading/trading.html:391
+#, fuzzy
+#| msgctxt "w_trading_new"
+#| msgid "Продажа"
+msgctxt "trading"
+msgid "продажа"
+msgstr "Pardošana"
+
+#: storage/templates/storage/redesign/trading/trading.html:392
+#, fuzzy
+#| msgctxt "assets"
+#| msgid "передать"
+msgctxt "trading"
+msgid "продать"
+msgstr "nodot"
+
+#: storage/templates/storage/redesign/trading/trading.html:398
+#, fuzzy
+#| msgctxt "w_trading_new"
+#| msgid "Новое торговое предложение"
+msgctxt "trading"
+msgid "Отмена торгового предложения"
+msgstr "Jauns tirdzniecības piedāvājums"
+
+#: storage/templates/storage/redesign/trading/trading.html:399
+#, fuzzy
+#| msgctxt "w_trading_new"
+#| msgid "Торговое предложение успешно создано"
+msgctxt "trading"
+msgid "Ваше торговое предложение будет удалено. Продолжить?"
+msgstr "Tirdzniecības piedāvājums veiksmīgi izveidots"
+
+#: storage/templates/storage/redesign/trading/trading.html:400
+#, fuzzy
+#| msgid "Продолжить"
+msgctxt "trading"
+msgid "Продолжить"
+msgstr "Turpināt"
+
+#: storage/templates/storage/redesign/trading/trading.html:401
+#, fuzzy
+#| msgid "Отмена"
+msgctxt "trading"
+msgid "Отмена"
+msgstr "Atcelšana"
+
 #: storage/templates/storage/storage_lines/cash_transfer.html:9
 msgid "Наличные"
 msgstr "Skaidra nauda"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/templates/storage/storage_lines/cash_transfer.html:14
 msgid "Денег всего"
 msgstr "Naudas kopā"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/templates/storage/storage_lines/cash_transfer.html:21
 msgid "На Складе"
 msgstr "Noliktavā"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/templates/storage/storage_lines/cash_transfer.html:26
 msgid "Передать"
 msgstr "Pārsūtīt"
 
-#. Last modified by я проклят FKEY, id 23
 #: storage/templates/storage/trading/new_offer.html:38
 msgctxt "w_trading_new"
 msgid "Новое торговое предложение"
 msgstr "Jauns tirdzniecības piedāvājums"
 
-#. Last modified by я проклят FKEY, id 23
 #: storage/templates/storage/trading/new_offer.html:43
 msgctxt "w_trading_new"
 msgid "Доступно"
 msgstr "Pieejams"
 
-#. Last modified by я проклят FKEY, id 23
 #: storage/templates/storage/trading/new_offer.html:48
 msgctxt "w_trading_new"
 msgid "+5 за каждый Склад"
 msgstr "+5 par katru Noliktavu"
 
-#. Last modified by я проклят FKEY, id 23
 #: storage/templates/storage/trading/new_offer.html:57
 msgctxt "w_trading_new"
 msgid "Продажа"
 msgstr "Pardošana"
 
-#. Last modified by я проклят FKEY, id 23
 #: storage/templates/storage/trading/new_offer.html:58
 msgctxt "w_trading_new"
 msgid "Покупка"
 msgstr "Pirkuns"
 
-#. Last modified by я проклят FKEY, id 23
 #: storage/templates/storage/trading/new_offer.html:64
 msgctxt "w_trading_new"
 msgid "Склад"
 msgstr "Noliktava"
 
-#. Last modified by я проклят FKEY, id 23
 #: storage/templates/storage/trading/new_offer.html:76
 msgctxt "w_trading_new"
 msgid "Группа товаров"
 msgstr "Produktu grupa"
 
-#. Last modified by я проклят FKEY, id 23
 #: storage/templates/storage/trading/new_offer.html:80
 msgctxt "w_trading_new"
 msgid "Выберите группу"
 msgstr "Izvēlieties grupu"
 
-#. Last modified by я проклят FKEY, id 23
 #: storage/templates/storage/trading/new_offer.html:90
 msgctxt "w_trading_new"
 msgid "Товар"
 msgstr "Produkts"
 
-#. Last modified by я проклят FKEY, id 23
 #: storage/templates/storage/trading/new_offer.html:94
 msgctxt "w_trading_new"
 msgid "Выберите товар"
 msgstr "Izvēlieties produktu"
 
-#. Last modified by я проклят FKEY, id 23
 #: storage/templates/storage/trading/new_offer.html:126
 msgctxt "w_trading_new"
 msgid "Будет заблокировано"
 msgstr "Tiks bloķēts"
 
-#. Last modified by я проклят FKEY, id 23
 #: storage/templates/storage/trading/new_offer.html:136
 msgctxt "w_trading_new"
 msgid "Создать"
@@ -3165,127 +3348,110 @@ msgctxt "w_trading"
 msgid "Государственнные закупки"
 msgstr ""
 
-#: storage/templates/storage/trading/trading.html:70
-msgctxt "w_trading"
-msgid "Продажа"
-msgstr ""
-
-#: storage/templates/storage/trading/trading.html:71
-msgctxt "w_trading"
-msgid "Покупка"
-msgstr ""
-
-#: storage/templates/storage/trading/trading.html:84
-msgctxt "w_trading"
-msgid "Все"
-msgstr ""
-
-#: storage/templates/storage/trading/trading.html:85
-msgctxt "w_trading"
-msgid "Партия"
-msgstr ""
-
-#: storage/templates/storage/trading/trading.html:86
-msgctxt "w_trading"
-msgid "Мои"
-msgstr ""
-
 #: storage/templates/storage/trading/trading.html:113
 msgctxt "w_trading"
 msgid "Создать"
 msgstr ""
 
-#. Last modified by Артур Двинский, id 5
 #: storage/views/assets/assets_action.py:41
 msgctxt "assets"
 msgid "Целевой Склад не заполнен"
 msgstr "Mērķa noliktava nav norādīta"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/views/assets/assets_action.py:42
 msgctxt "assets"
 msgid "Перемещение товаров"
 msgstr "Preču pārvietošana"
 
-#. Last modified by Артур Двинский, id 5
-#: storage/views/assets/assets_action.py:43 storage/views/assets/assets_action.py:74 storage/views/assets/assets_action.py:91 storage/views/assets/assets_action.py:133 storage/views/assets/assets_action.py:143 storage/views/assets/assets_action.py:152 storage/views/assets/assets_action.py:159 storage/views/assets/assets_action.py:166 storage/views/assets/assets_action.py:173 storage/views/assets/assets_action.py:193 storage/views/assets/assets_action.py:233 storage/views/assets/assets_action.py:240
+#: storage/views/assets/assets_action.py:43
+#: storage/views/assets/assets_action.py:74
+#: storage/views/assets/assets_action.py:91
+#: storage/views/assets/assets_action.py:133
+#: storage/views/assets/assets_action.py:143
+#: storage/views/assets/assets_action.py:152
+#: storage/views/assets/assets_action.py:159
+#: storage/views/assets/assets_action.py:166
+#: storage/views/assets/assets_action.py:173
+#: storage/views/assets/assets_action.py:193
+#: storage/views/assets/assets_action.py:233
+#: storage/views/assets/assets_action.py:240
 msgctxt "assets"
 msgid "Закрыть"
 msgstr "Aizvērt"
 
-#. Last modified by Артур Двинский, id 5
-#: storage/views/assets/assets_action.py:72 storage/views/assets/assets_action.py:191
+#: storage/views/assets/assets_action.py:72
+#: storage/views/assets/assets_action.py:191
 msgctxt "assets"
 msgid "Склад"
 msgstr "Noliktava"
 
-#. Last modified by Артур Двинский, id 5
-#: storage/views/assets/assets_action.py:72 storage/views/assets/assets_action.py:191
+#: storage/views/assets/assets_action.py:72
+#: storage/views/assets/assets_action.py:191
 msgctxt "assets"
 msgid "вам не принадлежит"
 msgstr "jums nepieder"
 
-#. Last modified by Артур Двинский, id 5
-#: storage/views/assets/assets_action.py:73 storage/views/assets/assets_action.py:132 storage/views/assets/assets_action.py:142 storage/views/assets/assets_action.py:151 storage/views/assets/assets_action.py:158 storage/views/assets/assets_action.py:165 storage/views/assets/assets_action.py:172
+#: storage/views/assets/assets_action.py:73
+#: storage/views/assets/assets_action.py:132
+#: storage/views/assets/assets_action.py:142
+#: storage/views/assets/assets_action.py:151
+#: storage/views/assets/assets_action.py:158
+#: storage/views/assets/assets_action.py:165
+#: storage/views/assets/assets_action.py:172
 msgctxt "assets"
 msgid "Перемещение товара"
 msgstr "Peces pārvietošana"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/views/assets/assets_action.py:89
 msgctxt "assets"
 msgid "Запрещено вывозить товары из атакованных регионов"
 msgstr "Aizvest preces no uzbrukuma reģioniem ir aizliegts"
 
-#. Last modified by Артур Двинский, id 5
-#: storage/views/assets/assets_action.py:90 storage/views/assets/assets_action.py:192 storage/views/assets/assets_action.py:232
+#: storage/views/assets/assets_action.py:90
+#: storage/views/assets/assets_action.py:192
+#: storage/views/assets/assets_action.py:232
 msgctxt "assets"
 msgid "Уничтожение товара"
 msgstr "Preču likvidācija"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/views/assets/assets_action.py:131
 msgctxt "assets"
 msgid "Недостаточно средств для оплаты доставки"
 msgstr "Nepietiek resursu piegādes apmaksai"
 
-#. Last modified by Артур Двинский, id 5
-#: storage/views/assets/assets_action.py:138 storage/views/assets/assets_action.py:148
+#: storage/views/assets/assets_action.py:138
+#: storage/views/assets/assets_action.py:148
 msgctxt "assets"
 msgid "На складе в регионе "
 msgstr "Noliktavā reģionā "
 
-#. Last modified by Артур Двинский, id 5
 #: storage/views/assets/assets_action.py:140
 msgctxt "assets"
 msgid " недостаточно места для товара "
 msgstr "pietrūkst vietas precei"
 
-#. Last modified by Артур Двинский, id 5
-#: storage/views/assets/assets_action.py:141 storage/views/assets/assets_action.py:150
+#: storage/views/assets/assets_action.py:141
+#: storage/views/assets/assets_action.py:150
 msgctxt "assets"
 msgid "Требуется: "
 msgstr "Nepieciešams:"
 
-#. Last modified by Артур Двинский, id 5
-#: storage/views/assets/assets_action.py:141 storage/views/assets/assets_action.py:150
+#: storage/views/assets/assets_action.py:141
+#: storage/views/assets/assets_action.py:150
 msgctxt "assets"
 msgid ", в наличии: "
 msgstr ", ir:"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/views/assets/assets_action.py:149
 msgctxt "assets"
 msgid " недостаточно товара "
 msgstr "nepietiek preču"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/views/assets/assets_action.py:149
 msgctxt "assets"
 msgid " для передачи."
 msgstr "nodošanai"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/views/assets/assets_action.py:157
 msgctxt "assets"
 msgid "Товары для передачи не выбраны"
@@ -3326,12 +3492,17 @@ msgctxt "assets"
 msgid "Некорректное действие"
 msgstr ""
 
-#: storage/views/assets/assets_action.py:239 storage/views/assets/assets_action.py:251
+#: storage/views/assets/assets_action.py:239
+#: storage/views/assets/assets_action.py:251
 msgctxt "assets"
 msgid "Операции с товарами"
 msgstr ""
 
-#: storage/views/assets/storage_move.py:36 storage/views/assets/storage_move.py:45 storage/views/assets/storage_move.py:55 storage/views/assets/storage_move.py:67 storage/views/assets/storage_move.py:86
+#: storage/views/assets/storage_move.py:36
+#: storage/views/assets/storage_move.py:45
+#: storage/views/assets/storage_move.py:55
+#: storage/views/assets/storage_move.py:67
+#: storage/views/assets/storage_move.py:86
 msgctxt "assets"
 msgid "Перемещение Склада"
 msgstr ""
@@ -3356,121 +3527,141 @@ msgctxt "assets"
 msgid "Нельзя переместить Склад из атакованного региона"
 msgstr ""
 
-#. Last modified by Артур Двинский, id 5
-#: storage/views/storage/cash_transfer.py:33 storage/views/storage/cash_transfer.py:42 storage/views/storage/cash_transfer.py:55 storage/views/storage/cash_transfer.py:64 storage/views/storage/cash_transfer.py:73 storage/views/storage/cash_transfer.py:102 storage/views/storage/cash_transfer.py:122 storage/views/storage/cash_transfer.py:130 storage/views/storage/cash_transfer.py:142 storage/views/storage/new_storage.py:86 storage/views/storage/upgrade_storage.py:155
+#: storage/views/storage/cash_transfer.py:33
+#: storage/views/storage/cash_transfer.py:42
+#: storage/views/storage/cash_transfer.py:55
+#: storage/views/storage/cash_transfer.py:64
+#: storage/views/storage/cash_transfer.py:73
+#: storage/views/storage/cash_transfer.py:102
+#: storage/views/storage/cash_transfer.py:122
+#: storage/views/storage/cash_transfer.py:130
+#: storage/views/storage/cash_transfer.py:142
+#: storage/views/storage/new_storage.py:86
+#: storage/views/storage/upgrade_storage.py:155
 msgctxt "storage"
 msgid "Передача денег"
 msgstr "Naudas nodošana"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/views/storage/cash_transfer.py:35
 msgctxt "storage"
 msgid "Отрицательное число денег игрока"
 msgstr "Spēlētāja naudas skaits ir negatīvs"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/views/storage/cash_transfer.py:44
 msgctxt "storage"
 msgid "Некорректное число денег игрока"
 msgstr "Nekorekts spēlētāja naudas skaits"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/views/storage/cash_transfer.py:57
 msgctxt "storage"
 msgid "Отрицательное число денег Склада"
 msgstr "Negatīvs Noliktavas naudas skaits"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/views/storage/cash_transfer.py:66
 msgctxt "storage"
 msgid "Некорректное число денег Склада"
 msgstr "Nekorekts Noliktavas naudas skaits"
 
-#. Last modified by Артур Двинский, id 5
-#: storage/views/storage/cash_transfer.py:75 storage/views/storage/upgrade_storage.py:34
+#: storage/views/storage/cash_transfer.py:75
+#: storage/views/storage/upgrade_storage.py:34
 msgctxt "storage"
 msgid "В этом регионе нет Склада"
 msgstr "Šajā reģionā nav Noliktavas"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/views/storage/cash_transfer.py:104
 msgctxt "storage"
 msgid "Нельзя вывести деньги из атакованного региона"
 msgstr "Nedrīkst izvest naudu no uzbrukuma reģiona"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/views/storage/cash_transfer.py:124
 msgctxt "storage"
 msgid "Данные кошелька не совпадают с введенными"
 msgstr "Maka dati nesakrīt ar ievadītiem"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/views/storage/cash_transfer.py:132
 msgctxt "storage"
 msgid "Недопустим ввод отрицательных чисел"
 msgstr "Negatīvu skaitļu ievadīšana nav pieļaujama"
 
-#. Last modified by Артур Двинский, id 5
-#: storage/views/storage/new_storage.py:32 storage/views/storage/new_storage.py:50 storage/views/storage/new_storage.py:63
+#: storage/views/storage/new_storage.py:32
+#: storage/views/storage/new_storage.py:50
+#: storage/views/storage/new_storage.py:63
 msgctxt "storage"
 msgid "Новый Склад"
 msgstr "Jauna Noliktava"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/views/storage/new_storage.py:33
 msgctxt "storage"
 msgid "Не найден Склад списания материалов"
 msgstr "Materiālu norakstīšanas Noliktava nav atrasta"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/views/storage/new_storage.py:51
 msgctxt "storage"
 msgid "Недостаточно ресурсов"
 msgstr "Nepietiek resursu"
 
-#. Last modified by Артур Двинский, id 5
 #: storage/views/storage/new_storage.py:64
 msgctxt "storage"
 msgid "Недостаточно денег на транспортировку"
 msgstr "Nepietiek naudas transportēšanai"
 
-#. Last modified by я проклят FKEY, id 23
-#: storage/views/storage/upgrade_storage.py:32 storage/views/storage/upgrade_storage.py:42 storage/views/storage/upgrade_storage.py:51 storage/views/storage/upgrade_storage.py:86 storage/views/storage/upgrade_storage.py:103 storage/views/storage/upgrade_storage.py:111
+#: storage/views/storage/upgrade_storage.py:32
+#: storage/views/storage/upgrade_storage.py:42
+#: storage/views/storage/upgrade_storage.py:51
+#: storage/views/storage/upgrade_storage.py:86
+#: storage/views/storage/upgrade_storage.py:103
+#: storage/views/storage/upgrade_storage.py:111
 msgctxt "storage_upgrade"
 msgid "Улучшение Склада"
 msgstr "Noliktavas jauninājums"
 
-#. Last modified by я проклят FKEY, id 23
 #: storage/views/storage/upgrade_storage.py:44
 msgctxt "storage_upgrade"
 msgid "Уровень Склада - максимальный"
 msgstr "Noliktavas līmenis - maksimālais"
 
-#. Last modified by я проклят FKEY, id 23
 #: storage/views/storage/upgrade_storage.py:53
 msgctxt "storage_upgrade"
 msgid "Недостаточно материала: "
 msgstr "Nepietiek materiāla:"
 
-#. Last modified by я проклят FKEY, id 23
 #: storage/views/storage/upgrade_storage.py:88
 msgctxt "storage_upgrade"
 msgid "Максимально улучшено: "
 msgstr "Visvairāk uzlabots:"
 
-#. Last modified by я проклят FKEY, id 23
 #: storage/views/storage/upgrade_storage.py:105
 msgctxt "storage_upgrade"
 msgid "Превышение числа позиций для улучшения"
 msgstr "Uzlabošanai paredzēto amatu skaita pārsniegšana"
 
-#. Last modified by я проклят FKEY, id 23
 #: storage/views/storage/upgrade_storage.py:113
 msgctxt "storage_upgrade"
 msgid "Указаны не все позиции для улучшения"
 msgstr "Nav norādīti visi uzlabojumi"
 
-#: storage/views/trading/accept_offer.py:43 storage/views/trading/accept_offer.py:51 storage/views/trading/accept_offer.py:64 storage/views/trading/accept_offer.py:88 storage/views/trading/accept_offer.py:98 storage/views/trading/accept_offer.py:106 storage/views/trading/accept_offer.py:114 storage/views/trading/accept_offer.py:130 storage/views/trading/accept_offer.py:146 storage/views/trading/accept_offer.py:155 storage/views/trading/accept_offer.py:163 storage/views/trading/accept_offer.py:177 storage/views/trading/accept_offer.py:199 storage/views/trading/accept_offer.py:223 storage/views/trading/accept_offer.py:272 storage/views/trading/accept_offer.py:280 storage/views/trading/accept_offer.py:292 storage/views/trading/accept_offer.py:300 storage/views/trading/accept_offer.py:309 storage/views/trading/accept_offer.py:321 storage/views/trading/accept_offer.py:392 storage/views/trading/accept_offer.py:399 storage/views/trading/accept_offer.py:408
+#: storage/views/trading/accept_offer.py:43
+#: storage/views/trading/accept_offer.py:51
+#: storage/views/trading/accept_offer.py:64
+#: storage/views/trading/accept_offer.py:88
+#: storage/views/trading/accept_offer.py:98
+#: storage/views/trading/accept_offer.py:106
+#: storage/views/trading/accept_offer.py:114
+#: storage/views/trading/accept_offer.py:130
+#: storage/views/trading/accept_offer.py:146
+#: storage/views/trading/accept_offer.py:155
+#: storage/views/trading/accept_offer.py:163
+#: storage/views/trading/accept_offer.py:177
+#: storage/views/trading/accept_offer.py:199
+#: storage/views/trading/accept_offer.py:223
+#: storage/views/trading/accept_offer.py:272
+#: storage/views/trading/accept_offer.py:280
+#: storage/views/trading/accept_offer.py:292
+#: storage/views/trading/accept_offer.py:300
+#: storage/views/trading/accept_offer.py:309
+#: storage/views/trading/accept_offer.py:321
+#: storage/views/trading/accept_offer.py:392
+#: storage/views/trading/accept_offer.py:406
 msgctxt "w_trading"
 msgid "Принятие оффера"
 msgstr ""
@@ -3485,7 +3676,8 @@ msgctxt "w_trading"
 msgid "В поле количество должно быть положительное число"
 msgstr ""
 
-#: storage/views/trading/accept_offer.py:66 storage/views/trading/cancel_offer.py:41
+#: storage/views/trading/accept_offer.py:66
+#: storage/views/trading/cancel_offer.py:41
 msgctxt "w_trading"
 msgid "ID оффера должно быть числом"
 msgstr ""
@@ -3505,12 +3697,14 @@ msgctxt "w_trading"
 msgid "Оффер изменился, или вы ввели некорректное число"
 msgstr ""
 
-#: storage/views/trading/accept_offer.py:116 storage/views/trading/cancel_offer.py:62
+#: storage/views/trading/accept_offer.py:116
+#: storage/views/trading/cancel_offer.py:62
 msgctxt "w_trading"
 msgid "Оффер не существует или уже принят"
 msgstr ""
 
-#: storage/views/trading/accept_offer.py:132 storage/views/trading/cancel_offer.py:75
+#: storage/views/trading/accept_offer.py:132
+#: storage/views/trading/cancel_offer.py:75
 msgctxt "w_trading"
 msgid "ID склада должно быть числом"
 msgstr ""
@@ -3525,17 +3719,25 @@ msgctxt "w_trading"
 msgid "На выбранном складе недостаточно товара"
 msgstr ""
 
-#: storage/views/trading/accept_offer.py:165 storage/views/trading/accept_offer.py:179 storage/views/trading/cancel_offer.py:88
+#: storage/views/trading/accept_offer.py:165
+#: storage/views/trading/accept_offer.py:179
+#: storage/views/trading/cancel_offer.py:88
 msgctxt "w_trading"
 msgid "Выбранного склада игрока не существует"
 msgstr ""
 
-#: storage/views/trading/accept_offer.py:201 storage/views/trading/accept_offer.py:311 storage/views/trading/premium_trading.py:39
+#: storage/views/trading/accept_offer.py:201
+#: storage/views/trading/accept_offer.py:311
+#: storage/views/trading/premium_trading.py:39
 msgctxt "w_trading"
 msgid "Недостаточно средств. Требуется $"
 msgstr ""
 
-#: storage/views/trading/accept_offer.py:225 storage/views/trading/accept_offer.py:294 storage/views/trading/cancel_offer.py:106 storage/views/trading/cancel_offer.py:125 storage/views/trading/premium_trading.py:110
+#: storage/views/trading/accept_offer.py:225
+#: storage/views/trading/accept_offer.py:294
+#: storage/views/trading/cancel_offer.py:106
+#: storage/views/trading/cancel_offer.py:125
+#: storage/views/trading/premium_trading.py:110
 msgctxt "w_trading"
 msgid "Не удалось получить блокировку по офферу"
 msgstr ""
@@ -3545,12 +3747,14 @@ msgctxt "w_trading"
 msgid "Ваши расходы на доставку больше прибыли"
 msgstr ""
 
-#: storage/views/trading/accept_offer.py:282 storage/views/trading/premium_trading.py:98
+#: storage/views/trading/accept_offer.py:282
+#: storage/views/trading/premium_trading.py:98
 msgctxt "w_trading"
 msgid "В торговом предложении недостаточно средств"
 msgstr ""
 
-#: storage/views/trading/accept_offer.py:302 storage/views/trading/premium_trading.py:118
+#: storage/views/trading/accept_offer.py:302
+#: storage/views/trading/premium_trading.py:118
 msgctxt "w_trading"
 msgid "В связанной блокировке недостаточно средств"
 msgstr ""
@@ -3560,17 +3764,20 @@ msgctxt "w_trading"
 msgid "Выбранного склада оффера не существует"
 msgstr ""
 
-#: storage/views/trading/accept_offer.py:394 storage/views/trading/premium_trading.py:176
+#: storage/views/trading/accept_offer.py:394
+#: storage/views/trading/premium_trading.py:176
 msgctxt "w_trading"
 msgid "Оффера такого типа не существует"
 msgstr ""
 
-#: storage/views/trading/accept_offer.py:401 storage/views/trading/premium_trading.py:183
-msgctxt "w_trading"
-msgid "Торговое предложение успешно принято"
-msgstr ""
-
-#: storage/views/trading/cancel_offer.py:39 storage/views/trading/cancel_offer.py:52 storage/views/trading/cancel_offer.py:60 storage/views/trading/cancel_offer.py:73 storage/views/trading/cancel_offer.py:86 storage/views/trading/cancel_offer.py:104 storage/views/trading/cancel_offer.py:123 storage/views/trading/cancel_offer.py:147
+#: storage/views/trading/cancel_offer.py:39
+#: storage/views/trading/cancel_offer.py:52
+#: storage/views/trading/cancel_offer.py:60
+#: storage/views/trading/cancel_offer.py:73
+#: storage/views/trading/cancel_offer.py:86
+#: storage/views/trading/cancel_offer.py:104
+#: storage/views/trading/cancel_offer.py:123
+#: storage/views/trading/cancel_offer.py:147
 msgctxt "w_trading"
 msgid "Отмена оффера"
 msgstr ""
@@ -3580,103 +3787,105 @@ msgctxt "w_trading"
 msgid "Можно отменить только свой собственный оффер"
 msgstr ""
 
-#. Last modified by я проклят FKEY, id 23
-#: storage/views/trading/create_offer.py:29 storage/views/trading/create_offer.py:40 storage/views/trading/create_offer.py:57 storage/views/trading/create_offer.py:67 storage/views/trading/create_offer.py:78 storage/views/trading/create_offer.py:88 storage/views/trading/create_offer.py:96 storage/views/trading/create_offer.py:107 storage/views/trading/create_offer.py:115 storage/views/trading/create_offer.py:130 storage/views/trading/create_offer.py:143 storage/views/trading/create_offer.py:159 storage/views/trading/create_offer.py:167 storage/views/trading/create_offer.py:200 storage/views/trading/create_offer.py:207 storage/views/trading/create_offer.py:216
+#: storage/views/trading/create_offer.py:29
+#: storage/views/trading/create_offer.py:40
+#: storage/views/trading/create_offer.py:57
+#: storage/views/trading/create_offer.py:67
+#: storage/views/trading/create_offer.py:78
+#: storage/views/trading/create_offer.py:88
+#: storage/views/trading/create_offer.py:96
+#: storage/views/trading/create_offer.py:107
+#: storage/views/trading/create_offer.py:115
+#: storage/views/trading/create_offer.py:130
+#: storage/views/trading/create_offer.py:143
+#: storage/views/trading/create_offer.py:159
+#: storage/views/trading/create_offer.py:167
+#: storage/views/trading/create_offer.py:200
+#: storage/views/trading/create_offer.py:207
+#: storage/views/trading/create_offer.py:216
 msgctxt "w_trading_new"
 msgid "Создание оффера"
 msgstr "Piedāvājuma veidošana"
 
-#. Last modified by я проклят FKEY, id 23
-#: storage/views/trading/create_offer.py:31 storage/views/trading/get_offers.py:41
+#: storage/views/trading/create_offer.py:31
+#: storage/views/trading/get_offers.py:41
 msgctxt "w_trading_new"
 msgid "Некорректное действие"
 msgstr "Nepareiza darbība"
 
-#. Last modified by я проклят FKEY, id 23
 #: storage/views/trading/create_offer.py:42
 msgctxt "w_trading_new"
 msgid "Склад не указан"
 msgstr "Noliktava nav norādīta\r\n"
 
-#. Last modified by я проклят FKEY, id 23
 #: storage/views/trading/create_offer.py:59
 msgctxt "w_trading_new"
 msgid "Достигнут лимит торговых предложений"
 msgstr "Sasniegts tirdzniecības piedāvājuma limits"
 
-#. Last modified by я проклят FKEY, id 23
 #: storage/views/trading/create_offer.py:69
 msgctxt "w_trading_new"
 msgid "Указанный товар не существует"
 msgstr "Norādītais produkts neeksistē"
 
-#. Last modified by я проклят FKEY, id 23
 #: storage/views/trading/create_offer.py:80
 msgctxt "w_trading_new"
 msgid "Количество - не число"
 msgstr "Daudzums nav skaitlis"
 
-#. Last modified by я проклят FKEY, id 23
 #: storage/views/trading/create_offer.py:90
 msgctxt "w_trading_new"
 msgid "Количество товара должно быть положительным числом"
 msgstr "Preces daudzumam ir jābūt pozitīvam skaitlim"
 
-#. Last modified by я проклят FKEY, id 23
 #: storage/views/trading/create_offer.py:98
 msgctxt "w_trading_new"
 msgid "Количество товара слишком велико"
 msgstr "Preču daudzums ir pārāk liels"
 
-#. Last modified by я проклят FKEY, id 23
 #: storage/views/trading/create_offer.py:109
 msgctxt "w_trading_new"
 msgid "Цена товара должна быть положительным числом"
 msgstr "Produkta cenai jābūt pozitīvam skaitlim"
 
-#. Last modified by я проклят FKEY, id 23
 #: storage/views/trading/create_offer.py:117
 msgctxt "w_trading_new"
 msgid "Цена товара слишком велика"
 msgstr "Produkta cena ir pārāk augsta"
 
-#. Last modified by я проклят FKEY, id 23
 #: storage/views/trading/create_offer.py:132
 msgctxt "w_trading_new"
 msgid "Недостаточно Wild Pass для продажи"
 msgstr "Nepietiek Wild Pass, ko pārdot"
 
-#. Last modified by я проклят FKEY, id 23
 #: storage/views/trading/create_offer.py:145
 msgctxt "w_trading_new"
 msgid "Недостаточно ресурса для продажи"
 msgstr "Nepietiek resursu, lai pārdotu"
 
-#. Last modified by я проклят FKEY, id 23
 #: storage/views/trading/create_offer.py:161
 msgctxt "w_trading_new"
 msgid "Стоимость товара слишком велика"
 msgstr "Produkta cena ir pārāk augsta"
 
-#. Last modified by я проклят FKEY, id 23
 #: storage/views/trading/create_offer.py:169
 msgctxt "w_trading_new"
 msgid "Недостаточно средств"
 msgstr "Nepietiek naudu"
 
-#. Last modified by я проклят FKEY, id 23
 #: storage/views/trading/create_offer.py:202
 msgctxt "w_trading_new"
 msgid "Указанный Склад вам не принадлежит"
 msgstr "Norādītā Noliktava jums nepieder"
 
-#. Last modified by я проклят FKEY, id 23
 #: storage/views/trading/create_offer.py:209
 msgctxt "w_trading_new"
 msgid "Торговое предложение успешно создано"
 msgstr "Tirdzniecības piedāvājums veiksmīgi izveidots"
 
-#: storage/views/trading/get_offers.py:39 storage/views/trading/get_offers.py:61 storage/views/trading/get_offers.py:188
+#: storage/views/trading/get_offers.py:39
+#: storage/views/trading/get_offers.py:61
+#: storage/views/trading/get_offers.py:199
 msgctxt "w_trading"
 msgid "Получение офферов"
 msgstr ""
@@ -3686,22 +3895,29 @@ msgctxt "w_trading"
 msgid "Некорректный владелец"
 msgstr ""
 
-#: storage/views/trading/get_offers.py:169
+#: storage/views/trading/get_offers.py:180
 msgctxt "w_trading"
 msgid "Отменить"
 msgstr ""
 
-#: storage/views/trading/get_offers.py:173
+#: storage/views/trading/get_offers.py:184
 msgctxt "w_trading"
 msgid "Купить"
 msgstr ""
 
-#: storage/views/trading/get_offers.py:175
+#: storage/views/trading/get_offers.py:186
 msgctxt "w_trading"
 msgid "Продать"
 msgstr ""
 
-#: storage/views/trading/premium_trading.py:25 storage/views/trading/premium_trading.py:37 storage/views/trading/premium_trading.py:83 storage/views/trading/premium_trading.py:96 storage/views/trading/premium_trading.py:108 storage/views/trading/premium_trading.py:116 storage/views/trading/premium_trading.py:174 storage/views/trading/premium_trading.py:181
+#: storage/views/trading/premium_trading.py:25
+#: storage/views/trading/premium_trading.py:37
+#: storage/views/trading/premium_trading.py:83
+#: storage/views/trading/premium_trading.py:96
+#: storage/views/trading/premium_trading.py:108
+#: storage/views/trading/premium_trading.py:116
+#: storage/views/trading/premium_trading.py:174
+#: storage/views/trading/premium_trading.py:181
 msgctxt "w_trading"
 msgid "Торговля Wild Pass"
 msgstr ""
@@ -3716,32 +3932,31 @@ msgctxt "w_trading"
 msgid "У вас недостаточно Wild Pass"
 msgstr ""
 
-#. Last modified by Артур Двинский, id 5
+#: storage/views/trading/premium_trading.py:183
+msgctxt "w_trading"
+msgid "Торговое предложение успешно принято"
+msgstr ""
+
 #: war/models/squads/heavy_vehicle.py:32 war/models/wars/war_side.py:36
 msgid "Танки"
 msgstr "Tanki"
 
-#. Last modified by Артур Двинский, id 5
 #: war/models/squads/infantry.py:47 war/models/wars/war_side.py:30
 msgid "Автоматы"
 msgstr "Automāti"
 
-#. Last modified by Артур Двинский, id 5
 #: war/models/squads/light_vehicle.py:47 war/models/wars/war_side.py:32
 msgid "БМП"
 msgstr "Bruņu tehnika"
 
-#. Last modified by Артур Двинский, id 5
 #: war/models/squads/light_vehicle.py:49 war/models/wars/war_side.py:34
 msgid "ПТ-орудия"
 msgstr "Prettanku ieroči"
 
-#. Last modified by Артур Двинский, id 5
 #: war/models/squads/recon.py:32
 msgid "БПЛА"
 msgstr "BPLA"
 
-#. Last modified by Артур Двинский, id 5
 #: war/models/wars/war_side.py:27
 msgid "Дроны"
 msgstr "Droni"

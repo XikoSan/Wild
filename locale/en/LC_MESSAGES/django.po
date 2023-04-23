@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-17 18:13+0300\n"
-"PO-Revision-Date: 2023-04-16 18:59+0300\n"
+"POT-Creation-Date: 2023-04-24 02:06+0300\n"
+"PO-Revision-Date: 2023-04-24 02:11+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -87,7 +87,7 @@ msgstr "Level"
 
 #: factory/models/production_log.py:29 factory/models/production_log.py:48
 #: state/models/treasury.py:38 storage/models/storage.py:38
-#: storage/models/storage.py:112
+#: storage/models/storage.py:112 storage/models/storage.py:234
 msgctxt "goods"
 msgid "Наличные"
 msgstr "Cash"
@@ -734,10 +734,10 @@ msgstr "Insufficient rights to create a position"
 #: storage/views/storage/cash_transfer.py:144
 #: storage/views/storage/new_storage.py:88
 #: storage/views/storage/upgrade_storage.py:157
-#: storage/views/trading/accept_offer.py:410
+#: storage/views/trading/accept_offer.py:408
 #: storage/views/trading/cancel_offer.py:149
 #: storage/views/trading/create_offer.py:218
-#: storage/views/trading/get_offers.py:190
+#: storage/views/trading/get_offers.py:201
 msgctxt "mining"
 msgid "Ошибка метода"
 msgstr "Method error"
@@ -865,8 +865,7 @@ msgstr "Leave the party"
 #: storage/views/trading/accept_offer.py:310
 #: storage/views/trading/accept_offer.py:322
 #: storage/views/trading/accept_offer.py:393
-#: storage/views/trading/accept_offer.py:400
-#: storage/views/trading/accept_offer.py:409
+#: storage/views/trading/accept_offer.py:407
 #: storage/views/trading/cancel_offer.py:40
 #: storage/views/trading/cancel_offer.py:53
 #: storage/views/trading/cancel_offer.py:61
@@ -893,7 +892,7 @@ msgstr "Leave the party"
 #: storage/views/trading/create_offer.py:217
 #: storage/views/trading/get_offers.py:40
 #: storage/views/trading/get_offers.py:62
-#: storage/views/trading/get_offers.py:189
+#: storage/views/trading/get_offers.py:200
 #: storage/views/trading/premium_trading.py:26
 #: storage/views/trading/premium_trading.py:38
 #: storage/views/trading/premium_trading.py:84
@@ -1056,9 +1055,7 @@ msgstr "play as usual - and get rewards!"
 #: player/templates/player/redesign/game_event/halloween.html:219
 msgctxt "game_event"
 msgid "- с 25.10 по 1.11 заполняй прогрессию события, расходуя энергию"
-msgstr ""
-"- from 25.10 to 1.11, complete the progression of the event by spending "
-"energy"
+msgstr "- from 25.10 to 1.11, complete the progression of the event by spending energy"
 
 #: player/templates/player/redesign/game_event/halloween.html:220
 msgctxt "game_event"
@@ -1112,21 +1109,13 @@ msgstr "Personal Event Progression"
 
 #: player/templates/player/redesign/game_event/newyear.html:393
 msgctxt "game_event"
-msgid ""
-"Заполняется расходованием энергии, как и ежедневное финансирование, и "
-"зависит только от твоих личных усилий."
-msgstr ""
-"It is filled with energy expenditure, like daily financing, and depends only "
-"on your personal efforts."
+msgid "Заполняется расходованием энергии, как и ежедневное финансирование, и зависит только от твоих личных усилий."
+msgstr "It is filled with energy expenditure, like daily financing, and depends only on your personal efforts."
 
 #: player/templates/player/redesign/game_event/newyear.html:394
 msgctxt "game_event"
-msgid ""
-"Она позволит получить тебе премиум-аккаунт для комфортной игры, а также один "
-"из трёх этапов зимней прогрессионой рамки аватара."
-msgstr ""
-"It will allow you to get a premium account for a comfortable game, as well "
-"as one of the three stages of the winter progression avatar frame."
+msgid "Она позволит получить тебе премиум-аккаунт для комфортной игры, а также один из трёх этапов зимней прогрессионой рамки аватара."
+msgstr "It will allow you to get a premium account for a comfortable game, as well as one of the three stages of the winter progression avatar frame."
 
 #: player/templates/player/redesign/game_event/newyear.html:395
 msgctxt "game_event"
@@ -1140,21 +1129,13 @@ msgstr "Fills with the efforts of all players on the server."
 
 #: player/templates/player/redesign/game_event/newyear.html:397
 msgctxt "game_event"
-msgid ""
-"Ты не сможешь собрать награды, открытые в общей прогрессии, пока не пройдёшь "
-"соответствующий этап личной."
-msgstr ""
-"You will not be able to collect rewards unlocked in the general progression "
-"until you complete the corresponding stage of the personal one."
+msgid "Ты не сможешь собрать награды, открытые в общей прогрессии, пока не пройдёшь соответствующий этап личной."
+msgstr "You will not be able to collect rewards unlocked in the general progression until you complete the corresponding stage of the personal one."
 
 #: player/templates/player/redesign/game_event/newyear.html:398
 msgctxt "game_event"
-msgid ""
-"Когда будет открыт очередной этап общей прогрессии, потрать энергию, чтобы "
-"получить свою награду"
-msgstr ""
-"When the next stage of the general progression is opened, spend energy to "
-"get your reward"
+msgid "Когда будет открыт очередной этап общей прогрессии, потрать энергию, чтобы получить свою награду"
+msgstr "When the next stage of the general progression is opened, spend energy to get your reward"
 
 #: player/templates/player/redesign/lists/skill_top.html:26
 #: player/templates/player/redesign/overview_skills.html:20
@@ -1395,91 +1376,76 @@ msgstr "Skill up will be canceled. Continue cancellation?"
 msgid "Продолжить"
 msgstr "Continue"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/player_repost.html:4
 msgctxt "repost"
 msgid "золото за репост"
 msgstr "gold for repost"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/player_repost.html:5
 msgctxt "repost"
 msgid "поддержи проект репостом и получай золото!"
 msgstr "support the project with a repost and get gold! "
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/player_repost.html:9
 msgctxt "repost"
 msgid "запись для репоста"
 msgstr "post for repost"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/player_repost.html:11
 msgctxt "repost"
 msgid "перейти к записи (ссылка)"
 msgstr "go to post (link)"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/player_repost.html:12
 msgctxt "repost"
 msgid "Для получения золота запись должна"
 msgstr "To receive gold, the entry must"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/player_repost.html:13
 msgctxt "repost"
 msgid "быть первой сверху (или после закрепа)"
 msgstr "be first on top (or after pinning)"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/player_repost.html:14
 msgctxt "repost"
 msgid "пробыть на стене не меньше часа"
 msgstr "stay on the wall for at least an hour"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/player_repost.html:15
 msgctxt "repost"
 msgid "Бонус можно получить раз в сутки"
 msgstr "Bonus can be received once a day"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/player_repost.html:19
 msgctxt "repost"
 msgid "репост не найден"
 msgstr "repost not found"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/player_repost.html:21
 msgctxt "repost"
 msgid "репост найден"
 msgstr "repost found"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/player_repost.html:24
 msgctxt "repost"
 msgid "Произошла ошибка API VK"
 msgstr "A VK API error has occurred"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/player_repost.html:25
 msgctxt "repost"
 msgid "Обычно помогает повторный логин в игре"
 msgstr "Usually it helps to re-login in the game"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/player_repost.html:26
 msgctxt "repost"
 msgid "Выйти из игры"
 msgstr "Quit"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/player_repost.html:33
 msgctxt "repost"
 msgid "Получить"
 msgstr "Get"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/player_repost.html:48
 msgctxt "repost"
 msgid "час не прошёл"
@@ -1621,9 +1587,9 @@ msgid "Блокировки"
 msgstr "Locks"
 
 #: player/templates/player/redesign/wallet.html:56
-#: player/templatetags/redesign/wallet_cash.py:24
-#: player/templatetags/redesign/wallet_cash.py:25
-#: player/templatetags/redesign/wallet_cash.py:31
+#: player/templatetags/redesign/wallet_cash.py:27
+#: player/templatetags/redesign/wallet_cash.py:28
+#: player/templatetags/redesign/wallet_cash.py:34
 msgctxt "wallet"
 msgid "Наличные"
 msgstr "Cash"
@@ -1634,12 +1600,9 @@ msgid "без контекста"
 msgstr "no context"
 
 #: player/templates/player/translate/translate.html:51
-#, fuzzy
-#| msgctxt "mining"
-#| msgid "Нечего забирать"
 msgctxt "translations"
 msgid "Собрать"
-msgstr "Nothing to get"
+msgstr "Build"
 
 #: player/templates/player/translate/translate.html:61
 msgctxt "translations"
@@ -1694,8 +1657,8 @@ msgctxt "skill_top"
 msgid "Топ по Силе"
 msgstr "Power top"
 
-#: player/templatetags/redesign/wallet_cash.py:18
-#: player/templatetags/redesign/wallet_cash.py:19
+#: player/templatetags/redesign/wallet_cash.py:20
+#: player/templatetags/redesign/wallet_cash.py:21
 msgctxt "wallet"
 msgid "Регион"
 msgstr "Region"
@@ -2486,11 +2449,11 @@ msgctxt "goods"
 msgid "БПЛА - лимит"
 msgstr "UAV - limit"
 
-#: storage/models/storage.py:271
+#: storage/models/storage.py:289
 msgid "positive_spend_stock_req"
 msgstr ""
 
-#: storage/models/storage.py:276
+#: storage/models/storage.py:294
 msgid "not_enough"
 msgstr ""
 
@@ -2689,6 +2652,7 @@ msgid "Выберите один или несколько критериев с
 msgstr "Select one or more criteria on the right and click \"Search\""
 
 #: storage/templates/storage/auctions/auctions.html:30
+#: storage/templates/storage/redesign/trading/trading.html:73
 #: storage/templates/storage/trading/trading.html:41
 msgctxt "w_trading"
 msgid "Ничего не найдено"
@@ -2760,6 +2724,11 @@ msgstr "transfer"
 msgctxt "assets"
 msgid "уничтожить"
 msgstr "destroy"
+
+#: storage/templates/storage/redesign/assets.html:43
+msgctxt "assets"
+msgid "уверен"
+msgstr ""
 
 #: storage/templates/storage/redesign/assets.html:49
 msgctxt "assets"
@@ -2838,8 +2807,7 @@ msgstr ""
 #: storage/templates/storage/redesign/storage.html:193
 msgctxt "storage_transfer"
 msgid "Вы можете перенести Склад в регион текущего местоположения (один раз)"
-msgstr ""
-"You can move the Warehouse to the region of the current location (once)"
+msgstr "You can move the Warehouse to the region of the current location (once)"
 
 #: storage/templates/storage/redesign/storage.html:206
 msgctxt "storage_transfer"
@@ -2855,8 +2823,7 @@ msgstr "Warehouse upgrade"
 #: storage/templates/storage/redesign/storage.html:215
 msgctxt "storage_upgrade"
 msgid "Вы можете улучшить Склад, расширив хранилища части товаров"
-msgstr ""
-"You can improve the Warehouse by expanding inventory of a part of the goods"
+msgstr "You can improve the Warehouse by expanding inventory of a part of the goods"
 
 #: storage/templates/storage/redesign/storage.html:216
 msgctxt "storage_upgrade"
@@ -2881,12 +2848,8 @@ msgstr "Not enough materials"
 
 #: storage/templates/storage/redesign/storage.html:258
 msgctxt "storage_upgrade"
-msgid ""
-"Выберите товары в каждой из категорий, ёмкость Склада для которых будет "
-"увеличена"
-msgstr ""
-"Select goods in each category for which the Warehouse capacity will be "
-"upgraded"
+msgid "Выберите товары в каждой из категорий, ёмкость Склада для которых будет увеличена"
+msgstr "Select goods in each category for which the Warehouse capacity will be upgraded"
 
 #: storage/templates/storage/redesign/storage.html:265
 msgctxt "storage_upgrade"
@@ -2920,21 +2883,13 @@ msgstr "of Premium account"
 
 #: storage/templates/storage/redesign/storage.html:366
 msgctxt "storage_assets"
-msgid ""
-"Ваш премиум-аккаунт будет продлён на один месяц. Данную операцию невозможно "
-"отменить. Продолжить?"
-msgstr ""
-"Your premium account will be renewed for one month. This operation cannot be "
-"undone. Proceed?"
+msgid "Ваш премиум-аккаунт будет продлён на один месяц. Данную операцию невозможно отменить. Продолжить?"
+msgstr "Your premium account will be renewed for one month. This operation cannot be undone. Proceed?"
 
 #: storage/templates/storage/redesign/storage.html:368
 msgctxt "storage_assets"
-msgid ""
-"Вы активируете премиум-аккаунт, длительностью один месяц. Данную операцию "
-"невозможно отменить. Продолжить?"
-msgstr ""
-"You will activate a premium account, lasting one month. This operation "
-"cannot be undone. Proceed?"
+msgid "Вы активируете премиум-аккаунт, длительностью один месяц. Данную операцию невозможно отменить. Продолжить?"
+msgstr "You will activate a premium account, lasting one month. This operation cannot be undone. Proceed?"
 
 #: storage/templates/storage/redesign/storage.html:371
 msgctxt "storage_assets"
@@ -2984,7 +2939,7 @@ msgstr "all money"
 #: storage/templates/storage/redesign/storage_blocks/no_storage.html:7
 msgctxt "no_storage"
 msgid "склад в регионе"
-msgstr "Warehouse in the"
+msgstr "warehouse in the"
 
 #: storage/templates/storage/redesign/storage_blocks/no_storage.html:9
 msgctxt "no_storage"
@@ -3025,6 +2980,197 @@ msgstr "delivery"
 msgctxt "no_storage"
 msgid "создать"
 msgstr "create"
+
+#: storage/templates/storage/redesign/trading/trading.html:15
+#: storage/views/trading/trading.py:24
+msgctxt "trading"
+msgid "Торговля"
+msgstr "Trading"
+
+#: storage/templates/storage/redesign/trading/trading.html:32
+msgctxt "trading"
+msgid "госзакупки"
+msgstr "public procurement"
+
+#: storage/templates/storage/redesign/trading/trading.html:46
+msgctxt "trading"
+msgid "создать"
+msgstr "create"
+
+#: storage/templates/storage/redesign/trading/trading.html:60
+msgctxt "trading"
+msgid "настройки поиска"
+msgstr "search filters"
+
+#: storage/templates/storage/redesign/trading/trading.html:64
+msgctxt "trading"
+msgid "Выбранная категория"
+msgstr "Selected category"
+
+#: storage/templates/storage/redesign/trading/trading.html:66
+msgctxt "trading"
+msgid "Выбранный товар"
+msgstr "Selected good"
+
+#: storage/templates/storage/redesign/trading/trading.html:72
+msgctxt "w_trading"
+msgid "Выберите один или несколько критериев в настройках поиска"
+msgstr "Select one or more criteria in the filters"
+
+#: storage/templates/storage/redesign/trading/trading.html:77
+#: storage/templates/storage/redesign/trading/trading.html:311
+msgctxt "trading"
+msgid "регион"
+msgstr "region"
+
+#: storage/templates/storage/redesign/trading/trading.html:79
+#: storage/templates/storage/redesign/trading/trading.html:157
+msgctxt "trading"
+msgid "товар"
+msgstr "good"
+
+#: storage/templates/storage/redesign/trading/trading.html:80
+#: storage/templates/storage/redesign/trading/trading.html:306
+msgctxt "trading"
+msgid "цена"
+msgstr "price"
+
+#: storage/templates/storage/redesign/trading/trading.html:81
+msgctxt "trading"
+msgid "продавец"
+msgstr "seller"
+
+#: storage/templates/storage/redesign/trading/trading.html:118
+msgctxt "trading"
+msgid "Настройки поиска"
+msgstr "Search filters"
+
+#: storage/templates/storage/redesign/trading/trading.html:120
+msgctxt "trading"
+msgid "тип предложения"
+msgstr "offer type"
+
+#: storage/templates/storage/redesign/trading/trading.html:123
+#: storage/templates/storage/trading/trading.html:70
+msgctxt "w_trading"
+msgid "Продажа"
+msgstr "Sell"
+
+#: storage/templates/storage/redesign/trading/trading.html:124
+#: storage/templates/storage/trading/trading.html:71
+msgctxt "w_trading"
+msgid "Покупка"
+msgstr "Buy"
+
+#: storage/templates/storage/redesign/trading/trading.html:131
+msgctxt "trading"
+msgid "создатель"
+msgstr "creator"
+
+#: storage/templates/storage/redesign/trading/trading.html:134
+#: storage/templates/storage/trading/trading.html:84
+msgctxt "w_trading"
+msgid "Все"
+msgstr "All"
+
+#: storage/templates/storage/redesign/trading/trading.html:135
+#: storage/templates/storage/trading/trading.html:85
+msgctxt "w_trading"
+msgid "Партия"
+msgstr "Party"
+
+#: storage/templates/storage/redesign/trading/trading.html:136
+#: storage/templates/storage/trading/trading.html:86
+msgctxt "w_trading"
+msgid "Мои"
+msgstr "Mine"
+
+#: storage/templates/storage/redesign/trading/trading.html:143
+msgctxt "trading"
+msgid "выбор категории"
+msgstr "category"
+
+#: storage/templates/storage/redesign/trading/trading.html:146
+msgctxt "trading"
+msgid "выберите категорию"
+msgstr "select a category"
+
+#: storage/templates/storage/redesign/trading/trading.html:160
+msgctxt "trading"
+msgid "выберите товар"
+msgstr "choose good"
+
+#: storage/templates/storage/redesign/trading/trading.html:185
+msgctxt "trading"
+msgid "поиск"
+msgstr "search"
+
+#: storage/templates/storage/redesign/trading/trading.html:293
+#: storage/templates/storage/redesign/trading/trading.html:394
+msgctxt "trading"
+msgid "покупка"
+msgstr "purchase"
+
+#: storage/templates/storage/redesign/trading/trading.html:297
+msgctxt "trading"
+msgid "владелец"
+msgstr "owner"
+
+#: storage/templates/storage/redesign/trading/trading.html:319
+msgctxt "trading"
+msgid "количество"
+msgstr "quantity"
+
+#: storage/templates/storage/redesign/trading/trading.html:348
+msgctxt "trading"
+msgid "стоимость"
+msgstr "cost"
+
+#: storage/templates/storage/redesign/trading/trading.html:353
+msgctxt "trading"
+msgid "доставка"
+msgstr "delivery"
+
+#: storage/templates/storage/redesign/trading/trading.html:360
+msgctxt "trading"
+msgid "итого"
+msgstr "total"
+
+#: storage/templates/storage/redesign/trading/trading.html:376
+#: storage/templates/storage/redesign/trading/trading.html:395
+msgctxt "trading"
+msgid "купить"
+msgstr "buy"
+
+#: storage/templates/storage/redesign/trading/trading.html:391
+msgctxt "trading"
+msgid "продажа"
+msgstr "sale"
+
+#: storage/templates/storage/redesign/trading/trading.html:392
+msgctxt "trading"
+msgid "продать"
+msgstr "sell"
+
+#: storage/templates/storage/redesign/trading/trading.html:398
+msgctxt "trading"
+msgid "Отмена торгового предложения"
+msgstr "Trade offer cancellation"
+
+#: storage/templates/storage/redesign/trading/trading.html:399
+msgctxt "trading"
+msgid "Ваше торговое предложение будет удалено. Продолжить?"
+msgstr "Your trade offer will be removed. Continue?"
+
+#: storage/templates/storage/redesign/trading/trading.html:400
+msgctxt "trading"
+msgid "Продолжить"
+msgstr "Continue"
+
+#: storage/templates/storage/redesign/trading/trading.html:401
+msgctxt "trading"
+msgid "Отмена"
+msgstr "Cancel"
 
 #: storage/templates/storage/storage_lines/cash_transfer.html:9
 msgid "Наличные"
@@ -3122,31 +3268,6 @@ msgctxt "w_trading"
 msgid "Государственнные закупки"
 msgstr "State acquisition"
 
-#: storage/templates/storage/trading/trading.html:70
-msgctxt "w_trading"
-msgid "Продажа"
-msgstr "Sell"
-
-#: storage/templates/storage/trading/trading.html:71
-msgctxt "w_trading"
-msgid "Покупка"
-msgstr "Buy"
-
-#: storage/templates/storage/trading/trading.html:84
-msgctxt "w_trading"
-msgid "Все"
-msgstr "All"
-
-#: storage/templates/storage/trading/trading.html:85
-msgctxt "w_trading"
-msgid "Партия"
-msgstr "Party"
-
-#: storage/templates/storage/trading/trading.html:86
-msgctxt "w_trading"
-msgid "Мои"
-msgstr "Mine"
-
 #: storage/templates/storage/trading/trading.html:113
 msgctxt "w_trading"
 msgid "Создать"
@@ -3222,12 +3343,12 @@ msgstr "Insufficient funds to pay for shipping"
 #: storage/views/assets/assets_action.py:148
 msgctxt "assets"
 msgid "На складе в регионе "
-msgstr "At warehouse in the"
+msgstr "At warehouse in the "
 
 #: storage/views/assets/assets_action.py:140
 msgctxt "assets"
 msgid " недостаточно места для товара "
-msgstr "insufficient space for goods"
+msgstr " insufficient space for goods"
 
 #: storage/views/assets/assets_action.py:141
 #: storage/views/assets/assets_action.py:150
@@ -3249,7 +3370,7 @@ msgstr " not enough goods "
 #: storage/views/assets/assets_action.py:149
 msgctxt "assets"
 msgid " для передачи."
-msgstr "for transfer."
+msgstr " for transfer."
 
 #: storage/views/assets/assets_action.py:157
 msgctxt "assets"
@@ -3422,7 +3543,7 @@ msgstr "Maximum level"
 #: storage/views/storage/upgrade_storage.py:53
 msgctxt "storage_upgrade"
 msgid "Недостаточно материала: "
-msgstr "Not enough material:"
+msgstr "Not enough material: "
 
 #: storage/views/storage/upgrade_storage.py:88
 msgctxt "storage_upgrade"
@@ -3460,8 +3581,7 @@ msgstr "Not all positions for improvement indicated"
 #: storage/views/trading/accept_offer.py:309
 #: storage/views/trading/accept_offer.py:321
 #: storage/views/trading/accept_offer.py:392
-#: storage/views/trading/accept_offer.py:399
-#: storage/views/trading/accept_offer.py:408
+#: storage/views/trading/accept_offer.py:406
 msgctxt "w_trading"
 msgid "Принятие оффера"
 msgstr "Offer acceptance"
@@ -3569,12 +3689,6 @@ msgstr "The selected offer warehouse does not exist"
 msgctxt "w_trading"
 msgid "Оффера такого типа не существует"
 msgstr "This type of offer does not exist"
-
-#: storage/views/trading/accept_offer.py:401
-#: storage/views/trading/premium_trading.py:183
-msgctxt "w_trading"
-msgid "Торговое предложение успешно принято"
-msgstr "Trade offer successfully accepted"
 
 #: storage/views/trading/cancel_offer.py:39
 #: storage/views/trading/cancel_offer.py:52
@@ -3691,7 +3805,7 @@ msgstr "Trade offer successfully created"
 
 #: storage/views/trading/get_offers.py:39
 #: storage/views/trading/get_offers.py:61
-#: storage/views/trading/get_offers.py:188
+#: storage/views/trading/get_offers.py:199
 msgctxt "w_trading"
 msgid "Получение офферов"
 msgstr "Getting offers"
@@ -3701,17 +3815,17 @@ msgctxt "w_trading"
 msgid "Некорректный владелец"
 msgstr "Incorrect owner"
 
-#: storage/views/trading/get_offers.py:169
+#: storage/views/trading/get_offers.py:180
 msgctxt "w_trading"
 msgid "Отменить"
 msgstr "Cancel"
 
-#: storage/views/trading/get_offers.py:173
+#: storage/views/trading/get_offers.py:184
 msgctxt "w_trading"
 msgid "Купить"
 msgstr "Buy"
 
-#: storage/views/trading/get_offers.py:175
+#: storage/views/trading/get_offers.py:186
 msgctxt "w_trading"
 msgid "Продать"
 msgstr "Sell"
@@ -3737,6 +3851,11 @@ msgstr "Failed to get trade offer owner"
 msgctxt "w_trading"
 msgid "У вас недостаточно Wild Pass"
 msgstr "You don't have enough Wild Pass"
+
+#: storage/views/trading/premium_trading.py:183
+msgctxt "w_trading"
+msgid "Торговое предложение успешно принято"
+msgstr "Trade offer successfully accepted"
 
 #: war/models/squads/heavy_vehicle.py:32 war/models/wars/war_side.py:36
 msgid "Танки"

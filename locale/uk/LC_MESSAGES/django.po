@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-17 18:13+0300\n"
+"POT-Creation-Date: 2023-04-24 02:06+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,47 +18,39 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: bill/models/change_taxes.py:21 party/templates/party/party_view.html:71
 msgid "Регион"
 msgstr "Регіон"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: bill/models/change_taxes.py:22 region/templates/region/region_view.html:99
 msgid "Государство"
 msgstr "Держава"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: bill/models/change_taxes.py:38
 msgid "Финансирование"
 msgstr "Фінансування"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: bill/models/change_taxes.py:39 bill/models/explore_resources.py:26
 #: bill/models/geological_surveys.py:27
 #: region/templates/region/region_info.html:82
 msgid "Нефть"
 msgstr "Нафта"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: bill/models/change_taxes.py:40 bill/models/explore_resources.py:27
 #: bill/models/geological_surveys.py:28
 #: region/templates/region/region_info.html:96
 msgid "Руда"
 msgstr "Руда"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: bill/models/change_taxes.py:41
 msgid "Торговля"
 msgstr "Торгівля"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: bill/models/explore_resources.py:25 bill/models/geological_surveys.py:26
 #: region/templates/region/region_info.html:68
 msgid "Золото"
 msgstr "Золото"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: bill/templates/state/gov/bills/change_residency.html:42
 #: bill/templates/state/gov/drafts/change_residency.html:21
 #: bill/templates/state/gov/reviewed/change_residency.html:41
@@ -70,7 +62,6 @@ msgctxt "goods"
 msgid "Автоматы"
 msgstr "Автомати"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: bill/templates/state/gov/bills/change_residency.html:47
 #: bill/templates/state/gov/drafts/change_residency.html:26
 #: bill/templates/state/gov/reviewed/change_residency.html:44
@@ -89,21 +80,18 @@ msgstr ""
 msgid "no_common_borders"
 msgstr ""
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: factory/models/factory/factory.py:29
 msgctxt "factory"
 msgid "Уровень"
 msgstr "Рівень"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: factory/models/production_log.py:29 factory/models/production_log.py:48
 #: state/models/treasury.py:38 storage/models/storage.py:38
-#: storage/models/storage.py:112
+#: storage/models/storage.py:112 storage/models/storage.py:234
 msgctxt "goods"
 msgid "Наличные"
 msgstr "Готівка"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: factory/models/project.py:16 state/models/treasury.py:62
 #: storage/models/destroy.py:38 storage/models/storage.py:59
 #: storage/models/storage.py:148 storage/models/trade_offer.py:82
@@ -112,7 +100,6 @@ msgctxt "goods"
 msgid "Бензин"
 msgstr "Бензин"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: factory/models/project.py:39 state/models/treasury.py:68
 #: storage/models/destroy.py:44 storage/models/storage.py:63
 #: storage/models/storage.py:158 storage/models/trade_offer.py:84
@@ -121,13 +108,11 @@ msgctxt "goods"
 msgid "Пластик"
 msgstr "Пластик"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: factory/models/project.py:62 storage/models/transport.py:128
 msgctxt "goods"
 msgid "Дизель"
 msgstr "Дизель"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: factory/models/project.py:85 state/models/treasury.py:71
 #: storage/models/destroy.py:46 storage/models/storage.py:65
 #: storage/models/storage.py:162 storage/models/trade_offer.py:85
@@ -137,7 +122,6 @@ msgctxt "goods"
 msgid "Сталь"
 msgstr "Сталь"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: factory/models/project.py:101 state/models/treasury.py:74
 #: storage/models/destroy.py:48 storage/models/storage.py:67
 #: storage/models/storage.py:166 storage/models/trade_offer.py:86
@@ -147,7 +131,6 @@ msgctxt "goods"
 msgid "Алюминий"
 msgstr "Алюміній"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: factory/models/project.py:116 state/models/treasury.py:78
 #: storage/models/destroy.py:52 storage/models/storage.py:71
 #: storage/models/storage.py:172 storage/models/trade_offer.py:88
@@ -156,7 +139,6 @@ msgctxt "goods"
 msgid "Медикаменты"
 msgstr "Медикаменти"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: factory/models/project.py:132 state/models/treasury.py:81
 #: storage/models/destroy.py:54 storage/models/storage.py:72
 #: storage/models/storage.py:177 storage/models/trade_offer.py:89
@@ -164,7 +146,6 @@ msgctxt "goods"
 msgid "Буровые установки"
 msgstr "Бурові установки"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: factory/models/project.py:163 state/models/treasury.py:88
 #: storage/models/destroy.py:60 storage/models/storage.py:78
 #: storage/models/storage.py:198 storage/models/trade_offer.py:92
@@ -173,7 +154,6 @@ msgctxt "goods"
 msgid "Танки"
 msgstr "Танки"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: factory/models/project.py:184 state/models/treasury.py:91
 #: storage/models/destroy.py:62 storage/models/storage.py:82
 #: storage/models/storage.py:203 storage/models/trade_offer.py:96
@@ -182,7 +162,6 @@ msgctxt "goods"
 msgid "Штурмовики"
 msgstr "Штурмовики"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: factory/models/project.py:200 state/models/treasury.py:97
 #: storage/models/destroy.py:66 storage/models/storage.py:83
 #: storage/models/storage.py:213 storage/models/trade_offer.py:97
@@ -191,7 +170,6 @@ msgctxt "goods"
 msgid "ПЗРК"
 msgstr "ПЗРК"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: factory/models/project.py:216 state/models/treasury.py:100
 #: storage/models/destroy.py:68 storage/models/storage.py:79
 #: storage/models/storage.py:193 storage/models/trade_offer.py:93
@@ -199,7 +177,6 @@ msgctxt "goods"
 msgid "ПТ-орудия"
 msgstr "ПТ-гармати"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: factory/models/project.py:232 state/models/treasury.py:103
 #: storage/models/destroy.py:70 storage/models/storage.py:86
 #: storage/models/storage.py:188 storage/models/trade_offer.py:94
@@ -208,7 +185,6 @@ msgctxt "goods"
 msgid "Мины"
 msgstr "Міни"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: factory/models/project.py:248 state/models/treasury.py:106
 #: storage/models/destroy.py:72 storage/models/storage.py:85
 #: storage/models/storage.py:218 storage/models/trade_offer.py:98
@@ -217,56 +193,47 @@ msgctxt "goods"
 msgid "БМП"
 msgstr "БМП"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: factory/templates/factory/redesign/factory.html:13
 #: factory/views/factory.py:53
 msgctxt "factory"
 msgid "Производство"
 msgstr "Виробництво"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: factory/templates/factory/redesign/factory.html:17
 msgctxt "factory"
 msgid "цена"
 msgstr "ціна"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: factory/templates/factory/redesign/factory.html:38
 msgctxt "factory"
 msgid "Энергия"
 msgstr "Енергія"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: factory/templates/factory/redesign/factory.html:101
 msgctxt "factory"
 msgid "выбор группы товаров"
 msgstr "вибір группи товарів"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: factory/templates/factory/redesign/factory.html:113
 msgctxt "factory"
 msgid "выбор товара"
 msgstr "вибір товару"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: factory/templates/factory/redesign/factory.html:129
 msgctxt "factory"
 msgid "выбор схемы"
 msgstr "вибір схеми"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: factory/templates/factory/redesign/factory.html:153
 msgctxt "factory"
 msgid "создать"
 msgstr "створити"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: factory/views/produce_good.py:31
 msgctxt "factory"
 msgid "Дождитесь конца полёта"
 msgstr "Дочекайтесь кінця польоту"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: factory/views/produce_good.py:32 factory/views/produce_good.py:43
 #: factory/views/produce_good.py:59 factory/views/produce_good.py:71
 #: factory/views/produce_good.py:85 factory/views/produce_good.py:95
@@ -277,7 +244,6 @@ msgctxt "factory"
 msgid "Ошибка производства"
 msgstr "Помилка виробництва"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: factory/views/produce_good.py:33 factory/views/produce_good.py:44
 #: factory/views/produce_good.py:60 factory/views/produce_good.py:72
 #: factory/views/produce_good.py:86 factory/views/produce_good.py:96
@@ -288,209 +254,175 @@ msgctxt "storage"
 msgid "Закрыть"
 msgstr "Замкнути"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: factory/views/produce_good.py:42
 msgctxt "factory"
 msgid "Склад не заполнен"
 msgstr "Склад не заповнений"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: factory/views/produce_good.py:58
 msgctxt "factory"
 msgid "Указанный Склад вам не принадлежит"
 msgstr "Вказаний Склад вам не належить"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: factory/views/produce_good.py:70
 msgctxt "factory"
 msgid "Указанный товар не существует"
 msgstr "Вказаний  товар не існує"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: factory/views/produce_good.py:84
 msgctxt "factory"
 msgid "Номер схемы - не число"
 msgstr "Номер схеми - не число"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: factory/views/produce_good.py:94
 msgctxt "factory"
 msgid "Указанной схемы не существует"
 msgstr "Вказаної схеми не існує"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: factory/views/produce_good.py:105
 msgctxt "factory"
 msgid "Количество - не число"
 msgstr "Кількість  - не число"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: factory/views/produce_good.py:115
 msgctxt "factory"
 msgid "Количество товара должно быть положительным числом"
 msgstr "Кількість товару має бути додатнім числом"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: factory/views/produce_good.py:123
 msgctxt "factory"
 msgid "Количество товара слишком велико"
 msgstr "Кількість товару занадто велика"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: factory/views/produce_good.py:134
 msgctxt "factory"
 msgid "Недостаточно места на складе для товара. В наличии "
 msgstr "Недостатньо місця на складі для товару. В наявності"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: factory/views/produce_good.py:135 factory/views/produce_good.py:172
 #: factory/views/produce_good.py:192
 msgctxt "factory"
 msgid ", требуется "
 msgstr ", потрібно"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: factory/views/produce_good.py:172
 msgctxt "factory"
 msgid "Недостаточно энергии. В наличии "
 msgstr "Недостатньо енергії. В наявності"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: factory/views/produce_good.py:191
 msgctxt "factory"
 msgid "Недостаточно "
 msgstr "Недостатньо"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: factory/views/produce_good.py:191
 msgctxt "factory"
 msgid ". В наличии "
 msgstr ". В наявності"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: gov/templates/state/gov/forms/foreign_right.html:21
 #: party/templates/party/party_requests.html:36
 msgid "отклонить всё"
 msgstr "скасувати все"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/templates/party/redesign/manage.html:17
 #: party/views/management/management.py:28
 msgctxt "party_manage"
 msgid "Управление партией"
 msgstr "Керування партією"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/templates/party/redesign/manage.html:32
 msgctxt "party_manage"
 msgid "партия"
 msgstr "партія"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/templates/party/redesign/manage.html:47
 msgctxt "party_manage"
 msgid "должности"
 msgstr "посади"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/templates/party/redesign/manage.html:117
 msgctxt "party_manage"
 msgid "Тип партии"
 msgstr "Тип партії"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/templates/party/redesign/manage.html:119
 msgctxt "party_manage"
 msgid "открытая"
 msgstr "відчинена"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/templates/party/redesign/manage.html:119
 msgctxt "party_manage"
 msgid "закрытая"
 msgstr "зачинена"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/templates/party/redesign/manage.html:119
 msgctxt "party_manage"
 msgid "изменить"
 msgstr "змінити"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/templates/party/redesign/manage.html:124
 msgctxt "party_manage"
 msgid "Роспуск партии"
 msgstr "Розпуск партії"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/templates/party/redesign/manage.html:129
 msgctxt "party_manage"
 msgid "подтвердить роспуск"
 msgstr "підтвердити розпуск"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/templates/party/redesign/manage.html:132
 msgctxt "party_manage"
 msgid "роспуск невозможен"
 msgstr "розпуск неможливий"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/templates/party/redesign/manage.html:153
 msgctxt "party_manage"
 msgid "добавить описание партии"
 msgstr "додати опис партії"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/templates/party/redesign/manage.html:168
 msgctxt "party_manage"
 msgid "Добавить должность"
 msgstr "Додати посаду"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/templates/party/redesign/manage.html:183
 #: party/templates/party/redesign/manage.html:199
 msgctxt "party_manage"
 msgid "секретарь"
 msgstr "секретар"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/templates/party/redesign/manage.html:186
 msgctxt "party_manage"
 msgid "добавить"
 msgstr "додати"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/templates/party/redesign/manage.html:198
 msgctxt "party_manage"
 msgid "название должности"
 msgstr "назва посади"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/templates/party/redesign/manage.html:200
 msgctxt "party_manage"
 msgid "действия"
 msgstr "дії"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/templates/party/redesign/manage.html:250
 msgctxt "party_manage"
 msgid "Смена названия партии"
 msgstr "Зміна назви партії"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/templates/party/redesign/manage.html:267
 #: party/templates/party/redesign/manage.html:295
 msgctxt "party_manage"
 msgid "сохранить"
 msgstr "зберегти"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/templates/party/redesign/manage.html:278
 msgctxt "party_manage"
 msgid "Смена описания партии"
 msgstr "Зміна опису партії"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/templates/party/redesign/manage.html:350
 #: player/templates/player/redesign/new_player.html:135
 #: player/templates/player/redesign/new_player.html:149
@@ -500,53 +432,45 @@ msgstr "Зміна опису партії"
 msgid "Отмена"
 msgstr "Скасувати"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/templates/party/redesign/manage.html:351
 #: player/templates/player/redesign/new_player.html:136
 #: player/templates/player/redesign/profile.html:360
 msgid "Загрузить"
 msgstr "Завантажити"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/templates/party/redesign/new_party.html:15
 #: party/views/management/new_party.py:83
 msgctxt "new_party"
 msgid "Новая партия"
 msgstr "Нова партія"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/templates/party/redesign/new_party.html:19
 msgctxt "new_party"
 msgid "Стоимость создания партии"
 msgstr "Вартість створення партії"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/templates/party/redesign/new_party.html:25
 msgctxt "new_party"
 msgid "Название партии"
 msgstr "Назва партії"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/templates/party/redesign/new_party.html:41
 #: party/templates/party/redesign/party_blocks/no_party.html:21
 msgctxt "no_party"
 msgid "создать партию"
 msgstr "створити партію"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/templates/party/redesign/party.html:61
 msgctxt "has_party"
 msgid "исключить"
 msgstr "виключити"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/templates/party/redesign/party_blocks/has_party.html:12
 #: party/templates/party/redesign/party_blocks/no_party.html:10
 msgctxt "has_party"
 msgid "Партия"
 msgstr "Партія"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/templates/party/redesign/party_blocks/has_party.html:130
 #: party/templates/party/redesign/party_requests.html:29
 #: party/templates/party/redesign/party_view.html:175
@@ -554,21 +478,18 @@ msgctxt "has_party"
 msgid "Никнейм"
 msgstr "Нікнейм"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/templates/party/redesign/party_blocks/has_party.html:131
 #: party/templates/party/redesign/party_view.html:176
 msgctxt "has_party"
 msgid "Был в сети"
 msgstr "Був у мережі"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/templates/party/redesign/party_blocks/has_party.html:132
 #: party/templates/party/redesign/party_view.html:177
 msgctxt "has_party"
 msgid "Должность"
 msgstr "Посада"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/templates/party/redesign/party_blocks/has_party.html:159
 #: party/templates/party/redesign/party_blocks/has_party.html:162
 #: party/templates/party/redesign/party_view.html:200
@@ -577,174 +498,146 @@ msgctxt "has_party"
 msgid "давно"
 msgstr "давно"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/templates/party/redesign/party_blocks/has_party.html:195
 msgctxt "has_party"
 msgid "Покинуть партию?"
 msgstr "Покинути партію?"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/templates/party/redesign/party_blocks/has_party.html:196
 msgctxt "has_party"
 msgid "Вы покинете партию, а также все связанные должности. Продолжить?"
 msgstr "Ви покинете партію, а також всі пов'язані посади. Продовжити?"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/templates/party/redesign/party_blocks/has_party.html:197
 msgctxt "has_party"
 msgid "Продолжить"
 msgstr "Продовжити"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/templates/party/redesign/party_blocks/has_party.html:198
 msgctxt "has_party"
 msgid "Отмена"
 msgstr "Скасувати"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/templates/party/redesign/party_blocks/no_party.html:15
 msgctxt "no_party"
 msgid "Вы не состоите в партии"
 msgstr "Ви не перебуваєте в партії"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/templates/party/redesign/party_blocks/no_party.html:16
 msgctxt "no_party"
 msgid "Доступные партии"
 msgstr "Доступні партії"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/templates/party/redesign/party_blocks/no_party.html:16
 msgctxt "no_party"
 msgid "в регионе"
 msgstr "в регіоні"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/templates/party/redesign/party_blocks/no_party.html:19
 msgctxt "no_party"
 msgid "вы в полете"
 msgstr "ви в польоті"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/templates/party/redesign/party_blocks/no_party.html:39
 msgctxt "no_party"
 msgid "региональные"
 msgstr "регіональні"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/templates/party/redesign/party_blocks/no_party.html:54
 msgctxt "no_party"
 msgid "все партии"
 msgstr "усі партії"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/templates/party/redesign/party_blocks/no_party.html:70
 #: party/templates/party/redesign/party_blocks/no_party.html:131
 msgctxt "no_party"
 msgid "Партия"
 msgstr "Партія"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/templates/party/redesign/party_blocks/no_party.html:81
 #: party/templates/party/redesign/party_blocks/no_party.html:142
 msgctxt "no_party"
 msgid "Действие"
 msgstr "Дія"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/templates/party/redesign/party_blocks/no_party.html:107
 #: party/templates/party/redesign/party_blocks/no_party.html:161
 msgctxt "no_party"
 msgid "Вступить"
 msgstr "Вступити"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/templates/party/redesign/party_blocks/no_party.html:111
 #: party/templates/party/redesign/party_blocks/no_party.html:165
 msgctxt "no_party"
 msgid "Отменить заявку"
 msgstr "Скасувати заявку"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/templates/party/redesign/party_blocks/no_party.html:113
 #: party/templates/party/redesign/party_blocks/no_party.html:167
 msgctxt "no_party"
 msgid "Подать заявку"
 msgstr "Подати заявку"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/templates/party/redesign/party_requests.html:15
 msgctxt "party_requests"
 msgid "Заявки в партию"
 msgstr "Заявки в партію"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/templates/party/redesign/party_requests.html:17
 msgctxt "party_requests"
 msgid "Отклонить всё"
 msgstr "Відхилити усе"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/templates/party/redesign/party_requests.html:19
 msgctxt "party_requests"
 msgid "заявок нет"
 msgstr "заявок нема"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/templates/party/redesign/party_requests.html:30
 msgctxt "party_requests"
 msgid "Принять"
 msgstr "Прийняти"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/templates/party/redesign/party_requests.html:31
 msgctxt "party_requests"
 msgid "Отклонить"
 msgstr "Відхилити"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/templates/party/redesign/party_view.html:34
 msgctxt "party_view"
 msgid "информация"
 msgstr "інформація"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/templates/party/redesign/party_view.html:49
 msgctxt "party_view"
 msgid "состав"
 msgstr "склад"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/templates/party/redesign/party_view.html:85
 msgctxt "party_view"
 msgid "Участников"
 msgstr "Учасників"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/templates/party/redesign/party_view.html:93
 msgctxt "party_view"
 msgid "Тип"
 msgstr "Тип"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/templates/party/redesign/party_view.html:101
 msgctxt "party_view"
 msgid "Дата основания"
 msgstr "Дата заснування"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/templates/party/redesign/party_view.html:126
 msgctxt "party_view"
 msgid "вступить"
 msgstr "вступити"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/templates/party/redesign/party_view.html:143
 msgctxt "party_view"
 msgid "отменить заявку"
 msgstr "відхилити заявку"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/templates/party/redesign/party_view.html:158
 msgctxt "party_view"
 msgid "подать заявку"
@@ -754,36 +647,29 @@ msgstr "подати заявку"
 msgid "primaries_in_party"
 msgstr ""
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
-#: party/views/lists/region_parties.py:86
-#: party/views/lists/state_parties.py:40
+#: party/views/lists/region_parties.py:86 party/views/lists/state_parties.py:40
 msgid "Партии региона"
 msgstr "Партії регіону"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/views/lists/world_parties.py:87
 msgid "Партии мира"
 msgstr "Партії світу"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/views/management/new_party.py:44
 msgctxt "party_manage"
 msgid "Глава партии"
 msgstr "Голова партії"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/views/management/new_party.py:47
 msgctxt "party_manage"
 msgid "Новый игрок партии"
 msgstr "Новий гравець партії"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/views/management/roles/new_role.py:49
 msgctxt "party_manage"
 msgid "Должность с таким названием уже есть"
 msgstr "Посада з такою назвою вже існує"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/views/management/roles/new_role.py:50
 #: party/views/management/roles/new_role.py:57
 #: party/views/management/roles/new_role.py:65
@@ -793,7 +679,6 @@ msgctxt "party_manage"
 msgid "Новая должность"
 msgstr "Нова посада"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/views/management/roles/new_role.py:51
 #: party/views/management/roles/new_role.py:58
 #: party/views/management/roles/new_role.py:66
@@ -826,25 +711,21 @@ msgstr "Нова посада"
 msgid "Закрыть"
 msgstr "Замкнути"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/views/management/roles/new_role.py:56
 msgctxt "party_manage"
 msgid "Название не может быть пустым"
 msgstr "Назва не може бути порожньою"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/views/management/roles/new_role.py:64
 msgctxt "party_manage"
 msgid "Достигнуто ограничение на число должностей"
 msgstr "Досягнуто обмеження на кількість посад"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/views/management/roles/new_role.py:71
 msgctxt "party_manage"
 msgid "Недостаточно прав для создания должности"
 msgstr "Недостатньо прав для створення посади"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/views/management/roles/new_role.py:79
 #: party/views/management/roles/remove_role.py:77
 #: player/views/color_change.py:102 region/views/do_mining.py:255
@@ -853,21 +734,19 @@ msgstr "Недостатньо прав для створення посади"
 #: storage/views/storage/cash_transfer.py:144
 #: storage/views/storage/new_storage.py:88
 #: storage/views/storage/upgrade_storage.py:157
-#: storage/views/trading/accept_offer.py:410
+#: storage/views/trading/accept_offer.py:408
 #: storage/views/trading/cancel_offer.py:149
 #: storage/views/trading/create_offer.py:218
-#: storage/views/trading/get_offers.py:190
+#: storage/views/trading/get_offers.py:201
 msgctxt "mining"
 msgid "Ошибка метода"
 msgstr "Помилка методу"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/views/management/roles/remove_role.py:24
 msgctxt "party_manage"
 msgid "Должность не найдена"
 msgstr "Посада не знайдена"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/views/management/roles/remove_role.py:25
 #: party/views/management/roles/remove_role.py:37
 #: party/views/management/roles/remove_role.py:46
@@ -878,37 +757,31 @@ msgctxt "party_manage"
 msgid "Удаление должности"
 msgstr "Видалення посади"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/views/management/roles/remove_role.py:36
 msgctxt "party_manage"
 msgid "Это неудаляемая должность"
 msgstr "Цю посаду неможливо видалити"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/views/management/roles/remove_role.py:45
 msgctxt "party_manage"
 msgid "Перед удалением должности её необходимо убрать у всех игроков!"
 msgstr "Перед видаленням посади її необхідно прибрати у всіх гравців!"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/views/management/roles/remove_role.py:60
 msgctxt "party_manage"
 msgid "Вы пытаетесь удалить должность другой партии!"
 msgstr "Ви намагаєтеся видалити посаду іншої партії!"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/views/management/roles/remove_role.py:68
 msgctxt "party_manage"
 msgid "Недостаточно прав для удаления должности"
 msgstr "Недостатньо прав для видалення посади"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/views/management/roles/set_role.py:35
 msgctxt "has_party"
 msgid "В партии может быть только один глава"
 msgstr "В партії може бути тільки один голова"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/views/management/roles/set_role.py:36
 #: party/views/management/roles/set_role.py:51
 #: party/views/management/roles/set_role.py:58
@@ -917,27 +790,23 @@ msgctxt "has_party"
 msgid "Смена должности"
 msgstr "Зміна посади"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/views/management/roles/set_role.py:50
 #: party/views/management/roles/set_role.py:64
 msgctxt "has_party"
 msgid "Недостаточно прав для смены должности"
 msgstr "Недостатньо прав для зміни посади"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/views/management/roles/set_role.py:57
 msgctxt "has_party"
 msgid "Некорректная партия игрока"
 msgstr "Некоректна партія гравця"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/views/management/staff/leave_party.py:37
 #: party/views/management/staff/leave_party.py:209
 msgctxt "party"
 msgid "Выход из партии"
 msgstr "Вихід з партії"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/views/management/staff/leave_party.py:38
 #: party/views/management/staff/leave_party.py:210 player/player.py:288
 #: player/player.py:310 region/views/cancel_auto.py:34
@@ -996,8 +865,7 @@ msgstr "Вихід з партії"
 #: storage/views/trading/accept_offer.py:310
 #: storage/views/trading/accept_offer.py:322
 #: storage/views/trading/accept_offer.py:393
-#: storage/views/trading/accept_offer.py:400
-#: storage/views/trading/accept_offer.py:409
+#: storage/views/trading/accept_offer.py:407
 #: storage/views/trading/cancel_offer.py:40
 #: storage/views/trading/cancel_offer.py:53
 #: storage/views/trading/cancel_offer.py:61
@@ -1024,7 +892,7 @@ msgstr "Вихід з партії"
 #: storage/views/trading/create_offer.py:217
 #: storage/views/trading/get_offers.py:40
 #: storage/views/trading/get_offers.py:62
-#: storage/views/trading/get_offers.py:189
+#: storage/views/trading/get_offers.py:200
 #: storage/views/trading/premium_trading.py:26
 #: storage/views/trading/premium_trading.py:38
 #: storage/views/trading/premium_trading.py:84
@@ -1037,92 +905,77 @@ msgctxt "mining"
 msgid "Закрыть"
 msgstr "Зачинити"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/views/management/staff/leave_party.py:39
 msgctxt "party"
 msgid "Вы не исключили всех однопартийцев"
 msgstr "Ви не виключили всіх однопартійців"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/views/management/staff/leave_party.py:211
 msgctxt "party"
 msgid "Вы не состоите в указанной партии"
 msgstr "Ви не перебуваєте в вказаній партії"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: party/views/party.py:29 player/views/lists/cash_top.py:99
 #: player/views/lists/cash_top.py:100
 msgid "Партия"
 msgstr "Партія"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/logs/cash_log.py:21
 msgctxt "cash_log"
 msgid "Финансирование"
 msgstr "Фінансування"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/logs/cash_log.py:22
 msgctxt "cash_log"
 msgid "Майнинг"
 msgstr "Майнінг"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/logs/cash_log.py:23
 msgctxt "cash_log"
 msgid "Перелёт"
 msgstr "Переліт"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/logs/cash_log.py:24
 msgctxt "cash_log"
 msgid "Новый Склад"
 msgstr "Новий Склад"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/logs/cash_log.py:25
 msgctxt "cash_log"
 msgid "Операции со Складом"
 msgstr "Операції зі Складом"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/logs/cash_log.py:26
 msgctxt "cash_log"
 msgid "Передача товаров"
 msgstr "Передача товарів"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/logs/cash_log.py:27
 msgctxt "cash_log"
 msgid "Торговля"
 msgstr "Торгівля"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/logs/cash_log.py:28
 msgctxt "cash_log"
 msgid "Гос. закупки"
 msgstr "Держ. закупівлі"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/logs/cash_log.py:29
 msgctxt "cash_log"
 msgid "Навыки"
 msgstr "Навички"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/player.py:286 region/views/do_mining.py:31
 #: region/views/start_auto.py:26
 msgctxt "mining"
 msgid "Дождитесь конца полёта"
 msgstr "Дочекайтесь кінця польоту"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/player.py:287 player/player.py:309 region/views/retrieve_cash.py:40
 msgctxt "mining"
 msgid "Ошибка получения финансирования"
 msgstr "Помилка отримання фінансування"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/player.py:308
 msgctxt "mining"
 msgid "Нечего забирать"
@@ -1161,14 +1014,12 @@ msgstr ""
 msgid "party_post"
 msgstr ""
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/game_event/halloween.html:128
 #: player/views/game_event/halloween.py:52
 msgctxt "game_event"
 msgid "Хэллоуинский ивент!"
 msgstr "Хелловіньский івент!"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/game_event/halloween.html:142
 #: player/templates/player/redesign/game_event/halloween.html:153
 #: player/templates/player/redesign/game_event/halloween.html:162
@@ -1180,7 +1031,6 @@ msgctxt "game_event"
 msgid "очков"
 msgstr "очок"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/game_event/halloween.html:143
 #: player/templates/player/redesign/game_event/halloween.html:154
 #: player/templates/player/redesign/game_event/halloween.html:163
@@ -1192,137 +1042,101 @@ msgctxt "game_event"
 msgid "премиум день"
 msgstr "преміум день"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/game_event/halloween.html:217
 msgctxt "game_event"
 msgid "Хэллоуинский ивент в WP:"
 msgstr "Хелловіньский івент в WP:"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/game_event/halloween.html:218
 msgctxt "game_event"
 msgid "играй как обычно - и получай награды!"
 msgstr "грай як завжди - і отримуй нагороди!"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/game_event/halloween.html:219
 msgctxt "game_event"
 msgid "- с 25.10 по 1.11 заполняй прогрессию события, расходуя энергию"
 msgstr "- з 25.10 до 1.11 заповнюй прогресію події, витрачаючи енергію"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/game_event/halloween.html:220
 msgctxt "game_event"
 msgid "- каждые 2 000 потраченной энергии открывают новые награды"
 msgstr "- кожні 2 000 витраченої енергії відкривають нові нагороди"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/game_event/halloween.html:221
 msgctxt "game_event"
 msgid "Награды события:"
 msgstr "Нагороди події:"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/game_event/halloween.html:222
 msgctxt "game_event"
 msgid "- до семи дней премиум аккаунта"
 msgstr "- до семи днів преміум акаунту"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/game_event/halloween.html:223
 msgctxt "game_event"
 msgid "- первая прогрессионная рамка для аватара в игре"
 msgstr "- перша прогресіонна рамка для аватара в грі"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/game_event/newyear.html:218
 msgctxt "game_event"
 msgid "С новым годом!"
 msgstr "З новим роком!"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/game_event/newyear.html:221
 msgctxt "game_event"
 msgid "общий"
 msgstr "загальний"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/game_event/newyear.html:222
 msgctxt "game_event"
 msgid "личный"
 msgstr "особистий"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/game_event/newyear.html:390
 msgctxt "game_event"
 msgid "Новогоднее событие в WP:"
 msgstr "Новорічна подія в WP:"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/game_event/newyear.html:391
 msgctxt "game_event"
 msgid "игровые ценности и новые рамки для аватара в двух прогрессиях!"
 msgstr "Ігрові цінності і нові рамки для аватара в двох прогресіях!"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/game_event/newyear.html:392
 msgctxt "game_event"
 msgid "Личная прогрессия события"
 msgstr "Особиста прогресія події"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/game_event/newyear.html:393
 msgctxt "game_event"
-msgid ""
-"Заполняется расходованием энергии, как и ежедневное финансирование, и "
-"зависит только от твоих личных усилий."
-msgstr ""
-"Заповнюється витраченням енергії, як і щоденне фінансування, і залежить "
-"тільки від твоїх особистих зусиль."
+msgid "Заполняется расходованием энергии, как и ежедневное финансирование, и зависит только от твоих личных усилий."
+msgstr "Заповнюється витраченням енергії, як і щоденне фінансування, і залежить тільки від твоїх особистих зусиль."
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/game_event/newyear.html:394
 msgctxt "game_event"
-msgid ""
-"Она позволит получить тебе премиум-аккаунт для комфортной игры, а также один"
-" из трёх этапов зимней прогрессионой рамки аватара."
-msgstr ""
-"Вона дозволить отримати тобі преміум-акаунт для зручної гри, а також один з "
-"трьох етапів зимової прогресіонної рамки аватара."
+msgid "Она позволит получить тебе премиум-аккаунт для комфортной игры, а также один из трёх этапов зимней прогрессионой рамки аватара."
+msgstr "Вона дозволить отримати тобі преміум-акаунт для зручної гри, а також один з трьох етапів зимової прогресіонної рамки аватара."
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/game_event/newyear.html:395
 msgctxt "game_event"
 msgid "Общая прогрессия события"
 msgstr "Загальна прогресія події"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/game_event/newyear.html:396
 msgctxt "game_event"
 msgid "Заполняется усилиями всех игроков сервера."
 msgstr "Заповнюється зусиллями усіх гравців сервера."
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/game_event/newyear.html:397
 msgctxt "game_event"
-msgid ""
-"Ты не сможешь собрать награды, открытые в общей прогрессии, пока не пройдёшь"
-" соответствующий этап личной."
-msgstr ""
-"Ти не зможеш зібрати нагороди, відкриті в загальній прогресії, поки не "
-"пройдеш відповідний етап особистої."
+msgid "Ты не сможешь собрать награды, открытые в общей прогрессии, пока не пройдёшь соответствующий этап личной."
+msgstr "Ти не зможеш зібрати нагороди, відкриті в загальній прогресії, поки не пройдеш відповідний етап особистої."
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/game_event/newyear.html:398
 msgctxt "game_event"
-msgid ""
-"Когда будет открыт очередной этап общей прогрессии, потрать энергию, чтобы "
-"получить свою награду"
-msgstr ""
-"Коли буде відкритий черговий етап загальної прогресії, витрать енергію, щоб "
-"отримати свою нагороду"
+msgid "Когда будет открыт очередной этап общей прогрессии, потрать энергию, чтобы получить свою награду"
+msgstr "Коли буде відкритий черговий етап загальної прогресії, витрать енергію, щоб отримати свою нагороду"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/lists/skill_top.html:26
 #: player/templates/player/redesign/overview_skills.html:20
 #: player/templatetags/redesign/skill_top/power_top.py:64
@@ -1330,84 +1144,70 @@ msgstr ""
 msgid "Сила"
 msgstr "Сила"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/lists/skill_top.html:41
 #: player/templates/player/redesign/overview_skills.html:69
 msgid "Интеллект"
 msgstr "Інтелект"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/lists/skill_top.html:56
 #: player/templates/player/redesign/overview_skills.html:118
 msgid "Выносливость"
 msgstr "Витривалість"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/menu.html:7
 msgctxt "menu"
 msgid "обзор"
 msgstr "огляд"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/menu.html:17
 msgctxt "menu"
 msgid "добыча"
 msgstr "видобування"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/menu.html:28
 msgctxt "menu"
 msgid "склад"
 msgstr "склад"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/menu.html:39
 msgctxt "menu"
 msgid "активы"
 msgstr "активи"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/menu.html:57
 msgctxt "menu"
 msgid "торговля"
 msgstr "торгівля"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/menu.html:67
 msgctxt "menu"
 msgid "производство"
 msgstr "виробництво"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/menu.html:80
 msgctxt "menu"
 msgid "карта"
 msgstr "мапа"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/menu.html:90
 msgctxt "menu"
 msgid "партия"
 msgstr "партія"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/menu.html:105
 msgctxt "menu"
 msgid "правительство"
 msgstr "влада"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/menu.html:119
 msgctxt "menu"
 msgid "войны"
 msgstr "війни"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/new_player.html:34
 msgid "Создание персонажа"
 msgstr "Створення персонажа"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/new_player.html:38
 #: player/templatetags/redesign/skill_top/endurance_top.py:58
 #: player/templatetags/redesign/skill_top/endurance_top.py:59
@@ -1419,7 +1219,6 @@ msgstr "Створення персонажа"
 msgid "Никнейм"
 msgstr "Нікнейм"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/new_player.html:41
 #: player/templatetags/redesign/skill_top/endurance_top.py:53
 #: player/templatetags/redesign/skill_top/knowledge_top.py:53
@@ -1428,120 +1227,99 @@ msgstr "Нікнейм"
 msgid "Аватар"
 msgstr "Аватар"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/new_player.html:48
 msgid "Часовой пояс"
 msgstr "Часовий пояс"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/overview.html:34
 msgid "обзор"
 msgstr "огляд"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/overview.html:55
 msgid "чат"
 msgstr "чат"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/overview.html:66
 msgid "мир"
 msgstr "світ"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/overview.html:115
 msgid "независимый регион"
 msgstr "незалежний регіон"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/overview.html:230
 msgid "войн нет"
 msgstr "війн нема"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/overview.html:275
 msgctxt "overview"
 msgid "Хэллоуинский ивент"
 msgstr "Хелловіньский івент"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/overview.html:282
 msgctxt "overview"
 msgid "С новым годом!"
 msgstr "З новим роком!"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/overview.html:448
 msgctxt "overview"
 msgid "сила"
 msgstr "сила"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/overview.html:453
 msgctxt "overview"
 msgid "инт"
 msgstr "інт"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/overview.html:458
 msgctxt "overview"
 msgid "вын"
 msgstr "витр"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/overview.html:474
 msgctxt "overview"
 msgid "Выборы лидера"
 msgstr "Вибори лідера"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/overview.html:477
 msgctxt "overview"
 msgid "Выборы"
 msgstr "Вибори"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/overview.html:482
 msgctxt "overview"
 msgid "партии"
 msgstr "партії"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/overview.html:482
 msgctxt "overview"
 msgid "государства"
 msgstr "держави"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/overview.html:482
 msgctxt "overview"
 msgid "региона"
 msgstr "регіона"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/overview.html:519
 #: player/templates/player/redesign/overview.html:564
 msgid "партий нет"
 msgstr "партій нема"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/overview.html:526
 msgctxt "overview"
 msgid "парламент"
 msgstr "парламент"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/overview.html:744
 msgid "У вас пока еще нет стикеров"
 msgstr "У вас поки що нема стікерів"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/overview.html:757
 msgctxt "overview"
 msgid "магазин"
 msgstr "магазин"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/overview_skills.html:23
 #: player/templates/player/redesign/overview_skills.html:72
 #: player/templates/player/redesign/overview_skills.html:121
@@ -1549,7 +1327,6 @@ msgstr "магазин"
 msgid "Завершение"
 msgstr "Завершення"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/overview_skills.html:51
 #: player/templates/player/redesign/overview_skills.html:100
 #: player/templates/player/redesign/overview_skills.html:149
@@ -1557,7 +1334,6 @@ msgctxt "skills"
 msgid "в очередь"
 msgstr "в чергу"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/overview_skills.html:53
 #: player/templates/player/redesign/overview_skills.html:59
 #: player/templates/player/redesign/overview_skills.html:102
@@ -1568,7 +1344,6 @@ msgctxt "skills"
 msgid "недоступно"
 msgstr "недоступно"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/overview_skills.html:57
 #: player/templates/player/redesign/overview_skills.html:106
 #: player/templates/player/redesign/overview_skills.html:155
@@ -1576,205 +1351,172 @@ msgctxt "skills"
 msgid "изучается..."
 msgstr "вивчається"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/overview_skills.html:63
 #: player/templates/player/redesign/overview_skills.html:112
 #: player/templates/player/redesign/overview_skills.html:161
 msgid "изучить"
 msgstr "вивчити"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/overview_skills.html:171
 msgctxt "skills"
 msgid "дерево навыков"
 msgstr "дерево навичок"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/overview_skills.html:176
 msgctxt "skill_cancel"
 msgid "Отмена изучения навыка"
 msgstr "Скасування вивчення навички"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/overview_skills.html:177
 msgctxt "skill_cancel"
 msgid "Изучение навыка будет отменено. Продолжить?"
 msgstr "Вивчення навички буде скасовано. Продовжити?"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/overview_skills.html:178
 msgid "Продолжить"
 msgstr "Продовжити"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/player_repost.html:4
 msgctxt "repost"
 msgid "золото за репост"
 msgstr "золото за репост"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/player_repost.html:5
 msgctxt "repost"
 msgid "поддержи проект репостом и получай золото!"
 msgstr "підтримай проект репостом і отримай золото!"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/player_repost.html:9
 msgctxt "repost"
 msgid "запись для репоста"
 msgstr "запис для репосту"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/player_repost.html:11
 msgctxt "repost"
 msgid "перейти к записи (ссылка)"
 msgstr "перейти до запису (посилання)"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/player_repost.html:12
 msgctxt "repost"
 msgid "Для получения золота запись должна"
 msgstr "Для отримання золота запис має"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/player_repost.html:13
 msgctxt "repost"
 msgid "быть первой сверху (или после закрепа)"
 msgstr "бути перший зверху (або після закріпленого посту)"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/player_repost.html:14
 msgctxt "repost"
 msgid "пробыть на стене не меньше часа"
 msgstr "пробути на стіні не меньше години"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/player_repost.html:15
 msgctxt "repost"
 msgid "Бонус можно получить раз в сутки"
 msgstr "Бонус можна отримати раз на добу "
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/player_repost.html:19
 msgctxt "repost"
 msgid "репост не найден"
 msgstr "репост не знайдено"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/player_repost.html:21
 msgctxt "repost"
 msgid "репост найден"
 msgstr "репост знайдено"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/player_repost.html:24
 msgctxt "repost"
 msgid "Произошла ошибка API VK"
 msgstr "Сталася помилка API VK"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/player_repost.html:25
 msgctxt "repost"
 msgid "Обычно помогает повторный логин в игре"
 msgstr "Зазвичай допомагає повторний логін у грі"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/player_repost.html:26
 msgctxt "repost"
 msgid "Выйти из игры"
 msgstr "Вийти з гри"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/player_repost.html:33
 msgctxt "repost"
 msgid "Получить"
 msgstr "Отримати"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/player_repost.html:48
 msgctxt "repost"
 msgid "час не прошёл"
 msgstr "година не пройшла"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/player_status.html:36
 #: player/templates/player/redesign/player_status.html:43
 msgctxt "status"
 msgid "пополнить"
 msgstr "поповнити"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/profile.html:170
 msgid "настройки"
 msgstr "налаштування"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/profile.html:180
 msgctxt "profile"
 msgid "премиум-аккаунт"
 msgstr "преміум-акаунт"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/profile.html:182
 msgctxt "profile"
 msgid "до"
 msgstr "до"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/profile.html:182
 msgctxt "profile"
 msgid "не активен"
 msgstr "не активний"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/profile.html:187
 #: player/templates/player/redesign/view_profile.html:76
 msgctxt "profile"
 msgid "место в рейтинге"
 msgstr "місце в рейтингу"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/profile.html:191
 #: player/templates/player/redesign/view_profile.html:80
 msgctxt "profile"
 msgid "(к рейтингу)"
 msgstr "(до рейтингу)"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/profile.html:197
 #: player/templates/player/redesign/view_profile.html:86
 msgctxt "profile"
 msgid "характеристики"
 msgstr "характеристики"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/profile.html:209
 #: player/templates/player/redesign/view_profile.html:98
 msgctxt "profile"
 msgid "место жительства"
 msgstr "місце проживання"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/profile.html:218
 #: player/templates/player/redesign/view_profile.html:107
 msgctxt "profile"
 msgid "прописка"
 msgstr "прописка"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/profile.html:221
 #: player/templates/player/redesign/view_profile.html:110
 msgctxt "profile"
 msgid "с"
 msgstr "з"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/profile.html:227
 #: player/templates/player/redesign/view_profile.html:116
 msgid "партия"
 msgstr "партія"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/profile.html:233
 #: player/templates/player/redesign/profile.html:251
 #: player/templates/player/redesign/view_profile.html:122
@@ -1782,108 +1524,91 @@ msgstr "партія"
 msgid "беспартийный"
 msgstr "безпартійний"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/profile.html:236
 #: player/templates/player/redesign/view_profile.html:125
 msgctxt "profile"
 msgid "история"
 msgstr "історія"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/profile.html:243
 #: player/templates/player/redesign/view_profile.html:132
 msgid "должность в партии"
 msgstr "посада в партії "
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/profile.html:278
 #: player/templates/player/redesign/view_profile.html:146
 msgid "о себе"
 msgstr "про себе"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/profile.html:413
 msgctxt "profile"
 msgid "показывать партийный фон"
 msgstr "показувати партійний фон"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/profile.html:429
 msgctxt "profile"
 msgid "Энергетики в авто-добыче"
 msgstr "Енергетики в авто-видобуванні"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/profile.html:445
 msgctxt "profile"
 msgid "Скрыть кнопку Wiki"
 msgstr "Приховати кнопку Wiki"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/profile.html:476
 msgctxt "profile"
 msgid "стандарт"
 msgstr "стандарт"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/profile.html:490
 #: player/templates/player/translate/translate.html:36
 msgid "сохранить"
 msgstr "зберегти"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/view_profile.html:69
 msgctxt "profile"
 msgid "был в сети"
 msgstr "був в мережі"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/view_profile.html:71
 msgid "давно"
 msgstr "давно"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/wallet.html:26
 #: player/templatetags/redesign/wallet_operations.py:37
 msgctxt "wallet"
 msgid "Операции"
 msgstr "Операції"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/wallet.html:41
 #: player/templatetags/redesign/wallet_locks.py:40
 msgctxt "wallet"
 msgid "Блокировки"
 msgstr "Блокування"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/redesign/wallet.html:56
-#: player/templatetags/redesign/wallet_cash.py:24
-#: player/templatetags/redesign/wallet_cash.py:25
-#: player/templatetags/redesign/wallet_cash.py:31
+#: player/templatetags/redesign/wallet_cash.py:27
+#: player/templatetags/redesign/wallet_cash.py:28
+#: player/templatetags/redesign/wallet_cash.py:34
 msgctxt "wallet"
 msgid "Наличные"
 msgstr "Готівка"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/translate/translate.html:17
 msgctxt "translations"
 msgid "без контекста"
 msgstr "без контексту "
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/translate/translate.html:51
 msgctxt "translations"
 msgid "Собрать"
 msgstr "Зібрати"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/translate/translate.html:61
 msgctxt "translations"
 msgid "Русский язык"
 msgstr "Російська мова"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templates/player/translate/translate.html:62
 msgctxt "translations"
 msgid "Перевод"
@@ -1897,7 +1622,6 @@ msgstr ""
 msgid "since"
 msgstr ""
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templatetags/redesign/skill_top/endurance_top.py:46
 #: player/templatetags/redesign/skill_top/endurance_top.py:47
 #: player/templatetags/redesign/skill_top/knowledge_top.py:46
@@ -1908,257 +1632,212 @@ msgstr ""
 msgid "Место"
 msgstr "Місце"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templatetags/redesign/skill_top/endurance_top.py:64
 #: player/templatetags/redesign/skill_top/endurance_top.py:65
 msgid "Вын"
 msgstr "Вит"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templatetags/redesign/skill_top/endurance_top.py:71
 msgctxt "skill_top"
 msgid "Топ по Выносливости"
 msgstr "Топ по Витривалості"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templatetags/redesign/skill_top/knowledge_top.py:64
 #: player/templatetags/redesign/skill_top/knowledge_top.py:65
 msgid "Инт"
 msgstr "Інт"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templatetags/redesign/skill_top/knowledge_top.py:71
 msgctxt "skill_top"
 msgid "Топ по Интеллекту"
 msgstr "Топ по Інтелекту"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templatetags/redesign/skill_top/power_top.py:71
 msgctxt "skill_top"
 msgid "Топ по Силе"
 msgstr "Топ по Силі"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
-#: player/templatetags/redesign/wallet_cash.py:18
-#: player/templatetags/redesign/wallet_cash.py:19
+#: player/templatetags/redesign/wallet_cash.py:20
+#: player/templatetags/redesign/wallet_cash.py:21
 msgctxt "wallet"
 msgid "Регион"
 msgstr "Регіон"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templatetags/redesign/wallet_locks.py:21
 #: player/templatetags/redesign/wallet_locks.py:22
 msgctxt "wallet"
 msgid "Товар"
 msgstr "Товар"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templatetags/redesign/wallet_locks.py:26
 #: player/templatetags/redesign/wallet_locks.py:27
 msgctxt "wallet"
 msgid "Количество"
 msgstr "Кількість"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templatetags/redesign/wallet_locks.py:33
 #: player/templatetags/redesign/wallet_locks.py:34
 msgctxt "wallet"
 msgid "Блокировано"
 msgstr "Заблоковано"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templatetags/redesign/wallet_operations.py:18
 #: player/templatetags/redesign/wallet_operations.py:19
 msgctxt "wallet"
 msgid "Время"
 msgstr "Час"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templatetags/redesign/wallet_operations.py:24
 #: player/templatetags/redesign/wallet_operations.py:25
 msgctxt "wallet"
 msgid "Изменение"
 msgstr "Зміна"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/templatetags/redesign/wallet_operations.py:30
 #: player/templatetags/redesign/wallet_operations.py:31
 msgctxt "wallet"
 msgid "Описание"
 msgstr "Опис"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/views/change_back_allow.py:41
-#: player/views/change_wiki_hide_allow.py:41
-#: player/views/full_auto_allow.py:41
+#: player/views/change_wiki_hide_allow.py:41 player/views/full_auto_allow.py:41
 msgid "Некорректное значение"
 msgstr "Некоректне значення "
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/views/change_back_allow.py:42 player/views/change_back_allow.py:58
 msgid "Настройка партийного фона"
 msgstr "Налаштування партійного фону"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/views/change_back_allow.py:57
-#: player/views/change_wiki_hide_allow.py:57
-#: player/views/full_auto_allow.py:57 player/views/set_language.py:54
-#: player/views/set_timezone.py:43 region/views/cancel_auto.py:35
-#: region/views/retrieve_cash.py:42 region/views/start_auto.py:78
+#: player/views/change_wiki_hide_allow.py:57 player/views/full_auto_allow.py:57
+#: player/views/set_language.py:54 player/views/set_timezone.py:43
+#: region/views/cancel_auto.py:35 region/views/retrieve_cash.py:42
+#: region/views/start_auto.py:78
 msgid "Ошибка метода"
 msgstr "Помилка метода"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/views/change_wiki_hide_allow.py:42
 #: player/views/change_wiki_hide_allow.py:58
 msgid "Скрыть кнопку Wiki"
 msgstr "Приховати кнопку Wiki"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/views/color_change.py:30
 msgctxt "profile"
 msgid "Некорректный код фона игры"
 msgstr "Некоректний код фону гри"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/views/color_change.py:31 player/views/color_change.py:43
 #: player/views/color_change.py:55 player/views/color_change.py:67
 msgctxt "profile"
 msgid "Некорректный код цвета"
 msgstr "Некоректний код кольору"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/views/color_change.py:42
 msgctxt "profile"
 msgid "Некорректный код блоков игры"
 msgstr "Некоректний код блоків гри"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/views/color_change.py:54
 msgctxt "profile"
 msgid "Некорректный код текста игры"
 msgstr "Некоректний код тексту гри"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/views/color_change.py:66
 msgctxt "profile"
 msgid "Некорректный код акцентов игры"
 msgstr "Некоректний код акцентів гри"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/views/color_change.py:103
 msgctxt "party_manage"
 msgid "Ошибка изменения цветов игры"
 msgstr "Помилка зміни кольорів гри"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/views/expense_energy.py:28
 msgid "Десять минут ещё не прошло"
 msgstr "Десять хвилин ще не пройшло"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/views/expense_energy.py:29 player/views/expense_energy.py:52
 #: player/views/expense_energy.py:61 player/views/expense_energy.py:72
 msgid "Пополнение энергии"
 msgstr "Поповнення енергії"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/views/expense_energy.py:51
 msgid "Пополнение энергии не требуется"
 msgstr "Поповнення енергії не потрібне"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/views/expense_energy.py:60
 msgid "Недостаточно Энергетиков. Создайте их в Хранилище Склада"
 msgstr "Недостатньо Енергетиків. Створіть їх у Сховищі Складу"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/views/expense_energy.py:71
 msgid "Ошибка типа запроса"
 msgstr "Помилка типу запиту"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/views/full_auto_allow.py:42 player/views/full_auto_allow.py:58
 msgid "Энергетики в авто-добыче"
 msgstr "Енергетики в авто-видобуванні"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/views/game_event/new_year.py:57
 msgctxt "game_event_ny"
 msgid "С новым годом!"
 msgstr "З новим роком!"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/views/lists/cash_top.py:94
 msgid "Герб"
 msgstr "Герб"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/views/lists/cash_top.py:109
 msgid "Топ богатейших"
 msgstr "Топ найбагатших"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/views/lists/region_citizens.py:63
 msgid "Граждане региона"
 msgstr "Громадяни регіону"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/views/lists/region_players.py:33
 msgid "Население региона"
 msgstr "Населення регіону"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/views/lists/skill_top.py:21
 msgid "Топ по характеристикам"
 msgstr "Топ по характеристикам"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/views/lists/world_players.py:57
 msgid "Мировое население"
 msgstr "Світове населення"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/views/new_player.py:90
 msgid ": попробуйте создать персонажа, не загружая изображение"
 msgstr ": спробуйте створити персонажа, не завантажуючи зображення"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/views/new_player.py:91 player/views/new_player.py:104
 msgid "Новый персонаж"
 msgstr "Новый персонаж"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/views/new_player.py:103
 msgid "Ошибка в форме профиля"
 msgstr "Помилка в формі профілю"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/views/overview.py:191
 msgid "Обзор"
 msgstr "Огляд"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/views/set_language.py:38
 msgid "Такого языка в игре нет"
 msgstr "Такої мови в грі нема"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/views/set_language.py:39 player/views/set_language.py:55
 msgid "Изменение языка"
 msgstr "Зміна мови"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/views/set_timezone.py:27
 msgid "Такого часового пояса в игре нет"
 msgstr "Такого часового поясу в грі нема"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/views/set_timezone.py:28 player/views/set_timezone.py:44
 msgid "Изменение часового пояса"
 msgstr "Зміна часового поясу"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/views/skills/skill_queue.py:30 skill/views/skills_list.py:59
 msgid "Навыки"
 msgstr "Навички"
@@ -2168,140 +1847,116 @@ msgstr "Навички"
 msgid "Last modified by {player.nickname}, id {player.pk}"
 msgstr ""
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: player/views/wallet.py:21
 msgid "Финансы"
 msgstr "Фінанси"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: region/region.py:90
 msgctxt "goods"
 msgid "WTI"
 msgstr "WTI"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: region/region.py:91
 msgctxt "goods"
 msgid "Brent"
 msgstr "Brent"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: region/region.py:92
 msgctxt "goods"
 msgid "Urals"
 msgstr "Urals"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: region/templates/region/buildings/defences.html:5
 msgid "Уровень Укреплений"
 msgstr "Рівень Укріплень "
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: region/templates/region/buildings/hospital.html:5
 msgid "Уровень Госпиталя"
 msgstr "Рівень Госпіталю"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: region/templates/region/buildings/hospital.html:17
 msgid "Рейтинг Госпиталя"
 msgstr "Рейтинг Госпіталю"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: region/templates/region/buildings/power_plant.html:5
 msgid "Уровень ТЭЦ"
 msgstr "Рівень ТЕЦ"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: region/templates/region/redesign/map.html:309
 msgctxt "regions_list"
 msgid "Тюрингия"
 msgstr "Тюрингія"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: region/templates/region/redesign/map.html:311
 msgctxt "regions_list"
 msgid "Саксония"
 msgstr "Саксонія"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: region/templates/region/redesign/map.html:313
 msgctxt "regions_list"
 msgid "Чехия"
 msgstr "Чехія"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: region/templates/region/redesign/map.html:315
 msgctxt "regions_list"
 msgid "Нижнесилезское воеводство"
 msgstr "Нижньосілезьке воєводство"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: region/templates/region/redesign/map.html:317
 msgctxt "regions_list"
 msgid "Любушское воеводство"
 msgstr "Любуське воєводство"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: region/templates/region/redesign/map.html:319
 msgctxt "regions_list"
 msgid "Бавария"
 msgstr "Баварія"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: region/templates/region/redesign/map.html:321
 msgctxt "regions_list"
 msgid "Бранденбург"
 msgstr "Бранденбург"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: region/templates/region/redesign/map.html:323
 msgctxt "regions_list"
 msgid "Саксония-Анхальт"
 msgstr "Саксонія-Ангальт"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: region/templates/region/redesign/map.html:325
 msgctxt "regions_list"
 msgid "Австрия"
 msgstr "Австрія"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: region/templates/region/redesign/map.html:327
 msgctxt "regions_list"
 msgid "Опольское воеводство"
 msgstr "Опольске воєводство"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: region/templates/region/redesign/mining.html:9
 msgctxt "mining"
 msgid "Добыча"
 msgstr "Видобування"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: region/templates/region/redesign/mining.html:11
 msgctxt "daily_header"
 msgid "Потрать энергию и получи"
 msgstr "Витрать енергію і отримай"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: region/templates/region/redesign/mining.html:12
 msgctxt "daily_header"
 msgid "до"
 msgstr "до"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: region/templates/region/redesign/mining.html:12
 msgctxt "daily_header"
 msgid "за день!"
 msgstr "за день!"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: region/templates/region/redesign/mining.html:15
 msgctxt "daily_header"
 msgid "энергии потрачено"
 msgstr "енергії витрачено"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: region/templates/region/redesign/mining.html:25
 #: region/templates/region/redesign/mining.html:58
 #: region/templates/region/redesign/mining.html:84
@@ -2310,32 +1965,27 @@ msgctxt "daily_header"
 msgid "в полете"
 msgstr "в польоті"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: region/templates/region/redesign/mining.html:27
 msgctxt "daily_header"
 msgid "получаем"
 msgstr "отримуємо"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: region/templates/region/redesign/mining.html:28
 msgctxt "daily_header"
 msgid "получить"
 msgstr "отримати"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: region/templates/region/redesign/mining.html:46
 msgctxt "daily_header"
 msgid "уже получено"
 msgstr "вже отримано"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: region/templates/region/redesign/mining.html:50
 #: region/templates/region/redesign/region_info.html:20
 msgctxt "mining"
 msgid "Золото"
 msgstr "Золото"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: region/templates/region/redesign/mining.html:51
 #: region/templates/region/redesign/mining.html:77
 #: region/templates/region/redesign/mining.html:103
@@ -2343,7 +1993,6 @@ msgctxt "mining"
 msgid "Запасы"
 msgstr "Запаси"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: region/templates/region/redesign/mining.html:61
 #: region/templates/region/redesign/mining.html:87
 #: region/templates/region/redesign/mining.html:113
@@ -2351,7 +2000,6 @@ msgctxt "mining"
 msgid "авто"
 msgstr "авто"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: region/templates/region/redesign/mining.html:70
 #: region/templates/region/redesign/mining.html:96
 #: region/templates/region/redesign/mining.html:122
@@ -2359,65 +2007,54 @@ msgctxt "mining"
 msgid "добыча"
 msgstr "видобування"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: region/templates/region/redesign/mining.html:76
 #: region/templates/region/redesign/region_info.html:31
 msgctxt "mining"
 msgid "Нефть"
 msgstr "Нафта"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: region/templates/region/redesign/mining.html:78
 msgctxt "mining"
 msgid "Марка нефти"
 msgstr "Марка нафти"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: region/templates/region/redesign/mining.html:102
 #: region/templates/region/redesign/region_info.html:42
 msgctxt "mining"
 msgid "Руда"
 msgstr "Руда"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: region/templates/region/redesign/mining.html:104
 msgctxt "mining"
 msgid "Качество руды"
 msgstr "Якість руди"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: region/templates/region/redesign/region_info.html:65
 msgctxt "map"
 msgid "Вы здесь"
 msgstr "Ви тут"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: region/templates/region/redesign/region_info.html:71
 msgctxt "map"
 msgid "отправиться"
 msgstr "відправитись"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: region/templates/region/region_info.html:39
 msgid "Вы летите в"
 msgstr "Ви летите в"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: region/templates/region/region_info.html:42
 msgid "Вы здесь"
 msgstr "Ви тут"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: region/templates/region/region_info.html:44
 msgid "Время полёта"
 msgstr "Час польоту"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: region/templates/region/region_info.html:44
 msgid "минут"
 msgstr "хвилин"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: region/templates/region/region_info.html:53
 #: region/templates/region/region_view.html:38
 #: region/templates/region/region_view.html:52
@@ -2436,66 +2073,54 @@ msgstr ""
 msgid "reg_med_lvl"
 msgstr ""
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: region/templates/region/region_view.html:111
 msgid "Независимый регион"
 msgstr "Незалежний регіон"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: region/templates/region/region_view.html:119
 msgid "Запасы золота"
 msgstr "Запаси золота"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: region/templates/region/region_view.html:133
 msgid "Запасы нефти"
 msgstr "Запаси нафти"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: region/templates/region/region_view.html:147
 msgid "Марка нефти"
 msgstr "Марка нафти"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: region/templates/region/region_view.html:159
 msgid "Запасы руд"
 msgstr "Запаси руд"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: region/templates/region/region_view.html:173
 msgid "Качество руды (уголь/железо/бокситы)"
 msgstr "Якість руди (вугілля/залізо/боксити)"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: region/templates/region/region_view.html:194
 msgid "Региональные налоги"
 msgstr "Регіональні податки"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: region/templates/region/region_view.html:201
 #: state/templates/state/state_view.html:154
 msgid "На финансирование"
 msgstr "На фінансування"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: region/templates/region/region_view.html:213
 #: state/templates/state/state_view.html:166
 msgid "На добычу"
 msgstr "На видобування"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: region/templates/region/region_view.html:227
 #: state/templates/state/state_view.html:180
 msgid "На торговлю"
 msgstr "На торгівлю"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: region/views/cancel_auto.py:33
 msgctxt "mining"
 msgid "Ошибка при отмене"
 msgstr "Помилка при скасуванні"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: region/views/do_mining.py:32 region/views/do_mining.py:45
 #: region/views/do_mining.py:55 region/views/do_mining.py:68
 #: region/views/do_mining.py:77 region/views/do_mining.py:86
@@ -2505,80 +2130,66 @@ msgctxt "mining"
 msgid "Ошибка добычи ресурсов"
 msgstr "Помилка видобування ресурсів"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: region/views/do_mining.py:44 region/views/start_auto.py:53
 msgctxt "mining"
 msgid "У вас нет склада в этом регионе"
 msgstr "У вас нема складу в цьому регіоні"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: region/views/do_mining.py:57
 msgctxt "mining"
 msgid "Количество энергии - не число"
 msgstr "Кількість енергії - не число"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: region/views/do_mining.py:67
 msgctxt "mining"
 msgid "Количество Энергии должно быть положительным"
 msgstr "Кількість Енергії має бути додатньою"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: region/views/do_mining.py:76
 msgctxt "mining"
 msgid "Количество Энергии должно быть кратно десяти"
 msgstr "Кількість Енергії має бути кратною десяти "
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: region/views/do_mining.py:85
 msgctxt "mining"
 msgid "Недостаточно энергии"
 msgstr "Недостатньо енергії"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: region/views/do_mining.py:101
 msgctxt "mining"
 msgid "Запасов золота в регионе недостаточно для добычи"
 msgstr "Запасів золота в регіоні недостатньо для видобування"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: region/views/do_mining.py:121
 msgctxt "mining"
 msgid "Запасов нефти в регионе недостаточно для добычи"
 msgstr "Запасів нафти в регіоні недостатньо для видобування "
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: region/views/do_mining.py:175
 msgctxt "mining"
 msgid "Запасов руды в регионе недостаточно для добычи"
 msgstr "Запасів руди в регіоні недостатньо для видобування"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: region/views/lists/world_regions.py:90
 msgid "Регионы игры"
 msgstr "Регіони гри"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: region/views/map/map.py:111
 msgid "Карта"
 msgstr "Мапа"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: region/views/map/region_info.py:42
 msgid "Такого региона нет"
 msgstr "Такого регіону нема"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: region/views/map/region_info.py:48
 msgid "Некорректный запрос"
 msgstr "Некоректний запит"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: region/views/mining.py:89
 msgid "Добыча"
 msgstr "Видобуток"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: region/views/start_auto.py:27 region/views/start_auto.py:35
 #: region/views/start_auto.py:45 region/views/start_auto.py:54
 #: region/views/start_auto.py:76
@@ -2586,56 +2197,46 @@ msgctxt "mining"
 msgid "Ошибка автоматической добычи ресурсов"
 msgstr "Помилка автоматичного видобування ресурсів"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: region/views/start_auto.py:34
 msgctxt "mining"
 msgid "Премиум-аккаунт не активен. Продлите его"
 msgstr "Преміум-акаунт не активний. Продовжте його"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: region/views/start_auto.py:44
 msgctxt "mining"
 msgid "Неизвестный тип ресурса"
 msgstr "Невідомий тип ресурсу"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: skill/views/skill_cancel.py:34
 msgid "ID навыка должен быть числом"
 msgstr "ID навика має бути числом"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: skill/views/skill_cancel.py:35 skill/views/skill_cancel.py:43
 #: skill/views/skill_cancel.py:51 skill/views/skill_cancel.py:61
 #: skill/views/skill_cancel.py:76
 msgid "Ошибка отмены навыка"
 msgstr "Помилка скасування навички"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: skill/views/skill_cancel.py:42
 msgid "У вас нет активного премиум-аккаунта"
 msgstr "У вас нема активного преміум-акаунту"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: skill/views/skill_cancel.py:50 skill/views/skill_cancel.py:60
 msgid "Нет навыков в очереди"
 msgstr "Нема навичок у черзі"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: skill/views/skill_cancel.py:75
 msgid "Нет такого навыка"
 msgstr "Нема такої навички"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: state/models/state.py:36
 msgid "Свободная"
 msgstr "Вільна"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: state/models/state.py:37
 msgid "Выдаётся министром"
 msgstr "Видається міністром"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: state/models/treasury.py:42 storage/models/destroy.py:18
 #: storage/models/storage.py:43 storage/models/storage.py:116
 #: storage/models/trade_offer.py:74 storage/models/transport.py:91
@@ -2643,7 +2244,6 @@ msgctxt "goods"
 msgid "Уголь"
 msgstr "Вугілля"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: state/models/treasury.py:45 storage/models/destroy.py:21
 #: storage/models/storage.py:45 storage/models/storage.py:121
 #: storage/models/trade_offer.py:75 storage/models/transport.py:96
@@ -2651,7 +2251,6 @@ msgctxt "goods"
 msgid "Железо"
 msgstr "Залізо"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: state/models/treasury.py:48 storage/models/destroy.py:24
 #: storage/models/storage.py:47 storage/models/storage.py:126
 #: storage/models/trade_offer.py:76 storage/models/transport.py:101
@@ -2659,7 +2258,6 @@ msgctxt "goods"
 msgid "Бокситы"
 msgstr "Боксити"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: state/models/treasury.py:52 storage/models/destroy.py:28
 #: storage/models/storage.py:51 storage/models/storage.py:132
 #: storage/models/trade_offer.py:78 storage/models/transport.py:107
@@ -2667,7 +2265,6 @@ msgctxt "goods"
 msgid "Нефть WTI"
 msgstr "Нафта WTI"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: state/models/treasury.py:55 storage/models/destroy.py:31
 #: storage/models/storage.py:53 storage/models/storage.py:137
 #: storage/models/trade_offer.py:79 storage/models/transport.py:112
@@ -2675,7 +2272,6 @@ msgctxt "goods"
 msgid "Нефть Brent"
 msgstr "Нафта Brent"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: state/models/treasury.py:58 storage/models/destroy.py:34
 #: storage/models/storage.py:55 storage/models/storage.py:142
 #: storage/models/trade_offer.py:80 storage/models/transport.py:117
@@ -2683,7 +2279,6 @@ msgctxt "goods"
 msgid "Нефть Urals"
 msgstr "Нафта Urals"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: state/models/treasury.py:65 storage/models/destroy.py:41
 #: storage/models/storage.py:61 storage/models/storage.py:153
 #: storage/models/trade_offer.py:83
@@ -2691,7 +2286,6 @@ msgctxt "goods"
 msgid "Дизельное топливо"
 msgstr "Дизельне паливо"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: state/models/treasury.py:94 storage/models/destroy.py:64
 #: storage/models/storage.py:80 storage/models/storage.py:208
 #: storage/models/trade_offer.py:95
@@ -2703,198 +2297,166 @@ msgstr "Орбітальні гармати"
 msgid "Donate"
 msgstr ""
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: state/templates/state/state_view.html:107
 msgid "Столица"
 msgstr "Столиця"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: state/templates/state/state_view.html:118
 msgid "Прописка"
 msgstr "Прописка"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: state/templates/state/state_view.html:147
 msgid "Государственные налоги"
 msgstr "Державні податки"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/models/storage.py:30
 msgctxt "goods"
 msgid "Минералы"
 msgstr "Мінерали"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/models/storage.py:31
 msgctxt "goods"
 msgid "Нефть"
 msgstr "Нафта"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/models/storage.py:32
 msgctxt "goods"
 msgid "Материалы"
 msgstr "Матеріали"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/models/storage.py:33
 msgctxt "goods"
 msgid "Оборудование"
 msgstr "Обладнання"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/models/storage.py:34
 msgctxt "goods"
 msgid "Оружие"
 msgstr "Зброя"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/models/storage.py:109
 msgctxt "storage"
 msgid "Уровень"
 msgstr "Рівень"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/models/storage.py:118
 msgctxt "goods"
 msgid "Уголь - лимит"
 msgstr "Нафта - ліміт "
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/models/storage.py:123
 msgctxt "goods"
 msgid "Железо - лимит"
 msgstr "Залізо - ліміт"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/models/storage.py:128
 msgctxt "goods"
 msgid "Бокситы - лимит"
 msgstr "Боксити - ліміт"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/models/storage.py:134
 msgctxt "goods"
 msgid "Нефть WTI - лимит"
 msgstr "Нафта WTI - ліміт"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/models/storage.py:139
 msgctxt "goods"
 msgid "Нефть Brent - лимит"
 msgstr "Нафта Brent - ліміт"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/models/storage.py:144
 msgctxt "goods"
 msgid "Нефть Urals - лимит"
 msgstr "Нафта Urals - ліміт"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/models/storage.py:150
 msgctxt "goods"
 msgid "Бензин - лимит"
 msgstr "Бензин - ліміт"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/models/storage.py:155
 msgctxt "goods"
 msgid "Дизельное топливо - лимит"
 msgstr "Дизельне паливо - ліміт"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/models/storage.py:160
 msgctxt "goods"
 msgid "Пластик - лимит"
 msgstr "Пластик - ліміт"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/models/storage.py:164
 msgctxt "goods"
 msgid "Сталь - лимит"
 msgstr "Сталь - ліміт"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/models/storage.py:168
 msgctxt "goods"
 msgid "Алюминий - лимит"
 msgstr "Алюміній - ліміт"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/models/storage.py:174
 msgctxt "goods"
 msgid "Медикаменты - лимит"
 msgstr "Медикаменти - ліміт"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/models/storage.py:179
 msgctxt "goods"
 msgid "Буры - лимит"
 msgstr "Бури - ліміт"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/models/storage.py:185
 msgctxt "goods"
 msgid "Автоматы - лимит"
 msgstr "Автомати - ліміт"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/models/storage.py:190
 msgctxt "goods"
 msgid "Мины - лимит"
 msgstr "Міни - ліміт"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/models/storage.py:195
 msgctxt "goods"
 msgid "ПТ-орудия - лимит"
 msgstr "Пт-гармати - ліміт"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/models/storage.py:200
 msgctxt "goods"
 msgid "Танки - лимит"
 msgstr "Танки - ліміт"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/models/storage.py:205
 msgctxt "goods"
 msgid "Штурмовики - лимит"
 msgstr "Штурмовики - ліміт"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/models/storage.py:210
 msgctxt "goods"
 msgid "Орбитальные орудия - лимит"
 msgstr "Орбітальні гармати - ліміт"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/models/storage.py:215
 msgctxt "goods"
 msgid "ПЗРК - лимит"
 msgstr "ПЗРК - ліміт"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/models/storage.py:220
 msgctxt "goods"
 msgid "БМП - лимит"
 msgstr "БМП - ліміт"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/models/storage.py:225
 msgctxt "goods"
 msgid "БПЛА - лимит"
 msgstr "БПЛА - ліміт"
 
-#: storage/models/storage.py:271
+#: storage/models/storage.py:289
 msgid "positive_spend_stock_req"
 msgstr ""
 
-#: storage/models/storage.py:276
+#: storage/models/storage.py:294
 msgid "not_enough"
 msgstr ""
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/models/transport.py:86
 msgctxt "goods"
 msgid "Всего кубов"
@@ -2975,7 +2537,6 @@ msgctxt "goods"
 msgid "Штурмовики - кубов"
 msgstr ""
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/models/transport.py:168
 msgctxt "goods"
 msgid "Орбиталки"
@@ -2991,7 +2552,6 @@ msgctxt "goods"
 msgid "ПЗРК - кубов"
 msgstr ""
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/models/transport.py:178
 msgctxt "goods"
 msgid "ПТ-пушка"
@@ -3012,7 +2572,6 @@ msgctxt "goods"
 msgid "БМП - кубов"
 msgstr ""
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/models/transport.py:193
 msgctxt "goods"
 msgid "Дроны"
@@ -3023,7 +2582,6 @@ msgctxt "goods"
 msgid "Дроны - кубов"
 msgstr ""
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/templates/storage/auctions/auction_info.html:15
 #: storage/templates/storage/auctions/auctions.html:38
 #: storage/templates/storage/trading/trading.html:48
@@ -3031,7 +2589,6 @@ msgctxt "w_trading"
 msgid "Владелец"
 msgstr "Власник"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/templates/storage/auctions/auction_info.html:26
 #: storage/templates/storage/auctions/auctions.html:36
 #: storage/templates/storage/trading/trading.html:47
@@ -3039,19 +2596,16 @@ msgctxt "w_trading"
 msgid "Товар"
 msgstr "Товар"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/templates/storage/auctions/auction_info.html:29
 msgctxt "w_auctions"
 msgid "Завершение"
 msgstr "Закінчення \r\n"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/templates/storage/auctions/auction_info.html:34
 msgctxt "w_auctions"
 msgid "Лоты"
 msgstr "Лоти"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/templates/storage/auctions/auction_info.html:43
 #: storage/templates/storage/auctions/auctions.html:39
 #: storage/templates/storage/trading/new_offer.html:106
@@ -3060,64 +2614,55 @@ msgctxt "w_trading"
 msgid "Количество"
 msgstr "Кількість"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/templates/storage/auctions/auction_info.html:51
 #: storage/templates/storage/auctions/auction_info.html:101
 msgctxt "w_auctions"
 msgid "Ставка"
 msgstr "Ставка"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/templates/storage/auctions/auction_info.html:57
 msgctxt "w_auctions"
 msgid "начальная"
 msgstr "початкова"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/templates/storage/auctions/auction_info.html:63
 msgctxt "w_auctions"
 msgid "Лидер"
 msgstr "Лідер"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/templates/storage/auctions/auction_info.html:77
 msgctxt "w_auctions"
 msgid "отсутствует"
 msgstr "відсутній"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/templates/storage/auctions/auction_info.html:88
 msgctxt "w_auctions"
 msgid "Склад"
 msgstr "Склад"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/templates/storage/auctions/auction_info.html:118
 msgctxt "w_auctions"
 msgid "Сделать ставку"
 msgstr "Зробити ставку"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/templates/storage/auctions/auctions.html:29
 #: storage/templates/storage/trading/trading.html:40
 msgctxt "w_trading"
 msgid "Выберите один или несколько критериев справа и нажмите \"Поиск\""
 msgstr "Виберіть один або декілька критеріїв справа і натисніть \"Пошук\""
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/templates/storage/auctions/auctions.html:30
+#: storage/templates/storage/redesign/trading/trading.html:73
 #: storage/templates/storage/trading/trading.html:41
 msgctxt "w_trading"
 msgid "Ничего не найдено"
 msgstr "Нічого не знайдено"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/templates/storage/auctions/auctions.html:37
 msgctxt "w_auctions"
 msgid "Дата создания"
 msgstr "Дата створення"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/templates/storage/auctions/auctions.html:40
 #: storage/templates/storage/trading/new_offer.html:118
 #: storage/templates/storage/trading/trading.html:51
@@ -3125,25 +2670,21 @@ msgctxt "w_trading"
 msgid "Цена (шт.)"
 msgstr "Ціна (шт.)"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/templates/storage/auctions/auctions.html:41
 msgctxt "w_trading"
 msgid "Лотов"
 msgstr "Лотів"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/templates/storage/auctions/auctions.html:42
 msgctxt "w_trading"
 msgid "Ставка (мин)"
 msgstr "Ставка (мін)"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/templates/storage/auctions/auctions.html:43
 msgctxt "w_trading"
 msgid "Ставка (макс)"
 msgstr "Ставка (макс)"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/templates/storage/auctions/auctions.html:44
 #: storage/templates/storage/trading/new_offer.html:53
 #: storage/templates/storage/trading/trading.html:54
@@ -3151,523 +2692,682 @@ msgctxt "w_trading"
 msgid "Действие"
 msgstr "Дія"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/templates/storage/auctions/auctions.html:77
 #: storage/templates/storage/trading/trading.html:99
 msgctxt "w_trading"
 msgid "Выберите товар"
 msgstr "Виберіть товар"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/templates/storage/auctions/auctions.html:86
 #: storage/templates/storage/trading/trading.html:109
 msgctxt "w_trading"
 msgid "Поиск"
 msgstr "Пошук"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/templates/storage/redesign/assets.html:12
 #: storage/views/assets/assets.py:42
 msgctxt "assets"
 msgid "Активы"
 msgstr "Активи"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/templates/storage/redesign/assets.html:22
 msgctxt "assets"
 msgid "выбор действия"
 msgstr "вибір дії"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/templates/storage/redesign/assets.html:23
 msgctxt "assets"
 msgid "передать"
 msgstr "передати"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/templates/storage/redesign/assets.html:24
 msgctxt "assets"
 msgid "уничтожить"
 msgstr "знищити"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
+#: storage/templates/storage/redesign/assets.html:43
+msgctxt "assets"
+msgid "уверен"
+msgstr ""
+
 #: storage/templates/storage/redesign/assets.html:49
 msgctxt "assets"
 msgid "выберите склад"
 msgstr "виберіть склад"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/templates/storage/redesign/assets.html:60
 #: storage/templates/storage/redesign/assets.html:115
 msgctxt "assets"
 msgid "объём (ед)"
 msgstr "об'єм (од)"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/templates/storage/redesign/assets.html:62
 msgctxt "assets"
 msgid "стоимость"
 msgstr "вартість"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/templates/storage/redesign/assets.html:77
 msgctxt "assets"
 msgid "подтвердить"
 msgstr "підтвердити"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/templates/storage/redesign/storage.html:22
 #: storage/views/storage/storage.py:58
 msgctxt "storage"
 msgid "Склад"
 msgstr "Склад"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/templates/storage/redesign/storage.html:89
 msgctxt "storage"
 msgid "склад"
 msgstr "склад"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/templates/storage/redesign/storage.html:103
 msgctxt "storage"
 msgid "хранилище"
 msgstr "сховище"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/templates/storage/redesign/storage.html:118
 msgctxt "storage_assets"
 msgid "энергетики"
 msgstr "енергетики"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/templates/storage/redesign/storage.html:125
 #: storage/templates/storage/redesign/storage.html:145
 msgctxt "storage_assets"
 msgid "создать"
 msgstr "створити"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/templates/storage/redesign/storage.html:129
 msgctxt "storage_assets"
 msgid "стоимость"
 msgstr "вартість"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/templates/storage/redesign/storage.html:157
 msgctxt "storage_assets"
 msgid "Количество"
 msgstr "Кількість"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/templates/storage/redesign/storage.html:170
 msgctxt "storage_assets"
 msgid "использовать"
 msgstr "використати"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/templates/storage/redesign/storage.html:189
 #: storage/templates/storage/redesign/storage.html:377
 msgctxt "storage_transfer"
 msgid "Перемещение Склада"
 msgstr "Переміщення Складу"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/templates/storage/redesign/storage.html:191
 msgctxt "storage_transfer"
 msgid "Нельзя вывезти Склад из региона боевых действий"
 msgstr "Не можна вивезти Склад з регіону бойових дій"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/templates/storage/redesign/storage.html:193
 msgctxt "storage_transfer"
 msgid "Вы можете перенести Склад в регион текущего местоположения (один раз)"
-msgstr ""
-"Ви можете перенести Склад в регіон поточного місцезнаходження (один раз)"
+msgstr "Ви можете перенести Склад в регіон поточного місцезнаходження (один раз)"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/templates/storage/redesign/storage.html:206
 msgctxt "storage_transfer"
 msgid "перенести"
 msgstr "перенести"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/templates/storage/redesign/storage.html:214
 #: storage/templates/storage/redesign/storage.html:257
 msgctxt "storage_upgrade"
 msgid "Улучшение склада"
 msgstr "Поліпшення складу"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/templates/storage/redesign/storage.html:215
 msgctxt "storage_upgrade"
 msgid "Вы можете улучшить Склад, расширив хранилища части товаров"
 msgstr "Ви можете поліпшити Склад, збільшив сховища частини товарів"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/templates/storage/redesign/storage.html:216
 msgctxt "storage_upgrade"
 msgid "Стоимость"
 msgstr "Вартість"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/templates/storage/redesign/storage.html:218
 msgctxt "storage_upgrade"
 msgid "Максимальный уровень"
 msgstr "Максимальний рівень"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/templates/storage/redesign/storage.html:235
 #: storage/templates/storage/redesign/storage.html:356
 msgctxt "storage_upgrade"
 msgid "улучшить"
 msgstr "поліпшити"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/templates/storage/redesign/storage.html:238
 msgctxt "storage_upgrade"
 msgid "Недостаточно материалов"
 msgstr "Недостатньо матеріалів"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/templates/storage/redesign/storage.html:258
 msgctxt "storage_upgrade"
-msgid ""
-"Выберите товары в каждой из категорий, ёмкость Склада для которых будет "
-"увеличена"
-msgstr ""
-"Виберіть товари в кожній з категорій, ємність  Складу для котрих буде "
-"збільшена"
+msgid "Выберите товары в каждой из категорий, ёмкость Склада для которых будет увеличена"
+msgstr "Виберіть товари в кожній з категорій, ємність  Складу для котрих буде збільшена"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/templates/storage/redesign/storage.html:265
 msgctxt "storage_upgrade"
 msgid "Большой объём запасов"
 msgstr "Великий об'єм запасів"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/templates/storage/redesign/storage.html:292
 msgctxt "storage_upgrade"
 msgid "Средний объём запасов"
 msgstr "Середній об'єм запасів"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/templates/storage/redesign/storage.html:319
 msgctxt "storage_upgrade"
 msgid "Малый объём запасов"
 msgstr "Малий об'єм запасів"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/templates/storage/redesign/storage.html:363
 msgctxt "storage_assets"
 msgid "Продление"
 msgstr "Продовження"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/templates/storage/redesign/storage.html:363
 msgctxt "storage_assets"
 msgid "Активация"
 msgstr "Активація"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/templates/storage/redesign/storage.html:363
 msgctxt "storage_assets"
 msgid "премиум-аккаунта"
 msgstr "преміум-акаунта"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/templates/storage/redesign/storage.html:366
 msgctxt "storage_assets"
-msgid ""
-"Ваш премиум-аккаунт будет продлён на один месяц. Данную операцию невозможно "
-"отменить. Продолжить?"
-msgstr ""
-"Ваш преміум-акаунт буде продовжений на один місяць. Цю операцію неможливо "
-"скасувати. Продовжити?"
+msgid "Ваш премиум-аккаунт будет продлён на один месяц. Данную операцию невозможно отменить. Продолжить?"
+msgstr "Ваш преміум-акаунт буде продовжений на один місяць. Цю операцію неможливо скасувати. Продовжити?"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/templates/storage/redesign/storage.html:368
 msgctxt "storage_assets"
-msgid ""
-"Вы активируете премиум-аккаунт, длительностью один месяц. Данную операцию "
-"невозможно отменить. Продолжить?"
-msgstr ""
-"Ви активуєте преміум-акаунт если тривалістю один місяць. Цю операцію "
-"неможливо скасувати. Продовжити?"
+msgid "Вы активируете премиум-аккаунт, длительностью один месяц. Данную операцию невозможно отменить. Продолжить?"
+msgstr "Ви активуєте преміум-акаунт если тривалістю один місяць. Цю операцію неможливо скасувати. Продовжити?"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/templates/storage/redesign/storage.html:371
 msgctxt "storage_assets"
 msgid "Продолжить"
 msgstr "Продовжити"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/templates/storage/redesign/storage.html:372
 msgctxt "storage_assets"
 msgid "Отмена"
 msgstr "Скасувати"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/templates/storage/redesign/storage.html:378
 msgctxt "storage_transfer"
 msgid "Склад будет перемещен в регион вашего местонахождения"
 msgstr "Склад буде переміщений в регіон вашого місцезнаходження"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/templates/storage/redesign/storage.html:378
 msgctxt "storage_transfer"
 msgid "Больше этот Склад переместить не получится. Продолжить?"
 msgstr "Більше цей Склад перемістити не вийде. Продовжити?"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/templates/storage/redesign/storage.html:379
 msgctxt "storage_transfer"
 msgid "Продолжить"
 msgstr "Продовжити"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/templates/storage/redesign/storage.html:380
 msgctxt "storage_transfer"
 msgid "Отмена"
 msgstr "Скасувати"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/templates/storage/redesign/storage_blocks/has_storage.html:26
 msgctxt "has_storage"
 msgid "счёт"
 msgstr "рахунок"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/templates/storage/redesign/storage_blocks/has_storage.html:33
 msgctxt "has_storage"
 msgid "наличные"
 msgstr "готівка"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/templates/storage/redesign/storage_blocks/has_storage.html:38
 msgctxt "has_storage"
 msgid "всего денег"
 msgstr "усього грошей"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/templates/storage/redesign/storage_blocks/no_storage.html:7
 msgctxt "no_storage"
 msgid "склад в регионе"
 msgstr "склад у регіоні"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/templates/storage/redesign/storage_blocks/no_storage.html:9
 msgctxt "no_storage"
 msgid "Стоимость создания"
 msgstr "Вартість створення"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/templates/storage/redesign/storage_blocks/no_storage.html:10
 msgctxt "no_storage"
 msgid "стали"
 msgstr "сталі"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/templates/storage/redesign/storage_blocks/no_storage.html:10
 msgctxt "no_storage"
 msgid "алюминия"
 msgstr "алюмінію"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/templates/storage/redesign/storage_blocks/no_storage.html:11
 msgctxt "no_storage"
 msgid "доставка оплачивается отдельно"
 msgstr "доставка оплачується окремо"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/templates/storage/redesign/storage_blocks/no_storage.html:16
 msgctxt "no_storage"
 msgid "выберите склад списания материалов"
 msgstr "виберіть склад списання матеріалів"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/templates/storage/redesign/storage_blocks/no_storage.html:22
 msgctxt "no_storage"
 msgid "нехватка материалов!"
 msgstr "брак матеріалів! "
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/templates/storage/redesign/storage_blocks/no_storage.html:22
 msgctxt "no_storage"
 msgid "доставка"
 msgstr "доставка"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/templates/storage/redesign/storage_blocks/no_storage.html:44
 msgctxt "no_storage"
 msgid "создать"
 msgstr "створити"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
-#: storage/templates/storage/storage_lines/cash_transfer.html:9
-msgid "Наличные"
-msgstr "Готівка"
+#: storage/templates/storage/redesign/trading/trading.html:15
+#: storage/views/trading/trading.py:24
+#, fuzzy
+#| msgid "Торговля"
+msgctxt "trading"
+msgid "Торговля"
+msgstr "Торгівля"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
-#: storage/templates/storage/storage_lines/cash_transfer.html:14
-msgid "Денег всего"
-msgstr "Грошей усього"
+#: storage/templates/storage/redesign/trading/trading.html:32
+#, fuzzy
+#| msgctxt "cash_log"
+#| msgid "Гос. закупки"
+msgctxt "trading"
+msgid "госзакупки"
+msgstr "Держ. закупівлі"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
-#: storage/templates/storage/storage_lines/cash_transfer.html:21
-msgid "На Складе"
-msgstr "На складі"
+#: storage/templates/storage/redesign/trading/trading.html:46
+#, fuzzy
+#| msgctxt "factory"
+#| msgid "создать"
+msgctxt "trading"
+msgid "создать"
+msgstr "створити"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
-#: storage/templates/storage/storage_lines/cash_transfer.html:26
-msgid "Передать"
-msgstr "Передати"
+#: storage/templates/storage/redesign/trading/trading.html:60
+#, fuzzy
+#| msgid "настройки"
+msgctxt "trading"
+msgid "настройки поиска"
+msgstr "налаштування"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
-#: storage/templates/storage/trading/new_offer.html:38
-msgctxt "w_trading_new"
-msgid "Новое торговое предложение"
-msgstr "Нова торгова пропозиція"
+#: storage/templates/storage/redesign/trading/trading.html:64
+#, fuzzy
+#| msgctxt "goods"
+#| msgid "Орбитальные орудия"
+msgctxt "trading"
+msgid "Выбранная категория"
+msgstr "Орбітальні гармати"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
-#: storage/templates/storage/trading/new_offer.html:43
-msgctxt "w_trading_new"
-msgid "Доступно"
-msgstr "Доступно"
-
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
-#: storage/templates/storage/trading/new_offer.html:48
-msgctxt "w_trading_new"
-msgid "+5 за каждый Склад"
-msgstr "+5 за кожен Склад"
-
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
-#: storage/templates/storage/trading/new_offer.html:57
-msgctxt "w_trading_new"
-msgid "Продажа"
-msgstr "Продаж"
-
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
-#: storage/templates/storage/trading/new_offer.html:58
-msgctxt "w_trading_new"
-msgid "Покупка"
-msgstr "Покупка"
-
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
-#: storage/templates/storage/trading/new_offer.html:64
-msgctxt "w_trading_new"
-msgid "Склад"
-msgstr "Склад"
-
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
-#: storage/templates/storage/trading/new_offer.html:76
-msgctxt "w_trading_new"
-msgid "Группа товаров"
-msgstr "Группа товарів"
-
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
-#: storage/templates/storage/trading/new_offer.html:80
-msgctxt "w_trading_new"
-msgid "Выберите группу"
-msgstr "Виберіть группу"
-
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
-#: storage/templates/storage/trading/new_offer.html:90
-msgctxt "w_trading_new"
-msgid "Товар"
-msgstr "Товар"
-
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
-#: storage/templates/storage/trading/new_offer.html:94
-msgctxt "w_trading_new"
-msgid "Выберите товар"
+#: storage/templates/storage/redesign/trading/trading.html:66
+#, fuzzy
+#| msgctxt "w_trading"
+#| msgid "Выберите товар"
+msgctxt "trading"
+msgid "Выбранный товар"
 msgstr "Виберіть товар"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
-#: storage/templates/storage/trading/new_offer.html:126
-msgctxt "w_trading_new"
-msgid "Будет заблокировано"
-msgstr "Буде заблоковано"
-
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
-#: storage/templates/storage/trading/new_offer.html:136
-msgctxt "w_trading_new"
-msgid "Создать"
-msgstr "Створити"
-
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
-#: storage/templates/storage/trading/trading.html:49
+#: storage/templates/storage/redesign/trading/trading.html:72
+#, fuzzy
+#| msgctxt "w_trading"
+#| msgid "Выберите один или несколько критериев справа и нажмите \"Поиск\""
 msgctxt "w_trading"
-msgid "Регион"
-msgstr "Регіон"
+msgid "Выберите один или несколько критериев в настройках поиска"
+msgstr "Виберіть один або декілька критеріїв справа і натисніть \"Пошук\""
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
-#: storage/templates/storage/trading/trading.html:52
-msgctxt "w_trading"
-msgid "Доставка"
-msgstr "Доставка"
+#: storage/templates/storage/redesign/trading/trading.html:77
+#: storage/templates/storage/redesign/trading/trading.html:311
+#, fuzzy
+#| msgctxt "overview"
+#| msgid "региона"
+msgctxt "trading"
+msgid "регион"
+msgstr "регіона"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
-#: storage/templates/storage/trading/trading.html:53
-msgctxt "w_trading"
-msgid "Сумма"
-msgstr "Сума"
+#: storage/templates/storage/redesign/trading/trading.html:79
+#: storage/templates/storage/redesign/trading/trading.html:157
+#, fuzzy
+#| msgctxt "wallet"
+#| msgid "Товар"
+msgctxt "trading"
+msgid "товар"
+msgstr "Товар"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
-#: storage/templates/storage/trading/trading.html:65
-msgctxt "w_trading"
-msgid "Государственнные закупки"
-msgstr "Державні закупівлі"
+#: storage/templates/storage/redesign/trading/trading.html:80
+#: storage/templates/storage/redesign/trading/trading.html:306
+#, fuzzy
+#| msgctxt "factory"
+#| msgid "цена"
+msgctxt "trading"
+msgid "цена"
+msgstr "ціна"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
+#: storage/templates/storage/redesign/trading/trading.html:81
+#, fuzzy
+#| msgctxt "w_trading_new"
+#| msgid "Продажа"
+msgctxt "trading"
+msgid "продавец"
+msgstr "Продаж"
+
+#: storage/templates/storage/redesign/trading/trading.html:118
+#, fuzzy
+#| msgid "настройки"
+msgctxt "trading"
+msgid "Настройки поиска"
+msgstr "налаштування"
+
+#: storage/templates/storage/redesign/trading/trading.html:120
+#, fuzzy
+#| msgctxt "w_trading_new"
+#| msgid "Новое торговое предложение"
+msgctxt "trading"
+msgid "тип предложения"
+msgstr "Нова торгова пропозиція"
+
+#: storage/templates/storage/redesign/trading/trading.html:123
 #: storage/templates/storage/trading/trading.html:70
 msgctxt "w_trading"
 msgid "Продажа"
 msgstr "Продаж"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
+#: storage/templates/storage/redesign/trading/trading.html:124
 #: storage/templates/storage/trading/trading.html:71
 msgctxt "w_trading"
 msgid "Покупка"
 msgstr "Покупка"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
+#: storage/templates/storage/redesign/trading/trading.html:131
+#, fuzzy
+#| msgctxt "factory"
+#| msgid "создать"
+msgctxt "trading"
+msgid "создатель"
+msgstr "створити"
+
+#: storage/templates/storage/redesign/trading/trading.html:134
 #: storage/templates/storage/trading/trading.html:84
 msgctxt "w_trading"
 msgid "Все"
 msgstr "Все"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
+#: storage/templates/storage/redesign/trading/trading.html:135
 #: storage/templates/storage/trading/trading.html:85
 msgctxt "w_trading"
 msgid "Партия"
 msgstr "Партія"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
+#: storage/templates/storage/redesign/trading/trading.html:136
 #: storage/templates/storage/trading/trading.html:86
 msgctxt "w_trading"
 msgid "Мои"
 msgstr "Мої"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
+#: storage/templates/storage/redesign/trading/trading.html:143
+#, fuzzy
+#| msgctxt "goods"
+#| msgid "Орбитальные орудия"
+msgctxt "trading"
+msgid "выбор категории"
+msgstr "Орбітальні гармати"
+
+#: storage/templates/storage/redesign/trading/trading.html:146
+#, fuzzy
+#| msgctxt "goods"
+#| msgid "Орбитальные орудия"
+msgctxt "trading"
+msgid "выберите категорию"
+msgstr "Орбітальні гармати"
+
+#: storage/templates/storage/redesign/trading/trading.html:160
+#, fuzzy
+#| msgctxt "w_trading"
+#| msgid "Выберите товар"
+msgctxt "trading"
+msgid "выберите товар"
+msgstr "Виберіть товар"
+
+#: storage/templates/storage/redesign/trading/trading.html:185
+#, fuzzy
+#| msgctxt "w_trading"
+#| msgid "Поиск"
+msgctxt "trading"
+msgid "поиск"
+msgstr "Пошук"
+
+#: storage/templates/storage/redesign/trading/trading.html:293
+#: storage/templates/storage/redesign/trading/trading.html:394
+#, fuzzy
+#| msgctxt "w_trading"
+#| msgid "Покупка"
+msgctxt "trading"
+msgid "покупка"
+msgstr "Покупка"
+
+#: storage/templates/storage/redesign/trading/trading.html:297
+#, fuzzy
+#| msgctxt "w_trading"
+#| msgid "Владелец"
+msgctxt "trading"
+msgid "владелец"
+msgstr "Власник"
+
+#: storage/templates/storage/redesign/trading/trading.html:319
+#, fuzzy
+#| msgctxt "wallet"
+#| msgid "Количество"
+msgctxt "trading"
+msgid "количество"
+msgstr "Кількість"
+
+#: storage/templates/storage/redesign/trading/trading.html:348
+#, fuzzy
+#| msgctxt "assets"
+#| msgid "стоимость"
+msgctxt "trading"
+msgid "стоимость"
+msgstr "вартість"
+
+#: storage/templates/storage/redesign/trading/trading.html:353
+#, fuzzy
+#| msgctxt "no_storage"
+#| msgid "доставка"
+msgctxt "trading"
+msgid "доставка"
+msgstr "доставка"
+
+#: storage/templates/storage/redesign/trading/trading.html:360
+msgctxt "trading"
+msgid "итого"
+msgstr ""
+
+#: storage/templates/storage/redesign/trading/trading.html:376
+#: storage/templates/storage/redesign/trading/trading.html:395
+#, fuzzy
+#| msgctxt "w_trading"
+#| msgid "Купить"
+msgctxt "trading"
+msgid "купить"
+msgstr "Придбати"
+
+#: storage/templates/storage/redesign/trading/trading.html:391
+#, fuzzy
+#| msgctxt "w_trading"
+#| msgid "Продажа"
+msgctxt "trading"
+msgid "продажа"
+msgstr "Продаж"
+
+#: storage/templates/storage/redesign/trading/trading.html:392
+#, fuzzy
+#| msgctxt "w_trading"
+#| msgid "Продать"
+msgctxt "trading"
+msgid "продать"
+msgstr "Продати"
+
+#: storage/templates/storage/redesign/trading/trading.html:398
+#, fuzzy
+#| msgctxt "w_trading_new"
+#| msgid "Новое торговое предложение"
+msgctxt "trading"
+msgid "Отмена торгового предложения"
+msgstr "Нова торгова пропозиція"
+
+#: storage/templates/storage/redesign/trading/trading.html:399
+#, fuzzy
+#| msgctxt "w_trading_new"
+#| msgid "Торговое предложение успешно создано"
+msgctxt "trading"
+msgid "Ваше торговое предложение будет удалено. Продолжить?"
+msgstr "Торгова пропозиція успішно створена"
+
+#: storage/templates/storage/redesign/trading/trading.html:400
+#, fuzzy
+#| msgid "Продолжить"
+msgctxt "trading"
+msgid "Продолжить"
+msgstr "Продовжити"
+
+#: storage/templates/storage/redesign/trading/trading.html:401
+#, fuzzy
+#| msgid "Отмена"
+msgctxt "trading"
+msgid "Отмена"
+msgstr "Скасувати"
+
+#: storage/templates/storage/storage_lines/cash_transfer.html:9
+msgid "Наличные"
+msgstr "Готівка"
+
+#: storage/templates/storage/storage_lines/cash_transfer.html:14
+msgid "Денег всего"
+msgstr "Грошей усього"
+
+#: storage/templates/storage/storage_lines/cash_transfer.html:21
+msgid "На Складе"
+msgstr "На складі"
+
+#: storage/templates/storage/storage_lines/cash_transfer.html:26
+msgid "Передать"
+msgstr "Передати"
+
+#: storage/templates/storage/trading/new_offer.html:38
+msgctxt "w_trading_new"
+msgid "Новое торговое предложение"
+msgstr "Нова торгова пропозиція"
+
+#: storage/templates/storage/trading/new_offer.html:43
+msgctxt "w_trading_new"
+msgid "Доступно"
+msgstr "Доступно"
+
+#: storage/templates/storage/trading/new_offer.html:48
+msgctxt "w_trading_new"
+msgid "+5 за каждый Склад"
+msgstr "+5 за кожен Склад"
+
+#: storage/templates/storage/trading/new_offer.html:57
+msgctxt "w_trading_new"
+msgid "Продажа"
+msgstr "Продаж"
+
+#: storage/templates/storage/trading/new_offer.html:58
+msgctxt "w_trading_new"
+msgid "Покупка"
+msgstr "Покупка"
+
+#: storage/templates/storage/trading/new_offer.html:64
+msgctxt "w_trading_new"
+msgid "Склад"
+msgstr "Склад"
+
+#: storage/templates/storage/trading/new_offer.html:76
+msgctxt "w_trading_new"
+msgid "Группа товаров"
+msgstr "Группа товарів"
+
+#: storage/templates/storage/trading/new_offer.html:80
+msgctxt "w_trading_new"
+msgid "Выберите группу"
+msgstr "Виберіть группу"
+
+#: storage/templates/storage/trading/new_offer.html:90
+msgctxt "w_trading_new"
+msgid "Товар"
+msgstr "Товар"
+
+#: storage/templates/storage/trading/new_offer.html:94
+msgctxt "w_trading_new"
+msgid "Выберите товар"
+msgstr "Виберіть товар"
+
+#: storage/templates/storage/trading/new_offer.html:126
+msgctxt "w_trading_new"
+msgid "Будет заблокировано"
+msgstr "Буде заблоковано"
+
+#: storage/templates/storage/trading/new_offer.html:136
+msgctxt "w_trading_new"
+msgid "Создать"
+msgstr "Створити"
+
+#: storage/templates/storage/trading/trading.html:49
+msgctxt "w_trading"
+msgid "Регион"
+msgstr "Регіон"
+
+#: storage/templates/storage/trading/trading.html:52
+msgctxt "w_trading"
+msgid "Доставка"
+msgstr "Доставка"
+
+#: storage/templates/storage/trading/trading.html:53
+msgctxt "w_trading"
+msgid "Сумма"
+msgstr "Сума"
+
+#: storage/templates/storage/trading/trading.html:65
+msgctxt "w_trading"
+msgid "Государственнные закупки"
+msgstr "Державні закупівлі"
+
 #: storage/templates/storage/trading/trading.html:113
 msgctxt "w_trading"
 msgid "Создать"
 msgstr "Створити"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/assets/assets_action.py:41
 msgctxt "assets"
 msgid "Целевой Склад не заполнен"
 msgstr "Цільовий Склад не заповнений"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/assets/assets_action.py:42
 msgctxt "assets"
 msgid "Перемещение товаров"
 msgstr "Переміщення товарів"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/assets/assets_action.py:43
 #: storage/views/assets/assets_action.py:74
 #: storage/views/assets/assets_action.py:91
@@ -3684,21 +3384,18 @@ msgctxt "assets"
 msgid "Закрыть"
 msgstr "Замкнути"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/assets/assets_action.py:72
 #: storage/views/assets/assets_action.py:191
 msgctxt "assets"
 msgid "Склад"
 msgstr "Склад"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/assets/assets_action.py:72
 #: storage/views/assets/assets_action.py:191
 msgctxt "assets"
 msgid "вам не принадлежит"
 msgstr "вам не належить"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/assets/assets_action.py:73
 #: storage/views/assets/assets_action.py:132
 #: storage/views/assets/assets_action.py:142
@@ -3710,13 +3407,11 @@ msgctxt "assets"
 msgid "Перемещение товара"
 msgstr "Переміщення товару"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/assets/assets_action.py:89
 msgctxt "assets"
 msgid "Запрещено вывозить товары из атакованных регионов"
 msgstr "Заборонено вивозити товари з атакованих регіонів"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/assets/assets_action.py:90
 #: storage/views/assets/assets_action.py:192
 #: storage/views/assets/assets_action.py:232
@@ -3724,107 +3419,90 @@ msgctxt "assets"
 msgid "Уничтожение товара"
 msgstr "Знищення товару"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/assets/assets_action.py:131
 msgctxt "assets"
 msgid "Недостаточно средств для оплаты доставки"
 msgstr "Недостатньо засобів для оплати доставки"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/assets/assets_action.py:138
 #: storage/views/assets/assets_action.py:148
 msgctxt "assets"
 msgid "На складе в регионе "
 msgstr "На складі в регіоні"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/assets/assets_action.py:140
 msgctxt "assets"
 msgid " недостаточно места для товара "
 msgstr "недостатньо місця для товару"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/assets/assets_action.py:141
 #: storage/views/assets/assets_action.py:150
 msgctxt "assets"
 msgid "Требуется: "
 msgstr "Потрібно:"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/assets/assets_action.py:141
 #: storage/views/assets/assets_action.py:150
 msgctxt "assets"
 msgid ", в наличии: "
 msgstr ", в наявності:"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/assets/assets_action.py:149
 msgctxt "assets"
 msgid " недостаточно товара "
 msgstr "недостатньо товару"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/assets/assets_action.py:149
 msgctxt "assets"
 msgid " для передачи."
 msgstr "для передачі"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/assets/assets_action.py:157
 msgctxt "assets"
 msgid "Товары для передачи не выбраны"
 msgstr "Товари для передачі не вибрані"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/assets/assets_action.py:164
 msgctxt "assets"
 msgid "В целевом Складе заполнены значения"
 msgstr "В цільовому Складі заповнені значення"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/assets/assets_action.py:171
 msgctxt "assets"
 msgid "Целевой Склад вам не принадлежит"
 msgstr "Цільовий Склад вам не належить"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/assets/assets_action.py:229
 msgctxt "assets"
 msgid "На складе в регионе"
 msgstr "На складі в регіоні"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/assets/assets_action.py:230
 msgctxt "assets"
 msgid "недостаточно товара"
 msgstr "недостатньо товару"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/assets/assets_action.py:231
 msgctxt "assets"
 msgid "Требуется:"
 msgstr "Потрібно:"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/assets/assets_action.py:231
 msgctxt "assets"
 msgid ", в наличии:"
 msgstr ", в наявності:"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/assets/assets_action.py:238
 msgctxt "assets"
 msgid "Некорректное действие"
 msgstr "Некоректна дія"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/assets/assets_action.py:239
 #: storage/views/assets/assets_action.py:251
 msgctxt "assets"
 msgid "Операции с товарами"
 msgstr "Операції з товарами"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/assets/storage_move.py:36
 #: storage/views/assets/storage_move.py:45
 #: storage/views/assets/storage_move.py:55
@@ -3834,31 +3512,26 @@ msgctxt "assets"
 msgid "Перемещение Склада"
 msgstr "Переміщення Складу"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/assets/storage_move.py:38
 msgctxt "assets"
 msgid "Склад не заполнен"
 msgstr "Склад не заповнений "
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/assets/storage_move.py:47
 msgctxt "assets"
 msgid "Указанный Склад вам не принадлежит"
 msgstr "Вказаний Склад вам не належить"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/assets/storage_move.py:57
 msgctxt "assets"
 msgid "Указанный Склад уже в текущем регионе"
 msgstr "Вказаний Склад уже в поточному регіоні"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/assets/storage_move.py:69
 msgctxt "assets"
 msgid "Нельзя переместить Склад из атакованного региона"
 msgstr "Неможливо перемістити Склад з атакованого регіону"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/storage/cash_transfer.py:33
 #: storage/views/storage/cash_transfer.py:42
 #: storage/views/storage/cash_transfer.py:55
@@ -3874,56 +3547,47 @@ msgctxt "storage"
 msgid "Передача денег"
 msgstr "Передача грошей"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/storage/cash_transfer.py:35
 msgctxt "storage"
 msgid "Отрицательное число денег игрока"
 msgstr "Від'ємна кількість грошей гравця"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/storage/cash_transfer.py:44
 msgctxt "storage"
 msgid "Некорректное число денег игрока"
 msgstr "Некоректне число грошей гравця"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/storage/cash_transfer.py:57
 msgctxt "storage"
 msgid "Отрицательное число денег Склада"
 msgstr "Від'ємне число грошей Складу"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/storage/cash_transfer.py:66
 msgctxt "storage"
 msgid "Некорректное число денег Склада"
 msgstr "Некоректне число грошей Складу"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/storage/cash_transfer.py:75
 #: storage/views/storage/upgrade_storage.py:34
 msgctxt "storage"
 msgid "В этом регионе нет Склада"
 msgstr "В цьому регіоні нема Складу"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/storage/cash_transfer.py:104
 msgctxt "storage"
 msgid "Нельзя вывести деньги из атакованного региона"
 msgstr "Не можна вивести гроші з атакованого регіону"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/storage/cash_transfer.py:124
 msgctxt "storage"
 msgid "Данные кошелька не совпадают с введенными"
 msgstr "Дані гаманця не збігаються з введеними"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/storage/cash_transfer.py:132
 msgctxt "storage"
 msgid "Недопустим ввод отрицательных чисел"
 msgstr "Недопустимо введення від'ємних чисел"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/storage/new_storage.py:32
 #: storage/views/storage/new_storage.py:50
 #: storage/views/storage/new_storage.py:63
@@ -3931,25 +3595,21 @@ msgctxt "storage"
 msgid "Новый Склад"
 msgstr "Новый склад"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/storage/new_storage.py:33
 msgctxt "storage"
 msgid "Не найден Склад списания материалов"
 msgstr "Не знайдений Склад списання матеріалів"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/storage/new_storage.py:51
 msgctxt "storage"
 msgid "Недостаточно ресурсов"
 msgstr "Недостатньо ресурсів"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/storage/new_storage.py:64
 msgctxt "storage"
 msgid "Недостаточно денег на транспортировку"
 msgstr "Недостатньо грошей на транспортування"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/storage/upgrade_storage.py:32
 #: storage/views/storage/upgrade_storage.py:42
 #: storage/views/storage/upgrade_storage.py:51
@@ -3960,37 +3620,31 @@ msgctxt "storage_upgrade"
 msgid "Улучшение Склада"
 msgstr "Поліпшення Складу"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/storage/upgrade_storage.py:44
 msgctxt "storage_upgrade"
 msgid "Уровень Склада - максимальный"
 msgstr "Рівень Складу - максимальний"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/storage/upgrade_storage.py:53
 msgctxt "storage_upgrade"
 msgid "Недостаточно материала: "
 msgstr "Недостатньо матеріалу:"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/storage/upgrade_storage.py:88
 msgctxt "storage_upgrade"
 msgid "Максимально улучшено: "
 msgstr "Максимально поліпшено:"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/storage/upgrade_storage.py:105
 msgctxt "storage_upgrade"
 msgid "Превышение числа позиций для улучшения"
 msgstr "Перебільшення числа позицій для поліпшення"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/storage/upgrade_storage.py:113
 msgctxt "storage_upgrade"
 msgid "Указаны не все позиции для улучшения"
 msgstr "Вказані не всі позиції для поліпшення"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/trading/accept_offer.py:43
 #: storage/views/trading/accept_offer.py:51
 #: storage/views/trading/accept_offer.py:64
@@ -4012,76 +3666,64 @@ msgstr "Вказані не всі позиції для поліпшення"
 #: storage/views/trading/accept_offer.py:309
 #: storage/views/trading/accept_offer.py:321
 #: storage/views/trading/accept_offer.py:392
-#: storage/views/trading/accept_offer.py:399
-#: storage/views/trading/accept_offer.py:408
+#: storage/views/trading/accept_offer.py:406
 msgctxt "w_trading"
 msgid "Принятие оффера"
 msgstr "Прийняття офферу"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/trading/accept_offer.py:45
 msgctxt "w_trading"
 msgid "В поле количество должно быть число"
 msgstr "В полі кількість має бути число"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/trading/accept_offer.py:53
 msgctxt "w_trading"
 msgid "В поле количество должно быть положительное число"
 msgstr "В полі кількість має бути додатнє число"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/trading/accept_offer.py:66
 #: storage/views/trading/cancel_offer.py:41
 msgctxt "w_trading"
 msgid "ID оффера должно быть числом"
 msgstr "ID офферу має бути числом"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/trading/accept_offer.py:90
 msgctxt "w_trading"
 msgid "Нельзя принять оффер из атакованного региона"
 msgstr "Неможливо прийняти оффер з атакованого регіону"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/trading/accept_offer.py:100
 msgctxt "w_trading"
 msgid "Нельзя принять собственный оффер"
 msgstr "Неможливо прийняти власний оффер"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/trading/accept_offer.py:108
 msgctxt "w_trading"
 msgid "Оффер изменился, или вы ввели некорректное число"
 msgstr "Оффер змінився, або ви ввели некоректне число"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/trading/accept_offer.py:116
 #: storage/views/trading/cancel_offer.py:62
 msgctxt "w_trading"
 msgid "Оффер не существует или уже принят"
 msgstr "Оффер не існує або вже прийнятий"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/trading/accept_offer.py:132
 #: storage/views/trading/cancel_offer.py:75
 msgctxt "w_trading"
 msgid "ID склада должно быть числом"
 msgstr "ID склада має бути числом"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/trading/accept_offer.py:148
 msgctxt "w_trading"
 msgid "На выбранном складе недостаточно места для товара"
 msgstr "На вибраному складі недостатньо місця для товару"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/trading/accept_offer.py:157
 msgctxt "w_trading"
 msgid "На выбранном складе недостаточно товара"
 msgstr "На вибраному складі недостатньо товару"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/trading/accept_offer.py:165
 #: storage/views/trading/accept_offer.py:179
 #: storage/views/trading/cancel_offer.py:88
@@ -4089,7 +3731,6 @@ msgctxt "w_trading"
 msgid "Выбранного склада игрока не существует"
 msgstr "Вибраного складу гравця не існує"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/trading/accept_offer.py:201
 #: storage/views/trading/accept_offer.py:311
 #: storage/views/trading/premium_trading.py:39
@@ -4097,7 +3738,6 @@ msgctxt "w_trading"
 msgid "Недостаточно средств. Требуется $"
 msgstr "Недостатньо засобів. Потрібно $"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/trading/accept_offer.py:225
 #: storage/views/trading/accept_offer.py:294
 #: storage/views/trading/cancel_offer.py:106
@@ -4107,47 +3747,34 @@ msgctxt "w_trading"
 msgid "Не удалось получить блокировку по офферу"
 msgstr "Не вдалось отримати блокування по офферу"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/trading/accept_offer.py:274
 msgctxt "w_trading"
 msgid "Ваши расходы на доставку больше прибыли"
 msgstr "Ваші витрати на  доставку більші прибутку"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/trading/accept_offer.py:282
 #: storage/views/trading/premium_trading.py:98
 msgctxt "w_trading"
 msgid "В торговом предложении недостаточно средств"
 msgstr "В торговій пропозиції недостатньо засобів"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/trading/accept_offer.py:302
 #: storage/views/trading/premium_trading.py:118
 msgctxt "w_trading"
 msgid "В связанной блокировке недостаточно средств"
 msgstr "В пов'язаному блокуванні недостатньо засобів"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/trading/accept_offer.py:323
 msgctxt "w_trading"
 msgid "Выбранного склада оффера не существует"
 msgstr "Вибраного складу офферу не існує"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/trading/accept_offer.py:394
 #: storage/views/trading/premium_trading.py:176
 msgctxt "w_trading"
 msgid "Оффера такого типа не существует"
 msgstr "Оффер такого типу не існує"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
-#: storage/views/trading/accept_offer.py:401
-#: storage/views/trading/premium_trading.py:183
-msgctxt "w_trading"
-msgid "Торговое предложение успешно принято"
-msgstr "Торгова пропозиція успішно прийнята"
-
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/trading/cancel_offer.py:39
 #: storage/views/trading/cancel_offer.py:52
 #: storage/views/trading/cancel_offer.py:60
@@ -4160,13 +3787,11 @@ msgctxt "w_trading"
 msgid "Отмена оффера"
 msgstr "Скасування офферу"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/trading/cancel_offer.py:54
 msgctxt "w_trading"
 msgid "Можно отменить только свой собственный оффер"
 msgstr "Можна скасувати тільки свій власний оффер"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/trading/create_offer.py:29
 #: storage/views/trading/create_offer.py:40
 #: storage/views/trading/create_offer.py:57
@@ -4187,130 +3812,109 @@ msgctxt "w_trading_new"
 msgid "Создание оффера"
 msgstr "Створення офферу"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/trading/create_offer.py:31
 #: storage/views/trading/get_offers.py:41
 msgctxt "w_trading_new"
 msgid "Некорректное действие"
 msgstr "Некоректна дія"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/trading/create_offer.py:42
 msgctxt "w_trading_new"
 msgid "Склад не указан"
 msgstr "Склад не вказаний"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/trading/create_offer.py:59
 msgctxt "w_trading_new"
 msgid "Достигнут лимит торговых предложений"
 msgstr "Досягнуто ліміт торгових пропозицій"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/trading/create_offer.py:69
 msgctxt "w_trading_new"
 msgid "Указанный товар не существует"
 msgstr "Вказаний товар не існує"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/trading/create_offer.py:80
 msgctxt "w_trading_new"
 msgid "Количество - не число"
 msgstr "Кількість  - не число"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/trading/create_offer.py:90
 msgctxt "w_trading_new"
 msgid "Количество товара должно быть положительным числом"
 msgstr "Кількість товару має бути додатнім числом"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/trading/create_offer.py:98
 msgctxt "w_trading_new"
 msgid "Количество товара слишком велико"
 msgstr "Кількість товару занадто велика"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/trading/create_offer.py:109
 msgctxt "w_trading_new"
 msgid "Цена товара должна быть положительным числом"
 msgstr "Ціна товару має бути додатнім числом"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/trading/create_offer.py:117
 msgctxt "w_trading_new"
 msgid "Цена товара слишком велика"
 msgstr "Ціна товару занадто велика"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/trading/create_offer.py:132
 msgctxt "w_trading_new"
 msgid "Недостаточно Wild Pass для продажи"
 msgstr "Недостатньо  Wild Pass для продажу"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/trading/create_offer.py:145
 msgctxt "w_trading_new"
 msgid "Недостаточно ресурса для продажи"
 msgstr "Недостатньо ресурсу для продажу"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/trading/create_offer.py:161
 msgctxt "w_trading_new"
 msgid "Стоимость товара слишком велика"
 msgstr "Вартість товару занадто велика"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/trading/create_offer.py:169
 msgctxt "w_trading_new"
 msgid "Недостаточно средств"
 msgstr "Недостатньо засобів "
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/trading/create_offer.py:202
 msgctxt "w_trading_new"
 msgid "Указанный Склад вам не принадлежит"
 msgstr "Вказаний Склад вам не належить "
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/trading/create_offer.py:209
 msgctxt "w_trading_new"
 msgid "Торговое предложение успешно создано"
 msgstr "Торгова пропозиція успішно створена"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/trading/get_offers.py:39
 #: storage/views/trading/get_offers.py:61
-#: storage/views/trading/get_offers.py:188
+#: storage/views/trading/get_offers.py:199
 msgctxt "w_trading"
 msgid "Получение офферов"
 msgstr "Отримання офферів"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/trading/get_offers.py:63
 msgctxt "w_trading"
 msgid "Некорректный владелец"
 msgstr "Некоректний власник"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
-#: storage/views/trading/get_offers.py:169
+#: storage/views/trading/get_offers.py:180
 msgctxt "w_trading"
 msgid "Отменить"
 msgstr "Скасувати"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
-#: storage/views/trading/get_offers.py:173
+#: storage/views/trading/get_offers.py:184
 msgctxt "w_trading"
 msgid "Купить"
 msgstr "Придбати"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
-#: storage/views/trading/get_offers.py:175
+#: storage/views/trading/get_offers.py:186
 msgctxt "w_trading"
 msgid "Продать"
 msgstr "Продати"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/trading/premium_trading.py:25
 #: storage/views/trading/premium_trading.py:37
 #: storage/views/trading/premium_trading.py:83
@@ -4323,44 +3927,41 @@ msgctxt "w_trading"
 msgid "Торговля Wild Pass"
 msgstr "Торгівля Wild Pass"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/trading/premium_trading.py:27
 msgctxt "w_trading"
 msgid "Не удалось получить владельца торгового предложения"
 msgstr "Не вдалося отримати власника торгової пропозиції"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: storage/views/trading/premium_trading.py:85
 msgctxt "w_trading"
 msgid "У вас недостаточно Wild Pass"
 msgstr "У вас недостатньо Wild Pass"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
+#: storage/views/trading/premium_trading.py:183
+msgctxt "w_trading"
+msgid "Торговое предложение успешно принято"
+msgstr "Торгова пропозиція успішно прийнята"
+
 #: war/models/squads/heavy_vehicle.py:32 war/models/wars/war_side.py:36
 msgid "Танки"
 msgstr "Танки"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: war/models/squads/infantry.py:47 war/models/wars/war_side.py:30
 msgid "Автоматы"
 msgstr "Автомати"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: war/models/squads/light_vehicle.py:47 war/models/wars/war_side.py:32
 msgid "БМП"
 msgstr "БМП"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: war/models/squads/light_vehicle.py:49 war/models/wars/war_side.py:34
 msgid "ПТ-орудия"
 msgstr "ПТ-гармати"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: war/models/squads/recon.py:32
 msgid "БПЛА"
 msgstr "БПЛА"
 
-#. Last modified by Victor Wilhelm von Wanzleben, id 862
 #: war/models/wars/war_side.py:27
 msgid "Дроны"
 msgstr "Дрони"
