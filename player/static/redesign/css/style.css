@@ -1913,6 +1913,7 @@ a {
 }
 
 .trading__actveFilters {
+  display: none;
   width: 320rem;
   margin: 0 auto;
   background-image: linear-gradient(to right bottom, var(--c30), transparent);
@@ -1926,6 +1927,9 @@ a {
   font-size: 16rem;
 }
 
+.search-modal__selectWithImage {
+  margin-bottom: 24rem;
+}
 
 @media (min-width: 1200px) {
   .trading {
@@ -1948,6 +1952,9 @@ a {
   }
   .trading__left-col {
     order: 2;
+  }
+  .trading__actveFilters.active {
+    display: block;
   }
 }
 

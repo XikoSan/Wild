@@ -396,9 +396,7 @@ def accept_offer(request):
             return JsonResponse(data)
 
         data = {
-            'header': pgettext('w_trading', 'Принятие оффера'),
-            'grey_btn': pgettext('mining', 'Закрыть'),
-            'response': pgettext('w_trading', 'Торговое предложение успешно принято'),
+            'response': 'ok',
         }
         return JsonResponse(data)
 

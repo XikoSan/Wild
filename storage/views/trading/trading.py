@@ -15,7 +15,12 @@ def trading(request):
     # получаем персонажа
     player = Player.get_instance(account=request.user)
 
-    return render(request, 'storage/trading/trading.html', {'player': player,
+    storages = None
+    if Storage.actual.filter(owner=player).exists():
+        storages = Storage.actual.filter(owner=player)
+
+    return render(request, 'storage/redesign/trading/trading.html', {'player': player,
                                                             'storage_cl': Storage,
                                                             'transport': Transport,
+                                                            'storages': storages,
                                                             })

@@ -122,9 +122,19 @@ def get_offers(request):
                           'good_name': offer.good,
                           'owner': offer.owner_storage.owner.nickname,
                           'region': offer.owner_storage.region.region_name,
+                          'region_img': offer.owner_storage.region.on_map_id,
                           'count': offer.count,
                           'price': offer.price
                           }
+            if offer.owner_storage.owner.pk == player.pk:
+                offer_dict['own_offer'] = True
+            else:
+                offer_dict['own_offer'] = False
+
+            if offer.owner_storage.owner.image:
+                offer_dict['owner_img'] = offer.owner_storage.owner.image.url
+            else:
+                offer_dict['owner_img'] = 'None'
 
             delivery_dict = {}
 
@@ -139,6 +149,7 @@ def get_offers(request):
 
                 delivery_dict[storage.pk] = {}
                 delivery_dict[storage.pk]['name'] = storage.region.region_name
+                delivery_dict[storage.pk]['img'] = storage.region.on_map_id
                 if len(delivery_dict) == 1:
                     delivery_dict[storage.pk]['default'] = True
                 delivery_dict[storage.pk]['single'] = trans_mul[storage.pk][offer.owner_storage.pk]

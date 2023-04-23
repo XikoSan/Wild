@@ -6,7 +6,7 @@ register = template.Library()
 
 
 @register.inclusion_tag('player/redesign/template_svg/nopic_list.html')
-def nopic_list(player, classes):
+def nopic_list(player, classes, style = ''):
 
     #  Настройки цветов профиля
     setts = None
@@ -32,4 +32,5 @@ def nopic_list(player, classes):
         'button_color': button_color,
 
         'classes': classes,
+        'style': style,
     }
