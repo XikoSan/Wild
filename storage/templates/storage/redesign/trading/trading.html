@@ -132,7 +132,9 @@
       <label class="search-modal__label ct__wide-modal-label-select">
         <select name="trade_owner" id="trade_owner">
             <option selected value='all'>{% trans 'Все' context "w_trading" %}</option>
+            {% if player.party %}
             <option value='party'>{% trans 'Партия' context "w_trading" %}</option>
+            {% endif %}
             <option value='mine'>{% trans 'Мои' context "w_trading" %}</option>
         </select>
         <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -150,6 +150,17 @@ jQuery(document).ready(function ($) {
         }
     });
 
+    $('#trade_owner').change(function(e) {
+        var selected = $(e.target).val();
+
+        if (selected == 'mine'){
+            document.getElementById('searchBtn').removeAttribute("disabled");
+        }
+        else{
+            document.getElementById('searchBtn').setAttribute("disabled", 'true');
+        }
+    });
+
     $('#offers_search_form').submit(function(e){
         e.preventDefault();
 

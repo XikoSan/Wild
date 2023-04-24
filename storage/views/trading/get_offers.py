@@ -84,6 +84,13 @@ def get_offers(request):
                 or good == 'wild_pass':
             kwargs['good'] = good
         else:
+            if owner != 'mine':
+                data = {
+                    'header': pgettext('w_trading', 'Получение офферов'),
+                    'grey_btn': pgettext('mining', 'Закрыть'),
+                    'response': pgettext('w_trading', 'Укажите товар'),
+                }
+                return JsonResponse(data)
             # узнаём группы товаров
             groups = request.POST.get('groups').split(',')
 
