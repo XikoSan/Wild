@@ -182,8 +182,9 @@ jQuery(document).ready(function ($) {
                             offers_dict[line['id']] = {};
                             // тип: покупка или продажа
                             offers_dict[line['id']]['type'] = line['type'];
-                            // количество
-                            offers_dict[line['id']]['count'] = line['count'];
+                            // товар
+                            offers_dict[line['id']]['good'] = line['good'];
+                            offers_dict[line['id']]['good_key'] = line['good_name'];
                             // склады
                             offers_dict[line['id']]['storages'] = {}
                             for (var key in line['delivery']){
@@ -215,10 +216,9 @@ jQuery(document).ready(function ($) {
                             // регион
                             cloned_line.getElementsByClassName("j-t-two")[0].innerHTML = line['region'];
                             offers_dict[line['id']]['region'] = line['region'];
-                            // товар
-                            cloned_line.getElementsByClassName("j-t-three")[0].innerHTML = line['good'];
-                            offers_dict[line['id']]['good'] = line['good'];
-                            offers_dict[line['id']]['good_key'] = line['good_name'];
+                            // количество
+                            offers_dict[line['id']]['count'] = line['count'];
+                            cloned_line.getElementsByClassName("j-t-three")[0].innerHTML = line['count'];
                             // цена
                             cloned_line.getElementsByClassName("j-t-four")[0].innerHTML = line['price'];
                             offers_dict[line['id']]['price'] = line['price'];
