@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-24 02:06+0300\n"
+"POT-Creation-Date: 2023-04-24 23:22+0300\n"
 "PO-Revision-Date: 2022-12-01 16:31+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -939,7 +939,7 @@ msgstr "Uang tidak cukup untuk membayar pengiriman"
 #: storage/views/trading/accept_offer.py:408
 #: storage/views/trading/cancel_offer.py:149
 #: storage/views/trading/create_offer.py:218
-#: storage/views/trading/get_offers.py:201
+#: storage/views/trading/get_offers.py:208
 msgctxt "mining"
 msgid "Ошибка метода"
 msgstr "Metode gagal"
@@ -1118,7 +1118,8 @@ msgstr "Keluar"
 #: storage/views/trading/create_offer.py:217
 #: storage/views/trading/get_offers.py:40
 #: storage/views/trading/get_offers.py:62
-#: storage/views/trading/get_offers.py:200
+#: storage/views/trading/get_offers.py:90
+#: storage/views/trading/get_offers.py:207
 #: storage/views/trading/premium_trading.py:26
 #: storage/views/trading/premium_trading.py:38
 #: storage/views/trading/premium_trading.py:84
@@ -3524,7 +3525,7 @@ msgid "Выберите один или несколько критериев в
 msgstr ""
 
 #: storage/templates/storage/redesign/trading/trading.html:77
-#: storage/templates/storage/redesign/trading/trading.html:311
+#: storage/templates/storage/redesign/trading/trading.html:313
 #, fuzzy
 #| msgctxt "overview"
 #| msgid "региона"
@@ -3533,16 +3534,16 @@ msgid "регион"
 msgstr "wilayah"
 
 #: storage/templates/storage/redesign/trading/trading.html:79
-#: storage/templates/storage/redesign/trading/trading.html:157
+#: storage/templates/storage/redesign/trading/trading.html:321
 #, fuzzy
-#| msgctxt "assets"
-#| msgid "выберите склад"
+#| msgctxt "storage_assets"
+#| msgid "Количество"
 msgctxt "trading"
-msgid "товар"
-msgstr "pilih penyimpanan"
+msgid "количество"
+msgstr "Jumlah"
 
 #: storage/templates/storage/redesign/trading/trading.html:80
-#: storage/templates/storage/redesign/trading/trading.html:306
+#: storage/templates/storage/redesign/trading/trading.html:308
 msgctxt "trading"
 msgid "цена"
 msgstr ""
@@ -3596,7 +3597,7 @@ msgctxt "w_trading"
 msgid "Все"
 msgstr ""
 
-#: storage/templates/storage/redesign/trading/trading.html:135
+#: storage/templates/storage/redesign/trading/trading.html:136
 #: storage/templates/storage/trading/trading.html:85
 #, fuzzy
 #| msgid "Партия"
@@ -3604,7 +3605,7 @@ msgctxt "w_trading"
 msgid "Партия"
 msgstr "Partai"
 
-#: storage/templates/storage/redesign/trading/trading.html:136
+#: storage/templates/storage/redesign/trading/trading.html:138
 #: storage/templates/storage/trading/trading.html:86
 #, fuzzy
 #| msgctxt "goods"
@@ -3613,7 +3614,7 @@ msgctxt "w_trading"
 msgid "Мои"
 msgstr "Obat-obatan"
 
-#: storage/templates/storage/redesign/trading/trading.html:143
+#: storage/templates/storage/redesign/trading/trading.html:145
 #, fuzzy
 #| msgctxt "goods"
 #| msgid "Орбитальные орудия"
@@ -3621,7 +3622,7 @@ msgctxt "trading"
 msgid "выбор категории"
 msgstr "Meriam orbit"
 
-#: storage/templates/storage/redesign/trading/trading.html:146
+#: storage/templates/storage/redesign/trading/trading.html:148
 #, fuzzy
 #| msgctxt "goods"
 #| msgid "Орбитальные орудия"
@@ -3629,7 +3630,15 @@ msgctxt "trading"
 msgid "выберите категорию"
 msgstr "Meriam orbit"
 
-#: storage/templates/storage/redesign/trading/trading.html:160
+#: storage/templates/storage/redesign/trading/trading.html:159
+#, fuzzy
+#| msgctxt "assets"
+#| msgid "выберите склад"
+msgctxt "trading"
+msgid "товар"
+msgstr "pilih penyimpanan"
+
+#: storage/templates/storage/redesign/trading/trading.html:162
 #, fuzzy
 #| msgctxt "assets"
 #| msgid "выберите склад"
@@ -3637,33 +3646,25 @@ msgctxt "trading"
 msgid "выберите товар"
 msgstr "pilih penyimpanan"
 
-#: storage/templates/storage/redesign/trading/trading.html:185
+#: storage/templates/storage/redesign/trading/trading.html:187
 msgctxt "trading"
 msgid "поиск"
 msgstr ""
 
-#: storage/templates/storage/redesign/trading/trading.html:293
-#: storage/templates/storage/redesign/trading/trading.html:394
+#: storage/templates/storage/redesign/trading/trading.html:295
+#: storage/templates/storage/redesign/trading/trading.html:396
 #, fuzzy
 #| msgid "Государство"
 msgctxt "trading"
 msgid "покупка"
 msgstr "Negara"
 
-#: storage/templates/storage/redesign/trading/trading.html:297
+#: storage/templates/storage/redesign/trading/trading.html:299
 msgctxt "trading"
 msgid "владелец"
 msgstr ""
 
-#: storage/templates/storage/redesign/trading/trading.html:319
-#, fuzzy
-#| msgctxt "storage_assets"
-#| msgid "Количество"
-msgctxt "trading"
-msgid "количество"
-msgstr "Jumlah"
-
-#: storage/templates/storage/redesign/trading/trading.html:348
+#: storage/templates/storage/redesign/trading/trading.html:350
 #, fuzzy
 #| msgctxt "assets"
 #| msgid "стоимость"
@@ -3671,7 +3672,7 @@ msgctxt "trading"
 msgid "стоимость"
 msgstr "harga"
 
-#: storage/templates/storage/redesign/trading/trading.html:353
+#: storage/templates/storage/redesign/trading/trading.html:355
 #, fuzzy
 #| msgctxt "no_storage"
 #| msgid "доставка"
@@ -3679,13 +3680,13 @@ msgctxt "trading"
 msgid "доставка"
 msgstr "pengiriman"
 
-#: storage/templates/storage/redesign/trading/trading.html:360
+#: storage/templates/storage/redesign/trading/trading.html:362
 msgctxt "trading"
 msgid "итого"
 msgstr ""
 
-#: storage/templates/storage/redesign/trading/trading.html:376
-#: storage/templates/storage/redesign/trading/trading.html:395
+#: storage/templates/storage/redesign/trading/trading.html:378
+#: storage/templates/storage/redesign/trading/trading.html:397
 #, fuzzy
 #| msgctxt "skills"
 #| msgid "недоступно"
@@ -3693,14 +3694,14 @@ msgctxt "trading"
 msgid "купить"
 msgstr "tidak tersedia"
 
-#: storage/templates/storage/redesign/trading/trading.html:391
+#: storage/templates/storage/redesign/trading/trading.html:393
 #, fuzzy
 #| msgid "Продолжить"
 msgctxt "trading"
 msgid "продажа"
 msgstr "Lanjutkan"
 
-#: storage/templates/storage/redesign/trading/trading.html:392
+#: storage/templates/storage/redesign/trading/trading.html:394
 #, fuzzy
 #| msgctxt "assets"
 #| msgid "передать"
@@ -3708,28 +3709,28 @@ msgctxt "trading"
 msgid "продать"
 msgstr "mengirim"
 
-#: storage/templates/storage/redesign/trading/trading.html:398
+#: storage/templates/storage/redesign/trading/trading.html:400
 #, fuzzy
 #| msgid "Некорректное значение"
 msgctxt "trading"
 msgid "Отмена торгового предложения"
 msgstr "Nominal salah"
 
-#: storage/templates/storage/redesign/trading/trading.html:399
+#: storage/templates/storage/redesign/trading/trading.html:401
 #, fuzzy
 #| msgid "Некорректное значение"
 msgctxt "trading"
 msgid "Ваше торговое предложение будет удалено. Продолжить?"
 msgstr "Nominal salah"
 
-#: storage/templates/storage/redesign/trading/trading.html:400
+#: storage/templates/storage/redesign/trading/trading.html:402
 #, fuzzy
 #| msgid "Продолжить"
 msgctxt "trading"
 msgid "Продолжить"
 msgstr "Lanjutkan"
 
-#: storage/templates/storage/redesign/trading/trading.html:401
+#: storage/templates/storage/redesign/trading/trading.html:403
 #, fuzzy
 #| msgid "Отмена"
 msgctxt "trading"
@@ -4479,7 +4480,8 @@ msgstr "Nominal salah"
 
 #: storage/views/trading/get_offers.py:39
 #: storage/views/trading/get_offers.py:61
-#: storage/views/trading/get_offers.py:199
+#: storage/views/trading/get_offers.py:89
+#: storage/views/trading/get_offers.py:206
 #, fuzzy
 #| msgctxt "assets"
 #| msgid "Перемещение товаров"
@@ -4494,19 +4496,27 @@ msgctxt "w_trading"
 msgid "Некорректный владелец"
 msgstr "Nominal salah"
 
-#: storage/views/trading/get_offers.py:180
+#: storage/views/trading/get_offers.py:91
+#, fuzzy
+#| msgctxt "assets"
+#| msgid "выберите склад"
+msgctxt "w_trading"
+msgid "Укажите товар"
+msgstr "pilih penyimpanan"
+
+#: storage/views/trading/get_offers.py:187
 #, fuzzy
 #| msgid "Отмена"
 msgctxt "w_trading"
 msgid "Отменить"
 msgstr "Batal"
 
-#: storage/views/trading/get_offers.py:184
+#: storage/views/trading/get_offers.py:191
 msgctxt "w_trading"
 msgid "Купить"
 msgstr ""
 
-#: storage/views/trading/get_offers.py:186
+#: storage/views/trading/get_offers.py:193
 #, fuzzy
 #| msgctxt "assets"
 #| msgid "передать"

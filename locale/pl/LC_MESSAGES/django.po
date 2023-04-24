@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-24 02:06+0300\n"
+"POT-Creation-Date: 2023-04-24 23:22+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -737,7 +737,7 @@ msgstr ""
 #: storage/views/trading/accept_offer.py:408
 #: storage/views/trading/cancel_offer.py:149
 #: storage/views/trading/create_offer.py:218
-#: storage/views/trading/get_offers.py:201
+#: storage/views/trading/get_offers.py:208
 msgctxt "mining"
 msgid "Ошибка метода"
 msgstr ""
@@ -892,7 +892,8 @@ msgstr ""
 #: storage/views/trading/create_offer.py:217
 #: storage/views/trading/get_offers.py:40
 #: storage/views/trading/get_offers.py:62
-#: storage/views/trading/get_offers.py:200
+#: storage/views/trading/get_offers.py:90
+#: storage/views/trading/get_offers.py:207
 #: storage/views/trading/premium_trading.py:26
 #: storage/views/trading/premium_trading.py:38
 #: storage/views/trading/premium_trading.py:84
@@ -3018,19 +3019,19 @@ msgid "Выберите один или несколько критериев в
 msgstr ""
 
 #: storage/templates/storage/redesign/trading/trading.html:77
-#: storage/templates/storage/redesign/trading/trading.html:311
+#: storage/templates/storage/redesign/trading/trading.html:313
 msgctxt "trading"
 msgid "регион"
 msgstr ""
 
 #: storage/templates/storage/redesign/trading/trading.html:79
-#: storage/templates/storage/redesign/trading/trading.html:157
+#: storage/templates/storage/redesign/trading/trading.html:321
 msgctxt "trading"
-msgid "товар"
+msgid "количество"
 msgstr ""
 
 #: storage/templates/storage/redesign/trading/trading.html:80
-#: storage/templates/storage/redesign/trading/trading.html:306
+#: storage/templates/storage/redesign/trading/trading.html:308
 msgctxt "trading"
 msgid "цена"
 msgstr ""
@@ -3073,101 +3074,101 @@ msgctxt "w_trading"
 msgid "Все"
 msgstr ""
 
-#: storage/templates/storage/redesign/trading/trading.html:135
+#: storage/templates/storage/redesign/trading/trading.html:136
 #: storage/templates/storage/trading/trading.html:85
 msgctxt "w_trading"
 msgid "Партия"
 msgstr ""
 
-#: storage/templates/storage/redesign/trading/trading.html:136
+#: storage/templates/storage/redesign/trading/trading.html:138
 #: storage/templates/storage/trading/trading.html:86
 msgctxt "w_trading"
 msgid "Мои"
 msgstr ""
 
-#: storage/templates/storage/redesign/trading/trading.html:143
+#: storage/templates/storage/redesign/trading/trading.html:145
 msgctxt "trading"
 msgid "выбор категории"
 msgstr ""
 
-#: storage/templates/storage/redesign/trading/trading.html:146
+#: storage/templates/storage/redesign/trading/trading.html:148
 msgctxt "trading"
 msgid "выберите категорию"
 msgstr ""
 
-#: storage/templates/storage/redesign/trading/trading.html:160
+#: storage/templates/storage/redesign/trading/trading.html:159
+msgctxt "trading"
+msgid "товар"
+msgstr ""
+
+#: storage/templates/storage/redesign/trading/trading.html:162
 msgctxt "trading"
 msgid "выберите товар"
 msgstr ""
 
-#: storage/templates/storage/redesign/trading/trading.html:185
+#: storage/templates/storage/redesign/trading/trading.html:187
 msgctxt "trading"
 msgid "поиск"
 msgstr ""
 
-#: storage/templates/storage/redesign/trading/trading.html:293
-#: storage/templates/storage/redesign/trading/trading.html:394
+#: storage/templates/storage/redesign/trading/trading.html:295
+#: storage/templates/storage/redesign/trading/trading.html:396
 msgctxt "trading"
 msgid "покупка"
 msgstr ""
 
-#: storage/templates/storage/redesign/trading/trading.html:297
+#: storage/templates/storage/redesign/trading/trading.html:299
 msgctxt "trading"
 msgid "владелец"
 msgstr ""
 
-#: storage/templates/storage/redesign/trading/trading.html:319
-msgctxt "trading"
-msgid "количество"
-msgstr ""
-
-#: storage/templates/storage/redesign/trading/trading.html:348
+#: storage/templates/storage/redesign/trading/trading.html:350
 msgctxt "trading"
 msgid "стоимость"
 msgstr ""
 
-#: storage/templates/storage/redesign/trading/trading.html:353
+#: storage/templates/storage/redesign/trading/trading.html:355
 msgctxt "trading"
 msgid "доставка"
 msgstr ""
 
-#: storage/templates/storage/redesign/trading/trading.html:360
+#: storage/templates/storage/redesign/trading/trading.html:362
 msgctxt "trading"
 msgid "итого"
 msgstr ""
 
-#: storage/templates/storage/redesign/trading/trading.html:376
-#: storage/templates/storage/redesign/trading/trading.html:395
+#: storage/templates/storage/redesign/trading/trading.html:378
+#: storage/templates/storage/redesign/trading/trading.html:397
 msgctxt "trading"
 msgid "купить"
 msgstr ""
 
-#: storage/templates/storage/redesign/trading/trading.html:391
+#: storage/templates/storage/redesign/trading/trading.html:393
 msgctxt "trading"
 msgid "продажа"
 msgstr ""
 
-#: storage/templates/storage/redesign/trading/trading.html:392
+#: storage/templates/storage/redesign/trading/trading.html:394
 msgctxt "trading"
 msgid "продать"
 msgstr ""
 
-#: storage/templates/storage/redesign/trading/trading.html:398
+#: storage/templates/storage/redesign/trading/trading.html:400
 msgctxt "trading"
 msgid "Отмена торгового предложения"
 msgstr ""
 
-#: storage/templates/storage/redesign/trading/trading.html:399
+#: storage/templates/storage/redesign/trading/trading.html:401
 msgctxt "trading"
 msgid "Ваше торговое предложение будет удалено. Продолжить?"
 msgstr ""
 
-#: storage/templates/storage/redesign/trading/trading.html:400
+#: storage/templates/storage/redesign/trading/trading.html:402
 msgctxt "trading"
 msgid "Продолжить"
 msgstr ""
 
-#: storage/templates/storage/redesign/trading/trading.html:401
+#: storage/templates/storage/redesign/trading/trading.html:403
 msgctxt "trading"
 msgid "Отмена"
 msgstr ""
@@ -3805,7 +3806,8 @@ msgstr ""
 
 #: storage/views/trading/get_offers.py:39
 #: storage/views/trading/get_offers.py:61
-#: storage/views/trading/get_offers.py:199
+#: storage/views/trading/get_offers.py:89
+#: storage/views/trading/get_offers.py:206
 msgctxt "w_trading"
 msgid "Получение офферов"
 msgstr ""
@@ -3815,17 +3817,22 @@ msgctxt "w_trading"
 msgid "Некорректный владелец"
 msgstr ""
 
-#: storage/views/trading/get_offers.py:180
+#: storage/views/trading/get_offers.py:91
+msgctxt "w_trading"
+msgid "Укажите товар"
+msgstr ""
+
+#: storage/views/trading/get_offers.py:187
 msgctxt "w_trading"
 msgid "Отменить"
 msgstr ""
 
-#: storage/views/trading/get_offers.py:184
+#: storage/views/trading/get_offers.py:191
 msgctxt "w_trading"
 msgid "Купить"
 msgstr ""
 
-#: storage/views/trading/get_offers.py:186
+#: storage/views/trading/get_offers.py:193
 msgctxt "w_trading"
 msgid "Продать"
 msgstr ""
