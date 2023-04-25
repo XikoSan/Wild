@@ -212,7 +212,7 @@ jQuery(document).ready(function ($) {
                 });
             }
             else{
-                max_value = Math.floor(total_stocks[$('#storage').data('value')][crude]/schema[crude]) * schema[crude]
+                max_value = Math.floor(total_stocks[document.getElementById('storage').dataset.value][crude]/schema[crude]) * schema[crude]
             }
 
             if(crude == 'energy'){
@@ -265,7 +265,7 @@ jQuery(document).ready(function ($) {
         e.preventDefault();
 
          var sending_data = $(this).serialize();
-         sending_data += "&csrfmiddlewaretoken=" + csrftoken + "&storage=" + $('#storage').data('value');
+         sending_data += "&csrfmiddlewaretoken=" + csrftoken + "&storage=" + document.getElementById('storage').dataset.value;
         $.ajax({
             type: "POST",
             url: "/produce/",
