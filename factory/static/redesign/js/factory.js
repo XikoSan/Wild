@@ -2,6 +2,49 @@ function insertAfter(newNode, existingNode) {
     existingNode.parentNode.insertBefore(newNode, existingNode.nextSibling);
 }
 
+function getStorageStatus(id, energy){
+    //запрашиваем свежие данные склада
+    $.ajax({
+        type: "GET",
+        url: "/status/" + String(id) + "/",
+        dataType: "html",
+        cache: false,
+        success: function(data){
+            result = JSON.parse(data);
+            for (const [key, value] of Object.entries(result)) {
+              total_stocks[String(id)][String(key)] = value;
+            }
+            actualize_lines(document.getElementById('storage').dataset.value, energy)
+        }
+    });
+}
+
+function actualize_lines(id, energy){
+    var energy_dict = { 'energy': schemas[$('#good').val()]['energy'] },
+    schema = Object.assign({}, energy_dict, schemas[$('#good').val()][$('#schema').val()])
+
+    for (const [key, value] of Object.entries(schema)) {
+      line = document.getElementById(String(key) + '_line')
+      var max_value = 0;
+
+      if (key=='energy'){
+        max_value = Math.floor(energy/schema[key]) * schema[key]
+      }
+      else{
+        max_value = Math.floor(total_stocks[id][key]/schema[key]) * schema[key]
+      }
+
+      $(line.getElementsByClassName("crude_amount")[0]).attr('max', max_value);
+      $(line.getElementsByClassName("storage_stocks")[0]).html(numberWithSpaces(max_value));
+      $(line.getElementsByClassName("crude_count")[0]).attr('max', max_value);
+
+      if (max_value == 0){
+          $(cloned_line.getElementsByClassName("crude_count")[0]).val(0);
+          $(cloned_line.getElementsByClassName("crude_amount")[0]).val(0);
+      }
+    }
+}
+
 function setInputValue(val){
     count = val;
     setAnotherValues();
@@ -273,7 +316,25 @@ jQuery(document).ready(function ($) {
             cache: false,
             success: function(data){
                 if (data.response == 'ok'){
-                    actualize();
+                    // вместо actualize() чтобы передать текущее значение энергии в актуализацию строк
+                    $.ajax({
+                        async: false,
+                        beforeSend: function() {},
+                        type: "GET",
+                        url: "/status/0/",
+                        dataType: "html",
+                        cache: false,
+                        success: function(data){
+
+                            result = JSON.parse(data);
+
+                            $('#cash').html(numberWithSpaces(result.cash));
+
+                            $('#gold').html(numberWithSpaces(result.gold));
+                            $('#energy').html(result.energy);
+                        }
+                    });
+                    getStorageStatus(document.getElementById('storage').dataset.value, result.energy);
                 }
                 else{
                     display_modal('notify', data.header, data.response, null, data.grey_btn)
