@@ -11,6 +11,7 @@ from .views.map.open_region import open_region
 from .views.map.region_info import region_info
 from .views.mining import mining
 from .views.retrieve_cash import retrieve_cash
+from .views.daily_status import daily_status
 
 urlpatterns = [
 
@@ -20,6 +21,8 @@ urlpatterns = [
     url(r'^do_mining$', do_mining, name='do_mining'),
     # получение денег из дейлика
     url(r'^retrieve_cash$', retrieve_cash, name='retrieve_cash'),
+    # получение информации о дейлике
+    url(r'^daily_status$', daily_status, name='daily_status'),
 
     # добыча ресурсов АВТО
     url(r'^start_auto/$', start_auto, name='start_auto'),

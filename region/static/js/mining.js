@@ -1,3 +1,24 @@
+function actualize_daily(){
+    //запрашиваем свежие данные состояния валют и энергии игрока
+    $.ajax({
+        type: "GET",
+        url: "/daily_status",
+        dataType: "html",
+        cache: false,
+        success: function(data){
+
+            result = JSON.parse(data);
+
+            document.getElementById('energy_consumption').innerHTML = result.energy_consumption;
+            document.getElementById('daily_energy_limit').innerHTML = result.daily_energy_limit;
+
+            document.getElementById('energy_progressbar').style.width = result.daily_procent;
+
+            document.getElementById('daily_current_sum').innerHTML = result.daily_current_sum;
+        }
+    });
+};
+
 jQuery(document).ready(function ($) {
     $('.mining_form').submit(function(e){
         e.preventDefault();
@@ -17,6 +38,7 @@ jQuery(document).ready(function ($) {
 
                 if (data.response == 'ok'){
                     actualize();
+                    actualize_daily();
                 }
                 else{
                     display_modal('notify', data.header, data.response, null, data.grey_btn)
