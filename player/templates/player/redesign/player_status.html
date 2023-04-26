@@ -35,7 +35,7 @@
 		<script>
             const refill_button_txt = '{% trans 'пополнить' context "status" %}';
         </script>
-		<button id="refill-countdown" data-text="{{ countdown }}" onclick="recharge()" class="info__add-energy">
+		<button id="refill-countdown" data-text="{{ countdown }}" onclick="recharge()" class="info__add-energy" style="cursor: pointer">
 			<span class="info__fill-text">
 				{% if time_text %}
                 {{ time_text }}
