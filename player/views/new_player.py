@@ -12,7 +12,7 @@ from django.utils import timezone
 from django.utils.translation import ugettext as _
 
 from player.forms import ImageForm
-#
+from region.building.hospital import Hospital
 from player.forms import NewPlayerForm
 from player.player import Player
 from region.region import Region
@@ -36,6 +36,12 @@ def player_create(request, form):
     character.region = start_pk
     character.residency = start_pk
     character.premium = timezone.now() + datetime.timedelta(days=7)
+
+    med_top = 1
+    if Hospital.objects.filter(region=character.region).exists():
+        med_top = Hospital.objects.get(region=character.region).top
+
+    character.last_top = med_top
     character.save()
 
     storage = Storage(owner=character, region=character.region)

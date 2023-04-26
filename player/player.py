@@ -82,7 +82,7 @@ class Player(models.Model):
     # дата последнего есстественного прироста
     natural_refill = models.DateTimeField(default=timezone.now, null=True, blank=True, verbose_name='Время прироста')
     # индекс во время последнего прироста
-    last_top = models.IntegerField(default=0, null=True, blank=True,
+    last_top = models.IntegerField(default=1, null=True, blank=True,
                                    verbose_name='Рейтинг госпиталя при последнем приросте')
 
     # -----------дневной квест на трату энергии----------------
