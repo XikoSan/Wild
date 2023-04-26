@@ -4,6 +4,7 @@ from django.utils.translation import pgettext
 
 from player.decorators.player import check_player
 from player.player import Player
+from django.utils import timezone
 from storage.models.storage import Storage
 from storage.templatetags.check_up_limit import check_up_limit
 from war.models.wars.war import War
@@ -15,8 +16,12 @@ from player.views.get_subclasses import get_subclasses
 @check_player
 def storage(request):
     player = Player.get_instance(account=request.user)
-    storage = None
 
+    premium = False
+    if player.premium > timezone.now():
+        premium = True
+
+    storage = None
     war_there = False
 
     # если склад есть
@@ -58,6 +63,7 @@ def storage(request):
         'page_name': pgettext('storage', 'Склад'),
 
         'player': player,
+        'premium': premium,
         'storage': storage,
 
         'war_there': war_there,
