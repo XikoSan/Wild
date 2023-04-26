@@ -187,7 +187,7 @@
     <!--премиум очередь навыков-->
     <ul class="overview__love-prem-list">
     {% for perk in queue %}
-    <li {% if perk == last_skill %}onclick="skill_cancel(event, {% localize off %}{{ perk.pk }}{% endlocalize %})"{% endif %} class="overview__love-prem-item
+    <li {% if perk == last_skill %}onclick="skill_cancel(event, {% localize off %}{{ perk.pk }}{% endlocalize %})" style="cursor: pointer"{% endif %} class="overview__love-prem-item
     {% if perk.skill == 'power' %}
         str
     {% elif perk.skill == 'knowledge' %}
@@ -197,7 +197,7 @@
     {% else %}
     skill
     {% endif %}
-    " style="cursor: pointer">
+    ">
       <svg width="37" height="37" viewBox="0 0 37 37" xmlns="http://www.w3.org/2000/svg">
         <path class="pth" d="M0.5 35.9V6.27176L6.19269 0.5H35.9V30.696L30.7673 35.9H0.5Z"/>
         <path class="pth" d="M18 11V25"/>
