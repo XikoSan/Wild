@@ -44,7 +44,7 @@
         {% endif %}
     </p>
   </div>
-  <button class="overview__love-stat-learn" {% if not train or premium and has_slot  %} onclick="up_skill('power')" {% else %} disabled {% endif %}>
+  <button class="overview__love-stat-learn" {% if not train or premium and has_slot  %} onclick="up_skill('power')" {% else %} disabled {% endif %} style="cursor: pointer">
     {% if train %}
         {% if premium %}
             {% if has_slot %}
@@ -93,7 +93,7 @@
         {% endif %}
     </p>
   </div>
-  <button class="overview__love-stat-learn" {% if not train or premium and has_slot  %} onclick="up_skill('knowledge')" {% else %} disabled {% endif %}>
+  <button class="overview__love-stat-learn" {% if not train or premium and has_slot  %} onclick="up_skill('knowledge')" {% else %} disabled {% endif %} style="cursor: pointer">
     {% if train %}
         {% if premium %}
             {% if has_slot %}
@@ -142,7 +142,7 @@
         {% endif %}
     </p>
   </div>
-  <button class="overview__love-stat-learn" {% if not train or premium and has_slot  %} onclick="up_skill('endurance')" {% else %} disabled {% endif %}>
+  <button class="overview__love-stat-learn" {% if not train or premium and has_slot  %} onclick="up_skill('endurance')" {% else %} disabled {% endif %} style="cursor: pointer">
     {% if train %}
         {% if premium %}
             {% if has_slot %}
@@ -164,7 +164,7 @@
 </div>
 
 <!--кнопка древа навыков-->
-<button class="overview__love-stat-three" onclick="window.location.href = '{% url 'skills_list' %}'">
+<button class="overview__love-stat-three" onclick="window.location.href = '{% url 'skills_list' %}'" style="cursor: pointer">
   <svg width="176" height="31" viewBox="0 0 176 31" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M0 6.26923L7.05128 0.5H176V23.5769L167.538 30.5H0V6.26923Z" fill="var(--c10one)"/>
   </svg>
@@ -197,7 +197,7 @@
     {% else %}
     skill
     {% endif %}
-    ">
+    " style="cursor: pointer">
       <svg width="37" height="37" viewBox="0 0 37 37" xmlns="http://www.w3.org/2000/svg">
         <path class="pth" d="M0.5 35.9V6.27176L6.19269 0.5H35.9V30.696L30.7673 35.9H0.5Z"/>
         <path class="pth" d="M18 11V25"/>

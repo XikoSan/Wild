@@ -444,17 +444,17 @@
         <div class="overview__love">
           <!--Левая колонка-->
           <div class="overview__love-left">
-            <button class="overview__love-stat-btn love_power_mob_btn" onclick="setStatTab(0)">
+            <button class="overview__love-stat-btn love_power_mob_btn" onclick="setStatTab(0)" style="cursor: pointer">
               <h3>{% trans 'сила' context "overview" %}</h3>
               <div style="background-color: tomato;" class="overview__love-stat-btn-line"></div>
               <span>{{ player.power }}</span>
             </button>
-            <button class="overview__love-stat-btn" onclick="setStatTab(1)">
+            <button class="overview__love-stat-btn" onclick="setStatTab(1)" style="cursor: pointer">
               <h3>{% trans 'инт' context "overview" %}</h3>
               <div style="background-color: #4791FF;" class="overview__love-stat-btn-line"></div>
               <span>{{ player.knowledge }}</span>
             </button>
-            <button class="overview__love-stat-btn"  onclick="setStatTab(2)">
+            <button class="overview__love-stat-btn"  onclick="setStatTab(2)" style="cursor: pointer">
               <h3>{% trans 'вын' context "overview" %}</h3>
               <div style="background-color: #8DFF47;" class="overview__love-stat-btn-line"></div>
               <span>{{ player.endurance }}</span>
