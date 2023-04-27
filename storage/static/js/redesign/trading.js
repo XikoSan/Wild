@@ -94,7 +94,13 @@ function confirm_offer(){
 }
 
 function cancel_window(id){
-    document.getElementsByClassName('modal__ok')[0].addEventListener('click', () => cancel_offer(id));
+    element = document.getElementsByClassName('modal__ok')[0]
+    element.replaceWith(element.cloneNode(true));
+    modalOk = document.querySelector('.modal__ok')
+
+    if (modalOk) modalOk.addEventListener('click', () => modal.classList.remove('active'));
+    modalOk.addEventListener('click', () => cancel_offer(id));
+
     display_modal('ask', offer_cancel_header, offer_cancel_text, offer_cancel_yes, offer_cancel_cancel)
 }
 
@@ -201,11 +207,6 @@ jQuery(document).ready(function ($) {
                             for (var key in line['delivery']){
                                 offers_dict[line['id']]['storages'][key] = line['delivery'][key]['single'];
 
-//                                offers_dict[line['id']]['storages'][key]['region'] = line['delivery'][key]['name'];
-
-//                                offers_dict[line['id']]['storages'][key]['img'] = 'static/img/regions/' + line['delivery'][key]['img'] + '.png';
-
-//                                offers_dict[line['id']]['storages'][key]['single'] = line['delivery'][key]['single'];
                             }
 
 
@@ -214,7 +215,8 @@ jQuery(document).ready(function ($) {
                             // если это собственное предложение - другой обработчик
                             if (line['own_offer'] == true){
                                 cloned_line.removeAttribute("onclick");
-                                cloned_line.addEventListener('click', () => cancel_window(line['id']));
+                                let num = String(line['id'])
+                                cloned_line.addEventListener('click', () => cancel_window(parseInt(num)));
                             }
 
                             cloned_line.id = line['id'] + '_line';

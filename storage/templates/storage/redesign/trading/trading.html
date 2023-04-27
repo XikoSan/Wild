@@ -32,8 +32,8 @@
 		        <span>{% trans 'госзакупки' context "trading" %}</span>
 		      </button>
               <!--Кнопка "создать"-->
-<!--		      <button class="ct__top-tab ct__top-tab2 ct__mid-btn" onclick="toggleActiveClass('search-create')" style="cursor: pointer;">-->
-		      <button class="ct__top-tab ct__top-tab2 ct__mid-btn" onclick="window.location.href = '/new_offer'" style="cursor: pointer;">
+		      <button class="ct__top-tab ct__top-tab2 ct__mid-btn" onclick="toggleActiveClass('search-create')" style="cursor: pointer;">
+<!--		      <button class="ct__top-tab ct__top-tab2 ct__mid-btn" onclick="window.location.href = '/new_offer'" style="cursor: pointer;">-->
 		        <svg width="144" height="30" viewBox="0 0 144 30" fill="none" xmlns="http://www.w3.org/2000/svg">
 		          <path d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z" fill="url(#paint0_linear_64047_401)"/>
 		          <defs>
@@ -192,78 +192,107 @@
 
   <!--МОДАЛЬНЫЕ создание товара-->
   <section class="search-modal movable" id="search-create">
-    <div class="search-modal__wrapper">
+    <form id="new_offer_form" role="form" class="search-modal__wrapper">
       <!--Кнопка закрытия модалки-->
-      <button class="m-sett__close ct__square-mid-btn" onclick="toggleActiveClass('search-create')">
+      <button class="m-sett__close ct__square-mid-btn" id="closeCreate">
         <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M26 30H0V0H30V26L26 30Z" fill="var(--c10two)"/><path d="M4 4L26 26M4 26L26 4" stroke="var(--c60)" stroke-width="3"/>
         </svg>
       </button>
       <!--Заголовок-->
-      <h2>Новое торговое предложение</h2>
+      <h2>{% trans 'Новое торговое предложение' context "w_trading_new" %}</h2>
 			<!--текст-->
-			<h4>Доступно: 5 / 5 <br>
+			<h4>{% trans 'Доступно' context "w_trading_new" %}:
+                <span id="free_offers">{% if free_offers > 0 %}{{ free_offers }}{% else %}0{% endif %}</span>
+                <span>/ {{ total_offers }}</span>
+                <br>
 				(+5 за каждый Склад)</h4>
       <!--Выбор действия-->
+      <h3>{% trans 'тип предложения' context "trading" %}:</h3>
       <label class="search-modal__label ct__wide-modal-label-select">
-        <select>
-          <option value="" disabled selected>выбор действия</option>
-          <option value="">действие 1</option>
-          <option value="">действие 2</option>
-          <option value="">действие 3</option>
+        <select name="action" id="action">
+			<option selected value='sell'>{% trans 'Продажа' context "w_trading" %}</option>
+			<option value='buy'>{% trans 'Покупка' context "w_trading" %}</option>
         </select>
-				<svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
-				</svg>
+        <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
+        </svg>
       </label>
       <!--Выбор склада-->
-      <label class="search-modal__label ct__wide-modal-label-select">
-        <select>
-          <option value="" disabled selected>выбор склада</option>
-          <option value="">склад 1</option>
-          <option value="">склад 2</option>
-          <option value="">склад 3</option>
-        </select>
-				<svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
-				</svg>
-      </label>
+        <!--Выбор склада-->
+        <div class="ct__selectWithImage search-modal__selectWithImage">
+            {% for storage in storages %}
+            {% if forloop.counter0 == 0 %}
+            <div class="ct__selectWithImage-selected" id="create_default_storage" data-value="{% localize off %}{{ storage.pk }}{% endlocalize %}">
+                <img id="create_default_img" src="static/img/regions/{{ storage.region.on_map_id }}.png">
+                <div class="ct__selectWithImage-firstText">
+                    <span id="create_default_region">{% trans storage.region.region_name context "regions_list" %}</span>
+                    <svg class="ct__selectWithImage-arrow" width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
+                    </svg>
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+            <div class="ct__selectWithImage-content custom-scroll custom-scroll--alt">
+                {% for storage in storages %}
+                <div id="create_storage_{% localize off %}{{ storage.pk }}{% endlocalize %}" {% if forloop.counter0 == 0 %}class="first_storage"{% endif %} data-value="{% localize off %}{{ storage.pk }}{% endlocalize %}">
+                    <img class="offer_dummy_img" src="static/img/regions/{{ storage.region.on_map_id }}.png">
+                    <span class="offer_dummy_region">{% trans storage.region.region_name context "regions_list" %}</span>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
       <!--Выбор категорий-->
+      <h3>{% trans 'выбор категории' context "trading" %}:</h3>
       <label class="search-modal__label ct__wide-modal-label-select">
-        <select>
-          <option value="" disabled selected>выбор категории</option>
-          <option value="">категория 1</option>
-          <option value="">категория 2</option>
-          <option value="">категория 3</option>
+        <select id="group">
+            <option id="create_group_default" value='default' disabled selected>{% trans 'выберите категорию' context "trading" %}</option>
+            {% for group in storage_cl|get_attr:'types' %}
+            <option value='{{ group }}'>{{ storage_cl|get_attr:'types'|dict_key:group }}</option>
+            {% endfor %}
+            <option value='premium'>Wild Pass</option>
         </select>
-				<svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
-				</svg>
+        <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
+        </svg>
       </label>
       <!--Выбор товара-->
+      <h3>{% trans 'товар' context "trading" %}:</h3>
       <label class="search-modal__label ct__wide-modal-label-select">
-        <select>
-          <option value="" disabled selected>выбор товара</option>
-          <option value="">товар 1</option>
-          <option value="">товар 2</option>
-          <option value="">товар 3</option>
+        <select disabled name="good" id="good">
+          <option id="create_good_default" value='default' disabled selected>{% trans 'выберите товар' context "trading" %}</option>
+            {% for group in storage_cl|get_attr:'types' %}
+                {% for good in storage_cl|get_attr:group %}
+            <option id="create_good_{{ good }}" value='{{ good }}' style="display: none">{{ storage_cl|get_attr:group|dict_key:good }}</option>
+                {% endfor %}
+            {% endfor %}
+            <option id="create_good_wild_pass" value='wild_pass' style="display: none">Wild Pass</option>
         </select>
         <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
         </svg>
       </label>
-			<!--количество-->
-			<div class="search-modal__withInput search-modal__withInput--margin">
-				<span class="search-modal__withInput-text">количество</span>
-				<input type="number" class="search-modal__withInput-input" value="999"> /?
-			</div>
-			<!--цена-->
-			<div class="search-modal__withInput search-modal__withInput--margin">
-				<span class="search-modal__withInput-text">цена</span>
-				<input type="number" class="search-modal__withInput-input" value="999">
-			</div>
+        <!--количество-->
+        <div class="search-modal__withInput search-modal__withInput--margin">
+            <span class="search-modal__withInput-text">количество</span>
+            <input id="count" name="count" type="number" class="search-modal__withInput-input" value="0">
+            <div id="stocks" style="display: inline-block">
+                <span class="search-modal__withInput-text">/</span>
+                <span class="search-modal__withInput-text" id="stocks_value">?</span>
+            </div>
+        </div>
+        <!--цена-->
+        <div class="search-modal__withInput search-modal__withInput--margin">
+            <span class="search-modal__withInput-text">цена</span>
+            <input id="price" name="price" type="number" class="search-modal__withInput-input" value="0">
+        </div>
+        <div class="search-modal__withInput search-modal__withInput--margin" id="buy_row" style="display: none">
+            <span class="search-modal__withInput-text">{% trans 'Будет заблокировано' context "w_trading_new" %}</span>
+            <span class="search-modal__withInput-text" id="cash_to_lock">$0</span>
+        </div>
       <!--Кнопка ПОИСК-->
-      <button class="search-modal__confirm-btn ct__mid-btn">
+      <button class="search-modal__confirm-btn ct__mid-btn" disabled id="accept">
         <svg width="144" height="30" viewBox="0 0 144 30" fill="none" xmlns="http://www.w3.org/2000/svg">
           <mask id="mask0_259_319" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
             <path d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z" fill="var(--c10two)"/>
@@ -275,10 +304,10 @@
             <path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
           </g>
         </svg>
-        <span>cоздать</span>
+        <span>{% trans 'создать' context "trading" %}</span>
       </button>
       <!--конец блока-->
-    </div>
+    </form>
   </section>
 
   <!--МОДАЛЬНая покупка-->
@@ -423,9 +452,23 @@
         {% endfor %}
     {% endfor %}
             vol_map.set('wild_pass', '0');
+
+    var total_stocks = {};
+    {% for storage in storages %}
+        total_stocks["{% localize off %}{{ storage|get_attr:'pk' }}{% endlocalize %}"] = {};
+        {% for group in storage_cl|get_attr:'types' %}
+            {% for good in storage_cl|get_attr:group %}
+                total_stocks["{% localize off %}{{ storage|get_attr:'pk' }}{% endlocalize %}"]['{{ good }}'] = {% localize off %}{{ storage|get_attr:good }}{% endlocalize %};
+            {% endfor %}
+        {% endfor %}
+                total_stocks["{% localize off %}{{ storage|get_attr:'pk' }}{% endlocalize %}"]['wild_pass'] = {% localize off %}{{ player|get_attr:'cards_count' }}{% endlocalize %};
+    {% endfor %}
 </script>
 <script src='{% static "js/redesign/trading.js" %}?{{ csrf_token }}'></script>
+<script src='{% static "js/redesign/new_offer.js" %}?{{ csrf_token }}'></script>
 <script>
+    var free_offers = {% if free_offers > 0 %}{% localize off %}{{ free_offers }}{% endlocalize %}{% else %}0{% endif %};
+
     jQuery(document).ready(function ($) {
 
       // Создаем новый экземпляр MutationObserver
@@ -452,6 +495,13 @@
    button.addEventListener('click', function(event) {
      event.preventDefault();
      document.getElementById('offers_search_form').classList.remove('active')
+   });
+
+  const create_close_button = document.getElementById('closeCreate');
+
+   create_close_button.addEventListener('click', function(event) {
+     event.preventDefault();
+     document.getElementById('search-create').classList.remove('active')
    });
 
   function toggleActiveClass(id, e = null) {

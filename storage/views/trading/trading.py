@@ -7,6 +7,7 @@ from player.decorators.player import check_player
 from player.player import Player
 from storage.models.storage import Storage
 from storage.models.transport import Transport
+from storage.models.trade_offer import TradeOffer
 
 
 @login_required(login_url='/')
@@ -25,4 +26,11 @@ def trading(request):
                                                                      'storage_cl': Storage,
                                                                      'transport': Transport,
                                                                      'storages': storages,
+
+                                                                     'total_offers': Storage.actual.filter(
+                                                                         owner=player).count() * 5,
+                                                                     'free_offers': (Storage.actual.filter(
+                                                                         owner=player).count() * 5) - TradeOffer.actual.filter(
+                                                                         owner_storage__owner__pk=player.pk).count(),
+
                                                                      })
