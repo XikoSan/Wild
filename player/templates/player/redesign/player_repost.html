@@ -15,15 +15,19 @@
         {% trans 'Бонус можно получить раз в сутки' context "repost" %}
     </p>
 </div>
-{% if not repost %}
-<p class="profile__repost-status">{% trans 'репост не найден' context "repost" %}</p>
-{% else %}
-<p class="profile__repost-status ok" style="display: none;">{% trans 'репост найден' context "repost" %}</p>
+{% if not is_error %}
+    {% if not repost %}
+    <p class="profile__repost-status">{% trans 'репост не найден' context "repost" %}</p>
+    {% else %}
+    <p class="profile__repost-status ok" style="display: none;">{% trans 'репост найден' context "repost" %}</p>
+    {% endif %}
 {% endif %}
 {% if is_error %}
-<p>{% trans 'Произошла ошибка API VK' context "repost" %}</p>
-<p>{% trans 'Обычно помогает повторный логин в игре' context "repost" %}</p>
-<a href="/accounts/logout/" class="ct__long-btn">{% trans 'Выйти из игры' context "repost" %}</a>
+<p style="font-size: 10rem;">{% trans 'Произошла ошибка API VK' context "repost" %}</p>
+<p style="font-size: 10rem;">{% trans 'Обычно помогает повторный логин в игре' context "repost" %}</p>
+<a href="/accounts/logout/">
+    <p class="profile__repost-status">{% trans 'Выйти из игры' context "repost" %}</p>
+</a>
 {% endif %}
 {% if repost %}
 {% if now_dtime > need_dtime %}
