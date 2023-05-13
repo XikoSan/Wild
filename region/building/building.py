@@ -2,7 +2,7 @@
 
 from django.db import models
 
-from region.region import Region
+from region.models.region import Region
 
 
 # Абстрактный класс здания в регионе

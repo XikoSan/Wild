@@ -10,7 +10,7 @@ from bill.models.bill import Bill
 from party.party import Party
 from player.views.get_subclasses import get_subclasses
 from region.building.building import Building
-from region.region import Region
+from region.models.region import Region
 from state.models.capital import Capital
 from state.models.parliament.deputy_mandate import DeputyMandate
 from state.models.parliament.parliament import Parliament

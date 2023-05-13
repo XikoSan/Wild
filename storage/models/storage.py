@@ -4,7 +4,7 @@ from django.utils.translation import gettext_lazy, pgettext_lazy, ugettext as _
 
 from player.actual_manager import ActualStorageManager
 from player.player import Player
-from region.region import Region
+from region.models.region import Region
 
 
 # Важная информация!
@@ -110,6 +110,13 @@ class Storage(models.Model):
 
     # наличные на складе
     cash = models.BigIntegerField(default=0, verbose_name=pgettext_lazy('goods', 'Наличные'))
+
+    # Большой типоразмер - максимум на складе
+    large_cap = models.IntegerField(default=120000, verbose_name='Большой лимит') # 120 000 -> 600 000
+    # Средний типоразмер - максимум на складе
+    medium_cap = models.IntegerField(default=20000, verbose_name='Средний лимит') # 20 000 -> 100 000
+    # Малый типоразмер - максимум на складе
+    small_cap = models.IntegerField(default=2000, verbose_name='Малый лимит') # 2 000 -> 10 000
 
     # ------vvvvvvv------Минералы на складе------vvvvvvv------
     # Уголь
@@ -303,7 +310,7 @@ class Storage(models.Model):
             return 0
 
     # проверить наличие места для предметов на Складе
-    def capacity_check(self, field, count):
+    def capacity_check(self, size, count, stocks):
         # передан ноль (ничего не передают)
         if count == 0:
             return True
@@ -311,8 +318,8 @@ class Storage(models.Model):
         if count < 0:
             return False
         # проверяем влезет ли всё - кроме денег
-        if not field == 'cash':
-            if count + getattr(self, field) > getattr(self, field + '_cap'):
+        if not size == 'cash':
+            if count + stocks > getattr(self, size + '_cap'):
                 return False
             else:
                 return True

@@ -2,7 +2,7 @@
 from django.db import models
 from django_celery_beat.models import PeriodicTask
 
-from region.region import Region
+from region.models.region import Region
 
 
 # класс абстрактной войны

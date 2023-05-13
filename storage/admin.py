@@ -12,11 +12,16 @@ from storage.models.storage import Storage
 from storage.models.trade_offer import TradeOffer
 from storage.models.trading_log import TradingLog
 from storage.models.transport import Transport
+from storage.models.good import Good
+from storage.models.stock import Stock
+from modeltranslation.admin import TabbedTranslationAdmin
 
 
 class TradeOfferAdmin(admin.ModelAdmin):
+
     search_fields = ['player__nickname']
     list_display = ('owner_storage', 'type', 'good', 'price', 'deleted')
+    raw_id_fields = ('owner_storage',)
     list_filter = ('deleted',)
 
     formfield_overrides = {
@@ -24,6 +29,18 @@ class TradeOfferAdmin(admin.ModelAdmin):
                                                                           is_stacked=False)},
     }
 
+
+class GoodAdmin(TabbedTranslationAdmin):
+    list_tabs = ['name',]
+
+
+class StockAdmin(admin.ModelAdmin):
+    search_fields = ['good__name', '=storage__pk',]
+    raw_id_fields = ('storage', 'good',)
+    list_display = ['storage', 'stock', 'get_good', ]
+
+    def get_good(self, obj):
+        return obj.good.name
 
 class GoodLockAdmin(admin.ModelAdmin):
     model = GoodLock
@@ -101,6 +118,9 @@ class AuctionBetAdmin(admin.ModelAdmin):
 
 
 # Register your models here.
+admin.site.register(Good, GoodAdmin)
+# admin.site.register(Stock)
+admin.site.register(Stock, StockAdmin)
 admin.site.register(Storage, StorageAdmin)
 admin.site.register(Transport)
 admin.site.register(Destroy)

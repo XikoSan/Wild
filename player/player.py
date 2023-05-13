@@ -16,7 +16,7 @@ from party.party import Party
 from party.position import PartyPosition
 from player.views.set_cah_log import set_cash_log
 from region.building.hospital import Hospital
-from region.region import Region
+from region.models.region import Region
 from state.models.state import State
 from wild_politics.settings import JResponse
 

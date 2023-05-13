@@ -4,7 +4,7 @@ import redis
 from metrics.models.daily_cash import DailyCash
 from metrics.models.daily_oil import DailyOil
 from metrics.models.daily_ore import DailyOre
-from region.region import Region
+from region.models.region import Region
 from storage.models.storage import Storage
 
 @shared_task(name="save_daily")

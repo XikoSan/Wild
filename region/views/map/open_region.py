@@ -6,7 +6,7 @@ from player.decorators.player import check_player
 from player.player import Player
 from player.views.get_subclasses import get_subclasses
 from region.building.building import Building
-from region.region import Region
+from region.models.region import Region
 from region.views.distance_counting import distance_counting
 from gov.models.residency_request import ResidencyRequest
 

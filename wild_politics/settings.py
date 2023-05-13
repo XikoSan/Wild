@@ -89,6 +89,7 @@ INSTALLED_APPS = [
 
     'django_cleanup',
     'fixture_magic',
+    'modeltranslation',
 
 ]
 
@@ -244,6 +245,8 @@ LANGUAGES = (
     ('lv', 'Latvian'),
     ('pt-br', 'Portuguese (Brazil)'),
 )
+
+MODELTRANSLATION_DEFAULT_LANGUAGE = 'ru'
 
 TIME_ZONE = 'Europe/Moscow'
 

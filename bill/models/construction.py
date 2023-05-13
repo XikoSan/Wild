@@ -6,7 +6,7 @@ from django.dispatch import receiver
 from django.utils import timezone
 from django.utils.translation import gettext_lazy
 from region.building.building import Building
-from region.region import Region
+from region.models.region import Region
 from bill.models.bill import Bill
 from state.models.parliament.deputy_mandate import DeputyMandate
 from state.models.parliament.parliament import Parliament

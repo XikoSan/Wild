@@ -7,7 +7,8 @@ from django.db import models
 from django.utils.translation import gettext_lazy, pgettext_lazy, ugettext as _
 
 from state.models.state import State
-from .actual_manager import ActualManager
+from region.actual_manager import ActualManager
+from storage.models.good import Good
 
 # Чтобы перевод региона появился в PO файлах, требуется дописать его в конце html файла 'map'!
 class Region(models.Model):
@@ -85,6 +86,14 @@ class Region(models.Model):
     # предел разведки
     # oil_explore_cap = models.DecimalField(default=00.00, max_digits=5, decimal_places=2, verbose_name='Нефть: предел разведки')
 
+    # oil_types = {
+    #     'wti_oil': 'Нефть WTI',
+    #     'brent_oil': 'Нефть Brent',
+    #     'urals_oil': 'Нефть Urals',
+    # }
+
+    oil_types = ['WTI', 'Brent', 'Urals']
+
     # марка добываемой нефти в регионе
     oil_type_choices = (
         ('wti_oil', pgettext_lazy('goods', 'WTI')),
@@ -96,6 +105,9 @@ class Region(models.Model):
         choices=oil_type_choices,
         default='urals_oil',
     )
+
+    oil_mark =  models.ForeignKey(Good, default=None, on_delete=models.SET_NULL, null=True,
+                                     verbose_name='Нефть')
 
     # Руда:
     # в наличии

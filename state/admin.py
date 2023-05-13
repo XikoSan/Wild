@@ -2,7 +2,7 @@ from re import findall
 
 from django.contrib import admin
 
-from region.region import Region
+from region.models.region import Region
 from state.models.capital import Capital
 from state.models.parliament.bulletin import Bulletin
 from state.models.parliament.deputy_mandate import DeputyMandate

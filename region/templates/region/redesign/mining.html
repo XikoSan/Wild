@@ -9,7 +9,7 @@
     <h1 class="earn__title ct__page-title">{% trans 'Добыча' context "mining" %}</h1>
     <p class="earn__info">
         {% trans 'Потрать энергию и получи' context "daily_header" %} <br>
-        {% trans 'до' context "daily_header" %} <span {% if gold_week %}class="info__gold"{% endif %}>${{ daily_limit }}</span> {% trans 'за день!' context "daily_header" %}
+        {% trans 'до' context "daily_header" %} <span>${{ daily_limit }}</span> {% trans 'за день!' context "daily_header" %}
     </p>
     <div class="earn__energy-wrapper ct__widebar">
         <span>{% trans 'энергии потрачено' context "daily_header" %}:</span>
@@ -78,7 +78,7 @@
     <div class="earn__card ct__card">
         <h3>{% trans 'Нефть' context "mining" %}</h3>
         <span>{% trans 'Запасы' context "mining" %}: {{ player.region.oil_has }} / {{ player.region.oil_cap }}</span>
-        <p>{% trans 'Марка нефти' context "mining" %}: {{ player.region.get_oil_type_display }}</p>
+        <p>{% trans 'Марка нефти' context "mining" %}: {{ oil_mark }}</p>
 			<form class="mining_form" role="form">
                 {% csrf_token %}
                 <input type="hidden" name="resource" value="oil">

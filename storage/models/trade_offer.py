@@ -5,7 +5,7 @@ from django.utils.translation import gettext_lazy, pgettext, pgettext_lazy, uget
 
 from player.actual_manager import ActualManager
 from player.player import Player
-from region.region import Region
+from region.models.region import Region
 from storage.models.storage import Storage
 from storage.models.trading_log import TradingLog
 

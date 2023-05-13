@@ -2,7 +2,7 @@
 from django.db import models
 from django.conf import settings
 from player.player import Player
-from region.region import Region
+from region.models.region import Region
 from state.models.state import State
 
 # Траты игрока в каждом регионе присутствия

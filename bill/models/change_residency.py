@@ -12,7 +12,7 @@ from bill.models.bill import Bill
 from regime.presidential import Presidential
 from regime.regime import Regime
 from regime.temporary import Temporary
-from region.region import Region
+from region.models.region import Region
 from state.models.parliament.deputy_mandate import DeputyMandate
 from state.models.parliament.parliament import Parliament
 from state.models.state import State

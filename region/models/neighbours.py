@@ -1,7 +1,7 @@
 # coding=utf-8
 from django.db import models
 
-from region.region import Region
+from region.models.region import Region
 
 
 # Связь между двумя регионами: порядок не имеет значения

@@ -9,8 +9,8 @@ from django.utils import timezone
 from bill.models.bill import Bill
 from bill.views.get_victim_regions import get_victims
 from player.views.get_subclasses import get_subclasses
-from region.neighbours import Neighbours
-from region.region import Region
+from region.models.neighbours import Neighbours
+from region.models.region import Region
 from state.models.parliament.deputy_mandate import DeputyMandate
 from state.models.parliament.parliament import Parliament
 from war.models.wars.war import War

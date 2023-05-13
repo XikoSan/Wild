@@ -9,7 +9,7 @@ from django.db.models.signals import post_save, post_delete
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from django_celery_beat.models import ClockedSchedule, PeriodicTask, CrontabSchedule
 
-from region.region import Region
+from region.models.region import Region
 
 from io import BytesIO
 

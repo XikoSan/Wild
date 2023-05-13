@@ -12,11 +12,11 @@ from player.decorators.player import check_player
 from player.logs.auto_mining import AutoMining
 from player.logs.cash_log import CashLog
 from player.player import Player
-from region.region import Region
+from region.models.region import Region
 from region.views.distance_counting import distance_counting
 from region.views.time_in_flight import time_in_flight
 from wild_politics.settings import JResponse
-from region.map_shape import MapShape
+from region.models.map_shape import MapShape
 
 
 # главная страница

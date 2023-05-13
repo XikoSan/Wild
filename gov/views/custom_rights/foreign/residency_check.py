@@ -8,7 +8,7 @@ from gov.models.minister import Minister
 from gov.models.residency_request import ResidencyRequest
 from player.decorators.player import check_player
 from player.player import Player
-from region.region import Region
+from region.models.region import Region
 
 
 # проверка прав на обработку заявки
