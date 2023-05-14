@@ -239,6 +239,8 @@ def do_mining(request):
                     # актуализируем словарь по типоразмерам
                     if sizetype_stocks < getattr(storage, mineral.good.size + '_cap'):
                         ret_st_stocks[mineral.good.size] += taxed_ore
+                    else:
+                        ret_st_stocks[mineral.good.size] = getattr(storage, mineral.good.size + '_cap')
 
                 else:
                     # если места нет или его меньше чем пак ресурсов, забиваем под крышку
@@ -254,6 +256,8 @@ def do_mining(request):
                         # актуализируем словарь по типоразмерам
                         if sizetype_stocks < getattr(storage, mineral.good.size + '_cap'):
                             ret_st_stocks[mineral.good.size] += taxed_ore
+                        else:
+                            ret_st_stocks[mineral.good.size] = getattr(storage, mineral.good.size + '_cap')
 
             player.region.ore_has -= Decimal((count / 10) * 0.01)
 
