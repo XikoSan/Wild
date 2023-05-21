@@ -1,6 +1,6 @@
 # coding=utf-8
 from django.db import models
-from django.utils.translation import gettext_lazy
+from django.utils.translation import  pgettext_lazy, gettext_lazy
 from django.contrib.contenttypes.models import ContentType
 from player.actual_manager import ActualManager
 from war.models.squads.squad import Squad
@@ -45,6 +45,9 @@ class Infantry(Squad):
 
     # Автоматы
     rifle = models.IntegerField(default=0, verbose_name=gettext_lazy('Автоматы'))
+
+    # Мины
+    mines = models.IntegerField(default=0, verbose_name=pgettext_lazy('goods', 'Мины'))
 
     def __str__(self):
         return 'Отряд пехоты'
