@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-24 23:22+0300\n"
+"POT-Creation-Date: 2023-05-26 00:51+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -180,7 +180,7 @@ msgstr "Prettanku ieroči"
 #: factory/models/project.py:232 state/models/treasury.py:103
 #: storage/models/destroy.py:70 storage/models/storage.py:86
 #: storage/models/storage.py:188 storage/models/trade_offer.py:94
-#: storage/models/transport.py:183
+#: storage/models/transport.py:183 war/models/squads/infantry.py:50
 msgctxt "goods"
 msgid "Мины"
 msgstr "Mīnas"
@@ -702,7 +702,7 @@ msgstr "Jauns amats "
 #: player/views/expense_energy.py:30 player/views/expense_energy.py:53
 #: player/views/expense_energy.py:62 player/views/expense_energy.py:73
 #: player/views/full_auto_allow.py:43 player/views/full_auto_allow.py:59
-#: player/views/new_player.py:92 player/views/new_player.py:105
+#: player/views/new_player.py:98 player/views/new_player.py:111
 #: player/views/set_language.py:40 player/views/set_language.py:56
 #: player/views/set_timezone.py:29 player/views/set_timezone.py:45
 #: skill/views/skill_cancel.py:36 skill/views/skill_cancel.py:44
@@ -810,15 +810,15 @@ msgstr "Izstāšanās no partijas"
 #: party/views/management/staff/leave_party.py:38
 #: party/views/management/staff/leave_party.py:210 player/player.py:288
 #: player/player.py:310 region/views/cancel_auto.py:34
-#: region/views/do_mining.py:33 region/views/do_mining.py:46
-#: region/views/do_mining.py:56 region/views/do_mining.py:69
-#: region/views/do_mining.py:78 region/views/do_mining.py:87
-#: region/views/do_mining.py:103 region/views/do_mining.py:123
-#: region/views/do_mining.py:177 region/views/do_mining.py:254
-#: region/views/retrieve_cash.py:41 region/views/start_auto.py:28
-#: region/views/start_auto.py:36 region/views/start_auto.py:46
-#: region/views/start_auto.py:55 region/views/start_auto.py:77
-#: storage/views/assets/assets_action.py:252
+#: region/views/daily_status.py:66 region/views/do_mining.py:33
+#: region/views/do_mining.py:46 region/views/do_mining.py:56
+#: region/views/do_mining.py:69 region/views/do_mining.py:78
+#: region/views/do_mining.py:87 region/views/do_mining.py:103
+#: region/views/do_mining.py:123 region/views/do_mining.py:177
+#: region/views/do_mining.py:254 region/views/retrieve_cash.py:41
+#: region/views/start_auto.py:28 region/views/start_auto.py:36
+#: region/views/start_auto.py:46 region/views/start_auto.py:55
+#: region/views/start_auto.py:77 storage/views/assets/assets_action.py:252
 #: storage/views/assets/storage_move.py:37
 #: storage/views/assets/storage_move.py:46
 #: storage/views/assets/storage_move.py:56
@@ -1254,71 +1254,71 @@ msgstr "neatkarīgais reģions"
 msgid "войн нет"
 msgstr "karu nav"
 
-#: player/templates/player/redesign/overview.html:275
+#: player/templates/player/redesign/overview.html:276
 msgctxt "overview"
 msgid "Хэллоуинский ивент"
 msgstr "Helovīna pasākums"
 
-#: player/templates/player/redesign/overview.html:282
+#: player/templates/player/redesign/overview.html:283
 msgctxt "overview"
 msgid "С новым годом!"
 msgstr "Ar Jauno gadu!"
 
-#: player/templates/player/redesign/overview.html:448
+#: player/templates/player/redesign/overview.html:449
 msgctxt "overview"
 msgid "сила"
 msgstr "spēks"
 
-#: player/templates/player/redesign/overview.html:453
+#: player/templates/player/redesign/overview.html:454
 msgctxt "overview"
 msgid "инт"
 msgstr "intelekts"
 
-#: player/templates/player/redesign/overview.html:458
+#: player/templates/player/redesign/overview.html:459
 msgctxt "overview"
 msgid "вын"
 msgstr "izturība"
 
-#: player/templates/player/redesign/overview.html:474
+#: player/templates/player/redesign/overview.html:475
 msgctxt "overview"
 msgid "Выборы лидера"
 msgstr "Līdera vēlēšanas"
 
-#: player/templates/player/redesign/overview.html:477
+#: player/templates/player/redesign/overview.html:478
 msgctxt "overview"
 msgid "Выборы"
 msgstr "Vēlēšanas"
 
-#: player/templates/player/redesign/overview.html:482
+#: player/templates/player/redesign/overview.html:483
 msgctxt "overview"
 msgid "партии"
 msgstr "Partijas"
 
-#: player/templates/player/redesign/overview.html:482
+#: player/templates/player/redesign/overview.html:483
 msgctxt "overview"
 msgid "государства"
 msgstr "valstis"
 
-#: player/templates/player/redesign/overview.html:482
+#: player/templates/player/redesign/overview.html:483
 msgctxt "overview"
 msgid "региона"
 msgstr "novadi"
 
-#: player/templates/player/redesign/overview.html:519
-#: player/templates/player/redesign/overview.html:564
+#: player/templates/player/redesign/overview.html:520
+#: player/templates/player/redesign/overview.html:565
 msgid "партий нет"
 msgstr "partiju nav"
 
-#: player/templates/player/redesign/overview.html:526
+#: player/templates/player/redesign/overview.html:527
 msgctxt "overview"
 msgid "парламент"
 msgstr "parlaments"
 
-#: player/templates/player/redesign/overview.html:744
+#: player/templates/player/redesign/overview.html:745
 msgid "У вас пока еще нет стикеров"
 msgstr "Jūms pašlaik nav izlīmju"
 
-#: player/templates/player/redesign/overview.html:757
+#: player/templates/player/redesign/overview.html:758
 msgctxt "overview"
 msgid "магазин"
 msgstr "veikals"
@@ -1419,37 +1419,37 @@ msgctxt "repost"
 msgid "Бонус можно получить раз в сутки"
 msgstr "Bonusu var saņemt reizi diennaktī"
 
-#: player/templates/player/redesign/player_repost.html:19
+#: player/templates/player/redesign/player_repost.html:20
 msgctxt "repost"
 msgid "репост не найден"
 msgstr "reposts nav atrasts"
 
-#: player/templates/player/redesign/player_repost.html:21
+#: player/templates/player/redesign/player_repost.html:22
 msgctxt "repost"
 msgid "репост найден"
 msgstr "reposts ir atrasts"
 
-#: player/templates/player/redesign/player_repost.html:24
+#: player/templates/player/redesign/player_repost.html:26
 msgctxt "repost"
 msgid "Произошла ошибка API VK"
 msgstr "Radās kļūda API VK"
 
-#: player/templates/player/redesign/player_repost.html:25
+#: player/templates/player/redesign/player_repost.html:27
 msgctxt "repost"
 msgid "Обычно помогает повторный логин в игре"
 msgstr "Parasti var palīdzēt atkārtots logins"
 
-#: player/templates/player/redesign/player_repost.html:26
+#: player/templates/player/redesign/player_repost.html:29
 msgctxt "repost"
 msgid "Выйти из игры"
 msgstr "Iziet no spēles"
 
-#: player/templates/player/redesign/player_repost.html:33
+#: player/templates/player/redesign/player_repost.html:37
 msgctxt "repost"
 msgid "Получить"
 msgstr "Saņemt"
 
-#: player/templates/player/redesign/player_repost.html:48
+#: player/templates/player/redesign/player_repost.html:52
 msgctxt "repost"
 msgid "час не прошёл"
 msgstr "stunda nav pagājusi"
@@ -1714,7 +1714,8 @@ msgstr "Partijas fona uzstādijumi"
 #: player/views/change_back_allow.py:57
 #: player/views/change_wiki_hide_allow.py:57 player/views/full_auto_allow.py:57
 #: player/views/set_language.py:54 player/views/set_timezone.py:43
-#: region/views/cancel_auto.py:35 region/views/retrieve_cash.py:42
+#: region/views/cancel_auto.py:35 region/views/daily_status.py:65
+#: region/views/daily_status.py:67 region/views/retrieve_cash.py:42
 #: region/views/start_auto.py:78
 msgid "Ошибка метода"
 msgstr "Metoda kļūda"
@@ -1797,9 +1798,11 @@ msgstr "Visbagātāko tops"
 msgid "Граждане региона"
 msgstr "Reģiona pilsoņi"
 
-#: player/views/lists/region_players.py:33
-msgid "Население региона"
-msgstr "Reģiona iedzīvotāji"
+#: player/views/lists/region_players.py:63
+#, fuzzy
+#| msgid "Партии региона"
+msgid "Жители региона"
+msgstr "Partijas reģionā"
 
 #: player/views/lists/skill_top.py:21
 msgid "Топ по характеристикам"
@@ -1809,15 +1812,15 @@ msgstr "Īpašību tops"
 msgid "Мировое население"
 msgstr "Pasaules iedzīvotāji"
 
-#: player/views/new_player.py:90
+#: player/views/new_player.py:96
 msgid ": попробуйте создать персонажа, не загружая изображение"
 msgstr ": pamēģiniet izveidot varoni, neielādējot bildi"
 
-#: player/views/new_player.py:91 player/views/new_player.py:104
+#: player/views/new_player.py:97 player/views/new_player.py:110
 msgid "Новый персонаж"
 msgstr "Jauns varonis"
 
-#: player/views/new_player.py:103
+#: player/views/new_player.py:109
 msgid "Ошибка в форме профиля"
 msgstr "Kļūda profila formā"
 
@@ -1960,74 +1963,74 @@ msgctxt "daily_header"
 msgid "энергии потрачено"
 msgstr "enerģijas patērēts"
 
-#: region/templates/region/redesign/mining.html:25
-#: region/templates/region/redesign/mining.html:58
-#: region/templates/region/redesign/mining.html:84
-#: region/templates/region/redesign/mining.html:110
+#: region/templates/region/redesign/mining.html:27
+#: region/templates/region/redesign/mining.html:61
+#: region/templates/region/redesign/mining.html:87
+#: region/templates/region/redesign/mining.html:113
 msgctxt "daily_header"
 msgid "в полете"
 msgstr "lidojumā"
 
-#: region/templates/region/redesign/mining.html:27
+#: region/templates/region/redesign/mining.html:29
 msgctxt "daily_header"
 msgid "получаем"
 msgstr "saņemam"
 
-#: region/templates/region/redesign/mining.html:28
+#: region/templates/region/redesign/mining.html:30
 msgctxt "daily_header"
 msgid "получить"
 msgstr "saņemt"
 
-#: region/templates/region/redesign/mining.html:46
+#: region/templates/region/redesign/mining.html:49
 msgctxt "daily_header"
 msgid "уже получено"
 msgstr "jau saņemts"
 
-#: region/templates/region/redesign/mining.html:50
+#: region/templates/region/redesign/mining.html:53
 #: region/templates/region/redesign/region_info.html:20
 msgctxt "mining"
 msgid "Золото"
 msgstr "Zelts"
 
-#: region/templates/region/redesign/mining.html:51
-#: region/templates/region/redesign/mining.html:77
-#: region/templates/region/redesign/mining.html:103
+#: region/templates/region/redesign/mining.html:54
+#: region/templates/region/redesign/mining.html:80
+#: region/templates/region/redesign/mining.html:106
 msgctxt "mining"
 msgid "Запасы"
 msgstr "Krājumi"
 
-#: region/templates/region/redesign/mining.html:61
-#: region/templates/region/redesign/mining.html:87
-#: region/templates/region/redesign/mining.html:113
+#: region/templates/region/redesign/mining.html:64
+#: region/templates/region/redesign/mining.html:90
+#: region/templates/region/redesign/mining.html:116
 msgctxt "mining"
 msgid "авто"
 msgstr "auto"
 
-#: region/templates/region/redesign/mining.html:70
-#: region/templates/region/redesign/mining.html:96
-#: region/templates/region/redesign/mining.html:122
+#: region/templates/region/redesign/mining.html:73
+#: region/templates/region/redesign/mining.html:99
+#: region/templates/region/redesign/mining.html:125
 msgctxt "mining"
 msgid "добыча"
 msgstr "ieguve"
 
-#: region/templates/region/redesign/mining.html:76
+#: region/templates/region/redesign/mining.html:79
 #: region/templates/region/redesign/region_info.html:31
 msgctxt "mining"
 msgid "Нефть"
 msgstr "Nafta"
 
-#: region/templates/region/redesign/mining.html:78
+#: region/templates/region/redesign/mining.html:81
 msgctxt "mining"
 msgid "Марка нефти"
 msgstr "Naftas"
 
-#: region/templates/region/redesign/mining.html:102
+#: region/templates/region/redesign/mining.html:105
 #: region/templates/region/redesign/region_info.html:42
 msgctxt "mining"
 msgid "Руда"
 msgstr "Rūda"
 
-#: region/templates/region/redesign/mining.html:104
+#: region/templates/region/redesign/mining.html:107
 msgctxt "mining"
 msgid "Качество руды"
 msgstr "Rūdas kvalitāte"
@@ -2755,7 +2758,7 @@ msgid "подтвердить"
 msgstr "apstiprināt"
 
 #: storage/templates/storage/redesign/storage.html:22
-#: storage/views/storage/storage.py:58
+#: storage/views/storage/storage.py:63
 msgctxt "storage"
 msgid "Склад"
 msgstr "Noliktava"
@@ -2987,7 +2990,7 @@ msgid "создать"
 msgstr "izveidot"
 
 #: storage/templates/storage/redesign/trading/trading.html:15
-#: storage/views/trading/trading.py:24
+#: storage/views/trading/trading.py:25
 #, fuzzy
 #| msgid "Торговля"
 msgctxt "trading"
@@ -3003,6 +3006,7 @@ msgid "госзакупки"
 msgstr "Valsts iepirkumi"
 
 #: storage/templates/storage/redesign/trading/trading.html:46
+#: storage/templates/storage/redesign/trading/trading.html:307
 #, fuzzy
 #| msgctxt "factory"
 #| msgid "создать"
@@ -3039,7 +3043,7 @@ msgid "Выберите один или несколько критериев в
 msgstr ""
 
 #: storage/templates/storage/redesign/trading/trading.html:77
-#: storage/templates/storage/redesign/trading/trading.html:313
+#: storage/templates/storage/redesign/trading/trading.html:342
 #, fuzzy
 #| msgctxt "overview"
 #| msgid "региона"
@@ -3048,7 +3052,7 @@ msgid "регион"
 msgstr "novadi"
 
 #: storage/templates/storage/redesign/trading/trading.html:79
-#: storage/templates/storage/redesign/trading/trading.html:321
+#: storage/templates/storage/redesign/trading/trading.html:350
 #, fuzzy
 #| msgctxt "wallet"
 #| msgid "Количество"
@@ -3057,7 +3061,7 @@ msgid "количество"
 msgstr "Daudzums"
 
 #: storage/templates/storage/redesign/trading/trading.html:80
-#: storage/templates/storage/redesign/trading/trading.html:308
+#: storage/templates/storage/redesign/trading/trading.html:337
 #, fuzzy
 #| msgctxt "factory"
 #| msgid "цена"
@@ -3081,6 +3085,7 @@ msgid "Настройки поиска"
 msgstr "uzstādījumi"
 
 #: storage/templates/storage/redesign/trading/trading.html:120
+#: storage/templates/storage/redesign/trading/trading.html:211
 #, fuzzy
 #| msgctxt "w_trading_new"
 #| msgid "Новое торговое предложение"
@@ -3089,12 +3094,14 @@ msgid "тип предложения"
 msgstr "Jauns tirdzniecības piedāvājums"
 
 #: storage/templates/storage/redesign/trading/trading.html:123
+#: storage/templates/storage/redesign/trading/trading.html:214
 #: storage/templates/storage/trading/trading.html:70
 msgctxt "w_trading"
 msgid "Продажа"
 msgstr ""
 
 #: storage/templates/storage/redesign/trading/trading.html:124
+#: storage/templates/storage/redesign/trading/trading.html:215
 #: storage/templates/storage/trading/trading.html:71
 msgctxt "w_trading"
 msgid "Покупка"
@@ -3127,6 +3134,7 @@ msgid "Мои"
 msgstr ""
 
 #: storage/templates/storage/redesign/trading/trading.html:145
+#: storage/templates/storage/redesign/trading/trading.html:247
 #, fuzzy
 #| msgctxt "goods"
 #| msgid "Орбитальные орудия"
@@ -3135,6 +3143,7 @@ msgid "выбор категории"
 msgstr "Orbitālie ieroči"
 
 #: storage/templates/storage/redesign/trading/trading.html:148
+#: storage/templates/storage/redesign/trading/trading.html:250
 #, fuzzy
 #| msgctxt "goods"
 #| msgid "Орбитальные орудия"
@@ -3143,6 +3152,7 @@ msgid "выберите категорию"
 msgstr "Orbitālie ieroči"
 
 #: storage/templates/storage/redesign/trading/trading.html:159
+#: storage/templates/storage/redesign/trading/trading.html:261
 #, fuzzy
 #| msgctxt "wallet"
 #| msgid "Товар"
@@ -3151,6 +3161,7 @@ msgid "товар"
 msgstr "Prece"
 
 #: storage/templates/storage/redesign/trading/trading.html:162
+#: storage/templates/storage/redesign/trading/trading.html:264
 #, fuzzy
 #| msgctxt "w_trading_new"
 #| msgid "Выберите товар"
@@ -3163,8 +3174,26 @@ msgctxt "trading"
 msgid "поиск"
 msgstr ""
 
-#: storage/templates/storage/redesign/trading/trading.html:295
-#: storage/templates/storage/redesign/trading/trading.html:396
+#: storage/templates/storage/redesign/trading/trading.html:203
+#: storage/templates/storage/trading/new_offer.html:38
+msgctxt "w_trading_new"
+msgid "Новое торговое предложение"
+msgstr "Jauns tirdzniecības piedāvājums"
+
+#: storage/templates/storage/redesign/trading/trading.html:205
+#: storage/templates/storage/trading/new_offer.html:43
+msgctxt "w_trading_new"
+msgid "Доступно"
+msgstr "Pieejams"
+
+#: storage/templates/storage/redesign/trading/trading.html:291
+#: storage/templates/storage/trading/new_offer.html:126
+msgctxt "w_trading_new"
+msgid "Будет заблокировано"
+msgstr "Tiks bloķēts"
+
+#: storage/templates/storage/redesign/trading/trading.html:324
+#: storage/templates/storage/redesign/trading/trading.html:425
 #, fuzzy
 #| msgctxt "w_trading_new"
 #| msgid "Покупка"
@@ -3172,12 +3201,12 @@ msgctxt "trading"
 msgid "покупка"
 msgstr "Pirkuns"
 
-#: storage/templates/storage/redesign/trading/trading.html:299
+#: storage/templates/storage/redesign/trading/trading.html:328
 msgctxt "trading"
 msgid "владелец"
 msgstr ""
 
-#: storage/templates/storage/redesign/trading/trading.html:350
+#: storage/templates/storage/redesign/trading/trading.html:379
 #, fuzzy
 #| msgctxt "assets"
 #| msgid "стоимость"
@@ -3185,7 +3214,7 @@ msgctxt "trading"
 msgid "стоимость"
 msgstr "cena"
 
-#: storage/templates/storage/redesign/trading/trading.html:355
+#: storage/templates/storage/redesign/trading/trading.html:384
 #, fuzzy
 #| msgctxt "no_storage"
 #| msgid "доставка"
@@ -3193,13 +3222,13 @@ msgctxt "trading"
 msgid "доставка"
 msgstr "piegāde"
 
-#: storage/templates/storage/redesign/trading/trading.html:362
+#: storage/templates/storage/redesign/trading/trading.html:391
 msgctxt "trading"
 msgid "итого"
 msgstr ""
 
-#: storage/templates/storage/redesign/trading/trading.html:378
-#: storage/templates/storage/redesign/trading/trading.html:397
+#: storage/templates/storage/redesign/trading/trading.html:407
+#: storage/templates/storage/redesign/trading/trading.html:426
 #, fuzzy
 #| msgctxt "no_party"
 #| msgid "Вступить"
@@ -3207,7 +3236,7 @@ msgctxt "trading"
 msgid "купить"
 msgstr "Pievienojieties"
 
-#: storage/templates/storage/redesign/trading/trading.html:393
+#: storage/templates/storage/redesign/trading/trading.html:422
 #, fuzzy
 #| msgctxt "w_trading_new"
 #| msgid "Продажа"
@@ -3215,7 +3244,7 @@ msgctxt "trading"
 msgid "продажа"
 msgstr "Pardošana"
 
-#: storage/templates/storage/redesign/trading/trading.html:394
+#: storage/templates/storage/redesign/trading/trading.html:423
 #, fuzzy
 #| msgctxt "assets"
 #| msgid "передать"
@@ -3223,7 +3252,7 @@ msgctxt "trading"
 msgid "продать"
 msgstr "nodot"
 
-#: storage/templates/storage/redesign/trading/trading.html:400
+#: storage/templates/storage/redesign/trading/trading.html:429
 #, fuzzy
 #| msgctxt "w_trading_new"
 #| msgid "Новое торговое предложение"
@@ -3231,7 +3260,7 @@ msgctxt "trading"
 msgid "Отмена торгового предложения"
 msgstr "Jauns tirdzniecības piedāvājums"
 
-#: storage/templates/storage/redesign/trading/trading.html:401
+#: storage/templates/storage/redesign/trading/trading.html:430
 #, fuzzy
 #| msgctxt "w_trading_new"
 #| msgid "Торговое предложение успешно создано"
@@ -3239,14 +3268,14 @@ msgctxt "trading"
 msgid "Ваше торговое предложение будет удалено. Продолжить?"
 msgstr "Tirdzniecības piedāvājums veiksmīgi izveidots"
 
-#: storage/templates/storage/redesign/trading/trading.html:402
+#: storage/templates/storage/redesign/trading/trading.html:431
 #, fuzzy
 #| msgid "Продолжить"
 msgctxt "trading"
 msgid "Продолжить"
 msgstr "Turpināt"
 
-#: storage/templates/storage/redesign/trading/trading.html:403
+#: storage/templates/storage/redesign/trading/trading.html:432
 #, fuzzy
 #| msgid "Отмена"
 msgctxt "trading"
@@ -3268,16 +3297,6 @@ msgstr "Noliktavā"
 #: storage/templates/storage/storage_lines/cash_transfer.html:26
 msgid "Передать"
 msgstr "Pārsūtīt"
-
-#: storage/templates/storage/trading/new_offer.html:38
-msgctxt "w_trading_new"
-msgid "Новое торговое предложение"
-msgstr "Jauns tirdzniecības piedāvājums"
-
-#: storage/templates/storage/trading/new_offer.html:43
-msgctxt "w_trading_new"
-msgid "Доступно"
-msgstr "Pieejams"
 
 #: storage/templates/storage/trading/new_offer.html:48
 msgctxt "w_trading_new"
@@ -3318,11 +3337,6 @@ msgstr "Produkts"
 msgctxt "w_trading_new"
 msgid "Выберите товар"
 msgstr "Izvēlieties produktu"
-
-#: storage/templates/storage/trading/new_offer.html:126
-msgctxt "w_trading_new"
-msgid "Будет заблокировано"
-msgstr "Tiks bloķēts"
 
 #: storage/templates/storage/trading/new_offer.html:136
 msgctxt "w_trading_new"
@@ -3970,3 +3984,6 @@ msgstr "BPLA"
 #: war/models/wars/war_side.py:27
 msgid "Дроны"
 msgstr "Droni"
+
+#~ msgid "Население региона"
+#~ msgstr "Reģiona iedzīvotāji"
