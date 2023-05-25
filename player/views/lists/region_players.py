@@ -25,16 +25,45 @@ def region_players_list(request, region_pk):
 
     # получаем партии для текущей страницы
     page = request.GET.get('page')
-    players = Player.objects.filter(banned=False, region=request_region).order_by('nickname')
+    players = Player.objects.filter(banned=False, region=request_region).order_by('-pk')
     lines = get_thing_page(players, page, 50)
 
+    header = {
+
+        'image': {
+            'text': '',
+            'select_text': 'Аватар',
+            'visible': 'true'
+        },
+
+        'nickname': {
+            'text': 'Никнейм',
+            'select_text': 'Никнейм',
+            'visible': 'true'
+        },
+
+        'party':{
+            'image':
+            {
+                'text': '',
+                'select_text': 'Герб',
+                'visible': 'false'
+            },
+            'title':
+            {
+                'text': 'Партия',
+                'select_text': 'Партия',
+                'visible': 'false'
+            }
+        }
+    }
+
     # отправляем в форму
-    return render(request, 'lists/region_players_list.html', {
-        'page_name': _('Население региона'),
+    return render(request, 'player/redesign/lists/universal_list.html', {
+        'page_name': _('Жители региона'),
 
         'player': player,
+
+        'header': header,
         'lines': lines,
-
-        'request_region': request_region,
-
-        'players_count': Player.objects.filter(banned=False, region=request_region).count()})
+    })
