@@ -107,9 +107,10 @@ class ChangeResidency(Bill):
         rifle_cost = 0
         drone_cost = 0
 
+        treasury = Treasury.get_instance(state=state)
+
         if state.residency == 'issue':
 
-            treasury = Treasury.get_instance(state=state)
             regions_cnt = Region.objects.filter(state=treasury.state).count()
 
             rifle_cost = ChangeResidency.rifle_price * regions_cnt
@@ -142,6 +143,13 @@ class ChangeResidency(Bill):
 
             else:
                 b_type = 'rj'
+
+        else:
+            task_id = treasury.residency_id
+            treasury.residency_id = None
+            treasury.save()
+            # удаляем таску
+            PeriodicTask.objects.filter(pk=task_id).delete()
 
         ChangeResidency.objects.filter(pk=self.pk).update(
             type=b_type, running=False, voting_end=timezone.now(),
