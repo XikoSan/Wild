@@ -46,7 +46,7 @@ def get_region_online(region):
             region_online = json.loads(online_json_dict)
 
     else:
-        characters_pk = Player.objects.only('pk', 'region').filter(region=region)
+        characters_pk = Player.objects.only('pk', 'region').filter(banned=False, region=region)
 
         region_pop = characters_pk.count()
 
