@@ -243,6 +243,9 @@ def start_elections(parl_id):
 # таска выключающая выборы
 @shared_task(name="finish_presidential")
 def finish_presidential(pres_id):
+    # если президента нет - выходим
+    if not President.objects.filter(pk=pres_id).exists():
+        return
     # включаем начало выборов
     president = President.objects.get(pk=pres_id)
     if president.task is not None:
