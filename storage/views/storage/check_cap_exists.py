@@ -34,7 +34,7 @@ def check_cap_exists(dest, values):
     lock_storage = get_storage(dest, goods)
     for i_good in transfer_dict:
         if getattr(lock_storage, i_good) + int(transfer_dict[i_good]) > getattr(dest, i_good + '_cap'):
-            return False, Storage._meta.get_field(i_good).verbose_name.title(), transfer_dict[i_good], getattr(dest,
+            return False, i_good, transfer_dict[i_good], getattr(dest,
                                                                                                                i_good + '_cap') - getattr(
                 lock_storage, i_good)
 
