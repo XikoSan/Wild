@@ -82,7 +82,7 @@
 					</p>
 				</div>
 
-				<div class="ct__s" onclick="window.location.href = '/skill_top/'" style="cursor: pointer;">
+				<div class="ct__s">
 					<h2 class="ct__s-title">{% trans 'характеристики' context "profile" %}</h2>
 					<p class="ct__s-text">
 						<font color="FF0000">{{ char.power }}</font>
@@ -90,6 +90,9 @@
 						<font color="337AB7">{{ char.knowledge }}</font>
 						/
 						<font color="#18D04C">{{ char.endurance }}</font>
+						<a href="/skill_top/">
+							{% trans '(к рейтингу)' context "profile" %}
+						</a>
 					</p>
 				</div>
 
