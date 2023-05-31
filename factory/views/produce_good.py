@@ -65,7 +65,7 @@ def produce_good(request):
 
         # проверка, существует ли такой ресурс вообще
         good = request.POST.get('good')
-        if not hasattr(Storage, good):
+        if not good or not hasattr(Storage, good):
             data = {
                 'response': pgettext('factory', 'Указанный товар не существует'),
                 'header': pgettext('factory', 'Ошибка производства'),

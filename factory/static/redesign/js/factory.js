@@ -131,7 +131,7 @@ jQuery(document).ready(function ($) {
 
             $("#good").attr("disabled", true);
             $("#schema").attr("disabled", true);
-            $("#accept").attr("disabled", true);
+            $(".factory__topCreate").attr("disabled", true);
             $("#count").attr("disabled", true);
 
           }
@@ -160,7 +160,8 @@ jQuery(document).ready(function ($) {
         $('#storage_info_block').children(".cloned_line").remove();
         $('#schema').val('default');
 
-        document.getElementById('accept').disabled = true
+//        document.getElementById('accept').disabled = true
+        $(".factory__topCreate").attr("disabled", true);
 
         if($('#action').val() == 'sell'){
             $("#stocks_value").html('?');
@@ -183,6 +184,8 @@ jQuery(document).ready(function ($) {
 
 //  выводить информацию о схемах производства товара
     $('#good').change(function() {
+        $(".factory__topCreate").attr("disabled", true);
+
         schema_select = document.getElementById('schema');
         $(schema_select).children(":not(#schema_default)").remove();
 
@@ -215,7 +218,9 @@ jQuery(document).ready(function ($) {
 //  выводить информацию о запасах в правой части
 //  если выбрана схема
     $('#schema').change(function() {
-        document.getElementById('accept').disabled = false
+//        document.getElementById('accept').disabled = false
+        $(".factory__topCreate").attr("disabled", false);
+
         $("#count").attr("disabled", false);
 
         var energy_dict = { 'energy': schemas[$('#good').val()]['energy'] },

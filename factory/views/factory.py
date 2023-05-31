@@ -11,6 +11,7 @@ from player.decorators.player import check_player
 from player.player import Player
 from factory.models.project import Project
 from storage.models.storage import Storage
+from factory.models.auto_produce import AutoProduce
 
 
 @login_required(login_url='/')
@@ -19,6 +20,11 @@ from storage.models.storage import Storage
 def factory(request):
     # получаем персонажа
     player = Player.get_instance(account=request.user)
+
+    premium = False
+
+    if player.premium > timezone.now():
+        premium = True
 
     fields_list = ['pk', 'region__pk', 'region__region_name', 'region__on_map_id', 'cash', ]
     # собираем из Склада все поля ресурсов
@@ -42,6 +48,11 @@ def factory(request):
     if MilitaryProduction.objects.filter(player=player, level__gt=0).exists():
         consignment_dict['units'] = 1 + MilitaryProduction.objects.get(player=player).level
 
+    # авто - производство
+    auto_produce = None
+    if AutoProduce.objects.filter(player=player).exists():
+        auto_produce = AutoProduce.objects.get(player=player)
+
     groups = list(player.account.groups.all().values_list('name', flat=True))
     page = 'factory/factory.html'
 
@@ -53,6 +64,9 @@ def factory(request):
         'page_name': pgettext('factory', 'Производство'),
 
         'player': player,
+        'premium': premium,
+        'auto': auto_produce,
+
         'project_cl': Project,
         'storage_cl': Storage,
         'storages': storages,

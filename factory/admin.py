@@ -1,8 +1,11 @@
 from django.contrib import admin
 from factory.models.production_log import ProductionLog
+from factory.models.auto_produce import AutoProduce
+
 from factory.models.factory.factory import Factory
 from factory.models.factory.workshop import Workshop
 from factory.models.factory.workplace import Workplace
+
 # Register your models here.
 
 class ProductionLogAdmin(admin.ModelAdmin):
@@ -62,7 +65,23 @@ class WorkplaceAdmin(admin.ModelAdmin):
             return ''
 
 
+class AutoProduceAdmin(admin.ModelAdmin):
+    model = AutoProduce
+    search_fields = ['player__nickname', ]
+    raw_id_fields = ('player','storage', 'task',)
+    list_display = ['player', 'get_good_display', ]
+
+    # def get_job_title(self, obj):
+    #     workplace_class = obj.content_type.model_class()
+    #
+    #     if workplace_class.objects.filter(pk=obj.object_id).exists():
+    #         return str(workplace_class.objects.get(pk=obj.object_id))
+    #     else:
+    #         return ''
+
+
 admin.site.register(ProductionLog, ProductionLogAdmin)
 admin.site.register(Factory, FactoryAdmin)
 admin.site.register(Workshop, WorkshopAdmin)
 admin.site.register(Workplace, WorkplaceAdmin)
+admin.site.register(AutoProduce, AutoProduceAdmin)

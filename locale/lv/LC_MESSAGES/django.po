@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-26 00:51+0300\n"
+"POT-Creation-Date: 2023-06-01 01:25+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -194,7 +194,7 @@ msgid "БМП"
 msgstr "Bruņu tehnika"
 
 #: factory/templates/factory/redesign/factory.html:13
-#: factory/views/factory.py:53
+#: factory/views/factory.py:64
 msgctxt "factory"
 msgid "Производство"
 msgstr "Ražošana"
@@ -224,10 +224,145 @@ msgctxt "factory"
 msgid "выбор схемы"
 msgstr "shēmas izvēle"
 
-#: factory/templates/factory/redesign/factory.html:153
+#: factory/templates/factory/redesign/factory.html:161
+#: region/templates/region/redesign/mining.html:27
+#: region/templates/region/redesign/mining.html:61
+#: region/templates/region/redesign/mining.html:87
+#: region/templates/region/redesign/mining.html:113
+msgctxt "daily_header"
+msgid "в полете"
+msgstr "lidojumā"
+
+#: factory/templates/factory/redesign/factory.html:177
+#: region/templates/region/redesign/mining.html:64
+#: region/templates/region/redesign/mining.html:90
+#: region/templates/region/redesign/mining.html:116
+msgctxt "mining"
+msgid "авто"
+msgstr "auto"
+
+#: factory/templates/factory/redesign/factory.html:218
 msgctxt "factory"
 msgid "создать"
 msgstr "ražot"
+
+#: factory/views/cancel_auto.py:33 region/views/cancel_auto.py:33
+msgctxt "mining"
+msgid "Ошибка при отмене"
+msgstr "Atcelšanas kļūda"
+
+#: factory/views/cancel_auto.py:34 factory/views/start_auto.py:29
+#: factory/views/start_auto.py:37 factory/views/start_auto.py:54
+#: factory/views/start_auto.py:63 factory/views/start_auto.py:96
+#: factory/views/start_auto.py:120
+#: party/views/management/staff/leave_party.py:38
+#: party/views/management/staff/leave_party.py:210 player/player.py:288
+#: player/player.py:310 region/views/cancel_auto.py:34
+#: region/views/daily_status.py:66 region/views/do_mining.py:33
+#: region/views/do_mining.py:46 region/views/do_mining.py:56
+#: region/views/do_mining.py:69 region/views/do_mining.py:78
+#: region/views/do_mining.py:87 region/views/do_mining.py:103
+#: region/views/do_mining.py:123 region/views/do_mining.py:177
+#: region/views/do_mining.py:254 region/views/retrieve_cash.py:41
+#: region/views/start_auto.py:28 region/views/start_auto.py:36
+#: region/views/start_auto.py:46 region/views/start_auto.py:55
+#: region/views/start_auto.py:77 storage/views/assets/assets_action.py:252
+#: storage/views/assets/storage_move.py:37
+#: storage/views/assets/storage_move.py:46
+#: storage/views/assets/storage_move.py:56
+#: storage/views/assets/storage_move.py:68
+#: storage/views/assets/storage_move.py:87
+#: storage/views/storage/cash_transfer.py:34
+#: storage/views/storage/cash_transfer.py:43
+#: storage/views/storage/cash_transfer.py:56
+#: storage/views/storage/cash_transfer.py:65
+#: storage/views/storage/cash_transfer.py:74
+#: storage/views/storage/cash_transfer.py:103
+#: storage/views/storage/cash_transfer.py:123
+#: storage/views/storage/cash_transfer.py:131
+#: storage/views/storage/cash_transfer.py:143
+#: storage/views/storage/new_storage.py:34
+#: storage/views/storage/new_storage.py:52
+#: storage/views/storage/new_storage.py:65
+#: storage/views/storage/new_storage.py:87
+#: storage/views/storage/upgrade_storage.py:33
+#: storage/views/storage/upgrade_storage.py:43
+#: storage/views/storage/upgrade_storage.py:52
+#: storage/views/storage/upgrade_storage.py:87
+#: storage/views/storage/upgrade_storage.py:104
+#: storage/views/storage/upgrade_storage.py:112
+#: storage/views/storage/upgrade_storage.py:156
+#: storage/views/trading/accept_offer.py:44
+#: storage/views/trading/accept_offer.py:52
+#: storage/views/trading/accept_offer.py:65
+#: storage/views/trading/accept_offer.py:89
+#: storage/views/trading/accept_offer.py:99
+#: storage/views/trading/accept_offer.py:107
+#: storage/views/trading/accept_offer.py:115
+#: storage/views/trading/accept_offer.py:131
+#: storage/views/trading/accept_offer.py:147
+#: storage/views/trading/accept_offer.py:156
+#: storage/views/trading/accept_offer.py:164
+#: storage/views/trading/accept_offer.py:178
+#: storage/views/trading/accept_offer.py:200
+#: storage/views/trading/accept_offer.py:224
+#: storage/views/trading/accept_offer.py:273
+#: storage/views/trading/accept_offer.py:281
+#: storage/views/trading/accept_offer.py:293
+#: storage/views/trading/accept_offer.py:301
+#: storage/views/trading/accept_offer.py:310
+#: storage/views/trading/accept_offer.py:322
+#: storage/views/trading/accept_offer.py:393
+#: storage/views/trading/accept_offer.py:407
+#: storage/views/trading/cancel_offer.py:40
+#: storage/views/trading/cancel_offer.py:53
+#: storage/views/trading/cancel_offer.py:61
+#: storage/views/trading/cancel_offer.py:74
+#: storage/views/trading/cancel_offer.py:87
+#: storage/views/trading/cancel_offer.py:105
+#: storage/views/trading/cancel_offer.py:124
+#: storage/views/trading/cancel_offer.py:148
+#: storage/views/trading/create_offer.py:30
+#: storage/views/trading/create_offer.py:41
+#: storage/views/trading/create_offer.py:58
+#: storage/views/trading/create_offer.py:68
+#: storage/views/trading/create_offer.py:79
+#: storage/views/trading/create_offer.py:89
+#: storage/views/trading/create_offer.py:97
+#: storage/views/trading/create_offer.py:108
+#: storage/views/trading/create_offer.py:116
+#: storage/views/trading/create_offer.py:131
+#: storage/views/trading/create_offer.py:144
+#: storage/views/trading/create_offer.py:160
+#: storage/views/trading/create_offer.py:168
+#: storage/views/trading/create_offer.py:201
+#: storage/views/trading/create_offer.py:208
+#: storage/views/trading/create_offer.py:217
+#: storage/views/trading/get_offers.py:40
+#: storage/views/trading/get_offers.py:62
+#: storage/views/trading/get_offers.py:90
+#: storage/views/trading/get_offers.py:207
+#: storage/views/trading/premium_trading.py:26
+#: storage/views/trading/premium_trading.py:38
+#: storage/views/trading/premium_trading.py:84
+#: storage/views/trading/premium_trading.py:97
+#: storage/views/trading/premium_trading.py:109
+#: storage/views/trading/premium_trading.py:117
+#: storage/views/trading/premium_trading.py:175
+#: storage/views/trading/premium_trading.py:182
+msgctxt "mining"
+msgid "Закрыть"
+msgstr "Aizvērt"
+
+#: factory/views/cancel_auto.py:35 factory/views/start_auto.py:121
+#: player/views/change_back_allow.py:57
+#: player/views/change_wiki_hide_allow.py:57 player/views/full_auto_allow.py:57
+#: player/views/set_language.py:54 player/views/set_timezone.py:43
+#: region/views/cancel_auto.py:35 region/views/daily_status.py:65
+#: region/views/daily_status.py:67 region/views/retrieve_cash.py:42
+#: region/views/start_auto.py:78
+msgid "Ошибка метода"
+msgstr "Metoda kļūda"
 
 #: factory/views/produce_good.py:31
 msgctxt "factory"
@@ -240,6 +375,7 @@ msgstr "Uzgaidiet līdz lidojuma beigām"
 #: factory/views/produce_good.py:106 factory/views/produce_good.py:116
 #: factory/views/produce_good.py:124 factory/views/produce_good.py:132
 #: factory/views/produce_good.py:170 factory/views/produce_good.py:189
+#: factory/views/start_auto.py:74 factory/views/start_auto.py:84
 msgctxt "factory"
 msgid "Ошибка производства"
 msgstr "Ražošanas kļūda"
@@ -250,6 +386,7 @@ msgstr "Ražošanas kļūda"
 #: factory/views/produce_good.py:107 factory/views/produce_good.py:117
 #: factory/views/produce_good.py:125 factory/views/produce_good.py:133
 #: factory/views/produce_good.py:171 factory/views/produce_good.py:190
+#: factory/views/start_auto.py:75 factory/views/start_auto.py:85
 msgctxt "storage"
 msgid "Закрыть"
 msgstr "Aizvērt"
@@ -269,12 +406,12 @@ msgctxt "factory"
 msgid "Указанный товар не существует"
 msgstr "Norādīta prece neeksistē"
 
-#: factory/views/produce_good.py:84
+#: factory/views/produce_good.py:84 factory/views/start_auto.py:73
 msgctxt "factory"
 msgid "Номер схемы - не число"
 msgstr "Shēmas numurs - nav skaitlis"
 
-#: factory/views/produce_good.py:94
+#: factory/views/produce_good.py:94 factory/views/start_auto.py:83
 msgctxt "factory"
 msgid "Указанной схемы не существует"
 msgstr "Norādīta shēma neeksistē"
@@ -319,6 +456,48 @@ msgstr "Nepietiek"
 msgctxt "factory"
 msgid ". В наличии "
 msgstr ". Ir "
+
+#: factory/views/start_auto.py:27 player/player.py:286
+#: region/views/do_mining.py:31 region/views/start_auto.py:26
+msgctxt "mining"
+msgid "Дождитесь конца полёта"
+msgstr "Uzgaidiet līdz lidojuma beigām"
+
+#: factory/views/start_auto.py:28 factory/views/start_auto.py:36
+#: factory/views/start_auto.py:53 factory/views/start_auto.py:62
+#: factory/views/start_auto.py:95 factory/views/start_auto.py:119
+#, fuzzy
+#| msgctxt "mining"
+#| msgid "Ошибка автоматической добычи ресурсов"
+msgctxt "auto_produce"
+msgid "Ошибка автоматического производства"
+msgstr "Automātiskās resursu ieguves kļūda"
+
+#: factory/views/start_auto.py:35 region/views/start_auto.py:34
+msgctxt "mining"
+msgid "Премиум-аккаунт не активен. Продлите его"
+msgstr "Premium konts nav aktīvs. Pagariniet to"
+
+#: factory/views/start_auto.py:52
+#, fuzzy
+#| msgctxt "mining"
+#| msgid "Неизвестный тип ресурса"
+msgctxt "auto_produce"
+msgid "Неизвестный тип товара"
+msgstr "Nezināmais resursu tips"
+
+#: factory/views/start_auto.py:61
+msgctxt "auto_produce"
+msgid "Данный товар невозможно произвести"
+msgstr ""
+
+#: factory/views/start_auto.py:94
+#, fuzzy
+#| msgctxt "factory"
+#| msgid "Указанный Склад вам не принадлежит"
+msgctxt "auto_produce"
+msgid "Указанный склад вам не принадлежит"
+msgstr "Jūms nepieder norādīta noliktava"
 
 #: gov/templates/state/gov/forms/foreign_right.html:21
 #: party/templates/party/party_requests.html:36
@@ -428,13 +607,13 @@ msgstr "Mainiet pārtijas aprakstu"
 #: player/templates/player/redesign/new_player.html:149
 #: player/templates/player/redesign/new_player.html:177
 #: player/templates/player/redesign/overview_skills.html:179
-#: player/templates/player/redesign/profile.html:359
+#: player/templates/player/redesign/profile.html:362
 msgid "Отмена"
 msgstr "Atcelšana"
 
 #: party/templates/party/redesign/manage.html:351
 #: player/templates/player/redesign/new_player.html:136
-#: player/templates/player/redesign/profile.html:360
+#: player/templates/player/redesign/profile.html:363
 msgid "Загрузить"
 msgstr "Ielādēt"
 
@@ -807,105 +986,6 @@ msgctxt "party"
 msgid "Выход из партии"
 msgstr "Izstāšanās no partijas"
 
-#: party/views/management/staff/leave_party.py:38
-#: party/views/management/staff/leave_party.py:210 player/player.py:288
-#: player/player.py:310 region/views/cancel_auto.py:34
-#: region/views/daily_status.py:66 region/views/do_mining.py:33
-#: region/views/do_mining.py:46 region/views/do_mining.py:56
-#: region/views/do_mining.py:69 region/views/do_mining.py:78
-#: region/views/do_mining.py:87 region/views/do_mining.py:103
-#: region/views/do_mining.py:123 region/views/do_mining.py:177
-#: region/views/do_mining.py:254 region/views/retrieve_cash.py:41
-#: region/views/start_auto.py:28 region/views/start_auto.py:36
-#: region/views/start_auto.py:46 region/views/start_auto.py:55
-#: region/views/start_auto.py:77 storage/views/assets/assets_action.py:252
-#: storage/views/assets/storage_move.py:37
-#: storage/views/assets/storage_move.py:46
-#: storage/views/assets/storage_move.py:56
-#: storage/views/assets/storage_move.py:68
-#: storage/views/assets/storage_move.py:87
-#: storage/views/storage/cash_transfer.py:34
-#: storage/views/storage/cash_transfer.py:43
-#: storage/views/storage/cash_transfer.py:56
-#: storage/views/storage/cash_transfer.py:65
-#: storage/views/storage/cash_transfer.py:74
-#: storage/views/storage/cash_transfer.py:103
-#: storage/views/storage/cash_transfer.py:123
-#: storage/views/storage/cash_transfer.py:131
-#: storage/views/storage/cash_transfer.py:143
-#: storage/views/storage/new_storage.py:34
-#: storage/views/storage/new_storage.py:52
-#: storage/views/storage/new_storage.py:65
-#: storage/views/storage/new_storage.py:87
-#: storage/views/storage/upgrade_storage.py:33
-#: storage/views/storage/upgrade_storage.py:43
-#: storage/views/storage/upgrade_storage.py:52
-#: storage/views/storage/upgrade_storage.py:87
-#: storage/views/storage/upgrade_storage.py:104
-#: storage/views/storage/upgrade_storage.py:112
-#: storage/views/storage/upgrade_storage.py:156
-#: storage/views/trading/accept_offer.py:44
-#: storage/views/trading/accept_offer.py:52
-#: storage/views/trading/accept_offer.py:65
-#: storage/views/trading/accept_offer.py:89
-#: storage/views/trading/accept_offer.py:99
-#: storage/views/trading/accept_offer.py:107
-#: storage/views/trading/accept_offer.py:115
-#: storage/views/trading/accept_offer.py:131
-#: storage/views/trading/accept_offer.py:147
-#: storage/views/trading/accept_offer.py:156
-#: storage/views/trading/accept_offer.py:164
-#: storage/views/trading/accept_offer.py:178
-#: storage/views/trading/accept_offer.py:200
-#: storage/views/trading/accept_offer.py:224
-#: storage/views/trading/accept_offer.py:273
-#: storage/views/trading/accept_offer.py:281
-#: storage/views/trading/accept_offer.py:293
-#: storage/views/trading/accept_offer.py:301
-#: storage/views/trading/accept_offer.py:310
-#: storage/views/trading/accept_offer.py:322
-#: storage/views/trading/accept_offer.py:393
-#: storage/views/trading/accept_offer.py:407
-#: storage/views/trading/cancel_offer.py:40
-#: storage/views/trading/cancel_offer.py:53
-#: storage/views/trading/cancel_offer.py:61
-#: storage/views/trading/cancel_offer.py:74
-#: storage/views/trading/cancel_offer.py:87
-#: storage/views/trading/cancel_offer.py:105
-#: storage/views/trading/cancel_offer.py:124
-#: storage/views/trading/cancel_offer.py:148
-#: storage/views/trading/create_offer.py:30
-#: storage/views/trading/create_offer.py:41
-#: storage/views/trading/create_offer.py:58
-#: storage/views/trading/create_offer.py:68
-#: storage/views/trading/create_offer.py:79
-#: storage/views/trading/create_offer.py:89
-#: storage/views/trading/create_offer.py:97
-#: storage/views/trading/create_offer.py:108
-#: storage/views/trading/create_offer.py:116
-#: storage/views/trading/create_offer.py:131
-#: storage/views/trading/create_offer.py:144
-#: storage/views/trading/create_offer.py:160
-#: storage/views/trading/create_offer.py:168
-#: storage/views/trading/create_offer.py:201
-#: storage/views/trading/create_offer.py:208
-#: storage/views/trading/create_offer.py:217
-#: storage/views/trading/get_offers.py:40
-#: storage/views/trading/get_offers.py:62
-#: storage/views/trading/get_offers.py:90
-#: storage/views/trading/get_offers.py:207
-#: storage/views/trading/premium_trading.py:26
-#: storage/views/trading/premium_trading.py:38
-#: storage/views/trading/premium_trading.py:84
-#: storage/views/trading/premium_trading.py:97
-#: storage/views/trading/premium_trading.py:109
-#: storage/views/trading/premium_trading.py:117
-#: storage/views/trading/premium_trading.py:175
-#: storage/views/trading/premium_trading.py:182
-msgctxt "mining"
-msgid "Закрыть"
-msgstr "Aizvērt"
-
 #: party/views/management/staff/leave_party.py:39
 msgctxt "party"
 msgid "Вы не исключили всех однопартийцев"
@@ -965,12 +1045,6 @@ msgstr "Valsts iepirkumi"
 msgctxt "cash_log"
 msgid "Навыки"
 msgstr "Prasmes"
-
-#: player/player.py:286 region/views/do_mining.py:31
-#: region/views/start_auto.py:26
-msgctxt "mining"
-msgid "Дождитесь конца полёта"
-msgstr "Uzgaidiet līdz lidojuma beigām"
 
 #: player/player.py:287 player/player.py:309 region/views/retrieve_cash.py:40
 msgctxt "mining"
@@ -1486,7 +1560,9 @@ msgid "место в рейтинге"
 msgstr "vieta reitingā"
 
 #: player/templates/player/redesign/profile.html:191
+#: player/templates/player/redesign/profile.html:205
 #: player/templates/player/redesign/view_profile.html:80
+#: player/templates/player/redesign/view_profile.html:94
 msgctxt "profile"
 msgid "(к рейтингу)"
 msgstr "(uz reitingu)"
@@ -1497,73 +1573,73 @@ msgctxt "profile"
 msgid "характеристики"
 msgstr "īpašības"
 
-#: player/templates/player/redesign/profile.html:209
-#: player/templates/player/redesign/view_profile.html:98
+#: player/templates/player/redesign/profile.html:212
+#: player/templates/player/redesign/view_profile.html:101
 msgctxt "profile"
 msgid "место жительства"
 msgstr "dzīvesvieta"
 
-#: player/templates/player/redesign/profile.html:218
-#: player/templates/player/redesign/view_profile.html:107
+#: player/templates/player/redesign/profile.html:221
+#: player/templates/player/redesign/view_profile.html:110
 msgctxt "profile"
 msgid "прописка"
 msgstr "deklarētā dzīvesvieta"
 
-#: player/templates/player/redesign/profile.html:221
-#: player/templates/player/redesign/view_profile.html:110
+#: player/templates/player/redesign/profile.html:224
+#: player/templates/player/redesign/view_profile.html:113
 msgctxt "profile"
 msgid "с"
 msgstr "no"
 
-#: player/templates/player/redesign/profile.html:227
-#: player/templates/player/redesign/view_profile.html:116
+#: player/templates/player/redesign/profile.html:230
+#: player/templates/player/redesign/view_profile.html:119
 msgid "партия"
 msgstr "partija"
 
-#: player/templates/player/redesign/profile.html:233
-#: player/templates/player/redesign/profile.html:251
-#: player/templates/player/redesign/view_profile.html:122
-#: player/templates/player/redesign/view_profile.html:140
+#: player/templates/player/redesign/profile.html:236
+#: player/templates/player/redesign/profile.html:254
+#: player/templates/player/redesign/view_profile.html:125
+#: player/templates/player/redesign/view_profile.html:143
 msgid "беспартийный"
 msgstr "bezpartijisks"
 
-#: player/templates/player/redesign/profile.html:236
-#: player/templates/player/redesign/view_profile.html:125
+#: player/templates/player/redesign/profile.html:239
+#: player/templates/player/redesign/view_profile.html:128
 msgctxt "profile"
 msgid "история"
 msgstr "vēsture"
 
-#: player/templates/player/redesign/profile.html:243
-#: player/templates/player/redesign/view_profile.html:132
+#: player/templates/player/redesign/profile.html:246
+#: player/templates/player/redesign/view_profile.html:135
 msgid "должность в партии"
 msgstr "amats"
 
-#: player/templates/player/redesign/profile.html:278
-#: player/templates/player/redesign/view_profile.html:146
+#: player/templates/player/redesign/profile.html:281
+#: player/templates/player/redesign/view_profile.html:149
 msgid "о себе"
 msgstr "par sevi"
 
-#: player/templates/player/redesign/profile.html:413
+#: player/templates/player/redesign/profile.html:416
 msgctxt "profile"
 msgid "показывать партийный фон"
 msgstr "rādīt partijas fonu"
 
-#: player/templates/player/redesign/profile.html:429
+#: player/templates/player/redesign/profile.html:432
 msgctxt "profile"
 msgid "Энергетики в авто-добыче"
 msgstr "Enerģētiķu patēriņš auto ieguvē"
 
-#: player/templates/player/redesign/profile.html:445
+#: player/templates/player/redesign/profile.html:448
 msgctxt "profile"
 msgid "Скрыть кнопку Wiki"
 msgstr "Noslēpt Wiki pogu"
 
-#: player/templates/player/redesign/profile.html:476
+#: player/templates/player/redesign/profile.html:479
 msgctxt "profile"
 msgid "стандарт"
 msgstr "standarts"
 
-#: player/templates/player/redesign/profile.html:490
+#: player/templates/player/redesign/profile.html:493
 #: player/templates/player/translate/translate.html:36
 msgid "сохранить"
 msgstr "saglabāt"
@@ -1710,15 +1786,6 @@ msgstr "Nekorekta vērtība"
 #: player/views/change_back_allow.py:42 player/views/change_back_allow.py:58
 msgid "Настройка партийного фона"
 msgstr "Partijas fona uzstādijumi"
-
-#: player/views/change_back_allow.py:57
-#: player/views/change_wiki_hide_allow.py:57 player/views/full_auto_allow.py:57
-#: player/views/set_language.py:54 player/views/set_timezone.py:43
-#: region/views/cancel_auto.py:35 region/views/daily_status.py:65
-#: region/views/daily_status.py:67 region/views/retrieve_cash.py:42
-#: region/views/start_auto.py:78
-msgid "Ошибка метода"
-msgstr "Metoda kļūda"
 
 #: player/views/change_wiki_hide_allow.py:42
 #: player/views/change_wiki_hide_allow.py:58
@@ -1963,14 +2030,6 @@ msgctxt "daily_header"
 msgid "энергии потрачено"
 msgstr "enerģijas patērēts"
 
-#: region/templates/region/redesign/mining.html:27
-#: region/templates/region/redesign/mining.html:61
-#: region/templates/region/redesign/mining.html:87
-#: region/templates/region/redesign/mining.html:113
-msgctxt "daily_header"
-msgid "в полете"
-msgstr "lidojumā"
-
 #: region/templates/region/redesign/mining.html:29
 msgctxt "daily_header"
 msgid "получаем"
@@ -1998,13 +2057,6 @@ msgstr "Zelts"
 msgctxt "mining"
 msgid "Запасы"
 msgstr "Krājumi"
-
-#: region/templates/region/redesign/mining.html:64
-#: region/templates/region/redesign/mining.html:90
-#: region/templates/region/redesign/mining.html:116
-msgctxt "mining"
-msgid "авто"
-msgstr "auto"
 
 #: region/templates/region/redesign/mining.html:73
 #: region/templates/region/redesign/mining.html:99
@@ -2122,11 +2174,6 @@ msgstr "Uz ieguvi"
 msgid "На торговлю"
 msgstr "Uz tirdzniecību"
 
-#: region/views/cancel_auto.py:33
-msgctxt "mining"
-msgid "Ошибка при отмене"
-msgstr "Atcelšanas kļūda"
-
 #: region/views/do_mining.py:32 region/views/do_mining.py:45
 #: region/views/do_mining.py:55 region/views/do_mining.py:68
 #: region/views/do_mining.py:77 region/views/do_mining.py:86
@@ -2180,7 +2227,7 @@ msgstr "Nepietiek rūdas krājumu reģionā"
 msgid "Регионы игры"
 msgstr "Spēles reģioni"
 
-#: region/views/map/map.py:111
+#: region/views/map/map.py:115
 msgid "Карта"
 msgstr "Karte"
 
@@ -2202,11 +2249,6 @@ msgstr "Ieguve"
 msgctxt "mining"
 msgid "Ошибка автоматической добычи ресурсов"
 msgstr "Automātiskās resursu ieguves kļūda"
-
-#: region/views/start_auto.py:34
-msgctxt "mining"
-msgid "Премиум-аккаунт не активен. Продлите его"
-msgstr "Premium konts nav aktīvs. Pagariniet to"
 
 #: region/views/start_auto.py:44
 msgctxt "mining"
