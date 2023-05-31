@@ -194,7 +194,7 @@ def produce_good(request):
                 return JsonResponse(data)
 
         # списать энергию игрока
-        player.energy_cons(energy_cost)
+        player.energy_cons(energy_cost, mul=2)
 
         # from player.game_event.energy_spent import EnergySpent
         # from django.contrib.humanize.templatetags.humanize import number_format

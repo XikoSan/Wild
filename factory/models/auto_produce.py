@@ -98,17 +98,13 @@ class AutoProduce(Log):
 
         # прерывать, если дата создания + сутки > сейчас
         if self.dtime + datetime.timedelta(days=1) < timezone.now():
-            log('времени нет')
             self.delete()
             return
 
         player = Player.get_instance(pk=self.player.pk)
 
-        from player.logs.print_log import log
-
         # прерывать, если премиум-аккаунт истёк
         if player.premium < timezone.now():
-            log('према нет')
             self.delete()
             return
 
@@ -130,7 +126,6 @@ class AutoProduce(Log):
 
         except IndexError:
             # если схемы с таким номером нет - ошибка, уадаляемся
-            log('схемы нет')
             self.delete()
             return
 
@@ -183,14 +178,10 @@ class AutoProduce(Log):
 
         if count == 0:
             # если ресы закончились - завершаемся
-            log('ресов или места нет')
             self.delete()
             return
 
-        log(count)
-        log(ceil(count / consignment) * price)
-
-        player.energy_cons(ceil(count / consignment) * price)
+        player.energy_cons(ceil(count / consignment) * price, mul=2)
 
         # создаём лог производства
         ProductionLog.objects.create(player=player,
