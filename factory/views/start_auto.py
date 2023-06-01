@@ -2,7 +2,7 @@
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from django.utils import timezone
-
+from django.apps import apps
 from player.decorators.player import check_player
 from factory.models.auto_produce import AutoProduce
 from player.player import Player
@@ -99,6 +99,10 @@ def start_auto_produce(request):
 
         if AutoProduce.objects.filter(player=player).exists():
             AutoProduce.objects.filter(player=player).delete()
+
+        AutoMining = apps.get_model('player.AutoMining')
+        if AutoMining.objects.filter(player=player).exists():
+            AutoMining.objects.filter(player=player).delete()
 
         auto = AutoProduce(
             player=player,
