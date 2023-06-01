@@ -20,7 +20,6 @@ from .project import Project
 from storage.models.storage import Storage
 from storage.views.storage.locks.get_storage import get_storage
 from math import ceil
-from player.logs.auto_mining import AutoMining
 
 # автоматическое производство
 class AutoProduce(Log):
@@ -93,6 +92,7 @@ class AutoProduce(Log):
         )
 
         # если есть другое производство или работа - снимаем
+        AutoMining = apps.get_model('player.AutoMining')
         if AutoMining.objects.filter(player=self.player).exists():
             AutoMining.objects.filter(player=self.player).delete()
 
@@ -106,6 +106,7 @@ class AutoProduce(Log):
     def produce_good(self):
 
         # удалять другие задачи на авто-производство и работу
+        AutoMining = apps.get_model('player.AutoMining')
         if AutoMining.objects.filter(player=self.player).exists():
             AutoMining.objects.filter(player=self.player).delete()
 

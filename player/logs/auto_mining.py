@@ -19,7 +19,6 @@ from storage.views.storage.locks.get_storage import get_storage
 from player.player_settings import PlayerSettings
 from skill.models.excavation import Excavation
 import redis
-from factory.models.auto_produce import AutoProduce
 
 
 # запись об изучаемом навыке
@@ -91,6 +90,7 @@ class AutoMining(Log):
         )
 
         # если есть другое производство или работа - снимаем
+        AutoProduce = apps.get_model('factory.AutoProduce')
         if AutoMining.objects.filter(player=self.player).exists():
             AutoMining.objects.filter(player=self.player).delete()
 
@@ -104,6 +104,7 @@ class AutoMining(Log):
     def retrieve_crude(self):
 
         # удалять другие задачи на авто-производство и работу
+        AutoProduce = apps.get_model('factory.AutoProduce')
         if AutoMining.objects.filter(player=self.player).exclude(pk=self.pk).exists():
             AutoMining.objects.filter(player=self.player).exclude(pk=self.pk).delete()
 
