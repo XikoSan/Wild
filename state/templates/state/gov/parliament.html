@@ -34,7 +34,7 @@
                 <div style="width: 150px">
                     <div class="row">
                         {% if pres_mandate.player %}
-                        <a href='profile/{{ pres_mandate.player.pk }}' target="_blank">
+                        <a href='profile/{% localize off %}{{ pres_mandate.player.pk }}{% endlocalize %}' target="_blank">
                             <!--если пользователь загрузил аватарку-->
                             {% if pres_mandate.player.image %}
                             <img src="{{ pres_mandate.player.image.url }}" width="80" height="80">
@@ -53,7 +53,7 @@
                 {% for minister in ministers %}
                 <div style="width: 150px">
                     <div class="row">
-                        <a href='profile/{{ minister.player.pk }}' target="_blank">
+                        <a href='profile/{% localize off %}{{ minister.player.pk }}{% endlocalize %}' target="_blank">
                             <!--если пользователь загрузил аватарку-->
                             {% if minister.player.image %}
                             <img src="{{ minister.player.image.url }}" width="80" height="80">
@@ -103,7 +103,7 @@
         <div class="row flex">
             <div class="col-xs-2 col-sm-2 col-md-2">
                 {% if deputate.player %}
-                    <a href='profile/{{ deputate.player.pk }}' target="_blank">
+                    <a href='profile/{% localize off %}{{ deputate.player.pk }}{% endlocalize %}' target="_blank">
                         <!--если пользователь загрузил аватарку-->
                         {% if deputate.player.image %}
                         <img src="{{ deputate.player.image.url }}" width="80" height="80" align="right">
@@ -125,7 +125,7 @@
             </div>
             <div class="col-xs-5 col-sm-5 col-md-5">
             {% if deputate.player %}
-                <a href='profile/{{ deputate.player.pk }}' style="text-decoration: none;" target="_blank">
+                <a href='profile/{% localize off %}{{ deputate.player.pk }}{% endlocalize %}' style="text-decoration: none;" target="_blank">
                     <h3><b>{{ deputate.player.nickname }}</b></h3>
                 </a>
             {% else %}
