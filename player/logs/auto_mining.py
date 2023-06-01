@@ -19,6 +19,7 @@ from storage.views.storage.locks.get_storage import get_storage
 from player.player_settings import PlayerSettings
 from skill.models.excavation import Excavation
 import redis
+from factory.models.auto_produce import AutoProduce
 
 
 # запись об изучаемом навыке
@@ -88,11 +89,26 @@ class AutoMining(Log):
             args=json.dumps([self.pk]),
             start_time=timezone.now()
         )
+
+        # если есть другое производство или работа - снимаем
+        if AutoMining.objects.filter(player=self.player).exists():
+            AutoMining.objects.filter(player=self.player).delete()
+
+        if AutoProduce.objects.filter(player=self.player).exists():
+            AutoProduce.objects.filter(player=self.player).delete()
+
         self.save()
 
     # получить указанный ресурсы
     @transaction.atomic
     def retrieve_crude(self):
+
+        # удалять другие задачи на авто-производство и работу
+        if AutoMining.objects.filter(player=self.player).exclude(pk=self.pk).exists():
+            AutoMining.objects.filter(player=self.player).exclude(pk=self.pk).delete()
+
+        if AutoProduce.objects.filter(player=self.player).exists():
+            AutoProduce.objects.filter(player=self.player).delete()
 
         # прерывать, если дата создания + сутки > сейчас
         if self.dtime + datetime.timedelta(days=1) < timezone.now():

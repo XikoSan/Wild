@@ -53,8 +53,8 @@ def map(request):
                 if AutoMining.objects.filter(player=player).exists():
                     AutoMining.objects.filter(player=player).delete()
 
-                if AutoProduce.objects.filter(player=player).exists():
-                    AutoProduce.objects.filter(player=player).delete()
+                # if AutoProduce.objects.filter(player=player).exists():
+                #     AutoProduce.objects.filter(player=player).delete()
 
                 player.destination = destination
                 player.cash -= cost

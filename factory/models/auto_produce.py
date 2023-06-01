@@ -20,6 +20,7 @@ from .project import Project
 from storage.models.storage import Storage
 from storage.views.storage.locks.get_storage import get_storage
 from math import ceil
+from player.logs.auto_mining import AutoMining
 
 # автоматическое производство
 class AutoProduce(Log):
@@ -90,11 +91,26 @@ class AutoProduce(Log):
             args=json.dumps([self.pk]),
             start_time=timezone.now()
         )
+
+        # если есть другое производство или работа - снимаем
+        if AutoMining.objects.filter(player=self.player).exists():
+            AutoMining.objects.filter(player=self.player).delete()
+
+        if AutoProduce.objects.filter(player=self.player).exists():
+            AutoProduce.objects.filter(player=self.player).delete()
+
         self.save()
 
     # получить указанный ресурсы
     @transaction.atomic
     def produce_good(self):
+
+        # удалять другие задачи на авто-производство и работу
+        if AutoMining.objects.filter(player=self.player).exists():
+            AutoMining.objects.filter(player=self.player).delete()
+
+        if AutoProduce.objects.filter(player=self.player).exclude(pk=self.pk).exists():
+            AutoProduce.objects.filter(player=self.player).exclude(pk=self.pk).delete()
 
         # прерывать, если дата создания + сутки > сейчас
         if self.dtime + datetime.timedelta(days=1) < timezone.now():
