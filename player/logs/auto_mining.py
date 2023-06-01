@@ -80,17 +80,6 @@ class AutoMining(Log):
                                                         month_of_year='*',
                                                        )
 
-        # -----------
-        # если есть другое производство или работа - снимаем
-        AutoProduce = apps.get_model('factory.AutoProduce')
-        if AutoMining.objects.filter(player=self.player).exists():
-            AutoMining.objects.filter(player=self.player).delete()
-
-        if AutoProduce.objects.filter(player=self.player).exists():
-            AutoProduce.objects.filter(player=self.player).delete()
-
-        # -----------
-
         self.task = PeriodicTask.objects.create(
             name=self.player.nickname + ' собирает ' + self.get_resource_display(),
             task='crude_retrieve',
@@ -113,6 +102,8 @@ class AutoMining(Log):
 
         if AutoProduce.objects.filter(player=self.player).exists():
             AutoProduce.objects.filter(player=self.player).delete()
+
+        #   -----------------
 
         # прерывать, если дата создания + сутки > сейчас
         if self.dtime + datetime.timedelta(days=1) < timezone.now():
