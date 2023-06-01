@@ -2,6 +2,7 @@
 import datetime
 import json
 import redis
+from django.apps import apps
 from decimal import Decimal
 from django.db import models
 from django.db import transaction

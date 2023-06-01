@@ -2,7 +2,7 @@
 import datetime
 import json
 from decimal import Decimal
-
+from django.apps import apps
 from django.db import models
 from django.db import transaction
 from django.db.models.signals import post_delete, post_save
