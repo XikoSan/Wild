@@ -83,14 +83,7 @@ class AutoProduce(Log):
                 month_of_year='*',
             )
 
-        self.task = PeriodicTask.objects.create(
-            name=self.player.nickname + ' производит ' + self.get_good_display(),
-            task='good_produce',
-            # interval=schedule,
-            crontab=schedule,
-            args=json.dumps([self.pk]),
-            start_time=timezone.now()
-        )
+        # -----------
 
         # если есть другое производство или работа - снимаем
         AutoMining = apps.get_model('player.AutoMining')
@@ -99,6 +92,17 @@ class AutoProduce(Log):
 
         if AutoProduce.objects.filter(player=self.player).exists():
             AutoProduce.objects.filter(player=self.player).delete()
+
+        # -----------
+
+        self.task = PeriodicTask.objects.create(
+            name=self.player.nickname + ' производит ' + self.get_good_display(),
+            task='good_produce',
+            # interval=schedule,
+            crontab=schedule,
+            args=json.dumps([self.pk]),
+            start_time=timezone.now()
+        )
 
         self.save()
 
