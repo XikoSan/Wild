@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-01 01:25+0300\n"
+"POT-Creation-Date: 2023-06-02 23:10+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -253,7 +253,7 @@ msgstr ""
 #: factory/views/cancel_auto.py:34 factory/views/start_auto.py:29
 #: factory/views/start_auto.py:37 factory/views/start_auto.py:54
 #: factory/views/start_auto.py:63 factory/views/start_auto.py:96
-#: factory/views/start_auto.py:120
+#: factory/views/start_auto.py:124
 #: party/views/management/staff/leave_party.py:38
 #: party/views/management/staff/leave_party.py:210 player/player.py:288
 #: player/player.py:310 region/views/cancel_auto.py:34
@@ -265,7 +265,7 @@ msgstr ""
 #: region/views/do_mining.py:254 region/views/retrieve_cash.py:41
 #: region/views/start_auto.py:28 region/views/start_auto.py:36
 #: region/views/start_auto.py:46 region/views/start_auto.py:55
-#: region/views/start_auto.py:77 storage/views/assets/assets_action.py:252
+#: region/views/start_auto.py:81 storage/views/assets/assets_action.py:252
 #: storage/views/assets/storage_move.py:37
 #: storage/views/assets/storage_move.py:46
 #: storage/views/assets/storage_move.py:56
@@ -353,13 +353,13 @@ msgctxt "mining"
 msgid "Закрыть"
 msgstr ""
 
-#: factory/views/cancel_auto.py:35 factory/views/start_auto.py:121
+#: factory/views/cancel_auto.py:35 factory/views/start_auto.py:125
 #: player/views/change_back_allow.py:57
 #: player/views/change_wiki_hide_allow.py:57 player/views/full_auto_allow.py:57
 #: player/views/set_language.py:54 player/views/set_timezone.py:43
 #: region/views/cancel_auto.py:35 region/views/daily_status.py:65
 #: region/views/daily_status.py:67 region/views/retrieve_cash.py:42
-#: region/views/start_auto.py:78
+#: region/views/start_auto.py:82
 msgid "Ошибка метода"
 msgstr ""
 
@@ -464,7 +464,7 @@ msgstr ""
 
 #: factory/views/start_auto.py:28 factory/views/start_auto.py:36
 #: factory/views/start_auto.py:53 factory/views/start_auto.py:62
-#: factory/views/start_auto.py:95 factory/views/start_auto.py:119
+#: factory/views/start_auto.py:95 factory/views/start_auto.py:123
 msgctxt "auto_produce"
 msgid "Ошибка автоматического производства"
 msgstr ""
@@ -1044,6 +1044,56 @@ msgstr ""
 #: player/player.py:308
 msgctxt "mining"
 msgid "Нечего забирать"
+msgstr ""
+
+#: player/templates/player/index.html:72
+msgctxt "index"
+msgid "это экономико-политический симулятор"
+msgstr ""
+
+#: player/templates/player/index.html:81
+msgctxt "index"
+msgid "Играть"
+msgstr ""
+
+#: player/templates/player/index.html:91
+msgctxt "index"
+msgid "Объединяйтесь в партии для контроля государств."
+msgstr ""
+
+#: player/templates/player/index.html:92
+msgctxt "index"
+msgid "Перекраивайте карту мира."
+msgstr ""
+
+#: player/templates/player/index.html:93
+msgctxt "index"
+msgid "Создайте бизнес своей мечты - добыча ископаемых, промышленность, торговля."
+msgstr ""
+
+#: player/templates/player/index.html:94
+msgctxt "index"
+msgid "Воюйте и заключайте союзы."
+msgstr ""
+
+#: player/templates/player/index.html:95
+msgctxt "index"
+msgid "Расширяйте влияние своего государства."
+msgstr ""
+
+#: player/templates/player/index.html:96
+msgctxt "index"
+msgid "Станьте владельцем популярной газеты, и заработайте на рекламе."
+msgstr ""
+
+#: player/templates/player/index.html:99 player/templates/player/index.html:140
+msgctxt "index"
+msgid "Продолжая использование сайта, вы принимаете условия"
+msgstr ""
+
+#: player/templates/player/index.html:99 player/templates/player/index.html:140
+msgctxt "index"
+msgid "Пользовательского соглашения"
 msgstr ""
 
 #: player/templates/player/profile.html:146
@@ -2231,7 +2281,7 @@ msgstr ""
 
 #: region/views/start_auto.py:27 region/views/start_auto.py:35
 #: region/views/start_auto.py:45 region/views/start_auto.py:54
-#: region/views/start_auto.py:76
+#: region/views/start_auto.py:80
 msgctxt "mining"
 msgid "Ошибка автоматической добычи ресурсов"
 msgstr ""
