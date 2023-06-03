@@ -159,7 +159,7 @@
 	<script src="{% static 'redesign/js/copy_to_clip.js' %}?{{ csrf_token }}"></script>
 	<script>
 		if (document.getElementById('profile__id')) {
-			const buttonIdCopy = new IdCopy('{{ request.get_host }}/profile/{% autoescape off %}{{ char.pk }}{% endautoescape %}/');
+			const buttonIdCopy = new IdCopy('{{ request.get_host }}/profile/{% localize off %}{{ char.pk }}{% endlocalize %}/');
 		}
 	</script>
 
