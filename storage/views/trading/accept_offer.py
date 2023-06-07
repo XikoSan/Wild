@@ -97,6 +97,7 @@ def accept_offer(request):
 
             ex_kwargs = {}
             dest_regions = []
+            dest_regions_buy = []
             war_classes = get_subclasses(War)
             for war_cl in war_classes:
                 # если есть войны за этот рег
@@ -109,18 +110,34 @@ def accept_offer(request):
                             # (торговля в пределах региона разрешена даже во время войны)
                             if dest_pk[0] != storage_region_pk:
                                 dest_regions.append(dest_pk[0])
+                            # список всех целей для ордеров скупки
+                            dest_regions_buy.append(dest_pk[0])
 
             ex_kwargs['owner_storage__region__pk__in'] = dest_regions
-            # если предложение не нашлось - значит, оно из другого региона, и там идет война
-            if not TradeOffer.actual.filter(pk=offer_id, count__gt=0).exclude(**ex_kwargs).exists():
-                data = {
-                    'header': pgettext('w_trading', 'Принятие оффера'),
-                    'grey_btn': pgettext('mining', 'Закрыть'),
-                    'response': pgettext('w_trading', 'Нельзя принять оффер из атакованного региона'),
-                }
-                return JsonResponse(data)
 
             offer = TradeOffer.actual.select_for_update().get(pk=offer_id)
+
+            if offer.type == 'sell':
+                # если предложение не нашлось - значит, оно из другого региона, и там идет война
+                if not TradeOffer.actual.filter(pk=offer_id, type='sell', count__gt=0).exclude(**ex_kwargs).exists():
+
+                    data = {
+                        'header': pgettext('w_trading', 'Принятие оффера'),
+                        'grey_btn': pgettext('mining', 'Закрыть'),
+                        'response': pgettext('w_trading', 'Нельзя принять оффер из атакованного региона'),
+                    }
+                    return JsonResponse(data)
+
+            # если торговый ордер на скупку, то проверяем, что нашего региона нет в списке атакованных
+            if offer.type == 'buy':
+                if storage_region_pk in dest_regions_buy and storage_region_pk != offer.owner_storage.region.pk:
+
+                    data = {
+                        'header': pgettext('w_trading', 'Принятие оффера'),
+                        'grey_btn': pgettext('mining', 'Закрыть'),
+                        'response': pgettext('w_trading', 'Нельзя принять оффер из атакованного региона'),
+                    }
+                    return JsonResponse(data)
 
             if offer.owner_storage.owner == player:
                 data = {
