@@ -16,6 +16,7 @@ from storage.models.transport import Transport
 
 class TradeOfferAdmin(admin.ModelAdmin):
     search_fields = ['player__nickname']
+    raw_id_fields = ('owner_storage', )
     list_display = ('owner_storage', 'type', 'good', 'price', 'deleted')
     list_filter = ('deleted',)
 
