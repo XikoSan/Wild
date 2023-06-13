@@ -103,8 +103,8 @@ class Project(models.Model):
         'resources':
             [
                 {
-                    'cash': 5,
-                    'bauxite': 20,
+                    'cash': 10,
+                    'bauxite': 10,
                 },
             ],
 
