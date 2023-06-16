@@ -279,8 +279,8 @@
             "color": "#{% if district.state.color %}{{ district.state.color }}{% else %}{% if district.is_off %}000000{% else %}ffffff{% endif %}{% endif %}",
        },
        "geometry": {
-           "type": "Polygon",
-           "coordinates": {{ map_shape.shape }}
+           "type": "MultiPolygon",
+           "coordinates": [{{ map_shape.shape }}]
        }
    },
  ];
