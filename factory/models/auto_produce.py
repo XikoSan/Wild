@@ -193,7 +193,7 @@ class AutoProduce(Log):
             self.delete()
             return
 
-        player.energy_cons(ceil(count / consignment) * price, mul=2)
+        player.energy_cons(ceil(count / consignment) * price, mul=2, region=self.storage.region)
 
         # создаём лог производства
         ProductionLog.objects.create(player=player,
