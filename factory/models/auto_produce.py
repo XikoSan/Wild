@@ -181,14 +181,15 @@ class AutoProduce(Log):
             if schema[material] * min_count > getattr(lock_storage, material):
                 min_count = getattr(lock_storage, material) // schema[material]
 
-        count = min_count
+        if min_count < count:
+            count = min_count
 
         # узнать, хватает ли места на складе для нового товара
         if count + getattr(lock_storage, self.good) > getattr(lock_storage, self.good + '_cap'):
             # запишем, сколько влезает
             count = getattr(lock_storage, self.good + '_cap') - getattr(lock_storage, self.good)
 
-        if count == 0:
+        if count <= 0:
             # если ресы закончились - завершаемся
             self.delete()
             return
