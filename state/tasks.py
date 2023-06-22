@@ -278,10 +278,23 @@ def finish_presidential(pres_id):
                 bulltins_dic[vote.challenger] = 1
                 challengers_with_vote.append(vote.challenger)
 
+        r = redis.StrictRedis(host='redis', port=6379, db=0)
+        timestamp_now = timezone.now().timestamp()
+
         max_votes = 0
-        max_cadidate = None
+        max_cadidate = president.leader
+
         for candidate in challengers_with_vote:
             if bulltins_dic[candidate] > max_votes:
+
+                timestamp = r.hget('online', str(candidate.pk))
+
+                if timestamp:
+                    if int(timestamp) < timestamp_now - 604800:
+                        continue
+                else:
+                    continue
+
                 max_votes = bulltins_dic[candidate]
                 max_cadidate = candidate
 
@@ -321,7 +334,19 @@ def start_presidential(pres_id):
     prim_leaders = PrimariesLeader.objects.filter(
         party__in=Party.objects.filter(deleted=False, region__in=Region.objects.filter(state=president.state)))
 
+    r = redis.StrictRedis(host='redis', port=6379, db=0)
+    timestamp_now = timezone.now().timestamp()
+
     for prim_leader in prim_leaders:
+
+        timestamp = r.hget('online', str(prim_leader.leader.pk))
+
+        if timestamp:
+            if int(timestamp) < timestamp_now - 604800:
+                continue
+        else:
+            continue
+
         voting.candidates.add(prim_leader.leader)
 
     if old_elections:
