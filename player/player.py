@@ -355,6 +355,9 @@ class Player(models.Model):
         #         if count != 0 and daily_procent == 100:
         #             taxed_count += daily_limit
 
+        if not self.daily_fin and daily_procent == 100:
+            self.gold += 100
+
         # отмечаем, что  дейлик закрыт:
         # если игрок прокачат навык, то не получит золотой бонус или Подпольное Финансирование
         if daily_procent == 100:
