@@ -4,6 +4,7 @@ from django.conf.urls import url
 from party.primaries.views.start_primaries import start_primaries
 from party.primaries.views.vote_primaries import vote_primaries
 from party.views.management.change_party_pic import change_party_pic
+from party.views.management.color_change import party_color_change
 from party.views.management.management import management
 from party.views.management.new_party import new_party
 from party.views.management.party_requests import party_requests
@@ -32,6 +33,8 @@ urlpatterns = [
     url(r'^switch_description/$', switch_description, name='switch_description'),
     # изменить тип партии
     url(r'^switch_party_type/$', switch_party_type, name='switch_party_type'),
+    # изменить цвет партии
+    url(r'^party_color_change/$', party_color_change, name='party_color_change'),
     # лист заявок в партию
     url(r'^party/requests/$', party_requests, name='party_requests'),
 

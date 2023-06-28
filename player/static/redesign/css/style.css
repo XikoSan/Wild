@@ -4163,6 +4163,34 @@ p.overview__love-stat-timer {
   margin: 12rem 16rem;
 }
 
+.party__colorContainer {
+  padding: 0 14rem;
+  display: flex;
+  align-items: center;
+  gap: 6rem;
+}
+
+.party__colorContainer > input {
+  display: block;
+  width: 34rem;
+  height: 34rem;
+  border: 0;
+  background-color: transparent;
+}
+
+.party__colorContainer > input[type="color" i]::-webkit-color-swatch-wrapper {
+  padding: 0;
+  border: 0;
+}
+
+.party__colorContainer > input[type="color" i]::-webkit-color-swatch {
+  border: 1px solid var(--c10one);
+}
+
+.party__colorContainer > span {
+  font-size: 14rem;
+}
+
 .party__mmid-add {
   display: flex;
   align-items: center;
@@ -4346,6 +4374,788 @@ p.overview__love-stat-timer {
     margin-bottom: 18rem;
     padding: 0;
     width: 572rem;
+  }
+  .party__colorContainer {
+    max-width: 360rem;
+    margin: 0 auto;
+  }
+}
+
+/*! gover */
+
+.gover {
+  padding-top: 14rem;
+  padding-bottom: 24rem;
+  height: calc(100% - 60rem);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.gover__title {
+  margin: 0;
+  margin-bottom: 12rem;
+}
+
+.gover__topVyb {
+  margin: 0;
+  margin-bottom: 6rem;
+  display: flex;
+  justify-content: space-between;
+  color: var(--c10one);
+  font-size: 14rem;
+}
+
+.gover__tabsContainer {
+  padding-bottom: 9rem;
+  margin-bottom: 9rem;
+  overflow-y: hidden;
+  overflow-x: auto;
+  width: 100%;
+}
+
+.gover__tabs {
+  width: max-content;
+  display: flex;
+  gap: 6rem;
+  padding: 0 12rem;
+}
+
+.gover__tab > span {
+  font-size: 14rem !important;
+  color: var(--c10one) !important;
+}
+
+.gover__tab.active > span {
+  color: var(--c60) !important;
+}
+
+.gover__svgBg {
+  fill: var(--c30);
+}
+
+.gover__tab.active .gover__svgBg {
+  fill: var(--c10two);
+}
+
+.gover__tab .treg1,
+.gover__tab .treg2,
+.gover__tab .treg3 {
+  display: none;
+}
+
+.gover__tab.active .treg1,
+.gover__tab.active .treg2,
+.gover__tab.active .treg3 {
+  display: initial;
+}
+
+.gover__decorLine {
+  height: 1px;
+  margin: 0 12rem;
+  margin-bottom: 18rem;
+  background-image: linear-gradient(to right, transparent, var(--c10one), transparent);
+}
+
+.gover__block {
+  display: none;
+  font-size: 12rem;
+  line-height: 16rem;
+}
+
+.gover__block.active {
+  display: block;
+}
+
+.gover__table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.gover__table tr:nth-of-type(even) {
+  background-color: var(--c30);
+}
+
+.gover__table td {
+  padding: 6rem 0;
+}
+
+.gover__table tr {
+  position: relative;
+}
+
+.gover__table tr:first-of-type td {
+  padding-top: 0;
+}
+
+.gover__table td:first-of-type {
+  padding-left: 6rem;
+}
+
+.gover__table td:last-of-type {
+padding-right: 6rem;
+}
+
+.gover__table p {
+  margin: 0;
+}
+
+.gover__tableInfo {
+  background-color: #4791FF;
+  border: 0;
+  width: 24rem;
+  height: 24rem;
+  color: #fff;
+  border-radius: 4rem;
+}
+
+.gover__table tr:nth-of-type(even)
+
+.gover__tableModalInfo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.gover__minContent {
+  width: min-content;
+}
+
+.gover__withImage {
+  display: inline-flex;
+  gap: 10rem;
+  align-items: center;
+}
+
+.gover__withImage img {
+  display: block;
+  width: 34rem;
+  height: 34rem;
+}
+
+.gover__tableDopInfo,
+.gover__tableCancel,
+.gover__tableVote {
+  display: none;
+}
+
+.gover__tableVote-wrappper {
+  display: flex;
+  flex-direction: column;
+}
+
+.gover__tableVote-wrappper p {
+  display: inline-flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.gover__newSelect {
+  margin: 0 auto;
+  margin-bottom: 18rem;
+}
+
+.gover__newInner {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 20rem;
+  font-size: 16rem;
+  padding: 0 24rem;
+}
+
+.gover__newInner.active {
+  display: flex;
+}
+
+.gover__newInner > h2,
+.gover__newInner h3 {
+  margin: 0;
+  font-size: 16rem;
+  font-weight: 400;
+  text-align: center;
+}
+
+.gover__newInner p {
+  margin: 0;
+  text-align: center;
+}
+
+.gover__newInner .party__mana-ava-block {
+  margin: 0;
+}
+
+.gover__newInner-flexColumn {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 12rem;
+  padding: 0 24rem;
+  width: 100%;
+}
+
+.gover__newInner-flexColumn.active {
+  display: flex;
+}
+
+.gover__newInner-flexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6rem;
+}
+
+.gover__newInner-textIput {
+  display: block;
+  width: 90rem;
+  padding: 0 6rem;
+  height: 18rem;
+  font-size: 16rem;
+  line-height: 18rem;
+  border: 1px solid var(--c10one);
+  background-color: transparent;
+  color: var(--c10one);
+  outline: none;
+}
+
+.gover__newInner-wideInput {
+  position: relative;
+  height: 30rem;
+  width: calc(100% - 48rem);
+  margin: 0 auto;
+}
+
+.gover__newInner-wideInput::before,
+.gover__newInner-twoWithInput label::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  content: '';
+  border: 1px solid var(--c10one);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.gover__newInner-wideInput input {
+  display: block;
+  width: 100%;
+  padding: 0 6rem;
+  height: 100%;
+  background-color: transparent;
+  border: 0;
+  color: var(--c10one);
+}
+
+.gover__newInner-textIput:focus {
+  box-shadow: 0 0 5rem 0 var(--c10one);
+}
+
+.gover__newInner-infoText {
+  display: flex;
+}
+
+.gover__newInner-infoText input {
+  margin: 0 6rem;
+}
+
+.gover__newInner-table {
+  border-collapse: collapse;
+  width: 100%;
+  line-height: 24rem;
+}
+
+.gover__newInner-table tr:nth-of-type(odd) {
+  background-color: var(--c30);
+}
+
+.gover__newInner-table td:first-of-type {
+  padding-left: 12rem;
+}
+
+.gover__newInner-table td:last-of-type {
+  padding-right: 12rem;
+}
+
+.gover__newInner-twoWithInput {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.gover__newInner-twoWithInput > div {
+  display: flex;
+  width: 150rem;
+  align-items: center;
+  margin-left: auto;
+}
+
+.gover__newInner-twoWithInput--small > div {
+  width: 129rem;
+  margin-right: 21rem;
+}
+
+.gover__newInner-twoWithInput label {
+  display: flex;
+  position: relative;
+  flex-grow: 1;
+  height: 30rem;
+  max-width: 100%;
+}
+
+.gover__newInner-twoWithInput input {
+  display: block;
+  flex-grow: 1;
+  line-height: 30rem;
+  border: 0;
+  color: var(--c10one);
+  background-color: transparent;
+  max-width: 100%;
+}
+
+.gover__ministerTabs {
+  margin-bottom: 18rem;
+}
+
+.gover__blockMid,
+.gover__blockStatistic {
+  display: none;
+  flex-direction: column;
+  gap: 20rem;
+  align-items: center;
+}
+
+.gover__blockMid.active,
+.gover__blockStatistic.active {
+  display: flex;
+}
+
+.gover__blockMid-cancelAll {
+  display: block;
+  margin-left: auto;
+  margin-right: 24rem;
+  padding: 0 12rem;
+  font-size: 16rem;
+  line-height: 24rem;
+  color: var(--c60);
+  background-color: var(--c10two);
+  border: 0;
+}
+
+.gover__voteMid > div {
+  display: flex;
+  gap: 12rem
+}
+
+.gover__voteMid button {
+  display: inline-block;
+  padding: 6rem;
+  background-color: transparent;
+  border: 0;
+}
+
+.gover__goverSvg {
+  display: block;
+  width: 270rem;
+  height: 119rem;
+  margin: 0 auto;
+  margin-bottom: 18rem;
+}
+
+.gover__goverParty {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12rem;
+  padding: 2rem 12rem;
+  font-size: 16rem;
+  line-height: 1.3;
+  color: #fff;
+  font-weight: 500;
+  text-shadow:
+		-0   -1px 0   #000000,
+		 0   -1px 0   #000000,
+		-0    1px 0   #000000,
+		 0    1px 0   #000000,
+		-1px -0   0   #000000,
+		 1px -0   0   #000000,
+		-1px  0   0   #000000,
+		 1px  0   0   #000000,
+		-1px -1px 0   #000000,
+		 1px -1px 0   #000000,
+		-1px  1px 0   #000000,
+		 1px  1px 0   #000000,
+		-1px -1px 0   #000000,
+		 1px -1px 0   #000000,
+		-1px  1px 0   #000000,
+		 1px  1px 0   #000000;
+     letter-spacing: -0.04em;
+}
+
+.gover__goverParty-imgBlock {
+  display: flex;
+  align-items: center;
+  gap: 6rem;
+}
+
+.gover__goverParty img,
+.gover__goverPartyTable img {
+  display: block;
+  width: 34rem;
+  height: 34rem;
+  object-fit: contain;
+  object-position: center;
+}
+
+.gover__goverParty img {
+  filter: drop-shadow(0 0 3px #000);
+}
+
+.gover__goverPartyTable {
+  border-collapse: collapse;
+  font-size: 16rem;
+  line-height: 1.3;
+  letter-spacing: -0.04em;
+  width: 100%;
+  margin-bottom: 8rem;
+}
+
+.gover__goverPartyTable td {
+  padding: 2rem 4rem;
+  width: 35%;
+}
+
+.gover__goverPartyTable tr:first-of-type td {
+  padding-top: 4rem;
+}
+
+.gover__goverPartyTable td:first-of-type {
+  padding-left: 12rem;
+}
+
+.gover__goverPartyTable td:nth-of-type(1) {
+  text-align: left;
+  width: 20%;
+}
+
+.gover__goverPartyTable td:nth-of-type(2) {
+  text-align: right;
+  width: 20%;
+}
+
+.gover__goverPartyTable td:nth-of-type(3) {
+  text-align: center;
+}
+
+.gover__goverPartyTable td:last-of-type {
+  padding-right: 12rem;
+}
+
+.gover__goverPartyTable--mb {
+  margin-bottom: 18rem;
+}
+
+.gover__goverPartyTable--zebra {
+  margin-bottom: 12rem;
+}
+
+.gover__goverPartyTable--zebra tr:nth-of-type(odd) {
+  background-color: var(--c30);
+}
+
+.gover__goverPartyTable--zebra tr:nth-of-type(even) td {
+  border-bottom: 1px solid var(--c30);
+}
+
+.gover__coffers table {
+  font-size: 14rem;
+}
+
+.gover__coffers > h2 {
+  margin: 0;
+  margin-bottom: 12rem;
+  font-weight: 400;
+  font-size: 14rem;
+  line-height: 16rem;
+  text-align: center;
+}
+
+@media (min-width: 1200px) {
+  .gover {
+    padding-top: 14rem;
+    padding-bottom: 72rem;
+    margin-top: 100rem;
+    height: calc(100% - 100rem);
+    margin-left: 330rem;
+  }
+  .gover__tabsContainer {
+    display: flex;
+    justify-content: center;
+  }
+  .gover__voteMid > div {
+    display: flex;
+    justify-content: flex-end;
+    gap: 24rem;
+  }
+  .gover__voteMid button {
+    font-size: 22rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .gover__voteMid button:hover {
+    filter: drop-shadow(0 0 4rem var(--c10two));
+  }
+  .gover__table td:last-of-type {
+    padding-right: 24rem;
+  }
+  .gover__table td:first-of-type {
+    padding-left: 24rem;
+  }
+  .gover__ministerTabs {
+    margin: 0 auto;
+    margin-bottom: 18rem;
+    width: max-content;
+    gap: 8rem;
+  }
+  .gover__blockStatistic__dop {
+    display: flex;
+    justify-content: center;
+    gap: 24rem;
+  }
+  .gover__blockStatistic__dop > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 100rem;
+  }
+  .gover__tableCancel a {
+    color: var(--c10two);
+    text-decoration: underline;
+  }
+  .gover__tableCancel button {
+    padding: 6rem;
+    border: 0;
+    font-size: 22rem;
+    background-color: transparent;
+    margin-left: 12rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .gover__tableVote button {
+    padding: 6rem;
+    border: 0;
+    font-size: 22rem;
+    background-color: transparent;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .gover__tableCancel button:hover,
+  .gover__tableVote button:hover {
+    filter: drop-shadow(0 0 4rem var(--c10two));
+  }
+  .gover__tableInfoTd {
+    display: none;
+  }
+  td.gover__tableVote {
+    text-align: right;
+    padding-right: 24rem;
+  }
+  .gover__tableVote-wrappper p {
+    width: 100%;
+    justify-content: center;
+    gap: 18rem;
+  }
+  .gover__newInner {
+    max-width: 360rem;
+    margin: 0 auto;
+  }
+  .gover__tableDopInfo,
+  .gover__tableCancel,
+  .gover__tableVote {
+    display: table-cell;
+  }
+}
+
+/*! tableMobileModal */
+
+.tableMobileModal {
+  z-index: 2;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24rem;
+  font-size: 16rem;
+  background-color: var(--c30);
+  transform: translateX(100%);
+  transition: all 0.5s ease;
+}
+
+.tableMobileModal.active {
+  transform: translateX(0);
+}
+
+.tableMobileModal__close {
+  position: absolute;
+  top: 20rem;
+  right: 20rem;
+}
+
+.tableMobileModal__content {
+  display: flex;
+  flex-direction: column;
+  gap: 24rem;
+  width: 100%;
+}
+
+.tableMobileModal h2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6rem;
+  text-align: center;
+  margin: 0;
+  font-size: 18rem;
+  font-weight: 400;
+}
+
+.tableMobileModal a {
+  color: var(--c10two);
+  display: block;
+  text-align: center;
+}
+
+.tableMobileModal__content button {
+  display: inline-block;
+  padding: 10rem;
+  border: 0;
+  background-color: transparent;
+  font-size: 40rem;
+  line-height: 40rem;
+}
+
+.tableMobileModal__dopInfo,
+.tableMobileModal__cancel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20rem;
+}
+
+.tableMobileModal__vote {
+  display: flex;
+  gap: 50rem;
+  margin: 0 auto;
+}
+
+.tableMobileModal__decorLine {
+  height: 1px;
+  margin: 0 12rem;
+  background-image: linear-gradient(to right, transparent, var(--c10one), transparent);
+}
+
+/*! goverGuysModal */
+
+.goverGuysModal {
+  z-index: 2;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 12rem;
+  background-color: var(--c60);
+  font-size: 14rem;
+  line-height: 1;
+  transform: translateX(-100%);
+  transition: transform 0.5s ease;
+}
+
+.goverGuysModal.active {
+  transform: translateX(0);
+}
+
+.goverGuysModal__close {
+  position: absolute;
+  top: 20rem;
+  right: 20rem;
+}
+
+#gover__modal-open {
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+#gover__modal-open:hover {
+  filter: drop-shadow(0 0 5rem var(--c10two));
+}
+
+.goverGuysModal__list {
+  display: grid;
+  gap: 12rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.goverGuysModal__item {
+  display: flex;
+  gap: 24rem;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12rem;
+  background-color: var(--c30);
+}
+
+.goverGuysModal__item > img {
+  display: block;
+  width: 80rem;
+  height: 80rem;
+}
+
+.goverGuysModal__itemText {
+  display: grid;
+  gap: 18rem;
+  flex-grow: 1;
+}
+
+.goverGuysModal__itemText > h2 {
+  margin: 0;
+  line-height: 1;
+  font-weight: 500;
+  text-align: center;
+  font-size: 14rem;
+}
+
+.goverGuysModal__itemText-block {
+  display: grid;
+  gap: 8rem;
+}
+
+.goverGuysModal__itemText-block p {
+  margin: 0;
+  text-align: center;
+}
+
+@media (min-width: 1200px) {
+  .goverGuysModal {
+    top: 100rem;
+    left: 330rem;
+    width: calc(100% - 330rem);
+    height: calc(100% - 100rem);
+    padding: 120rem 400rem;
   }
 }
 

@@ -136,6 +136,14 @@
 			</div>
 
 			<div class="party__mmid-line"></div>
+			<form id="color_set" role="form" method="post" class="party__colorContainer">
+				{% csrf_token %}
+				<input type="color" value="#{{ player.party.color }}" name="party_color" id="party_color">
+				<span>{% trans 'Цвет в парламенте' context "party_manage" %}</span>
+				<button type="submit" class="ct__btn-half-screen" style="cursor: pointer">{% trans 'сохранить' context "party_manage" %}</button>
+			</form>
+
+			<div class="party__mmid-line"></div>
 
 			<div class="party__name-edit-block">
 				<div class="party__name-edit-before">
