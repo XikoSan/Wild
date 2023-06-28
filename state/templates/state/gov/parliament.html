@@ -5,7 +5,7 @@
     <div class="progress" align="right">
         {% if parties %}
         {% for parl_party in parties %}
-        <div class="progress-bar bg-success" role="progressbar" style="width: {{ parl_party.seats }}%; color:white; background-color:#{{ party_colors|dict_key:parl_party }}!important;
+        <div class="progress-bar bg-success" role="progressbar" style="width: {{ parl_party.seats }}%; color:white; background-color:#{% if parl_party.party.color != 'xxxxxx' %}{{ parl_party.party.color }}{% else %}{{ party_colors|dict_key:parl_party }}{% endif %}!important;
                                                                                          text-shadow: 1px 0 1px #000,
                                                                                                         0 1px 1px #000,
                                                                                                         -1px 0 1px #000,
