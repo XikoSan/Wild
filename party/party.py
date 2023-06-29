@@ -44,7 +44,7 @@ class Party(models.Model):
     # цвет в парламенте
     color = models.CharField(
         max_length=6,
-        default='000000',
+        default='xxxxxx',
     )
 
     # регион партии
