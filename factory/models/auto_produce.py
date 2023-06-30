@@ -143,7 +143,7 @@ class AutoProduce(Log):
 
         # получаем число юнитов, которое может быть произведено по этой схеме
         price = getattr(Project, self.good)['energy']
-        count = int(player.energy // price * price)
+        count = int(player.energy // price)
 
         consignment = 1
 
