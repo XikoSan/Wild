@@ -33,6 +33,7 @@ from .views.wallet import wallet
 from player.views.translate.translate import edit_translations
 from player.views.translate.translations import translations
 from django.urls import path
+from django.views.generic import TemplateView
 
 urlpatterns = [
 
@@ -40,6 +41,8 @@ urlpatterns = [
     url(r'^$', index, name='index'),
     # ЕУЛА
     url(r'^eula$', eula, name='eula'),
+    # Соглашение об обработке ПД
+    path('personal_data/', TemplateView.as_view(template_name='player/personal_data.html'), name='personal_data'),
     # регистрация нового персонажа
     url(r'^player/new/$', new_player, name='new_player'),
     # выход
