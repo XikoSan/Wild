@@ -18,6 +18,9 @@ from party.logs.membership_log import MembershipLog
 # таска выключающая праймериз
 @shared_task(name="finish_primaries")
 def finish_primaries(party_id):
+    # если партии нет - выходим, а не падаем
+    if not Party.objects.filter(pk=party_id).exists():
+        return
     party = Party.objects.get(pk=party_id)
     if party.task is not None:
         party.task.enabled = True

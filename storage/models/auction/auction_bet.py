@@ -4,6 +4,7 @@ from django.db import models
 from player.actual_manager import ActualManager
 from storage.models.auction.auction_lot import AuctionLot
 from storage.models.good_lock import GoodLock
+from django.utils import timezone
 
 
 # Ставка на аукционе
@@ -21,6 +22,10 @@ class AuctionBet(models.Model):
     # блокировка склада
     good_lock = models.ForeignKey(GoodLock, default=None, on_delete=models.CASCADE,
                                   verbose_name='Блокировка Склада', related_name="good_lock")
+
+    # дата создания записи
+    dtime = models.DateTimeField(default=timezone.now, blank=True,
+                                 verbose_name='Время создания записи')
 
     # удалено
     deleted = models.BooleanField(default=False, verbose_name='Удалено')

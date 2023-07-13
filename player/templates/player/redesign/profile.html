@@ -92,6 +92,7 @@
 						</defs>
 					</svg>
 				</button>
+				{% if False %}
 				{% if player.account.socialaccount_set.all.0.provider == 'vk' %}
 				<button class="profile__repost ct__square-btn"> <!-- кнопка перекл. на репост -->
 					<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -111,6 +112,7 @@
 						</defs>
 					</svg>
 				</button>
+				{% endif %}
 				{% endif %}
 			</div>
 
@@ -193,7 +195,7 @@
 					</p>
 				</div>
 
-				<div class="ct__s" onclick="window.location.href = '/skill_top/'" style="cursor: pointer;">
+				<div class="ct__s">
 					<h2 class="ct__s-title">{% trans 'характеристики' context "profile" %}</h2>
 					<p class="ct__s-text">
 						<font color="FF0000">{{ player.power }}</font>
@@ -201,6 +203,9 @@
 						<font color="337AB7">{{ player.knowledge }}</font>
 						/
 						<font color="#18D04C">{{ player.endurance }}</font>
+						<a href="/skill_top/">
+							{% trans '(к рейтингу)' context "profile" %}
+						</a>
 					</p>
 				</div>
 
@@ -285,12 +290,14 @@
 			</div>
 			<!-- конец ВКЛАДКИ ИНФОРМАЦИЯ -->
 
+			{% if False %}
 			{% if player.account.socialaccount_set.all.0.provider == 'vk' %}
 			<!-- ВКЛАДКА РЕПОСТ -->
 			<div class="profile__repost-tab">
 				{% repost_tab player %}
 			</div>
 			<!-- конец ВКЛАДКИ РЕПОСТ -->
+			{% endif %}
 			{% endif %}
 		</div>
 
@@ -357,7 +364,7 @@
 				</div>
 				<div class="btn-r-wrapper">
 					<button type="button" class="btn btn-default back-crop-js" data-dismiss="modal">{% trans 'Отмена' %}</button>
-					<button type="button" class="btn btn-primary js-crop-and-upload">{% trans 'Загрузить' %}, -100 G</button>
+					<button type="button" class="btn btn-primary js-crop-and-upload">{% trans 'Загрузить' %}{% if player.image %}, -100 G{% endif %}</button>
 				</div>
 			</div>
 		</div>

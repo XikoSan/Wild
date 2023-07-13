@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-24 23:22+0300\n"
+"POT-Creation-Date: 2023-06-02 23:10+0300\n"
 "PO-Revision-Date: 2022-12-01 16:31+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -185,7 +185,7 @@ msgstr "AT-canon"
 #: factory/models/project.py:232 state/models/treasury.py:103
 #: storage/models/destroy.py:70 storage/models/storage.py:86
 #: storage/models/storage.py:188 storage/models/trade_offer.py:94
-#: storage/models/transport.py:183
+#: storage/models/transport.py:183 war/models/squads/infantry.py:50
 msgctxt "goods"
 msgid "Мины"
 msgstr ""
@@ -199,7 +199,7 @@ msgid "БМП"
 msgstr "IFV"
 
 #: factory/templates/factory/redesign/factory.html:13
-#: factory/views/factory.py:53
+#: factory/views/factory.py:64
 #, fuzzy
 #| msgid "Производство"
 msgctxt "factory"
@@ -240,13 +240,148 @@ msgctxt "factory"
 msgid "выбор схемы"
 msgstr "tindakan"
 
-#: factory/templates/factory/redesign/factory.html:153
+#: factory/templates/factory/redesign/factory.html:161
+#: region/templates/region/redesign/mining.html:27
+#: region/templates/region/redesign/mining.html:61
+#: region/templates/region/redesign/mining.html:87
+#: region/templates/region/redesign/mining.html:113
+msgctxt "daily_header"
+msgid "в полете"
+msgstr "dalam perjalanan"
+
+#: factory/templates/factory/redesign/factory.html:177
+#: region/templates/region/redesign/mining.html:64
+#: region/templates/region/redesign/mining.html:90
+#: region/templates/region/redesign/mining.html:116
+msgctxt "mining"
+msgid "авто"
+msgstr "otomatis"
+
+#: factory/templates/factory/redesign/factory.html:218
 #, fuzzy
 #| msgctxt "storage_assets"
 #| msgid "создать"
 msgctxt "factory"
 msgid "создать"
 msgstr "membuat"
+
+#: factory/views/cancel_auto.py:33 region/views/cancel_auto.py:33
+msgctxt "mining"
+msgid "Ошибка при отмене"
+msgstr "Pembatalan gagal"
+
+#: factory/views/cancel_auto.py:34 factory/views/start_auto.py:29
+#: factory/views/start_auto.py:37 factory/views/start_auto.py:54
+#: factory/views/start_auto.py:63 factory/views/start_auto.py:96
+#: factory/views/start_auto.py:124
+#: party/views/management/staff/leave_party.py:38
+#: party/views/management/staff/leave_party.py:210 player/player.py:288
+#: player/player.py:310 region/views/cancel_auto.py:34
+#: region/views/daily_status.py:66 region/views/do_mining.py:33
+#: region/views/do_mining.py:46 region/views/do_mining.py:56
+#: region/views/do_mining.py:69 region/views/do_mining.py:78
+#: region/views/do_mining.py:87 region/views/do_mining.py:103
+#: region/views/do_mining.py:123 region/views/do_mining.py:177
+#: region/views/do_mining.py:254 region/views/retrieve_cash.py:41
+#: region/views/start_auto.py:28 region/views/start_auto.py:36
+#: region/views/start_auto.py:46 region/views/start_auto.py:55
+#: region/views/start_auto.py:81 storage/views/assets/assets_action.py:252
+#: storage/views/assets/storage_move.py:37
+#: storage/views/assets/storage_move.py:46
+#: storage/views/assets/storage_move.py:56
+#: storage/views/assets/storage_move.py:68
+#: storage/views/assets/storage_move.py:87
+#: storage/views/storage/cash_transfer.py:34
+#: storage/views/storage/cash_transfer.py:43
+#: storage/views/storage/cash_transfer.py:56
+#: storage/views/storage/cash_transfer.py:65
+#: storage/views/storage/cash_transfer.py:74
+#: storage/views/storage/cash_transfer.py:103
+#: storage/views/storage/cash_transfer.py:123
+#: storage/views/storage/cash_transfer.py:131
+#: storage/views/storage/cash_transfer.py:143
+#: storage/views/storage/new_storage.py:34
+#: storage/views/storage/new_storage.py:52
+#: storage/views/storage/new_storage.py:65
+#: storage/views/storage/new_storage.py:87
+#: storage/views/storage/upgrade_storage.py:33
+#: storage/views/storage/upgrade_storage.py:43
+#: storage/views/storage/upgrade_storage.py:52
+#: storage/views/storage/upgrade_storage.py:87
+#: storage/views/storage/upgrade_storage.py:104
+#: storage/views/storage/upgrade_storage.py:112
+#: storage/views/storage/upgrade_storage.py:156
+#: storage/views/trading/accept_offer.py:44
+#: storage/views/trading/accept_offer.py:52
+#: storage/views/trading/accept_offer.py:65
+#: storage/views/trading/accept_offer.py:89
+#: storage/views/trading/accept_offer.py:99
+#: storage/views/trading/accept_offer.py:107
+#: storage/views/trading/accept_offer.py:115
+#: storage/views/trading/accept_offer.py:131
+#: storage/views/trading/accept_offer.py:147
+#: storage/views/trading/accept_offer.py:156
+#: storage/views/trading/accept_offer.py:164
+#: storage/views/trading/accept_offer.py:178
+#: storage/views/trading/accept_offer.py:200
+#: storage/views/trading/accept_offer.py:224
+#: storage/views/trading/accept_offer.py:273
+#: storage/views/trading/accept_offer.py:281
+#: storage/views/trading/accept_offer.py:293
+#: storage/views/trading/accept_offer.py:301
+#: storage/views/trading/accept_offer.py:310
+#: storage/views/trading/accept_offer.py:322
+#: storage/views/trading/accept_offer.py:393
+#: storage/views/trading/accept_offer.py:407
+#: storage/views/trading/cancel_offer.py:40
+#: storage/views/trading/cancel_offer.py:53
+#: storage/views/trading/cancel_offer.py:61
+#: storage/views/trading/cancel_offer.py:74
+#: storage/views/trading/cancel_offer.py:87
+#: storage/views/trading/cancel_offer.py:105
+#: storage/views/trading/cancel_offer.py:124
+#: storage/views/trading/cancel_offer.py:148
+#: storage/views/trading/create_offer.py:30
+#: storage/views/trading/create_offer.py:41
+#: storage/views/trading/create_offer.py:58
+#: storage/views/trading/create_offer.py:68
+#: storage/views/trading/create_offer.py:79
+#: storage/views/trading/create_offer.py:89
+#: storage/views/trading/create_offer.py:97
+#: storage/views/trading/create_offer.py:108
+#: storage/views/trading/create_offer.py:116
+#: storage/views/trading/create_offer.py:131
+#: storage/views/trading/create_offer.py:144
+#: storage/views/trading/create_offer.py:160
+#: storage/views/trading/create_offer.py:168
+#: storage/views/trading/create_offer.py:201
+#: storage/views/trading/create_offer.py:208
+#: storage/views/trading/create_offer.py:217
+#: storage/views/trading/get_offers.py:40
+#: storage/views/trading/get_offers.py:62
+#: storage/views/trading/get_offers.py:90
+#: storage/views/trading/get_offers.py:207
+#: storage/views/trading/premium_trading.py:26
+#: storage/views/trading/premium_trading.py:38
+#: storage/views/trading/premium_trading.py:84
+#: storage/views/trading/premium_trading.py:97
+#: storage/views/trading/premium_trading.py:109
+#: storage/views/trading/premium_trading.py:117
+#: storage/views/trading/premium_trading.py:175
+#: storage/views/trading/premium_trading.py:182
+msgctxt "mining"
+msgid "Закрыть"
+msgstr "Ditutup"
+
+#: factory/views/cancel_auto.py:35 factory/views/start_auto.py:125
+#: player/views/change_back_allow.py:57
+#: player/views/change_wiki_hide_allow.py:57 player/views/full_auto_allow.py:57
+#: player/views/set_language.py:54 player/views/set_timezone.py:43
+#: region/views/cancel_auto.py:35 region/views/daily_status.py:65
+#: region/views/daily_status.py:67 region/views/retrieve_cash.py:42
+#: region/views/start_auto.py:82
+msgid "Ошибка метода"
+msgstr "Metode error"
 
 #: factory/views/produce_good.py:31
 msgctxt "factory"
@@ -259,6 +394,7 @@ msgstr ""
 #: factory/views/produce_good.py:106 factory/views/produce_good.py:116
 #: factory/views/produce_good.py:124 factory/views/produce_good.py:132
 #: factory/views/produce_good.py:170 factory/views/produce_good.py:189
+#: factory/views/start_auto.py:74 factory/views/start_auto.py:84
 #, fuzzy
 #| msgctxt "menu"
 #| msgid "производство"
@@ -272,6 +408,7 @@ msgstr "produksi"
 #: factory/views/produce_good.py:107 factory/views/produce_good.py:117
 #: factory/views/produce_good.py:125 factory/views/produce_good.py:133
 #: factory/views/produce_good.py:171 factory/views/produce_good.py:190
+#: factory/views/start_auto.py:75 factory/views/start_auto.py:85
 #, fuzzy
 #| msgid "Закрыть"
 msgctxt "storage"
@@ -302,7 +439,7 @@ msgctxt "factory"
 msgid "Указанный товар не существует"
 msgstr "Penyimpanan telah berada di wilayah saat ini"
 
-#: factory/views/produce_good.py:84
+#: factory/views/produce_good.py:84 factory/views/start_auto.py:73
 #, fuzzy
 #| msgctxt "mining"
 #| msgid "Количество энергии - не число"
@@ -310,7 +447,7 @@ msgctxt "factory"
 msgid "Номер схемы - не число"
 msgstr "Jumlah energi bukanlah angka"
 
-#: factory/views/produce_good.py:94
+#: factory/views/produce_good.py:94 factory/views/start_auto.py:83
 #, fuzzy
 #| msgctxt "assets"
 #| msgid "Указанный Склад уже в текущем регионе"
@@ -382,6 +519,48 @@ msgstr "Energi tidak cukup"
 msgctxt "factory"
 msgid ". В наличии "
 msgstr ", persediaan : "
+
+#: factory/views/start_auto.py:27 player/player.py:286
+#: region/views/do_mining.py:31 region/views/start_auto.py:26
+msgctxt "mining"
+msgid "Дождитесь конца полёта"
+msgstr ""
+
+#: factory/views/start_auto.py:28 factory/views/start_auto.py:36
+#: factory/views/start_auto.py:53 factory/views/start_auto.py:62
+#: factory/views/start_auto.py:95 factory/views/start_auto.py:123
+#, fuzzy
+#| msgctxt "mining"
+#| msgid "Ошибка автоматической добычи ресурсов"
+msgctxt "auto_produce"
+msgid "Ошибка автоматического производства"
+msgstr "Penambangan otomatis gagal"
+
+#: factory/views/start_auto.py:35 region/views/start_auto.py:34
+msgctxt "mining"
+msgid "Премиум-аккаунт не активен. Продлите его"
+msgstr "Mohon perbarui premium"
+
+#: factory/views/start_auto.py:52
+#, fuzzy
+#| msgctxt "mining"
+#| msgid "Неизвестный тип ресурса"
+msgctxt "auto_produce"
+msgid "Неизвестный тип товара"
+msgstr "Jenis sumber daya tidak diketahui"
+
+#: factory/views/start_auto.py:61
+msgctxt "auto_produce"
+msgid "Данный товар невозможно произвести"
+msgstr ""
+
+#: factory/views/start_auto.py:94
+#, fuzzy
+#| msgctxt "assets"
+#| msgid "Указанный Склад вам не принадлежит"
+msgctxt "auto_produce"
+msgid "Указанный склад вам не принадлежит"
+msgstr "Penyimpanan bukan milikmu"
 
 #: gov/templates/state/gov/forms/foreign_right.html:21
 #: party/templates/party/party_requests.html:36
@@ -532,13 +711,13 @@ msgstr "Membatalkan peningkatan kemampuan"
 #: player/templates/player/redesign/new_player.html:149
 #: player/templates/player/redesign/new_player.html:177
 #: player/templates/player/redesign/overview_skills.html:179
-#: player/templates/player/redesign/profile.html:359
+#: player/templates/player/redesign/profile.html:362
 msgid "Отмена"
 msgstr "Batal"
 
 #: party/templates/party/redesign/manage.html:351
 #: player/templates/player/redesign/new_player.html:136
-#: player/templates/player/redesign/profile.html:360
+#: player/templates/player/redesign/profile.html:363
 msgid "Загрузить"
 msgstr "Unggah"
 
@@ -901,7 +1080,7 @@ msgstr "harga"
 #: player/views/expense_energy.py:30 player/views/expense_energy.py:53
 #: player/views/expense_energy.py:62 player/views/expense_energy.py:73
 #: player/views/full_auto_allow.py:43 player/views/full_auto_allow.py:59
-#: player/views/new_player.py:92 player/views/new_player.py:105
+#: player/views/new_player.py:98 player/views/new_player.py:111
 #: player/views/set_language.py:40 player/views/set_language.py:56
 #: player/views/set_timezone.py:29 player/views/set_timezone.py:45
 #: skill/views/skill_cancel.py:36 skill/views/skill_cancel.py:44
@@ -1033,105 +1212,6 @@ msgctxt "party"
 msgid "Выход из партии"
 msgstr "Keluar"
 
-#: party/views/management/staff/leave_party.py:38
-#: party/views/management/staff/leave_party.py:210 player/player.py:288
-#: player/player.py:310 region/views/cancel_auto.py:34
-#: region/views/do_mining.py:33 region/views/do_mining.py:46
-#: region/views/do_mining.py:56 region/views/do_mining.py:69
-#: region/views/do_mining.py:78 region/views/do_mining.py:87
-#: region/views/do_mining.py:103 region/views/do_mining.py:123
-#: region/views/do_mining.py:177 region/views/do_mining.py:254
-#: region/views/retrieve_cash.py:41 region/views/start_auto.py:28
-#: region/views/start_auto.py:36 region/views/start_auto.py:46
-#: region/views/start_auto.py:55 region/views/start_auto.py:77
-#: storage/views/assets/assets_action.py:252
-#: storage/views/assets/storage_move.py:37
-#: storage/views/assets/storage_move.py:46
-#: storage/views/assets/storage_move.py:56
-#: storage/views/assets/storage_move.py:68
-#: storage/views/assets/storage_move.py:87
-#: storage/views/storage/cash_transfer.py:34
-#: storage/views/storage/cash_transfer.py:43
-#: storage/views/storage/cash_transfer.py:56
-#: storage/views/storage/cash_transfer.py:65
-#: storage/views/storage/cash_transfer.py:74
-#: storage/views/storage/cash_transfer.py:103
-#: storage/views/storage/cash_transfer.py:123
-#: storage/views/storage/cash_transfer.py:131
-#: storage/views/storage/cash_transfer.py:143
-#: storage/views/storage/new_storage.py:34
-#: storage/views/storage/new_storage.py:52
-#: storage/views/storage/new_storage.py:65
-#: storage/views/storage/new_storage.py:87
-#: storage/views/storage/upgrade_storage.py:33
-#: storage/views/storage/upgrade_storage.py:43
-#: storage/views/storage/upgrade_storage.py:52
-#: storage/views/storage/upgrade_storage.py:87
-#: storage/views/storage/upgrade_storage.py:104
-#: storage/views/storage/upgrade_storage.py:112
-#: storage/views/storage/upgrade_storage.py:156
-#: storage/views/trading/accept_offer.py:44
-#: storage/views/trading/accept_offer.py:52
-#: storage/views/trading/accept_offer.py:65
-#: storage/views/trading/accept_offer.py:89
-#: storage/views/trading/accept_offer.py:99
-#: storage/views/trading/accept_offer.py:107
-#: storage/views/trading/accept_offer.py:115
-#: storage/views/trading/accept_offer.py:131
-#: storage/views/trading/accept_offer.py:147
-#: storage/views/trading/accept_offer.py:156
-#: storage/views/trading/accept_offer.py:164
-#: storage/views/trading/accept_offer.py:178
-#: storage/views/trading/accept_offer.py:200
-#: storage/views/trading/accept_offer.py:224
-#: storage/views/trading/accept_offer.py:273
-#: storage/views/trading/accept_offer.py:281
-#: storage/views/trading/accept_offer.py:293
-#: storage/views/trading/accept_offer.py:301
-#: storage/views/trading/accept_offer.py:310
-#: storage/views/trading/accept_offer.py:322
-#: storage/views/trading/accept_offer.py:393
-#: storage/views/trading/accept_offer.py:407
-#: storage/views/trading/cancel_offer.py:40
-#: storage/views/trading/cancel_offer.py:53
-#: storage/views/trading/cancel_offer.py:61
-#: storage/views/trading/cancel_offer.py:74
-#: storage/views/trading/cancel_offer.py:87
-#: storage/views/trading/cancel_offer.py:105
-#: storage/views/trading/cancel_offer.py:124
-#: storage/views/trading/cancel_offer.py:148
-#: storage/views/trading/create_offer.py:30
-#: storage/views/trading/create_offer.py:41
-#: storage/views/trading/create_offer.py:58
-#: storage/views/trading/create_offer.py:68
-#: storage/views/trading/create_offer.py:79
-#: storage/views/trading/create_offer.py:89
-#: storage/views/trading/create_offer.py:97
-#: storage/views/trading/create_offer.py:108
-#: storage/views/trading/create_offer.py:116
-#: storage/views/trading/create_offer.py:131
-#: storage/views/trading/create_offer.py:144
-#: storage/views/trading/create_offer.py:160
-#: storage/views/trading/create_offer.py:168
-#: storage/views/trading/create_offer.py:201
-#: storage/views/trading/create_offer.py:208
-#: storage/views/trading/create_offer.py:217
-#: storage/views/trading/get_offers.py:40
-#: storage/views/trading/get_offers.py:62
-#: storage/views/trading/get_offers.py:90
-#: storage/views/trading/get_offers.py:207
-#: storage/views/trading/premium_trading.py:26
-#: storage/views/trading/premium_trading.py:38
-#: storage/views/trading/premium_trading.py:84
-#: storage/views/trading/premium_trading.py:97
-#: storage/views/trading/premium_trading.py:109
-#: storage/views/trading/premium_trading.py:117
-#: storage/views/trading/premium_trading.py:175
-#: storage/views/trading/premium_trading.py:182
-msgctxt "mining"
-msgid "Закрыть"
-msgstr "Ditutup"
-
 #: party/views/management/staff/leave_party.py:39
 msgctxt "party"
 msgid "Вы не исключили всех однопартийцев"
@@ -1209,12 +1289,6 @@ msgctxt "cash_log"
 msgid "Навыки"
 msgstr "Kemampuan"
 
-#: player/player.py:286 region/views/do_mining.py:31
-#: region/views/start_auto.py:26
-msgctxt "mining"
-msgid "Дождитесь конца полёта"
-msgstr ""
-
 #: player/player.py:287 player/player.py:309 region/views/retrieve_cash.py:40
 msgctxt "mining"
 msgid "Ошибка получения финансирования"
@@ -1224,6 +1298,61 @@ msgstr "Pendanaan Harian Gagal"
 msgctxt "mining"
 msgid "Нечего забирать"
 msgstr "Tidak mendapatkan apapun"
+
+#: player/templates/player/index.html:72
+msgctxt "index"
+msgid "это экономико-политический симулятор"
+msgstr ""
+
+#: player/templates/player/index.html:81
+#, fuzzy
+#| msgctxt "mining"
+#| msgid "Нечего забирать"
+msgctxt "index"
+msgid "Играть"
+msgstr "Tidak mendapatkan apapun"
+
+#: player/templates/player/index.html:91
+msgctxt "index"
+msgid "Объединяйтесь в партии для контроля государств."
+msgstr ""
+
+#: player/templates/player/index.html:92
+msgctxt "index"
+msgid "Перекраивайте карту мира."
+msgstr ""
+
+#: player/templates/player/index.html:93
+msgctxt "index"
+msgid "Создайте бизнес своей мечты - добыча ископаемых, промышленность, торговля."
+msgstr ""
+
+#: player/templates/player/index.html:94
+msgctxt "index"
+msgid "Воюйте и заключайте союзы."
+msgstr ""
+
+#: player/templates/player/index.html:95
+msgctxt "index"
+msgid "Расширяйте влияние своего государства."
+msgstr ""
+
+#: player/templates/player/index.html:96
+msgctxt "index"
+msgid "Станьте владельцем популярной газеты, и заработайте на рекламе."
+msgstr ""
+
+#: player/templates/player/index.html:99 player/templates/player/index.html:140
+msgctxt "index"
+msgid "Продолжая использование сайта, вы принимаете условия"
+msgstr ""
+
+#: player/templates/player/index.html:99 player/templates/player/index.html:140
+#, fuzzy
+#| msgid "Некорректное значение"
+msgctxt "index"
+msgid "Пользовательского соглашения"
+msgstr "Nominal salah"
 
 #: player/templates/player/profile.html:146
 msgid "player_info"
@@ -1510,71 +1639,71 @@ msgstr "wilayah merdeka"
 msgid "войн нет"
 msgstr "tidak ada perang"
 
-#: player/templates/player/redesign/overview.html:275
+#: player/templates/player/redesign/overview.html:276
 msgctxt "overview"
 msgid "Хэллоуинский ивент"
 msgstr "Event Halloween"
 
-#: player/templates/player/redesign/overview.html:282
+#: player/templates/player/redesign/overview.html:283
 msgctxt "overview"
 msgid "С новым годом!"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:448
+#: player/templates/player/redesign/overview.html:449
 msgctxt "overview"
 msgid "сила"
 msgstr "str"
 
-#: player/templates/player/redesign/overview.html:453
+#: player/templates/player/redesign/overview.html:454
 msgctxt "overview"
 msgid "инт"
 msgstr "int"
 
-#: player/templates/player/redesign/overview.html:458
+#: player/templates/player/redesign/overview.html:459
 msgctxt "overview"
 msgid "вын"
 msgstr "end"
 
-#: player/templates/player/redesign/overview.html:474
+#: player/templates/player/redesign/overview.html:475
 msgctxt "overview"
 msgid "Выборы лидера"
 msgstr "Pemilihan presiden"
 
-#: player/templates/player/redesign/overview.html:477
+#: player/templates/player/redesign/overview.html:478
 msgctxt "overview"
 msgid "Выборы"
 msgstr "Pemilihan"
 
-#: player/templates/player/redesign/overview.html:482
+#: player/templates/player/redesign/overview.html:483
 msgctxt "overview"
 msgid "партии"
 msgstr "partai"
 
-#: player/templates/player/redesign/overview.html:482
+#: player/templates/player/redesign/overview.html:483
 msgctxt "overview"
 msgid "государства"
 msgstr "negara bagian"
 
-#: player/templates/player/redesign/overview.html:482
+#: player/templates/player/redesign/overview.html:483
 msgctxt "overview"
 msgid "региона"
 msgstr "wilayah"
 
-#: player/templates/player/redesign/overview.html:519
-#: player/templates/player/redesign/overview.html:564
+#: player/templates/player/redesign/overview.html:520
+#: player/templates/player/redesign/overview.html:565
 msgid "партий нет"
 msgstr "tidak ada partai"
 
-#: player/templates/player/redesign/overview.html:526
+#: player/templates/player/redesign/overview.html:527
 msgctxt "overview"
 msgid "парламент"
 msgstr "parlemen"
 
-#: player/templates/player/redesign/overview.html:744
+#: player/templates/player/redesign/overview.html:745
 msgid "У вас пока еще нет стикеров"
 msgstr "Kamu belum memiliki stiker"
 
-#: player/templates/player/redesign/overview.html:757
+#: player/templates/player/redesign/overview.html:758
 msgctxt "overview"
 msgid "магазин"
 msgstr "toko"
@@ -1675,37 +1804,37 @@ msgctxt "repost"
 msgid "Бонус можно получить раз в сутки"
 msgstr "Bonus hanya bisa didapatkan satu kali sehari"
 
-#: player/templates/player/redesign/player_repost.html:19
+#: player/templates/player/redesign/player_repost.html:20
 msgctxt "repost"
 msgid "репост не найден"
 msgstr "postingan tidak ditemukan"
 
-#: player/templates/player/redesign/player_repost.html:21
+#: player/templates/player/redesign/player_repost.html:22
 msgctxt "repost"
 msgid "репост найден"
 msgstr "postingan ditemukan"
 
-#: player/templates/player/redesign/player_repost.html:24
+#: player/templates/player/redesign/player_repost.html:26
 msgctxt "repost"
 msgid "Произошла ошибка API VK"
 msgstr "VK API error"
 
-#: player/templates/player/redesign/player_repost.html:25
+#: player/templates/player/redesign/player_repost.html:27
 msgctxt "repost"
 msgid "Обычно помогает повторный логин в игре"
 msgstr "Ini akan membantu masuk kembali ke dalam permainan"
 
-#: player/templates/player/redesign/player_repost.html:26
+#: player/templates/player/redesign/player_repost.html:29
 msgctxt "repost"
 msgid "Выйти из игры"
 msgstr "Keluar"
 
-#: player/templates/player/redesign/player_repost.html:33
+#: player/templates/player/redesign/player_repost.html:37
 msgctxt "repost"
 msgid "Получить"
 msgstr "Dapatkan"
 
-#: player/templates/player/redesign/player_repost.html:48
+#: player/templates/player/redesign/player_repost.html:52
 msgctxt "repost"
 msgid "час не прошёл"
 msgstr "waktu masih berjalan"
@@ -1742,7 +1871,9 @@ msgid "место в рейтинге"
 msgstr "peringkat"
 
 #: player/templates/player/redesign/profile.html:191
+#: player/templates/player/redesign/profile.html:205
 #: player/templates/player/redesign/view_profile.html:80
+#: player/templates/player/redesign/view_profile.html:94
 msgctxt "profile"
 msgid "(к рейтингу)"
 msgstr "Peringkat atas"
@@ -1753,38 +1884,38 @@ msgctxt "profile"
 msgid "характеристики"
 msgstr "karakteristik"
 
-#: player/templates/player/redesign/profile.html:209
-#: player/templates/player/redesign/view_profile.html:98
+#: player/templates/player/redesign/profile.html:212
+#: player/templates/player/redesign/view_profile.html:101
 msgctxt "profile"
 msgid "место жительства"
 msgstr "wilayah"
 
-#: player/templates/player/redesign/profile.html:218
-#: player/templates/player/redesign/view_profile.html:107
+#: player/templates/player/redesign/profile.html:221
+#: player/templates/player/redesign/view_profile.html:110
 msgctxt "profile"
 msgid "прописка"
 msgstr "kependudukan"
 
-#: player/templates/player/redesign/profile.html:221
-#: player/templates/player/redesign/view_profile.html:110
+#: player/templates/player/redesign/profile.html:224
+#: player/templates/player/redesign/view_profile.html:113
 msgctxt "profile"
 msgid "с"
 msgstr ""
 
-#: player/templates/player/redesign/profile.html:227
-#: player/templates/player/redesign/view_profile.html:116
+#: player/templates/player/redesign/profile.html:230
+#: player/templates/player/redesign/view_profile.html:119
 msgid "партия"
 msgstr "partai"
 
-#: player/templates/player/redesign/profile.html:233
-#: player/templates/player/redesign/profile.html:251
-#: player/templates/player/redesign/view_profile.html:122
-#: player/templates/player/redesign/view_profile.html:140
+#: player/templates/player/redesign/profile.html:236
+#: player/templates/player/redesign/profile.html:254
+#: player/templates/player/redesign/view_profile.html:125
+#: player/templates/player/redesign/view_profile.html:143
 msgid "беспартийный"
 msgstr "tidak terafiliasi"
 
-#: player/templates/player/redesign/profile.html:236
-#: player/templates/player/redesign/view_profile.html:125
+#: player/templates/player/redesign/profile.html:239
+#: player/templates/player/redesign/view_profile.html:128
 #, fuzzy
 #| msgctxt "profile"
 #| msgid "(история)"
@@ -1792,37 +1923,37 @@ msgctxt "profile"
 msgid "история"
 msgstr "(sejarah)"
 
-#: player/templates/player/redesign/profile.html:243
-#: player/templates/player/redesign/view_profile.html:132
+#: player/templates/player/redesign/profile.html:246
+#: player/templates/player/redesign/view_profile.html:135
 msgid "должность в партии"
 msgstr "posisi dalam partai"
 
-#: player/templates/player/redesign/profile.html:278
-#: player/templates/player/redesign/view_profile.html:146
+#: player/templates/player/redesign/profile.html:281
+#: player/templates/player/redesign/view_profile.html:149
 msgid "о себе"
 msgstr "bio"
 
-#: player/templates/player/redesign/profile.html:413
+#: player/templates/player/redesign/profile.html:416
 msgctxt "profile"
 msgid "показывать партийный фон"
 msgstr "tampilkan deskripsi partai"
 
-#: player/templates/player/redesign/profile.html:429
+#: player/templates/player/redesign/profile.html:432
 msgctxt "profile"
 msgid "Энергетики в авто-добыче"
 msgstr "Batrai dalam penambangan otomatis"
 
-#: player/templates/player/redesign/profile.html:445
+#: player/templates/player/redesign/profile.html:448
 msgctxt "profile"
 msgid "Скрыть кнопку Wiki"
 msgstr ""
 
-#: player/templates/player/redesign/profile.html:476
+#: player/templates/player/redesign/profile.html:479
 msgctxt "profile"
 msgid "стандарт"
 msgstr "standar"
 
-#: player/templates/player/redesign/profile.html:490
+#: player/templates/player/redesign/profile.html:493
 #: player/templates/player/translate/translate.html:36
 msgid "сохранить"
 msgstr "menyimpan"
@@ -2003,14 +2134,6 @@ msgstr "Nominal salah"
 msgid "Настройка партийного фона"
 msgstr "Ganti deskripsi partai"
 
-#: player/views/change_back_allow.py:57
-#: player/views/change_wiki_hide_allow.py:57 player/views/full_auto_allow.py:57
-#: player/views/set_language.py:54 player/views/set_timezone.py:43
-#: region/views/cancel_auto.py:35 region/views/retrieve_cash.py:42
-#: region/views/start_auto.py:78
-msgid "Ошибка метода"
-msgstr "Metode error"
-
 #: player/views/change_wiki_hide_allow.py:42
 #: player/views/change_wiki_hide_allow.py:58
 msgid "Скрыть кнопку Wiki"
@@ -2103,9 +2226,11 @@ msgstr "Peringkat kekayaan teratas"
 msgid "Граждане региона"
 msgstr "Warga negara wilayah"
 
-#: player/views/lists/region_players.py:33
-msgid "Население региона"
-msgstr "Populasi wilayah"
+#: player/views/lists/region_players.py:63
+#, fuzzy
+#| msgid "Партии региона"
+msgid "Жители региона"
+msgstr "Partai di wilayah"
 
 #: player/views/lists/skill_top.py:21
 #, fuzzy
@@ -2118,15 +2243,15 @@ msgstr "karakteristik"
 msgid "Мировое население"
 msgstr ""
 
-#: player/views/new_player.py:90
+#: player/views/new_player.py:96
 msgid ": попробуйте создать персонажа, не загружая изображение"
 msgstr ": sedang membuat karakter tanpa memuat gambar"
 
-#: player/views/new_player.py:91 player/views/new_player.py:104
+#: player/views/new_player.py:97 player/views/new_player.py:110
 msgid "Новый персонаж"
 msgstr "Karakter baru"
 
-#: player/views/new_player.py:103
+#: player/views/new_player.py:109
 msgid "Ошибка в форме профиля"
 msgstr "Pembuatan profil gagal"
 
@@ -2280,74 +2405,59 @@ msgctxt "daily_header"
 msgid "энергии потрачено"
 msgstr "penggunaan energi"
 
-#: region/templates/region/redesign/mining.html:25
-#: region/templates/region/redesign/mining.html:58
-#: region/templates/region/redesign/mining.html:84
-#: region/templates/region/redesign/mining.html:110
-msgctxt "daily_header"
-msgid "в полете"
-msgstr "dalam perjalanan"
-
-#: region/templates/region/redesign/mining.html:27
+#: region/templates/region/redesign/mining.html:29
 msgctxt "daily_header"
 msgid "получаем"
 msgstr "menerima"
 
-#: region/templates/region/redesign/mining.html:28
+#: region/templates/region/redesign/mining.html:30
 msgctxt "daily_header"
 msgid "получить"
 msgstr "mendapatkan"
 
-#: region/templates/region/redesign/mining.html:46
+#: region/templates/region/redesign/mining.html:49
 msgctxt "daily_header"
 msgid "уже получено"
 msgstr "sudah didapatkan"
 
-#: region/templates/region/redesign/mining.html:50
+#: region/templates/region/redesign/mining.html:53
 #: region/templates/region/redesign/region_info.html:20
 msgctxt "mining"
 msgid "Золото"
 msgstr "Emas"
 
-#: region/templates/region/redesign/mining.html:51
-#: region/templates/region/redesign/mining.html:77
-#: region/templates/region/redesign/mining.html:103
+#: region/templates/region/redesign/mining.html:54
+#: region/templates/region/redesign/mining.html:80
+#: region/templates/region/redesign/mining.html:106
 msgctxt "mining"
 msgid "Запасы"
 msgstr "Saham"
 
-#: region/templates/region/redesign/mining.html:61
-#: region/templates/region/redesign/mining.html:87
-#: region/templates/region/redesign/mining.html:113
-msgctxt "mining"
-msgid "авто"
-msgstr "otomatis"
-
-#: region/templates/region/redesign/mining.html:70
-#: region/templates/region/redesign/mining.html:96
-#: region/templates/region/redesign/mining.html:122
+#: region/templates/region/redesign/mining.html:73
+#: region/templates/region/redesign/mining.html:99
+#: region/templates/region/redesign/mining.html:125
 msgctxt "mining"
 msgid "добыча"
 msgstr "kerja"
 
-#: region/templates/region/redesign/mining.html:76
+#: region/templates/region/redesign/mining.html:79
 #: region/templates/region/redesign/region_info.html:31
 msgctxt "mining"
 msgid "Нефть"
 msgstr "Minyak"
 
-#: region/templates/region/redesign/mining.html:78
+#: region/templates/region/redesign/mining.html:81
 msgctxt "mining"
 msgid "Марка нефти"
 msgstr "Merk minyak"
 
-#: region/templates/region/redesign/mining.html:102
+#: region/templates/region/redesign/mining.html:105
 #: region/templates/region/redesign/region_info.html:42
 msgctxt "mining"
 msgid "Руда"
 msgstr "Mineral"
 
-#: region/templates/region/redesign/mining.html:104
+#: region/templates/region/redesign/mining.html:107
 msgctxt "mining"
 msgid "Качество руды"
 msgstr "Kualitas mineral"
@@ -2442,11 +2552,6 @@ msgstr ""
 msgid "На торговлю"
 msgstr ""
 
-#: region/views/cancel_auto.py:33
-msgctxt "mining"
-msgid "Ошибка при отмене"
-msgstr "Pembatalan gagal"
-
 #: region/views/do_mining.py:32 region/views/do_mining.py:45
 #: region/views/do_mining.py:55 region/views/do_mining.py:68
 #: region/views/do_mining.py:77 region/views/do_mining.py:86
@@ -2500,7 +2605,7 @@ msgstr "Sumber daya mineral di wilayah ini tidak cukup untuk melakukan penambang
 msgid "Регионы игры"
 msgstr ""
 
-#: region/views/map/map.py:111
+#: region/views/map/map.py:115
 msgid "Карта"
 msgstr ""
 
@@ -2518,15 +2623,10 @@ msgstr ""
 
 #: region/views/start_auto.py:27 region/views/start_auto.py:35
 #: region/views/start_auto.py:45 region/views/start_auto.py:54
-#: region/views/start_auto.py:76
+#: region/views/start_auto.py:80
 msgctxt "mining"
 msgid "Ошибка автоматической добычи ресурсов"
 msgstr "Penambangan otomatis gagal"
-
-#: region/views/start_auto.py:34
-msgctxt "mining"
-msgid "Премиум-аккаунт не активен. Продлите его"
-msgstr "Mohon perbarui premium"
 
 #: region/views/start_auto.py:44
 msgctxt "mining"
@@ -3235,7 +3335,7 @@ msgid "подтвердить"
 msgstr "terima"
 
 #: storage/templates/storage/redesign/storage.html:22
-#: storage/views/storage/storage.py:58
+#: storage/views/storage/storage.py:63
 msgctxt "storage"
 msgid "Склад"
 msgstr "Penyimpanan"
@@ -3474,7 +3574,7 @@ msgid "создать"
 msgstr "pembuatan"
 
 #: storage/templates/storage/redesign/trading/trading.html:15
-#: storage/views/trading/trading.py:24
+#: storage/views/trading/trading.py:25
 #, fuzzy
 #| msgid "Торговля"
 msgctxt "trading"
@@ -3489,6 +3589,7 @@ msgid "госзакупки"
 msgstr "Negara"
 
 #: storage/templates/storage/redesign/trading/trading.html:46
+#: storage/templates/storage/redesign/trading/trading.html:307
 #, fuzzy
 #| msgctxt "storage_assets"
 #| msgid "создать"
@@ -3525,7 +3626,7 @@ msgid "Выберите один или несколько критериев в
 msgstr ""
 
 #: storage/templates/storage/redesign/trading/trading.html:77
-#: storage/templates/storage/redesign/trading/trading.html:313
+#: storage/templates/storage/redesign/trading/trading.html:342
 #, fuzzy
 #| msgctxt "overview"
 #| msgid "региона"
@@ -3534,7 +3635,7 @@ msgid "регион"
 msgstr "wilayah"
 
 #: storage/templates/storage/redesign/trading/trading.html:79
-#: storage/templates/storage/redesign/trading/trading.html:321
+#: storage/templates/storage/redesign/trading/trading.html:350
 #, fuzzy
 #| msgctxt "storage_assets"
 #| msgid "Количество"
@@ -3543,7 +3644,7 @@ msgid "количество"
 msgstr "Jumlah"
 
 #: storage/templates/storage/redesign/trading/trading.html:80
-#: storage/templates/storage/redesign/trading/trading.html:308
+#: storage/templates/storage/redesign/trading/trading.html:337
 msgctxt "trading"
 msgid "цена"
 msgstr ""
@@ -3563,6 +3664,7 @@ msgid "Настройки поиска"
 msgstr "pengaturan"
 
 #: storage/templates/storage/redesign/trading/trading.html:120
+#: storage/templates/storage/redesign/trading/trading.html:211
 #, fuzzy
 #| msgid "Некорректное значение"
 msgctxt "trading"
@@ -3570,6 +3672,7 @@ msgid "тип предложения"
 msgstr "Nominal salah"
 
 #: storage/templates/storage/redesign/trading/trading.html:123
+#: storage/templates/storage/redesign/trading/trading.html:214
 #: storage/templates/storage/trading/trading.html:70
 #, fuzzy
 #| msgid "Продолжить"
@@ -3578,6 +3681,7 @@ msgid "Продажа"
 msgstr "Lanjutkan"
 
 #: storage/templates/storage/redesign/trading/trading.html:124
+#: storage/templates/storage/redesign/trading/trading.html:215
 #: storage/templates/storage/trading/trading.html:71
 msgctxt "w_trading"
 msgid "Покупка"
@@ -3615,6 +3719,7 @@ msgid "Мои"
 msgstr "Obat-obatan"
 
 #: storage/templates/storage/redesign/trading/trading.html:145
+#: storage/templates/storage/redesign/trading/trading.html:247
 #, fuzzy
 #| msgctxt "goods"
 #| msgid "Орбитальные орудия"
@@ -3623,6 +3728,7 @@ msgid "выбор категории"
 msgstr "Meriam orbit"
 
 #: storage/templates/storage/redesign/trading/trading.html:148
+#: storage/templates/storage/redesign/trading/trading.html:250
 #, fuzzy
 #| msgctxt "goods"
 #| msgid "Орбитальные орудия"
@@ -3631,6 +3737,7 @@ msgid "выберите категорию"
 msgstr "Meriam orbit"
 
 #: storage/templates/storage/redesign/trading/trading.html:159
+#: storage/templates/storage/redesign/trading/trading.html:261
 #, fuzzy
 #| msgctxt "assets"
 #| msgid "выберите склад"
@@ -3639,6 +3746,7 @@ msgid "товар"
 msgstr "pilih penyimpanan"
 
 #: storage/templates/storage/redesign/trading/trading.html:162
+#: storage/templates/storage/redesign/trading/trading.html:264
 #, fuzzy
 #| msgctxt "assets"
 #| msgid "выберите склад"
@@ -3651,20 +3759,43 @@ msgctxt "trading"
 msgid "поиск"
 msgstr ""
 
-#: storage/templates/storage/redesign/trading/trading.html:295
-#: storage/templates/storage/redesign/trading/trading.html:396
+#: storage/templates/storage/redesign/trading/trading.html:203
+#: storage/templates/storage/trading/new_offer.html:38
+#, fuzzy
+#| msgid "Некорректное значение"
+msgctxt "w_trading_new"
+msgid "Новое торговое предложение"
+msgstr "Nominal salah"
+
+#: storage/templates/storage/redesign/trading/trading.html:205
+#: storage/templates/storage/trading/new_offer.html:43
+#, fuzzy
+#| msgctxt "skills"
+#| msgid "недоступно"
+msgctxt "w_trading_new"
+msgid "Доступно"
+msgstr "tidak tersedia"
+
+#: storage/templates/storage/redesign/trading/trading.html:291
+#: storage/templates/storage/trading/new_offer.html:126
+msgctxt "w_trading_new"
+msgid "Будет заблокировано"
+msgstr ""
+
+#: storage/templates/storage/redesign/trading/trading.html:324
+#: storage/templates/storage/redesign/trading/trading.html:425
 #, fuzzy
 #| msgid "Государство"
 msgctxt "trading"
 msgid "покупка"
 msgstr "Negara"
 
-#: storage/templates/storage/redesign/trading/trading.html:299
+#: storage/templates/storage/redesign/trading/trading.html:328
 msgctxt "trading"
 msgid "владелец"
 msgstr ""
 
-#: storage/templates/storage/redesign/trading/trading.html:350
+#: storage/templates/storage/redesign/trading/trading.html:379
 #, fuzzy
 #| msgctxt "assets"
 #| msgid "стоимость"
@@ -3672,7 +3803,7 @@ msgctxt "trading"
 msgid "стоимость"
 msgstr "harga"
 
-#: storage/templates/storage/redesign/trading/trading.html:355
+#: storage/templates/storage/redesign/trading/trading.html:384
 #, fuzzy
 #| msgctxt "no_storage"
 #| msgid "доставка"
@@ -3680,13 +3811,13 @@ msgctxt "trading"
 msgid "доставка"
 msgstr "pengiriman"
 
-#: storage/templates/storage/redesign/trading/trading.html:362
+#: storage/templates/storage/redesign/trading/trading.html:391
 msgctxt "trading"
 msgid "итого"
 msgstr ""
 
-#: storage/templates/storage/redesign/trading/trading.html:378
-#: storage/templates/storage/redesign/trading/trading.html:397
+#: storage/templates/storage/redesign/trading/trading.html:407
+#: storage/templates/storage/redesign/trading/trading.html:426
 #, fuzzy
 #| msgctxt "skills"
 #| msgid "недоступно"
@@ -3694,14 +3825,14 @@ msgctxt "trading"
 msgid "купить"
 msgstr "tidak tersedia"
 
-#: storage/templates/storage/redesign/trading/trading.html:393
+#: storage/templates/storage/redesign/trading/trading.html:422
 #, fuzzy
 #| msgid "Продолжить"
 msgctxt "trading"
 msgid "продажа"
 msgstr "Lanjutkan"
 
-#: storage/templates/storage/redesign/trading/trading.html:394
+#: storage/templates/storage/redesign/trading/trading.html:423
 #, fuzzy
 #| msgctxt "assets"
 #| msgid "передать"
@@ -3709,28 +3840,28 @@ msgctxt "trading"
 msgid "продать"
 msgstr "mengirim"
 
-#: storage/templates/storage/redesign/trading/trading.html:400
+#: storage/templates/storage/redesign/trading/trading.html:429
 #, fuzzy
 #| msgid "Некорректное значение"
 msgctxt "trading"
 msgid "Отмена торгового предложения"
 msgstr "Nominal salah"
 
-#: storage/templates/storage/redesign/trading/trading.html:401
+#: storage/templates/storage/redesign/trading/trading.html:430
 #, fuzzy
 #| msgid "Некорректное значение"
 msgctxt "trading"
 msgid "Ваше торговое предложение будет удалено. Продолжить?"
 msgstr "Nominal salah"
 
-#: storage/templates/storage/redesign/trading/trading.html:402
+#: storage/templates/storage/redesign/trading/trading.html:431
 #, fuzzy
 #| msgid "Продолжить"
 msgctxt "trading"
 msgid "Продолжить"
 msgstr "Lanjutkan"
 
-#: storage/templates/storage/redesign/trading/trading.html:403
+#: storage/templates/storage/redesign/trading/trading.html:432
 #, fuzzy
 #| msgid "Отмена"
 msgctxt "trading"
@@ -3752,21 +3883,6 @@ msgstr ""
 #: storage/templates/storage/storage_lines/cash_transfer.html:26
 msgid "Передать"
 msgstr ""
-
-#: storage/templates/storage/trading/new_offer.html:38
-#, fuzzy
-#| msgid "Некорректное значение"
-msgctxt "w_trading_new"
-msgid "Новое торговое предложение"
-msgstr "Nominal salah"
-
-#: storage/templates/storage/trading/new_offer.html:43
-#, fuzzy
-#| msgctxt "skills"
-#| msgid "недоступно"
-msgctxt "w_trading_new"
-msgid "Доступно"
-msgstr "tidak tersedia"
 
 #: storage/templates/storage/trading/new_offer.html:48
 #, fuzzy
@@ -3823,11 +3939,6 @@ msgstr ""
 msgctxt "w_trading_new"
 msgid "Выберите товар"
 msgstr "pilih penyimpanan"
-
-#: storage/templates/storage/trading/new_offer.html:126
-msgctxt "w_trading_new"
-msgid "Будет заблокировано"
-msgstr ""
 
 #: storage/templates/storage/trading/new_offer.html:136
 #, fuzzy
@@ -4583,6 +4694,9 @@ msgstr ""
 #: war/models/wars/war_side.py:27
 msgid "Дроны"
 msgstr ""
+
+#~ msgid "Население региона"
+#~ msgstr "Populasi wilayah"
 
 #~ msgid "Производство"
 #~ msgstr "Produksi"

@@ -25,7 +25,7 @@ def region_citizens_list(request, region_pk):
 
     # получаем партии для текущей страницы
     page = request.GET.get('page')
-    players = Player.objects.filter(banned=False, residency=request_region).order_by('-pk')
+    players = Player.objects.filter(banned=False, residency=request_region).order_by('-residency_date')
     lines = get_thing_page(players, page, 50)
 
     header = {

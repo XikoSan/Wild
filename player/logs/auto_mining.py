@@ -3,6 +3,7 @@ import datetime
 import json
 import redis
 from decimal import Decimal
+from django.apps import apps
 from django.db import models
 from django.db import transaction
 from django.db.models.signals import post_delete, post_save
@@ -89,11 +90,22 @@ class AutoMining(Log):
             args=json.dumps([self.pk]),
             start_time=timezone.now()
         )
+
         self.save()
 
     # получить указанный ресурсы
     @transaction.atomic
     def retrieve_crude(self):
+
+        # удалять другие задачи на авто-производство и работу
+        AutoProduce = apps.get_model('factory.AutoProduce')
+        if AutoMining.objects.filter(player=self.player).exclude(pk=self.pk).exists():
+            AutoMining.objects.filter(player=self.player).exclude(pk=self.pk).delete()
+
+        if AutoProduce.objects.filter(player=self.player).exists():
+            AutoProduce.objects.filter(player=self.player).delete()
+
+        #   -----------------
 
         # прерывать, если дата создания + сутки > сейчас
         if self.dtime + datetime.timedelta(days=1) < timezone.now():

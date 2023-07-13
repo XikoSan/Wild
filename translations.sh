@@ -20,8 +20,6 @@ git add *.po *.mo
 
 git commit -m "Night backup"
 
-git remote set-url origin https://M4TPOCKUN:ATBBuK9bT5se38ab65J3TJwunWKa9E498D89@bitbucket.org/M4TPOCKUN/wild-politics.git
-
 git push origin translations
 
 git checkout common-test

@@ -10,6 +10,7 @@ from django_celery_beat.models import ClockedSchedule, PeriodicTask
 
 from player.decorators.player import check_player
 from player.logs.auto_mining import AutoMining
+from factory.models.auto_produce import AutoProduce
 from player.logs.cash_log import CashLog
 from player.player import Player
 from region.models.region import Region
@@ -51,6 +52,9 @@ def map(request):
 
                 if AutoMining.objects.filter(player=player).exists():
                     AutoMining.objects.filter(player=player).delete()
+
+                # if AutoProduce.objects.filter(player=player).exists():
+                #     AutoProduce.objects.filter(player=player).delete()
 
                 player.destination = destination
                 player.cash -= cost

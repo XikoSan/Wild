@@ -136,21 +136,26 @@ class Player(models.Model):
     # время прилёта
     arrival = models.DateTimeField(default=datetime.datetime(2000, 1, 1, 0, 0), blank=True)
 
-    def energy_cons(self, value, mul=1):
+    def energy_cons(self, value, mul=1, region=None):
         self.energy_consumption += value * mul
         self.energy -= value
         self.save()
 
         PlayerRegionalExpense = apps.get_model('player.PlayerRegionalExpense')
 
-        if PlayerRegionalExpense.objects.filter(player=self, region=self.region).exists():
-            reg_exp = PlayerRegionalExpense.objects.get(player=self, region=self.region)
+        if region:
+            dest_region = region
+        else:
+            dest_region = self.region
+
+        if PlayerRegionalExpense.objects.filter(player=self, region=dest_region).exists():
+            reg_exp = PlayerRegionalExpense.objects.get(player=self, region=dest_region)
             reg_exp.energy_consumption += value * mul
 
         else:
             reg_exp = PlayerRegionalExpense(
                 player=self,
-                region=self.region,
+                region=dest_region,
                 energy_consumption=value * mul
             )
 
@@ -349,6 +354,9 @@ class Player(models.Model):
         #     if Finance.objects.filter(player=self, level__gt=0).exists():
         #         if count != 0 and daily_procent == 100:
         #             taxed_count += daily_limit
+
+        if not self.daily_fin and daily_procent == 100:
+            self.gold += 100
 
         # отмечаем, что  дейлик закрыт:
         # если игрок прокачат навык, то не получит золотой бонус или Подпольное Финансирование

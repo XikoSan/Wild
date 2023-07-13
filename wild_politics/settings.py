@@ -243,6 +243,7 @@ LANGUAGES = (
     # ('sr', 'Serbian'),
     ('id', 'Indonesian'),
     ('lv', 'Latvian'),
+    ('az', 'Azerbaijani'),
     ('pt-br', 'Portuguese (Brazil)'),
 )
 

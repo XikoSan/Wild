@@ -1,0 +1,5 @@
+SELECT DATE(create_date) as s_day, PERCENTILE_CONT(0.5) WITHIN GROUP(ORDER BY price) AS med_price
+    FROM public.storage_tradeoffer
+    where good = 'coal'
+group by s_day
+ORDER BY s_day DESC

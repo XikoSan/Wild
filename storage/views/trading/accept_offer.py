@@ -67,11 +67,37 @@ def accept_offer(request):
             }
             return JsonResponse(data)
 
+        # получим склад
+        storage_id = None
+        try:
+            storage_id = int(request.POST.get('storage'))
+
+        except ValueError:
+            data = {
+                'header': pgettext('w_trading', 'Принятие оффера'),
+                'grey_btn': pgettext('mining', 'Закрыть'),
+                'response': pgettext('w_trading', 'ID склада должно быть числом'),
+            }
+            return JsonResponse(data)
+
+        storage_region_pk = None
+        if Storage.actual.filter(pk=storage_id).exists():
+            storage_region_pk = Storage.actual.get(pk=storage_id).region.pk
+
+        else:
+            data = {
+                'header': pgettext('w_trading', 'Принятие оффера'),
+                'grey_btn': pgettext('mining', 'Закрыть'),
+                'response': pgettext('w_trading', 'Выбранного склада игрока не существует'),
+            }
+            return JsonResponse(data)
+
         offer = None
         if TradeOffer.actual.filter(pk=offer_id, count__gt=0).exists():
 
             ex_kwargs = {}
             dest_regions = []
+            dest_regions_buy = []
             war_classes = get_subclasses(War)
             for war_cl in war_classes:
                 # если есть войны за этот рег
@@ -80,18 +106,38 @@ def accept_offer(request):
                     tmp_war_list = war_cl.objects.filter(running=True).values_list('def_region__pk')
                     for dest_pk in tmp_war_list:
                         if not dest_pk[0] in dest_regions:
-                            dest_regions.append(dest_pk[0])
+                            # если целевой регион совпадает с регионом нашего склада, то пропускаем
+                            # (торговля в пределах региона разрешена даже во время войны)
+                            if dest_pk[0] != storage_region_pk:
+                                dest_regions.append(dest_pk[0])
+                            # список всех целей для ордеров скупки
+                            dest_regions_buy.append(dest_pk[0])
+
             ex_kwargs['owner_storage__region__pk__in'] = dest_regions
 
-            if not TradeOffer.actual.filter(pk=offer_id, count__gt=0).exclude(**ex_kwargs).exists():
-                data = {
-                    'header': pgettext('w_trading', 'Принятие оффера'),
-                    'grey_btn': pgettext('mining', 'Закрыть'),
-                    'response': pgettext('w_trading', 'Нельзя принять оффер из атакованного региона'),
-                }
-                return JsonResponse(data)
-
             offer = TradeOffer.actual.select_for_update().get(pk=offer_id)
+
+            if offer.type == 'sell':
+                # если предложение не нашлось - значит, оно из другого региона, и там идет война
+                if not TradeOffer.actual.filter(pk=offer_id, type='sell', count__gt=0).exclude(**ex_kwargs).exists():
+
+                    data = {
+                        'header': pgettext('w_trading', 'Принятие оффера'),
+                        'grey_btn': pgettext('mining', 'Закрыть'),
+                        'response': pgettext('w_trading', 'Нельзя принять оффер из атакованного региона'),
+                    }
+                    return JsonResponse(data)
+
+            # если торговый ордер на скупку, то проверяем, что нашего региона нет в списке атакованных
+            if offer.type == 'buy':
+                if storage_region_pk in dest_regions_buy and storage_region_pk != offer.owner_storage.region.pk:
+
+                    data = {
+                        'header': pgettext('w_trading', 'Принятие оффера'),
+                        'grey_btn': pgettext('mining', 'Закрыть'),
+                        'response': pgettext('w_trading', 'Нельзя принять оффер из атакованного региона'),
+                    }
+                    return JsonResponse(data)
 
             if offer.owner_storage.owner == player:
                 data = {
@@ -120,49 +166,29 @@ def accept_offer(request):
         if offer.good == 'wild_pass':
             return premium_trading(player, count, offer)
 
-        # получим склад
-        storage_id = None
-        try:
-            storage_id = int(request.POST.get('storage'))
-
-        except ValueError:
-            data = {
-                'header': pgettext('w_trading', 'Принятие оффера'),
-                'grey_btn': pgettext('mining', 'Закрыть'),
-                'response': pgettext('w_trading', 'ID склада должно быть числом'),
-            }
-            return JsonResponse(data)
+        # ----------------------------------------------
 
         storage = None
         lock_storage = None
-        if Storage.actual.filter(pk=storage_id).exists():
 
-            storage = Storage.actual.select_for_update().get(pk=storage_id)
-            lock_storage = get_storage(Storage.actual.select_for_update().get(pk=storage_id), [offer.good, ])
+        storage = Storage.actual.select_for_update().get(pk=storage_id)
+        lock_storage = get_storage(Storage.actual.select_for_update().get(pk=storage_id), [offer.good, ])
 
-            if offer.type == 'sell' \
-                    and not lock_storage.capacity_check(offer.good, count):
-                data = {
-                    'header': pgettext('w_trading', 'Принятие оффера'),
-                    'grey_btn': pgettext('mining', 'Закрыть'),
-                    'response': pgettext('w_trading', 'На выбранном складе недостаточно места для товара'),
-                }
-                return JsonResponse(data)
-
-            elif offer.type == 'buy' \
-                    and getattr(storage, offer.good) < count:
-                data = {
-                    'header': pgettext('w_trading', 'Принятие оффера'),
-                    'grey_btn': pgettext('mining', 'Закрыть'),
-                    'response': pgettext('w_trading', 'На выбранном складе недостаточно товара'),
-                }
-                return JsonResponse(data)
-
-        else:
+        if offer.type == 'sell' \
+                and not lock_storage.capacity_check(offer.good, count):
             data = {
                 'header': pgettext('w_trading', 'Принятие оффера'),
                 'grey_btn': pgettext('mining', 'Закрыть'),
-                'response': pgettext('w_trading', 'Выбранного склада игрока не существует'),
+                'response': pgettext('w_trading', 'На выбранном складе недостаточно места для товара'),
+            }
+            return JsonResponse(data)
+
+        elif offer.type == 'buy' \
+                and getattr(storage, offer.good) < count:
+            data = {
+                'header': pgettext('w_trading', 'Принятие оффера'),
+                'grey_btn': pgettext('mining', 'Закрыть'),
+                'response': pgettext('w_trading', 'На выбранном складе недостаточно товара'),
             }
             return JsonResponse(data)
 

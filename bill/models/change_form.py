@@ -34,7 +34,7 @@ class ChangeForm(Bill):
     accept_ahead = False
 
     # процент голосов "за", который надо преодолеть, чтобы принять закон
-    acceptation_percent = 80
+    acceptation_percent = 75
 
     @staticmethod
     def new_bill(request, player, parliament):

@@ -103,8 +103,8 @@ class Project(models.Model):
         'resources':
             [
                 {
-                    'cash': 5,
-                    'bauxite': 20,
+                    'cash': 10,
+                    'bauxite': 10,
                 },
             ],
 
@@ -279,13 +279,13 @@ class Project(models.Model):
     schemas = (
         ('gas', gas.get('title')),
         ('diesel', diesel.get('title')),
-        ('plastic', diesel.get('title')),
+        ('plastic', plastic.get('title')),
 
         ('steel', steel.get('title')),
         ('aluminium', aluminium.get('title')),
 
-        ('medical', aluminium.get('title')),
-        ('drilling', aluminium.get('title')),
+        ('medical', medical.get('title')),
+        ('drilling', drilling.get('title')),
 
         ('rifle', rifle.get('title')),
         ('tank', tank.get('title')),

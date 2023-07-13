@@ -58,6 +58,10 @@ def get_residency(request):
         if region.state:
             if region.state.residency == 'issue':
                 if not ResidencyRequest.objects.filter(char=player, region=region, state=region.state).exists():
+
+                    # если есть другие запросы - отменяем
+                    ResidencyRequest.objects.filter(char=player).delete()
+
                     res_req = ResidencyRequest(
                         char=player,
                         region=region,

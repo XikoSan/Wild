@@ -74,7 +74,7 @@
 						<form method="post" enctype="multipart/form-data" id="formUpload1" class="imgUpload">
 							<label class="profile__load-img">
 								<input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
-								<input type="file" name="image" class="visually-hidden" id="id_image1">
+								<input type="file" name="image" class="visually-hidden" id="id_image1" onclick="pic_mode(1)">
 								<input type="hidden" name="x" id="id_x1">
 								<input type="hidden" name="y" id="id_y1">
 								<input type="hidden" name="width" id="id_width1">
@@ -93,7 +93,7 @@
 						<form method="post" enctype="multipart/form-data" id="formUpload2" class="imgUpload">
 							<label class="profile__load-img">
 								<input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
-								<input type="file" name="members_image" class="visually-hidden" id="id_image2">
+								<input type="file" name="members_image" class="visually-hidden" id="id_image2" onclick="pic_mode(2)">
 								<input type="hidden" name="x" id="id_x2">
 								<input type="hidden" name="y" id="id_y2">
 								<input type="hidden" name="width" id="id_width2">
@@ -134,6 +134,14 @@
 					</div>
 				</div>
 			</div>
+
+			<div class="party__mmid-line"></div>
+			<form id="color_set" role="form" method="post" class="party__colorContainer">
+				{% csrf_token %}
+				<input type="color" value="#{{ player.party.color }}" name="party_color" id="party_color">
+				<span>{% trans 'Цвет в парламенте' context "party_manage" %}</span>
+				<button type="submit" class="ct__btn-half-screen" style="cursor: pointer">{% trans 'сохранить' context "party_manage" %}</button>
+			</form>
 
 			<div class="party__mmid-line"></div>
 
@@ -357,6 +365,12 @@
 	<script src="{% static 'redesign/js/cropper.min.js' %}?{{ csrf_token }}"></script>
 
 	<script>
+	    var img_mode = 1;
+
+		function pic_mode(mode){
+			img_mode = mode;
+		}
+
 		initCropper('id_image1', 'image');
 		initCropper('id_image2', 'image');
 
@@ -384,7 +398,7 @@
             e.preventDefault();
 
             var sending_data = new FormData(this);
-            sending_data.append("img_mode", curr_cropper);
+            sending_data.append("img_mode", img_mode);
 
             $.ajax({
               url: "/change_party_pic/",
