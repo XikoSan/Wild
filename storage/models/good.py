@@ -16,6 +16,9 @@ class Good(models.Model):
     # название товара
     name = models.CharField(max_length=30, blank=False, verbose_name='Название')
 
+    # занимаемое единицей число кубов
+    volume = models.FloatField(default=1, verbose_name='Объём, шт.')
+
     # типоразмер
     sizeChoices = (
         ('large', 'Большой'),

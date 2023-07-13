@@ -5,6 +5,7 @@ from django.utils.translation import gettext_lazy, pgettext_lazy
 from player.logs.log import Log
 from player.player import Player
 from storage.models.storage import Storage
+from storage.models.good import Good
 
 
 # запись об уничтожении ресурсов на Складах
@@ -12,6 +13,12 @@ class Destroy(Log):
     # склад списания ресурсов
     storage_from = models.ForeignKey(Storage, default=None, null=True, on_delete=models.CASCADE,
                                      verbose_name='Склад отправки', related_name='storage_source')
+
+    # товар
+    good = models.ForeignKey(Good, default=None, null=True, on_delete=models.CASCADE, verbose_name='Товар')
+
+    # количество
+    count = models.IntegerField(default=0, verbose_name='Количество')
 
     # ------vvvvvvv------Минералы на складе------vvvvvvv------
     # Уголь

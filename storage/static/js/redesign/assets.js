@@ -40,12 +40,10 @@ function transfer_pre() {
                 $('#storage_' + obj.dataset.storage_id ).hide();
            }
         }
-        if(obj.dataset.good_name != 'station'){
-            var places_vol = parseInt($('#' + obj.dataset.storage_id + '_' + obj.dataset.good_name + '_places').attr('data-text'));
+        var places_vol = parseInt($('#' + obj.name + '_places').attr('data-text'));
 
-            total_vol += places_vol;
-            storage_pos.set(obj.dataset.storage_id, storage_pos.get(obj.dataset.storage_id) + ( places_vol * 1 ) );
-        }
+        total_vol += places_vol;
+        storage_pos.set(obj.dataset.storage_id, storage_pos.get(obj.dataset.storage_id) + ( places_vol * 1 ) );
     });
     // считаем суммарный объем
     $('#total_vol').html(numberWithSpaces(total_vol));
@@ -80,8 +78,8 @@ jQuery(document).ready(function ($) {
             count = e.target.value;
         }
 
-        $('#' + e.target.name + '_places' ).html( Math.ceil(count * parseFloat(vol_map.get(e.target.dataset.good_name))) );
-        $('#' + e.target.name + '_places' ).attr('data-text', Math.ceil(count * parseFloat(vol_map.get(e.target.dataset.good_name))) );
+        $('#' + e.target.name + '_places' ).html(numberWithSpaces( Math.ceil(count * parseFloat(e.target.dataset.good_vol)) ));
+        $('#' + e.target.name + '_places' ).attr('data-text', Math.ceil(count * parseFloat(e.target.dataset.good_vol)) );
 
 
         transfer_pre();
@@ -133,30 +131,52 @@ jQuery(document).ready(function ($) {
         $('.good_input').each(function(i, obj) {
             if(obj.value){
                if(obj.value > 0){
-                    send_storages_map[obj.dataset.storage_id][obj.dataset.good_name] = obj.value;
-               }
+                    send_storages_map[obj.dataset.storage_id][obj.dataset.stock_id] = obj.value;
+              }
             }
         });
 
-         var sending_data;
-         sending_data += "&csrfmiddlewaretoken=" + csrftoken;
-         sending_data += "&storages=" + JSON.stringify(send_storages_map);
-         sending_data += "&dest_storage=" + $('#storage_options').val();
-         sending_data += "&action=" + $('#assets_actions').val();
-        $.ajax({
-            type: "POST",
-            url: "/assets_action/",
-            data:  sending_data,
-            cache: false,
-            success: function(data){
-                if (data.response == 'ok'){
-                    location.reload();
+        var sending_data;
+
+        if( $('#assets_actions').val() == 'transfer' ){
+
+             sending_data += "&csrfmiddlewaretoken=" + csrftoken;
+             sending_data += "&storages=" + JSON.stringify(send_storages_map);
+             sending_data += "&dest_storage=" + $('#storage_options').val();
+            $.ajax({
+                type: "POST",
+                url: "/assets_transfer/",
+                data:  sending_data,
+                cache: false,
+                success: function(data){
+                    if (data.response == 'ok'){
+                        location.reload();
+                    }
+                    else{
+                        display_modal('notify', data.header, data.response, null, data.grey_btn);
+                    }
                 }
-                else{
-                    display_modal('notify', data.header, data.response, null, data.grey_btn);
+            });
+        }
+        if( $('#assets_actions').val() == 'destroy' ){
+
+             sending_data += "&csrfmiddlewaretoken=" + csrftoken;
+             sending_data += "&storages=" + JSON.stringify(send_storages_map);
+            $.ajax({
+                type: "POST",
+                url: "/assets_destroy/",
+                data:  sending_data,
+                cache: false,
+                success: function(data){
+                    if (data.response == 'ok'){
+                        location.reload();
+                    }
+                    else{
+                        display_modal('notify', data.header, data.response, null, data.grey_btn);
+                    }
                 }
-            }
-        });
+            });
+        }
     });
 
     $('#storages_tabs').on('change', function (e) {

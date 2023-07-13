@@ -20,8 +20,8 @@ from modeltranslation.admin import TabbedTranslationAdmin
 class TradeOfferAdmin(admin.ModelAdmin):
 
     search_fields = ['player__nickname']
-    list_display = ('owner_storage', 'type', 'good', 'price', 'deleted')
     raw_id_fields = ('owner_storage',)
+    list_display = ('owner_storage', 'type', 'good', 'price', 'deleted')
     list_filter = ('deleted',)
 
     formfield_overrides = {
@@ -41,6 +41,10 @@ class StockAdmin(admin.ModelAdmin):
 
     def get_good(self, obj):
         return obj.good.name
+
+class TransportAdmin(admin.ModelAdmin):
+    model = Transport
+    raw_id_fields = ('storage_from', 'storage_to', 'good',)
 
 class GoodLockAdmin(admin.ModelAdmin):
     model = GoodLock
@@ -122,7 +126,7 @@ admin.site.register(Good, GoodAdmin)
 # admin.site.register(Stock)
 admin.site.register(Stock, StockAdmin)
 admin.site.register(Storage, StorageAdmin)
-admin.site.register(Transport)
+admin.site.register(Transport, TransportAdmin)
 admin.site.register(Destroy)
 admin.site.register(TradeOffer, TradeOfferAdmin)
 admin.site.register(GoodLock, GoodLockAdmin)

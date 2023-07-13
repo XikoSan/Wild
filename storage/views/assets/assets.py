@@ -9,6 +9,9 @@ from region.views.distance_counting import distance_counting
 from storage.models.storage import Storage
 from storage.models.transport import Transport
 from datetime import datetime
+from storage.views.storage.locks.get_storage import get_stocks
+from storage.models.good import Good
+from storage.models.stock import Stock
 
 
 # главная страница
@@ -23,14 +26,46 @@ def assets(request):
     # - моск. обл.  = 1
     trans_mul = {}
 
+    goods_dict = {}
+    cap_dict = {}
+
+    size_dict = {}
+    for size in Good.sizeChoices:
+        size_dict[size[0]] = size[1]
+
+    all_goods = Good.objects.all()
+
     # получаем все склады
     storages = Storage.actual.filter(owner=player)
+    # запасы по всем складам
+    all_stocks = {}
+
+    # ненулевые запасы
+    stocks = Stock.objects.filter(storage__in=storages, stock__gt=0, good__in=all_goods)
 
     for storage in storages:
+        all_stocks[storage] = {}
+
+        for good in all_goods:
+
+            if stocks.filter(storage=storage, good=good).exists():
+
+                stock = stocks.get(storage=storage, good=good, stock__gt=0)
+
+            # else:
+            #     stock = Stock(storage=storage, good=good, stock=0)
+
+                if good.size in all_stocks[storage]:
+                    all_stocks[storage][good.size].append(stock)
+                else:
+                    all_stocks[storage][good.size] = [stock, ]
+
+
         trans_mul[storage.pk] = {}
         for dest in storages:
             if not dest == storage:
                 trans_mul[storage.pk][dest.pk] = math.ceil(distance_counting(storage.region, dest.region) / 100)
+
 
     groups = list(player.account.groups.all().values_list('name', flat=True))
     page = 'storage/assets.html'
@@ -43,6 +78,9 @@ def assets(request):
 
         'player': player,
         'storages': storages,
+
+        'all_stocks': all_stocks,
+        'size_dict': size_dict,
 
         'transport': Transport,
         'storage_cl': Storage,
