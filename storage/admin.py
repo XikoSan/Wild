@@ -32,6 +32,8 @@ class TradeOfferAdmin(admin.ModelAdmin):
 
 class GoodAdmin(TabbedTranslationAdmin):
     list_tabs = ['name',]
+    list_display = ['name', 'type', 'size', 'volume', ]
+    list_filter = ('type', 'size',)
 
 
 class StockAdmin(admin.ModelAdmin):

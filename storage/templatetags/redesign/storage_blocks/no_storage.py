@@ -4,6 +4,9 @@ from django import template
 from region.views.distance_counting import distance_counting
 from storage.models.storage import Storage
 from storage.views.storage.get_transfer_price import get_transfer_price
+from storage.models.stock import Stock
+from storage.models.good import Good
+from django.db.models import F
 
 register = template.Library()
 
@@ -28,14 +31,29 @@ def no_storage(player):
 
     # узнаем, есть ли на Складах достаточно материалов для создания нового Склада, а также считаем доставку
     for storage in storages:
+        aluminium = Good.objects.get(name='Алюминий')
+        steel = Good.objects.get(name='Сталь')
+
+        for material in [aluminium, steel]:
+            # проверяем наличие Запаса
+            if not Stock.objects.filter(storage=storage, good=material, stock__gte=material_cost).exists():
+                materials_exists[storage] = False
+                break
+
+        # если есть запись в словаре - значит, какого-то запаса нет
+        if storage in materials_exists:
+            continue
+        # иначе - нашли запасы
+        else:
+            materials_exists[storage] = True
+
+        aluminium_stock = Stock.objects.get(storage=storage, good=aluminium)
+        steel_stock = Stock.objects.get(storage=storage, good=steel)
+
         price_dict[storage.pk] = {}
-        price_dict[storage.pk]['steel'] = price_dict[storage.pk]['aluminium'] = material_cost
+        price_dict[storage.pk][aluminium_stock.pk] = price_dict[storage.pk][steel_stock.pk] = material_cost
 
         trans_mul[0][storage.pk] = math.ceil(distance_counting(player.region, storage.region) / 100)
-
-        # в словарь попадает True или False
-        materials_exists[storage] = getattr(storage, 'steel') >= material_cost \
-                                    and getattr(storage, 'aluminium') >= material_cost
 
     price, prices = get_transfer_price(trans_mul, 0, price_dict)
     for source_storage_pk in prices:

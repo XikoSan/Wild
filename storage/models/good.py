@@ -2,6 +2,7 @@
 import datetime
 from django.db import models
 from django.utils.translation import gettext_lazy
+from django.utils.translation import pgettext_lazy
 from django.utils.translation import ugettext as _
 
 from modeltranslation.translator import translator, TranslationOptions
@@ -18,6 +19,20 @@ class Good(models.Model):
 
     # занимаемое единицей число кубов
     volume = models.FloatField(default=1, verbose_name='Объём, шт.')
+
+    # типоразмер
+    typeChoices = (
+        ('minerals', pgettext_lazy('goods', 'Минералы')),
+        ('oils', pgettext_lazy('goods', 'Нефть')),
+        ('materials', pgettext_lazy('goods', 'Материалы')),
+        ('equipments', pgettext_lazy('goods', 'Оборудование')),
+        ('units', pgettext_lazy('goods', 'Оружие')),
+    )
+    type = models.CharField(
+        max_length=10,
+        choices=typeChoices,
+        default='minerals',
+    )
 
     # типоразмер
     sizeChoices = (
