@@ -48,7 +48,7 @@ def assets_destroy(request):
                 data = {
                     'response': pgettext('assets', 'Склад') + ' ' + i_storg + ' ' + pgettext('assets',
                                                                                              'вам не принадлежит'),
-                    'header': pgettext('assets', 'Перемещение товара'),
+                    'header': pgettext('assets', 'Уничтожение товара'),
                     'grey_btn': pgettext('assets', 'Закрыть'),
                 }
                 return JsonResponse(data)
@@ -65,7 +65,7 @@ def assets_destroy(request):
             if war_cl.objects.filter(running=True, def_region__in=sources_reg).exists():
                 data = {
                     'response': pgettext('assets', 'Запрещено вывозить товары из атакованных регионов'),
-                    'header': pgettext('assets', 'Перемещение товара'),
+                    'header': pgettext('assets', 'Уничтожение товара'),
                     'grey_btn': pgettext('assets', 'Закрыть'),
                 }
                 return JsonResponse(data)
@@ -89,7 +89,7 @@ def assets_destroy(request):
             if stock.storage.id not in storages_pk:
                 data = {
                     'response': pgettext('assets', 'Один или несколько запасов не принадлежат вашим складам'),
-                    'header': pgettext('assets', 'Перемещение товара'),
+                    'header': pgettext('assets', 'Уничтожение товара'),
                     'grey_btn': pgettext('assets', 'Закрыть'),
                 }
                 return JsonResponse(data)
@@ -99,7 +99,7 @@ def assets_destroy(request):
         if not set(stocks_pk_list).issubset(set(stocks_pk_found)):
             data = {
                 'response': pgettext('assets', 'Один или несколько запасов не существуют'),
-                'header': pgettext('assets', 'Перемещение товара'),
+                'header': pgettext('assets', 'Уничтожение товара'),
                 'grey_btn': pgettext('assets', 'Закрыть'),
             }
             return JsonResponse(data)
@@ -126,18 +126,18 @@ def assets_destroy(request):
             else:
                 data = {
                     'response': pgettext('assets', 'На складе в регионе ') + str(ret_storg.region.region_name) +
-                                pgettext('assets', ' недостаточно товара ') + good + pgettext('assets', ' для передачи.') + '\n' +
+                                pgettext('assets', ' недостаточно товара ') + good + '.\n' +
                                 pgettext('assets', 'Требуется: ') + str(required) + pgettext('assets',
                                                                                              ', в наличии: ') + str(
                         exist),
-                    'header': pgettext('assets', 'Перемещение товара'),
+                    'header': pgettext('assets', 'Уничтожение товара'),
                     'grey_btn': pgettext('assets', 'Закрыть'),
                 }
                 return JsonResponse(data)
         else:
             data = {
-                'response': pgettext('assets', 'Товары для передачи не выбраны'),
-                'header': pgettext('assets', 'Перемещение товара'),
+                'response': pgettext('assets', 'Товары не выбраны'),
+                'header': pgettext('assets', 'Уничтожение товара'),
                 'grey_btn': pgettext('assets', 'Закрыть'),
             }
             return JsonResponse(data)
