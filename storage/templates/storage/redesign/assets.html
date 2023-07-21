@@ -97,6 +97,12 @@
     <div id="table_{% localize off %}{{ storage.pk }}{% endlocalize %}" class="actives__table" {% if forloop.counter0 != 0 %}style="display: none"{% endif %}>
         <!--Наличные-->
       <div class="ct__s">
+        <h2 class="ct__s-title">{% trans 'Уровень' context "storage" %}:</h2>
+        <p class="ct__s-text">
+          {{ storage|get_attr:'level' }}
+        </p>
+      </div>
+      <div class="ct__s">
         <h2 class="ct__s-title">{{ storage.valut|dict_key:'cash' }}:</h2>
         <p class="ct__s-text">
           {{ storage|get_attr:'cash' }}
