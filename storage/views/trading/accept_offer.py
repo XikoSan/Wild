@@ -13,8 +13,7 @@ from storage.models.trade_offer import TradeOffer
 import time
 import math
 from state.models.state import State
-from storage.views.storage.get_transfer_price import get_transfer_price
-from storage.views.storage.locks.get_storage import get_storage
+from storage.views.storage.locks.get_storage import get_stocks
 from django.contrib.humanize.templatetags.humanize import number_format
 from storage.models.trading_log import TradingLog
 from player.logs.cash_log import CashLog
@@ -22,6 +21,8 @@ from storage.views.trading.premium_trading import premium_trading
 from django.utils.translation import pgettext
 from war.models.wars.war import War
 from player.views.get_subclasses import get_subclasses
+from storage.models.stock import Stock
+from storage.models.good import Good
 
 
 @login_required(login_url='/')
@@ -163,19 +164,21 @@ def accept_offer(request):
             }
             return JsonResponse(data)
 
-        if offer.good == 'wild_pass':
+        if offer.wild_pass:
             return premium_trading(player, count, offer)
 
         # ----------------------------------------------
 
         storage = None
-        lock_storage = None
 
         storage = Storage.actual.select_for_update().get(pk=storage_id)
-        lock_storage = get_storage(Storage.actual.select_for_update().get(pk=storage_id), [offer.good, ])
+        ret_stocks, ret_st_stocks = get_stocks(Storage.actual.select_for_update().get(pk=storage_id), [offer.offer_good.name_ru, ])
+
+        # узнаем размерность товара и сколько в этой размерности занято
+        sizetype_stocks = ret_st_stocks[offer.offer_good.size]
 
         if offer.type == 'sell' \
-                and not lock_storage.capacity_check(offer.good, count):
+                and not storage.capacity_check(offer.offer_good.size, count, sizetype_stocks):
             data = {
                 'header': pgettext('w_trading', 'Принятие оффера'),
                 'grey_btn': pgettext('mining', 'Закрыть'),
@@ -184,7 +187,7 @@ def accept_offer(request):
             return JsonResponse(data)
 
         elif offer.type == 'buy' \
-                and getattr(storage, offer.good) < count:
+                and not Stock.objects.filter(storage=storage, good=offer.offer_good, stock__gte=count).exists():
             data = {
                 'header': pgettext('w_trading', 'Принятие оффера'),
                 'grey_btn': pgettext('mining', 'Закрыть'),
@@ -207,19 +210,14 @@ def accept_offer(request):
             return JsonResponse(data)
 
         # считаем доставку
-        trans_mul = {storage.pk: {}}
-        trans_mul[storage.pk][offer.owner_storage.pk] = math.ceil(
-            distance_counting(storage.region, offer.owner_storage.region) / 100)
+        trans_mul = math.ceil(distance_counting(storage.region, offer.owner_storage.region) / 100)
 
-        offer_value = {str(offer.owner_storage.pk): {}}
-        offer_value[str(offer.owner_storage.pk)][offer.good] = count
-
-        price, prices = get_transfer_price(trans_mul, int(storage.pk), offer_value)
+        delivery_price = math.ceil(int(count) * offer.offer_good.volume) * trans_mul
 
         # если оффер - продажа
         if offer.type == 'sell':
             #   проверяем наличие денег на указанное количество + доставка
-            fin_sum = (count * offer.price) + price
+            fin_sum = (count * offer.price) + delivery_price
             if player.cash < fin_sum:
                 data = {
                     'header': pgettext('w_trading', 'Принятие оффера'),
@@ -261,14 +259,23 @@ def accept_offer(request):
             offer_good_lock.save()
 
             #   начисляем товар на склад игрока
-            setattr(storage, offer.good, getattr(storage, offer.good) + count)
-            storage.save()
+            if Stock.objects.filter(storage=storage, good=offer.offer_good).exists():
+                stock = Stock.objects.get(storage=storage, good=offer.offer_good)
+
+            else:
+                stock = Stock(
+                                storage=storage,
+                                good=offer.offer_good
+                            )
+
+            stock.stock += count
+            stock.save()
 
             # создаем лог о покупке товара
             new_log = TradingLog.objects.create(
                 player=player,
                 cash_value=0 - (count * offer.price),
-                delivery_value=price,
+                delivery_value=delivery_price,
                 player_storage=storage,
                 good_value=count
             )
@@ -293,7 +300,7 @@ def accept_offer(request):
             # проверяем налог с прибыли продавца
             taxed_sum = State.check_taxes(player.region, offer_sum, 'trade')
 
-            if taxed_sum < price:
+            if taxed_sum < delivery_price:
                 data = {
                     'header': pgettext('w_trading', 'Принятие оффера'),
                     'grey_btn': pgettext('mining', 'Закрыть'),
@@ -329,12 +336,12 @@ def accept_offer(request):
                 }
                 return JsonResponse(data)
 
-                #   проверяем у игрока наличие денег на доставку
-            if player.cash + taxed_sum < price:
+            #   проверяем у игрока наличие денег на доставку
+            if player.cash + taxed_sum < delivery_price:
                 data = {
                     'header': pgettext('w_trading', 'Принятие оффера'),
                     'grey_btn': pgettext('mining', 'Закрыть'),
-                    'response': pgettext('w_trading', 'Недостаточно средств. Требуется $') + number_format(price),
+                    'response': pgettext('w_trading', 'Недостаточно средств. Требуется $') + number_format(delivery_price),
                 }
                 return JsonResponse(data)
 
@@ -351,8 +358,7 @@ def accept_offer(request):
                 return JsonResponse(data)
 
             # получим склад продавца с учетом блокировок
-            lock_offer_storage = get_storage(Storage.actual.select_for_update().get(pk=offer_storage.pk),
-                                             [offer.good, ])
+            locks_stocks, ret_st_stocks = get_stocks(offer_storage, [offer.offer_good.name_ru, ])
 
             #   списываем из оффера деньги
             offer.cost_count -= offer_sum
@@ -374,12 +380,13 @@ def accept_offer(request):
             player.cash += taxed_sum
 
             #   списываем с игрока деньги за доставку
-            player.cash -= price
+            player.cash -= delivery_price
             player.save()
 
             #   списываем товар со склада
-            setattr(storage, offer.good, getattr(storage, offer.good) - count)
-            storage.save()
+            stock = Stock.objects.get(storage=storage, good=offer.offer_good)
+            stock.stock -= count
+            stock.save()
 
             #   списываем из оффера товар
             offer.count -= count
@@ -392,26 +399,41 @@ def accept_offer(request):
             offer.save()
 
             #   начисляем товар на склад оффера
-            if lock_offer_storage.capacity_check(offer.good, count):
-                setattr(offer_storage, offer.good, getattr(offer_storage, offer.good) + count)
-            else:
-                setattr(offer_storage, offer.good, getattr(offer_storage, offer.good) + (
-                            getattr(offer_storage, offer.good + '_cap') - getattr(lock_offer_storage, offer.good)))
+            sizetype_stocks = ret_st_stocks[offer.offer_good.size]
 
-            offer_storage.save()
+            if Stock.objects.filter(storage=offer_storage, good=offer.offer_good).exists():
+                stock = Stock.objects.get(storage=offer_storage, good=offer.offer_good)
+
+            else:
+                stock = Stock(
+                    storage=offer_storage,
+                    good=offer.offer_good
+                )
+
+            if offer_storage.capacity_check(offer.offer_good.size, count, sizetype_stocks):
+                stock.stock += count
+                stock.save()
+
+            else:
+                fact_count = getattr(offer_storage, offer.offer_good.size + '_cap') - count
+
+                stock.stock += fact_count
+                stock.save()
+
+            stock.save()
 
             # создаем лог о покупке товара
             new_log = TradingLog.objects.create(
                 player=player,
                 cash_value=offer_sum,
-                delivery_value=price,
+                delivery_value=delivery_price,
                 player_storage=storage,
                 good_value=count
             )
             offer.accepters.add(new_log)
 
             # создаем логи движения денег
-            CashLog.create(player=player, cash=taxed_sum - price, activity_txt='trade')
+            CashLog.create(player=player, cash=taxed_sum - delivery_price, activity_txt='trade')
 
         else:
             data = {

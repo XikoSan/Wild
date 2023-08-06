@@ -20,7 +20,7 @@ class Good(models.Model):
     # занимаемое единицей число кубов
     volume = models.FloatField(default=1, verbose_name='Объём, шт.')
 
-    # типоразмер
+    # категория товара
     typeChoices = (
         ('minerals', pgettext_lazy('goods', 'Минералы')),
         ('oils', pgettext_lazy('goods', 'Нефть')),

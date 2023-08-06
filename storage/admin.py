@@ -21,8 +21,14 @@ class TradeOfferAdmin(admin.ModelAdmin):
 
     search_fields = ['player__nickname']
     raw_id_fields = ('owner_storage',)
-    list_display = ('owner_storage', 'type', 'good', 'price', 'deleted')
+    list_display = ('owner_storage', 'type', 'get_good_name', 'price', 'deleted')
     list_filter = ('deleted',)
+
+    def get_good_name(self, obj):
+        if obj.wild_pass:
+            return 'Wild Pass'
+        else:
+            return obj.offer_good.name
 
     # formfield_overrides = {
     #     models.ManyToManyField: {'widget': widgets.FilteredSelectMultiple(verbose_name='Принявшие ордер',

@@ -55,6 +55,7 @@ class GoodLock(models.Model):
         max_length=10,
         choices=goodsChoises,
         default=None,
+        null=True, blank=True,
     )
 
     lock_good =  models.ForeignKey(Good, default=None, on_delete=models.CASCADE,

@@ -10,10 +10,13 @@ from storage.models.cash_lock import CashLock
 from storage.models.good_lock import GoodLock
 from storage.models.storage import Storage
 from storage.models.trade_offer import TradeOffer
-from player.logs.print_log import log
 from django.utils.translation import pgettext
 from war.models.wars.war import War
 from player.views.get_subclasses import get_subclasses
+from storage.models.good import Good
+from storage.models.stock import Stock
+from math import ceil
+
 
 @login_required(login_url='/')
 @check_player
@@ -29,7 +32,7 @@ def get_offers(request):
 
         kwargs = {}
         ex_kwargs = {}
-        dis_args = ['owner_storage', 'price', 'view_type', 'good']
+        dis_args = ['owner_storage', 'price', 'view_type', 'offer_good']
 
         # узнаём действие, которое игрок хочет совершить
         action = request.POST.get('action')
@@ -79,10 +82,25 @@ def get_offers(request):
         # узнаём конкретный товар
         good = request.POST.get('good')
 
-        all_goods = [good_tuple[0] for good_tuple in TradeOffer.goodsChoises]
-        if good in all_goods\
-                or good == 'wild_pass':
-            kwargs['good'] = good
+        try:
+            good = int(good)
+
+        except ValueError:
+            if owner != 'mine':
+                data = {
+                    'header': pgettext('w_trading', 'Получение офферов'),
+                    'grey_btn': pgettext('mining', 'Закрыть'),
+                    'response': pgettext('w_trading_new', 'ID товара должен быть целым числом'),
+                }
+                return JsonResponse(data)
+
+        if good != 'null' and (Good.objects.filter(pk=good).exists() or good == -1):
+            if good == -1:
+                kwargs['wild_pass'] = True
+            else:
+                good_obj = Good.objects.get(pk=good)
+                kwargs['offer_good'] = good_obj
+
         else:
             if owner != 'mine':
                 data = {
@@ -94,17 +112,21 @@ def get_offers(request):
             # узнаём группы товаров
             groups = request.POST.get('groups').split(',')
 
+            types_list = []
+            for type in Good.typeChoices:
+                types_list.append(type[0])
+
             goods_list = []
             for group in groups:
-                if group in Storage.types.keys():
-                    for good in getattr(Storage, group).keys():
-                        goods_list.append(good)
+                if group in types_list:
+                    for good_obj in Good.objects.filter(type=group):
+                        goods_list.append(good_obj)
 
                 elif group == 'premium':
-                    goods_list.append('wild_pass')
+                    kwargs['wild_pass'] = True
 
             if goods_list:
-                kwargs['good__in'] = goods_list
+                kwargs['offer_good__in'] = goods_list
 
         # # отсекаем Склады, в регионах которых идёт война, если выбирают не личные предложения
         # if owner != 'mine':
@@ -125,14 +147,21 @@ def get_offers(request):
         offers_list = []
 
         for offer in offers:
-            offer_dict = {'good': offer.get_good_display(),
-                          'good_name': offer.good,
-                          'owner': offer.owner_storage.owner.nickname,
+            offer_dict = {'owner': offer.owner_storage.owner.nickname,
                           'region': pgettext('regions_list', offer.owner_storage.region.region_name),
                           'region_img': offer.owner_storage.region.on_map_id,
                           'count': offer.count,
                           'price': offer.price
                           }
+
+            if offer.wild_pass:
+                offer_dict['good'] = -1
+                offer_dict['good_name'] = 'Wild Pass'
+
+            else:
+                offer_dict['good'] = offer.offer_good.pk
+                offer_dict['good_name'] = offer.offer_good.name
+
             if offer.owner_storage.owner.pk == player.pk:
                 offer_dict['own_offer'] = True
             else:
@@ -146,13 +175,19 @@ def get_offers(request):
             delivery_dict = {}
 
             for storage in storages:
+                if offer.wild_pass:
+                    delivery_dict[storage.pk] = {}
+                    delivery_dict[storage.pk]['delivery'] = 0
+                    delivery_dict[storage.pk]['single'] = 0
+                    continue
+
                 trans_mul = {storage.pk: {}}
                 trans_mul[storage.pk][offer.owner_storage.pk] = math.ceil(
                     distance_counting(storage.region, offer.owner_storage.region) / 100)
 
-                offer_value = {}
-                offer_value[str(offer.owner_storage.pk)] = {}
-                offer_value[str(offer.owner_storage.pk)][offer.good] = offer.count
+                # offer_value = {}
+                # offer_value[str(offer.owner_storage.pk)] = {}
+                # offer_value[str(offer.owner_storage.pk)][offer.offer_good.pk] = offer.count
 
                 delivery_dict[storage.pk] = {}
                 delivery_dict[storage.pk]['name'] = storage.region.region_name
@@ -160,12 +195,11 @@ def get_offers(request):
                 if len(delivery_dict) == 1:
                     delivery_dict[storage.pk]['default'] = True
                 delivery_dict[storage.pk]['single'] = trans_mul[storage.pk][offer.owner_storage.pk]
-                delivery_dict[storage.pk]['delivery'], prices = get_transfer_price(trans_mul, int(storage.pk), offer_value)
+
+                # delivery_dict[storage.pk]['delivery'], prices = get_transfer_price(trans_mul, int(storage.pk), offer_value)
+                delivery_dict[storage.pk]['delivery'] = ceil(int(offer.count) * offer.offer_good.volume) * trans_mul[storage.pk][offer.owner_storage.pk]
 
             offer_dict['delivery'] = delivery_dict
-
-            # from player.logs.print_log import log
-            # log(delivery_dict)
 
             delivery_val = 0
             for key, value in offer_dict['delivery'].items():
