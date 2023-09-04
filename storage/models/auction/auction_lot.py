@@ -51,7 +51,11 @@ class AuctionLot(models.Model):
         bet.good_lock.lock_storage.owner.cash += bet.price * self.count
         bet.good_lock.lock_storage.owner.save()
         # логируем
-        CashLog.create(player=bet.good_lock.lock_storage.owner, cash=(bet.price * self.count), activity_txt='auct')
+        CashLog.create(
+                        player=bet.good_lock.lock_storage.owner,
+                        cash=(bet.price * self.count),
+                        activity_txt='auct'
+                       )
         # удаляем блокировку ресурсов из ставки (отметка)
         bet.good_lock.deleted = True
         # сохраняем блокировку

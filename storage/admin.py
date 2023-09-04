@@ -104,7 +104,7 @@ class BuyAuctionAdmin(admin.ModelAdmin):
 
 
 class AuctionLotAdmin(admin.ModelAdmin):
-    raw_id_fields = ('auction',)
+    raw_id_fields = ('auction', 'win_storage',)
 
     search_fields = ['auction__pk']
 
@@ -124,7 +124,7 @@ class AuctionBetAdmin(admin.ModelAdmin):
     list_display = ['get_good', 'price', ]
 
     def get_good(self, obj):
-        return obj.auction_lot.auction.get_good_display()
+        return obj.auction_lot.auction.good.name
 
     get_good.short_description = 'Товар'
 

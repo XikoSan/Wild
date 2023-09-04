@@ -11,11 +11,13 @@ from django_celery_beat.models import ClockedSchedule, PeriodicTask
 from player.actual_manager import ActualManager
 from state.models.treasury_lock import TreasuryLock
 from storage.models.storage import Storage
+from storage.models.good import Good
+from state.models.treasury_stock import TreasuryStock
 
 
 # Аукцион покупки
-# todo: когда будешь делать аукцион продажи, пропиши его в войнах
 class BuyAuction(models.Model):
+    # todo: когда будешь делать аукцион продажи, пропиши его в войнах
     objects = models.Manager()  # Менеджер по умолчанию
     actual = ActualManager()  # Менеджер активных записей
 
@@ -24,12 +26,7 @@ class BuyAuction(models.Model):
                                       verbose_name='Блокировка', related_name="treasury_lock")
 
     # продаваемый товар
-    good = models.CharField(
-        max_length=10,
-        choices=Storage.get_choises(),
-        default='coal',
-        verbose_name='Товар',
-    )
+    good = models.ForeignKey(Good, default=None, null=True, blank=True, on_delete=models.CASCADE, verbose_name='Товар')
 
     # время создания предложения
     create_date = models.DateTimeField(default=None, null=True, blank=True)
@@ -61,18 +58,40 @@ class BuyAuction(models.Model):
             # если вернулась цена на списание:
             if price:
                 # начисляем в казну объем лота
-                setattr(self.treasury_lock.lock_treasury, self.good,
-                        getattr(self.treasury_lock.lock_treasury, self.good) + lot.count)
+                if TreasuryStock.objects.filter(treasury=self.treasury_lock.lock_treasury, good=self.good).exists():
+                    stock = TreasuryStock.objects.get(treasury=self.treasury_lock.lock_treasury, good=self.good)
+
+                else:
+                    stock = TreasuryStock(
+                        treasury=self.treasury_lock.lock_treasury,
+                        good=self.good
+                    )
+
+                stock.stock += lot.count
+                stock.save()
+
                 # списываем из блокировки казны сумму = цена ставки * объем лота
                 self.treasury_lock.lock_count -= price * lot.count
 
         if self.treasury_lock.lock_count > 0:
             # возвращаем оставшиеся в блокировке деньги в казну
-            setattr(self.treasury_lock.lock_treasury, self.treasury_lock.lock_good,
-                    getattr(self.treasury_lock.lock_treasury,
-                            self.treasury_lock.lock_good) + self.treasury_lock.lock_count)
-        # сохранить казну
-        self.treasury_lock.lock_treasury.save()
+            if self.treasury_lock.cash:
+                self.treasury_lock.lock_treasury.cash += self.treasury_lock.lock_count
+                # сохранить казну
+                self.treasury_lock.lock_treasury.save()
+
+            else:
+                if TreasuryStock.objects.filter(treasury=self.treasury_lock.lock_treasury, good=self.treasury_lock.lock_good).exists():
+                    stock = TreasuryStock.objects.get(treasury=self.treasury_lock.lock_treasury, good=self.treasury_lock.lock_good)
+
+                else:
+                    stock = TreasuryStock(
+                        treasury=self.treasury_lock.lock_treasury,
+                        good=self.treasury_lock.lock_good
+                    )
+
+                stock.stock += self.treasury_lock.lock_count
+                stock.save()
 
         # удаляем блокировку казны (отметка)
         self.treasury_lock.deleted = True

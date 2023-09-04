@@ -23,7 +23,7 @@
         {% endwith %}
     </div>
     <div class="col-xs-4 col-sm-4 col-md-4" align="center">
-        {% trans 'Товар' context "w_trading" %}: {{ auction.get_good_display }}
+        {% trans 'Товар' context "w_trading" %}: {{ auction.good.name }}
     </div>
     <div class="col-xs-4 col-sm-4 col-md-4" align="center">
         {% trans 'Завершение' context "w_auctions" %}: {{ auction.create_date|timezone:player.time_zone|date:"d.m H:i" }}
@@ -81,6 +81,7 @@
             </div>
         </div>
         <div class="col-xs-6 col-sm-6 col-md-6" align="center" style="border-right: solid #e2e2e2 1px;">
+            {% if storages %}
             <form class="set_bet_form" method="post">
                 <input type="hidden" name="lot_id" value="{% localize off %}{{ lot.pk }}{% endlocalize %}">
                 <div class="row">
@@ -91,7 +92,7 @@
                     <td class="delivery">
                         <select name="source" data-type="sell">
                             {% for storage in storages %}
-                            <option {% if storage == storages|first %} selected {% endif %} value="{% localize off %}{{ storage|dict_key:'pk' }}{% endlocalize %}">{{ storage|dict_key:'region__region_name' }}</option>
+                            <option {% if storage == storages|first %} selected {% endif %} value="{% localize off %}{{ storage.pk }}{% endlocalize %}">{{ storage.region.region_name }}</option>
                             {% endfor %}
                         </select>
                     </div>
@@ -119,6 +120,7 @@
                     </div>
                 </div>
             </form>
+            {% endif %}
         </div>
     </div>
     {% if lot != lots|last %}

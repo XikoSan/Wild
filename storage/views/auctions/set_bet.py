@@ -8,7 +8,8 @@ from storage.models.auction.auction_bet import AuctionBet
 from storage.models.auction.auction_lot import AuctionLot
 from storage.models.good_lock import GoodLock
 from storage.models.storage import Storage
-
+from storage.models.good import Good
+from storage.models.stock import Stock
 
 # переименование игрока
 @login_required(login_url='/')
@@ -62,13 +63,15 @@ def set_bet(request):
         storage = Storage.actual.get(pk=storage_id, owner=player)
 
         # узнаем, хватает ли ресурса на выбранном складе
-        if getattr(storage, lot.auction.good) < lot.count:
+        if not Stock.objects.filter(storage=storage, good=lot.auction.good, stock__gte=lot.count).exists():
             data = {
                 'header': 'Недостаточно товаров',
                 'grey_btn': 'Закрыть',
                 'response': 'На указанном складе недостаточно товара',
             }
             return JsonResponse(data)
+
+        stock = Stock.objects.get(storage=storage, good=lot.auction.good, stock__gte=lot.count)
 
         try:
             count = int(request.POST.get('count'))
@@ -109,8 +112,9 @@ def set_bet(request):
             }
             return JsonResponse(data)
 
-        setattr(storage, lot.auction.good, getattr(storage, lot.auction.good) - lot.count)
-        storage.save()
+        # setattr(storage, lot.auction.good, getattr(storage, lot.auction.good) - lot.count)
+        stock.stock -= lot.count
+        stock.save()
 
         good_lock = GoodLock(
             lock_storage=storage,
@@ -128,9 +132,12 @@ def set_bet(request):
 
         if current_bet:
             # возвращаем ресурсы из блокировки
-            setattr(current_bet.good_lock.lock_storage, lot.auction.good,
-                    getattr(current_bet.good_lock.lock_storage, lot.auction.good) + current_bet.good_lock.lock_count)
-            current_bet.good_lock.lock_storage.save()
+            old_stock, created = Stock.objects.get_or_create(storage=current_bet.good_lock.lock_storage,
+                                                         good=lot.auction.good
+                                                         )
+            old_stock.stock += lot.count
+            old_stock.save()
+
             # удаляем блокировку
             current_bet.good_lock.deleted = True
             current_bet.good_lock.save()

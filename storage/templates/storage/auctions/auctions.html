@@ -5,6 +5,7 @@
 {% load get_len %}
 {% load l10n %}{% load i18n %}
 {% block for_scripts_and_css %}
+{% load get_key_list %}
 <script src='{% static "js/tablesort.js" %}?{{ csrf_token }}'></script>
 <script src='{% static "js/tablesort.number.js" %}?{{ csrf_token }}'></script>
 <script src='{% static "js/auctions.js" %}?{{ csrf_token }}'></script>
@@ -17,10 +18,10 @@
 
     var groups_n_goods = {};
 
-    {% for group in storage_cl|get_attr:'types' %}
+    {% for group in goods_by_types|get_key_list %}
         groups_n_goods['{{ group }}'] = {};
-        {% for good in storage_cl|get_attr:group %}
-            groups_n_goods['{{ group }}']['{{ good }}'] = '{{ storage_cl|get_attr:group|dict_key:good }}';
+        {% for good in goods_by_types|dict_key:group %}
+            groups_n_goods['{{ group }}'][{% localize off %}{{ good.pk }}{% endlocalize %}] = '{{ good.name }}';
         {% endfor %}
     {% endfor %}
 </script>
@@ -67,18 +68,16 @@
     <form id="offers_search_form" role="form">
         <div class="row" style="margin-top: 5%">
             <select name="trade_groups" id="trade_groups" multiple size="{{ storage_cl|get_attr:'types'|get_len }}" style="width: 100%">
-                {% for group in storage_cl|get_attr:'types' %}
-                <option value='{{ group }}'>{{ storage_cl|get_attr:'types'|dict_key:group }}</option>
+                {% for group in goods_by_types|get_key_list %}
+                <option value='{{ group }}'>{{ types_texts|dict_key:group }}</option>
                 {% endfor %}
             </select>
         </div>
         <div class="row" style="margin-top: 5%">
             <select name="cc" id="trade_goods" style="width: 100%">
                 <option id="good_default" value='default' disabled selected value>{% trans 'Выберите товар' context "w_trading" %}</option>
-                {% for group in storage_cl|get_attr:'types' %}
-                    {% for good in storage_cl|get_attr:group %}
-                <option id="good_{{ good }}" value='{{ good }}' style="display: none">{{ storage_cl|get_attr:group|dict_key:good }}</option>
-                    {% endfor %}
+                {% for good in goods %}
+                <option id="good_{% localize off %}{{ good.pk }}{% endlocalize %}" value='{% localize off %}{{ good.pk }}{% endlocalize %}' style="display: none">{{ good.name }}</option>
                 {% endfor %}
             </select>
         </div>
