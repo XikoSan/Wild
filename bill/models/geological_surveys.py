@@ -209,6 +209,8 @@ class GeologicalSurveys(Bill):
 
     # Свойства класса
     class Meta:
+        # этот тип ЗП выключен
+        abstract = True
 
         verbose_name = "Геологические изыскания"
         verbose_name_plural = "Геологические изыскания"

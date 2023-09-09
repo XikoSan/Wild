@@ -126,12 +126,12 @@ class ExploreResources(Bill):
                     # обновляем запасы в регионе до максимума
                     setattr(region, self.resource + '_has', getattr(region, self.resource + '_cap'))
 
-                    # истощение: смотрим, сколько десятков пунктов разведывают
-                    depletion = int(ceil(volume / 10))
-                    # уменьшаем лимит в регионе
-                    setattr(region, self.resource + '_cap', getattr(region, self.resource + '_cap') - depletion)
-                    # увеличиваем истощение
-                    setattr(region, self.resource + '_depletion', getattr(region, self.resource + '_depletion') + depletion)
+                    # # истощение: смотрим, сколько десятков пунктов разведывают
+                    # depletion = int(ceil(volume / 10))
+                    # # уменьшаем лимит в регионе
+                    # setattr(region, self.resource + '_cap', getattr(region, self.resource + '_cap') - depletion)
+                    # # увеличиваем истощение
+                    # setattr(region, self.resource + '_depletion', getattr(region, self.resource + '_depletion') + depletion)
 
                     self.cash_cost = cash_cost
                     self.exp_value = Decimal(volume)
@@ -147,12 +147,12 @@ class ExploreResources(Bill):
 
                     # если эта величина - как минимум один пункт
                     if hund_points >= 1:
-                        # истощение: смотрим, сколько десятков пунктов разведывают
-                        depletion = int(ceil(hund_points / 1000))
-                        # уменьшаем лимит в регионе
-                        setattr(region, self.resource + '_cap', getattr(region, self.resource + '_cap') - depletion)
-                        # увеличиваем истощение
-                        setattr(region, self.resource + '_depletion', getattr(region, self.resource + '_depletion') + depletion)
+                        # # истощение: смотрим, сколько десятков пунктов разведывают
+                        # depletion = int(ceil(hund_points / 1000))
+                        # # уменьшаем лимит в регионе
+                        # setattr(region, self.resource + '_cap', getattr(region, self.resource + '_cap') - depletion)
+                        # # увеличиваем истощение
+                        # setattr(region, self.resource + '_depletion', getattr(region, self.resource + '_depletion') + depletion)
 
                         # обновляем запасы в регионе
                         setattr(region, self.resource + '_has', getattr(region, self.resource + '_has') + Decimal(hund_points/100))

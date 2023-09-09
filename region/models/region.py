@@ -94,7 +94,7 @@ class Region(models.Model):
 
     oil_types = ['WTI', 'Brent', 'Urals']
 
-    # марка добываемой нефти в регионе
+    # obsolete: марка добываемой нефти в регионе
     oil_type_choices = (
         ('wti_oil', pgettext_lazy('goods', 'WTI')),
         ('brent_oil', pgettext_lazy('goods', 'Brent')),
@@ -105,7 +105,7 @@ class Region(models.Model):
         choices=oil_type_choices,
         default='urals_oil',
     )
-
+    # марка добываемой нефти в регионе
     oil_mark =  models.ForeignKey(Good, default=None, on_delete=models.SET_NULL, null=True,
                                      verbose_name='Нефть')
 
@@ -122,11 +122,11 @@ class Region(models.Model):
     # # предел разведки
     # ore_explore_cap = models.DecimalField(default=00.00, max_digits=5, decimal_places=2, verbose_name='Руда: предел разведки')
 
-    # процент добываемого в регионе Анохора
+    # obsolete: процент добываемого в регионе угля
     coal_proc = models.IntegerField(default=25, verbose_name='Процент угля')
-    # процент добываемого в регионе Берконора
+    # obsolete: процент добываемого в регионе железа
     iron_proc = models.IntegerField(default=25, verbose_name='Процент железа')
-    # процент добываемого в регионе Грокцита
+    # obsolete: процент добываемого в регионе бокситов
     bauxite_proc = models.IntegerField(default=25, verbose_name='Процент бокситов')
 
     # централизация на карте
