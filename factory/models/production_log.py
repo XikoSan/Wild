@@ -4,6 +4,7 @@ from storage.models.storage import Storage
 from player.logs.log import Log
 from django.utils.translation import gettext_lazy, pgettext_lazy
 from factory.models.project import Project
+from storage.models.good import Good
 
 
 # Лог торговли
@@ -31,12 +32,18 @@ class ProductionLog(Log):
         for unit in getattr(Storage, mode).keys():
             good_choices = good_choices + ((unit, getattr(Storage, mode)[unit]),)
 
-    good = models.CharField(
+    old_good = models.CharField(
         max_length=20,
         choices=good_choices,
-        default=None,
-        verbose_name='Товар',
+        default=None, blank=True, null=True,
+        verbose_name='устарело',
     )
+
+    # признак блокированных денег вместо товара
+    cash = models.BooleanField(default=False, verbose_name='Наличные')
+
+    # товар для производства
+    good = models.ForeignKey(Good, default=None, blank=True, null=True, on_delete=models.CASCADE, verbose_name='Товар')
 
     # объем производства
     prod_value = models.IntegerField(default=1, verbose_name='Объем производства')

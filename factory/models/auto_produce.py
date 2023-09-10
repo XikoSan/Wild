@@ -22,6 +22,13 @@ from storage.models.storage import Storage
 from storage.views.storage.locks.get_storage import get_storage
 from math import ceil
 
+from storage.models.good import Good
+from factory.models.blueprint import Blueprint
+from factory.models.component import Component
+from storage.views.storage.locks.get_storage import get_stocks
+from storage.models.stock import Stock
+
+
 # автоматическое производство
 class AutoProduce(Log):
     # склад производства
@@ -29,13 +36,17 @@ class AutoProduce(Log):
                                      verbose_name='Склад', related_name="produce_storage")
 
     # товар для производства
-    good = models.CharField(
+    old_good = models.CharField(
         max_length=10,
         choices=Project.schemas,
-        blank=True,
-        null=True,
-        verbose_name='Ресурс'
+        blank=True, null=True, default=None,
+        verbose_name='не используется'
     )
+
+    # товар для производства
+    good = models.ForeignKey(Good,
+                             blank=True, null=True, default=None,
+                             on_delete=models.CASCADE, verbose_name='Продукция')
 
     # номер схемы
     schema = models.CharField(max_length=1, verbose_name='Номер схемы')
@@ -84,7 +95,7 @@ class AutoProduce(Log):
             )
 
         self.task = PeriodicTask.objects.create(
-            name=self.player.nickname + ' производит ' + self.get_good_display(),
+            name=self.player.nickname + ' производит ' + self.good.name,
             task='good_produce',
             # interval=schedule,
             crontab=schedule,
@@ -133,22 +144,21 @@ class AutoProduce(Log):
                         player.last_refill = timezone.now() + datetime.timedelta(seconds=599)
 
         # получаем схему производства
-        try:
-            schema = getattr(Project, self.good)['resources'][int(self.schema) - 1]
-
-        except IndexError:
+        if not Blueprint.objects.filter(pk=self.schema, good=self.good).exists():
             # если схемы с таким номером нет - ошибка, уадаляемся
             self.delete()
             return
 
+        schema = Blueprint.objects.get(pk=self.schema)
+
         # получаем число юнитов, которое может быть произведено по этой схеме
-        price = getattr(Project, self.good)['energy']
+        price = schema.energy_cost
         count = int(player.energy // price)
 
         consignment = 1
 
         # только для материалов
-        if self.good in getattr(Storage, 'materials').keys():
+        if self.good.type == 'materials':
             # если изучена Стандартизация
             Standardization = apps.get_model('skill.Standardization')
             if Standardization.objects.filter(player=player, level__gt=0).exists():
@@ -158,7 +168,7 @@ class AutoProduce(Log):
                 count = player.energy // price * consignment
 
         # только для юнитов
-        if self.good in getattr(Storage, 'units').keys():
+        if self.good.type == 'units':
             # если изучено Режимное производство
             MilitaryProduction = apps.get_model('skill.MilitaryProduction')
             if MilitaryProduction.objects.filter(player=player, level__gt=0).exists():
@@ -171,23 +181,45 @@ class AutoProduce(Log):
             # ждем следующего цикла
             return
 
-        lock_storage = get_storage(self.storage, [self.good, ])
+        good = self.good
+        goods = [self.good.name_ru, ]
+        ret_stocks, ret_st_stocks = get_stocks(self.storage, goods)
+
+        # список с сырьём и продукцией
+        goods = [good,]
+
+        components = Component.objects.filter(blueprint=schema)
+
+        for component in components:
+            # добавляем сырье в список товаров, которые обрабатываются
+            goods.append(component.good)
+
+        # получаем запасы для данного склада
+        stocks = Stock.objects.select_for_update().filter(storage=self.storage, good__in=goods, stock__gt=0)
 
         min_count = count
 
+        # узнаем на сколько хватит денег на складе
+        if schema.cash_cost * min_count > self.storage.cash:
+            min_count = self.storage.cash // schema.cash_cost
+
         # для каждого сырья в схеме производства
-        for material in schema.keys():
+        for component in components:
+            # таких запасов нет, зануляем
+            if not stocks.filter(good=component.good).exists():
+                min_count = 0
             # узнать, на сколько хватает запасов на выбранном складе
-            if schema[material] * min_count > getattr(lock_storage, material):
-                min_count = getattr(lock_storage, material) // schema[material]
+            elif component.count * min_count > stocks.get(good=component.good).stock:
+                min_count = stocks.get(good=component.good).stock // component.count
 
         if min_count < count:
             count = min_count
 
         # узнать, хватает ли места на складе для нового товара
-        if count + getattr(lock_storage, self.good) > getattr(lock_storage, self.good + '_cap'):
+        sizetype_stocks = ret_st_stocks[good.size]
+        if not self.storage.capacity_check(good.size, count, sizetype_stocks):
             # запишем, сколько влезает
-            count = getattr(lock_storage, self.good + '_cap') - getattr(lock_storage, self.good)
+            count = getattr(self.storage, good.size + '_cap') - sizetype_stocks
 
         if count <= 0:
             # если ресы закончились - завершаемся
@@ -198,35 +230,46 @@ class AutoProduce(Log):
 
         # создаём лог производства
         ProductionLog.objects.create(player=player,
-                                     prod_storage=lock_storage,
+                                     prod_storage=self.storage,
                                      good_move='incom',
                                      good=self.good,
                                      prod_value=count,
                                      )
 
+        # списываем деньги отдельно
+        self.storage.cash -= schema.cash_cost * count
+
         # для каждого сырья в схеме
-        for material in schema.keys():
-            # установить новое значени склада
-            setattr(lock_storage, material, getattr(lock_storage, material) - (schema[material] * count))
+        for component in components:
+            # установить новое значение Запаса
+            stock = stocks.get(good=component.good)
+            stock.stock -= component.count * count
+            stock.save()
+
             # залогировать траты со склада
             # создаём лог производства
             ProductionLog.objects.create(player=player,
-                                         prod_storage=lock_storage,
+                                         prod_storage=self.storage,
                                          good_move='outcm',
-                                         good=material,
-                                         prod_value=schema[material] * count,
+                                         good=component.good,
+                                         prod_value=component.count * count,
                                          )
 
         # добавить товар на склад
-        setattr(lock_storage, self.good, getattr(lock_storage, self.good) + count)
+        stock, created = Stock.objects.get_or_create(
+            storage=self.storage,
+            good=good,
+        )
+        stock.stock += count
+        stock.save()
         # сохранить склад
-        lock_storage.save()
+        self.storage.save()
 
         # удаляем записи старше месяца
         ProductionLog.objects.filter(player=player, dtime__lt=timezone.now() - datetime.timedelta(days=30)).delete()
 
     def __str__(self):
-        return self.player.nickname + ' производит ' + str(self.get_good_display())
+        return self.player.nickname + ' производит ' + str(self.good.name)
 
     # Свойства класса
     class Meta:
