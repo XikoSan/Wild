@@ -67,6 +67,7 @@ class GroundWar(War):
 
     # Свойства класса
     class Meta:
+        abstract = True
         verbose_name = "Наземная война"
         verbose_name_plural = "Наземные войны"
 

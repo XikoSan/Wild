@@ -262,7 +262,7 @@ class StartWar(Bill):
 
     # Свойства класса
     class Meta:
-
+        abstract = True
         verbose_name = "Объявление войны"
         verbose_name_plural = "Объявления войн"
 
