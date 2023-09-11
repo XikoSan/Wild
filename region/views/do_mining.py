@@ -261,6 +261,10 @@ def do_mining(request):
 
             player.region.ore_has -= Decimal((count / 10) * 0.01)
 
+        from player.logs.print_log import log
+        log(mined_result)
+        log(mined_stocks_u)
+
         if mined_result:
             # обновляем существующие запасы
             if mined_stocks_u:
