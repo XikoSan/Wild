@@ -6,11 +6,20 @@ import django.db.models.deletion
 
 class Migration(migrations.Migration):
 
+
+    def clear_BuyAuction(apps, schema_editor):
+        BuyAuction = apps.get_model('storage', 'BuyAuction')
+        
+        BuyAuction.objects.all().delete()
+
+
     dependencies = [
         ('storage', '0071_tradeoffer_wild_pass'),
     ]
 
     operations = [
+        migrations.RunPython(move_volumes),
+        
         migrations.AlterField(
             model_name='buyauction',
             name='good',
