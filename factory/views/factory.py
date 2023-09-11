@@ -55,8 +55,8 @@ def factory(request):
 
             good_by_type[good.type].append(good.pk)
 
-            if stocks.filter(good=good).exists():
-                total_stocks[storage.pk][good.pk] = stocks.get(good=good).stock
+            if stocks.filter(storage=storage, good=good).exists():
+                total_stocks[storage.pk][good.pk] = stocks.get(storage=storage, good=good).stock
 
             else:
                 total_stocks[storage.pk][good.pk] = 0
