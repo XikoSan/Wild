@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(move_volumes),
+        migrations.RunPython(clear_BuyAuction),
         
         migrations.AlterField(
             model_name='buyauction',
