@@ -45,6 +45,14 @@ class AutoMining(Log):
     # формируем переодическую таску
     def setup_task(self):
 
+        # удалять другие задачи на авто-производство и работу
+        AutoProduce = apps.get_model('factory.AutoProduce')
+        if AutoMining.objects.filter(player=self.player).exclude(pk=self.pk).exists():
+            AutoMining.objects.filter(player=self.player).exclude(pk=self.pk).delete()
+
+        if AutoProduce.objects.filter(player=self.player).exists():
+            AutoProduce.objects.filter(player=self.player).delete()
+
         min = None
         if len(str(timezone.now().minute)) == 1:
             min = str(timezone.now().minute)
@@ -81,6 +89,17 @@ class AutoMining(Log):
                 day_of_month='*',
                 month_of_year='*',
             )
+
+        # удалить дубли периодических задач
+        for choice in self.activityChoices:
+            if PeriodicTask.objects.filter(
+                    name=self.player.nickname + ' собирает ' + choice[1]
+            ).exists():
+
+                PeriodicTask.objects.filter(
+                    name=self.player.nickname + ' собирает ' + choice[1]
+                ).delete()
+
 
         self.task = PeriodicTask.objects.create(
             name=self.player.nickname + ' собирает ' + self.get_resource_display(),
