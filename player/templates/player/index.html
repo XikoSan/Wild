@@ -194,6 +194,61 @@
 
   </section>
 
+    <div class="modal" id="domenInfoModal">
+    <div class="modal__inner-window">
+      <h2 class="modal__header ct__nickname">
+        <span>
+          Новое доменное имя
+        </span>
+      </h2>
+      <p class="modal__text">Уважаемые игроки! В ближайшее время адрес игры в Сети изменится на wildpolitics.ru <br> Просим в дальнейшем использовать его, для логина в проекте</p>
+
+      <div class="modal__btn-wrapper">
+        <button class="modal__ok">
+          <svg width="144" height="30" viewBox="0 0 144 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <mask id="mask0_259_325" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+            <path d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z" fill="var(--c10two)"></path>
+            </mask>
+            <g mask="url(#mask0_259_325)">
+            <path d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" fill="var(--c10one)"></path>
+            </g>
+          </svg>
+          <span>ok</span>
+        </button>
+        <button class="modal__cancel ct__mid-btn">
+          <svg width="144" height="30" viewBox="0 0 144 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <mask id="mask0_259_317" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+              <path d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z" fill="var(--c10two)"></path>
+            </mask>
+            <g mask="url(#mask0_259_317)">
+              <path d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" fill="var(--c10two)"></path>
+              <path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"></path>
+              <path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"></path>
+              <path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"></path>
+            </g>
+          </svg>
+          <span>не показывать</span>
+        </button>
+      <div class="modal__decor ct__decor-border">
+        <svg width="360" height="194" viewBox="0 0 360 194" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <g opacity="0.75">
+          <path d="M6 6.99999L150 7L156 1" stroke="var(--c10two)"></path>
+          <path d="M12 1L12 13L0 13" stroke="var(--c10two)"></path>
+          <path d="M6.00001 7L6 151L0 157" stroke="var(--c10two)"></path>
+          <path d="M2.62268e-06 163L6 157L6 169L1.57361e-06 175M1.04907e-06 181L6 175L6 181L5.24537e-07 187M0 193L6 187" stroke="var(--c10two)"></path>
+          </g>
+          <g opacity="0.75">
+          <path d="M354 7.00001L210 7L204 1" stroke="var(--c10two)"></path>
+          <path d="M348 1L348 13L360 13" stroke="var(--c10two)"></path>
+          <path d="M354 7L354 151L360 157" stroke="var(--c10two)"></path>
+          <path d="M360 163L354 157L354 169L360 175M360 181L354 175L354 181L360 187M360 193L354 187" stroke="var(--c10two)"></path>
+          </g>
+        </svg>
+      </div>
+      </div>
+    </div>
+  </div>
+
   <script>
 
     class lSlider {
@@ -266,6 +321,42 @@
       btnRightSelector: '.popupSlider__right',
       btnCloseSelector: '.popupSlider__close',
     })
+
+    class DomainInfoModal {
+      constructor() {
+        this.modal = document.getElementById('domenInfoModal');
+        this.okBtn = this.modal.querySelector('.modal__ok');
+        this.cancelBtn = this.modal.querySelector('.modal__cancel');
+        this.domain = location.hostname;
+
+        this.isModalDisabled = this.getFromIsModalDisabledLS() ?? '';
+
+        if (this.domain === 'test.wildpolitics.online' && this.isModalDisabled !== 'disabled') {
+          this.modal.classList.add('active');
+        } else {
+          this.modal.classList.remove('active');
+        }
+
+        this.okBtn.addEventListener('click', () => {
+          this.modal.classList.remove('active');
+        })
+
+        this.cancelBtn.addEventListener('click', () => {
+          this.setFromIsModalDisabledLS();
+          this.modal.classList.remove('active');
+        })
+      }
+
+      getFromIsModalDisabledLS() {
+        return localStorage.getItem('isModalDisabled');
+      }
+
+      setFromIsModalDisabledLS() {
+        localStorage.setItem('isModalDisabled', 'disabled');
+      }
+    }
+
+    const domainInfoModal = new DomainInfoModal();
 
   </script>
 
