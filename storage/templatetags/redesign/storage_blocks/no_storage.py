@@ -31,8 +31,8 @@ def no_storage(player):
 
     # узнаем, есть ли на Складах достаточно материалов для создания нового Склада, а также считаем доставку
     for storage in storages:
-        aluminium = Good.objects.get(name='Алюминий')
-        steel = Good.objects.get(name='Сталь')
+        aluminium = Good.objects.get(name_ru='Алюминий')
+        steel = Good.objects.get(name_ru='Сталь')
 
         for material in [aluminium, steel]:
             # проверяем наличие Запаса
