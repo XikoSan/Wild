@@ -32,7 +32,6 @@ from state.models.parliament.deputy_mandate import DeputyMandate
 from state.models.parliament.bulletin import Bulletin
 from state.models.parliament.parliament_voting import ParliamentVoting
 from gov.models.presidential_voting import PresidentialVoting
-from party.primaries.primaries_leader import PrimariesLeader
 from gov.models.vote import Vote
 from bill.models.bill import Bill
 from storage.models.good_lock import GoodLock
@@ -707,13 +706,11 @@ class GroundWar(War):
                 if PresidentialVoting.objects.filter(running=True, president=President.objects.get(state=self.def_region.state)).exists():
                     # выборы
                     voting = PresidentialVoting.objects.get(running=True, president=President.objects.get(state=self.def_region.state))
-                    # находим лидеров праймериз из этого рега
-                    prim_leaders = PrimariesLeader.objects.filter(party__in=Party.objects.filter(region=self.def_region))
-                    # todo: а что если лидер праймериз сменится во время выборов, перед окончанием войны? сделать кандидатов отдельной моделью, в которой будет хранится партия, от которой они
-                    for prim_leader in prim_leaders:
-                        voting.candidates.remove(prim_leader.leader)
-                        # удаляем голоса за них
-                        Vote.objects.filter(voting=voting, challenger=prim_leader.leader).delete()
+
+                    for candidate in voting.candidates.all():
+                        # если партия кандидата из нашего региона - удаляем его
+                        if candidate.party and candidate.party.region == self.def_region:
+                            voting.candidates.remove(candidate)
 
                     voting.save()
 
