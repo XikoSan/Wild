@@ -18,6 +18,9 @@ from state.models.parliament.parliament_party import ParliamentParty
 from state.models.treasury import Treasury
 from war.models.wars.war import War
 from gov.models.residency_request import ResidencyRequest
+from gov.models.president import President
+from gov.models.presidential_voting import PresidentialVoting
+
 
 # Объявить независимость региона
 class Independence(Bill):
@@ -121,6 +124,7 @@ class Independence(Bill):
                     # если есть активные войны этого типа
                     if type.objects.filter(running=True, deleted=False, agr_region=self.region).exists():
                         war_has = True
+                        b_type = 'rj'
                         break
 
                 if not war_has:
@@ -148,6 +152,26 @@ class Independence(Bill):
 
                     # теперь можно чистить депутатов
                     DeputyMandate.objects.filter(party__pk__in=reg_parties).update(player=None)
+
+                    # если есть президент (как должность)
+                    if President.objects.filter(state=self.parliament.state).exists():
+                        # през
+                        pres = President.objects.get(state=self.parliament.state)
+                        # если идут его выборы
+                        if PresidentialVoting.objects.filter(running=True,
+                                                             president=pres
+                                                             ).exists():
+                            # выборы
+                            voting = PresidentialVoting.objects.get(running=True,
+                                                                    president=pres
+                                                                    )
+
+                            for candidate in voting.candidates.all():
+                                # если партия кандидата из нашего региона - удаляем его
+                                if candidate.party and candidate.party.region == self.region:
+                                    voting.candidates.remove(candidate)
+                            voting.save()
+
 
                     # сбрасывать налоги на ноль
                     Region.objects.filter(pk=self.region.pk).update(
