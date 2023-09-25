@@ -15,7 +15,7 @@ from django_celery_beat.models import IntervalSchedule, PeriodicTask, CrontabSch
 from player.views.get_subclasses import get_subclasses
 from region.building.building import Building
 from region.building.hospital import Hospital
-from region.region import Region
+from region.models.region import Region
 from state.models.treasury import Treasury
 from state.models.treasury_lock import TreasuryLock
 from storage.models.storage import Storage
@@ -66,6 +66,7 @@ class GroundWar(War):
 
     # Свойства класса
     class Meta:
+        abstract = True
         verbose_name = "Наземная война"
         verbose_name_plural = "Наземные войны"
 

@@ -78,7 +78,7 @@
     <div class="earn__card ct__card">
         <h3>{% trans 'Нефть' context "mining" %}</h3>
         <span>{% trans 'Запасы' context "mining" %}: {{ player.region.oil_has }} / {{ player.region.oil_cap }}</span>
-        <p>{% trans 'Марка нефти' context "mining" %}: {{ player.region.get_oil_type_display }}</p>
+        <p>{% trans 'Марка нефти' context "mining" %}: {{ oil_mark }}</p>
 			<form class="mining_form" role="form">
                 {% csrf_token %}
                 <input type="hidden" name="resource" value="oil">

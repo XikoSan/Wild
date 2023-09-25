@@ -4,6 +4,7 @@ from django.db import models
 from player.actual_manager import ActualManager
 from storage.models.storage import Storage
 from state.models.treasury import Treasury
+from storage.models.good import Good
 
 
 # Блокировки ресурсов в Казне
@@ -16,15 +17,10 @@ class TreasuryLock(models.Model):
                                       verbose_name='Казна', related_name="lock_treasury")
 
     # блокируемый товар
-    choices_list = Storage.get_choises()
-    choices_list.insert(0, ('cash', 'Наличные'))
+    lock_good = models.ForeignKey(Good, blank=True, null=True, on_delete=models.CASCADE, verbose_name='Товар')
 
-    lock_good = models.CharField(
-        max_length=10,
-        choices=choices_list,
-        default=None,
-        verbose_name='Товар',
-    )
+    # признак блокированных денег вместо товара
+    cash = models.BooleanField(default=False, verbose_name='Наличные')
 
     lock_count = models.BigIntegerField(default=0, verbose_name='Количество')
 

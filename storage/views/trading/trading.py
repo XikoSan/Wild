@@ -8,6 +8,8 @@ from player.player import Player
 from storage.models.storage import Storage
 from storage.models.transport import Transport
 from storage.models.trade_offer import TradeOffer
+from storage.models.good import Good
+from storage.models.stock import Stock
 
 
 @login_required(login_url='/')
@@ -21,11 +23,42 @@ def trading(request):
     if Storage.actual.filter(owner=player).exists():
         storages = Storage.actual.filter(owner=player)
 
+    goods_by_types = {}
+    goods = Good.objects.all()
+
+    for good in goods:
+        if good.type in goods_by_types:
+            goods_by_types[good.type].append(good)
+        else:
+            goods_by_types[good.type] = [good]
+
+    stocks = []
+    if storages:
+        stocks = Stock.objects.filter(storage__in=storages)
+
+    total_stocks = {}
+    for storage in storages:
+        total_stocks[storage.pk] = {}
+        for stock in stocks.filter(storage=storage):
+            total_stocks[storage.pk][stock.good.pk] = stock.stock
+
+    types_texts = {}
+    for type in Good.typeChoices:
+        types_texts[type[0]] = type[1]
+
     return render(request, 'storage/redesign/trading/trading.html', {'player': player,
                                                                      'page_name': pgettext('trading', 'Торговля'),
                                                                      'storage_cl': Storage,
+
+                                                                     'goods': goods,
+                                                                     'goods_by_types': goods_by_types,
+                                                                     'types_texts': types_texts,
+
                                                                      'transport': Transport,
+                                                                     # все склады
                                                                      'storages': storages,
+                                                                     # все запасы
+                                                                     'total_stocks': total_stocks,
 
                                                                      'total_offers': Storage.actual.filter(
                                                                          owner=player).count() * 5,

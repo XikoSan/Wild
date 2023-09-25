@@ -3,7 +3,7 @@ from django.shortcuts import redirect, render
 
 from player.views.lists.get_thing_page import get_thing_page
 from django.utils.translation import ugettext as _
-from region.region import Region
+from region.models.region import Region
 from player.player import Player
 from player.decorators.player import check_player
 from party.party import Party

@@ -9,6 +9,7 @@ from storage.models.auction.auction import BuyAuction
 from storage.models.auction.auction_bet import AuctionBet
 from storage.models.auction.auction_lot import AuctionLot
 from storage.models.storage import Storage
+from storage.models.stock import Stock
 
 
 @login_required(login_url='/')
@@ -28,9 +29,16 @@ def auction_info(request, pk):
 
     # Его склады
     # собираем из Склада все нужные поля + ресурс
-    fields_list = ['pk', 'region__region_name', auction.good]
+    fields_list = ['pk']
 
-    storages = Storage.actual.filter(owner=player).values(*fields_list)
+    storages = Storage.actual.only('pk').filter(owner=player).values(*fields_list)
+
+    stocks = Stock.objects.filter(storage__in=storages, good=auction.good, stock__gt=0)
+
+    storages = []
+
+    for stock in stocks:
+        storages.append(stock.storage)
 
     # список лотов
     lots = list(AuctionLot.actual.filter(auction=auction))

@@ -15,7 +15,7 @@ from player.forms import ImageForm
 from region.building.hospital import Hospital
 from player.forms import NewPlayerForm
 from player.player import Player
-from region.region import Region
+from region.models.region import Region
 from storage.models.storage import Storage
 # from django.db.models import F
 from wild_politics.settings import JResponse

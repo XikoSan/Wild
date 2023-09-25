@@ -90,6 +90,7 @@ INSTALLED_APPS = [
 
     'django_cleanup',
     'fixture_magic',
+    'modeltranslation',
 
 ]
 
@@ -246,6 +247,8 @@ LANGUAGES = (
     ('az', 'Azerbaijani'),
     ('pt-br', 'Portuguese (Brazil)'),
 )
+
+MODELTRANSLATION_DEFAULT_LANGUAGE = 'ru'
 
 TIME_ZONE = 'Europe/Moscow'
 

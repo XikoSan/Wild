@@ -27,7 +27,7 @@ function fill_by_offers_dict(id){
         document.getElementById("offer_action").innerHTML = offer_sale_button;
     }
     // товар
-    document.getElementById('offer_good').innerHTML = offers_dict[id]['good'];
+    document.getElementById('offer_good').innerHTML = offers_dict[id]['good_key'];
     // владелец
     document.getElementById('offer_owner').innerHTML = offers_dict[id]['offer_own'];
     if (offers_dict[id]['owner_img'] !== null){

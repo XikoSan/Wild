@@ -2,7 +2,7 @@
 import math
 
 from django.db import models
-from region.region import Region
+from region.models.region import Region
 
 
 class MapShape(models.Model):

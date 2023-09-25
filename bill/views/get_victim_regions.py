@@ -1,7 +1,7 @@
 from django.db.models import Q
 
-from region.neighbours import Neighbours
-from region.region import Region
+from region.models.neighbours import Neighbours
+from region.models.region import Region
 
 
 # получить список целевых регионов

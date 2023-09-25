@@ -5,7 +5,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.utils import timezone
 from player.actual_manager import ActualManager
-from region.region import Region
+from region.models.region import Region
 
 # добытая за указанные сутки нефть
 class DailyOil(models.Model):

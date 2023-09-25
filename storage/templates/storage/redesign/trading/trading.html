@@ -146,8 +146,8 @@
       <label class="search-modal__label ct__wide-modal-label-select">
         <select name="trade_groups" id="trade_groups">
             <option id="group_default" value='default' disabled selected>{% trans 'выберите категорию' context "trading" %}</option>
-            {% for group in storage_cl|get_attr:'types' %}
-            <option value='{{ group }}'>{{ storage_cl|get_attr:'types'|dict_key:group }}</option>
+            {% for group in goods_by_types|get_key_list %}
+            <option value='{{ group }}'>{{ types_texts|dict_key:group }}</option>
             {% endfor %}
             <option value='premium'>Wild Pass</option>
         </select>
@@ -160,12 +160,10 @@
       <label class="search-modal__label ct__wide-modal-label-select">
         <select id="trade_goods">
           <option id="good_default" value='default' disabled selected>{% trans 'выберите товар' context "trading" %}</option>
-            {% for group in storage_cl|get_attr:'types' %}
-                {% for good in storage_cl|get_attr:group %}
-            <option id="good_{{ good }}" value='{{ good }}' style="display: none">{{ storage_cl|get_attr:group|dict_key:good }}</option>
-                {% endfor %}
+            {% for good in goods %}
+            <option id="good_{% localize off %}{{ good.pk }}{% endlocalize %}" value='{% localize off %}{{ good.pk }}{% endlocalize %}' style="display: none">{{ good.name }}</option>
             {% endfor %}
-            <option id="good_wild_pass" value='wild_pass' style="display: none">Wild Pass</option>
+            <option id="good_-1" value='-1' style="display: none">Wild Pass</option>
         </select>
         <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
@@ -248,7 +246,7 @@
       <label class="search-modal__label ct__wide-modal-label-select">
         <select id="group">
             <option id="create_group_default" value='default' disabled selected>{% trans 'выберите категорию' context "trading" %}</option>
-            {% for group in storage_cl|get_attr:'types' %}
+            {% for group in goods_by_types|get_key_list %}
             <option value='{{ group }}'>{{ storage_cl|get_attr:'types'|dict_key:group }}</option>
             {% endfor %}
             <option value='premium'>Wild Pass</option>
@@ -262,12 +260,10 @@
       <label class="search-modal__label ct__wide-modal-label-select">
         <select disabled name="good" id="good">
           <option id="create_good_default" value='default' disabled selected>{% trans 'выберите товар' context "trading" %}</option>
-            {% for group in storage_cl|get_attr:'types' %}
-                {% for good in storage_cl|get_attr:group %}
-            <option id="create_good_{{ good }}" value='{{ good }}' style="display: none">{{ storage_cl|get_attr:group|dict_key:good }}</option>
-                {% endfor %}
+            {% for good in goods %}
+            <option id="create_good_{% localize off %}{{ good.pk }}{% endlocalize %}" value='{% localize off %}{{ good.pk }}{% endlocalize %}' style="display: none">{{ good.name }}</option>
             {% endfor %}
-            <option id="create_good_wild_pass" value='wild_pass' style="display: none">Wild Pass</option>
+            <option id="create_good_-1" value='-1' style="display: none">Wild Pass</option>
         </select>
         <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
@@ -276,7 +272,7 @@
         <!--количество-->
         <div class="search-modal__withInput search-modal__withInput--margin">
             <span class="search-modal__withInput-text">количество</span>
-            <input id="count" name="count" type="number" class="search-modal__withInput-input" value="0">
+            <input id="count" name="count" type="number" class="search-modal__withInput-input" min="0" value="0">
             <div id="stocks" style="display: inline-block">
                 <span class="search-modal__withInput-text">/</span>
                 <span class="search-modal__withInput-text" id="stocks_value">?</span>
@@ -431,38 +427,31 @@
     var offer_cancel_yes = '{% trans 'Продолжить' context "trading" %}';
     var offer_cancel_cancel = '{% trans 'Отмена' context "trading" %}';
 
-
     var offers_dict = {};
 
     var groups_n_goods = {};
+    var vol_map = new Map();
 
-    {% for group in storage_cl|get_attr:'types' %}
+    {% for group in goods_by_types|get_key_list %}
         groups_n_goods['{{ group }}'] = {};
-        {% for good in storage_cl|get_attr:group %}
-            groups_n_goods['{{ group }}']['{{ good }}'] = '{{ storage_cl|get_attr:group|dict_key:good }}';
+        {% for good in goods_by_types|dict_key:group %}
+            groups_n_goods['{{ group }}'][{% localize off %}{{ good.pk }}{% endlocalize %}] = '{{ good.name }}';
+            vol_map.set('{{ good }}', '{{ good.volume }}');
         {% endfor %}
     {% endfor %}
             groups_n_goods['premium'] = {};
-            groups_n_goods['premium']['wild_pass'] = 'Wild Pass';
-
-    var vol_map = new Map();
-    {% for type in storage_cl|get_attr:'types' %}
-        {% for good in transport|get_attr:type %}
-            vol_map.set('{{ good }}', '{{ transport|get_attr:type|dict_key:good }}');
-        {% endfor %}
-    {% endfor %}
-            vol_map.set('wild_pass', '0');
+            groups_n_goods['premium'][-1] = 'Wild Pass';
+            vol_map.set('Wild Pass', '0');
 
     var total_stocks = {};
-    {% for storage in storages %}
-        total_stocks["{% localize off %}{{ storage|get_attr:'pk' }}{% endlocalize %}"] = {};
-        {% for group in storage_cl|get_attr:'types' %}
-            {% for good in storage_cl|get_attr:group %}
-                total_stocks["{% localize off %}{{ storage|get_attr:'pk' }}{% endlocalize %}"]['{{ good }}'] = {% localize off %}{{ storage|get_attr:good }}{% endlocalize %};
-            {% endfor %}
+    {% for storage in total_stocks|get_key_list %}
+        total_stocks[{% localize off %}{{ storage }}{% endlocalize %}] = {};
+        {% for stock in total_stocks|dict_key:storage|get_key_list %}
+            total_stocks[{% localize off %}{{ storage }}{% endlocalize %}][{{ stock }}] = {% localize off %}{{ total_stocks|dict_key:storage|dict_key:stock }}{% endlocalize %};
         {% endfor %}
-                total_stocks["{% localize off %}{{ storage|get_attr:'pk' }}{% endlocalize %}"]['wild_pass'] = {% localize off %}{{ player|get_attr:'cards_count' }}{% endlocalize %};
+            total_stocks[{% localize off %}{{ storage }}{% endlocalize %}][-1] = {% localize off %}{{ player|get_attr:'cards_count' }}{% endlocalize %};
     {% endfor %}
+
 </script>
 <script src='{% static "js/redesign/trading.js" %}?{{ csrf_token }}'></script>
 <script src='{% static "js/redesign/new_offer.js" %}?{{ csrf_token }}'></script>

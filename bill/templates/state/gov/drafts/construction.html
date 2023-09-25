@@ -1,4 +1,5 @@
 {% load dict_key %}
+{% load has_key %}
 {% load get_attr %}
 {% load get_sum %}
 {% load get_key_list %}
@@ -40,17 +41,6 @@
             $('#construction_schema').show();
         }
 
-        var goods_names = {};
-        {% with crude_list=data|dict_key:'crude_list' %}
-            {% with storage_cl=data|dict_key:'storage_cl' %}
-                {% for crude in crude_list %}
-                    {% for good in storage_cl|get_attr:crude %}
-                        goods_names['{{ good }}'] = '{{ storage_cl|get_attr:crude|dict_key:good }}';
-                    {% endfor %}
-                {% endfor %}
-            {% endwith %}
-        {% endwith %}
-
         var region_levels = {};
         {% with regions=data|dict_key:'regions' %}
             {% for region in regions %}
@@ -65,13 +55,27 @@
             {% endfor %}
         {% endwith %}
 
+        var goods_names = {};
+        {% with good_names=data|dict_key:'good_names' %}
+            {% for good_key in good_names|get_key_list %}
+                {% if good_key == 'Наличные' %}
+                    goods_names['{% localize off %}{{ good_key }}{% endlocalize %}'] = {% trans 'Наличные' context "goods" %};
+                {% else %}
+                    goods_names['{% localize off %}{{ good_key }}{% endlocalize %}'] = '{{ good_names|dict_key:good_key }}';
+                {% endif %}
+            {% endfor %}
+        {% endwith %}
+
         var building_schemas = {};
+
         {% with schemas=data|dict_key:'schemas' %}
             {% for building in schemas|get_key_list %}
         building_schemas["{{ building }}"] = {};
                 {% with resources=schemas|dict_key:building|dict_key:'resources' %}
                     {% for resource in resources|get_key_list %}
-        building_schemas["{{ building }}"]["{{ resource }}"] = {% localize off %}{{ resources|dict_key:resource }}{% endlocalize %};
+
+        building_schemas["{{ building }}"]["{% localize off %}{{ resource }}{% endlocalize %}"] = {% localize off %}{{ resources|dict_key:resource }}{% endlocalize %};
+
                     {% endfor %}
                 {% endwith %}
             {% endfor %}

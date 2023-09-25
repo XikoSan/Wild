@@ -1,6 +1,7 @@
 # coding=utf-8
 import datetime
 import json
+import redis
 from decimal import Decimal
 from django.apps import apps
 from django.db import models
@@ -13,15 +14,16 @@ from django_celery_beat.models import IntervalSchedule, PeriodicTask, CrontabSch
 from player.logs.gold_log import GoldLog
 from player.logs.log import Log
 from player.player import Player
-from state.models.state import State
-from storage.models.storage import Storage
-from storage.views.storage.locks.get_storage import get_storage
 from player.player_settings import PlayerSettings
+from region.models.fossils import Fossils
 from skill.models.excavation import Excavation
-import redis
+from state.models.state import State
+from storage.models.stock import Stock, Good
+from storage.models.storage import Storage
+from storage.views.storage.locks.get_storage import get_stocks
 
 
-# запись об изучаемом навыке
+# автоматическая добыча сырья
 class AutoMining(Log):
     # ресурс
     activityChoices = (
@@ -63,30 +65,41 @@ class AutoMining(Log):
             steps += ', ' + dec + min
 
         if CrontabSchedule.objects.filter(
-                                                minute=steps,
-                                                hour='*',
-                                                day_of_week='*',
-                                                day_of_month='*',
-                                                month_of_year='*',
-                                           ).exists():
+                minute=steps,
+                hour='*',
+                day_of_week='*',
+                day_of_month='*',
+                month_of_year='*',
+        ).exists():
 
             schedule = CrontabSchedule.objects.filter(
-                                                        minute=steps,
-                                                        hour='*',
-                                                        day_of_week='*',
-                                                        day_of_month='*',
-                                                        month_of_year='*',
-                                                    ).first()
+                minute=steps,
+                hour='*',
+                day_of_week='*',
+                day_of_month='*',
+                month_of_year='*',
+            ).first()
 
         else:
 
             schedule = CrontabSchedule.objects.create(
-                                                        minute=steps,
-                                                        hour='*',
-                                                        day_of_week='*',
-                                                        day_of_month='*',
-                                                        month_of_year='*',
-                                                       )
+                minute=steps,
+                hour='*',
+                day_of_week='*',
+                day_of_month='*',
+                month_of_year='*',
+            )
+
+        # удалить дубли периодических задач
+        for choice in self.activityChoices:
+            if PeriodicTask.objects.filter(
+                    name=self.player.nickname + ' собирает ' + choice[1]
+            ).exists():
+
+                PeriodicTask.objects.filter(
+                    name=self.player.nickname + ' собирает ' + choice[1]
+                ).delete()
+
 
         # удалить дубли периодических задач
         for choice in self.activityChoices:
@@ -170,6 +183,7 @@ class AutoMining(Log):
             storage = Storage.actual.get(owner=player, region=player.region)
 
         mined = False
+        mined_stocks_u = []
 
         if self.resource == 'gold':
             # если запасов ресурса недостаточно
@@ -191,17 +205,18 @@ class AutoMining(Log):
                 return
 
             # получаем запасы склада, с учетом блокировок
-            goods = [player.region.oil_type]
-            lock_storage = get_storage(storage, goods)
+            goods = [player.region.oil_mark.name_ru]
+            ret_stocks, ret_st_stocks = get_stocks(storage, goods)
             # облагаем налогом добытую нефть
             total_oil = (count / 10) * 20
-            taxed_oil = State.get_taxes(player.region, total_oil, 'oil', player.region.oil_type)
+            taxed_oil = State.get_taxes(player.region, total_oil, 'oil', player.region.oil_mark)
 
             # сохраняем информацию о том, сколько добыто за день
             r = redis.StrictRedis(host='redis', port=6379, db=0)
             # общее
             if r.exists("daily_" + player.region.oil_type):
-                r.set("daily_" + player.region.oil_type, int(float(r.get("daily_" + player.region.oil_type))) + int(taxed_oil))
+                r.set("daily_" + player.region.oil_type,
+                      int(float(r.get("daily_" + player.region.oil_type))) + int(taxed_oil))
 
             else:
                 r.set("daily_" + player.region.oil_type, int(taxed_oil))
@@ -213,21 +228,28 @@ class AutoMining(Log):
             else:
                 r.set("daily_" + str(player.region.pk) + '_' + player.region.oil_type, int(taxed_oil))
 
+            # узнаем размерность товара и сколько в этой размерности занято
+            sizetype_stocks = ret_st_stocks[player.region.oil_mark.size]
             # проверяем есть ли для него место на складе, с учетом блокировок
-            if lock_storage.capacity_check(player.region.oil_type, taxed_oil):
+            if storage.capacity_check(player.region.oil_mark.size, taxed_oil, sizetype_stocks):
                 # начислить нефть
                 mined = True
-                setattr(storage, player.region.oil_type,
-                        getattr(storage, player.region.oil_type) + taxed_oil)
+                stock, created = Stock.objects.get_or_create(storage=storage,
+                                                             good=player.region.oil_mark
+                                                             )
+                stock.stock += taxed_oil
+                mined_stocks_u.append(stock)
+
             else:
                 # если места нет или его меньше чем пак ресурсов, забиваем под крышку
                 mined = True
                 # устанавливаем новое значение как остаток до полного склада с учетом блокировок + старое значение ресурса
-                setattr(storage, player.region.oil_type,
-                        (getattr(storage, player.region.oil_type + '_cap') - getattr(lock_storage,
-                                                                                     player.region.oil_type)) +
-                        getattr(storage, player.region.oil_type)
-                        )
+                stock, created = Stock.objects.get_or_create(storage=storage,
+                                                             good=player.region.oil_mark
+                                                             )
+                stock.stock += (getattr(storage, player.region.oil_mark.size + '_cap') - sizetype_stocks)
+
+                mined_stocks_u.append(stock)
 
             player.region.oil_has -= Decimal((count / 10) * 0.01)
 
@@ -237,49 +259,80 @@ class AutoMining(Log):
                 # ждем следующего цикла
                 return
 
-            goods = []
-            for key in storage.minerals.keys():
-                goods.append(key)
-            lock_storage = get_storage(storage, goods)
+            fossils_dict = {
+                'Уголь': 'coal',
+                'Железо': 'iron',
+                'Бокситы': 'bauxite',
+            }
 
-            for mineral in storage.minerals.keys():
+            goods = []
+            # запасы руд региона
+            fossils = Fossils.objects.filter(region=player.region)
+
+            for fossil in fossils:
+                goods.append(fossil.good.name_ru)
+
+            ret_stocks, ret_st_stocks = get_stocks(storage, goods)
+
+            for mineral in fossils:
                 # облагаем налогом добытую руду
-                total_ore = (count / 50) * getattr(player.region, mineral + '_proc')
+                total_ore = (count / 50) * mineral.percent
                 # экскавация
                 if Excavation.objects.filter(player=player, level__gt=0).exists():
                     total_ore = Excavation.objects.get(player=player).apply({'sum': total_ore})
 
-                taxed_ore = State.get_taxes(player.region, total_ore, 'ore', mineral)
+                taxed_ore = State.get_taxes(player.region, total_ore, 'ore', mineral.good)
 
                 # сохраняем информацию о том, сколько добыто за день
                 r = redis.StrictRedis(host='redis', port=6379, db=0)
-                if r.exists("daily_" + mineral):
-                    r.set("daily_" + mineral,
-                          int(float(r.get("daily_" + mineral))) + int(taxed_ore))
+                if r.exists("daily_" + fossils_dict[mineral.good.name_ru]):
+                    r.set("daily_" + fossils_dict[mineral.good.name_ru],
+                          int(float(r.get("daily_" + fossils_dict[mineral.good.name_ru]))) + int(taxed_ore))
                 else:
-                    r.set("daily_" + mineral, int(taxed_ore))
+                    r.set("daily_" + fossils_dict[mineral.good.name_ru], int(taxed_ore))
                 # регион
-                if r.exists("daily_" + str(player.region.pk) + '_' + mineral):
+                if r.exists("daily_" + str(player.region.pk) + '_' + fossils_dict[mineral.good.name_ru]):
 
-                    r.set("daily_" + str(player.region.pk) + '_' + mineral,
-                          int(float(r.get("daily_" + str(player.region.pk) + '_' + mineral))) + int(taxed_ore))
+                    r.set("daily_" + str(player.region.pk) + '_' + fossils_dict[mineral.good.name_ru],
+                          int(float(r.get(
+                              "daily_" + str(player.region.pk) + '_' + fossils_dict[mineral.good.name_ru]))) + int(
+                              taxed_ore))
                 else:
-                    r.set("daily_" + str(player.region.pk) + '_' + mineral, int(taxed_ore))
+                    r.set("daily_" + str(player.region.pk) + '_' + fossils_dict[mineral.good.name_ru], int(taxed_ore))
 
                 # проверяем есть ли место на складе
-                if lock_storage.capacity_check(mineral, taxed_ore):
+                sizetype_stocks = ret_st_stocks[mineral.good.size]
+                if storage.capacity_check(mineral.good.size, taxed_ore, sizetype_stocks):
                     # начислить минерал
                     mined = True
-                    setattr(storage, mineral,
-                            getattr(storage, mineral) + taxed_ore)
+                    stock, created = Stock.objects.get_or_create(storage=storage,
+                                                                 good=mineral.good
+                                                                 )
+                    stock.stock += taxed_ore
+                    mined_stocks_u.append(stock)
+
+                    # актуализируем словарь по типоразмерам
+                    if sizetype_stocks < getattr(storage, mineral.good.size + '_cap'):
+                        ret_st_stocks[mineral.good.size] += taxed_ore
+                    else:
+                        ret_st_stocks[mineral.good.size] = getattr(storage, mineral.good.size + '_cap')
+
                 else:
                     # если места нет или его меньше чем пак ресурсов, забиваем под крышку
                     if taxed_ore > 0:
                         mined = True
                         # устанавливаем новое значение как остаток до полного склада с учетом блокировок + старое значение ресурса
-                        setattr(storage, mineral,
-                                getattr(storage, mineral + '_cap') - getattr(lock_storage, mineral) + getattr(storage,
-                                                                                                              mineral))
+                        stock, created = Stock.objects.get_or_create(storage=storage,
+                                                                     good=mineral.good
+                                                                     )
+                        stock.stock += (getattr(storage, mineral.good.size + '_cap') - sizetype_stocks)
+
+                        mined_stocks_u.append(stock)
+                        # актуализируем словарь по типоразмерам
+                        if sizetype_stocks < getattr(storage, mineral.good.size + '_cap'):
+                            ret_st_stocks[mineral.good.size] += taxed_ore
+                        else:
+                            ret_st_stocks[mineral.good.size] = getattr(storage, mineral.good.size + '_cap')
 
             player.region.ore_has -= Decimal((count / 10) * 0.01)
 
@@ -287,8 +340,15 @@ class AutoMining(Log):
             return
 
         if mined:
+            # обновляем существующие запасы
+            if mined_stocks_u:
+                Stock.objects.bulk_update(
+                    mined_stocks_u,
+                    fields=['stock', ],
+                    batch_size=len(mined_stocks_u)
+                )
+
             if self.resource != 'gold':
-                storage.save()
                 player.energy_cons(count)
 
             else:

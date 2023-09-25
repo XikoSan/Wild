@@ -12,7 +12,7 @@ from django.utils.translation import ugettext as _
 from player.decorators.player import check_player
 from player.player import Player
 from player.views.lists.get_thing_page import get_thing_page
-from region.region import Region
+from region.models.region import Region
 from wild_politics.settings import TIME_ZONE
 
 

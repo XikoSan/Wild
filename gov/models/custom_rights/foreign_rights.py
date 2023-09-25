@@ -4,7 +4,7 @@ import redis
 from gov.models.custom_rights.custom_right import CustomRight
 from gov.models.residency_request import ResidencyRequest
 from player.player import Player
-from region.region import Region
+from region.models.region import Region
 
 
 # кастомное право министра иностранных дел

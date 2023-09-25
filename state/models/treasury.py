@@ -5,7 +5,7 @@ from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy, pgettext_lazy
 
-from region.region import Region
+from region.models.region import Region
 from state.models.state import State
 from django.db import transaction
 

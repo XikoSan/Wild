@@ -1,23 +1,26 @@
+import math
+import time
 from django.contrib.auth.decorators import login_required
+from django.contrib.humanize.templatetags.humanize import number_format
 from django.db import transaction
 from django.http import JsonResponse
 from django.utils import timezone
-from player.logs.print_log import log
+from django.utils.translation import pgettext
+
 from player.decorators.player import check_player
+from player.logs.cash_log import CashLog
+from player.logs.print_log import log
 from player.player import Player
 from region.views.distance_counting import distance_counting
 from storage.models.cash_lock import CashLock
+from storage.models.good import Good
 from storage.models.good_lock import GoodLock
+from storage.models.stock import Stock
 from storage.models.storage import Storage
 from storage.models.trade_offer import TradeOffer
-import time
-import math
+from storage.models.trading_log import TradingLog
 from storage.views.storage.get_transfer_price import get_transfer_price
 from storage.views.storage.locks.get_storage import get_storage
-from django.contrib.humanize.templatetags.humanize import number_format
-from storage.models.trading_log import TradingLog
-from player.logs.cash_log import CashLog
-from django.utils.translation import pgettext
 
 
 @login_required(login_url='/')
@@ -90,7 +93,7 @@ def cancel_offer(request):
             return JsonResponse(data)
 
         if offer.type == 'sell':
-            if offer.good == 'wild_pass':
+            if offer.wild_pass:
                 setattr(player, 'cards_count', getattr(player, 'cards_count') + offer.count)
                 player.save()
 
@@ -107,8 +110,21 @@ def cancel_offer(request):
                     }
                     return JsonResponse(data)
 
-                setattr(storage, offer.good, getattr(storage, offer.good) + offer_good_lock.lock_count)
-                storage.save()
+                # setattr(storage, offer.good, getattr(storage, offer.good) + offer_good_lock.lock_count)
+                # storage.save()
+
+                #   начисляем товар на склад оффера
+                if Stock.objects.filter(storage=storage, good=offer.offer_good).exists():
+                    stock = Stock.objects.get(storage=storage, good=offer.offer_good)
+
+                else:
+                    stock = Stock(
+                        storage=storage,
+                        good=offer.offer_good
+                    )
+
+                stock.stock += offer.count
+                stock.save()
 
                 offer_good_lock.deleted = True
                 offer_good_lock.save()

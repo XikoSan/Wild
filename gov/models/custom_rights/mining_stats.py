@@ -3,7 +3,7 @@ import redis
 
 from gov.models.custom_rights.custom_right import CustomRight
 from player.player import Player
-from region.region import Region
+from region.models.region import Region
 from storage.models.storage import Storage
 
 

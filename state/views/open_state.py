@@ -4,7 +4,7 @@ from region.building.power_plant import PowerPlant
 from party.party import Party
 from player.decorators.player import check_player
 from player.player import Player
-from region.region import Region
+from region.models.region import Region
 from state.models.capital import Capital
 from state.models.state import State
 from gov.models.president import President

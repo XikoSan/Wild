@@ -7,7 +7,7 @@ from django.dispatch import receiver
 from django.utils import timezone
 from django.utils.translation import gettext_lazy
 from state.models.parliament.deputy_mandate import DeputyMandate
-from region.region import Region
+from region.models.region import Region
 from bill.models.bill import Bill
 from state.models.treasury import Treasury
 from state.models.parliament.parliament import Parliament
@@ -209,6 +209,8 @@ class GeologicalSurveys(Bill):
 
     # Свойства класса
     class Meta:
+        # этот тип ЗП выключен
+        abstract = True
 
         verbose_name = "Геологические изыскания"
         verbose_name_plural = "Геологические изыскания"

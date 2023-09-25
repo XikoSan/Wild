@@ -20,7 +20,7 @@ from gov.models.president import President
 from gov.models.presidential_voting import PresidentialVoting
 from gov.models.vote import Vote
 from party.primaries.primaries_leader import PrimariesLeader
-from region.region import Region
+from region.models.region import Region
 
 @shared_task(name="run_bill")
 def run_bill(bill_type, bill_pk):

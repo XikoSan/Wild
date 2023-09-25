@@ -1,6 +1,6 @@
 from gov.models.custom_rights.custom_right import CustomRight
 from region.building.power_plant import PowerPlant
-from region.region import Region
+from region.models.region import Region
 from storage.models.storage import Storage
 from player.views.get_subclasses import get_subclasses
 from bill.models.construction import Construction

@@ -12,11 +12,14 @@ from bill.models.bill import Bill
 from regime.presidential import Presidential
 from regime.regime import Regime
 from regime.temporary import Temporary
-from region.region import Region
+from region.models.region import Region
 from state.models.parliament.deputy_mandate import DeputyMandate
 from state.models.parliament.parliament import Parliament
 from state.models.state import State
 from state.models.treasury import Treasury
+from state.models.treasury_stock import TreasuryStock
+from storage.models.good import Good
+from django.db.models import F
 
 
 # Изменить способ получения прописки в государстве
@@ -109,6 +112,9 @@ class ChangeResidency(Bill):
 
         treasury = Treasury.get_instance(state=state)
 
+        rifle = Good.objects.get(name='Автоматы')
+        drone = Good.objects.get(name='Дроны')
+
         if state.residency == 'issue':
 
             regions_cnt = Region.objects.filter(state=treasury.state).count()
@@ -116,7 +122,8 @@ class ChangeResidency(Bill):
             rifle_cost = ChangeResidency.rifle_price * regions_cnt
             drone_cost = ChangeResidency.drone_price * regions_cnt
 
-            if treasury.rifle >= rifle_cost and treasury.drone >= drone_cost:
+            if TreasuryStock.objects.filter(treasury=treasury, good=rifle, stock__gte=rifle_cost).exists()\
+                    and TreasuryStock.objects.filter(treasury=treasury, good=drone, stock__gte=drone_cost).exists():
 
                 schedule, created = CrontabSchedule.objects.get_or_create(
                     minute=str(timezone.now().minute),
@@ -135,8 +142,13 @@ class ChangeResidency(Bill):
                 )
                 task.save()
 
-                setattr(treasury, 'rifle', getattr(treasury, 'rifle') - (ChangeResidency.rifle_price * regions_cnt))
-                setattr(treasury, 'drone', getattr(treasury, 'drone') - (ChangeResidency.drone_price * regions_cnt))
+                TreasuryStock.objects.filter(treasury=treasury,
+                                             good=rifle,
+                                             stock__gte=rifle_cost).update(stock=F('stock') - rifle_cost)
+
+                TreasuryStock.objects.filter(treasury=treasury,
+                                             good=drone,
+                                             stock__gte=drone_cost).update(stock=F('stock') - drone_cost)
 
                 treasury.residency_id = task.id
                 treasury.save()

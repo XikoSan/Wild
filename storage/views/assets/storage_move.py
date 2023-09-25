@@ -39,6 +39,15 @@ def storage_move(request):
             }
             return JsonResponse(data)
 
+        # проверяем, что склад - один
+        if Storage.actual.filter(owner=player).count() > 1:
+            data = {
+                'header': pgettext('assets', 'Перемещение Склада'),
+                'grey_btn': pgettext('mining', 'Закрыть'),
+                'response': pgettext('assets', 'У вас более одного Склада'),
+            }
+            return JsonResponse(data)
+
         # проверяем, есть ли целевой склад среди складов игрока
         if not Storage.actual.filter(owner=player, pk=int(dest_pk)):
             data = {
@@ -49,6 +58,14 @@ def storage_move(request):
             return JsonResponse(data)
 
         storage = Storage.actual.select_for_update().get(pk=int(dest_pk))
+
+        if storage.was_moved:
+            data = {
+                'header': pgettext('assets', 'Перемещение Склада'),
+                'grey_btn': pgettext('mining', 'Закрыть'),
+                'response': pgettext('assets', 'Указанный Склад уже переносился'),
+            }
+            return JsonResponse(data)
 
         if storage.region == player.region:
             data = {

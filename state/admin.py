@@ -2,7 +2,7 @@ from re import findall
 
 from django.contrib import admin
 
-from region.region import Region
+from region.models.region import Region
 from state.models.capital import Capital
 from state.models.parliament.bulletin import Bulletin
 from state.models.parliament.deputy_mandate import DeputyMandate
@@ -12,6 +12,7 @@ from state.models.parliament.parliament_voting import ParliamentVoting
 from state.models.state import State
 from state.models.treasury import Treasury
 from state.models.treasury_lock import TreasuryLock
+from state.models.treasury_stock import TreasuryStock
 
 
 class CapitalAdmin(admin.ModelAdmin):
@@ -62,6 +63,15 @@ class TreasuryLockAdmin(admin.ModelAdmin):
     get_state_title.short_description = 'Казна'
 
 
+class TreasuryStockAdmin(admin.ModelAdmin):
+    search_fields = ['good__name', '=treasury__pk',]
+    raw_id_fields = ('treasury', 'good',)
+    list_display = ['treasury', 'stock', 'get_good', ]
+
+    def get_good(self, obj):
+        return obj.good.name
+
+
 # Register your models here.
 admin.site.register(State)
 admin.site.register(Treasury)
@@ -72,3 +82,4 @@ admin.site.register(Bulletin)
 admin.site.register(DeputyMandate, DeputyMandateAdmin)
 admin.site.register(ParliamentParty)
 admin.site.register(Capital, CapitalAdmin)
+admin.site.register(TreasuryStock, TreasuryStockAdmin)

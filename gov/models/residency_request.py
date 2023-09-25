@@ -4,7 +4,7 @@ from django.utils.translation import gettext_lazy, ugettext as _
 
 from player.actual_manager import ActualManager
 from player.player import Player
-from region.region import Region
+from region.models.region import Region
 from state.models.state import State
 
 

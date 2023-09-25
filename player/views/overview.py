@@ -20,7 +20,7 @@ from player.decorators.player import check_player
 from player.game_event.game_event import GameEvent
 from player.player import Player
 from player.views.get_subclasses import get_subclasses
-from region.region import Region
+from region.models.region import Region
 from region.views.lists.get_regions_online import get_region_online
 from state.models.parliament.parliament import Parliament
 from state.models.parliament.parliament_party import ParliamentParty
