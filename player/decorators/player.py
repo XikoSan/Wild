@@ -37,7 +37,7 @@ def check_player(func):
             r = redis.StrictRedis(host='redis', port=6379, db=0)
             r.hset('online', str(player.pk), str(timezone.now().timestamp()).split('.')[0])
             # Тут добавить УЗ суперов для обхода блокировки.
-            if True or player.pk == 1 or request.user.is_staff: #todo: вернуть проверку айпи после тестов!!!
+            if player.pk == 1 or request.user.is_staff:
                 # Возвращение выполнения основной(переданной в check_player)
                 # функции - func, с переданными ей аргументами - *args и **kwargs
                 return func(request, *args, **kwargs)
