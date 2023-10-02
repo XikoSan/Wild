@@ -3362,6 +3362,10 @@ p.overview__love-stat-timer {
   color: var(--c10one);
 }
 
+.overview__chat-more {
+  margin-bottom: 20rem !important;
+}
+
 @media (min-width: 1200px) {
   .overview {
     margin-top: 100rem;
@@ -3563,6 +3567,41 @@ p.overview__love-stat-timer {
   .overview__love-stat-close {
     display: none;
   }
+}
+
+/*! longBtnWihoutCorners */
+
+.longBtnWihoutCorners {
+  position: relative;
+  margin: 0 auto;
+  padding: 7rem 10rem;
+  width: max-content;
+  max-width: 100%;
+  background-color: var(--c10two);
+  color: var(--c60);
+  border: 0;
+  font-size: 14rem;
+}
+
+.longBtnWihoutCorners::before,
+.longBtnWihoutCorners::after {
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  display: block;
+  width: 6rem;
+  height: 6rem;
+  content: '';
+  background-color: var(--c60);
+  clip-path: polygon(0% 0%, 100% 0%, 0% 100%);
+}
+
+.longBtnWihoutCorners::after {
+  transform: scale(-1);
+  top: initial;
+  left: initial;
+  right: -1px;
+  bottom: -1px;
 }
 
 /*! war */
@@ -7325,6 +7364,12 @@ padding-right: 6rem;
   font-size: 11rem;
   line-height: 11rem;
   color: var(--c10one);
+}
+.ct__nickname-message {
+  z-index: 3;
+  position: absolute;
+  right: 11rem;
+  top: -3rem;
 }
 
 /*! ----- ct__page-title ----- */
