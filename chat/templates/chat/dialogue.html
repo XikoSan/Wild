@@ -178,6 +178,26 @@
 		  document.getElementById('chat-log-{% localize off %}{{ chat_id }}{% endlocalize %}').scrollTop = document.getElementById('chat-log-{% localize off %}{{ chat_id }}{% endlocalize %}').scrollHeight;
 	  }
 	document.addEventListener("DOMContentLoaded", ready);
+
+	  const overviewStickers = document.getElementById('overview__stickers');
+	  // стикеры
+	  const overviewStickersCloseOverlay = document.getElementById('overview__stickers-close-overlay');
+	  function showHideStickers() {
+		overviewStickers.classList.toggle('active');
+	  }
+	  overviewStickersCloseOverlay.addEventListener('click', () => {
+		overviewStickers.classList.remove('active');
+	  })
+	  const overviewStickersTabs = document.querySelectorAll('.overview__stickers-tab');
+	  const overviewStickersContainers = document.querySelectorAll('.overview__stickers-container');
+	  overviewStickersTabs.forEach((tab, index) => {
+		tab.addEventListener('click', () => {
+		  overviewStickersTabs.forEach((item) => item.classList.remove('active'));
+		  overviewStickersTabs[index].classList.add('active');
+		  overviewStickersContainers.forEach((container) => container.classList.remove('active'));
+		  overviewStickersContainers[index].classList.add('active');
+		})
+	  })
     </script>
     <script src='{% static "js/dialogue.js" %}?{{ csrf_token }}'></script>
 </section>
