@@ -38,10 +38,6 @@ def _get_groups(user):
     return list(user.groups.all().values_list('name', flat=True))
 
 
-def _set_player_banned(pk):
-    Player.objects.filter(pk=pk).update(chat_ban=True)
-
-
 # проверить, есть ли игрок в этом чате
 def _check_has_chat(pk, chat_pk):
     if ChatMembers.objects.filter(chat__pk=chat_pk, player__pk=pk).exists():
@@ -78,15 +74,37 @@ def _get_awa(image):
     return image.url
 
 
+def _mark_as_read(chat_id, counter):
+
+    r = redis.StrictRedis(host='redis', port=6379, db=0)
+    # получаем сообщение в его текущем состоянии
+    message = r.zrangebyscore(f'dialogue_{chat_id}', counter, counter)[0]
+    # удаляем из ОЗУ
+    r.zremrangebyscore(f'dialogue_{chat_id}', counter, counter)
+
+    # преобразуем в dict
+    message = json.loads(message)
+    # меняем признак "прочитано"
+    message['read'] = True
+
+    # собираем в json заново
+    o_json = json.dumps(message, indent=2, default=str)
+    # вставляем на место удалённого
+    r.zadd(f'dialogue_{chat_id}', {o_json: counter})
+
+
 def _append_message(chat_id, author, text):
-    message = {'author': author.pk,
+
+    message = {
+                'author': author.pk,
                'content': text,
-               'dtime': str(datetime.now().timestamp()).split('.')[0]
+               'dtime': str(datetime.now().timestamp()).split('.')[0],
+                'read': False
                }
 
     redis_last_message_index = 0
 
-    logger = logging.getLogger(__name__)
+    # logger = logging.getLogger(__name__)
 
     # try:
 
@@ -94,13 +112,13 @@ def _append_message(chat_id, author, text):
 
     redis_list = r.zrevrange(f'dialogue_{chat_id}', 0, 0, withscores=True)
 
-    logger.debug(chat_id)
-    logger.debug(redis_list)
+    # logger.debug(chat_id)
+    # logger.debug(redis_list)
 
     if redis_list:
         redis_last_message_index = redis_list[0][1]
-        logger.debug(redis_list[0])
-        logger.debug(redis_list[0][1])
+        # logger.debug(redis_list[0])
+        # logger.debug(redis_list[0][1])
 
     o_json = json.dumps(message, indent=2, default=str)
 
@@ -108,7 +126,7 @@ def _append_message(chat_id, author, text):
 
     count = r.zcard(f'dialogue_{chat_id}')
 
-    logger.debug(f'count: {count}')
+    # logger.debug(f'count: {count}')
 
     if count > 100:
         r.zremrangebyrank(f'dialogue_{chat_id}', 0, 0)
@@ -136,8 +154,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
             else:
                 self.moderator = False
 
-            logger = logging.getLogger(__name__)
-            logger.debug(self.scope['url_route']['kwargs']['room_name'])
+            # logger = logging.getLogger(__name__)
+            # logger.debug(self.scope['url_route']['kwargs']['room_name'])
 
             self.room_name = self.scope['url_route']['kwargs']['room_name']
 
@@ -189,62 +207,44 @@ class ChatConsumer(AsyncWebsocketConsumer):
             if link:
                 message = '<img src="' + link + '" width="250" height="250" style="pointer-events: none;">'
 
-        counter = await sync_to_async(_append_message, thread_sensitive=True)(chat_id=self.room_name,
-                                                                              author=self.player,
-                                                                              text=message)
+        counter = None
+
+        if not message == 'was_read':
+            counter = await sync_to_async(_append_message, thread_sensitive=True)(
+                                                                                    chat_id=self.room_name,
+                                                                                    author=self.player,
+                                                                                    text=message
+                                                                                  )
 
         destination = ''
 
-        if (message == 'ban_chat' or message == 'delete_message') \
-                and not self.moderator:
-            pass
+        # если это увед о прочтении, и есть необходимые признаки
+        if message == 'was_read' and text_data_json['counter']:
+        # отметим прочитанным
+            counter = text_data_json['counter']
+            await sync_to_async(_mark_as_read, thread_sensitive=True)(
+                                                                        chat_id=int(self.room_name),
+                                                                        counter=counter
+                                                                      )
 
-        else:
-            if message == 'delete_message' \
-                    and text_data_json['counter']:
-                counter = int(text_data_json['counter'])
-                await sync_to_async(_delete_message, thread_sensitive=True)(chat_id=self.room_name, counter=counter)
+        image_url = '/static/img/nopic.svg'
+        if self.player.image:
+            image_url = self.player.image.url
 
-            else:
-                if message == 'ban_chat' \
-                        and text_data_json['destination']:
-                    destination = text_data_json['destination']
-                    await sync_to_async(_set_player_banned, thread_sensitive=True)(pk=destination)
-
-                image_url = '/static/img/nopic.svg'
-                if self.player.image:
-                    image_url = self.player.image.url
-
-                # Send message to room group
-                await self.channel_layer.group_send(
-                    self.room_group_name,
-                    {
-                        'type': 'chat_message',
-                        'id': self.player.pk,
-                        'image': image_url,
-                        'nickname': self.player.nickname,
-                        'message': message,
-                        'destination': destination,
-                        'counter': counter
-                    }
-                )
-
-            if message == 'ban_chat' \
-                    and text_data_json['destination']:
-
-                banned_player = await sync_to_async(_get_player_pk, thread_sensitive=True)(pk=destination)
-
-                banned_image_url = '/static/img/nopic.svg'
-                if banned_player.image:
-                    banned_image_url = banned_player.image.url
-
-                # Сообщить об успешном бане
-                await self.send(text_data=json.dumps({
-                    'message': 'Успешно заблокирован',
-                    'time': datetime.now().time().strftime("%H:%M"),
-                    'id': banned_player.pk,
-                    'image': banned_image_url,
-                }))
+        if counter:
+            # Send message to room group
+            await self.channel_layer.group_send(
+                self.room_group_name,
+                {
+                    'type': 'chat_message',
+                    'id': self.player.pk,
+                    'image': image_url,
+                    'nickname': self.player.nickname,
+                    'message': message,
+                    'destination': destination,
+                    'counter': counter
+                }
+            )
 
     # Receive message from room group
     async def chat_message(self, event):
@@ -260,12 +260,20 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 self.disconnect()
 
         else:
+
+            # logger = logging.getLogger(__name__)
+            # try:
+
             # Send message to WebSocket
             await self.send(text_data=json.dumps({
                 'message': message,
-                'time': datetime.now().astimezone(pytz.timezone(self.player.time_zone)).time().strftime("%H:%M"),
+                'time': datetime.now().astimezone(pytz.timezone(self.player.time_zone)).strftime("%d.%m.%y %H:%M"),
                 'id': id,
                 'image': image,
                 'nickname': nickname,
                 'counter': counter,
             }))
+
+            # except Exception as e:
+            #
+            #     logger.exception('Произошла нештатная ситуация:')

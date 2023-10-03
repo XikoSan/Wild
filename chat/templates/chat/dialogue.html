@@ -10,6 +10,11 @@
 {% load redesign.template_svg.nopic %}
 
 {% block content %}
+<style>
+  .overview__chat-message--new {
+    color: var(--c10two)!important;
+  }
+</style>
 <section class="dialog">
 
 	<h1 class="dialog__title ct__page-title">{{ char.nickname }}</h1>
@@ -41,7 +46,7 @@
 							<!--ник и дата-->
 							<div class="overview__chat-message-header">
 							  <h3>{{  message|dict_key:"author_nickname" }}</h3>
-							  <span>{{ message|dict_key:'dtime' }}</span>
+							  <span class="{% if not message|dict_key:'read' %}overview__chat-message--new{% endif %}">{{ message|dict_key:'dtime' }}</span>
 							</div>
 							<div class="overview__chat-message-body overview__chat-message-body--dialog">
 								<!--текст сообщения-->
@@ -58,7 +63,7 @@
 						{% endif %}
                		 {% endfor %}
 					<!--сообщение-шаблон-->
-					<div id="message_blank" class="overview__chat-message overview__chat-message--my" data-counter='' data-sender='' style="display:none">
+					<div id="message_blank" class="overview__chat-message" data-counter='' data-sender='' style="display:none">
 					  <!--аватарка-->
 					  <a class="overview__chat-ava-link" href=''>
 						<img src="" class="overview__chat-ava">
@@ -200,5 +205,10 @@
 	  })
     </script>
     <script src='{% static "js/dialogue.js" %}?{{ csrf_token }}'></script>
+	<script>
+	chatSocket.onopen = function() {
+		mark_as_read();
+	}
+	</script>
 </section>
 {% endblock %}

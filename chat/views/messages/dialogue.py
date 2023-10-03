@@ -22,6 +22,8 @@ from wild_politics.settings import TIME_ZONE
 from chat.models.messages.chat_members import ChatMembers
 from chat.models.messages.chat import Chat
 
+from chat.dialogue_consumers import _mark_as_read
+
 @login_required(login_url='/')
 @check_player
 # Открытие страницы диалога с персонажем
@@ -76,8 +78,6 @@ def dialogue(request, pk):
         redis_list = r.zrevrange(f'dialogue_{chat_id}', 0, -1, withscores=True)
         redis_list.reverse()
 
-        log(redis_list)
-
         for scan in redis_list:
             b = json.loads(scan[0])
 
@@ -88,7 +88,7 @@ def dialogue(request, pk):
             author = Player.objects.filter(pk=int(b['author'])).only('id', 'nickname', 'image', 'time_zone').get()
             # сначала делаем из наивного времени aware, потом задаем ЧП игрока
             b['dtime'] = datetime.datetime.fromtimestamp(int(b['dtime'])).astimezone(
-                tz=pytz.timezone(player.time_zone)).strftime("%H:%M")
+                tz=pytz.timezone(player.time_zone)).strftime("%d.%m.%y %H:%M")
             b['author'] = author.pk
             b['counter'] = int(scan[1])
             b['author_nickname'] = author.nickname
