@@ -89,11 +89,11 @@ def mark_read_in_db(chat_id, counter):
 
         db_dump = eval(block.messages)
 
-        updated_tuple = [(json.loads(message[0]), message[1]) if message[1] <= float(counter) else message for message in
+        updated_tuple = [(json.loads(message[0]), message[1]) if message[1] == float(counter) else message for message in
                          db_dump]
 
         updated_tuple = [
-            (json.dumps({**data, "read": True}, indent=2, default=str), score) if score <= float(counter) else (
+            (json.dumps({**data, "read": True}, indent=2, default=str), score) if score == float(counter) else (
             message[0], message[1]) for message in updated_tuple for data, score in [message]]
 
         block.messages = str(updated_tuple)
