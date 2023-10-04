@@ -15,6 +15,8 @@ from chat.models.sticker import Sticker
 from player.player import Player
 from chat.models.messages.chat_members import ChatMembers
 import logging
+from chat.models.messages.message_block import MessageBlock
+from chat.models.messages.chat import Chat
 
 
 def _get_player(account):
@@ -58,25 +60,60 @@ def _delete_message(chat_id, counter):
 
     r.zremrangebyscore(f'dialogue_{chat_id}', counter, counter)
 
-
-# def _get_last_10_messages(chat_id):
-#     chat, created = Chat.objects.get_or_create(chat_id=chat_id)
-#     messages = []
-#     for message in reversed(
-#             chat.messages.order_by('-timestamp').exclude(content='ban_chat')[:10].values('author__pk', 'author__image',
-#                                                                                          'content',
-#                                                                                          'timestamp')):
-#         messages.append(message)
-#     return messages
-
-
 def _get_awa(image):
     return image.url
+
+
+def get_last_id_from_db(chat_id):
+    ret_id = None
+
+    block = MessageBlock.objects.filter(chat=int(chat_id)).order_by('-date').first()
+    if not block:
+        return ret_id
+
+    db_dump = eval(block.messages)
+
+    ret_id = db_dump[-1][1]
+
+    return ret_id
+
+
+def mark_read_in_db(chat_id, counter):
+    was_found = False
+    excluded_blocks_pk = []
+
+    while not was_found:
+        block = MessageBlock.objects.filter(chat=int(chat_id)).exclude(pk__in=excluded_blocks_pk).order_by('-date').first()
+        if not block:
+            break
+
+        db_dump = eval(block.messages)
+
+        updated_tuple = [(json.loads(message[0]), message[1]) if message[1] <= float(counter) else message for message in
+                         db_dump]
+
+        updated_tuple = [
+            (json.dumps({**data, "read": True}, indent=2, default=str), score) if score <= float(counter) else (
+            message[0], message[1]) for message in updated_tuple for data, score in [message]]
+
+        block.messages = str(updated_tuple)
+        block.save()
+
+        for message in updated_tuple:
+            if message[1] == float(counter):
+                was_found = True
+                break
+
+        excluded_blocks_pk.append(block.pk)
 
 
 def _mark_as_read(chat_id, counter):
 
     r = redis.StrictRedis(host='redis', port=6379, db=0)
+    # проверяем наличие такого rank в ОЗУ
+    if not r.zrangebyscore(f'dialogue_{chat_id}', counter, counter):
+        return mark_read_in_db(chat_id, counter)
+
     # получаем сообщение в его текущем состоянии
     message = r.zrangebyscore(f'dialogue_{chat_id}', counter, counter)[0]
     # удаляем из ОЗУ
@@ -115,10 +152,12 @@ def _append_message(chat_id, author, text):
     # logger.debug(chat_id)
     # logger.debug(redis_list)
 
+    # если в редисе ничего нет, то либо чат новый, либо всё в БД
     if redis_list:
         redis_last_message_index = redis_list[0][1]
-        # logger.debug(redis_list[0])
-        # logger.debug(redis_list[0][1])
+    # подглядим в БД
+    else:
+        redis_last_message_index = get_last_id_from_db(chat_id)
 
     o_json = json.dumps(message, indent=2, default=str)
 
@@ -127,9 +166,22 @@ def _append_message(chat_id, author, text):
     count = r.zcard(f'dialogue_{chat_id}')
 
     # logger.debug(f'count: {count}')
+    from player.logs.print_log import log
+    log(count)
 
-    if count > 100:
-        r.zremrangebyrank(f'dialogue_{chat_id}', 0, 0)
+    # сохраняем каждые 50 сообщений
+    if count > 49:
+        pass
+        redis_list = r.zrevrange(f'dialogue_{chat_id}', 0, -1, withscores=True)
+        redis_list.reverse()
+
+        block = MessageBlock(
+            chat=Chat.objects.get(pk=str(chat_id)),
+            messages=str(redis_list)
+        )
+        block.save()
+
+        r.zremrangebyrank(f'dialogue_{chat_id}', 0, -1)
 
     # except Exception as e:
     #
@@ -218,33 +270,37 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
         destination = ''
 
-        # если это увед о прочтении, и есть необходимые признаки
-        if message == 'was_read' and text_data_json['counter']:
-        # отметим прочитанным
-            counter = text_data_json['counter']
-            await sync_to_async(_mark_as_read, thread_sensitive=True)(
-                                                                        chat_id=int(self.room_name),
-                                                                        counter=counter
-                                                                      )
+        logger = logging.getLogger(__name__)
+        try:
+            # если это увед о прочтении, и есть необходимые признаки
+            if message == 'was_read' and text_data_json['counter']:
+            # отметим прочитанным
+                counter = text_data_json['counter']
+                await sync_to_async(_mark_as_read, thread_sensitive=True)(
+                                                                            chat_id=int(self.room_name),
+                                                                            counter=counter
+                                                                          )
 
-        image_url = '/static/img/nopic.svg'
-        if self.player.image:
-            image_url = self.player.image.url
+            image_url = '/static/img/nopic.svg'
+            if self.player.image:
+                image_url = self.player.image.url
 
-        if counter:
-            # Send message to room group
-            await self.channel_layer.group_send(
-                self.room_group_name,
-                {
-                    'type': 'chat_message',
-                    'id': self.player.pk,
-                    'image': image_url,
-                    'nickname': self.player.nickname,
-                    'message': message,
-                    'destination': destination,
-                    'counter': counter
-                }
-            )
+            if counter:
+                # Send message to room group
+                await self.channel_layer.group_send(
+                    self.room_group_name,
+                    {
+                        'type': 'chat_message',
+                        'id': self.player.pk,
+                        'image': image_url,
+                        'nickname': self.player.nickname,
+                        'message': message,
+                        'destination': destination,
+                        'counter': counter
+                    }
+                )
+        except Exception as e:
+            logger.exception('Произошла нештатная ситуация:')
 
     # Receive message from room group
     async def chat_message(self, event):
@@ -261,9 +317,6 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
         else:
 
-            # logger = logging.getLogger(__name__)
-            # try:
-
             # Send message to WebSocket
             await self.send(text_data=json.dumps({
                 'message': message,
@@ -273,7 +326,3 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 'nickname': nickname,
                 'counter': counter,
             }))
-
-            # except Exception as e:
-            #
-            #     logger.exception('Произошла нештатная ситуация:')

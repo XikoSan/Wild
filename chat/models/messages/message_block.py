@@ -1,7 +1,7 @@
 from django.db import models
 from chat.models.messages.chat import Chat
 
-# чат за сутки, либо последние 100 сообщений
+# чат за сутки, либо последние 50 сообщений
 class MessageBlock(models.Model):
 
     chat = models.ForeignKey(Chat, on_delete=models.CASCADE)

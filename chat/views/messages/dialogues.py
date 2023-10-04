@@ -20,9 +20,13 @@ class PartyWithSize(Party):
 # page - открываемая страница
 @login_required(login_url='/')
 @check_player
-def messages(request):
+def dialogues(request):
     # получаем персонажа
     player = Player.get_instance(account=request.user)
+
+    # import redis
+    # r = redis.StrictRedis(host='redis', port=6379, db=0)
+    # r.zremrangebyrank(f'dialogue_3', 0, -1)
 
     # получаем партии для текущей страницы
     page = request.GET.get('page')

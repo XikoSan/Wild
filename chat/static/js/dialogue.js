@@ -23,7 +23,7 @@ function mark_as_read() {
                     //  если не наше
                     if (parent.dataset.sender != playerId){
                         //      отправить в сокет сообщение, что мы его прочли
-                        console.log(parent.dataset.counter);
+                        console.log(parent);
                          chatSocket.send(JSON.stringify({
                             'message': 'was_read',
                             'counter': parent.dataset.counter
@@ -40,12 +40,8 @@ chatSocket.onmessage = function(e) {
     const data = JSON.parse(e.data);
 //  увед о том, что сообщение прочитано
     if (data.message == 'was_read'){
-        console.log('из сокета - прочитано')
-        console.log(data.counter)
         var elements = document.querySelectorAll('div.overview__chat-message[data-counter="' + data.counter + '"]');
         elements.forEach(function(element) {
-          console.log(element);
-          console.log(element.getElementsByClassName('overview__chat-message-header')[0].getElementsByTagName('span')[0]);
           element.getElementsByClassName('overview__chat-message-header')[0].getElementsByTagName('span')[0].classList.remove('overview__chat-message--new');
         });
     }
@@ -81,8 +77,6 @@ chatSocket.onmessage = function(e) {
 
     //    если это не наше сообщение
         if (data.id != playerId){
-            console.log(data.id)
-            console.log(playerId)
     //      отправить в сокет сообщение, что мы его прочли
              chatSocket.send(JSON.stringify({
                 'message': 'was_read',

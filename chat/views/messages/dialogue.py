@@ -21,8 +21,35 @@ from wild_politics.settings import TIME_ZONE
 
 from chat.models.messages.chat_members import ChatMembers
 from chat.models.messages.chat import Chat
+from chat.models.messages.message_block import MessageBlock
 
 from chat.dialogue_consumers import _mark_as_read
+
+# преобразует последовательность из памяти в сообщения
+def tuple_to_messages(player, messages, tuple):
+
+    for scan in tuple:
+        b = json.loads(scan[0])
+
+        if not Player.objects.filter(pk=int(b['author'])).exists():
+            r.zremrangebyscore('chat', int(scan[1]), int(scan[1]))
+            continue
+
+        author = Player.objects.filter(pk=int(b['author'])).only('id', 'nickname', 'image', 'time_zone').get()
+        # сначала делаем из наивного времени aware, потом задаем ЧП игрока
+        b['dtime'] = datetime.datetime.fromtimestamp(int(b['dtime'])).astimezone(
+            tz=pytz.timezone(player.time_zone)).strftime("%d.%m.%y %H:%M")
+        b['author'] = author.pk
+        b['counter'] = int(scan[1])
+        b['author_nickname'] = author.nickname
+        if author.image:
+            b['image_link'] = author.image.url
+        else:
+            b['image_link'] = 'nopic'
+
+        messages.append(b)
+
+    return messages
 
 @login_required(login_url='/')
 @check_player
@@ -78,26 +105,14 @@ def dialogue(request, pk):
         redis_list = r.zrevrange(f'dialogue_{chat_id}', 0, -1, withscores=True)
         redis_list.reverse()
 
-        for scan in redis_list:
-            b = json.loads(scan[0])
+        if len(redis_list) < 50 and MessageBlock.objects.filter(chat=int(chat_id)).exists():
+            block = MessageBlock.objects.filter(chat=int(chat_id)).order_by('-date').first()
+            redis_dump = eval(block.messages)
+            # добавляем сообщения из БД на выход
+            tuple_to_messages(player, messages, redis_dump)
 
-            if not Player.objects.filter(pk=int(b['author'])).exists():
-                r.zremrangebyscore('chat', int(scan[1]), int(scan[1]))
-                continue
-
-            author = Player.objects.filter(pk=int(b['author'])).only('id', 'nickname', 'image', 'time_zone').get()
-            # сначала делаем из наивного времени aware, потом задаем ЧП игрока
-            b['dtime'] = datetime.datetime.fromtimestamp(int(b['dtime'])).astimezone(
-                tz=pytz.timezone(player.time_zone)).strftime("%d.%m.%y %H:%M")
-            b['author'] = author.pk
-            b['counter'] = int(scan[1])
-            b['author_nickname'] = author.nickname
-            if author.image:
-                b['image_link'] = author.image.url
-            else:
-                b['image_link'] = 'nopic'
-
-            messages.append(b)
+        # добавляем сообщения из ОЗУ на выход
+        tuple_to_messages(player, messages, redis_list)
 
         stickers = StickersOwnership.objects.filter(owner=player)
 
