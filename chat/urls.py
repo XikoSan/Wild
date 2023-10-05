@@ -5,6 +5,7 @@ from chat.views.stickers_shop import stickers_shop
 from chat.views.stickers_shop import stickers_shop
 from chat.views.messages.dialogues import dialogues
 from chat.views.messages.dialogue import dialogue
+from chat.views.messages.get_message_block import get_message_block
 
 urlpatterns = [
     # открытие страницы кошелька
@@ -16,4 +17,6 @@ urlpatterns = [
     url(r'^im/$', dialogues, name='dialogues'),
     # диалог с пользователем
     url(r'^im/(?P<pk>\d+)/$', dialogue, name='dialogue'),
+    # получить блок сообщений
+    url(r'^load_message_block$', get_message_block, name='get_message_block'),
 ]

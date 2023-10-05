@@ -74,6 +74,7 @@ def dialogue(request, pk):
     if not player.chat_ban:
 
         chat_id = None
+        block_pk = None
 
         player1_chats = ChatMembers.objects.filter(player=player).values('chat')
         player2_chats = ChatMembers.objects.filter(player=char).values('chat')
@@ -107,6 +108,7 @@ def dialogue(request, pk):
 
         if len(redis_list) < 50 and MessageBlock.objects.filter(chat=int(chat_id)).exists():
             block = MessageBlock.objects.filter(chat=int(chat_id)).order_by('-date').first()
+            block_pk = block.pk
             redis_dump = eval(block.messages)
             # добавляем сообщения из БД на выход
             tuple_to_messages(player, messages, redis_dump)
@@ -141,6 +143,7 @@ def dialogue(request, pk):
 
         'chat_id': chat_id,
         'messages': messages,
+        'block_pk': block_pk,
 
         'stickers_header_dict': stickers_header_dict,
         'header_img_dict': header_img_dict,

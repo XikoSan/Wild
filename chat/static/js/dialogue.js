@@ -9,6 +9,74 @@ const chatSocket = new WebSocket(
     + '/'
 );
 
+function insertAfter(newNode, existingNode) {
+    existingNode.parentNode.insertBefore(newNode, existingNode.nextSibling);
+}
+
+function loadPrevBlock() {
+
+    var sending_data;
+    sending_data += "&csrfmiddlewaretoken=" + csrftoken;
+    sending_data += "&room=" + roomName;
+    sending_data += "&loaded=" + JSON.stringify(loaded_blocks);
+
+    $.ajax({
+        type: "POST",
+        url: "/load_message_block",
+        data:  sending_data,
+        cache: false,
+        success: function(data){
+            if (data.response == 'ok'){
+                loaded_blocks.push(parseInt(data.block_pk));
+
+                var messageTemplate = document.getElementById('message_blank');
+
+                data.messages.reverse().forEach(function(messageData) {
+                  var clonedMessage = messageTemplate.cloneNode(true);
+                  clonedMessage.removeAttribute('id');
+
+                  if (messageData.author === playerId) {
+                    clonedMessage.classList.add("overview__chat-message--my");
+                  }
+
+                  clonedMessage.dataset.counter = messageData.counter;
+                  clonedMessage.dataset.sender = messageData.author;
+                  clonedMessage.getElementsByClassName('overview__chat-ava-link')[0].href = "/profile/" + messageData.author;
+                  clonedMessage.getElementsByClassName('overview__chat-ava')[0].src = messageData.image_link;
+                  clonedMessage.getElementsByClassName('overview__chat-message-header')[0].getElementsByTagName('h3')[0].innerHTML = messageData.author_nickname;
+                  clonedMessage.getElementsByClassName('overview__chat-message-header')[0].getElementsByTagName('span')[0].innerHTML = messageData.dtime;
+                  if (messageData.read != true){
+                    clonedMessage.getElementsByClassName('overview__chat-message-header')[0].getElementsByTagName('span')[0].classList.add("overview__chat-message--new");
+                  }
+                  clonedMessage.getElementsByClassName('overview__chat-message-body')[0].getElementsByTagName('p')[0].innerHTML = messageData.content;
+
+
+                  var button = document.getElementsByClassName('overview__chat-more')[0];
+
+                  insertAfter(clonedMessage, button);
+                  $(clonedMessage).show();
+
+                  //    если это не наше сообщение
+                  if (messageData.author != playerId){
+                //      отправить в сокет сообщение, что мы его прочли
+                         chatSocket.send(JSON.stringify({
+                            'message': 'was_read',
+                            'counter': messageData.counter
+                        }));
+                    }
+                });
+
+            }
+            else if(data.response == 'empty'){
+                document.getElementsByClassName('overview__chat-more')[0].style.display = 'none';
+            }
+            else{
+                display_modal('notify', data.header, data.response, null, data.grey_btn);
+            }
+        }
+    });
+
+}
 
 function mark_as_read() {
     // Задержка в 1 секунду

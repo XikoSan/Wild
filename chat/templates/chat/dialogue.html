@@ -28,7 +28,7 @@
 				  {{ player.pk|json_script:"player_id" }}
 				<div class="overview__chat-messages" id="chat-log-{% localize off %}{{ chat_id }}{% endlocalize %}">
 					{% if messages|get_len >= 50 %}
-					<button class="overview__chat-more longBtnWihoutCorners">Загрузить предыдущие сообщения</button>
+					<button class="overview__chat-more longBtnWihoutCorners" onclick="loadPrevBlock()">Загрузить предыдущие сообщения</button>
 					{% endif %}
 					{% for message in messages %}
                 		{% if message|dict_key:'content' != 'ban_chat' and message|dict_key:'content' != 'delete_message' %}
@@ -203,6 +203,8 @@
 		  overviewStickersContainers[index].classList.add('active');
 		})
 	  })
+
+	  var loaded_blocks = [{% if block_pk %}{% localize off %}{{ block_pk }}{% endlocalize %},{% endif %}];
     </script>
     <script src='{% static "js/dialogue.js" %}?{{ csrf_token }}'></script>
 	<script>
