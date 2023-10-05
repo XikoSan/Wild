@@ -65,7 +65,7 @@ def _get_awa(image):
 
 
 def get_last_id_from_db(chat_id):
-    ret_id = None
+    ret_id = 0
 
     block = MessageBlock.objects.filter(chat=int(chat_id)).order_by('-date').first()
     if not block:

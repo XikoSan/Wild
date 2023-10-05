@@ -27,7 +27,7 @@
 				  {{ chat_id|json_script:"room-name" }}
 				  {{ player.pk|json_script:"player_id" }}
 				<div class="overview__chat-messages" id="chat-log-{% localize off %}{{ chat_id }}{% endlocalize %}">
-					{% if messages|get_len == 50 %}
+					{% if messages|get_len >= 50 %}
 					<button class="overview__chat-more longBtnWihoutCorners">Загрузить предыдущие сообщения</button>
 					{% endif %}
 					{% for message in messages %}
