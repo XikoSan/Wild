@@ -84,7 +84,7 @@
 				<!--Отправка сообщений, стикеры-->
 				<div class="overview__chat-controls overview__chat-controls--dialog">
 					<!--ввод ссобщения-->
-					<input class="overview__chat-controls-input" id="chat-message-input-{% localize off %}{{ chat_id }}{% endlocalize %}" type="text">
+					<input maxlength="500" class="overview__chat-controls-input" id="chat-message-input-{% localize off %}{{ chat_id }}{% endlocalize %}" type="text">
 					<!--кнопка стикеров-->
 					<button class="overview__chat-controls-btn" onclick="showHideStickers()">
 						<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -204,7 +204,7 @@
 		})
 	  })
 
-	  var loaded_blocks = [{% if block_pk %}{% localize off %}{{ block_pk }}{% endlocalize %},{% endif %}];
+	  var loaded_blocks = [{% if blocks_pk %}{% localize off %}{% for block_pk in blocks_pk %}{{ block_pk }}, {% endfor %}{% endlocalize %}{% endif %}];
     </script>
     <script src='{% static "js/dialogue.js" %}?{{ csrf_token }}'></script>
 	<script>

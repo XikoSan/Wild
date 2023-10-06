@@ -166,12 +166,9 @@ def _append_message(chat_id, author, text):
     count = r.zcard(f'dialogue_{chat_id}')
 
     # logger.debug(f'count: {count}')
-    from player.logs.print_log import log
-    log(count)
 
     # сохраняем каждые 50 сообщений
     if count > 49:
-        pass
         redis_list = r.zrevrange(f'dialogue_{chat_id}', 0, -1, withscores=True)
         redis_list.reverse()
 
@@ -270,37 +267,37 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
         destination = ''
 
-        logger = logging.getLogger(__name__)
-        try:
-            # если это увед о прочтении, и есть необходимые признаки
-            if message == 'was_read' and text_data_json['counter']:
-            # отметим прочитанным
-                counter = text_data_json['counter']
-                await sync_to_async(_mark_as_read, thread_sensitive=True)(
-                                                                            chat_id=int(self.room_name),
-                                                                            counter=counter
-                                                                          )
+        # logger = logging.getLogger(__name__)
+        # try:
+        # если это увед о прочтении, и есть необходимые признаки
+        if message == 'was_read' and text_data_json['counter']:
+        # отметим прочитанным
+            counter = text_data_json['counter']
+            await sync_to_async(_mark_as_read, thread_sensitive=True)(
+                                                                        chat_id=int(self.room_name),
+                                                                        counter=counter
+                                                                      )
 
-            image_url = '/static/img/nopic.svg'
-            if self.player.image:
-                image_url = self.player.image.url
+        image_url = '/static/img/nopic.svg'
+        if self.player.image:
+            image_url = self.player.image.url
 
-            if counter:
-                # Send message to room group
-                await self.channel_layer.group_send(
-                    self.room_group_name,
-                    {
-                        'type': 'chat_message',
-                        'id': self.player.pk,
-                        'image': image_url,
-                        'nickname': self.player.nickname,
-                        'message': message,
-                        'destination': destination,
-                        'counter': counter
-                    }
-                )
-        except Exception as e:
-            logger.exception('Произошла нештатная ситуация:')
+        if counter:
+            # Send message to room group
+            await self.channel_layer.group_send(
+                self.room_group_name,
+                {
+                    'type': 'chat_message',
+                    'id': self.player.pk,
+                    'image': image_url,
+                    'nickname': self.player.nickname,
+                    'message': message,
+                    'destination': destination,
+                    'counter': counter
+                }
+            )
+        # except Exception as e:
+        #     logger.exception('Произошла нештатная ситуация:')
 
     # Receive message from room group
     async def chat_message(self, event):

@@ -26,7 +26,7 @@ from chat.models.messages.message_block import MessageBlock
 from chat.dialogue_consumers import _mark_as_read
 
 # преобразует последовательность из памяти в сообщения
-def tuple_to_messages(player, messages, tuple):
+def tuple_to_messages(player, messages, tuple, r):
 
     for scan in tuple:
         b = json.loads(scan[0])
@@ -74,7 +74,7 @@ def dialogue(request, pk):
     if not player.chat_ban:
 
         chat_id = None
-        block_pk = None
+        blocks_pk = []
 
         player1_chats = ChatMembers.objects.filter(player=player).values('chat')
         player2_chats = ChatMembers.objects.filter(player=char).values('chat')
@@ -106,15 +106,37 @@ def dialogue(request, pk):
         redis_list = r.zrevrange(f'dialogue_{chat_id}', 0, -1, withscores=True)
         redis_list.reverse()
 
+        # если в ОЗУ лежит меньше 50 сообщений, и есть сообщения в БД
         if len(redis_list) < 50 and MessageBlock.objects.filter(chat=int(chat_id)).exists():
-            block = MessageBlock.objects.filter(chat=int(chat_id)).order_by('-date').first()
-            block_pk = block.pk
-            redis_dump = eval(block.messages)
-            # добавляем сообщения из БД на выход
-            tuple_to_messages(player, messages, redis_dump)
+            # все блоки сообщений, которые мы набрали на вывод
+            messages_arch = []
+            # суммарная длина этих блоков
+            messages_db_total = 0
+
+            for mess_block in MessageBlock.objects.only("pk").filter(chat=int(chat_id)).order_by('-date'):
+
+                block = MessageBlock.objects.get(pk=mess_block.pk)
+                blocks_pk.append(block.pk)
+                redis_dump = eval(block.messages)
+
+                # добавляем сообщения из БД
+                tmp_messages = []
+                tuple_to_messages(player, tmp_messages, redis_dump, r)
+
+                messages_arch.append(tmp_messages)
+                from player.logs.print_log import log
+                log(messages_arch)
+                messages_db_total += len(tmp_messages)
+
+                if messages_db_total + len(redis_list) >= 50:
+                    break
+
+            messages_arch.reverse()
+            for messages_block in messages_arch:
+                messages += messages_block
 
         # добавляем сообщения из ОЗУ на выход
-        tuple_to_messages(player, messages, redis_list)
+        tuple_to_messages(player, messages, redis_list, r)
 
         stickers = StickersOwnership.objects.filter(owner=player)
 
@@ -143,7 +165,7 @@ def dialogue(request, pk):
 
         'chat_id': chat_id,
         'messages': messages,
-        'block_pk': block_pk,
+        'blocks_pk': blocks_pk,
 
         'stickers_header_dict': stickers_header_dict,
         'header_img_dict': header_img_dict,
