@@ -11,8 +11,8 @@
 					</svg>
 				</div>
 			</a>
-			<button class="nav__svg-newMessage" onclick="window.location.href = '/im/'" style="cursor: pointer">
-				{% if False %}
+			<button class="nav__svg-newMessage {% if has_unread %}animated{% endif %}" onclick="window.location.href = '/im/'" style="cursor: pointer">
+				{% if has_unread %}
 				<svg width="47" height="32" viewBox="0 0 47 32" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<path d="M16.2073 19.5077L0 30.7274V6.07788L16.2073 19.5077Z" fill="var(--c10two)"/>
 					<path d="M34.5146 12.3325L25.8514 19.5128L42.0598 30.7326V14.4935C41.4485 14.6471 40.8211 14.7277 40.1908 14.7336C39.1327 14.7299 38.0859 14.5157 37.1114 14.1035C36.1369 13.6913 35.2542 13.0893 34.5146 12.3325Z" fill="var(--c10two)"/>

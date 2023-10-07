@@ -91,7 +91,6 @@ function mark_as_read() {
                     //  если не наше
                     if (parent.dataset.sender != playerId){
                         //      отправить в сокет сообщение, что мы его прочли
-                        console.log(parent);
                          chatSocket.send(JSON.stringify({
                             'message': 'was_read',
                             'counter': parent.dataset.counter
@@ -157,6 +156,7 @@ chatSocket.onmessage = function(e) {
 
 chatSocket.onclose = function(e) {
     console.log('Chat socket closed unexpectedly');
+    display_modal('notify', 'Соединение прервалось', 'перезагрузите страницу, чтобы переподключиться к чату', null, "Понятно");
 };
 
 document.querySelector('#chat-message-input-' + roomName).focus();

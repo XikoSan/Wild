@@ -112,7 +112,19 @@ def _mark_as_read(chat_id, counter, read_by):
     r = redis.StrictRedis(host='redis', port=6379, db=0)
     # проверяем наличие такого rank в ОЗУ
     if not r.zrangebyscore(f'dialogue_{chat_id}', counter, counter):
-        return mark_read_in_db(chat_id, counter)
+        mark_read_in_db(chat_id, counter)
+
+        # прочитавшему сообщения сообщение уменьшаем счетчик прочитанных
+        if ChatMembers.objects.filter(chat__pk=chat_id, player=read_by).exists():
+            unread = 1
+            unread_redis = r.hget(f'chats_{read_by.pk}_unread', chat_id)
+
+            if unread_redis:
+                unread = int(unread_redis)
+
+            r.hset(f'chats_{read_by.pk}_unread', chat_id, unread - 1)
+
+        return
 
     # получаем сообщение в его текущем состоянии
     message = r.zrangebyscore(f'dialogue_{chat_id}', counter, counter)[0]
@@ -200,12 +212,10 @@ def _append_message(chat_id, author, text):
     r.hset('chat_mess_dates', chat_id, int(timestamp))
 
     # каждому получателю сообщений, кроме автора повышаем счетчик непрочитанного
-    for chat_mem in ChatMembers.objects.filter(chat__pk=chat_id).exclude(pk__in=[author.pk,]):
+    for chat_mem in ChatMembers.objects.filter(chat__pk=chat_id).exclude(player__pk__in=[author.pk,]):
         unread = 0
-        from player.logs.print_log import log
 
         unread_redis = r.hget(f'chats_{chat_mem.player.pk}_unread', chat_id)
-        log(unread_redis)
 
         if unread_redis:
             unread = int(unread_redis)
