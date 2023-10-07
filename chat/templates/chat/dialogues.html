@@ -1,0 +1,68 @@
+{% extends 'player/redesign/header.html' %}
+{% load l10n %}{% load i18n %}
+{% load redesign.pagination %}
+{% load static %}
+{% load is_dict %}
+{% load get_attr %}
+{% load check_object %}
+{% load is_list %}
+{% load has_key %}
+{% load lower %}
+{% load get_class_name %}
+{% load get_key_list %}
+{% load dict_key %}
+
+{% load redesign.template_svg.nopic %}
+
+{% block content %}
+<!--<style>-->
+<!--  .overview__chat-message&#45;&#45;new {-->
+<!--    color: var(&#45;&#45;c10two)!important;-->
+<!--  }-->
+<!--</style>-->
+<main>
+
+  <section class="dialogs custom-scroll">
+		<h1 class="dialogs__title ct__page-title">Диалоги</h1>
+		<ul class="dialogs__grid">
+			{% for dialog in dialogs %}
+			<li>
+				{% with data=dialogs_data|dict_key:dialog %}
+				<a href='/im/{% localize off %}{{ data|dict_key:"author" }}{% endlocalize %}' class="overview__chat-message overview__chat-message--dialog">
+					<!--аватарка-->
+					<span class="overview__chat-ava-link">
+						{% if data|dict_key:'image_link' == 'nopic' %}
+						  {% nopic player 'overview__chat-ava' %}
+						{% else %}
+						  <img src="{{ data|dict_key:'image_link' }}" class="overview__chat-ava">
+						{% endif %}
+					</span>
+					<div class="overview__chat-message-wrapper">
+						<!--ник и дата-->
+						<div class="overview__chat-message-header">
+							<h3 class="{% if not data|dict_key:'read' %}overview__chat-message--new{% endif %}">{{ data|dict_key:"author_nickname" }}</h3>
+							{% if data|dict_key:'dtime' %}
+							<span class="{% if not data|dict_key:'read' %}overview__chat-message--new{% endif %}">{{ data|dict_key:'dtime' }}</span>
+							{% endif %}
+						</div>
+						<div class="overview__chat-message-body">
+							<!--текст сообщения-->
+						{% if data|dict_key:'content' %}
+						  {% if '/stickers/' in data|dict_key:'content' %}
+							  {% autoescape off %}
+						  <p>{{ data|dict_key:'content' }}</p>
+							  {% endautoescape %}
+						  {% else %}
+						  <p>{{ data|dict_key:'content' }}</p>
+						  {% endif %}
+					  	{% endif %}
+						</div>
+					</div>
+				</a>
+				{% endwith %}
+			</li>
+			{% endfor %}
+		</ul>
+  </section>
+</main>
+{% endblock %}

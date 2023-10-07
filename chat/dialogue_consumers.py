@@ -107,7 +107,7 @@ def mark_read_in_db(chat_id, counter):
         excluded_blocks_pk.append(block.pk)
 
 
-def _mark_as_read(chat_id, counter):
+def _mark_as_read(chat_id, counter, read_by):
 
     r = redis.StrictRedis(host='redis', port=6379, db=0)
     # проверяем наличие такого rank в ОЗУ
@@ -129,13 +129,25 @@ def _mark_as_read(chat_id, counter):
     # вставляем на место удалённого
     r.zadd(f'dialogue_{chat_id}', {o_json: counter})
 
+    # прочитавшему сообщения сообщение уменьшаем счетчик прочитанных
+    if ChatMembers.objects.filter(chat__pk=chat_id, player=read_by).exists():
+        unread = 1
+        unread_redis = r.hget(f'chats_{read_by.pk}_unread', chat_id)
+
+        if unread_redis:
+            unread = int(unread_redis)
+
+        r.hset(f'chats_{read_by.pk}_unread', chat_id, unread - 1)
+
 
 def _append_message(chat_id, author, text):
+
+    timestamp = str(datetime.now().timestamp()).split('.')[0]
 
     message = {
                 'author': author.pk,
                'content': text,
-               'dtime': str(datetime.now().timestamp()).split('.')[0],
+               'dtime': timestamp,
                 'read': False
                }
 
@@ -183,6 +195,22 @@ def _append_message(chat_id, author, text):
     # except Exception as e:
     #
     #     logger.exception('Произошла нештатная ситуация:')
+
+    # обновляем информацию о дате последнего сообщения
+    r.hset('chat_mess_dates', chat_id, int(timestamp))
+
+    # каждому получателю сообщений, кроме автора повышаем счетчик непрочитанного
+    for chat_mem in ChatMembers.objects.filter(chat__pk=chat_id).exclude(pk__in=[author.pk,]):
+        unread = 0
+        from player.logs.print_log import log
+
+        unread_redis = r.hget(f'chats_{chat_mem.player.pk}_unread', chat_id)
+        log(unread_redis)
+
+        if unread_redis:
+            unread = int(unread_redis)
+
+        r.hset(f'chats_{chat_mem.player.pk}_unread', chat_id, unread+1)
 
     return int(redis_last_message_index) + 1
 
@@ -275,7 +303,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
             counter = text_data_json['counter']
             await sync_to_async(_mark_as_read, thread_sensitive=True)(
                                                                         chat_id=int(self.room_name),
-                                                                        counter=counter
+                                                                        counter=counter,
+                                                                        read_by=self.player
                                                                       )
 
         image_url = '/static/img/nopic.svg'

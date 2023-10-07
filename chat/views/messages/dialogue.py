@@ -101,8 +101,6 @@ def dialogue(request, pk):
         # counter = 0
         # if r.hlen('counter') > 0:
         #     counter = r.hget('counter', 'counter')
-        from player.logs.print_log import log
-
         redis_list = r.zrevrange(f'dialogue_{chat_id}', 0, -1, withscores=True)
         redis_list.reverse()
 
@@ -124,8 +122,7 @@ def dialogue(request, pk):
                 tuple_to_messages(player, tmp_messages, redis_dump, r)
 
                 messages_arch.append(tmp_messages)
-                from player.logs.print_log import log
-                log(messages_arch)
+
                 messages_db_total += len(tmp_messages)
 
                 if messages_db_total + len(redis_list) >= 50:
