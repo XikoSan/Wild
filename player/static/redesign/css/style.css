@@ -1126,6 +1126,7 @@ a {
   .dialog__container {
     height: calc(100% - 45rem);
     padding: 0 24rem;
+    padding-right: 0;
   }
 
 }
@@ -3150,6 +3151,11 @@ p.overview__love-stat-timer {
 }
 
 .overview__chat-message--dialog .overview__chat-message-sticker {
+  height: initial;
+}
+
+.overview__chat-message--dialog .overview__chat-message-sticker img {
+  display: block;
   width: 45rem;
   height: 45rem;
 }
@@ -3214,6 +3220,7 @@ p.overview__love-stat-timer {
   transition: all 0.25s ease;
   opacity: 0;
   pointer-events: none;
+  filter: drop-shadow(0 0 10rem rgba(0, 0, 0, 0.5));
 }
 
 .overview__stickers-close-overlay {
@@ -3545,7 +3552,7 @@ p.overview__love-stat-timer {
   .dialog .overview__stickers {
     position: absolute;
     left: initial;
-    right: 0;
+    right: 30rem;
     bottom: 165rem;
     width: 510rem;
   }
@@ -3627,6 +3634,7 @@ p.overview__love-stat-timer {
   padding-top: 14rem;
   padding-bottom: 24rem;
   height: calc(100% - 60rem);
+  font-size: 14rem;
   overflow-y: auto;
   overflow-x: hidden;
 }
@@ -3636,11 +3644,263 @@ p.overview__love-stat-timer {
   margin-bottom: 24rem;
 }
 
+.war__top {
+  position: relative;
+}
+
+.war__sides {
+  display: grid;
+  align-items: center;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 0 12rem;
+  gap: 12rem;
+}
+
+.war__gerbs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4rem;
+}
+
+.war__gerbs > p {
+  margin: 0;
+  text-align: center;
+}
+
+.war__gerbs > img {
+  display: block;
+  width: 70rem;
+  height: 70rem;
+  object-fit: contain;
+  object-position: center;
+}
+
+.war__sides > p {
+  margin: 0;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.war__type {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0 12rem;
+}
+
+.war__type::before,
+.war__type::after {
+  display: block;
+  width: 100%;
+  height: 1px;
+  content: '';
+  background-image: linear-gradient(to right, transparent, var(--c10one));
+}
+
+.war__type::after {
+  background-image: linear-gradient(to left, transparent, var(--c10one));
+}
+
+.war__type svg {
+  flex-shrink: 0;
+  display: block;
+  width: 34rem;
+  height: 34rem;
+}
+
+.war__damage {
+  position: relative;
+  display: grid;
+  align-items: center;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6rem;
+  padding: 6rem 0;
+  font-size: 12rem;
+}
+
+.war__damage p {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6rem;
+  text-align: center;
+}
+
+.war__damage p > span {
+  color: var(--c10two);
+}
+
+.war__damage p:nth-of-type(2) {
+  font-size: 14rem;
+  letter-spacing: -1rem;
+}
+
+.war__playerDamage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 1px;
+  width: 100%;
+}
+
+.war__playerDamage div {
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  width: max-content;
+  gap: 6rem;
+  background-color: var(--c30);
+  font-size: 16rem;
+  height: 30rem;
+  box-shadow: 0 0 10rem 0 rgba(0, 0, 0, 0.25);
+}
+
+.war__playerDamage div.left {
+  left: 0;
+  padding-right: 12rem;
+  animation: damageMessageLeft 5s ease-in-out both;
+}
+
+@keyframes damageMessageLeft {
+  0% {transform: translateX(-200rem); opacity: 0;}
+  25% {transform: translateX(0); opacity: 1;}
+  35% {transform: translateX(0);}
+  75% {opacity: 1;}
+  100% {transform: translate(0, -150rem); opacity: 0;}
+}
+
+.war__playerDamage div.right {
+  right: 0;
+  padding-left: 12rem;
+  animation: damageMessageRight 5s ease-in-out both;
+}
+
+@keyframes damageMessageRight {
+  0% {transform: translateX(200rem); opacity: 0;}
+  25% {transform: translateX(0); opacity: 1;}
+  35% {transform: translateX(0);}
+  75% {opacity: 1;}
+  100% {transform: translate(0, -150rem); opacity: 0;}
+}
+
+.war__playerDamage img {
+  display: block;
+  width: 30rem;
+  height: 30rem;
+  object-fit: contain;
+  object-position: center;
+}
+
+.war__prem-grid {
+  display: flex;
+  align-items: center;
+  gap: 6rem;
+  padding: 0 12rem;
+}
+
+.war__prem-col {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  gap: 6rem;
+}
+
+.war__prem-col:nth-last-of-type(2) {
+  width: 20%;
+}
+
+.war__prem-col > span {
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+.war__prem-col > label,
+.war__units-count > label {
+  position: relative;
+  height: 24rem;
+}
+
+.war__prem-col .ct__check-box30 {
+  margin-bottom: 0;
+  flex-shrink: 0;
+  gap: 6rem;
+}
+
+.war__prem-col .ct__check-box30 svg {
+  display: block;
+  flex-shrink: 0;
+  margin-right: 0;
+}
+
+.war__prem-col .ct__check-box30 span {
+  margin-right: 0;
+}
+
+.war__prem-col .ct__check-box30 label {
+  font-size: 10rem;
+  gap: 4rem;
+}
+
+.war__prem-col > label::before,
+.war__units-count > label::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  content: '';
+  border: 1px solid var(--c10one);
+  opacity: 0.5;
+}
+
+.war__prem-col > label input,
+.war__units-count > label input {
+  display: block;
+  border: 0;
+  background-color: transparent;
+  height: 24rem;
+  width: 100%;
+}
+
+.war__units-count > label {
+  width: 150rem;
+}
+
+.war__units {
+  display: flex;
+  flex-direction: column;
+  gap: 12rem;
+  padding: 0 12rem;
+}
+
+.war__units-count {
+  display: flex;
+  align-items: center;
+}
+
+.war__units-count > span:first-of-type {
+  margin-right: auto;
+}
+
+.war__units-count > span:last-of-type {
+  margin-left: 6rem;
+}
+
 @media (min-width: 1200px) {
   .war {
     margin-top: 100rem;
     margin-left: 330rem;
     height: calc(100vh - 100rem);
+  }
+  .war__top,
+  .war__prem,
+  .war__units {
+    width: 500rem;
+    margin: 0 auto;
   }
 }
 
@@ -6484,6 +6744,10 @@ padding-right: 6rem;
   justify-content: center;
 }
 
+.ct__check-box30--col label {
+  flex-direction: column;
+}
+
 .ct__check-box30 span {
   width: 30rem;
   height: 30rem;
@@ -6580,6 +6844,11 @@ padding-right: 6rem;
   width: 300rem;
 }
 
+.ct__wide-modal-label-select--100 {
+  height: 24rem;
+  width: 100%;
+}
+
 .ct__wide-modal-label-select::after {
   position: absolute;
   left: 0;
@@ -6615,6 +6884,11 @@ padding-right: 6rem;
 .ct__wide-modal-label-select--min select {
   line-height: 24rem;
   background-color: var(--c30);
+  font-size: 14rem;
+}
+
+.ct__wide-modal-label-select--100 select {
+  line-height: 24rem;
   font-size: 14rem;
 }
 

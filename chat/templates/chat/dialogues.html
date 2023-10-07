@@ -50,7 +50,7 @@
 						{% if data|dict_key:'content' %}
 						  {% if '/stickers/' in data|dict_key:'content' %}
 							  {% autoescape off %}
-						  <p>{{ data|dict_key:'content' }}</p>
+						  <p class="overview__chat-message-sticker">{{ data|dict_key:'content' }}</p>
 							  {% endautoescape %}
 						  {% else %}
 						  <p>{{ data|dict_key:'content' }}</p>
