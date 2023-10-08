@@ -63,7 +63,7 @@ def dialogue(request, pk):
     # если игрок хочет посмотреть самого себя
     if player == char:
         # перекидываем его в сообщения
-        return redirect("messages")
+        return redirect("dialogues")
 
     messages = []
 

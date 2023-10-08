@@ -28,7 +28,14 @@
 			{% for dialog in dialogs %}
 			<li>
 				{% with data=dialogs_data|dict_key:dialog %}
+
+				{% if data|dict_key:'dtime' %}
+
+				{% if data|dict_key:'author' %}
 				<a href='/im/{% localize off %}{{ data|dict_key:"author" }}{% endlocalize %}' class="overview__chat-message overview__chat-message--dialog">
+				{% else %}
+				<a class="overview__chat-message overview__chat-message--dialog">
+				{% endif %}
 					<!--аватарка-->
 					<span class="overview__chat-ava-link">
 						{% if data|dict_key:'image_link' == 'nopic' %}
@@ -58,7 +65,14 @@
 					  	{% endif %}
 						</div>
 					</div>
+				{% if data|dict_key:'author' %}
 				</a>
+				{% else %}
+				</a>
+				{% endif %}
+
+				{% endif %}
+
 				{% endwith %}
 			</li>
 			{% endfor %}
