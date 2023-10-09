@@ -1,16 +1,21 @@
 import datetime
 import json
+import os
 import pytz
 import random
-import os
 import redis
 from allauth.socialaccount.models import SocialAccount
 from django.contrib.auth.decorators import login_required
 from django.db import connection
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils import timezone
+from django.utils.translation import ugettext as _
 
 from ava_border.models.ava_border_ownership import AvaBorderOwnership
+from chat.dialogue_consumers import _mark_as_read
+from chat.models.messages.chat import Chat
+from chat.models.messages.chat_members import ChatMembers
+from chat.models.messages.message_block import MessageBlock
 from chat.models.sticker import Sticker
 from chat.models.stickers_ownership import StickersOwnership
 from gov.models.minister import Minister
@@ -19,15 +24,9 @@ from player.player import Player
 from player.player_settings import PlayerSettings
 from wild_politics.settings import TIME_ZONE
 
-from chat.models.messages.chat_members import ChatMembers
-from chat.models.messages.chat import Chat
-from chat.models.messages.message_block import MessageBlock
-
-from chat.dialogue_consumers import _mark_as_read
 
 # преобразует последовательность из памяти в сообщения
 def tuple_to_messages(player, messages, tuple, r):
-
     for scan in tuple:
         b = json.loads(scan[0])
 
@@ -50,6 +49,7 @@ def tuple_to_messages(player, messages, tuple, r):
         messages.append(b)
 
     return messages
+
 
 @login_required(login_url='/')
 @check_player
@@ -88,12 +88,12 @@ def dialogue(request, pk):
             chat_id = chat.pk
 
             member, created = ChatMembers.objects.get_or_create(
-                chat = chat,
-                player = player,
+                chat=chat,
+                player=player,
             )
             member, created = ChatMembers.objects.get_or_create(
-                chat = chat,
-                player = char,
+                chat=chat,
+                player=char,
             )
 
         r = redis.StrictRedis(host='redis', port=6379, db=0)
@@ -157,6 +157,8 @@ def dialogue(request, pk):
     page = 'chat/dialogue.html'
 
     return render(request, page, {
+        'page_name': _(f'Диалог с {char.nickname}'),
+
         'player': player,
         'char': char,
 
