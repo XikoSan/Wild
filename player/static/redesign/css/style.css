@@ -2908,6 +2908,10 @@ p.overview__love-stat-timer {
 }
 
 @media (min-width: 1200px) {
+  .overview {
+    overflow: hidden !important;
+    height: calc(100% - 80rem);
+  }
   .overview__par-title-svg {
     display: none;
   }
