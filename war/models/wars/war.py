@@ -17,8 +17,6 @@ class War(models.Model):
     running = models.BooleanField(default=False, verbose_name='Идёт война')
     # раунд войны
     round = models.IntegerField(default=0, verbose_name='Раунд войны')
-    # баланс разведки
-    recon_balance = models.FloatField(default=1, verbose_name='Баланс разведки')
 
     # время начала войны
     start_time = models.DateTimeField(default=None, blank=True, null=True, verbose_name='Начало войны')
@@ -31,12 +29,6 @@ class War(models.Model):
     # регион обороняющихся
     def_region = models.ForeignKey(Region, default=None, null=True, on_delete=models.SET_NULL, blank=True,
                                    verbose_name='Регион обороняющихся', related_name="%(class)s_def_region")
-
-    # урон - атакующие
-    agr_dmg = models.BigIntegerField(default=0, verbose_name='Урон - атакующие')
-
-    # описание последнего раунда
-    round_log = models.TextField(default='', null=True, blank=True, verbose_name='Последний раунд')
 
     # таска
     task = models.OneToOneField(PeriodicTask, on_delete=models.SET_NULL, null=True, blank=True)
@@ -56,5 +48,5 @@ class War(models.Model):
     def war_end(self):
         pass
 
-    def get_attrs(self):
+    def get_page(self, request):
         pass

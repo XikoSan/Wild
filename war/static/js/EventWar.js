@@ -4,29 +4,16 @@ jQuery(document).ready(function ($) {
 
         var energy_count = Number(0);
         var units_count = 0;
-        var damage_dict = {};
+        var damage_count = 0;
 
         $('.unit_input').each(function(i, obj) {
             units_count += Number(obj.value);
             energy_count += units_energy[obj.id] * obj.value;
-
-            for(dest_type in units_damage[obj.id]){
-                if ( damage_dict.hasOwnProperty(dest_type) ){
-                    damage_dict[dest_type] += Math.floor(units_damage[obj.id][dest_type] * obj.value);
-                }
-                else{
-                    damage_dict[dest_type] = Math.floor(units_damage[obj.id][dest_type] * obj.value);
-                }
-            }
-
+            damage_count += units_damage[obj.id] * obj.value;
         });
 
         $('#energy_count' ).html( energy_count );
-        $('#units_count' ).html( units_count );
-
-        for (const [key, value] of Object.entries(damage_dict)) {
-            $('#damage_' + key ).html( value );
-        }
+        $('#damage_count' ).html( damage_count );
     });
 });
 

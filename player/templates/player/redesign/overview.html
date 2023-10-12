@@ -5,6 +5,44 @@
 {% load redesign.overview_blocks.skills %}
 {% load redesign.template_svg.nopic %}
 {% block for_scripts_and_css %}
+<script>
+    window.onload = function war_countdown() {
+    if (document.getElementById("closest_war-countdown") != undefined){
+        var war_cd_elem = document.getElementById("closest_war-countdown");
+
+        //получает строку
+        var war_cd_sec_string = $('#closest_war-countdown').attr('data-text');
+        var war_cd_sec = parseInt(war_cd_sec_string);
+
+        if (war_cd_sec == 0) { } else {
+
+            var war_cd_h = war_cd_sec/3600 ^ 0 ;
+            var war_cd_m = (war_cd_sec-war_cd_h*3600)/60 ^ 0 ;
+            var war_cd_s = war_cd_sec-war_cd_h*3600-war_cd_m*60 ;
+            war_cd_elem.innerHTML = (war_cd_h<10?"0"+war_cd_h:war_cd_h)+":"+(war_cd_m<10?"0"+war_cd_m:war_cd_m)+":"+(war_cd_s<10?"0"+war_cd_s:war_cd_s);
+            war_cd_sec = --war_cd_sec;
+
+
+            //запускаем функцию с повторением раз 1 секунду
+            var war_cd_id = setInterval(increase_frame, 1000);
+            function increase_frame() {
+
+                var war_cd_h = war_cd_sec/3600 ^ 0 ;
+                var war_cd_m = (war_cd_sec-war_cd_h*3600)/60 ^ 0 ;
+                var war_cd_s = war_cd_sec-war_cd_h*3600-war_cd_m*60 ;
+                war_cd_elem.innerHTML = (war_cd_h<10?"0"+war_cd_h:war_cd_h)+":"+(war_cd_m<10?"0"+war_cd_m:war_cd_m)+":"+(war_cd_s<10?"0"+war_cd_s:war_cd_s);
+
+                if (war_cd_sec == 0) {
+                    clearInterval(war_cd_id);
+                }
+                else{
+                    war_cd_sec = --war_cd_sec;
+                }
+            }
+        }
+    }
+  }
+</script>
 {% endblock %}
 {% load dict_key %}
 {% load get_sum %}
@@ -215,14 +253,14 @@
                   <img src="/static/img/regions/{{ war.agr_region.on_map_id }}.png">
                   {{ war.agr_region.region_name }}
                 </p>
-                <span>{{ war.hq_points }}</span>
+                <span>{{ war_delta }}</span>
               </div>
               <div class="overview__war-string">
                 <p class="overview__war-text">
                   <img src="/static/img/regions/{{ war.def_region.on_map_id }}.png">
                   {{ war.def_region.region_name }}
                 </p>
-                <span>{% if war.round|get_sum:1 > 24 %}24{% else %}{{ war.round|get_sum:1 }}{% endif %} / 24</span>
+                <span id="closest_war-countdown" data-text="{% localize off %} {{ war_countdown }} {% endlocalize %}">00:00:00</span>
               </div>
             </div>
             {% else %}
@@ -857,5 +895,9 @@
       overviewStickersContainers[index].classList.add('active');
     })
   })
+
+
+
+
 </script>
 {% endblock %}

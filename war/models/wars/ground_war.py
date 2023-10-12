@@ -19,10 +19,6 @@ from region.models.region import Region
 from state.models.treasury import Treasury
 from state.models.treasury_lock import TreasuryLock
 from storage.models.storage import Storage
-from war.models.squads.heavy_vehicle import HeavyVehicle
-from war.models.squads.infantry import Infantry
-from war.models.squads.light_vehicle import LightVehicle
-from war.models.squads.recon import Recon
 from war.models.wars.war import War
 from war.models.wars.war_side import WarSide
 from storage.models.auction.auction import BuyAuction
@@ -51,15 +47,6 @@ class GroundWar(War):
     hq_points = models.BigIntegerField(default=0, verbose_name='Прочность Штаба')
     # стороны войны
     war_side = GenericRelation(WarSide)
-
-    # отряды разведки
-    recon = GenericRelation(Recon)
-    # отряды пихоты
-    infantry = GenericRelation(Infantry)
-    # отряды легкой бронетехники
-    lightvehicle = GenericRelation(LightVehicle)
-    # отряды тяжелой бронетехники
-    heavyvehicle = GenericRelation(HeavyVehicle)
 
     def __str__(self):
         return 'Наземная: ' + getattr(self.agr_region, 'region_name') + ' - ' + getattr(self.def_region, 'region_name')

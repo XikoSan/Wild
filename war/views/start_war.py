@@ -30,40 +30,22 @@ def start_war(request):
         # создаем новую войну
         war = EventWar(
             running=True,
-            round=0,
             start_time=timezone.now(),
             agr_region=player.region,
             def_region=player.region,
+
             hq_points=10000,
         )
 
         war.save()
 
-        if CrontabSchedule.objects.filter(
-                                            minute=str(timezone.now().now().minute),
-                                            hour='*',
-                                            day_of_week='*',
-                                            day_of_month='*',
-                                            month_of_year='*',
-                                       ).exists():
-
-            schedule = CrontabSchedule.objects.filter(
-                                                        minute=str(timezone.now().now().minute),
-                                                        hour='*',
-                                                        day_of_week='*',
-                                                        day_of_month='*',
-                                                        month_of_year='*',
-                                                    ).first()
-
-        else:
-
-            schedule = CrontabSchedule.objects.create(
-                                                        minute=str(timezone.now().now().minute),
-                                                        hour='*',
-                                                        day_of_week='*',
-                                                        day_of_month='*',
-                                                        month_of_year='*',
-                                                       )
+        schedule, created = CrontabSchedule.objects.get_or_create(
+                                                    minute='*',
+                                                    hour='*',
+                                                    day_of_week='*',
+                                                    day_of_month='*',
+                                                    month_of_year='*',
+                                                   )
 
         war.task = PeriodicTask.objects.create(
             name=f'Война EventWar {war.pk}',

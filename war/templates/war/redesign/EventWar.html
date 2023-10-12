@@ -1,0 +1,248 @@
+{% extends 'player/redesign/header.html' %}
+{% load l10n %}{% load i18n %}
+{% load static %}
+{% load tz %}
+{% load has_key %}
+{% load dict_key %}
+{% load get_attr %}
+{% load get_sum %}
+{% load redesign.template_svg.nopic %}
+
+{% block for_scripts_and_css %}
+<script>
+    const war_id = '{{ war.pk }}';
+    const war_type = 'EventWar';
+
+    const chat_conn_type = "{% if http_use %}ws{% else %}wss{% endif %}";
+</script>
+
+<script src='{% static "js/EventWar.js" %}?{{ csrf_token }}'></script>
+<script src='{% static "js/war_socket.js" %}?{{ csrf_token }}'></script>
+{% endblock %}
+
+{% block content %}
+<script>
+    var units_energy = {};
+    var units_damage = {};
+
+    {% for unit in units %}
+
+        units_energy['{% localize off %}{{ unit.pk }}{% endlocalize %}'] = {% localize off %}{{ unit.energy }}{% endlocalize %};
+
+        units_damage['{% localize off %}{{ unit.pk }}{% endlocalize %}'] = {% localize off %}{{ unit.damage }}{% endlocalize %};
+
+    {% endfor %}
+</script>
+<section class="war">
+		<!-- Заголовок -->
+		<h1 class="war__title ct__page-title">Тестовая война</h1>
+
+    <div class="war__top">
+      <div class="war__sides">
+        <div class="war__gerbs">
+          <p>Атака:</p>
+          <img src="/static/img/regions/{{ war.agr_region.on_map_id }}.png">
+        </div>
+
+        <p>
+          {% if not war.running %}
+            <span>Война завершилась</span>
+           {% else %}
+          <span>До конца боя:</span>
+          <span id='war_countdown' data-text="{% localize off %}{{ war_countdown }}{% endlocalize %}">{{ dtime_str }}</span>
+            {% endif %}
+        </p>
+
+        <div class="war__gerbs">
+          <p>Защита:</p>
+          <img src="/static/img/regions/{{ war.def_region.on_map_id }}.png">
+        </div>
+      </div>
+
+      <div class="war__type">
+        <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="17" cy="17" r="16.5" stroke="var(--c10two)"/>
+          <path d="M10.4259 16.781L10.9111 17.2662L13.2237 17.8484L4.2965 18.3336L2.74394 18.9158L2.21024 19.8053L2 20.7109L2.29111 20.6301M10.4259 16.781L12.4798 14.2096L14.1456 14.0267M10.4259 16.781L14.6631 17.056M16.6038 13.7568L16.6685 13.2878H17.6226M16.6038 13.7568L16.5391 14.5816M16.6038 13.7568L14.1456 14.0267M17.6226 13.2878L17.5256 13.126L17.4061 12.7056M17.6226 13.2878L17.9849 14.5816M19.0189 13.2716L18.9973 13.1907C19.0674 13.1207 19.2011 12.9255 19.1752 12.7056L18.8032 11.1207C18.7601 11.0128 18.6156 10.7843 18.3827 10.7325L16.9596 5.20151C16.9272 5.0937 16.8399 4.88453 16.7493 4.91041L16.5229 4.27968C16.4636 4.15569 16.248 3.93035 15.8598 4.02092C15.7143 4.04787 15.4329 4.18912 15.4717 4.53844L15.6011 5.153C15.5849 5.2123 15.5526 5.35354 15.5526 5.4441L17.0889 11.1207C17.0296 11.2123 16.9531 11.457 17.1213 11.7029L17.4061 12.7056M19.0189 13.2716L19.9353 13.2878M19.0189 13.2716L19.3691 14.5816M19.9353 13.2878L19.8059 14.5816M19.9353 13.2878L20.0485 13.4519M20.0323 15.4387L20.2588 13.7568L20.1617 13.6161M20.0323 15.4387L19.8059 14.5816M20.0323 15.4387H16.6685M20.0323 15.4387L20.1617 15.9401M19.8059 14.5816H19.3691M19.3691 14.5816L19.434 14.8242C18.9423 15.4193 18.3234 15.126 18.0755 14.905L17.9849 14.5816M17.9849 14.5816H16.5391M16.5391 14.5816L16.6685 15.4387M16.6685 15.4387L16.442 16.1341M20.1617 13.6161L20.0485 13.4519M20.1617 13.6161L22.9596 13.9053M27.3261 17.056L26.9218 17.5573M27.3261 17.056L26.2749 18.3498M27.3261 17.056H22.0377M27.3261 17.056L27.0619 16.6517M26.9218 17.5573H26.6469L26.2749 18.3498M26.9218 17.5573L29.1536 17.7029M26.2749 18.3498H24.9973M26.2749 18.3498L29.1536 18.2847M20.1617 15.9401L20.6792 17.056H22.0377M20.1617 15.9401L22.0377 17.056M16.442 16.1341L16.5391 17.056H14.6631M16.442 16.1341L14.6631 17.056M31.2561 19.1422L32 18.9643V18.2204L31.5862 18.2297M31.2561 19.1422L31.0782 20.5007L30.8194 20.6301V20.9859L22.345 22.9589M31.2561 19.1422C31.3639 19.1207 31.5957 19.1519 31.6604 19.4495L31.7089 20.2905L30.9973 23.25C30.9811 23.3309 30.8906 23.5153 30.6577 23.6058L23.9137 26.4845M22.345 22.9589H21.9407L21.2455 20.4198M22.345 22.9589L21.5202 20.2905M21.1968 20.2419L21.5202 20.2905M21.1968 20.2419L21.2455 20.4198M21.1968 20.2419L21.2534 19.9508M24.9973 18.3498H24.5768L22.7817 19.0696M24.9973 18.3498L21.779 19.6597L21.5202 20.2905M23.9137 26.4845L21.4394 24.0748L20.9218 23.0398V21.4549L21.2455 20.4198M23.9137 26.4845H23.5741M20.6146 21.4549L20.5499 22.7325L20.6146 23.0883L21.1968 24.1557L23.5741 26.4845M23.5741 26.4845L20.6146 26.3066L18.6092 24.2431M17.8005 21.2123V22.3767L18.027 23.4764L18.3827 24.0101L18.6092 24.2431M17.8005 21.2123L20.097 21.277L20.7439 21.5034L20.9542 20.2096L21.2534 19.9508M17.8005 21.2123L16.7008 21.1677M21.2534 19.9508L21.31 19.6597L22.7817 19.0696M22.7817 19.0696V18.7541L22.6361 18.6085L17.8005 18.463L17.283 18.8188L17.0855 19.3363M27.0619 16.6517L25.434 14.1611L25.2561 14.1427M27.0619 16.6517L30.4798 16.7872M31.5862 18.2297L31.5472 16.8295L30.4798 16.7872M31.5862 18.2297L29.1536 18.2847M29.1536 18.2847V17.7029M29.1536 17.7029L30.4798 16.7872M16.5391 20.7684L16.345 21.277L16.6038 21.1638L16.7008 21.1677M16.5391 20.7684L16.1833 19.9508M16.5391 20.7684L17.0855 19.3363M16.1833 19.9508L16.0701 19.3363L16.5391 18.8188L16.7008 18.8835L17.0855 19.3363M16.1833 19.9508L5.36388 19.5465L5.28302 19.7244H4.99191L5.18534 20.0964M16.7008 21.1677L17.4192 23.1368M17.4192 23.1368L17.5903 23.6058L6.67385 22.9589L6.41315 22.4576M17.4192 23.1368L6.41315 22.4576M6.41315 22.4576L5.18534 20.0964M2.29111 20.6301H4.68464L4.91105 20.7433L5.18534 20.0964M2.29111 20.6301L2.74394 21.5034L3.03504 22.3767L3.73046 23.1368L7.98383 25.4333L11.2668 25.5627L18.6092 24.2431M14.1456 14.0267V12.8188L17.4061 12.7056M20.0485 13.4519L22.9596 13.5304V13.9053M22.9596 13.9053L23.3477 13.5304H23.8814V13.1907L24.4798 13.1626M22.9596 13.9053L25.2561 14.1427M25.2561 14.1427V13.126L24.4798 13.1626M24.4798 14.0267V13.1626" stroke="var(--c10one)" stroke-width="0.5" stroke-linejoin="bevel"/>
+        </svg>
+      </div>
+
+      <div class="war__damage">
+        <div class="war__playerDamage"></div>
+        <p>
+          <span>Урон:</span>
+          <span id="agr_dmg">{{ agr_dmg }}</span>
+        </p>
+        <p id="delta_dmg">
+          {{ delta }}
+        </p>
+        <p>
+          <span>Урон:</span>
+          <span id="def_dmg">{{ def_dmg }}</span>
+        </p>
+      </div>
+    </div>
+    {% if premium %}
+    <div class="war__prem">
+      <div class="party__mmid-line"></div>
+
+      <div class="war__prem-grid">
+        <div class="war__prem-col">
+          <span>Баланс сил:</span>
+          <label class="ct__wide-modal-label-select ct__wide-modal-label-select--100">
+            <select>
+              <option value="disabled" disabled selected>условие</option>
+              <option value="more">больше</option>
+              <option value="less">меньше</option>
+              <option value="disabled">не важно</option>
+            </select>
+            <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
+            </svg>
+          </label>
+        </div>
+        <div class="war__prem-col">
+          <div class="ct__check-box30 ct__check-box30--col">
+            <label>
+              <input value="population" type="checkbox" name="map-layer" class="visually-hidden">
+              <svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(--c10two)"/>
+              </svg>
+              <span>
+                <svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(--c10two)"/>
+                  <path d="M6.5 4.5L4.5 6.5V20.5H18.5L20.5 18.5V4.5H6.5Z" fill="var(--c10two)" stroke="var(--c10two)"/>
+                </svg>
+              </span>
+              AUTO
+            </label>
+          </div>
+        </div>
+        <div class="war__prem-col">
+          <span>очки:</span>
+          <label>
+            <input type="number">
+          </label>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+    {% if war.running %}
+    {% if in_region %}
+	<div class="war__units">
+		<div class="party__mmid-line"></div>
+
+		<div class="ct__selectWithImage">
+            {% for storage in storages %}
+            {% if forloop.counter0 == 0 %}
+			<div class="ct__selectWithImage-selected" id="default_storage" data-value="{% localize off %}{{ storage.pk }}{% endlocalize %}">
+				<img id="create_default_img" src="/static/img/regions/{{ storage.region.on_map_id }}.png">
+				<div class="ct__selectWithImage-firstText">
+					<span id="create_default_region">{% trans storage.region.region_name context "regions_list" %}</span>
+					<svg class="ct__selectWithImage-arrow" width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
+					</svg>
+				</div>
+			</div>
+            {% endif %}
+            {% endfor %}
+			<div class="ct__selectWithImage-content custom-scroll custom-scroll--alt">
+                {% for storage in storages %}
+                <div id="create_storage_{% localize off %}{{ storage.pk }}{% endlocalize %}" {% if forloop.counter0 == 0 %}class="first_storage"{% endif %} data-value="{% localize off %}{{ storage.pk }}{% endlocalize %}">
+                    <img class="offer_dummy_img" src="/static/img/regions/{{ storage.region.on_map_id }}.png">
+                    <span class="offer_dummy_region">{% trans storage.region.region_name context "regions_list" %}</span>
+                </div>
+                {% endfor %}
+			</div>
+		</div>
+        {% if units_dict %}
+            {% for unit in units %}
+            {% if units_dict|has_key:unit.good %}
+		<div class="war__units-count">
+			<span>{{ unit.good.name }}:</span>
+			<label>
+                <input type="number" min="0"
+                                           max="{% localize off %}{{ units_dict|dict_key:unit.good }}{% endlocalize %}"
+                                           value="0" step="1"
+                                           id="{% localize off %}{{ unit.pk }}{% endlocalize %}"
+                                           name="{% localize off %}{{ unit.pk }}{% endlocalize %}"
+                                           class="unit_input" maxlength="3">
+            </label>
+			<span>/ {{ units_dict|dict_key:unit.good }}</span>
+		</div>
+            {% endif %}
+            {% endfor %}
+        {% else %}
+            <span style="margin: auto;">нет войск</span>
+        {% endif %}
+	</div>
+    {% endif %}
+    {% endif %}
+</section>
+
+<script>
+  function toggleActiveClass(element) {
+    element.classList.toggle('active');
+    if (element.classList.contains('active')) {
+      element.style.height = `${element.scrollHeight + 1}px`;
+    } else {
+      element.style.height = '';
+    }
+  }
+  if (screen.width >= 1200) {
+    document.querySelectorAll('.war__par').forEach((el) => el.classList.add('active'));
+  }
+
+	/* создание выскакивающего сообщения */
+	const messagesContainer = document.querySelector('.war__playerDamage');
+	function createDamageMessage(src, points, isLeft) {
+		const newMessage = document.createElement('div');
+		isLeft ? newMessage.classList.add('left') : newMessage.classList.add('right');
+		isLeft ?
+			newMessage.insertAdjacentHTML('beforeend', `<img src="${src}"><span>+${points.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")}</span>`)
+			:
+			newMessage.insertAdjacentHTML('beforeend', `<span>+${points.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")}</span><img src="${src}">`);
+		messagesContainer.appendChild(newMessage);
+		setTimeout(() => newMessage.remove(), 5000);
+	}
+
+	/* обратный отсчет боя */
+      window.addEventListener("load", function (event) {
+        if (document.getElementById("war_countdown") != undefined){
+
+            var war_cd_elem = document.getElementById("war_countdown");
+
+            //получает строку
+            var war_cd_sec_string = $('#war_countdown').attr('data-text');
+            var war_cd_sec = parseInt(war_cd_sec_string);
+
+            if (war_cd_sec == 0) { } else {
+
+                var war_cd_h = war_cd_sec/3600 ^ 0 ;
+                var war_cd_m = (war_cd_sec-war_cd_h*3600)/60 ^ 0 ;
+                var war_cd_s = war_cd_sec-war_cd_h*3600-war_cd_m*60 ;
+                war_cd_elem.innerHTML = (war_cd_h<10?"0"+war_cd_h:war_cd_h)+":"+(war_cd_m<10?"0"+war_cd_m:war_cd_m)+":"+(war_cd_s<10?"0"+war_cd_s:war_cd_s);
+                war_cd_sec = --war_cd_sec;
+
+
+                //запускаем функцию с повторением раз 1 секунду
+                var war_cd_id = setInterval(increase_frame, 1000);
+                function increase_frame() {
+
+                    var war_cd_h = war_cd_sec/3600 ^ 0 ;
+                    var war_cd_m = (war_cd_sec-war_cd_h*3600)/60 ^ 0 ;
+                    var war_cd_s = war_cd_sec-war_cd_h*3600-war_cd_m*60 ;
+                    war_cd_elem.innerHTML = (war_cd_h<10?"0"+war_cd_h:war_cd_h)+":"+(war_cd_m<10?"0"+war_cd_m:war_cd_m)+":"+(war_cd_s<10?"0"+war_cd_s:war_cd_s);
+
+                    if (war_cd_sec == 0) {
+                        clearInterval(war_cd_id);
+                    }
+                    else{
+                        war_cd_sec = --war_cd_sec;
+                    }
+                }
+            }
+        }
+   });
+</script>
+{% endblock %}

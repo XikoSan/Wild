@@ -38,9 +38,6 @@
         <div class="col-xs-3 col-sm-3 col-md-3">
             Регион
         </div>
-        <div class="col-xs-1 col-sm-1 col-md-1">
-            Фаза войны
-        </div>
         <div class="col-xs-6 col-sm-6 col-md-6">
             Прочность укреплений
         </div>
@@ -53,9 +50,6 @@
             </div>
             <div class="col-xs-3 col-sm-3 col-md-3">
                 {{ war.agr_region }}
-            </div>
-            <div class="col-xs-1 col-sm-1 col-md-1">
-                {% if war.round|get_sum:1 > 24 %}24{% else %}{{ war.round|get_sum:1 }}{% endif %}
             </div>
             <div class="col-xs-3 col-sm-3 col-md-3">
                 {{ war.hq_points }}

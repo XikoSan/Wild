@@ -29,6 +29,7 @@ from state.models.state import State
 from war.models.wars.war import War
 from wild_politics.settings import TIME_ZONE
 from player.player_settings import PlayerSettings
+from player.views.timers import interval_in_seconds
 
 
 # главная страница
@@ -94,6 +95,8 @@ def overview(request):
     stickers_dict = {}
     stickers_header_dict = {}
     header_img_dict = {}
+
+    r = None
 
     if not player.chat_ban:
         r = redis.StrictRedis(host='redis', port=6379, db=0)
@@ -176,6 +179,9 @@ def overview(request):
 
     # находим войну, которая закончится раньше всех
     closest_war = None
+    war_countdown = 0
+    agr_damage = 0
+    def_damage = 0
 
     for w_type in war_dict.keys():
         if not closest_war:
@@ -183,6 +189,31 @@ def overview(request):
         else:
             if closest_war.start_time > war_dict[w_type].start_time:
                 closest_war = war_dict[w_type]
+
+    if closest_war:
+
+        if not r:
+            r = redis.StrictRedis(host='redis', port=6379, db=0)
+
+        agr_damage = r.hget(f'{closest_war.__class__.__name__}_{closest_war.pk}_dmg', 'agr')
+        if not agr_damage:
+            agr_damage = 0
+        else:
+            agr_damage = int(agr_damage)
+
+        def_damage = r.hget(f'{closest_war.__class__.__name__}_{closest_war.pk}_dmg', 'def')
+        if not def_damage:
+            def_damage = 0
+        else:
+            def_damage = int(def_damage)
+
+
+        war_countdown = interval_in_seconds(
+                                            object=closest_war,
+                                            start_fname='start_time',
+                                            end_fname=None,
+                                            delay_in_sec=86400
+                                        )
 
     page = 'player/redesign/overview.html'
 
@@ -223,6 +254,8 @@ def overview(request):
         'http_use': http_use,
 
         'war': closest_war,
+        'war_delta': def_damage - agr_damage,
+        'war_countdown': war_countdown,
 
         # 'polls': polls,
 

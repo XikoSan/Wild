@@ -1,12 +1,10 @@
 from django.contrib import admin
 
-from war.models.squads.heavy_vehicle import HeavyVehicle
-from war.models.squads.recon import Recon
-from war.models.squads.infantry import Infantry
-from war.models.squads.light_vehicle import LightVehicle
 from war.models.wars.event_war import EventWar
 from war.models.wars.ground_war import GroundWar
 from war.models.wars.war_side import WarSide
+from war.models.wars.unit import Unit
+from war.models.wars.player_damage import PlayerDamage
 
 
 class SquadAdmin(admin.ModelAdmin):
@@ -30,12 +28,20 @@ class SquadAdmin(admin.ModelAdmin):
         else:
             return ''
 
+
+class UnitAdmin(admin.ModelAdmin):
+    search_fields = ['good__name_ru',]
+    raw_id_fields = ('good',)
+    list_display = ['get_unit_name', 'damage', 'energy', ]
+
+    def get_unit_name(self, obj):
+        return obj.good.name
+
+
 # Register your models here.
 admin.site.register(EventWar)
 # admin.site.register(GroundWar)
 admin.site.register(WarSide)
 
-admin.site.register(Recon, SquadAdmin)
-admin.site.register(Infantry, SquadAdmin)
-admin.site.register(LightVehicle, SquadAdmin)
-admin.site.register(HeavyVehicle, SquadAdmin)
+admin.site.register(PlayerDamage)
+admin.site.register(Unit, UnitAdmin)
