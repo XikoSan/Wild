@@ -3229,7 +3229,7 @@ p.overview__love-stat-timer {
 
 .overview__stickers-close-overlay {
   position: fixed;
-  top: 0;
+  bottom: 222rem;
   left: 0;
   width: 100%;
   height: calc(100vh - 320rem);
@@ -3566,8 +3566,10 @@ p.overview__love-stat-timer {
   .overview__stickers-close-overlay {
     left: initial;
     right: 0;
+    bottom: 222rem;
+    top: initial;
     width: 510rem;
-    height: calc(100vh - 320rem);
+    height: calc(100vh - 390rem);
   }
   .overview__stickers-container {
     scrollbar-color: var(--c30) transparent;
@@ -3797,6 +3799,35 @@ p.overview__love-stat-timer {
   object-position: center;
 }
 
+.war__enter {
+  margin: 0 auto;
+}
+
+.war__enter-grid {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr 45rem 144rem;
+  gap: 6rem;
+  padding: 0 12rem;
+}
+
+.war__enter-left {
+  display: flex;
+  flex-direction: column;
+  gap: 6rem;
+}
+
+.war__enter-str {
+  display: flex;
+  align-items: center;
+  gap: 6rem;
+  font-size: 12rem;
+}
+
+.war__enter-str label {
+  position: relative;
+}
+
 .war__prem-grid {
   display: flex;
   align-items: center;
@@ -3849,7 +3880,8 @@ p.overview__love-stat-timer {
 }
 
 .war__prem-col > label::before,
-.war__units-count > label::before {
+.war__units-count > label::before,
+.war__enter-str > label::before {
   position: absolute;
   top: 0;
   left: 0;
@@ -3862,7 +3894,8 @@ p.overview__love-stat-timer {
 }
 
 .war__prem-col > label input,
-.war__units-count > label input {
+.war__units-count > label input,
+.war__enter-str > label input {
   display: block;
   border: 0;
   background-color: transparent;
@@ -3903,9 +3936,13 @@ p.overview__love-stat-timer {
   }
   .war__top,
   .war__prem,
-  .war__units {
+  .war__units,
+  .war__enter {
     width: 500rem;
     margin: 0 auto;
+  }
+  .war__enter-grid {
+    grid-template-columns: 1fr 94rem 1fr;
   }
 }
 
@@ -5898,7 +5935,7 @@ padding-right: 6rem;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 32rem;
-    width: max-content;
+    width: calc(100vw - 330rem);
     padding-bottom: 0;
     margin: 0 auto;
   }

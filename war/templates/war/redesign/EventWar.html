@@ -18,6 +18,7 @@
 
 <script src='{% static "js/EventWar.js" %}?{{ csrf_token }}'></script>
 <script src='{% static "js/war_socket.js" %}?{{ csrf_token }}'></script>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 {% endblock %}
 
 {% block content %}
@@ -48,7 +49,7 @@
           {% if not war.running %}
             <span>Война завершилась</span>
            {% else %}
-          <span>До конца боя:</span>
+          <span>До конца боя:</span><br>
           <span id='war_countdown' data-text="{% localize off %}{{ war_countdown }}{% endlocalize %}">{{ dtime_str }}</span>
             {% endif %}
         </p>
@@ -81,7 +82,7 @@
         </p>
       </div>
     </div>
-    {% if premium %}
+    {% if False %}
     <div class="war__prem">
       <div class="party__mmid-line"></div>
 
@@ -126,6 +127,47 @@
       </div>
     </div>
     {% endif %}
+
+    <div class="war__enter">
+        <div class="party__mmid-line"></div>
+
+        <div class="war__enter-grid">
+            <div class="war__enter-left">
+                <label class="ct__wide-modal-label-select ct__wide-modal-label-select--100">
+                    <select id="war_side">
+                      <option disabled selected>сторона боя</option>
+                      <option value="agr">атака</option>
+                      <option value="def">защита</option>
+                    </select>
+                    <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
+                    </svg>
+                </label>
+
+                <div class="war__enter-str">
+                    <span>Урон:</span>
+                    <span id="damage_count">0</span>
+                </div>
+            </div>
+
+            <span style="text-align: center">⚡<span id="energy_count">0</span></span>
+
+            <button class="ct__mid-btn" onclick="sendEvent()">
+                <svg width="144" height="30" viewBox="0 0 144 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <mask id="mask0_259_319" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+                        <path d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z" fill="var(--c10two)"/>
+                    </mask>
+                    <g mask="url(#mask0_259_319)">
+                        <path d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" fill="var(--c10two)"/>
+                        <path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"/>
+                        <path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"/>
+                        <path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
+                    </g>
+                </svg>
+                <span>в бой</span>
+            </button>
+        </div>
+    </div>
 
     {% if war.running %}
     {% if in_region %}
@@ -178,7 +220,13 @@
 	</div>
     {% endif %}
     {% endif %}
+
+    {% if graph_html %}
+    <div id="graph-container" style="display: none">{{ graph_html|safe }}</div>
+    {% endif %}
 </section>
+
+
 
 <script>
   function toggleActiveClass(element) {

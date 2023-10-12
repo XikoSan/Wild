@@ -17,7 +17,7 @@ warSocket.onmessage = function(e) {
     }
     else{
         actualize();
-        createDamageMessage('img/kub.png', data.damage, data.agr_side);
+        createDamageMessage(data.image_url, data.damage, data.agr_side);
 
         document.getElementById('agr_dmg').innerHTML = numberWithSpaces(data.agr_dmg);
         document.getElementById('def_dmg').innerHTML = numberWithSpaces(data.def_dmg);
@@ -30,28 +30,6 @@ warSocket.onclose = function(e) {
     display_modal('notify', 'Соединение прервалось', 'перезагрузите страницу, чтобы переподключиться', null, "Понятно");
 };
 
-//document.querySelector('#chat-message-submit-' + roomName).onclick = function(e) {
-//    const messageInputDom = document.querySelector('#chat-message-input-' + roomName);
-//    const message = messageInputDom.value;
-//    if( !(message == '') && message.replace(/\s/g, '').length ){
-//        warSocket.send(JSON.stringify({
-//            'message': message
-//        }));
-//        messageInputDom.value = '';
-//    }
-//};
-
-$(".sticker_img").click(function () {
-    warSocket.send(JSON.stringify({
-        'sticker': $(this).attr('id')
-    }));
-})
-
-$(".overview__chat").on("click", ".overview__chat-message-header > h3", function(e){
-    elem = $(this).closest('.overview__chat-wrapper').find(".overview__chat-controls-input")
-    elem.val($(this).html() + ', ' + elem.val());
-});
-
 function sendEvent() {
 
     var units = {};
@@ -62,7 +40,7 @@ function sendEvent() {
     warSocket.send(JSON.stringify({
         'units': units,
         'storage': document.getElementById('default_storage').dataset.value,
-        'side': 'agr',
+        'side': $('#war_side').val(),
     }));
 
 }

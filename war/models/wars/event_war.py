@@ -1,6 +1,7 @@
 # coding=utf-8
 import datetime
 import os
+import plotly.graph_objects as go
 import pytz
 import redis
 from django.contrib.contenttypes.fields import GenericRelation
@@ -60,6 +61,21 @@ class EventWar(War):
 
         self.hq_points = def_damage - agr_damage
 
+        # сохраняем очки урона в график
+        graph = []
+        timestamp = str(datetime.datetime.now().timestamp()).split('.')[0]
+
+        if self.graph:
+            graph = eval(self.graph)
+
+            if not graph[-1][1] ==  self.hq_points:
+                graph.append((timestamp, self.hq_points))
+        else:
+            graph.append((timestamp, self.hq_points))
+
+        self.graph = str(graph)
+
+        # если последний раунд - на выход
         if self.round == 1440:
             self.war_end()
 
@@ -135,6 +151,33 @@ class EventWar(War):
                 for weapon in weapons:
                     units_dict[weapon.good] = weapon.stock
 
+        # --------------------------------------------------------------------------------------------
+        data = []
+        graph_html = None
+        if self.graph:
+            data = eval(self.graph)
+
+        if data:
+            # Разделите список на два отдельных списка: timestamps и scores
+            timestamps, scores = zip(*data)
+
+            # Преобразуйте значения timestamps в объекты datetime
+            timestamps = [datetime.datetime.fromtimestamp(int(timestamp)).astimezone(tz=pytz.timezone(player.time_zone)) for timestamp in timestamps]
+
+            # Создайте объект Scatter для построения графика
+            fig = go.Figure(data=go.Scatter(x=timestamps, y=scores, mode='lines+markers'))
+
+            # Настройте макет графика
+            fig.update_layout(
+                title='Score Changes Over Time',
+                xaxis_title='Timestamp',
+                yaxis_title='Score'
+            )
+
+            # Преобразуйте график в HTML и сохраните его в переменную
+            graph_html = fig.to_html(full_html=False)
+        # --------------------------------------------------------------------------------------------
+
         http_use = False
         if os.getenv('HTTP_USE'):
             http_use = True
@@ -177,6 +220,8 @@ class EventWar(War):
             'war_cl': War,
 
             'http_use': http_use,
+
+            'graph_html': graph_html
 
         })
 

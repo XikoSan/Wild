@@ -33,6 +33,9 @@ class War(models.Model):
     # таска
     task = models.OneToOneField(PeriodicTask, on_delete=models.SET_NULL, null=True, blank=True)
 
+    # поминутный график боя
+    graph = models.TextField(default='', null=True, blank=True, verbose_name='График боя')
+
     # удалено
     deleted = models.BooleanField(default=False, verbose_name='Удалено')
 

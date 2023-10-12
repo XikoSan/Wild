@@ -196,8 +196,7 @@ def _send_damage(fighter, war_type, war_id, storage_pk, units, side):
             energy_required += units_count * db_unit.energy
 
 
-        player.energy -= energy_required
-        player.save()
+        player.energy_cons(value=energy_required, mul=2)
 
         # дальше мы пытаемся внести урон в бой. Если не выйдет - то отменим списание войск и выйдем
         r = redis.StrictRedis(host='redis', port=6379, db=0)
@@ -324,6 +323,10 @@ class WarConsumer(AsyncWebsocketConsumer):
 
             if not err:
 
+                image_url = '/static/img/nopic.svg'
+                if self.player.image:
+                    image_url = self.player.image.url
+
                 # Send message to room group
                 await self.channel_layer.group_send(
                     self.room_group_name,
@@ -331,6 +334,8 @@ class WarConsumer(AsyncWebsocketConsumer):
                         'type': 'chat_message',
                         'damage': damage,
                         'side': side,
+
+                        'image_url': image_url,
 
                         'agr_dmg': agr_dmg,
                         'def_dmg': def_dmg,
@@ -363,13 +368,15 @@ class WarConsumer(AsyncWebsocketConsumer):
         damage = event['damage']
 
         agr_side = True
-        if event['damage'] == 'def':
+        if event['side'] == 'def':
             agr_side = False
 
         # Send message to WebSocket
         await self.send(text_data=json.dumps({
             'damage': damage,
             'agr_side': agr_side,
+
+            'image_url': event['image_url'],
 
             'agr_dmg': event['agr_dmg'],
             'def_dmg': event['def_dmg'],
