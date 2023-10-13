@@ -2,6 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from django.http import JsonResponse
 from django.utils import timezone
+from datetime import timedelta
 from player.logs.print_log import log
 from player.decorators.player import check_player
 from player.player import Player
@@ -297,8 +298,13 @@ def accept_offer(request):
         elif offer.type == 'buy':
             #   проверяем наличие в ОФФЕРЕ и блокировке денег на количество (на всяк случай)
             offer_sum = count * offer.price
-            # проверяем налог с прибыли продавца
-            taxed_sum = State.check_taxes(player.region, offer_sum, 'trade')
+
+            # новички не платят налоги неделю
+            if request.user.date_joined + timedelta(days=7) > timezone.now():
+                taxed_sum = offer_sum
+            else:
+                # проверяем налог с прибыли продавца
+                taxed_sum = State.check_taxes(player.region, offer_sum, 'trade')
 
             if taxed_sum < delivery_price:
                 data = {
@@ -374,7 +380,11 @@ def accept_offer(request):
             offer_cash_lock.save()
 
             # получаем налог с прибыли продавца
-            taxed_sum = State.get_taxes(player.region, offer_sum, 'trade', 'cash')
+            # новички не платят налоги неделю
+            if request.user.date_joined + timedelta(days=7) > timezone.now():
+                taxed_sum = offer_sum
+            else:
+                taxed_sum = State.get_taxes(player.region, offer_sum, 'trade', 'cash')
 
             #   начисляем деньги игроку
             player.cash += taxed_sum

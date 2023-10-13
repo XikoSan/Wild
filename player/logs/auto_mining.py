@@ -209,7 +209,11 @@ class AutoMining(Log):
             ret_stocks, ret_st_stocks = get_stocks(storage, goods)
             # облагаем налогом добытую нефть
             total_oil = (count / 10) * 20
-            taxed_oil = State.get_taxes(player.region, total_oil, 'oil', player.region.oil_mark)
+
+            if not player.account.date_joined + datetime.timedelta(days=7) > timezone.now():
+                taxed_oil = State.get_taxes(player.region, total_oil, 'oil', player.region.oil_mark)
+            else:
+                taxed_oil = total_oil
 
             # сохраняем информацию о том, сколько добыто за день
             r = redis.StrictRedis(host='redis', port=6379, db=0)
@@ -281,7 +285,10 @@ class AutoMining(Log):
                 if Excavation.objects.filter(player=player, level__gt=0).exists():
                     total_ore = Excavation.objects.get(player=player).apply({'sum': total_ore})
 
-                taxed_ore = State.get_taxes(player.region, total_ore, 'ore', mineral.good)
+                if not player.account.date_joined + datetime.timedelta(days=7) > timezone.now():
+                    taxed_ore = State.get_taxes(player.region, total_ore, 'ore', mineral.good)
+                else:
+                    taxed_ore = total_ore
 
                 # сохраняем информацию о том, сколько добыто за день
                 r = redis.StrictRedis(host='redis', port=6379, db=0)

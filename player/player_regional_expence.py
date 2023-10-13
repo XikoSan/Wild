@@ -21,7 +21,8 @@ class PlayerRegionalExpense(models.Model):
         # получаем число денег, которое было заработано в этом регионе
         taxed_count = int(self.energy_consumption * count / self.player.energy_consumption)
 
-        taxed_count = State.get_taxes(self.region, taxed_count, 'cash', 'cash')
+        if not self.player.account.date_joined + timedelta(days=7) > timezone.now():
+            taxed_count = State.get_taxes(self.region, taxed_count, 'cash', 'cash')
 
         return taxed_count
 
