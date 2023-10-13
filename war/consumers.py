@@ -4,6 +4,7 @@ import logging
 import pytz
 import re
 import redis
+import math
 from asgiref.sync import sync_to_async
 from channels.generic.websocket import AsyncWebsocketConsumer
 from datetime import datetime
@@ -192,7 +193,7 @@ def _send_damage(fighter, war_type, war_id, storage_pk, units, side):
             #                      good=db_unit.good,
             #                      stock__gte=units_count).update(stock=F('stock') - units_count)
 
-            damage += units_count * db_unit.damage
+            damage += math.floor( (units_count * db_unit.damage) * (1 + player.power/100) )
             energy_required += units_count * db_unit.energy
 
 

@@ -13,6 +13,8 @@
     const war_id = '{{ war.pk }}';
     const war_type = 'EventWar';
 
+    const player_pwr = {% localize off %}{{ player.power }}{% endlocalize %};
+
     const chat_conn_type = "{% if http_use %}ws{% else %}wss{% endif %}";
 </script>
 
