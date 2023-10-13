@@ -1,14 +1,16 @@
 import json
+import redis
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
 
 from chat.models.messages.chat import Chat
 from chat.models.messages.chat_members import ChatMembers
 from chat.models.messages.message_block import MessageBlock
+from chat.views.messages.dialogue import tuple_to_messages
 from player.decorators.player import check_player
 from player.player import Player
 from wild_politics.settings import JResponse
-from chat.views.messages.dialogue import tuple_to_messages
+
 
 # покупка стикерпака
 @login_required(login_url='/')
@@ -59,7 +61,8 @@ def get_message_block(request):
             messages_tuple = eval(block.messages)
 
             # добавляем сообщения из БД на выход
-            messages = tuple_to_messages(player, messages, messages_tuple)
+            r = redis.StrictRedis(host='redis', port=6379, db=0)
+            messages = tuple_to_messages(player, messages, messages_tuple, r)
 
             data = {
                 'response': 'ok',
