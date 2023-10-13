@@ -82,6 +82,9 @@
         </p>
       </div>
     </div>
+    
+    {% if war.running %}
+    {% if in_region %}
     {% if False %}
     <div class="war__prem">
       <div class="party__mmid-line"></div>
@@ -169,8 +172,6 @@
         </div>
     </div>
 
-    {% if war.running %}
-    {% if in_region %}
 	<div class="war__units">
 		<div class="party__mmid-line"></div>
 
