@@ -51,7 +51,8 @@
 
         <p>
           {% if not war.running %}
-            <span>Война завершилась</span>
+            <span>Война завершилась:</span><br>
+            <span>{{ war.end_time|timezone:player.time_zone|date:"d.m.y H:i" }}</span>
            {% else %}
           <span>До конца боя:</span><br>
           <span id='war_countdown' data-text="{% localize off %}{{ war_countdown }}{% endlocalize %}">{{ dtime_str }}</span>
