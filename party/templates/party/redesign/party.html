@@ -27,7 +27,7 @@
 	<div class="rank-edit__overlay" id="overlay"></div>
 
 	<div class="rank-edit__content">
-			{% for position in positions %}
+		{% for position in positions %}
 		<div class="ct__two-select-wrapper-check ct__two-select-wrapper-check--min">
 			<label>
 				<input type="radio" id="post_{% localize off %}{{ position.pk }}{% endlocalize %}" name="post" value="{% localize off %}{{ position.pk }}{% endlocalize %}" class="party_post visually-hidden">
@@ -44,6 +44,8 @@
 			</label>
 		</div>
 		{% endfor %}
+
+		{% if player.party_post.party_lead %}
 		<div class="party__mmid-line"></div>
 
 		<a class="rank-edit__delete ct__mid-btn" href="##">
@@ -60,7 +62,7 @@
 			</svg>
 			<span>{% trans 'исключить' context "has_party" %}</span>
 		</a>
-
+		{% endif %}
 
 	</div>
 </div>

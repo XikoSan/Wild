@@ -18,7 +18,11 @@ def party(request):
     # должности этой партии
     positions = None
     if player.party:
-        positions = PartyPosition.objects.filter(party=player.party).exclude(party_lead=True)
+        if player.party_post.party_lead:
+            positions = PartyPosition.objects.filter(party=player.party).exclude(party_lead=True)
+
+        elif player.party_post.party_sec:
+            positions = PartyPosition.objects.filter(party=player.party).exclude(party_lead=True).exclude(party_sec=True)
 
     page = 'party/party.html'
     if 'redesign' not in groups:
