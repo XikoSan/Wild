@@ -3,7 +3,8 @@ import json
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from django.utils import timezone
-from django_celery_beat.models import IntervalSchedule, PeriodicTask, CrontabSchedule
+from django_celery_beat.models import IntervalSchedule, PeriodicTask, CrontabSchedule, ClockedSchedule
+from datetime import timedelta
 
 from player.decorators.player import check_player
 from player.player import Player
@@ -69,6 +70,23 @@ def start_war(request):
             side='def',
         )
         war_side_def.save()
+
+        end_time = timezone.now() + timedelta(days=1)  # Текущее время + 24 часа
+
+        clocked_schedule, created = ClockedSchedule.objects.get_or_create(
+            clocked_time=end_time,
+        )
+
+        end_war_task = PeriodicTask.objects.create(
+            name=f'Завершение войны EventWar {war.pk}',
+            task='end_war',
+            clocked=clocked_schedule,
+            one_off=True,
+            args=json.dumps(['EventWar', war.pk]),
+            start_time=timezone.now()
+        )
+
+        end_war_task.save()
 
         data = {
             'response': 'ok',

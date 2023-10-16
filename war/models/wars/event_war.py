@@ -75,18 +75,17 @@ class EventWar(War):
 
         self.graph = str(graph)
 
-        # если последний раунд - на выход
-        if self.round == 1440:
-            self.war_end()
-
         self.save()
 
     # завершить войну
     def war_end(self):
+        self.war_round()
+
         pk = self.task.pk
         self.task = None
         self.running = False
         self.end_time = timezone.now()
+
         self.save()
         PeriodicTask.objects.filter(pk=pk).delete()
 

@@ -11,5 +11,13 @@ def war_round_task(type, id):
 
     war_class = apps.get_model('war', type)
     war = war_class.objects.get(pk=id)
-    # todo: удалять из редис информацию о уроне сторон боя
     war.war_round()
+
+
+# завершение войны
+@shared_task(name="end_war")
+def end_war(type, id):
+
+    war_class = apps.get_model('war', type)
+    war = war_class.objects.get(pk=id)
+    war.war_end()
