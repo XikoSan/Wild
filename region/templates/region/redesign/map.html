@@ -302,6 +302,11 @@
  region_poly_{{ district.pk }}.addTo(mymap);
  {% endwith %}
  {% endfor %}
+
+  var elements = document.getElementsByClassName("leaflet-bottom");
+  while (elements.length > 0) {
+      elements[0].parentNode.removeChild(elements[0]);
+  }
  </script>
 
 <!-- костыльный блок: тексты всех имен регионов -->
