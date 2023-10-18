@@ -217,6 +217,11 @@ class ExploreResources(Bill):
 
         return data, 'state/gov/reviewed/explore_resources.html'
 
+    def get_new_reviewed_bill(self, player):
+        data = {'bill': self, 'title': self._meta.verbose_name_raw, 'player': player}
+
+        return data, 'state/redesign/reviewed/explore_resources.html'
+
     def __str__(self):
         return str(self.exp_value) + " " + self.get_resource_display() + " в " + self.region.region_name
 

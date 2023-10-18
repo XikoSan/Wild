@@ -1,0 +1,1254 @@
+{% extends 'player/redesign/header.html' %}
+{% load static %}
+{% load dict_key %}
+{% load i18n %}{% load tz %}
+{% load redesign.government.parliament %}
+{% load redesign.government.executives %}
+{% load redesign.government.treasury %}
+{% load government.bills %}
+{% load government.new_bill %}
+{% load government.redesign.bills_history %}
+{% load government.custom_rights %}
+
+{% block for_scripts_and_css %}
+<!--универсальная модалка таблиц-->
+<div class="tableMobileModal">
+	<button class="tableMobileModal__close ct__square-mid-btn">
+		<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<path d="M1 1L31 31M31 1L1.53571 30.4643" stroke="white"/>
+		</svg>
+	</button>
+	<div class="tableMobileModal__content"></div>
+</div>
+
+
+<!--Модалка с баринами-->
+{% executives player parliament %}
+
+
+<script src='{% static "js/government.js" %}?{{ csrf_token }}'></script>
+{% if player.region.state %}
+    {% if parliament %}
+        {% if is_deputate %}
+<script src='{% static "js/new_bill.js" %}?{{ csrf_token }}'></script>
+<script src='{% static "js/vote_bill.js" %}?{{ csrf_token }}'></script>
+        {% endif %}
+    {% endif %}
+{% endif %}
+
+<script>
+
+class GoverTabs {
+	constructor() {
+		this.tabs = [...document.querySelectorAll('.gover__tab')];
+		this.blocks = [...document.querySelectorAll('.gover__block')];
+		this.setEventListeners();
+	}
+
+	setActiveTab(target, name) {
+		this.tabs.forEach((tab) => tab.classList.remove('active'));
+		target.classList.add('active');
+		this.blocks.forEach((block) => block.classList.remove('active'));
+		const currentBlock = this.blocks.find((block) => block.classList.contains(`gover__${name}`));
+		currentBlock.classList.add('active');
+	}
+
+	setEventListeners() {
+		this.tabs.forEach((tab) => tab.addEventListener('click', (evt) => {
+			const name = tab.getAttribute('data-block');
+			this.setActiveTab(evt.currentTarget, name);
+		}));
+	}
+}
+
+const goverTabs = new GoverTabs();
+
+class GoverInfoModal {
+	constructor() {
+		this.modal = document.querySelector('.tableMobileModal');
+		this.closeModalBtn = this.modal.querySelector('.tableMobileModal__close');
+		this.modalContent = this.modal.querySelector('.tableMobileModal__content');
+	}
+
+	getInnerContent(HTMLElement) {
+		const parentNode = HTMLElement.parentNode.parentNode;
+		const dopInfo = parentNode.querySelector('.gover__tableDopInfo');
+		const cancel = parentNode.querySelector('.gover__tableCancel');
+		const vote = parentNode.querySelector('.gover__tableVote');
+		const title = parentNode.querySelector('td:first-of-type > p') || parentNode.querySelector('.gover__withImage');
+
+		this.modalContent.innerHTML = '';
+
+		this.modalContent.insertAdjacentHTML('beforeend',
+		`
+			<h2>${title.innerHTML}</h2>
+			${!dopInfo?.classList.contains('empty') ? `<div class="tableMobileModal__decorLine"></div>` : ''}
+			${!dopInfo?.classList.contains('empty') ? `<div class="tableMobileModal__dopInfo">${dopInfo.innerHTML}</div>`: ''}
+			${cancel && !cancel?.classList.contains('empty') ? `<div class="tableMobileModal__decorLine"></div>` : ''}
+			${cancel && !cancel?.classList.contains('empty') ? `<div class="tableMobileModal__cancel">${cancel.innerHTML}</div>` : ''}
+			${vote ? `<div class="tableMobileModal__decorLine"></div>` : ''}
+			${vote ? `<div class="tableMobileModal__vote">${vote.innerHTML}</div>` : ''}
+		`
+		);
+
+		this.modal.classList.add('active');
+	}
+
+	setEventListeners() {
+		this.closeModalBtn.addEventListener('click', () => this.modal.classList.remove('active'));
+	}
+}
+
+const goverInfoModal = new GoverInfoModal();
+goverInfoModal.setEventListeners();
+
+class BlockSelect {
+	constructor(data) {
+		this.select = document.querySelector(data.selectClass);
+		this.blocks = document.querySelectorAll(data.blocksClass);
+	}
+
+	setEventListeners() {
+		if (this.select !== null){
+			this.select.addEventListener('change', (evt) => {
+				console.log('changed');
+				const currentValue = evt.target.value;
+				this.blocks.forEach((block) => block.classList.remove('active'));
+				this.blocks.forEach((block) => {
+					const classes = block.getAttribute('class');
+					const targetClass = classes.split(' ')[1];
+					if (currentValue === targetClass) block.classList.add('active');
+				})
+			})
+		}
+	}
+}
+
+const newRule = new BlockSelect({
+	selectClass: '.gover__newSelect',
+	blocksClass: '.gover__newInner',
+});
+newRule.setEventListeners();
+
+const newNalog = new BlockSelect({
+	selectClass: '.new-nalog-select',
+	blocksClass: '.new-nalog-block',
+});
+newNalog.setEventListeners();
+
+
+const mnisterBlock1 = document.querySelector('.gover__blockMid');
+const mnisterBlock2 = document.querySelector('.gover__blockStatistic');
+const mnisterTabBtn = document.querySelectorAll('.gover__ministerTabs .ct__top-tab')
+function switchMainBlocks(num) {
+	if (num === 0) {
+		mnisterBlock1.classList.add('active')
+		mnisterBlock2.classList.remove('active')
+	} else {
+		mnisterBlock1.classList.remove('active')
+		mnisterBlock2.classList.add('active')
+	}
+	mnisterTabBtn.forEach((btn) => btn.classList.remove('active'));
+	mnisterTabBtn[num].classList.add('active');
+}
+
+// Goverment modal
+const goverModal = new ModalOpenClose({
+		main: document.getElementById('gover__modal'),
+		openModalBtn: document.getElementById('gover__modal-open'),
+		closeModalBtn: document.getElementById('gover__modal-close'),
+	})
+
+</script>
+{% endblock %}
+
+{% block content %}
+  <section class="gover custom-scroll">
+    <!-- Заголовок -->
+    <h1 class="gover__title ct__page-title">Парламент</h1>
+
+
+    <!--ТОП БЛОК-->
+    <div class="party__top">
+		{% if player.region.state %}
+			{% if player.region.state.image %}
+			<img class="party__top-ava" src="{{ player.region.state.image.url }}" onclick="window.location.href = 'state/{{ player.region.state.pk }}/'" style="cursor: pointer;">
+			{% else %}
+			<!--SVG картинка слева заглушка государства-->
+			<svg class="party__top-ava" width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg" onclick="window.location.href = 'state/{{ player.region.state.pk }}/'" style="cursor: pointer; flex-shrink: 0">
+			  <g clip-path="url(#clip0_719_1078)">
+			  <path d="M0.491699 16.9875C0.491699 7.87313 7.87737 0.487457 16.9917 0.487457C26.106 0.487457 33.4917 7.87313 33.4917 16.9875C33.4917 26.1018 26.106 33.4875 16.9917 33.4875C7.87737 33.4875 0.491699 26.1018 0.491699 16.9875Z" stroke="var(--c10two)"/>
+			  <path d="M16.2592 1.71561V4.40533C16.3253 4.37682 16.4058 4.35403 16.4954 4.33842C16.5851 4.32281 16.682 4.31471 16.78 4.31464C16.9631 4.31477 17.139 4.34291 17.2706 4.39314V1.71561H16.2592ZM16.7436 5.35272C16.4899 5.35298 16.2407 5.39844 16.021 5.48455C15.8013 5.57067 15.6188 5.69442 15.4919 5.84342V6.7694C15.6339 6.71639 15.8231 6.67309 16.0432 6.64318C16.2634 6.61328 16.5081 6.59764 16.7565 6.59762C17.0082 6.59768 17.256 6.61377 17.4783 6.64448C17.7006 6.6752 17.8907 6.7196 18.0319 6.77381H18.0374C18.0402 6.76963 18.0429 6.76543 18.0456 6.76123V5.90751C17.9273 5.74146 17.7424 5.60137 17.5121 5.50326C17.2819 5.40514 17.0156 5.35297 16.7436 5.35272ZM16.7316 7.62156C16.5306 7.62348 15.664 7.66601 14.6557 8.22305C13.672 8.76649 13.127 9.41527 13.127 9.41527C13.127 9.41527 12.3711 10.1942 11.711 11.5801C11.2055 12.6412 11.0306 13.745 11.0306 13.745H22.5204C22.5204 13.745 22.3793 12.8269 21.8114 11.5801C21.2372 10.3191 20.4003 9.41527 20.4003 9.41527C20.4003 9.41527 19.489 8.51052 18.8184 8.14612C17.8005 7.59306 16.7754 7.62182 16.7754 7.62182C16.7754 7.62182 16.7603 7.62129 16.7316 7.62156ZM9.92453 14.7933L9.50676 15.6916H9.92453H23.607H24.0247L23.607 14.7933H9.92453ZM9.9837 16.7013V18.2707H10.9826V16.7013H9.9837ZM13.1217 16.7013V18.2707H14.1206V16.7013H13.1217ZM16.2597 16.7013V18.2707H17.2586V16.7013H16.2597ZM19.3977 16.7013V18.2707H20.3966V16.7013H19.3977ZM22.5489 16.7013V18.2707H23.5478V16.7013H22.5489ZM7.37247 19.2717V20.1909H26.1577V19.2717H7.37247ZM8.17779 21.1937V24.5541H9.18564V21.1937H8.17779ZM10.873 21.1937V24.5541H11.8808V21.1937H10.873ZM13.5549 21.1937V24.5541H14.5626V21.1937H13.5549ZM16.2501 21.1937V24.5541H17.2578V21.1937H16.2501ZM18.9451 21.1937V24.5541H19.953V21.1937H18.9451ZM21.6403 21.1937V24.5541H22.6482V21.1937H21.6403ZM24.3355 21.1937V24.5541H25.3433V21.1937H24.3355ZM4.69922 25.5657V27.2415H28.8281V25.5657H4.69922Z" fill="var(--c10one)"/>
+			  </g>
+			  <defs>
+			  <clipPath id="clip0_719_1078">
+			  <rect width="34" height="34" fill="var(--c10one)"/>
+			  </clipPath>
+			  </defs>
+			</svg>
+			{% endif %}
+		{% else %}
+		<!--SVG картинка флага-->
+		<svg class="party__top-ava" width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink: 0">
+		  <path d="M4.0083 19.9797C5.79935 15.9581 6.90009 11.8186 7.22658 10.2516C9.12957 11.108 11.3777 11.7255 12.2639 11.9272C14.6893 12.672 16.5394 11.1204 17.1613 10.2516C18.5046 8.20354 19.9909 7.31917 20.5661 7.13299C22.8796 6.61167 26.1632 7.90876 27.5158 8.62246C23.1874 11.1546 23.1003 16.1009 23.5979 18.2575C20.4262 16.1722 17.3634 16.5508 16.2284 17.0007C14.027 18.0434 13.0102 19.4211 12.777 19.9797C12.0307 21.7298 9.60532 21.826 8.48591 21.6553C6.5083 21.3574 4.67683 20.4141 4.0083 19.9797Z" fill="var(--c10one)"/>
+		  <path d="M18.1408 33.0126L27.9822 8.34319C28.5792 7.71017 28.915 8.26561 29.0083 8.62246L19.4001 33.0126H18.1408Z" fill="var(--c10one)"/>
+		  <path d="M0.5 17C0.5 7.88567 7.88567 0.5 17 0.5C26.1143 0.5 33.5 7.88567 33.5 17C33.5 26.1143 26.1143 33.5 17 33.5C7.88567 33.5 0.5 26.1143 0.5 17Z" stroke="var(--c10two)"/>
+		</svg>
+		{% endif %}
+
+      <div class="party__top-content">
+		{% if player.region.state %}
+		<h2 class="party__top-name">{{ state.title }}</h2>
+	  	{% else %}
+		<h2 class="party__top-name">Независимый регион</h2>
+	  	{% endif %}
+
+		<p class="gover__topVyb">
+			{% if player.region.state %}
+				{% if has_voting %}
+
+				<button class="ct__mid-btn" onclick="window.location.href = '{% url 'parl_elections' parl_pk=parliament.pk %}'" style="cursor: pointer">
+					<svg width="144" height="30" viewBox="0 0 144 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<mask id="mask0_259_319" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+							<path d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z" fill="var(--c10two)"/>
+						</mask>
+						<g mask="url(#mask0_259_319)">
+							<path d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" fill="var(--c10two)"/>
+							<path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"/>
+							<path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"/>
+							<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
+						</g>
+					</svg>
+					<span>выборы</span>
+				</button>
+
+				{% else %}
+				<span>Выборы:</span>
+				<span>{{ next_voting_date|timezone:player.time_zone|date:"d.m.y H:i" }}</span>
+				{% endif %}
+
+			{% else %}
+				<button class="earn__long-btn ct__long-btn btn" style="margin-top: -60rem;" onclick="state_foundation()" style="cursor: pointer">
+					<span style="display: inline-block;">основать государство</span>
+					<svg width="176" height="31" viewBox="0 0 176 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<mask id="mask0_36_212" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="-1" width="176" height="32">
+						<path d="M0 5.78935L5.78947 -0.00012207H176V23.1578L169.053 30.1051H0V5.78935Z" fill="var(--c10two)"></path>
+						</mask>
+						<g mask="url(#mask0_36_212)">
+							<path d="M0 5.78935L5.78947 -0.00012207H176V23.1578L169.053 30.1051H0V5.78935Z" fill="var(--c10two)"></path>
+
+							<path class="treg1" opacity="0.2" d="M38.1333 -14.0492L68.5505 38.635H7.71606L38.1333 -14.0492Z" fill="var(--c10one)"></path>
+							<path class="treg2" opacity="0.2" d="M110.911 -13.8387L99.6371 22.9836L73.385 -5.19097L110.911 -13.8387Z" fill="var(--c10one)"></path>
+							<path class="treg3" opacity="0.2" d="M169.098 6.14752L158.04 25.3L146.983 6.14752L169.098 6.14752Z" fill="var(--c10one)"></path>
+
+						</g>
+					</svg>
+				</button>
+			{% endif %}
+		</p>
+
+		{% if player.region.state %}
+        <div class="party__region">
+          <img src="static/img/regions/{{ capital.on_map_id }}.png">
+          <p>Столица: {{ capital.region_name }}</p>
+        </div>
+	    {% endif %}
+      </div>
+    </div><!--конец ТОП блок-->
+
+		{% if player.region.state %}
+		<!--КНОПКИ-ТАБЫ-->
+		<div class="gover__tabsContainer">
+			<div class="gover__tabs">
+				{% if parliament %}
+				<button class="gover__tab ct__mid-btn active" data-block="all">
+					<svg width="144" height="30" viewBox="0 0 144 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<mask id="mask0_259_300" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+							<path class="gover__svgBg" d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"/>
+						</mask>
+						<g mask="url(#mask0_259_300)">
+							<path class="gover__svgBg" d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" fill="var(--c10two)"/>
+							<path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"/>
+							<path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"/>
+							<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
+						</g>
+					</svg>
+					<span>законопроекты</span>
+				</button>
+
+				{% if is_deputate %}
+				<button class="gover__tab ct__mid-btn" data-block="new">
+					<svg width="144" height="30" viewBox="0 0 144 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<mask id="mask0_259_301" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+							<path class="gover__svgBg" d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"/>
+						</mask>
+						<g mask="url(#mask0_259_301)">
+							<path class="gover__svgBg" d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" fill="var(--c10two)"/>
+							<path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"/>
+							<path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"/>
+							<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
+						</g>
+					</svg>
+					<span>новый</span>
+				</button>
+
+					{% if has_custom_right %}
+				<button class="gover__tab ct__mid-btn" data-block="minis">
+					<svg width="144" height="30" viewBox="0 0 144 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<mask id="mask0_259_303" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+							<path class="gover__svgBg" d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"/>
+						</mask>
+						<g mask="url(#mask0_259_303)">
+							<path class="gover__svgBg" d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" fill="var(--c10two)"/>
+							<path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"/>
+							<path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"/>
+							<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
+						</g>
+					</svg>
+					<span>министр</span>
+				</button>
+					{% endif %}
+
+				{% endif %}
+
+				<button class="gover__tab ct__mid-btn" data-block="hist">
+					<svg width="144" height="30" viewBox="0 0 144 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<mask id="mask0_259_302" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+							<path class="gover__svgBg" d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"/>
+						</mask>
+						<g mask="url(#mask0_259_302)">
+							<path class="gover__svgBg" d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" fill="var(--c10two)"/>
+							<path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"/>
+							<path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"/>
+							<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
+						</g>
+					</svg>
+					<span>история</span>
+				</button>
+
+				<button class="gover__tab ct__mid-btn" data-block="gover">
+					<svg width="144" height="30" viewBox="0 0 144 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<mask id="mask0_259_304" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+							<path class="gover__svgBg" d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"/>
+						</mask>
+						<g mask="url(#mask0_259_304)">
+							<path class="gover__svgBg" d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" fill="var(--c10two)"/>
+							<path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"/>
+							<path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"/>
+							<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
+						</g>
+					</svg>
+					<span>парламент</span>
+				</button>
+				{% endif %}
+				<button class="gover__tab ct__mid-btn" data-block="coffers">
+					<svg width="144" height="30" viewBox="0 0 144 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<mask id="mask0_259_304" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+							<path class="gover__svgBg" d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"/>
+						</mask>
+						<g mask="url(#mask0_259_304)">
+							<path class="gover__svgBg" d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" fill="var(--c10two)"/>
+							<path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"/>
+							<path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"/>
+							<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
+						</g>
+					</svg>
+					<span>казна</span>
+				</button>
+			</div>
+		</div><!--конец КНОПКИ-ТАБЫ-->
+		{% endif %}
+
+		<div class="gover__decorLine"></div>
+
+		{% if player.region.state %}
+		<div class="gover__content custom-scroll">
+			{% if parliament %}
+			<!--закнопроекты-->
+			<div class="gover__block gover__all active">
+				<table class="gover__table">
+					<tbody>
+						<tr>
+							<td>
+								<p>переименование государства</p>
+								<p style="font-weight: 700;">10.06.2023 16:36</p>
+							</td>
+							<td>
+								Бурсучья жопа
+							</td>
+							<!--видно на только пк-->
+							<td class="gover__tableDopInfo empty"></td>
+							<!--видно на только пк-->
+							<td class="gover__tableCancel">
+								<a href="##">cheshiretail</a>
+								<button>❌</button>
+							</td>
+							<!--видно на только пк-->
+							<td class="gover__tableVote">
+								<button>👎</button>
+								<button>👍</button>
+							</td>
+							<td class="gover__tableInfoTd">
+								<button class="gover__tableInfo" onclick="goverInfoModal.getInnerContent(this)">&#8505</button>
+							</td>
+						</tr>
+
+						<tr>
+							<td>
+								<p>новый способ выдачи прописки</p>
+								<p style="font-weight: 700;">10.06.2023 16:36</p>
+							</td>
+							<td>
+								свободная
+							</td>
+							<!--видно на только пк-->
+							<td class="gover__tableDopInfo empty"></td>
+							<!--видно на только пк-->
+							<td class="gover__tableCancel">
+								<a href="##">cheshiretail</a>
+								<button>❌</button>
+							</td>
+							<!--видно на только пк-->
+							<td class="gover__tableVote">
+								<button>👎</button>
+								<button>👍</button>
+							</td>
+							<td class="gover__tableInfoTd">
+								<button class="gover__tableInfo" onclick="goverInfoModal.getInnerContent(this)">&#8505</button>
+							</td>
+
+						<tr>
+							<td>
+								<p>объявление войны</p>
+								<p style="font-weight: 700;">10.06.2023 16:36</p>
+							</td>
+							<td>
+								<div class="gover__withImage">
+									<img src="img/gerb.png" alt="">
+									<span>Саксония-Анхальт</span>
+								</div>
+							</td>
+							<!--видно на только пк-->
+							<td class="gover__tableDopInfo">
+								<span>наземная</span>
+							</td>
+							<!--видно на только пк-->
+							<td class="gover__tableCancel">
+								<a href="##">cheshiretail</a>
+								<button>❌</button>
+							</td>
+							<!--видно на только пк-->
+							<td class="gover__tableVote">
+								<button>👎</button>
+								<button>👍</button>
+							</td>
+							<td class="gover__tableInfoTd">
+								<button class="gover__tableInfo" onclick="goverInfoModal.getInnerContent(this)">&#8505</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<!--новый-->
+				{% if is_deputate %}
+			<div class="gover__block gover__new">
+				<label class="gover__newSelect ct__wide-modal-label-select">
+					<select>
+						<option value="gerb">новый герб государства</option>
+						<option value="nalog">изменение налогов</option>
+						<option value="rename">переименование государства</option>
+						<option value="build">строительство</option>
+						<option value="razved">разведка ресурсов</option>
+						<option value="buy">закупка товаров</option>
+						<option value="pravl">новая форма правления</option>
+						<option value="propis">новый способ выдачи прописки</option>
+						<option value="newWar">объявление войны</option>
+						<option value="geolog">геологические изыскания</option>
+						<option value="free">объявление независимости</option>
+					</select>
+					<svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
+					</svg>
+				</label>
+
+				<div class="gover__decorLine"></div>
+
+				<!--новый герб государства-->
+				<div class="gover__newInner gerb active">
+					<h2>Новый герб государства:</h2>
+					<div class="party__mana-ava-block">
+						<img src="img/pig.jpg" alt="">
+						<form method="post" enctype="multipart/form-data" id="formUpload">
+							<label class="profile__load-img">
+								<input type="hidden" name="" value="">
+								<input type="file" class="visually-hidden" id="id_image0">
+								<input type="hidden" name="x" id="id_x">
+								<input type="hidden" name="y" id="id_y">
+								<input type="hidden" name="width" id="id_width">
+								<input type="hidden" name="height" id="id_height">
+								<svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path class="profile__ava-rect" d="M26 30H0V0H30V26L26 30Z" fill="var(--c10two)"/><path d="M5.5 21.5L22.5 4.5L26.5 8.5L9.5 25.5H5.5V21.5Z" stroke="var(--c60)" stroke-width="3"/>
+								</svg>
+							</label>
+						</form>
+					</div>
+					<button class="ct__mid-btn active" data-block="gover">
+						<svg width="144" height="30" viewBox="0 0 144 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<mask id="mask0_259_304" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+								<path d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"/>
+							</mask>
+							<g mask="url(#mask0_259_304)">
+								<path d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" fill="var(--c10two)"/>
+								<path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"/>
+								<path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"/>
+								<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
+							</g>
+						</svg>
+						<span>предложить</span>
+					</button>
+				</div>
+
+				<!--изменение налогов-->
+				<div class="gover__newInner nalog">
+					<label class="ct__wide-modal-label-select">
+						<select class="new-nalog-select">
+							<option value="gos">государство</option>
+							<option value="region">регион</option>
+						</select>
+						<svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
+						</svg>
+					</label>
+					<label class="ct__wide-modal-label-select">
+						<select>
+							<option value="">финансирование</option>
+							<option value="">value2</option>
+							<option value="">value3</option>
+						</select>
+						<svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
+						</svg>
+					</label>
+					<!--государство-->
+					<div class="gover__newInner-flexColumn gos new-nalog-block active">
+						<p>Текущий налог: 0%</p>
+						<div class="gover__newInner-flexCenter">
+							<span>Новый налог:</span>
+							<input class="gover__newInner-textIput" type="text">
+							<span>%</span>
+						</div>
+						<button class="ct__mid-btn active">
+							<svg width="144" height="30" viewBox="0 0 144 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<mask id="mask0_259_304" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+									<path d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"/>
+								</mask>
+								<g mask="url(#mask0_259_304)">
+									<path d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" fill="var(--c10two)"/>
+									<path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"/>
+									<path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"/>
+									<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
+								</g>
+							</svg>
+							<span>предложить</span>
+						</button>
+					</div>
+					<!--регионы-->
+					<div class="gover__newInner-flexColumn region new-nalog-block">
+						<div class="ct__selectWithImage">
+							<div class="ct__selectWithImage-selected">
+								<img src="img/gerb.png" alt="Выбор">
+								<div class="ct__selectWithImage-firstText">
+									<span>выберите склад</span>
+									<svg class="ct__selectWithImage-arrow" width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
+									</svg>
+								</div>
+							</div>
+							<div class="ct__selectWithImage-content custom-scroll custom-scroll--alt">
+								<div data-value="1"><img src="img/gerb.png"> Элемент 1</div>
+								<div data-value="2"><img src="img/gerb.png"> Элемент 2</div>
+								<div data-value="3"><img src="https://test.wildpolitics.online/static/img/regions/DE-BB.png"> Элемент 3</div>
+								<div data-value="4"><img src="https://test.wildpolitics.online/static/img/regions/DE-BB.png"> Элемент 4</div>
+								<div data-value="5"><img src="https://test.wildpolitics.online/static/img/regions/DE-BB.png"> Элемент 5</div>
+							</div>
+						</div>
+						<p>Текущий налог: 0%</p>
+						<div class="gover__newInner-flexCenter">
+							<span>Новый налог:</span>
+							<input class="gover__newInner-textIput" type="text">
+							<span>%</span>
+						</div>
+						<button class="ct__mid-btn active">
+							<svg width="144" height="30" viewBox="0 0 144 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<mask id="mask0_259_304" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+									<path d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"/>
+								</mask>
+								<g mask="url(#mask0_259_304)">
+									<path d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" fill="var(--c10two)"/>
+									<path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"/>
+									<path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"/>
+									<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
+								</g>
+							</svg>
+							<span>предложить</span>
+						</button>
+					</div>
+				</div>
+
+				<!--переименование государства-->
+				<div class="gover__newInner rename">
+					<h2>Новое название государства</h2>
+					<label class="gover__newInner-wideInput">
+						<input type="text">
+					</label>
+					<button class="ct__mid-btn active">
+						<svg width="144" height="30" viewBox="0 0 144 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<mask id="mask0_259_304" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+								<path d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"/>
+							</mask>
+							<g mask="url(#mask0_259_304)">
+								<path d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" fill="var(--c10two)"/>
+								<path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"/>
+								<path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"/>
+								<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
+							</g>
+						</svg>
+						<span>предложить</span>
+					</button>
+				</div>
+
+				<!--строительство-->
+				<div class="gover__newInner build">
+					<div class="ct__selectWithImage">
+						<div class="ct__selectWithImage-selected">
+							<img src="img/gerb.png" alt="Выбор">
+							<div class="ct__selectWithImage-firstText">
+								<span>выберите склад</span>
+								<svg class="ct__selectWithImage-arrow" width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
+								</svg>
+							</div>
+						</div>
+						<div class="ct__selectWithImage-content custom-scroll custom-scroll--alt">
+							<div data-value="1"><img src="img/gerb.png"> Элемент 1</div>
+							<div data-value="2"><img src="img/gerb.png"> Элемент 2</div>
+							<div data-value="3"><img src="https://test.wildpolitics.online/static/img/regions/DE-BB.png"> Элемент 3</div>
+							<div data-value="4"><img src="https://test.wildpolitics.online/static/img/regions/DE-BB.png"> Элемент 4</div>
+							<div data-value="5"><img src="https://test.wildpolitics.online/static/img/regions/DE-BB.png"> Элемент 5</div>
+						</div>
+					</div>
+
+					<label class="ct__wide-modal-label-select">
+						<select>
+							<option value="">ТЭЦ</option>
+							<option value="">value2</option>
+							<option value="">value3</option>
+						</select>
+						<svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
+						</svg>
+					</label>
+
+					<p class="gover__newInner-infoText">Уровень: 91 + <input type="text" class="gover__newInner-textIput"> = 92</p>
+
+					<h3>Затраты:</h3>
+					<table class="gover__newInner-table">
+						<tbody>
+							<tr>
+								<td>наличные:</td>
+								<td>100</td>
+							</tr>
+							<tr>
+								<td>сталь:</td>
+								<td>50</td>
+							</tr>
+							<tr>
+								<td>уголь:</td>
+								<td>100</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<button class="ct__mid-btn active">
+						<svg width="144" height="30" viewBox="0 0 144 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<mask id="mask0_259_304" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+								<path d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"/>
+							</mask>
+							<g mask="url(#mask0_259_304)">
+								<path d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" fill="var(--c10two)"/>
+								<path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"/>
+								<path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"/>
+								<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
+							</g>
+						</svg>
+						<span>предложить</span>
+					</button>
+				</div>
+
+				<!--разведка ресурсов-->
+				<div class="gover__newInner razved">
+					<div class="ct__selectWithImage">
+						<div class="ct__selectWithImage-selected">
+							<img src="img/gerb.png" alt="Выбор">
+							<div class="ct__selectWithImage-firstText">
+								<span>выберите склад</span>
+								<svg class="ct__selectWithImage-arrow" width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
+								</svg>
+							</div>
+						</div>
+						<div class="ct__selectWithImage-content custom-scroll custom-scroll--alt">
+							<div data-value="1"><img src="img/gerb.png"> Элемент 1</div>
+							<div data-value="2"><img src="img/gerb.png"> Элемент 2</div>
+							<div data-value="3"><img src="https://test.wildpolitics.online/static/img/regions/DE-BB.png"> Элемент 3</div>
+							<div data-value="4"><img src="https://test.wildpolitics.online/static/img/regions/DE-BB.png"> Элемент 4</div>
+							<div data-value="5"><img src="https://test.wildpolitics.online/static/img/regions/DE-BB.png"> Элемент 5</div>
+						</div>
+					</div>
+
+					<label class="ct__wide-modal-label-select">
+						<select>
+							<option value="">золото</option>
+							<option value="">value2</option>
+							<option value="">value3</option>
+						</select>
+						<svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
+						</svg>
+					</label>
+
+					<p>Запасы: 22.1 / 26</p>
+					<p>Стоимость разведки: <b>$390</b></p>
+
+					<button class="ct__mid-btn active">
+						<svg width="144" height="30" viewBox="0 0 144 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<mask id="mask0_259_304" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+								<path d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"/>
+							</mask>
+							<g mask="url(#mask0_259_304)">
+								<path d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" fill="var(--c10two)"/>
+								<path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"/>
+								<path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"/>
+								<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
+							</g>
+						</svg>
+						<span>предложить</span>
+					</button>
+				</div>
+
+				<!--закупка товаров-->
+				<div class="gover__newInner buy">
+					<label class="ct__wide-modal-label-select">
+						<select>
+							<option value="">самогонные аппараты</option>
+							<option value="">value2</option>
+							<option value="">value3</option>
+						</select>
+						<svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
+						</svg>
+					</label>
+
+					<div class="gover__newInner-twoWithInput gover__newInner-twoWithInput--small">
+						<span>количество лотов:</span>
+						<div>
+							<label><input type="text"></label>
+							<span>/10</span>
+						</div>
+					</div>
+
+					<div class="gover__newInner-twoWithInput">
+						<span>количество:</span>
+						<div>
+							<label><input type="text"></label>
+						</div>
+					</div>
+
+					<div class="gover__newInner-twoWithInput">
+						<span>цена:</span>
+						<div>
+							<label><input type="text"></label>
+						</div>
+					</div>
+
+					<p>Стоимость: <b>$390</b></p>
+
+					<button class="ct__mid-btn active">
+						<svg width="144" height="30" viewBox="0 0 144 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<mask id="mask0_259_304" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+								<path d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"/>
+							</mask>
+							<g mask="url(#mask0_259_304)">
+								<path d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" fill="var(--c10two)"/>
+								<path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"/>
+								<path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"/>
+								<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
+							</g>
+						</svg>
+						<span>предложить</span>
+					</button>
+				</div>
+
+				<!--новая форма правления-->
+				<div class="gover__newInner pravl">
+					<h2>Новая форма правления государства:</h2>
+
+					<label class="ct__wide-modal-label-select">
+						<select>
+							<option value="" disabled selected>выберите форму правления</option>
+							<option value="">value2</option>
+							<option value="">value3</option>
+						</select>
+						<svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
+						</svg>
+					</label>
+
+					<button class="ct__mid-btn active">
+						<svg width="144" height="30" viewBox="0 0 144 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<mask id="mask0_259_304" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+								<path d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"/>
+							</mask>
+							<g mask="url(#mask0_259_304)">
+								<path d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" fill="var(--c10two)"/>
+								<path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"/>
+								<path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"/>
+								<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
+							</g>
+						</svg>
+						<span>предложить</span>
+					</button>
+				</div>
+
+				<!--новый способ выдачи прописки-->
+				<div class="gover__newInner propis">
+					<h2>Способ выдачи прописки:</h2>
+
+					<label class="ct__wide-modal-label-select">
+						<select>
+							<option value="">выдается министром</option>
+							<option value="">свободная</option>
+						</select>
+						<svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
+						</svg>
+					</label>
+
+					<div class="gover__newInner-flexColumn active">
+						<h3>Стоимость:</h3>
+						<p>Автоматы: <b>3</b></p>
+						<p>БПЛА: <b>3</b></p>
+					</div>
+
+					<button class="ct__mid-btn active">
+						<svg width="144" height="30" viewBox="0 0 144 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<mask id="mask0_259_304" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+								<path d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"/>
+							</mask>
+							<g mask="url(#mask0_259_304)">
+								<path d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" fill="var(--c10two)"/>
+								<path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"/>
+								<path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"/>
+								<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
+							</g>
+						</svg>
+						<span>предложить</span>
+					</button>
+				</div>
+
+				<!--объявление войны-->
+				<div class="gover__newInner newWar">
+					<h2>Плацдарм:</h2>
+					<div class="ct__selectWithImage">
+						<div class="ct__selectWithImage-selected">
+							<img src="img/gerb.png" alt="Выбор">
+							<div class="ct__selectWithImage-firstText">
+								<span>выберите склад</span>
+								<svg class="ct__selectWithImage-arrow" width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
+								</svg>
+							</div>
+						</div>
+						<div class="ct__selectWithImage-content custom-scroll custom-scroll--alt">
+							<div data-value="1"><img src="img/gerb.png"> Элемент 1</div>
+							<div data-value="2"><img src="img/gerb.png"> Элемент 2</div>
+							<div data-value="3"><img src="https://test.wildpolitics.online/static/img/regions/DE-BB.png"> Элемент 3</div>
+							<div data-value="4"><img src="https://test.wildpolitics.online/static/img/regions/DE-BB.png"> Элемент 4</div>
+							<div data-value="5"><img src="https://test.wildpolitics.online/static/img/regions/DE-BB.png"> Элемент 5</div>
+						</div>
+					</div>
+
+					<h2>Цель:</h2>
+					<div class="ct__selectWithImage">
+						<div class="ct__selectWithImage-selected">
+							<img src="img/gerb.png" alt="Выбор">
+							<div class="ct__selectWithImage-firstText">
+								<span>выберите склад</span>
+								<svg class="ct__selectWithImage-arrow" width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
+								</svg>
+							</div>
+						</div>
+						<div class="ct__selectWithImage-content custom-scroll custom-scroll--alt">
+							<div data-value="1"><img src="img/gerb.png"> Элемент 1</div>
+							<div data-value="2"><img src="img/gerb.png"> Элемент 2</div>
+							<div data-value="3"><img src="https://test.wildpolitics.online/static/img/regions/DE-BB.png"> Элемент 3</div>
+							<div data-value="4"><img src="https://test.wildpolitics.online/static/img/regions/DE-BB.png"> Элемент 4</div>
+							<div data-value="5"><img src="https://test.wildpolitics.online/static/img/regions/DE-BB.png"> Элемент 5</div>
+						</div>
+					</div>
+
+					<button style="z-index: 0;" class="ct__mid-btn active">
+						<svg width="144" height="30" viewBox="0 0 144 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<mask id="mask0_259_304" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+								<path d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"/>
+							</mask>
+							<g mask="url(#mask0_259_304)">
+								<path d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" fill="var(--c10two)"/>
+								<path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"/>
+								<path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"/>
+								<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
+							</g>
+						</svg>
+						<span>предложить</span>
+					</button>
+				</div>
+
+				<!--геологические изыскания-->
+				<div class="gover__newInner geolog">
+					<div class="ct__selectWithImage">
+						<div class="ct__selectWithImage-selected">
+							<img src="img/gerb.png" alt="Выбор">
+							<div class="ct__selectWithImage-firstText">
+								<span>выберите склад</span>
+								<svg class="ct__selectWithImage-arrow" width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
+								</svg>
+							</div>
+						</div>
+						<div class="ct__selectWithImage-content custom-scroll custom-scroll--alt">
+							<div data-value="1"><img src="img/gerb.png"> Элемент 1</div>
+							<div data-value="2"><img src="img/gerb.png"> Элемент 2</div>
+							<div data-value="3"><img src="https://test.wildpolitics.online/static/img/regions/DE-BB.png"> Элемент 3</div>
+							<div data-value="4"><img src="https://test.wildpolitics.online/static/img/regions/DE-BB.png"> Элемент 4</div>
+							<div data-value="5"><img src="https://test.wildpolitics.online/static/img/regions/DE-BB.png"> Элемент 5</div>
+						</div>
+					</div>
+
+					<label class="ct__wide-modal-label-select">
+						<select>
+							<option value="">золото</option>
+							<option value="">value2</option>
+							<option value="">value3</option>
+						</select>
+						<svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
+						</svg>
+					</label>
+
+					<p>Запасы: 26 / 14</p>
+					<h3>Стоимость разведки:</h3>
+					<p><b>140 Буровых установок</b></p>
+
+					<button class="ct__mid-btn active">
+						<svg width="144" height="30" viewBox="0 0 144 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<mask id="mask0_259_304" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+								<path d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"/>
+							</mask>
+							<g mask="url(#mask0_259_304)">
+								<path d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" fill="var(--c10two)"/>
+								<path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"/>
+								<path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"/>
+								<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
+							</g>
+						</svg>
+						<span>предложить</span>
+					</button>
+				</div>
+
+				<!--объявление независимости-->
+				<div class="gover__newInner free">
+					<div class="ct__selectWithImage">
+						<div class="ct__selectWithImage-selected">
+							<img src="img/gerb.png" alt="Выбор">
+							<div class="ct__selectWithImage-firstText">
+								<span>выберите склад</span>
+								<svg class="ct__selectWithImage-arrow" width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
+								</svg>
+							</div>
+						</div>
+						<div class="ct__selectWithImage-content custom-scroll custom-scroll--alt">
+							<div data-value="1"><img src="img/gerb.png"> Элемент 1</div>
+							<div data-value="2"><img src="img/gerb.png"> Элемент 2</div>
+							<div data-value="3"><img src="https://test.wildpolitics.online/static/img/regions/DE-BB.png"> Элемент 3</div>
+							<div data-value="4"><img src="https://test.wildpolitics.online/static/img/regions/DE-BB.png"> Элемент 4</div>
+							<div data-value="5"><img src="https://test.wildpolitics.online/static/img/regions/DE-BB.png"> Элемент 5</div>
+						</div>
+					</div>
+
+					<button class="ct__mid-btn active">
+						<svg width="144" height="30" viewBox="0 0 144 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<mask id="mask0_259_304" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+								<path d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"/>
+							</mask>
+							<g mask="url(#mask0_259_304)">
+								<path d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" fill="var(--c10two)"/>
+								<path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"/>
+								<path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"/>
+								<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
+							</g>
+						</svg>
+						<span>предложить</span>
+					</button>
+				</div>
+
+			</div>
+					{% if has_custom_right %}
+			<!--министр-->
+			<div class="gover__block gover__minis">
+				<div class="gover__ministerTabs ct__top-tabs">
+					<button class="ct__top-tab ct__top-tab1 active ct__mid-btn" onclick="switchMainBlocks(0)">
+						<svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
+							<mask id="mask0_259_317" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+								<path class="geometry1" d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"/>
+							</mask>
+							<g mask="url(#mask0_259_317)">
+								<path class="geometry2" d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z"/>
+								<path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"/>
+								<path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"/>
+								<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
+							</g>
+						</svg>
+						<span>МИД</span>
+					</button>
+
+					<button class="ct__top-tab ct__top-tab2 ct__mid-btn" onclick="switchMainBlocks(1)">
+						<svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
+							<mask id="mask0_259_318" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+								<path class="geometry1" d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"/>
+							</mask>
+							<g mask="url(#mask0_259_318)">
+								<path class="geometry2" d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z"/>
+								<path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"/>
+								<path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"/>
+								<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
+							</g>
+						</svg>
+						<span>Статистика</span>
+					</button>
+				</div>
+
+				<div class="gover__decorLine"></div>
+
+				<!--министр - блок МИД-->
+				<div class="gover__blockMid active">
+					<button class="gover__blockMid-cancelAll">отклонить всё</button>
+
+					<table class="gover__table">
+						<tbody>
+							<tr>
+								<td>
+									<div class="gover__withImage">
+										<img src="img/kub.png" alt="">
+										<span>UserName super duper</span>
+									</div>
+								</td>
+								<td>
+									<div class="gover__withImage">
+										<img src="img/gerb.png" alt="">
+										<span>Саксония-Анхальт</span>
+									</div>
+								</td>
+								<td class="gover__voteMid">
+									<div>
+										<button>👎</button>
+										<button>👍</button>
+									</div>
+								</td>
+							</tr>
+
+							<tr>
+								<td>
+									<div class="gover__withImage">
+										<img src="img/kub.png" alt="">
+										<span>UserName super duper</span>
+									</div>
+								</td>
+								<td>
+									<div class="gover__withImage">
+										<img src="img/gerb.png" alt="">
+										<span>Саксония-Анхальт</span>
+									</div>
+								</td>
+								<td class="gover__voteMid">
+									<div>
+										<button>👎</button>
+										<button>👍</button>
+									</div>
+								</td>
+							</tr>
+
+							<tr>
+								<td>
+									<div class="gover__withImage">
+										<img src="img/kub.png" alt="">
+										<span>UserName super duper</span>
+									</div>
+								</td>
+								<td>
+									<div class="gover__withImage">
+										<img src="img/gerb.png" alt="">
+										<span>Саксония-Анхальт</span>
+									</div>
+								</td>
+								<td class="gover__voteMid">
+									<div>
+										<button>👎</button>
+										<button>👍</button>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+				<!--Министер блок статистики-->
+				<div class="gover__blockStatistic">
+					<table class="gover__table">
+						<tbody>
+							<tr>
+								<td>
+									регион
+								</td>
+								<td style="text-align: center;">
+									финансирование
+								</td>
+								<td></td>
+							</tr>
+
+							<tr>
+								<td>
+									<div class="gover__withImage">
+										<img src="img/gerb.png" alt="">
+										<span>Саксония-Анхальт</span>
+									</div>
+								</td>
+								<td style="text-align: center;">
+									100
+								</td>
+								<!--видно на только пк-->
+								<td class="gover__tableDopInfo">
+									<div class="gover__blockStatistic__dop">
+										<div>
+											<span>нефть:</span>
+											<span>100</span>
+										</div>
+										<div>
+											<span>уголь:</span>
+											<span>0</span>
+										</div>
+										<div>
+											<span>железо:</span>
+											<span>10</span>
+										</div>
+										<div>
+											<span>бокситы:</span>
+											<span>0</span>
+										</div>
+									</div>
+								</td>
+								<td class="gover__tableInfoTd">
+									<button class="gover__tableInfo" onclick="goverInfoModal.getInnerContent(this)">&#8505</button>
+								</td>
+							</tr>
+
+							<tr>
+								<td>
+									<div class="gover__withImage">
+										<img src="img/gerb.png" alt="">
+										<span>Саксония-Анхальт</span>
+									</div>
+								</td>
+								<td style="text-align: center;">
+									100
+								</td>
+								<!--видно на только пк-->
+								<td class="gover__tableDopInfo">
+									<div class="gover__blockStatistic__dop">
+										<div>
+											<span>нефть:</span>
+											<span>0</span>
+										</div>
+										<div>
+											<span>уголь:</span>
+											<span>100</span>
+										</div>
+										<div>
+											<span>железо:</span>
+											<span>0</span>
+										</div>
+										<div>
+											<span>бокситы:</span>
+											<span>99</span>
+										</div>
+									</div>
+								</td>
+								<td class="gover__tableInfoTd">
+									<button class="gover__tableInfo" onclick="goverInfoModal.getInnerContent(this)">&#8505</button>
+								</td>
+							</tr>
+
+							<tr>
+								<td>
+									<div class="gover__withImage">
+										<img src="img/gerb.png" alt="">
+										<span>Саксония-Анхальт</span>
+									</div>
+								</td>
+								<td style="text-align: center;">
+									100
+								</td>
+								<!--видно на только пк-->
+								<td class="gover__tableDopInfo">
+									<div class="gover__blockStatistic__dop">
+										<div>
+											<span>нефть:</span>
+											<span>10</span>
+										</div>
+										<div>
+											<span>уголь:</span>
+											<span>3000</span>
+										</div>
+										<div>
+											<span>железо:</span>
+											<span>19</span>
+										</div>
+										<div>
+											<span>бокситы:</span>
+											<span>0</span>
+										</div>
+									</div>
+								</td>
+								<td class="gover__tableInfoTd">
+									<button class="gover__tableInfo" onclick="goverInfoModal.getInnerContent(this)">&#8505</button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+					{% endif %}
+				{% endif %}
+			<!--история-->
+			{% bills_history player parliament %}
+			<!--парламент-->
+				{% parliament player parliament %}
+			{% endif %}
+			<!--казна-->
+			{% treasury state %}
+		</div>
+		{% endif %}
+
+	</section>
+{% endblock %}

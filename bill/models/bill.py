@@ -94,6 +94,10 @@ class Bill(models.Model):
     def get_reviewed_bill(self, player):
         return
 
+    # получить шаблон рассмотренного законопроекта
+    def get_new_reviewed_bill(self, player):
+        return None, None
+
     # формируем переодическую таску
     def setup_task(self):
         start_time = timezone.now() + datetime.timedelta(days=1)

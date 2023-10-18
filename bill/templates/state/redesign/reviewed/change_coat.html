@@ -1,0 +1,59 @@
+{% load dict_key %}
+{% load get_attr %}
+{% load get_diff %}
+{% load get_sum %}
+{% load get_mul %}
+{% load get_key_list %}
+{% load tz %}
+{% load l10n %}{% load i18n %}
+
+<tr>
+    {% with bill=data|dict_key:'bill' %}
+    {% with title=data|dict_key:'title' %}
+    <td>
+        <p>{{ title }}</p>
+        {% with player=data|dict_key:'player' %}
+        <p style="font-weight: 700;">{{ bill.voting_end|timezone:player.time_zone|date:"d.m.Y H:i" }}</p>
+        {% endwith %}
+    </td>
+    {% endwith %}
+
+    <td>
+        {% if bill.image %}
+        <div class="gover__withImage">
+            <img src="{{ bill.image.url }}">
+            <a href='{{ bill.image.url }}' target="_blank">оригинальный размер</a>
+        </div>
+        {% else %}
+        <span>недоступно</span>
+        {% endif %}
+    </td>
+
+    <!--видно на только пк-->
+    <td class="gover__tableDopInfo empty"></td>
+
+    <!--видно на только пк-->
+    <td class="gover__tableCancel">
+        <a href='/profile/{% localize off %}{{ bill.initiator.pk }}{% endlocalize %}' target="_blank">{{ bill.initiator }}</a>
+    </td>
+
+    <!--видно на только пк-->
+    <td class="gover__tableVote">
+        <div class="gover__tableVote-wrappper">
+            {% if bill.type == 'ac' %}
+            <p>принят</p>
+            {% elif bill.type == 'rj' %}
+            <p>отклонён</p>
+            {% elif bill.type == 'cn' %}
+            <p>отменён</p>
+            {% endif %}
+
+            <p><span>{{ bill.votes_pro.all.count }}</span><span>{{ bill.votes_con.all.count }}</span></p>
+            <p><span>👍</span><span>👎</span></p>
+        </div>
+    </td>
+    <td class="gover__tableInfoTd">
+        <button class="gover__tableInfo" onclick="goverInfoModal.getInnerContent(this)">&#8505</button>
+    </td>
+    {% endwith %}
+</tr>

@@ -241,6 +241,12 @@ class Independence(Bill):
 
         return data, 'state/gov/reviewed/independence.html'
 
+    def get_new_reviewed_bill(self, player):
+
+        data = {'bill': self, 'title': self._meta.verbose_name_raw, 'player': player}
+
+        return data, 'state/redesign/reviewed/independence.html'
+
     def __str__(self):
         return self.region.region_name + " от " + self.parliament.state.title
 

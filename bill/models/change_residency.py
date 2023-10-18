@@ -216,6 +216,13 @@ class ChangeResidency(Bill):
 
         return data, 'state/gov/reviewed/change_residency.html'
 
+# получить шаблон рассмотренного законопроекта
+    def get_new_reviewed_bill(self, player):
+
+        data = {'bill': self, 'title': self._meta.verbose_name_raw, 'player': player,}
+
+        return data, 'state/redesign/reviewed/change_residency.html'
+
     # Свойства класса
     class Meta:
         verbose_name = "Новый способ выдачи прописки"

@@ -1,23 +1,23 @@
 # coding=utf-8
 
+from django.apps import apps
 from django.db import models
 from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 from django.utils import timezone
-from django.apps import apps
+
 from bill.models.bill import Bill
+from regime.presidential import Presidential
+from regime.regime import Regime
+from regime.temporary import Temporary
 from state.models.parliament.deputy_mandate import DeputyMandate
 from state.models.parliament.parliament import Parliament
 from state.models.state import State
 
-from regime.regime import Regime
-from regime.temporary import Temporary
-from regime.presidential import Presidential
 
 # Изменить название государства
 # Не оптимизировать код хоткеями - ЗАТИРАЕТ ИМПОРТЫ !!
 class ChangeForm(Bill):
-
     # тип государства
     stateTypeChoices = (
         ('Temporary', 'Временное правительство'),
@@ -150,6 +150,13 @@ class ChangeForm(Bill):
         data = {'bill': self, 'title': self._meta.verbose_name_raw, 'player': player}
 
         return data, 'state/gov/reviewed/change_form.html'
+
+    # получить шаблон рассмотренного законопроекта
+    def get_new_reviewed_bill(self, player):
+
+        data = {'bill': self, 'title': self._meta.verbose_name_raw, 'player': player}
+
+        return data, 'state/redesign/reviewed/change_form.html'
 
     def __str__(self):
         return self.get_form_display()

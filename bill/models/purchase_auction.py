@@ -251,8 +251,18 @@ class PurchaseAuction(Bill):
 
         return data, 'state/gov/reviewed/purchase_auction.html'
 
+    # получить шаблон рассмотренного законопроекта
+    def get_new_reviewed_bill(self, player):
+
+        data = {'bill': self, 'title': self._meta.verbose_name_raw, 'player': player}
+
+        return data, 'state/redesign/reviewed/purchase_auction.html'
+
     def __str__(self):
-        return self.good.name
+        if self.good:
+            return self.good.name
+        else:
+            return self.get_old_good_display()
 
     # Свойства класса
     class Meta:

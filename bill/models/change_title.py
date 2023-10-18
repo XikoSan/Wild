@@ -107,6 +107,13 @@ class ChangeTitle(Bill):
 
         return data, 'state/gov/reviewed/change_title.html'
 
+    # получить шаблон рассмотренного законопроекта
+    def get_new_reviewed_bill(self, player):
+
+        data = {'bill': self, 'title': self._meta.verbose_name_raw, 'player': player}
+
+        return data, 'state/redesign/reviewed/change_title.html'
+
     def __str__(self):
         return self.new_title
 
