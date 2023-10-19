@@ -100,7 +100,13 @@ class ChangeCoat(Bill):
     def get_draft(state):
         data = {'form': ImageForm()}
 
-        return data, 'state/gov/drafts/change_coat.html'
+        return data, 'state/redesign/drafts/change_coat.html'
+
+    @staticmethod
+    def get_new_draft(state):
+        data = {'form': ImageForm()}
+
+        return data, 'state/redesign/drafts/change_coat.html'
 
     def get_bill(self, player, minister, president):
 

@@ -1,0 +1,97 @@
+{% load dict_key %}
+{% load get_attr %}
+{% load get_sum %}
+{% load get_key_list %}
+{% load l10n %}{% load i18n %}
+{% load static %}
+<script src="{% static 'redesign/js/cropper.min.js' %}?{{ csrf_token }}"></script>
+<link rel="stylesheet" href='{% static "cropper.css" %}?{{ csrf_token }}'>
+<script src="{% static 'state_cropper.js' %}?{{ csrf_token }}"></script>
+
+<!--новый герб государства-->
+<div class="gover__newInner ChangeCoat active">
+    <h2>Новый герб государства:</h2>
+    <div class="party__mana-ava-block">
+        <img src="img/pig.jpg" id="img_preview">
+        <form method="post" enctype="multipart/form-data" id="formUpload">
+            <label class="profile__load-img">
+                <input type="hidden" name="" value="">
+                <input type="file" class="visually-hidden" id="id_image" name="image">
+                <input type="hidden" name="x" id="id_x">
+                <input type="hidden" name="y" id="id_y">
+                <input type="hidden" name="width" id="id_width">
+                <input type="hidden" name="height" id="id_height">
+                <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path class="profile__ava-rect" d="M26 30H0V0H30V26L26 30Z" fill="var(--c10two)"/><path d="M5.5 21.5L22.5 4.5L26.5 8.5L9.5 25.5H5.5V21.5Z" stroke="var(--c60)" stroke-width="3"/>
+                </svg>
+            </label>
+        </form>
+    </div>
+	<!-- ОБРЕЗКА ИЗОБРАЖЕНИЙ МОДАЛКА -->
+	<div class="img_modal" id="modalCrop">
+		<div class="modal-cropper-wrapper">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" id="crop-close" aria-label="Close">
+							<span aria-hidden="true">×</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<img id="image" src="" alt="The image to preview" style="width: 274.129px; height: 274.129px; transform: translateX(-13.0647px);"></span>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<div class="btn-l-wrapper">
+					<div class="btn-group pull-left" role="group" style="margin-right: 5px;">
+						<button type="button" class="btn btn-default js-zoom-in">
+							<svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M1 18L6 13" stroke="var(--c60)"/>
+								<circle cx="11" cy="8" r="7.5" stroke="var(--c60)"/>
+								<path d="M11 4V12M15 8H7" stroke="var(--c60)"/>
+							</svg>
+						</button>
+						<button type="button" class="btn btn-default js-zoom-out">
+							<svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M1 18L6 13" stroke="var(--c60)"/>
+								<circle cx="11" cy="8" r="7.5" stroke="var(--c60)"/>
+								<path d="M15 8H7" stroke="var(--c60)"/>
+							</svg>
+						</button>
+					</div>
+					<div class="btn-group pull-left" role="group">
+						<button type="button" class="btn btn-default js-pic-up">
+							<svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M10 1L1 10M10 1L19 10M10 1V19" stroke="var(--c60)"/>
+							</svg>
+						</button>
+						<button type="button" class="btn btn-default js-pic-down">
+							<svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M10 18L19 9M10 18L1 9M10 18V0" stroke="black"/>
+							</svg>
+						</button>
+					</div>
+				</div>
+				<div class="btn-r-wrapper">
+					<button type="button" class="btn btn-default back-crop-js" data-dismiss="modal">{% trans 'Отмена' %}</button>
+					<button type="button" class="btn btn-primary js-crop-and-upload">{% trans 'Загрузить' %}{% if player.image %}, -100 G{% endif %}</button>
+				</div>
+			</div>
+		</div>
+	</div>
+    <button type="submit" class="ct__mid-btn active" data-block="gover">
+        <svg width="144" height="30" viewBox="0 0 144 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <mask id="mask0_259_304" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+                <path d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"/>
+            </mask>
+            <g mask="url(#mask0_259_304)">
+                <path d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" fill="var(--c10two)"/>
+                <path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"/>
+                <path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"/>
+                <path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
+            </g>
+        </svg>
+        <span>предложить</span>
+    </button>
+</div>

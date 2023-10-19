@@ -86,6 +86,11 @@ class Bill(models.Model):
     def get_draft(state):
         return
 
+    # получить шаблон черновика законопроекта
+    @staticmethod
+    def get_new_draft(state):
+        return None, None
+
     # получить шаблон законопроекта в парламенте
     def get_bill(self, player, minister, president):
         return
