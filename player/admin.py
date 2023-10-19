@@ -14,6 +14,7 @@ from player.game_event.event_part import EventPart
 from player.game_event.global_part import GlobalPart
 from player.player_regional_expence import PlayerRegionalExpense
 from player.game_event.energy_spent import EnergySpent
+from player.logs.donut_log import DonutLog
 
 
 class CashLogAdmin(admin.ModelAdmin):
@@ -77,6 +78,12 @@ class EnergySpentAdmin(admin.ModelAdmin):
     raw_id_fields = ('player', )
 
 
+class DonutLogAdmin(admin.ModelAdmin):
+    search_fields = ['player__nickname', ]
+    list_display = ('player', 'dtime')
+    raw_id_fields = ('player', )
+
+
 class PLayerAdmin(admin.ModelAdmin):
     search_fields = ['nickname', 'user_ip']
     raw_id_fields = ('account', 'party',)
@@ -113,6 +120,7 @@ admin.site.register(PlayerSettings, PlayerSettingsAdmin)
 admin.site.register(PlayerRegionalExpense, PlayerRegionalExpenseAdmin)
 admin.site.register(CashLog, CashLogAdmin)
 admin.site.register(GoldLog, GoldLogAdmin)
+admin.site.register(DonutLog, DonutLogAdmin)
 admin.site.register(SkillTraining, SkillTrainingAdmin)
 admin.site.register(AutoMining, AutoMiningAdmin)
 

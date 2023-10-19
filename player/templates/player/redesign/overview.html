@@ -818,6 +818,12 @@
 <script>
   function ready() {
       document.getElementById('chat-log-{{ LANGUAGE_CODE }}').scrollTop = document.getElementById('chat-log-{{ LANGUAGE_CODE }}').scrollHeight;
+
+
+      {% if call_donut_message %}
+      display_modal('notify', 'VK Donut', 'Спасибо за ваш вклад в проект! Премиум-аккаунт и золото уже начислены на ваш счёт. Приятной игры!', null, 'Закрыть');
+      {% endif %}
+
   }
 
   document.addEventListener("DOMContentLoaded", ready);
@@ -895,9 +901,6 @@
       overviewStickersContainers[index].classList.add('active');
     })
   })
-
-
-
 
 </script>
 {% endblock %}

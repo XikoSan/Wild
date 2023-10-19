@@ -19,6 +19,7 @@ class GoldLog(Log):
     # текст активности
     activityChoices = (
         ('reward',  'Бонус за репост'),
+        ('donut',  'VK Donut'),
         ('mine',  'Майнинг'),
         ('aumine',  'Авто-майнинг'),
         ('stckow',  'Процент за стикеры'),

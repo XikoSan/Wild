@@ -132,6 +132,12 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
+SOCIALACCOUNT_PROVIDERS = {
+    'vk': {
+        'SCOPE': ['groups'],
+    }
+}
+
 LOGIN_REDIRECT_URL = '/'
 
 SOCIAL_AUTH_VK_OAUTH2_KEY = os.getenv('VK_KEY')

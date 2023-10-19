@@ -1,10 +1,12 @@
 import datetime
 import json
 import os
-import random
-
 import pytz
+import random
 import redis
+import vk
+from allauth.socialaccount.models import SocialAccount, SocialToken
+from dateutil.relativedelta import relativedelta
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.templatetags.static import static
@@ -18,8 +20,12 @@ from gov.models.presidential_voting import PresidentialVoting
 from party.party import Party
 from player.decorators.player import check_player
 from player.game_event.game_event import GameEvent
+from player.logs.donut_log import DonutLog
+from player.logs.gold_log import GoldLog
 from player.player import Player
+from player.player_settings import PlayerSettings
 from player.views.get_subclasses import get_subclasses
+from player.views.timers import interval_in_seconds
 from region.models.region import Region
 from region.views.lists.get_regions_online import get_region_online
 from state.models.parliament.parliament import Parliament
@@ -28,8 +34,6 @@ from state.models.parliament.parliament_voting import ParliamentVoting
 from state.models.state import State
 from war.models.wars.war import War
 from wild_politics.settings import TIME_ZONE
-from player.player_settings import PlayerSettings
-from player.views.timers import interval_in_seconds
 
 
 # главная страница
@@ -207,13 +211,61 @@ def overview(request):
         else:
             def_damage = int(def_damage)
 
-
         war_countdown = interval_in_seconds(
-                                            object=closest_war,
-                                            start_fname='start_time',
-                                            end_fname=None,
-                                            delay_in_sec=86400
-                                        )
+            object=closest_war,
+            start_fname='start_time',
+            end_fname=None,
+            delay_in_sec=86400
+        )
+
+    call_donut_message = False
+
+    if SocialToken.objects.filter(account__user=player.account, account__provider='vk').exists():
+        session = vk.Session(
+            access_token=SocialToken.objects.get(account__user=player.account, account__provider='vk'))
+        vk_api = vk.API(session)
+
+        from player.logs.print_log import log
+        # проверяем, что подписка вообще есть
+        if vk_api.donut.isDon(
+                owner_id="-164930433",
+                v='5.131',
+        ) == 1:
+
+            response = vk_api.donut.getSubscription(
+                owner_id="-164930433",
+                v='5.131',
+            )
+
+            # если за последний месяц не было логов наград
+            if not DonutLog.objects.filter(
+                    player=player,
+                    dtime__gte=datetime.datetime.now() - relativedelta(months=1)
+            ).exists():
+
+                # время, к которому прибавляем месяц
+                if player.premium > timezone.now():
+                    from_time = player.premium
+                else:
+                    from_time = timezone.now()
+                # наичисляем месяц према
+                player.premium = from_time + relativedelta(months=1)
+
+                log = DonutLog(
+                    player=player,
+                    dtime=datetime.datetime.now()
+                )
+                log.save()
+                # начисляем золото на остаток доната
+                gold_sum = (int(response["amount"]) - 40) * 30
+
+                player.gold += gold_sum
+
+                gold_log = GoldLog(player=player, gold=gold_sum, activity_txt='donut')
+                gold_log.save()
+
+                player.save()
+                call_donut_message = True
 
     page = 'player/redesign/overview.html'
 
@@ -223,6 +275,7 @@ def overview(request):
 
         'player': player,
         'wiki_hide': wiki_hide,
+        'call_donut_message': call_donut_message,
 
         'region_parties': region_parties,
         'world_parties': world_parties,
