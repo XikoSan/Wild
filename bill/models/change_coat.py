@@ -104,7 +104,10 @@ class ChangeCoat(Bill):
 
     @staticmethod
     def get_new_draft(state):
-        data = {'form': ImageForm()}
+        data = {
+            'form': ImageForm(),
+            'state': state
+        }
 
         return data, 'state/redesign/drafts/change_coat.html'
 

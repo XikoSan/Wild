@@ -76,24 +76,18 @@ $(function () {
       $("#id_y").val(cropData["y"]);
       $("#id_height").val(cropData["height"]);
       $("#id_width").val(cropData["width"]);
-//    профиль
-      if (document.querySelector('#formUpload')) {
-        $("#formUpload").submit();
-      }
 //    новый законопроект
-      else if(document.querySelector('#new_bill')){
+      if(document.querySelector('#new_bill')){
 
         var croppedImageDataURL = cropper.getCroppedCanvas().toDataURL();
         var imgPreview = document.getElementById('img_preview');
         imgPreview.src = croppedImageDataURL;
 
-        document.getElementById('modalCrop').classList.remove('active');
-        cropBoxData = cropper.getCropBoxData();
-        canvasData = cropper.getCanvasData();
-        cropper.destroy();
-      }
-//    создание
-      else{
+        if(document.querySelector('#svg_preview')){
+            document.getElementById('svg_preview').style.display = 'none';
+        }
+        imgPreview.style.display = 'block';
+
         document.getElementById('modalCrop').classList.remove('active');
         cropBoxData = cropper.getCropBoxData();
         canvasData = cropper.getCanvasData();
