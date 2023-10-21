@@ -78,6 +78,13 @@ class ChangeTitle(Bill):
 
         return data, 'state/gov/drafts/change_title.html'
 
+    @staticmethod
+    def get_new_draft(state):
+
+        data = {}
+
+        return data, 'state/redesign/drafts/change_title.html'
+
     def get_bill(self, player, minister, president):
 
         has_right = False

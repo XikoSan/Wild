@@ -3,11 +3,9 @@ jQuery(document).ready(function ($) {
     $('.new_bill').submit(function(e){
         e.preventDefault();
 
-        console.log('кря');
-
         var sending_data = new FormData(this);
         sending_data.append('bill_type', current_bill);
-        sending_data.append('change_taxes_regions', document.getElementById('change_taxes_default_region').dataset.value);
+        sending_data.append('construction_regions', document.getElementById('construction_default_region').dataset.value);
 
         $.ajax({
               url: "/new_bill/",

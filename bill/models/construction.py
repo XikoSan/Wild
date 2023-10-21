@@ -320,6 +320,72 @@ class Construction(Bill):
 
         return data, 'state/gov/drafts/construction.html'
 
+    @staticmethod
+    def get_new_draft(state):
+
+        regions = Region.objects.filter(state=state)
+
+        # получим классы всех строений
+        building_classes = get_subclasses(Building)
+
+        building_dict = {}
+
+        for building_cl in building_classes:
+            building_dict[building_cl.__name__] = {}
+
+            buildings = building_cl.objects.filter(region__in=regions)
+
+            for region in regions:
+                if buildings.filter(region=region).exists():
+                    building_dict[building_cl.__name__][region.pk] = buildings.get(region=region).level
+                else:
+                    building_dict[building_cl.__name__][region.pk] = 0
+
+        material_dict = {}
+
+        build_dict = {}
+        for schema in Construction.building_schemas:
+
+            schema_ins = copy.deepcopy(getattr(Construction, schema[0]))
+
+            resources = {}
+
+            for resource in schema_ins['resources'].keys():
+
+                if resource == 'Наличные':
+                    resources[0] = schema_ins['resources'][resource]
+
+                else:
+                    if resource not in material_dict:
+                        material = Good.objects.get(name_ru=resource)
+                        material_dict[resource] = material
+
+                    else:
+                        material = material_dict[resource]
+
+                    resources[material.pk] = schema_ins['resources'][resource]
+
+            schema_ins['resources'] = resources
+
+            build_dict[schema[0]] = schema_ins
+
+        good_names = {}
+
+        for good_key in material_dict.keys():
+            good_names[material_dict[good_key].pk] = material_dict[good_key].name
+
+        good_names[0] = pgettext('goods', 'Наличные')
+
+        data = {
+            'regions': regions,
+            'schemas': build_dict,
+            'buildings': building_dict,
+            'good_names': good_names,
+            'crude_list': ['valut', 'minerals', 'oils', 'materials', 'equipments'],
+        }
+
+        return data, 'state/redesign/drafts/construction.html'
+
     def get_bill(self, player, minister, president):
 
         resources = getattr(self, self.building)['resources'].keys()

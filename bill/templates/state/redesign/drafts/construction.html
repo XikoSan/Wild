@@ -1,0 +1,189 @@
+{% load dict_key %}
+{% load has_key %}
+{% load get_attr %}
+{% load get_sum %}
+{% load get_key_list %}
+{% load l10n %}{% load i18n %}
+<!--строительство-->
+<div class="gover__newInner Construction">
+        <script>
+        function insertAfter(newNode, existingNode) {
+            existingNode.parentNode.insertBefore(newNode, existingNode.nextSibling);
+        }
+
+        function open_building() {
+            if(document.getElementById('construction_default_region').dataset.value != null && $('#construction_buildings').val() != null){
+                openBuilding();
+            }
+        }
+
+
+        function openBuilding() {
+            $('#construction_building_lvl').html(region_levels[document.getElementById('construction_default_region').dataset.value][$('#construction_buildings').val()])
+            $('#construction_building_new').html(parseInt(region_levels[document.getElementById('construction_default_region').dataset.value][$('#construction_buildings').val()]) + parseInt($('#construction_value').val()))
+
+            schema = building_schemas[$('#construction_buildings').val()]
+
+            var elements = document.querySelectorAll('.cloned_line');
+            for (var i = 0; i < elements.length; i++) {
+                elements[i].parentNode.removeChild(elements[i]);
+            }
+
+            var last_crude_name = 'construction_component_header';
+
+            for (component in schema){
+                var cloned_line = document.getElementById('construction_component_blank').cloneNode(true);
+                cloned_line.id = component + '_line';
+                cloned_line.className += ' cloned_line';
+
+                var component_name = goods_names[component];
+                cloned_line.getElementsByClassName("construction_component_name")[0].innerHTML = component_name;
+
+                $(cloned_line.getElementsByClassName("construction_component_val")[0]).attr('step', schema[component]);
+                if (isNaN(parseInt($('#construction_value').val())) == true){
+                    cloned_line.getElementsByClassName("construction_component_val")[0].innerHTML = parseInt(schema[component]) * 0;
+                }
+                else{
+                    cloned_line.getElementsByClassName("construction_component_val")[0].innerHTML = parseInt(schema[component]) * parseInt($('#construction_value').val());
+                }
+
+                previous_line = document.getElementById(last_crude_name);
+                insertAfter(cloned_line, previous_line);
+
+                last_crude_name = cloned_line.id;
+                $('#' + component + '_line').show();
+            }
+
+            $('#construction_level').show();
+            $('#construction_schema').show();
+        }
+
+        var region_levels = {};
+        {% with regions=data|dict_key:'regions' %}
+            {% for region in regions %}
+        region_levels["{% localize off %}{{ region.pk }}{% endlocalize %}"] = {};
+                {% with schemas=data|dict_key:'schemas' %}
+                    {% for schema in schemas|get_key_list %}
+                        {% with buildings=data|dict_key:'buildings' %}
+        region_levels["{% localize off %}{{ region.pk }}{% endlocalize %}"]["{{ schema }}"] = {% localize off %}{{ buildings|dict_key:schema|dict_key:region.pk }}{% endlocalize %}
+                        {% endwith %}
+                    {% endfor %}
+                {% endwith %}
+            {% endfor %}
+        {% endwith %}
+
+        var goods_names = {};
+        {% with good_names=data|dict_key:'good_names' %}
+            {% for good_key in good_names|get_key_list %}
+                {% if good_key == 'Наличные' %}
+                    goods_names['{% localize off %}{{ good_key }}{% endlocalize %}'] = {% trans 'Наличные' context "goods" %};
+                {% else %}
+                    goods_names['{% localize off %}{{ good_key }}{% endlocalize %}'] = '{{ good_names|dict_key:good_key }}';
+                {% endif %}
+            {% endfor %}
+        {% endwith %}
+
+        var building_schemas = {};
+
+        {% with schemas=data|dict_key:'schemas' %}
+            {% for building in schemas|get_key_list %}
+        building_schemas["{{ building }}"] = {};
+                {% with resources=schemas|dict_key:building|dict_key:'resources' %}
+                    {% for resource in resources|get_key_list %}
+
+        building_schemas["{{ building }}"]["{% localize off %}{{ resource }}{% endlocalize %}"] = {% localize off %}{{ resources|dict_key:resource }}{% endlocalize %};
+
+                    {% endfor %}
+                {% endwith %}
+            {% endfor %}
+        {% endwith %}
+
+    // выводить информацию по необходимому количеству материалов для строительства
+    jQuery(document).ready(function ($) {
+
+        $('#construction_buildings').change(function(e) {
+            // если значение строения не пустое
+            if(document.getElementById('construction_default_region').dataset.value != null && $('#construction_buildings').val() != null){
+                openBuilding();
+            }
+        });
+
+        $('#construction_value').change(function(e) {
+            var elements = document.querySelectorAll('.cloned_line');
+
+            for (var i = 0; i < elements.length; i++) {
+                var tableChild = elements[i];
+                $('#construction_building_new').html(parseInt(region_levels[document.getElementById('construction_default_region').dataset.value][$('#construction_buildings').val()]) + parseInt($('#construction_value').val()))
+                tableChild.getElementsByClassName("construction_component_val")[0].innerHTML = $('#construction_value').val() * $(tableChild.getElementsByClassName("construction_component_val")[0]).attr('step');
+            }
+        });
+    });
+    </script>
+        {% with regions=data|dict_key:'regions' %}
+		<div class="ct__selectWithImage">
+            {% for region in regions %}
+            {% if forloop.counter0 == 0 %}
+			<div class="ct__selectWithImage-selected" id="construction_default_region" data-value="{% localize off %}{{ region.pk }}{% endlocalize %}">
+				<img id="construction_default_img" src="/static/img/regions/{{ region.on_map_id }}.png">
+				<div class="ct__selectWithImage-firstText">
+					<span id="construction_default_reg">{% trans region.region_name context "regions_list" %}</span>
+					<svg class="ct__selectWithImage-arrow" width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
+					</svg>
+				</div>
+			</div>
+            {% endif %}
+            {% endfor %}
+			<div class="ct__selectWithImage-content custom-scroll custom-scroll--alt">
+                {% for region in regions %}
+                <div id="construction_{% localize off %}{{ region.pk }}{% endlocalize %}" {% if forloop.counter0 == 0 %}class="region_storage"{% endif %} data-func="open_building" data-value="{% localize off %}{{ region.pk }}{% endlocalize %}">
+                    <img class="offer_dummy_img" src="/static/img/regions/{{ region.on_map_id }}.png">
+                    <span class="offer_dummy_region">{% trans region.region_name context "regions_list" %}</span>
+                </div>
+                {% endfor %}
+			</div>
+		</div>
+        {% endwith %}
+
+    <label class="ct__wide-modal-label-select">
+        {% with schemas=data|dict_key:'schemas' %}
+        <select name="construction_buildings" id="construction_buildings">
+            <option id="construction_building_default" disabled selected value>выберите строение</option>
+            {% for schema in schemas|get_key_list %}
+            <option id="construction_building_{{ schema }}" value="{{ schema }}">{{ schemas|dict_key:schema|dict_key:'title' }}</option>
+            {% endfor %}
+        </select>
+        {% endwith %}
+        <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
+        </svg>
+    </label>
+
+    <p class="gover__newInner-infoText"><span>Уровень: </span><span id="construction_building_lvl"></span> + <input type="number" min="1" max="1000" step="1" id="construction_value" name="construction_value" maxlength="3" class="gover__newInner-textIput"> = <span id="construction_building_new"></span></p>
+
+    <h3>Затраты:</h3>
+    <table class="gover__newInner-table">
+        <tbody>
+            <tr id="construction_component_header" style="display: none"></tr>
+            <tr id="construction_component_blank" style="display: none">
+                <td class="construction_component_name"></td>
+                <td class="construction_component_val"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <button class="ct__mid-btn active">
+        <svg width="144" height="30" viewBox="0 0 144 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <mask id="mask0_259_304" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+                <path d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"/>
+            </mask>
+            <g mask="url(#mask0_259_304)">
+                <path d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" fill="var(--c10two)"/>
+                <path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"/>
+                <path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"/>
+                <path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
+            </g>
+        </svg>
+        <span>предложить</span>
+    </button>
+</div>
