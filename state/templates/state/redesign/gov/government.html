@@ -113,9 +113,25 @@ class BlockSelect {
 	setEventListeners() {
 		if (this.select !== null){
 			this.select.addEventListener('change', (evt) => {
-				console.log('changed');
 				const currentValue = evt.target.value;
-				current_bill = evt.target.value;
+
+				if( this.select.id == 'bill_select' ){
+					current_bill = evt.target.value;
+				}
+				else if( this.select.id == 'change_taxes_destination' ){
+					if($('#change_taxes_tax_mod').val() != null){
+						if($('#change_taxes_destination').val() == 'destination_state'){
+							$('#change_taxes_tax_lvl').html(window[$('#change_taxes_tax_mod').val()]);
+							$('#change_taxes_value').attr('value', window[$('#change_taxes_tax_mod').val()]);
+						}
+						else if($('#change_taxes_destination').val() == 'destination_region' && document.getElementById('change_taxes_default_region').dataset.value != null){
+							$('#change_taxes_tax_lvl').html(regions_taxes[document.getElementById('change_taxes_default_region').dataset.value][$('#change_taxes_tax_mod').val()]);
+							$('#change_taxes_value').attr('value', regions_taxes[document.getElementById('change_taxes_default_region').dataset.value][$('#change_taxes_tax_mod').val()]);
+						}
+					}
+
+				}
+
 				this.blocks.forEach((block) => block.classList.remove('active'));
 				this.blocks.forEach((block) => {
 					const classes = block.getAttribute('class');

@@ -195,6 +195,16 @@ class ChangeTaxes(Bill):
 
         return data, 'state/gov/drafts/change_taxes.html'
 
+    @staticmethod
+    def get_new_draft(state):
+
+        data = {
+            'regions': Region.objects.filter(state=state),
+            'state': state,
+        }
+
+        return data, 'state/redesign/drafts/change_taxes.html'
+
     def get_bill(self, player, minister, president):
 
         has_right = False

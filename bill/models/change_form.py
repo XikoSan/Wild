@@ -122,6 +122,26 @@ class ChangeForm(Bill):
 
         return data, 'state/gov/drafts/change_form.html'
 
+
+    @staticmethod
+    def get_new_draft(state):
+        current_regime = None
+        # получаем текущий режим из свойств госа
+        for regime_cl in Regime.__subclasses__():
+            if state.type == regime_cl.__name__:
+                current_regime = regime_cl
+                break
+
+        forms_dict = {}
+        for form in ChangeForm.stateTypeChoices:
+            if form[0] in current_regime.allowed_dest:
+                forms_dict[form[0]] = form[1]
+
+        data = {'forms': forms_dict}
+
+        return data, 'state/redesign/drafts/change_form.html'
+
+
     def get_bill(self, player, minister, president):
 
         has_right = False

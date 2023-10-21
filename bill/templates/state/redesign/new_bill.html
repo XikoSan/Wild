@@ -3,6 +3,7 @@
 {% load get_sum %}
 {% load get_mod %}
 {% load dict_key %}
+{% load l10n %}{% load i18n %}
 {% load get_class_name %}
 {% load government.redesign.get_bill_draft %}
 {% load l10n %}{% load i18n %}
@@ -10,7 +11,7 @@
     <form class="new_bill" role="form">
         {% csrf_token %}
 
-        <label class="gover__newSelect ct__wide-modal-label-select">
+        <label id="bill_select" class="gover__newSelect ct__wide-modal-label-select">
             <select>
                 {% for bill_cl in bills_classes %}
                 <option value="{{ bill_cl|get_class_name }}">{% with class_name=bill_cl|get_class_name %}{{ translate_dict|dict_key:class_name }}{% endwith %}</option>
@@ -28,94 +29,6 @@
                 {% get_bill_draft %}
             {% endwith %}
         {% endfor %}
-
-        <!--изменение налогов-->
-        <div class="gover__newInner nalog">
-            <label class="ct__wide-modal-label-select">
-                <select class="new-nalog-select">
-                    <option value="gos">государство</option>
-                    <option value="region">регион</option>
-                </select>
-                <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
-                </svg>
-            </label>
-            <label class="ct__wide-modal-label-select">
-                <select>
-                    <option value="">финансирование</option>
-                    <option value="">value2</option>
-                    <option value="">value3</option>
-                </select>
-                <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
-                </svg>
-            </label>
-            <!--государство-->
-            <div class="gover__newInner-flexColumn gos new-nalog-block active">
-                <p>Текущий налог: 0%</p>
-                <div class="gover__newInner-flexCenter">
-                    <span>Новый налог:</span>
-                    <input class="gover__newInner-textIput" type="text">
-                    <span>%</span>
-                </div>
-                <button class="ct__mid-btn active">
-                    <svg width="144" height="30" viewBox="0 0 144 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <mask id="mask0_259_304" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
-                            <path d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"/>
-                        </mask>
-                        <g mask="url(#mask0_259_304)">
-                            <path d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" fill="var(--c10two)"/>
-                            <path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"/>
-                            <path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"/>
-                            <path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
-                        </g>
-                    </svg>
-                    <span>предложить</span>
-                </button>
-            </div>
-            <!--регионы-->
-            <div class="gover__newInner-flexColumn region new-nalog-block">
-                <div class="ct__selectWithImage">
-                    <div class="ct__selectWithImage-selected">
-                        <img src="img/gerb.png" alt="Выбор">
-                        <div class="ct__selectWithImage-firstText">
-                            <span>выберите склад</span>
-                            <svg class="ct__selectWithImage-arrow" width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="ct__selectWithImage-content custom-scroll custom-scroll--alt">
-                        <div data-value="1"><img src="img/gerb.png"> Элемент 1</div>
-                        <div data-value="2"><img src="img/gerb.png"> Элемент 2</div>
-                        <div data-value="3"><img src="https://test.wildpolitics.online/static/img/regions/DE-BB.png"> Элемент 3</div>
-                        <div data-value="4"><img src="https://test.wildpolitics.online/static/img/regions/DE-BB.png"> Элемент 4</div>
-                        <div data-value="5"><img src="https://test.wildpolitics.online/static/img/regions/DE-BB.png"> Элемент 5</div>
-                    </div>
-                </div>
-                <p>Текущий налог: 0%</p>
-                <div class="gover__newInner-flexCenter">
-                    <span>Новый налог:</span>
-                    <input class="gover__newInner-textIput" type="text">
-                    <span>%</span>
-                </div>
-                <button class="ct__mid-btn active">
-                    <svg width="144" height="30" viewBox="0 0 144 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <mask id="mask0_259_304" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
-                            <path d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"/>
-                        </mask>
-                        <g mask="url(#mask0_259_304)">
-                            <path d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" fill="var(--c10two)"/>
-                            <path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"/>
-                            <path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"/>
-                            <path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
-                        </g>
-                    </svg>
-                    <span>предложить</span>
-                </button>
-            </div>
-        </div>
-
         <!--переименование государства-->
         <div class="gover__newInner rename">
             <h2>Новое название государства</h2>
@@ -293,73 +206,6 @@
             </div>
 
             <p>Стоимость: <b>$390</b></p>
-
-            <button class="ct__mid-btn active">
-                <svg width="144" height="30" viewBox="0 0 144 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <mask id="mask0_259_304" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
-                        <path d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"/>
-                    </mask>
-                    <g mask="url(#mask0_259_304)">
-                        <path d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" fill="var(--c10two)"/>
-                        <path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"/>
-                        <path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"/>
-                        <path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
-                    </g>
-                </svg>
-                <span>предложить</span>
-            </button>
-        </div>
-
-        <!--новая форма правления-->
-        <div class="gover__newInner pravl">
-            <h2>Новая форма правления государства:</h2>
-
-            <label class="ct__wide-modal-label-select">
-                <select>
-                    <option value="" disabled selected>выберите форму правления</option>
-                    <option value="">value2</option>
-                    <option value="">value3</option>
-                </select>
-                <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
-                </svg>
-            </label>
-
-            <button class="ct__mid-btn active">
-                <svg width="144" height="30" viewBox="0 0 144 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <mask id="mask0_259_304" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
-                        <path d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"/>
-                    </mask>
-                    <g mask="url(#mask0_259_304)">
-                        <path d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" fill="var(--c10two)"/>
-                        <path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"/>
-                        <path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"/>
-                        <path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
-                    </g>
-                </svg>
-                <span>предложить</span>
-            </button>
-        </div>
-
-        <!--новый способ выдачи прописки-->
-        <div class="gover__newInner propis">
-            <h2>Способ выдачи прописки:</h2>
-
-            <label class="ct__wide-modal-label-select">
-                <select>
-                    <option value="">выдается министром</option>
-                    <option value="">свободная</option>
-                </select>
-                <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
-                </svg>
-            </label>
-
-            <div class="gover__newInner-flexColumn active">
-                <h3>Стоимость:</h3>
-                <p>Автоматы: <b>3</b></p>
-                <p>БПЛА: <b>3</b></p>
-            </div>
 
             <button class="ct__mid-btn active">
                 <svg width="144" height="30" viewBox="0 0 144 30" fill="none" xmlns="http://www.w3.org/2000/svg">

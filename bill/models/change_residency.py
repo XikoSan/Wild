@@ -180,6 +180,20 @@ class ChangeResidency(Bill):
 
         return data, 'state/gov/drafts/change_residency.html'
 
+
+    @staticmethod
+    def get_new_draft(state):
+
+        regions_cnt = Region.objects.filter(state=state).count()
+
+        data = {
+            'rifle_cost': ChangeResidency.rifle_price * regions_cnt,
+            'drone_cost': ChangeResidency.drone_price * regions_cnt,
+        }
+
+        return data, 'state/redesign/drafts/change_residency.html'
+
+
     def get_bill(self, player, minister, president):
 
         has_right = False

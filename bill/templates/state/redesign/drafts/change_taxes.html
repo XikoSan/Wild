@@ -1,0 +1,126 @@
+{% load dict_key %}
+{% load get_attr %}
+{% load get_sum %}
+{% load get_key_list %}
+{% load l10n %}{% load i18n %}
+<!--изменение налогов-->
+<div class="gover__newInner ChangeTaxes">
+    <script>
+        {% with state=data|dict_key:'state' %}
+            var cash = {{ state|get_attr:'cash_tax' }}
+            var oil = {{ state|get_attr:'oil_tax' }}
+            var ore = {{ state|get_attr:'ore_tax' }}
+            var trade = {{ state|get_attr:'trade_tax' }}
+        {% endwith %}
+
+        var regions_taxes = {};
+        {% with regions=data|dict_key:'regions' %}
+            {% for region in regions %}
+        regions_taxes["{{ region.pk }}"] = {};
+        regions_taxes["{{ region.pk }}"]["cash"] = {{ region|get_attr:'cash_tax' }}
+        regions_taxes["{{ region.pk }}"]["oil"] = {{ region|get_attr:'oil_tax' }}
+        regions_taxes["{{ region.pk }}"]["ore"] = {{ region|get_attr:'ore_tax' }}
+        regions_taxes["{{ region.pk }}"]["trade"] = {{ region|get_attr:'trade_tax' }}
+            {% endfor %}
+        {% endwith %}
+
+        function set_taxes_val() {
+            if($('#change_taxes_tax_mod').val() != null && document.getElementById('change_taxes_default_region').dataset.value != null){
+                $('#change_taxes_tax_lvl').html(regions_taxes[document.getElementById('change_taxes_default_region').dataset.value][$('#change_taxes_tax_mod').val()]);
+                $('#change_taxes_value').attr('value', regions_taxes[document.getElementById('change_taxes_default_region').dataset.value][$('#change_taxes_tax_mod').val()]);
+            }
+        }
+
+        jQuery(document).ready(function ($) {
+        
+            $('#change_taxes_tax_mod').change(function(e) {
+                if($('#change_taxes_tax_mod').val() != null){
+                    if($('#change_taxes_destination').val() == 'destination_state'){
+                        $('#change_taxes_tax_lvl').html(window[$('#change_taxes_tax_mod').val()]);
+                        $('#change_taxes_value').attr('value', window[$('#change_taxes_tax_mod').val()]);
+                    }
+                    else if($('#change_taxes_destination').val() == 'destination_region' && document.getElementById('change_taxes_default_region').dataset.value != null){
+                        $('#change_taxes_tax_lvl').html(regions_taxes[document.getElementById('change_taxes_default_region').dataset.value][$('#change_taxes_tax_mod').val()]);
+                        $('#change_taxes_value').attr('value', regions_taxes[document.getElementById('change_taxes_default_region').dataset.value][$('#change_taxes_tax_mod').val()]);
+                    }
+                }
+            });
+        });
+    </script>
+    <label id="change_taxes_select" class="ct__wide-modal-label-select">
+        <select name="change_taxes_destination" id="change_taxes_destination" class="new-nalog-select">
+            <option id="change_taxes_destination_state" selected value="destination_state">государство</option>
+            <option id="change_taxes_destination_region" value="destination_region">регион</option>
+        </select>
+        <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
+        </svg>
+    </label>
+    <label class="ct__wide-modal-label-select">
+        <select name="change_taxes_tax_mod" id="change_taxes_tax_mod">
+            <option id="change_taxes_tax_mod_default" value='default' disabled selected>Выберите налог</option>
+            <option id="change_taxes_tax_mod_default_cash" value="cash">Финансирование</option>
+            <option id="change_taxes_tax_mod_default_oil" value="oil">Добыча нефти</option>
+            <option id="change_taxes_tax_mod_default_ore" value="ore">Добыча руд</option>
+            <option id="change_taxes_tax_mod_default_trade" value="trade">Торговля</option>
+        </select>
+        <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
+        </svg>
+    </label>
+
+    <!--государство-->
+    <div class="gover__newInner-flexColumn destination_state new-nalog-block active">
+    </div>
+
+    <!--регионы-->
+    <div class="gover__newInner-flexColumn destination_region new-nalog-block">
+        {% with regions=data|dict_key:'regions' %}
+		<div class="ct__selectWithImage">
+            {% for region in regions %}
+            {% if forloop.counter0 == 0 %}
+			<div class="ct__selectWithImage-selected" id="change_taxes_default_region" data-value="{% localize off %}{{ region.pk }}{% endlocalize %}">
+				<img id="change_taxes_default_img" src="/static/img/regions/{{ region.on_map_id }}.png">
+				<div class="ct__selectWithImage-firstText">
+					<span id="change_taxes_default_reg">{% trans region.region_name context "regions_list" %}</span>
+					<svg class="ct__selectWithImage-arrow" width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
+					</svg>
+				</div>
+			</div>
+            {% endif %}
+            {% endfor %}
+			<div class="ct__selectWithImage-content custom-scroll custom-scroll--alt">
+                {% for region in regions %}
+                <div id="change_taxes_{% localize off %}{{ region.pk }}{% endlocalize %}" {% if forloop.counter0 == 0 %}class="region_storage"{% endif %} data-func="set_taxes_val" data-value="{% localize off %}{{ region.pk }}{% endlocalize %}">
+                    <img class="offer_dummy_img" src="/static/img/regions/{{ region.on_map_id }}.png">
+                    <span class="offer_dummy_region">{% trans region.region_name context "regions_list" %}</span>
+                </div>
+                {% endfor %}
+			</div>
+		</div>
+        {% endwith %}
+    </div>
+
+    <p>Текущий налог: <span id="change_taxes_tax_lvl">0</span>%</p>
+    <div class="gover__newInner-flexCenter">
+        <span>Новый налог:</span>
+        <input class="gover__newInner-textIput" type="number" min="0" max="100" step="1" id="change_taxes_value" name="change_taxes_value" maxlength="3">
+        <span>%</span>
+    </div>
+
+    <button type="submit" class="ct__mid-btn active">
+        <svg width="144" height="30" viewBox="0 0 144 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <mask id="mask0_259_304" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+                <path d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"/>
+            </mask>
+            <g mask="url(#mask0_259_304)">
+                <path d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" fill="var(--c10two)"/>
+                <path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"/>
+                <path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"/>
+                <path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
+            </g>
+        </svg>
+        <span>предложить</span>
+    </button>
+</div>

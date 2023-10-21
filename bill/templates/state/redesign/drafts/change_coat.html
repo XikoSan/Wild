@@ -31,19 +31,17 @@
 		{% endif %}
 		{% endwith %}
 
-        <form method="post" enctype="multipart/form-data" id="formUpload">
-            <label class="profile__load-img">
-                <input type="hidden" name="" value="">
-                <input type="file" class="visually-hidden" id="id_image" name="image">
-                <input type="hidden" name="x" id="id_x">
-                <input type="hidden" name="y" id="id_y">
-                <input type="hidden" name="width" id="id_width">
-                <input type="hidden" name="height" id="id_height">
-                <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path class="profile__ava-rect" d="M26 30H0V0H30V26L26 30Z" fill="var(--c10two)"/><path d="M5.5 21.5L22.5 4.5L26.5 8.5L9.5 25.5H5.5V21.5Z" stroke="var(--c60)" stroke-width="3"/>
-                </svg>
-            </label>
-        </form>
+		<label class="profile__load-img">
+			<input type="hidden" name="" value="">
+			<input type="file" class="visually-hidden" id="id_image" name="image">
+			<input type="hidden" name="x" id="id_x">
+			<input type="hidden" name="y" id="id_y">
+			<input type="hidden" name="width" id="id_width">
+			<input type="hidden" name="height" id="id_height">
+			<svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path class="profile__ava-rect" d="M26 30H0V0H30V26L26 30Z" fill="var(--c10two)"/><path d="M5.5 21.5L22.5 4.5L26.5 8.5L9.5 25.5H5.5V21.5Z" stroke="var(--c60)" stroke-width="3"/>
+			</svg>
+		</label>
     </div>
 	<!-- ОБРЕЗКА ИЗОБРАЖЕНИЙ МОДАЛКА -->
 	<div class="img_modal" id="modalCrop">
