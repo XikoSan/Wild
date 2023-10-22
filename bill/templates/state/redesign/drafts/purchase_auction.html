@@ -1,0 +1,79 @@
+{% load dict_key %}
+{% load get_attr %}
+{% load get_sum %}
+{% load get_key_list %}
+
+<!--закупка товаров-->
+<div class="gover__newInner PurchaseAuction">
+    <script>
+        jQuery(document).ready(function ($) {
+
+            $('#purchase_price').on('input', function (e) {
+                $('#purchase_cost').html(numberWithSpaces($(e.target).val() * $('#purchase_value').val()));
+            });
+            $('#purchase_value').on('input', function (e) {
+                $('#purchase_cost').html(numberWithSpaces($(e.target).val() * $('#purchase_price').val()));
+            });
+
+        });
+    </script>
+
+    <label class="ct__wide-modal-label-select">
+        {% with goods=data|dict_key:'goods_dict' %}
+        <select name="purchase_goods" id="purchase_goods">
+            <option id="purchase_good_default" disabled selected>выберите товар</option>
+            {% for good in goods|get_key_list %}
+            <option id="purchase_good_{{ good }}" value="{{ good }}">{{ goods|dict_key:good }}</option>
+            {% endfor %}
+        </select>
+        {% endwith %}
+        <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
+        </svg>
+    </label>
+
+    <div class="gover__newInner-twoWithInput gover__newInner-twoWithInput--small">
+        <span>количество лотов:</span>
+        <div>
+            <label>
+                <input id="purchase_lots" type="number" min="1" max="10" step="1" name="purchase_lots" maxlength="3">
+            </label>
+            <span> / 10</span>
+        </div>
+    </div>
+
+    <div class="gover__newInner-twoWithInput">
+        <span>количество:</span>
+        <div>
+            <label>
+                <input id="purchase_value" type="number" min="0" max="9223372036854775807" step="1" name="purchase_value" maxlength="3">
+            </label>
+        </div>
+    </div>
+
+    <div class="gover__newInner-twoWithInput">
+        <span>цена:</span>
+        <div>
+            <label>
+                <input id="purchase_price" type="number" min="0" max="9223372036854775807" step="1" name="purchase_price" maxlength="3">
+            </label>
+        </div>
+    </div>
+
+    <p>Стоимость: <b>$<span id="purchase_cost">0</span></b></p>
+
+    <button type="submit" class="ct__mid-btn active">
+        <svg width="144" height="30" viewBox="0 0 144 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <mask id="mask0_259_304" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+                <path d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"/>
+            </mask>
+            <g mask="url(#mask0_259_304)">
+                <path d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" fill="var(--c10two)"/>
+                <path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"/>
+                <path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"/>
+                <path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
+            </g>
+        </svg>
+        <span>предложить</span>
+    </button>
+</div>

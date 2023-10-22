@@ -62,6 +62,8 @@ def government(request):
 
     # отправляем в форму
     return render(request, 'state/redesign/gov/government.html', {
+        'page_name': f'Правительство { state.title }',
+
         # самого игрока
         'player': player,
         # государство, в котором сейчас находится игрок

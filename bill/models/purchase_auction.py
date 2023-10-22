@@ -222,6 +222,19 @@ class PurchaseAuction(Bill):
 
         return data, 'state/gov/drafts/purchase_auction.html'
 
+    @staticmethod
+    def get_new_draft(state):
+
+        goods = Good.objects.only('pk', 'name').all()
+        goods_dict = {}
+
+        for good in goods:
+            goods_dict[good.pk] = good.name
+
+        data = {'goods_dict': goods_dict}
+
+        return data, 'state/redesign/drafts/purchase_auction.html'
+
     def get_bill(self, player, minister, president):
 
         has_right = False

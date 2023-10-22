@@ -189,6 +189,17 @@ class ExploreResources(Bill):
 
         return data, 'state/gov/drafts/explore_resources.html'
 
+    @staticmethod
+    def get_new_draft(state):
+
+        resources_dict = {}
+        for resource in ExploreResources.resExpChoices:
+            resources_dict[resource[0]] = resource[1]
+
+        data = {'regions': Region.objects.filter(state=state), 'resources': resources_dict}
+
+        return data, 'state/redesign/drafts/explore_resources.html'
+
     def get_bill(self, player, minister, president):
 
         has_right = False
