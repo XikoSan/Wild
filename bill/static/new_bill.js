@@ -7,7 +7,12 @@ jQuery(document).ready(function ($) {
         sending_data.append('bill_type', current_bill);
         sending_data.append('construction_regions', document.getElementById('construction_default_region').dataset.value);
         sending_data.append('explore_regions', document.getElementById('explore_resources_default_region').dataset.value);
-        sending_data.append('independence_regions', document.getElementById('independence_default_region').dataset.value);
+
+        var ind_default = document.getElementById('independence_default_region');
+
+        if (ind_default) {
+            sending_data.append('independence_regions', ind_default.dataset.value);
+        }
         sending_data.append('change_taxes_regions', document.getElementById('change_taxes_default_region').dataset.value);
 
         $.ajax({
