@@ -5,6 +5,7 @@ import pytz
 import random
 import redis
 import vk
+from vk.exceptions import VkAPIError
 from allauth.socialaccount.models import SocialAccount, SocialToken
 from dateutil.relativedelta import relativedelta
 from django.contrib.auth.decorators import login_required
@@ -226,46 +227,51 @@ def overview(request):
         vk_api = vk.API(session)
 
         from player.logs.print_log import log
-        # проверяем, что подписка вообще есть
-        if vk_api.donut.isDon(
-                owner_id="-164930433",
-                v='5.131',
-        ) == 1:
 
-            response = vk_api.donut.getSubscription(
-                owner_id="-164930433",
-                v='5.131',
-            )
+        try:
+            # проверяем, что подписка вообще есть
+            if vk_api.donut.isDon(
+                    owner_id="-164930433",
+                    v='5.131',
+            ) == 1:
 
-            # если за последний месяц не было логов наград
-            if not DonutLog.objects.filter(
-                    player=player,
-                    dtime__gte=datetime.datetime.now() - relativedelta(months=1)
-            ).exists():
-
-                # время, к которому прибавляем месяц
-                if player.premium > timezone.now():
-                    from_time = player.premium
-                else:
-                    from_time = timezone.now()
-                # наичисляем месяц према
-                player.premium = from_time + relativedelta(months=1)
-
-                log = DonutLog(
-                    player=player,
-                    dtime=datetime.datetime.now()
+                response = vk_api.donut.getSubscription(
+                    owner_id="-164930433",
+                    v='5.131',
                 )
-                log.save()
-                # начисляем золото на остаток доната
-                gold_sum = (int(response["amount"]) - 40) * 30
 
-                player.gold += gold_sum
+                # если за последний месяц не было логов наград
+                if not DonutLog.objects.filter(
+                        player=player,
+                        dtime__gte=datetime.datetime.now() - relativedelta(months=1)
+                ).exists():
 
-                gold_log = GoldLog(player=player, gold=gold_sum, activity_txt='donut')
-                gold_log.save()
+                    # время, к которому прибавляем месяц
+                    if player.premium > timezone.now():
+                        from_time = player.premium
+                    else:
+                        from_time = timezone.now()
+                    # наичисляем месяц према
+                    player.premium = from_time + relativedelta(months=1)
 
-                player.save()
-                call_donut_message = True
+                    log = DonutLog(
+                        player=player,
+                        dtime=datetime.datetime.now()
+                    )
+                    log.save()
+                    # начисляем золото на остаток доната
+                    gold_sum = (int(response["amount"]) - 40) * 30
+
+                    player.gold += gold_sum
+
+                    gold_log = GoldLog(player=player, gold=gold_sum, activity_txt='donut')
+                    gold_log.save()
+
+                    player.save()
+                    call_donut_message = True
+
+        except VkAPIError as e:
+            pass
 
     page = 'player/redesign/overview.html'
 
