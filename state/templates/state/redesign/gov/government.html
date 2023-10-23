@@ -172,12 +172,19 @@ function switchMainBlocks(num) {
 	mnisterTabBtn[num].classList.add('active');
 }
 
-// Goverment modal
-const goverModal = new ModalOpenClose({
-		main: document.getElementById('gover__modal'),
-		openModalBtn: document.getElementById('gover__modal-open'),
-		closeModalBtn: document.getElementById('gover__modal-close'),
-	})
+// Проверка, что все элементы, которые ищутся по ID, существуют
+const mainElement = document.getElementById('gover__modal');
+const openModalBtnElement = document.getElementById('gover__modal-open');
+const closeModalBtnElement = document.getElementById('gover__modal-close');
+
+if (mainElement && openModalBtnElement && closeModalBtnElement) {
+  // Goverment modal
+  const goverModal = new ModalOpenClose({
+    main: mainElement,
+    openModalBtn: openModalBtnElement,
+    closeModalBtn: closeModalBtnElement,
+  });
+}
 
 </script>
 {% endblock %}
