@@ -33,6 +33,13 @@ class Independence(Bill):
     @staticmethod
     def new_bill(request, player, parliament):
 
+        if not request.POST.get('independence_regions'):
+            return {
+                'header': 'Новый законопроект',
+                'grey_btn': 'Закрыть',
+                'response': 'Не указан подходящий регион',
+            }
+
         if Independence.objects.filter(running=True, initiator=player).exists():
             return {
                 'header': 'Новый законопроект',
