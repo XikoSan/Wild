@@ -1,23 +1,23 @@
 # coding=utf-8
 
+from django.apps import apps
 from django.db import models
 from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 from django.utils import timezone
-from django.apps import apps
+
 from bill.models.bill import Bill
+from regime.presidential import Presidential
+from regime.regime import Regime
+from regime.temporary import Temporary
 from state.models.parliament.deputy_mandate import DeputyMandate
 from state.models.parliament.parliament import Parliament
 from state.models.state import State
 
-from regime.regime import Regime
-from regime.temporary import Temporary
-from regime.presidential import Presidential
 
 # Изменить название государства
 # Не оптимизировать код хоткеями - ЗАТИРАЕТ ИМПОРТЫ !!
 class ChangeForm(Bill):
-
     # тип государства
     stateTypeChoices = (
         ('Temporary', 'Временное правительство'),
@@ -122,6 +122,26 @@ class ChangeForm(Bill):
 
         return data, 'state/gov/drafts/change_form.html'
 
+
+    @staticmethod
+    def get_new_draft(state):
+        current_regime = None
+        # получаем текущий режим из свойств госа
+        for regime_cl in Regime.__subclasses__():
+            if state.type == regime_cl.__name__:
+                current_regime = regime_cl
+                break
+
+        forms_dict = {}
+        for form in ChangeForm.stateTypeChoices:
+            if form[0] in current_regime.allowed_dest:
+                forms_dict[form[0]] = form[1]
+
+        data = {'forms': forms_dict}
+
+        return data, 'state/redesign/drafts/change_form.html'
+
+
     def get_bill(self, player, minister, president):
 
         has_right = False
@@ -144,12 +164,41 @@ class ChangeForm(Bill):
 
         return data, 'state/gov/bills/change_form.html'
 
+    def get_new_bill(self, player, minister, president):
+
+        has_right = False
+        if minister:
+            for right in minister.rights.all():
+                if self.__class__.__name__ == right.right:
+                    has_right = True
+                    break
+
+        data = {
+            'bill': self,
+            'title': self._meta.verbose_name_raw,
+            'player': player,
+            'president': president,
+            'has_right': has_right,
+            # проверяем, депутат ли этого парла игрок или нет
+            'is_deputy': DeputyMandate.objects.filter(player=player, parliament=Parliament.objects.get(
+                state=player.region.state)).exists(),
+        }
+
+        return data, 'state/redesign/bills/change_form.html'
+
     # получить шаблон рассмотренного законопроекта
     def get_reviewed_bill(self, player):
 
         data = {'bill': self, 'title': self._meta.verbose_name_raw, 'player': player}
 
         return data, 'state/gov/reviewed/change_form.html'
+
+    # получить шаблон рассмотренного законопроекта
+    def get_new_reviewed_bill(self, player):
+
+        data = {'bill': self, 'title': self._meta.verbose_name_raw, 'player': player}
+
+        return data, 'state/redesign/reviewed/change_form.html'
 
     def __str__(self):
         return self.get_form_display()

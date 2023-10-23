@@ -1,0 +1,152 @@
+{% load static %}
+{% load l10n %}{% load i18n %}
+{% load dict_key %}
+{% load redesign.template_svg.nopic_list %}
+{% load redesign.template_svg.nopic_party_list %}
+{% load redesign.template_svg.plus %}
+{% load redesign.template_svg.cross %}
+<script>
+    var party_seats = {};
+</script>
+<div class="gover__block gover__gover">
+
+    <svg class="gover__goverSvg" width="270" height="119" viewBox="0 0 270 119" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="1.15898" y="110.503" width="24.1371" height="24.1371" rx="3.5" transform="rotate(-73.3182 1.15898 110.503)" stroke="white"/>
+        <rect x="13.9819" y="74.5362" width="24.1371" height="24.1371" rx="3.5" transform="rotate(-57.1123 13.9819 74.5362)" stroke="white"/>
+        <rect x="36.8392" y="42.9889" width="24.1371" height="24.1371" rx="3.5" transform="rotate(-40.835 36.8392 42.9889)" stroke="white"/>
+        <rect x="67.186" y="19.3711" width="24.1371" height="24.1371" rx="3.5" transform="rotate(-24.6354 67.186 19.3711)" stroke="white"/>
+        <rect x="102.659" y="5.21178" width="24.1371" height="24.1371" rx="3.5" transform="rotate(-8.38529 102.659 5.21178)" stroke="white"/>
+        <rect x="141.638" y="1.5233" width="24.1371" height="24.1371" rx="3.5" transform="rotate(7.94561 141.638 1.5233)" stroke="white"/>
+        <rect x="180.146" y="9.02722" width="24.1371" height="24.1371" rx="3.5" transform="rotate(24.4221 180.146 9.02722)" stroke="white"/>
+        <rect x="214.323" y="26.7685" width="24.1371" height="24.1371" rx="3.5" transform="rotate(40.6266 214.323 26.7685)" stroke="white"/>
+        <rect x="242.068" y="53.1348" width="24.1371" height="24.1371" rx="3.5" transform="rotate(56.6922 242.068 53.1348)" stroke="white"/>
+        <rect x="261.695" y="86.821" width="24.1371" height="24.1371" rx="3.5" transform="rotate(73.1015 261.695 86.821)" stroke="white"/>
+        {% if pres_mandate %}
+        <a id="gover__modal-open">
+            <path d="M135.18 68.7865C138.146 68.7865 140.573 66.3596 140.573 63.3933C140.573 60.427 138.146 58 135.18 58C132.213 58 129.786 60.427 129.786 63.3933C129.786 66.3596 132.213 68.7865 135.18 68.7865Z" fill="var(--c10one)"/>
+            <path d="M148.663 89.0108L151.36 80.9209H119L121.697 89.0108H125.742L128.438 115.303H124.393V118H145.966V115.303H141.921L144.618 89.0108H148.663Z" fill="var(--c10one)"/>
+            <path d="M146.101 75.1226C145.966 74.5832 145.697 74.0439 145.292 73.6394C143.674 72.2911 141.787 71.3473 139.629 70.6731C138.146 70.4035 136.663 70.1338 135.18 70.1338C133.697 70.1338 132.214 70.4035 130.73 70.8079C128.573 71.3473 126.685 72.4259 125.067 73.7742C124.663 74.1787 124.393 74.7181 124.259 75.2574L123.584 78.2237H146.843L146.101 75.1226Z" fill="var(--c10one)"/>
+        </a>
+        {% endif %}
+    </svg>
+    <div class="gover__decorLine"></div>
+
+    {% if parties %}
+
+    {% for parl_party in parties %}
+    <div class="gover__goverParty" style="background-color: #{% if parl_party.party.color != 'xxxxxx' %}{{ parl_party.party.color }}{% else %}{{ party_colors|dict_key:parl_party }}{% endif %};">
+        <div class="gover__goverParty-imgBlock">
+            {% if parl_party.party.image %}
+            <img src="{{ parl_party.party.image.url }}">
+            {% else %}
+            {% nopic_party_list player '' %}
+            {% endif %}
+            <span style="cursor: pointer" onclick="window.open('/party/{% localize off %}{{ parl_party.party.pk }}{% endlocalize %}/', '_blank')">{{ parl_party.party.title }}</span>
+        </div>
+        <span>{{ parl_party.seats }}% мест</span>
+    </div>
+    <table class="gover__goverPartyTable">
+        <tbody>
+            {% for deputate in deputates %}
+            {% if deputate.party.pk == parl_party.party.pk %}
+            <tr>
+                <td>
+                    <div class="gover__withImage" {% if deputate.player %}
+                                                        onclick="window.open('/profile/{% localize off %}{{ deputate.player.pk }}{% endlocalize %}/', '_blank')"
+                                                        style="cursor: pointer"
+                                                {% else %}
+                                                    {% if not parl_party.party.deleted %}
+                                                        {% if player.party and player.party_post.party_lead %}
+                                                        onclick="window.open('/set_mandate_view/', '_blank')"
+                                                        style="cursor: pointer"
+                                                        {% endif %}
+                                                    {% endif %}
+                                                {% endif %}>
+                        {% if deputate.player %}
+                            <script>
+                                if (!('{% localize off %}{{ deputate.party.pk }}{% endlocalize %}' in party_seats)) {
+                                    party_seats['{% localize off %}{{ deputate.party.pk }}{% endlocalize %}'] = 1;
+                                } else {
+                                    party_seats['{% localize off %}{{ deputate.party.pk }}{% endlocalize %}']++;
+                                }
+                            </script>
+                            {% if deputate.player.image %}
+                                <img src="{{ deputate.player.image.url }}">
+                            {% else %}
+                                {% nopic_list player '' %}
+                            {% endif %}
+
+                        {% else %}
+                            {% if parl_party.party.deleted %}
+                                {% cross player '' 'width: 34rem; height: 34rem' %}
+
+                            {% else %}
+                                {% if player.party and player.party_post.party_lead %}
+                                        {% plus player '' 'width: 34rem; height: 34rem; cursor: pointer' '/set_mandate_view/' %}
+                                {% else %}
+                                        {% plus player '' 'width: 34rem; height: 34rem' %}
+                                {% endif %}
+
+                            {% endif %}
+
+                        {% endif %}
+
+                        {% if deputate.player %}
+                            {{ deputate.player.nickname }}
+                        {% else %}
+                            свободно
+                        {% endif %}
+                    </div>
+                </td>
+                <td>
+                    {{ deputate.player.party_post.title }}
+                </td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endfor %}
+
+    {% else %}
+    <table class="gover__goverPartyTable">
+        <tbody>
+            <tr>
+                <td style="text-align: center">
+                    нет парламентских партий
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    {% endif %}
+</div>
+
+<script>
+    // Goverment SVG
+    class GoverSvg {
+        constructor() {
+            this.svg = document.querySelector('.gover__goverSvg');
+            this.slots = this.svg.querySelectorAll('rect');
+        }
+
+        colorSlots(startIndex, numOfSlots, color) {
+            this.slots.forEach((slot, index) => {
+                if (startIndex <= index && index < startIndex + numOfSlots) {
+                    slot.setAttribute('fill', color);
+                }
+            })
+        }
+    }
+
+    const goverSvg = new GoverSvg();
+    var start_pos = 0;
+
+    {% for parl_party in parties %}
+    if ('{% localize off %}{{ parl_party.party.pk }}{% endlocalize %}' in party_seats) {
+        goverSvg.colorSlots(start_pos, party_seats['{% localize off %}{{ parl_party.party.pk }}{% endlocalize %}'], '#{% if parl_party.party.color != 'xxxxxx' %}{{ parl_party.party.color }}{% else %}{{ party_colors|dict_key:parl_party }}{% endif %}');
+
+        start_pos = start_pos + party_seats['{% localize off %}{{ parl_party.party.pk }}{% endlocalize %}'];
+    }
+    {% endfor %}
+
+</script>

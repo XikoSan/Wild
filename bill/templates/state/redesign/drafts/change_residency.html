@@ -1,0 +1,59 @@
+{% load dict_key %}
+{% load get_attr %}
+{% load get_sum %}
+{% load get_key_list %}
+{% load l10n %}{% load i18n %}
+<!--новый способ выдачи прописки-->
+<div class="gover__newInner ChangeResidency">
+    <h2>Способ выдачи прописки:</h2>
+
+    <label class="ct__wide-modal-label-select">
+        <select name="change_residency_residency" id="change_residency_residency">
+            <option id="change_residency_residency_issue" value="issue">выдается министром</option>
+            <option id="change_residency_residency_free" selected value="free">свободная</option>
+        </select>
+        <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
+        </svg>
+    </label>
+
+    <div id="change_residency_price" class="gover__newInner-flexColumn active" style="display: none">
+        <h3>Стоимость:</h3>
+        {% with rifle_cost=data|dict_key:'rifle_cost' %}
+        <p style="margin-top: 5rem;">{% trans 'Автоматы' context "goods" %}: <b>{{ rifle_cost }}</b></p>
+        {% endwith %}
+        {% with drone_cost=data|dict_key:'drone_cost' %}
+        <p style="margin-top: 5rem;">{% trans 'БПЛА' context "goods" %}: <b>{{ drone_cost }}</b></p>
+        {% endwith %}
+    </div>
+    <script>
+        const selectElement = document.querySelector("#change_residency_residency");
+
+        selectElement.addEventListener("change", (event) => {
+
+            var result = document.querySelector("#change_residency_price");
+
+            if(event.target.value == 'issue'){
+                result.style.display = 'block';
+            }
+            else{
+                result.style.display = 'none';
+            }
+
+        });
+    </script>
+    <button type="submit" class="ct__mid-btn active">
+        <svg width="144" height="30" viewBox="0 0 144 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <mask id="mask0_259_304" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+                <path d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"/>
+            </mask>
+            <g mask="url(#mask0_259_304)">
+                <path d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" fill="var(--c10two)"/>
+                <path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"/>
+                <path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"/>
+                <path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
+            </g>
+        </svg>
+        <span>предложить</span>
+    </button>
+</div>

@@ -221,6 +221,36 @@ class Independence(Bill):
 
         return data, 'state/gov/drafts/independence.html'
 
+    @staticmethod
+    def get_new_draft(state):
+
+        regions = Region.objects.filter(state=state)
+
+        # столица этого госа
+        capital_region_pk = Capital.objects.only("region").get(state=state).region.pk
+        # его казна
+        treasury_region_pk = Treasury.objects.only("region").get(state=state, deleted=False).region.pk
+        # регионы, с которых атакуют
+        agr_regions = []
+        war_types = get_subclasses(War)
+        for type in war_types:
+            # если есть активные войны этого типа
+            if type.objects.filter(running=True, deleted=False, agr_region__in=regions).exists():
+                agr_regions.append(
+                    type.objects.filter(running=True, deleted=False, agr_region__in=regions).values_list(
+                        'agr_region__pk')
+                )
+        # удаляем дубли
+        agr_regions = list(dict.fromkeys(agr_regions))
+
+        regions = regions.exclude(pk=capital_region_pk).exclude(pk=treasury_region_pk).exclude(pk__in=agr_regions)
+
+        data = {
+            'regions': regions,
+        }
+
+        return data, 'state/redesign/drafts/independence.html'
+
     def get_bill(self, player, minister, president):
 
         data = {
@@ -234,12 +264,31 @@ class Independence(Bill):
 
         return data, 'state/gov/bills/independence.html'
 
+    def get_new_bill(self, player, minister, president):
+
+        data = {
+            'bill': self,
+            'title': self._meta.verbose_name_raw,
+            'player': player,
+            # проверяем, депутат ли этого парла игрок или нет
+            'is_deputy': DeputyMandate.objects.filter(player=player, parliament=Parliament.objects.get(
+                state=player.region.state)).exists(),
+        }
+
+        return data, 'state/redesign/bills/independence.html'
+
     # получить шаблон рассмотренного законопроекта
     def get_reviewed_bill(self, player):
 
         data = {'bill': self, 'title': self._meta.verbose_name_raw, 'player': player}
 
         return data, 'state/gov/reviewed/independence.html'
+
+    def get_new_reviewed_bill(self, player):
+
+        data = {'bill': self, 'title': self._meta.verbose_name_raw, 'player': player}
+
+        return data, 'state/redesign/reviewed/independence.html'
 
     def __str__(self):
         return self.region.region_name + " от " + self.parliament.state.title

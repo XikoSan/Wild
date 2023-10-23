@@ -195,6 +195,16 @@ class ChangeTaxes(Bill):
 
         return data, 'state/gov/drafts/change_taxes.html'
 
+    @staticmethod
+    def get_new_draft(state):
+
+        data = {
+            'regions': Region.objects.filter(state=state),
+            'state': state,
+        }
+
+        return data, 'state/redesign/drafts/change_taxes.html'
+
     def get_bill(self, player, minister, president):
 
         has_right = False
@@ -217,12 +227,41 @@ class ChangeTaxes(Bill):
 
         return data, 'state/gov/bills/change_taxes.html'
 
+    def get_new_bill(self, player, minister, president):
+
+        has_right = False
+        if minister:
+            for right in minister.rights.all():
+                if self.__class__.__name__ == right.right:
+                    has_right = True
+                    break
+
+        data = {
+            'bill': self,
+            'title': self._meta.verbose_name_raw,
+            'player': player,
+            'president': president,
+            'has_right': has_right,
+            # проверяем, депутат ли этого парла игрок или нет
+            'is_deputy': DeputyMandate.objects.filter(player=player, parliament=Parliament.objects.get(
+                state=player.region.state)).exists(),
+        }
+
+        return data, 'state/redesign/bills/change_taxes.html'
+
     # получить шаблон рассмотренного законопроекта
     def get_reviewed_bill(self, player):
 
         data = {'bill': self, 'title': self._meta.verbose_name_raw, 'player': player}
 
         return data, 'state/gov/reviewed/change_taxes.html'
+
+# получить шаблон рассмотренного законопроекта
+    def get_new_reviewed_bill(self, player):
+
+        data = {'bill': self, 'title': self._meta.verbose_name_raw, 'player': player}
+
+        return data, 'state/redesign/reviewed/change_taxes.html'
 
     def __str__(self):
         return str(self.new_tax) + " " + self.get_tax_mod_display()

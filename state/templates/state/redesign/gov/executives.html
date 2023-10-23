@@ -1,0 +1,71 @@
+{% load static %}
+{% load l10n %}{% load i18n %}
+{% load dict_key %}
+{% load get_all %}
+{% load redesign.template_svg.nopic %}
+{% load redesign.template_svg.plus %}
+{% load redesign.template_svg.cross %}
+<div class="goverGuysModal custom-scroll" id="gover__modal">
+	<button class="goverGuysModal__close ct__square-mid-btn" id="gover__modal-close">
+		<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<path d="M1 1L31 31M31 1L1.53571 30.4643" stroke="white"/>
+		</svg>
+	</button>
+
+	<ul class="goverGuysModal__list">
+		{% if pres_mandate.player %}
+		<li class="goverGuysModal__item" onclick="window.open('/profile/{% localize off %}{{ pres_mandate.player.pk }}{% endlocalize %}/', '_blank')" style="cursor: pointer">
+			{% if pres_mandate.player.image %}
+			<img src="{{ pres_mandate.player.image.url }}">
+			{% else %}
+			{% nopic player '' 'width: 80rem; height: 80rem' %}
+			{% endif %}
+			<div class="goverGuysModal__itemText">
+				<h2>Президент</h2>
+				<div class="goverGuysModal__itemText-block">
+					<p>{{ pres_mandate.player.nickname }}</p>
+				</div>
+			</div>
+		</li>
+		{% else %}
+		<li class="goverGuysModal__item">
+			{% cross player '' 'width: 80rem; height: 80rem' %}
+			<div class="goverGuysModal__itemText">
+				<h2>Президент</h2>
+				<div class="goverGuysModal__itemText-block">
+					<p>Место вакантно</p>
+				</div>
+			</div>
+		</li>
+		{% endif %}
+
+		{% for minister in ministers %}
+		<li class="goverGuysModal__item" onclick="window.open('/profile/{% localize off %}{{ minister.player.pk }}{% endlocalize %}/', '_blank')" style="cursor: pointer">
+			{% if minister.player.image %}
+			<img src="{{ minister.player.image.url }}">
+			{% else %}
+			{% nopic player '' 'width: 80rem; height: 80rem' %}
+			{% endif %}
+			<div class="goverGuysModal__itemText">
+				<h2>{{ minister.post_name }}</h2>
+				<div class="goverGuysModal__itemText-block">
+					{% for right in minister.rights|get_all %}
+					<p>{{ right.get_right_display }}</p>
+					{% endfor %}
+				</div>
+			</div>
+		</li>
+		{% endfor %}
+
+		{% if pres_mandate.player and player == pres_mandate.player %}
+		<li class="goverGuysModal__item" onclick="window.location.href = '/ministers_manage/'" style="cursor: pointer">
+			{% plus player '' 'width: 80rem; height: 80rem' %}
+			<div class="goverGuysModal__itemText">
+				<h2>Добавить министра</h2>
+				<div class="goverGuysModal__itemText-block">
+				</div>
+			</div>
+		</li>
+		{% endif %}
+	</ul>
+</div>

@@ -61,7 +61,9 @@ def government(request):
                     next_voting_date = state.foundation_date + timedelta(days=7)
 
     # отправляем в форму
-    return render(request, 'state/gov/government.html', {
+    return render(request, 'state/redesign/gov/government.html', {
+        'page_name': f'Правительство { state.title }',
+
         # самого игрока
         'player': player,
         # государство, в котором сейчас находится игрок

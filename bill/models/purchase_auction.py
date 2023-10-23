@@ -222,6 +222,19 @@ class PurchaseAuction(Bill):
 
         return data, 'state/gov/drafts/purchase_auction.html'
 
+    @staticmethod
+    def get_new_draft(state):
+
+        goods = Good.objects.only('pk', 'name').all()
+        goods_dict = {}
+
+        for good in goods:
+            goods_dict[good.pk] = good.name
+
+        data = {'goods_dict': goods_dict}
+
+        return data, 'state/redesign/drafts/purchase_auction.html'
+
     def get_bill(self, player, minister, president):
 
         has_right = False
@@ -244,6 +257,28 @@ class PurchaseAuction(Bill):
 
         return data, 'state/gov/bills/purchase_auction.html'
 
+    def get_new_bill(self, player, minister, president):
+
+        has_right = False
+        if minister:
+            for right in minister.rights.all():
+                if self.__class__.__name__ == right.right:
+                    has_right = True
+                    break
+
+        data = {
+            'bill': self,
+            'title': self._meta.verbose_name_raw,
+            'player': player,
+            'president': president,
+            'has_right': has_right,
+            # проверяем, депутат ли этого парла игрок или нет
+            'is_deputy': DeputyMandate.objects.filter(player=player, parliament=Parliament.objects.get(
+                state=player.region.state)).exists(),
+        }
+
+        return data, 'state/redesign/bills/purchase_auction.html'
+
     # получить шаблон рассмотренного законопроекта
     def get_reviewed_bill(self, player):
 
@@ -251,8 +286,18 @@ class PurchaseAuction(Bill):
 
         return data, 'state/gov/reviewed/purchase_auction.html'
 
+    # получить шаблон рассмотренного законопроекта
+    def get_new_reviewed_bill(self, player):
+
+        data = {'bill': self, 'title': self._meta.verbose_name_raw, 'player': player}
+
+        return data, 'state/redesign/reviewed/purchase_auction.html'
+
     def __str__(self):
-        return self.good.name
+        if self.good:
+            return self.good.name
+        else:
+            return self.get_old_good_display()
 
     # Свойства класса
     class Meta:

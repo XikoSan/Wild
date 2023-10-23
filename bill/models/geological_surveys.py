@@ -204,6 +204,12 @@ class GeologicalSurveys(Bill):
 
         return data, 'state/gov/reviewed/geological_surveys.html'
 
+    def get_new_reviewed_bill(self, player):
+
+        data = {'bill': self, 'title': self._meta.verbose_name_raw, 'player': player}
+
+        return data, 'state/redesign/reviewed/geological_surveys.html'
+
     def __str__(self):
         return str(self.exp_value) + " " + self.get_resource_display() + " в " + self.region.region_name
 

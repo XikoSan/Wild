@@ -189,6 +189,17 @@ class ExploreResources(Bill):
 
         return data, 'state/gov/drafts/explore_resources.html'
 
+    @staticmethod
+    def get_new_draft(state):
+
+        resources_dict = {}
+        for resource in ExploreResources.resExpChoices:
+            resources_dict[resource[0]] = resource[1]
+
+        data = {'regions': Region.objects.filter(state=state), 'resources': resources_dict}
+
+        return data, 'state/redesign/drafts/explore_resources.html'
+
     def get_bill(self, player, minister, president):
 
         has_right = False
@@ -210,12 +221,38 @@ class ExploreResources(Bill):
 
         return data, 'state/gov/bills/explore_resources.html'
 
+    def get_new_bill(self, player, minister, president):
+
+        has_right = False
+        if minister:
+            for right in minister.rights.all():
+                if self.__class__.__name__ == right.right:
+                    has_right = True
+                    break
+
+        data = {
+            'bill': self,
+            'title': self._meta.verbose_name_raw,
+            'player': player,
+            'president': president,
+            'has_right': has_right,
+            # проверяем, депутат ли этого парла игрок или нет
+            'is_deputy': DeputyMandate.objects.filter(player=player, parliament=Parliament.objects.get(state=player.region.state)).exists(),
+        }
+
+        return data, 'state/redesign/bills/explore_resources.html'
+
     # получить шаблон рассмотренного законопроекта
     def get_reviewed_bill(self, player):
 
         data = {'bill': self, 'title': self._meta.verbose_name_raw, 'player': player}
 
         return data, 'state/gov/reviewed/explore_resources.html'
+
+    def get_new_reviewed_bill(self, player):
+        data = {'bill': self, 'title': self._meta.verbose_name_raw, 'player': player}
+
+        return data, 'state/redesign/reviewed/explore_resources.html'
 
     def __str__(self):
         return str(self.exp_value) + " " + self.get_resource_display() + " в " + self.region.region_name

@@ -257,6 +257,12 @@ class StartWar(Bill):
 
         return data, 'state/gov/reviewed/start_war.html'
 
+    # получить шаблон рассмотренного законопроекта
+    def get_new_reviewed_bill(self, player):
+        data = {'bill': self, 'title': self._meta.verbose_name_raw, 'player': player}
+
+        return data, 'state/redesign/reviewed/start_war.html'
+
     def __str__(self):
         return self.region.region_name + ' против ' + self.region_to.region_name
 

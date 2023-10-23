@@ -4942,6 +4942,12 @@ padding-right: 6rem;
   height: 34rem;
 }
 
+.gover__goverParty-imgBlock img {
+  display: block;
+  width: 34rem;
+  height: 34rem;
+}
+
 .gover__goverParty img,
 .gover__goverPartyTable img, {
   display: block;
@@ -5089,6 +5095,7 @@ padding-right: 6rem;
     text-decoration: underline;
   }
   .gover__tableCancel button {
+    width: 49%;
     padding: 6rem;
     border: 0;
     font-size: 22rem;
@@ -5098,6 +5105,7 @@ padding-right: 6rem;
     transition: all 0.2s ease;
   }
   .gover__tableVote button {
+    width: 49%;
     padding: 6rem;
     border: 0;
     font-size: 22rem;
@@ -5329,7 +5337,7 @@ padding-right: 6rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20rem;
+  gap: 6rem;
 }
 
 .tableMobileModal__vote {
@@ -6933,6 +6941,10 @@ padding-right: 6rem;
   width: 312rem;
   height: 30rem;
   align-items: center;
+}
+
+.ct__wide-modal-label-select--335 {
+  width: 335rem;
 }
 
 .ct__wide-modal-label-select--min {
