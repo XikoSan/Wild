@@ -47,7 +47,7 @@
 			{% nopic player '' 'width: 80rem; height: 80rem' %}
 			{% endif %}
 			<div class="goverGuysModal__itemText">
-				<h2>{{ minister.post_name }}</h2>
+				<h2>{% if " " in minister.post_name %}{{ minister.post_name }}{% else %}{{ minister.post_name|truncatechars:30 }}{% endif %}</h2>
 				<div class="goverGuysModal__itemText-block">
 					{% for right in minister.rights|get_all %}
 					<p>{{ right.get_right_display }}</p>
