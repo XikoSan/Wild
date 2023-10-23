@@ -227,6 +227,28 @@ class ChangeTaxes(Bill):
 
         return data, 'state/gov/bills/change_taxes.html'
 
+    def get_new_bill(self, player, minister, president):
+
+        has_right = False
+        if minister:
+            for right in minister.rights.all():
+                if self.__class__.__name__ == right.right:
+                    has_right = True
+                    break
+
+        data = {
+            'bill': self,
+            'title': self._meta.verbose_name_raw,
+            'player': player,
+            'president': president,
+            'has_right': has_right,
+            # проверяем, депутат ли этого парла игрок или нет
+            'is_deputy': DeputyMandate.objects.filter(player=player, parliament=Parliament.objects.get(
+                state=player.region.state)).exists(),
+        }
+
+        return data, 'state/redesign/bills/change_taxes.html'
+
     # получить шаблон рассмотренного законопроекта
     def get_reviewed_bill(self, player):
 

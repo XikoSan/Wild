@@ -264,6 +264,19 @@ class Independence(Bill):
 
         return data, 'state/gov/bills/independence.html'
 
+    def get_new_bill(self, player, minister, president):
+
+        data = {
+            'bill': self,
+            'title': self._meta.verbose_name_raw,
+            'player': player,
+            # проверяем, депутат ли этого парла игрок или нет
+            'is_deputy': DeputyMandate.objects.filter(player=player, parliament=Parliament.objects.get(
+                state=player.region.state)).exists(),
+        }
+
+        return data, 'state/redesign/bills/independence.html'
+
     # получить шаблон рассмотренного законопроекта
     def get_reviewed_bill(self, player):
 

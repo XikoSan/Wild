@@ -11,7 +11,7 @@
     <form class="new_bill" role="form">
         {% csrf_token %}
 
-        <label id="bill_select" class="gover__newSelect ct__wide-modal-label-select">
+        <label id="bill_select" class="gover__newSelect ct__wide-modal-label-select ct__wide-modal-label-select--335">
             <select>
                 {% for bill_cl in bills_classes %}
                 <option value="{{ bill_cl|get_class_name }}">{% with class_name=bill_cl|get_class_name %}{{ translate_dict|dict_key:class_name }}{% endwith %}</option>

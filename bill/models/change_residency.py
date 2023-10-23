@@ -221,6 +221,33 @@ class ChangeResidency(Bill):
 
         return data, 'state/gov/bills/change_residency.html'
 
+    def get_new_bill(self, player, minister, president):
+
+        has_right = False
+        if minister:
+            for right in minister.rights.all():
+                if self.__class__.__name__ == right.right:
+                    has_right = True
+                    break
+
+        regions_cnt = Region.objects.filter(state=player.region.state).count()
+
+        data = {
+            'bill': self,
+            'title': self._meta.verbose_name_raw,
+            'player': player,
+            'president': president,
+            'has_right': has_right,
+            # проверяем, депутат ли этого парла игрок или нет
+            'is_deputy': DeputyMandate.objects.filter(player=player, parliament=Parliament.objects.get(
+                state=player.region.state)).exists(),
+
+            'rifle_cost': ChangeResidency.rifle_price * regions_cnt,
+            'drone_cost': ChangeResidency.drone_price * regions_cnt,
+        }
+
+        return data, 'state/redesign/bills/change_residency.html'
+
     # получить шаблон рассмотренного законопроекта
     def get_reviewed_bill(self, player):
 
