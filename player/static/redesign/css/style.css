@@ -2915,6 +2915,17 @@ p.overview__love-stat-timer {
   .overview__par-title-svg {
     display: none;
   }
+  .overview__war--warpage {
+    width: 500rem;
+  }
+  .overview__war--warpage .overview__war-text {
+    font-size: 16rem;
+    line-height: 1;
+  }
+  .overview__war--warpage .overview__war-text span {
+    font-size: 16rem;
+    line-height: 1;
+  }
 }
 
 .overview__par-title {
@@ -3928,6 +3939,26 @@ p.overview__love-stat-timer {
   margin-left: 6rem;
 }
 
+.war__list h2 {
+  display: none;
+}
+
+.war__list {
+  display: none;
+  margin: 0;
+  padding-left: 0;
+  flex-direction: column;
+  gap: 12rem;
+}
+
+.war__list.active {
+  display: flex;
+}
+
+.war__tabs {
+  margin-bottom: 12rem;
+}
+
 @media (min-width: 1000px) {
   .war {
     margin-top: 100rem;
@@ -3943,6 +3974,23 @@ p.overview__love-stat-timer {
   }
   .war__enter-grid {
     grid-template-columns: 1fr 94rem 1fr;
+  }
+  .war__listContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24rem;
+  }
+  .war__list {
+    display: flex;
+  }
+  .war__list h2 {
+    display: block;
+    font-weight: 400;
+    text-align: center;
+    margin: 0;
+  }
+  .war__tabs {
+    display: none !important;
   }
 }
 
@@ -4662,7 +4710,8 @@ padding-right: 6rem;
   color: var(--c10two);
 }
 
-.gover__withImage img {
+.gover__withImage img,
+.gover__withImage svg {
   display: block;
   width: 34rem;
   height: 34rem;
@@ -4861,20 +4910,20 @@ padding-right: 6rem;
   margin-bottom: 18rem;
 }
 
-.gover__blockMid,
-.gover__blockStatistic {
+.ForeignRights_block,
+.MiningStats_block {
   display: none;
   flex-direction: column;
   gap: 20rem;
   align-items: center;
 }
 
-.gover__blockMid.active,
-.gover__blockStatistic.active {
+.ForeignRights_block.active,
+.MiningStats_block.active {
   display: flex;
 }
 
-.gover__blockMid-cancelAll {
+.ForeignRights_block-cancelAll {
   display: block;
   margin-left: auto;
   margin-right: 24rem;
@@ -5048,6 +5097,24 @@ padding-right: 6rem;
   background-position: center;
 }
 
+.gover__blockStatistic__dop {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 6rem;
+}
+
+.gover__blockStatistic__dop div {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.gover__td--onlyPc {
+  display: none;
+}
+
 @media (min-width: 1000px) {
   .gover {
     padding-top: 14rem;
@@ -5084,17 +5151,6 @@ padding-right: 6rem;
     margin-bottom: 18rem;
     width: max-content;
     gap: 8rem;
-  }
-  .gover__blockStatistic__dop {
-    display: flex;
-    justify-content: center;
-    gap: 24rem;
-  }
-  .gover__blockStatistic__dop > div {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-width: 100rem;
   }
   .gover__tableCancel a {
     color: var(--c10two);
@@ -5143,6 +5199,13 @@ padding-right: 6rem;
   .gover__tableCancel,
   .gover__tableVote {
     display: table-cell;
+  }
+  .gover__td--onlyPc {
+    display: table-cell;
+    text-align: center;
+  }
+  .gover__td--onlyMob {
+    display: none;
   }
 }
 

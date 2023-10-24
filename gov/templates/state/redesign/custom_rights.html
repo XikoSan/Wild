@@ -1,0 +1,60 @@
+{% load dict_key %}
+{% load get_class_name %}
+{% load government.redesign.get_custom_right %}
+<div class="gover__block gover__minis">
+
+    <div class="gover__ministerTabs ct__top-tabs">
+        {% for right_cl in custom_rights %}
+        {% with class_name=right_cl|get_class_name %}
+        <button class="ct__top-tab {{ class_name }} {% if forloop.counter0 == 0 %}active{% endif %} ct__mid-btn" onclick="switchMainBlocks('{{ class_name }}')">
+            <svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
+                <mask id="mask0_259_317{{ forloop.counter0 }}" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+                    <path class="geometry1" d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"/>
+                </mask>
+                <g mask="url(#mask0_259_317{{ forloop.counter0 }})">
+                    <path class="geometry2" d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z"/>
+                    <path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"/>
+                    <path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"/>
+                    <path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
+                </g>
+            </svg>
+            <span>{{ translate_dict|dict_key:class_name }}</span>
+        </button>
+        {% endwith %}
+        {% endfor %}
+    </div>
+
+    <script>
+
+        const blocks = [{% for right_cl in custom_rights %}{% with class_name=right_cl|get_class_name %}'.{{ class_name }}', {% endwith %}{% endfor %}];
+        const tabBtns = document.querySelectorAll('.gover__ministerTabs .ct__top-tab');
+
+        function switchMainBlocks(classNameToShow) {
+            blocks.forEach((block) => {
+                var element = document.querySelector(block + '_block');
+                if (element.classList.contains(classNameToShow + '_block')) {
+                    element.classList.add('active');
+                } else {
+                    element.classList.remove('active');
+                }
+            });
+
+            tabBtns.forEach((btn) => {
+                btn.classList.remove('active');
+                if (btn.classList.contains(classNameToShow)) {
+                    btn.classList.add('active');
+                }
+            });
+        }
+    </script>
+
+    <div class="gover__decorLine"></div>
+
+    {% for right_cl in custom_rights %}
+        {% with class_name=right_cl|get_class_name %}
+        <div class="{% if forloop.counter0 == 0 %}active{% endif %} {{ class_name }}_block">
+        {% endwith %}
+        {% get_custom_right %}
+    </div>
+    {% endfor %}
+</div>
