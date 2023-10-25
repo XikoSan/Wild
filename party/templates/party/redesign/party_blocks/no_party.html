@@ -13,7 +13,7 @@
     <div class="party__top-no">
 
       <p>{% trans 'Вы не состоите в партии' context "no_party" %}</p>
-      <p>{% trans 'Доступные партии' context "no_party" %}: 35, {% trans 'в регионе' context "no_party" %} {% trans player.region.region_name context "regions_list" %}: {{ regional_count }}</p>
+      <p>{% trans 'Доступные партии' context "no_party" %}: {{ party_count }}, {% trans 'в регионе' context "no_party" %} {% trans player.region.region_name context "regions_list" %}: {{ regional_count }}</p>
 
 	{% if player.destination %}
 		<a class="party__top-no-create">{% trans 'вы в полете' context "no_party" %}</a>
