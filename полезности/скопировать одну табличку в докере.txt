@@ -1,0 +1,4 @@
+скопировать:
+docker exec -it wild-politics_wildpolitics_1 python manage.py dumpdata region.neighbours > dump.json
+вставить:
+docker-compose run -v c:/wild_politics:/app wildpolitics python manage.py loaddata dump.json

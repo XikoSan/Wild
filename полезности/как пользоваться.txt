@@ -1,0 +1,26 @@
+КАК СОЗДАТЬ:
+
+через Putty выполнить в корне:
+docker-compose exec db pg_dump -U postgres -E UTF8 wild_politics > db.dump
+
+
+
+КАК ЗАПУСТИТЬ:
+
+удалить БД через pgadmin, создать заново
+
+положить файл в корень проекта:
+docker compose cp wp.sql db:./
+
+на проде копирование сработало вот так:
+docker cp wp.sql wild-politics_db_1:/wp.sql
+
+
+Выполнить команду типа
+docker exec -i 3248fd5090d8 psql -U postgres -d wild_politics -1 -f wp.sql
+где 046bbed4c95a - имя контейнера бд
+
+заглавная U стирается при копировании!
+
+файлы медиа лежат тут:
+/var/lib/docker/volumes
