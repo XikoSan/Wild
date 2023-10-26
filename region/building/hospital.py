@@ -61,7 +61,7 @@ class Hospital(RateBuilding):
             'top': top,
         }
 
-        return data, 'region/buildings/hospital.html'
+        return data, 'region/redesign/buildings/hospital.html'
 
     # пересчитать рейтинг конкретных зданий
     @staticmethod

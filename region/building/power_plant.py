@@ -86,7 +86,7 @@ class PowerPlant(Building):
             # 'level_on': level_on,
         }
 
-        return data, 'region/buildings/power_plant.html'
+        return data, 'region/redesign/buildings/power_plant.html'
 
     # # получить информацию о потреблении угля в госе
     # @staticmethod

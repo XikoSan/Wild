@@ -1,0 +1,4 @@
+{% load i18n %}{% load dict_key %}
+<div class="party__regionInfo-block">
+    <p>{% trans 'Уровень Укреплений' %}: <span>{% with level=data|dict_key:'level' %}{{ level }}{% endwith %}</span></p>
+</div>

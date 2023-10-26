@@ -31,7 +31,7 @@ class Defences(Building):
             'level': level,
         }
 
-        return data, 'region/buildings/defences.html'
+        return data, 'region/redesign/buildings/defences.html'
 
     # Свойства класса
     class Meta:
