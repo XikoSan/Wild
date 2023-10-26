@@ -104,7 +104,7 @@
     <div class="earn__card ct__card">
         <h3>{% trans 'Руда' context "mining" %}</h3>
         <span>{% trans 'Запасы' context "mining" %}: {{ player.region.ore_has }} / {{ player.region.ore_cap }}</span>
-        <p>{% trans 'Качество руды' context "mining" %}: {{ player.region.coal_proc }}% / {{ player.region.iron_proc }}% / {{ player.region.bauxite_proc }}%</p>
+        <p>{% trans 'Качество руды' context "mining" %}: {% for fossil in fossils %}{{ fossil.percent }}% {% if not forloop.last %} / {% endif %}{% endfor %}</p>
         <form class="mining_form" role="form">
             {% csrf_token %}
             <input type="hidden" name="resource" value="ore">
