@@ -52,7 +52,7 @@ class ChangeTaxes(Bill):
     old_tax = models.DecimalField(default=00.00, validators=[MinValueValidator(0), MaxValueValidator(100)],
                                   max_digits=5, decimal_places=2, verbose_name='Старый налог')
 
-    new_tax = models.DecimalField(default=00.00, validators=[MinValueValidator(0), MaxValueValidator(100)],
+    new_tax = models.DecimalField(default=00.00, validators=[MinValueValidator(0), MaxValueValidator(90)],
                                   max_digits=5, decimal_places=2, verbose_name='Новый налог')
 
     @staticmethod
@@ -126,11 +126,11 @@ class ChangeTaxes(Bill):
             }
 
         # проверяем попадание в интервал 0..100
-        if new_tax < 0 or new_tax > 100:
+        if new_tax < 0 or new_tax > 90:
             return {
                 'header': 'Новый законопроект',
                 'grey_btn': 'Закрыть',
-                'response': 'Новая величина налога должна быть целым числом в интервале 0..100',
+                'response': 'Новая величина налога должна быть целым числом в интервале 0..90',
             }
 
         # ура, все проверили
