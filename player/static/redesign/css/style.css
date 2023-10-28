@@ -6898,10 +6898,13 @@ padding-right: 6rem;
   cursor: pointer;
 }
 
-
 .edu__btn.active {
   pointer-events: all;
   opacity: 1;
+}
+
+.edu__btn:disabled {
+  cursor: default;
 }
 
 .edu__rewardImg {
@@ -6922,6 +6925,19 @@ padding-right: 6rem;
   border: 0;
   background-color: transparent;
   cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  cursor: pointer;
+}
+
+.edu__dont.active {
+  pointer-events: all;
+  opacity: 1;
+}
+
+.edu__dont:disabled {
+  cursor: default;
 }
 
 .edu__glow {
@@ -6941,7 +6957,7 @@ padding-right: 6rem;
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  background-image: url('/static/redesign/img/click.gif');
+  background-image: url('../img/click.gif');
 }
 
 .edu-glow {

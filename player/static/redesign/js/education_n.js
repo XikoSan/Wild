@@ -47,7 +47,7 @@ class Educator {
     this.currentPage = num;
     this.data.onEduPageChange(this.currentPage);
     this.hideBtns();
-    this.printText(num, this.data.pages[num].text);
+    this.printText(num);
     this.showEduWindow();
   }
 
@@ -57,12 +57,27 @@ class Educator {
   hideEduContent() { this.eduContent.style.opacity = ''; this.eduContent.classList.remove('active') };
   showEduContent() { this.eduContent.style.opacity = ''; this.eduContent.classList.add('active') };
 
-  showBtns() { this.eduNextBtn.classList.add('active'); this.eduPrevBtn.classList.add('active') }
-  hideBtns() { this.eduNextBtn.classList.remove('active'); this.eduPrevBtn.classList.remove('active') }
+  showBtns() {
+    this.eduNextBtn.classList.add('active');
+    this.eduPrevBtn.classList.add('active');
+    this.eduDont.classList.add('active');
+    this.eduNextBtn.disabled = false;
+    this.eduPrevBtn.disabled = false;
+    this.eduDont.disabled = false;
+  }
+  hideBtns() {
+    this.eduNextBtn.classList.remove('active');
+    this.eduPrevBtn.classList.remove('active');
+    this.eduDont.classList.remove('active');
+    this.eduNextBtn.disabled = true;
+    this.eduPrevBtn.disabled = true;
+    this.eduDont.disabled = true;
+  }
 
-  printText(num, text) {
+  printText(num) {
+    const text = this.data.pages[num].text;
     let currentSymbol = 0;
-    
+
     this.eduText.textContent = text;
     this.eduText.style.height = '0px';
     this.eduText.style.height = this.eduText.scrollHeight + 'px';
@@ -73,10 +88,13 @@ class Educator {
       this.eduText.textContent += text[currentSymbol];
       if (currentSymbol === text.length - 1) {
         this.showBtns();
-        if (num === 0) this.eduPrevBtn.classList.remove('active');
+        if (num === 0) {
+          this.eduPrevBtn.classList.remove('active');
+          this.eduPrevBtn.disabled = true;
+        }
         clearInterval(this.currentTextInterval);
       };
-    }, 0);
+    }, 1);
   }
 
   createGlowDiv(width, height, left, top, isClick, el) {
@@ -119,30 +137,32 @@ class Educator {
     const onlyMobileInteractive = this.data.pages[this.currentPage].onlyMobileInteractive;
 
     if (awaitedDomElems.length > 0) { // если есть интерактивные элементы
-      
+
       if (onlyGlowing) { //если только подсветить
         awaitedDomElems.forEach((el) => {
           const box = el.getBoundingClientRect();
           this.createGlowDiv(box.width, box.height, box.left, box.top, false );
         });
         this.hideEduContent();
+        this.hideBtns();
         setTimeout(() => {
           this.showPage(this.currentPage + 1);
         }, 3500);
-      } 
-      
+      }
+
       else { //если ждём клика по элементам
-        
+
         if (onlyMobileInteractive && window.screen.width > 999) {
           this.showPage(this.currentPage + 1);
         }
-        
+
         else { //ecли только для мобилки
           awaitedDomElems.forEach((el) => {
             const box = el.getBoundingClientRect();
             this.createGlowDiv(box.width, box.height, box.left, box.top, true, el);
           });
           this.hideEduContent();
+          this.hideBtns();
         }
       }
     } 
