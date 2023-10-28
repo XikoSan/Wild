@@ -27,6 +27,12 @@ def no_party(player):
         else:
             requests[req_party] = False
 
+    all_parties = reversed(Party.objects.filter(deleted=False))
+
+    if not player.educated:
+        if Party.objects.filter(deleted=False, type='op').exists():
+            all_parties = reversed(Party.objects.filter(deleted=False, type='op'))
+
     return {
         # игрок
         'player': player,
@@ -43,7 +49,7 @@ def no_party(player):
         # партий в игре всего
         'party_count': Party.objects.filter(deleted=False).count(),
         # все партии
-        'all_parties': reversed(Party.objects.filter(deleted=False)),
+        'all_parties': all_parties,
         # их размеры
-        'sizes': party_sizes
+        'sizes': party_sizes,
     }

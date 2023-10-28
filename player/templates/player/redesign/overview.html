@@ -7,6 +7,10 @@
 {% load template_svg.war_icon %}
 
 {% block for_scripts_and_css %}
+{% if not player.educated %}
+<script src="/static/redesign/js/education.js"></script>
+{% endif %}
+
 <script>
     window.onload = function war_countdown() {
     if (document.getElementById("closest_war-countdown") != undefined){
@@ -44,6 +48,106 @@
         }
     }
   }
+    var check_edu = true;
+
+    {% if not player.educated %}
+    check_edu = false;
+
+    document.getElementsByClassName('edu__img')[0].src = "/static/redesign/img/{{ assistant_name.0 }}.png";
+    localStorage.setItem('edu_assistant', "/static/redesign/img/{{ assistant_name.0 }}.png");
+
+    function claim_reward(id){
+      var data = "&csrfmiddlewaretoken=" + csrftoken + "&edu_id=" + id;
+      $.ajax({
+          beforeSend: function() {},
+          type: "POST",
+          url: "/claim_reward/",
+          data: data,
+          cache: false,
+          success: function(result){
+              if (result.response == 'ok'){
+                  actualize();
+              }
+          }
+      });
+    }
+
+    function edu_pragma(page) {
+        if (page == 11){
+            claim_reward('edu_01');
+        }
+        if (page == 16){
+            window.location.href = "/mining";
+        }
+    }
+
+    const edu = new Educator({
+    onEduStart: () => { console.log('[EDU]: Started') },
+    onEduEnd: () => { console.log('[EDU]: Ended'); edu_pragma(16) },
+    onEduPageChange: (num) => { console.log(`[EDU]: Current page is ${num}`); edu_pragma(num) },
+    onCloseEdu: () => { console.log(`[EDU]: Education closed`); claim_reward('edu_00'); },
+    pages: [
+      {
+        text: 'Здравствуйте! Меня зовут {{ assistant_name.1 }}, я ваш ассистент. Добро пожаловать в мир Wild Politics!',
+      },
+      {
+        text: 'Wild Politics - это экономико-политический симулятор.',
+      },
+      {
+        text: 'Множество игроков, объединённых общими целями, развивают свои государства и расширяют их влияние.',
+      },
+      {
+        text: 'Создают крупные партии, чтобы повести их за собой, к вершинам власти.',
+      },
+      {
+        text: 'Ведут крупномасштабные войны и заключают союзы, объединяющие целые континенты.',
+      },
+      {
+        text: 'Создают бизнесы и корпорации. Основывают торговые сети. Распространяют своё влияние при помощи популярных СМИ.',
+      },
+      {
+        text: 'Вы обязательно добьётесь всего этого. Но для начала, позвольте познакомить Вас с текущим положением дел.',
+        awaitedDomElemClass: 'eduBlock1',
+        onlyGlowing: true,
+      },
+      {
+        text: 'Сейчас Вы находитесь в {% if player.region.state %}государстве {{ player.region.state.title }}, которому принадлежит регион {{ player.region.region_name }}{% else %}независимом регионе{% endif %}. Здесь представлена различная информация о регионе нашего местанахождения, а также мире в целом',
+        awaitedDomElemClass: 'eduBlock2',
+        onlyGlowing: true,
+      },
+      {
+        text: 'В любом регионе государства можно основать партию, либо присоединиться к одной из уже существующих. Некоторые из них, по итогам выборов, проходят в Парламенты своих стран. Вы обязательно подберёте партию по душе - но чуть позже.',
+      },
+      {
+        text: 'А сейчас обратите внимание на ваши харатеристики. Их рекомендуется развивать постоянно, при наличии свободных средств.',
+        awaitedDomElemClass: 'eduBlock3',
+      },
+      {
+        text: 'Давайте сделаем вклад в ваше будущее прямо сейчас!',
+        awaitedDomElemClass: 'eduBlock4',
+      },
+      {
+        text: 'Отлично! Это маленький шаг для Вас, но гигантский скачок для Вашей карьеры!',
+      },
+      {
+        text: 'Награда: 200 золота',
+        rewardImgUrl: '/static/redesign/img/200_gold.png',
+      },
+      {
+        text: 'Общение - важная часть Вашей работы. Вам ещё предстоит множество раз договариваться и строить совместные планы, а также плести заговоры и рушить чужие.',
+        awaitedDomElemClass: 'eduBlock5',
+        onlyMobileInteractive: true,
+      },
+      {
+        text: 'При желании, загляните сюда позже, и поздоровайтесь с коллегами. Обратите внимание, что люди вашего социального уровня не приемлют грубостей и оскорблений. Помните, вежливость - лучшее оружие политика.'
+      },
+      {
+        text: 'Мне только что поступил звонок от Ваших инвесторов. Они ожидают от Вас конкретных действий, и готовы за них платить. Давайте заработаем сегодня много денег!',
+      },
+    ]
+  })
+
+  {% endif %}
 </script>
 {% endblock %}
 {% load dict_key %}
@@ -80,7 +184,7 @@
         </svg>
       </a>
       {% endif %}
-      <button class="ct__top-tab ct__top-tab2 ct__mid-btn" onclick="switchMainBlocks(1)">
+      <button class="ct__top-tab ct__top-tab2 ct__mid-btn eduBlock5" onclick="switchMainBlocks(1)">
         <svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
           <mask id="mask0_259_318" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
             <path class="geometry1" d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"/>
@@ -102,7 +206,7 @@
       <div class="overview__view active" id="overview__view">
         <div class="over-view__view-info-wrapper">
           <!--Блок МИР-->
-          <div class="overview__view-info ct__view-info">
+          <div class="overview__view-info ct__view-info eduBlock1">
             <h2>{% trans 'мир' %}</h2>
             <ul class="ct__view-info-list">
               <li class="ct__view-info-item" onclick="window.location.href = '/world/players/'" style="cursor: pointer">
@@ -151,7 +255,7 @@
             </svg>  
           </div>
           <!--Блок ГОСУДАРСТВО-->
-          <div class="overview__view-info ct__view-info">
+          <div class="overview__view-info ct__view-info eduBlock1">
             <h2>{% if player.region.state %}{{ player.region.state.title|truncatechars:24 }}{% else %}{% trans 'независимый регион' %}{% endif %}</h2>
             <ul class="ct__view-info-list">
               <li class="ct__view-info-item">
@@ -208,7 +312,7 @@
             {% endif %}
           </div>
           <!--Блок ОБЛАСТЬ-->
-          <div class="overview__view-info ct__view-info">
+          <div class="overview__view-info ct__view-info eduBlock2">
             <h2>{% trans player.region.region_name context "regions_list" %}</h2>
             <ul class="ct__view-info-list">
               <li class="ct__view-info-item" onclick="window.location.href = '/region/{% localize off %}{{ player.region.pk }}{% endlocalize %}/players/'" style="cursor: pointer">
@@ -458,17 +562,17 @@
         <div class="overview__love">
           <!--Левая колонка-->
           <div class="overview__love-left">
-            <button class="overview__love-stat-btn love_power_mob_btn" onclick="setStatTab(0)" style="cursor: pointer">
+            <button class="overview__love-stat-btn love_power_mob_btn eduBlock3" onclick="setStatTab(0)" style="cursor: pointer">
               <h3>{% trans 'сила' context "overview" %}</h3>
               <div style="background-color: tomato;" class="overview__love-stat-btn-line"></div>
               <span>{{ player.power }}</span>
             </button>
-            <button class="overview__love-stat-btn" onclick="setStatTab(1)" style="cursor: pointer">
+            <button class="overview__love-stat-btn eduBlock3" onclick="setStatTab(1)" style="cursor: pointer">
               <h3>{% trans 'инт' context "overview" %}</h3>
               <div style="background-color: #4791FF;" class="overview__love-stat-btn-line"></div>
               <span>{{ player.knowledge }}</span>
             </button>
-            <button class="overview__love-stat-btn"  onclick="setStatTab(2)" style="cursor: pointer">
+            <button class="overview__love-stat-btn eduBlock3"  onclick="setStatTab(2)" style="cursor: pointer">
               <h3>{% trans 'вын' context "overview" %}</h3>
               <div style="background-color: #8DFF47;" class="overview__love-stat-btn-line"></div>
               <span>{{ player.endurance }}</span>

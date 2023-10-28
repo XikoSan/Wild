@@ -277,6 +277,7 @@
        "type": "Feature",
        "properties": {
             "color": "#{% if district.state.color %}{{ district.state.color }}{% else %}{% if district.is_off %}000000{% else %}ffffff{% endif %}{% endif %}",
+            "class": ""
        },
        "geometry": {
            "type": "MultiPolygon",
@@ -291,7 +292,8 @@
          {% if district.is_off %}color: '#ffffff',{% else %}color: pSBC( -0.4, feature.properties.color, false, true ),{% endif %}
           {% if district.is_off %}fillOpacity: 0.5,{% else %}fillOpacity: 0.8,{% endif %}
           fillColor: feature.properties.color,
-          weight: 1
+          weight: 1,
+          className: feature.properties.class
          };
      },
      data:{
@@ -331,4 +333,81 @@
 
 {% trans 'Опольское воеводство' context "regions_list" %}
 <!-- костыльный блок: тексты всех имен регионов -->
+
+{% if not player.educated %}
+<script src="/static/redesign/js/education.js"></script>
+{% endif %}
+
+<script>
+    var check_edu = true;
+
+    {% if not player.educated %}
+    check_edu = false;
+
+     function getFromLS(){
+        return localStorage.getItem('edu_assistant');
+      }
+
+    var assist_img = this.getFromLS() ?? "/static/redesign/img/Ann.png";
+
+    document.getElementsByClassName('edu__img')[0].src = assist_img;
+
+    function claim_reward(id){
+      var data = "&csrfmiddlewaretoken=" + csrftoken + "&edu_id=" + id;
+      $.ajax({
+          beforeSend: function() {},
+          type: "POST",
+          url: "/claim_reward/",
+          data: data,
+          cache: false,
+          success: function(result){
+              if (result.response == 'ok'){
+                  actualize();
+              }
+          }
+      });
+    }
+
+    function edu_pragma(page) {
+        if (page == 5){
+            claim_reward('edu_05');
+        }
+        if (page == 99){
+            window.location.href = "/party";
+        }
+    }
+
+    const edu = new Educator({
+    onEduStart: () => { console.log('[EDU]: Started') },
+    onEduEnd: () => { console.log('[EDU]: Ended'); edu_pragma(99) },
+    onEduPageChange: (num) => { console.log(`[EDU]: Current page is ${num}`); edu_pragma(num) },
+    onCloseEdu: () => { console.log(`[EDU]: Education closed`); claim_reward('edu_00'); },
+    pages: [
+        {
+        text: 'Это - политическая карта всего нашего мира. Она поделена на регионы.',
+        },
+        {
+        text: 'Каждый регион может быть независимым, быть столицей государства, либо же принадлежать государству на правах провинции.',
+        },
+        {
+        text: 'Нажав на любую территорию, вы откроете небольшое окно с информацией о ней.',
+        },
+        {
+        text: 'Краткая информация о регионе позволит вам узнать его название и владельца, а также проверить, есть ли там запасы сырья.',
+        },
+        {
+        text: 'Для перемещения здесь же доступна кнопка вызова вашего личного самолёта. Вам потребуется лишь оплатить затраты на топливо, подождать совсем немного - и вот вы уже на другом конце мира!',
+        },
+        {
+        text: 'Награда: 200 золота',
+        rewardImgUrl: '/static/redesign/img/200_gold.png',
+        },
+        {
+        text: 'Чтобы начать путь к покорению всех этих территорий, нам потребуются союзники. Позвольте помочь выбрать вам партию, хотя бы на первое время.',
+        },
+    ]
+  })
+
+  {% endif %}
+</script>
 {% endblock %}

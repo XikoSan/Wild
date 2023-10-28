@@ -22,7 +22,7 @@
     </div>
     <form class="cash_retrieve" role="form">
         {% csrf_token %}
-        <button {% if player.destination %}disabled{% endif %} class="earn__long-btn ct__long-btn btn">
+        <button {% if player.destination %}disabled{% endif %} class="earn__long-btn ct__long-btn btn eduBlock2">
             {% if player.destination %}
             <span>{% trans 'в полете' context "daily_header" %}</span>
             {% else %}
@@ -96,7 +96,7 @@
                     <span>{{ auto_mining.task.start_time|timezone:player.time_zone|date:"H:i" }}</span>
                 </button>
                     {% endif %}
-                <button class="btn-mining">{% trans 'добыча' context "mining" %}</button>
+                <button class="btn-mining eduBlock1">{% trans 'добыча' context "mining" %}</button>
                 {% endif %}
 			</form>
         <svg width="314" height="100" viewBox="0 0 314 100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.46447 11.5355L11.5355 2.46447C12.4732 1.52678 13.745 1 15.0711 1H308C310.761 1 313 3.23857 313 6V94C313 96.7614 310.761 99 308 99H6C3.23858 99 1 96.7614 1 94V15.0711C1 13.745 1.52678 12.4732 2.46447 11.5355Z" fill="var(--c30)" stroke="var(--c30)"/></svg>
@@ -122,7 +122,7 @@
                 <span>{{ auto_mining.task.start_time|timezone:player.time_zone|date:"H:i" }}</span>
             </button>
                 {% endif %}
-            <button class="btn-mining">{% trans 'добыча' context "mining" %}</button>
+            <button class="btn-mining eduBlock1">{% trans 'добыча' context "mining" %}</button>
             {% endif %}
         </form>
         <svg width="314" height="100" viewBox="0 0 314 100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.46447 11.5355L11.5355 2.46447C12.4732 1.52678 13.745 1 15.0711 1H308C310.761 1 313 3.23857 313 6V94C313 96.7614 310.761 99 308 99H6C3.23858 99 1 96.7614 1 94V15.0711C1 13.745 1.52678 12.4732 2.46447 11.5355Z" fill="var(--c30)" stroke="var(--c30)"/></svg>
@@ -133,7 +133,118 @@
 
 {% block for_scripts_and_css %}
 <script src='{% static "js/mining.js" %}?{{ csrf_token }}'></script>
+
+{% if not player.educated %}
+<script src="/static/redesign/js/education.js"></script>
+{% endif %}
+
 {% if premium %}
 <script src='{% static "js/auto_mining.js" %}?{{ csrf_token }}'></script>
 {% endif %}
+
+<script>
+    var check_edu = true;
+
+    {% if not player.educated %}
+    check_edu = false;
+
+     function getFromLS(){
+        return localStorage.getItem('edu_assistant');
+      }
+
+    var assist_img = this.getFromLS() ?? "/static/redesign/img/Ann.png";
+
+    document.getElementsByClassName('edu__img')[0].src = assist_img;
+
+    function claim_reward(id){
+      var data = "&csrfmiddlewaretoken=" + csrftoken + "&edu_id=" + id;
+      $.ajax({
+          beforeSend: function() {},
+          type: "POST",
+          url: "/claim_reward/",
+          data: data,
+          cache: false,
+          success: function(result){
+              if (result.response == 'ok'){
+                  actualize();
+              }
+          }
+      });
+    }
+
+    function edu_pragma(page) {
+        if (page == 5){
+            claim_reward('edu_02');
+        }
+        if (page == 10){
+            claim_reward('edu_03');
+        }
+        if (page == 99){
+            window.location.href = "/storage";
+        }
+    }
+
+    const edu = new Educator({
+    onEduStart: () => { console.log('[EDU]: Started') },
+    onEduEnd: () => { console.log('[EDU]: Ended'); edu_pragma(99) },
+    onEduPageChange: (num) => { console.log(`[EDU]: Current page is ${num}`); edu_pragma(num) },
+    onCloseEdu: () => { console.log(`[EDU]: Education closed`); claim_reward('edu_00'); },
+    pages: [
+        {
+        text: 'Итак. В наших с Вами силах - организовывать работы на месторождениях сырья, а также добывать золото на местных приисках.',
+        },
+        {
+        text: 'Организация работ потребует затрат Ваших сил, выраженных в Энергии, но, взамен гарантирует поток Финансирования.',
+        },
+        {
+        text: 'Обратите внимание, что золото мы добываем по личной инициативе, поэтому, инвесторы не будут оплачивать Вам эти работы.',
+        },
+        {
+        text: 'Давайте попробуем выбить часть Финансирования из них прямо сейчас, организовав добычу сырья.',
+        awaitedDomElemClass: 'eduBlock1',
+        },
+        {
+        text: 'Отлично! Работа выполнена, средства поступили. Можно забирать.',
+        awaitedDomElemClass: 'eduBlock2',
+        },
+        {
+        text: 'Награда: 200 золота',
+        rewardImgUrl: '/static/redesign/img/200_gold.png',
+        },
+        {
+        text: 'Я стараюсь, чтобы ваше расписание не было загружено слишком сильно. Благодаря этому, вы можете постепенно восстановить Энергию естественным путём.',
+        awaitedDomElemClass: 'eduBlockMining3',
+        onlyGlowing: true,
+        },
+        {
+        text: 'Но иногда, обстоятельства требуют от нас вложения дополнительных сил. На этот случай у нас есть Энергетики.',
+        },
+        {
+        text: 'Энергетики - ценный ресурс, получаемый за Золото, которое мы с вами добываем. Они позволяют восполнять запасы Энергии без ожидания.',
+        },
+        {
+        text: 'Я как раз принесла вам баночку. Или вам перелить в более изящную ёмкость?',
+        awaitedDomElemClass: 'eduBlockMining4',
+        },
+        {
+        text: 'Награда: 200 золота',
+        rewardImgUrl: '/static/redesign/img/200_gold.png',
+        },
+        {
+        text: 'Как ощущения? Снова полны сил? Тогда давайте организуем добычу сырья ещё раз, чтобы ваш заряд бодрости не пропал даром!',
+        awaitedDomElemClass: 'eduBlock1',
+        },
+        {
+        text: 'Отлично! А вот и новый транш...',
+        awaitedDomElemClass: 'eduBlock2',
+        },
+        {
+        text: 'Теперь, давайте изучим добытое Вами. Для этого совершим прогулку до регионального Склада',
+        },
+    ]
+  })
+
+  {% endif %}
+</script>
+
 {% endblock %}

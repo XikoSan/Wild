@@ -273,6 +273,11 @@ def overview(request):
         except VkAPIError as e:
             pass
 
+    assistant_name = ('Ann', 'Анна')
+
+    if not player.educated:
+        assistant_name = random.choice([('Ann', 'Анна'), ('Lin', 'Лин'),  ('Maria', 'Мария'), ('Sofia', 'София'), ('Olga', 'Ольга')])
+
     page = 'player/redesign/overview.html'
 
     # отправляем в форму
@@ -326,6 +331,7 @@ def overview(request):
 
         'has_event': has_event,
 
+        'assistant_name': assistant_name,
     })
 
     # r.flushdb()

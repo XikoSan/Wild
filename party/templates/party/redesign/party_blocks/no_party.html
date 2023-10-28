@@ -39,7 +39,7 @@
           <span>{% trans 'региональные' context "no_party" %}</span>
         </button>
 
-        <button class="ct__top-tab ct__top-tab1 ct__mid-btn" onclick="switchMainBlocks(1)">
+        <button class="ct__top-tab ct__top-tab1 ct__mid-btn eduBlock1" onclick="switchMainBlocks(1)">
           <svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
             <mask id="mask0_259_317" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
               <path class="geometry1" d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"/>
@@ -104,7 +104,7 @@
 
 					<td class="j-t-four">
 						{% if party.type == 'op' %}
-							<a href="{% url 'party_joiner' plr_pk=player.pk pty_pk=party.pk %}" class="ct__js-color-btn">{% trans 'Вступить' context "no_party" %}</a>
+							<a href="{% url 'party_joiner' plr_pk=player.pk pty_pk=party.pk %}" class="ct__js-color-btn eduBlock2">{% trans 'Вступить' context "no_party" %}</a>
 						{% endif %}
 						{% if party.type == 'pt' %}
 							{% if requests|dict_key:party %}
@@ -141,7 +141,7 @@
 					</td>
 					<td class="j-t-four" style="text-align: right;">{% trans 'Действие' context "no_party" %}</td>
 				</tr>
-				{% if party_count != 0 %}
+				{% if regional_count != 0 %}
 					{% for party in regional_parties %}
 				<tr>
 					<td class="j-t-one" onclick="window.open('/party/{{ party.pk }}/')" style="cursor: pointer;">

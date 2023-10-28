@@ -104,4 +104,92 @@
 	}
 
 </script>
+
+
+
+{% if not player.educated %}
+<script src="/static/redesign/js/education.js"></script>
+{% endif %}
+
+<script>
+    var check_edu = true;
+
+    {% if not player.educated %}
+    check_edu = false;
+
+     function getFromLS(){
+        return localStorage.getItem('edu_assistant');
+      }
+
+    var assist_img = this.getFromLS() ?? "/static/redesign/img/Ann.png";
+
+    document.getElementsByClassName('edu__img')[0].src = assist_img;
+
+    function claim_reward(id){
+      var data = "&csrfmiddlewaretoken=" + csrftoken + "&edu_id=" + id;
+      $.ajax({
+          beforeSend: function() {},
+          type: "POST",
+          url: "/claim_reward/",
+          data: data,
+          cache: false,
+          success: function(result){
+              if (result.response == 'ok'){
+                  actualize();
+              }
+          }
+      });
+    }
+
+    function edu_pragma(page) {
+        if (page == 88){
+            claim_reward('edu_05');
+        }
+        if (page == 99){
+            window.location.href = "/party";
+        }
+    }
+
+    const edu = new Educator({
+    onEduStart: () => { console.log('[EDU]: Started') },
+    onEduEnd: () => { console.log('[EDU]: Ended'); edu_pragma(99) },
+    onEduPageChange: (num) => { console.log(`[EDU]: Current page is ${num}`); edu_pragma(num) },
+    onCloseEdu: () => { console.log(`[EDU]: Education closed`); claim_reward('edu_00'); },
+    {% if has_open %}
+    pages: [
+        {
+        text: 'Вам доступен общий список партий со всего света, чтобы вы могли выбрать ту, что больше всего вам подходит.',
+        },
+        {
+        text: 'В свою очередь, рекомендую присмотреться к крупным коллективам - обычно, они предоставляют наиболее выгодные условия новым участникам.',
+		awaitedDomElemClass: 'eduBlock1',
+        },
+		{
+        text: 'Выберите любую партию, и нажмите "вступить". После чего, рекомендую связаться с её главой. А я же свяжусь с вами позже. Благодарю за внимание!',
+        awaitedDomElemClass: 'eduBlock2',
+        },
+		{
+        text: 'Успехов вам!',
+        },
+    ]
+    {% else %}
+	pages: [
+        {
+        text: 'К сожалению, я не смогла подобрать для вас ни одной партии со свободным вступлением.',
+        },
+        {
+        text: 'Поэтому, предлагаю вам вернуться к общему чату в "Обзоре", и предложить свою кандидатуру там.',
+        },
+		{
+        text: 'Альтернативный вариант - создать собственную партию. Но будьте готовы самостоятельно обучать и организовывать людей.',
+        },
+		{
+        text: 'На этом наша экскурсия завершается. Благодарю за внимание!',
+        },
+    ]
+    {% endif %}
+  })
+
+  {% endif %}
+</script>
 {% endblock %}

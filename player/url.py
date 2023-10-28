@@ -29,6 +29,7 @@ from .views.set_language import set_language
 from .views.set_timezone import set_timezone
 from .views.view_profile import view_profile
 from .views.wallet import wallet
+from .views.claim_reward import claim_reward
 
 from player.views.translate.translate import edit_translations
 from player.views.translate.translations import translations
@@ -118,4 +119,7 @@ urlpatterns = [
     path('translations/', translations, name='translations'),
     # переводы
     path('edit-translation/<str:lang>/<str:context>/', edit_translations, name='edit_translations'),
+
+    # получение наград за обучение
+    url(r'^claim_reward/$', claim_reward, name='claim_reward'),
 ]

@@ -25,7 +25,7 @@
 		</p>
 		<p class="info__energy">
 			⚡
-			<span id="energy" class="info__energy-move-left">
+			<span id="energy" class="info__energy-move-left eduBlockMining3">
 				{{ player.energy }} <!-- значение текущей энергии -->
 			</span>
 		</p>
@@ -35,7 +35,7 @@
 		<script>
             const refill_button_txt = '{% trans 'пополнить' context "status" %}';
         </script>
-		<button id="refill-countdown" data-text="{{ countdown }}" onclick="recharge()" class="info__add-energy" style="cursor: pointer">
+		<button id="refill-countdown" data-text="{{ countdown }}" onclick="recharge()" class="info__add-energy eduBlockMining4" style="cursor: pointer">
 			<span class="info__fill-text">
 				{% if time_text %}
                 {{ time_text }}

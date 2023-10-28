@@ -144,7 +144,6 @@ window.onload = function countdown() {
     }
 }
 
-
 function actualize(){
     $.ajax({
         beforeSend: function() {},

@@ -54,6 +54,9 @@ class Player(models.Model):
     # о себе
     bio = models.TextField(max_length=250, default='', null=True, blank=True, verbose_name='Биография')
 
+    # Показатель того, что игрок проходил обучение
+    educated = models.BooleanField(default=False, null=False, verbose_name='Прошёл обучение')
+
     # -----------партия----------------
 
     # партия игрока
