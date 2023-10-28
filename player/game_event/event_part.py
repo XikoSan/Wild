@@ -65,7 +65,7 @@ class EventPart(models.Model):
 
             AvaBorderOwnership(in_use=True,
                                owner=self.player,
-                               border=AvaBorder.objects.get(pk=4)
+                               border=AvaBorder.objects.get(pk=8)
                                ).save()
 
             self.paid_points = 10000
@@ -106,7 +106,7 @@ class EventPart(models.Model):
 
             AvaBorderOwnership(in_use=True,
                                owner=self.player,
-                               border=AvaBorder.objects.get(pk=5)
+                               border=AvaBorder.objects.get(pk=9)
                                ).save()
 
             self.paid_points = 20000
@@ -147,7 +147,7 @@ class EventPart(models.Model):
 
             AvaBorderOwnership(in_use=True,
                                owner=self.player,
-                               border=AvaBorder.objects.get(pk=6)
+                               border=AvaBorder.objects.get(pk=10)
                                ).save()
 
             self.paid_points = 30000
