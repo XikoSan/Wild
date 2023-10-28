@@ -11,13 +11,8 @@ def index(request):
 
     else:
 
-        from player.logs.print_log import log
-        log(datetime.now())
-
-        open_date_str = "2023-10-30 18:00:00"
+        open_date_str = "2023-10-29 18:00:00"
         open_date = datetime.strptime(open_date_str, "%Y-%m-%d %H:%M:%S")
-
-        log(open_date)
 
         is_open = False
         if datetime.now() > open_date:
