@@ -191,7 +191,7 @@
             <div class="party__regionInfo-block">
 				<p>{% trans 'Запасы золота' %}: <span>{{ region.gold_has }} / {{ region.gold_cap }}</span></p>
 				<p>{% trans 'Запасы нефти' %}: <span>{{ region.oil_has }} / {{ region.oil_cap }}</span></p>
-				<p>{% trans 'Марка нефти' %}: <span>Urals</span></p>
+				<p>{% trans 'Марка нефти' %}: <span>{{ region.oil_mark.name }}</span></p>
 				<p>Запасы руд: <span>{{ region.ore_has }} / {{ region.ore_cap }}</span></p>
 				<p>Качество руды:</p>
 				<p>(уголь / железо / бокситы)<span>{% for fossil in fossils %}{{ fossil.percent }} % {% if not forloop.last %} / {% endif %}{% endfor %}</span></p>
