@@ -135,7 +135,7 @@ class DonutLogAdmin(admin.ModelAdmin):
 
 class PLayerAdmin(admin.ModelAdmin):
     search_fields = ['nickname', 'user_ip']
-    raw_id_fields = ('account', 'party',)
+    raw_id_fields = ('account', 'party', 'region', 'residency',)
 
     actions = [
                     add_premium_month,
