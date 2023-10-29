@@ -1,7 +1,7 @@
 from re import findall
 
 from django.contrib import admin
-
+from django.db import transaction
 from party.position import PartyPosition
 from player.logs.cash_log import CashLog
 from player.logs.gold_log import GoldLog
@@ -12,9 +12,58 @@ from .player_settings import PlayerSettings
 from player.game_event.game_event import GameEvent
 from player.game_event.event_part import EventPart
 from player.game_event.global_part import GlobalPart
+from django.utils import timezone
 from player.player_regional_expence import PlayerRegionalExpense
 from player.game_event.energy_spent import EnergySpent
 from player.logs.donut_log import DonutLog
+from dateutil.relativedelta import relativedelta
+
+@transaction.atomic
+def add_premium_month(modeladmin, request, queryset):
+    for player in queryset:
+        # время, к которому прибавляем месяц
+        if player.premium > timezone.now():
+            from_time = player.premium
+        else:
+            from_time = timezone.now()
+
+        player.premium = from_time + relativedelta(months=1)
+
+        player.save()
+
+add_premium_month.short_description = 'Добавить 1 месяц према'\
+
+
+@transaction.atomic
+def add_3_premium_month(modeladmin, request, queryset):
+    for player in queryset:
+        # время, к которому прибавляем месяц
+        if player.premium > timezone.now():
+            from_time = player.premium
+        else:
+            from_time = timezone.now()
+
+        player.premium = from_time + relativedelta(months=3)
+
+        player.save()
+
+add_3_premium_month.short_description = 'Добавить 3 месяца према'
+
+
+@transaction.atomic
+def add_6_premium_month(modeladmin, request, queryset):
+    for player in queryset:
+        # время, к которому прибавляем месяц
+        if player.premium > timezone.now():
+            from_time = player.premium
+        else:
+            from_time = timezone.now()
+
+        player.premium = from_time + relativedelta(months=6)
+
+        player.save()
+
+add_6_premium_month.short_description = 'Добавить 6 месяцев према'
 
 
 class CashLogAdmin(admin.ModelAdmin):
@@ -87,6 +136,12 @@ class DonutLogAdmin(admin.ModelAdmin):
 class PLayerAdmin(admin.ModelAdmin):
     search_fields = ['nickname', 'user_ip']
     raw_id_fields = ('account', 'party',)
+
+    actions = [
+                    add_premium_month,
+                    add_3_premium_month,
+                    add_6_premium_month,
+    ]
 
     # Функциия для отображения у игрока только тех постов,
     # которые относятся к текущему клану игрока
