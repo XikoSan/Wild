@@ -49,7 +49,7 @@ def my_profile(request):
             image = Image.open(player.image)
             cropped_image = image.crop((x, y, w + x, h + y))
             resized_image = cropped_image.resize((250, 250), Image.ANTIALIAS)
-            resized_image.save(player.image.path)
+            resized_image.save(player.image.path, 'PNG')
 
             return redirect('my_profile')
     else:
