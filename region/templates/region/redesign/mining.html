@@ -14,21 +14,25 @@
     <div class="earn__energy-wrapper ct__widebar">
         <span>{% trans 'энергии потрачено' context "daily_header" %}:</span>
         <div class="ct__widebar-bar">
+            {% if player.daily_fin %}
+            <span>100 %</span>
+            {% else %}
             <span id="energy_consumption">{{ player.energy_consumption }}</span>
             <span> / </span>
             <span id="daily_energy_limit">{{ daily_energy_limit }}</span>
-            <div style="width: {{ daily_procent }}%;" class="ct__widebar-fill" id="energy_progressbar"></div>
+            {% endif %}
+            <div style="width: {% if player.daily_fin %}100{% else %}{{ daily_procent }}{% endif %}%;" class="ct__widebar-fill" id="energy_progressbar"></div>
         </div>
     </div>
     <form class="cash_retrieve" role="form">
         {% csrf_token %}
-        <button {% if player.destination %}disabled{% endif %} class="earn__long-btn ct__long-btn btn eduBlock2">
+        <button {% if player.destination or player.daily_fin %}disabled{% endif %} class="earn__long-btn ct__long-btn btn eduBlock2">
             {% if player.destination %}
             <span>{% trans 'в полете' context "daily_header" %}</span>
             {% else %}
             <span class="process" style="display: none">{% trans 'получаем' context "daily_header" %}...</span>
             <span style="display: inline-block;">{% trans 'получить' context "daily_header" %}: $</span>
-            <span style="display: inline-block;" id="daily_current_sum">{{ daily_current_sum }}</span>
+            <span style="display: inline-block;" id="daily_current_sum">{% if player.daily_fin %}0{% else %}{{ daily_current_sum }}{% endif %}</span>
             {% endif %}
             <svg width="176" height="31" viewBox="0 0 176 31" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <mask id="mask0_36_212" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="-1" width="176" height="32">

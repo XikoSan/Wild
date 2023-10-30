@@ -299,6 +299,16 @@ class Player(models.Model):
             return JResponse(data), 0
             # return HttpResponse('Дождитесь конца полёта')
 
+        # если дейлик закрыт - ловить нечего
+        if self.daily_fin:
+            data = {
+                'response': pgettext('mining', 'Нечего забирать'),
+                'header': pgettext('mining', 'Ошибка получения финансирования'),
+                'grey_btn': pgettext('mining', 'Закрыть'),
+            }
+            # return JResponse(data)
+            return JResponse(data), 0
+
         # energy_limit - количество энергии, которую надо выфармить за день
         if self.paid_consumption >= self.energy_limit:
             daily_procent = 100
