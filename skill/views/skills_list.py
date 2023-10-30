@@ -55,7 +55,7 @@ def skills_list(request):
     attrs = ['power', 'knowledge', 'endurance']
 
     # отправляем в форму
-    return render(request, 'skill/skill_list.html', {
+    return render(request, 'redesign/skill/skill_list.html', {
         'page_name': _('Навыки'),
 
         'player': player,

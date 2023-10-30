@@ -54,6 +54,7 @@
                                 {{ req|dict_key:'skill_name' }}: {{ req|dict_key:'level' }}
 
                                 {% with attr=req|dict_key:'skill' %}
+
                                 {% if attr in attrs %}
 
                                     {% if player|get_attr:attr >= req|dict_key:'level' %}
