@@ -49,7 +49,7 @@ class AutoProduce(Log):
                              on_delete=models.CASCADE, verbose_name='Продукция')
 
     # номер схемы
-    schema = models.CharField(max_length=1, verbose_name='Номер схемы')
+    schema = models.IntegerField(default=1, verbose_name='Номер схемы')
 
     # переодическая таска
     task = models.OneToOneField(PeriodicTask, on_delete=models.DO_NOTHING, null=True, blank=True)
