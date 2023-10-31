@@ -1,0 +1,246 @@
+{% extends 'player/redesign/header.html' %}
+{% load static %}
+{% load tz %}
+{% load l10n %}{% load i18n %}
+{% load dict_key %}
+{% load has_key %}
+{% load government.treasury %}
+{% load get_all %}
+{% load get_mod %}
+{% load redesign.template_svg.nopic_party_list %}
+{% load redesign.government.treasury %}
+
+{% block for_scripts_and_css %}
+<script src='{% static "js/region_view.js" %}?{{ csrf_token }}'></script>
+{% endblock %}
+
+{% block content %}
+<style>
+    .party__regionInfo-block p span {
+      color: var(--c10one);
+    }
+
+    .gover__block {
+		display: block;
+	}
+</style>
+<section class="state custom-scroll">
+
+	<!-- Заголовок -->
+	<h1 class="state__title ct__page-title">{{ state.title }}</h1>
+
+    <!--ТОП БЛОК-->
+    <div class="state__top">
+      <!--аватар-->
+		{% if state.image %}
+		<img src='{{ state.image.url }}' class='state__top-ava'>
+		{% else %}
+		<svg class="state__top-ava" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+		  <g clip-path="url(#clip0_719_1078)">
+		  <path d="M0.491699 16.9875C0.491699 7.87313 7.87737 0.487457 16.9917 0.487457C26.106 0.487457 33.4917 7.87313 33.4917 16.9875C33.4917 26.1018 26.106 33.4875 16.9917 33.4875C7.87737 33.4875 0.491699 26.1018 0.491699 16.9875Z" stroke="var(--c10two)"/>
+		  <path d="M16.2592 1.71561V4.40533C16.3253 4.37682 16.4058 4.35403 16.4954 4.33842C16.5851 4.32281 16.682 4.31471 16.78 4.31464C16.9631 4.31477 17.139 4.34291 17.2706 4.39314V1.71561H16.2592ZM16.7436 5.35272C16.4899 5.35298 16.2407 5.39844 16.021 5.48455C15.8013 5.57067 15.6188 5.69442 15.4919 5.84342V6.7694C15.6339 6.71639 15.8231 6.67309 16.0432 6.64318C16.2634 6.61328 16.5081 6.59764 16.7565 6.59762C17.0082 6.59768 17.256 6.61377 17.4783 6.64448C17.7006 6.6752 17.8907 6.7196 18.0319 6.77381H18.0374C18.0402 6.76963 18.0429 6.76543 18.0456 6.76123V5.90751C17.9273 5.74146 17.7424 5.60137 17.5121 5.50326C17.2819 5.40514 17.0156 5.35297 16.7436 5.35272ZM16.7316 7.62156C16.5306 7.62348 15.664 7.66601 14.6557 8.22305C13.672 8.76649 13.127 9.41527 13.127 9.41527C13.127 9.41527 12.3711 10.1942 11.711 11.5801C11.2055 12.6412 11.0306 13.745 11.0306 13.745H22.5204C22.5204 13.745 22.3793 12.8269 21.8114 11.5801C21.2372 10.3191 20.4003 9.41527 20.4003 9.41527C20.4003 9.41527 19.489 8.51052 18.8184 8.14612C17.8005 7.59306 16.7754 7.62182 16.7754 7.62182C16.7754 7.62182 16.7603 7.62129 16.7316 7.62156ZM9.92453 14.7933L9.50676 15.6916H9.92453H23.607H24.0247L23.607 14.7933H9.92453ZM9.9837 16.7013V18.2707H10.9826V16.7013H9.9837ZM13.1217 16.7013V18.2707H14.1206V16.7013H13.1217ZM16.2597 16.7013V18.2707H17.2586V16.7013H16.2597ZM19.3977 16.7013V18.2707H20.3966V16.7013H19.3977ZM22.5489 16.7013V18.2707H23.5478V16.7013H22.5489ZM7.37247 19.2717V20.1909H26.1577V19.2717H7.37247ZM8.17779 21.1937V24.5541H9.18564V21.1937H8.17779ZM10.873 21.1937V24.5541H11.8808V21.1937H10.873ZM13.5549 21.1937V24.5541H14.5626V21.1937H13.5549ZM16.2501 21.1937V24.5541H17.2578V21.1937H16.2501ZM18.9451 21.1937V24.5541H19.953V21.1937H18.9451ZM21.6403 21.1937V24.5541H22.6482V21.1937H21.6403ZM24.3355 21.1937V24.5541H25.3433V21.1937H24.3355ZM4.69922 25.5657V27.2415H28.8281V25.5657H4.69922Z" fill="var(--c10one)"/>
+		  </g>
+		  <defs>
+		  <clipPath id="clip0_719_1078">
+		  <rect width="34" height="34" fill="var(--c10one)"/>
+		  </clipPath>
+		  </defs>
+		</svg>
+		{% endif %}
+
+      <!--инфа в топ блоке-->
+      <div class="state__top-content">
+
+        <!--кнопки-->
+        <div class="state__tabs">
+
+					<button class="state__tab ct__mid-btn active">
+						<svg width="144" height="30" viewBox="0 0 144 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<mask id="mask0_259_319" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+								<path d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z" fill="var(--c10two)"/>
+							</mask>
+							<g mask="url(#mask0_259_319)">
+								<path class="state__svgBg" d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" fill="var(--c10two)"/>
+								<path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"/>
+								<path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"/>
+								<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
+							</g>
+						</svg>
+						<span>Инфо</span>
+					</button>
+
+					<button class="state__tab ct__mid-btn">
+						<svg width="144" height="30" viewBox="0 0 144 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<mask id="mask0_259_320" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+								<path d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z" fill="var(--c10two)"/>
+							</mask>
+							<g mask="url(#mask0_259_320)">
+								<path class="state__svgBg" d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" fill="var(--c10two)"/>
+								<path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"/>
+								<path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"/>
+								<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
+							</g>
+						</svg>
+						<span>Регионы</span>
+					</button>
+
+					<button class="state__tab ct__mid-btn">
+						<svg width="144" height="30" viewBox="0 0 144 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<mask id="mask0_259_321" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+								<path d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z" fill="var(--c10two)"/>
+							</mask>
+							<g mask="url(#mask0_259_321)">
+								<path class="state__svgBg" d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" fill="var(--c10two)"/>
+								<path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"/>
+								<path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"/>
+								<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
+							</g>
+						</svg>
+						<span>Партии</span>
+					</button>
+
+					<button class="state__tab ct__mid-btn">
+						<svg width="144" height="30" viewBox="0 0 144 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<mask id="mask0_259_322" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+								<path d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z" fill="var(--c10two)"/>
+							</mask>
+							<g mask="url(#mask0_259_322)">
+								<path class="state__svgBg" d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" fill="var(--c10two)"/>
+								<path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"/>
+								<path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"/>
+								<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
+							</g>
+						</svg>
+						<span>Казна</span>
+					</button>
+
+        </div><!--кнопки конец-->
+
+      </div><!--конец инфа в топ блоке-->
+
+    </div><!--конец ТОП блок-->
+
+		<div class="party__regionInfo stateBlock active">
+			<div class="party__regionInfo-block">
+				<p>Форма правления: <span style="text-align: right;">{{ state.get_type_display }}</span></p>
+				{% if president %}
+					{% if president.leader %}
+				<p>Президент: <span style="color: var(--c10two); cursor: pointer" onclick="window.location.href = '/profile/{% localize off %}{{ president.leader.pk }}{% endlocalize %}'">{{ president.leader.nickname }}</span></p>
+					{% else %}
+				<p>Президент: <span>не избран</span></p>
+					{% endif %}
+					{% if last_voting %}
+				<p>Начало срока: <span>{{ last_voting.voting_end|timezone:player.time_zone|date:"d.m.Y H:i" }}</span></p>
+					{% endif %}
+				{% endif %}
+			</div>
+
+			<div class="party__mmid-line"></div>
+
+			<div class="party__regionInfo-block">
+				<p>Жителей: <span>{{ players_count }}</span></p>
+				<p>Партий: <span>{{ parties_count }}</span></p>
+				<p>{% trans 'Столица' %}: <span style="color: var(--c10two); cursor: pointer" onclick="window.location.href = '/region/{{ capital.pk }}/'"">{{ capital.region_name }}</span></p>
+				<p>{% trans 'Прописка' %}: <span>{{ state.get_residency_display }}</span></p>
+				<p>Дата основания: <span>{{ state.foundation_date|timezone:player.time_zone|date:"d.m.Y H:i" }}</span></p>
+			</div>
+
+			<div class="party__mmid-line"></div>
+
+			<div class="party__regionInfo-block">
+				<p>Баланс электросети: <span {% if energy_consumption > energy_production %}style="color: var(--c10two);"{% endif %}>{{ energy_consumption }} / {{ energy_production }}</span></p>
+			</div>
+
+			<div class="party__mmid-line"></div>
+
+			<div class="party__regionInfo-block">
+				<h2>{% trans 'Государственные налоги' %}:</h2>
+				<p>{% trans 'На финансирование' %}: <span>{{ state.cash_tax }} %</span></p>
+				<p>{% trans 'На добычу' %}: <span>{{ state.oil_tax }} % / {{ state.ore_tax }} %</span></p>
+				<p>{% trans 'На торговлю' %}: <span>{{ state.trade_tax }} %</span></p>
+			</div>
+		</div>
+
+		<!--БЛОК ТАБЛИЦА-->
+		<div class="ct__js-table-container stateBlock">
+			<!--таблица-->
+			<table class="ct__js-table">
+				<tbody>
+
+					<tr>
+						<td></td>
+						<td>Регион</td>
+						<td>Жители</td>
+						<td>Запасы</td>
+					</tr>
+					{% for region in regions_state %}
+					<tr>
+						<td onclick="window.open('/region/{{ region.pk }}/', '_blank')">
+							<img src="/static/img/regions/{{ region.on_map_id }}.png">
+						</td>
+						<td onclick="window.open('/region/{{ region.pk }}/', '_blank')">
+							{{ region }}
+						</td>
+						<td>{% if regions_pop|has_key:region %}{{ regions_pop|dict_key:region }}{% else %}0{% endif %}</td>
+						<td>
+							{{ region.gold_has }} <br> {{ region.oil_has }} <br> {{ region.ore_has }}
+						</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+
+		<!--БЛОК ТАБЛИЦА-->
+		<div class="ct__js-table-container stateBlock">
+			<!--таблица-->
+			<table class="ct__js-table">
+				<tbody>
+					<tr>
+						<td></td>
+						<td>Название</td>
+						<td>Размер</td>
+						<td></td>
+						<td>Регион</td>
+					</tr>
+					{% for party in parties_of_state %}
+					<tr>
+						<td>
+						{% if party.image %}
+						<img onclick="window.open('/party/{{ party.pk }}', '_blank')" src="{{ party.image.url }}">
+						{% else %}
+							{% nopic_party_list player '' %}
+						{% endif %}
+						</td>
+						<td onclick="window.open('/party/{{ party.pk }}', '_blank')">{{ party.title }}</td>
+						<td>1</td>
+						<td><img src="img/gerb.png" onclick="window.open('/region/{{ region.pk }}/', '_blank')"></td>
+						<td onclick="window.open('/region/{{ region.pk }}/', '_blank')">Западные Балканы</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+
+		<!--казна-->
+		<div class="ct__js-table-container stateBlock">
+		{% treasury state %}
+		</div>
+	</section>
+
+<script>
+
+	const tabs = document.querySelectorAll('.state__tab');
+	const stateBlocks = document.querySelectorAll('.stateBlock');
+
+	tabs.forEach((tab, index) => {
+		tab.addEventListener('click', () => {
+			tabs.forEach(item => item.classList.remove('active'));
+			tab.classList.add('active');
+			stateBlocks.forEach(item => item.classList.remove('active'));
+			stateBlocks[index].classList.add('active');
+		})
+	})
+
+</script>
+{% endblock %}

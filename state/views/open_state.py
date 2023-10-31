@@ -67,7 +67,7 @@ def open_state(request, pk):
         else:
             party_sizes[char.party] = 1
 
-    return render(request, 'state/state_view.html', {
+    return render(request, 'state/redesign/state_view.html', {
         'page_name': state.title,
         'player': player,
         'state': state,

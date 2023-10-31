@@ -767,6 +767,13 @@ a {
   list-style-type: none;
 }
 
+.nav__item--flex {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+
 .nav__item::before,
 .nav__item::after {
   display: block;
@@ -783,6 +790,26 @@ a {
 .nav__item::after {
   top: initial;
   bottom: 0;
+}
+
+.nav__item-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40rem;
+}
+
+.nav__item-link {
+  position: static;
+  display: block;
+  width: 40rem;
+  height: 40rem;
+}
+
+.nav__item-link svg {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .nav__link {
@@ -872,8 +899,8 @@ a {
 }
 
 .icon-map svg {
-  width: 30rem;
-  height: 30rem;
+  width: 31rem;
+  height: 32rem;
 }
 
 .icon-party svg {
@@ -4559,6 +4586,136 @@ p.overview__love-stat-timer {
   }
 }
 
+/*! state */
+
+.state {
+  padding-top: 14rem;
+  padding-bottom: 24rem;
+  height: calc(100% - 60rem);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.state__title {
+  margin: 0;
+  margin-bottom: 12rem;
+}
+
+.state__tabs-management {
+  margin-bottom: 12rem;
+}
+
+.state__name-edit-block {
+  margin-bottom: 12rem;
+}
+
+.state__top {
+  display: flex;
+  margin-bottom: 16rem;
+  padding: 0 12rem;
+  justify-content: space-between;
+}
+
+.state__top-ava {
+  display: block;
+  width: 180rem;
+  height: 180rem;
+  margin-right: 12rem;
+  object-fit: contain;
+  object-position: center;
+}
+
+.state__top-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.state__tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 20rem;
+  justify-content: space-between;
+  height: initial;
+  margin-bottom: 0;
+}
+
+.state__tab > span {
+  font-size: 14rem !important;
+  color: var(--c10one) !important;
+}
+
+.state__tab.active > span {
+  color: var(--c60) !important;
+}
+
+.state__svgBg {
+  fill: var(--c30);
+}
+
+.state__tab.active .state__svgBg {
+  fill: var(--c10two);
+}
+
+.state__tab .treg1,
+.state__tab .treg2,
+.state__tab .treg3 {
+  display: none;
+}
+
+.state__tab.active .treg1,
+.state__tab.active .treg2,
+.state__tab.active .treg3 {
+  display: initial;
+}
+
+.stateBlock {
+  display: none;
+}
+
+.stateBlock.active {
+  display: block;
+}
+
+.stateBlock > h2 {
+  margin: 0;
+  margin-bottom: 12rem;
+  font-weight: 400;
+  font-size: 14rem;
+  line-height: 16rem;
+  text-align: center;
+}
+
+.stateBlock .gover__goverPartyTable td:nth-of-type(2) {
+  text-align: right;
+  width: 40%;
+}
+
+@media (min-width: 1000px) {
+  .state {
+    padding-top: 14rem;
+    padding-bottom: 72rem;
+    margin-top: 100rem;
+    height: calc(100% - 100rem);
+    margin-left: 330rem;
+  }
+  .state__top {
+    padding: 0;
+    width: 570rem;
+    margin: 0 auto;
+    margin-bottom: 24rem;
+  }
+  .state__top-content {
+    border: 1px solid var(--c30);
+    width: 100%;
+    align-items: flex-start;
+    padding: 12rem;
+  }
+  .state__tabs {
+    gap: 12rem;
+  }
+}
+
 /*! gover */
 
 .gover {
@@ -5004,7 +5161,7 @@ padding-right: 6rem;
 }
 
 .gover__goverParty img,
-.gover__goverPartyTable img, {
+.gover__goverPartyTable img {
   display: block;
   width: 34rem;
   height: 34rem;
