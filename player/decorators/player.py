@@ -36,17 +36,20 @@ def check_player(func):
             # записываем время последнего онлайна
             r = redis.StrictRedis(host='redis', port=6379, db=0)
             r.hset('online', str(player.pk), str(timezone.now().timestamp()).split('.')[0])
+
+            # Получаем текущий ip игрока
+            cur_ip = get_client_ip(request)
+            # присваиваем ему этот адрес
+            player.user_ip = cur_ip
+            player.save()
+
             # Тут добавить УЗ суперов для обхода блокировки.
-            if player.pk == 1 or request.user.is_staff:
+            # if player.pk == 1 or request.user.is_staff:
+            if True:
                 # Возвращение выполнения основной(переданной в check_player)
                 # функции - func, с переданными ей аргументами - *args и **kwargs
                 return func(request, *args, **kwargs)
             else:
-                # Получаем текущий ip игрока
-                cur_ip = get_client_ip(request)
-                # присваиваем ему этот адрес
-                player.user_ip = cur_ip
-                player.save()
 
                 # проверка на IP работает только на продакшене
                 # if os.environ.get('PROD'):
