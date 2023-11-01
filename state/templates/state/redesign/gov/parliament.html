@@ -41,7 +41,7 @@
             {% else %}
             {% nopic_party_list player '' %}
             {% endif %}
-            <span style="cursor: pointer" onclick="window.open('/party/{% localize off %}{{ parl_party.party.pk }}{% endlocalize %}/', '_blank')">{{ parl_party.party.title }}</span>
+            <span style="cursor: pointer" onclick="window.open('/party/{% localize off %}{{ parl_party.party.pk }}{% endlocalize %}/')">{{ parl_party.party.title }}</span>
         </div>
         <span>{{ parl_party.seats }}% мест</span>
     </div>
@@ -52,12 +52,12 @@
             <tr>
                 <td>
                     <div class="gover__withImage" {% if deputate.player %}
-                                                        onclick="window.open('/profile/{% localize off %}{{ deputate.player.pk }}{% endlocalize %}/', '_blank')"
+                                                        onclick="window.open('/profile/{% localize off %}{{ deputate.player.pk }}{% endlocalize %}/')"
                                                         style="cursor: pointer"
                                                 {% else %}
                                                     {% if not parl_party.party.deleted %}
                                                         {% if player.party and player.party_post.party_lead %}
-                                                        onclick="window.open('/set_mandate_view/', '_blank')"
+                                                        onclick="window.open('/set_mandate_view/')"
                                                         style="cursor: pointer"
                                                         {% endif %}
                                                     {% endif %}

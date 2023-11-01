@@ -191,7 +191,7 @@
                                 <b><font size="5">Место жительства:</font></b>
                             </div>
                             <div class="col-xs-6 col-sm-6 col-md-6">
-                                <b><font size="4"  onclick="window.open('/region/{{ player.region.pk }}/', '_blank')" style="cursor: pointer">{{ player.region }}</font></b>
+                                <b><font size="4"  onclick="window.open('/region/{{ player.region.pk }}/')" style="cursor: pointer">{{ player.region }}</font></b>
                             </div>
                         </div>
                         <!--место прописки-->
@@ -202,7 +202,7 @@
                             </div>
                             <div class="col-xs-6 col-sm-6 col-md-6">
                                 <!--получена-->
-                                <b><font size="4"  onclick="window.open('/region/{{ player.residency.pk }}/', '_blank')" style="cursor: pointer">{{ player.residency }}, с: {{ player.residency_date|timezone:player.time_zone|date:"d.m.Y H:i" }}</font></b>
+                                <b><font size="4"  onclick="window.open('/region/{{ player.residency.pk }}/')" style="cursor: pointer">{{ player.residency }}, с: {{ player.residency_date|timezone:player.time_zone|date:"d.m.Y H:i" }}</font></b>
                             </div>
                         </div>
                         <!--партия-->
@@ -221,7 +221,7 @@
                                         <img src="{% static 'img/nopic_party.png' %}" width="50" height="50">
                                     {% endif %}
                                     </a>
-                                    <b><font size="4" style="cursor: pointer" onclick="window.open('/party/{{ player.party.pk }}/', '_blank')">{{ player.party.title }}</font></b>
+                                    <b><font size="4" style="cursor: pointer" onclick="window.open('/party/{{ player.party.pk }}/')">{{ player.party.title }}</font></b>
                                 {% else %}
                                     <b><font size="5" >беспартийный</font></b>
 <!--                                    <b><font size="5" >{% trans 'unaffiliated' %}</font></b>-->

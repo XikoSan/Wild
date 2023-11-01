@@ -126,7 +126,10 @@ def overview(request):
                 tz=pytz.timezone(player.time_zone)).strftime("%H:%M")
             b['author'] = author.pk
             b['counter'] = int(scan[1])
-            b['author_nickname'] = author.nickname
+            if len(author.nickname) > 25:
+                b['author_nickname'] = f'{author.nickname[:25]}...'
+            else:
+                b['author_nickname'] = author.nickname
             if author.image:
                 b['image_link'] = author.image.url
             else:

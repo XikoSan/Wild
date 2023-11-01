@@ -175,10 +175,10 @@
 					</tr>
 					{% for region in regions_state %}
 					<tr>
-						<td onclick="window.open('/region/{{ region.pk }}/', '_blank')">
+						<td onclick="window.open('/region/{{ region.pk }}/')">
 							<img src="/static/img/regions/{{ region.on_map_id }}.png">
 						</td>
-						<td onclick="window.open('/region/{{ region.pk }}/', '_blank')">
+						<td onclick="window.open('/region/{{ region.pk }}/')">
 							{{ region }}
 						</td>
 						<td>{% if regions_pop|has_key:region %}{{ regions_pop|dict_key:region }}{% else %}0{% endif %}</td>
@@ -207,15 +207,15 @@
 					<tr>
 						<td>
 						{% if party.image %}
-						<img onclick="window.open('/party/{{ party.pk }}', '_blank')" src="{{ party.image.url }}">
+						<img onclick="window.open('/party/{{ party.pk }}')" src="{{ party.image.url }}">
 						{% else %}
 							{% nopic_party_list player '' %}
 						{% endif %}
 						</td>
-						<td onclick="window.open('/party/{{ party.pk }}', '_blank')">{{ party.title }}</td>
-						<td>1</td>
-						<td><img src="img/gerb.png" onclick="window.open('/region/{{ region.pk }}/', '_blank')"></td>
-						<td onclick="window.open('/region/{{ region.pk }}/', '_blank')">Западные Балканы</td>
+						<td onclick="window.open('/party/{{ party.pk }}')">{{ party.title }}</td>
+						<td>{% if party_sizes|has_key:party %}{{ party_sizes|dict_key:party }}{% else %}0{% endif %}</td>
+						<td><img src="/static/img/regions/{{ party.region.on_map_id }}.png" onclick="window.open('/region/{{ region.pk }}/')"></td>
+						<td onclick="window.open('/region/{{ region.pk }}/')">{{ party.region.region_name }}</td>
 					</tr>
 					{% endfor %}
 				</tbody>

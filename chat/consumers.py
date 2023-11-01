@@ -178,6 +178,11 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 if self.player.image:
                     image_url = self.player.image.url
 
+                if len(self.player.nickname) > 25:
+                    nickname = f'{ self.player.nickname[:25] }...'
+                else:
+                    nickname = self.player.nickname
+
                 # Send message to room group
                 await self.channel_layer.group_send(
                     self.room_group_name,
@@ -185,7 +190,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                         'type': 'chat_message',
                         'id': self.player.pk,
                         'image': image_url,
-                        'nickname': self.player.nickname,
+                        'nickname': nickname,
                         'message': message,
                         'destination': destination,
                         'counter': counter

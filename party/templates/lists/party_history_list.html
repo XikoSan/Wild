@@ -31,7 +31,7 @@
                                         </a>
                                     </div>
                                     <div class="col-xs-4 col-sm-4 col-md-4">
-                                        <h3 style="cursor: pointer" onclick="window.open('/party/{{ log.party.pk }}/', '_blank')">{{ log.party.title }}</h3>
+                                        <h3 style="cursor: pointer" onclick="window.open('/party/{{ log.party.pk }}/')">{{ log.party.title }}</h3>
                                     </div>
                                     <div class="col-xs-3 col-sm-3 col-md-3">
                                         <h3>{{ log.dtime|timezone:player.time_zone|date:"d.m.Y H:i" }}</h3>

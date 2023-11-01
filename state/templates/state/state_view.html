@@ -209,7 +209,7 @@
                                         </a>
                                     </div>
                                     <div class="col-xs-5 col-sm-5 col-md-5">
-                                        <font size="4" onclick="window.open('/region/{{ region.pk }}/', '_blank')"><b>{{ region }}</b></font>
+                                        <font size="4" onclick="window.open('/region/{{ region.pk }}/')"><b>{{ region }}</b></font>
                                     </div>
                                     <div class="col-xs-3 col-sm-3 col-md-3" align="center">
                                         <b>
@@ -258,7 +258,7 @@
                                         </a>
                                     </div>
                                     <div class="col-xs-4 co сl-sm-4 col-md-4">
-                                        <font  size="4" style="cursor: pointer" onclick="window.open('/party/{{ party.pk }}/', '_blank')"><b>{{ party.title }}</b></font>
+                                        <font  size="4" style="cursor: pointer" onclick="window.open('/party/{{ party.pk }}/')"><b>{{ party.title }}</b></font>
                                     </div>
                                     <div class="col-xs-2 col-sm-2 col-md-2" align="center">
                                         <font  size="4"><b>{% if party_sizes|has_key:party %}{{ party_sizes|dict_key:party }}{% else %}0{% endif %}</b></font>

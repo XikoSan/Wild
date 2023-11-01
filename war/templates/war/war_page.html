@@ -44,7 +44,7 @@
     </div>
     <div id="wars_list" style=" height: 640px; overflow-y: auto; overflow-x: hidden;">
     {% for war in wars_list %}
-        <div class="row" onclick="window.open('/war/{{ war|get_class_name }}/{{ war.pk }}/', '_blank')" style="cursor: pointer">
+        <div class="row" onclick="window.open('/war/{{ war|get_class_name }}/{{ war.pk }}/')" style="cursor: pointer">
             <div class="col-xs-2 col-sm-2 col-md-2">
                 <img src="static/img/{{ war|get_class_name }}.png" align="left" style="width: 50px; height: 50px;">
             </div>

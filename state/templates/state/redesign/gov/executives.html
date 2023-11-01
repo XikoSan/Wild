@@ -14,7 +14,7 @@
 
 	<ul class="goverGuysModal__list">
 		{% if pres_mandate.player %}
-		<li class="goverGuysModal__item" onclick="window.open('/profile/{% localize off %}{{ pres_mandate.player.pk }}{% endlocalize %}/', '_blank')" style="cursor: pointer">
+		<li class="goverGuysModal__item" onclick="window.open('/profile/{% localize off %}{{ pres_mandate.player.pk }}{% endlocalize %}/')" style="cursor: pointer">
 			{% if pres_mandate.player.image %}
 			<img src="{{ pres_mandate.player.image.url }}">
 			{% else %}
@@ -40,7 +40,7 @@
 		{% endif %}
 
 		{% for minister in ministers %}
-		<li class="goverGuysModal__item" onclick="window.open('/profile/{% localize off %}{{ minister.player.pk }}{% endlocalize %}/', '_blank')" style="cursor: pointer">
+		<li class="goverGuysModal__item" onclick="window.open('/profile/{% localize off %}{{ minister.player.pk }}{% endlocalize %}/')" style="cursor: pointer">
 			{% if minister.player.image %}
 			<img src="{{ minister.player.image.url }}">
 			{% else %}

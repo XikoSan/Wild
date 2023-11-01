@@ -11,7 +11,7 @@
                                                                                                         -1px 0 1px #000,
                                                                                                         0 -1px 1px #000;
                                                                                                        cursor: pointer"
-              onclick="window.open('/party/{{ parl_party.party.pk }}/', '_blank')"
+              onclick="window.open('/party/{{ parl_party.party.pk }}/')"
                              data-toggle="tooltip" data-placement="top" title="{{ parl_party.party }}: {{ parl_party.seats }}%">
             {{ parl_party.party }}
         </div>
@@ -89,7 +89,7 @@
         {% for parl_party in parties %}
         <div class="row">
             <!--Получить её имя-->
-            <font size="5" style="cursor: pointer" onclick="window.open('/party/{{ parl_party.party.pk }}/', '_blank')"><b>
+            <font size="5" style="cursor: pointer" onclick="window.open('/party/{{ parl_party.party.pk }}/')"><b>
                 <!--если у партии есть аватарка-->
                 {% if parl_party.party.image %}
                 <img src="{{ parl_party.party.image.url }}" width="30" height="30">
