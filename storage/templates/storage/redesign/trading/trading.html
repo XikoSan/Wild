@@ -74,8 +74,8 @@
 	      <table class="ct__js-table" style="display: none;" id="lines">
             <tbody>
                 <tr id="offers_header">
-                    <td class="j-t-one" style="width: max-content;">{% trans 'регион' context "trading" %}</td>
-                    <td class="j-t-two ct__js-tablePC"></td>
+                    <td class="j-t-one">Товар</td>
+                    <td class="j-t-two ct__js-tablePC" style="width: max-content;">{% trans 'регион' context "trading" %}</td>
                     <td class="j-t-three" style="text-align: center;">{% trans 'количество' context "trading" %}</td>
                     <td class="j-t-four" style="text-align: center;">{% trans 'цена' context "trading" %}</td>
                     <td class="j-t-five" style="text-align: center;">{% trans 'продавец' context "trading" %}</td>
@@ -83,10 +83,10 @@
                 </tr>
 
                 <tr id="dummy_line" style="display: none; cursor: pointer" onclick="toggleActiveClass('search-buy', event)">
-                    <td class="j-t-one">
+                    <td class="j-t-one" style="text-align: left;"></td>
+                    <td class="j-t-two ct__js-tablePC">
                         <img class="offer_reg" src="" alt="">
                     </td>
-                    <td class="j-t-two ct__js-tablePC" style="text-align: left;"></td>
                     <td class="j-t-three" style="text-align: right;"></td>
                     <td class="j-t-four" style="text-align: center;"></td>
                     <td class="j-t-five" style="text-align: center;">
@@ -159,7 +159,7 @@
       <h3>{% trans 'товар' context "trading" %}:</h3>
       <label class="search-modal__label ct__wide-modal-label-select">
         <select id="trade_goods">
-          <option id="good_default" value='default' disabled selected>{% trans 'выберите товар' context "trading" %}</option>
+          <option id="good_default" value='null' selected>{% trans 'выберите товар' context "trading" %}</option>
             {% for good in goods %}
             <option id="good_{% localize off %}{{ good.pk }}{% endlocalize %}" value='{% localize off %}{{ good.pk }}{% endlocalize %}' style="display: none">{{ good.name }}</option>
             {% endfor %}
@@ -526,7 +526,7 @@
 		setEventListeners() {
 			this._searchBtn.addEventListener('click', () => {
 				this._cats = [...this._catSelect.selectedOptions].map((opt) => opt.innerText);
-				if(this._goodSelect.value != 'default'){
+				if(this._goodSelect.value != 'null'){
 				    this._good = this._goodSelect.value;
 				}
 				else{

@@ -86,13 +86,14 @@ def get_offers(request):
             good = int(good)
 
         except ValueError:
-            if owner != 'mine':
-                data = {
-                    'header': pgettext('w_trading', 'Получение офферов'),
-                    'grey_btn': pgettext('mining', 'Закрыть'),
-                    'response': pgettext('w_trading_new', 'ID товара должен быть целым числом'),
-                }
-                return JsonResponse(data)
+            pass
+            # if owner != 'mine':
+            #     data = {
+            #         'header': pgettext('w_trading', 'Получение офферов'),
+            #         'grey_btn': pgettext('mining', 'Закрыть'),
+            #         'response': pgettext('w_trading_new', 'ID товара должен быть целым числом'),
+            #     }
+            #     return JsonResponse(data)
 
         if good != 'null' and (Good.objects.filter(pk=good).exists() or good == -1):
             if good == -1:
@@ -102,13 +103,14 @@ def get_offers(request):
                 kwargs['offer_good'] = good_obj
 
         else:
-            if owner != 'mine':
-                data = {
-                    'header': pgettext('w_trading', 'Получение офферов'),
-                    'grey_btn': pgettext('mining', 'Закрыть'),
-                    'response': pgettext('w_trading', 'Укажите товар'),
-                }
-                return JsonResponse(data)
+            # if owner != 'mine':
+            #     data = {
+            #         'header': pgettext('w_trading', 'Получение офферов'),
+            #         'grey_btn': pgettext('mining', 'Закрыть'),
+            #         'response': pgettext('w_trading', 'Укажите товар'),
+            #     }
+            #     return JsonResponse(data)
+
             # узнаём группы товаров
             groups = request.POST.get('groups').split(',')
 
