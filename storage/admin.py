@@ -67,25 +67,16 @@ class GoodLockAdmin(admin.ModelAdmin):
         return obj.lock_storage.region.region_name
 
 
+
+class StockInline(admin.TabularInline):
+    model = Stock
+
+
 class StorageAdmin(admin.ModelAdmin):
     search_fields = ['owner__nickname', 'region__region_name']
     raw_id_fields = ('owner', 'region',)
     list_display = ['owner', 'region', ]
-
-    fields = ['get_fields',]
-
-    def get_fields(self, req, obj):
-        fields = (
-            ('owner', 'region'),
-            ('deleted'),
-            ('level', 'was_moved'),
-            ('cash'),
-        )
-        for type in Storage.types:
-            for good in getattr(Storage, type):
-                fields = fields + ((good, good + '_cap'),)
-
-        return fields
+    inlines = [StockInline]
 
 
 class CashLockAdmin(admin.ModelAdmin):
