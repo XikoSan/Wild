@@ -10,6 +10,13 @@
 {% load get_key_list %}
 
 {% block content %}
+<style>
+.with_value {
+    color: var(--c10two);
+    cursor: pointer;
+    border-bottom: 1px dashed var(--c10two);
+}
+</style>
   <section class="trading">
     <!--Заголовок страницы-->
 		<h1 class="trading__title ct__page-title">{% trans 'Торговля' context "trading" %}</h1>
@@ -561,6 +568,16 @@
 
 	const filters = new ActiveFilters();
 	filters.setEventListeners();
+
+	function handleStocksClick() {
+
+        const stocksValueElement = document.getElementById('stocks_value');
+        const value = parseInt(stocksValueElement.innerText);
+
+        if (!isNaN(value)) {
+            $('#count').val(value);
+        }
+    }
 
 </script>
 {% endblock %}

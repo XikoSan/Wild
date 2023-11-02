@@ -32,6 +32,8 @@ jQuery(document).ready(function ($) {
             $("#buy_row").show();
 
             $("#stocks").hide();
+            $("#stocks").removeClass("with_value");
+            document.getElementById('stocks').removeEventListener('click', handleStocksClick);
             $('#count').attr("max", 2147483647);
         }
         else{
@@ -39,6 +41,8 @@ jQuery(document).ready(function ($) {
             $("#stocks").show();
 
             if($('#good').val() !== null){
+                document.getElementById('stocks').addEventListener('click', handleStocksClick);
+                $("#stocks").addClass("with_value");
                 $("#stocks_value").html( numberWithSpaces(total_stocks[document.getElementById('create_default_storage').dataset.value][$('#good').val()]) );
                 $('#count').attr("max", total_stocks[document.getElementById('create_default_storage').dataset.value][$('#good').val()]);
             }
@@ -64,6 +68,10 @@ jQuery(document).ready(function ($) {
         // ставим товар по умолчанию
         $('#good').val('default');
         $('#create_good_default').show();
+
+        $("#stocks").removeClass("with_value");
+        document.getElementById('stocks').removeEventListener('click', handleStocksClick);
+
         document.getElementById('accept').disabled = true
 
         if($('#action').val() == 'sell'){
@@ -98,6 +106,9 @@ jQuery(document).ready(function ($) {
         document.getElementById('accept').disabled = false
 
         if($('#action').val() == 'sell'){
+            document.getElementById('stocks').addEventListener('click', handleStocksClick);
+            $("#stocks").addClass("with_value");
+
             if(total_stocks[document.getElementById('create_default_storage').dataset.value][$('#good').val()] !== undefined){
                 $("#stocks_value").html( numberWithSpaces(total_stocks[document.getElementById('create_default_storage').dataset.value][$('#good').val()]) );
                 $('#count').attr("max", total_stocks[document.getElementById('create_default_storage').dataset.value][$('#good').val()]);
