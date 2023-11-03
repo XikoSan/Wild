@@ -131,7 +131,7 @@ def do_mining(request):
             goods = [player.region.oil_mark.name_ru]
             ret_stocks, ret_st_stocks = get_stocks(storage, goods)
             # облагаем налогом добытую нефть
-            total_oil = (count / 10) * 20
+            total_oil = (count / 10) * 20 * (1+ player.endurance * 0.01)
 
             if not player.account.date_joined + datetime.timedelta(days=7) > timezone.now():
                 taxed_oil = State.get_taxes(player.region, total_oil, 'oil', player.region.oil_mark)
@@ -206,7 +206,7 @@ def do_mining(request):
 
             for mineral in fossils:
                 # облагаем налогом добытую руду
-                total_ore = (count / 50) * mineral.percent
+                total_ore = (count / 50) * mineral.percent * (1+ player.endurance * 0.01)
                 # экскавация
                 if Excavation.objects.filter(player=player, level__gt=0).exists():
                     total_ore = Excavation.objects.get(player=player).apply({'sum': total_ore})
