@@ -12,6 +12,7 @@ from storage.models.storage import Storage
 from storage.views.storage.locks.get_storage import get_stocks
 from wild_politics.settings import JResponse
 from skill.models.excavation import Excavation
+from skill.models.fracturing import Fracturing
 from django.utils.translation import pgettext
 import redis
 from storage.models.stock import Stock, Good
@@ -132,6 +133,10 @@ def do_mining(request):
             ret_stocks, ret_st_stocks = get_stocks(storage, goods)
             # облагаем налогом добытую нефть
             total_oil = (count / 10) * 20 * (1+ player.endurance * 0.01)
+
+            # гидроразрыв
+            if Fracturing.objects.filter(player=player, level__gt=0).exists():
+                total_oil = Fracturing.objects.get(player=player).apply({'sum': total_oil})
 
             if not player.account.date_joined + datetime.timedelta(days=7) > timezone.now():
                 taxed_oil = State.get_taxes(player.region, total_oil, 'oil', player.region.oil_mark)
