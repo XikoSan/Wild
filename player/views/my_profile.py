@@ -95,8 +95,12 @@ def my_profile(request):
 
 
     ava_border = None
+    png_use = False
     if AvaBorderOwnership.objects.filter(in_use=True, owner=player).exists():
-        ava_border = AvaBorderOwnership.objects.get(in_use=True, owner=player).border
+        border = AvaBorderOwnership.objects.get(in_use=True, owner=player)
+
+        ava_border = border.border
+        png_use = border.png_use
 
     # ---------------------
     cursor = connection.cursor()
@@ -170,7 +174,9 @@ def my_profile(request):
         'party_back': party_back,
         'full_auto': full_auto,
         'wiki_hide': wiki_hide,
+
         'ava_border': ava_border,
+        'png_use': png_use,
 
     })
     return response

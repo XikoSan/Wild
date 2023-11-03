@@ -60,8 +60,13 @@ def view_profile(request, pk):
     # ---------------------
 
     ava_border = None
+    png_use = False
     if AvaBorderOwnership.objects.filter(in_use=True, owner=char).exists():
-        ava_border = AvaBorderOwnership.objects.get(in_use=True, owner=char).border
+        border = AvaBorderOwnership.objects.get(in_use=True, owner=char)
+
+        ava_border = border.border
+        png_use = border.png_use
+
 
     party_back = True
 
@@ -84,4 +89,5 @@ def view_profile(request, pk):
 
                                   'page_name': char.nickname,
                                   'ava_border': ava_border,
+                                  'png_use': png_use,
                                   })
