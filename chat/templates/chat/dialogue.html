@@ -50,7 +50,7 @@
 							</div>
 							<div class="overview__chat-message-body overview__chat-message-body--dialog">
 								<!--текст сообщения-->
-							  {% if '/stickers/' in message|dict_key:'content' %}
+							  {% if '/stickers/' in message|dict_key:'content' or message|dict_key:'user_pic' %}
 								  {% autoescape off %}
 							  <p>{{ message|dict_key:'content' }}</p>
 								  {% endautoescape %}

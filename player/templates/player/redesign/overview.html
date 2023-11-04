@@ -728,7 +728,7 @@
                 </div>
                 <div class="overview__chat-message-body">
                   <!--текст сообщения-->
-                  {% if '/stickers/' in message|dict_key:'content' %}
+                  {% if '/stickers/' in message|dict_key:'content' or message|dict_key:'user_pic' %}
                       {% autoescape off %}
                   <p {% if player.account.groups.all.0.name == "chat_moderator" %}class="moder"{% endif %}>{{ message|dict_key:'content' }}</p>
                       {% endautoescape %}

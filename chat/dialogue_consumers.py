@@ -282,6 +282,12 @@ class ChatConsumer(AsyncWebsocketConsumer):
         if (not message or not re.search('[^\s]', message)) and (not sticker):
             return
 
+        image_extensions = ['.jpg', '.jpeg', '.png', '.gif']
+        if message and \
+                message[:4] == 'http' and \
+                    any(message.lower().endswith(extension) for extension in image_extensions):
+            message = '<img src="' + message + '" width="250" height="250">'
+
         sticker_only = False
         if not message and sticker:
             message = sticker

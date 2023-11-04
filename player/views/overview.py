@@ -136,14 +136,26 @@ def overview(request):
                 tz=pytz.timezone(player.time_zone)).strftime("%H:%M")
             b['author'] = author.pk
             b['counter'] = int(scan[1])
+
             if len(author.nickname) > 25:
                 b['author_nickname'] = f'{author.nickname[:25]}...'
             else:
                 b['author_nickname'] = author.nickname
+
             if author.image:
                 b['image_link'] = author.image.url
             else:
                 b['image_link'] = 'nopic'
+
+            b['user_pic'] = False
+            # если сообщение - ссылка на изображение
+            image_extensions = ['.jpg', '.jpeg', '.png', '.gif']
+
+            from player.logs.print_log import log
+
+            if any(extension in b['content'].lower() for extension in image_extensions):
+                log(b['content'])
+                b['user_pic'] = True
 
             messages.append(b)
 
@@ -232,59 +244,59 @@ def overview(request):
             delay_in_sec=86400
         )
 
-    call_donut_message = False
-
-    if SocialToken.objects.filter(account__user=player.account, account__provider='vk').exists():
-        session = vk.Session(
-            access_token=SocialToken.objects.get(account__user=player.account, account__provider='vk'))
-        vk_api = vk.API(session)
-
-        from player.logs.print_log import log
-
-        try:
-            # проверяем, что подписка вообще есть
-            if vk_api.donut.isDon(
-                    owner_id="-164930433",
-                    v='5.131',
-            ) == 1:
-
-                response = vk_api.donut.getSubscription(
-                    owner_id="-164930433",
-                    v='5.131',
-                )
-
-                # если за последний месяц не было логов наград
-                if not DonutLog.objects.filter(
-                        player=player,
-                        dtime__gte=datetime.datetime.now() - relativedelta(months=1)
-                ).exists():
-
-                    # время, к которому прибавляем месяц
-                    if player.premium > timezone.now():
-                        from_time = player.premium
-                    else:
-                        from_time = timezone.now()
-                    # наичисляем месяц према
-                    player.premium = from_time + relativedelta(months=1)
-
-                    log = DonutLog(
-                        player=player,
-                        dtime=datetime.datetime.now()
-                    )
-                    log.save()
-                    # начисляем золото на остаток доната
-                    gold_sum = (int(response["amount"]) - 40) * 30
-
-                    player.gold += gold_sum
-
-                    gold_log = GoldLog(player=player, gold=gold_sum, activity_txt='donut')
-                    gold_log.save()
-
-                    player.save()
-                    call_donut_message = True
-
-        except VkAPIError as e:
-            pass
+    # call_donut_message = False
+    #
+    # if SocialToken.objects.filter(account__user=player.account, account__provider='vk').exists():
+    #     session = vk.Session(
+    #         access_token=SocialToken.objects.get(account__user=player.account, account__provider='vk'))
+    #     vk_api = vk.API(session)
+    #
+    #     from player.logs.print_log import log
+    #
+    #     try:
+    #         # проверяем, что подписка вообще есть
+    #         if vk_api.donut.isDon(
+    #                 owner_id="-164930433",
+    #                 v='5.131',
+    #         ) == 1:
+    #
+    #             response = vk_api.donut.getSubscription(
+    #                 owner_id="-164930433",
+    #                 v='5.131',
+    #             )
+    #
+    #             # если за последний месяц не было логов наград
+    #             if not DonutLog.objects.filter(
+    #                     player=player,
+    #                     dtime__gte=datetime.datetime.now() - relativedelta(months=1)
+    #             ).exists():
+    #
+    #                 # время, к которому прибавляем месяц
+    #                 if player.premium > timezone.now():
+    #                     from_time = player.premium
+    #                 else:
+    #                     from_time = timezone.now()
+    #                 # наичисляем месяц према
+    #                 player.premium = from_time + relativedelta(months=1)
+    #
+    #                 log = DonutLog(
+    #                     player=player,
+    #                     dtime=datetime.datetime.now()
+    #                 )
+    #                 log.save()
+    #                 # начисляем золото на остаток доната
+    #                 gold_sum = (int(response["amount"]) - 40) * 30
+    #
+    #                 player.gold += gold_sum
+    #
+    #                 gold_log = GoldLog(player=player, gold=gold_sum, activity_txt='donut')
+    #                 gold_log.save()
+    #
+    #                 player.save()
+    #                 call_donut_message = True
+    #
+    #     except VkAPIError as e:
+    #         pass
 
     assistant_name = ('Ann', 'Анна')
 
@@ -299,7 +311,7 @@ def overview(request):
 
         'player': player,
         'wiki_hide': wiki_hide,
-        'call_donut_message': call_donut_message,
+        # 'call_donut_message': call_donut_message,
 
         'region_parties': region_parties,
         'world_parties': world_parties,

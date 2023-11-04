@@ -49,6 +49,12 @@ def tuple_to_messages(player, messages, tuple, r):
         else:
             b['image_link'] = 'nopic'
 
+        b['user_pic'] = False
+        # если сообщение - ссылка на изображение
+        image_extensions = ['.jpg', '.jpeg', '.png', '.gif']
+        if any(extension in b['content'].lower() for extension in image_extensions):
+            b['user_pic'] = True
+
         messages.append(b)
 
     return messages
