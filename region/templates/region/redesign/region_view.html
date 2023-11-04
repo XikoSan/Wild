@@ -182,11 +182,10 @@
       </div><!--конец инфа в топ блоке-->
 
     </div><!--конец ТОП блок-->
-
 		<div class="party__regionInfo">
 			<div class="party__regionInfo-block">
-                <p>Жителей: <span>{{ players_count }}</span></p>
-                <p>Граждан: <span>{{ residents_count }}</span></p>
+                <p>Жителей: <span><a style="color: var(--c10two);" href="/region/{{ region.pk }}/players/">{{ players_count }}</a></span></p>
+                <p>Граждан: <span><a style="color: var(--c10two);" href="/region/{{ region.pk }}/citizens/">{{ residents_count }}</a></span></p>
                 <p>Партий: <span>{{ parties_count }}</span></p>
 			</div>
 
