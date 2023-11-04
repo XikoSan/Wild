@@ -24,12 +24,8 @@ def world_online_list(request):
     # список айди игроков
     chars_pk_list = []
 
-    from player.logs.print_log import log
-
     for region in all_regions:
         dummy, dummy2, players_online = get_region_online(region)
-
-        log(players_online)
 
         for char in players_online:
             chars_pk_list.append(char.pk)
