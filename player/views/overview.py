@@ -61,20 +61,30 @@ def overview(request):
     else:
         state_parties = region_parties
 
+    all_regions = Region.objects.only('pk').all()
     # население
     world_pop = Player.objects.all().count()
 
+    # мировой онлайн
+    regions_pop_dict = {}
+    regions_online_dict = {}
+
+    world_online = 0
+    for region in all_regions:
+        regions_pop_dict[region], regions_online_dict[region] = get_region_online(region)
+        world_online += regions_online_dict[region]
+
     # население и онлайн рега
-    region_pop, region_online = get_region_online(player.region)
+    region_pop = regions_pop_dict[player.region]
+    region_online = regions_online_dict[player.region]
 
     # население и онлайн госа
     if player.region.state:
         state_pop = 0
         state_online = 0
         for st_region in regions_state:
-            region_pop_t, region_online_t = get_region_online(st_region)
-            state_pop += region_pop_t
-            state_online += region_online_t
+            state_pop += regions_pop_dict[st_region]
+            state_online += regions_online_dict[st_region]
     else:
         state_pop = region_pop
         state_online = region_online
@@ -296,6 +306,7 @@ def overview(request):
         'state_parties': state_parties,
 
         'world_pop': world_pop,
+        'world_online': world_online,
 
         'state_pop': state_pop,
         'state_online': state_online,
@@ -305,7 +316,7 @@ def overview(request):
 
         'world_states': world_states,
 
-        'regions_count': Region.objects.all().count(),
+        'regions_count': all_regions.count(),
         'world_free': Region.objects.filter(state=None).count(),
 
         'parties_list': parties_list,
