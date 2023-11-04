@@ -71,7 +71,7 @@ def overview(request):
 
     world_online = 0
     for region in all_regions:
-        regions_pop_dict[region], regions_online_dict[region] = get_region_online(region)
+        regions_pop_dict[region], regions_online_dict[region], players_online = get_region_online(region)
         world_online += regions_online_dict[region]
 
     # население и онлайн рега

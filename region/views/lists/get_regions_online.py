@@ -30,6 +30,7 @@ def get_region_online(region):
 
     region_pop = 0
     region_online = 0
+    players_online = []
 
     with_timezone = timezone.now().astimezone(pytz.timezone(TIME_ZONE))
 
@@ -56,6 +57,7 @@ def get_region_online(region):
             pk_list = []
             for char in characters_pk:
                 pk_list.append(str(char.pk))
+                players_online.append(char)
             # по списку pk игроков мы получаем их онлайн в том же порядке
             online_list = r.hmget('online', pk_list)
 
@@ -81,4 +83,4 @@ def get_region_online(region):
 
         r.hset('region_' + str(region.pk) + '_online', 'dtime', str(timezone.now().timestamp()).split('.')[0])
 
-    return region_pop, region_online
+    return region_pop, region_online, players_online

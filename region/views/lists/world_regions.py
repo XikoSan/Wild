@@ -52,7 +52,7 @@ def world_regions_list(request):
         # почему-то строкой выше айди складывается в формате (123,)
         pop_region.pk = pop_region.pk[0]
 
-        pop_region.pop, pop_region.online = get_region_online(region)
+        pop_region.pop, pop_region.online, players_online = get_region_online(region)
 
         regions_with_pop.append(pop_region)
 

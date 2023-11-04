@@ -6,6 +6,7 @@ from player.views.eula import eula
 from player.views.game_event.halloween import halloween
 from player.views.lists.region_players import region_players_list
 from player.views.lists.world_players import world_players_list
+from player.views.lists.world_online import world_online_list
 from player.views.repost_reward import repost_reward
 from player.views.skills.up_skill import up_skill
 from .views.change_back_allow import change_back_allow
@@ -51,6 +52,8 @@ urlpatterns = [
 
     # открытие списка всех игроков
     url(r'^world/players/', world_players_list, name='world_players_list'),
+    # открытие списка всех игроков
+    url(r'^world/online/', world_online_list, name='world_online_list'),
     # открытие списка населения региона
     url(r'^region/(?P<region_pk>\d+)/players/', region_players_list, name='region_players_list'),
     # открытие списка граждан региона
