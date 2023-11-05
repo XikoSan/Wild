@@ -911,6 +911,10 @@
       display_modal('notify', 'VK Donut', 'Спасибо за ваш вклад в проект! Премиум-аккаунт и золото уже начислены на ваш счёт. Приятной игры!', null, 'Закрыть');
       {% endif %}
 
+      {% if reward_message %}
+      display_modal('notify', 'Твоя награда!', '{{ reward_message }}', null, 'Закрыть');
+      {% endif %}
+
   }
 
   document.addEventListener("DOMContentLoaded", ready);

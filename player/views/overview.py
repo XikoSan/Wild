@@ -35,6 +35,7 @@ from state.models.parliament.parliament_voting import ParliamentVoting
 from state.models.state import State
 from war.models.wars.war import War
 from wild_politics.settings import TIME_ZONE
+from player.views.old_server_reward import old_server_rewards
 
 
 # главная страница
@@ -241,6 +242,8 @@ def overview(request):
             delay_in_sec=86400
         )
 
+    player, reward_message = old_server_rewards(player)
+
     # call_donut_message = False
     #
     # if SocialToken.objects.filter(account__user=player.account, account__provider='vk').exists():
@@ -308,7 +311,6 @@ def overview(request):
 
         'player': player,
         'wiki_hide': wiki_hide,
-        # 'call_donut_message': call_donut_message,
 
         'region_parties': region_parties,
         'world_parties': world_parties,
@@ -355,6 +357,8 @@ def overview(request):
         'has_event': has_event,
 
         'assistant_name': assistant_name,
+
+        'reward_message': reward_message,
     })
 
     # r.flushdb()
