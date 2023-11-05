@@ -34,7 +34,7 @@ def get_region_online(region):
 
     with_timezone = timezone.now().astimezone(pytz.timezone(TIME_ZONE))
 
-    if dtime and dtime > with_timezone + timedelta(hours=-1):
+    if dtime and dtime > with_timezone + timedelta(seconds=-1):
 
         pop_json_dict = r.hget('region_' + str(region.pk) + '_online', 'pop_dict')
         if pop_json_dict:
