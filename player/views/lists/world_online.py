@@ -24,26 +24,15 @@ def world_online_list(request):
     # список айди игроков
     chars_pk_list = []
 
-    from player.logs.print_log import log
-
     for region in all_regions:
         dummy, dummy2, players_online = get_region_online(region)
 
-        log(players_online)
-
-        for char in players_online:
-            chars_pk_list.append(char.pk)
-
-        log(chars_pk_list)
-
+        for char_pk in players_online:
+            chars_pk_list.append(char_pk)
 
     players = Player.objects.filter(banned=False, pk__in=chars_pk_list).order_by('-pk')
 
-    log(players)
-
     lines = get_thing_page(players, page, 50)
-
-    log(lines)
 
     header = {
 

@@ -34,7 +34,7 @@ def get_region_online(region):
 
     with_timezone = timezone.now().astimezone(pytz.timezone(TIME_ZONE))
 
-    if dtime and dtime > with_timezone + timedelta(seconds=-1):
+    if dtime and dtime > with_timezone + timedelta(hours=-1):
 
         pop_json_dict = r.hget('region_' + str(region.pk) + '_online', 'pop_dict')
         if pop_json_dict:
@@ -45,6 +45,11 @@ def get_region_online(region):
         if online_json_dict:
             # получаем задампленный словарь онлойна игроков
             region_online = json.loads(online_json_dict)
+
+        players_json_dict = r.hget('region_' + str(region.pk) + '_online', 'players_list')
+        if players_json_dict:
+            # получаем задампленный словарь онлойна игроков
+            players_online = json.loads(players_json_dict)
 
     else:
         characters_pk = Player.objects.only('pk', 'region').filter(banned=False, region=region)
@@ -57,7 +62,7 @@ def get_region_online(region):
             pk_list = []
             for char in characters_pk:
                 pk_list.append(str(char.pk))
-                players_online.append(char)
+                players_online.append(str(char.pk))
             # по списку pk игроков мы получаем их онлайн в том же порядке
             online_list = r.hmget('online', pk_list)
 
@@ -80,6 +85,9 @@ def get_region_online(region):
 
         o_json = json.dumps(region_online, indent=2, default=str)
         r.hset('region_' + str(region.pk) + '_online', 'online_dict', o_json)
+
+        o_json = json.dumps(players_online, indent=2, default=str)
+        r.hset('region_' + str(region.pk) + '_online', 'players_list', o_json)
 
         r.hset('region_' + str(region.pk) + '_online', 'dtime', str(timezone.now().timestamp()).split('.')[0])
 

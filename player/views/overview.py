@@ -151,10 +151,7 @@ def overview(request):
             # если сообщение - ссылка на изображение
             image_extensions = ['.jpg', '.jpeg', '.png', '.gif']
 
-            from player.logs.print_log import log
-
             if any(extension in b['content'].lower() for extension in image_extensions):
-                log(b['content'])
                 b['user_pic'] = True
 
             messages.append(b)
