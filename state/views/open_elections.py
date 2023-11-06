@@ -76,7 +76,7 @@ def open_elections(request, parl_pk):
             return redirect('government')
 
         # отправляем в форму
-        return render(request, 'state/elections.html',
+        return render(request, 'state/redesign/elections.html',
                       {'player': player,
                        'partys': parties,
                        'state': state,
