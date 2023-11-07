@@ -18,6 +18,8 @@ from region.views.distance_counting import distance_counting
 from region.views.time_in_flight import time_in_flight
 from wild_politics.settings import JResponse
 from region.models.map_shape import MapShape
+from region.views.lists.get_regions_online import get_region_online
+
 
 
 # главная страница
@@ -101,10 +103,21 @@ def map(request):
 
     else:
         shapes_dict = {}
+        online_dict = {}
+        min_online = 0
+        max_online = 0
         shapes = MapShape.objects.all()
 
         for region in regions:
             shapes_dict[region.pk] = shapes.get(region=region)
+            dummy, online_dict[region.pk], dummy2 = get_region_online(region)
+
+            if online_dict[region.pk] > max_online:
+                max_online = online_dict[region.pk]
+
+            if online_dict[region.pk] < min_online:
+                min_online = online_dict[region.pk]
+
 
         groups = list(player.account.groups.all().values_list('name', flat=True))
         page = 'region/map.html'
@@ -117,6 +130,10 @@ def map(request):
             'player': player,
             'regions': regions,
             'shapes_dict': shapes_dict,
+
+            'online_dict': online_dict,
+            'min_online': min_online,
+            'max_online': max_online,
         })
 
         # if player_settings:
