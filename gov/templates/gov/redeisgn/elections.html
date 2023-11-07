@@ -22,7 +22,7 @@
 
 		<!--Блок таблицы-->
     <div class="ct__js-table-container" id="js-ct-table-1">
-		<h1 class="ct__js-table-title ct__page-title">Выборы: {{ state.title }}</h1>
+		<h1 class="ct__js-table-title ct__page-title">Выборы президента: {{ state.title }}</h1>
 		<!--кнопка открытия настроек-->
 		<button class="ct__js-modal-sett-open">
 			<svg version="1.0" xmlns="http://www.w3.org/2000/svg"
@@ -95,21 +95,21 @@
 
 	        <tr>
 			  <td class="j-t-image"></td>
-			  <td class="j-t-title">Партия</td>
+			  <td class="j-t-title">Кандидат</td>
 			  <td class="j-t-action"></td>
 	        </tr>
 
-			{% for candidate in partys %}
+			{% for candidate in candidates %}
 			<tr>
 			  <td class="j-t-image" onclick="window.open('/party/{% localize off %}{{ candidate.pk }}{% endlocalize %}/')">
 				{% if candidate.image %}
 				<img src="{{ candidate.image.url }}">
 				{% else %}
-				{% nopic_party_list player '' %}
+				{% nopic_list player '' %}
 				{% endif %}
 			  </td>
 			  <td class="j-t-title" onclick="window.open('/party/{% localize off %}{{ candidate.pk }}{% endlocalize %}/')">
-				  {{ candidate.title }}
+				  {{ candidate.nickname }}
 			  </td>
 			  <td class="j-t-action">
 				{% if vote %}
@@ -124,7 +124,7 @@
 					{% endif %}
 				{% else %}
 					{% if votingRight %}
-					<a href="{% url 'vote_elections' parl_pk=parliament.pk party_pk=candidate.pk %}">
+					<a href="{% url 'vote_pres_elections' pres_pk=president.pk cand_pk=candidate.pk %}">
 						<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="var(--c10two)" version="1.1" id="Capa_1" width="800px" height="800px" viewBox="0 0 45.402 45.402" xml:space="preserve">
 							<g>
 								<path d="M41.267,18.557H26.832V4.134C26.832,1.851,24.99,0,22.707,0c-2.283,0-4.124,1.851-4.124,4.135v14.432H4.141   c-2.283,0-4.139,1.851-4.138,4.135c-0.001,1.141,0.46,2.187,1.207,2.934c0.748,0.749,1.78,1.222,2.92,1.222h14.453V41.27   c0,1.142,0.453,2.176,1.201,2.922c0.748,0.748,1.777,1.211,2.919,1.211c2.282,0,4.129-1.851,4.129-4.133V26.857h14.435   c2.283,0,4.134-1.867,4.133-4.15C45.399,20.425,43.548,18.557,41.267,18.557z"/>

@@ -71,7 +71,7 @@ def open_pres_elections(request, pres_pk):
             return redirect('government')
 
         # отправляем в форму
-        return render(request, 'gov/elections.html',
+        return render(request, 'gov/redesign/elections.html',
                       {'player': player,
                        'candidates': voting.candidates.all(),
                        'president': president,
