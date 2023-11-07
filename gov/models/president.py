@@ -10,6 +10,7 @@ from django_celery_beat.models import ClockedSchedule, PeriodicTask, CrontabSche
 
 from player.player import Player
 from state.models.state import State
+from state.tasks import start_presidential
 
 
 class President(models.Model):
@@ -68,6 +69,8 @@ class President(models.Model):
             start_time=timezone.now()
         )
         self.save()
+
+        start_presidential(self.id)
 
     def __str__(self):
         return self.state.title
