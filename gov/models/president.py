@@ -10,8 +10,8 @@ from django_celery_beat.models import ClockedSchedule, PeriodicTask, CrontabSche
 
 from player.player import Player
 from state.models.state import State
-from state.tasks import start_presidential
 
+import state
 
 class President(models.Model):
     # государство принадлежности
@@ -70,7 +70,7 @@ class President(models.Model):
         )
         self.save()
 
-        start_presidential(self.id)
+        eval(f"state.tasks.start_presidential({self.id})")
 
     def __str__(self):
         return self.state.title
