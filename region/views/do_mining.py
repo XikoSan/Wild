@@ -100,7 +100,8 @@ def do_mining(request):
 
         if resource == 'gold':
             # если запасов ресурса недостаточно
-            if player.region.gold_has < Decimal((count / 10) * 0.01):
+            # отключено, если игрок не прошел обучение
+            if player.educated and player.region.gold_has < Decimal((count / 10) * 0.01):
                 data = {
                     # 'response': pgettext('mul_ten_enrg_req'),
                     'response': pgettext('mining', 'Запасов золота в регионе недостаточно для добычи'),
@@ -116,11 +117,13 @@ def do_mining(request):
             gold_log = GoldLog(player=player, gold=int(count / 10), activity_txt='mine')
             # mined_result['cash'] = count
 
-            player.region.gold_has -= Decimal((count / 10) * 0.01)
+            if player.educated:
+                player.region.gold_has -= Decimal((count / 10) * 0.01)
 
         elif resource == 'oil':
             # если запасов ресурса недостаточно
-            if int(player.region.oil_has * 100) < count / 10:
+            # отключено, если игрок не прошел обучение
+            if player.educated and int(player.region.oil_has * 100) < count / 10:
                 data = {
                     # 'response': pgettext('mul_ten_enrg_req'),
                     'response': pgettext('mining', 'Запасов нефти в регионе недостаточно для добычи'),
@@ -180,11 +183,13 @@ def do_mining(request):
 
                 mined_stocks_u.append(stock)
 
-            player.region.oil_has -= Decimal((count / 10) * 0.01)
+            if player.educated:
+                player.region.oil_has -= Decimal((count / 10) * 0.01)
 
         elif resource == 'ore':
             # если запасов ресурса недостаточно
-            if int(player.region.ore_has * 100) < count / 10:
+            # отключено, если игрок не прошел обучение
+            if player.educated and int(player.region.ore_has * 100) < count / 10:
                 data = {
                     # 'response': pgettext('mul_ten_enrg_req'),
                     'response': pgettext('mining', 'Запасов руды в регионе недостаточно для добычи'),
@@ -271,7 +276,8 @@ def do_mining(request):
                         else:
                             ret_st_stocks[mineral.good.size] = getattr(storage, mineral.good.size + '_cap')
 
-            player.region.ore_has -= Decimal((count / 10) * 0.01)
+            if player.educated:
+                player.region.ore_has -= Decimal((count / 10) * 0.01)
 
         if mined_result:
             # обновляем существующие запасы
