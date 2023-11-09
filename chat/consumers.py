@@ -144,7 +144,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
         if message and \
                 message[:4] == 'http' and \
                     any(message.lower().endswith(extension) for extension in image_extensions):
-            message = '<img src="' + message + '" width="250" height="250">'
+            message = '<img src="' + message + '">'
 
         sticker_only = False
         if not message and sticker:
