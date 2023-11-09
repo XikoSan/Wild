@@ -55,7 +55,7 @@
 						<div class="overview__chat-message-body">
 							<!--текст сообщения-->
 						{% if data|dict_key:'content' %}
-						  {% if '/stickers/' in data|dict_key:'content' %}
+						  {% if 'img' in data|dict_key:'content' %}
 							  {% autoescape off %}
 						  <p class="overview__chat-message-sticker">{{ data|dict_key:'content' }}</p>
 							  {% endautoescape %}
