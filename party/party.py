@@ -1,17 +1,17 @@
-import json
-import sys
 import datetime
+import json
+import pytz
+import sys
 from PIL import Image
-from django.db import models
-from django.utils import timezone
-from django.dispatch import receiver
-from django.db.models.signals import post_save, post_delete
 from django.core.files.uploadedfile import InMemoryUploadedFile
+from django.db import models
+from django.db.models.signals import post_save, post_delete, pre_save
+from django.dispatch import receiver
+from django.utils import timezone
 from django_celery_beat.models import ClockedSchedule, PeriodicTask, CrontabSchedule
+from io import BytesIO
 
 from region.models.region import Region
-
-from io import BytesIO
 
 
 # Create your models here.
@@ -34,6 +34,8 @@ class Party(models.Model):
 
     # время основания партии
     foundation_date = models.DateTimeField(default=datetime.datetime(2000, 1, 1, 0, 0), blank=True)
+    # день праймериз
+    primaries_day = models.IntegerField(default=0, verbose_name='День праймериз')
     # описание партии
     description = models.CharField(max_length=300, blank=True, null=True, verbose_name='Описание партии')
     # картинка партии
@@ -64,7 +66,7 @@ class Party(models.Model):
         # start_time = timezone.now() + datetime.timedelta(days=7)
         # clock, created = ClockedSchedule.objects.get_or_create(clocked_time=start_time)
 
-        foundation_day = self.foundation_date.weekday()
+        foundation_day = timezone.localtime(self.foundation_date, pytz.timezone('Europe/Moscow')).weekday()
 
         if foundation_day == 6:
             cron_day = 0
@@ -72,30 +74,30 @@ class Party(models.Model):
             cron_day = foundation_day + 1
 
         if CrontabSchedule.objects.filter(
-                                            minute=str(timezone.now().now().minute),
-                                            hour=str(timezone.now().now().hour),
-                                            day_of_week=cron_day,
-                                            day_of_month='*',
-                                            month_of_year='*',
-                                          ).exists():
+                minute=str(timezone.localtime(self.foundation_date, pytz.timezone('Europe/Moscow')).minute),
+                hour=str(timezone.localtime(self.foundation_date, pytz.timezone('Europe/Moscow')).hour),
+                day_of_week=cron_day,
+                day_of_month='*',
+                month_of_year='*',
+        ).exists():
 
             schedule = CrontabSchedule.objects.filter(
-                                                        minute=str(timezone.now().now().minute),
-                                                        hour=str(timezone.now().now().hour),
-                                                        day_of_week=cron_day,
-                                                        day_of_month='*',
-                                                        month_of_year='*',
-                                                       ).first()
+                minute=str(timezone.localtime(self.foundation_date, pytz.timezone('Europe/Moscow')).minute),
+                hour=str(timezone.localtime(self.foundation_date, pytz.timezone('Europe/Moscow')).hour),
+                day_of_week=cron_day,
+                day_of_month='*',
+                month_of_year='*',
+            ).first()
 
         else:
 
             schedule = CrontabSchedule.objects.create(
-                                                        minute=str(timezone.now().now().minute),
-                                                        hour=str(timezone.now().now().hour),
-                                                        day_of_week=cron_day,
-                                                        day_of_month='*',
-                                                        month_of_year='*',
-                                                       )
+                minute=str(timezone.localtime(self.foundation_date, pytz.timezone('Europe/Moscow')).minute),
+                hour=str(timezone.localtime(self.foundation_date, pytz.timezone('Europe/Moscow')).hour),
+                day_of_week=cron_day,
+                day_of_month='*',
+                month_of_year='*',
+            )
 
         self.task = PeriodicTask.objects.create(
             name='Начало праймериз, id ' + str(self.pk),
@@ -127,11 +129,17 @@ class Party(models.Model):
 
 
 # сигнал прослушивающий создание партии, после этого формирующий таску
+@receiver(pre_save, sender=Party)
+def save_pre(sender, instance, raw, using, update_fields, **kwargs):
+    instance.primaries_day = timezone.localtime(instance.foundation_date, pytz.timezone('Europe/Moscow')).weekday()
+
+# сигнал прослушивающий создание партии, после этого формирующий таску
 @receiver(post_save, sender=Party)
 def save_post(sender, instance, created, **kwargs):
     # print(f'Sender: {sender}, Instance {instance}, Created {created}, {kwargs}')
-    if created:
-        instance.setup_task()
+    # if created:
+    #     instance.setup_task()
+    pass
 
 # сигнал удаляющий таску
 @receiver(post_delete, sender=Party)

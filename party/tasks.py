@@ -11,8 +11,81 @@ from party.primaries.primaries_bulletin import PrimBulletin
 from party.primaries.primaries_leader import PrimariesLeader
 from party.logs.party_apply import PartyApply
 from party.position import PartyPosition
+from datetime import timedelta
 from wild_politics.settings import TIME_ZONE
 from party.logs.membership_log import MembershipLog
+from datetime import time
+from django.db.models import Q
+
+
+# таска, создающая другие фоновые задачи за 12 часов:
+# - задачи праймериз
+# - задачи выборов
+# - задачи през выборов
+@shared_task(name="tasks_observer")
+def tasks_observer():
+
+    from player.logs.print_log import log
+
+    # получаем текущее время
+    current_day = datetime.datetime.now().weekday()
+
+    start_time = datetime.datetime.now().time()
+    end_time = (datetime.datetime.combine(datetime.datetime.min, start_time) + timedelta(hours=1)).time()
+
+    # start_time = time(13, 0)  # начальное время интервала (21:00)
+    # end_time = time(13, 59)  # конечное время интервала (22:00)
+
+    log(current_day)
+    log(start_time)
+    log(end_time)
+
+    # задачи начала праймериз:
+    # получаем партии, день недели и час начала праймериз которых совпадают с текущим
+    parties = Party.objects.filter(
+                                    Q(primaries_day=current_day)
+                                    & Q(foundation_date__time__gte=start_time)
+                                    & Q(foundation_date__time__lt=end_time)
+                                   )
+    log(parties)
+    # для каждой партии:
+    for party in parties:
+    # если минута совпадает с текущей - стартовать праймериз прямо сейчас
+        if party.foundation_date.minute == timezone.now().minute:
+            start_primaries(party.pk)
+
+    # иначе - создаём таску старта праймериз
+        else:
+            party.setup_task()
+
+
+    # задачи завершения праймериз:
+    # получаем партии, день недели праймериз которых был вчера, а час совпадают с текущим
+    if current_day == 0:
+        current_day = 6
+    else:
+        current_day -= 1
+
+    log(current_day)
+    log(start_time)
+    log(end_time)
+
+    parties = Party.objects.filter(
+                                    Q(primaries_day=current_day) &
+                                    Q(foundation_date__time__gte=start_time) &
+                                    Q(foundation_date__time__lt=end_time)
+                                   )
+    log(f'завершение: {parties}')
+
+    for party in parties:
+    # если минута совпадает с текущей - завершить праймериз прямо сейчас
+        if party.foundation_date.minute == timezone.now().minute:
+            finish_primaries(party.pk)
+    # иначе - создаём таску завершения праймериз
+        else:
+            if Primaries.objects.filter(party=party, running=True).exists():
+                primaries = Primaries.objects.get(party=party, running=True)
+                primaries.setup_task()
 
 
 # таска выключающая праймериз
@@ -22,12 +95,9 @@ def finish_primaries(party_id):
     if not Party.objects.filter(pk=party_id).exists():
         return
     party = Party.objects.get(pk=party_id)
-    if party.task is not None:
-        party.task.enabled = True
-        party.task.save()
+
     # выключаем праймериз
-    Primaries.objects.filter(party=party, running=True).update(running=False, prim_end=timezone.now())
-    primaries = Primaries.objects.get(party=party, task__isnull=False)
+    primaries = Primaries.objects.get(party=party, running=True)
 
     # все члены партии
     candidates = Player.objects.filter(party=party)
@@ -87,6 +157,21 @@ def finish_primaries(party_id):
     leader = PrimariesLeader(party=party, leader=current_leader)
     leader.save()
 
+    primaries.running = False
+    primaries.prim_end = timezone.now()
+
+    task_id = None
+    if primaries.task:
+        task_id = primaries.task.pk
+        primaries.task = None
+
+    primaries.save()
+
+    if task_id:
+        PeriodicTask.objects.filter(pk=task_id).delete()
+
+
+
 
 # таска включающая праймериз
 @shared_task(name="start_primaries")
@@ -94,22 +179,11 @@ def start_primaries(party_id):
     party = Party.objects.select_related('task').prefetch_related('task__interval').only('task__interval__every').get(
         pk=party_id)
 
-    # получаем таску из предыдущих праймериз, чтобы переложить в новые
-    old_primaries = None
-    if Primaries.objects.filter(party=party, task__isnull=False).exists():
-        old_primaries = Primaries.objects.select_related('task').get(party=party, task__isnull=False)
+    Primaries.objects.select_related('task').get_or_create(party=party, prim_start=timezone.now())
 
-    primaries, created = Primaries.objects.select_related('task').get_or_create(party=party,
-                                                                                prim_start=timezone.now())
+    if party.task:
+        task_id = party.task.pk
+        party.task = None
+        party.save()
 
-    if old_primaries:
-        primaries.task = old_primaries.task
-        old_primaries.task = None
-        old_primaries.save()
-
-    if primaries.task:
-        primaries.task.enabled = True
-        primaries.task.save()
-
-    primaries.running = True
-    primaries.save()
+        PeriodicTask.objects.filter(pk=task_id).delete()
