@@ -1,7 +1,7 @@
 # coding=utf-8
 import datetime
 import json
-
+import pytz
 from django.db import models
 from django.db.models.signals import post_save, post_delete
 # from io import BytesIO
@@ -10,6 +10,7 @@ from django.utils import timezone
 from django_celery_beat.models import ClockedSchedule, PeriodicTask, CrontabSchedule
 
 from state.models.parliament.parliament import Parliament
+
 
 # класс выборы
 # parliament - парламент, в который проходят выборы
@@ -29,63 +30,52 @@ class ParliamentVoting(models.Model):
     # формируем переодическую таску
     def setup_task(self):
 
-        if not PeriodicTask.objects.filter(
-                name='Конец выборов, id парла ' + str(self.parliament.pk)).exists():
+        foundation_day = timezone.localtime(self.parliament.foundation_date, pytz.timezone('Europe/Moscow')).weekday()
 
-            foundation_day = self.parliament.state.foundation_date.weekday()
+        # день недели для окончания - на один больше
+        if foundation_day == 6:
+            cron_day = 1
+        elif foundation_day == 5:
+            cron_day = 0
+        else:
+            cron_day = foundation_day + 2
 
-            # день недели для окончания - на один больше
-            if foundation_day == 6:
-                cron_day = 1
-            elif foundation_day == 5:
-                cron_day = 0
-            else:
-                cron_day = foundation_day + 2
+        if CrontabSchedule.objects.filter(
+                minute=str(timezone.localtime(self.parliament.foundation_date, pytz.timezone('Europe/Moscow')).minute),
+                hour=str(timezone.localtime(self.parliament.foundation_date, pytz.timezone('Europe/Moscow')).hour),
+                day_of_week=cron_day,
+                day_of_month='*',
+                month_of_year='*'
+        ).exists():
 
-            if CrontabSchedule.objects.filter(
-                                                minute=str(timezone.now().now().minute),
-                                                hour=str(timezone.now().now().hour),
-                                                day_of_week=cron_day,
-                                                day_of_month='*',
-                                                month_of_year='*'
-                                            ).exists():
-
-                schedule = CrontabSchedule.objects.filter(
-                    minute=str(timezone.now().now().minute),
-                    hour=str(timezone.now().now().hour),
-                    day_of_week=cron_day,
-                    day_of_month='*',
-                    month_of_year='*',
-                ).first()
-
-            else:
-
-                schedule = CrontabSchedule.objects.create(
-                    minute=str(timezone.now().now().minute),
-                    hour=str(timezone.now().now().hour),
-                    day_of_week=cron_day,
-                    day_of_month='*',
-                    month_of_year='*',
-                )
-
-            self.task = PeriodicTask.objects.create(
-                name='Конец выборов, id парла ' + str(self.parliament.pk),
-                task='finish_elections',
-                # clocked=clock,
-                one_off=False,
-                crontab=schedule,
-                args=json.dumps([self.parliament.pk]),
-                start_time=timezone.now(),
-            )
-            self.save()
+            schedule = CrontabSchedule.objects.filter(
+                minute=str(timezone.localtime(self.parliament.foundation_date, pytz.timezone('Europe/Moscow')).minute),
+                hour=str(timezone.localtime(self.parliament.foundation_date, pytz.timezone('Europe/Moscow')).hour),
+                day_of_week=cron_day,
+                day_of_month='*',
+                month_of_year='*',
+            ).first()
 
         else:
-            # убираем таску у экземпляра модели, чтобы ее могли забрать последующие
-            ParliamentVoting.objects.select_related('task').filter(parliament=self.parliament, task__isnull=False).update(
-                task=None)
 
-            self.task = PeriodicTask.objects.filter(name='Конец выборов, id парла ' + str(self.parliament.pk)).first()
-            self.save()
+            schedule = CrontabSchedule.objects.create(
+                minute=str(timezone.localtime(self.parliament.foundation_date, pytz.timezone('Europe/Moscow')).minute),
+                hour=str(timezone.localtime(self.parliament.foundation_date, pytz.timezone('Europe/Moscow')).hour),
+                day_of_week=cron_day,
+                day_of_month='*',
+                month_of_year='*',
+            )
+
+        self.task = PeriodicTask.objects.create(
+            name='Конец выборов, id парла ' + str(self.parliament.pk),
+            task='finish_elections',
+            # clocked=clock,
+            one_off=False,
+            crontab=schedule,
+            args=json.dumps([self.parliament.pk]),
+            start_time=timezone.now(),
+        )
+        self.save()
 
     def delete_task(self):
         # проверяем есть ли таска
@@ -108,8 +98,9 @@ class ParliamentVoting(models.Model):
 # сигнал прослушивающий создание праймериз, после этого формирующий таску
 @receiver(post_save, sender=ParliamentVoting)
 def save_post(sender, instance, created, **kwargs):
-    if created:
-        instance.setup_task()
+    pass
+    # if created:
+    #     instance.setup_task()
 
 
 # сигнал удаляющий таску
@@ -117,4 +108,3 @@ def save_post(sender, instance, created, **kwargs):
 def delete_post(sender, instance, using, **kwargs):
     if instance.task:
         instance.task.delete()
-

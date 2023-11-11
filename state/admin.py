@@ -72,11 +72,41 @@ class TreasuryStockAdmin(admin.ModelAdmin):
         return obj.good.name
 
 
+class ParliamentAdmin(admin.ModelAdmin):
+    list_display = ('state', 'get_elections_day', 'size')
+
+    raw_id_fields = ('state',)
+
+    fields = (
+        # шапка
+        ('state', 'size'),
+        ('foundation_date', 'get_elections_day'),
+        #
+        ('task'),
+    )
+
+    def get_elections_day(self, obj):
+        days_dict = {
+            0: "понедельник",
+            1: "вторник",
+            2: "среда",
+            3: "четверг",
+            4: "пятница",
+            5: "суббота",
+            6: "воскресенье",
+        }
+        return f'{obj.elections_day} ({days_dict[obj.elections_day]})'
+
+    get_elections_day.short_description = 'День недели'
+
+    readonly_fields=('get_elections_day',)
+
+
 # Register your models here.
 admin.site.register(State)
 admin.site.register(Treasury)
 admin.site.register(TreasuryLock, TreasuryLockAdmin)
-admin.site.register(Parliament)
+admin.site.register(Parliament, ParliamentAdmin)
 admin.site.register(ParliamentVoting, ParliamentVotingAdmin)
 admin.site.register(Bulletin)
 admin.site.register(DeputyMandate, DeputyMandateAdmin)

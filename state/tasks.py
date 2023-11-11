@@ -211,7 +211,67 @@ def finish_elections(parl_id):
             players_deputates.append(dm.player)
 
         Minister.objects.filter(state=parliament.state).exclude(player__in=players_deputates).delete()
+    if not all_votes_count == 0:
+        all_votes = Bulletin.objects.filter(voting=elections)
 
+        # словарь с партиями и количеством голосов за них
+        bulltins_dic = {}
+        # партии для исключения
+        parties_voted = []
+        # для каждой партии подсчитываем количество бюллетеней
+        for vote in all_votes:
+            if vote.party in bulltins_dic:
+                bulltins_dic[vote.party] += 1
+            else:
+                # вносим в словарик
+                bulltins_dic[vote.party] = 1
+                parties_voted.append(vote.party)
+
+        # количество розданных партийных мест
+        seats_gived = 0
+        # словарь квот партий
+        quates_dic = {}
+        # словарь полученных партией мест
+        seats_dic = {}
+        for spty in parties_voted:
+            # изначально заполняется нулями
+            seats_dic[spty] = 0
+        # пока не розданы все места в парламенте
+        while seats_gived < parliament.size:
+            # расчет словаря квот каждой партии
+            for qpty in parties_voted:
+                quates_dic[qpty] = bulltins_dic[qpty] / (2 * seats_dic[qpty] + 1)
+            # получаем партию с самой большой квотой
+            top_quate = max(quates_dic.items(), key=operator.itemgetter(1))[0]
+            # место выдано
+            seats_dic[top_quate] = seats_dic[top_quate] + 1
+            # увеличиваем счетчик
+            seats_gived += 1
+
+        # создаем парламентские партии
+        for ppty in parties_voted:
+            parliament_pty = ParliamentParty(parliament=parliament, party=ppty,
+                                             seats=floor((100 * bulltins_dic[ppty]) / all_votes_count))
+            parliament_pty.save()
+            # и выдаем мандаты
+            set_mandates(ppty.pk, parliament.pk, seats_dic[ppty])
+
+        # удаляем министров, не получивших мандаты
+        players_deputates = []
+        for dm in DeputyMandate.objects.filter(parliament=parliament.pk):
+            players_deputates.append(dm.player)
+
+        Minister.objects.filter(state=parliament.state).exclude(player__in=players_deputates).delete()
+
+    task_id = None
+    if elections.task:
+        task_id = elections.task.pk
+        elections.task = None
+
+    elections.save()
+
+    if task_id:
+        PeriodicTask.objects.filter(pk=task_id).delete()
 
 # таска включающая выборы
 @shared_task(name="start_elections")
@@ -220,24 +280,16 @@ def start_elections(parl_id):
         'task__interval__every').get(
         pk=parl_id)
 
-    # получаем таску из предыдущих праймериз, чтобы переложить в новые
-    old_elections = None
-    if ParliamentVoting.objects.filter(parliament=parliament, task__isnull=False).exists():
-        old_elections = ParliamentVoting.objects.select_related('task').get(parliament=parliament, task__isnull=False)
-
     parliament_voting, created = ParliamentVoting.objects.select_related('task').get_or_create(parliament=parliament,
                                                                                                voting_start=timezone.now())
-
-    if old_elections:
-        parliament_voting.task = old_elections.task
-        old_elections.task = None
-        old_elections.save()
-
-    if parliament_voting.task:
-        parliament_voting.task.enabled = True
-        parliament_voting.task.save()
-
     parliament_voting.running = True
+
+    if parliament.task:
+        task_id = parliament.task.pk
+        parliament.task = None
+        parliament.save()
+
+        PeriodicTask.objects.filter(pk=task_id).delete()
 
 
 # таска выключающая выборы
@@ -248,9 +300,7 @@ def finish_presidential(pres_id):
         return
     # включаем начало выборов
     president = President.objects.get(pk=pres_id)
-    if president.task is not None:
-        president.task.enabled = True
-        president.task.save()
+
     # выключаем выборы
     PresidentialVoting.objects.filter(president=president, running=True).update(running=False,
                                                                                 voting_end=timezone.now())
@@ -315,6 +365,16 @@ def finish_presidential(pres_id):
             if DeputyMandate.objects.filter(parliament=parl, is_president=True).exists():
                 DeputyMandate.objects.filter(parliament=parl, is_president=True).update(player=max_cadidate)
 
+    task_id = None
+    if elections.task:
+        task_id = elections.task.pk
+        elections.task = None
+
+    elections.save()
+
+    if task_id:
+        PeriodicTask.objects.filter(pk=task_id).delete()
+
 
 # таска включающая президентские выборы
 @shared_task(name="start_presidential")
@@ -322,11 +382,6 @@ def start_presidential(pres_id):
     president = President.objects.select_related('task').prefetch_related('task__interval').only(
         'task__interval__every').get(
         pk=pres_id)
-
-    # получаем таску из предыдущих праймериз, чтобы переложить в новые
-    old_elections = None
-    if PresidentialVoting.objects.filter(president=president, task__isnull=False).exists():
-        old_elections = PresidentialVoting.objects.select_related('task').get(president=president, task__isnull=False)
 
     voting, created = PresidentialVoting.objects.select_related('task').get_or_create(president=president,
                                                                                        voting_start=timezone.now())
@@ -349,14 +404,14 @@ def start_presidential(pres_id):
 
         voting.candidates.add(prim_leader.leader)
 
-    if old_elections:
-        voting.task = old_elections.task
-        old_elections.task = None
-        old_elections.save()
-
-    if voting.task:
-        voting.task.enabled = True
-        voting.task.save()
-
-    voting.running = True
     voting.save()
+
+    task_id = None
+    if president.task:
+        task_id = president.task.pk
+        president.task = None
+
+    president.save()
+
+    if task_id:
+        PeriodicTask.objects.filter(pk=task_id).delete()
