@@ -23,6 +23,17 @@
           <span>{{ max_online }}</span>
         </p>
       </div>
+      <div class="map__top" data-name="med_index">
+        <h2>Индекс медицины</h2>
+        <div class="map__top-bar"></div>
+        <p class="map__top-text">
+          <span>1</span>
+          <span>2</span>
+          <span>3</span>
+          <span>4</span>
+          <span>5</span>
+        </p>
+      </div>
 
 <!--      <div class="map__top" data-name="number of parties">-->
 <!--        <h2>Число партий</h2>-->
@@ -76,6 +87,22 @@
             </svg>
           </span>
           Онлайн
+        </label>
+      </div>
+
+      <div class="m-sett__form-check ct__check-box30">
+        <label>
+          <input value="med_index" type="radio" name="map-layer" class="visually-hidden">
+          <svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(--c10two)"/>
+          </svg>
+          <span>
+            <svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(--c10two)"/>
+              <path d="M6.5 4.5L4.5 6.5V20.5H18.5L20.5 18.5V4.5H6.5Z" fill="var(--c10two)" stroke="var(--c10two)"/>
+            </svg>
+          </span>
+          Индекс медицины
         </label>
       </div>
 
@@ -231,10 +258,12 @@
 
  var min_dict = {
   'online': {% localize off %}{{ min_online }}{% endlocalize %},
+  'med_index': 1,
 };
 
  var max_dict = {
   'online': {% localize off %}{{ max_online }}{% endlocalize %},
+  'med_index': 5,
 };
 
 
@@ -279,6 +308,8 @@
  region_props['{% localize off %}{{ district.on_map_id }}{% endlocalize %}'] = {};
  region_props['{% localize off %}{{ district.on_map_id }}{% endlocalize %}']['color'] = "#{% if district.state.color %}{{ district.state.color }}{% else %}{% if district.is_off %}000000{% else %}ffffff{% endif %}{% endif %}"
  region_props['{% localize off %}{{ district.on_map_id }}{% endlocalize %}']['online'] = {{ online_dict|dict_key:district.pk }};
+ region_props['{% localize off %}{{ district.on_map_id }}{% endlocalize %}']['online'] = {{ online_dict|dict_key:district.pk }};
+ region_props['{% localize off %}{{ district.on_map_id }}{% endlocalize %}']['med_index'] = {{ med_index_dict|dict_key:district.pk }};
 
  poly_list.push(region_poly_{% localize off %}{{ district.pk }}{% endlocalize %});
 
@@ -290,10 +321,6 @@
   while (elements.length > 0) {
       elements[0].parentNode.removeChild(elements[0]);
   }
-
-
-
-
 
     <!--формирование цветов на карте для переданных значений-->
 

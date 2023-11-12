@@ -1,6 +1,5 @@
 import datetime
 import json
-
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from django.shortcuts import render
@@ -8,18 +7,18 @@ from django.utils import timezone
 from django.utils.translation import ugettext as _
 from django_celery_beat.models import ClockedSchedule, PeriodicTask
 
+from factory.models.auto_produce import AutoProduce
 from player.decorators.player import check_player
 from player.logs.auto_mining import AutoMining
-from factory.models.auto_produce import AutoProduce
 from player.logs.cash_log import CashLog
 from player.player import Player
+from region.building.hospital import Hospital
+from region.models.map_shape import MapShape
 from region.models.region import Region
 from region.views.distance_counting import distance_counting
+from region.views.lists.get_regions_online import get_region_online
 from region.views.time_in_flight import time_in_flight
 from wild_politics.settings import JResponse
-from region.models.map_shape import MapShape
-from region.views.lists.get_regions_online import get_region_online
-
 
 
 # главная страница
@@ -104,12 +103,19 @@ def map(request):
     else:
         shapes_dict = {}
         online_dict = {}
+        med_index_dict = {}
+
         min_online = 0
         max_online = 0
+
         shapes = MapShape.objects.all()
+
+        hospitals = Hospital.objects.all()
 
         for region in regions:
             shapes_dict[region.pk] = shapes.get(region=region)
+
+            # онлайн регионов
             dummy, online_dict[region.pk], dummy2 = get_region_online(region)
 
             if online_dict[region.pk] > max_online:
@@ -118,6 +124,11 @@ def map(request):
             if online_dict[region.pk] < min_online:
                 min_online = online_dict[region.pk]
 
+            # медицина регионов
+            if hospitals.filter(region=region).exists():
+                med_index_dict[region.pk] = hospitals.get(region=region).top
+            else:
+                med_index_dict[region.pk] = 1
 
         groups = list(player.account.groups.all().values_list('name', flat=True))
         page = 'region/map.html'
@@ -134,6 +145,8 @@ def map(request):
             'online_dict': online_dict,
             'min_online': min_online,
             'max_online': max_online,
+
+            'med_index_dict': med_index_dict,
         })
 
         # if player_settings:
