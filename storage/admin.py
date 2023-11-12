@@ -102,7 +102,7 @@ class AuctionLotAdmin(admin.ModelAdmin):
     list_display = ['get_good', 'count', ]
 
     def get_good(self, obj):
-        return obj.auction.get_good_display()
+        return obj.auction.good.name_ru
 
     get_good.short_description = 'Товар'
 
