@@ -24,6 +24,7 @@ from factory.models.component import Component
 def factory(request):
     # получаем персонажа
     player = Player.get_instance(account=request.user)
+    storage_here = None
 
     premium = False
 
@@ -42,7 +43,15 @@ def factory(request):
     good_names = {}
     good_by_type = {}
 
+    first_storage = None
+
     for storage in storages:
+        if not first_storage:
+            first_storage = storage
+
+        if player.region == storage.region:
+            storage_here = storage
+
         total_stocks[storage.pk] = {}
         total_stocks[storage.pk]['Наличные'] = storage.cash
         good_names['Наличные'] = pgettext('goods', 'Наличные')
@@ -96,6 +105,15 @@ def factory(request):
     if AutoProduce.objects.filter(player=player).exists():
         auto_produce = AutoProduce.objects.get(player=player)
 
+    # если есть производство на авто-показываем используемый склад
+    if auto_produce:
+        first_storage = auto_produce.storage
+    # если мы в регионе со складом - показываем его
+    # инчае - оставляем как есть
+    elif storage_here:
+        first_storage = storage_here
+
+
     groups = list(player.account.groups.all().values_list('name', flat=True))
     page = 'factory/factory.html'
 
@@ -109,6 +127,7 @@ def factory(request):
         'player': player,
         'premium': premium,
         'auto': auto_produce,
+        'first_storage': first_storage,
 
         'total_stocks': total_stocks,
         'good_by_type': good_by_type,
