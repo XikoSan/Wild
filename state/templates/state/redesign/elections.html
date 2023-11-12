@@ -101,14 +101,14 @@
 
 			{% for candidate in partys %}
 			<tr>
-			  <td class="j-t-image" onclick="window.open('/profile/{% localize off %}{{ candidate.pk }}{% endlocalize %}/')">
+			  <td class="j-t-image" onclick="window.open('/party/{% localize off %}{{ candidate.pk }}{% endlocalize %}/')">
 				{% if candidate.image %}
 				<img src="{{ candidate.image.url }}">
 				{% else %}
 				{% nopic_party_list player '' %}
 				{% endif %}
 			  </td>
-			  <td class="j-t-title" onclick="window.open('/profile/{% localize off %}{{ candidate.pk }}{% endlocalize %}/')">
+			  <td class="j-t-title" onclick="window.open('/party/{% localize off %}{{ candidate.pk }}{% endlocalize %}/')">
 				  {{ candidate.title }}
 			  </td>
 			  <td class="j-t-action">
