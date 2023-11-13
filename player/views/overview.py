@@ -305,46 +305,6 @@ def overview(request):
 
     page = 'player/redesign/overview.html'
 
-
-    from django.db.models import Q
-    from player.logs.print_log import log
-    from datetime import time
-    from datetime import timedelta
-
-    # current_day = datetime.datetime.now().weekday()
-    start_time = time(11, 0)  # начальное время интервала (21:00)
-    end_time = time(11, 59)  # конечное время интервала (22:00)
-    #
-    # results = Party.objects.filter(
-    #                                 Q(foundation_date__week_day=current_day) &
-    #                                 Q(foundation_date__time__gte=start_time) &
-    #                                 Q(foundation_date__time__lt=end_time)
-    #                                )
-    # for result in results:
-    #     log(f'Начало "{result.title}": {result.foundation_date.hour}:{result.foundation_date.minute}')
-    #
-    #
-    # if current_day == 0:
-    #     current_day = 6
-    # else:
-    #     current_day -= 1
-
-    log(timezone.now())
-    log(timezone.now().weekday())
-
-    log(datetime.datetime.now())
-    log(datetime.datetime.now().weekday())
-
-    results = Party.objects.filter(
-        Q(primaries_day=timezone.now().weekday())
-                                  & Q(foundation_date__time__gte=timezone.now().time()) &
-                                    Q(foundation_date__time__lt=(datetime.datetime.combine(datetime.datetime.min, start_time) + timedelta(hours=1)).time())
-                                   )
-    for result in results:
-        log(f'"{result.title}": {result.foundation_date.weekday()}, {result.foundation_date.hour}:{result.foundation_date.minute}')
-
-
-
     # отправляем в форму
     response = render(request, page, {
         'page_name': _('Обзор'),

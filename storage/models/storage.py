@@ -1,7 +1,7 @@
 # coding=utf-8
 from django.db import models
 from django.utils.translation import gettext_lazy, pgettext_lazy, ugettext as _
-
+from django.apps import apps
 from player.actual_manager import ActualStorageManager
 from player.player import Player
 from region.models.region import Region
@@ -153,20 +153,40 @@ class Storage(models.Model):
 
     # получить информацию о количестве предметов
     def unitsOnStorageCount(self, mode):
+        good_cl = apps.get_model('storage', 'Good')
+        goods = good_cl.objects.filter(type=mode)
+        stock_cl = apps.get_model('storage', 'Stock')
         data = {}
 
-        for unit in getattr(self, mode).keys():
-            data[unit] = getattr(self, unit)
+        stocks = stock_cl.objects.filter(storage=self, good__in=goods)
+
+        for good in goods:
+            if stocks.filter(good=good, stock__gt=0).exists():
+                data[good.pk] = stocks.get(good=good, stock__gt=0).stock
+            else:
+                data[good.pk] = 0
 
         return data
 
     # получить информацию о количестве предметов
     def allStorageCount(self):
+        good_cl = apps.get_model('storage', 'Good')
+        goods = good_cl.objects.all()
+        stock_cl = apps.get_model('storage', 'Stock')
         data = {}
+
         data['cash'] = getattr(self, 'cash')
         for mode in self.types.keys():
-            for unit in getattr(self, mode).keys():
-                data[unit] = getattr(self, unit)
+            # товары конкретной категории
+            mode_goods = goods.filter(type=mode)
+
+            stocks = stock_cl.objects.filter(storage=self, good__in=mode_goods)
+
+            for good in mode_goods:
+                if stocks.filter(good=good, stock__gt=0).exists():
+                    data[good.pk] = stocks.get(good=good, stock__gt=0).stock
+                else:
+                    data[good.pk] = 0
 
         return data
 
