@@ -2,7 +2,7 @@ from django.contrib.humanize.templatetags.humanize import number_format
 from django.db import transaction
 from django.http import JsonResponse
 from django.utils import timezone
-
+from datetime import timedelta
 from player.logs.cash_log import CashLog
 from player.player import Player
 from state.models.state import State
