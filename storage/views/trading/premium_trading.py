@@ -88,11 +88,6 @@ def premium_trading(player, count, offer):
 
         #   проверяем наличие в ОФФЕРЕ и блокировке денег на количество (на всяк случай)
         offer_sum = count * offer.price
-        # проверяем налог с прибыли продавца
-        if request.user.date_joined + timedelta(days=7) > timezone.now():
-            taxed_sum = offer_sum
-        else:
-            taxed_sum = State.check_taxes(player.region, offer_sum, 'trade')
 
         if offer.cost_count < offer_sum:
             data = {
@@ -136,7 +131,7 @@ def premium_trading(player, count, offer):
         offer_cash_lock.save()
 
         # получаем налог с прибыли продавца
-        if request.user.date_joined + timedelta(days=7) > timezone.now():
+        if player.account.date_joined + timedelta(days=7) > timezone.now():
             taxed_sum = offer_sum
         else:
             taxed_sum = State.get_taxes(player.region, offer_sum, 'trade', 'cash')
