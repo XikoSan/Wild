@@ -353,7 +353,10 @@ def finish_primaries(party_id):
     party = Party.objects.get(pk=party_id)
 
     # выключаем праймериз
-    primaries = Primaries.objects.get(party=party, running=True)
+    if Primaries.objects.filter(party=party, running=True).exists():
+        primaries = Primaries.objects.get(party=party, running=True)
+    else:
+        return
 
     # все члены партии
     candidates = Player.objects.filter(party=party)

@@ -134,7 +134,11 @@ def finish_elections(parl_id):
     # выключаем выборы
     ParliamentVoting.objects.filter(parliament=parliament, running=True).update(running=False,
                                                                                 voting_end=timezone.now())
-    elections = ParliamentVoting.objects.get(parliament=parliament, task__isnull=False)
+
+    if ParliamentVoting.objects.filter(parliament=parliament, task__isnull=False).exists():
+        elections = ParliamentVoting.objects.get(parliament=parliament, task__isnull=False)
+    else:
+        return
 
     # ================================================================
     # находим предыдущие парламентские партии и удаляем их
@@ -304,7 +308,11 @@ def finish_presidential(pres_id):
     # выключаем выборы
     PresidentialVoting.objects.filter(president=president, running=True).update(running=False,
                                                                                 voting_end=timezone.now())
-    elections = PresidentialVoting.objects.get(president=president, task__isnull=False)
+
+    if PresidentialVoting.objects.filter(president=president, task__isnull=False).exists():
+        elections = PresidentialVoting.objects.get(president=president, task__isnull=False)
+    else:
+        return 
 
     # ================================================================
 

@@ -63,6 +63,9 @@ class Parliament(models.Model):
                 month_of_year='*',
             )
 
+        Parliament.objects.filter(pk=self.pk).update(task=None)
+        PeriodicTask.objects.filter(name='Начало выборов, id парла ' + str(self.pk)).delete()
+
         self.task = PeriodicTask.objects.create(
             name='Начало выборов, id парла ' + str(self.pk),
             task='start_elections',

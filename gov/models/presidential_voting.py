@@ -74,6 +74,9 @@ class PresidentialVoting(models.Model):
                 month_of_year='*',
             )
 
+        PresidentialVoting.objects.filter(pk=self.pk).update(task=None)
+        PeriodicTask.objects.filter(name='Конец выборов, id преза ' + str(self.president.pk)).delete()
+
         self.task = PeriodicTask.objects.create(
             name='Конец выборов, id преза ' + str(self.president.pk),
             task='finish_presidential',

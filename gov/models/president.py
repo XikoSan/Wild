@@ -70,6 +70,9 @@ class President(models.Model):
                                                         month_of_year='*',
                                                        )
 
+        President.objects.filter(pk=self.pk).update(task=None)
+        PeriodicTask.objects.filter(name='Начало выборов, id преза ' + str(self.pk)).delete()
+
         self.task = PeriodicTask.objects.create(
             name='Начало выборов, id преза ' + str(self.pk),
             task='start_presidential',

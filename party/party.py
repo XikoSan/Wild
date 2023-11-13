@@ -99,6 +99,9 @@ class Party(models.Model):
                 month_of_year='*',
             )
 
+        Party.objects.filter(pk=self.pk).update(task=None)
+        PeriodicTask.objects.filter(name='Начало праймериз, id ' + str(self.pk)).delete()
+
         self.task = PeriodicTask.objects.create(
             name='Начало праймериз, id ' + str(self.pk),
             task='start_primaries',

@@ -62,6 +62,9 @@ class Primaries(models.Model):
                 month_of_year='*',
             )
 
+        Primaries.objects.filter(pk=self.pk).update(task=None)
+        PeriodicTask.objects.filter(name='Конец праймериз, id ' + str(self.party.pk)).delete()
+
         self.task = PeriodicTask.objects.create(
             name='Конец праймериз, id ' + str(self.party.pk),
             task='finish_primaries',
