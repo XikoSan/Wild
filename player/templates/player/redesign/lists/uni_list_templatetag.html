@@ -14,6 +14,9 @@
 {% load get_n_chars %}
 {% load dict_key %}
 {% load run_meth %}
+{% load redesign.template_svg.nopic_party_list %}
+{% load redesign.template_svg.nopic_list %}
+
 
 <!--Блок таблицы-->
 <div class="ct__js-table-container" id="js-ct-table-1">
@@ -92,7 +95,7 @@
 						{% endfor %}
 
 					{% else %}
-					  <td class="j-t-{{ col }}" {% if line|get_class_name == 'Player' or line|get_class_name == 'PlayerWithTop' %} style="cursor: pointer" onclick="window.open('/profile/{% localize off %}{{ line.pk }}{% endlocalize %}/')"{% endif %}>
+					  <td class="j-t-{{ col }}" {% if line|get_class_name == 'Player' or line|get_class_name == 'PlayerWithTop' or line|get_class_name == 'PlayerWithMined' %} style="cursor: pointer" onclick="window.open('/profile/{% localize off %}{{ line.pk }}{% endlocalize %}/')"{% endif %}>
 					  <!--картинка рега-->
 					  {% if col == 'on_map_id' %}
 							<img src="/static/img/regions/{{ line.on_map_id }}.png" alt="{{ col }}">
@@ -102,7 +105,13 @@
 							{% if obj_img %}
 							<img src="{{ obj_img|get_attr:'url' }}" alt="{{ col }}">
 							{% else %}
-							<img src="{% static 'img/nopic.svg' %}" alt="{{ col }}">
+								  {% if line|get_class_name == 'Player' or line|get_class_name == 'PlayerWithTop' %}
+							  		<!--нет картинки: игрок-->
+							  		{% nopic_list player '' %}
+								  {% elif line|get_class_name == 'PartyWithSize' or line|get_class_name == 'PartyWithMined' %}
+									<!--нет картинки: партия-->
+							  		{% nopic_party_list player '' %}
+								  {% endif %}
 							{% endif %}
 						{% endwith %}
 					  <!--дата_время-->

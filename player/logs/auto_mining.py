@@ -232,6 +232,13 @@ class AutoMining(Log):
             else:
                 r.set("daily_" + str(player.region.pk) + '_' + player.region.oil_type, int(taxed_oil))
 
+            if player.party:
+                # партийная информация
+                if r.exists("party_mining_" + str(player.party.pk)):
+                    r.set("party_mining_" + str(player.party.pk), int(float(r.get("party_mining_" + str(player.party.pk)))) + int(total_oil))
+                else:
+                    r.set("party_mining_" + str(player.party.pk), int(total_oil))
+
             # узнаем размерность товара и сколько в этой размерности занято
             sizetype_stocks = ret_st_stocks[player.region.oil_mark.size]
             # проверяем есть ли для него место на складе, с учетом блокировок
@@ -306,6 +313,14 @@ class AutoMining(Log):
                               taxed_ore))
                 else:
                     r.set("daily_" + str(player.region.pk) + '_' + fossils_dict[mineral.good.name_ru], int(taxed_ore))
+
+                if player.party:
+                    # партийная информация
+                    if r.exists("party_mining_" + str(player.party.pk)):
+                        r.set("party_mining_" + str(player.party.pk),
+                              int(float(r.get("party_mining_" + str(player.party.pk)))) + int(total_ore))
+                    else:
+                        r.set("party_mining_" + str(player.party.pk), int(total_ore))
 
                 # проверяем есть ли место на складе
                 sizetype_stocks = ret_st_stocks[mineral.good.size]
