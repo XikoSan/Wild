@@ -7229,6 +7229,16 @@ padding-right: 6rem;
 
 .shop__stickersBlock {
   display: none;
+  flex-direction: column;
+  gap: 12rem;
+}
+
+.shop__stickersBlock.active {
+  display: flex;
+}
+
+.shop__stickersList {
+  display: flex;
   flex-wrap: wrap;
   gap: 2rem;
   justify-content: space-between;
@@ -7237,8 +7247,62 @@ padding-right: 6rem;
   list-style: none;
 }
 
-.shop__stickersBlock.active {
+.shop__stickersInfo {
+  position: relative;
   display: flex;
+  flex-direction: column;
+  gap: 12rem;
+  font-size: 14rem;
+  padding: 12rem;
+  background-color: var(--c30);
+}
+
+.shop__line {
+  height: 1px;
+  background-image: linear-gradient(to right, transparent, var(--c10one), transparent);
+}
+
+.shop__stickersInfo::after {
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  display: block;
+  width: 12rem;
+  height: 12rem;
+  content: '';
+  background-color: var(--c60);
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+.shop__stickersText {
+  display: flex;
+  flex-direction: column;
+  gap: 6rem;
+}
+
+.shop__stickersText p {
+  margin: 0;
+}
+
+.shop__stickersText a {
+  text-decoration: underline;
+  color: var(--c10two);
+}
+
+.shop__stickersBuy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6rem;
+}
+
+.shop__stickersBuy h3 {
+  margin: 0;
+  font-weight: 400;
+  font-size: 14rem;
 }
 
 .shop__stick {
@@ -7268,7 +7332,14 @@ padding-right: 6rem;
   .shop__tabs {
     width: 100%;
   }
-  .shop__stickersBlock {
+  .shop__stickersInfo {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .shop__line {
+    display: none;
+  }
+  .shop__stickersList {
     gap: 12rem;
     justify-content: flex-start;
   }
