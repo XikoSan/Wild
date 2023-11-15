@@ -215,57 +215,6 @@ def finish_elections(parl_id):
             players_deputates.append(dm.player)
 
         Minister.objects.filter(state=parliament.state).exclude(player__in=players_deputates).delete()
-    if not all_votes_count == 0:
-        all_votes = Bulletin.objects.filter(voting=elections)
-
-        # словарь с партиями и количеством голосов за них
-        bulltins_dic = {}
-        # партии для исключения
-        parties_voted = []
-        # для каждой партии подсчитываем количество бюллетеней
-        for vote in all_votes:
-            if vote.party in bulltins_dic:
-                bulltins_dic[vote.party] += 1
-            else:
-                # вносим в словарик
-                bulltins_dic[vote.party] = 1
-                parties_voted.append(vote.party)
-
-        # количество розданных партийных мест
-        seats_gived = 0
-        # словарь квот партий
-        quates_dic = {}
-        # словарь полученных партией мест
-        seats_dic = {}
-        for spty in parties_voted:
-            # изначально заполняется нулями
-            seats_dic[spty] = 0
-        # пока не розданы все места в парламенте
-        while seats_gived < parliament.size:
-            # расчет словаря квот каждой партии
-            for qpty in parties_voted:
-                quates_dic[qpty] = bulltins_dic[qpty] / (2 * seats_dic[qpty] + 1)
-            # получаем партию с самой большой квотой
-            top_quate = max(quates_dic.items(), key=operator.itemgetter(1))[0]
-            # место выдано
-            seats_dic[top_quate] = seats_dic[top_quate] + 1
-            # увеличиваем счетчик
-            seats_gived += 1
-
-        # создаем парламентские партии
-        for ppty in parties_voted:
-            parliament_pty = ParliamentParty(parliament=parliament, party=ppty,
-                                             seats=floor((100 * bulltins_dic[ppty]) / all_votes_count))
-            parliament_pty.save()
-            # и выдаем мандаты
-            set_mandates(ppty.pk, parliament.pk, seats_dic[ppty])
-
-        # удаляем министров, не получивших мандаты
-        players_deputates = []
-        for dm in DeputyMandate.objects.filter(parliament=parliament.pk):
-            players_deputates.append(dm.player)
-
-        Minister.objects.filter(state=parliament.state).exclude(player__in=players_deputates).delete()
 
     task_id = None
     if elections.task:
