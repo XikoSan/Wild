@@ -37,12 +37,15 @@ from player.views.translate.translations import translations
 from django.urls import path
 from django.views.generic import TemplateView
 
+from .views.dmg_tbl import dmg_tbl
+
 urlpatterns = [
 
     # приветственная страница
     url(r'^$', index, name='index'),
     # ЕУЛА
     url(r'^eula$', eula, name='eula'),
+    url(r'^dmg_tbl$', dmg_tbl, name='dmg_tbl'),
     # Соглашение об обработке ПД
     path('personal_data/', TemplateView.as_view(template_name='player/personal_data.html'), name='personal_data'),
     # регистрация нового персонажа

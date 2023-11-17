@@ -1,0 +1,39 @@
+{% load get_key_list %}
+{% load dict_key %}
+<html lang="ru-ru">
+
+
+<head>
+    <meta charset="UTF-8">
+    <title>баланс оружия в войнах</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="row">
+  {% for terrain_type in table|get_key_list %}
+  <div class="col-md-3">
+    <h4>{{ terrain_type }}</h4>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Вид оружия</th>
+          <th>Урон</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% with table|dict_key:terrain_type as dmg_table %}
+        {% for weapon in dmg_table|get_key_list %}
+          <tr>
+            <td>{{ weapon }}</td>
+            <td>{{ dmg_table|dict_key:weapon }}</td>
+          </tr>
+        {% endfor %}
+      {% endwith %}
+      </tbody>
+    </table>
+    </div>
+  {% endfor %}
+</div>
+
+</body>
+</html>
