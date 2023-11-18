@@ -32,7 +32,7 @@ def factory_top(request, player):
 
     parties = Party.objects.only('pk', 'image', 'title').filter(deleted=False)
 
-    if datetime.datetime.now().date() == date:
+    if datetime.datetime.now().date() < date:
         for party in parties:
             # берем сколько она добыла за неделю
             if r.exists("party_factory_" + str(party.pk)):
