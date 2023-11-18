@@ -310,14 +310,21 @@ def produce_good(request):
         # удаляем записи старше месяца
         ProductionLog.objects.filter(player=player, dtime__lt=timezone.now() - datetime.timedelta(days=30)).delete()
 
+        r = redis.StrictRedis(host='redis', port=6379, db=0)
         if player.party:
-            r = redis.StrictRedis(host='redis', port=6379, db=0)
             # партийная информация
             if r.exists("party_factory_" + str(player.party.pk)):
                 r.set("party_factory_" + str(player.party.pk),
                       int(float(r.get("party_factory_" + str(player.party.pk)))) + count)
             else:
                 r.set("party_factory_" + str(player.party.pk), count)
+
+        # общий счетчик
+        if r.exists("all_factory"):
+            r.set("all_factory", int(float(r.get("all_factory"))) + count)
+        else:
+            r.set("all_factory", count)
+
         # if sum:
         #     data = {
         #         'header': pgettext('factory', 'Внезапно!'),

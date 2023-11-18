@@ -269,14 +269,20 @@ class AutoProduce(Log):
         # удаляем записи старше месяца
         ProductionLog.objects.filter(player=player, dtime__lt=timezone.now() - datetime.timedelta(days=30)).delete()
 
+        r = redis.StrictRedis(host='redis', port=6379, db=0)
         if player.party:
-            r = redis.StrictRedis(host='redis', port=6379, db=0)
             # партийная информация
             if r.exists("party_factory_" + str(player.party.pk)):
                 r.set("party_factory_" + str(player.party.pk),
                       int(float(r.get("party_factory_" + str(player.party.pk)))) + count)
             else:
                 r.set("party_factory_" + str(player.party.pk), count)
+
+        if r.exists("all_factory"):
+            r.set("all_factory", int(float(r.get("all_factory"))) + count)
+        else:
+            r.set("all_factory", count)
+
 
     def __str__(self):
         return self.player.nickname + ' производит ' + str(self.good.name)

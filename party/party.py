@@ -32,6 +32,9 @@ class Party(models.Model):
         default=open,
     )
 
+    # запасы золота
+    gold = models.BigIntegerField(default=0, verbose_name='Золото')
+
     # время основания партии
     foundation_date = models.DateTimeField(default=datetime.datetime(2000, 1, 1, 0, 0), blank=True)
     # день праймериз

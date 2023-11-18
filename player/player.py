@@ -265,14 +265,22 @@ class Player(models.Model):
                     # навык изучен, удаляем запись
                     skill.delete()
 
+                    r = redis.StrictRedis(host='redis', port=6379, db=0)
                     if player.party:
-                        r = redis.StrictRedis(host='redis', port=6379, db=0)
                         # партийная информация
                         if r.exists("party_skill_" + str(player.party.pk)):
                             r.set("party_skill_" + str(player.party.pk),
                                   int(float(r.get("party_skill_" + str(player.party.pk)))) + 1)
                         else:
                             r.set("party_skill_" + str(player.party.pk), 1)
+
+                    # общий счетчик
+                    r = redis.StrictRedis(host='redis', port=6379, db=0)
+                    # партийная информация
+                    if r.exists("all_skill"):
+                        r.set("all_skill", int(float(r.get("all_skill"))) + 1)
+                    else:
+                        r.set("all_skill", 1)
 
                 else:
                     break

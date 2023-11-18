@@ -19,7 +19,7 @@ class PartyAdmin(admin.ModelAdmin):
         #
         ('image', 'members_image'),
         #
-        ('description'),
+        ('gold', 'description'),
         #
         ('task'),
     )
