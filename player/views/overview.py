@@ -286,6 +286,9 @@ def overview(request):
             date_string = "2023-11-19"
             date = datetime.date.fromisoformat(date_string)
 
+            log(timezone.now().date())
+            log(date)
+
             if timezone.now().date() == date:
                 for party in Party.objects.filter(deleted=False):
                     # берем сколько она добыла за неделю
@@ -293,7 +296,7 @@ def overview(request):
                         all_skills += int(float(r.get("party_skill_" + str(party.pk))))
             else:
                 if r.exists("all_skill"):
-                    all_skills = r.get("all_skill")
+                    all_skills = int(float(r.get("all_skill")))
                     r.set("all_skill", 0)
 
             if r.exists("all_skill"):
@@ -326,7 +329,7 @@ def overview(request):
                         all_produced += int(float(r.get("party_factory_" + str(party.pk))))
             else:
                 if r.exists("all_factory"):
-                    all_produced = r.get("all_factory")
+                    all_produced = int(float(r.get("all_factory")))
                     r.set("all_factory", 0)
 
             if r.exists("all_factory"):

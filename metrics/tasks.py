@@ -112,7 +112,7 @@ def save_daily():
                     all_skills += int(float(r.get("party_skill_" + str(party.pk))))
         else:
             if r.exists("all_skill"):
-                all_skills = r.get("all_skill")
+                all_skills = int(float(r.get("all_skill")))
                 r.set("all_skill", 0)
 
         if all_skills > 0:
@@ -142,7 +142,7 @@ def save_daily():
                     all_produced += int(float(r.get("party_factory_" + str(party.pk))))
         else:
             if r.exists("all_factory"):
-                all_produced = r.get("all_factory")
+                all_produced = int(float(r.get("all_factory")))
                 r.set("all_factory", 0)
 
         if all_produced > 0:
