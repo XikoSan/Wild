@@ -70,10 +70,10 @@ def save_daily():
 
     # ----------- топ партий -----------
     # подбиваем недельные итоги
-    if timezone.now().weekday() == 0:
+    if datetime.datetime.now().weekday() == 0:
         # берем сумму всех руд за прошедшую неделю
-        date_now = timezone.now()
-        date_7d = timezone.now() - timedelta(days=7)
+        date_now = datetime.datetime.now()
+        date_7d = datetime.datetime.now() - timedelta(days=7)
         week_ore = DailyOre.objects.filter(Q(date__gt=date_7d), Q(date__lt=date_now)).aggregate(total_ore=Sum('ore'))[
             'total_ore']
         # берем сумму всех марок нефти за прошедшую неделю
@@ -105,7 +105,7 @@ def save_daily():
         date_string = "2023-11-20"
         date = datetime.date.fromisoformat(date_string)
 
-        if timezone.now().date() == date:
+        if datetime.datetime.now().date() == date:
             for party in Party.objects.filter(deleted=False):
                 # берем сколько она добыла за неделю
                 if r.exists("party_skill_" + str(party.pk)):
@@ -135,7 +135,7 @@ def save_daily():
         # производство
         all_produced = 0
 
-        if timezone.now().date() == date:
+        if datetime.datetime.now().date() == date:
             for party in Party.objects.filter(deleted=False):
                 # берем сколько она добыла за неделю
                 if r.exists("party_factory_" + str(party.pk)):

@@ -254,10 +254,10 @@ def overview(request):
     if player.nickname == 'Администратор':
 
         # подбиваем недельные итоги
-        if timezone.now().weekday() == 5:
+        if datetime.datetime.now().weekday() == 6:
             # берем сумму всех руд за прошедшую неделю
-            date_now = timezone.now()
-            date_7d = timezone.now() - timedelta(days=7)
+            date_now = datetime.datetime.now()
+            date_7d = datetime.datetime.now() - timedelta(days=7)
             week_ore = DailyOre.objects.filter(Q(date__gt=date_7d), Q(date__lt=date_now)).aggregate(total_ore=Sum('ore'))['total_ore']
             # берем сумму всех марок нефти за прошедшую неделю
             week_oil = DailyOil.objects.filter(Q(date__gt=date_7d), Q(date__lt=date_now)).aggregate(total_oil=Sum('oil'))['total_oil']
@@ -283,13 +283,13 @@ def overview(request):
             # навыки
             all_skills = 0
 
-            date_string = "2023-11-18"
+            date_string = "2023-11-19"
             date = datetime.date.fromisoformat(date_string)
 
-            log(timezone.now().date())
+            log(datetime.datetime.now().date())
             log(date)
 
-            if timezone.now().date() == date:
+            if datetime.datetime.now().date() == date:
                 for party in Party.objects.filter(deleted=False):
                     # берем сколько она добыла за неделю
                     if r.exists("party_skill_" + str(party.pk)):
@@ -322,7 +322,7 @@ def overview(request):
             # навыки
             all_produced = 0
 
-            if timezone.now().date() == date:
+            if datetime.datetime.now().date() == date:
                 for party in Party.objects.filter(deleted=False):
                     # берем сколько она добыла за неделю
                     if r.exists("party_factory_" + str(party.pk)):
