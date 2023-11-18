@@ -254,7 +254,7 @@ def overview(request):
     if player.nickname == 'Администратор':
 
         # подбиваем недельные итоги
-        if timezone.now().weekday() == 6:
+        if timezone.now().weekday() == 5:
             # берем сумму всех руд за прошедшую неделю
             date_now = timezone.now()
             date_7d = timezone.now() - timedelta(days=7)
