@@ -283,7 +283,7 @@ def overview(request):
             # навыки
             all_skills = 0
 
-            date_string = "2023-11-19"
+            date_string = "2023-11-18"
             date = datetime.date.fromisoformat(date_string)
 
             log(timezone.now().date())
