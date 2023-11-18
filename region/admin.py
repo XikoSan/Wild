@@ -1,4 +1,7 @@
 from django.contrib import admin
+from django.contrib.admin import widgets
+from django.db import models
+from django.utils.html import format_html
 
 from region.building.defences import Defences
 from region.building.hospital import Hospital
@@ -7,7 +10,8 @@ from region.models.fossils import Fossils
 from region.models.map_shape import MapShape
 from region.models.neighbours import Neighbours
 from region.models.region import Region
-from django.utils.html import format_html
+from region.models.terrain.terrain import Terrain
+from region.models.terrain.terrain_modifier import TerrainModifier
 
 
 def recount_rating(modeladmin, request, queryset):
@@ -56,8 +60,28 @@ class MapShapeAdmin(admin.ModelAdmin):
     raw_id_fields = ('region',)
 
 
+class TerrainModifierAdmin(admin.ModelAdmin):
+    list_display = ('terrain', 'unit', 'modifier')
+
+    raw_id_fields = ('terrain', 'unit',)
+
+
+class TerrainModifierInline(admin.TabularInline):
+    model = TerrainModifier
+
+
+class TerrainAdmin(admin.ModelAdmin):
+    inlines = [TerrainModifierInline]
+
+
+class FossilsInline(admin.TabularInline):
+    model = Fossils
+
+
 class RegionAdmin(admin.ModelAdmin):
     list_display = ('region_name', 'get_state', 'get_gold', 'get_oil', 'get_ore', 'is_off')
+
+    inlines = [FossilsInline]
 
     fields = (
         # шапка
@@ -76,7 +100,15 @@ class RegionAdmin(admin.ModelAdmin):
         ('oil_has', 'oil_cap', 'oil_depletion', 'oil_type', 'oil_mark'),
         ('ore_has', 'ore_cap', 'ore_depletion'),
         ('coal_proc', 'iron_proc', 'bauxite_proc'),
+        ('terrain'),
     )
+
+    formfield_overrides = {
+        models.ManyToManyField: {'widget': widgets.FilteredSelectMultiple(
+            verbose_name='Рельеф',
+            is_stacked=False
+        )},
+    }
 
     def get_state(self, obj):
         if obj.state:
@@ -103,3 +135,5 @@ admin.site.register(Fossils, FossilsAdmin)
 admin.site.register(Hospital, RateBuildingAdmin)
 admin.site.register(PowerPlant, PowerPlantAdmin)
 admin.site.register(Defences, BuildingAdmin)
+admin.site.register(Terrain, TerrainAdmin)
+admin.site.register(TerrainModifier, TerrainModifierAdmin)

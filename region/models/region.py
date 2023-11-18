@@ -9,6 +9,8 @@ from django.utils.translation import gettext_lazy, pgettext_lazy, ugettext as _
 from state.models.state import State
 from region.actual_manager import ActualManager
 from storage.models.good import Good
+from region.models.terrain.terrain import Terrain
+
 
 # Чтобы перевод региона появился в PO файлах, требуется дописать его в конце html файла 'map'!
 class Region(models.Model):
@@ -132,6 +134,11 @@ class Region(models.Model):
     # централизация на карте
     longitude = models.DecimalField(default=00.00, max_digits=10, decimal_places=7, verbose_name='Долгота - центр')
     latitude = models.DecimalField(default=00.00, max_digits=10, decimal_places=7, verbose_name='Широта - центр')
+
+    # Рельеф
+    terrain = models.ManyToManyField(Terrain, blank=True,
+                                        related_name='terrain',
+                                        verbose_name='Рельеф')
 
     # сохранение профиля с изменением размеров и названия картинки профиля
     def save(self):

@@ -48,6 +48,8 @@ def open_region(request, pk):
 
     fossils = Fossils.objects.filter(region=region).order_by('-good__name_ru')
 
+    terrains = region.terrain.all()
+
     return render(request, 'region/redesign/region_view.html', {
         'page_name': region.region_name,
         'player': player,
@@ -57,6 +59,7 @@ def open_region(request, pk):
         'time': strftime("%M:%S", gmtime(time_in_flight(player, region))),
 
         'fossils': fossils,
+        'terrains': terrains,
 
         'residency': residency,
         'request': res_request,
