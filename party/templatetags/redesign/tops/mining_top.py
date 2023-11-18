@@ -2,18 +2,24 @@ import redis
 from django import template
 from django.utils.translation import pgettext
 from django.utils.translation import ugettext as _
-
+import datetime
 from player.logs.cash_log import CashLog
 from player.player import Player
 from player.views.lists.get_thing_page import get_thing_page
 from party.party import Party
 register = template.Library()
+from datetime import timedelta
+from django.db.models import Q
+from django.db.models import Sum
+from metrics.models.daily_ore import DailyOre
+from metrics.models.daily_oil import DailyOil
 
 
 # класс партии, в котором её место в топе - это поле
 class PartyWithMined(Party):
     pk = 0
     mined = 0
+    reward = 0
 
     class Meta:
         abstract = True
@@ -22,6 +28,13 @@ class PartyWithMined(Party):
 @register.inclusion_tag('player/redesign/lists/uni_list_templatetag.html')
 def mining_top(request, player):
     page = request.GET.get('page')
+
+    # берем сумму всех руд за прошедшую неделю
+    date_now = datetime.datetime.now()
+    date_7d = datetime.datetime.now() - timedelta(days=7)
+    week_ore = DailyOre.objects.filter(Q(date__gt=date_7d), Q(date__lt=date_now)).aggregate(total_ore=Sum('ore'))['total_ore']
+    # берем сумму всех марок нефти за прошедшую неделю
+    week_oil = DailyOil.objects.filter(Q(date__gt=date_7d), Q(date__lt=date_now)).aggregate(total_oil=Sum('oil'))['total_oil']
 
     r = redis.StrictRedis(host='redis', port=6379, db=0)
 
@@ -47,6 +60,7 @@ def mining_top(request, player):
         size_party.pk = party_tuple[0].pk,
 
         size_party.mined = party_tuple[1]
+        size_party.reward = int(20000 * (party_tuple[1] / (week_ore + week_oil)))
 
         parties_with_size.append(size_party)
 
@@ -69,6 +83,12 @@ def mining_top(request, player):
         'mined': {
             'text': 'Добыто',
             'select_text': 'Добыто',
+            'visible': 'true'
+        },
+
+        'reward': {
+            'text': '',
+            'select_text': 'Награда',
             'visible': 'true'
         },
     }

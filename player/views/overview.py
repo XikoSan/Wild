@@ -297,10 +297,6 @@ def overview(request):
             else:
                 if r.exists("all_skill"):
                     all_skills = int(float(r.get("all_skill")))
-                    r.set("all_skill", 0)
-
-            if r.exists("all_skill"):
-                r.set("all_skill", 0)
 
             if all_skills > 0:
 
@@ -330,10 +326,6 @@ def overview(request):
             else:
                 if r.exists("all_factory"):
                     all_produced = int(float(r.get("all_factory")))
-                    r.set("all_factory", 0)
-
-            if r.exists("all_factory"):
-                r.set("all_factory", 0)
 
             if all_produced > 0:
 
@@ -350,7 +342,7 @@ def overview(request):
                     # начисляем золото в процентном соотношении
                     if party_tuple[1] > 0:
                         # party.gold += 20000 * ( mined / (week_ore + week_oil) )
-                        log(f'навыки {party_tuple[0].title}: {int(20000 * (party_tuple[1] / all_produced))}')
+                        log(f'производство {party_tuple[0].title}: {int(20000 * (party_tuple[1] / all_produced))}')
 
 
     # call_donut_message = False

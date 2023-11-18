@@ -2,11 +2,11 @@ import redis
 from django import template
 from django.utils.translation import pgettext
 from django.utils.translation import ugettext as _
-
 from player.logs.cash_log import CashLog
 from player.player import Player
 from player.views.lists.get_thing_page import get_thing_page
 from party.party import Party
+import datetime
 register = template.Library()
 
 
@@ -14,6 +14,7 @@ register = template.Library()
 class PartyWithMined(Party):
     pk = 0
     mined = 0
+    reward = 0
 
     class Meta:
         abstract = True
@@ -23,9 +24,22 @@ class PartyWithMined(Party):
 def factory_top(request, player):
     page = request.GET.get('page')
 
+    all_produced = 0
+    date_string = "2023-11-20"
+    date = datetime.date.fromisoformat(date_string)
+
     r = redis.StrictRedis(host='redis', port=6379, db=0)
 
     parties = Party.objects.only('pk', 'image', 'title').filter(deleted=False)
+
+    if datetime.datetime.now().date() == date:
+        for party in parties:
+            # берем сколько она добыла за неделю
+            if r.exists("party_factory_" + str(party.pk)):
+                all_produced += int(float(r.get("party_factory_" + str(party.pk))))
+    else:
+        if r.exists("all_factory"):
+            all_produced = int(float(r.get("all_factory")))
 
     mining_dict = {}
 
@@ -47,6 +61,8 @@ def factory_top(request, player):
         size_party.pk = party_tuple[0].pk,
 
         size_party.mined = party_tuple[1]
+        if all_produced > 0:
+            size_party.reward = int(20000 * (party_tuple[1] / all_produced))
 
         parties_with_size.append(size_party)
 
@@ -69,6 +85,12 @@ def factory_top(request, player):
         'mined': {
             'text': 'Произведено',
             'select_text': 'Произведено',
+            'visible': 'true'
+        },
+
+        'reward': {
+            'text': '',
+            'select_text': 'Награда',
             'visible': 'true'
         },
     }
