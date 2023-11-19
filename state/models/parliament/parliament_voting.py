@@ -66,7 +66,7 @@ class ParliamentVoting(models.Model):
                 month_of_year='*',
             )
 
-        ParliamentVoting.objects.select_related('task').filter(pk=self.pk).update(task=None)
+        ParliamentVoting.objects.filter(parliament=self.parliament, task__isnull=False).update(task=None)
         PeriodicTask.objects.filter(name='Конец выборов, id парла ' + str(self.parliament.pk)).delete()
 
         self.task = PeriodicTask.objects.create(
