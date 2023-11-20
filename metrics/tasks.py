@@ -12,6 +12,7 @@ from metrics.models.daily_oil import DailyOil
 from metrics.models.daily_ore import DailyOre
 from region.models.region import Region
 from storage.models.storage import Storage
+from party.party import Party
 
 
 @shared_task(name="save_daily")
