@@ -146,7 +146,7 @@ def observe_primaries_end(current_day, start, end):
     # иначе - создаём таску завершения праймериз
         else:
             if Primaries.objects.filter(party=party, running=True).exists():
-                primaries = Primaries.objects.get(party=party, running=True)
+                primaries = Primaries.objects.filter(party=party, running=True).order_by('-prim_start')[0]
                 primaries.setup_task()
 
 
@@ -354,7 +354,7 @@ def finish_primaries(party_id):
 
     # выключаем праймериз
     if Primaries.objects.filter(party=party, running=True).exists():
-        primaries = Primaries.objects.get(party=party, running=True)
+        primaries = Primaries.objects.filter(party=party, running=True).order_by('-prim_start')[0]
     else:
         return
 
@@ -425,6 +425,8 @@ def finish_primaries(party_id):
         primaries.task = None
 
     primaries.save()
+
+    Primaries.objects.filter(party=party, running=True).order_by('-prim_start').update(running=False)
 
     if task_id:
         PeriodicTask.objects.filter(pk=task_id).delete()
