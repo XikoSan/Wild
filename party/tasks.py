@@ -339,7 +339,7 @@ def observe_presidential_end(current_day, start, end):
     # иначе - создаём таску завершения праймериз
         else:
             if PresidentialVoting.objects.filter(president=parl, running=True).exists():
-                voting = PresidentialVoting.objects.get(president=parl, running=True)
+                voting = PresidentialVoting.objects.filter(president=parl, running=True)[0]
                 voting.setup_task()
 
 
