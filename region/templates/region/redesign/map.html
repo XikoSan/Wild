@@ -439,12 +439,12 @@ function addMarker(coordinates) {
     }
 
   function set_links() {
-        link_list.forEach(function(geojson) {
+        link_list.forEach(function(link) {
 
           console.log(link_list[0]);
-          console.log(center_dict[link_list[0][0]]);
+          console.log(center_dict[link[0]]);
 
-          coords = [ center_dict[link_list[0][0]], center_dict[link_list[0][1]] ]
+          coords = [ center_dict[link[0]], center_dict[link[1]] ]
 
           console.log(coords);
 
