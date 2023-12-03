@@ -22,6 +22,7 @@ from war.models.wars.player_damage import PlayerDamage
 from war.models.wars.unit import Unit
 from war.models.wars.war import War
 from war.models.wars.war_side import WarSide
+from region.models.terrain.terrain_modifier import TerrainModifier
 
 
 # класс ивентовой войны
@@ -61,6 +62,15 @@ class EventWar(War):
 
         self.hq_points = def_damage - agr_damage
 
+        # сохраняем инфу в объектах
+        for side in ['agr', 'def']:
+            w_side = self.war_side.get(side=side)
+            if side == 'agr':
+                w_side.count = agr_damage
+            else:
+                w_side.count = def_damage
+            w_side.save()
+
         # сохраняем очки урона в график
         graph = []
         timestamp = str(datetime.datetime.now().timestamp()).split('.')[0]
@@ -77,17 +87,46 @@ class EventWar(War):
 
         self.save()
 
+        player_damage_u = []
+        # сохраняем урон игроков
+        for side in ['agr', 'def']:
+
+            for fighter in [int(string) for string in r.lrange(f'{self.__class__.__name__}_{self.pk}_{side}', 0, -1)]:
+
+                p_damage, created = PlayerDamage.objects.get_or_create(
+                                                                    content_type=ContentType.objects.get_for_model(self.__class__),
+                                                                    object_id=self.pk,
+                                                                    player=Player.objects.only("pk").get(pk=fighter),
+                                                                    side=side,
+                                                                 )
+                p_damage.damage = int(r.hget(f'{self.__class__.__name__}_{self.pk}_{side}_dmg', fighter))
+
+                player_damage_u.append(p_damage)
+
+        if player_damage_u:
+            PlayerDamage.objects.bulk_update(
+                player_damage_u,
+                fields=['damage', ],
+                batch_size=len(player_damage_u)
+            )
+
+
     # завершить войну
     def war_end(self):
         self.war_round()
 
         pk = self.task.pk
+        end_pk = self.end_task.pk
+
         self.task = None
+        self.end_task = None
+
         self.running = False
         self.end_time = timezone.now()
 
         self.save()
         PeriodicTask.objects.filter(pk=pk).delete()
+        PeriodicTask.objects.filter(pk=end_pk).delete()
 
     def get_page(self, request):
         # получаем персонажа
@@ -123,6 +162,27 @@ class EventWar(War):
         )
 
         dtime_str = format_time(war_countdown)
+
+        agr_terrains = self.agr_region.terrain.all()
+        def_terrains = self.def_region.terrain.all()
+        terrain_list = []
+
+        for terrain in agr_terrains:
+            terrain_list.append(terrain)
+
+        for terrain in def_terrains:
+            if not terrain in terrain_list:
+                terrain_list.append(terrain)
+
+        modifiers_dict = {}
+        # модификаторы урона для этого набора рельефов
+        modifiers = TerrainModifier.objects.filter(terrain__in=terrain_list)
+
+        for modifier in modifiers:
+            if modifier.unit.pk in modifiers_dict.keys():
+                modifiers_dict[modifier.unit.pk] = modifiers_dict[modifier.unit.pk] * modifier.modifier
+            else:
+                modifiers_dict[modifier.unit.pk] = modifier.modifier
 
         agr_char_list = self.war_damage.filter(object_id=self.pk, side='agr')
         def_char_list = self.war_damage.filter(object_id=self.pk, side='def')
@@ -193,6 +253,8 @@ class EventWar(War):
 
             # характеристики юнитов
             'units': units,
+            # модификаторы урона для юнитов
+            'modifiers_dict': modifiers_dict,
             # оружие
             'units_dict': units_dict,
 

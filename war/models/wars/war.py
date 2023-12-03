@@ -13,6 +13,10 @@ class War(models.Model):
         'heavyvehicle': 'Тяжелая бронетехника',
         'recon': 'Разведка'
     }
+
+    # прочность укрепов на старте
+    defence_points = models.BigIntegerField(default=0, verbose_name='Прочность Укрепов')
+
     # признак того что война идет сейчас
     running = models.BooleanField(default=False, verbose_name='Идёт война')
     # раунд войны
@@ -31,7 +35,10 @@ class War(models.Model):
                                    verbose_name='Регион обороняющихся', related_name="%(class)s_def_region")
 
     # таска
-    task = models.OneToOneField(PeriodicTask, on_delete=models.SET_NULL, null=True, blank=True)
+    task = models.OneToOneField(PeriodicTask, on_delete=models.SET_NULL, null=True, blank=True, related_name="%(class)s_round_task")
+
+    # таска завершения войны
+    end_task = models.OneToOneField(PeriodicTask, on_delete=models.SET_NULL, null=True, blank=True, related_name="%(class)s_end_task")
 
     # поминутный график боя
     graph = models.TextField(default='', null=True, blank=True, verbose_name='График боя')

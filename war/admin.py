@@ -40,7 +40,7 @@ class UnitAdmin(admin.ModelAdmin):
 
 # Register your models here.
 admin.site.register(EventWar)
-# admin.site.register(GroundWar)
+admin.site.register(GroundWar)
 admin.site.register(WarSide)
 
 admin.site.register(PlayerDamage)

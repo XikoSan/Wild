@@ -23,6 +23,7 @@ from player.player import Player
 from storage.models.stock import Stock
 from storage.models.storage import Storage
 from war.models.wars.unit import Unit
+from region.models.terrain.terrain_modifier import TerrainModifier
 
 
 def _get_player(account):
@@ -114,6 +115,9 @@ def _check_has_fight(fighter, war_type, war_id, storage_pk, units, side):
 
     energy_required = 0
 
+    # хотя бы один юнит был отправлен в бой
+    has_unit = False
+
     # По юнитам:
     for unit in units.keys():
         # проверяем, что есть такие юниты
@@ -127,20 +131,27 @@ def _check_has_fight(fighter, war_type, war_id, storage_pk, units, side):
             units_count = int(units[unit])
 
         except ValueError:
-            return False, 'Количество войск должно быть числом'
+            units_count = 0
+            # return False, 'Количество войск должно быть числом'
 
         # проверяем, что переданы только положительные числа юнитов
-        if not 0 < units_count:
+        if 0 > units_count:
             return False, 'Количество войск должно быть положительным числом'
 
         if not units_count <= 100:
             return False, 'Количество войск должно быть не более 100'
+
+        if units_count > 0:
+            has_unit = True
 
         # Проверяем, что юнитов на складе достаточно
         if not Stock.objects.filter(storage=storage, good=db_unit.good, stock__gte=units_count).exists():
             return False, f'Недостаточно на складе: {db_unit.good.name}'
 
         energy_required += units_count * db_unit.energy
+
+    if not has_unit:
+        return False, 'В бой не отправлен ни один юнит'
 
     # проверяем, что затраты на энергию меньше текущего запаса
     if player.energy < energy_required:
@@ -175,12 +186,40 @@ def _send_damage(fighter, war_type, war_id, storage_pk, units, side):
     retry_count = 0
     max_retries = 5
 
+    agr_terrains = war.agr_region.terrain.all()
+    def_terrains = war.def_region.terrain.all()
+    terrain_list = []
+
+    for terrain in agr_terrains:
+        terrain_list.append(terrain)
+
+    for terrain in def_terrains:
+        if not terrain in terrain_list:
+            terrain_list.append(terrain)
+
+    units_pk = [int(string) for string in units.keys()]
+
+    modifiers_dict = {}
+    # модификаторы урона для этого набора рельефов
+    modifiers = TerrainModifier.objects.filter(terrain__in=terrain_list, unit__in=units_pk)
+
+    for modifier in modifiers:
+        if modifier.unit.pk in modifiers_dict.keys():
+            modifiers_dict[modifier.unit.pk] = modifiers_dict[modifier.unit.pk] * modifier.modifier
+        else:
+            modifiers_dict[modifier.unit.pk] = modifier.modifier
+
+    r = redis.StrictRedis(host='redis', port=6379, db=0)
+
     with transaction.atomic():
         player = Player.objects.select_for_update().get(pk=fighter.pk)
 
-        # списываем войска со склада
+        # списываем вой ска со склада
         for unit in units.keys():
             db_unit = db_units.get(pk=int(unit))
+
+            if not unit in units or units[unit] == '':
+                continue
 
             units_count = int(units[unit])
 
@@ -193,15 +232,16 @@ def _send_damage(fighter, war_type, war_id, storage_pk, units, side):
             #                      good=db_unit.good,
             #                      stock__gte=units_count).update(stock=F('stock') - units_count)
 
-            damage += math.floor( (units_count * db_unit.damage) * (1 + player.power/100) )
+            mod = 1
+            if int(unit) in modifiers_dict:
+                mod = float(modifiers_dict[int(unit)])
+            damage += math.floor( (units_count * db_unit.damage) * (1 + player.power/100) * mod )
             energy_required += units_count * db_unit.energy
 
 
         player.energy_cons(value=energy_required, mul=2)
 
         # дальше мы пытаемся внести урон в бой. Если не выйдет - то отменим списание войск и выйдем
-        r = redis.StrictRedis(host='redis', port=6379, db=0)
-
         # пытаемся отправить урон за сторону
         while retry_count < max_retries:
             # Отслеживание ключа
@@ -218,7 +258,7 @@ def _send_damage(fighter, war_type, war_id, storage_pk, units, side):
             pipe.multi()
 
             # Изменение значения ключа
-            pipe.hset(f'{war_type}_{war_id}_dmg', side, int(side_dmg) + damage)
+            pipe.hset(f'{war_type}_{war_id}_dmg', side, int(float(side_dmg)) + damage)
 
             try:
                 # Выполнение транзакции
@@ -233,17 +273,30 @@ def _send_damage(fighter, war_type, war_id, storage_pk, units, side):
             transaction.set_rollback(True)
             return damage, True, None, None
 
+
+    # обновляем урон игрока
+    player_dmg = r.hget(f'{war_type}_{war_id}_{side}_dmg', fighter.pk)
+    if not player_dmg:
+        player_dmg = 0
+    # Изменение значения ключа
+    r.hset(f'{war_type}_{war_id}_{side}_dmg', fighter.pk, int(float(player_dmg)) + damage)
+
+    # если игрока нет в списке стороны, за которую он влил урон
+    if not fighter.pk in [int(string) for string in r.lrange(f'{war_type}_{war_id}_{side}', 0, -1)]:
+        # добавляем игрока в лист атакующих/обороняющихся
+        r.rpush(f'{war_type}_{war_id}_{side}', fighter.pk)
+
     agr_damage = r.hget(f'{war_type}_{war_id}_dmg', 'agr')
     if not agr_damage:
         agr_damage = 0
     else:
-        agr_damage = int(agr_damage)
+        agr_damage = int(float(agr_damage))
 
     def_damage = r.hget(f'{war_type}_{war_id}_dmg', 'def')
     if not def_damage:
         def_damage = 0
     else:
-        def_damage = int(def_damage)
+        def_damage = int(float(def_damage))
 
     return damage, None, agr_damage, def_damage
 

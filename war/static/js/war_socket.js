@@ -21,7 +21,7 @@ warSocket.onmessage = function(e) {
 
         document.getElementById('agr_dmg').innerHTML = numberWithSpaces(data.agr_dmg);
         document.getElementById('def_dmg').innerHTML = numberWithSpaces(data.def_dmg);
-        document.getElementById('delta_dmg').innerHTML = numberWithSpaces(parseInt(data.def_dmg) - parseInt(data.agr_dmg));
+        document.getElementById('delta_dmg').innerHTML = numberWithSpaces(parseInt(data.def_dmg) + defence_points - parseInt(data.agr_dmg));
     }
 };
 

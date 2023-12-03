@@ -227,13 +227,15 @@ def overview(request):
         if not agr_damage:
             agr_damage = 0
         else:
-            agr_damage = int(agr_damage)
+            agr_damage = int(float(agr_damage))
 
         def_damage = r.hget(f'{closest_war.__class__.__name__}_{closest_war.pk}_dmg', 'def')
         if not def_damage:
             def_damage = 0
         else:
-            def_damage = int(def_damage)
+            def_damage = int(float(def_damage))
+
+        def_damage += closest_war.defence_points
 
         war_countdown = interval_in_seconds(
             object=closest_war,
@@ -297,13 +299,15 @@ def overview(request):
     #
     #     except VkAPIError as e:
     #         pass
-
     assistant_name = ('Ann', 'Анна')
 
     if not player.educated:
         assistant_name = random.choice([('Ann', 'Анна'), ('Lin', 'Лин'),  ('Maria', 'Мария'), ('Sofia', 'София'), ('Olga', 'Ольга')])
 
     page = 'player/redesign/overview.html'
+
+
+
 
     # отправляем в форму
     response = render(request, page, {

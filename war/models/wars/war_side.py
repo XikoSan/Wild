@@ -27,7 +27,10 @@ class WarSide(models.Model):
     count = models.IntegerField(default=0, verbose_name='Очки урона')
 
     def __str__(self):
+        # if self.content_object is not None:
         return 'Сторона войны в ' + getattr(getattr(self.content_object, 'agr_region'), 'region_name')
+        # else:
+        # return 'Сторона войны'
 
     # Свойства класса
     class Meta:

@@ -228,6 +228,27 @@ class StartWar(Bill):
 
         return data, 'state/gov/drafts/start_war.html'
 
+    @staticmethod
+    def get_new_draft(state):
+
+        first = None
+        victimRegions = get_victims(state)
+
+        from player.logs.print_log import log
+        log(victimRegions)
+        log(list(victimRegions.keys()))
+
+        if len(list(victimRegions.keys())) > 0:
+            first = list(victimRegions.keys())[0]
+
+        data = {
+            'reg_list': list(victimRegions.keys()),
+            'first': first,
+            'victims_list': victimRegions,
+        }
+
+        return data, 'state/redesign/drafts/start_war.html'
+
     def get_bill(self, player, minister, president):
 
         has_right = False
@@ -250,6 +271,28 @@ class StartWar(Bill):
 
         return data, 'state/gov/bills/start_war.html'
 
+    def get_new_bill(self, player, minister, president):
+
+        has_right = False
+        if minister:
+            for right in minister.rights.all():
+                if self.__class__.__name__ == right.right:
+                    has_right = True
+                    break
+
+        data = {
+            'bill': self,
+            'title': self._meta.verbose_name_raw,
+            'player': player,
+            'president': president,
+            'has_right': has_right,
+            # проверяем, депутат ли этого парла игрок или нет
+            'is_deputy': DeputyMandate.objects.filter(player=player, parliament=Parliament.objects.get(
+                state=player.region.state)).exists(),
+        }
+
+        return data, 'state/redesign/bills/start_war.html'
+
     # получить шаблон рассмотренного законопроекта
     def get_reviewed_bill(self, player):
 
@@ -268,7 +311,7 @@ class StartWar(Bill):
 
     # Свойства класса
     class Meta:
-        abstract = True
+        # abstract = True
         verbose_name = "Объявление войны"
         verbose_name_plural = "Объявления войн"
 

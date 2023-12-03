@@ -29,6 +29,7 @@
 <script>
     var units_energy = {};
     var units_damage = {};
+    var units_mod = {};
 
     {% for unit in units %}
 
@@ -36,11 +37,13 @@
 
         units_damage['{% localize off %}{{ unit.pk }}{% endlocalize %}'] = {% localize off %}{{ unit.damage }}{% endlocalize %};
 
+        units_mod['{% localize off %}{{ unit.pk }}{% endlocalize %}'] = {% localize off %}{{ modifiers_dict|dict_key:unit.pk }}{% endlocalize %};
+
     {% endfor %}
 </script>
 <section class="war">
-		<!-- Заголовок -->
-		<h1 class="war__title ct__page-title">Тестовая война</h1>
+    <!-- Заголовок -->
+    <h1 class="war__title ct__page-title">Тестовая война</h1>
 
     <div class="war__top">
       <div class="war__sides">
