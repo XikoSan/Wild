@@ -46,8 +46,8 @@ def new_storage(request):
         material_cost = 500
 
         # проверяем, что в складе-источнике достаточно сырья
-        aluminium = Good.objects.get(name='Алюминий')
-        steel = Good.objects.get(name='Сталь')
+        aluminium = Good.objects.get(name_ru='Алюминий')
+        steel = Good.objects.get(name_ru='Сталь')
 
         for material in [aluminium, steel]:
             # проверяем наличие Запаса
