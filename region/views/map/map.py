@@ -19,6 +19,7 @@ from region.views.distance_counting import distance_counting
 from region.views.lists.get_regions_online import get_region_online
 from region.views.time_in_flight import time_in_flight
 from wild_politics.settings import JResponse
+from region.models.neighbours import Neighbours
 
 
 # главная страница
@@ -112,6 +113,8 @@ def map(request):
 
         hospitals = Hospital.objects.all()
 
+        neighbours = Neighbours.objects.all()
+
         for region in regions:
             shapes_dict[region.pk] = shapes.get(region=region)
 
@@ -145,6 +148,7 @@ def map(request):
             'online_dict': online_dict,
             'min_online': min_online,
             'max_online': max_online,
+            'neighbours': neighbours,
 
             'med_index_dict': med_index_dict,
         })

@@ -156,6 +156,22 @@
 
       <div class="m-sett__form-check ct__check-box30">
         <label>
+          <input value="links" type="radio" name="map-layer" class="visually-hidden">
+          <svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(--c10two)"/>
+          </svg>
+          <span>
+            <svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(--c10two)"/>
+              <path d="M6.5 4.5L4.5 6.5V20.5H18.5L20.5 18.5V4.5H6.5Z" fill="var(--c10two)" stroke="var(--c10two)"/>
+            </svg>
+          </span>
+          Связи регионов
+        </label>
+      </div>
+
+      <div class="m-sett__form-check ct__check-box30">
+        <label>
           <input value="none" type="radio" name="map-layer" class="visually-hidden" checked>
           <svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(--c10two)"/>
@@ -183,6 +199,21 @@
 
 {% block for_scripts_and_css %}
 <script>
+var line = null;
+
+
+function addMarker(coordinates) {
+  console.log(coordinates);
+
+  line = L.polyline(coordinates, {
+    color: 'white',
+    weight: 3
+  });
+  console.log(line);
+  markers.addLayer(line);
+  markers.addTo(mymap);
+}
+
  // сделать из цвета его темную версию
  const pSBC=(p,c0,c1,l)=>{
      let r,g,b,P,f,t,h,i=parseInt,m=Math.round,a=typeof(c1)=="string";
@@ -255,6 +286,8 @@
 
  var latlngs = L.rectangle(bounds).getLatLngs();
 
+  const markers = new L.LayerGroup();
+  markers.addTo(mymap);
 
  var min_dict = {
   'online': {% localize off %}{{ min_online }}{% endlocalize %},
@@ -269,8 +302,14 @@
 
  var region_props = {};
  var poly_list = [];
+ var link_list = [];
+ var center_dict = {};
 
 <!--  L.polyline(latlngs[0].concat(latlngs[0][0])).addTo(mymap);-->
+
+ {% for link in neighbours %}
+    link_list.push([{% localize off %}{{ link.region_1.pk }},{{ link.region_2.pk }}{% endlocalize %}]);
+ {% endfor %}
 
  {% for district in regions %}
   {% with map_shape=shapes_dict|dict_key:district.pk %}
@@ -312,7 +351,7 @@
  region_props['{% localize off %}{{ district.on_map_id }}{% endlocalize %}']['med_index'] = {{ med_index_dict|dict_key:district.pk }};
 
  poly_list.push(region_poly_{% localize off %}{{ district.pk }}{% endlocalize %});
-
+ center_dict[{% localize off %}{{ district.pk }}{% endlocalize %}] = { 'lat':{% localize off %}{{ district.latitude }}, 'lng':{{ district.longitude }}{% endlocalize %} };
 
  {% endwith %}
  {% endfor %}
@@ -399,6 +438,26 @@
         });
     }
 
+  function set_links() {
+        link_list.forEach(function(geojson) {
+
+          console.log(link_list[0]);
+          console.log(center_dict[link_list[0][0]]);
+
+          coords = [ center_dict[link_list[0][0]], center_dict[link_list[0][1]] ]
+
+          console.log(coords);
+
+          addMarker(coords);
+
+        });
+    }
+
+  function remove_links() {
+      markers.remove();
+    }
+
+
     <!-- ^^^ перекраска регионов на карте в зависимости от фильтра ^^^ -->
 
   function toggleActiveClass(element) {
@@ -426,12 +485,24 @@
 
   document.getElementById('filters').addEventListener('input', (evt) => {
     const checkedInputValue = getCheckedInput().value;
+    remove_links();
+
     if (checkedInputValue === 'none') {
+
+      document.querySelector('.map__tops').classList.remove('active');
+      set_links('color');
+      repaint('color');
+
+    }
+    else if (checkedInputValue === 'links') {
 
       document.querySelector('.map__tops').classList.remove('active');
       repaint('color');
 
-    } else {
+      set_links();
+
+    }
+     else {
       document.querySelector('.map__tops').classList.add('active');
       document.querySelectorAll('.map__top').forEach((block) => {
         block.classList.remove('active');
