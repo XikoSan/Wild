@@ -203,13 +203,10 @@ var line = null;
 
 
 function addMarker(coordinates) {
-  console.log(coordinates);
-
   line = L.polyline(coordinates, {
     color: 'white',
     weight: 3
   });
-  console.log(line);
   markers.addLayer(line);
   markers.addTo(mymap);
 }
@@ -339,6 +336,7 @@ function addMarker(coordinates) {
      },
      data:{
           "id": "{{ district.on_map_id }}",
+          "pk": "{{ district.pk }}",
        },
  }){% if not district.is_off %}.on('click', get_district_info){% endif %};
 
@@ -441,13 +439,7 @@ function addMarker(coordinates) {
   function set_links() {
         link_list.forEach(function(link) {
 
-          console.log(link_list[0]);
-          console.log(center_dict[link[0]]);
-
           coords = [ center_dict[link[0]], center_dict[link[1]] ]
-
-          console.log(coords);
-
           addMarker(coords);
 
         });
@@ -490,7 +482,6 @@ function addMarker(coordinates) {
     if (checkedInputValue === 'none') {
 
       document.querySelector('.map__tops').classList.remove('active');
-      set_links('color');
       repaint('color');
 
     }
@@ -614,4 +605,8 @@ function addMarker(coordinates) {
 
   {% endif %}
 </script>
+
+{% if player.account.is_superuser %}
+<script src="/static/js/map_linker.js"></script>
+{% endif %}
 {% endblock %}
