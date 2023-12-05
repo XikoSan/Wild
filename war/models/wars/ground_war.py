@@ -245,7 +245,6 @@ class GroundWar(War):
         # ЕСЛИ ПОБЕДИЛ АТАКУЮЩИЙ:
         if not self.hq_points < 0:
             return
-        # todo: сделать чтобы во время войны нельзя было работать с Наличными на Складе
 
         tres = None
         agr_tres = Treasury.objects.get(state=self.agr_region.state)

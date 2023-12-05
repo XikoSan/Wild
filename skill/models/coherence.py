@@ -28,15 +28,30 @@ class Coherence(Skill):
     max_level = 1
 
     def apply(self, args):
-        pass
-        # if self.player.arrival + timedelta(days=1) < timezone.now():
-        #     if not 'not_floor' in args:
-        #         return math.floor(args['sum'] * (1 + self.level * 0.02))
-        #     else:
-        #         return args['sum'] * (1 + self.level * 0.02)
-        #
-        # else:
-        #     return args['sum']
+
+        total_units = 0
+        types_count = 0
+
+        for unit in args['units'].keys():
+            total_units += int(args['units'][unit])
+            types_count += 1
+
+        bonus = 0
+
+        if types_count > 1:
+            # теперь считаем сколько типов юнитов имеют больше 20%
+            types_count = 0
+            for unit in args['units'].keys():
+                if int(args['units'][unit]) * 100 / total_units >= 20:
+                    bonus += 0.1
+                    types_count += 1
+
+            if types_count > 1:
+                return math.floor(args['dmg'] * (1 + bonus))
+            else:
+                return args['dmg']
+        else:
+            return args['dmg']
 
     class Meta:
         verbose_name = "Слаженность"
