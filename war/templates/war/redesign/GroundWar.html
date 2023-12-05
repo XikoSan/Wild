@@ -32,6 +32,9 @@
     var units_damage = {};
     var units_mod = {};
 
+    var coherence_perk = {% if coherence_perk %}true{% else %}false{% endif %};
+    var scouting_perk = {% if scouting_perk %}{{ scouting_perk }}{% endif %};
+
     {% for unit in units %}
 
         units_energy['{% localize off %}{{ unit.pk }}{% endlocalize %}'] = {% localize off %}{{ unit.energy }}{% endlocalize %};
@@ -44,7 +47,7 @@
 </script>
 <section class="war">
 		<!-- Заголовок -->
-		<h1 class="war__title ct__page-title">Тестовая война</h1>
+		<h1 class="war__title ct__page-title">Наземная война</h1>
 
     <div class="war__top">
       <div class="war__type">

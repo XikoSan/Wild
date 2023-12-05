@@ -51,6 +51,8 @@ from war.models.wars.unit import Unit
 from war.models.wars.war import War
 from war.models.wars.war_side import WarSide
 from region.models.terrain.terrain_modifier import TerrainModifier
+from skill.models.scouting import Scouting
+from skill.models.coherence import Coherence
 
 
 # класс наземной войны
@@ -609,6 +611,16 @@ class GroundWar(War):
                 for weapon in weapons:
                     units_dict[weapon.good] = weapon.stock
 
+        # знание местности
+        scouting_perk = 0
+        if Scouting.objects.filter(player=player, level__gt=0).exists():
+            scouting_perk = Scouting.objects.get(player=player).level
+
+        # Слаженность
+        coherence_perk = False
+        if Coherence.objects.filter(player=player, level__gt=0).exists():
+            coherence_perk = True
+
         # --------------------------------------------------------------------------------------------
         data = []
         graph_html = None
@@ -662,6 +674,9 @@ class GroundWar(War):
             'war': self,
             # модификаторы рельефа
             'terrains': terrain_list,
+            # перки
+            'coherence_perk': coherence_perk,
+            'scouting_perk': scouting_perk,
             # время окончания войны
             'war_countdown': war_countdown,
             # форматированная строка текущего оставшегося времени

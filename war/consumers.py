@@ -24,6 +24,8 @@ from storage.models.stock import Stock
 from storage.models.storage import Storage
 from war.models.wars.unit import Unit
 from region.models.terrain.terrain_modifier import TerrainModifier
+from skill.models.scouting import Scouting
+from skill.models.coherence import Coherence
 
 
 def _get_player(account):
@@ -228,14 +230,21 @@ def _send_damage(fighter, war_type, war_id, storage_pk, units, side):
             stock.stock -= units_count
             stock.save()
 
-            # Stock.objects.filter(storage=storage,
-            #                      good=db_unit.good,
-            #                      stock__gte=units_count).update(stock=F('stock') - units_count)
+            unit_dmg = math.floor( (units_count * db_unit.damage) * (1 + player.power/100) )
+
+            # знание местности
+            if Scouting.objects.filter(player=player, level__gt=0).exists():
+                unit_dmg = Scouting.objects.get(player=player).apply({'dmg': unit_dmg})
+
+            # Слаженность
+            if Coherence.objects.filter(player=player, level__gt=0).exists():
+                unit_dmg = Coherence.objects.get(player=player).apply({'dmg': unit_dmg, 'units': units})
 
             mod = 1
             if int(unit) in modifiers_dict:
                 mod = float(modifiers_dict[int(unit)])
-            damage += math.floor( (units_count * db_unit.damage) * (1 + player.power/100) * mod )
+
+            damage += math.floor( unit_dmg * mod )
             energy_required += units_count * db_unit.energy
 
 
