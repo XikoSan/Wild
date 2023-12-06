@@ -154,9 +154,9 @@
 						<picture>
 							<img src="{% static 'img/wild_pass.svg' %}" alt="wild_pass" class="eduBlock6">
 						</picture>
-						<div class="store__wp-wrapper-r">
+						<div class="store__wp-wrapper-r" id="wildpass_main">
 							<span>{% trans 'Количество' context "storage_assets" %}: <label id="wp_count">{{ player.cards_count }}</label></span>
-							<button onclick="check_card()" {% if not player.cards_count > 0 %}disabled{% endif %} class="ct__mid-btn">
+							<button {% if not player.cards_count > 0 %}disabled{% else %}onclick="open_sub()"{% endif %} class="ct__mid-btn">
 								<svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
 									<mask id="mask0_259_320" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
 										<path d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"/>
@@ -169,6 +169,36 @@
 									</g>
 								</svg>
 								<span>{% trans 'использовать' context "storage_assets" %}</span>
+							</button>
+						</div>
+						<div class="store__wp-wrapper-r" id="wildpass_sub" style="display: none">
+							<button onclick="check_card_4gold()" class="ct__mid-btn">
+								<svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
+									<mask id="mask0_259_320" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+										<path d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"/>
+									</mask>
+									<g mask="url(#mask0_259_320)">
+										<path d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" fill="var(--c10two)"/>
+										<path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"/>
+										<path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"/>
+										<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
+									</g>
+								</svg>
+								<span>{% trans '+ G 1000' context "storage_vault" %}</span>
+							</button>
+							<button onclick="check_card()" class="ct__mid-btn">
+								<svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
+									<mask id="mask0_259_320" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+										<path d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"/>
+									</mask>
+									<g mask="url(#mask0_259_320)">
+										<path d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" fill="var(--c10two)"/>
+										<path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"/>
+										<path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"/>
+										<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
+									</g>
+								</svg>
+								<span>{% trans '+ премиум' context "storage_vault" %}</span>
 							</button>
 						</div>
 					</div>
@@ -313,6 +343,8 @@
 	{% endif %}
 </section>
 <script>
+	var gold_usage = 0;
+
 	var wildpass_header = '{% if premium %}{% trans 'Продление' context "storage_assets" %}{% else %}{% trans 'Активация' context "storage_assets" %}{% endif %} {% trans 'премиум-аккаунта' context "storage_assets" %}';
 
 	{% if premium %}
@@ -321,8 +353,16 @@
 	var wildpass_text = '{% trans 'Вы активируете премиум-аккаунт, длительностью один месяц. Данную операцию невозможно отменить. Продолжить?' context "storage_assets" %}';
 	{% endif %}
 
+	var wildpass_gold_header = '{% trans 'Обмен Wild Pass' context "storage_vault" %}';
+	var wildpass_gold_text = '{% trans 'Вы обменяете премиум-карту на G 1000. Данную операцию невозможно отменить. Продолжить?' context "storage_vault" %}';
+
 	var wildpass_yes = '{% trans 'Продолжить' context "storage_assets" %}';
 	var wildpass_cancel = '{% trans 'Отмена' context "storage_assets" %}';
+
+	function open_sub(){
+		$('#wildpass_main').hide();
+		$('#wildpass_sub').show();
+	}
 </script>
 {% if single_storage %}
 <script>

@@ -30,15 +30,20 @@ def use_card(request):
             }
             return JResponse(data)
 
-        # время, к которому прибавляем месяц
-        if player.premium > timezone.now():
-            from_time = player.premium
+        # активация ради золота
+        if int(request.POST.get('gold_usage')) == 1:
+            player.gold += 1000
+
         else:
-            from_time = timezone.now()
+            # время, к которому прибавляем месяц
+            if player.premium > timezone.now():
+                from_time = player.premium
+            else:
+                from_time = timezone.now()
 
-        player.premium = from_time + relativedelta(months=1)
+            player.premium = from_time + relativedelta(months=1)
+
         player.cards_count -= 1
-
         player.save()
 
         data = {
