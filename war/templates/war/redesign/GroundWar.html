@@ -33,7 +33,7 @@
     var units_mod = {};
 
     var coherence_perk = {% if coherence_perk %}true{% else %}false{% endif %};
-    var scouting_perk = {% if scouting_perk %}{{ scouting_perk }}{% endif %};
+    var scouting_perk = {% if scouting_perk %}{{ scouting_perk }}{% else %}0{% endif %};
 
     {% for unit in units %}
 
