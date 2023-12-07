@@ -613,7 +613,10 @@ class GroundWar(War):
         # знание местности
         scouting_perk = 0
         if Scouting.objects.filter(player=player, level__gt=0).exists():
-            scouting_perk = Scouting.objects.get(player=player).level
+            unit_dmg = Scouting.objects.get(player=player).apply({'dmg': 100})
+            # если перк не применился, значит, игрок находится менее суток в реге, учитывать не надо
+            if unit_dmg > 100:
+                scouting_perk = Scouting.objects.get(player=player).level
 
         # Слаженность
         coherence_perk = False
