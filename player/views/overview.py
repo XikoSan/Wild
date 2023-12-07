@@ -306,9 +306,6 @@ def overview(request):
 
     page = 'player/redesign/overview.html'
 
-
-
-
     # отправляем в форму
     response = render(request, page, {
         'page_name': _('Обзор'),

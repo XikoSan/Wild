@@ -92,7 +92,7 @@ class RegionAdmin(admin.ModelAdmin):
         # централизация
         ('longitude', 'latitude'),
         # гос
-        ('state'),
+        ('state', 'peace_date'),
         # налоги
         ('cash_tax', 'oil_tax', 'ore_tax', 'trade_tax'),
         # ресы

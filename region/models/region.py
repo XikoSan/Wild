@@ -1,15 +1,15 @@
 # coding=utf-8
 import math
-
 from django import forms
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
+from django.utils import timezone
 from django.utils.translation import gettext_lazy, pgettext_lazy, ugettext as _
 
-from state.models.state import State
 from region.actual_manager import ActualManager
-from storage.models.good import Good
 from region.models.terrain.terrain import Terrain
+from state.models.state import State
+from storage.models.good import Good
 
 
 # Чтобы перевод региона появился в PO файлах, требуется дописать его в конце html файла 'map'!
@@ -108,8 +108,8 @@ class Region(models.Model):
         default='urals_oil',
     )
     # марка добываемой нефти в регионе
-    oil_mark =  models.ForeignKey(Good, default=None, on_delete=models.SET_NULL, null=True,
-                                     verbose_name='Нефть')
+    oil_mark = models.ForeignKey(Good, default=None, on_delete=models.SET_NULL, null=True,
+                                 verbose_name='Нефть')
 
     # Руда:
     # в наличии
@@ -137,8 +137,11 @@ class Region(models.Model):
 
     # Рельеф
     terrain = models.ManyToManyField(Terrain, blank=True,
-                                        related_name='terrain',
-                                        verbose_name='Рельеф')
+                                     related_name='terrain',
+                                     verbose_name='Рельеф')
+
+    # срок истечения мирного времени
+    peace_date = models.DateTimeField(default=timezone.now, blank=True, verbose_name='Мирное время, до')
 
     # сохранение профиля с изменением размеров и названия картинки профиля
     def save(self):

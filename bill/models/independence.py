@@ -1,5 +1,6 @@
 # coding=utf-8
 
+import datetime
 from django.db import models
 from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
@@ -7,6 +8,9 @@ from django.utils import timezone
 from django.utils.translation import gettext_lazy
 
 from bill.models.bill import Bill
+from gov.models.president import President
+from gov.models.presidential_voting import PresidentialVoting
+from gov.models.residency_request import ResidencyRequest
 from party.party import Party
 from player.views.get_subclasses import get_subclasses
 from region.building.building import Building
@@ -17,9 +21,6 @@ from state.models.parliament.parliament import Parliament
 from state.models.parliament.parliament_party import ParliamentParty
 from state.models.treasury import Treasury
 from war.models.wars.war import War
-from gov.models.residency_request import ResidencyRequest
-from gov.models.president import President
-from gov.models.presidential_voting import PresidentialVoting
 
 
 # Объявить независимость региона
@@ -138,7 +139,8 @@ class Independence(Bill):
                     # получить партии этого рега
                     reg_parties = Party.objects.filter(region=self.region, deleted=False).values_list('pk')
                     # узнать депутатов перед удалением
-                    deputates = DeputyMandate.objects.only("player").filter(party__pk__in=reg_parties).values_list('player')
+                    deputates = DeputyMandate.objects.only("player").filter(party__pk__in=reg_parties).values_list(
+                        'player')
 
                     # удаляем голоса этих депутатов из ЗП
                     bills_list = []
@@ -179,14 +181,14 @@ class Independence(Bill):
                                     voting.candidates.remove(candidate)
                             voting.save()
 
-
                     # сбрасывать налоги на ноль
                     Region.objects.filter(pk=self.region.pk).update(
-                        cash_tax = 0,
-                        oil_tax = 0,
-                        ore_tax = 0,
-                        trade_tax = 0,
-                        state = None
+                        cash_tax=0,
+                        oil_tax=0,
+                        ore_tax=0,
+                        trade_tax=0,
+                        state=None,
+                        peace_date=timezone.now() + datetime.timedelta(days=14)
                     )
                     # чистить запросы прописки в этот рег
                     ResidencyRequest.objects.filter(region=self.region).delete()
