@@ -33,8 +33,9 @@ class Coherence(Skill):
         types_count = 0
 
         for unit in args['units'].keys():
-            total_units += int(args['units'][unit])
-            types_count += 1
+            if args['units'][unit]:
+                total_units += int(args['units'][unit])
+                types_count += 1
 
         bonus = 0
 
@@ -42,9 +43,10 @@ class Coherence(Skill):
             # теперь считаем сколько типов юнитов имеют больше 20%
             types_count = 0
             for unit in args['units'].keys():
-                if int(args['units'][unit]) * 100 / total_units >= 20:
-                    bonus += 0.1
-                    types_count += 1
+                if args['units'][unit]:
+                    if int(args['units'][unit]) * 100 / total_units >= 20:
+                        bonus += 0.1
+                        types_count += 1
 
             if types_count > 1:
                 return math.floor(args['dmg'] * (1 + bonus))

@@ -9,6 +9,7 @@ jQuery(document).ready(function ($) {
 
         var total_units = 0;
         var bonus = 0.0;
+        var types_count = 0;
 
         if (coherence_perk == true){
             $('.unit_input').each(function(i, obj) {
@@ -16,6 +17,7 @@ jQuery(document).ready(function ($) {
             });
             $('.unit_input').each(function(i, obj) {
                 if (Number(obj.value) * 100 / total_units >= 20){
+                    types_count += 1;
                     bonus += 0.1;
                 }
             });
@@ -31,7 +33,7 @@ jQuery(document).ready(function ($) {
                 units_dmg = Math.floor( units_dmg * (1 + scouting_perk * 0.02) );
             }
 
-            if (coherence_perk == true){
+            if (coherence_perk == true && types_count > 1){
                 units_dmg = Math.floor( units_dmg * (1 + bonus) );
             }
 
