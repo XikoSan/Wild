@@ -37,7 +37,7 @@ class Scouting(Skill):
             return math.floor(args['dmg'] * (1 + self.level * 0.02))
 
         else:
-            return args['sum']
+            return args['dmg']
 
     class Meta:
         verbose_name = "Знание местности"
