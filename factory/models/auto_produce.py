@@ -227,7 +227,7 @@ class AutoProduce(Log):
             return
 
         # player.energy_cons(value=ceil(count / consignment) * price, region=self.storage.region)
-        player.energy_cons(value=ceil(count / consignment) * price, mul=2, region=self.storage.region)
+        player.energy_cons(value=ceil(count / consignment) * price, mul=1, region=self.storage.region)
 
         # создаём лог производства
         ProductionLog.objects.create(player=player,

@@ -248,7 +248,7 @@ def produce_good(request):
 
         # списать энергию игрока
         # player.energy_cons(value=energy_cost)
-        player.energy_cons(value=energy_cost, mul=2)
+        player.energy_cons(value=energy_cost, mul=1)
 
         # from player.game_event.energy_spent import EnergySpent
         # from django.contrib.humanize.templatetags.humanize import number_format
