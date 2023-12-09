@@ -266,6 +266,7 @@ class ChangeResidency(Bill):
 
     # Свойства класса
     class Meta:
+        abstract = True
         verbose_name = "Новый способ выдачи прописки"
         verbose_name_plural = "Новые способы выдачи прописки"
 
