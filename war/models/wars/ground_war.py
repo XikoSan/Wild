@@ -281,14 +281,30 @@ class GroundWar(War):
             # если есть блокировки - их тоже захватываем
             if TreasuryLock.objects.filter(lock_treasury=tres, deleted=False).exists():
                 for lock in TreasuryLock.objects.filter(lock_treasury=tres, deleted=False):
-                    # если уже есть запас у агрессора
-                    if TreasuryStock.objects.filter(treasury=agr_tres, good=lock.lock_good).exists():
-                        agr_tres_stock = TreasuryStock.objects.get(treasury=agr_tres, good=lock.lock_good)
+                    if lock.cash:
+                        agr_tres.cash += math.ceil(lock.lock_count / 4)
+                        lock.treasury.cash += math.ceil(lock.lock_count / 4)
+                        lock.treasury.save()
+
                     else:
-                        agr_tres_stock = TreasuryStock(treasury=agr_tres, good=lock.lock_good)
-                    # отдаем четверть атакующему
-                    agr_tres_stock.stock += math.ceil(lock.lock_count / 4)
-                    agr_tres_stock.save()
+                        # если уже есть запас у агрессора
+                        if TreasuryStock.objects.filter(treasury=agr_tres, good=lock.lock_good).exists():
+                            agr_tres_stock = TreasuryStock.objects.get(treasury=agr_tres, good=lock.lock_good)
+                        else:
+                            agr_tres_stock = TreasuryStock(treasury=agr_tres, good=lock.lock_good)
+                        # отдаем четверть атакующему
+                        agr_tres_stock.stock += math.ceil(lock.lock_count / 4)
+                        agr_tres_stock.save()
+
+                        # если уже есть запас у обороны
+                        if TreasuryStock.objects.filter(treasury=lock.treasury, good=lock.lock_good).exists():
+                            def_tres_stock = TreasuryStock.objects.get(treasury=lock.treasury, good=lock.lock_good)
+                        else:
+                            def_tres_stock = TreasuryStock(treasury=lock.treasury, good=lock.lock_good)
+                        # отдаем четверть атакующему
+                        def_tres_stock.stock += math.ceil(lock.lock_count / 4)
+                        def_tres_stock.save()
+
                     # удаляем блокировку
                     lock.deleted = True
                     lock.save()
