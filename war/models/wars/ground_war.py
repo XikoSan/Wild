@@ -283,8 +283,8 @@ class GroundWar(War):
                 for lock in TreasuryLock.objects.filter(lock_treasury=tres, deleted=False):
                     if lock.cash:
                         agr_tres.cash += math.ceil(lock.lock_count / 4)
-                        lock.treasury.cash += math.ceil(lock.lock_count / 4)
-                        lock.treasury.save()
+                        lock.lock_treasury.cash += math.ceil(lock.lock_count / 4)
+                        lock.lock_treasury.save()
 
                     else:
                         # если уже есть запас у агрессора
@@ -297,10 +297,10 @@ class GroundWar(War):
                         agr_tres_stock.save()
 
                         # если уже есть запас у обороны
-                        if TreasuryStock.objects.filter(treasury=lock.treasury, good=lock.lock_good).exists():
-                            def_tres_stock = TreasuryStock.objects.get(treasury=lock.treasury, good=lock.lock_good)
+                        if TreasuryStock.objects.filter(treasury=lock.lock_treasury, good=lock.lock_good).exists():
+                            def_tres_stock = TreasuryStock.objects.get(treasury=lock.lock_treasury, good=lock.lock_good)
                         else:
-                            def_tres_stock = TreasuryStock(treasury=lock.treasury, good=lock.lock_good)
+                            def_tres_stock = TreasuryStock(treasury=lock.lock_treasury, good=lock.lock_good)
                         # отдаем четверть атакующему
                         def_tres_stock.stock += math.ceil(lock.lock_count / 4)
                         def_tres_stock.save()
