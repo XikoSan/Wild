@@ -60,7 +60,7 @@ def mining_top(request, player):
         size_party.pk = party_tuple[0].pk,
 
         size_party.mined = party_tuple[1]
-        size_party.reward = int(20000 * (party_tuple[1] / (week_ore + week_oil)))
+        size_party.reward = int(15000 * (party_tuple[1] / (week_ore + week_oil)))
 
         parties_with_size.append(size_party)
 

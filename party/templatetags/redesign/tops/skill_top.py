@@ -63,7 +63,7 @@ def skill_top(request, player):
 
         size_party.skill = party_tuple[1]
         if all_skills > 0:
-            size_party.reward = int(20000 * (party_tuple[1] / all_skills))
+            size_party.reward = int(15000 * (party_tuple[1] / all_skills))
 
         parties_with_size.append(size_party)
 

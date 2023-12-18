@@ -98,7 +98,7 @@ def save_daily():
         for party_tuple in sorted_items:
             if party_tuple[1] > 0:
                 # начисляем золото в процентном соотношении
-                party_tuple[0].gold += int(20000 * (party_tuple[1] / (week_ore + week_oil)))
+                party_tuple[0].gold += int(15000 * (party_tuple[1] / (week_ore + week_oil)))
                 party_tuple[0].save()
 
         all_skills = 0
@@ -130,7 +130,7 @@ def save_daily():
             for party_tuple in sorted_items:
                 # начисляем золото в процентном соотношении
                 if party_tuple[1] > 0:
-                    party_tuple[0].gold += 20000 * ( party_tuple[1] / all_skills )
+                    party_tuple[0].gold += 15000 * ( party_tuple[1] / all_skills )
                     party_tuple[0].save()
 
         # производство
@@ -160,6 +160,6 @@ def save_daily():
             for party_tuple in sorted_items:
                 # начисляем золото в процентном соотношении
                 if party_tuple[1] > 0:
-                    party_tuple[0].gold += 20000 * ( party_tuple[1] / all_produced )
+                    party_tuple[0].gold += 15000 * ( party_tuple[1] / all_produced )
                     party_tuple[0].save()
 
