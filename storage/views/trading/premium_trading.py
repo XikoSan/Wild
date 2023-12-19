@@ -9,6 +9,7 @@ from state.models.state import State
 from storage.models.cash_lock import CashLock
 from storage.models.trading_log import TradingLog
 from django.utils.translation import pgettext
+from django.apps import apps
 
 
 @transaction.atomic
@@ -49,6 +50,10 @@ def premium_trading(player, count, offer):
         offer_owner.save()
         #   списываем из оффера товар
         offer.count -= count
+
+        WildpassLog = apps.get_model('player.WildpassLog')
+        prem_log = WildpassLog(player=player, count=getattr(player, 'cards_count') + count, activity_txt='trading')
+        prem_log.save()
 
         #   начисляем товар игроку
         setattr(player, 'cards_count', getattr(player, 'cards_count') + count)
@@ -139,6 +144,10 @@ def premium_trading(player, count, offer):
         #   начисляем деньги игроку
         player.cash += taxed_sum
 
+        WildpassLog = apps.get_model('player.WildpassLog')
+        prem_log = WildpassLog(player=player, count=getattr(player, 'cards_count') - count, activity_txt='trading')
+        prem_log.save()
+
         #   списываем товар со склада
         setattr(player, 'cards_count', getattr(player, 'cards_count') - count)
         player.save()
@@ -148,10 +157,13 @@ def premium_trading(player, count, offer):
 
         #   если продажа закрывает оффер:
         if offer.count == 0:
-            #       закрываем оффер
+            # закрываем оффер
             offer.accept_date = timezone.now()
             offer.deleted = True
         offer.save()
+
+        prem_log = WildpassLog(player=offer_owner, count=getattr(offer_owner, 'cards_count') + count, activity_txt='trading')
+        prem_log.save()
 
         #   начисляем товар на склад оффера
         setattr(offer_owner, 'cards_count', getattr(offer_owner, 'cards_count') + count)

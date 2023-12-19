@@ -5,6 +5,7 @@ from django.db import transaction
 from party.position import PartyPosition
 from player.logs.cash_log import CashLog
 from player.logs.gold_log import GoldLog
+from player.logs.wildpass_log import WildpassLog
 from player.logs.skill_training import SkillTraining
 from player.logs.auto_mining import AutoMining
 from .player import Player
@@ -17,6 +18,8 @@ from player.player_regional_expence import PlayerRegionalExpense
 from player.game_event.energy_spent import EnergySpent
 from player.logs.donut_log import DonutLog
 from dateutil.relativedelta import relativedelta
+from player.lootbox.lootbox import Lootbox
+from player.logs.prem_log import PremLog
 
 @transaction.atomic
 def add_premium_month(modeladmin, request, queryset):
@@ -31,7 +34,10 @@ def add_premium_month(modeladmin, request, queryset):
 
         player.save()
 
-add_premium_month.short_description = 'Добавить 1 месяц према'\
+        prem_log = PremLog(player=player, days=30, activity_txt='buying')
+        prem_log.save()
+
+add_premium_month.short_description = 'Добавить 1 месяц према'
 
 
 @transaction.atomic
@@ -46,6 +52,9 @@ def add_3_premium_month(modeladmin, request, queryset):
         player.premium = from_time + relativedelta(months=3)
 
         player.save()
+
+        prem_log = PremLog(player=player, days=90, activity_txt='buying')
+        prem_log.save()
 
 add_3_premium_month.short_description = 'Добавить 3 месяца према'
 
@@ -62,6 +71,9 @@ def add_6_premium_month(modeladmin, request, queryset):
         player.premium = from_time + relativedelta(months=6)
 
         player.save()
+
+        prem_log = PremLog(player=player, days=180, activity_txt='buying')
+        prem_log.save()
 
 add_6_premium_month.short_description = 'Добавить 6 месяцев према'
 
@@ -102,6 +114,24 @@ class GoldLogAdmin(admin.ModelAdmin):
     ordering = ('-dtime',)
 
 
+class PremLogAdmin(admin.ModelAdmin):
+    list_display = ('player', 'days', 'activity_txt')
+    list_filter = ('activity_txt',)
+    search_fields = ('player__nickname',)
+    raw_id_fields = ('player',)
+    date_hierarchy = 'dtime'
+    ordering = ('-dtime',)
+
+
+class WildpassLogAdmin(admin.ModelAdmin):
+    list_display = ('player', 'count', 'activity_txt')
+    list_filter = ('activity_txt',)
+    search_fields = ('player__nickname',)
+    raw_id_fields = ('player',)
+    date_hierarchy = 'dtime'
+    ordering = ('-dtime',)
+
+
 class PlayerSettingsAdmin(admin.ModelAdmin):
     search_fields = ['player__nickname',]
     raw_id_fields = ('player',)
@@ -130,6 +160,12 @@ class EnergySpentAdmin(admin.ModelAdmin):
 class DonutLogAdmin(admin.ModelAdmin):
     search_fields = ['player__nickname', ]
     list_display = ('player', 'dtime')
+    raw_id_fields = ('player', )
+
+
+class LootboxAdmin(admin.ModelAdmin):
+    search_fields = ['player__nickname', ]
+    list_display = ('player', 'stock')
     raw_id_fields = ('player', )
 
 
@@ -175,6 +211,8 @@ admin.site.register(PlayerSettings, PlayerSettingsAdmin)
 admin.site.register(PlayerRegionalExpense, PlayerRegionalExpenseAdmin)
 admin.site.register(CashLog, CashLogAdmin)
 admin.site.register(GoldLog, GoldLogAdmin)
+admin.site.register(PremLog, PremLogAdmin)
+admin.site.register(WildpassLog, WildpassLogAdmin)
 admin.site.register(DonutLog, DonutLogAdmin)
 admin.site.register(SkillTraining, SkillTrainingAdmin)
 admin.site.register(AutoMining, AutoMiningAdmin)
@@ -184,3 +222,5 @@ admin.site.register(EventPart, EventPartAdmin)
 admin.site.register(GlobalPart, GlobalPartAdmin)
 
 admin.site.register(EnergySpent, EnergySpentAdmin)
+
+admin.site.register(Lootbox, LootboxAdmin)

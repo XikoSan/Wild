@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from django.http import JsonResponse
 from django.utils import timezone
-
+from django.apps import apps
 from player.decorators.player import check_player
 from player.player import Player
 from region.views.distance_counting import distance_counting
@@ -166,6 +166,12 @@ def create_offer(request):
                         'response': pgettext('w_trading_new', 'Недостаточно Wild Pass для продажи'),
                     }
                     return JsonResponse(data)
+
+                WildpassLog = apps.get_model('player.WildpassLog')
+                prem_log = WildpassLog(player=player, count=getattr(player, 'cards_count') - count,
+                                       activity_txt='trading')
+                prem_log.save()
+
                 # списать товар со Склада
                 setattr(player, 'cards_count', getattr(player, 'cards_count') - count)
                 player.save()

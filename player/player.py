@@ -2,15 +2,17 @@
 import datetime
 import pytz
 import redis
+from dateutil.relativedelta import relativedelta
 from django.apps import apps
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.db import transaction
+from django.db.models.signals import pre_save
+from django.dispatch import receiver
 from django.utils import timezone
 from django.utils.timezone import make_aware
 from django.utils.translation import pgettext
 from django_celery_beat.models import PeriodicTask
-from dateutil.relativedelta import relativedelta
 
 from party.party import Party
 from party.position import PartyPosition
@@ -198,7 +200,7 @@ class Player(models.Model):
                 event_part.prize_check()
                 event_part.save()
 
-    #       ---- общий счет ----
+            #       ---- общий счет ----
             if GlobalPart.objects.filter(
                     event=GameEvent.objects.get(running=True, event_start__lt=timezone.now(),
                                                 event_end__gt=timezone.now())
@@ -488,3 +490,17 @@ class Player(models.Model):
     class Meta:
         verbose_name = "Игрок"
         verbose_name_plural = "Игроки"
+
+
+# сигнал прослушивающий создание партии, после этого формирующий таску
+@receiver(pre_save, sender=Player)
+def save_pre(sender, instance, raw, using, update_fields, **kwargs):
+
+    if Player.objects.filter(pk=instance.pk).exists():
+        cards_count_pre = Player.objects.only("cards_count").get(pk=instance.pk).cards_count
+
+        if cards_count_pre != instance.cards_count:
+            WildpassLog = apps.get_model('player.WildpassLog')
+
+            prem_log = WildpassLog(player=instance, count=instance.cards_count-cards_count_pre, activity_txt='buying')
+            prem_log.save()
