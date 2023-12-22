@@ -11,7 +11,7 @@ from war.models.wars.war import War
 from player.views.get_subclasses import get_subclasses
 from storage.models.stock import Stock
 from storage.models.good import Good
-
+from player.lootbox.lootbox import Lootbox
 
 
 # главная страница
@@ -68,7 +68,9 @@ def storage(request):
     medium_limit = 6
     small_limit = 5
 
-
+    lootbox_count = 0
+    if Lootbox.objects.filter(player=player).exists():
+        lootbox_count = Lootbox.objects.get(player=player).stock
 
     # отправляем в форму
     response = render(request, 'storage/redesign/storage.html', {
@@ -88,6 +90,8 @@ def storage(request):
         'large_limit': large_limit,
         'medium_limit': medium_limit,
         'small_limit': small_limit,
+
+        'lootbox_count': lootbox_count,
 
     })
 

@@ -3,6 +3,7 @@ from django.conf.urls import include, url
 
 from storage.views.vault.produce_energy import produce_energy
 from storage.views.vault.use_card import use_card
+from storage.views.vault.lootbox import lootbox
 
 urlpatterns = [
 
@@ -10,4 +11,8 @@ urlpatterns = [
     url(r'^produce_energy/$', produce_energy, name='produce_energy'),
     # активация премиум-карты:
     url(r'^use_card/$', use_card, name='use_card'),
+
+    # страница лутбоксов
+    url(r'^lootbox$', lootbox, name='lootbox'),
+
 ]

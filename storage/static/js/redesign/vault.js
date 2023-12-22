@@ -123,3 +123,26 @@ function use_card(){
         }
     });
 };
+
+
+// сундуки - использование
+function use_lootbox(){
+    var sending_data = "&csrfmiddlewaretoken=" + csrftoken + "&count=" + 1;
+    $.ajax({
+        type: "POST",
+        url: "/open_lootboxes/",
+        data:  sending_data,
+        cache: false,
+        success: function(data){
+            if (data.response == 'ok'){
+                console.log('Вы получили:')
+                console.log(numberWithSpaces(data.gold_prize) + ' золота')
+                console.log(numberWithSpaces(data.prem_prize) + ' дней премиум-аккаунта')
+                console.log(numberWithSpaces(data.wp_prize) + ' Wild Pass')
+            }
+            else{
+                display_modal('notify', data.header, data.response, null, data.grey_btn);
+            }
+        }
+    });
+};

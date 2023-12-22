@@ -304,6 +304,46 @@ def overview(request):
     if not player.educated:
         assistant_name = random.choice([('Ann', 'Анна'), ('Lin', 'Лин'),  ('Maria', 'Мария'), ('Sofia', 'София'), ('Olga', 'Ольга')])
 
+
+    from player.views.generate_rewards import generate_rewards
+    from player.logs.print_log import log
+
+    gold_spent = 0
+
+    gold_prize = 0
+    prem_prize = 0
+    wp_prize = 0
+
+    for repeat in range(100):
+        gold_spent += 1000
+
+        rewards, summs = generate_rewards()
+
+        for reward in rewards:
+            index = rewards.index(reward)
+
+            if reward == 'gold':
+                gold_prize += summs[index]
+
+            if reward == 'premium':
+                prem_prize += summs[index] / 30 * 800
+
+            if reward == 'wild_pass':
+                wp_prize += summs[index] * 1000
+
+        # log(f'полученные награды: {rewards}')
+        # log(f'значения наград: {summs}')
+
+    log(f'потрачено: {gold_spent}')
+    # log(f'золота: {gold_prize}, према: {prem_prize}, пасс: {wp_prize}')
+    log(f'награды:')
+
+    log(f'золота: {gold_prize}')
+    log(f'према: {prem_prize}')
+    log(f'вилдпассы: {wp_prize}')
+
+    log(f'всего: {gold_prize + prem_prize + wp_prize}')
+
     page = 'player/redesign/overview.html'
 
     # отправляем в форму
