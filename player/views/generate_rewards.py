@@ -4,7 +4,7 @@ import random
 # генератор открытия
 def generate_rewards():
     # выбираем количество получаемых игроком наград
-    count = random.choices([1, 2, 3,], weights=[60, 30, 10,])
+    count = random.choices([1, 2, 3,], weights=[70, 20, 10,])
 
     # выбираем какие награды именно игрок получит
     rewards = []
@@ -28,10 +28,10 @@ def generate_rewards():
             for element in diff:
 
                 if element == 'gold':
-                    weights.append(10)
+                    weights.append(5)
 
                 if element == 'premium':
-                    weights.append(5)
+                    weights.append(10)
 
                 if element == 'wild_pass':
                     weights.append(1)
@@ -59,13 +59,13 @@ def generate_rewards():
 
         if nagrada == 'premium':
 
-            weights = [50, 30, 15, 5,]
+            weights = [60, 30, 9, 1,]
 
             reward_sum = random.choices([14, 30, 90, 365, ], weights=weights)
 
         if nagrada == 'wild_pass':
 
-            weights = [50, 35, 10, 5,]
+            weights = [60, 30, 9, 1,]
 
             reward_sum = random.choices([1, 3, 5, 10, ], weights=weights)
 

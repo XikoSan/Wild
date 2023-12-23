@@ -1,17 +1,12 @@
 import math
+from datetime import datetime
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 from django.utils.translation import pgettext
 
 from player.decorators.player import check_player
+from player.lootbox.lootbox import Lootbox
 from player.player import Player
-from region.views.distance_counting import distance_counting
-from storage.models.storage import Storage
-from storage.models.transport import Transport
-from datetime import datetime
-from storage.views.storage.locks.get_storage import get_stocks
-from storage.models.good import Good
-from storage.models.stock import Stock
 
 
 # главная страница
@@ -20,6 +15,10 @@ from storage.models.stock import Stock
 def lootbox(request):
     player = Player.get_instance(account=request.user)
 
+    lootbox_count = 0
+    if Lootbox.objects.filter(player=player).exists():
+        lootbox_count = Lootbox.objects.get(player=player).stock
+
     page = 'storage/redesign/storage_blocks/lootbox.html'
 
     # отправляем в форму
@@ -27,6 +26,6 @@ def lootbox(request):
         'page_name': pgettext('assets', 'Сундуки'),
 
         'player': player,
-        # 'storages': storages,
+        'lootbox_count': lootbox_count,
     })
     return response

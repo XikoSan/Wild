@@ -60,12 +60,8 @@ def open_lootboxes(request):
         PremLog = apps.get_model('player.PremLog')
         WildpassLog = apps.get_model('player.WildpassLog')
 
-        from player.logs.print_log import log
-
         loop = 0
         for box in range(open_count):
-            loop += 1
-            log(loop)
 
             rewards, summs = generate_rewards()
 
@@ -102,6 +98,15 @@ def open_lootboxes(request):
         lootboxes.save()
 
         player.save()
+
+        if gold_prize == 0:
+            gold_prize = ''
+
+        if prem_prize == 0:
+            prem_prize = ''
+
+        if wp_prize == 0:
+            wp_prize = ''
 
         data = {
             'response': 'ok',
