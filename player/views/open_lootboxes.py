@@ -113,6 +113,8 @@ def open_lootboxes(request):
             'gold_prize': gold_prize,
             'prem_prize': prem_prize,
             'wp_prize': wp_prize,
+
+            'boxes_count': lootboxes.stock,
         }
         return JResponse(data)
 

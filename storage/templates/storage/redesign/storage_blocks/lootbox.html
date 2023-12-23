@@ -61,6 +61,10 @@
         </button>
 
         <div class="box__picBtns">
+            <p class="box__picChestCount">
+                Количество сундуков: <span class="box__picChestCount--count">0</span>
+            </p>
+
             <button class="box__picOpen ct__mid-btn">
                 <svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
                     <mask id="mask0_258_218" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
@@ -386,6 +390,9 @@
 			this.premContent = document.querySelector('.box__itemCount--prem');
 			this.wpContent = document.querySelector('.box__itemCount--wp');
 
+			this.chestCountContainer = document.querySelector('.box__picChestCount');
+			this.chestCount = document.querySelector('.box__picChestCount--count');
+
 			this.loader = document.querySelector('.wp-loader-wrapper');
 
 			this.stateData = {
@@ -414,6 +421,8 @@
 							value === 0 ? this.openChestBtns.style.display = 'none' : this.openChestBtns.style.display = '';
 							value >= 10 ? this.openChest10Btn.style.display = '' : this.openChest10Btn.style.display = 'none';
 							value > 1 && value < 10 ? this.openChestAllBtn.style.display = '' : this.openChestAllBtn.style.display = 'none';
+                            value > 0 ? this.chestCountContainer.style.display = '' : this.chestCountContainer.style.display = 'none';
+							if (value > 0) this.chestCount.textContent = value;
 							obj[prop] = value; return true;
 
 						case "isPopupOpened":
@@ -457,7 +466,6 @@
 
 			this.openChestBtn.addEventListener('click', () => {
 				this.state.isLoading = true;
-                var obj = this;
 
                 var sending_data = "&csrfmiddlewaretoken=" + csrftoken + "&count=" + 1;
                 $.ajax({
@@ -465,19 +473,19 @@
                     url: "/open_lootboxes/",
                     data:  sending_data,
                     cache: false,
-                    success: function(data){
+                    success: (data) => {
                         if (data.response == 'ok'){
-                            sleep(2000);
+                            this.state.goldReward = numberWithSpaces(data.gold_prize);
+                            this.state.premReward = numberWithSpaces(data.prem_prize);
+                            this.state.wpReward = numberWithSpaces(data.wp_prize);
+                            this.state.isPopupOpened = true;
 
-                            obj.state.goldReward = numberWithSpaces(data.gold_prize);
-                            obj.state.premReward = numberWithSpaces(data.prem_prize);
-                            obj.state.wpReward = numberWithSpaces(data.wp_prize);
-                            obj.state.isPopupOpened = true;
+                            this.state.chestCount = data.boxes_count;
 
-                            obj.state.isLoading = false;
+                            this.state.isLoading = false;
                         }
                         else{
-                            obj.state.isLoading = false;
+                            this.state.isLoading = false;
                             display_modal('notify', data.header, data.response, null, data.grey_btn);
                         }
                         actualize();
@@ -490,7 +498,6 @@
 
 			this.openChest10Btn.addEventListener('click', () => {
                 this.state.isLoading = true;
-                var obj = this;
 
                 var sending_data = "&csrfmiddlewaretoken=" + csrftoken + "&count=" + 10;
                 $.ajax({
@@ -498,19 +505,20 @@
                     url: "/open_lootboxes/",
                     data:  sending_data,
                     cache: false,
-                    success: function(data){
+                    success: (data) => {
                         if (data.response == 'ok'){
-                            sleep(2000);
 
-                            obj.state.goldReward = numberWithSpaces(data.gold_prize);
-                            obj.state.premReward = numberWithSpaces(data.prem_prize);
-                            obj.state.wpReward = numberWithSpaces(data.wp_prize);
-                            obj.state.isPopupOpened = true;
+                            this.state.goldReward = numberWithSpaces(data.gold_prize);
+                            this.state.premReward = numberWithSpaces(data.prem_prize);
+                            this.state.wpReward = numberWithSpaces(data.wp_prize);
+                            this.state.isPopupOpened = true;
 
-                            obj.state.isLoading = false;
+                            this.state.chestCount = data.boxes_count;
+
+                            this.state.isLoading = false;
                         }
                         else{
-                            obj.state.isLoading = false;
+                            this.state.isLoading = false;
                             display_modal('notify', data.header, data.response, null, data.grey_btn);
                         }
                         actualize();
@@ -522,7 +530,6 @@
 
 			this.openChestAllBtn.addEventListener('click', () => {
                 this.state.isLoading = true;
-                var obj = this;
 
                 var sending_data = "&csrfmiddlewaretoken=" + csrftoken + "&count=" + {% localize off %}{{ lootbox_count }}{% endlocalize %};
                 $.ajax({
@@ -530,19 +537,20 @@
                     url: "/open_lootboxes/",
                     data:  sending_data,
                     cache: false,
-                    success: function(data){
+                    success: (data) => {
                         if (data.response == 'ok'){
-                            sleep(2000);
 
-                            obj.state.goldReward = numberWithSpaces(data.gold_prize);
-                            obj.state.premReward = numberWithSpaces(data.prem_prize);
-                            obj.state.wpReward = numberWithSpaces(data.wp_prize);
-                            obj.state.isPopupOpened = true;
+                            this.state.goldReward = numberWithSpaces(data.gold_prize);
+                            this.state.premReward = numberWithSpaces(data.prem_prize);
+                            this.state.wpReward = numberWithSpaces(data.wp_prize);
+                            this.state.isPopupOpened = true;
 
-                            obj.state.isLoading = false;
+                            this.state.chestCount = data.boxes_count;
+
+                            this.state.isLoading = false;
                         }
                         else{
-                            obj.state.isLoading = false;
+                            this.state.isLoading = false;
                             display_modal('notify', data.header, data.response, null, data.grey_btn);
                         }
                         actualize();
