@@ -174,7 +174,7 @@
           <img src="{% static 'img/chest.png' %}" alt="">
           <span>x1</span>
           <div class="box__buyBtnBlock">
-            <button class="ct__mid-btn">
+            <button class="ct__mid-btn" onclick="buy_lootbox(1)">
               <svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
                 <mask id="mask0_59_315" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
                   <path class="geometry1" d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"/>
@@ -195,7 +195,7 @@
           <img src="{% static 'img/chest.png' %}" alt="">
           <span>x5</span>
           <div class="box__buyBtnBlock">
-            <button class="ct__mid-btn">
+            <button class="ct__mid-btn" onclick="buy_lootbox(5)">
               <svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
                 <mask id="mask0_59_316" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
                   <path class="geometry1" d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"/>
@@ -217,7 +217,7 @@
           <img src="{% static 'img/chest.png' %}" alt="">
           <span>x10</span>
           <div class="box__buyBtnBlock">
-            <button class="ct__mid-btn">
+            <button class="ct__mid-btn" onclick="buy_lootbox(10)">
               <svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
                 <mask id="mask0_59_317" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
                   <path class="geometry1" d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"/>
@@ -239,7 +239,7 @@
           <img src="{% static 'img/chest.png' %}" alt="">
           <span>x50</span>
           <div class="box__buyBtnBlock">
-            <button class="ct__mid-btn">
+            <button class="ct__mid-btn" onclick="buy_lootbox(50)">
               <svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
                 <mask id="mask0_59_318" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
                   <path class="geometry1" d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"/>
@@ -261,7 +261,7 @@
           <img src="{% static 'img/chest.png' %}" alt="">
           <span>x100</span>
           <div class="box__buyBtnBlock">
-            <button class="ct__mid-btn">
+            <button class="ct__mid-btn" onclick="buy_lootbox(100)">
               <svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
                 <mask id="mask0_59_319" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
                   <path class="geometry1" d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"/>
@@ -339,6 +339,25 @@
 
 
 <script>
+
+    // сундуки - использование
+    function buy_lootbox(count){
+        var sending_data = "&csrfmiddlewaretoken=" + csrftoken + "&count=" + count;
+        $.ajax({
+            type: "POST",
+            url: "/buy_lootboxes/",
+            data:  sending_data,
+            cache: false,
+            success: function(data){
+                if (data.response == 'ok'){
+                    location.reload();
+                }
+                else{
+                    display_modal('notify', data.header, data.response, null, data.grey_btn);
+                }
+            }
+        });
+    };
 
 	const sleep = (time) => {
 		return new Promise((res) => {

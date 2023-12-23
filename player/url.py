@@ -32,6 +32,7 @@ from .views.view_profile import view_profile
 from .views.wallet import wallet
 from .views.claim_reward import claim_reward
 from .views.open_lootboxes import open_lootboxes
+from .views.buy_lootboxes import buy_lootboxes
 
 from player.views.translate.translate import edit_translations
 from player.views.translate.translations import translations
@@ -132,4 +133,7 @@ urlpatterns = [
 
     # открыть лутбоксы
     url(r'^open_lootboxes/$', open_lootboxes, name='open_lootboxes'),
+
+    # купить лутбоксы
+    url(r'^buy_lootboxes/$', buy_lootboxes, name='buy_lootboxes'),
 ]
