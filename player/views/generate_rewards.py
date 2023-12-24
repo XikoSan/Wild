@@ -28,10 +28,10 @@ def generate_rewards():
             for element in diff:
 
                 if element == 'gold':
-                    weights.append(5)
+                    weights.append(10)
 
                 if element == 'premium':
-                    weights.append(10)
+                    weights.append(5)
 
                 if element == 'wild_pass':
                     weights.append(1)
@@ -59,13 +59,13 @@ def generate_rewards():
 
         if nagrada == 'premium':
 
-            weights = [60, 30, 9, 1,]
+            weights = [70, 20, 9, 1,]
 
             reward_sum = random.choices([14, 30, 90, 365, ], weights=weights)
 
         if nagrada == 'wild_pass':
 
-            weights = [60, 30, 9, 1,]
+            weights = [70, 20, 9, 1,]
 
             reward_sum = random.choices([1, 3, 5, 10, ], weights=weights)
 

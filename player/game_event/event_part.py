@@ -7,6 +7,7 @@ from ava_border.models.ava_border import AvaBorder
 from player.game_event.game_event import GameEvent
 from player.player import Player
 from django.db.models import F
+from player.lootbox.lootbox import Lootbox
 
 # Участник ивента
 class EventPart(models.Model):
@@ -54,20 +55,13 @@ class EventPart(models.Model):
             self.paid_points = 7500
 
         elif self.points >= 10000 > self.paid_points:
-            if self.player.premium < timezone.now():
-                Player.objects.filter(pk=self.player.pk).update(premium=timezone.now() + datetime.timedelta(days=1))
+            if Lootbox.objects.filter(player=self.player).exists():
+                lbox = Lootbox.objects.get(player=self.player)
             else:
-                Player.objects.filter(pk=self.player.pk).update(premium=F('premium') + datetime.timedelta(days=1))
+                lbox = Lootbox(player=self.player)
 
-            AvaBorderOwnership.objects.filter(owner=self.player,
-                               in_use=True,
-                               ).update(in_use=False)
-
-            AvaBorderOwnership(in_use=True,
-                               owner=self.player,
-                               border=AvaBorder.objects.get(pk=8),
-                               png_use = True
-                               ).save()
+            lbox.stock += 1
+            lbox.save()
 
             self.paid_points = 10000
 
@@ -96,20 +90,13 @@ class EventPart(models.Model):
             self.paid_points = 17500
 
         elif self.points >= 20000 > self.paid_points:
-            if self.player.premium < timezone.now():
-                Player.objects.filter(pk=self.player.pk).update(premium=timezone.now() + datetime.timedelta(days=1))
+            if Lootbox.objects.filter(player=self.player).exists():
+                lbox = Lootbox.objects.get(player=self.player)
             else:
-                Player.objects.filter(pk=self.player.pk).update(premium=F('premium') + datetime.timedelta(days=1))
+                lbox = Lootbox(player=self.player)
 
-            AvaBorderOwnership.objects.filter(owner=self.player,
-                               in_use=True,
-                               ).update(in_use=False)
-
-            AvaBorderOwnership(in_use=True,
-                               owner=self.player,
-                               border=AvaBorder.objects.get(pk=9),
-                               png_use = True
-                               ).save()
+            lbox.stock += 1
+            lbox.save()
 
             self.paid_points = 20000
 
@@ -138,20 +125,13 @@ class EventPart(models.Model):
             self.paid_points = 27500
 
         elif self.points >= 30000 > self.paid_points:
-            if self.player.premium < timezone.now():
-                Player.objects.filter(pk=self.player.pk).update(premium=timezone.now() + datetime.timedelta(days=1))
+            if Lootbox.objects.filter(player=self.player).exists():
+                lbox = Lootbox.objects.get(player=self.player)
             else:
-                Player.objects.filter(pk=self.player.pk).update(premium=F('premium') + datetime.timedelta(days=1))
+                lbox = Lootbox(player=self.player)
 
-            AvaBorderOwnership.objects.filter(owner=self.player,
-                               in_use=True,
-                               ).update(in_use=False)
-
-            AvaBorderOwnership(in_use=True,
-                               owner=self.player,
-                               border=AvaBorder.objects.get(pk=10),
-                               png_use = True
-                               ).save()
+            lbox.stock += 1
+            lbox.save()
 
             self.paid_points = 30000
 
