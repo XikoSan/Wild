@@ -558,6 +558,49 @@
                 });
 				/* открыть все сундуки */
 			});
+
+
+			document.addEventListener('keydown', (event) => {
+              if (event.keyCode === 32) { // Spacebar key code
+                event.preventDefault();
+
+                if (this.state.isPopupOpened == false){
+
+                    this.state.isLoading = true;
+
+                    var sending_data = "&csrfmiddlewaretoken=" + csrftoken + "&count=" + 1;
+                    $.ajax({
+                        type: "POST",
+                        url: "/open_lootboxes/",
+                        data:  sending_data,
+                        cache: false,
+                        success: (data) => {
+                            if (data.response == 'ok'){
+                                this.state.goldReward = numberWithSpaces(data.gold_prize);
+                                this.state.premReward = numberWithSpaces(data.prem_prize);
+                                this.state.wpReward = numberWithSpaces(data.wp_prize);
+                                this.state.isPopupOpened = true;
+
+                                this.state.chestCount = data.boxes_count;
+
+                                this.state.isLoading = false;
+                            }
+                            else{
+                                this.state.isLoading = false;
+                                display_modal('notify', data.header, data.response, null, data.grey_btn);
+                            }
+                            actualize();
+                        }
+                    });
+
+                }
+                else{
+                    this.state.isPopupOpened = false;
+                }
+
+              }
+            });
+
 		}
 	}
 
