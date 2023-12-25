@@ -211,6 +211,7 @@
 						</picture>
 						<div class="store__wp-wrapper-r">
 							<span>{% trans 'Количество' context "storage_assets" %}: <label>{{ lootbox_count }}</label></span>
+							{% if player.account.is_superuser %}
 							<button class="ct__mid-btn" onclick="window.location.href = '/lootbox'" style="cursor: pointer;" >
 								<svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
 									<mask id="mask0_259_320" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
@@ -225,6 +226,7 @@
 								</svg>
 								<span>перейти</span>
 							</button>
+							{% endif %}
 						</div>
 					</div>
 				</div>

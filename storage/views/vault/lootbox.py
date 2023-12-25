@@ -13,6 +13,9 @@ from player.player import Player
 @login_required(login_url='/')
 @check_player
 def lootbox(request):
+    if not request.user.is_superuser:
+        return redirect('overview')
+
     player = Player.get_instance(account=request.user)
 
     lootbox_count = 0
