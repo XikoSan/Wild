@@ -7400,9 +7400,18 @@ padding-right: 6rem;
   position: relative;
   display: block;
   width: 312rem;
-  height: 210rem;
+  height: 312rem;
   margin: 0 24rem;
   margin-bottom: 24rem;
+}
+
+.box__picChestCount {
+  margin: 0;
+  font-size: 18rem;
+}
+
+.box__picChestCount--count {
+  color: var(--c10two);
 }
 
 .box__pic > img {
@@ -7422,7 +7431,8 @@ padding-right: 6rem;
   display: flex;
   align-items: center;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 24rem;
   padding: 30rem 24rem;
   border: 0;
   color: var(--c10one);
@@ -7526,8 +7536,8 @@ padding-right: 6rem;
 
 .box__buyItem > img {
   display: block;
-  width: 75rem;
-  height: 75rem;
+  width: 54rem;
+  height: 54rem;
 }
 
 .box__buyItem > span {
@@ -7731,7 +7741,7 @@ padding-right: 6rem;
   }
 }
 
-@media (min-width: 100px) {
+@media (min-width: 1000px) {
   .wp-loader-wrapper {
     left: calc(50% + 165rem);
     transform: scale(1.5) translate(-50%, -50%);
