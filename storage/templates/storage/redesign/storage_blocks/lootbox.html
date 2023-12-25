@@ -27,6 +27,7 @@
         <span>мои сундуки</span>
       </button>
 
+        {% if not was_buy %}
       <button class="ct__top-tab ct__top-tab2 ct__mid-btn">
         <svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
           <mask id="mask0_259_318" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
@@ -41,6 +42,7 @@
         </svg>
         <span>приобрести</span>
       </button>
+        {% endif %}
     </div>
 
     <!-- Блок "Мои сундуки" -->
@@ -165,8 +167,7 @@
       </ul>
     </div>
     <!-- КОНЕЦ: Блок "Мои сундуки" -->
-
-
+        {% if not was_buy %}
     <!-- Блок "Приобрести" -->
     <div class="box__block">
       <p class="box__desc">
@@ -285,8 +286,7 @@
       </ul>
     </div>
     <!-- КОНЕЦ: Блок "Приобрести" -->
-
-
+{% endif %}
 		<!-- Модалка с лутом -->
 		<div class="box__modal custom-scroll">
 			<button class="box__close">
@@ -461,7 +461,9 @@
 		setEventListeners() {
 			this.goToBuyBtn.addEventListener('click', () => this.state.currentBlock = 1);
 			this.tabs[0].addEventListener('click', () => this.state.currentBlock = 0);
+			        {% if not was_buy %}
 			this.tabs[1].addEventListener('click', () => this.state.currentBlock = 1);
+			{% endif %}
 			this.popupClose.addEventListener('click', () => this.state.isPopupOpened = false);
 
 			this.openChestBtn.addEventListener('click', () => {

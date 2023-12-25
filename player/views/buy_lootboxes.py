@@ -13,7 +13,7 @@ from player.player import Player
 from player.player_settings import PlayerSettings
 from player.views.generate_rewards import generate_rewards
 from wild_politics.settings import JResponse
-
+from player.logs.gold_log import GoldLog
 
 # Купить лутбоксы
 @login_required(login_url='/')
@@ -22,6 +22,14 @@ def buy_lootboxes(request):
     if request.method == "POST":
         # получаем персонажа игрока
         player = Player.get_instance(account=request.user)
+
+        if GoldLog.objects.filter(player=player, activity_txt='boxes').exists():
+            data = {
+                'response': 'ВЫ можете приобрести сундуки только единожды',
+                'header': 'Приобретение сундуков',
+                'grey_btn': _('Закрыть'),
+            }
+            return JResponse(data)
 
         try:
             buy_count = int(request.POST.get('count'))
@@ -68,6 +76,8 @@ def buy_lootboxes(request):
 
         player.gold -= buy_cost
         player.save()
+
+        GoldLog(player=player, gold=buy_cost, activity_txt='boxes').save()
 
         data = {
             'response': 'ok',

@@ -53,19 +53,19 @@ def generate_rewards():
 
         if nagrada == 'gold':
 
-            weights = [84, 10, 5, 1,]
+            weights = [84, 10, 1, 0.1,]
 
             reward_sum = random.choices([500, 1000, 3000, 100000, ], weights=weights)
 
         if nagrada == 'premium':
 
-            weights = [80, 10, 9, 1,]
+            weights = [80, 10, 1, 0.1,]
 
             reward_sum = random.choices([14, 30, 90, 365, ], weights=weights)
 
         if nagrada == 'wild_pass':
 
-            weights = [91, 5, 3, 1,]
+            weights = [91, 5, 1, 0.1,]
 
             reward_sum = random.choices([1, 3, 5, 10, ], weights=weights)
 
