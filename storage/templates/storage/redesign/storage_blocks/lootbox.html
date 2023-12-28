@@ -27,7 +27,6 @@
         <span>мои сундуки</span>
       </button>
 
-        {% if not was_buy %}
       <button class="ct__top-tab ct__top-tab2 ct__mid-btn">
         <svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
           <mask id="mask0_259_318" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
@@ -42,7 +41,7 @@
         </svg>
         <span>приобрести</span>
       </button>
-        {% endif %}
+
     </div>
 
     <!-- Блок "Мои сундуки" -->
@@ -167,7 +166,6 @@
       </ul>
     </div>
     <!-- КОНЕЦ: Блок "Мои сундуки" -->
-        {% if not was_buy %}
     <!-- Блок "Приобрести" -->
     <div class="box__block">
       <p class="box__desc">
@@ -179,7 +177,7 @@
           <img src="{% static 'img/chest.png' %}" alt="">
           <span>x1</span>
           <div class="box__buyBtnBlock">
-            <button class="ct__mid-btn" onclick="buy_lootbox(1)">
+            <button class="ct__mid-btn" {% if not was_buy_today %} onclick="buy_lootbox(1)" {% else %} disabled style="filter: grayscale(1)" {% endif %}>
               <svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
                 <mask id="mask0_59_315" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
                   <path class="geometry1" d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"/>
@@ -200,7 +198,7 @@
           <img src="{% static 'img/chest.png' %}" alt="">
           <span>x5</span>
           <div class="box__buyBtnBlock">
-            <button class="ct__mid-btn" onclick="buy_lootbox(5)">
+            <button class="ct__mid-btn" {% if not was_buy_today %} onclick="buy_lootbox(5)" {% else %} disabled style="filter: grayscale(1)" {% endif %}>
               <svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
                 <mask id="mask0_59_316" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
                   <path class="geometry1" d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"/>
@@ -222,7 +220,7 @@
           <img src="{% static 'img/chest.png' %}" alt="">
           <span>x10</span>
           <div class="box__buyBtnBlock">
-            <button class="ct__mid-btn" onclick="buy_lootbox(10)">
+            <button class="ct__mid-btn" {% if not was_buy_today %} onclick="buy_lootbox(10)" {% else %} disabled style="filter: grayscale(1)" {% endif %}>
               <svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
                 <mask id="mask0_59_317" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
                   <path class="geometry1" d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"/>
@@ -239,12 +237,12 @@
             <p class="box__sale" style="color: #EB9929!important">скидка: <span style="color: #EB9929!important">G 1500</span></p>
           </div>
         </li>
-
+            {% if not was_top_buy %}
         <li class="box__buyItem">
           <img src="{% static 'img/chest.png' %}" alt="">
           <span>x50</span>
           <div class="box__buyBtnBlock">
-            <button class="ct__mid-btn" onclick="buy_lootbox(50)">
+            <button class="ct__mid-btn" {% if not was_buy_today %} onclick="buy_lootbox(50)" {% else %} disabled style="filter: grayscale(1)" {% endif %}>
               <svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
                 <mask id="mask0_59_318" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
                   <path class="geometry1" d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"/>
@@ -266,7 +264,7 @@
           <img src="{% static 'img/chest.png' %}" alt="">
           <span>x100</span>
           <div class="box__buyBtnBlock">
-            <button class="ct__mid-btn" onclick="buy_lootbox(100)">
+            <button class="ct__mid-btn" {% if not was_buy_today %} onclick="buy_lootbox(100)" {% else %} disabled style="filter: grayscale(1)" {% endif %}>
               <svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
                 <mask id="mask0_59_319" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
                   <path class="geometry1" d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"/>
@@ -283,10 +281,10 @@
             <p class="box__sale" style="color: #EB9929!important">скидка: <span style="color: #EB9929!important">G 25 000</span></p>
           </div>
         </li>
+          {% endif %}
       </ul>
     </div>
     <!-- КОНЕЦ: Блок "Приобрести" -->
-{% endif %}
 		<!-- Модалка с лутом -->
 		<div class="box__modal custom-scroll">
 			<button class="box__close">
@@ -461,9 +459,7 @@
 		setEventListeners() {
 			this.goToBuyBtn.addEventListener('click', () => this.state.currentBlock = 1);
 			this.tabs[0].addEventListener('click', () => this.state.currentBlock = 0);
-			        {% if not was_buy %}
 			this.tabs[1].addEventListener('click', () => this.state.currentBlock = 1);
-			{% endif %}
 			this.popupClose.addEventListener('click', () => this.state.isPopupOpened = false);
 
 			this.openChestBtn.addEventListener('click', () => {

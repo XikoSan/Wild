@@ -1,13 +1,13 @@
-import math
-from datetime import datetime
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import redirect, render
+from django.shortcuts import render
+from django.utils import timezone
 from django.utils.translation import pgettext
 
 from player.decorators.player import check_player
+from player.logs.gold_log import GoldLog
 from player.lootbox.lootbox import Lootbox
 from player.player import Player
-from player.logs.gold_log import GoldLog
+
 
 # главная страница
 @login_required(login_url='/')
@@ -19,9 +19,18 @@ def lootbox(request):
     if Lootbox.objects.filter(player=player).exists():
         lootbox_count = Lootbox.objects.get(player=player).stock
 
-    was_buy = False
-    if GoldLog.objects.filter(player=player, activity_txt='boxes').exists():
-        was_buy = True
+    today = timezone.now().date()
+    was_top_buy = False
+    was_buy_today = False
+
+    # проверем покупали ли большие ящики
+    if GoldLog.objects.filter(player=player, activity_txt='boxes', gold=40000).exists() \
+            or GoldLog.objects.filter(player=player, activity_txt='boxes', gold=75000).exists():
+        was_top_buy = True
+
+    # если уже покупали лутбоксы, смотрим, покупали ли сегодня
+    if GoldLog.objects.filter(player=player, activity_txt='boxes', dtime__date=today).exists():
+        was_buy_today = True
 
     page = 'storage/redesign/storage_blocks/lootbox.html'
 
@@ -30,7 +39,10 @@ def lootbox(request):
         'page_name': pgettext('assets', 'Сундуки'),
 
         'player': player,
-        'was_buy': was_buy,
+
+        'was_top_buy': was_top_buy,
+        'was_buy_today': was_buy_today,
+
         'lootbox_count': lootbox_count,
     })
     return response

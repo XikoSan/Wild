@@ -23,20 +23,32 @@ def buy_lootboxes(request):
         # получаем персонажа игрока
         player = Player.get_instance(account=request.user)
 
-        if GoldLog.objects.filter(player=player, activity_txt='boxes').exists():
-            data = {
-                'response': 'ВЫ можете приобрести сундуки только единожды',
-                'header': 'Приобретение сундуков',
-                'grey_btn': _('Закрыть'),
-            }
-            return JResponse(data)
-
         try:
             buy_count = int(request.POST.get('count'))
 
         except ValueError:
             data = {
                 'response': 'Некорректное количество сундуков для приобретения',
+                'header': 'Приобретение сундуков',
+                'grey_btn': _('Закрыть'),
+            }
+            return JResponse(data)
+
+        today = timezone.now().date()
+        was_buy = GoldLog.objects.filter(player=player, activity_txt='boxes', dtime__date=today).exists()
+
+        if was_buy:
+            data = {
+                'response': 'Вы можете приобрести наборы сундуков только раз в день',
+                'header': 'Приобретение сундуков',
+                'grey_btn': _('Закрыть'),
+            }
+            return JResponse(data)
+
+        if (buy_count == 50 or buy_count == 1000) and ( GoldLog.objects.filter(player=player, activity_txt='boxes', gold=40000).exists()\
+                or GoldLog.objects.filter(player=player, activity_txt='boxes', gold=75000).exists() ):
+            data = {
+                'response': 'Вы можете приобрести большие наборы сундуков только единожды',
                 'header': 'Приобретение сундуков',
                 'grey_btn': _('Закрыть'),
             }
