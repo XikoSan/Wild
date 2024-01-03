@@ -97,7 +97,7 @@
 
                 arr_id.forEach(function(item, i, arr_id) {
                     if(i == 0){
-                        $('#start_war_default_victim').data('value', item)
+                        document.getElementById('start_war_default_victim').dataset.value = item;
                         $('#start_war_vic_default_img').attr('src', $('#start_war_vic_' + item).find('.offer_dummy_img').attr('src'))
                         $('#start_war_vic_default_reg').html($('#start_war_vic_' + item).find('.offer_dummy_region').text())
                     }
