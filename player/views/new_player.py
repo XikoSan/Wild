@@ -73,14 +73,14 @@ def player_create(request, form):
     _append_message(chat_id=chat_id, author=admin, text='Добро пожаловать в Wild Politics! Вы всегда можете обратиться ко мне прямо в этом чате - либо связаться со мной через группу игры ВК или чат в Телеграмм. Я открыт к любым вопросам и пожеланиям.')
     _append_message(chat_id=chat_id, author=admin, text='Если найдётся время, расскажите, пожалуйста, о своих впечатлениях от игры - мне это важно. Приятной игры!')
 
-    if GameEvent.objects.filter(running=True, type='ny', event_start__lt=timezone.now(), event_end__gt=timezone.now()).exists():
-        if Lootbox.objects.filter(player=character).exists():
-            lbox = Lootbox.objects.get(player=character)
-        else:
-            lbox = Lootbox(player=character)
+    # if GameEvent.objects.filter(running=True, type='ny', event_start__lt=timezone.now(), event_end__gt=timezone.now()).exists():
+    if Lootbox.objects.filter(player=character).exists():
+        lbox = Lootbox.objects.get(player=character)
+    else:
+        lbox = Lootbox(player=character)
 
-        lbox.stock += 3
-        lbox.save()
+    lbox.stock += 1
+    lbox.save()
 
     return character
 
