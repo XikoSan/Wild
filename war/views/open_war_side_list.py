@@ -39,7 +39,7 @@ def open_war_side_list(request, class_name, pk, side):
         content_type=ContentType.objects.get_for_model(war_class),
         object_id=pk,
         side=side,
-    )
+    ).order_by('-damage')
 
     #  -----------
 
