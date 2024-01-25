@@ -6,6 +6,7 @@
 {% load dict_key %}
 {% load get_attr %}
 {% load get_sum %}
+{% load get_class_name %}
 {% load redesign.template_svg.nopic %}
 
 {% block for_scripts_and_css %}
@@ -171,14 +172,14 @@
         <div class="war__playerDamage"></div>
         <p>
           <span>Урон:</span>
-          <span id="agr_dmg">{{ agr_dmg }}</span>
+          <span id="agr_dmg" onclick="window.open('/war/{{ war|get_class_name }}/{{ war.pk }}/agr/')" style="cursor: pointer">{{ agr_dmg }}</span>
         </p>
         <p id="delta_dmg">
           {{ delta }}
         </p>
         <p>
           <span>Урон:</span>
-          <span id="def_dmg">{{ def_dmg }}</span>
+          <span id="def_dmg" onclick="window.open('/war/{{ war|get_class_name }}/{{ war.pk }}/def/')" style="cursor: pointer">{{ def_dmg }}</span>
         </p>
       </div>
     </div>
