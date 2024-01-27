@@ -67,6 +67,9 @@ def _check_has_war(war_type, war_id):
 def _check_has_fight(fighter, war_type, war_id, storage_pk, units, side):
     player = Player.objects.get(pk=fighter.pk)
 
+    if player.banned:
+        return False, 'Вы заблокированы за нарушения Правил Игры'
+
     # проверяем, что есть такой тип войны
     try:
         war_class = apps.get_model('war', war_type)
