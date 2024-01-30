@@ -6,6 +6,7 @@ from django.db import transaction
 from django.http import JsonResponse
 from django.utils import timezone
 from django.utils.translation import pgettext
+from player.decorators.captcha import captcha
 from math import ceil
 import redis
 from factory.models.blueprint import Blueprint
@@ -22,6 +23,7 @@ from storage.views.storage.locks.get_storage import get_storage
 
 @login_required(login_url='/')
 @check_player
+@captcha
 @transaction.atomic
 # новое торговое предложение
 def produce_good(request):

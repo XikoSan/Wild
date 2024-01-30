@@ -15,6 +15,12 @@ warSocket.onmessage = function(e) {
         display_modal('notify', data.header, data.response, null, data.grey_btn);
 
     }
+    else if (data.payload == 'captcha'){
+        captcha_action = function() {
+            sendEvent();
+        };
+        captcha_checking(data);
+    }
     else{
         actualize();
         createDamageMessage(data.image_url, data.damage, data.agr_side);

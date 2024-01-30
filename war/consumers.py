@@ -5,6 +5,7 @@ import pytz
 import re
 import redis
 import math
+import random
 from asgiref.sync import sync_to_async
 from channels.generic.websocket import AsyncWebsocketConsumer
 from datetime import datetime
@@ -26,7 +27,10 @@ from war.models.wars.unit import Unit
 from region.models.terrain.terrain_modifier import TerrainModifier
 from skill.models.scouting import Scouting
 from skill.models.coherence import Coherence
-
+from datetime import timedelta
+from django.utils.translation import ugettext as _
+from player.player_settings import PlayerSettings
+from django.utils import timezone
 
 def _get_player(account):
     return Player.objects.select_related('account').get(account=account)
@@ -57,6 +61,74 @@ def _check_has_war(war_type, war_id):
 
     return True
 
+# проверить, существует ли такая война
+def _captcha(player):
+    # язык из настроек
+    if PlayerSettings.objects.filter(player=player).exists():
+        player_settings = PlayerSettings.objects.get(player=player)
+    else:
+        player_settings = PlayerSettings(player=player)
+
+    # по умолчанию капча показывается в трети случаев
+    captcha_proc = 30
+
+    # за каждый час, прошедший со старой проверки, добавляется ещё 10%
+    current_date = timezone.now()
+
+    # если проходили капчу последние 15 минут - выходим
+    if player_settings.captcha_date + timedelta(minutes=15) > timezone.now():
+        return True, None
+
+    time_difference = current_date - player_settings.captcha_date
+
+    hours_passed = int(divmod(time_difference.total_seconds(), 3600)[0])
+    term = hours_passed * 10
+
+    if captcha_proc + term > 100:
+        captcha_proc = 100
+    else:
+        captcha_proc = captcha_proc + term
+
+    cap_check = random.choices([True, False, ], weights=[captcha_proc, 100 - captcha_proc, ])
+
+    from player.logs.print_log import log
+
+    if cap_check[0]:
+
+        first_number = random.randint(1, 9)
+        second_number = random.randint(1, 9)
+
+        answer = first_number + second_number
+        fail_answer = answer - random.randint(1, 9)
+
+        left_answer = 0
+        right_answer = 0
+        # определяем, с какой стороны будет кнопка правильного ответа в попапе
+        ch = random.choices([True, False, ], weights=[1, 1, ])
+
+        if ch[0]:
+            left_answer = answer
+            right_answer = fail_answer
+        else:
+            left_answer = fail_answer
+            right_answer = answer
+
+        player_settings.captcha_ans = answer
+        player_settings.save()
+
+        data = {
+            'payload': 'captcha',
+            'text': f'Выберите верный ответ: {first_number} + {second_number} = ',
+            'header': _('Пройдите Captcha'),
+            'white_btn': left_answer,
+            'grey_btn': right_answer,
+        }
+        return False, data
+
+    # Возвращение выполнения основной функции
+    else:
+        return True, None
+
 
 # fighter    - боец
 # war_type   - класс войны
@@ -68,50 +140,99 @@ def _check_has_fight(fighter, war_type, war_id, storage_pk, units, side):
     player = Player.objects.get(pk=fighter.pk)
 
     if player.banned:
-        return False, 'Вы заблокированы за нарушения Правил Игры'
+        data = {
+            'payload': 'error',
+            'response': 'Вы заблокированы за нарушения Правил Игры',
+            'header': 'Отправка войск',
+            'grey_btn': 'Закрыть',
+        }
+        return False, data
+
+    # проверяем капчу
+    result, data = _captcha(player)
+
+    if not result:
+        return False, data
 
     # проверяем, что есть такой тип войны
     try:
         war_class = apps.get_model('war', war_type)
 
     except KeyError:
-        return False, 'Такого вида войн нет'
+        data = {
+            'payload': 'error',
+            'response': 'Такого вида войн нет',
+            'header': 'Отправка войск',
+            'grey_btn': 'Закрыть',
+        }
+        return False, data
 
     # проверяем, что есть такая активная война
     if not war_class.objects.filter(pk=war_id, deleted=False, running=True).exists():
         data = {
+            'payload': 'error',
             'response': 'Нет такой войны',
             'header': 'Отправка войск',
             'grey_btn': 'Закрыть',
         }
-        return JResponse(data)
+        return False, data
 
     war = war_class.objects.get(pk=war_id)
 
     # проверяем что указана атака или защита
     if not side in ['agr', 'def']:
-        return False, 'Нет такой стороны боя'
+        data = {
+            'payload': 'error',
+            'response': 'Нет такой стороны боя',
+            'header': 'Отправка войск',
+            'grey_btn': 'Закрыть',
+        }
+        return False, data
 
     # проверяем, что игрок в регионе атаки или защиты
     if not player.region in [war.agr_region, war.def_region]:
-        return False, 'Вы находитесь вне зоны боевых действий'
+        data = {
+            'payload': 'error',
+            'response': 'Вы находитесь вне зоны боевых действий',
+            'header': 'Отправка войск',
+            'grey_btn': 'Закрыть',
+        }
+        return False, data
 
     # проверяем, что ID склада - число
     try:
         storage_pk = int(storage_pk)
 
     except ValueError:
-        return False, 'ID склада должен быть числом'
+        data = {
+            'payload': 'error',
+            'response': 'ID склада должен быть числом',
+            'header': 'Отправка войск',
+            'grey_btn': 'Закрыть',
+        }
+        return False, data
 
     # проверяем, что у игрока есть склад в регионе местонахождения с переданным ID
     if not Storage.objects.filter(pk=storage_pk, owner=player, region=player.region).exists():
-        return False, 'У вас нет склада в регионе местонахождения'
+        data = {
+            'payload': 'error',
+            'response': 'У вас нет склада в регионе местонахождения',
+            'header': 'Отправка войск',
+            'grey_btn': 'Закрыть',
+        }
+        return False, data
 
     storage = Storage.objects.get(pk=storage_pk)
 
     # проверяем наличие юнитов в словаре
     if not units:
-        return False, 'Не выбраны войска'
+        data = {
+            'payload': 'error',
+            'response': 'Не выбраны войска',
+            'header': 'Отправка войск',
+            'grey_btn': 'Закрыть',
+        }
+        return False, data
 
     # logger = logging.getLogger(__name__)
     # try:
@@ -127,7 +248,13 @@ def _check_has_fight(fighter, war_type, war_id, storage_pk, units, side):
     for unit in units.keys():
         # проверяем, что есть такие юниты
         if not db_units.filter(pk=int(unit)).exists():
-            return False, f'Нет юнита с ID {unit}'
+            data = {
+                'payload': 'error',
+                'response': f'Нет юнита с ID {unit}',
+                'header': 'Отправка войск',
+                'grey_btn': 'Закрыть',
+            }
+            return False, data
 
         db_unit = db_units.get(pk=int(unit))
 
@@ -141,26 +268,56 @@ def _check_has_fight(fighter, war_type, war_id, storage_pk, units, side):
 
         # проверяем, что переданы только положительные числа юнитов
         if 0 > units_count:
-            return False, 'Количество войск должно быть положительным числом'
+            data = {
+                'payload': 'error',
+                'response': 'Количество войск должно быть положительным числом',
+                'header': 'Отправка войск',
+                'grey_btn': 'Закрыть',
+            }
+            return False, data
 
         if not units_count <= 100:
-            return False, 'Количество войск должно быть не более 100'
+            data = {
+                'payload': 'error',
+                'response': 'Количество войск должно быть не более 100',
+                'header': 'Отправка войск',
+                'grey_btn': 'Закрыть',
+            }
+            return False, data
 
         if units_count > 0:
             has_unit = True
 
         # Проверяем, что юнитов на складе достаточно
         if not Stock.objects.filter(storage=storage, good=db_unit.good, stock__gte=units_count).exists():
-            return False, f'Недостаточно на складе: {db_unit.good.name}'
+            data = {
+                'payload': 'error',
+                'response': f'Недостаточно на складе: {db_unit.good.name}',
+                'header': 'Отправка войск',
+                'grey_btn': 'Закрыть',
+            }
+            return False, data
 
         energy_required += units_count * db_unit.energy
 
     if not has_unit:
-        return False, 'В бой не отправлен ни один юнит'
+        data = {
+            'payload': 'error',
+            'response': 'В бой не отправлен ни один юнит',
+            'header': 'Отправка войск',
+            'grey_btn': 'Закрыть',
+        }
+        return False, data
 
     # проверяем, что затраты на энергию меньше текущего запаса
     if player.energy < energy_required:
-        return False, 'Недостаточно энергии'
+        data = {
+            'payload': 'error',
+            'response': 'Недостаточно энергии',
+            'header': 'Отправка войск',
+            'grey_btn': 'Закрыть',
+        }
+        return False, data
 
     return True, None
 
@@ -418,12 +575,7 @@ class WarConsumer(AsyncWebsocketConsumer):
                 }))
         else:
             # Сообщить об ошибке
-            await self.send(text_data=json.dumps({
-                'payload': 'error',
-                'response': err_mess,
-                'header': 'Отправка войск',
-                'grey_btn': 'Закрыть',
-            }))
+            await self.send(text_data=json.dumps(err_mess))
 
         # for unit in units.keys():
         #     damage += int(units[unit]) * 10

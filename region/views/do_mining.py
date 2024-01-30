@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from django.utils import timezone
 from player.decorators.player import check_player
+from player.decorators.captcha import captcha
 from player.logs.gold_log import GoldLog
 from player.player import Player
 from state.models.state import State
@@ -21,6 +22,7 @@ from region.models.fossils import Fossils
 # выкопать ресурсы по запросу игрока
 @login_required(login_url='/')
 @check_player
+@captcha
 @transaction.atomic
 def do_mining(request):
     if request.method == "POST":

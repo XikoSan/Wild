@@ -11,6 +11,7 @@
 {% block for_scripts_and_css %}
 <script>
     const war_id = '{{ war.pk }}';
+    const defence_points = {% localize off %}{{ war.defence_points }}{% endlocalize %};
     const war_type = 'EventWar';
 
     const player_pwr = {% localize off %}{{ player.power }}{% endlocalize %};
@@ -30,6 +31,9 @@
     var units_energy = {};
     var units_damage = {};
     var units_mod = {};
+
+    var coherence_perk = {% if coherence_perk %}true{% else %}false{% endif %};
+    var scouting_perk = {% if scouting_perk %}{{ scouting_perk }}{% else %}0{% endif %};
 
     {% for unit in units %}
 

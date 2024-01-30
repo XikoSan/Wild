@@ -330,7 +330,8 @@ jQuery(document).ready(function ($) {
 
          var sending_data = $(this).serialize();
          sending_data += "&csrfmiddlewaretoken=" + csrftoken + "&storage=" + document.getElementById('storage').dataset.value;
-        $.ajax({
+
+        ajaxSettings = {
             type: "POST",
             url: "/produce/",
             data:  sending_data,
@@ -358,10 +359,22 @@ jQuery(document).ready(function ($) {
                     getStorageStatus(document.getElementById('storage').dataset.value, result.energy);
                 }
                 else{
-                    display_modal('notify', data.header, data.response, null, data.grey_btn)
+                    if (data.response == 'captcha'){
+                        captcha_checking(data);
+                    }
+                    else{
+                        display_modal('notify', data.header, data.response, null, data.grey_btn)
+                    }
                 }
             }
-        });
+        };
+
+        captcha_action = function() {
+            $.ajax(ajaxSettings);
+        };
+
+        $.ajax(ajaxSettings);
+
     });
 
 });

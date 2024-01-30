@@ -33,6 +33,7 @@ from .views.wallet import wallet
 from .views.claim_reward import claim_reward
 from .views.open_lootboxes import open_lootboxes
 from .views.buy_lootboxes import buy_lootboxes
+from .views.answer_captcha import answer_captcha
 
 from player.views.translate.translate import edit_translations
 from player.views.translate.translations import translations
@@ -136,4 +137,7 @@ urlpatterns = [
 
     # купить лутбоксы
     url(r'^buy_lootboxes/$', buy_lootboxes, name='buy_lootboxes'),
+
+    # ответ на капчу
+    url(r'^answer_captcha', answer_captcha, name='answer_captcha'),
 ]

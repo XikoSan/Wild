@@ -19,6 +19,8 @@ function actualize_daily(){
     });
 };
 
+
+
 jQuery(document).ready(function ($) {
     $('.mining_form').submit(function(e){
         e.preventDefault();
@@ -29,7 +31,7 @@ jQuery(document).ready(function ($) {
 
         var sending_data = $(this).serialize();
 
-        $.ajax({
+        ajaxSettings = {
             type: "POST",
             url: "/do_mining",
             data:  sending_data,
@@ -41,14 +43,26 @@ jQuery(document).ready(function ($) {
                     actualize_daily();
                 }
                 else{
-                    display_modal('notify', data.header, data.response, null, data.grey_btn)
+                    if (data.response == 'captcha'){
+                        captcha_checking(data);
+                    }
+                    else{
+                        display_modal('notify', data.header, data.response, null, data.grey_btn)
+                    }
                 }
 
                 $(".btn-mining").each(function() {
                     $(this).prop( "disabled", false );
                 });
             }
-        });
+        };
+
+        captcha_action = function() {
+            $.ajax(ajaxSettings);
+        };
+
+        $.ajax(ajaxSettings);
+
     });
 
     $('.cash_retrieve').submit(function(e){
