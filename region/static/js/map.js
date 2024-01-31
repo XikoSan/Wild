@@ -20,3 +20,45 @@ function to_fly(){
         }
     });
 };
+
+
+function animateFlight(startCoords, endCoords, duration) {
+
+  const latStep = (endCoords[0] - startCoords[0]) / duration;
+  const lonStep = (endCoords[1] - startCoords[1]) / duration;
+
+  let currentTime = 0;
+
+  const flightInterval = setInterval(() => {
+    currentTime += 0.1;
+    const newLat = startCoords[0] + latStep * currentTime;
+    const newLon = startCoords[1] + lonStep * currentTime;
+
+    planeMarker.setLatLng([newLat, newLon]);
+
+    if (currentTime + 0.1 >= duration) {
+      clearInterval(flightInterval);
+    }
+  }, 100);
+}
+
+
+function adjustStartCoords(startCoords, endCoords, duration, estimate) {
+  const percentCompleted = estimate / duration;
+
+  const latStep = (endCoords[0] - startCoords[0]) * percentCompleted;
+  const lonStep = (endCoords[1] - startCoords[1]) * percentCompleted;
+
+  const adjustedStartLat = startCoords[0] + latStep;
+  const adjustedStartLon = startCoords[1] + lonStep;
+
+  return [adjustedStartLat, adjustedStartLon];
+}
+
+
+function calculateAngle(startCoords, endCoords) {
+  const deltaY = endCoords[1] - startCoords[1];
+  const deltaX = endCoords[0] - startCoords[0];
+  const angle = Math.atan2(deltaY, deltaX) * (180 / Math.PI);
+  return angle;
+}

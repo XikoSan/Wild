@@ -1,5 +1,6 @@
 import datetime
 import json
+import math
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from django.shortcuts import render
@@ -20,6 +21,7 @@ from region.views.lists.get_regions_online import get_region_online
 from region.views.time_in_flight import time_in_flight
 from wild_politics.settings import JResponse
 from region.models.neighbours import Neighbours
+from player.views.timers import interval_in_seconds
 
 
 # главная страница
@@ -133,6 +135,12 @@ def map(request):
             else:
                 med_index_dict[region.pk] = 1
 
+        duration = 0
+        estimate = 0
+        if player.destination:
+            duration = math.floor(time_in_flight(player, player.destination))
+            estimate = duration - math.floor(interval_in_seconds(object=player.task.clocked, start_fname=None, end_fname='clocked_time', delay_in_sec=None))
+
         groups = list(player.account.groups.all().values_list('name', flat=True))
         page = 'region/map.html'
         if 'redesign' not in groups:
@@ -144,6 +152,9 @@ def map(request):
             'player': player,
             'regions': regions,
             'shapes_dict': shapes_dict,
+
+            'duration': duration,
+            'estimate': estimate,
 
             'online_dict': online_dict,
             'min_online': min_online,
