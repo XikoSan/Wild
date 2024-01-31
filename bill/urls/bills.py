@@ -2,9 +2,9 @@
 from django.conf.urls import url
 
 from bill.views.bills.speedup_bill import speedup_bill
-from state.views.bills.cancel_bill import cancel_bill
-from state.views.bills.new_bill import new_bill
-from state.views.bills.vote_bill import vote_bill
+from bill.views.bills.cancel_bill import cancel_bill
+from bill.views.bills.new_bill import new_bill
+from bill.views.bills.vote_bill import vote_bill
 
 urlpatterns = [
 

@@ -40,7 +40,7 @@
     <td class="gover__tableDopInfo">
         <span>
             {% with tax_name=bill.tax_mod|get_sum:'_tax' %}
-                {{ bill.get_tax_mod_display }}: {{ bill.old_tax }}% ➔ {{ bill.new_tax }}%
+                {{ bill.get_tax_mod_display }}: {% if bill.destination == 'State' %}{{ bill.parliament.state|get_attr:tax_name }}{% else %}{{ bill.region|get_attr:tax_name }}{% endif %}% ➔ {{ bill.new_tax }}%
             {% endwith %}
         </span>
     </td>

@@ -81,6 +81,10 @@ class Bill(models.Model):
     def do_bill(self):
         return
 
+    # выполнить законопроект
+    def bill_cancel(self):
+        return
+
     # получить шаблон черновика законопроекта
     @staticmethod
     def get_draft(state):

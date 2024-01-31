@@ -185,6 +185,18 @@ class ChangeTaxes(Bill):
 
         ChangeTaxes.objects.filter(pk=self.pk).update(type=b_type, running=False, old_tax=old_tax, voting_end=timezone.now())
 
+    # отменить законопроект
+    def bill_cancel(self):
+
+        if self.destination == 'State':
+            state = State.objects.get(pk=self.parliament.state.pk)
+            old_tax = getattr(state, self.tax_mod + '_tax')
+        else:
+            region = Region.objects.get(pk=self.region.pk)
+            old_tax = getattr(region, self.tax_mod + '_tax')
+
+        self.old_tax = old_tax
+
     @staticmethod
     def get_draft(state):
 
