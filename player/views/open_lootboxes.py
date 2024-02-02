@@ -63,7 +63,7 @@ def open_lootboxes(request):
         loop = 0
         for box in range(open_count):
 
-            rewards, summs = generate_rewards()
+            rewards, summs = generate_rewards(player)
 
             for reward in rewards:
                 index = rewards.index(reward)

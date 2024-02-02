@@ -495,12 +495,12 @@ class Player(models.Model):
 # сигнал прослушивающий создание партии, после этого формирующий таску
 @receiver(pre_save, sender=Player)
 def save_pre(sender, instance, raw, using, update_fields, **kwargs):
-
-    if Player.objects.filter(pk=instance.pk).exists():
-        cards_count_pre = Player.objects.only("cards_count").get(pk=instance.pk).cards_count
-
-        if cards_count_pre != instance.cards_count:
-            WildpassLog = apps.get_model('player.WildpassLog')
-
-            prem_log = WildpassLog(player=instance, count=instance.cards_count-cards_count_pre, activity_txt='buying')
-            prem_log.save()
+    pass
+    # if Player.objects.filter(pk=instance.pk).exists():
+    #     cards_count_pre = Player.objects.only("cards_count").get(pk=instance.pk).cards_count
+    #
+    #     if cards_count_pre != instance.cards_count:
+    #         WildpassLog = apps.get_model('player.WildpassLog')
+    #
+    #         prem_log = WildpassLog(player=instance, count=instance.cards_count-cards_count_pre, activity_txt='buying')
+    #         prem_log.save()
