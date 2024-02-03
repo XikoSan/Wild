@@ -22,27 +22,60 @@ def generate_rewards(player):
     date_now = datetime.datetime.now()
     date_30d = date_now - timedelta(days=30)
 
-    gold_spent = GoldLog.objects.filter(
-                                        Q(dtime__gt=date_30d), Q(dtime__lt=date_now),
-                                        activity_txt='boxes', player=player
-                                    ).aggregate(total_gold=Sum('gold'))['total_gold']
+    # сколько золота потрачено на лутбоксы
+    if GoldLog.objects.filter(
+            Q(dtime__gt=date_30d), Q(dtime__lt=date_now),
+            activity_txt='boxes', player=player
+        ).exists():
 
-    gold_log_summ = \
-        GoldLog.objects.filter(
+        gold_spent = GoldLog.objects.filter(
+                                            Q(dtime__gt=date_30d), Q(dtime__lt=date_now),
+                                            activity_txt='boxes', player=player
+                                        ).aggregate(total_gold=Sum('gold'))['total_gold']
+    else:
+        gold_spent = 0
+
+    # сколько золота дропалось с ящиков
+    if GoldLog.objects.filter(
             Q(dtime__gt=date_30d), Q(dtime__lt=date_now),
             activity_txt='bx_gld', player=player
-        ).aggregate(total_gold=Sum('gold'))['total_gold']
+        ).exists():
 
-    prem_log_summ = math.ceil(
-        PremLog.objects.filter(
+        gold_log_summ = \
+            GoldLog.objects.filter(
+                Q(dtime__gt=date_30d), Q(dtime__lt=date_now),
+                activity_txt='bx_gld', player=player
+            ).aggregate(total_gold=Sum('gold'))['total_gold']
+    else:
+        gold_log_summ = 0
+
+    # сколько премиума в эквиваленте золота дропалось с ящиков
+    if PremLog.objects.filter(
             Q(dtime__gt=date_30d), Q(dtime__lt=date_now),
             activity_txt='lootbox', player=player
-        ).aggregate(total_days=Sum('days'))['total_days'] / 30) * 1000
+        ).exists():
 
-    wildpass_log_summ = WildpassLog.objects.filter(
-        Q(dtime__gt=date_30d), Q(dtime__lt=date_now),
-        activity_txt='lootbox', player=player
-    ).aggregate(total_count=Sum('count'))['total_count'] * 1000
+        prem_log_summ = math.ceil(
+            PremLog.objects.filter(
+                Q(dtime__gt=date_30d), Q(dtime__lt=date_now),
+                activity_txt='lootbox', player=player
+            ).aggregate(total_days=Sum('days'))['total_days'] / 30) * 1000
+    else:
+        prem_log_summ = 0
+
+    # сколько вилдпассов в эквиваленте золота дропалось с ящиков
+    if WildpassLog.objects.filter(
+            Q(dtime__gt=date_30d), Q(dtime__lt=date_now),
+            activity_txt='lootbox', player=player
+        ).exists():
+
+        wildpass_log_summ = WildpassLog.objects.filter(
+            Q(dtime__gt=date_30d), Q(dtime__lt=date_now),
+            activity_txt='lootbox', player=player
+        ).aggregate(total_count=Sum('count'))['total_count'] * 1000
+
+    else:
+        wildpass_log_summ = 0
 
     total_reward = gold_log_summ + prem_log_summ + wildpass_log_summ
 
