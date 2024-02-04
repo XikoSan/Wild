@@ -34,6 +34,7 @@ def view_profile(request, pk):
     r = redis.StrictRedis(host='redis', port=6379, db=0)
 
     timestamp = r.hget('online', str(char.pk))
+
     if timestamp:
         dtime = datetime.fromtimestamp(int(timestamp)).replace(tzinfo=pytz.timezone(TIME_ZONE)).astimezone(
             tz=pytz.timezone(player.time_zone)).strftime("%d.%m.%Y %H:%M:%S")

@@ -87,6 +87,7 @@ INSTALLED_APPS = [
     'polls',
     'skill',
     'metrics',
+    'event',
 
     'django_cleanup',
     'fixture_magic',

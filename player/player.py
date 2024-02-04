@@ -16,6 +16,7 @@ from django_celery_beat.models import PeriodicTask
 
 from party.party import Party
 from party.position import PartyPosition
+from player.decorators.player import activity_event_reward
 from player.views.set_cah_log import set_cash_log
 from region.building.hospital import Hospital
 from region.models.region import Region
@@ -389,6 +390,7 @@ class Player(models.Model):
 
         if not self.daily_fin and daily_procent == 100:
             self.gold += 100
+            activity_event_reward(self, 1)
 
         # отмечаем, что  дейлик закрыт:
         # если игрок прокачат навык, то не получит золотой бонус или Подпольное Финансирование

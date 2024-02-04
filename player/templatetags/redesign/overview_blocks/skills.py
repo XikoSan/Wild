@@ -1,8 +1,11 @@
 from django import template
 from django.utils import timezone
+
 register = template.Library()
 from player.logs.skill_training import SkillTraining
 import copy
+from django.apps import apps
+
 
 @register.inclusion_tag('player/redesign/overview_skills.html')
 def skills(player):
@@ -38,6 +41,22 @@ def skills(player):
     for q in queue:
         last_skill = q
 
+    # ивентовый буст к прокачке
+    ActivityEvent = apps.get_model('event.ActivityEvent')
+    ActivityEventPart = apps.get_model('event.ActivityEventPart')
+    ActivityGlobalPart = apps.get_model('event.ActivityGlobalPart')
+
+    boost = 1
+
+    if ActivityEvent.objects.filter(running=True, event_start__lt=timezone.now(),
+                                    event_end__gt=timezone.now()).exists():
+
+        event = ActivityEvent.objects.filter(running=True, event_start__lt=timezone.now(),
+                                             event_end__gt=timezone.now()).first()
+
+        if ActivityEventPart.objects.filter(player=player, event=event).exists():
+            boost = 1 - ActivityEventPart.objects.get(player=player, event=event).boost / 100
+
     return {
         # игрок
         'player': player,
@@ -61,4 +80,7 @@ def skills(player):
         'queue': queue,
         # последний навык в очереди изучения
         'last_skill': last_skill,
+
+        # ивентовый буст к прокачке
+        'boost': boost,
     }

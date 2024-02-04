@@ -1,6 +1,7 @@
 {% load get_sum %}
 {% load get_sub %}
 {% load get_mul %}
+{% load get_int_mul %}
 {% load get_pow %}
 {% load l10n %}{% load i18n %}
 {% load tz %}
@@ -38,9 +39,9 @@
         <path d="M7 2.24V7.07L10.71 10.78" stroke="var(--c10two)"/>
       </svg>
         {% if premium %}
-            {{ player.power|get_sum:power_count|get_sum:1|get_mul:2400|get_hh_mm_ss }}
+            {{ player.power|get_sum:power_count|get_sum:1|get_mul:2400|get_int_mul:boost|get_hh_mm_ss }}
         {% else %}
-            {{ player.power|get_sum:power_count|get_sum:1|get_mul:3600|get_hh_mm_ss }}
+            {{ player.power|get_sum:power_count|get_sum:1|get_mul:3600|get_int_mul:boost|get_hh_mm_ss }}
         {% endif %}
     </p>
   </div>
@@ -87,9 +88,9 @@
         <path d="M7 2.24V7.07L10.71 10.78" stroke="var(--c10two)"/>
       </svg>
         {% if premium %}
-            {{ player.knowledge|get_sum:knowledge_count|get_sum:1|get_mul:2400|get_hh_mm_ss }}
+            {{ player.knowledge|get_sum:knowledge_count|get_sum:1|get_mul:2400|get_int_mul:boost|get_hh_mm_ss }}
         {% else %}
-            {{ player.knowledge|get_sum:knowledge_count|get_sum:1|get_mul:3600|get_hh_mm_ss }}
+            {{ player.knowledge|get_sum:knowledge_count|get_sum:1|get_mul:3600|get_int_mul:boost|get_hh_mm_ss }}
         {% endif %}
     </p>
   </div>
@@ -136,9 +137,9 @@
         <path d="M7 2.24V7.07L10.71 10.78" stroke="var(--c10two)"/>
       </svg>
         {% if premium %}
-            {{ player.endurance|get_sum:endurance_count|get_sum:1|get_mul:2400|get_hh_mm_ss }}
+            {{ player.endurance|get_sum:endurance_count|get_sum:1|get_mul:2400|get_int_mul:boost|get_hh_mm_ss }}
         {% else %}
-            {{ player.endurance|get_sum:endurance_count|get_sum:1|get_mul:3600|get_hh_mm_ss }}
+            {{ player.endurance|get_sum:endurance_count|get_sum:1|get_mul:3600|get_int_mul:boost|get_hh_mm_ss }}
         {% endif %}
     </p>
   </div>

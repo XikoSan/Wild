@@ -18,6 +18,7 @@ from .views.comma_list import comma_list
 from .views.expense_energy import expense_energy
 from .views.full_auto_allow import full_auto_allow
 from .views.game_event.new_year import new_year
+from event.views.winter_festival import winter_festival
 from .views.index import index
 from .views.lists.cash_top import cash_top
 from .views.lists.region_citizens import region_citizens_list
@@ -123,6 +124,8 @@ urlpatterns = [
     url(r'^halloween/$', halloween, name='halloween'),
     # новый год
     url(r'^new_year/$', new_year, name='new_year'),
+    # зимний фестиваль
+    url(r'^winter_festival/$', winter_festival, name='winter_festival'),
 
     # контексты переводов
     path('translations/', translations, name='translations'),

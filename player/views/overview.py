@@ -21,6 +21,7 @@ from gov.models.presidential_voting import PresidentialVoting
 from party.party import Party
 from player.decorators.player import check_player
 from player.game_event.game_event import GameEvent
+from event.models.enter_event.activity_event import ActivityEvent
 from player.logs.donut_log import DonutLog
 from player.logs.gold_log import GoldLog
 from player.player import Player
@@ -195,6 +196,10 @@ def overview(request):
     has_event = None
     if GameEvent.objects.filter(running=True, event_start__lt=timezone.now(), event_end__gt=timezone.now()).exists():
         has_event = GameEvent.objects.get(running=True, event_start__lt=timezone.now(), event_end__gt=timezone.now())
+
+    activity_event = None
+    if ActivityEvent.objects.filter(running=True, event_start__lt=timezone.now(), event_end__gt=timezone.now()).exists():
+        activity_event = ActivityEvent.objects.get(running=True, event_start__lt=timezone.now(), event_end__gt=timezone.now())
 
     # войны
     war_dict = {}
@@ -396,6 +401,7 @@ def overview(request):
         'parliament': parliament,
 
         'has_event': has_event,
+        'activity_event': activity_event,
 
         'assistant_name': assistant_name,
 
