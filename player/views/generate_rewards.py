@@ -19,7 +19,7 @@ def generate_rewards(player):
     WildpassLog = apps.get_model('player.WildpassLog')
 
     # собираем награды игрока за месяц
-    date_now = datetime.datetime.now()
+    date_now = datetime.datetime.now() - timedelta(days=1)
     date_30d = date_now - timedelta(days=30)
 
     # сколько золота потрачено на лутбоксы
