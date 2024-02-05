@@ -1,5 +1,5 @@
 import datetime
-
+from django.apps import apps
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from django.utils import timezone
@@ -8,10 +8,11 @@ from player.decorators.player import check_player
 from player.logs.cash_log import CashLog
 from player.logs.skill_training import SkillTraining
 from player.player import Player
-from wild_politics.settings import JResponse
 from player.views.get_subclasses import get_subclasses
-from skill.models.skill import Skill
 from skill.models.excavation import Excavation
+from skill.models.skill import Skill
+from wild_politics.settings import JResponse
+
 
 # изучить навык
 @login_required(login_url='/')
@@ -32,7 +33,6 @@ def up_skill(request):
             premium = True
 
         skill = request.POST.get('skill')
-
 
         skills_list = ['power', 'knowledge', 'endurance']
 
@@ -89,10 +89,11 @@ def up_skill(request):
                 return JResponse(data)
 
         if skill in ['power', 'knowledge', 'endurance']:
-            if player.cash < ( (getattr(player, skill) + skill_cnt + 1) ** 2 ) * 10:
+            if player.cash < ((getattr(player, skill) + skill_cnt + 1) ** 2) * 10:
                 data = {
                     # 'response': _('positive_enrg_req'),
-                    'response': 'Недостаточно денег, необходимо: ' + str(((getattr(player, skill) + skill_cnt + 1) ** 2 ) * 10),
+                    'response': 'Недостаточно денег, необходимо: ' + str(
+                        ((getattr(player, skill) + skill_cnt + 1) ** 2) * 10),
                     'header': 'Изучение навыка',
                     'grey_btn': 'Закрыть',
                 }
@@ -115,16 +116,33 @@ def up_skill(request):
             return JResponse(data)
 
         if skill in ['power', 'knowledge', 'endurance']:
-            player.cash -= ((getattr(player, skill) + skill_cnt + 1) ** 2 ) * 10
+            player.cash -= ((getattr(player, skill) + skill_cnt + 1) ** 2) * 10
 
-            CashLog.create(player=player, cash=0 - ((getattr(player, skill) + skill_cnt + 1) ** 2 ) * 10, activity_txt='skill')
+            CashLog.create(player=player, cash=0 - ((getattr(player, skill) + skill_cnt + 1) ** 2) * 10,
+                           activity_txt='skill')
 
         if skill in ['power', 'knowledge', 'endurance']:
+            # ивентовый буст к прокачке
+            ActivityEvent = apps.get_model('event.ActivityEvent')
+            ActivityEventPart = apps.get_model('event.ActivityEventPart')
+            ActivityGlobalPart = apps.get_model('event.ActivityGlobalPart')
+
+            boost = 1
+
+            if ActivityEvent.objects.filter(running=True, event_start__lt=timezone.now(),
+                                            event_end__gt=timezone.now()).exists():
+
+                event = ActivityEvent.objects.filter(running=True, event_start__lt=timezone.now(),
+                                                     event_end__gt=timezone.now()).first()
+
+                if ActivityEventPart.objects.filter(player=player, event=event).exists():
+                    boost = 1 - ActivityEventPart.objects.get(player=player, event=event).boost / 100
+
             # время изучения навыка без према
-            time_delta = datetime.timedelta(hours=(getattr(player, skill) + skill_cnt + 1))
+            time_delta = datetime.timedelta(seconds=int((getattr(player, skill) + skill_cnt + 1) * 3600 * boost))
             # с премом
             if player.premium > timezone.now():
-                time_delta = datetime.timedelta(seconds=(getattr(player, skill) + skill_cnt + 1) * 2400)
+                time_delta = datetime.timedelta(seconds=int((getattr(player, skill) + skill_cnt + 1) * 2400 * boost))
         else:
             if skill_obj:
                 cur_level = getattr(skill_obj, 'level')

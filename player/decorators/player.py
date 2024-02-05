@@ -128,10 +128,6 @@ def activity_event_check(player):
             prev_dtime = datetime.fromtimestamp(int(timestamp)).replace(tzinfo=pytz.timezone(TIME_ZONE))
 
             # если есть информация о предыдущем онлайне, и это разные сутки с текущей датой
-            from player.logs.print_log import log
-            log(prev_dtime)
-            log(datetime.now())
-
             if prev_dtime.date() != datetime.now().date():
 
                 if prev_dtime.date() == datetime.now().date() - timedelta(days=1):
@@ -176,8 +172,17 @@ def activity_event_reward(player, mod):
                 event=activity_event,
                 points=mod
             )
-            event_part.prize_check()
-            event_part.save()
+
+
+        else:
+            event_part = ActivityEventPart(
+                player=player,
+                event=activity_event,
+                points=0
+            )
+
+        event_part.prize_check()
+        event_part.save()
 
     #       ---- общий счет ----
     if ActivityGlobalPart.objects.filter(
@@ -199,6 +204,7 @@ def activity_event_reward(player, mod):
                 event=activity_event,
                 points=mod
             )
+
             event_part = global_part.prize_check(event_part)
             event_part.save()
             global_part.save()
