@@ -359,7 +359,11 @@ function addMarker(coordinates) {
   var angle = calculateAngle(startCoords, endCoords);
 
   const planeIcon = L.icon({
+    {% if player.pk == 1 %}
+    iconUrl: '/static/img/admin_plane.png',
+    {% else %}
 	iconUrl: '/static/img/flight.png',
+	{% endif %}
 	iconSize: [50, 50],
 	iconAnchor: [25, 25],
   });
@@ -367,8 +371,35 @@ function addMarker(coordinates) {
   var planeMarker = L.rotatedMarker(startCoords, { icon: planeIcon, rotationAngle: angle });
   planeMarker.addTo(mymap);
 
-  animateFlight(startCoords, endCoords, duration-estimate);
+  animateFlight(planeMarker, startCoords, endCoords, duration-estimate);
 
+ {% endif %}
+
+ {% if admin %}
+   {% if admin.destination %}
+
+    var admin_startCoords = [{{ admin.region.north }}, {{ admin.region.east }}];
+    const admin_endCoords = [{{ admin.destination.north }}, {{ admin.destination.east }}];
+
+    const admin_duration = {% localize off %}{{ admin_duration }}{% endlocalize %}; // ДЛительность всего полёта: 60 секунд
+    const admin_estimate = {% localize off %}{{ admin_estimate }}{% endlocalize %}; // Пример: 30 секунд уже прошло
+
+    admin_startCoords = adjustStartCoords(admin_startCoords, admin_endCoords, admin_duration, admin_estimate);
+
+    var angle = calculateAngle(admin_startCoords, admin_endCoords);
+
+    const admin_planeIcon = L.icon({
+      iconUrl: '/static/img/admin_plane.png',
+      iconSize: [50, 50],
+      iconAnchor: [25, 25],
+    });
+
+    var admin_planeMarker = L.rotatedMarker(admin_startCoords, { icon: admin_planeIcon, rotationAngle: angle });
+    admin_planeMarker.addTo(mymap);
+
+    animateFlight(admin_planeMarker, admin_startCoords, admin_endCoords, admin_duration-admin_estimate);
+
+   {% endif %}
  {% endif %}
 
  var latlngs = L.rectangle(bounds).getLatLngs();

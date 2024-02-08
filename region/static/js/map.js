@@ -22,7 +22,7 @@ function to_fly(){
 };
 
 
-function animateFlight(startCoords, endCoords, duration) {
+function animateFlight(planeMarker, startCoords, endCoords, duration) {
 
   const latStep = (endCoords[0] - startCoords[0]) / duration;
   const lonStep = (endCoords[1] - startCoords[1]) / duration;

@@ -141,6 +141,17 @@ def map(request):
             duration = math.floor(time_in_flight(player, player.destination))
             estimate = duration - math.floor(interval_in_seconds(object=player.task.clocked, start_fname=None, end_fname='clocked_time', delay_in_sec=None))
 
+        admin = None
+        admin_duration = 0
+        admin_estimate = 0
+
+        if not player.pk == 1:
+            admin = Player.get_instance(pk=1)
+
+            if admin.destination:
+                admin_duration = math.floor(time_in_flight(admin, admin.destination))
+                admin_estimate = admin_duration - math.floor(interval_in_seconds(object=admin.task.clocked, start_fname=None, end_fname='clocked_time', delay_in_sec=None))
+
         groups = list(player.account.groups.all().values_list('name', flat=True))
         page = 'region/map.html'
         if 'redesign' not in groups:
@@ -155,6 +166,10 @@ def map(request):
 
             'duration': duration,
             'estimate': estimate,
+
+            'admin': admin,
+            'admin_duration': admin_duration,
+            'admin_estimate': admin_estimate,
 
             'online_dict': online_dict,
             'min_online': min_online,
