@@ -6,10 +6,9 @@ from event.models.enter_event.activity_event import ActivityEvent
 from django.db.models import F
 from player.player import Player
 
+
 # Участник ивента
 class ActivityEventPart(models.Model):
-    Lootbox = apps.get_model('player.Lootbox')
-
     # игрок
     player = models.ForeignKey(Player, on_delete=models.CASCADE, blank=False,
                                verbose_name='Игрок')
@@ -31,6 +30,7 @@ class ActivityEventPart(models.Model):
     global_paid_points = models.IntegerField(default=0, verbose_name='Глобальный оплаченный этап')
 
     def prize_check(self):
+        Lootbox = apps.get_model('player.Lootbox')
 
         if self.points >= 3 > self.paid_points:
             self.paid_points = 3
