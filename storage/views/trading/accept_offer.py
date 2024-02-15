@@ -425,7 +425,7 @@ def accept_offer(request):
                 stock.save()
 
             else:
-                fact_count = getattr(offer_storage, offer.offer_good.size + '_cap') - count
+                fact_count = getattr(offer_storage, offer.offer_good.size + '_cap') - sizetype_stocks
 
                 stock.stock += fact_count
                 stock.save()
