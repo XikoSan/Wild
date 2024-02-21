@@ -102,11 +102,6 @@ class ChangeResidency(Bill):
         b_type = None
         state = State.objects.get(pk=self.parliament.state.pk)
 
-        state.residency = self.residency
-        state.save()
-
-        b_type = 'ac'
-
         rifle_cost = 0
         drone_cost = 0
 
@@ -115,7 +110,7 @@ class ChangeResidency(Bill):
         rifle = Good.objects.get(name='Автоматы')
         drone = Good.objects.get(name='Дроны')
 
-        if state.residency == 'issue':
+        if self.residency == 'issue':
 
             regions_cnt = Region.objects.filter(state=treasury.state).count()
 
@@ -125,8 +120,12 @@ class ChangeResidency(Bill):
             if TreasuryStock.objects.filter(treasury=treasury, good=rifle, stock__gte=rifle_cost).exists()\
                     and TreasuryStock.objects.filter(treasury=treasury, good=drone, stock__gte=drone_cost).exists():
 
+                state.residency = self.residency
+                state.save()
+                b_type = 'ac'
+
                 schedule, created = CrontabSchedule.objects.get_or_create(
-                    minute=str(timezone.now().minute),
+                    minute='*',
                     hour='*',
                     day_of_week='*',
                     day_of_month='*',
@@ -266,7 +265,7 @@ class ChangeResidency(Bill):
 
     # Свойства класса
     class Meta:
-        abstract = True
+        # abstract = True
         verbose_name = "Новый способ выдачи прописки"
         verbose_name_plural = "Новые способы выдачи прописки"
 

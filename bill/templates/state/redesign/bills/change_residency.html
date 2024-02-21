@@ -71,7 +71,7 @@
                                 <span>подписано:</span>
                                 <a style="color: var(--c10two); text-decoration: underline;" href='/profile/{% localize off %}{{ president.pk }}{% endlocalize %}' target="_blank">{{ president }}</a>
                             </div>
-                            <button {% if president in bill.votes_pro.all %} onclick="speedup_bill('ChangeTitle',{% localize off %}{{ bill.pk }}{% endlocalize %})"{% else %}disabled{% endif %}>⏩</button>
+                            <button {% if president in bill.votes_pro.all %} onclick="speedup_bill('ChangeResidency',{% localize off %}{{ bill.pk }}{% endlocalize %})"{% else %}disabled{% endif %}>⏩</button>
                         </div>
                         {% endif %}
 

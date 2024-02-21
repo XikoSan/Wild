@@ -16,28 +16,15 @@ from django.db.models import F
 @shared_task(name="residency_pay")
 def residency_pay(treasury_pk):
 
+    r = redis.StrictRedis(host='redis', port=6379, db=0)
+
     treasury = Treasury.get_instance(pk=treasury_pk)
-
-    regions_cnt = Region.objects.filter(state=treasury.state).count()
-
     rifle = Good.objects.get(name='Автоматы')
     drone = Good.objects.get(name='Дроны')
 
-    rifle_cost = ChangeResidency.rifle_price * regions_cnt
-    drone_cost = ChangeResidency.drone_price * regions_cnt
-
-    if TreasuryStock.objects.filter(treasury=treasury, good=rifle, stock__gte=rifle_cost).exists() \
-            and TreasuryStock.objects.filter(treasury=treasury, good=drone, stock__gte=drone_cost).exists():
-
-        TreasuryStock.objects.filter(treasury=treasury,
-                                     good=rifle,
-                                     stock__gte=rifle_cost).update(stock=F('stock') - rifle_cost)
-
-        TreasuryStock.objects.filter(treasury=treasury,
-                                     good=drone,
-                                     stock__gte=drone_cost).update(stock=F('stock') - drone_cost)
-
-    else:
+    # если в казне нет одного из ресурсов - сразу чистим
+    if TreasuryStock.objects.filter(treasury=treasury, good=rifle, stock=0).exists() \
+            or TreasuryStock.objects.filter(treasury=treasury, good=drone, stock=0).exists():
 
         treasury.state.residency = 'free'
         treasury.state.save()
@@ -46,3 +33,51 @@ def residency_pay(treasury_pk):
         treasury.residency_id = None
 
         treasury.save()
+        r.delete(f'residency_pay_{treasury_pk}')
+        return
+
+    # иначе смотрим, прошёл ли час
+    counter = 0
+    if r.exists(f'residency_pay_{treasury_pk}'):
+
+        counter = int(r.get(f'residency_pay_{treasury_pk}'))
+
+        # каждый час списываем ресурсы
+        if counter % 60 == 0:
+
+            regions_cnt = Region.objects.filter(state=treasury.state).count()
+
+            rifle_cost = ChangeResidency.rifle_price * regions_cnt
+            drone_cost = ChangeResidency.drone_price * regions_cnt
+
+            if TreasuryStock.objects.filter(treasury=treasury, good=rifle, stock__gte=rifle_cost).exists() \
+                    and TreasuryStock.objects.filter(treasury=treasury, good=drone, stock__gte=drone_cost).exists():
+
+                TreasuryStock.objects.filter(treasury=treasury,
+                                             good=rifle,
+                                             stock__gte=rifle_cost).update(stock=F('stock') - rifle_cost)
+
+                TreasuryStock.objects.filter(treasury=treasury,
+                                             good=drone,
+                                             stock__gte=drone_cost).update(stock=F('stock') - drone_cost)
+
+                r.set(f'residency_pay_{treasury_pk}', 1)
+
+            else:
+
+                treasury.state.residency = 'free'
+                treasury.state.save()
+
+                PeriodicTask.objects.filter(pk=treasury.residency_id).delete()
+                treasury.residency_id = None
+
+                treasury.save()
+
+                r.delete(f'residency_pay_{treasury_pk}')
+                return
+
+        else:
+            r.set(f'residency_pay_{treasury_pk}', counter + 1)
+
+    else:
+        r.set(f'residency_pay_{treasury_pk}', 1)
