@@ -92,6 +92,7 @@ INSTALLED_APPS = [
     'django_cleanup',
     'fixture_magic',
     'modeltranslation',
+    'django_summernote',
 
 ]
 
@@ -305,6 +306,35 @@ LOGGING = {
     'root': {
         'handlers': ['console'],
         'level': 'INFO',
+    },
+}
+
+SUMMERNOTE_CONFIG = {
+    # You can put custom Summernote settings
+    'summernote': {
+
+        'width': '100%',
+
+        'disableDragAndDrop': True,
+        'disableImageUpload': True,
+
+        # 'fontNames': ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', 'Helvetica', 'Impact',
+        #             'Tahoma', 'Times New Roman', 'Verdana', ],
+
+        # Toolbar customization
+        # https://summernote.org/deep-dive/#custom-toolbar-popover
+        'toolbar': [
+            ['style', ['style']],
+            ['font', ['bold', 'underline', 'superscript', 'subscript', 'strikethrough', 'clear']],
+            ['fontname', ['fontname']],
+            ['fontsize', ['fontsize']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['height', ['height']],
+            ['table', ['table']],
+            ['insert', ['link', 'picture', 'video', 'hr']],
+            ['view', ['fullscreen', 'codeview', 'help']],
+        ],
     },
 }
 
