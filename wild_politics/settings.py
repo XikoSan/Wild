@@ -313,7 +313,6 @@ SUMMERNOTE_CONFIG = {
     # You can put custom Summernote settings
     'summernote': {
 
-        'height': '100%',
         'width': '100%',
 
         'disableDragAndDrop': True,
