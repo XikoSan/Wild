@@ -108,7 +108,7 @@ class AutoMiningAdmin(admin.ModelAdmin):
 class GoldLogAdmin(admin.ModelAdmin):
     list_display = ('player', 'gold', 'activity_txt')
     list_filter = ('activity_txt',)
-    search_fields = ('player__nickname',)
+    search_fields = ('player__nickname', 'gold',)
     raw_id_fields = ('player',)
     date_hierarchy = 'dtime'
     ordering = ('-dtime',)

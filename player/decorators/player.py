@@ -144,6 +144,12 @@ def activity_event_reward(player, mod):
     ActivityEventPart = apps.get_model('event.ActivityEventPart')
     ActivityGlobalPart = apps.get_model('event.ActivityGlobalPart')
 
+    if not ActivityEvent.objects.filter(running=True,
+                                               event_start__lt=timezone.now(),
+                                               event_end__gt=timezone.now()
+                                               ).exists():
+        return
+
     activity_event = ActivityEvent.objects.get(running=True,
                                                event_start__lt=timezone.now(),
                                                event_end__gt=timezone.now()
