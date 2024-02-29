@@ -20,6 +20,14 @@ from wild_politics.settings import JResponse
 @check_player
 def open_lootboxes(request):
     if request.method == "POST":
+
+        data = {
+            'response': 'Открытие Сундуков невозможно сейчас',
+            'header': 'Открытие сундуков',
+            'grey_btn': _('Закрыть'),
+        }
+        return JResponse(data)
+
         # получаем персонажа игрока
         player = Player.get_instance(account=request.user)
 

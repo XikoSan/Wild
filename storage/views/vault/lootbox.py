@@ -1,5 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.utils import timezone
 from django.utils.translation import pgettext
 
@@ -13,6 +13,9 @@ from player.player import Player
 @login_required(login_url='/')
 @check_player
 def lootbox(request):
+
+    return redirect('storage')
+
     player = Player.get_instance(account=request.user)
 
     lootbox_count = 0
