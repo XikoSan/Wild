@@ -17,6 +17,7 @@ def articles(request):
 
     # отправляем в форму
     return render(request, 'article/articles.html', {
+        'page_name': 'Статьи',
         # самого игрока
         'player': player,
         # список всех статей

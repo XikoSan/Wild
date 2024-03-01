@@ -20,6 +20,7 @@ def new_article(request):
 
     # отправляем в форму
     return render(request, 'article/new_article.html', {
+        'page_name': 'Новая статья',
         # самого игрока
         'player': player,
         # форму статьи

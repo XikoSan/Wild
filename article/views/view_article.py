@@ -23,6 +23,7 @@ def view_article(request, pk):
 
     # отправляем в форму
     return render(request, 'article/article.html', {
+        'page_name': article.title,
         # самого игрока
         'player': player,
         # статья

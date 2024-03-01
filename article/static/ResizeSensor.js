@@ -9,9 +9,6 @@ function loadCssVariablesFromLocalStorage() {
 }
 
 loadCssVariablesFromLocalStorage();
-window.onload = function() {
-	$('#summernote').summernote('foreColor', getComputedStyle(document.documentElement).getPropertyValue('--c10one'));
-}
 
 /**
  * Copyright Marc J. Schmidt. See the LICENSE file at the top-level

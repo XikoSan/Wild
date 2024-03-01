@@ -6,6 +6,7 @@ class Article(models.Model):
 
     player = models.ForeignKey(Player, on_delete=models.CASCADE, verbose_name='Автор')
 
+    # дата публикации
     date = models.DateTimeField(auto_now_add=True, verbose_name='Дата')
 
     # заголовок статьи

@@ -8,7 +8,18 @@
 {% load redesign.template_svg.nopic %}
 
 {% block for_scripts_and_css %}
-
+<script>
+	const tabs = document.querySelectorAll('.articles__tabs button');
+	const blocks = document.querySelectorAll('.articles__list');
+	tabs.forEach((tab, index) => {
+		tab.addEventListener('click', () => {
+			tabs.forEach((el) => el.classList.remove('active'));
+			tab.classList.add('active');
+			blocks.forEach((el) => el.classList.remove('active'));
+			blocks[index].classList.add('active');
+		})
+	})
+</script>
 {% endblock %}
 
 {% block content %}
@@ -24,11 +35,11 @@
 </h1>
 
     <div class="articles__inner">
-<!--      <div class="articles__tabs">-->
+      <div class="articles__tabs">
 <!--        <button class="active">все</button>-->
 <!--        <button>лучшие</button>-->
 <!--        <button>подписки</button>-->
-<!--      </div>-->
+      </div>
 
 <!--      <div class="DecorLine"></div>-->
 
@@ -41,7 +52,7 @@
 <!--        <input type="text" placeholder="найти статью">-->
 <!--      </div>-->
 
-      <ul class="articles__list">
+      <ul class="articles__list active">
 		  {% for article in articles %}
         <li class="articles__item" onclick="window.location.href = '/article/{% localize off %}{{ article.pk }}{% endlocalize %}/'" style="cursor: pointer">
 			{% if article.player.image %}
@@ -75,6 +86,12 @@
         </li>
 		  {% endfor %}
       </ul>
+
+<!--      <ul class="articles__list">-->
+<!--      </ul>-->
+
+<!--      <ul class="articles__list">-->
+<!--      </ul>-->
 
     </div>
   </section>
