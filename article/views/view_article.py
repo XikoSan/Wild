@@ -15,8 +15,16 @@ def view_article(request, pk):
     # получаем персонажа
     player = Player.get_instance(account=request.user)
 
+    voted = None
+
     if Article.objects.filter(pk=pk).exists():
         article = Article.objects.get(pk=pk)
+
+        if player in article.votes_pro.all():
+            voted = 'pro'
+        elif player in article.votes_con.all():
+            voted = 'con'
+
     else:
         # перекидываем в список статей
         return redirect("articles")
@@ -28,4 +36,8 @@ def view_article(request, pk):
         'player': player,
         # статья
         'article': article,
+        # рейтинг статьи
+        'article_rating': article.votes_pro.count() - article.votes_con.count(),
+        # голосовал ли
+        'voted': voted,
     })

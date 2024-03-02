@@ -6,6 +6,8 @@ from article.views.articles import articles
 from article.views.create_article import create_article
 from article.views.new_article import new_article
 from article.views.view_article import view_article
+from article.views.vote_article import vote_article
+from article.views.article_rating import article_rating
 
 urlpatterns = [
 
@@ -20,4 +22,10 @@ urlpatterns = [
 
     # открытие статьи
     url(r'^article/(?P<pk>\d+)/$', view_article, name='view_article'),
+
+    # голосовать за статью
+    url(r'^vote_article/$', vote_article, name='vote_article'),
+
+    # получить рейтинг статьи
+    url(r'^article_rating/$', article_rating, name='article_rating'),
 ]

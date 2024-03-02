@@ -21,6 +21,16 @@ class Article(models.Model):
     # приоритет закрепления ( 0 - самый большой )
     pin_order = models.IntegerField(default=0, verbose_name='Приоритет закрепления')
 
+    # голоса "за"
+    votes_pro = models.ManyToManyField(Player, blank=True,
+                                       related_name='%(class)s_votes_pro',
+                                       verbose_name='Голоса "за"')
+
+    # голоса "против"
+    votes_con = models.ManyToManyField(Player, blank=True,
+                                       related_name='%(class)s_votes_con',
+                                       verbose_name='Голоса "против"')
+
     def __str__(self):
         return self.player.nickname + ' ' + str(self.date.strftime('%Y-%m-%d %H:%M'))
 

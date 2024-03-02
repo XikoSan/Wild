@@ -8,6 +8,7 @@
 {% load redesign.template_svg.nopic %}
 
 {% block for_scripts_and_css %}
+<script src='{% static "js/article.js" %}?{{ csrf_token }}'></script>
 {% endblock %}
 
 {% block content %}
@@ -28,9 +29,9 @@
     <div class="articles__inner">
 			<div class="DecorLine"></div>
 			<div class="articles__voteBtns">
-				<button>👍</button>
-				<span>+0</span>
-				<button>👎</button>
+				<button id="rating_up" onclick="vote_article({% localize off %}{{ article.pk }}{% endlocalize %},'pro')" style="cursor: pointer; {% if voted == 'con' %}opacity: 0.5{% endif %}">👍</button>
+				<span id="rating">{% if article_rating > 0 %}+{% endif %}{{ article_rating }}</span>
+				<button id="rating_down" onclick="vote_article({% localize off %}{{ article.pk }}{% endlocalize %},'con')" style="cursor: pointer;  {% if voted == 'pro' %}opacity: 0.5{% endif %}"}>👎</button>
 			</div>
       <div class="DecorLine"></div>
 		</div>

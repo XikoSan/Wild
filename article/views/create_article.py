@@ -19,13 +19,21 @@ def create_article(request):
 
         if not request.POST.get('title', ''):
             data = {
-                'header': 'Новый статья',
+                'header': 'Новая статья',
                 'grey_btn': 'Закрыть',
-                'response': 'ID стикерпака должен быть целым числом',
+                'response': 'Название статьи не должно быть пустым',
             }
             return JResponse(data)
 
         body = request.POST.get('text', '').replace('script', 'sсript').replace('style', 'stуlе')
+
+        if not body:
+            data = {
+                'header': 'Новая статья',
+                'grey_btn': 'Закрыть',
+                'response': 'Текст статьи не должен быть пустым',
+            }
+            return JResponse(data)
 
         article = Article(
                         player=player,
