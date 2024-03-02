@@ -13,41 +13,50 @@ from wild_politics.settings import JResponse
 # открыть статью
 @login_required(login_url='/')
 @check_player
-def create_article(request):
+def change_article(request):
     if request.method == "POST":
         player = Player.objects.get(account=request.user)
 
-        if not request.POST.get('title', ''):
+        if not request.POST.get('article_pk'):
             data = {
-                'header': 'Новая статья',
+                'header': 'Редактировать статью',
                 'grey_btn': 'Закрыть',
-                'response': 'Название статьи не должно быть пустым',
+                'response': 'ID статьи не передан',
             }
             return JResponse(data)
+
+        try:
+            article_pk = int(request.POST.get('article_pk'))
+
+        except ValueError:
+            data = {
+                'header': 'Редактировать статью',
+                'grey_btn': 'Закрыть',
+                'response': 'ID статьи должно быть целым числом',
+            }
+            return JResponse(data)
+
+        if not Article.objects.filter(pk=article_pk).exists():
+            data = {
+                'header': 'Редактировать статью',
+                'grey_btn': 'Закрыть',
+                'response': 'Неизвестная статья',
+            }
+            return JResponse(data)
+
+        article = Article.objects.get(pk=article_pk)
 
         body = request.POST.get('text', '').replace('script', 'sсript')
 
         if not body:
             data = {
-                'header': 'Новая статья',
+                'header': 'Редактировать статью',
                 'grey_btn': 'Закрыть',
                 'response': 'Текст статьи не должен быть пустым',
             }
             return JResponse(data)
 
-        article = Article(
-                        player=player,
-                        title=request.POST.get('title', ''),
-                        body=body,
-                      )
-
-        # settings_code = PlayerSettings.objects.get(player=player).language
-        #
-        # if settings_code:
-        #     art.language = settings_code
-        #
-        # elif check_for_language(request.LANGUAGE_CODE):
-        #     art.language = request.LANGUAGE_CODE
+        article.body = body
 
         article.save()
 
@@ -62,7 +71,7 @@ def create_article(request):
         data = {
             # 'response': _('positive_enrg_req'),
             'response': 'Ошибка типа запроса',
-            'header': 'Новая статья',
+            'header': 'Редактировать статью',
             'grey_btn': 'Закрыть',
         }
         return JResponse(data)

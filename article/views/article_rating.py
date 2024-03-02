@@ -27,6 +27,8 @@ def article_rating(request):
             data = {
                 'response': 'ok',
                 'rating': rating,
+                'rated_up': article.votes_pro.count(),
+                'rated_down': article.votes_con.count(),
             }
             return JResponse(data)
 

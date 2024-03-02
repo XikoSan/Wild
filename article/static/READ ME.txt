@@ -1,0 +1,7 @@
+оба файла копируются в докер-контейнеры игры вот такой командой:
+
+docker cp ./article/static/django_summernote.css c46f6f95bbea:./app/static/summernote
+
+имя контейнера узнается при помощи 
+
+docker ps

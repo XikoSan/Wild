@@ -36,8 +36,12 @@ def view_article(request, pk):
         'player': player,
         # статья
         'article': article,
+
         # рейтинг статьи
         'article_rating': article.votes_pro.count() - article.votes_con.count(),
+        'article_rated_up': article.votes_pro.count(),
+        'article_rated_down': article.votes_con.count(),
+
         # голосовал ли
         'voted': voted,
     })

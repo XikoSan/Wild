@@ -19,19 +19,38 @@
     </h1>
 
     <div class="articles__inner">
-			<div class="articles__textContent">
+        <div class="DecorLine"></div>
+        <div class="articles__authorAndTime">
+            <a href="/profile/{% localize off %}{{ article.player.pk }}{% endlocalize %}">{{ article.player.nickname }}</a>
+            <span>
+                {{ article.date|timezone:player.time_zone|date:"H:i" }}
+                <br>
+                {{ article.date|timezone:player.time_zone|date:"d.m.Y" }}
+            </span>
+            {% if article.player == player %}
+                <button onclick="window.location.href = '/article/{% localize off %}{{ article.pk }}{% endlocalize %}/edit/'" style="cursor: pointer; ">редактировать</button>
+            {% endif %}
+        </div>
+        <div class="DecorLine"></div>
+        <div class="articles__textContent">
             {% autoescape off %}
             {{ article.body }}
             {% endautoescape %}
-            </div>
-		</div>
+        </div>
+    </div>
 
     <div class="articles__inner">
 			<div class="DecorLine"></div>
 			<div class="articles__voteBtns">
-				<button id="rating_up" onclick="vote_article({% localize off %}{{ article.pk }}{% endlocalize %},'pro')" style="cursor: pointer; {% if voted == 'con' %}opacity: 0.5{% endif %}">👍</button>
-				<span id="rating">{% if article_rating > 0 %}+{% endif %}{{ article_rating }}</span>
-				<button id="rating_down" onclick="vote_article({% localize off %}{{ article.pk }}{% endlocalize %},'con')" style="cursor: pointer;  {% if voted == 'pro' %}opacity: 0.5{% endif %}"}>👎</button>
+                <div>
+                    <span id="rated_up" onclick="window.location.href = '/article/{% localize off %}{{ article.pk }}{% endlocalize %}/likes'" style="display: inline-block; cursor: pointer; ">{{ article_rated_up }}</span>
+                    <button id="rating_up" onclick="vote_article({% localize off %}{{ article.pk }}{% endlocalize %},'pro')" style="display: inline-block; cursor: pointer; {% if voted == 'pro' %}opacity: 0.5{% endif %}">👍</button>
+                </div>
+				<span id="rating" style="{% if voted == 'pro' %}color: #8DFF47{% elif voted == 'con' %}color: tomato{% endif %}">{% if article_rating > 0 %}+{% endif %}{{ article_rating }}</span>
+                <div>
+				    <button id="rating_down" onclick="vote_article({% localize off %}{{ article.pk }}{% endlocalize %},'con')" style="display: inline-block; cursor: pointer;  {% if voted == 'con' %}opacity: 0.5{% endif %}"}>👎</button>
+                    <span id="rated_down" onclick="window.location.href = '/article/{% localize off %}{{ article.pk }}{% endlocalize %}/dislikes'" style="display: inline-block; cursor: pointer; ">{{ article_rated_down }}</span>
+                </div>
 			</div>
       <div class="DecorLine"></div>
 		</div>
