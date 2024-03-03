@@ -17,6 +17,7 @@ from player.player import Player
 from player.player_settings import PlayerSettings
 from region.models.fossils import Fossils
 from skill.models.excavation import Excavation
+from skill.models.fracturing import Fracturing
 from state.models.state import State
 from storage.models.stock import Stock, Good
 from storage.models.storage import Storage
@@ -208,7 +209,11 @@ class AutoMining(Log):
             goods = [player.region.oil_mark.name_ru]
             ret_stocks, ret_st_stocks = get_stocks(storage, goods)
             # облагаем налогом добытую нефть
-            total_oil = (count / 10) * 20
+            total_oil = (count / 10) * 20 * (1+ player.endurance * 0.01)
+
+            # гидроразрыв
+            if Fracturing.objects.filter(player=player, level__gt=0).exists():
+                total_oil = Fracturing.objects.get(player=player).apply({'sum': total_oil})
 
             if not player.account.date_joined + datetime.timedelta(days=7) > timezone.now():
                 taxed_oil = State.get_taxes(player.region, total_oil, 'oil', player.region.oil_mark)
@@ -287,7 +292,7 @@ class AutoMining(Log):
 
             for mineral in fossils:
                 # облагаем налогом добытую руду
-                total_ore = (count / 50) * mineral.percent
+                total_ore = (count / 50) * mineral.percent * (1+ player.endurance * 0.01)
                 # экскавация
                 if Excavation.objects.filter(player=player, level__gt=0).exists():
                     total_ore = Excavation.objects.get(player=player).apply({'sum': total_ore})
