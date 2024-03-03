@@ -763,7 +763,7 @@ a {
 
 .nav__item {
   flex-shrink: 0;
-  height: 50rem;
+  height: 40rem;
   position: relative;
   list-style-type: none;
 }
@@ -919,6 +919,11 @@ a {
   height: 30rem;
 }
 
+.icon-paper svg {
+  width: 38rem;
+  height: 30rem;
+}
+
 @media (min-width: 1000px) {
   .nav {
     transform: none;
@@ -927,6 +932,9 @@ a {
     top: initial;
     bottom: 0;
     background-image: linear-gradient(to right bottom, var(--c30), var(--c60));
+  }
+  .nav__item {
+    height: 45rem;
   }
 }
 

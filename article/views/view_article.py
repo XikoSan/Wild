@@ -6,7 +6,7 @@ from itertools import chain
 from player.decorators.player import check_player
 from player.player import Player
 from article.models.article import Article
-
+from article.models.subscription import Subscription
 
 # открыть статью
 @login_required(login_url='/')
@@ -16,6 +16,7 @@ def view_article(request, pk):
     player = Player.get_instance(account=request.user)
 
     voted = None
+    subscription = False
 
     if Article.objects.filter(pk=pk).exists():
         article = Article.objects.get(pk=pk)
@@ -24,6 +25,12 @@ def view_article(request, pk):
             voted = 'pro'
         elif player in article.votes_con.all():
             voted = 'con'
+
+        if Subscription.objects.filter(
+                                        author=article.player,
+                                        player=player
+                                       ).exists():
+            subscription = True
 
     else:
         # перекидываем в список статей
@@ -44,4 +51,6 @@ def view_article(request, pk):
 
         # голосовал ли
         'voted': voted,
+        # подписан ли
+        'subscription': subscription,
     })

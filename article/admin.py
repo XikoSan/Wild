@@ -4,6 +4,7 @@ from django.db import models
 from django_summernote.admin import SummernoteModelAdmin
 
 from article.models.article import Article
+from article.models.subscription import Subscription
 
 
 # Register your models here.
@@ -11,7 +12,7 @@ class ArticleAdmin(SummernoteModelAdmin, admin.ModelAdmin):
     search_fields = ['player__nickname', 'title']
 
     list_display = ('title', 'player', 'date')
-    ordering = ('date',)
+    ordering = ('-date',)
 
     summernote_fields = ('body',)
 
@@ -24,5 +25,14 @@ class ArticleAdmin(SummernoteModelAdmin, admin.ModelAdmin):
         )},
     }
 
+class SubscriptionAdmin(admin.ModelAdmin):
+    search_fields = ['player__nickname', 'author__nickname']
+
+    list_display = ('author', 'player', 'date')
+    ordering = ('-date',)
+
+    raw_id_fields = ('player', 'author',)
+
 
 admin.site.register(Article, ArticleAdmin)
+admin.site.register(Subscription, SubscriptionAdmin)

@@ -3,7 +3,6 @@ from django.conf.urls import url
 from django.urls import path
 
 from article.views.article_rated_list import article_rated_list
-from article.views.article_rating import article_rating
 from article.views.articles import articles
 from article.views.create_article import create_article
 from article.views.edit_article import edit_article
@@ -11,6 +10,7 @@ from article.views.new_article import new_article
 from article.views.view_article import view_article
 from article.views.vote_article import vote_article
 from article.views.change_article import change_article
+from article.views.subscription import subscription
 
 urlpatterns = [
 
@@ -38,6 +38,6 @@ urlpatterns = [
     # голосовать за статью
     url(r'^vote_article/$', vote_article, name='vote_article'),
 
-    # получить рейтинг статьи
-    url(r'^article_rating/$', article_rating, name='article_rating'),
+    # подписаться на автора
+    url(r'^subscription/$', subscription, name='subscription'),
 ]

@@ -49,8 +49,13 @@ def vote_article(request):
                 }
                 return JResponse(data)
 
+            rating = article.votes_pro.count() - article.votes_con.count()
+
             data = {
                 'response': 'ok',
+                'rating': rating,
+                'rated_up': article.votes_pro.count(),
+                'rated_down': article.votes_con.count(),
             }
             return JResponse(data)
 

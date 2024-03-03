@@ -9,6 +9,12 @@
 
 {% block for_scripts_and_css %}
 <script src='{% static "js/article.js" %}?{{ csrf_token }}'></script>
+<script>
+    var text_subscribe = 'подписаться';
+    var text_unsubscribe = 'отписаться';
+
+    var sub_mode = '{% if subscription %}unsub{% else %}sub{% endif %}';
+</script>
 {% endblock %}
 
 {% block content %}
@@ -29,6 +35,8 @@
             </span>
             {% if article.player == player %}
                 <button onclick="window.location.href = '/article/{% localize off %}{{ article.pk }}{% endlocalize %}/edit/'" style="cursor: pointer; ">редактировать</button>
+            {% else %}
+                <button id="subscription" onclick="subscribe({% localize off %}{{ article.player.pk }}{% endlocalize %}, sub_mode)" style="cursor: pointer;">{% if subscription %}отписаться{% else %}подписаться{% endif %}</button>
             {% endif %}
         </div>
         <div class="DecorLine"></div>
