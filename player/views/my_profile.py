@@ -147,15 +147,19 @@ def my_profile(request):
     cash_rating = cursor.fetchone()
     # ---------------------
     player_articles = Article.objects.only('pk').filter(player=player).values('pk')
-    articles_tuple = ()
 
-    for article in player_articles:
-        articles_tuple += (article['pk'],)
+    if player_articles:
+        articles_tuple = ()
 
-    cursor.execute("with lines_con as(select count(*) from public.article_article_votes_con where article_id in %s), lines_pro as (select count(*) from public.article_article_votes_pro where article_id in %s) SELECT lines_pro.count - lines_con.count AS difference FROM lines_con, lines_pro;", [articles_tuple, articles_tuple])
+        for article in player_articles:
+            articles_tuple += (article['pk'],)
 
-    carma = cursor.fetchall()[0][0]
+        cursor.execute("with lines_con as(select count(*) from public.article_article_votes_con where article_id in %s), lines_pro as (select count(*) from public.article_article_votes_pro where article_id in %s) SELECT lines_pro.count - lines_con.count AS difference FROM lines_con, lines_pro;", [articles_tuple, articles_tuple])
 
+        carma = cursor.fetchall()[0][0]
+
+    else:
+        carma = 0
     # ---------------------
 
     groups = list(player.account.groups.all().values_list('name', flat=True))
