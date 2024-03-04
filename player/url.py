@@ -41,6 +41,9 @@ from player.views.translate.translations import translations
 from django.urls import path
 from django.views.generic import TemplateView
 
+from player.views.bonus_code.bonus_code import bonus_code
+from player.views.bonus_code.activate_code import activate_code
+
 from .views.dmg_tbl import dmg_tbl
 
 urlpatterns = [
@@ -143,4 +146,10 @@ urlpatterns = [
 
     # ответ на капчу
     url(r'^answer_captcha', answer_captcha, name='answer_captcha'),
+
+    # страница бонус-кода
+    url(r'^bonus_code', bonus_code, name='bonus_code'),
+
+    # активация бонус-кода
+    url(r'^activate_code/', activate_code, name='activate_code'),
 ]

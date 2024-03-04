@@ -1,0 +1,16 @@
+# coding=utf-8
+
+from django.shortcuts import redirect
+from django.shortcuts import render
+from player.player import Player
+
+def bonus_code(request):
+
+    # Получаем объект персонажа, по его ключу
+    # Текущий пользователь
+    player = Player.get_instance(account=request.user)
+
+    return render(request, 'player/redesign/bonus_code/bonus_code.html', {
+        'page_name': 'Активировать бонус-код',
+        'player': player,
+    })

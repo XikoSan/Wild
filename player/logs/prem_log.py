@@ -15,6 +15,7 @@ class PremLog(Log):
     # текст активности
     activityChoices = (
         ('buying',  'Покупка'),
+        ('bonus',  'Бонус-код'),
         ('lootbox', 'Награда из лутбокса'),
     )
     activity_txt = models.CharField(

@@ -16,6 +16,7 @@ class WildpassLog(Log):
     activityChoices = (
         ('buying',  'Покупка за реал'),
         ('lootbox', 'Награда из лутбокса'),
+        ('bonus', 'Бонус-код'),
         ('trading', 'Торговля в игре'),
     )
     activity_txt = models.CharField(

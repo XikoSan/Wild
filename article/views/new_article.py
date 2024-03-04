@@ -16,6 +16,9 @@ def new_article(request):
     # получаем персонажа
     player = Player.get_instance(account=request.user)
 
+    if player.articles_ban:
+        return redirect('articles')
+
     form = NewArticleForm()
 
     # отправляем в форму

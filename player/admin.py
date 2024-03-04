@@ -20,6 +20,9 @@ from player.logs.donut_log import DonutLog
 from dateutil.relativedelta import relativedelta
 from player.lootbox.lootbox import Lootbox
 from player.logs.prem_log import PremLog
+from player.bonus_code.bonus_code import BonusCode
+from player.bonus_code.code_usage import CodeUsage
+
 
 @transaction.atomic
 def add_premium_month(modeladmin, request, queryset):
@@ -205,6 +208,26 @@ class PLayerAdmin(admin.ModelAdmin):
         return super(PLayerAdmin, self).formfield_for_foreignkey(db_field, request, **kwargs)
 
 
+class CodeUsageInline(admin.TabularInline):
+    model = CodeUsage
+
+class BonusCodeAdmin(admin.ModelAdmin):
+    search_fields = ['code', 'premium', 'gold', 'wild_pass', 'cash', ]
+    list_display = ('get_name', 'reusable', 'date')
+    list_filter = ('premium', 'gold', 'wild_pass', 'cash',)
+
+    inlines = [CodeUsageInline]
+
+    def get_name(self, obj):
+        return obj.__str__()
+
+
+class CodeUsageAdmin(admin.ModelAdmin):
+    search_fields = ['player__nickname', ]
+    list_display = ('code', 'player')
+    raw_id_fields = ('player', 'code', )
+
+
 # Register your models here.
 admin.site.register(Player, PLayerAdmin)
 admin.site.register(PlayerSettings, PlayerSettingsAdmin)
@@ -224,3 +247,6 @@ admin.site.register(GlobalPart, GlobalPartAdmin)
 admin.site.register(EnergySpent, EnergySpentAdmin)
 
 admin.site.register(Lootbox, LootboxAdmin)
+
+admin.site.register(BonusCode, BonusCodeAdmin)
+admin.site.register(CodeUsage, CodeUsageAdmin)

@@ -27,14 +27,19 @@ from wild_politics.settings import JResponse
 class Player(models.Model):
     # учетная запись игрока
     account = models.OneToOneField('auth.User', default='', on_delete=models.CASCADE, verbose_name='Учетная запись')
+
     # Показатель того, что игрок забанен
     banned = models.BooleanField(default=False, null=False, verbose_name='Бан')
     # причина бана
     reason = models.TextField(max_length=25, default='', null=True, blank=True, verbose_name='Причина')
-    # Показатель того, что игрок забанен в чате
-    chat_ban = models.BooleanField(default=False, null=False, verbose_name='Бан чата')
     # последний использовавшийся ip
     user_ip = models.CharField(max_length=50, blank=True, verbose_name='IP пользователя')
+
+    # Показатель того, что игрок забанен в чате
+    chat_ban = models.BooleanField(default=False, null=False, verbose_name='Бан чата')
+    # Показатель того, что игрок забанен в статьях
+    articles_ban = models.BooleanField(default=False, null=False, verbose_name='Бан статей')
+
     # никнейм игрока
     nickname = models.CharField(max_length=30, blank=False, verbose_name='Никнейм')
     # фото профиля игрока
