@@ -29,7 +29,7 @@ def articles(request):
     # получим лучшие статьи
 
     cursor = connection.cursor()
-    cursor.execute("with dislikes as( select article_id, COUNT(*) from public.article_article_votes_con group by article_id ), likes as ( select article_id, COUNT(*) from public.article_article_votes_pro group by article_id ) SELECT COALESCE(l.article_id, d.article_id) as article, COALESCE(l.count, 0) - COALESCE(d.count, 0) AS difference FROM likes as l full outer join dislikes as d on d.article_id = l.article_id WHERE COALESCE(l.count, 0) - COALESCE(d.count, 0) > 0 order by difference desc, article desc limit 10;")
+    cursor.execute("with dislikes as( select article_id, COUNT(*) from public.article_article_votes_con group by article_id ), likes as ( select article_id, COUNT(*) from public.article_article_votes_pro group by article_id ) SELECT COALESCE(l.article_id, d.article_id) as article, COALESCE(l.count, 0) - COALESCE(d.count, 0) AS difference FROM likes as l full outer join dislikes as d on d.article_id = l.article_id WHERE COALESCE(l.count, 0) - COALESCE(d.count, 0) > 0 order by difference desc, article desc;")
     list_db = cursor.fetchall()
 
     list_articles_pk = []
@@ -37,12 +37,14 @@ def articles(request):
     for elem in list_db:
         list_articles_pk.append(elem[0])
 
-    article_noorder = Article.objects.defer('body').filter(pk__in=list_articles_pk)
+    article_noorder = Article.objects.defer('body').filter(pk__in=list_articles_pk).exclude(player__pk=1)
 
     top_articles = []
 
     for elem in list_db:
-        top_articles.append(article_noorder.get(pk=elem[0]))
+        if len(top_articles) < 10:
+            if article_noorder.filter(pk=elem[0]).exists():
+                top_articles.append(article_noorder.get(pk=elem[0]))
 
     # top_articles = Article.objects.annotate(vote_diff=Count('votes_pro') - Count('votes_con')
     #                                         ).filter(vote_diff__gt=0).order_by('-vote_diff', '-id')[:25]
