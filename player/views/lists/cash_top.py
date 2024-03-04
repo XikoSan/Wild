@@ -27,7 +27,7 @@ def cash_top(request):
     cursor = connection.cursor()
 
     # получаем партии для текущей страницы
-    cursor.execute("with sum_limit(lim) as ( select SUM(store.cash) + player.cash  from player_player as player join storage_storage as store on player.id = 20 and store.owner_id = player.id and store.deleted = false group by player.id ), store_sum(owner_id, cash) as (  select store.owner_id, sum(store.cash) from storage_storage as store where store.deleted = false group by store.owner_id ) select id, nickname from player_player as player join store_sum as store on store.owner_id = player.id order by store.cash + player.cash desc limit 10;")
+    cursor.execute("with sum_limit(lim) as ( select SUM(store.cash) + player.cash  from player_player as player join storage_storage as store on player.id = %s and store.owner_id = player.id and store.deleted = false group by player.id ), store_sum(owner_id, cash) as (  select store.owner_id, sum(store.cash) from storage_storage as store where store.deleted = false group by store.owner_id ) select id, nickname from player_player as player join store_sum as store on store.owner_id = player.id order by store.cash + player.cash desc limit 10;", [player.pk])
     cash_top = cursor.fetchall()
 
     #  ----------- нужно тупо чтобы выбрать картинки и не заморачиваться
