@@ -7,7 +7,7 @@ from player.decorators.player import check_player
 from player.player import Player
 from article.models.article import Article
 from article.models.subscription import Subscription
-
+from django.db.models import Count
 
 # страница войн
 @login_required(login_url='/')
@@ -22,22 +22,33 @@ def articles(request):
 
     for article in article_list:
         rating_dict[article.pk] = article.votes_pro.count() - article.votes_con.count()
-
+    # --------------------------------------------------------------------------------
+    # получим лучшие статьи
+    top_articles = Article.objects.annotate(vote_diff=Count('votes_pro') - Count('votes_con')
+                                            ).filter(vote_diff__gt=0).order_by('-vote_diff', '-id')[:25]
+    for article in top_articles:
+        if article.pk not in rating_dict.keys():
+            rating_dict[article.pk] = article.votes_pro.count() - article.votes_con.count()
+    # --------------------------------------------------------------------------------
     # получим подписки игрока
     subs_articles = None
+    authors = []
+
     if Subscription.objects.filter(player=player).exists():
 
         subscriptions = Subscription.objects.filter(player=player)
 
-        authors = []
         for subscription in subscriptions:
             authors.append(subscription.author)
 
-        subs_articles = Article.objects.defer('body').filter(player__in=authors).order_by('-id')
+    subs_articles = Article.objects.defer('body').filter(
+                                                            Q(player__in=authors)
+                                                            | Q(player__pk=1)
+                                                        ).order_by('-id')
+    for article in subs_articles:
+        if article.pk not in rating_dict.keys():
+            rating_dict[article.pk] = article.votes_pro.count() - article.votes_con.count()
 
-        for article in subs_articles:
-            if article.pk not in rating_dict.keys():
-                rating_dict[article.pk] = article.votes_pro.count() - article.votes_con.count()
 
     # отправляем в форму
     return render(request, 'article/articles.html', {
@@ -47,6 +58,8 @@ def articles(request):
 
         # список всех статей
         'articles': article_list,
+        # лучшие статьи
+        'top_articles': top_articles,
         # список подписок
         'subs_articles': subs_articles,
         # словарь рейтинга статей

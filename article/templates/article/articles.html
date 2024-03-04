@@ -38,9 +38,9 @@
 </h1>
 
     <div class="articles__inner">
-      <div class="articles__tabs" style="grid-template-columns: repeat(2, 1fr);">
+      <div class="articles__tabs">
         <button class="active">все</button>
-<!--        <button>лучшие</button>-->
+        <button>лучшие</button>
         <button>подписки</button>
       </div>
 
@@ -73,7 +73,7 @@
           <div class="articles__itemContent">
             <div class="articles__itemText">
               <h2>{{ article.title }}</h2>
-              <a href="/profile/{% localize off %}{{ article.player.pk }}{% endlocalize %}">{{ article.player.nickname }}</a>
+              <h2>{{ article.player.nickname }}</h2>
             </div>
             <div class="articles__itemInfo">
               <span style="opacity: 0">
@@ -95,7 +95,7 @@
       </ul>
 
       <ul class="articles__list">
-        {% for article in subs_articles %}
+        {% for article in top_articles %}
         <li class="articles__item" onclick="window.location.href = '/article/{% localize off %}{{ article.pk }}{% endlocalize %}/'" style="cursor: pointer">
 			{% if article.player.image %}
 				<img src="{{ article.player.image.url }}">
@@ -112,7 +112,7 @@
           <div class="articles__itemContent">
             <div class="articles__itemText">
               <h2>{{ article.title }}</h2>
-              <a href="/profile/{% localize off %}{{ article.player.pk }}{% endlocalize %}">{{ article.player.nickname }}</a>
+              <h2>{{ article.player.nickname }}</h2>
             </div>
             <div class="articles__itemInfo">
               <span style="opacity: 0">
@@ -133,8 +133,44 @@
         {% endfor %}
       </ul>
 
-<!--      <ul class="articles__list">-->
-<!--      </ul>-->
+      <ul class="articles__list">
+        {% for article in subs_articles %}
+        <li class="articles__item" onclick="window.location.href = '/article/{% localize off %}{{ article.pk }}{% endlocalize %}/'" style="cursor: pointer">
+			{% if article.player.image %}
+				<img src="{{ article.player.image.url }}">
+			{% else %}
+                {% with article.player.pk|get_str as pk_str %}
+                    {% with 'window.location.href = "/profile/'|get_sum:pk_str as action_1 %}
+                        {% with action_1|get_sum:'/"' as action %}
+                            {% nopic player '' 'cursor: pointer' action %}
+                        {% endwith %}
+                    {% endwith %}
+                {% endwith %}
+			{% endif %}
+
+          <div class="articles__itemContent">
+            <div class="articles__itemText">
+              <h2>{{ article.title }}</h2>
+              <h2>{{ article.player.nickname }}</h2>
+            </div>
+            <div class="articles__itemInfo">
+              <span style="opacity: 0">
+                0
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M8 0.666504C3.77467 0.666504 0 3.48384 0 7.33784C0 8.7045 0.492667 10.0465 1.36467 11.0878L0.036 15.3332L4.66667 13.3332C5.80333 13.6258 6.88933 13.7605 7.90933 13.7605C12.692 13.7605 16 10.8012 16 7.33784C16 3.46317 12.1993 0.666504 8 0.666504ZM8 1.33317C12.0433 1.33317 15.3333 4.02717 15.3333 7.33784C15.3333 10.6192 12.142 13.0938 7.90933 13.0938C6.65533 13.0938 5.642 12.8945 4.612 12.6305L1.10667 14.1445L2.11 10.9392C1.238 9.8965 0.666667 8.85384 0.666667 7.33784C0.666667 4.02717 3.95667 1.33317 8 1.33317ZM4.66667 6.33317C5.21867 6.33317 5.66667 6.78117 5.66667 7.33317C5.66667 7.88517 5.21867 8.33317 4.66667 8.33317C4.11467 8.33317 3.66667 7.88517 3.66667 7.33317C3.66667 6.78117 4.11467 6.33317 4.66667 6.33317ZM8 6.33317C8.552 6.33317 9 6.78117 9 7.33317C9 7.88517 8.552 8.33317 8 8.33317C7.448 8.33317 7 7.88517 7 7.33317C7 6.78117 7.448 6.33317 8 6.33317ZM11.3333 6.33317C11.8853 6.33317 12.3333 6.78117 12.3333 7.33317C12.3333 7.88517 11.8853 8.33317 11.3333 8.33317C10.7813 8.33317 10.3333 7.88517 10.3333 7.33317C10.3333 6.78117 10.7813 6.33317 11.3333 6.33317Z" fill="white"/>
+                </svg>
+              </span>
+              <span>
+                  {% with rating_dict|dict_key:article.pk as rating %}
+                    {% if rating > 0 %}+{% endif %}{{ rating }}
+                  {% endwith %}
+              </span>
+              <span>{{ article.date|timezone:player.time_zone|date:"H:i" }}</span>
+            </div>
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
 
     </div>
   </section>
