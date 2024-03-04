@@ -123,6 +123,9 @@ def activate_code(request):
         usage = CodeUsage(code=code, player=player)
         usage.save()
 
+        if not text:
+            text = ''
+
         text = 'Код активирован! Вы получили: ' + text
 
         data = {
