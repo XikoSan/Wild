@@ -1,5 +1,6 @@
 from django.db import models
 from player.player import Player
+from django.utils import timezone
 
 # подписка на автора
 class Subscription(models.Model):
@@ -8,7 +9,7 @@ class Subscription(models.Model):
     player = models.ForeignKey(Player, on_delete=models.CASCADE, verbose_name='Подписчик')
 
     # дата подписки
-    date = models.DateTimeField(auto_now_add=True, verbose_name='Дата подписки')
+    date = models.DateTimeField(default=timezone.now, verbose_name='Дата подписки')
 
     # автор
     author = models.ForeignKey(Player, on_delete=models.CASCADE, verbose_name='Автор', related_name='author')

@@ -1,5 +1,6 @@
 from django.db import models
 from player.player import Player
+from django.utils import timezone
 
 # статья (авторская)
 class Article(models.Model):
@@ -7,7 +8,7 @@ class Article(models.Model):
     player = models.ForeignKey(Player, on_delete=models.CASCADE, verbose_name='Автор')
 
     # дата публикации
-    date = models.DateTimeField(auto_now_add=True, verbose_name='Дата')
+    date = models.DateTimeField(default=timezone.now, verbose_name='Дата')
 
     # заголовок статьи
     title = models.CharField(max_length=100, verbose_name='Статья')
