@@ -13,6 +13,7 @@ from player.player import Player
 from player.player_settings import PlayerSettings
 from wild_politics.settings import TIME_ZONE
 from ava_border.models.ava_border_ownership import AvaBorderOwnership
+from article.models.article import Article
 
 
 @login_required(login_url='/')

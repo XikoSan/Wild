@@ -11,6 +11,7 @@ from article.views.view_article import view_article
 from article.views.vote_article import vote_article
 from article.views.change_article import change_article
 from article.views.subscription import subscription
+from article.views.character_articles import character_articles
 
 urlpatterns = [
 
@@ -40,4 +41,7 @@ urlpatterns = [
 
     # подписаться на автора
     url(r'^subscription/$', subscription, name='subscription'),
+
+    # статьи игрока
+    url(r'^character_articles/(?P<pk>\d+)/$', character_articles, name='character_articles'),
 ]
