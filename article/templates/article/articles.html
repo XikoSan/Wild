@@ -26,7 +26,7 @@
   <section class="articles custom-scroll">
 	<!-- Заголовок -->
 	<h1 class="articles__title ct__page-title">
-  Статьи
+  {% trans 'Статьи' context "article" %}
 
     {% if not player.articles_ban and can_post %}
   <button class="articles__addNewBtn" onclick="window.location.href = '/new_article/'" style="cursor: pointer">
@@ -39,9 +39,9 @@
 
     <div class="articles__inner">
       <div class="articles__tabs">
-        <button class="active">все</button>
-        <button>лучшие</button>
-        <button>подписки</button>
+        <button class="active">{% trans 'все' context "article" %}</button>
+        <button>{% trans 'лучшие' context "article" %}</button>
+        <button>{% trans 'подписки' context "article" %}</button>
       </div>
 
       <div class="DecorLine"></div>

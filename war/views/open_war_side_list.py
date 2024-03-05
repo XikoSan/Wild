@@ -5,6 +5,7 @@ from django.db.models import F
 from django.db.models import Sum
 from django.shortcuts import redirect, render
 from django.utils.translation import ugettext as _
+from django.utils.translation import pgettext
 
 from player.decorators.player import check_player
 from player.player import Player
@@ -68,19 +69,19 @@ def open_war_side_list(request, class_name, pk, side):
 
         'image': {
             'text': '',
-            'select_text': _('Аватар'),
+            'select_text': pgettext('lists', 'Аватар'),
             'visible': 'true'
         },
 
         'nickname': {
-            'text': _('Никнейм'),
-            'select_text': _('Никнейм'),
+            'text': pgettext('lists', 'Никнейм'),
+            'select_text': pgettext('lists', 'Никнейм'),
             'visible': 'true'
         },
 
         'dmg': {
-            'text': _('Урон'),
-            'select_text': _('Урон'),
+            'text': pgettext('lists', 'Урон'),
+            'select_text': pgettext('lists', 'Урон'),
             'visible': 'true'
         },
 
@@ -88,25 +89,25 @@ def open_war_side_list(request, class_name, pk, side):
             'image':
                 {
                     'text': '',
-                    'select_text': _('Герб'),
+                    'select_text': pgettext('lists', 'Герб'),
                     'visible': 'true'
                 },
             'title':
                 {
-                    'text': _('Партия'),
-                    'select_text': _('Партия'),
+                    'text': pgettext('lists', 'Партия'),
+                    'select_text': pgettext('lists', 'Партия'),
                     'visible': 'false'
                 }
         }
     }
 
-    side_name = 'атака'
+    side_name = pgettext('lists', 'атака')
     if side == 'def':
-        side_name = 'оборона'
+        side_name = pgettext('lists', 'оборона')
 
     # отправляем в форму
     return render(request, 'player/redesign/lists/universal_list.html', {
-        'page_name': _(f'Урон за сторону: {side_name}'),
+        'page_name': pgettext('lists', 'Урон за сторону:') + f' {side_name}',
 
         'player': player,
 

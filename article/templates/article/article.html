@@ -10,8 +10,8 @@
 {% block for_scripts_and_css %}
 <script src='{% static "js/article.js" %}?{{ csrf_token }}'></script>
 <script>
-    var text_subscribe = 'подписаться';
-    var text_unsubscribe = 'отписаться';
+    var text_subscribe = '{% trans 'подписаться' context "article" %}';
+    var text_unsubscribe = '{% trans 'отписаться' context "article" %}';
 
     var sub_mode = '{% if subscription %}unsub{% else %}sub{% endif %}';
 </script>
@@ -34,9 +34,9 @@
                 {{ article.date|timezone:player.time_zone|date:"d.m.Y" }}
             </span>
             {% if article.player == player %}
-                <button onclick="window.location.href = '/article/{% localize off %}{{ article.pk }}{% endlocalize %}/edit/'" style="cursor: pointer; ">редактировать</button>
+                <button onclick="window.location.href = '/article/{% localize off %}{{ article.pk }}{% endlocalize %}/edit/'" style="cursor: pointer; ">{% trans 'редактировать' context "article" %}</button>
             {% else %}
-                <button id="subscription" onclick="subscribe({% localize off %}{{ article.player.pk }}{% endlocalize %}, sub_mode)" style="cursor: pointer;">{% if subscription %}отписаться{% else %}подписаться{% endif %}</button>
+                <button id="subscription" onclick="subscribe({% localize off %}{{ article.player.pk }}{% endlocalize %}, sub_mode)" style="cursor: pointer;">{% if subscription %}{% trans 'отписаться' context "article" %}{% else %}{% trans 'подписаться' context "article" %}{% endif %}</button>
             {% endif %}
         </div>
         <div class="DecorLine"></div>

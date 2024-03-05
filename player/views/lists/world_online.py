@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 from django.utils.translation import ugettext as _
+from django.utils.translation import pgettext
 
 from player.decorators.player import check_player
 from player.player import Player
@@ -38,13 +39,13 @@ def world_online_list(request):
 
         'image': {
             'text': '',
-            'select_text': 'Аватар',
+            'select_text': pgettext('lists', 'Аватар'),
             'visible': 'true'
         },
 
         'nickname': {
-            'text': 'Никнейм',
-            'select_text': 'Никнейм',
+            'text': pgettext('lists', 'Никнейм'),
+            'select_text': pgettext('lists', 'Никнейм'),
             'visible': 'true'
         },
 
@@ -52,13 +53,13 @@ def world_online_list(request):
             'on_map_id':
                 {
                     'text': '',
-                    'select_text': 'Герб',
+                    'select_text': pgettext('lists', 'Герб'),
                     'visible': 'true'
                 },
             'region_name':
                 {
-                    'text': 'Регион',
-                    'select_text': 'Регион',
+                    'text': pgettext('lists', 'Регион'),
+                    'select_text': pgettext('lists', 'Регион'),
                     'visible': 'true'
                 }
         }
@@ -66,7 +67,7 @@ def world_online_list(request):
 
     # отправляем в форму
     return render(request, 'player/redesign/lists/universal_list.html', {
-        'page_name': _('Мировой онлайн'),
+        'page_name': pgettext('lists', 'Мировой онлайн'),
 
         'player': player,
 

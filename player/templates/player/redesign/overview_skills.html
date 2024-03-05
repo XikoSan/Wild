@@ -176,8 +176,8 @@
     var cancel_skill_pk = null;
     var cnl_header = '{% trans 'Отмена изучения навыка' context "skill_cancel" %}';
     var cnl_text = '{% trans 'Изучение навыка будет отменено. Продолжить?' context "skill_cancel" %}';
-    var cnl_yes = '{% trans 'Продолжить' %}';
-    var cnl_cancel = '{% trans 'Отмена' %}';
+    var cnl_yes = '{% trans 'Продолжить' context "skill_cancel" %}';
+    var cnl_cancel = '{% trans 'Отмена' context "skill_cancel" %}';
 </script>
 <!--прем блок-->
 <div class="overview__love-prem">

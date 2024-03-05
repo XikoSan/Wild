@@ -12,7 +12,7 @@
   <section class="articles custom-scroll">
 	<!-- Заголовок -->
 	<h1 class="articles__title ct__page-title">
-  Статьи: {{ char.nickname }}
+  {% trans 'Статьи' context "articles_list" %}: {{ char.nickname }}
 
     {% if not player.articles_ban %}
   <button class="articles__addNewBtn" onclick="window.location.href = '/new_article/'" style="cursor: pointer">

@@ -43,32 +43,33 @@ def endurance_top(request, player):
     header = {
 
         'top': {
-            'text': _('Место'),
-            'select_text': _('Место'),
+            'text': pgettext('lists', 'Место'),
+            'select_text': pgettext('lists', 'Место'),
             'visible': 'true'
         },
 
         'image': {
             'text': '',
-            'select_text': _('Аватар'),
+            'select_text': pgettext('lists', 'Аватар'),
             'visible': 'true'
         },
 
         'nickname': {
-            'text': _('Никнейм'),
-            'select_text': _('Никнейм'),
+            'text': pgettext('lists', 'Никнейм'),
+            'select_text': pgettext('lists', 'Никнейм'),
             'visible': 'true'
         },
 
+
         'endurance': {
-            'text': _('Вын'),
-            'select_text': _('Вын'),
+            'text': pgettext('lists', 'Вын'),
+            'select_text': pgettext('lists', 'Вын'),
             'visible': 'true'
         },
     }
 
     return {
-        'page_name': pgettext('skill_top', 'Топ по Выносливости'),
+        'page_name': pgettext('lists', 'Топ по Выносливости'),
 
         'player': player,
 

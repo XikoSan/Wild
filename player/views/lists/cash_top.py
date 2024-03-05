@@ -3,6 +3,7 @@ from django.shortcuts import redirect, render
 
 from player.views.lists.get_thing_page import get_thing_page
 from django.utils.translation import ugettext as _
+from django.utils.translation import pgettext
 from region.models.region import Region
 from player.player import Player
 from player.decorators.player import check_player
@@ -70,20 +71,20 @@ def cash_top(request):
     header = {
 
         'top': {
-            'text': _('Место'),
-            'select_text': _('Место'),
+            'text': pgettext('lists', 'Место'),
+            'select_text': pgettext('lists', 'Место'),
             'visible': 'true'
         },
 
         'image': {
             'text': '',
-            'select_text': _('Аватар'),
+            'select_text': pgettext('lists', 'Аватар'),
             'visible': 'true'
         },
 
         'nickname': {
-            'text': _('Никнейм'),
-            'select_text': _('Никнейм'),
+            'text': pgettext('lists', 'Никнейм'),
+            'select_text': pgettext('lists', 'Никнейм'),
             'visible': 'true'
         },
 
@@ -91,13 +92,13 @@ def cash_top(request):
             'image':
             {
                 'text': '',
-                'select_text': _('Герб'),
+                'select_text': pgettext('lists', 'Герб'),
                 'visible': 'true'
             },
             'title':
             {
-                'text': _('Партия'),
-                'select_text': _('Партия'),
+                'text': pgettext('lists', 'Партия'),
+                'select_text': pgettext('lists', 'Партия'),
                 'visible': 'false'
             }
         }
@@ -106,7 +107,7 @@ def cash_top(request):
 
     # отправляем в форму
     return render(request, 'player/redesign/lists/universal_list.html', {
-        'page_name': _('Топ богатейших'),
+        'page_name': pgettext('lists', 'Топ богатейших'),
 
         'player': player,
 

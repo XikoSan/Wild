@@ -268,6 +268,12 @@ LOCALE_PATHS = (
     # os.path.join(PROJECT_DIR, 'locale'),
 )
 
+EXCLUDED_NAMESPACES = [
+    'tests',
+    'generated',
+    'confidential',
+]
+
 USE_L10N = True
 
 USE_TZ = True

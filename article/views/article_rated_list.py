@@ -7,8 +7,8 @@ import redis
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 from django.utils import timezone
-from django.utils.translation import pgettext as _
-# from django.utils.translation import ugettext as _
+from django.utils.translation import pgettext
+from django.utils.translation import ugettext as _
 
 from player.decorators.player import check_player
 from player.player import Player
@@ -41,12 +41,12 @@ def article_rated_list(request, pk, mode):
     if mode == 'likes':
         players = article.votes_pro.all()
 
-        page_name = _("article", 'Лайкнувшие статью')
+        page_name = pgettext('article', 'Лайкнувшие статью')
 
     else:
         players = article.votes_con.all()
 
-        page_name = _("article", 'Дизлайкнувшие статью')
+        page_name = pgettext('article', 'Дизлайкнувшие статью')
 
     lines = get_thing_page(players, page, 50)
 
@@ -54,13 +54,13 @@ def article_rated_list(request, pk, mode):
 
         'image': {
             'text': '',
-            'select_text': 'Аватар',
+            'select_text': pgettext('lists', 'Аватар'),
             'visible': 'true'
         },
 
         'nickname': {
-            'text': 'Никнейм',
-            'select_text': 'Никнейм',
+            'text': pgettext('lists', 'Никнейм'),
+            'select_text': pgettext('lists', 'Никнейм'),
             'visible': 'true'
         },
 
@@ -68,13 +68,13 @@ def article_rated_list(request, pk, mode):
             'image':
             {
                 'text': '',
-                'select_text': 'Герб',
+                'select_text': pgettext('lists', 'Герб'),
                 'visible': 'false'
             },
             'title':
             {
-                'text': 'Партия',
-                'select_text': 'Партия',
+                'text': pgettext('lists', 'Партия'),
+                'select_text': pgettext('lists', 'Партия'),
                 'visible': 'false'
             }
         }
