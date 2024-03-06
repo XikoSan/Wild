@@ -36,9 +36,9 @@ class Good(models.Model):
 
     # типоразмер
     sizeChoices = (
-        ('large', 'Большой'),
-        ('medium', 'Средний'),
-        ('small', 'Малый'),
+        ('large', pgettext_lazy('goods', 'Большой')),
+        ('medium', pgettext_lazy('goods', 'Средний')),
+        ('small', pgettext_lazy('goods', 'Малый')),
     )
     size = models.CharField(
         max_length=6,
