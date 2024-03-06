@@ -20,7 +20,7 @@
 			<li class="skills__item">
                 {% with cl_name=skill_cl|get_class_name %}
                 {% with q_level=queue_dict|dict_key:cl_name %}
-				<h2 class="skills__title">{{ names_dict|dict_key:cl_name }}</h2>
+				<h2 class="skills__title">{{ skill_cl|get_attr:'name' }}</h2>
 				<div class="skills__line"></div>
 				<p class="skills__desc">{{ skill_cl|get_attr:'description' }}</p>
 				{% if not skills_dict|has_key:cl_name %}

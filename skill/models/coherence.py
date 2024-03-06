@@ -3,6 +3,7 @@ import math
 from datetime import timedelta
 from django.db import models
 from django.utils import timezone
+from django.utils.translation import pgettext_lazy
 
 from skill.models.skill import Skill
 
@@ -10,17 +11,19 @@ from skill.models.skill import Skill
 # Слаженность
 # бонус 10% за каждый вид юнитов, количество которых в отряде не менее 20%
 class Coherence(Skill):
-    description = 'бонус 10% за каждый вид юнитов, количество которых в отряде не менее 20%'
+
+    name = pgettext_lazy('skills', "Слаженность")
+    description = pgettext_lazy('skills', 'бонус 10% за каждый вид юнитов, количество которых в отряде не менее 20%')
 
     requires = [
         {
             'skill': 'power',
-            'skill_name': 'Сила',
+            'skill_name': pgettext_lazy('skills', 'Сила'),
             'level': 30,
         },
         {
             'skill': 'knowledge',
-            'skill_name': 'Интеллект',
+            'skill_name': pgettext_lazy('skills', 'Интеллект'),
             'level': 15,
         },
     ]
@@ -56,5 +59,5 @@ class Coherence(Skill):
             return args['dmg']
 
     class Meta:
-        verbose_name = "Слаженность"
+        verbose_name = pgettext_lazy('skills', "Слаженность")
         verbose_name_plural = "Слаженность"

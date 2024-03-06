@@ -1,26 +1,28 @@
 # coding=utf-8
 from django.db import models
 from skill.models.skill import Skill
+from django.utils.translation import pgettext_lazy
 
 # Промышленная экскавация
 class Excavation(Skill):
 
-    description = 'позволяет извлекать дополнительные 10% руд за уровень'
+    name = pgettext_lazy('skills', 'Промышленная экскавация')
+    description = pgettext_lazy('skills', 'позволяет извлекать дополнительные 10% руд за уровень')
 
     requires = [
         {
             'skill': 'power',
-            'skill_name': 'Сила',
+            'skill_name': pgettext_lazy('skills', 'Сила'),
             'level': 10,
         },
         {
             'skill': 'knowledge',
-            'skill_name': 'Интеллект',
+            'skill_name': pgettext_lazy('skills', 'Интеллект'),
             'level': 10,
         },
         {
             'skill': 'endurance',
-            'skill_name': 'Выносливость',
+            'skill_name': pgettext_lazy('skills', 'Выносливость'),
             'level': 10,
         },
     ]
@@ -33,5 +35,5 @@ class Excavation(Skill):
 
 
     class Meta:
-        verbose_name = "Промышленная экскавация"
+        verbose_name = pgettext_lazy('skills', 'Промышленная экскавация')
         verbose_name_plural = "Промышленная экскавация"

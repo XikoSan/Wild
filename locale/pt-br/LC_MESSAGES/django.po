@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-06 01:39+0300\n"
+"POT-Creation-Date: 2024-03-06 21:59+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1718,17 +1718,14 @@ msgid "С новым годом!"
 msgstr "Feliz Ano Novo!"
 
 #: player/templates/player/redesign/lists/skill_top.html:26
-#: player/templates/player/redesign/overview_skills.html:21
 msgid "Сила"
 msgstr ""
 
 #: player/templates/player/redesign/lists/skill_top.html:41
-#: player/templates/player/redesign/overview_skills.html:70
 msgid "Интеллект"
 msgstr ""
 
 #: player/templates/player/redesign/lists/skill_top.html:56
-#: player/templates/player/redesign/overview_skills.html:119
 msgid "Выносливость"
 msgstr ""
 
@@ -1736,6 +1733,11 @@ msgstr ""
 msgctxt "menu"
 msgid "обзор"
 msgstr "resumo "
+
+#: player/templates/player/redesign/menu.html:35
+msgctxt "menu"
+msgid "статьи"
+msgstr ""
 
 #: player/templates/player/redesign/menu.html:46
 msgctxt "menu"
@@ -1873,12 +1875,23 @@ msgctxt "overview"
 msgid "парламент"
 msgstr "parlamento"
 
+#: player/templates/player/redesign/overview_skills.html:21
+#: skill/models/coherence.py:19 skill/models/excavation.py:14
+#: skill/models/finance.py:14 skill/models/scouting.py:19
+msgctxt "skills"
+msgid "Сила"
+msgstr ""
+
 #: player/templates/player/redesign/overview_skills.html:24
 #: player/templates/player/redesign/overview_skills.html:73
 #: player/templates/player/redesign/overview_skills.html:122
 #: player/templates/player/redesign/overview_skills.html:186
+#, fuzzy
+#| msgctxt "w_auctions"
+#| msgid "Завершение"
+msgctxt "skills"
 msgid "Завершение"
-msgstr ""
+msgstr "Conclusão"
 
 #: player/templates/player/redesign/overview_skills.html:52
 #: player/templates/player/redesign/overview_skills.html:101
@@ -1907,8 +1920,34 @@ msgstr "sendo estudado..."
 #: player/templates/player/redesign/overview_skills.html:64
 #: player/templates/player/redesign/overview_skills.html:113
 #: player/templates/player/redesign/overview_skills.html:162
+#, fuzzy
+#| msgctxt "repost"
+#| msgid "Получить"
+msgctxt "skills"
 msgid "изучить"
-msgstr ""
+msgstr "Pegar"
+
+#: player/templates/player/redesign/overview_skills.html:70
+#: skill/models/coherence.py:24 skill/models/excavation.py:19
+#: skill/models/finance.py:19 skill/models/fracturing.py:14
+#: skill/models/military_production.py:14 skill/models/scouting.py:24
+#: skill/models/standardization.py:14
+#, fuzzy
+#| msgctxt "skill_top"
+#| msgid "Топ по Интеллекту"
+msgctxt "skills"
+msgid "Интеллект"
+msgstr "Top em Inteligência"
+
+#: player/templates/player/redesign/overview_skills.html:119
+#: skill/models/excavation.py:24 skill/models/finance.py:24
+#: skill/models/fracturing.py:19 skill/models/scouting.py:29
+#, fuzzy
+#| msgctxt "skill_top"
+#| msgid "Топ по Выносливости"
+msgctxt "skills"
+msgid "Выносливость"
+msgstr "Resistência Máxima"
 
 #: player/templates/player/redesign/overview_skills.html:172
 msgctxt "skills"
@@ -1916,12 +1955,18 @@ msgid "дерево навыков"
 msgstr "árvore de habilidade"
 
 #: player/templates/player/redesign/overview_skills.html:177
-msgctxt "skill_cancel"
+#, fuzzy
+#| msgctxt "skill_cancel"
+#| msgid "Отмена изучения навыка"
+msgctxt "skills"
 msgid "Отмена изучения навыка"
 msgstr "Cancelar o aprendizado de uma habilidade"
 
 #: player/templates/player/redesign/overview_skills.html:178
-msgctxt "skill_cancel"
+#, fuzzy
+#| msgctxt "skill_cancel"
+#| msgid "Изучение навыка будет отменено. Продолжить?"
+msgctxt "skills"
 msgid "Изучение навыка будет отменено. Продолжить?"
 msgstr "O aprendizado de habilidades será cancelado. Continuar?"
 
@@ -1929,7 +1974,7 @@ msgstr "O aprendizado de habilidades será cancelado. Continuar?"
 #, fuzzy
 #| msgctxt "storage_assets"
 #| msgid "Продолжить"
-msgctxt "skill_cancel"
+msgctxt "skills"
 msgid "Продолжить"
 msgstr "Continuar"
 
@@ -1937,7 +1982,7 @@ msgstr "Continuar"
 #, fuzzy
 #| msgctxt "storage_assets"
 #| msgid "Отмена"
-msgctxt "skill_cancel"
+msgctxt "skills"
 msgid "Отмена"
 msgstr "Cancelar"
 
@@ -2778,6 +2823,94 @@ msgstr ""
 #: region/views/start_auto.py:44
 msgctxt "mining"
 msgid "Неизвестный тип ресурса"
+msgstr ""
+
+#: skill/models/coherence.py:14
+msgctxt "skills"
+msgid "бонус 10% за каждый вид юнитов, количество которых в отряде не менее 20%"
+msgstr ""
+
+#: skill/models/coherence.py:60
+#, fuzzy
+#| msgctxt "assets"
+#| msgid "стоимость"
+msgctxt "skills"
+msgid "Слаженность"
+msgstr "preço"
+
+#: skill/models/excavation.py:9
+msgctxt "skills"
+msgid "позволяет извлекать дополнительные 10% руд за уровень"
+msgstr ""
+
+#: skill/models/excavation.py:37
+#, fuzzy
+#| msgctxt "trading"
+#| msgid "Выбранная категория"
+msgctxt "skills"
+msgid "Промышленная экскавация"
+msgstr "categoria selecionada"
+
+#: skill/models/finance.py:9
+msgctxt "skills"
+msgid "позволяет получать двойное финансирование при прохождении прогрессии"
+msgstr ""
+
+#: skill/models/finance.py:33
+#, fuzzy
+#| msgctxt "cash_log"
+#| msgid "Финансирование"
+msgctxt "skills"
+msgid "Подпольное финансирование"
+msgstr "Financiamento"
+
+#: skill/models/fracturing.py:9
+msgctxt "skills"
+msgid "позволяет извлекать дополнительные 10% нефти за уровень"
+msgstr ""
+
+#: skill/models/fracturing.py:32
+msgctxt "skills"
+msgid "Гидроразрыв"
+msgstr ""
+
+#: skill/models/military_production.py:9
+msgctxt "skills"
+msgid "Добавляет возможность произвести дополнительные войска при тех же затратах энергии, с округлением затрат в большую сторону"
+msgstr ""
+
+#: skill/models/military_production.py:19 skill/models/standardization.py:23
+#, fuzzy
+#| msgctxt "storage_assets"
+#| msgid "Активация"
+msgctxt "skills"
+msgid "Стандартизация"
+msgstr "Ativação"
+
+#: skill/models/military_production.py:28
+#, fuzzy
+#| msgctxt "menu"
+#| msgid "производство"
+msgctxt "skills"
+msgid "Режимное производство"
+msgstr "Produção"
+
+#: skill/models/scouting.py:14
+msgctxt "skills"
+msgid "бонус к урону 2% за уровень, если с момента прилёта игрока в регион прошло более суток"
+msgstr ""
+
+#: skill/models/scouting.py:44
+#, fuzzy
+#| msgctxt "assets"
+#| msgid "стоимость"
+msgctxt "skills"
+msgid "Знание местности"
+msgstr "preço"
+
+#: skill/models/standardization.py:9
+msgctxt "skills"
+msgid "Добавляет возможность произвести дополнительные материалы при тех же затратах энергии, с округлением затрат в большую сторону"
 msgstr ""
 
 #: skill/views/skill_cancel.py:34

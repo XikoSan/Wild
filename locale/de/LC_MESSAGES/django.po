@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-06 01:39+0300\n"
+"POT-Creation-Date: 2024-03-06 21:59+0300\n"
 "PO-Revision-Date: 2023-06-22 18:43+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -1734,17 +1734,14 @@ msgid "С новым годом!"
 msgstr "Ein frohes neues Jahr!"
 
 #: player/templates/player/redesign/lists/skill_top.html:26
-#: player/templates/player/redesign/overview_skills.html:21
 msgid "Сила"
 msgstr "Stärke"
 
 #: player/templates/player/redesign/lists/skill_top.html:41
-#: player/templates/player/redesign/overview_skills.html:70
 msgid "Интеллект"
 msgstr "Bildung"
 
 #: player/templates/player/redesign/lists/skill_top.html:56
-#: player/templates/player/redesign/overview_skills.html:119
 msgid "Выносливость"
 msgstr "Ausdauer"
 
@@ -1752,6 +1749,11 @@ msgstr "Ausdauer"
 msgctxt "menu"
 msgid "обзор"
 msgstr "Startseite"
+
+#: player/templates/player/redesign/menu.html:35
+msgctxt "menu"
+msgid "статьи"
+msgstr ""
 
 #: player/templates/player/redesign/menu.html:46
 msgctxt "menu"
@@ -1889,10 +1891,22 @@ msgctxt "overview"
 msgid "парламент"
 msgstr "Parlament"
 
+#: player/templates/player/redesign/overview_skills.html:21
+#: skill/models/coherence.py:19 skill/models/excavation.py:14
+#: skill/models/finance.py:14 skill/models/scouting.py:19
+#, fuzzy
+#| msgid "Сила"
+msgctxt "skills"
+msgid "Сила"
+msgstr "Stärke"
+
 #: player/templates/player/redesign/overview_skills.html:24
 #: player/templates/player/redesign/overview_skills.html:73
 #: player/templates/player/redesign/overview_skills.html:122
 #: player/templates/player/redesign/overview_skills.html:186
+#, fuzzy
+#| msgid "Завершение"
+msgctxt "skills"
 msgid "Завершение"
 msgstr "Fertigstellung"
 
@@ -1923,8 +1937,31 @@ msgstr "im Gange..."
 #: player/templates/player/redesign/overview_skills.html:64
 #: player/templates/player/redesign/overview_skills.html:113
 #: player/templates/player/redesign/overview_skills.html:162
+#, fuzzy
+#| msgid "изучить"
+msgctxt "skills"
 msgid "изучить"
 msgstr "aufwerten"
+
+#: player/templates/player/redesign/overview_skills.html:70
+#: skill/models/coherence.py:24 skill/models/excavation.py:19
+#: skill/models/finance.py:19 skill/models/fracturing.py:14
+#: skill/models/military_production.py:14 skill/models/scouting.py:24
+#: skill/models/standardization.py:14
+#, fuzzy
+#| msgid "Интеллект"
+msgctxt "skills"
+msgid "Интеллект"
+msgstr "Bildung"
+
+#: player/templates/player/redesign/overview_skills.html:119
+#: skill/models/excavation.py:24 skill/models/finance.py:24
+#: skill/models/fracturing.py:19 skill/models/scouting.py:29
+#, fuzzy
+#| msgid "Выносливость"
+msgctxt "skills"
+msgid "Выносливость"
+msgstr "Ausdauer"
 
 #: player/templates/player/redesign/overview_skills.html:172
 msgctxt "skills"
@@ -1932,26 +1969,33 @@ msgid "дерево навыков"
 msgstr "Fertigkeitsbaum"
 
 #: player/templates/player/redesign/overview_skills.html:177
-msgctxt "skill_cancel"
+#, fuzzy
+#| msgctxt "skill_cancel"
+#| msgid "Отмена изучения навыка"
+msgctxt "skills"
 msgid "Отмена изучения навыка"
 msgstr "Du kannst die Fähigkeit abbrechen"
 
 #: player/templates/player/redesign/overview_skills.html:178
-msgctxt "skill_cancel"
+#, fuzzy
+#| msgctxt "skill_cancel"
+#| msgid "Изучение навыка будет отменено. Продолжить?"
+msgctxt "skills"
 msgid "Изучение навыка будет отменено. Продолжить?"
 msgstr "Die Fähigkeit wird abgebrochen. Fortfahren?"
 
 #: player/templates/player/redesign/overview_skills.html:179
 #, fuzzy
+#| msgctxt "has_party"
 #| msgid "Продолжить"
-msgctxt "skill_cancel"
+msgctxt "skills"
 msgid "Продолжить"
 msgstr "weiter"
 
 #: player/templates/player/redesign/overview_skills.html:180
 #, fuzzy
 #| msgid "Отмена"
-msgctxt "skill_cancel"
+msgctxt "skills"
 msgid "Отмена"
 msgstr "abbrechen"
 
@@ -2810,6 +2854,93 @@ msgstr "Fehler bei auto-Arbeit"
 msgctxt "mining"
 msgid "Неизвестный тип ресурса"
 msgstr "Unbekannter Ressourcentyp"
+
+#: skill/models/coherence.py:14
+msgctxt "skills"
+msgid "бонус 10% за каждый вид юнитов, количество которых в отряде не менее 20%"
+msgstr ""
+
+#: skill/models/coherence.py:60
+#, fuzzy
+#| msgctxt "has_party"
+#| msgid "Должность"
+msgctxt "skills"
+msgid "Слаженность"
+msgstr "Position"
+
+#: skill/models/excavation.py:9
+msgctxt "skills"
+msgid "позволяет извлекать дополнительные 10% руд за уровень"
+msgstr ""
+
+#: skill/models/excavation.py:37
+#, fuzzy
+#| msgctxt "trading"
+#| msgid "Выбранная категория"
+msgctxt "skills"
+msgid "Промышленная экскавация"
+msgstr "Kategorie auwählen"
+
+#: skill/models/finance.py:9
+msgctxt "skills"
+msgid "позволяет получать двойное финансирование при прохождении прогрессии"
+msgstr ""
+
+#: skill/models/finance.py:33
+#, fuzzy
+#| msgid "На финансирование"
+msgctxt "skills"
+msgid "Подпольное финансирование"
+msgstr "Steuern"
+
+#: skill/models/fracturing.py:9
+msgctxt "skills"
+msgid "позволяет извлекать дополнительные 10% нефти за уровень"
+msgstr ""
+
+#: skill/models/fracturing.py:32
+msgctxt "skills"
+msgid "Гидроразрыв"
+msgstr ""
+
+#: skill/models/military_production.py:9
+msgctxt "skills"
+msgid "Добавляет возможность произвести дополнительные войска при тех же затратах энергии, с округлением затрат в большую сторону"
+msgstr ""
+
+#: skill/models/military_production.py:19 skill/models/standardization.py:23
+#, fuzzy
+#| msgctxt "storage_assets"
+#| msgid "Активация"
+msgctxt "skills"
+msgid "Стандартизация"
+msgstr "aktivieren"
+
+#: skill/models/military_production.py:28
+#, fuzzy
+#| msgctxt "menu"
+#| msgid "производство"
+msgctxt "skills"
+msgid "Режимное производство"
+msgstr "Produktion"
+
+#: skill/models/scouting.py:14
+msgctxt "skills"
+msgid "бонус к урону 2% за уровень, если с момента прилёта игрока в регион прошло более суток"
+msgstr ""
+
+#: skill/models/scouting.py:44
+#, fuzzy
+#| msgctxt "party_manage"
+#| msgid "название должности"
+msgctxt "skills"
+msgid "Знание местности"
+msgstr "Positionsbezeichnung"
+
+#: skill/models/standardization.py:9
+msgctxt "skills"
+msgid "Добавляет возможность произвести дополнительные материалы при тех же затратах энергии, с округлением затрат в большую сторону"
+msgstr ""
 
 #: skill/views/skill_cancel.py:34
 msgid "ID навыка должен быть числом"
@@ -4304,6 +4435,18 @@ msgstr ""
 msgctxt "lists"
 msgid "Урон за сторону:"
 msgstr ""
+
+#, fuzzy
+#~| msgid "Продолжить"
+#~ msgctxt "skill_cancel"
+#~ msgid "Продолжить"
+#~ msgstr "weiter"
+
+#, fuzzy
+#~| msgid "Отмена"
+#~ msgctxt "skill_cancel"
+#~ msgid "Отмена"
+#~ msgstr "abbrechen"
 
 #~ msgid "primaries_in_party"
 #~ msgstr "Vorwahlen in der Partei"

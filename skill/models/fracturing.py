@@ -1,21 +1,23 @@
 # coding=utf-8
 from django.db import models
 from skill.models.skill import Skill
+from django.utils.translation import pgettext_lazy
 
 # Гидроразрыв
 class Fracturing(Skill):
 
-    description = 'позволяет извлекать дополнительные 10% нефти за уровень'
+    name = pgettext_lazy('skills', "Гидроразрыв")
+    description = pgettext_lazy('skills', 'позволяет извлекать дополнительные 10% нефти за уровень')
 
     requires = [
         {
             'skill': 'knowledge',
-            'skill_name': 'Интеллект',
+            'skill_name': pgettext_lazy('skills', 'Интеллект'),
             'level': 15,
         },
         {
             'skill': 'endurance',
-            'skill_name': 'Выносливость',
+            'skill_name': pgettext_lazy('skills', 'Выносливость'),
             'level': 15,
         },
     ]
@@ -28,5 +30,5 @@ class Fracturing(Skill):
 
 
     class Meta:
-        verbose_name = "Гидроразрыв"
+        verbose_name = pgettext_lazy('skills', "Гидроразрыв")
         verbose_name_plural = "Гидроразрыв"
