@@ -4,7 +4,7 @@ from django.utils.translation import gettext_lazy, pgettext_lazy, ugettext as _
 
 from player.actual_manager import ActualStorageManager
 from player.player import Player
-from region.region import Region
+from region.models.region import Region
 
 
 # Частная фабрика

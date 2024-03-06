@@ -35,6 +35,31 @@ class PresidentAdmin(admin.ModelAdmin):
 
     list_display = ['state', 'leader', ]
 
+    fields = (
+        # шапка
+        ('state', 'leader'),
+        #
+        ('foundation_date', 'get_elections_day'),
+        #
+        ('task'),
+    )
+
+    def get_elections_day(self, obj):
+        days_dict = {
+            0: "понедельник",
+            1: "вторник",
+            2: "среда",
+            3: "четверг",
+            4: "пятница",
+            5: "суббота",
+            6: "воскресенье",
+        }
+        return f'{obj.elections_day} ({days_dict[obj.elections_day]})'
+
+    get_elections_day.short_description = 'День недели'
+
+    readonly_fields=('get_elections_day',)
+
 
 class ResidencyRequestAdmin(admin.ModelAdmin):
     search_fields = ['char__nickname', 'region__region_name', 'state__title']

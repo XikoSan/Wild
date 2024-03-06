@@ -17,6 +17,9 @@ class AvaBorderOwnership(models.Model):
     border = models.ForeignKey(AvaBorder, on_delete=models.CASCADE, blank=False,
                              verbose_name='Рамка')
 
+    # Показывать PNG рамку, вместо SVG
+    png_use = models.BooleanField(default=False, null=False, verbose_name='PNG')
+
     def __str__(self):
         return self.border.title
 

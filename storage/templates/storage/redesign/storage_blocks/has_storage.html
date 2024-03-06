@@ -8,6 +8,7 @@
 {% load get_sum %}
 {% load static %}
 {% load l10n %}{% load i18n %}
+{% load get_key_list %}
 <svg style="display: none;">
     <symbol viewBox="0 0 14 14" id="minus">
             <rect width="14" height="14" fill="var(--c10two)"/>
@@ -40,41 +41,67 @@
                 {{ player.cash|get_sum:storage.cash }}
                 </p> <!--значение "всего денег"-->
             </p>
-            <svg width="314" height="100" viewBox="0 0 314 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg class="eduBlock3" width="314" height="100" viewBox="0 0 314 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M2.46447 11.5355L11.5355 2.46447C12.4732 1.52678 13.745 1 15.0711 1H308C310.761 1 313 3.23857 313 6V94C313 96.7614 310.761 99 308 99H6C3.23858 99 1 96.7614 1 94V15.0711C1 13.745 1.52678 12.4732 2.46447 11.5355Z" fill="var(--c30)" stroke="var(--c30)"/>
             </svg>
         </form>
     </div>
     <ul class="store__list">
-        {% for group in storage|get_attr:'types' %}
-            {% for good in storage|get_attr:group %}
-        <li class="store__item"><!--начало товара-->
-            {% with cap_name=good|get_sum:'_cap' %}
-            <p>{{ storage|get_attr:group|dict_key:good }}</p>
+        <!-- ['small', 'medium', 'large'] -->
+        {% for size in size_dict|get_key_list %}
+        {% if goods_dict|has_key:size %}
+        <li class="store__item eduBlock2" {% if forloop.counter0 != 0 %}style="margin-top: 2vh"{% endif %}><!--шапка типоразмера-->
+            {% with cap_name=size|get_sum:'_cap' %}
+            <p>{{ size_dict|dict_key:size }} объём</p>
             <span>
-                {{ storage|get_attr:good }} /
-                {% if locks|has_key:good %}
-                    {% with lock_val=locks|dict_key:good %}
-                <span class="store__item-span-r">{{ locks|dict_key:good }}</span> /
+                {{ cap_dict|dict_key:size }} /
+                {% if size_locks|has_key:size %}
+                    {% with lock_val=size_locks|dict_key:size %}
+                <span class="store__item-span-r">{{ size_locks|dict_key:size }}</span> /
                     {% endwith %}
                 {% endif %}
                 {{ storage|get_attr:cap_name }}
             </span> <!--значение товара-->
             <div class="store__bar">
                 {% with cap_val=storage|get_attr:cap_name %}
-                    {% with good_val=storage|get_attr:good %}
-                <div class="store__bar-fill" style="width: {{ cap_val|get_proc:good_val }}%;"></div> <!--width: 45% - процент заполнения шкалы-->
+                    {% with size_val=cap_dict|dict_key:size %}
+                <div class="store__bar-fill" style="width: {{ cap_val|get_proc:size_val }}%;"></div> <!--width: 45% - процент заполнения шкалы-->
                     {% endwith %}
-                    {% if locks|has_key:good %}
-                        {% with lock_val=locks|dict_key:good %}
+                    {% if size_locks|has_key:size %}
+                        {% with lock_val=size_locks|dict_key:size %}
                 <div class="store__bar-reserved" style="width: {{ cap_val|get_proc:lock_val }}%;"></div>
                         {% endwith %}
                     {% endif %}
                 {% endwith %}
             </div>
             {% endwith %}
-        </li><!--конец товара-->
+        </li><!--шапка типоразмера-->
+
+            {% for stock in goods_dict|dict_key:size %}
+                {% with good=stock|get_attr:'good' %}
+                    {% if stock|get_attr:'stock' > 0 or locks|has_key:good %}
+                    <li class="store__item"><!--начало товара-->
+
+                        <p>{{ good|get_attr:'name' }}</p>
+                        <span>
+                        {% if stock|get_attr:'stock' > 0 %}
+                            {{ stock|get_attr:'stock' }}
+                        {% endif %}
+
+                        {% if locks|has_key:good %}
+                            {% with lock_val=locks|dict_key:good %}
+                        <span class="store__item-span-r">{% if stock|get_attr:'stock' > 0 %} / {% endif %}
+                            {{ locks|dict_key:good }}
+                        </span>
+                            {% endwith %}
+                        {% endif %}
+                        </span> <!--значение товара-->
+                    </li><!--конец товара-->
+                    {% endif %}
+                {% endwith %}
             {% endfor %}
+        {% endif %}
         {% endfor %}
+
     </ul>
 </div>

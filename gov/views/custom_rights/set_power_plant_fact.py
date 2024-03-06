@@ -7,7 +7,7 @@ from django.http import JsonResponse
 from gov.models.minister import Minister
 from player.decorators.player import check_player
 from player.player import Player
-from region.region import Region
+from region.models.region import Region
 from region.building.power_plant import PowerPlant
 from gov.models.minister_right import MinisterRight
 

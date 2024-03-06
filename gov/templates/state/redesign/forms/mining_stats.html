@@ -1,0 +1,87 @@
+{% load static %}
+{% load dict_key %}
+{% load has_key %}
+{% load get_attr %}
+{% load get_sum %}
+{% load get_mod %}
+{% load get_key_list %}
+{% load l10n %}{% load i18n %}
+<script src="{% static 'js/foreign_right.js' %}?{{ csrf_token }}"></script>
+{% with minerals=data|dict_key:'minerals' %}
+{% with minerals_dict=data|dict_key:'minerals_dict' %}
+{% with oils=data|dict_key:'oils' %}
+{% with oils_dict=data|dict_key:'oils_dict' %}
+<!--Министер блок статистики-->
+<table class="gover__table">
+    <tbody>
+        <tr>
+            <td>
+                Регион
+            </td>
+            <td style="text-align: center;">
+                Финансирование
+            </td>
+            <td class="gover__td--onlyMob"></td>
+            <td class="gover__td--onlyPc">Нефть</td>
+            {% for mineral in minerals %}
+            <td class="gover__td--onlyPc">
+                {{ minerals_dict|dict_key:mineral }}
+            </td>
+            {% endfor %}
+        </tr>
+    {% with region_dict=data|dict_key:'region_dict' %}
+    {% for region in region_dict|get_key_list %}
+        <tr>
+            <td>
+                <div class="gover__withImage">
+                    <img src="static/img/regions/{{ region.on_map_id }}.png">
+                    <span>{{ region.region_name }}</span>
+                </div>
+            </td>
+            {% with line=region_dict|dict_key:region %}
+            <td style="text-align: center;">
+                {{ line|dict_key:'cash' }}
+            </td>
+            <!--видно на телефоне-->
+            <td class="gover__tableDopInfo gover__td--onlyMob">
+                <div class="gover__blockStatistic__dop">
+                    {% for oil in oils %}
+                    {% if line|has_key:oil %}
+                    <div>
+                        <span>Нефть:</span>
+                        <span>{{ line|dict_key:oil }}</span>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+
+                    {% for mineral in minerals %}
+                    <div>
+                        <span>{{ minerals_dict|dict_key:mineral }}:</span>
+                        <span>{{ line|dict_key:mineral }}</span>
+                    </div>
+                    {% endfor %}
+                </div>
+            </td>
+            <td class="gover__tableInfoTd">
+                <button class="gover__tableInfo" onclick="goverInfoModal.getInnerContent(this)">&#8505</button>
+            </td>
+            <!-- ячейки для пк -->
+            {% for oil in oils %}
+            {% if line|has_key:oil %}
+            <td class="gover__td--onlyPc">{{ line|dict_key:oil }}</td>
+            {% endif %}
+            {% endfor %}
+
+            {% for mineral in minerals %}
+            <td class="gover__td--onlyPc">{{ line|dict_key:mineral }}</td>
+            {% endfor %}
+            {% endwith %}
+        </tr>
+    {% endfor %}
+    {% endwith %}
+    </tbody>
+</table>
+{% endwith %}
+{% endwith %}
+{% endwith %}
+{% endwith %}

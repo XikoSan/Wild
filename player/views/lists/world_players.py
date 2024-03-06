@@ -3,6 +3,7 @@ from django.shortcuts import redirect, render
 
 from player.views.lists.get_thing_page import get_thing_page
 from django.utils.translation import ugettext as _
+from django.utils.translation import pgettext
 
 from player.player import Player
 from player.decorators.player import check_player
@@ -26,35 +27,35 @@ def world_players_list(request):
 
         'image': {
             'text': '',
-            'select_text': 'Аватар',
+            'select_text': pgettext('lists', 'Аватар'),
             'visible': 'true'
         },
 
         'nickname': {
-            'text': 'Никнейм',
-            'select_text': 'Никнейм',
+            'text': pgettext('lists', 'Никнейм'),
+            'select_text': pgettext('lists', 'Никнейм'),
             'visible': 'true'
         },
 
         'region':{
             'on_map_id':
-            {
-                'text': '',
-                'select_text': 'Герб',
-                'visible': 'true'
-            },
+                {
+                    'text': '',
+                    'select_text': pgettext('lists', 'Герб'),
+                    'visible': 'true'
+                },
             'region_name':
-            {
-                'text': 'Регион',
-                'select_text': 'Регион',
-                'visible': 'true'
-            }
+                {
+                    'text': pgettext('lists', 'Регион'),
+                    'select_text': pgettext('lists', 'Регион'),
+                    'visible': 'true'
+                }
         }
     }
 
     # отправляем в форму
     return render(request, 'player/redesign/lists/universal_list.html', {
-        'page_name': _('Мировое население'),
+        'page_name': pgettext('lists', 'Мировое население'),
 
         'player': player,
 

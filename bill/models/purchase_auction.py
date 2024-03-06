@@ -13,16 +13,23 @@ from state.models.treasury_lock import TreasuryLock
 from storage.models.auction.auction import BuyAuction
 from storage.models.auction.auction_lot import AuctionLot
 from storage.models.storage import Storage
+from storage.models.good import Good
 
 
 # Аукцион закупки
 class PurchaseAuction(Bill):
-    # закупаемый ресурс
-    good = models.CharField(
+    # obsolete: закупаемый ресурс
+    old_good = models.CharField(
         max_length=10,
         choices=Storage.get_choises(),
         verbose_name='Закупаемый товар',
     )
+
+    # закупаемый ресурс
+    good = models.ForeignKey(Good,
+                             default=None, null=True, blank=True,
+                             on_delete=models.CASCADE,
+                             verbose_name='Закупаемый товар')
 
     # объем закупки
     buy_value = models.BigIntegerField(default=0, verbose_name='Объем закупки')
@@ -101,13 +108,18 @@ class PurchaseAuction(Bill):
                 'response': 'Количество лотов не может быть больше объёма закупки',
             }
 
-        resources_list = []
-        for resource in Storage.get_choises():
-            resources_list.append(resource[0])
+        # получаем ID товара
+        try:
+            purchase_good = int( request.POST.get('purchase_goods') )
 
-        explore_resource = request.POST.get('purchase_goods')
+        except ValueError:
+            return {
+                'header': 'Новый законопроект',
+                'grey_btn': 'Закрыть',
+                'response': 'ID товара должен быть целым числом',
+            }
 
-        if explore_resource in resources_list:
+        if Good.objects.filter(pk=purchase_good).exists():
 
             # ура, все проверили
             bill = PurchaseAuction(
@@ -116,7 +128,7 @@ class PurchaseAuction(Bill):
                 initiator=player,
                 voting_start=timezone.now(),
 
-                good=explore_resource,
+                good=Good.objects.get(pk=purchase_good),
                 buy_value=purchase_value,
                 cash_cost=purchase_price * purchase_value,
                 lots_count=purchase_lots,
@@ -137,6 +149,8 @@ class PurchaseAuction(Bill):
     # выполнить законопроект
     def do_bill(self):
         b_type = None
+        lock = None
+        auction = None
         treasury = Treasury.get_instance(state=self.parliament.state)
 
         lots_list = []
@@ -147,7 +161,7 @@ class PurchaseAuction(Bill):
             treasury.cash -= self.cash_cost
             lock = TreasuryLock(
                 lock_treasury=treasury,
-                lock_good='cash',
+                cash=True,
                 lock_count=self.cash_cost
             )
 
@@ -197,13 +211,29 @@ class PurchaseAuction(Bill):
 
     @staticmethod
     def get_draft(state):
+
+        goods = Good.objects.only('pk', 'name').all()
         goods_dict = {}
-        for resource in Storage.get_choises():
-            goods_dict[resource[0]] = resource[1]
+
+        for good in goods:
+            goods_dict[good.pk] = good.name
 
         data = {'goods_dict': goods_dict}
 
         return data, 'state/gov/drafts/purchase_auction.html'
+
+    @staticmethod
+    def get_new_draft(state):
+
+        goods = Good.objects.only('pk', 'name').all()
+        goods_dict = {}
+
+        for good in goods:
+            goods_dict[good.pk] = good.name
+
+        data = {'goods_dict': goods_dict}
+
+        return data, 'state/redesign/drafts/purchase_auction.html'
 
     def get_bill(self, player, minister, president):
 
@@ -227,6 +257,28 @@ class PurchaseAuction(Bill):
 
         return data, 'state/gov/bills/purchase_auction.html'
 
+    def get_new_bill(self, player, minister, president):
+
+        has_right = False
+        if minister:
+            for right in minister.rights.all():
+                if self.__class__.__name__ == right.right:
+                    has_right = True
+                    break
+
+        data = {
+            'bill': self,
+            'title': self._meta.verbose_name_raw,
+            'player': player,
+            'president': president,
+            'has_right': has_right,
+            # проверяем, депутат ли этого парла игрок или нет
+            'is_deputy': DeputyMandate.objects.filter(player=player, parliament=Parliament.objects.get(
+                state=player.region.state)).exists(),
+        }
+
+        return data, 'state/redesign/bills/purchase_auction.html'
+
     # получить шаблон рассмотренного законопроекта
     def get_reviewed_bill(self, player):
 
@@ -234,8 +286,18 @@ class PurchaseAuction(Bill):
 
         return data, 'state/gov/reviewed/purchase_auction.html'
 
+    # получить шаблон рассмотренного законопроекта
+    def get_new_reviewed_bill(self, player):
+
+        data = {'bill': self, 'title': self._meta.verbose_name_raw, 'player': player}
+
+        return data, 'state/redesign/reviewed/purchase_auction.html'
+
     def __str__(self):
-        return self.get_good_display()
+        if self.good:
+            return self.good.name
+        else:
+            return self.get_old_good_display()
 
     # Свойства класса
     class Meta:

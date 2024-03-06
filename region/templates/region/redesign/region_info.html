@@ -68,7 +68,7 @@
         {% else %}
         {% csrf_token %}
         <input type="hidden" class="region_id" name="region" value="{{ region.pk }}">
-        <button class="to_fly">{% trans 'отправиться' context "map" %}</button>
+        <button class="to_fly" style="cursor: pointer">{% trans 'отправиться' context "map" %}</button>
         <!--время перелёта-->
         <span class="map__info-btn-time">
           <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">

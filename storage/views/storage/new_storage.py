@@ -12,7 +12,9 @@ from region.views.distance_counting import distance_counting
 from storage.models.storage import Storage
 from storage.views.storage.get_transfer_price import get_transfer_price
 from django.utils.translation import pgettext
-
+from storage.models.stock import Stock
+from storage.models.good import Good
+from django.db.models import F
 
 # переименование партии
 @login_required(login_url='/')
@@ -39,23 +41,34 @@ def new_storage(request):
         price_dict[paid_storage.pk] = {}
         trans_mul[0] = {}
         trans_mul[0][paid_storage.pk] = math.ceil(distance_counting(player.region, paid_storage.region) / 100)
-        # считаем стоиомость создания нового Склада
-        # она равна 500 * количество Складов сейчас
+
+        # стоиомость создания нового Склада
         material_cost = 500
-        price_dict[paid_storage.pk]['steel'] = price_dict[paid_storage.pk]['aluminium'] = material_cost
-        # если ресурсов недостаточно
-        if not (getattr(paid_storage, 'steel') >= material_cost \
-                and getattr(paid_storage, 'aluminium') >= material_cost):
-            data = {
-                'header': pgettext('storage', 'Новый Склад'),
-                'response': pgettext('storage', 'Недостаточно ресурсов'),
-                'grey_btn': pgettext('mining', 'Закрыть'),
-            }
-            return JsonResponse(data)
+
+        # проверяем, что в складе-источнике достаточно сырья
+        aluminium = Good.objects.get(name_ru='Алюминий')
+        steel = Good.objects.get(name_ru='Сталь')
+
+        for material in [aluminium, steel]:
+            # проверяем наличие Запаса
+            if not Stock.objects.filter(storage=paid_storage, good=material, stock__gte=material_cost).exists():
+                data = {
+                    'header': pgettext('storage', 'Новый Склад'),
+                    'response': pgettext('storage', 'Недостаточно ресурса: ' + material.name),
+                    'grey_btn': pgettext('mining', 'Закрыть'),
+                }
+                return JsonResponse(data)
+
+        # получаем объекты запасов
+        aluminium_stock = Stock.objects.get(storage=paid_storage, good=aluminium)
+        steel_stock = Stock.objects.get(storage=paid_storage, good=steel)
+
+        # создаем словарь транспорта
+        price_dict[paid_storage.pk][aluminium_stock.pk] = price_dict[paid_storage.pk][steel_stock.pk] = material_cost
 
         # списываем ресурсы
-        setattr(paid_storage, 'steel', getattr(paid_storage, 'steel') - material_cost)
-        setattr(paid_storage, 'aluminium', getattr(paid_storage, 'aluminium') - material_cost)
+        for stock in [aluminium_stock, steel_stock]:
+            setattr(stock, 'stock', getattr(stock, 'stock') - material_cost)
 
         price, prices = get_transfer_price(trans_mul, 0, price_dict)
         if price > player.cash:
@@ -68,7 +81,8 @@ def new_storage(request):
         # логируем
         CashLog.create(player=player, cash=0 - price, activity_txt='n_str')
 
-        paid_storage.save()
+        aluminium_stock.save()
+        steel_stock.save()
 
         player.cash -= price
         player.save()

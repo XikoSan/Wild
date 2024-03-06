@@ -4,7 +4,7 @@ from django.utils.translation import ugettext as _
 
 from player.decorators.player import check_player
 from player.player import Player
-from party.position import PartyPosition
+from party.position import PartyPosition, Party
 
 
 # главная страница
@@ -18,7 +18,16 @@ def party(request):
     # должности этой партии
     positions = None
     if player.party:
-        positions = PartyPosition.objects.filter(party=player.party).exclude(party_lead=True)
+        if player.party_post.party_lead:
+            positions = PartyPosition.objects.filter(party=player.party).exclude(party_lead=True)
+
+        elif player.party_post.party_sec:
+            positions = PartyPosition.objects.filter(party=player.party).exclude(party_lead=True).exclude(party_sec=True)
+
+    has_open = False
+    if not player.educated:
+        if Party.objects.filter(deleted=False, type='op').exists():
+            has_open = True
 
     page = 'party/party.html'
     if 'redesign' not in groups:
@@ -30,6 +39,7 @@ def party(request):
 
         'player': player,
         'positions': positions,
+        'has_open': has_open,
     })
 
     # if player_settings:

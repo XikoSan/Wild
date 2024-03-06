@@ -4,7 +4,7 @@ from region.building.power_plant import PowerPlant
 from party.party import Party
 from player.decorators.player import check_player
 from player.player import Player
-from region.region import Region
+from region.models.region import Region
 from state.models.capital import Capital
 from state.models.state import State
 from gov.models.president import President
@@ -67,7 +67,7 @@ def open_state(request, pk):
         else:
             party_sizes[char.party] = 1
 
-    return render(request, 'state/state_view.html', {
+    return render(request, 'state/redesign/state_view.html', {
         'page_name': state.title,
         'player': player,
         'state': state,

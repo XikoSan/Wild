@@ -1,23 +1,28 @@
 # coding=utf-8
 from decimal import Decimal
-
+import datetime
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
-
+from django.utils import timezone
 from player.decorators.player import check_player
+from player.decorators.captcha import captcha
 from player.logs.gold_log import GoldLog
 from player.player import Player
 from state.models.state import State
 from storage.models.storage import Storage
-from storage.views.storage.locks.get_storage import get_storage
+from storage.views.storage.locks.get_storage import get_stocks
 from wild_politics.settings import JResponse
 from skill.models.excavation import Excavation
+from skill.models.fracturing import Fracturing
 from django.utils.translation import pgettext
 import redis
+from storage.models.stock import Stock, Good
+from region.models.fossils import Fossils
 
 # выкопать ресурсы по запросу игрока
 @login_required(login_url='/')
 @check_player
+@captcha
 @transaction.atomic
 def do_mining(request):
     if request.method == "POST":
@@ -89,13 +94,16 @@ def do_mining(request):
             return JResponse(data)
 
         mined_result = {}
+        mined_stocks_c = []
+        mined_stocks_u = []
 
         if resource != 'gold':
-            storage = Storage.actual.get(owner=player, region=player.region)
+            storage = Storage.actual.only('pk').get(owner=player, region=player.region)
 
         if resource == 'gold':
             # если запасов ресурса недостаточно
-            if player.region.gold_has < Decimal((count / 10) * 0.01):
+            # отключено, если игрок не прошел обучение
+            if player.educated and player.region.gold_has < Decimal((count / 10) * 0.01):
                 data = {
                     # 'response': pgettext('mul_ten_enrg_req'),
                     'response': pgettext('mining', 'Запасов золота в регионе недостаточно для добычи'),
@@ -111,11 +119,13 @@ def do_mining(request):
             gold_log = GoldLog(player=player, gold=int(count / 10), activity_txt='mine')
             # mined_result['cash'] = count
 
-            player.region.gold_has -= Decimal((count / 10) * 0.01)
+            if player.educated:
+                player.region.gold_has -= Decimal((count / 10) * 0.01)
 
         elif resource == 'oil':
             # если запасов ресурса недостаточно
-            if int(player.region.oil_has * 100) < count / 10:
+            # отключено, если игрок не прошел обучение
+            if player.educated and int(player.region.oil_has * 100) < count / 10:
                 data = {
                     # 'response': pgettext('mul_ten_enrg_req'),
                     'response': pgettext('mining', 'Запасов нефти в регионе недостаточно для добычи'),
@@ -124,52 +134,72 @@ def do_mining(request):
                 }
                 return JResponse(data)
             # получаем запасы склада, с учетом блокировок
-            goods = [player.region.oil_type]
-            lock_storage = get_storage(storage, goods)
+            goods = [player.region.oil_mark.name_ru]
+            ret_stocks, ret_st_stocks = get_stocks(storage, goods)
             # облагаем налогом добытую нефть
-            total_oil = (count / 10) * 20
-            taxed_oil = State.get_taxes(player.region, total_oil, 'oil', player.region.oil_type)
+            total_oil = (count / 10) * 20 * (1+ player.endurance * 0.01)
+
+            # гидроразрыв
+            if Fracturing.objects.filter(player=player, level__gt=0).exists():
+                total_oil = Fracturing.objects.get(player=player).apply({'sum': total_oil})
+
+            if not player.account.date_joined + datetime.timedelta(days=7) > timezone.now():
+                taxed_oil = State.get_taxes(player.region, total_oil, 'oil', player.region.oil_mark)
+            else:
+                taxed_oil = total_oil
 
             # сохраняем информацию о том, сколько добыто за день
             r = redis.StrictRedis(host='redis', port=6379, db=0)
             # общее
             if r.exists("daily_" + player.region.oil_type):
-                r.set("daily_" + player.region.oil_type, int(float(r.get("daily_" + player.region.oil_type))) + int(taxed_oil))
+                r.set("daily_" + player.region.oil_type, int(float(r.get("daily_" + player.region.oil_type))) + int(total_oil))
             else:
-                r.set("daily_" + player.region.oil_type, int(taxed_oil))
+                r.set("daily_" + player.region.oil_type, int(total_oil))
+
             # регион
             if r.exists("daily_" + str(player.region.pk) + '_' + player.region.oil_type):
-                r.set("daily_" + str(player.region.pk) + '_' +  player.region.oil_type, int(float(r.get("daily_" + str(player.region.pk) + '_' + player.region.oil_type))) + int(taxed_oil))
+                r.set("daily_" + str(player.region.pk) + '_' +  player.region.oil_type, int(float(r.get("daily_" + str(player.region.pk) + '_' + player.region.oil_type))) + int(total_oil))
             else:
-                r.set("daily_" + str(player.region.pk) + '_' +  player.region.oil_type, int(taxed_oil))
+                r.set("daily_" + str(player.region.pk) + '_' +  player.region.oil_type, int(total_oil))
 
+            if player.party:
+                # партийная информация
+                if r.exists("party_mining_" + str(player.party.pk)):
+                    r.set("party_mining_" + str(player.party.pk), int(float(r.get("party_mining_" + str(player.party.pk)))) + int(total_oil))
+                else:
+                    r.set("party_mining_" + str(player.party.pk), int(total_oil))
+
+            # узнаем размерность товара и сколько в этой размерности занято
+            sizetype_stocks = ret_st_stocks[player.region.oil_mark.size]
             # проверяем есть ли для него место на складе, с учетом блокировок
-            if lock_storage.capacity_check(player.region.oil_type, taxed_oil):
+            if storage.capacity_check(player.region.oil_mark.size, taxed_oil, sizetype_stocks):
                 # начислить нефть
                 mined_result[player.region.oil_type] = taxed_oil
-                setattr(storage, player.region.oil_type,
-                        getattr(storage, player.region.oil_type) + taxed_oil)
+
+                stock, created = Stock.objects.get_or_create(storage=storage,
+                                                             good=player.region.oil_mark
+                                                             )
+                stock.stock += taxed_oil
+                mined_stocks_u.append(stock)
+
             else:
-                # если склад забит больше, чем его размер - пропускам ресурс
-                if getattr(lock_storage, player.region.oil_type) > getattr(storage, player.region.oil_type + '_cap'):
-                    mined_result[player.region.oil_type] = 0
+                # если места нет или его меньше чем пак ресурсов, забиваем под крышку
+                mined_result[player.region.oil_type] = getattr(storage, player.region.oil_mark.size + '_cap') - sizetype_stocks
+                # устанавливаем новое значение как остаток до полного склада с учетом блокировок + старое значение ресурса
+                stock, created = Stock.objects.get_or_create(storage=storage,
+                                                             good=player.region.oil_mark
+                                                             )
+                stock.stock += ( getattr(storage, player.region.oil_mark.size + '_cap') - sizetype_stocks )
 
-                else:
-                    # если места нет или его меньше чем пак ресурсов, забиваем под крышку
-                    mined_result[player.region.oil_type] = getattr(storage, player.region.oil_type + '_cap') - getattr(
-                        lock_storage, player.region.oil_type)
-                    # устанавливаем новое значение как остаток до полного склада с учетом блокировок + старое значение ресурса
-                    setattr(storage, player.region.oil_type,
-                            (getattr(storage, player.region.oil_type + '_cap') - getattr(lock_storage,
-                                                                                         player.region.oil_type)) +
-                            getattr(storage, player.region.oil_type)
-                            )
+                mined_stocks_u.append(stock)
 
-            player.region.oil_has -= Decimal((count / 10) * 0.01)
+            if player.educated:
+                player.region.oil_has -= Decimal((count / 10) * 0.01)
 
         elif resource == 'ore':
-            # если запасов ресурса недостаточноы
-            if int(player.region.ore_has * 100) < count / 10:
+            # если запасов ресурса недостаточно
+            # отключено, если игрок не прошел обучение
+            if player.educated and int(player.region.ore_has * 100) < count / 10:
                 data = {
                     # 'response': pgettext('mul_ten_enrg_req'),
                     'response': pgettext('mining', 'Запасов руды в регионе недостаточно для добычи'),
@@ -177,58 +207,106 @@ def do_mining(request):
                     'grey_btn': pgettext('mining', 'Закрыть'),
                 }
                 return JResponse(data)
-            goods = []
-            for key in storage.minerals.keys():
-                goods.append(key)
-            lock_storage = get_storage(storage, goods)
 
-            for mineral in storage.minerals.keys():
+            fossils_dict = {
+                'Уголь': 'coal',
+                'Железо': 'iron',
+                'Бокситы': 'bauxite',
+            }
+
+            goods = []
+            # запасы руд региона
+            fossils = Fossils.objects.filter(region=player.region)
+
+            for fossil in fossils:
+                goods.append(fossil.good.name_ru)
+
+            # lock_storage = get_storage(storage, goods)
+            ret_stocks, ret_st_stocks = get_stocks(storage, goods)
+
+            for mineral in fossils:
                 # облагаем налогом добытую руду
-                total_ore = (count / 50) * getattr(player.region, mineral + '_proc')
+                total_ore = (count / 50) * mineral.percent * (1+ player.endurance * 0.01)
                 # экскавация
                 if Excavation.objects.filter(player=player, level__gt=0).exists():
                     total_ore = Excavation.objects.get(player=player).apply({'sum': total_ore})
 
-                taxed_ore = State.get_taxes(player.region, total_ore, 'ore', mineral)
+                if not player.account.date_joined + datetime.timedelta(days=7) > timezone.now():
+                    taxed_ore = State.get_taxes(player.region, total_ore, 'ore', mineral.good)
+                else:
+                    taxed_ore = total_ore
 
                 # сохраняем информацию о том, сколько добыто за день
                 r = redis.StrictRedis(host='redis', port=6379, db=0)
-                if r.exists("daily_" + mineral):
-                    r.set("daily_" + mineral,
-                          int(float(r.get("daily_" + mineral))) + int(taxed_ore))
+                if r.exists("daily_" + fossils_dict[mineral.good.name_ru]):
+                    r.set("daily_" + fossils_dict[mineral.good.name_ru],
+                          int(float(r.get("daily_" + fossils_dict[mineral.good.name_ru]))) + int(total_ore))
                 else:
-                    r.set("daily_" + mineral, int(taxed_ore))
-                # регион
-                if r.exists("daily_" + str(player.region.pk) + '_' + mineral):
+                    r.set("daily_" + fossils_dict[mineral.good.name_ru], int(total_ore))
 
-                    r.set("daily_" + str(player.region.pk) + '_' + mineral,
-                          int(float(r.get("daily_" + str(player.region.pk) + '_' + mineral))) + int(taxed_ore))
+                # регион
+                if r.exists("daily_" + str(player.region.pk) + '_' + fossils_dict[mineral.good.name_ru]):
+
+                    r.set("daily_" + str(player.region.pk) + '_' + fossils_dict[mineral.good.name_ru],
+                          int(float(r.get("daily_" + str(player.region.pk) + '_' + fossils_dict[mineral.good.name_ru]))) + int(total_ore))
                 else:
-                    r.set("daily_" + str(player.region.pk) + '_' + mineral, int(taxed_ore))
+                    r.set("daily_" + str(player.region.pk) + '_' + fossils_dict[mineral.good.name_ru], int(total_ore))
+
+                if player.party:
+                    # партийная информация
+                    if r.exists("party_mining_" + str(player.party.pk)):
+                        r.set("party_mining_" + str(player.party.pk),
+                              int(float(r.get("party_mining_" + str(player.party.pk)))) + int(total_ore))
+                    else:
+                        r.set("party_mining_" + str(player.party.pk), int(total_ore))
 
                 # проверяем есть ли место на складе
-                if lock_storage.capacity_check(mineral, taxed_ore):
+                sizetype_stocks = ret_st_stocks[mineral.good.size]
+                if storage.capacity_check(mineral.good.size, taxed_ore, sizetype_stocks):
                     # начислить минерал
-                    mined_result[mineral] = taxed_ore
-                    setattr(storage, mineral,
-                            getattr(storage, mineral) + taxed_ore)
-                else:
-                    # если склад забит больше, чем его размер - пропускам ресурс
-                    if getattr(lock_storage, mineral) > getattr(storage, mineral + '_cap'):
-                        mined_result[mineral] = 0
-                        continue
+                    mined_result[fossils_dict[mineral.good.name_ru]] = taxed_ore
 
+                    stock, created = Stock.objects.get_or_create(storage=storage,
+                                                                 good=mineral.good
+                                                                 )
+                    stock.stock += taxed_ore
+                    mined_stocks_u.append(stock)
+
+                    # актуализируем словарь по типоразмерам
+                    if sizetype_stocks < getattr(storage, mineral.good.size + '_cap'):
+                        ret_st_stocks[mineral.good.size] += taxed_ore
+                    else:
+                        ret_st_stocks[mineral.good.size] = getattr(storage, mineral.good.size + '_cap')
+
+                else:
                     # если места нет или его меньше чем пак ресурсов, забиваем под крышку
                     if taxed_ore > 0:
-                        mined_result[mineral] = getattr(storage, mineral + '_cap') - getattr(lock_storage, mineral)
+                        mined_result[fossils_dict[mineral.good.name_ru]] = getattr(storage, mineral.good.size + '_cap') - sizetype_stocks
                         # устанавливаем новое значение как остаток до полного склада с учетом блокировок + старое значение ресурса
-                        setattr(storage, mineral,
-                                getattr(storage, mineral + '_cap') - getattr(lock_storage, mineral) + getattr(storage,
-                                                                                                              mineral))
+                        stock, created = Stock.objects.get_or_create(storage=storage,
+                                                                     good=mineral.good
+                                                                     )
+                        stock.stock += (getattr(storage, mineral.good.size + '_cap') - sizetype_stocks)
 
-            player.region.ore_has -= Decimal((count / 10) * 0.01)
+                        mined_stocks_u.append(stock)
+                        # актуализируем словарь по типоразмерам
+                        if sizetype_stocks < getattr(storage, mineral.good.size + '_cap'):
+                            ret_st_stocks[mineral.good.size] += taxed_ore
+                        else:
+                            ret_st_stocks[mineral.good.size] = getattr(storage, mineral.good.size + '_cap')
+
+            if player.educated:
+                player.region.ore_has -= Decimal((count / 10) * 0.01)
 
         if mined_result:
+            # обновляем существующие запасы
+            if mined_stocks_u:
+                Stock.objects.bulk_update(
+                    mined_stocks_u,
+                    fields=['stock',],
+                    batch_size=len(mined_stocks_u)
+                )
+
             if resource != 'gold':
                 player.energy_cons(count)
             else:
@@ -239,9 +317,6 @@ def do_mining(request):
                 gold_log.save()
 
             player.region.save()
-
-            if resource != 'gold':
-                storage.save()
 
         data = {
             'response': 'ok',

@@ -30,7 +30,8 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = not os.getenv('PROD')
 
-ALLOWED_HOSTS = ['mysite.com', 'localhost', '127.0.0.1', '192.168.0.150', 'test.wildpolitics.online']
+ALLOWED_HOSTS = ['mysite.com', 'localhost', '127.0.0.1', '192.168.0.150', '192.168.0.181', '307f41365796.vps.myjino.ru',
+                 'test.wildpolitics.online', 'test.wildpolitics.ru', 'wildpolitics.ru']
 
 INTERNAL_IPS = ['127.0.0.1']
 
@@ -86,9 +87,12 @@ INSTALLED_APPS = [
     'polls',
     'skill',
     'metrics',
+    'event',
 
     'django_cleanup',
     'fixture_magic',
+    'modeltranslation',
+    'django_summernote',
 
 ]
 
@@ -129,6 +133,12 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
+
+SOCIALACCOUNT_PROVIDERS = {
+    'vk': {
+        'SCOPE': ['groups'],
+    }
+}
 
 LOGIN_REDIRECT_URL = '/'
 
@@ -246,6 +256,8 @@ LANGUAGES = (
     ('pt-br', 'Portuguese (Brazil)'),
 )
 
+MODELTRANSLATION_DEFAULT_LANGUAGE = 'ru'
+
 TIME_ZONE = 'Europe/Moscow'
 
 USE_I18N = True
@@ -255,6 +267,12 @@ LOCALE_PATHS = (
     'locale',
     # os.path.join(PROJECT_DIR, 'locale'),
 )
+
+EXCLUDED_NAMESPACES = [
+    'tests',
+    'generated',
+    'confidential',
+]
 
 USE_L10N = True
 
@@ -275,7 +293,7 @@ SESSION_COOKIE_AGE = 43200
 DATA_UPLOAD_MAX_MEMORY_SIZE = 20971520
 
 # отладочная печать в Docker
-level = 'WARNING'
+level = 'INFO'
 
 if DEBUG:
     level = 'DEBUG'
@@ -294,6 +312,33 @@ LOGGING = {
     'root': {
         'handlers': ['console'],
         'level': 'INFO',
+    },
+}
+
+SUMMERNOTE_CONFIG = {
+    # You can put custom Summernote settings
+    'summernote': {
+
+        'width': '100%',
+
+        'disableDragAndDrop': True,
+        'disableImageUpload': True,
+
+        # 'fontNames': ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', 'Helvetica', 'Impact',
+        #             'Tahoma', 'Times New Roman', 'Verdana', ],
+
+        # Toolbar customization
+        # https://summernote.org/deep-dive/#custom-toolbar-popover
+        'toolbar': [
+            ['style', ['style']],
+            ['font', ['bold', 'italic', 'underline', 'superscript', 'subscript', 'strikethrough', 'clear']],
+            ['fontname', ['fontname', 'fontsize', 'color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['height', ['height']],
+            ['table', ['table']],
+            ['insert', ['link', 'picture', 'video', 'hr']],
+            ['view', ['fullscreen', 'help']],
+        ],
     },
 }
 

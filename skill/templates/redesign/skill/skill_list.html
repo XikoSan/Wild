@@ -1,0 +1,94 @@
+{% extends 'player/redesign/header.html' %}
+{% load static %}
+{% load dict_key %}
+{% load get_sum %}
+{% load get_mul %}
+{% load get_hh_mm_ss %}
+{% load has_key %}
+{% load get_attr %}
+{% load get_class_name %}
+{% block content %}
+<script>
+	check_edu = true;
+</script>
+<script src='{% static "overview_skills.js" %}?{{ csrf_token }}'></script>
+<section class="skills custom-scroll">
+    <h1 class="skills__title ct__page-title">{{ page_name }}</h1>
+    <!--кнопки-->
+		<ul class="skills__list">
+            {% for skill_cl in skills_classes %}
+			<li class="skills__item">
+                {% with cl_name=skill_cl|get_class_name %}
+                {% with q_level=queue_dict|dict_key:cl_name %}
+				<h2 class="skills__title">{{ skill_cl|get_attr:'name' }}</h2>
+				<div class="skills__line"></div>
+				<p class="skills__desc">{{ skill_cl|get_attr:'description' }}</p>
+				{% if not skills_dict|has_key:cl_name %}
+				<div class="skills__line"></div>
+				<ul class="skills__needs">
+					{% for req in skill_cl|get_attr:'requires' %}
+					<li><span>{{ req|dict_key:'skill_name' }}:</span> <span>{{ req|dict_key:'level' }}</span> <span>
+						{% with attr=req|dict_key:'skill' %}
+						{% if attr in attrs %}
+							{% if player|get_attr:attr >= req|dict_key:'level' %}
+								✔
+							{% endif %}
+						{% else %}
+							{% if skills_dict|has_key:attr %}
+								{% if skills_dict|dict_key:attr == req|dict_key:'level' %}
+								✔
+								{% endif %}
+							{% endif %}
+						{% endif %}
+						{% endwith %}
+					</span></li>
+					{% endfor %}
+				</ul>
+				{% else %}
+				<div class="skills__dopInfoBlock">
+					<div class="skills__line"></div>
+					<p class="skills__levelTime">
+						<span>уровень: {{ skills_dict|dict_key:cl_name }} / {{ skill_cl|get_attr:'max_level' }} {% if q_level %}({{ q_level }} в очереди){% endif %}</span>
+						{% if not train or premium and has_slot  %}
+						<span>время изучения: 
+									{% if premium %}
+                                    {{ skills_dict|dict_key:cl_name|get_sum:q_level|get_sum:1|get_mul:2400|get_hh_mm_ss }}
+                                    {% else %}
+                                    {{ skills_dict|dict_key:cl_name|get_sum:q_level|get_sum:1|get_mul:3600|get_hh_mm_ss }}
+                                    {% endif %}
+						</span>
+						{% else %}
+						<span>недоступно</span>
+						{% endif %}
+					</p>
+				</div>
+				{% endif %}
+
+
+				{% if not train or premium and has_slot  %}
+					{% if not skills_dict|has_key:cl_name or skills_dict|dict_key:cl_name|get_sum:q_level >= skill_cl|get_attr:'max_level' %}
+					{% else %}
+				<button class="ct__top-tab ct__mid-btn active" onclick="up_skill('{{ cl_name }}')">
+					<svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
+						<mask id="mask0_259_320" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+							<path class="geometry1" d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"/>
+						</mask>
+						<g mask="url(#mask0_259_320)">
+							<path class="geometry2" d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z"/>
+							<path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"/>
+							<path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"/>
+							<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
+						</g>
+					</svg>
+					<span>изучить</span>
+				</button>
+					{% endif %}
+				{% endif %}
+                {% endwith %}
+                {% endwith %}
+			</li>
+            {% endfor %}
+		</ul>
+
+  </section>
+{% endblock %}

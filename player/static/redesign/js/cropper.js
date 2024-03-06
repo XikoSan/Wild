@@ -16,10 +16,11 @@ $(function () {
         cropper = new Cropper(image, {
           aspectRatio: 1,
           cropBoxResizable: false,
-          minContainerHeight: 200,
-          minCanvasHeight: 200,
-          minCropBoxWidth: 200,
-          minCropBoxHeight: 200,
+            viewMode: 1, // Установить режим просмотра внутри изображения
+            autoCropArea: 1, // Автоматически обрезать всю доступную область изображения
+            ready: function () {
+              cropper.crop(); // Применить первоначальное обрезание
+            }
         });
         console.log(cropper);
 

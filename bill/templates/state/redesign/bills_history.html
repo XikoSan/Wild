@@ -1,0 +1,17 @@
+{% load static %}
+{% load get_attr %}
+{% load get_sum %}
+{% load get_mod %}
+{% load dict_key %}
+{% load government.redesign.get_reviewed_bill %}
+{% load l10n %}{% load i18n %}
+
+<div class="gover__block gover__hist">
+    <table class="gover__table">
+        <tbody>
+            {% for bill in bills_list %}
+                {% get_reviewed_bill %}
+            {% endfor %}
+        </tbody>
+    </table>
+</div>

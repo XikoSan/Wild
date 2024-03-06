@@ -20,7 +20,7 @@ from gov.models.president import President
 from gov.models.presidential_voting import PresidentialVoting
 from gov.models.vote import Vote
 from party.primaries.primaries_leader import PrimariesLeader
-from region.region import Region
+from region.models.region import Region
 
 @shared_task(name="run_bill")
 def run_bill(bill_type, bill_pk):
@@ -134,7 +134,11 @@ def finish_elections(parl_id):
     # выключаем выборы
     ParliamentVoting.objects.filter(parliament=parliament, running=True).update(running=False,
                                                                                 voting_end=timezone.now())
-    elections = ParliamentVoting.objects.get(parliament=parliament, task__isnull=False)
+
+    if ParliamentVoting.objects.filter(parliament=parliament, task__isnull=False).exists():
+        elections = ParliamentVoting.objects.get(parliament=parliament, task__isnull=False)
+    else:
+        return
 
     # ================================================================
     # находим предыдущие парламентские партии и удаляем их
@@ -212,6 +216,15 @@ def finish_elections(parl_id):
 
         Minister.objects.filter(state=parliament.state).exclude(player__in=players_deputates).delete()
 
+    task_id = None
+    if elections.task:
+        task_id = elections.task.pk
+        elections.task = None
+
+    elections.save()
+
+    if task_id:
+        PeriodicTask.objects.filter(pk=task_id).delete()
 
 # таска включающая выборы
 @shared_task(name="start_elections")
@@ -220,24 +233,16 @@ def start_elections(parl_id):
         'task__interval__every').get(
         pk=parl_id)
 
-    # получаем таску из предыдущих праймериз, чтобы переложить в новые
-    old_elections = None
-    if ParliamentVoting.objects.filter(parliament=parliament, task__isnull=False).exists():
-        old_elections = ParliamentVoting.objects.select_related('task').get(parliament=parliament, task__isnull=False)
-
     parliament_voting, created = ParliamentVoting.objects.select_related('task').get_or_create(parliament=parliament,
                                                                                                voting_start=timezone.now())
-
-    if old_elections:
-        parliament_voting.task = old_elections.task
-        old_elections.task = None
-        old_elections.save()
-
-    if parliament_voting.task:
-        parliament_voting.task.enabled = True
-        parliament_voting.task.save()
-
     parliament_voting.running = True
+
+    if parliament.task:
+        task_id = parliament.task.pk
+        parliament.task = None
+        parliament.save()
+
+        PeriodicTask.objects.filter(pk=task_id).delete()
 
 
 # таска выключающая выборы
@@ -248,13 +253,15 @@ def finish_presidential(pres_id):
         return
     # включаем начало выборов
     president = President.objects.get(pk=pres_id)
-    if president.task is not None:
-        president.task.enabled = True
-        president.task.save()
+
     # выключаем выборы
     PresidentialVoting.objects.filter(president=president, running=True).update(running=False,
                                                                                 voting_end=timezone.now())
-    elections = PresidentialVoting.objects.get(president=president, task__isnull=False)
+
+    if PresidentialVoting.objects.filter(president=president, task__isnull=False).exists():
+        elections = PresidentialVoting.objects.get(president=president, task__isnull=False)
+    else:
+        return 
 
     # ================================================================
 
@@ -315,6 +322,16 @@ def finish_presidential(pres_id):
             if DeputyMandate.objects.filter(parliament=parl, is_president=True).exists():
                 DeputyMandate.objects.filter(parliament=parl, is_president=True).update(player=max_cadidate)
 
+    task_id = None
+    if elections.task:
+        task_id = elections.task.pk
+        elections.task = None
+
+    elections.save()
+
+    if task_id:
+        PeriodicTask.objects.filter(pk=task_id).delete()
+
 
 # таска включающая президентские выборы
 @shared_task(name="start_presidential")
@@ -322,11 +339,6 @@ def start_presidential(pres_id):
     president = President.objects.select_related('task').prefetch_related('task__interval').only(
         'task__interval__every').get(
         pk=pres_id)
-
-    # получаем таску из предыдущих праймериз, чтобы переложить в новые
-    old_elections = None
-    if PresidentialVoting.objects.filter(president=president, task__isnull=False).exists():
-        old_elections = PresidentialVoting.objects.select_related('task').get(president=president, task__isnull=False)
 
     voting, created = PresidentialVoting.objects.select_related('task').get_or_create(president=president,
                                                                                        voting_start=timezone.now())
@@ -349,14 +361,14 @@ def start_presidential(pres_id):
 
         voting.candidates.add(prim_leader.leader)
 
-    if old_elections:
-        voting.task = old_elections.task
-        old_elections.task = None
-        old_elections.save()
-
-    if voting.task:
-        voting.task.enabled = True
-        voting.task.save()
-
-    voting.running = True
     voting.save()
+
+    task_id = None
+    if president.task:
+        task_id = president.task.pk
+        president.task = None
+
+    president.save()
+
+    if task_id:
+        PeriodicTask.objects.filter(pk=task_id).delete()

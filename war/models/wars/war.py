@@ -2,7 +2,7 @@
 from django.db import models
 from django_celery_beat.models import PeriodicTask
 
-from region.region import Region
+from region.models.region import Region
 
 
 # класс абстрактной войны
@@ -13,12 +13,14 @@ class War(models.Model):
         'heavyvehicle': 'Тяжелая бронетехника',
         'recon': 'Разведка'
     }
+
+    # прочность укрепов на старте
+    defence_points = models.BigIntegerField(default=0, verbose_name='Прочность Укрепов')
+
     # признак того что война идет сейчас
     running = models.BooleanField(default=False, verbose_name='Идёт война')
     # раунд войны
     round = models.IntegerField(default=0, verbose_name='Раунд войны')
-    # баланс разведки
-    recon_balance = models.FloatField(default=1, verbose_name='Баланс разведки')
 
     # время начала войны
     start_time = models.DateTimeField(default=None, blank=True, null=True, verbose_name='Начало войны')
@@ -32,14 +34,14 @@ class War(models.Model):
     def_region = models.ForeignKey(Region, default=None, null=True, on_delete=models.SET_NULL, blank=True,
                                    verbose_name='Регион обороняющихся', related_name="%(class)s_def_region")
 
-    # урон - атакующие
-    agr_dmg = models.BigIntegerField(default=0, verbose_name='Урон - атакующие')
-
-    # описание последнего раунда
-    round_log = models.TextField(default='', null=True, blank=True, verbose_name='Последний раунд')
-
     # таска
-    task = models.OneToOneField(PeriodicTask, on_delete=models.SET_NULL, null=True, blank=True)
+    task = models.OneToOneField(PeriodicTask, on_delete=models.SET_NULL, null=True, blank=True, related_name="%(class)s_round_task")
+
+    # таска завершения войны
+    end_task = models.OneToOneField(PeriodicTask, on_delete=models.SET_NULL, null=True, blank=True, related_name="%(class)s_end_task")
+
+    # поминутный график боя
+    graph = models.TextField(default='', null=True, blank=True, verbose_name='График боя')
 
     # удалено
     deleted = models.BooleanField(default=False, verbose_name='Удалено')
@@ -56,5 +58,5 @@ class War(models.Model):
     def war_end(self):
         pass
 
-    def get_attrs(self):
+    def get_page(self, request):
         pass

@@ -7,6 +7,7 @@ from django.utils import timezone
 from player.actual_manager import ActualManager
 from regime.regime import Regime
 from django.utils.translation import gettext_lazy
+from storage.models.good import Good
 
 
 class State(models.Model):
@@ -124,8 +125,24 @@ class State(models.Model):
             # сумма "на руки"
             taxed_sum = sum - tax
             # начисляем налог в казну
-            setattr(treasury, resource, getattr(treasury, resource) + tax)
-            treasury.save()
+            if resource == 'cash':
+                setattr(treasury, resource, getattr(treasury, resource) + tax)
+                treasury.save()
+
+            else:
+                TreasuryStock = apps.get_model('state.TreasuryStock')
+
+                if TreasuryStock.objects.filter(good=resource, treasury=treasury).exists():
+                    stock = TreasuryStock.objects.get(good=resource, treasury=treasury)
+
+                else:
+                    stock = TreasuryStock(
+                                            good=resource,
+                                            treasury=treasury
+                                          )
+
+                stock.stock += tax
+                stock.save()
 
         return taxed_sum
 

@@ -23,20 +23,14 @@ class WarSide(models.Model):
         default='agr',
     )
 
-    # БПЛА
-    drone = models.IntegerField(default=0, verbose_name=gettext_lazy('Дроны'))
-
-    # Автоматы
-    rifle = models.IntegerField(default=0, verbose_name=gettext_lazy('Автоматы'))
-    # БМП
-    ifv = models.IntegerField(default=0, verbose_name=gettext_lazy('БМП'))
-    # ПТ-орудия
-    antitank = models.IntegerField(default=0, verbose_name=gettext_lazy('ПТ-орудия'))
-    # Танки
-    tank = models.IntegerField(default=0, verbose_name=gettext_lazy('Танки'))
+    # Очки урона
+    count = models.IntegerField(default=0, verbose_name='Очки урона')
 
     def __str__(self):
+        # if self.content_object is not None:
         return 'Сторона войны в ' + getattr(getattr(self.content_object, 'agr_region'), 'region_name')
+        # else:
+        # return 'Сторона войны'
 
     # Свойства класса
     class Meta:

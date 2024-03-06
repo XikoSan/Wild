@@ -4,9 +4,9 @@ from django.db import models
 from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 from django.utils import timezone
-from django.utils.translation import gettext_lazy
+from django.utils.translation import gettext_lazy, pgettext
 from region.building.building import Building
-from region.region import Region
+from region.models.region import Region
 from bill.models.bill import Bill
 from state.models.parliament.deputy_mandate import DeputyMandate
 from state.models.parliament.parliament import Parliament
@@ -14,6 +14,11 @@ from state.models.treasury import Treasury
 from storage.models.storage import Storage
 from player.views.get_subclasses import get_subclasses
 from region.building.rate_building import RateBuilding
+from state.models.treasury_stock import TreasuryStock
+from storage.models.good import Good
+import copy
+from django.db.models import F
+
 
 # Построить здание
 class Construction(Bill):
@@ -23,8 +28,8 @@ class Construction(Bill):
 
         'resources':
             {
-                'cash': 800,
-                'medical': 15,
+                'Наличные': 800,
+                'Медикаменты': 15,
             },
     }
 
@@ -33,9 +38,9 @@ class Construction(Bill):
 
         'resources':
             {
-                'cash': 100,
-                'steel': 50,
-                'coal': 100,
+                'Наличные': 100,
+                'Сталь': 50,
+                'Уголь': 100,
             },
     }
 
@@ -44,9 +49,8 @@ class Construction(Bill):
 
         'resources':
             {
-                'cash': 1000,
-                'steel': 100,
-                'coal': 50,
+                'Наличные': 500,
+                'Сталь': 90,
             },
     }
 
@@ -154,6 +158,7 @@ class Construction(Bill):
     # выполнить законопроект
     def do_bill(self):
         b_type = None
+        building = None
         treasury = Treasury.get_instance(state=self.parliament.state)
 
         # получим классы всех строений
@@ -176,13 +181,26 @@ class Construction(Bill):
                             building = building_dict[self.building].objects.get(region=self.region)
 
                         else:
+                            # создание строения в указанном регионе
                             building = building_dict[self.building](region=self.region)
 
                         # проверяем наличие всех ресурсов в казне, для стройки
                         all_exists = True
 
+                        # todo: перенести словари компонентов, требуемых для постройки, в классы зданий
                         for component in getattr(self, self.building)['resources'].keys():
-                            if getattr(treasury, component) < getattr(self, self.building)['resources'][component] * self.exp_value:
+
+                            exp_price = getattr(self, self.building)['resources'][component] * self.exp_value
+
+                            if component == 'Наличные':
+                                if getattr(treasury, 'cash') < exp_price:
+                                    all_exists = False
+                                    break
+
+                            elif not TreasuryStock.objects.filter(treasury=treasury,
+                                                                      good=Good.objects.get(name=component),
+                                                                      stock__gte=exp_price
+                                                                  ).exists():
                                 all_exists = False
                                 break
 
@@ -190,9 +208,17 @@ class Construction(Bill):
                             setattr(building, 'level', getattr(building, 'level') + self.exp_value)
 
                             for resource in getattr(self, self.building)['resources'].keys():
-                                setattr(treasury, resource,
-                                        getattr(treasury, resource) - (
-                                                    getattr(self, self.building)['resources'][resource] * self.exp_value))
+
+                                exp_price = getattr(self, self.building)['resources'][resource] * self.exp_value
+
+                                if resource == 'Наличные':
+                                    treasury.cash -= exp_price
+
+                                else:
+                                    TreasuryStock.objects.filter(treasury=treasury,
+                                                                 good=Good.objects.get(name=resource),
+                                                                 stock__gte=exp_price
+                                                                 ).update(stock=F('stock') - exp_price)
 
                             b_type = 'ac'
 
@@ -248,26 +274,129 @@ class Construction(Bill):
                 else:
                     building_dict[building_cl.__name__][region.pk] = 0
 
+        material_dict = {}
+
         build_dict = {}
         for schema in Construction.building_schemas:
-            build_dict[schema[0]] = getattr(Construction, schema[0])
+
+            schema_ins = copy.deepcopy(getattr(Construction, schema[0]))
+
+            resources = {}
+
+            for resource in schema_ins['resources'].keys():
+
+                if resource == 'Наличные':
+                    resources[0] = schema_ins['resources'][resource]
+
+                else:
+                    if resource not in material_dict:
+                        material = Good.objects.get(name_ru=resource)
+                        material_dict[resource] = material
+
+                    else:
+                        material = material_dict[resource]
+
+                    resources[material.pk] = schema_ins['resources'][resource]
+
+            schema_ins['resources'] = resources
+
+            build_dict[schema[0]] = schema_ins
+
+        good_names = {}
+
+        for good_key in material_dict.keys():
+            good_names[material_dict[good_key].pk] = material_dict[good_key].name
+
+        good_names[0] = pgettext('goods', 'Наличные')
 
         data = {
             'regions': regions,
             'schemas': build_dict,
             'buildings': building_dict,
-            'storage_cl': Storage,
+            'good_names': good_names,
             'crude_list': ['valut', 'minerals', 'oils', 'materials', 'equipments'],
         }
 
         return data, 'state/gov/drafts/construction.html'
 
-    def get_bill(self, player, minister, president):
+    @staticmethod
+    def get_new_draft(state):
+
+        regions = Region.objects.filter(state=state)
+
+        # получим классы всех строений
+        building_classes = get_subclasses(Building)
+
+        building_dict = {}
+
+        for building_cl in building_classes:
+            building_dict[building_cl.__name__] = {}
+
+            buildings = building_cl.objects.filter(region__in=regions)
+
+            for region in regions:
+                if buildings.filter(region=region).exists():
+                    building_dict[building_cl.__name__][region.pk] = buildings.get(region=region).level
+                else:
+                    building_dict[building_cl.__name__][region.pk] = 0
+
+        material_dict = {}
+
+        build_dict = {}
+        for schema in Construction.building_schemas:
+
+            schema_ins = copy.deepcopy(getattr(Construction, schema[0]))
+
+            resources = {}
+
+            for resource in schema_ins['resources'].keys():
+
+                if resource == 'Наличные':
+                    resources[0] = schema_ins['resources'][resource]
+
+                else:
+                    if resource not in material_dict:
+                        material = Good.objects.get(name_ru=resource)
+                        material_dict[resource] = material
+
+                    else:
+                        material = material_dict[resource]
+
+                    resources[material.pk] = schema_ins['resources'][resource]
+
+            schema_ins['resources'] = resources
+
+            build_dict[schema[0]] = schema_ins
 
         good_names = {}
-        for crude in ['valut', 'minerals', 'oils', 'materials', 'equipments']:
-            for good in getattr(Storage, crude):
-                good_names[good] = getattr(Storage, crude)[good]
+
+        for good_key in material_dict.keys():
+            good_names[material_dict[good_key].pk] = material_dict[good_key].name
+
+        good_names[0] = pgettext('goods', 'Наличные')
+
+        data = {
+            'regions': regions,
+            'schemas': build_dict,
+            'buildings': building_dict,
+            'good_names': good_names,
+            'crude_list': ['valut', 'minerals', 'oils', 'materials', 'equipments'],
+        }
+
+        return data, 'state/redesign/drafts/construction.html'
+
+    def get_bill(self, player, minister, president):
+
+        resources = getattr(self, self.building)['resources'].keys()
+
+        goods = Good.objects.filter(name_ru__in=resources, type__in=['minerals', 'oils', 'materials', 'equipments'])
+
+        good_names = {}
+        for resource in resources:
+            if resource == 'Наличные':
+                good_names['Наличные'] = pgettext('goods', 'Наличные')
+            else:
+                good_names[resource] = goods.get(name_ru=resource).name
 
         has_right = False
         if minister:
@@ -290,17 +419,81 @@ class Construction(Bill):
 
         return data, 'state/gov/bills/construction.html'
 
+    def get_new_bill(self, player, minister, president):
+
+        resources = getattr(self, self.building)['resources'].keys()
+
+        goods = Good.objects.filter(name_ru__in=resources, type__in=['minerals', 'oils', 'materials', 'equipments'])
+
+        good_names = {}
+        for resource in resources:
+            if resource == 'Наличные':
+                good_names['Наличные'] = pgettext('goods', 'Наличные')
+            else:
+                good_names[resource] = goods.get(name_ru=resource).name
+
+        has_right = False
+        if minister:
+            for right in minister.rights.all():
+                if self.__class__.__name__ == right.right:
+                    has_right = True
+                    break
+
+        data = {
+            'bill': self,
+            'title': self._meta.verbose_name_raw,
+            'player': player,
+            'president': president,
+            'has_right': has_right,
+            # проверяем, депутат ли этого парла игрок или нет
+            'is_deputy': DeputyMandate.objects.filter(player=player, parliament=Parliament.objects.get(
+                state=player.region.state)).exists(),
+            'good_names': good_names
+        }
+
+        return data, 'state/redesign/bills/construction.html'
+
     # получить шаблон рассмотренного законопроекта
     def get_reviewed_bill(self, player):
 
-        good_names = {}
-        for crude in ['valut', 'minerals', 'oils', 'materials', 'equipments']:
-            for good in getattr(Storage, crude):
-                good_names[good] = getattr(Storage, crude)[good]
+        resources = getattr(self, self.building)['resources'].keys()
 
-        data = {'bill': self, 'title': self._meta.verbose_name_raw, 'player': player, 'good_names': good_names}
+        goods = Good.objects.filter(name_ru__in=resources, type__in=['minerals', 'oils', 'materials', 'equipments'])
+
+        good_names = {}
+        for resource in resources:
+            if resource == 'Наличные':
+                good_names['Наличные'] = pgettext('goods', 'Наличные')
+            else:
+                good_names[resource] = goods.get(name_ru=resource).name
+
+        data = {'bill': self,
+                'title': self._meta.verbose_name_raw,
+                'player': player,
+                'good_names': good_names}
 
         return data, 'state/gov/reviewed/construction.html'
+
+# получить шаблон рассмотренного законопроекта
+    def get_new_reviewed_bill(self, player):
+
+        resources = getattr(self, self.building)['resources'].keys()
+
+        goods = Good.objects.filter(name_ru__in=resources, type__in=['minerals', 'oils', 'materials', 'equipments'])
+
+        good_names = {}
+        for resource in resources:
+            if resource == 'Наличные':
+                good_names['Наличные'] = pgettext('goods', 'Наличные')
+            else:
+                good_names[resource] = goods.get(name_ru=resource).name
+
+        data = {'bill': self,
+                'title': self._meta.verbose_name_raw,
+                'player': player,
+                'good_names': good_names}
+
+        return data, 'state/redesign/reviewed/construction.html'
 
     def __str__(self):
         return str(self.exp_value) + " " + self.get_building_display() + " в " + self.region.region_name

@@ -1,0 +1,62 @@
+{% extends 'player/redesign/header.html' %}
+{% load l10n %}{% load i18n %}
+{% load static %}
+{% load tz %}
+{% load capitalize %}
+
+{% block for_scripts_and_css %}
+<script src="{% static 'redesign/js/bonus_code.js' %}?{{ csrf_token }}"></script>
+{% endblock %}
+
+{% block content %}
+  <section class="profile">
+  <!-- Заголовок -->
+  <h1 class="create__title ct__page-title">{% trans 'Активация бонус-кода' %}</h1>
+	<form method="POST" enctype="multipart/form-data" id="post-form" class="create__form">
+      {% csrf_token %}
+      <!--Никнейм-->
+      <h2>{% trans 'Бонус-код' %}</h2>
+      <input type="text" id="code" name="code" maxlength="30">
+
+		<div style="display: flex; justify-content: center; width: 100%; margin-top: 24rem;">
+			<button class="ct__top-tab ct__top-tab1 active ct__mid-btn">
+				<svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
+					<mask id="mask0_259_317" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+						<path class="geometry1" d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"></path>
+					</mask>
+					<g mask="url(#mask0_259_317)">
+						<path class="geometry2" d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z"></path>
+						<path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"></path>
+						<path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"></path>
+						<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"></path>
+					</g>
+				</svg>
+				<span>активировать</span>
+			</button>
+		</div>
+    </form>
+
+    <div class="profile__info-tab" style="margin-top: 48rem;">
+		<div class="ct__s">
+			<h2 class="ct__s-title">Информация о бонус-кодах:</h2>
+			<br>
+			<p class="ct__s-text">
+				Коды можно получить во время различных акций и мероприятий.
+			</p>
+			<br>
+			<p class="ct__s-text">
+				Коды могут содержать дни Премиум аккаунта, внутриигровую валюту и прочие игровые ресурсы.
+			</p>
+			<br>
+			<p class="ct__s-text">
+				Коды могут быть использованы одним или несколькими игроками.
+			</p>
+			<br>
+			<p class="ct__s-text">
+				Срок действия у каждого кода свой и может быть указан на его носителе.
+			</p>
+		</div>
+	</div>
+
+  </section>
+{% endblock %}

@@ -60,3 +60,21 @@ def interval_in_seconds(object, start_fname, end_fname, delay_in_sec):
         return dif
     else:
         return 0
+
+
+def format_time(seconds):
+    # Создаем объект timedelta с указанным количеством секунд
+    delta = datetime.timedelta(seconds=seconds)
+
+    # Используем метод total_seconds() для получения общего количества секунд
+    total_seconds = int(delta.total_seconds())
+
+    # Вычисляем количество часов, минут и секунд
+    hours = total_seconds // 3600
+    minutes = (total_seconds % 3600) // 60
+    seconds = total_seconds % 60
+
+    # Форматируем время в строку в формате "часы:минуты:секунды"
+    time_string = f"{hours:02d}:{minutes:02d}:{seconds:02d}"
+
+    return time_string

@@ -1,10 +1,13 @@
 import datetime
 import json
 import os
-import random
-
 import pytz
+import random
 import redis
+import vk
+from vk.exceptions import VkAPIError
+from allauth.socialaccount.models import SocialAccount, SocialToken
+from dateutil.relativedelta import relativedelta
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.templatetags.static import static
@@ -18,9 +21,14 @@ from gov.models.presidential_voting import PresidentialVoting
 from party.party import Party
 from player.decorators.player import check_player
 from player.game_event.game_event import GameEvent
+from event.models.enter_event.activity_event import ActivityEvent
+from player.logs.donut_log import DonutLog
+from player.logs.gold_log import GoldLog
 from player.player import Player
+from player.player_settings import PlayerSettings
 from player.views.get_subclasses import get_subclasses
-from region.region import Region
+from player.views.timers import interval_in_seconds
+from region.models.region import Region
 from region.views.lists.get_regions_online import get_region_online
 from state.models.parliament.parliament import Parliament
 from state.models.parliament.parliament_party import ParliamentParty
@@ -28,7 +36,7 @@ from state.models.parliament.parliament_voting import ParliamentVoting
 from state.models.state import State
 from war.models.wars.war import War
 from wild_politics.settings import TIME_ZONE
-from player.player_settings import PlayerSettings
+from player.views.old_server_reward import old_server_rewards
 
 
 # главная страница
@@ -55,20 +63,30 @@ def overview(request):
     else:
         state_parties = region_parties
 
+    all_regions = Region.objects.only('pk').all()
     # население
     world_pop = Player.objects.all().count()
 
+    # мировой онлайн
+    regions_pop_dict = {}
+    regions_online_dict = {}
+
+    world_online = 0
+    for region in all_regions:
+        regions_pop_dict[region], regions_online_dict[region], players_online = get_region_online(region)
+        world_online += regions_online_dict[region]
+
     # население и онлайн рега
-    region_pop, region_online = get_region_online(player.region)
+    region_pop = regions_pop_dict[player.region]
+    region_online = regions_online_dict[player.region]
 
     # население и онлайн госа
     if player.region.state:
         state_pop = 0
         state_online = 0
         for st_region in regions_state:
-            region_pop_t, region_online_t = get_region_online(st_region)
-            state_pop += region_pop_t
-            state_online += region_online_t
+            state_pop += regions_pop_dict[st_region]
+            state_online += regions_online_dict[st_region]
     else:
         state_pop = region_pop
         state_online = region_online
@@ -95,6 +113,8 @@ def overview(request):
     stickers_header_dict = {}
     header_img_dict = {}
 
+    r = None
+
     if not player.chat_ban:
         r = redis.StrictRedis(host='redis', port=6379, db=0)
 
@@ -118,11 +138,23 @@ def overview(request):
                 tz=pytz.timezone(player.time_zone)).strftime("%H:%M")
             b['author'] = author.pk
             b['counter'] = int(scan[1])
-            b['author_nickname'] = author.nickname
+
+            if len(author.nickname) > 25:
+                b['author_nickname'] = f'{author.nickname[:25]}...'
+            else:
+                b['author_nickname'] = author.nickname
+
             if author.image:
                 b['image_link'] = author.image.url
             else:
                 b['image_link'] = 'nopic'
+
+            b['user_pic'] = False
+            # если сообщение - ссылка на изображение
+            image_extensions = ['.jpg', '.jpeg', '.png', '.gif']
+
+            if any(extension in b['content'].lower() for extension in image_extensions):
+                b['user_pic'] = True
 
             messages.append(b)
 
@@ -165,6 +197,10 @@ def overview(request):
     if GameEvent.objects.filter(running=True, event_start__lt=timezone.now(), event_end__gt=timezone.now()).exists():
         has_event = GameEvent.objects.get(running=True, event_start__lt=timezone.now(), event_end__gt=timezone.now())
 
+    activity_event = None
+    if ActivityEvent.objects.filter(running=True, event_start__lt=timezone.now(), event_end__gt=timezone.now()).exists():
+        activity_event = ActivityEvent.objects.get(running=True, event_start__lt=timezone.now(), event_end__gt=timezone.now())
+
     # войны
     war_dict = {}
     war_types = get_subclasses(War)
@@ -176,6 +212,9 @@ def overview(request):
 
     # находим войну, которая закончится раньше всех
     closest_war = None
+    war_countdown = 0
+    agr_damage = 0
+    def_damage = 0
 
     for w_type in war_dict.keys():
         if not closest_war:
@@ -183,6 +222,132 @@ def overview(request):
         else:
             if closest_war.start_time > war_dict[w_type].start_time:
                 closest_war = war_dict[w_type]
+
+    if closest_war:
+
+        if not r:
+            r = redis.StrictRedis(host='redis', port=6379, db=0)
+
+        agr_damage = r.hget(f'{closest_war.__class__.__name__}_{closest_war.pk}_dmg', 'agr')
+        if not agr_damage:
+            agr_damage = 0
+        else:
+            agr_damage = int(float(agr_damage))
+
+        def_damage = r.hget(f'{closest_war.__class__.__name__}_{closest_war.pk}_dmg', 'def')
+        if not def_damage:
+            def_damage = 0
+        else:
+            def_damage = int(float(def_damage))
+
+        def_damage += closest_war.defence_points
+
+        war_countdown = interval_in_seconds(
+            object=closest_war,
+            start_fname='start_time',
+            end_fname=None,
+            delay_in_sec=86400
+        )
+
+    player, reward_message = old_server_rewards(player)
+
+    # call_donut_message = False
+    #
+    # if SocialToken.objects.filter(account__user=player.account, account__provider='vk').exists():
+    #     session = vk.Session(
+    #         access_token=SocialToken.objects.get(account__user=player.account, account__provider='vk'))
+    #     vk_api = vk.API(session)
+    #
+    #     from player.logs.print_log import log
+    #
+    #     try:
+    #         # проверяем, что подписка вообще есть
+    #         if vk_api.donut.isDon(
+    #                 owner_id="-164930433",
+    #                 v='5.131',
+    #         ) == 1:
+    #
+    #             response = vk_api.donut.getSubscription(
+    #                 owner_id="-164930433",
+    #                 v='5.131',
+    #             )
+    #
+    #             # если за последний месяц не было логов наград
+    #             if not DonutLog.objects.filter(
+    #                     player=player,
+    #                     dtime__gte=datetime.datetime.now() - relativedelta(months=1)
+    #             ).exists():
+    #
+    #                 # время, к которому прибавляем месяц
+    #                 if player.premium > timezone.now():
+    #                     from_time = player.premium
+    #                 else:
+    #                     from_time = timezone.now()
+    #                 # наичисляем месяц према
+    #                 player.premium = from_time + relativedelta(months=1)
+    #
+    #                 log = DonutLog(
+    #                     player=player,
+    #                     dtime=datetime.datetime.now()
+    #                 )
+    #                 log.save()
+    #                 # начисляем золото на остаток доната
+    #                 gold_sum = (int(response["amount"]) - 40) * 30
+    #
+    #                 player.gold += gold_sum
+    #
+    #                 gold_log = GoldLog(player=player, gold=gold_sum, activity_txt='donut')
+    #                 gold_log.save()
+    #
+    #                 player.save()
+    #                 call_donut_message = True
+    #
+    #     except VkAPIError as e:
+    #         pass
+    assistant_name = ('Ann', 'Анна')
+
+    if not player.educated:
+        assistant_name = random.choice([('Ann', 'Анна'), ('Lin', 'Лин'),  ('Maria', 'Мария'), ('Sofia', 'София'), ('Olga', 'Ольга')])
+
+
+    # from player.views.generate_rewards import generate_rewards
+    # from player.logs.print_log import log
+    #
+    # gold_spent = 0
+    #
+    # gold_prize = 0
+    # prem_prize = 0
+    # wp_prize = 0
+    #
+    # for repeat in range(100):
+    #     gold_spent += 1000
+    #
+    #     rewards, summs = generate_rewards()
+    #
+    #     for reward in rewards:
+    #         index = rewards.index(reward)
+    #
+    #         if reward == 'gold':
+    #             gold_prize += summs[index]
+    #
+    #         if reward == 'premium':
+    #             prem_prize += summs[index] / 30 * 800
+    #
+    #         if reward == 'wild_pass':
+    #             wp_prize += summs[index] * 1000
+    #
+    #     # log(f'полученные награды: {rewards}')
+    #     # log(f'значения наград: {summs}')
+    #
+    # log(f'потрачено: {gold_spent}')
+    # # log(f'золота: {gold_prize}, према: {prem_prize}, пасс: {wp_prize}')
+    # log(f'награды:')
+    #
+    # log(f'золота: {gold_prize}')
+    # log(f'према: {prem_prize}')
+    # log(f'вилдпассы: {wp_prize}')
+    #
+    # log(f'всего: {gold_prize + prem_prize + wp_prize}')
 
     page = 'player/redesign/overview.html'
 
@@ -198,6 +363,7 @@ def overview(request):
         'state_parties': state_parties,
 
         'world_pop': world_pop,
+        'world_online': world_online,
 
         'state_pop': state_pop,
         'state_online': state_online,
@@ -207,7 +373,7 @@ def overview(request):
 
         'world_states': world_states,
 
-        'regions_count': Region.objects.all().count(),
+        'regions_count': all_regions.count(),
         'world_free': Region.objects.filter(state=None).count(),
 
         'parties_list': parties_list,
@@ -223,6 +389,8 @@ def overview(request):
         'http_use': http_use,
 
         'war': closest_war,
+        'war_delta': def_damage - agr_damage,
+        'war_countdown': war_countdown,
 
         # 'polls': polls,
 
@@ -233,7 +401,11 @@ def overview(request):
         'parliament': parliament,
 
         'has_event': has_event,
+        'activity_event': activity_event,
 
+        'assistant_name': assistant_name,
+
+        'reward_message': reward_message,
     })
 
     # r.flushdb()

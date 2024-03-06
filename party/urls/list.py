@@ -5,6 +5,7 @@ from party.views.lists.world_parties import world_parties_list
 from party.views.lists.region_parties import region_parties_list
 from party.views.lists.party_history import party_history_list
 from party.views.lists.state_parties import state_parties_list
+from party.views.lists.party_top import parties_top
 
 urlpatterns = [
     # открытие списка всех партий
@@ -15,4 +16,7 @@ urlpatterns = [
 
     # история партий игрока
     url(r'^party_history/(?P<char_pk>\d+)/$', party_history_list, name='party_history_list'),
+
+    # топ партий
+    url(r'^parties_top/$', parties_top, name='parties_top'),
 ]

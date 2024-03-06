@@ -54,7 +54,7 @@ class AuctionAdmin(BillAdmin):
 
 # Register your models here.
 admin.site.register(ExploreResources, BillAdmin)
-admin.site.register(GeologicalSurveys, BillAdmin)
+# admin.site.register(GeologicalSurveys, BillAdmin) # этот тип ЗП выключен
 admin.site.register(Construction, BillAdmin)
 admin.site.register(ChangeTitle, BillAdmin)
 admin.site.register(ChangeCoat, BillAdmin)

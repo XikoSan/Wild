@@ -1,0 +1,132 @@
+{% load dict_key %}
+{% load get_attr %}
+{% load get_sum %}
+{% load get_key_list %}
+{% load l10n %}{% load i18n %}
+<!--объявление войны-->
+<div class="gover__newInner StartWar">
+    <h2>Плацдарм:</h2>
+    {% with regions=data|dict_key:'reg_list' %}
+    <div class="ct__selectWithImage">
+        {% for region in regions %}
+        {% if forloop.counter0 == 0 %}
+        <div class="ct__selectWithImage-selected" id="start_war_default_region" data-value="{% localize off %}{{ region.pk }}{% endlocalize %}">
+            <img id="start_war_default_img" src="/static/img/regions/{{ region.on_map_id }}.png">
+            <div class="ct__selectWithImage-firstText">
+                <span id="start_war_default_reg">{% trans region.region_name context "regions_list" %}</span>
+                <svg class="ct__selectWithImage-arrow" width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
+                </svg>
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+        <div class="ct__selectWithImage-content custom-scroll custom-scroll--alt">
+            {% for region in regions %}
+            <div id="start_war_{% localize off %}{{ region.pk }}{% endlocalize %}" data-func="set_victims" data-value="{% localize off %}{{ region.pk }}{% endlocalize %}">
+                <img class="offer_dummy_img" src="/static/img/regions/{{ region.on_map_id }}.png">
+                <span class="offer_dummy_region">{% trans region.region_name context "regions_list" %}</span>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endwith %}
+
+    <h2>Цель:</h2>
+    {% with regions=data|dict_key:'victims_list' %}
+        {% with first=data|dict_key:'first' %}
+            {% if regions %}
+    <div class="ct__selectWithImage">
+        {% for region in regions|dict_key:first %}
+        {% if forloop.counter0 == 0 %}
+        <div class="ct__selectWithImage-selected" id="start_war_default_victim" data-value="{% localize off %}{{ region.pk }}{% endlocalize %}">
+            <img id="start_war_vic_default_img" src="/static/img/regions/{{ region.on_map_id }}.png">
+            <div class="ct__selectWithImage-firstText">
+                <span id="start_war_vic_default_reg">{% trans region.region_name context "regions_list" %}</span>
+                <svg class="ct__selectWithImage-arrow" width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
+                </svg>
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+        <div class="ct__selectWithImage-content custom-scroll custom-scroll--alt" id="victim_cont">
+            <div id="list_header" style="display: none"></div>
+            {% for agr in data|dict_key:'reg_list' %}
+            {% for region in regions|dict_key:agr %}
+            <div id="start_war_vic_{% localize off %}{{ region.pk }}{% endlocalize %}" class="victim_line" data-value="{% localize off %}{{ region.pk }}{% endlocalize %}" {% if not agr == first %}style="display: none"{% endif %}>
+                <img class="offer_dummy_img" src="/static/img/regions/{{ region.on_map_id }}.png">
+                <span class="offer_dummy_region">{% trans region.region_name context "regions_list" %}</span>
+            </div>
+            {% endfor %}
+            {% endfor %}
+        </div>
+    </div>
+
+    <script>
+        function insertAfter(newNode, existingNode) {
+            existingNode.parentNode.insertBefore(newNode, existingNode.nextSibling);
+        }
+
+        var vict_hash_id = new Map();
+        var vict_hash = new Map();
+        var vict_img_hash = new Map();
+
+        var vict_mass_id = [];
+
+        {% for region in data|dict_key:'reg_list' %}
+            {% for vic in regions|dict_key:region %}
+                vict_mass_id.push('{{ vic.pk }}');
+            {% endfor %}
+
+            vict_hash_id.set('{{ region.pk }}', vict_mass_id.slice());
+
+            vict_mass_id = [];
+
+        {% endfor %}
+
+        function set_victims() {
+            if(document.getElementById('start_war_default_region').dataset.value != null){
+                var value = document.getElementById('start_war_default_region').dataset.value;
+
+                $('.victim_line').hide();
+
+                var arr_id = vict_hash_id.get(value)
+
+                var last_crude_name = 'list_header';
+
+                arr_id.forEach(function(item, i, arr_id) {
+                    if(i == 0){
+                        document.getElementById('start_war_default_victim').dataset.value = item;
+                        $('#start_war_vic_default_img').attr('src', $('#start_war_vic_' + item).find('.offer_dummy_img').attr('src'))
+                        $('#start_war_vic_default_reg').html($('#start_war_vic_' + item).find('.offer_dummy_region').text())
+                    }
+
+                    $('#start_war_vic_' + item).show();
+                });
+            }
+        }
+    </script>
+        {% else %}
+
+        <b>нет общих границ</b>
+            {% endif %}
+        {% endwith %}
+    {% endwith %}
+
+    <button style="z-index: 0;" class="ct__mid-btn active">
+        <svg width="144" height="30" viewBox="0 0 144 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <mask id="mask0_259_304" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+                <path d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"/>
+            </mask>
+            <g mask="url(#mask0_259_304)">
+                <path d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" fill="var(--c10two)"/>
+                <path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"/>
+                <path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"/>
+                <path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
+            </g>
+        </svg>
+        <span>предложить</span>
+    </button>
+</div>
+

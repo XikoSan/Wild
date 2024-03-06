@@ -1,0 +1,131 @@
+{% load dict_key %}
+{% load get_attr %}
+{% load get_sum %}
+{% load get_key_list %}
+{% load l10n %}{% load i18n %}
+<!--разведка ресурсов-->
+<div class="gover__newInner ExploreResources">
+    <script>
+        var total_stocks = {};
+    {% with regions=data|dict_key:'regions' %}
+        {% for region in regions %}
+            total_stocks["{{ region.pk }}"] = {};
+            {% with resources=data|dict_key:'resources' %}
+                {% for resource in resources|get_key_list %}
+                
+                    {% with res_has=resource|get_sum:'_has' %}
+                    {% with res_cap=resource|get_sum:'_cap' %}
+
+                        total_stocks["{{ region.pk }}"]["{{ resource }}_has"] = {{ region|get_attr:res_has }};
+
+                        total_stocks["{{ region.pk }}"]["{{ resource }}_cap"] = {{ region|get_attr:res_cap }};
+
+                    {% endwith %}
+                    {% endwith %}
+
+                {% endfor %}
+            {% endwith %}
+        {% endfor %}
+    {% endwith %}
+    
+    function set_explore_val() {
+        $('#explore_res_line').hide();
+        $('#explore_sum_line').hide();
+
+        // если значение ресурса не пустое
+        if($('#explore_resources').val() != null){
+            console.log(total_stocks[document.getElementById('explore_resources_default_region').dataset.value][$('#explore_resources').val()+'_has']);
+            $('#explore_res_has').html(total_stocks[document.getElementById('explore_resources_default_region').dataset.value][$('#explore_resources').val()+'_has'])
+            $('#explore_res_cap').html(total_stocks[document.getElementById('explore_resources_default_region').dataset.value][$('#explore_resources').val()+'_cap'])
+
+            need_val = parseFloat(total_stocks[document.getElementById('explore_resources_default_region').dataset.value][$('#explore_resources').val()+'_cap']) - parseFloat(total_stocks[document.getElementById('explore_resources_default_region').dataset.value][$('#explore_resources').val()+'_has'])
+            need_sum = parseInt((need_val).toFixed(2) * 100)
+            $('#explore_sum').html(numberWithSpaces(need_sum))
+
+            $('#explore_res_line').show();
+            $('#explore_sum_line').show();
+        }
+    }
+
+    // выводить информацию по запасам в регионах
+    jQuery(document).ready(function ($) {
+        $('#explore_resources').change(function(e) {
+            $('#explore_res_line').hide();
+            $('#explore_sum_line').hide();
+
+            // если значение ресурса не пустое
+            if(document.getElementById('explore_resources_default_region').dataset.value != null){
+                $('#explore_res_has').html(total_stocks[document.getElementById('explore_resources_default_region').dataset.value][$(e.target).val()+'_has'])
+                $('#explore_res_cap').html(total_stocks[document.getElementById('explore_resources_default_region').dataset.value][$(e.target).val()+'_cap'])
+
+                need_val = parseFloat(total_stocks[document.getElementById('explore_resources_default_region').dataset.value][$(e.target).val()+'_cap']) - parseFloat(total_stocks[document.getElementById('explore_resources_default_region').dataset.value][$(e.target).val()+'_has'])
+                need_sum = parseInt((need_val).toFixed(2) * 100)
+                $('#explore_sum').html(numberWithSpaces(need_sum))
+
+                $('#explore_res_line').show();
+                $('#explore_sum_line').show();
+            }
+        });
+    });
+</script>
+
+    {% with regions=data|dict_key:'regions' %}
+    <div class="ct__selectWithImage">
+        {% for region in regions %}
+        {% if forloop.counter0 == 0 %}
+        <div class="ct__selectWithImage-selected" id="explore_resources_default_region" data-value="{% localize off %}{{ region.pk }}{% endlocalize %}">
+            <img id="explore_resources_default_img" src="/static/img/regions/{{ region.on_map_id }}.png">
+            <div class="ct__selectWithImage-firstText">
+                <span id="explore_resources_default_reg">{% trans region.region_name context "regions_list" %}</span>
+                <svg class="ct__selectWithImage-arrow" width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
+                </svg>
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+        <div class="ct__selectWithImage-content custom-scroll custom-scroll--alt">
+            {% for region in regions %}
+            <div id="explore_resources_{% localize off %}{{ region.pk }}{% endlocalize %}" {% if forloop.counter0 == 0 %}class="region_storage"{% endif %} data-func="set_explore_val" data-value="{% localize off %}{{ region.pk }}{% endlocalize %}">
+                <img class="offer_dummy_img" src="/static/img/regions/{{ region.on_map_id }}.png">
+                <span class="offer_dummy_region">{% trans region.region_name context "regions_list" %}</span>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endwith %}
+
+    <label class="ct__wide-modal-label-select">
+        {% with resources=data|dict_key:'resources' %}
+        <select name="explore_resources" id="explore_resources">
+            <option id="explore_resource_default" disabled selected>выберите ресурс</option>
+            {% for resource in resources|get_key_list %}
+            <option id="explore_resource_{{ resource }}" value="{{ resource }}">{{ resources|dict_key:resource }}</option>
+            {% endfor %}
+        </select>
+        {% endwith %}
+        <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
+        </svg>
+    </label>
+
+    <p id="explore_res_line" style="display: none">Запасы: <span id="explore_res_has"></span> / <span id="explore_res_cap"></span></p>
+
+    <p id="explore_sum_line" style="display: none">Стоимость разведки: <b>$<span id="explore_sum"></span></b></p>
+
+    <button type="submit" class="ct__mid-btn active">
+        <svg width="144" height="30" viewBox="0 0 144 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <mask id="mask0_259_304" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+                <path d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"/>
+            </mask>
+            <g mask="url(#mask0_259_304)">
+                <path d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" fill="var(--c10two)"/>
+                <path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"/>
+                <path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"/>
+                <path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
+            </g>
+        </svg>
+        <span>предложить</span>
+    </button>
+</div>
+

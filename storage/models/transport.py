@@ -5,6 +5,7 @@ from django.utils.translation import gettext_lazy, pgettext_lazy
 from player.logs.log import Log
 from player.player import Player
 from storage.models.storage import Storage
+from storage.models.good import Good
 
 
 class Transport(Log):
@@ -82,10 +83,18 @@ class Transport(Log):
                                verbose_name='Склад получения', related_name='storage_to')
 
 
+    # товар
+    good = models.ForeignKey(Good, default=None, null=True, on_delete=models.CASCADE, verbose_name='Товар')
+
+    # количество
+    count = models.IntegerField(default=0, verbose_name='Количество')
+
     # Количество занятых кубов всего
     total_vol = models.IntegerField(default=0, verbose_name=pgettext_lazy('goods', 'Всего кубов'))
+
     # стоимость доставки
     delivery_value = models.BigIntegerField(default=0, verbose_name='Стоимость доставки')
+
     # ------vvvvvvv------Минералы на складе------vvvvvvv------
     # Уголь
     coal = models.IntegerField(default=0, verbose_name=pgettext_lazy('goods', 'Уголь'))

@@ -134,7 +134,7 @@ def set_ministers(request):
 
                     minister_post.rights.add(right_cl)
 
-                minister_post.post_name = ministers[minister]['post_name']
+                minister_post.post_name = ministers[minister]['post_name'][:30]
 
                 minister_post.save()
 
@@ -143,7 +143,7 @@ def set_ministers(request):
 
                 minister_post = Minister(
                     state=pres_mandate.parliament.state,
-                    post_name=ministers[minister]['post_name'],
+                    post_name=ministers[minister]['post_name'][:30],
                     player=char
                 )
 

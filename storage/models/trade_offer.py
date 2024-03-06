@@ -5,9 +5,10 @@ from django.utils.translation import gettext_lazy, pgettext, pgettext_lazy, uget
 
 from player.actual_manager import ActualManager
 from player.player import Player
-from region.region import Region
+from region.models.region import Region
 from storage.models.storage import Storage
 from storage.models.trading_log import TradingLog
+from storage.models.good import Good
 
 
 # Торговое предложение (Ордер)
@@ -101,11 +102,15 @@ class TradeOffer(models.Model):
         ('wild_pass', 'Wild Pass'),
     )
 
-    good = models.CharField(
+    old_good = models.CharField(
         max_length=10,
         choices=goodsChoises,
         default=sell,
     )
+    # новый товар
+    offer_good = models.ForeignKey(Good, default=None, null=True, blank=True, on_delete=models.CASCADE, verbose_name='Товар')
+    # признак Wild Pass вместо товара
+    wild_pass = models.BooleanField(default=False, verbose_name='Wild Pass')
 
     # время создания предложения
     create_date = models.DateTimeField(default=None, null=True, blank=True)
@@ -121,8 +126,14 @@ class TradeOffer(models.Model):
             rettype = ' продаёт '
         else:
             rettype = ' покупает '
+
+        if self.wild_pass:
+            good_name = 'Wild Pass'
+        else:
+            good_name = self.offer_good.name
+
         return self.owner_storage.owner.nickname + ' ' + str(
-            self.create_date.strftime('%Y-%m-%d %H:%M')) + rettype + self.get_good_display()
+            self.create_date.strftime('%Y-%m-%d %H:%M')) + rettype + good_name
 
     # Свойства класса
     class Meta:

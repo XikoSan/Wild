@@ -1,0 +1,52 @@
+{% extends 'player/redesign/header.html' %}
+{% load static %}
+{% load dict_key %}
+{% load l10n %}{% load i18n %}{% load tz %}
+{% load get_class_name %}
+{% load get_sum %}
+{% load get_str %}
+{% load redesign.template_svg.nopic %}
+
+{% block for_scripts_and_css %}
+<script src='{% static "js/edit_article.js" %}?{{ csrf_token }}'></script>
+{% endblock %}
+
+{% block content %}
+   <section class="articles custom-scroll">
+    <!-- Заголовок -->
+    <h1 class="articles__title ct__page-title">
+      {{ page_name }}
+    </h1>
+		<!--ДЛЯ ПАНЕЛЬКИ РЕДАКТИРОВАНИЯ СТАТЬИ-->
+		<form id="new_article_form" method="post">
+			<input type="hidden" id="article_pk" name="article_pk" value="{% localize off %}{{ article_pk }}{% endlocalize %}">
+
+			<div class="articles__inner">
+
+				<label class="articles__textarea">
+					{% csrf_token %}
+					{{ form }}
+				</label>
+
+			</div>
+
+			<div style="display: flex; justify-content: center; width: 100%; margin-top: 24rem;">
+				<button class="ct__top-tab ct__top-tab1 active ct__mid-btn">
+					<svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
+						<mask id="mask0_259_317" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+							<path class="geometry1" d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"/>
+						</mask>
+						<g mask="url(#mask0_259_317)">
+							<path class="geometry2" d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z"/>
+							<path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"/>
+							<path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"/>
+							<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
+						</g>
+					</svg>
+					<span>{% trans 'обновить' context "article" %}</span>
+				</button>
+			</div>
+		</form>
+
+  </section>
+{% endblock %}

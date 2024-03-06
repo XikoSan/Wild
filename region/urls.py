@@ -12,6 +12,7 @@ from .views.map.region_info import region_info
 from .views.mining import mining
 from .views.retrieve_cash import retrieve_cash
 from .views.daily_status import daily_status
+from region.views.map.save_links import save_links
 
 urlpatterns = [
 
@@ -41,5 +42,8 @@ urlpatterns = [
 
     # открытие списка всех игроков
     url(r'^world/regions/', world_regions_list, name='world_players_list'),
+
+    # сохранить список связей регионов
+    url(r'^save_links', save_links, name='save_links'),
 
 ]

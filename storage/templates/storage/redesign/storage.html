@@ -4,6 +4,7 @@
 {% load static %}
 {% load get_attr %}
 {% load get_mul %}
+{% load get_sum %}
 {% load get_verbose %}
 {% load check_up_limit %}
 {% load dict_key %}
@@ -88,7 +89,7 @@
             </svg>
             <span>{% trans 'склад' context "storage" %}</span>
         </button>
-        <button class="ct__top-tab ct__top-tab2 ct__mid-btn">
+        <button class="ct__top-tab ct__top-tab2 ct__mid-btn eduBlock4">
             <svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
                 <mask id="mask0_259_318" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
                 <path class="geometry1" d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"/>
@@ -120,14 +121,14 @@
 						{{ player.bottles }} <!--значение количества энергетиков-->
 						</label>
 					</h2>
-					<form method="POST" id="produce_energy_form" enctype="multipart/form-data" class="store__right-block">
+					<form method="POST" id="produce_energy_form" enctype="multipart/form-data" class="store__right-block eduBlock5">
 						{% csrf_token %}
 						<span>{% trans 'создать' context "storage_assets" %}:</span>
 						<label>
 						<input type="number" {% localize off %}min="{% if player.gold == 0 %}0{% else %}10{% endif %}" max="{{ player.gold|get_mul:10 }}"{% endlocalize %} step="10" name="energy_field" id="energy_field">
 						</label>
 						<span>{% trans 'стоимость' context "storage_assets" %}:
-							<i id="gold_cost">100</i> <!--значение стоимость-->
+							<i>G</i> <i id="gold_cost">100></i> <!--значение стоимость-->
 						</span>
 						<input type="range" id="energy_range" {% localize off %}min="{% if player.gold == 0 %}0{% else %}10{% endif %}" max="{{ player.gold|get_mul:10 }}"{% endlocalize %} step="10">
 						<button class="store__create-btn ct__mid-btn">
@@ -151,11 +152,11 @@
 					<div class="store__wp-wrapper">
 						<h2>WILD PASS</h2>
 						<picture>
-							<img src="{% static 'img/wild_pass.svg' %}" alt="wild_pass">
+							<img src="{% static 'img/wild_pass.svg' %}" alt="wild_pass" class="eduBlock6">
 						</picture>
-						<div class="store__wp-wrapper-r">
+						<div class="store__wp-wrapper-r" id="wildpass_main">
 							<span>{% trans 'Количество' context "storage_assets" %}: <label id="wp_count">{{ player.cards_count }}</label></span>
-							<button onclick="check_card()" {% if not player.cards_count > 0 %}disabled{% endif %} class="ct__mid-btn">
+							<button {% if not player.cards_count > 0 %}disabled{% else %}onclick="open_sub()"{% endif %} class="ct__mid-btn">
 								<svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
 									<mask id="mask0_259_320" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
 										<path d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"/>
@@ -170,7 +171,62 @@
 								<span>{% trans 'использовать' context "storage_assets" %}</span>
 							</button>
 						</div>
+						<div class="store__wp-wrapper-r" id="wildpass_sub" style="display: none">
+							<button onclick="check_card_4gold()" class="ct__mid-btn">
+								<svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
+									<mask id="mask0_259_320" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+										<path d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"/>
+									</mask>
+									<g mask="url(#mask0_259_320)">
+										<path d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" fill="var(--c10two)"/>
+										<path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"/>
+										<path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"/>
+										<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
+									</g>
+								</svg>
+								<span>{% trans '+ G 1000' context "storage_vault" %}</span>
+							</button>
+							<button onclick="check_card()" class="ct__mid-btn">
+								<svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
+									<mask id="mask0_259_320" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+										<path d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"/>
+									</mask>
+									<g mask="url(#mask0_259_320)">
+										<path d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" fill="var(--c10two)"/>
+										<path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"/>
+										<path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"/>
+										<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
+									</g>
+								</svg>
+								<span>{% trans '+ премиум' context "storage_vault" %}</span>
+							</button>
+						</div>
 					</div>
+
+					<!-- лутбоксы -->
+<!--			  		<div class="store__wp-wrapper">-->
+<!--						<h2>Сундуки с наградами</h2>-->
+<!--						<picture>-->
+<!--							<img src="{% static 'img/chest.png' %}" alt="wild_pass" class="eduBlock6">-->
+<!--						</picture>-->
+<!--						<div class="store__wp-wrapper-r">-->
+<!--							<span>{% trans 'Количество' context "storage_assets" %}: <label>{{ lootbox_count }}</label></span>-->
+<!--							<button class="ct__mid-btn" onclick="window.location.href = '/lootbox'" style="cursor: pointer;" >-->
+<!--								<svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">-->
+<!--									<mask id="mask0_259_320" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">-->
+<!--										<path d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"/>-->
+<!--									</mask>-->
+<!--									<g mask="url(#mask0_259_320)">-->
+<!--										<path d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" fill="var(&#45;&#45;c10two)"/>-->
+<!--										<path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(&#45;&#45;c10one)"/>-->
+<!--										<path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(&#45;&#45;c10one)"/>-->
+<!--										<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(&#45;&#45;c10one)"/>-->
+<!--									</g>-->
+<!--								</svg>-->
+<!--								<span>перейти</span>-->
+<!--							</button>-->
+<!--						</div>-->
+<!--					</div>-->
 				</div>
 	      <!-- КОНЕЦ ВКЛАДКИ ХРАНИЛИЩЕ -->
 	    </div>
@@ -188,7 +244,7 @@
 		<div class="store__modal1-container">
 			<h2 class="store__modal1-title">{% trans 'Перемещение Склада' context "storage_transfer" %}</h2>
 			{% if war_there %}
-			<p>{% trans 'Нельзя вывезти Склад из региона боевых действий' context "storage_transfer" %}</p>
+			<p>{% trans 'Нельзя Вывезти Склад из региона боевых действий' context "storage_transfer" %}</p>
 			{% else %}
 			<p>{% trans 'Вы можете перенести Склад в регион текущего местоположения (один раз)' context "storage_transfer" %}</p>
 			<button class="store__modal1-btn ct__mid-btn" onclick="move_storage(event, {% localize off %}{{ single_storage.pk }}{% endlocalize %})">
@@ -212,7 +268,7 @@
 		<!--улучшить-->
 		<div class="store__modal1-container">
 			<h2 class="store__modal1-title">{% trans 'Улучшение склада' context "storage_upgrade" %}</h2>
-			<p>{% trans 'Вы можете улучшить Склад, расширив хранилища части товаров' context "storage_upgrade" %}</p>
+			<p>{% trans 'Вы можете улучшить Склад, расширив его хранилища' context "storage_upgrade" %}</p>
 			<p>{% trans 'Стоимость' context "storage_upgrade" %}: 500 {% trans 'Сталь' context "goods" %}, 500 {% trans 'Алюминий' context "goods" %}</p>
 			{% if limit_upgrade %}
 			<h2 class="store__modal1-title" style="color: var(--c10two);">{% trans 'Максимальный уровень' context "storage_upgrade" %}</h2>
@@ -255,7 +311,7 @@
 
 		<!--заголовок-->
 		<h2 class="store__modal2-title ct__page-title">{% trans 'Улучшение склада' context "storage_upgrade" %}</h2>
-		<p>{% trans 'Выберите товары в каждой из категорий, ёмкость Склада для которых будет увеличена' context "storage_upgrade" %}</p>
+		<p>{% trans 'После подтверждения улучшения Склада, его ёмкость изменится следующим образом' context "storage_upgrade" %}</p>
 
 		<!--линия-->
 		<div class="store__modal2-line ct__line"></div>
@@ -263,25 +319,9 @@
 		<!--список1-->
 		<div class="store__modal2-list-container">
 			<h3>{% trans 'Большой объём запасов' context "storage_upgrade" %}</h3>
-			(<div style="display: inline-block"><div id="large_upgrade_counter" style="display: inline-block">0</div> / {{ large_limit }} </div>)
-			<ul class="store__modal2-list">
-				{% for good in storage|get_attr:'sizes'|dict_key:'large' %}
-					{% with 'large' as size %}
-						{% check_up_limit storage good size as limited %}
-
-						{% if not limited %}
-				<li class="store__modal2-item">
-					<div class="store__modal2-item-btns">
-						<button data-good="{{ good }}" class="up_minus"><svg><use xlink:href="#minus"></use></svg></button>
-						<span data-size="large" class="up_count">0</span>
-						<button data-good="{{ good }}" class="up_plus"><svg><use xlink:href="#plus"></use></svg></button>
-					</div>
-					<span class="store__modal2-item-text">{{ good|get_verbose|truncatechars:12 }}</span>
-				</li>
-						{% endif %}
-					{% endwith %}
-				{% endfor %}
-			</ul>
+			{% with cap_val=storage|get_attr:'large_cap' %}
+			<div style="display: inline-block" class="ct__page-title">{{ cap_val }} ➝ {{ cap_val|get_sum:120000 }} </div>
+			{% endwith %}
 		</div>
 
 		<!--линия-->
@@ -290,25 +330,9 @@
 		<!--список2-->
 		<div class="store__modal2-list-container">
 			<h3>{% trans 'Средний объём запасов' context "storage_upgrade" %}</h3>
-			(<div style="display: inline-block"><div id="medium_upgrade_counter" style="display: inline-block">0</div> / {{ medium_limit }} </div>)
-			<ul class="store__modal2-list">
-				{% for good in storage|get_attr:'sizes'|dict_key:'medium' %}
-					{% with 'medium' as size %}
-						{% check_up_limit storage good size as limited %}
-
-						{% if not limited %}
-				<li class="store__modal2-item">
-					<div class="store__modal2-item-btns">
-						<button data-good="{{ good }}" class="up_minus"><svg><use xlink:href="#minus"></use></svg></button>
-						<span data-size="medium" class="up_count">0</span>
-						<button data-good="{{ good }}" class="up_plus"><svg><use xlink:href="#plus"></use></svg></button>
-					</div>
-					<span class="store__modal2-item-text">{{ good|get_verbose|truncatechars:9 }}</span>
-				</li>
-						{% endif %}
-					{% endwith %}
-				{% endfor %}
-			</ul>
+			{% with cap_val=storage|get_attr:'medium_cap' %}
+			<div style="display: inline-block" class="ct__page-title">{{ cap_val }} ➝ {{ cap_val|get_sum:20000 }} </div>
+			{% endwith %}
 		</div>
 
 		<!--линия-->
@@ -317,25 +341,9 @@
 		<!--список3-->
 		<div class="store__modal2-list-container">
 			<h3>{% trans 'Малый объём запасов' context "storage_upgrade" %}</h3>
-			(<div style="display: inline-block"><div id="small_upgrade_counter" style="display: inline-block">0</div> / {{ small_limit }} </div>)
-			<ul class="store__modal2-list">
-				{% for good in storage|get_attr:'sizes'|dict_key:'small' %}
-					{% with 'small' as size %}
-						{% check_up_limit storage good size as limited %}
-
-						{% if not limited %}
-				<li class="store__modal2-item">
-					<div class="store__modal2-item-btns">
-						<button data-good="{{ good }}" class="up_minus"><svg><use xlink:href="#minus"></use></svg></button>
-						<span data-size="small" class="up_count">0</span>
-						<button data-good="{{ good }}" class="up_plus"><svg><use xlink:href="#plus"></use></svg></button>
-					</div>
-					<span class="store__modal2-item-text">{{ good|get_verbose|truncatechars:9 }}</span>
-				</li>
-						{% endif %}
-					{% endwith %}
-				{% endfor %}
-			</ul>
+			{% with cap_val=storage|get_attr:'small_cap' %}
+			<div style="display: inline-block" class="ct__page-title">{{ cap_val }} ➝ {{ cap_val|get_sum:2000 }} </div>
+			{% endwith %}
 		</div>
 
 		<!--линия-->
@@ -360,6 +368,8 @@
 	{% endif %}
 </section>
 <script>
+	var gold_usage = 0;
+
 	var wildpass_header = '{% if premium %}{% trans 'Продление' context "storage_assets" %}{% else %}{% trans 'Активация' context "storage_assets" %}{% endif %} {% trans 'премиум-аккаунта' context "storage_assets" %}';
 
 	{% if premium %}
@@ -368,8 +378,16 @@
 	var wildpass_text = '{% trans 'Вы активируете премиум-аккаунт, длительностью один месяц. Данную операцию невозможно отменить. Продолжить?' context "storage_assets" %}';
 	{% endif %}
 
+	var wildpass_gold_header = '{% trans 'Обмен Wild Pass' context "storage_vault" %}';
+	var wildpass_gold_text = '{% trans 'Вы обменяете премиум-карту на G 1000. Данную операцию невозможно отменить. Продолжить?' context "storage_vault" %}';
+
 	var wildpass_yes = '{% trans 'Продолжить' context "storage_assets" %}';
 	var wildpass_cancel = '{% trans 'Отмена' context "storage_assets" %}';
+
+	function open_sub(){
+		$('#wildpass_main').hide();
+		$('#wildpass_sub').show();
+	}
 </script>
 {% if single_storage %}
 <script>
@@ -395,11 +413,14 @@
 		openModalBtn: document.getElementById('store__modal1-open'),
 		closeModalBtn: document.getElementById('store__modal1-close'),
 	})
-	const storeModal2 = new ModalOpenClose({
-		main: document.getElementById('store__modal2'),
-		openModalBtn: document.getElementById('store__modal2-open'),
-		closeModalBtn: document.getElementById('store__modal2-close'),
-	})
+
+	if (document.getElementById("store__modal2") != undefined){
+		const storeModal2 = new ModalOpenClose({
+			main: document.getElementById('store__modal2'),
+			openModalBtn: document.getElementById('store__modal2-open'),
+			closeModalBtn: document.getElementById('store__modal2-close'),
+		})
+	}
 
 	{% if can_upgrade %}
 
@@ -424,5 +445,134 @@
     };
 
 	{% endif %}
+</script>
+
+{% if not player.educated %}
+<script src="/static/redesign/js/education_n.js"></script>
+{% endif %}
+
+<script>
+    var check_edu = true;
+
+    {% if not player.educated %}
+    check_edu = false;
+
+     function getFromLS(){
+        return localStorage.getItem('edu_assistant');
+      }
+
+    var assist_img = this.getFromLS() ?? "/static/redesign/img/Ann.png";
+
+    document.getElementsByClassName('edu__img')[0].src = assist_img;
+
+    function claim_reward(id){
+      var data = "&csrfmiddlewaretoken=" + csrftoken + "&edu_id=" + id;
+      $.ajax({
+          beforeSend: function() {},
+          type: "POST",
+          url: "/claim_reward/",
+          data: data,
+          cache: false,
+          success: function(result){
+              if (result.response == 'ok'){
+                  actualize();
+              }
+          }
+      });
+    }
+
+    function edu_pragma(page) {
+        if (page == 11){
+            claim_reward('edu_04');
+        }
+        if (page == 99){
+            window.location.href = "/map";
+        }
+    }
+
+    const edu = new Educator({
+    onEduStart: () => { console.log('[EDU]: Started') },
+    onEduEnd: () => { console.log('[EDU]: Ended'); edu_pragma(99) },
+    onEduPageChange: (num) => { console.log(`[EDU]: Current page is ${num}`); edu_pragma(num) },
+    onCloseEdu: () => { console.log(`[EDU]: Education closed`); claim_reward('edu_00'); },
+    pages: [
+        {
+        text: 'Это Ваш cклад. Таких Складов у Вас может быть много, но этот - Ваш первый.',
+        },
+		{
+        text: 'Он состоит из двух крупных разделов - непосредственно Склада и защищённого Хранилища, которое всегда у Вас под рукой.',
+        },
+		{
+        text: 'У Вас даже может не быть Склада в регионе Вашего местонахождения, но Хранилище - будет всегда.',
+        },
+		{
+        text: 'Для начала же, посмотрим на запасы Склада. Они поделены на три размера:',
+		awaitedDomElemClass: 'eduBlock2',
+        onlyGlowing: true,
+        },
+		{
+        text: '- большой объём, который позволяет хранить Вам необработанное сырьё',
+        },
+		{
+        text: '- средний объём, хранящий, в основном, материалы и некоторые товары',
+        },
+		{
+        text: '- малый объём, занимаемый, в основном, оружием.',
+        },
+		{
+        text: 'Вам ничего не мешает занять весь малый объём только танками, к примеру. А в большом объёме же у Вас хранятся те ресурсы, что Вы распорядились добыть.',
+        },
+		{
+        text: 'Когда Вы приметесь торговать, то обратите внимание, что та часть запасов, что Вы захотели продать, со Склада не пропадает до тех пор, пока их не купят. Поэтому, распоряжайтесь объёмом своих Складов с умом.',
+        },
+		{
+        text: 'Помимо запасов, на Склад можно Выложить Наличные, которыми будут оплачиваться производство заказанных Вами товаров.',
+		awaitedDomElemClass: 'eduBlock3',
+        onlyGlowing: true,
+        },
+		{
+        text: 'Чтобы выложить Наличные, Вам потребуется прилететь в регион Склада, и указать сумму, которая должна остаться здесь.',
+        },
+		  {
+			text: 'Награда: 200 золота',
+			rewardImgUrl: '/static/redesign/img/200_gold.png',
+		  },
+		{
+        text: 'Ладно, это скучно - глядеть на булыжники и нефтяную жижу. Давайте посмотрим на действительно ценные вещи!',
+		awaitedDomElemClass: 'eduBlock4',
+        onlyMobileInteractive: true,
+        },
+		{
+        text: 'Помните Энергетики, которые я Вам давала? Они лежат именно здесь. В тёмном, прохладном месте. Здесь же, мы можем заказать производство новых, расходуя Золото.',
+		awaitedDomElemClass: 'eduBlock5',
+        onlyGlowing: true,
+        },
+		{
+        text: 'Так же, в Хранилище находятся Wild Pass. Это карты премиум-доступа.',
+		awaitedDomElemClass: 'eduBlock6',
+        onlyGlowing: true,
+        },
+		{
+        text: 'При их активации, Вы получите возможности, позволяющие облегчить улучшение Ваших характеристик, а также упростить организацию работ на рудниках и заводах.',
+        },
+		{
+        text: 'Этими предметами можно свободно торговать - они всегда высоко ценятся, и прочие политики готовы платить за них крупные суммы денег.',
+        },
+		{
+        text: 'Раздел "Склад" позволяет Вам управлять тем Складом, который находится в регионе Вашего местоположения.',
+        },
+		{
+        text: 'Но, обратите внимание - в других регионах Склада у Вас ещё нет. Поэтому, его потребуется построить там.',
+        },
+		{
+        text: 'Список всех Складов доступен в разделе "Активы". Там же Вы сможете организовать перевозку своих товаров из одного региона в другой.',
+        },
+		{
+        text: 'Всё это время, мы с Вами решали задачи, которые были ограничены одним регионом. Теперь же, давайте посмотрим на мир шире!',
+        },
+    ]
+  })
+
+  {% endif %}
 </script>
 {% endblock %}

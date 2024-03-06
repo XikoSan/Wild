@@ -1,0 +1,134 @@
+{% extends 'player/redesign/header.html' %}
+{% load static %}
+{% load bootstrap3 %}
+{% load l10n %}{% load i18n %}
+{% load tz %}
+{% load get_mod %}
+{% load get_attr %}
+{% load dict_key %}
+{% load pagination %}
+
+{% block for_scripts_and_css %}
+<script>
+    jQuery(document).ready(function ($) {
+    $('.buy_pack_form').submit(function(e){
+        e.preventDefault();
+        var sending_data = $(this).serialize();
+        $.ajax({
+            type: "POST",
+            url: "/buy_sticker_pack/",
+            data:  sending_data,
+            cache: false,
+            success: function(data){
+                if (data.response == 'ok'){
+                    location.reload();
+                }
+                else{
+                    display_modal('notify', data.header, data.response, null, data.grey_btn)
+                }
+            }
+        });
+    });
+});
+</script>
+{% endblock %}
+
+{% block content %}
+<section class="shop custom-scroll">
+
+  <h1 class="shop__title ct__page-title">Магазин стикеров</h1>
+
+  <div class="shop__container">
+    {% if available_packs %}
+    <!--Табы переключения комплектов стикеров-->
+    <ul class="shop__tabs">
+      {% for pack in available_packs %}
+      <li>
+        <button class="shop__tab {% if forloop.counter0 == 0 %}active{% endif %}">
+          <img src="{{ header_img_dict|dict_key:pack.pk }}">
+          <span>{{ pack.title }}</span>
+        </button>
+      </li>
+      {% endfor %}
+    </ul>
+    <!--комплекты стиков-->
+    <div class="shop__stickers">
+
+      {% for pack in available_packs %}
+      <!--1ый комплект стиков-->
+      <div class="shop__stickersBlock {% if forloop.counter0 == 0 %}active{% endif %}">
+
+        <div class="shop__stickersInfo">
+          <div class="shop__stickersText">
+            <p>Автор: <a href="{{ available_packs|first|get_attr:'creator_link' }}">{{ pack.creator }}</a></p>
+            {% autoescape off %}
+                {{ pack.description }}
+             {% endautoescape %}
+          </div>
+
+          <div class="shop__line"></div>
+
+          <div class="shop__stickersBuy">
+            <h3>Купить набор:</h3>
+            <form class="buy_pack_form" role="form">
+              {% csrf_token %}
+              <input type="hidden" id="pack_id" name="pack_id" value="{% localize off %}{{ pack.pk }}{% endlocalize %}">
+              <button class="ct__mid-btn">
+                <svg width="144" height="30" viewBox="0 0 144 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <mask id="mask0_259_319" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+                    <path d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z" fill="var(--c10two)"/>
+                  </mask>
+                  <g mask="url(#mask0_259_319)">
+                    <path d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" fill="var(--c10two)"/>
+                    <path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"/>
+                    <path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"/>
+                    <path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
+                  </g>
+                </svg>
+                <span>{% localize off %}{{ pack.price }}{% endlocalize %} G</span>
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <ul class="shop__stickersList">
+          {% with set=stickers_dict|dict_key:pack.pk %}
+            {% for sticker in set %}
+          <li>
+            <div class="shop__stick">
+              <img src="{{ sticker.image.url }}" alt="{{ sticker.description }}" style="pointer-events: none;">
+            </div>
+          </li>
+            {% endfor %}
+          {% endwith %}
+        </ul>
+      </div>
+      {% endfor %}
+
+    </div>
+    {% else %}
+    <h2 style="
+    display: block;
+    font-weight: 400;
+    text-align: center;
+    margin: 0;
+    font-size: 15em;
+">Похоже, вы скупили все стикерпаки. Ожидайте выхода новых!</h2>
+    {% endif %}
+  </div>
+
+</section>
+
+<script>
+  const tabs = document.querySelectorAll('.shop__tab');
+  const blocks = document.querySelectorAll('.shop__stickersBlock');
+  tabs.forEach((item, index) => {
+    item.addEventListener('click', () => {
+      tabs.forEach(tab => tab.classList.remove('active'));
+      blocks.forEach(block => block.classList.remove('active'));
+      tabs[index].classList.add('active');
+      blocks[index].classList.add('active');
+    })
+  })
+</script>
+{% endblock %}

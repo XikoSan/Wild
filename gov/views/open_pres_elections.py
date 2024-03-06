@@ -13,7 +13,7 @@ from party.party import Party
 from player.decorators.player import check_player
 from player.player import Player
 from player.views.timers import interval_in_seconds
-from region.region import Region
+from region.models.region import Region
 from state.models.parliament.bulletin import Bulletin
 from state.models.parliament.parliament import Parliament
 from state.models.parliament.parliament_voting import ParliamentVoting
@@ -71,7 +71,7 @@ def open_pres_elections(request, pres_pk):
             return redirect('government')
 
         # отправляем в форму
-        return render(request, 'gov/elections.html',
+        return render(request, 'gov/redesign/elections.html',
                       {'player': player,
                        'candidates': voting.candidates.all(),
                        'president': president,

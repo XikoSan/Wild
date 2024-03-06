@@ -12,7 +12,7 @@ from django.utils.translation import ugettext as _
 from player.decorators.player import check_player
 from player.player import Player
 from player.views.lists.get_thing_page import get_thing_page
-from region.region import Region
+from region.models.region import Region
 from wild_politics.settings import TIME_ZONE
 
 
@@ -30,6 +30,7 @@ def get_region_online(region):
 
     region_pop = 0
     region_online = 0
+    players_online = []
 
     with_timezone = timezone.now().astimezone(pytz.timezone(TIME_ZONE))
 
@@ -45,6 +46,11 @@ def get_region_online(region):
             # получаем задампленный словарь онлойна игроков
             region_online = json.loads(online_json_dict)
 
+        players_json_dict = r.hget('region_' + str(region.pk) + '_online', 'players_list')
+        if players_json_dict:
+            # получаем задампленный словарь онлойна игроков
+            players_online = json.loads(players_json_dict)
+
     else:
         characters_pk = Player.objects.only('pk', 'region').filter(banned=False, region=region)
 
@@ -56,6 +62,7 @@ def get_region_online(region):
             pk_list = []
             for char in characters_pk:
                 pk_list.append(str(char.pk))
+                players_online.append(str(char.pk))
             # по списку pk игроков мы получаем их онлайн в том же порядке
             online_list = r.hmget('online', pk_list)
 
@@ -79,6 +86,9 @@ def get_region_online(region):
         o_json = json.dumps(region_online, indent=2, default=str)
         r.hset('region_' + str(region.pk) + '_online', 'online_dict', o_json)
 
+        o_json = json.dumps(players_online, indent=2, default=str)
+        r.hset('region_' + str(region.pk) + '_online', 'players_list', o_json)
+
         r.hset('region_' + str(region.pk) + '_online', 'dtime', str(timezone.now().timestamp()).split('.')[0])
 
-    return region_pop, region_online
+    return region_pop, region_online, players_online

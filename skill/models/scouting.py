@@ -5,27 +5,30 @@ from django.db import models
 from django.utils import timezone
 
 from skill.models.skill import Skill
+from django.utils.translation import pgettext_lazy
 
 
 # Знание местности
 # бонус 2% за каждый уровень, если с момента прилёта игрока в регион прошло более суток / 5ур.
 class Scouting(Skill):
-    description = 'бонус 2% за уровень, если с момента прилёта игрока в регион прошло более суток'
+
+    name = pgettext_lazy('skills', "Знание местности")
+    description = pgettext_lazy('skills', 'бонус к урону 2% за уровень, если с момента прилёта игрока в регион прошло более суток')
 
     requires = [
         {
             'skill': 'power',
-            'skill_name': 'Сила',
+            'skill_name': pgettext_lazy('skills', 'Сила'),
             'level': 15,
         },
         {
             'skill': 'knowledge',
-            'skill_name': 'Интеллект',
+            'skill_name': pgettext_lazy('skills', 'Интеллект'),
             'level': 10,
         },
         {
             'skill': 'endurance',
-            'skill_name': 'Выносливость',
+            'skill_name': pgettext_lazy('skills', 'Выносливость'),
             'level': 5,
         },
     ]
@@ -34,14 +37,11 @@ class Scouting(Skill):
 
     def apply(self, args):
         if self.player.arrival + timedelta(days=1) < timezone.now():
-            if not 'not_floor' in args:
-                return math.floor(args['sum'] * (1 + self.level * 0.02))
-            else:
-                return args['sum'] * (1 + self.level * 0.02)
+            return math.floor(args['dmg'] * (1 + self.level * 0.02))
 
         else:
-            return args['sum']
+            return args['dmg']
 
     class Meta:
-        verbose_name = "Знание местности"
+        verbose_name = pgettext_lazy('skills', "Знание местности")
         verbose_name_plural = "Знания местности"

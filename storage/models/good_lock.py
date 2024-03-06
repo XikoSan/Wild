@@ -5,10 +5,11 @@ from django.utils.translation import gettext_lazy
 from django.utils.translation import ugettext as _
 
 from player.player import Player
-from region.region import Region
+from region.models.region import Region
 from storage.models.storage import Storage
 from storage.models.trade_offer import TradeOffer
 from player.actual_manager import ActualManager
+from storage.models.good import Good
 
 
 # Блокировки ресурсов на Складе, при их проадже
@@ -50,11 +51,15 @@ class GoodLock(models.Model):
         ('drone', 'Дроны')
     )
 
-    lock_good = models.CharField(
+    old_good = models.CharField(
         max_length=10,
         choices=goodsChoises,
         default=None,
+        null=True, blank=True,
     )
+
+    lock_good =  models.ForeignKey(Good, default=None, on_delete=models.CASCADE,
+                                     verbose_name='Товар', related_name="lock_good")
 
     lock_count = models.BigIntegerField(default=0, verbose_name='Количество')
 
@@ -66,7 +71,7 @@ class GoodLock(models.Model):
 
     def __str__(self):
         return 'Склад ' + self.lock_storage.owner.nickname + ' в ' + \
-               self.lock_storage.region.region_name + ': ' + str(self.lock_count) + ' ' + self.get_lock_good_display()
+               self.lock_storage.region.region_name + ': ' + str(self.lock_count) + ' ' + self.lock_good.name
 
     # Свойства класса
     class Meta:

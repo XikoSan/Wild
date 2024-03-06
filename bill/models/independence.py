@@ -1,5 +1,6 @@
 # coding=utf-8
 
+import datetime
 from django.db import models
 from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
@@ -7,17 +8,20 @@ from django.utils import timezone
 from django.utils.translation import gettext_lazy
 
 from bill.models.bill import Bill
+from gov.models.president import President
+from gov.models.presidential_voting import PresidentialVoting
+from gov.models.residency_request import ResidencyRequest
 from party.party import Party
 from player.views.get_subclasses import get_subclasses
 from region.building.building import Building
-from region.region import Region
+from region.models.region import Region
 from state.models.capital import Capital
 from state.models.parliament.deputy_mandate import DeputyMandate
 from state.models.parliament.parliament import Parliament
 from state.models.parliament.parliament_party import ParliamentParty
 from state.models.treasury import Treasury
 from war.models.wars.war import War
-from gov.models.residency_request import ResidencyRequest
+
 
 # Объявить независимость региона
 class Independence(Bill):
@@ -29,6 +33,13 @@ class Independence(Bill):
 
     @staticmethod
     def new_bill(request, player, parliament):
+
+        if not request.POST.get('independence_regions'):
+            return {
+                'header': 'Новый законопроект',
+                'grey_btn': 'Закрыть',
+                'response': 'Не указан подходящий регион',
+            }
 
         if Independence.objects.filter(running=True, initiator=player).exists():
             return {
@@ -121,13 +132,15 @@ class Independence(Bill):
                     # если есть активные войны этого типа
                     if type.objects.filter(running=True, deleted=False, agr_region=self.region).exists():
                         war_has = True
+                        b_type = 'rj'
                         break
 
                 if not war_has:
                     # получить партии этого рега
                     reg_parties = Party.objects.filter(region=self.region, deleted=False).values_list('pk')
                     # узнать депутатов перед удалением
-                    deputates = DeputyMandate.objects.only("player").filter(party__pk__in=reg_parties).values_list('player')
+                    deputates = DeputyMandate.objects.only("player").filter(party__pk__in=reg_parties).values_list(
+                        'player')
 
                     # удаляем голоса этих депутатов из ЗП
                     bills_list = []
@@ -149,13 +162,33 @@ class Independence(Bill):
                     # теперь можно чистить депутатов
                     DeputyMandate.objects.filter(party__pk__in=reg_parties).update(player=None)
 
+                    # если есть президент (как должность)
+                    if President.objects.filter(state=self.parliament.state).exists():
+                        # през
+                        pres = President.objects.get(state=self.parliament.state)
+                        # если идут его выборы
+                        if PresidentialVoting.objects.filter(running=True,
+                                                             president=pres
+                                                             ).exists():
+                            # выборы
+                            voting = PresidentialVoting.objects.get(running=True,
+                                                                    president=pres
+                                                                    )
+
+                            for candidate in voting.candidates.all():
+                                # если партия кандидата из нашего региона - удаляем его
+                                if candidate.party and candidate.party.region == self.region:
+                                    voting.candidates.remove(candidate)
+                            voting.save()
+
                     # сбрасывать налоги на ноль
                     Region.objects.filter(pk=self.region.pk).update(
-                        cash_tax = 0,
-                        oil_tax = 0,
-                        ore_tax = 0,
-                        trade_tax = 0,
-                        state = None
+                        cash_tax=0,
+                        oil_tax=0,
+                        ore_tax=0,
+                        trade_tax=0,
+                        state=None,
+                        peace_date=timezone.now() + datetime.timedelta(days=14)
                     )
                     # чистить запросы прописки в этот рег
                     ResidencyRequest.objects.filter(region=self.region).delete()
@@ -197,6 +230,36 @@ class Independence(Bill):
 
         return data, 'state/gov/drafts/independence.html'
 
+    @staticmethod
+    def get_new_draft(state):
+
+        regions = Region.objects.filter(state=state)
+
+        # столица этого госа
+        capital_region_pk = Capital.objects.only("region").get(state=state).region.pk
+        # его казна
+        treasury_region_pk = Treasury.objects.only("region").get(state=state, deleted=False).region.pk
+        # регионы, с которых атакуют
+        agr_regions = []
+        war_types = get_subclasses(War)
+        for type in war_types:
+            # если есть активные войны этого типа
+            if type.objects.filter(running=True, deleted=False, agr_region__in=regions).exists():
+                agr_regions.append(
+                    type.objects.filter(running=True, deleted=False, agr_region__in=regions).values_list(
+                        'agr_region__pk')
+                )
+        # удаляем дубли
+        agr_regions = list(dict.fromkeys(agr_regions))
+
+        regions = regions.exclude(pk=capital_region_pk).exclude(pk=treasury_region_pk).exclude(pk__in=agr_regions)
+
+        data = {
+            'regions': regions,
+        }
+
+        return data, 'state/redesign/drafts/independence.html'
+
     def get_bill(self, player, minister, president):
 
         data = {
@@ -210,12 +273,31 @@ class Independence(Bill):
 
         return data, 'state/gov/bills/independence.html'
 
+    def get_new_bill(self, player, minister, president):
+
+        data = {
+            'bill': self,
+            'title': self._meta.verbose_name_raw,
+            'player': player,
+            # проверяем, депутат ли этого парла игрок или нет
+            'is_deputy': DeputyMandate.objects.filter(player=player, parliament=Parliament.objects.get(
+                state=player.region.state)).exists(),
+        }
+
+        return data, 'state/redesign/bills/independence.html'
+
     # получить шаблон рассмотренного законопроекта
     def get_reviewed_bill(self, player):
 
         data = {'bill': self, 'title': self._meta.verbose_name_raw, 'player': player}
 
         return data, 'state/gov/reviewed/independence.html'
+
+    def get_new_reviewed_bill(self, player):
+
+        data = {'bill': self, 'title': self._meta.verbose_name_raw, 'player': player}
+
+        return data, 'state/redesign/reviewed/independence.html'
 
     def __str__(self):
         return self.region.region_name + " от " + self.parliament.state.title

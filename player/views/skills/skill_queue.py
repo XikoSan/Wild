@@ -15,7 +15,7 @@ from party.party import Party
 from player.decorators.player import check_player
 from player.player import Player
 from polls.models.poll import Poll
-from region.region import Region
+from region.models.region import Region
 from wild_politics.settings import TIME_ZONE, sentry_environment
 
 

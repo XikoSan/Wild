@@ -16,7 +16,7 @@ def wallet_locks(request, player):
     header = {
 
         'lock_offer': {
-            'get_good_display':
+            'offer_good':
                 {
                     'text': pgettext('wallet', 'Товар'),
                     'select_text': pgettext('wallet', 'Товар'),

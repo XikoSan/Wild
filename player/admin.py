@@ -1,10 +1,11 @@
 from re import findall
 
 from django.contrib import admin
-
+from django.db import transaction
 from party.position import PartyPosition
 from player.logs.cash_log import CashLog
 from player.logs.gold_log import GoldLog
+from player.logs.wildpass_log import WildpassLog
 from player.logs.skill_training import SkillTraining
 from player.logs.auto_mining import AutoMining
 from .player import Player
@@ -12,8 +13,72 @@ from .player_settings import PlayerSettings
 from player.game_event.game_event import GameEvent
 from player.game_event.event_part import EventPart
 from player.game_event.global_part import GlobalPart
+from django.utils import timezone
 from player.player_regional_expence import PlayerRegionalExpense
 from player.game_event.energy_spent import EnergySpent
+from player.logs.donut_log import DonutLog
+from dateutil.relativedelta import relativedelta
+from player.lootbox.lootbox import Lootbox
+from player.logs.prem_log import PremLog
+from player.bonus_code.bonus_code import BonusCode
+from player.bonus_code.code_usage import CodeUsage
+
+
+@transaction.atomic
+def add_premium_month(modeladmin, request, queryset):
+    for player in queryset:
+        # время, к которому прибавляем месяц
+        if player.premium > timezone.now():
+            from_time = player.premium
+        else:
+            from_time = timezone.now()
+
+        player.premium = from_time + relativedelta(months=1)
+
+        player.save()
+
+        prem_log = PremLog(player=player, days=30, activity_txt='buying')
+        prem_log.save()
+
+add_premium_month.short_description = 'Добавить 1 месяц према'
+
+
+@transaction.atomic
+def add_3_premium_month(modeladmin, request, queryset):
+    for player in queryset:
+        # время, к которому прибавляем месяц
+        if player.premium > timezone.now():
+            from_time = player.premium
+        else:
+            from_time = timezone.now()
+
+        player.premium = from_time + relativedelta(months=3)
+
+        player.save()
+
+        prem_log = PremLog(player=player, days=90, activity_txt='buying')
+        prem_log.save()
+
+add_3_premium_month.short_description = 'Добавить 3 месяца према'
+
+
+@transaction.atomic
+def add_6_premium_month(modeladmin, request, queryset):
+    for player in queryset:
+        # время, к которому прибавляем месяц
+        if player.premium > timezone.now():
+            from_time = player.premium
+        else:
+            from_time = timezone.now()
+
+        player.premium = from_time + relativedelta(months=6)
+
+        player.save()
+
+        prem_log = PremLog(player=player, days=180, activity_txt='buying')
+        prem_log.save()
+
+add_6_premium_month.short_description = 'Добавить 6 месяцев према'
 
 
 class CashLogAdmin(admin.ModelAdmin):
@@ -46,6 +111,24 @@ class AutoMiningAdmin(admin.ModelAdmin):
 class GoldLogAdmin(admin.ModelAdmin):
     list_display = ('player', 'gold', 'activity_txt')
     list_filter = ('activity_txt',)
+    search_fields = ('player__nickname', 'gold',)
+    raw_id_fields = ('player',)
+    date_hierarchy = 'dtime'
+    ordering = ('-dtime',)
+
+
+class PremLogAdmin(admin.ModelAdmin):
+    list_display = ('player', 'days', 'activity_txt')
+    list_filter = ('activity_txt',)
+    search_fields = ('player__nickname',)
+    raw_id_fields = ('player',)
+    date_hierarchy = 'dtime'
+    ordering = ('-dtime',)
+
+
+class WildpassLogAdmin(admin.ModelAdmin):
+    list_display = ('player', 'count', 'activity_txt')
+    list_filter = ('activity_txt',)
     search_fields = ('player__nickname',)
     raw_id_fields = ('player',)
     date_hierarchy = 'dtime'
@@ -77,9 +160,27 @@ class EnergySpentAdmin(admin.ModelAdmin):
     raw_id_fields = ('player', )
 
 
+class DonutLogAdmin(admin.ModelAdmin):
+    search_fields = ['player__nickname', ]
+    list_display = ('player', 'dtime')
+    raw_id_fields = ('player', )
+
+
+class LootboxAdmin(admin.ModelAdmin):
+    search_fields = ['player__nickname', ]
+    list_display = ('player', 'stock')
+    raw_id_fields = ('player', )
+
+
 class PLayerAdmin(admin.ModelAdmin):
     search_fields = ['nickname', 'user_ip']
-    raw_id_fields = ('account', 'party',)
+    raw_id_fields = ('account', 'party', 'region', 'residency',)
+
+    actions = [
+                    add_premium_month,
+                    add_3_premium_month,
+                    add_6_premium_month,
+    ]
 
     # Функциия для отображения у игрока только тех постов,
     # которые относятся к текущему клану игрока
@@ -107,12 +208,35 @@ class PLayerAdmin(admin.ModelAdmin):
         return super(PLayerAdmin, self).formfield_for_foreignkey(db_field, request, **kwargs)
 
 
+class CodeUsageInline(admin.TabularInline):
+    model = CodeUsage
+
+class BonusCodeAdmin(admin.ModelAdmin):
+    search_fields = ['code', 'premium', 'gold', 'wild_pass', 'cash', ]
+    list_display = ('get_name', 'reusable', 'date')
+    list_filter = ('premium', 'gold', 'wild_pass', 'cash',)
+
+    inlines = [CodeUsageInline]
+
+    def get_name(self, obj):
+        return obj.__str__()
+
+
+class CodeUsageAdmin(admin.ModelAdmin):
+    search_fields = ['player__nickname', ]
+    list_display = ('code', 'player')
+    raw_id_fields = ('player', 'code', )
+
+
 # Register your models here.
 admin.site.register(Player, PLayerAdmin)
 admin.site.register(PlayerSettings, PlayerSettingsAdmin)
 admin.site.register(PlayerRegionalExpense, PlayerRegionalExpenseAdmin)
 admin.site.register(CashLog, CashLogAdmin)
 admin.site.register(GoldLog, GoldLogAdmin)
+admin.site.register(PremLog, PremLogAdmin)
+admin.site.register(WildpassLog, WildpassLogAdmin)
+admin.site.register(DonutLog, DonutLogAdmin)
 admin.site.register(SkillTraining, SkillTrainingAdmin)
 admin.site.register(AutoMining, AutoMiningAdmin)
 
@@ -121,3 +245,8 @@ admin.site.register(EventPart, EventPartAdmin)
 admin.site.register(GlobalPart, GlobalPartAdmin)
 
 admin.site.register(EnergySpent, EnergySpentAdmin)
+
+admin.site.register(Lootbox, LootboxAdmin)
+
+admin.site.register(BonusCode, BonusCodeAdmin)
+admin.site.register(CodeUsage, CodeUsageAdmin)

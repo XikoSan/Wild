@@ -38,6 +38,8 @@ def new_party(request):
                     new_party.region = player.region
                     # сохраняем дату основания
                     new_party.foundation_date = timezone.now()
+                    # день праймериз
+                    new_party.primaries_day = new_party.foundation_date.weekday()
                     # new_party.task_id = task_id.__str__()
                     new_party.save()
                     # Создаём должность лидера партии

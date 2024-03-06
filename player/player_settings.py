@@ -2,6 +2,7 @@
 from django.db import models
 from django.conf import settings
 from player.player import Player
+from django.utils import timezone
 
 # Настройки игрока
 class PlayerSettings(models.Model):
@@ -43,6 +44,12 @@ class PlayerSettings(models.Model):
 
     # Скрыть кнопку Wiki
     wiki_hide = models.BooleanField(default=False, blank=False, null=False, verbose_name='Скрыть кнопку Wiki')
+
+    # ответ Captcha
+    captcha_ans = models.IntegerField(default=0, verbose_name='Captcha')
+
+    # время прохождения Captcha
+    captcha_date = models.DateTimeField(default=timezone.now, blank=True, verbose_name='Дата прохождения Captcha')
 
     # # показатель того, что игрок по умолчанию оплачивает доставку войск в соседние регионы
     # delivery_pay = models.BooleanField(default=False, blank=False, null=False, verbose_name='Оплачивает доставку войск')

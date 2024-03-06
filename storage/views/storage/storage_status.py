@@ -73,16 +73,23 @@ def storage_status(request, pk):
                 }
         # получаем всё
         elif pk == 'all':
+            # data = Storage.actual.get(owner=player, region=player.region).allStorageCount()
             data = Storage.actual.get(owner=player, region=player.region).allStorageCount()
         # получаем ресурсы
         elif pk == 'resourses':
+            # data = Storage.actual.get(owner=player, region=player.region).unitsOnStorageCount('resourses')
             data = Storage.actual.get(owner=player, region=player.region).unitsOnStorageCount('resourses')
+            data = {}
         # получаем материалы
         elif pk == 'materials':
+            # data = Storage.actual.get(owner=player, region=player.region).unitsOnStorageCount('materials')
             data = Storage.actual.get(owner=player, region=player.region).unitsOnStorageCount('materials')
+            data = {}
         # получаем юнитов
         elif pk == 'units':
+            # data = Storage.actual.get(owner=player, region=player.region).unitsOnStorageCount('units')
             data = Storage.actual.get(owner=player, region=player.region).unitsOnStorageCount('units')
+            data = {}
         else:
             data = {
                 'mode': 'notify',

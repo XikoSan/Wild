@@ -14,6 +14,7 @@ from django.utils.translation import ugettext as _
 from django.utils.translation import pgettext
 
 from ava_border.models.ava_border import AvaBorder
+from player.game_event.global_part import GlobalPart
 
 
 # главная страница
@@ -22,6 +23,7 @@ from ava_border.models.ava_border import AvaBorder
 def halloween(request):
     player = Player.get_instance(account=request.user)
     points = 0
+    global_points = 0
 
     ava_border_1 = None
     ava_border_2 = None
@@ -34,25 +36,29 @@ def halloween(request):
         if EventPart.objects.filter(player=player, event=event).exists():
             points = EventPart.objects.get(player=player, event=event).points
 
+        if GlobalPart.objects.filter(event=event).exists():
+            global_points = GlobalPart.objects.get(event=event).points
+
         if AvaBorder.objects.filter(pk=1).exists():
-            ava_border_1 = AvaBorder.objects.get(pk=1)
+            ava_border_1 = AvaBorder.objects.get(pk=8)
 
         if AvaBorder.objects.filter(pk=2).exists():
-            ava_border_2 = AvaBorder.objects.get(pk=2)
+            ava_border_2 = AvaBorder.objects.get(pk=9)
 
         if AvaBorder.objects.filter(pk=3).exists():
-            ava_border_3 = AvaBorder.objects.get(pk=3)
+            ava_border_3 = AvaBorder.objects.get(pk=10)
 
     else:
         return redirect('overview')
 
-    page = 'player/redesign/game_event/halloween.html'
+    page = 'player/redesign/game_event/halloween2.html'
     # отправляем в форму
     response = render(request, page, {
         'page_name': pgettext("game_event", 'Хэллоуинский ивент!'),
 
         'player': player,
         'points': points,
+        'global_points': global_points,
 
         'ava_border_1': ava_border_1,
         'ava_border_2': ava_border_2,
