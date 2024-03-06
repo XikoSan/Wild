@@ -47,21 +47,22 @@ def storage(request):
     # наличие алюминия и стали на текущем складе - для прокачки
     can_upgrade = False
 
-    limit_upgrade = True
+    limit_upgrade = False
 
     if storage:
-        if Good.objects.filter(name='Алюминий').exists()\
-                and Good.objects.filter(name='Сталь').exists():
+        if storage.level >= 5:
+            limit_upgrade = True
 
-            alu = Good.objects.get(name='Алюминий')
-            steel = Good.objects.get(name='Сталь')
+        elif Good.objects.filter(name_ru='Алюминий').exists()\
+                and Good.objects.filter(name_ru='Сталь').exists():
+
+            alu = Good.objects.get(name_ru='Алюминий')
+            steel = Good.objects.get(name_ru='Сталь')
 
             if Stock.objects.filter(storage=storage, good=alu, stock__gte=500).exists()\
                     and Stock.objects.filter(storage=storage, good=steel, stock__gte=500).exists():
                 can_upgrade = True
 
-            if storage.level < 5:
-                limit_upgrade = False
 
     # ------------
     large_limit = 5

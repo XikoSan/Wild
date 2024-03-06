@@ -51,9 +51,9 @@ def upgrade_storage(request):
             return JsonResponse(data)
 
         for material in ['Алюминий', 'Сталь']:
-            if Good.objects.filter(name=material).exists():
+            if Good.objects.filter(name_ru=material).exists():
 
-                mat = Good.objects.get(name=material)
+                mat = Good.objects.get(name_ru=material)
 
                 if not Stock.objects.filter(storage=storage, good=mat, stock__gte=500).exists():
                     data = {

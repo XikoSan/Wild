@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-06 21:59+0300\n"
+"POT-Creation-Date: 2024-03-06 23:53+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1808,8 +1808,8 @@ msgid "парламент"
 msgstr ""
 
 #: player/templates/player/redesign/overview_skills.html:21
-#: skill/models/coherence.py:19 skill/models/excavation.py:14
-#: skill/models/finance.py:14 skill/models/scouting.py:19
+#: skill/models/coherence.py:21 skill/models/excavation.py:15
+#: skill/models/finance.py:15 skill/models/scouting.py:21
 msgctxt "skills"
 msgid "Сила"
 msgstr ""
@@ -1854,17 +1854,17 @@ msgid "изучить"
 msgstr ""
 
 #: player/templates/player/redesign/overview_skills.html:70
-#: skill/models/coherence.py:24 skill/models/excavation.py:19
-#: skill/models/finance.py:19 skill/models/fracturing.py:14
-#: skill/models/military_production.py:14 skill/models/scouting.py:24
-#: skill/models/standardization.py:14
+#: skill/models/coherence.py:26 skill/models/excavation.py:20
+#: skill/models/finance.py:20 skill/models/fracturing.py:15
+#: skill/models/military_production.py:15 skill/models/scouting.py:26
+#: skill/models/standardization.py:15
 msgctxt "skills"
 msgid "Интеллект"
 msgstr ""
 
 #: player/templates/player/redesign/overview_skills.html:119
-#: skill/models/excavation.py:24 skill/models/finance.py:24
-#: skill/models/fracturing.py:19 skill/models/scouting.py:29
+#: skill/models/excavation.py:25 skill/models/finance.py:25
+#: skill/models/fracturing.py:20 skill/models/scouting.py:31
 msgctxt "skills"
 msgid "Выносливость"
 msgstr ""
@@ -2688,72 +2688,73 @@ msgctxt "mining"
 msgid "Неизвестный тип ресурса"
 msgstr ""
 
-#: skill/models/coherence.py:14
-msgctxt "skills"
-msgid "бонус 10% за каждый вид юнитов, количество которых в отряде не менее 20%"
-msgstr ""
-
-#: skill/models/coherence.py:60
+#: skill/models/coherence.py:15 skill/models/coherence.py:62
 msgctxt "skills"
 msgid "Слаженность"
 msgstr ""
 
-#: skill/models/excavation.py:9
+#: skill/models/coherence.py:16
 msgctxt "skills"
-msgid "позволяет извлекать дополнительные 10% руд за уровень"
+msgid "бонус 10% за каждый вид юнитов, количество которых в отряде не менее 20%"
 msgstr ""
 
-#: skill/models/excavation.py:37
+#: skill/models/excavation.py:9 skill/models/excavation.py:38
 msgctxt "skills"
 msgid "Промышленная экскавация"
 msgstr ""
 
-#: skill/models/finance.py:9
+#: skill/models/excavation.py:10
 msgctxt "skills"
-msgid "позволяет получать двойное финансирование при прохождении прогрессии"
+msgid "позволяет извлекать дополнительные 10% руд за уровень"
 msgstr ""
 
-#: skill/models/finance.py:33
+#: skill/models/finance.py:9 skill/models/finance.py:34
 msgctxt "skills"
 msgid "Подпольное финансирование"
 msgstr ""
 
-#: skill/models/fracturing.py:9
+#: skill/models/finance.py:10
 msgctxt "skills"
-msgid "позволяет извлекать дополнительные 10% нефти за уровень"
+msgid "позволяет получать двойное финансирование при прохождении прогрессии"
 msgstr ""
 
-#: skill/models/fracturing.py:32
+#: skill/models/fracturing.py:9 skill/models/fracturing.py:33
 msgctxt "skills"
 msgid "Гидроразрыв"
 msgstr ""
 
-#: skill/models/military_production.py:9
+#: skill/models/fracturing.py:10
 msgctxt "skills"
-msgid "Добавляет возможность произвести дополнительные войска при тех же затратах энергии, с округлением затрат в большую сторону"
+msgid "позволяет извлекать дополнительные 10% нефти за уровень"
 msgstr ""
 
-#: skill/models/military_production.py:19 skill/models/standardization.py:23
-msgctxt "skills"
-msgid "Стандартизация"
-msgstr ""
-
-#: skill/models/military_production.py:28
+#: skill/models/military_production.py:9 skill/models/military_production.py:29
 msgctxt "skills"
 msgid "Режимное производство"
 msgstr ""
 
-#: skill/models/scouting.py:14
+#: skill/models/military_production.py:10
 msgctxt "skills"
-msgid "бонус к урону 2% за уровень, если с момента прилёта игрока в регион прошло более суток"
+msgid "Добавляет возможность произвести дополнительные войска при тех же затратах энергии, с округлением затрат в большую сторону"
 msgstr ""
 
-#: skill/models/scouting.py:44
+#: skill/models/military_production.py:20 skill/models/standardization.py:9
+#: skill/models/standardization.py:24
+msgctxt "skills"
+msgid "Стандартизация"
+msgstr ""
+
+#: skill/models/scouting.py:15 skill/models/scouting.py:46
 msgctxt "skills"
 msgid "Знание местности"
 msgstr ""
 
-#: skill/models/standardization.py:9
+#: skill/models/scouting.py:16
+msgctxt "skills"
+msgid "бонус к урону 2% за уровень, если с момента прилёта игрока в регион прошло более суток"
+msgstr ""
+
+#: skill/models/standardization.py:10
 msgctxt "skills"
 msgid "Добавляет возможность произвести дополнительные материалы при тех же затратах энергии, с округлением затрат в большую сторону"
 msgstr ""
@@ -2828,6 +2829,21 @@ msgstr ""
 #: storage/models/storage.py:34
 msgctxt "goods"
 msgid "Оружие"
+msgstr ""
+
+#: storage/models/good.py:39
+msgctxt "goods"
+msgid "Большой"
+msgstr ""
+
+#: storage/models/good.py:40
+msgctxt "goods"
+msgid "Средний"
+msgstr ""
+
+#: storage/models/good.py:41
+msgctxt "goods"
+msgid "Малый"
 msgstr ""
 
 #: storage/models/storage.py:109
@@ -3325,6 +3341,11 @@ msgstr ""
 #: storage/templates/storage/redesign/storage_blocks/has_storage.html:39
 msgctxt "has_storage"
 msgid "всего денег"
+msgstr ""
+
+#: storage/templates/storage/redesign/storage_blocks/has_storage.html:55
+msgctxt "has_storage"
+msgid "объём"
 msgstr ""
 
 #: storage/templates/storage/redesign/storage_blocks/no_storage.html:7

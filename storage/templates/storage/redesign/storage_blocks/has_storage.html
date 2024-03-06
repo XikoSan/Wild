@@ -52,7 +52,7 @@
         {% if goods_dict|has_key:size %}
         <li class="store__item eduBlock2" {% if forloop.counter0 != 0 %}style="margin-top: 2vh"{% endif %}><!--шапка типоразмера-->
             {% with cap_name=size|get_sum:'_cap' %}
-            <p>{{ size_dict|dict_key:size }} объём</p>
+            <p>{{ size_dict|dict_key:size }} {% trans 'объём' context "has_storage" %}</p>
             <span>
                 {{ cap_dict|dict_key:size }} /
                 {% if size_locks|has_key:size %}
