@@ -1,0 +1,58 @@
+{% extends 'player/header.html' %}
+{% load static %}
+{% load l10n %}
+{% block for_scripts_and_css %}
+{% endblock %}
+
+{% block content %}
+<script>
+jQuery(document).ready(function ($) {
+    $('#candidates').on('change', function (e) {
+        document.getElementById('accept').disabled = false;
+    });
+
+    $('#candidates_form').submit(function(e){
+        e.preventDefault();
+
+         var sending_data = $(this).serialize();
+         sending_data += "&csrfmiddlewaretoken=" + csrftoken;
+        $.ajax({
+            type: "POST",
+            url: "/set_mandate/",
+            data:  sending_data,
+            cache: false,
+            success: function(data){
+                display_modal('notify', data.header, data.response, null, data.grey_btn)
+            }
+        });
+    });
+});
+</script>
+<div id="over" class="tabcontent">
+    <form id="candidates_form" role="form">
+        <div class="row" align="center">
+            <b><font size="4">Выдача мандата:</font></b>
+        </div>
+        <div class="row" align="center">
+            <!--если у партии есть аватарка-->
+            {% if player.party.image %}
+            <img src="{{ player.party.image.url }}" width="30" height="30">
+            {% else %}
+            <img src="{% static 'img/nopic_party.png' %}" width="30" height="30">
+            {% endif %}
+            <b>{{ player.party.title }}</b>
+        </div>
+        <div class="row" align="center" style="margin-top: 20px">
+            <select name="candidate" id="candidates">
+                <option disabled selected value>Выберите кандидата</option>
+                {% for candidate in candidates %}
+                    <option value='{% localize off %}{{ candidate.pk }}{% endlocalize %}'>{{ candidate.nickname }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="row" align="center" style="margin-top: 20px">
+            <button id="accept" disabled type="submit" enctype="multipart/form-data" class="save btn btn-default">Подтвердить</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
