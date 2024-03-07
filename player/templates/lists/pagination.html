@@ -1,0 +1,13 @@
+<div class="col-xs-4 col-sm-4 col-md-4" align="left">
+    {% if page.has_previous %}
+    <a href="?page={{page.previous_page_number}}" class="nav_button" style="text-decoration: none;"><<</a>
+    {% endif %}
+</div>
+<div class="col-xs-4 col-sm-4 col-md-4" align="center">
+    <span class="current">{{ page.number }} / {{ page.paginator.num_pages }}</span>
+</div>
+<div class="col-xs-4 col-sm-4 col-md-4" align="right">
+    {% if page.has_next %}
+    <a href="?page={{ page.next_page_number }}" class="nav_button" style="text-decoration: none;">>></a>
+    {% endif %}
+</div>
