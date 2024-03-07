@@ -10,6 +10,7 @@ from django.utils.translation import ugettext as _
 from player.decorators.player import check_player
 from player.logs.auto_mining import AutoMining
 from player.player import Player
+from region.models.fossils import Fossils
 
 
 # главная страница
@@ -68,16 +69,12 @@ def mining(request):
     if player.energy_limit - player.paid_consumption > 0:
         daily_energy_limit = player.energy_limit - player.paid_consumption
 
-    # золотая неделя
-    gold_week = False
+    oil_mark = 'WTI'
+    for type in player.region.oil_types:
+        if type in player.region.oil_mark.name:
+            oil_mark = type
 
-    naive = datetime.datetime(2022, 10, 3)
-    start = make_aware(naive, timezone=pytz.timezone("Europe/Moscow"))
-    naive = datetime.datetime(2022, 10, 10)
-    finish = make_aware(naive, timezone=pytz.timezone("Europe/Moscow"))
-
-    if finish > timezone.now() > start:
-        gold_week = True
+    fossils = Fossils.objects.filter(region=player.region).order_by('-good__name_ru')
 
     groups = list(player.account.groups.all().values_list('name', flat=True))
     page = 'region/mining.html'
@@ -97,7 +94,8 @@ def mining(request):
         'daily_procent': daily_procent,
         'daily_current_sum': daily_current_sum,
 
-        'gold_week': gold_week,
+        'oil_mark': oil_mark,
+        'fossils': fossils,
     })
 
     # if player_settings:

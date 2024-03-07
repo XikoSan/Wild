@@ -9,64 +9,74 @@
 <script src='{% static "js/leaflet.js" %}?{{ csrf_token }}'></script>
 <link rel="stylesheet" href="{% static 'css/leaflet.css' %}?{{ csrf_token }}"/>
 <section class="map">
-
     <!--КОНТЕЙНЕР ДЛЯ КАРТЫ-->
     <div class="map__leaflet-container" id="mapid">
     </div>
 
     <!--ВЕРХНЯЯ ПЛАШКА-->
     <div class="map__tops" style="z-index: 999">
-      <div class="map__top" data-name="population">
-        <h2>Население</h2>
+      <div class="map__top" data-name="online">
+        <h2>Онлайн</h2>
         <div class="map__top-bar"></div>
         <p class="map__top-text">
-          <span>0</span>
-          <span>150</span>
+          <span>{{ min_online }}</span>
+          <span>{{ max_online }}</span>
+        </p>
+      </div>
+      <div class="map__top" data-name="med_index">
+        <h2>Индекс медицины</h2>
+        <div class="map__top-bar"></div>
+        <p class="map__top-text">
+          <span>1</span>
+          <span>2</span>
+          <span>3</span>
+          <span>4</span>
+          <span>5</span>
         </p>
       </div>
 
-      <div class="map__top" data-name="number of parties">
-        <h2>Число партий</h2>
-        <div class="map__top-bar"></div>
-        <p class="map__top-text">
-          <span>0</span>
-          <span>150</span>
-        </p>
-      </div>
+<!--      <div class="map__top" data-name="number of parties">-->
+<!--        <h2>Число партий</h2>-->
+<!--        <div class="map__top-bar"></div>-->
+<!--        <p class="map__top-text">-->
+<!--          <span>0</span>-->
+<!--          <span>150</span>-->
+<!--        </p>-->
+<!--      </div>-->
 
-      <div class="map__top" data-name="number of factories">
-        <h2>Число фабрик</h2>
-        <div class="map__top-bar"></div>
-        <p class="map__top-text">
-          <span>0</span>
-          <span>150</span>
-        </p>
-      </div>
+<!--      <div class="map__top" data-name="number of factories">-->
+<!--        <h2>Число фабрик</h2>-->
+<!--        <div class="map__top-bar"></div>-->
+<!--        <p class="map__top-text">-->
+<!--          <span>0</span>-->
+<!--          <span>150</span>-->
+<!--        </p>-->
+<!--      </div>-->
 
-      <div class="map__top" data-name="wars">
-        <h2>Войны</h2>
-        <div class="map__top-bar"></div>
-        <p class="map__top-text">
-          <span>0</span>
-          <span>150</span>
-        </p>
-      </div>
+<!--      <div class="map__top" data-name="wars">-->
+<!--        <h2>Войны</h2>-->
+<!--        <div class="map__top-bar"></div>-->
+<!--        <p class="map__top-text">-->
+<!--          <span>0</span>-->
+<!--          <span>150</span>-->
+<!--        </p>-->
+<!--      </div>-->
     </div>
 
     <!--КНОПКА ОТКРЫТИЯ ФИЛЬТРОВ-->
-<!--    <button class="map__filter-open" onclick="openFilters()" style="z-index: 999">-->
-<!--      <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">-->
-<!--        <rect width="40" height="40" fill="var(&#45;&#45;c10two)"/>-->
-<!--        <path d="M3.65667 26.265C3.65667 26.265 16.2467 33.3417 18.8067 34.78C19.0817 34.935 19.3617 35 19.6267 35C19.9233 35 20.2 34.9183 20.4333 34.7883C23.01 33.35 35.6917 26.2667 35.6917 26.2667C36.1017 26.0367 36.3333 25.6117 36.3333 25.1733C36.3333 24.23 35.31 23.6167 34.4733 24.0833C34.4733 24.0833 22.72 30.68 20.2417 32.0333C19.89 32.225 19.5017 32.3017 19.0383 32.0433C16.29 30.4967 4.88167 24.085 4.88167 24.085C4.045 23.615 3.02 24.2267 3.02 25.1733C3.02 25.61 3.24833 26.035 3.65667 26.265ZM3.65667 21.0767C3.65667 21.0767 16.2467 28.1533 18.8067 29.5917C19.0817 29.7467 19.3617 29.8117 19.6267 29.8117C19.9233 29.8117 20.2 29.73 20.4333 29.6C23.01 28.1617 35.6917 21.0783 35.6917 21.0783C36.1017 20.8483 36.3333 20.4233 36.3333 19.985C36.3333 19.0417 35.31 18.4283 34.4733 18.895C34.4733 18.895 22.72 25.4917 20.2417 26.845C19.89 27.0367 19.5017 27.1133 19.0383 26.855C16.9285 25.6677 9.71518 21.6133 6.47734 19.7935C5.49744 19.2427 4.88167 18.8967 4.88167 18.8967C4.47086 18.6659 4.01465 18.6959 3.65667 18.8983C3.28556 19.1081 3.02 19.5031 3.02 19.985C3.02 20.4217 3.24833 20.8467 3.65667 21.0767ZM20.775 5.31833C20.365 5.105 19.99 5 19.6217 5C19.25 5 18.8833 5.10833 18.4967 5.31833L3.69 13.66C3.23 13.965 3 14.4 3 14.8233C3 15.25 3.23167 15.665 3.69 15.93L18.4967 24.2733C18.865 24.495 19.2417 24.6117 19.6267 24.6117C19.9983 24.6117 20.38 24.5033 20.775 24.2733L35.5817 15.93C36.0733 15.6533 36.3333 15.2283 36.3333 14.7967C36.3333 14.38 36.0917 13.9583 35.5817 13.66L20.775 5.31833ZM6.76833 14.795L19.6367 7.54667L32.5033 14.795L19.6367 22.045L6.76833 14.795Z" fill="#28353E"/>-->
-<!--      </svg>-->
-<!--    </button>-->
+    <button class="map__filter-open" onclick="openFilters()" style="z-index: 999">
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="40" height="40" fill="var(--c10two)"/>
+        <path d="M3.65667 26.265C3.65667 26.265 16.2467 33.3417 18.8067 34.78C19.0817 34.935 19.3617 35 19.6267 35C19.9233 35 20.2 34.9183 20.4333 34.7883C23.01 33.35 35.6917 26.2667 35.6917 26.2667C36.1017 26.0367 36.3333 25.6117 36.3333 25.1733C36.3333 24.23 35.31 23.6167 34.4733 24.0833C34.4733 24.0833 22.72 30.68 20.2417 32.0333C19.89 32.225 19.5017 32.3017 19.0383 32.0433C16.29 30.4967 4.88167 24.085 4.88167 24.085C4.045 23.615 3.02 24.2267 3.02 25.1733C3.02 25.61 3.24833 26.035 3.65667 26.265ZM3.65667 21.0767C3.65667 21.0767 16.2467 28.1533 18.8067 29.5917C19.0817 29.7467 19.3617 29.8117 19.6267 29.8117C19.9233 29.8117 20.2 29.73 20.4333 29.6C23.01 28.1617 35.6917 21.0783 35.6917 21.0783C36.1017 20.8483 36.3333 20.4233 36.3333 19.985C36.3333 19.0417 35.31 18.4283 34.4733 18.895C34.4733 18.895 22.72 25.4917 20.2417 26.845C19.89 27.0367 19.5017 27.1133 19.0383 26.855C16.9285 25.6677 9.71518 21.6133 6.47734 19.7935C5.49744 19.2427 4.88167 18.8967 4.88167 18.8967C4.47086 18.6659 4.01465 18.6959 3.65667 18.8983C3.28556 19.1081 3.02 19.5031 3.02 19.985C3.02 20.4217 3.24833 20.8467 3.65667 21.0767ZM20.775 5.31833C20.365 5.105 19.99 5 19.6217 5C19.25 5 18.8833 5.10833 18.4967 5.31833L3.69 13.66C3.23 13.965 3 14.4 3 14.8233C3 15.25 3.23167 15.665 3.69 15.93L18.4967 24.2733C18.865 24.495 19.2417 24.6117 19.6267 24.6117C19.9983 24.6117 20.38 24.5033 20.775 24.2733L35.5817 15.93C36.0733 15.6533 36.3333 15.2283 36.3333 14.7967C36.3333 14.38 36.0917 13.9583 35.5817 13.66L20.775 5.31833ZM6.76833 14.795L19.6367 7.54667L32.5033 14.795L19.6367 22.045L6.76833 14.795Z" fill="#28353E"/>
+      </svg>
+    </button>
 
     <!--МОДАЛКА С ФИЛЬТРАМИ-->
     <div class="map__modfilter" id="filters" style="z-index: 999">
 
       <div class="m-sett__form-check ct__check-box30">
         <label>
-          <input value="population" type="radio" name="map-layer" class="visually-hidden">
+          <input value="online" type="radio" name="map-layer" class="visually-hidden">
           <svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(--c10two)"/>
           </svg>
@@ -76,13 +86,13 @@
               <path d="M6.5 4.5L4.5 6.5V20.5H18.5L20.5 18.5V4.5H6.5Z" fill="var(--c10two)" stroke="var(--c10two)"/>
             </svg>
           </span>
-          Население
+          Онлайн
         </label>
       </div>
 
       <div class="m-sett__form-check ct__check-box30">
         <label>
-          <input value="number of parties" type="radio" name="map-layer" class="visually-hidden">
+          <input value="med_index" type="radio" name="map-layer" class="visually-hidden">
           <svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(--c10two)"/>
           </svg>
@@ -92,13 +102,61 @@
               <path d="M6.5 4.5L4.5 6.5V20.5H18.5L20.5 18.5V4.5H6.5Z" fill="var(--c10two)" stroke="var(--c10two)"/>
             </svg>
           </span>
-          Число партий
+          Индекс медицины
         </label>
       </div>
 
+<!--      <div class="m-sett__form-check ct__check-box30">-->
+<!--        <label>-->
+<!--          <input value="number of parties" type="radio" name="map-layer" class="visually-hidden">-->
+<!--          <svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+<!--            <path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(&#45;&#45;c10two)"/>-->
+<!--          </svg>-->
+<!--          <span>-->
+<!--            <svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+<!--              <path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(&#45;&#45;c10two)"/>-->
+<!--              <path d="M6.5 4.5L4.5 6.5V20.5H18.5L20.5 18.5V4.5H6.5Z" fill="var(&#45;&#45;c10two)" stroke="var(&#45;&#45;c10two)"/>-->
+<!--            </svg>-->
+<!--          </span>-->
+<!--          Число партий-->
+<!--        </label>-->
+<!--      </div>-->
+
+<!--      <div class="m-sett__form-check ct__check-box30">-->
+<!--        <label>-->
+<!--          <input value="number of factories" type="radio" name="map-layer" class="visually-hidden">-->
+<!--          <svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+<!--            <path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(&#45;&#45;c10two)"/>-->
+<!--          </svg>-->
+<!--          <span>-->
+<!--            <svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+<!--              <path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(&#45;&#45;c10two)"/>-->
+<!--              <path d="M6.5 4.5L4.5 6.5V20.5H18.5L20.5 18.5V4.5H6.5Z" fill="var(&#45;&#45;c10two)" stroke="var(&#45;&#45;c10two)"/>-->
+<!--            </svg>-->
+<!--          </span>-->
+<!--          Число фабрик-->
+<!--        </label>-->
+<!--      </div>-->
+
+<!--      <div class="m-sett__form-check ct__check-box30">-->
+<!--        <label>-->
+<!--          <input value="wars" type="radio" name="map-layer" class="visually-hidden">-->
+<!--          <svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+<!--            <path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(&#45;&#45;c10two)"/>-->
+<!--          </svg>-->
+<!--          <span>-->
+<!--            <svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+<!--              <path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(&#45;&#45;c10two)"/>-->
+<!--              <path d="M6.5 4.5L4.5 6.5V20.5H18.5L20.5 18.5V4.5H6.5Z" fill="var(&#45;&#45;c10two)" stroke="var(&#45;&#45;c10two)"/>-->
+<!--            </svg>-->
+<!--          </span>-->
+<!--          Войны-->
+<!--        </label>-->
+<!--      </div>-->
+
       <div class="m-sett__form-check ct__check-box30">
         <label>
-          <input value="number of factories" type="radio" name="map-layer" class="visually-hidden">
+          <input value="links" type="radio" name="map-layer" class="visually-hidden">
           <svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(--c10two)"/>
           </svg>
@@ -108,29 +166,13 @@
               <path d="M6.5 4.5L4.5 6.5V20.5H18.5L20.5 18.5V4.5H6.5Z" fill="var(--c10two)" stroke="var(--c10two)"/>
             </svg>
           </span>
-          Число фабрик
+          Связи регионов
         </label>
       </div>
 
       <div class="m-sett__form-check ct__check-box30">
         <label>
-          <input value="wars" type="radio" name="map-layer" class="visually-hidden">
-          <svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(--c10two)"/>
-          </svg>
-          <span>
-            <svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(--c10two)"/>
-              <path d="M6.5 4.5L4.5 6.5V20.5H18.5L20.5 18.5V4.5H6.5Z" fill="var(--c10two)" stroke="var(--c10two)"/>
-            </svg>
-          </span>
-          Войны
-        </label>
-      </div>
-
-      <div class="m-sett__form-check ct__check-box30">
-        <label>
-          <input value="none" type="radio" name="map-layer" class="visually-hidden">
+          <input value="none" type="radio" name="map-layer" class="visually-hidden" checked>
           <svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(--c10two)"/>
           </svg>
@@ -157,46 +199,83 @@
 
 {% block for_scripts_and_css %}
 <script>
-  function toggleActiveClass(element) {
-    element.classList.toggle('active');
-    if (element.classList.contains('active')) {
-      element.style.height = `${element.scrollHeight + 1}px`;
-    } else {
-      element.style.height = '';
+L.RotatedMarker = L.Marker.extend({
+  options: {
+    rotationAngle: 0,
+    rotationOrigin: "",
+  },
+
+  initialize: function (latlng, options) {
+    L.Marker.prototype.initialize.call(this);
+
+    L.Util.setOptions(this, options);
+    this._latlng = L.latLng(latlng);
+
+    var iconOptions = this.options.icon && this.options.icon.options;
+    var iconAnchor = iconOptions && this.options.icon.options.iconAnchor;
+    if (iconAnchor) {
+      iconAnchor = iconAnchor[0] + "px " + iconAnchor[1] + "px";
     }
-  }
 
-  function openFilters() {
-    document.getElementById('filters').classList.toggle('active')
-  }
+    this.options.rotationOrigin =
+      this.options.rotationOrigin || iconAnchor || "center bottom";
+    this.options.rotationAngle = this.options.rotationAngle || 0;
 
-  const filters = document.querySelectorAll('input[name="map-layer"]');
+    // Ensure marker keeps rotated during dragging
+    this.on("drag", function (e) {
+      e.target._applyRotation();
+    });
+  },
 
-  function getCheckedInput() {
-    let checkedInput;
-    filters.forEach((filter) => {
-      if (filter.checked) checkedInput = filter;
-    })
-    return checkedInput;
-  }
+  onRemove: function (map) {
+    L.Marker.prototype.onRemove.call(this, map);
+  },
 
-  document.getElementById('filters').addEventListener('input', (evt) => {
-    const checkedInputValue = getCheckedInput().value;
-    if (checkedInputValue === 'none') {
-      document.querySelector('.map__tops').classList.remove('active');
-    } else {
-      document.querySelector('.map__tops').classList.add('active');
-      document.querySelectorAll('.map__top').forEach((block) => {
-        block.classList.remove('active');
-        const dataName = block.getAttribute('data-name');
-        if (dataName === checkedInputValue) {
-          block.classList.add('active');
-        }
-      })
+  _setPos: function (pos) {
+    L.Marker.prototype._setPos.call(this, pos);
+    this._applyRotation();
+  },
+
+  _applyRotation: function () {
+    if (this.options.rotationAngle) {
+      this._icon.style[L.DomUtil.TRANSFORM + "Origin"] =
+        this.options.rotationOrigin;
+
+      this._icon.style[L.DomUtil.TRANSFORM] +=
+        " rotateZ(" + this.options.rotationAngle + "deg)";
     }
-  })
-</script>
-<script>
+  },
+
+  setRotationAngle: function (angle) {
+    this.options.rotationAngle = angle;
+    this.update();
+    return this;
+  },
+
+  setRotationOrigin: function (origin) {
+    this.options.rotationOrigin = origin;
+    this.update();
+    return this;
+  },
+});
+
+L.rotatedMarker = function (latlng, options) {
+  return new L.RotatedMarker(latlng, options);
+};
+
+
+var line = null;
+
+
+function addMarker(coordinates) {
+  line = L.polyline(coordinates, {
+    color: 'white',
+    weight: 3
+  });
+  markers.addLayer(line);
+  markers.addTo(mymap);
+}
+
  // сделать из цвета его темную версию
  const pSBC=(p,c0,c1,l)=>{
      let r,g,b,P,f,t,h,i=parseInt,m=Math.round,a=typeof(c1)=="string";
@@ -267,8 +346,88 @@
      accessToken: 'your.mapbox.access.token'
  }).addTo(mymap);
 
+ {% if player.destination %}
+
+  var startCoords = [{{ player.region.north }}, {{ player.region.east }}];
+  const endCoords = [{{ player.destination.north }}, {{ player.destination.east }}];
+
+  const duration = {% localize off %}{{ duration }}{% endlocalize %}; // ДЛительность всего полёта: 60 секунд
+  const estimate = {% localize off %}{{ estimate }}{% endlocalize %}; // Пример: 30 секунд уже прошло
+
+  startCoords = adjustStartCoords(startCoords, endCoords, duration, estimate);
+
+  var angle = calculateAngle(startCoords, endCoords);
+
+  const planeIcon = L.icon({
+    {% if player.pk == 1 %}
+    iconUrl: '/static/img/admin_plane.png',
+    {% else %}
+	iconUrl: '/static/img/flight.png',
+	{% endif %}
+	iconSize: [50, 50],
+	iconAnchor: [25, 25],
+  });
+
+  var planeMarker = L.rotatedMarker(startCoords, { icon: planeIcon, rotationAngle: angle });
+  planeMarker.addTo(mymap);
+
+  animateFlight(planeMarker, startCoords, endCoords, duration-estimate);
+
+ {% endif %}
+
+ {% if admin %}
+   {% if admin.destination %}
+
+    var admin_startCoords = [{{ admin.region.north }}, {{ admin.region.east }}];
+    const admin_endCoords = [{{ admin.destination.north }}, {{ admin.destination.east }}];
+
+    const admin_duration = {% localize off %}{{ admin_duration }}{% endlocalize %}; // ДЛительность всего полёта: 60 секунд
+    const admin_estimate = {% localize off %}{{ admin_estimate }}{% endlocalize %}; // Пример: 30 секунд уже прошло
+
+    admin_startCoords = adjustStartCoords(admin_startCoords, admin_endCoords, admin_duration, admin_estimate);
+
+    var angle = calculateAngle(admin_startCoords, admin_endCoords);
+
+    const admin_planeIcon = L.icon({
+      iconUrl: '/static/img/admin_plane.png',
+      iconSize: [50, 50],
+      iconAnchor: [25, 25],
+    });
+
+    var admin_planeMarker = L.rotatedMarker(admin_startCoords, { icon: admin_planeIcon, rotationAngle: angle });
+    admin_planeMarker.addTo(mymap);
+
+    animateFlight(admin_planeMarker, admin_startCoords, admin_endCoords, admin_duration-admin_estimate);
+
+   {% endif %}
+ {% endif %}
+
  var latlngs = L.rectangle(bounds).getLatLngs();
+
+  const markers = new L.LayerGroup();
+  markers.addTo(mymap);
+
+ var min_dict = {
+  'online': {% localize off %}{{ min_online }}{% endlocalize %},
+  'med_index': 1,
+};
+
+ var max_dict = {
+  'online': {% localize off %}{{ max_online }}{% endlocalize %},
+  'med_index': 5,
+};
+
+
+ var region_props = {};
+ var poly_list = [];
+ var link_list = [];
+ var center_dict = {};
+
 <!--  L.polyline(latlngs[0].concat(latlngs[0][0])).addTo(mymap);-->
+
+ {% for link in neighbours %}
+    link_list.push([{% localize off %}{{ link.region_1.pk }},{{ link.region_2.pk }}{% endlocalize %}]);
+ {% endfor %}
 
  {% for district in regions %}
   {% with map_shape=shapes_dict|dict_key:district.pk %}
@@ -277,6 +436,7 @@
        "type": "Feature",
        "properties": {
             "color": "#{% if district.state.color %}{{ district.state.color }}{% else %}{% if district.is_off %}000000{% else %}ffffff{% endif %}{% endif %}",
+            "class": ""
        },
        "geometry": {
            "type": "MultiPolygon",
@@ -285,25 +445,188 @@
    },
  ];
 
- region_poly_{{ district.pk }} = L.geoJSON(region, {
+ region_poly_{% localize off %}{{ district.pk }}{% endlocalize %} = L.geoJSON(region, {
      style: function(feature) {
          return {
          {% if district.is_off %}color: '#ffffff',{% else %}color: pSBC( -0.4, feature.properties.color, false, true ),{% endif %}
           {% if district.is_off %}fillOpacity: 0.5,{% else %}fillOpacity: 0.8,{% endif %}
           fillColor: feature.properties.color,
-          weight: 1
+          weight: 1,
+          className: feature.properties.class
          };
      },
      data:{
           "id": "{{ district.on_map_id }}",
+          "pk": "{{ district.pk }}",
        },
  }){% if not district.is_off %}.on('click', get_district_info){% endif %};
 
- region_poly_{{ district.pk }}.addTo(mymap);
+ region_poly_{% localize off %}{{ district.pk }}{% endlocalize %}.addTo(mymap);
+
+ region_props['{% localize off %}{{ district.on_map_id }}{% endlocalize %}'] = {};
+ region_props['{% localize off %}{{ district.on_map_id }}{% endlocalize %}']['color'] = "#{% if district.state.color %}{{ district.state.color }}{% else %}{% if district.is_off %}000000{% else %}ffffff{% endif %}{% endif %}"
+ region_props['{% localize off %}{{ district.on_map_id }}{% endlocalize %}']['online'] = {{ online_dict|dict_key:district.pk }};
+ region_props['{% localize off %}{{ district.on_map_id }}{% endlocalize %}']['online'] = {{ online_dict|dict_key:district.pk }};
+ region_props['{% localize off %}{{ district.on_map_id }}{% endlocalize %}']['med_index'] = {{ med_index_dict|dict_key:district.pk }};
+
+ poly_list.push(region_poly_{% localize off %}{{ district.pk }}{% endlocalize %});
+ center_dict[{% localize off %}{{ district.pk }}{% endlocalize %}] = { 'lat':{% localize off %}{{ district.latitude }}, 'lng':{{ district.longitude }}{% endlocalize %} };
+
  {% endwith %}
  {% endfor %}
- </script>
 
+  var elements = document.getElementsByClassName("leaflet-bottom");
+  while (elements.length > 0) {
+      elements[0].parentNode.removeChild(elements[0]);
+  }
+
+    <!--формирование цветов на карте для переданных значений-->
+
+    function generateColorCode(lowerBound, upperBound, value) {
+      var lowerColor = "#FE1E00"; // Код цвета нижней границы
+      var upperColor = "#01FE21"; // Код цвета верхней границы
+
+      // Преобразование кодов цвета в RGB-значения
+      var lowerRGB = hexToRGB(lowerColor);
+      var upperRGB = hexToRGB(upperColor);
+
+      // Вычисление интерполированных RGB-значений
+      var interpolatedRGB = interpolateRGB(lowerRGB, upperRGB, lowerBound, upperBound, value);
+
+      // Преобразование RGB-значений обратно в код цвета
+      var colorCode = RGBToHex(interpolatedRGB.r, interpolatedRGB.g, interpolatedRGB.b);
+
+      return colorCode;
+    }
+
+    // Функция для преобразования кода цвета из HEX в RGB
+    function hexToRGB(hex) {
+      var r = parseInt(hex.substr(1, 2), 16);
+      var g = parseInt(hex.substr(3, 2), 16);
+      var b = parseInt(hex.substr(5, 2), 16);
+      return { r: r, g: g, b: b };
+    }
+
+    // Функция для интерполяции RGB-значений
+    function interpolateRGB(lowerRGB, upperRGB, lowerBound, upperBound, value) {
+      var normalizedValue = (value - lowerBound) / (upperBound - lowerBound);
+
+      var r = Math.round(lowerRGB.r + (upperRGB.r - lowerRGB.r) * normalizedValue);
+      var g = Math.round(lowerRGB.g + (upperRGB.g - lowerRGB.g) * normalizedValue);
+      var b = Math.round(lowerRGB.b + (upperRGB.b - lowerRGB.b) * normalizedValue);
+
+      return { r: r, g: g, b: b };
+    }
+
+    // Функция для преобразования RGB-значений в код цвета HEX
+    function RGBToHex(r, g, b) {
+      var hexR = r.toString(16).padStart(2, '0');
+      var hexG = g.toString(16).padStart(2, '0');
+      var hexB = b.toString(16).padStart(2, '0');
+      return '#' + hexR + hexG + hexB;
+    }
+
+    function changeStyle(geojsonLayer, fillColor) {
+      var newStyle = {
+        fillColor: fillColor,
+      };
+
+      geojsonLayer.setStyle(newStyle);
+    }
+    <!-- ^^^ формирование цветов на карте для переданных значений ^^^ -->
+
+
+    <!-- vvv перекраска регионов на карте в зависимости от фильтра vvv -->
+
+  function repaint(mode) {
+        poly_list.forEach(function(geojson) {
+
+            var fillColor = '#ffffff';
+
+            if(mode == 'color'){
+                fillColor = region_props[geojson.options.data.id]['color'];
+            }
+            else{
+                var min_val = min_dict[mode];
+                var max_val = max_dict[mode];
+                fillColor = generateColorCode(min_val, max_val, region_props[geojson.options.data.id][mode])
+            }
+
+          changeStyle(geojson, fillColor);
+
+        });
+    }
+
+  function set_links() {
+        link_list.forEach(function(link) {
+
+          coords = [ center_dict[link[0]], center_dict[link[1]] ]
+          addMarker(coords);
+
+        });
+    }
+
+  function remove_links() {
+      markers.remove();
+    }
+
+
+    <!-- ^^^ перекраска регионов на карте в зависимости от фильтра ^^^ -->
+
+  function toggleActiveClass(element) {
+    element.classList.toggle('active');
+    if (element.classList.contains('active')) {
+      element.style.height = `${element.scrollHeight + 1}px`;
+    } else {
+      element.style.height = '';
+    }
+  }
+
+  function openFilters() {
+    document.getElementById('filters').classList.toggle('active')
+  }
+
+  const filters = document.querySelectorAll('input[name="map-layer"]');
+
+  function getCheckedInput() {
+    let checkedInput;
+    filters.forEach((filter) => {
+      if (filter.checked) checkedInput = filter;
+    })
+    return checkedInput;
+  }
+
+  document.getElementById('filters').addEventListener('input', (evt) => {
+    const checkedInputValue = getCheckedInput().value;
+    remove_links();
+
+    if (checkedInputValue === 'none') {
+
+      document.querySelector('.map__tops').classList.remove('active');
+      repaint('color');
+
+    }
+    else if (checkedInputValue === 'links') {
+
+      document.querySelector('.map__tops').classList.remove('active');
+      repaint('color');
+
+      set_links();
+
+    }
+     else {
+      document.querySelector('.map__tops').classList.add('active');
+      document.querySelectorAll('.map__top').forEach((block) => {
+        block.classList.remove('active');
+        const dataName = block.getAttribute('data-name');
+        if (dataName === checkedInputValue) {
+          block.classList.add('active');
+          repaint(dataName);
+        }
+      })
+    }
+  })
+</script>
 <!-- костыльный блок: тексты всех имен регионов -->
 <!-- необходимо для того, чтобы переводчик подтянул их в файлы PO -->
 {% trans 'Тюрингия' context "regions_list" %}
@@ -326,4 +649,85 @@
 
 {% trans 'Опольское воеводство' context "regions_list" %}
 <!-- костыльный блок: тексты всех имен регионов -->
+
+{% if not player.educated %}
+<script src="/static/redesign/js/education_n.js"></script>
+{% endif %}
+
+<script>
+    var check_edu = true;
+
+    {% if not player.educated %}
+    check_edu = false;
+
+     function getFromLS(){
+        return localStorage.getItem('edu_assistant');
+      }
+
+    var assist_img = this.getFromLS() ?? "/static/redesign/img/Ann.png";
+
+    document.getElementsByClassName('edu__img')[0].src = assist_img;
+
+    function claim_reward(id){
+      var data = "&csrfmiddlewaretoken=" + csrftoken + "&edu_id=" + id;
+      $.ajax({
+          beforeSend: function() {},
+          type: "POST",
+          url: "/claim_reward/",
+          data: data,
+          cache: false,
+          success: function(result){
+              if (result.response == 'ok'){
+                  actualize();
+              }
+          }
+      });
+    }
+
+    function edu_pragma(page) {
+        if (page == 5){
+            claim_reward('edu_05');
+        }
+        if (page == 99){
+            window.location.href = "/party";
+        }
+    }
+
+    const edu = new Educator({
+    onEduStart: () => { console.log('[EDU]: Started') },
+    onEduEnd: () => { console.log('[EDU]: Ended'); edu_pragma(99) },
+    onEduPageChange: (num) => { console.log(`[EDU]: Current page is ${num}`); edu_pragma(num) },
+    onCloseEdu: () => { console.log(`[EDU]: Education closed`); claim_reward('edu_00'); },
+    pages: [
+        {
+        text: 'Это - политическая карта всего нашего мира. Она поделена на регионы.',
+        },
+        {
+        text: 'Каждый регион может быть независимым, быть столицей государства, либо же принадлежать государству на правах провинции.',
+        },
+        {
+        text: 'Нажав на любую территорию, Вы откроете небольшое окно с информацией о ней.',
+        },
+        {
+        text: 'Краткая информация о регионе позволит Вам узнать его название и владельца, а также проверить, есть ли там запасы сырья.',
+        },
+        {
+        text: 'Для перемещения здесь же доступна кнопка вызова Вашего личного самолёта. Вам потребуется лишь оплатить затраты на топливо, подождать совсем немного - и вот вы уже на другом конце мира!',
+        },
+        {
+        text: 'Награда: 200 золота',
+        rewardImgUrl: '/static/redesign/img/200_gold.png',
+        },
+        {
+        text: 'Чтобы начать путь к покорению всех этих территорий, нам потребуются союзники. Позвольте помочь выбрать Вам партию, хотя бы на первое время.',
+        },
+    ]
+  })
+
+  {% endif %}
+</script>
+
+{% if player.account.is_superuser %}
+<script src="/static/js/map_linker.js"></script>
+{% endif %}
 {% endblock %}

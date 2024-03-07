@@ -7,6 +7,7 @@ from django.utils import timezone
 from player.player import Player
 from django.apps import apps
 
+
 # абстрактный навык
 # новые навыки добавлять в:
 # модель player.skillTraining

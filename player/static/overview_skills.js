@@ -9,7 +9,10 @@ function up_skill(skill){
         cache: false,
         success: function(data){
             if (data.response == 'ok'){
-                location.reload();
+//              в обучении не нужно обновлять страницу
+                if (check_edu){
+                    location.reload();
+                }
             }
             else{
                 display_modal('notify', data.header, data.response, null, data.grey_btn);

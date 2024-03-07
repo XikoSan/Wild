@@ -1,7 +1,8 @@
 from django.db.models import Q
 
-from region.neighbours import Neighbours
-from region.region import Region
+from region.models.neighbours import Neighbours
+from region.models.region import Region
+from django.utils import timezone
 
 
 # получить список целевых регионов
@@ -32,7 +33,9 @@ def get_victims(state):
             else:
                 victim = neig.region_1
             # если государство соседа отличается от исходного
-            if victim.state != region.state and not victim.is_off:
+            # и регион не выключен
+            # и в нем истекло мирное время
+            if victim.state != region.state and not victim.is_off and timezone.now() > victim.peace_date:
                 victims.append(victim)
         # заполненный лист добавляем в словарь (если регион окружен своими же регионами, они не нужны)
 

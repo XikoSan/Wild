@@ -42,9 +42,10 @@ def _set_player_banned(pk):
 
 def _check_has_pack(message, packs):
     if int(message.split('_')[0]) in packs:
-        return Sticker.objects.get(pk=int(message.split('_')[1])).image.url
+        sticker = Sticker.objects.get(pk=int(message.split('_')[1]))
+        return sticker.image.url, sticker.description
     else:
-        return False
+        return False, None
 
 
 def _delete_message(counter):
@@ -140,17 +141,27 @@ class ChatConsumer(AsyncWebsocketConsumer):
         if (not message or not re.search('[^\s]', message)) and (not sticker):
             return
 
+        image_extensions = ['.jpg', '.jpeg', '.png', '.gif']
+        if message and \
+                message[:4] == 'http' and \
+                    any(message.lower().endswith(extension) for extension in image_extensions):
+            message = '<img src="' + message + '">'
+
         sticker_only = False
         if not message and sticker:
             message = sticker
             sticker_only = True
 
         if sticker_only:
-            link = await sync_to_async(_check_has_pack, thread_sensitive=True)(message=message,
+            link, desc = await sync_to_async(_check_has_pack, thread_sensitive=True)(message=message,
                                                                                    packs=self.sticker_packs)
 
             if link:
-                message = '<img src="' + link + '" width="250" height="250" style="pointer-events: none;">'
+                if desc in ['padoru',]:
+                    desc = '\'' + desc + '\''
+                    message = '<img src="' + link + '" width="250" height="250" onclick="audio_play(' + desc +')" style="cursor: pointer">'
+                else:
+                	message = '<img src="' + link + '" width="250" height="250" style="pointer-events: none;">'
 
         counter = await sync_to_async(_append_message, thread_sensitive=True)(chat_id=self.room_name,
                                                                               author=self.player,
@@ -178,6 +189,11 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 if self.player.image:
                     image_url = self.player.image.url
 
+                if len(self.player.nickname) > 25:
+                    nickname = f'{ self.player.nickname[:25] }...'
+                else:
+                    nickname = self.player.nickname
+
                 # Send message to room group
                 await self.channel_layer.group_send(
                     self.room_group_name,
@@ -185,7 +201,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                         'type': 'chat_message',
                         'id': self.player.pk,
                         'image': image_url,
-                        'nickname': self.player.nickname,
+                        'nickname': nickname,
                         'message': message,
                         'destination': destination,
                         'counter': counter

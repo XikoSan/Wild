@@ -81,18 +81,35 @@ class Bill(models.Model):
     def do_bill(self):
         return
 
+    # выполнить законопроект
+    def bill_cancel(self):
+        return
+
     # получить шаблон черновика законопроекта
     @staticmethod
     def get_draft(state):
         return
 
+    # получить шаблон черновика законопроекта
+    @staticmethod
+    def get_new_draft(state):
+        return None, None
+
     # получить шаблон законопроекта в парламенте
     def get_bill(self, player, minister, president):
         return
 
+    # получить шаблон законопроекта в парламенте
+    def get_new_bill(self, player, minister, president):
+        return None, None
+
     # получить шаблон рассмотренного законопроекта
     def get_reviewed_bill(self, player):
         return
+
+    # получить шаблон рассмотренного законопроекта
+    def get_new_reviewed_bill(self, player):
+        return None, None
 
     # формируем переодическую таску
     def setup_task(self):

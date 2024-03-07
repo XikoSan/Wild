@@ -6,7 +6,7 @@ register = template.Library()
 
 
 @register.inclusion_tag('player/redesign/template_svg/nopic.html')
-def nopic(player, classes, style = ''):
+def nopic(player, classes, style = '', action = ''):
 
     #  Настройки цветов профиля
     setts = None
@@ -33,4 +33,5 @@ def nopic(player, classes, style = ''):
 
         'classes': classes,
         'style': style,
+        'action': action,
     }

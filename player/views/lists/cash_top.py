@@ -3,7 +3,8 @@ from django.shortcuts import redirect, render
 
 from player.views.lists.get_thing_page import get_thing_page
 from django.utils.translation import ugettext as _
-from region.region import Region
+from django.utils.translation import pgettext
+from region.models.region import Region
 from player.player import Player
 from player.decorators.player import check_player
 from django.db import connection
@@ -27,7 +28,7 @@ def cash_top(request):
     cursor = connection.cursor()
 
     # получаем партии для текущей страницы
-    cursor.execute("with sum_limit(lim) as ( select SUM(store.cash) + player.cash  from player_player as player join storage_storage as store on player.id = 20 and store.owner_id = player.id and store.deleted = false group by player.id ), store_sum(owner_id, cash) as (  select store.owner_id, sum(store.cash) from storage_storage as store where store.deleted = false group by store.owner_id ) select id, nickname from player_player as player join store_sum as store on store.owner_id = player.id order by store.cash + player.cash desc limit 10;")
+    cursor.execute("with sum_limit(lim) as ( select SUM(store.cash) + player.cash  from player_player as player join storage_storage as store on player.id = %s and store.owner_id = player.id and store.deleted = false group by player.id ), store_sum(owner_id, cash) as (  select store.owner_id, sum(store.cash) from storage_storage as store where store.deleted = false group by store.owner_id ) select id, nickname from player_player as player join store_sum as store on store.owner_id = player.id order by store.cash + player.cash desc limit 10;", [player.pk])
     cash_top = cursor.fetchall()
 
     #  ----------- нужно тупо чтобы выбрать картинки и не заморачиваться
@@ -70,20 +71,20 @@ def cash_top(request):
     header = {
 
         'top': {
-            'text': _('Место'),
-            'select_text': _('Место'),
+            'text': pgettext('lists', 'Место'),
+            'select_text': pgettext('lists', 'Место'),
             'visible': 'true'
         },
 
         'image': {
             'text': '',
-            'select_text': _('Аватар'),
+            'select_text': pgettext('lists', 'Аватар'),
             'visible': 'true'
         },
 
         'nickname': {
-            'text': _('Никнейм'),
-            'select_text': _('Никнейм'),
+            'text': pgettext('lists', 'Никнейм'),
+            'select_text': pgettext('lists', 'Никнейм'),
             'visible': 'true'
         },
 
@@ -91,13 +92,13 @@ def cash_top(request):
             'image':
             {
                 'text': '',
-                'select_text': _('Герб'),
+                'select_text': pgettext('lists', 'Герб'),
                 'visible': 'true'
             },
             'title':
             {
-                'text': _('Партия'),
-                'select_text': _('Партия'),
+                'text': pgettext('lists', 'Партия'),
+                'select_text': pgettext('lists', 'Партия'),
                 'visible': 'false'
             }
         }
@@ -106,7 +107,7 @@ def cash_top(request):
 
     # отправляем в форму
     return render(request, 'player/redesign/lists/universal_list.html', {
-        'page_name': _('Топ богатейших'),
+        'page_name': pgettext('lists', 'Топ богатейших'),
 
         'player': player,
 

@@ -111,6 +111,82 @@ function setCountValue(line, target){
     setAnotherValues();
 }
 
+function set_component_line(schema, crude, last_crude_name){
+    var cloned_line = document.getElementById('crude_line').cloneNode(true);
+    cloned_line.id = crude + '_line';
+    cloned_line.className += ' cloned_line';
+
+    var crude_name = goods_names[crude];
+    cloned_line.getElementsByClassName("crude_name")[0].innerHTML = crude_name;
+
+    var max_value = 0;
+    if (crude=='energy'){
+        $.ajax({
+            async: false,
+            beforeSend: function() {},
+            type: "GET",
+            url: "/status/0/",
+            dataType: "html",
+            cache: false,
+            success: function(data){
+
+                result = JSON.parse(data);
+
+                $('#cash').html(numberWithSpaces(result.cash));
+
+                $('#gold').html(numberWithSpaces(result.gold));
+                $('#energy').html(result.energy);
+                max_value = Math.floor(result.energy/schema[crude]) * schema[crude]
+            }
+        });
+    }
+    else{
+        max_value = Math.floor(total_stocks[document.getElementById('storage').dataset.value][crude]/schema[crude]) * schema[crude]
+    }
+
+    if(crude == 'energy'){
+        cloned_line.getElementsByClassName("crude_count")[0].classList.add("energy_count");
+        cloned_line.getElementsByClassName("crude_amount")[0].classList.add("energy_count");
+    }
+
+    $(cloned_line.getElementsByClassName("crude_count")[0]).attr('max', max_value);
+    $(cloned_line.getElementsByClassName("crude_amount")[0]).attr('max', max_value);
+
+    $(cloned_line.getElementsByClassName("storage_stocks")[0]).html(numberWithSpaces(max_value));
+
+    $(cloned_line.getElementsByClassName("crude_count")[0]).attr('min', schema[crude]);
+    $(cloned_line.getElementsByClassName("crude_amount")[0]).attr('min', schema[crude]);
+
+    $(cloned_line.getElementsByClassName("crude_count")[0]).attr('step', schema[crude]);
+    $(cloned_line.getElementsByClassName("crude_amount")[0]).attr('step', schema[crude]);
+
+    $(cloned_line.getElementsByClassName("crude_price")[0]).html(price_text + ': ' + numberWithSpaces(schema[crude]));
+
+    if (max_value == 0){
+        $(cloned_line.getElementsByClassName("crude_count")[0]).val(0);
+        $(cloned_line.getElementsByClassName("crude_amount")[0]).val(0);
+    }
+    else{
+        $(cloned_line.getElementsByClassName("crude_count")[0]).val(schema[crude]);
+        $(cloned_line.getElementsByClassName("crude_amount")[0]).val(schema[crude]);
+    }
+
+    cloned_line.getElementsByClassName("crude_count")[0].addEventListener('input', function (e) {
+        setAmountValue(cloned_line, e.target)
+    });
+    cloned_line.getElementsByClassName("crude_amount")[0].addEventListener('input', function (e) {
+        setCountValue(cloned_line, e.target)
+    });
+
+    previous_line = document.getElementById(last_crude_name);
+    insertAfter(cloned_line, previous_line);
+
+    last_crude_name = cloned_line.id;
+    $('#' + crude + '_line').show();
+
+    return last_crude_name;
+}
+
 jQuery(document).ready(function ($) {
 
       // Создаем новый экземпляр MutationObserver
@@ -168,8 +244,8 @@ jQuery(document).ready(function ($) {
         }
 
         var selected = $(e.target).val();
-        for (good in groups_n_goods[selected]){
-            $('#good_' + good ).show();
+        for (let i = 0; i < groups_n_goods[selected].length; i++) {
+            $('#good_' + groups_n_goods[selected][i] ).show();
         }
         // меняем размер пачки ресурсов при изменении группы
         if(consignment_dict[selected] !== undefined){
@@ -198,6 +274,10 @@ jQuery(document).ready(function ($) {
             var opt = document.createElement('option');
             opt.value = schema;
             for (crude in schemas[$('#good').val()][schema]){
+                if(crude == 'Наличные' || crude == 'energy' ){
+                    continue;
+                }
+
                 var crude_name = goods_names[crude];
                 if(opt.innerHTML != ''){
                     opt.innerHTML += ', ';
@@ -206,6 +286,7 @@ jQuery(document).ready(function ($) {
                 else{
                     opt.innerHTML += crude_name;
                 }
+
             }
             schema_select.appendChild(opt);
         }
@@ -230,78 +311,13 @@ jQuery(document).ready(function ($) {
 
         $('#storage_info_block').children(".cloned_line").remove();
 
+        last_crude_name = set_component_line(schema, 'energy', last_crude_name);
+        last_crude_name = set_component_line(schema, 'Наличные', last_crude_name);
+
         for (crude in schema){
-            var cloned_line = document.getElementById('crude_line').cloneNode(true);
-            cloned_line.id = crude + '_line';
-            cloned_line.className += ' cloned_line';
-
-            var crude_name = goods_names[crude];
-            cloned_line.getElementsByClassName("crude_name")[0].innerHTML = crude_name;
-
-            var max_value = 0;
-            if (crude=='energy'){
-                $.ajax({
-                    async: false,
-                    beforeSend: function() {},
-                    type: "GET",
-                    url: "/status/0/",
-                    dataType: "html",
-                    cache: false,
-                    success: function(data){
-
-                        result = JSON.parse(data);
-
-                        $('#cash').html(numberWithSpaces(result.cash));
-
-                        $('#gold').html(numberWithSpaces(result.gold));
-                        $('#energy').html(result.energy);
-                        max_value = Math.floor(result.energy/schema[crude]) * schema[crude]
-                    }
-                });
+            if(crude !== 'Наличные' && crude !== 'energy' ){
+                last_crude_name = set_component_line(schema, crude, last_crude_name);
             }
-            else{
-                max_value = Math.floor(total_stocks[document.getElementById('storage').dataset.value][crude]/schema[crude]) * schema[crude]
-            }
-
-            if(crude == 'energy'){
-                cloned_line.getElementsByClassName("crude_count")[0].classList.add("energy_count");
-                cloned_line.getElementsByClassName("crude_amount")[0].classList.add("energy_count");
-            }
-
-            $(cloned_line.getElementsByClassName("crude_count")[0]).attr('max', max_value);
-            $(cloned_line.getElementsByClassName("crude_amount")[0]).attr('max', max_value);
-
-            $(cloned_line.getElementsByClassName("storage_stocks")[0]).html(numberWithSpaces(max_value));
-
-            $(cloned_line.getElementsByClassName("crude_count")[0]).attr('min', schema[crude]);
-            $(cloned_line.getElementsByClassName("crude_amount")[0]).attr('min', schema[crude]);
-
-            $(cloned_line.getElementsByClassName("crude_count")[0]).attr('step', schema[crude]);
-            $(cloned_line.getElementsByClassName("crude_amount")[0]).attr('step', schema[crude]);
-
-            $(cloned_line.getElementsByClassName("crude_price")[0]).html(price_text + ': ' + numberWithSpaces(schema[crude]));
-
-            if (max_value == 0){
-                $(cloned_line.getElementsByClassName("crude_count")[0]).val(0);
-                $(cloned_line.getElementsByClassName("crude_amount")[0]).val(0);
-            }
-            else{
-                $(cloned_line.getElementsByClassName("crude_count")[0]).val(schema[crude]);
-                $(cloned_line.getElementsByClassName("crude_amount")[0]).val(schema[crude]);
-            }
-
-            cloned_line.getElementsByClassName("crude_count")[0].addEventListener('input', function (e) {
-                setAmountValue(cloned_line, e.target)
-            });
-            cloned_line.getElementsByClassName("crude_amount")[0].addEventListener('input', function (e) {
-                setCountValue(cloned_line, e.target)
-            });
-
-            previous_line = document.getElementById(last_crude_name);
-            insertAfter(cloned_line, previous_line);
-
-            last_crude_name = cloned_line.id;
-            $('#' + crude + '_line').show();
         }
 
         count = document.getElementById('count').value;
@@ -314,7 +330,8 @@ jQuery(document).ready(function ($) {
 
          var sending_data = $(this).serialize();
          sending_data += "&csrfmiddlewaretoken=" + csrftoken + "&storage=" + document.getElementById('storage').dataset.value;
-        $.ajax({
+
+        ajaxSettings = {
             type: "POST",
             url: "/produce/",
             data:  sending_data,
@@ -342,10 +359,22 @@ jQuery(document).ready(function ($) {
                     getStorageStatus(document.getElementById('storage').dataset.value, result.energy);
                 }
                 else{
-                    display_modal('notify', data.header, data.response, null, data.grey_btn)
+                    if (data.response == 'captcha'){
+                        captcha_checking(data);
+                    }
+                    else{
+                        display_modal('notify', data.header, data.response, null, data.grey_btn)
+                    }
                 }
             }
-        });
+        };
+
+        captcha_action = function() {
+            $.ajax(ajaxSettings);
+        };
+
+        $.ajax(ajaxSettings);
+
     });
 
 });

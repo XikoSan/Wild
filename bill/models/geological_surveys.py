@@ -7,7 +7,7 @@ from django.dispatch import receiver
 from django.utils import timezone
 from django.utils.translation import gettext_lazy
 from state.models.parliament.deputy_mandate import DeputyMandate
-from region.region import Region
+from region.models.region import Region
 from bill.models.bill import Bill
 from state.models.treasury import Treasury
 from state.models.parliament.parliament import Parliament
@@ -204,11 +204,19 @@ class GeologicalSurveys(Bill):
 
         return data, 'state/gov/reviewed/geological_surveys.html'
 
+    def get_new_reviewed_bill(self, player):
+
+        data = {'bill': self, 'title': self._meta.verbose_name_raw, 'player': player}
+
+        return data, 'state/redesign/reviewed/geological_surveys.html'
+
     def __str__(self):
         return str(self.exp_value) + " " + self.get_resource_display() + " в " + self.region.region_name
 
     # Свойства класса
     class Meta:
+        # этот тип ЗП выключен
+        abstract = True
 
         verbose_name = "Геологические изыскания"
         verbose_name_plural = "Геологические изыскания"

@@ -1,0 +1,220 @@
+{% extends 'player/redesign/header.html' %}
+{% load static %}
+{% load dict_key %}
+{% load l10n %}{% load i18n %}{% load tz %}
+{% load get_class_name %}
+{% load get_sum %}
+{% load template_svg.war_icon %}
+
+{% block for_scripts_and_css %}
+{% if player.account.is_superuser %}
+<script src='{% static "js/start_war.js" %}?{{ csrf_token }}'></script>
+{% endif %}
+
+<script>
+	window.onload = function war_countdown() {
+		var war_cd_elems = document.getElementsByClassName("war_countdown");
+
+		for (var i = 0; i < war_cd_elems.length; i++) {
+			var war_cd_elem = war_cd_elems[i];
+
+			// получает строку
+			var war_cd_sec_string = $(war_cd_elem).attr('data-text');
+			var war_cd_sec = parseInt(war_cd_sec_string);
+
+			if (war_cd_sec == 0) { } else {
+				var war_cd_h = war_cd_sec / 3600 ^ 0;
+				var war_cd_m = (war_cd_sec - war_cd_h * 3600) / 60 ^ 0;
+				var war_cd_s = war_cd_sec - war_cd_h * 3600 - war_cd_m * 60;
+				war_cd_elem.innerHTML = (war_cd_h < 10 ? "0" + war_cd_h : war_cd_h) + ":" +
+					(war_cd_m < 10 ? "0" + war_cd_m : war_cd_m) + ":" +
+					(war_cd_s < 10 ? "0" + war_cd_s : war_cd_s);
+				war_cd_sec--;
+
+				// запускаем функцию с повторением раз в 1 секунду
+				(function(war_cd_elem, war_cd_sec) {
+					var war_cd_id = setInterval(increase_frame, 1000);
+
+					function increase_frame() {
+						var current_war_cd_h = war_cd_sec / 3600 ^ 0;
+						var current_war_cd_m = (war_cd_sec - current_war_cd_h * 3600) / 60 ^ 0;
+						var current_war_cd_s = war_cd_sec - current_war_cd_h * 3600 - current_war_cd_m * 60;
+						war_cd_elem.innerHTML = (current_war_cd_h < 10 ? "0" + current_war_cd_h : current_war_cd_h) + ":" +
+							(current_war_cd_m < 10 ? "0" + current_war_cd_m : current_war_cd_m) + ":" +
+							(current_war_cd_s < 10 ? "0" + current_war_cd_s : current_war_cd_s);
+
+						if (war_cd_sec == 0) {
+							clearInterval(war_cd_id);
+						} else {
+							war_cd_sec--;
+						}
+					}
+				})(war_cd_elem, war_cd_sec);
+			}
+		}
+	}
+</script>
+{% endblock %}
+
+{% block content %}
+<section class="war">
+		<!-- Заголовок -->
+		<h1 class="war__title ct__page-title">
+			Список войн
+			{% if player.account.is_superuser %}
+			<!-- кнопка начать бой -->
+			<form method="POST" enctype="multipart/form-data" id="start_war">
+				{% csrf_token %}
+				<button type="submit" class="ct__nickname-message ct__square-mid-btn">
+					<svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M13.8682 17.63L13.4206 16.8548L12.1252 17.7011L12.5626 21.337L12.2144 21.5381C11.6193 21.862 11.3449 21.5561 11.2821 21.3626L10.8439 19.3761L10.5771 19.2102L10.274 18.7699L4.99878 24.7442L3.1083 22.3164L6.60396 19.609L7.41768 19.41L9.39333 17.7525L9.63457 16.6042L15.5914 13.165L15.3783 12.7958L17.0645 11.8223L17.1924 12.0438L17.3757 11.9379L17.3011 11.8087L20.2533 10.2766L20.5218 10.3184L22.7213 9.04855C23.2591 9.50592 23.8161 9.3927 24.0273 9.27892L25.7136 8.30537L25.4975 6.83047L25.919 6.58708L26.6117 7.78685L27.1249 7.49055L27.7779 7.60574L21.2346 11.3835L21.4903 11.8265L15.7134 15.408C17.1173 17.1963 19.1827 17.6216 20.0399 17.6107L19.9594 19.503C17.1768 19.5935 14.9974 17.6671 14.2556 16.6926L14.0173 16.8302L14.3264 17.3655L13.8682 17.63ZM13.8682 17.63C13.8731 17.7092 13.8418 17.9061 13.6768 18.0604L12.7603 18.5895M12.3451 17.5741C12.4415 17.7974 12.7417 18.2016 13.1717 18.0321" stroke="var(--c10one)" stroke-width="0.5" stroke-linejoin="bevel"/>
+						<path d="M20.1318 17.5932L20.5794 16.818L21.8748 17.6643L21.4374 21.3002L21.7856 21.5013C22.3807 21.8252 22.6551 21.5192 22.7179 21.3258L23.1561 19.3393L23.4229 19.1734L23.726 18.7331L29.0012 24.7074L30.8917 22.2796L27.396 19.5722L26.5823 19.3732L24.6067 17.7157L24.3654 16.5674L18.8729 13.3962M20.1318 17.5932C20.1269 17.6724 20.1582 17.8693 20.3232 18.0236L21.2397 18.5527M20.1318 17.5932L19.6736 17.3287L19.9827 16.7934L19.7444 16.6558C19.5643 16.8924 19.2994 17.1852 18.9617 17.4915M21.6549 17.5373C21.5585 17.7606 21.2583 18.1648 20.8283 17.9953M16.6243 11.9011L16.6989 11.7719L13.7467 10.2398L13.4782 10.2816L11.2787 9.01174C10.7409 9.46911 10.1839 9.3559 9.97265 9.24212L8.28641 8.26857L8.50255 6.79366L8.08099 6.55028L7.3883 7.75004L6.8751 7.45374L6.22207 7.56893L12.7654 11.3467L12.5097 11.7897L15 13.5M15 17.4426C14.579 17.5416 14.2158 17.5771 13.9601 17.5739L14.0406 19.4662C15.1106 19.501 16.0913 19.2376 16.9355 18.8448M17.0013 16.5674C17.4541 16.2609 17.896 15.8688 18.2866 15.3712L17.0013 14.5743" stroke="var(--c10one)" stroke-width="0.5" stroke-linejoin="bevel"/>
+						<circle cx="17" cy="17" r="16.5" stroke="var(--c10two)"/>
+						<path d="M17 22L18.1226 25.4549H21.7553L18.8164 27.5902L19.9389 31.0451L17 28.9098L14.0611 31.0451L15.1836 27.5902L12.2447 25.4549H15.8774L17 22Z" fill="var(--c10one)"/>
+					</svg>
+				</button>
+			</form>
+			{% endif %}
+		</h1>
+
+		<!--Табы вверху экрана-->
+		<div class="war__tabs ct__top-tabs">
+			<button class="ct__top-tab ct__top-tab1 active ct__mid-btn" onclick="switchMainBlocks(0)">
+				<svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
+					<mask id="mask0_259_317" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+						<path class="geometry1" d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"/>
+					</mask>
+					<g mask="url(#mask0_259_317)">
+						<path class="geometry2" d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z"/>
+						<path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"/>
+						<path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"/>
+						<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
+					</g>
+				</svg>
+				<span>Все войны</span>
+			</button>
+
+			<button class="ct__top-tab ct__top-tab2 ct__mid-btn" onclick="switchMainBlocks(1)">
+				<svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
+					<mask id="mask0_259_318" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+						<path class="geometry1" d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"/>
+					</mask>
+					<g mask="url(#mask0_259_318)">
+						<path class="geometry2" d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z"/>
+						<path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"/>
+						<path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"/>
+						<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
+					</g>
+				</svg>
+				<span>Гос. войны</span>
+			</button>
+		</div>
+
+		<!-- список войн -->
+		<div class="war__listContainer">
+
+			<!-- 1й список -->
+			<div class="war__list active" id="war-block1">
+				<h2>Все войны</h2>
+
+				{% if wars_list %}
+
+				{% for war in wars_list %}
+
+				<a href="/war/{{ war|get_class_name }}/{{ war.pk }}/" class="overview__war overview__war--warpage">
+
+					<!--информация когда есть война-->
+					<div class="overview__war-wrapper">
+						<div class="overview__war-string">
+							<p class="overview__war-text">
+								<img src="/static/img/regions/{{ war.agr_region.on_map_id }}.png">
+								{{ war.agr_region }}
+							</p>
+							<span>{{ war.hq_points }}</span>
+						</div>
+						<div class="overview__war-string">
+							<p class="overview__war-text">
+								<img src="/static/img/regions/{{ war.def_region.on_map_id }}.png">
+								{{ war.def_region }}
+							</p>
+							<span id="{{ war|get_class_name }}_{% localize off %}{{ war.pk }}{% endlocalize %}" class="war_countdown" data-text="{% localize off %}{{ war_countdowns|dict_key:war }}{% endlocalize %}">00:00:00</span>
+						</div>
+					</div>
+
+					{% war_icon player war|get_class_name '' %}
+				</a>
+
+				{% endfor %}
+
+				{% else %}
+				<h2>войн нет</h2>
+
+				{% endif%}
+			</div>
+
+			<!-- 2й список -->
+			<div class="war__list" id="war-block2">
+				<h2>Государственные</h2>
+
+					{% if state_wars_list %}
+
+					{% for war in state_wars_list %}
+
+						<a href="/war/{{ war|get_class_name }}/{{ war.pk }}/" class="overview__war overview__war--warpage">
+
+							<!--информация когда есть война-->
+							<div class="overview__war-wrapper">
+								<div class="overview__war-string">
+									<p class="overview__war-text">
+										<img src="/static/img/regions/{{ war.agr_region.on_map_id }}.png">
+										{{ war.agr_region }}
+									</p>
+									<span>{{ war.hq_points }}</span>
+								</div>
+								<div class="overview__war-string">
+									<p class="overview__war-text">
+										<img src="/static/img/regions/{{ war.def_region.on_map_id }}.png">
+										{{ war.def_region }}
+									</p>
+									<span id="{{ war|get_class_name }}_{% localize off %}{{ war.pk }}{% endlocalize %}-state" class="war_countdown" data-text="{% localize off %}{{ war_countdowns|dict_key:war }}{% endlocalize %}">00:00:00</span>
+								</div>
+							</div>
+
+							{% war_icon player war|get_class_name '' %}
+						</a>
+
+					{% endfor %}
+
+					{% else %}
+					<h2>войн нет</h2>
+
+					{% endif%}
+			</div>
+
+		</div>
+
+
+	</section>
+
+<script>
+
+	//вкладки
+	const warBlocks = {
+    war1: document.getElementById('war-block1'),
+    war2: document.getElementById('war-block2'),
+    tabs: document.querySelectorAll('.war__tabs > button')
+  }
+
+  function switchMainBlocks(num) {
+    if (num === 0) {
+      warBlocks.war1.classList.add('active')
+      warBlocks.war2.classList.remove('active')
+    } else {
+      warBlocks.war1.classList.remove('active')
+      warBlocks.war2.classList.add('active')
+    }
+    warBlocks.tabs.forEach((btn) => btn.classList.remove('active'));
+    warBlocks.tabs[num].classList.add('active');
+  }
+</script>
+{% endblock %}

@@ -3,7 +3,8 @@ from django.shortcuts import redirect, render
 
 from player.views.lists.get_thing_page import get_thing_page
 from django.utils.translation import ugettext as _
-from region.region import Region
+from django.utils.translation import pgettext
+from region.models.region import Region
 from player.player import Player
 from player.decorators.player import check_player
 from party.party import Party
@@ -32,13 +33,13 @@ def region_citizens_list(request, region_pk):
 
         'image': {
             'text': '',
-            'select_text': 'Аватар',
+            'select_text': pgettext('lists', 'Аватар'),
             'visible': 'true'
         },
 
         'nickname': {
-            'text': 'Никнейм',
-            'select_text': 'Никнейм',
+            'text': pgettext('lists', 'Никнейм'),
+            'select_text': pgettext('lists', 'Никнейм'),
             'visible': 'true'
         },
 
@@ -46,13 +47,13 @@ def region_citizens_list(request, region_pk):
             'image':
             {
                 'text': '',
-                'select_text': 'Герб',
+                'select_text': pgettext('lists', 'Герб'),
                 'visible': 'false'
             },
             'title':
             {
-                'text': 'Партия',
-                'select_text': 'Партия',
+                'text': pgettext('lists', 'Партия'),
+                'select_text': pgettext('lists', 'Партия'),
                 'visible': 'false'
             }
         }
@@ -60,7 +61,7 @@ def region_citizens_list(request, region_pk):
 
     # отправляем в форму
     return render(request, 'player/redesign/lists/universal_list.html', {
-        'page_name': _('Граждане региона'),
+        'page_name': pgettext('lists', 'Граждане региона'),
 
         'player': player,
 

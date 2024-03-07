@@ -27,7 +27,7 @@ function fill_by_offers_dict(id){
         document.getElementById("offer_action").innerHTML = offer_sale_button;
     }
     // товар
-    document.getElementById('offer_good').innerHTML = offers_dict[id]['good'];
+    document.getElementById('offer_good').innerHTML = offers_dict[id]['good_key'];
     // владелец
     document.getElementById('offer_owner').innerHTML = offers_dict[id]['offer_own'];
     if (offers_dict[id]['owner_img'] !== null){
@@ -136,17 +136,14 @@ jQuery(document).ready(function ($) {
         {
             $(this).hide();
         });
-        $('#trade_goods').val('default');
+        $('#good_default').show();
+        $('#trade_goods').val('null');
         document.getElementById('trade_goods').dispatchEvent(new Event('change'));
 
         var selected = $(e.target).val();
         for (good in groups_n_goods[selected]){
             $('#good_' + good ).show();
         }
-    });
-
-    $('#trade_goods').change(function(e) {
-        var selected = $(e.target).val();
 
         if (selected != 'default' && selected != null){
             document.getElementById('searchBtn').removeAttribute("disabled");
@@ -155,6 +152,10 @@ jQuery(document).ready(function ($) {
             document.getElementById('searchBtn').setAttribute("disabled", 'true');
         }
     });
+
+//    $('#trade_goods').change(function(e) {
+//        var selected = $(e.target).val();
+//    });
 
     $('#trade_owner').change(function(e) {
         var selected = $(e.target).val();
@@ -199,9 +200,6 @@ jQuery(document).ready(function ($) {
                             offers_dict[line['id']] = {};
                             // тип: покупка или продажа
                             offers_dict[line['id']]['type'] = line['type'];
-                            // товар
-                            offers_dict[line['id']]['good'] = line['good'];
-                            offers_dict[line['id']]['good_key'] = line['good_name'];
                             // склады
                             offers_dict[line['id']]['storages'] = {}
                             for (var key in line['delivery']){
@@ -223,11 +221,14 @@ jQuery(document).ready(function ($) {
                             cloned_line.className = 'offer_line';
                             // id оффера (что открывать в модалке?)
                             cloned_line.dataset.id = line['id'];
+                            // товар
+                            offers_dict[line['id']]['good'] = line['good'];
+                            offers_dict[line['id']]['good_key'] = line['good_name'];
+                            cloned_line.getElementsByClassName("j-t-one")[0].innerHTML = line['good_name'];
                             // герб региона
                             cloned_line.getElementsByClassName("offer_reg")[0].src = 'static/img/regions/' + line['region_img'] + '.png';
                             offers_dict[line['id']]['region_img'] = cloned_line.getElementsByClassName("offer_reg")[0].src;
                             // регион
-                            cloned_line.getElementsByClassName("j-t-two")[0].innerHTML = line['region'];
                             offers_dict[line['id']]['region'] = line['region'];
                             // количество
                             offers_dict[line['id']]['count'] = line['count'];

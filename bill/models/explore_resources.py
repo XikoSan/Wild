@@ -7,7 +7,7 @@ from django.dispatch import receiver
 from django.utils import timezone
 from django.utils.translation import gettext_lazy
 from state.models.parliament.deputy_mandate import DeputyMandate
-from region.region import Region
+from region.models.region import Region
 from bill.models.bill import Bill
 from state.models.treasury import Treasury
 from state.models.parliament.parliament import Parliament
@@ -126,12 +126,12 @@ class ExploreResources(Bill):
                     # обновляем запасы в регионе до максимума
                     setattr(region, self.resource + '_has', getattr(region, self.resource + '_cap'))
 
-                    # истощение: смотрим, сколько десятков пунктов разведывают
-                    depletion = int(ceil(volume / 10))
-                    # уменьшаем лимит в регионе
-                    setattr(region, self.resource + '_cap', getattr(region, self.resource + '_cap') - depletion)
-                    # увеличиваем истощение
-                    setattr(region, self.resource + '_depletion', getattr(region, self.resource + '_depletion') + depletion)
+                    # # истощение: смотрим, сколько десятков пунктов разведывают
+                    # depletion = int(ceil(volume / 10))
+                    # # уменьшаем лимит в регионе
+                    # setattr(region, self.resource + '_cap', getattr(region, self.resource + '_cap') - depletion)
+                    # # увеличиваем истощение
+                    # setattr(region, self.resource + '_depletion', getattr(region, self.resource + '_depletion') + depletion)
 
                     self.cash_cost = cash_cost
                     self.exp_value = Decimal(volume)
@@ -147,12 +147,12 @@ class ExploreResources(Bill):
 
                     # если эта величина - как минимум один пункт
                     if hund_points >= 1:
-                        # истощение: смотрим, сколько десятков пунктов разведывают
-                        depletion = int(ceil(hund_points / 1000))
-                        # уменьшаем лимит в регионе
-                        setattr(region, self.resource + '_cap', getattr(region, self.resource + '_cap') - depletion)
-                        # увеличиваем истощение
-                        setattr(region, self.resource + '_depletion', getattr(region, self.resource + '_depletion') + depletion)
+                        # # истощение: смотрим, сколько десятков пунктов разведывают
+                        # depletion = int(ceil(hund_points / 1000))
+                        # # уменьшаем лимит в регионе
+                        # setattr(region, self.resource + '_cap', getattr(region, self.resource + '_cap') - depletion)
+                        # # увеличиваем истощение
+                        # setattr(region, self.resource + '_depletion', getattr(region, self.resource + '_depletion') + depletion)
 
                         # обновляем запасы в регионе
                         setattr(region, self.resource + '_has', getattr(region, self.resource + '_has') + Decimal(hund_points/100))
@@ -189,6 +189,17 @@ class ExploreResources(Bill):
 
         return data, 'state/gov/drafts/explore_resources.html'
 
+    @staticmethod
+    def get_new_draft(state):
+
+        resources_dict = {}
+        for resource in ExploreResources.resExpChoices:
+            resources_dict[resource[0]] = resource[1]
+
+        data = {'regions': Region.objects.filter(state=state), 'resources': resources_dict}
+
+        return data, 'state/redesign/drafts/explore_resources.html'
+
     def get_bill(self, player, minister, president):
 
         has_right = False
@@ -210,12 +221,38 @@ class ExploreResources(Bill):
 
         return data, 'state/gov/bills/explore_resources.html'
 
+    def get_new_bill(self, player, minister, president):
+
+        has_right = False
+        if minister:
+            for right in minister.rights.all():
+                if self.__class__.__name__ == right.right:
+                    has_right = True
+                    break
+
+        data = {
+            'bill': self,
+            'title': self._meta.verbose_name_raw,
+            'player': player,
+            'president': president,
+            'has_right': has_right,
+            # проверяем, депутат ли этого парла игрок или нет
+            'is_deputy': DeputyMandate.objects.filter(player=player, parliament=Parliament.objects.get(state=player.region.state)).exists(),
+        }
+
+        return data, 'state/redesign/bills/explore_resources.html'
+
     # получить шаблон рассмотренного законопроекта
     def get_reviewed_bill(self, player):
 
         data = {'bill': self, 'title': self._meta.verbose_name_raw, 'player': player}
 
         return data, 'state/gov/reviewed/explore_resources.html'
+
+    def get_new_reviewed_bill(self, player):
+        data = {'bill': self, 'title': self._meta.verbose_name_raw, 'player': player}
+
+        return data, 'state/redesign/reviewed/explore_resources.html'
 
     def __str__(self):
         return str(self.exp_value) + " " + self.get_resource_display() + " в " + self.region.region_name

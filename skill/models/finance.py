@@ -1,26 +1,28 @@
 # coding=utf-8
 from django.db import models
 from skill.models.skill import Skill
+from django.utils.translation import pgettext_lazy
 
-# Промышленная экскавация
+# Подпольное финансирование
 class Finance(Skill):
 
-    description = 'позволяет получать двойное финансирование при прохождении прогрессии'
+    name = pgettext_lazy('skills', "Подпольное финансирование")
+    description = pgettext_lazy('skills', 'позволяет получать двойное финансирование при прохождении прогрессии')
 
     requires = [
         {
             'skill': 'power',
-            'skill_name': 'Сила',
+            'skill_name': pgettext_lazy('skills', 'Сила'),
             'level': 20,
         },
         {
             'skill': 'knowledge',
-            'skill_name': 'Интеллект',
+            'skill_name': pgettext_lazy('skills', 'Интеллект'),
             'level': 20,
         },
         {
             'skill': 'endurance',
-            'skill_name': 'Выносливость',
+            'skill_name': pgettext_lazy('skills', 'Выносливость'),
             'level': 20,
         },
     ]
@@ -29,6 +31,6 @@ class Finance(Skill):
 
 
     class Meta:
-        verbose_name = "Подпольное финансирование"
+        verbose_name = pgettext_lazy('skills', "Подпольное финансирование")
         verbose_name_plural = "Подпольное финансирование"
         abstract = True

@@ -5,19 +5,25 @@ from django.contrib.humanize.templatetags.humanize import intcomma
 from django.db import transaction
 from django.http import JsonResponse
 from django.utils import timezone
+from django.utils.translation import pgettext
+from player.decorators.captcha import captcha
 from math import ceil
-
+import redis
+from factory.models.blueprint import Blueprint
+from factory.models.component import Component
 from factory.models.production_log import ProductionLog
-from factory.models.project import Project
 from player.decorators.player import check_player
 from player.player import Player
+from storage.models.good import Good
+from storage.models.stock import Stock
 from storage.models.storage import Storage
+from storage.views.storage.locks.get_storage import get_stocks
 from storage.views.storage.locks.get_storage import get_storage
-from django.utils.translation import pgettext
 
 
 @login_required(login_url='/')
 @check_player
+@captcha
 @transaction.atomic
 # новое торговое предложение
 def produce_good(request):
@@ -64,8 +70,17 @@ def produce_good(request):
         storage = Storage.actual.select_for_update().get(pk=int(source_pk))
 
         # проверка, существует ли такой ресурс вообще
-        good = request.POST.get('good')
-        if not good or not hasattr(Storage, good):
+        try:
+            good = int(request.POST.get('good'))
+
+        except ValueError:
+            return {
+                'response': pgettext('factory', 'Указанный товар не существует'),
+                'header': pgettext('factory', 'Ошибка производства'),
+                'grey_btn': pgettext('storage', 'Закрыть'),
+            }
+
+        if not good or not Good.objects.filter(pk=good).exists():
             data = {
                 'response': pgettext('factory', 'Указанный товар не существует'),
                 'header': pgettext('factory', 'Ошибка производства'),
@@ -73,7 +88,10 @@ def produce_good(request):
             }
             return JsonResponse(data)
 
-        lock_storage = get_storage(storage, [good, ])
+        # lock_storage = get_storage(storage, [good, ])
+        good = Good.objects.get(pk=good)
+        goods = [good.name_ru, ]
+        ret_stocks, ret_st_stocks = get_stocks(storage, goods)
 
         # проверка, существует ли у товара схема с таким номером
         schema_num = request.POST.get('schema')
@@ -89,7 +107,7 @@ def produce_good(request):
 
         schema_num = int(schema_num)
 
-        if not (0 < schema_num <= len(getattr(Project, good)['resources'])):
+        if not Blueprint.objects.filter(pk=schema_num).exists():
             data = {
                 'response': pgettext('factory', 'Указанной схемы не существует'),
                 'header': pgettext('factory', 'Ошибка производства'),
@@ -127,41 +145,43 @@ def produce_good(request):
             return JsonResponse(data)
 
         # узнать, хватает ли места на складе для нового товара
-        if count + getattr(lock_storage, good) > getattr(lock_storage, good + '_cap'):
+        sizetype_stocks = ret_st_stocks[good.size]
+        if not storage.capacity_check(good.size, count, sizetype_stocks):
             data = {
                 'header': pgettext('factory', 'Ошибка производства'),
                 'grey_btn': pgettext('storage', 'Закрыть'),
                 'response': pgettext('factory', 'Недостаточно места на складе для товара. В наличии ') + str(intcomma(
-                    getattr(lock_storage, good + '_cap') - getattr(lock_storage, good))) + pgettext('factory', ', требуется ') + str(
+                    getattr(storage, good.size + '_cap') - sizetype_stocks)) + pgettext('factory',
+                                                                                        ', требуется ') + str(
                     intcomma(count)),
             }
             return JsonResponse(data)
 
         # получить по номеру схемы схему
-        schema = getattr(Project, good)['resources'][schema_num - 1]
+        schema = Blueprint.objects.get(pk=schema_num)
 
         # получить затраты энергии
-        energy_cost = getattr(Project, good)['energy'] * count
+        energy_cost = schema.energy_cost * count
 
         # только для материалов
-        if good in getattr(Storage, 'materials').keys():
+        if good.type == 'materials':
             # если изучена Стандартизация
             Standardization = apps.get_model('skill.Standardization')
             if Standardization.objects.filter(player=player, level__gt=0).exists():
                 # лимит производства на единицу энергии
                 consignment = Standardization.objects.get(player=player).level + 1
                 # новая стоимость в энергии - цена за "пачку", даже неполную
-                energy_cost = ceil(count / consignment) * getattr(Project, good)['energy']
+                energy_cost = ceil(count / consignment) * schema.energy_cost
 
         # только для юнитов
-        if good in getattr(Storage, 'units').keys():
+        if good.type == 'units':
             # если изучено Режимное производство
             MilitaryProduction = apps.get_model('skill.MilitaryProduction')
             if MilitaryProduction.objects.filter(player=player, level__gt=0).exists():
                 # лимит производства на единицу энергии
                 consignment = MilitaryProduction.objects.get(player=player).level + 1
                 # новая стоимость в энергии - цена за "пачку", даже неполную
-                energy_cost = ceil(count / consignment) * getattr(Project, good)['energy']
+                energy_cost = ceil(count / consignment) * schema.energy_cost
 
         # посчитать, хватает ли энергии для производства
         if energy_cost > player.energy \
@@ -169,32 +189,68 @@ def produce_good(request):
             data = {
                 'header': pgettext('factory', 'Ошибка производства'),
                 'grey_btn': pgettext('storage', 'Закрыть'),
-                'response': pgettext('factory', 'Недостаточно энергии. В наличии ') + str(player.energy) + pgettext('factory', ', требуется ') + str(
+                'response': pgettext('factory', 'Недостаточно энергии. В наличии ') + str(player.energy) + pgettext(
+                    'factory', ', требуется ') + str(
                     intcomma(energy_cost)),
             }
             return JsonResponse(data)
 
         # получить словарик со всеми читабальными названиями товаров
-        goods_names = {'cash': getattr(Storage, 'valut')['cash']}
-        for db_type in getattr(Storage, 'types').keys():
-            for good_db_name in getattr(Storage, db_type).keys():
-                goods_names[good_db_name] = getattr(Storage, db_type)[good_db_name]
+        goods_names = {
+            'cash': pgettext('goods', 'Наличные'),
+        }
+
+        components = Component.objects.filter(blueprint=schema)
+
+        # список с сырьём и продукцией
+        goods = [good,]
+
+        for component in components:
+            # узнаем имя
+            goods_names[component.good.pk] = component.good.name
+            # добавляем сырье в список товаров, которые обрабатываются
+            goods.append(component.good)
+
+        # отдельная проверка на достаточность денег
+        if schema.cash_cost * count > storage.cash:
+            required = schema.cash_cost * count
+            data = {
+                'header': pgettext('factory', 'Ошибка производства'),
+                'grey_btn': pgettext('storage', 'Закрыть'),
+                'response': pgettext('factory', 'Недостаточно ') + str(goods_names['cash']) + pgettext('factory',
+                                                                                                         '. В наличии ') + str(
+                    intcomma(storage.cash)) + pgettext('factory', ', требуется ') + str(
+                    intcomma(required)),
+            }
+            return JsonResponse(data)
+
+        stocks = Stock.objects.select_for_update().filter(storage=storage, good__in=goods, stock__gt=0)
 
         # для каждого сырья в схеме производства
-        for material in schema.keys():
+        for component in components:
             # узнать, хватает ли запасов на выбранном складе
-            if schema[material] * count > getattr(storage, material):
-                required = schema[material] * count
+            if not stocks.filter(good=component.good).exists() \
+                    or component.count * count > stocks.get(good=component.good).stock:
+
+                required = component.count * count
+                if not stocks.filter(good=component.good).exists():
+                    in_stock = 0
+                else:
+                    in_stock = stocks.get(good=component.good).stock
+
                 data = {
                     'header': pgettext('factory', 'Ошибка производства'),
                     'grey_btn': pgettext('storage', 'Закрыть'),
-                    'response': pgettext('factory', 'Недостаточно ') + str(goods_names[material]) + pgettext('factory', '. В наличии ') + str(
-                        intcomma(getattr(storage, material))) + pgettext('factory', ', требуется ') + str(intcomma(required)),
+                    'response': pgettext('factory', 'Недостаточно ') + str(goods_names[component.good.pk]) + pgettext('factory',
+                                                                                                             '. В наличии ') + str(
+                        intcomma(in_stock)) + pgettext('factory', ', требуется ') + str(
+                        intcomma(required)),
                 }
                 return JsonResponse(data)
 
         # списать энергию игрока
-        player.energy_cons(energy_cost)
+        # player.energy_cons(value=energy_cost)
+        player.energy_cons(value=energy_cost, mul=1)
 
         # from player.game_event.energy_spent import EnergySpent
         # from django.contrib.humanize.templatetags.humanize import number_format
@@ -216,26 +272,60 @@ def produce_good(request):
                                      good=good,
                                      prod_value=count,
                                      )
+
+        # списываем деньги отдельно
+        storage.cash -= schema.cash_cost * count
+        # создаём лог производства
+        ProductionLog.objects.create(player=player,
+                                     prod_storage=storage,
+                                     good_move='outcm',
+                                     cash=True,
+                                     prod_value=schema.cash_cost * count,
+                                     )
+
         # для каждого сырья в схеме
-        for material in schema.keys():
-            # установить новое значени склада
-            setattr(storage, material, getattr(storage, material) - (schema[material] * count))
+        for component in components:
+            # установить новое значение Запаса
+            stock = stocks.get(good=component.good)
+            stock.stock -= component.count * count
+            stock.save()
             # залогировать траты со склада
             # создаём лог производства
             ProductionLog.objects.create(player=player,
                                          prod_storage=storage,
                                          good_move='outcm',
-                                         good=material,
-                                         prod_value=schema[material] * count,
+                                         good=component.good,
+                                         prod_value=component.count * count,
                                          )
 
         # добавить товар на склад
-        setattr(storage, good, getattr(storage, good) + count)
+        stock, created = Stock.objects.get_or_create(
+            storage=storage,
+            good=good,
+        )
+        stock.stock += count
+        stock.save()
+
         # сохранить склад
         storage.save()
 
         # удаляем записи старше месяца
         ProductionLog.objects.filter(player=player, dtime__lt=timezone.now() - datetime.timedelta(days=30)).delete()
+
+        r = redis.StrictRedis(host='redis', port=6379, db=0)
+        if player.party:
+            # партийная информация
+            if r.exists("party_factory_" + str(player.party.pk)):
+                r.set("party_factory_" + str(player.party.pk),
+                      int(float(r.get("party_factory_" + str(player.party.pk)))) + count)
+            else:
+                r.set("party_factory_" + str(player.party.pk), count)
+
+        # общий счетчик
+        if r.exists("all_factory"):
+            r.set("all_factory", int(float(r.get("all_factory"))) + count)
+        else:
+            r.set("all_factory", count)
 
         # if sum:
         #     data = {

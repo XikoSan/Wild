@@ -10,6 +10,7 @@ from storage.models.auction.auction import BuyAuction
 from storage.models.auction.auction_bet import AuctionBet
 from storage.models.auction.auction_lot import AuctionLot
 from storage.models.storage import Storage
+from storage.models.good import Good
 
 
 @login_required(login_url='/')
@@ -32,15 +33,10 @@ def get_auctions(request):
             # узнаём группы товаров
             groups = request.POST.get('groups').split(',')
 
-            goods_list = []
-            for group in groups:
-                if group in Storage.types.keys():
-                    for good in getattr(Storage, group).keys():
-                        goods_list.append(good)
+            kwargs['good__in'] = Good.objects.only("player").filter(type__in=groups)
 
-            if goods_list:
-                kwargs['good__in'] = goods_list
-
+        from player.logs.print_log import log
+        log(kwargs)
         offers = BuyAuction.actual.filter(**kwargs)
 
         offers_pk_list = []
@@ -77,8 +73,8 @@ def get_auctions(request):
             offer_time = timezone.localtime(offer.create_date, pytz.timezone(player.time_zone))
 
             offer_dict = {'id': offer.pk,
-                          'good': offer.get_good_display(),
-                          'good_name': offer.good,
+                          'good': offer.good.name,
+                          'good_name': offer.good.pk,
                           'time': offer_time.strftime('%d.%m %H:%M'),
                           'owner': offer.treasury_lock.lock_treasury.state.title,
                           'count': offer_lots.aggregate(Sum('count'))['count__sum'],

@@ -30,9 +30,13 @@ urlpatterns = [
                   path('sentry-debug/', trigger_error),
                   path('', include('social_django.urls', namespace='social')),
                   path('accounts/', include('allauth.urls')),
+                  path('summernote/', include('django_summernote.urls')),
+
                   url(r'', include('player.url')),
                   url(r'', include('player.urls.skills')),
                   url(r'', include('region.urls')),
+
+                  url(r'', include('article.urls.article')),
 
                   url(r'', include('storage.urls.storage')),
                   url(r'', include('storage.urls.assets')),

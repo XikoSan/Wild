@@ -1,0 +1,4 @@
+SELECT string_agg(column_name, ', ') AS column_names
+FROM information_schema.columns
+WHERE table_name = 'region_region'
+  AND table_schema = 'public';

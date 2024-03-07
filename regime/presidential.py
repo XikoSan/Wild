@@ -1,16 +1,18 @@
 # coding=utf-8
 
+from django.utils import timezone
+
 from gov.models.president import President
 from regime.regime import Regime
-from state.models.parliament.parliament import Parliament
 from regime.temporary import Temporary
-from state.models.parliament.deputy_mandate import DeputyMandate
 from state.models.capital import Capital
+from state.models.parliament.deputy_mandate import DeputyMandate
+from state.models.parliament.parliament import Parliament
 from state.models.treasury import Treasury
+
 
 # президентская республика
 class Presidential(Regime):
-
     allowed_source = [
         'Temporary',
     ]
@@ -72,9 +74,10 @@ class Presidential(Regime):
             leader = President(
                 state=state
             )
+            leader.foundation_date = timezone.now()
+            leader.elections_day = leader.foundation_date.weekday()
 
             leader.save()
-
 
     @staticmethod
     def dissolution(state):

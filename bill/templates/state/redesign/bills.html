@@ -1,0 +1,47 @@
+{% load static %}
+{% load get_attr %}
+{% load get_sum %}
+{% load get_mod %}
+{% load dict_key %}
+{% load government.redesign.get_bill %}
+{% load l10n %}{% load i18n %}
+
+<div class="gover__block gover__all active">
+    <table class="gover__table">
+        <tbody>
+            {% for bill in bills_list %}
+                {% get_bill %}
+            {% endfor %}
+
+            <tr style="display: none">
+                <td>
+                    <p>объявление войны</p>
+                    <p style="font-weight: 700;">10.06.2023 16:36</p>
+                </td>
+                <td>
+                    <div class="gover__withImage">
+                        <img src="img/gerb.png" alt="">
+                        <span>Саксония-Анхальт</span>
+                    </div>
+                </td>
+                <!--видно на только пк-->
+                <td class="gover__tableDopInfo">
+                    <span>наземная</span>
+                </td>
+                <!--видно на только пк-->
+                <td class="gover__tableCancel">
+                    <a href="##">cheshiretail</a>
+                    <button>❌</button>
+                </td>
+                <!--видно на только пк-->
+                <td class="gover__tableVote">
+                    <button>👎</button>
+                    <button>👍</button>
+                </td>
+                <td class="gover__tableInfoTd">
+                    <button class="gover__tableInfo" onclick="goverInfoModal.getInnerContent(this)">&#8505</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

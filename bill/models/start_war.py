@@ -9,8 +9,8 @@ from django.utils import timezone
 from bill.models.bill import Bill
 from bill.views.get_victim_regions import get_victims
 from player.views.get_subclasses import get_subclasses
-from region.neighbours import Neighbours
-from region.region import Region
+from region.models.neighbours import Neighbours
+from region.models.region import Region
 from state.models.parliament.deputy_mandate import DeputyMandate
 from state.models.parliament.parliament import Parliament
 from war.models.wars.war import War
@@ -228,6 +228,27 @@ class StartWar(Bill):
 
         return data, 'state/gov/drafts/start_war.html'
 
+    @staticmethod
+    def get_new_draft(state):
+
+        first = None
+        victimRegions = get_victims(state)
+
+        from player.logs.print_log import log
+        log(victimRegions)
+        log(list(victimRegions.keys()))
+
+        if len(list(victimRegions.keys())) > 0:
+            first = list(victimRegions.keys())[0]
+
+        data = {
+            'reg_list': list(victimRegions.keys()),
+            'first': first,
+            'victims_list': victimRegions,
+        }
+
+        return data, 'state/redesign/drafts/start_war.html'
+
     def get_bill(self, player, minister, president):
 
         has_right = False
@@ -250,6 +271,28 @@ class StartWar(Bill):
 
         return data, 'state/gov/bills/start_war.html'
 
+    def get_new_bill(self, player, minister, president):
+
+        has_right = False
+        if minister:
+            for right in minister.rights.all():
+                if self.__class__.__name__ == right.right:
+                    has_right = True
+                    break
+
+        data = {
+            'bill': self,
+            'title': self._meta.verbose_name_raw,
+            'player': player,
+            'president': president,
+            'has_right': has_right,
+            # проверяем, депутат ли этого парла игрок или нет
+            'is_deputy': DeputyMandate.objects.filter(player=player, parliament=Parliament.objects.get(
+                state=player.region.state)).exists(),
+        }
+
+        return data, 'state/redesign/bills/start_war.html'
+
     # получить шаблон рассмотренного законопроекта
     def get_reviewed_bill(self, player):
 
@@ -257,12 +300,18 @@ class StartWar(Bill):
 
         return data, 'state/gov/reviewed/start_war.html'
 
+    # получить шаблон рассмотренного законопроекта
+    def get_new_reviewed_bill(self, player):
+        data = {'bill': self, 'title': self._meta.verbose_name_raw, 'player': player}
+
+        return data, 'state/redesign/reviewed/start_war.html'
+
     def __str__(self):
         return self.region.region_name + ' против ' + self.region_to.region_name
 
     # Свойства класса
     class Meta:
-
+        # abstract = True
         verbose_name = "Объявление войны"
         verbose_name_plural = "Объявления войн"
 

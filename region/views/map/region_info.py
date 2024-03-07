@@ -9,7 +9,7 @@ from time import gmtime
 from time import strftime
 from player.decorators.player import check_player
 from player.player import Player
-from region.region import Region
+from region.models.region import Region
 from region.views.distance_counting import distance_counting
 from region.views.time_in_flight import time_in_flight
 

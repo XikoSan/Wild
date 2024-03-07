@@ -15,11 +15,15 @@ from player.forms import ImageForm
 from region.building.hospital import Hospital
 from player.forms import NewPlayerForm
 from player.player import Player
-from region.region import Region
+from region.models.region import Region
 from storage.models.storage import Storage
 # from django.db.models import F
 from wild_politics.settings import JResponse
-
+from chat.dialogue_consumers import _append_message
+from chat.models.messages.chat import Chat
+from chat.models.messages.chat_members import ChatMembers
+from player.lootbox.lootbox import Lootbox
+from player.game_event.game_event import GameEvent
 
 # Функция создания нового персонажа
 def player_create(request, form):
@@ -51,6 +55,32 @@ def player_create(request, form):
     #     'Welcome! I am the creator and administrator of this game. This message was created automatically - but you can reply to me, ask your question right here, or by contacting me through VK/Discord. I highly recommend reading the “First Steps” article on the Wiki, and joining one of the parties in your state’s parliament. If you have any difficulties with the game or with team finding - write to me, I will help. Also, I will be glad to feedback. Have a nice game!'),
     #                new=True)
     # mess.save()
+
+    chat = Chat.objects.create()
+    chat_id = chat.pk
+
+    admin = Player.objects.only('id').get(pk=1)
+
+    member, created = ChatMembers.objects.get_or_create(
+        chat=chat,
+        player=admin,
+    )
+    member, created = ChatMembers.objects.get_or_create(
+        chat=chat,
+        player=character,
+    )
+
+    _append_message(chat_id=chat_id, author=admin, text='Добро пожаловать в Wild Politics! Вы всегда можете обратиться ко мне прямо в этом чате - либо связаться со мной через группу игры ВК или чат в Телеграмм. Я открыт к любым вопросам и пожеланиям.')
+    _append_message(chat_id=chat_id, author=admin, text='Если найдётся время, расскажите, пожалуйста, о своих впечатлениях от игры - мне это важно. Приятной игры!')
+
+    # if GameEvent.objects.filter(running=True, type='ny', event_start__lt=timezone.now(), event_end__gt=timezone.now()).exists():
+    if Lootbox.objects.filter(player=character).exists():
+        lbox = Lootbox.objects.get(player=character)
+    else:
+        lbox = Lootbox(player=character)
+
+    lbox.stock += 1
+    lbox.save()
 
     return character
 

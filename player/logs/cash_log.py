@@ -25,6 +25,7 @@ class CashLog(Log):
         ('store', pgettext_lazy('cash_log', 'Операции со Складом')),
         ('trans', pgettext_lazy('cash_log', 'Передача товаров')),
         ('trade', pgettext_lazy('cash_log', 'Торговля')),
+        ('bonus', 'Бонус-код'),
         ('auct', pgettext_lazy('cash_log', 'Гос. закупки')),
         ('skill', pgettext_lazy('cash_log', 'Навыки')),
     )

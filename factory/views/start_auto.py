@@ -11,6 +11,8 @@ from wild_politics.settings import JResponse
 from django.utils.translation import ugettext
 from django.utils.translation import pgettext
 from factory.models.project import Project
+from storage.models.good import Good
+from factory.models.blueprint import Blueprint
 
 
 # выкопать ресурсы по запросу игрока
@@ -39,15 +41,8 @@ def start_auto_produce(request):
             return JResponse(data)
 
         good = request.POST.get('good')
-        produced_goods = []
-        # собираем из Склада все поля ресурсов
-        for category in ['materials', 'equipments', 'units']:
-            for product in getattr(Storage, category).keys():
-                if product == 'station':
-                    continue
-                produced_goods.append(product)
 
-        if not good in produced_goods:
+        if not Good.objects.filter(pk=int(good)).exists():
             data = {
                 'response': pgettext('auto_produce', 'Неизвестный тип товара'),
                 'header': pgettext('auto_produce', 'Ошибка автоматического производства'),
@@ -55,8 +50,10 @@ def start_auto_produce(request):
             }
             return JResponse(data)
 
+        good = Good.objects.get(pk=int(good))
+
         # производится ли такой товар?
-        if not getattr(Project, good):
+        if not Blueprint.objects.filter(good=good).exists():
             data = {
                 'response': pgettext('auto_produce', 'Данный товар невозможно произвести'),
                 'header': pgettext('auto_produce', 'Ошибка автоматического производства'),
@@ -78,7 +75,7 @@ def start_auto_produce(request):
 
         schema_num = int(schema_num)
 
-        if not (0 < schema_num <= len(getattr(Project, good)['resources'])):
+        if not Blueprint.objects.filter(pk=schema_num, good=good).exists():
             data = {
                 'response': pgettext('factory', 'Указанной схемы не существует'),
                 'header': pgettext('factory', 'Ошибка производства'),
@@ -88,7 +85,7 @@ def start_auto_produce(request):
 
         storage_pk = request.POST.get('storage')
 
-        # если у игрока нет Склада в этом регионе, то Нефть и Руду собирать он не сможет
+        # если у игрока нет Склада в этом регионе, то производство не запустится
         if not Storage.actual.filter(pk=storage_pk, owner=player).exists():
             data = {
                 'response': pgettext('auto_produce', 'Указанный склад вам не принадлежит'),

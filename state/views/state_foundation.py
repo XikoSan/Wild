@@ -5,7 +5,7 @@ from django.db import transaction
 
 from player.decorators.player import check_player
 from player.player import Player
-from region.region import Region
+from region.models.region import Region
 from state.models.capital import Capital
 from state.models.state import State
 from state.models.treasury import Treasury

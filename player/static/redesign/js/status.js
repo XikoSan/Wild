@@ -64,7 +64,9 @@ function callable_countdown() {
 
 var timer_id = 'timer';
 
-window.onload = function countdown() {
+jQuery(document).ready(function ($) {
+
+    console.log('onload');
 
     if (document.getElementById("refill-countdown") != undefined){
         var elem = document.getElementById("refill-countdown");
@@ -104,6 +106,8 @@ window.onload = function countdown() {
     if (document.getElementById("increase-countdown") != undefined){
         var inc_elem = document.getElementById("increase-countdown");
 
+        console.log('onload');
+
         //получает строку
         var inc_sec_string = $('#increase-countdown').attr('data-text');
         var inc_sec = parseInt(inc_sec_string);
@@ -142,8 +146,7 @@ window.onload = function countdown() {
             }
         }
     }
-}
-
+});
 
 function actualize(){
     $.ajax({

@@ -12,20 +12,47 @@ from storage.models.storage import Storage
 from storage.models.trade_offer import TradeOffer
 from storage.models.trading_log import TradingLog
 from storage.models.transport import Transport
+from storage.models.good import Good
+from storage.models.stock import Stock
+from modeltranslation.admin import TabbedTranslationAdmin
 
 class TradeOfferAdmin(admin.ModelAdmin):
     exclude = ('accepters',)
 
     search_fields = ['player__nickname']
-    raw_id_fields = ('owner_storage', )
-    list_display = ('owner_storage', 'type', 'good', 'price', 'deleted')
+    raw_id_fields = ('owner_storage',)
+    list_display = ('owner_storage', 'type', 'get_good_name', 'price', 'deleted')
     list_filter = ('deleted',)
+
+    def get_good_name(self, obj):
+        if obj.wild_pass:
+            return 'Wild Pass'
+        else:
+            return obj.offer_good.name
 
     # formfield_overrides = {
     #     models.ManyToManyField: {'widget': widgets.FilteredSelectMultiple(verbose_name='Принявшие ордер',
     #                                                                       is_stacked=False)},
     # }
 
+
+class GoodAdmin(TabbedTranslationAdmin):
+    list_tabs = ['name',]
+    list_display = ['name', 'type', 'size', 'volume', ]
+    list_filter = ('type', 'size',)
+
+
+class StockAdmin(admin.ModelAdmin):
+    search_fields = ['good__name', '=storage__pk',]
+    raw_id_fields = ('storage', 'good',)
+    list_display = ['storage', 'stock', 'get_good', ]
+
+    def get_good(self, obj):
+        return obj.good.name
+
+class TransportAdmin(admin.ModelAdmin):
+    model = Transport
+    raw_id_fields = ('storage_from', 'storage_to', 'good',)
 
 class GoodLockAdmin(admin.ModelAdmin):
     model = GoodLock
@@ -40,25 +67,16 @@ class GoodLockAdmin(admin.ModelAdmin):
         return obj.lock_storage.region.region_name
 
 
+
+class StockInline(admin.TabularInline):
+    model = Stock
+
+
 class StorageAdmin(admin.ModelAdmin):
     search_fields = ['owner__nickname', 'region__region_name']
     raw_id_fields = ('owner', 'region',)
     list_display = ['owner', 'region', ]
-
-    fields = ['get_fields',]
-
-    def get_fields(self, req, obj):
-        fields = (
-            ('owner', 'region'),
-            ('deleted'),
-            ('level', 'was_moved'),
-            ('cash'),
-        )
-        for type in Storage.types:
-            for good in getattr(Storage, type):
-                fields = fields + ((good, good + '_cap'),)
-
-        return fields
+    inlines = [StockInline]
 
 
 class CashLockAdmin(admin.ModelAdmin):
@@ -77,14 +95,14 @@ class BuyAuctionAdmin(admin.ModelAdmin):
 
 
 class AuctionLotAdmin(admin.ModelAdmin):
-    raw_id_fields = ('auction',)
+    raw_id_fields = ('auction', 'win_storage',)
 
     search_fields = ['auction__pk']
 
     list_display = ['get_good', 'count', ]
 
     def get_good(self, obj):
-        return obj.auction.get_good_display()
+        return obj.auction.good.name_ru
 
     get_good.short_description = 'Товар'
 
@@ -97,14 +115,17 @@ class AuctionBetAdmin(admin.ModelAdmin):
     list_display = ['get_good', 'price', ]
 
     def get_good(self, obj):
-        return obj.auction_lot.auction.get_good_display()
+        return obj.auction_lot.auction.good.name
 
     get_good.short_description = 'Товар'
 
 
 # Register your models here.
+admin.site.register(Good, GoodAdmin)
+# admin.site.register(Stock)
+admin.site.register(Stock, StockAdmin)
 admin.site.register(Storage, StorageAdmin)
-admin.site.register(Transport)
+admin.site.register(Transport, TransportAdmin)
 admin.site.register(Destroy)
 admin.site.register(TradeOffer, TradeOfferAdmin)
 admin.site.register(GoodLock, GoodLockAdmin)

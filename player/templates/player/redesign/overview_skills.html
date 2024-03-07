@@ -1,6 +1,7 @@
 {% load get_sum %}
 {% load get_sub %}
 {% load get_mul %}
+{% load get_int_mul %}
 {% load get_pow %}
 {% load l10n %}{% load i18n %}
 {% load tz %}
@@ -17,10 +18,10 @@
 </button>
 <!--сила-->
 <div class="overview__love-stat-content active">
-  <h2>{% trans 'Сила' %}</h2>
+  <h2>{% trans 'Сила' context "skills" %}</h2>
   <div style="background-color: tomato;"></div>
   {% if train and train.skill == 'power' %}
-  <p class="overview__love-stat-timer">{% trans 'Завершение' %}: {{ train.end_dtime|timezone:player.time_zone|date:"d.m.Y H:i" }}</p>
+  <p class="overview__love-stat-timer">{% trans 'Завершение' context "skills" %}: {{ train.end_dtime|timezone:player.time_zone|date:"d.m.Y H:i" }}</p>
   {% endif %}
   <div class="overview__love-stat-price-time">
     <p class="overview__love-p-with-svg">
@@ -38,13 +39,13 @@
         <path d="M7 2.24V7.07L10.71 10.78" stroke="var(--c10two)"/>
       </svg>
         {% if premium %}
-            {{ player.power|get_sum:power_count|get_sum:1|get_mul:2400|get_hh_mm_ss }}
+            {{ player.power|get_sum:power_count|get_sum:1|get_mul:2400|get_int_mul:boost|get_hh_mm_ss }}
         {% else %}
-            {{ player.power|get_sum:power_count|get_sum:1|get_mul:3600|get_hh_mm_ss }}
+            {{ player.power|get_sum:power_count|get_sum:1|get_mul:3600|get_int_mul:boost|get_hh_mm_ss }}
         {% endif %}
     </p>
   </div>
-  <button class="overview__love-stat-learn" {% if not train or premium and has_slot  %} onclick="up_skill('power')" {% else %} disabled {% endif %} style="cursor: pointer">
+  <button class="overview__love-stat-learn eduBlock4" {% if not train or premium and has_slot  %} onclick="up_skill('power')" {% else %} disabled {% endif %} style="cursor: pointer">
     {% if train %}
         {% if premium %}
             {% if has_slot %}
@@ -60,16 +61,16 @@
             {% endif %}
         {% endif %}
     {% else %}
-    {% trans 'изучить' %}
+    {% trans 'изучить' context "skills" %}
     {% endif %}
   </button>
 </div>
 <!--интеллект-->
 <div class="overview__love-stat-content">
-  <h2>{% trans 'Интеллект' %}</h2>
+  <h2>{% trans 'Интеллект' context "skills" %}</h2>
   <div style="background-color: #4791FF;"></div>
   {% if train and train.skill == 'knowledge' %}
-  <p class="overview__love-stat-timer">{% trans 'Завершение' %}: {{ train.end_dtime|timezone:player.time_zone|date:"d.m.Y H:i" }}</p>
+  <p class="overview__love-stat-timer">{% trans 'Завершение' context "skills" %}: {{ train.end_dtime|timezone:player.time_zone|date:"d.m.Y H:i" }}</p>
   {% endif %}
   <div class="overview__love-stat-price-time">
     <p class="overview__love-p-with-svg">
@@ -87,13 +88,13 @@
         <path d="M7 2.24V7.07L10.71 10.78" stroke="var(--c10two)"/>
       </svg>
         {% if premium %}
-            {{ player.knowledge|get_sum:knowledge_count|get_sum:1|get_mul:2400|get_hh_mm_ss }}
+            {{ player.knowledge|get_sum:knowledge_count|get_sum:1|get_mul:2400|get_int_mul:boost|get_hh_mm_ss }}
         {% else %}
-            {{ player.knowledge|get_sum:knowledge_count|get_sum:1|get_mul:3600|get_hh_mm_ss }}
+            {{ player.knowledge|get_sum:knowledge_count|get_sum:1|get_mul:3600|get_int_mul:boost|get_hh_mm_ss }}
         {% endif %}
     </p>
   </div>
-  <button class="overview__love-stat-learn" {% if not train or premium and has_slot  %} onclick="up_skill('knowledge')" {% else %} disabled {% endif %} style="cursor: pointer">
+  <button class="overview__love-stat-learn eduBlock4" {% if not train or premium and has_slot  %} onclick="up_skill('knowledge')" {% else %} disabled {% endif %} style="cursor: pointer">
     {% if train %}
         {% if premium %}
             {% if has_slot %}
@@ -109,16 +110,16 @@
             {% endif %}
         {% endif %}
     {% else %}
-    {% trans 'изучить' %}
+    {% trans 'изучить' context "skills" %}
     {% endif %}
   </button>
 </div>
 <!--выносливость-->
 <div class="overview__love-stat-content">
-  <h2>{% trans 'Выносливость' %}</h2>
+  <h2>{% trans 'Выносливость' context "skills" %}</h2>
   <div style="background-color: #8DFF47;"></div>
   {% if train and train.skill == 'endurance' %}
-  <p class="overview__love-stat-timer">{% trans 'Завершение' %}: {{ train.end_dtime|timezone:player.time_zone|date:"d.m.Y H:i" }}</p>
+  <p class="overview__love-stat-timer">{% trans 'Завершение' context "skills" %}: {{ train.end_dtime|timezone:player.time_zone|date:"d.m.Y H:i" }}</p>
   {% endif %}
   <div class="overview__love-stat-price-time">
     <p class="overview__love-p-with-svg">
@@ -136,13 +137,13 @@
         <path d="M7 2.24V7.07L10.71 10.78" stroke="var(--c10two)"/>
       </svg>
         {% if premium %}
-            {{ player.endurance|get_sum:endurance_count|get_sum:1|get_mul:2400|get_hh_mm_ss }}
+            {{ player.endurance|get_sum:endurance_count|get_sum:1|get_mul:2400|get_int_mul:boost|get_hh_mm_ss }}
         {% else %}
-            {{ player.endurance|get_sum:endurance_count|get_sum:1|get_mul:3600|get_hh_mm_ss }}
+            {{ player.endurance|get_sum:endurance_count|get_sum:1|get_mul:3600|get_int_mul:boost|get_hh_mm_ss }}
         {% endif %}
     </p>
   </div>
-  <button class="overview__love-stat-learn" {% if not train or premium and has_slot  %} onclick="up_skill('endurance')" {% else %} disabled {% endif %} style="cursor: pointer">
+  <button class="overview__love-stat-learn eduBlock4" {% if not train or premium and has_slot  %} onclick="up_skill('endurance')" {% else %} disabled {% endif %} style="cursor: pointer">
     {% if train %}
         {% if premium %}
             {% if has_slot %}
@@ -158,7 +159,7 @@
             {% endif %}
         {% endif %}
     {% else %}
-    {% trans 'изучить' %}
+    {% trans 'изучить' context "skills" %}
     {% endif %}
   </button>
 </div>
@@ -173,16 +174,16 @@
 {% if premium %}
 <script>
     var cancel_skill_pk = null;
-    var cnl_header = '{% trans 'Отмена изучения навыка' context "skill_cancel" %}';
-    var cnl_text = '{% trans 'Изучение навыка будет отменено. Продолжить?' context "skill_cancel" %}';
-    var cnl_yes = '{% trans 'Продолжить' %}';
-    var cnl_cancel = '{% trans 'Отмена' %}';
+    var cnl_header = '{% trans 'Отмена изучения навыка' context "skills" %}';
+    var cnl_text = '{% trans 'Изучение навыка будет отменено. Продолжить?' context "skills" %}';
+    var cnl_yes = '{% trans 'Продолжить' context "skills" %}';
+    var cnl_cancel = '{% trans 'Отмена' context "skills" %}';
 </script>
 <!--прем блок-->
 <div class="overview__love-prem">
     {% if queue %}
     <!--таймер прем очереди-->
-    <p class="overview__love-prem-timer">{% trans 'Завершение' %}: {{ last_skill.end_dtime|timezone:player.time_zone|date:"d.m.Y H:i" }}</p>
+    <p class="overview__love-prem-timer">{% trans 'Завершение' context "skills" %}: {{ last_skill.end_dtime|timezone:player.time_zone|date:"d.m.Y H:i" }}</p>
     {% endif %}
     <!--премиум очередь навыков-->
     <ul class="overview__love-prem-list">

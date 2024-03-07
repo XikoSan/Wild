@@ -7,7 +7,7 @@ from django.utils import timezone
 import redis
 from player.decorators.player import check_player
 from player.player import Player
-from region.region import Region
+from region.models.region import Region
 from wild_politics.settings import JResponse
 from gov.models.residency_request import ResidencyRequest
 from state.models.parliament.bulletin import Bulletin

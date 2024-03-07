@@ -56,11 +56,15 @@
 				<img src="{{ player.image.url }}" class="profile__ava" {% if player.party %}{% if player.party.members_image %}{% if party_back %}style="background-image: url({{ player.party.members_image.url }}); background-size: cover;"{% endif %}{% endif %}{% endif %}>
 				{% else %}{% nopic player 'profile__ava' %}{% endif %}
 				{% if ava_border %}
+					{% if png_use %}
+				<img src="{{ ava_border.image.url }}" class="profile__ava-border">
+					{% else %}
 				<svg class="profile__ava-border" viewBox="0 0 {% localize off %}{{ ava_border.box_x }} {{ ava_border.box_y }}{% endlocalize %}">
 					{% autoescape off %}
 					{{ ava_border.shape }}
 					{% endautoescape %}
 				</svg>
+					{% endif %}
 				{% endif %}
 				<form method="post" enctype="multipart/form-data" id="formUpload">
 					{% csrf_token %}
@@ -169,7 +173,7 @@
 				-116 85 -150 159 -83 182 5 385 196 454 67 24 177 23 246 -3z"/>
 				</g>
 				</svg>
-				<span>{% trans 'настройки' %}</span>
+				<span>{% trans 'настройки' context "profile" %}</span>
 			</button>
 
 		</div>
@@ -191,6 +195,16 @@
 						{{ cash_rating }}
 						<a href="/cash_top/">
 							{% trans '(к рейтингу)' context "profile" %}
+						</a>
+					</p>
+				</div>
+
+				<div class="ct__s">
+					<h2 class="ct__s-title">{% trans 'известность' context "profile" %}</h2>
+					<p class="ct__s-text">
+						{% if carma > 0 %}+{% endif %}{{ carma }}
+						<a href="/character_articles/{% localize off %}{{ player.pk }}{% endlocalize %}/">
+							{% trans '(к статьям)' context "profile" %}
 						</a>
 					</p>
 				</div>

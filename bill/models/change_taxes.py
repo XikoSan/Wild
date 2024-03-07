@@ -7,7 +7,7 @@ from django.dispatch import receiver
 from django.utils import timezone
 from django.utils.translation import gettext_lazy
 
-from region.region import Region
+from region.models.region import Region
 from bill.models.bill import Bill
 from state.models.parliament.deputy_mandate import DeputyMandate
 from state.models.parliament.parliament import Parliament
@@ -52,7 +52,7 @@ class ChangeTaxes(Bill):
     old_tax = models.DecimalField(default=00.00, validators=[MinValueValidator(0), MaxValueValidator(100)],
                                   max_digits=5, decimal_places=2, verbose_name='Старый налог')
 
-    new_tax = models.DecimalField(default=00.00, validators=[MinValueValidator(0), MaxValueValidator(100)],
+    new_tax = models.DecimalField(default=00.00, validators=[MinValueValidator(0), MaxValueValidator(90)],
                                   max_digits=5, decimal_places=2, verbose_name='Новый налог')
 
     @staticmethod
@@ -126,11 +126,11 @@ class ChangeTaxes(Bill):
             }
 
         # проверяем попадание в интервал 0..100
-        if new_tax < 0 or new_tax > 100:
+        if new_tax < 0 or new_tax > 90:
             return {
                 'header': 'Новый законопроект',
                 'grey_btn': 'Закрыть',
-                'response': 'Новая величина налога должна быть целым числом в интервале 0..100',
+                'response': 'Новая величина налога должна быть целым числом в интервале 0..90',
             }
 
         # ура, все проверили
@@ -185,6 +185,18 @@ class ChangeTaxes(Bill):
 
         ChangeTaxes.objects.filter(pk=self.pk).update(type=b_type, running=False, old_tax=old_tax, voting_end=timezone.now())
 
+    # отменить законопроект
+    def bill_cancel(self):
+
+        if self.destination == 'State':
+            state = State.objects.get(pk=self.parliament.state.pk)
+            old_tax = getattr(state, self.tax_mod + '_tax')
+        else:
+            region = Region.objects.get(pk=self.region.pk)
+            old_tax = getattr(region, self.tax_mod + '_tax')
+
+        self.old_tax = old_tax
+
     @staticmethod
     def get_draft(state):
 
@@ -194,6 +206,16 @@ class ChangeTaxes(Bill):
         }
 
         return data, 'state/gov/drafts/change_taxes.html'
+
+    @staticmethod
+    def get_new_draft(state):
+
+        data = {
+            'regions': Region.objects.filter(state=state),
+            'state': state,
+        }
+
+        return data, 'state/redesign/drafts/change_taxes.html'
 
     def get_bill(self, player, minister, president):
 
@@ -217,12 +239,41 @@ class ChangeTaxes(Bill):
 
         return data, 'state/gov/bills/change_taxes.html'
 
+    def get_new_bill(self, player, minister, president):
+
+        has_right = False
+        if minister:
+            for right in minister.rights.all():
+                if self.__class__.__name__ == right.right:
+                    has_right = True
+                    break
+
+        data = {
+            'bill': self,
+            'title': self._meta.verbose_name_raw,
+            'player': player,
+            'president': president,
+            'has_right': has_right,
+            # проверяем, депутат ли этого парла игрок или нет
+            'is_deputy': DeputyMandate.objects.filter(player=player, parliament=Parliament.objects.get(
+                state=player.region.state)).exists(),
+        }
+
+        return data, 'state/redesign/bills/change_taxes.html'
+
     # получить шаблон рассмотренного законопроекта
     def get_reviewed_bill(self, player):
 
         data = {'bill': self, 'title': self._meta.verbose_name_raw, 'player': player}
 
         return data, 'state/gov/reviewed/change_taxes.html'
+
+# получить шаблон рассмотренного законопроекта
+    def get_new_reviewed_bill(self, player):
+
+        data = {'bill': self, 'title': self._meta.verbose_name_raw, 'player': player}
+
+        return data, 'state/redesign/reviewed/change_taxes.html'
 
     def __str__(self):
         return str(self.new_tax) + " " + self.get_tax_mod_display()

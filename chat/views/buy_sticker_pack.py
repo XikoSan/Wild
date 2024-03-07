@@ -19,11 +19,12 @@ def buy_sticker_pack(request):
             pack_id = int(request.POST.get('pack_id'))
 
         except ValueError:
-            return {
+            data = {
                 'header': 'Новый стикерпак',
                 'grey_btn': 'Закрыть',
                 'response': 'ID стикерпака должен быть целым числом',
             }
+            return JResponse(data)
 
         # получаем персонажа
         player = Player.objects.select_for_update().get(account=request.user)

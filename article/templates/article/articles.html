@@ -1,0 +1,177 @@
+{% extends 'player/redesign/header.html' %}
+{% load static %}
+{% load dict_key %}
+{% load l10n %}{% load i18n %}{% load tz %}
+{% load get_class_name %}
+{% load get_sum %}
+{% load get_str %}
+{% load redesign.template_svg.nopic %}
+
+{% block for_scripts_and_css %}
+<script>
+	const tabs = document.querySelectorAll('.articles__tabs button');
+	const blocks = document.querySelectorAll('.articles__list');
+	tabs.forEach((tab, index) => {
+		tab.addEventListener('click', () => {
+			tabs.forEach((el) => el.classList.remove('active'));
+			tab.classList.add('active');
+			blocks.forEach((el) => el.classList.remove('active'));
+			blocks[index].classList.add('active');
+		})
+	})
+</script>
+{% endblock %}
+
+{% block content %}
+  <section class="articles custom-scroll">
+	<!-- Заголовок -->
+	<h1 class="articles__title ct__page-title">
+  {% trans 'Статьи' context "article" %}
+
+    {% if not player.articles_ban and can_post %}
+  <button class="articles__addNewBtn" onclick="window.location.href = '/new_article/'" style="cursor: pointer">
+	<svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+	  <path d="M30 1.66667C30 0.87 29.3683 0 28.3333 0H1.66667C0.633333 0 0 0.865 0 1.66667V28.3333C0 29.3683 0.866667 30 1.66667 30H28.3333C29.13 30 30 29.3683 30 28.3333V1.66667ZM13.75 13.7533V7.92C13.75 7.23 14.31 6.67 15 6.67C15.69 6.67 16.25 7.23 16.25 7.92V13.7533H22.0833C22.7733 13.7533 23.3333 14.3133 23.3333 15.0033C23.3333 15.6933 22.7733 16.2533 22.0833 16.2533H16.25V22.0867C16.25 22.7767 15.69 23.3367 15 23.3367C14.31 23.3367 13.75 22.7767 13.75 22.0867V16.2533H7.91667C7.22667 16.2533 6.66667 15.6933 6.66667 15.0033C6.66667 14.3133 7.22667 13.7533 7.91667 13.7533H13.75Z" fill="var(--c10two)"/>
+	</svg>
+  </button>
+    {% endif %}
+</h1>
+
+    <div class="articles__inner">
+      <div class="articles__tabs">
+        <button class="active">{% trans 'все' context "article" %}</button>
+        <button>{% trans 'лучшие' context "article" %}</button>
+        <button>{% trans 'подписки' context "article" %}</button>
+      </div>
+
+      <div class="DecorLine"></div>
+
+<!--      <div class="articles__search">-->
+<!--        <button>-->
+<!--          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+<!--            <path d="M13.97 15.031C12.491 16.269 10.586 17.016 8.509 17.016C3.812 17.016 0 13.204 0 8.508C0 3.812 3.812 0 8.509 0C13.204 0 17.017 3.812 17.017 8.508C17.017 10.586 16.27 12.492 15.032 13.969L19.781 18.719C19.927 18.865 20 19.057 20 19.25C20 19.837 19.463 20 19.25 20C19.058 20 18.866 19.927 18.719 19.78L13.97 15.031ZM8.509 1.501C4.641 1.501 1.502 4.641 1.502 8.508C1.502 12.375 4.641 15.515 8.509 15.515C12.375 15.515 15.516 12.375 15.516 8.508C15.516 4.641 12.375 1.501 8.509 1.501Z" fill="#EB9929"/>-->
+<!--          </svg>-->
+<!--        </button>-->
+<!--        <input type="text" placeholder="найти статью">-->
+<!--      </div>-->
+
+      <ul class="articles__list active">
+		  {% for article in articles %}
+        <li class="articles__item" onclick="window.location.href = '/article/{% localize off %}{{ article.pk }}{% endlocalize %}/'" style="cursor: pointer">
+			{% if article.player.image %}
+				<img src="{{ article.player.image.url }}">
+			{% else %}
+                {% with article.player.pk|get_str as pk_str %}
+                    {% with 'window.location.href = "/profile/'|get_sum:pk_str as action_1 %}
+                        {% with action_1|get_sum:'/"' as action %}
+                            {% nopic player '' 'cursor: pointer' action %}
+                        {% endwith %}
+                    {% endwith %}
+                {% endwith %}
+			{% endif %}
+
+          <div class="articles__itemContent">
+            <div class="articles__itemText">
+              <h2>{{ article.title }}</h2>
+              <h2>{{ article.player.nickname }}</h2>
+            </div>
+            <div class="articles__itemInfo">
+              <span style="opacity: 0">
+                0
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M8 0.666504C3.77467 0.666504 0 3.48384 0 7.33784C0 8.7045 0.492667 10.0465 1.36467 11.0878L0.036 15.3332L4.66667 13.3332C5.80333 13.6258 6.88933 13.7605 7.90933 13.7605C12.692 13.7605 16 10.8012 16 7.33784C16 3.46317 12.1993 0.666504 8 0.666504ZM8 1.33317C12.0433 1.33317 15.3333 4.02717 15.3333 7.33784C15.3333 10.6192 12.142 13.0938 7.90933 13.0938C6.65533 13.0938 5.642 12.8945 4.612 12.6305L1.10667 14.1445L2.11 10.9392C1.238 9.8965 0.666667 8.85384 0.666667 7.33784C0.666667 4.02717 3.95667 1.33317 8 1.33317ZM4.66667 6.33317C5.21867 6.33317 5.66667 6.78117 5.66667 7.33317C5.66667 7.88517 5.21867 8.33317 4.66667 8.33317C4.11467 8.33317 3.66667 7.88517 3.66667 7.33317C3.66667 6.78117 4.11467 6.33317 4.66667 6.33317ZM8 6.33317C8.552 6.33317 9 6.78117 9 7.33317C9 7.88517 8.552 8.33317 8 8.33317C7.448 8.33317 7 7.88517 7 7.33317C7 6.78117 7.448 6.33317 8 6.33317ZM11.3333 6.33317C11.8853 6.33317 12.3333 6.78117 12.3333 7.33317C12.3333 7.88517 11.8853 8.33317 11.3333 8.33317C10.7813 8.33317 10.3333 7.88517 10.3333 7.33317C10.3333 6.78117 10.7813 6.33317 11.3333 6.33317Z" fill="white"/>
+                </svg>
+              </span>
+              <span>
+                  {% with rating_dict|dict_key:article.pk as rating %}
+                    {% if rating > 0 %}+{% endif %}{{ rating }}
+                  {% endwith %}
+              </span>
+              <span>{{ article.date|timezone:player.time_zone|date:"H:i" }}</span>
+            </div>
+          </div>
+        </li>
+		  {% endfor %}
+      </ul>
+
+      <ul class="articles__list">
+        {% for article in top_articles %}
+        <li class="articles__item" onclick="window.location.href = '/article/{% localize off %}{{ article.pk }}{% endlocalize %}/'" style="cursor: pointer">
+			{% if article.player.image %}
+				<img src="{{ article.player.image.url }}">
+			{% else %}
+                {% with article.player.pk|get_str as pk_str %}
+                    {% with 'window.location.href = "/profile/'|get_sum:pk_str as action_1 %}
+                        {% with action_1|get_sum:'/"' as action %}
+                            {% nopic player '' 'cursor: pointer' action %}
+                        {% endwith %}
+                    {% endwith %}
+                {% endwith %}
+			{% endif %}
+
+          <div class="articles__itemContent">
+            <div class="articles__itemText">
+              <h2>{{ article.title }}</h2>
+              <h2>{{ article.player.nickname }}</h2>
+            </div>
+            <div class="articles__itemInfo">
+              <span style="opacity: 0">
+                0
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M8 0.666504C3.77467 0.666504 0 3.48384 0 7.33784C0 8.7045 0.492667 10.0465 1.36467 11.0878L0.036 15.3332L4.66667 13.3332C5.80333 13.6258 6.88933 13.7605 7.90933 13.7605C12.692 13.7605 16 10.8012 16 7.33784C16 3.46317 12.1993 0.666504 8 0.666504ZM8 1.33317C12.0433 1.33317 15.3333 4.02717 15.3333 7.33784C15.3333 10.6192 12.142 13.0938 7.90933 13.0938C6.65533 13.0938 5.642 12.8945 4.612 12.6305L1.10667 14.1445L2.11 10.9392C1.238 9.8965 0.666667 8.85384 0.666667 7.33784C0.666667 4.02717 3.95667 1.33317 8 1.33317ZM4.66667 6.33317C5.21867 6.33317 5.66667 6.78117 5.66667 7.33317C5.66667 7.88517 5.21867 8.33317 4.66667 8.33317C4.11467 8.33317 3.66667 7.88517 3.66667 7.33317C3.66667 6.78117 4.11467 6.33317 4.66667 6.33317ZM8 6.33317C8.552 6.33317 9 6.78117 9 7.33317C9 7.88517 8.552 8.33317 8 8.33317C7.448 8.33317 7 7.88517 7 7.33317C7 6.78117 7.448 6.33317 8 6.33317ZM11.3333 6.33317C11.8853 6.33317 12.3333 6.78117 12.3333 7.33317C12.3333 7.88517 11.8853 8.33317 11.3333 8.33317C10.7813 8.33317 10.3333 7.88517 10.3333 7.33317C10.3333 6.78117 10.7813 6.33317 11.3333 6.33317Z" fill="white"/>
+                </svg>
+              </span>
+              <span>
+                  {% with rating_dict|dict_key:article.pk as rating %}
+                    {% if rating > 0 %}+{% endif %}{{ rating }}
+                  {% endwith %}
+              </span>
+              <span>{{ article.date|timezone:player.time_zone|date:"H:i" }}</span>
+            </div>
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+
+      <ul class="articles__list">
+        {% for article in subs_articles %}
+        <li class="articles__item" onclick="window.location.href = '/article/{% localize off %}{{ article.pk }}{% endlocalize %}/'" style="cursor: pointer">
+			{% if article.player.image %}
+				<img src="{{ article.player.image.url }}">
+			{% else %}
+                {% with article.player.pk|get_str as pk_str %}
+                    {% with 'window.location.href = "/profile/'|get_sum:pk_str as action_1 %}
+                        {% with action_1|get_sum:'/"' as action %}
+                            {% nopic player '' 'cursor: pointer' action %}
+                        {% endwith %}
+                    {% endwith %}
+                {% endwith %}
+			{% endif %}
+
+          <div class="articles__itemContent">
+            <div class="articles__itemText">
+              <h2>{{ article.title }}</h2>
+              <h2>{{ article.player.nickname }}</h2>
+            </div>
+            <div class="articles__itemInfo">
+              <span style="opacity: 0">
+                0
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M8 0.666504C3.77467 0.666504 0 3.48384 0 7.33784C0 8.7045 0.492667 10.0465 1.36467 11.0878L0.036 15.3332L4.66667 13.3332C5.80333 13.6258 6.88933 13.7605 7.90933 13.7605C12.692 13.7605 16 10.8012 16 7.33784C16 3.46317 12.1993 0.666504 8 0.666504ZM8 1.33317C12.0433 1.33317 15.3333 4.02717 15.3333 7.33784C15.3333 10.6192 12.142 13.0938 7.90933 13.0938C6.65533 13.0938 5.642 12.8945 4.612 12.6305L1.10667 14.1445L2.11 10.9392C1.238 9.8965 0.666667 8.85384 0.666667 7.33784C0.666667 4.02717 3.95667 1.33317 8 1.33317ZM4.66667 6.33317C5.21867 6.33317 5.66667 6.78117 5.66667 7.33317C5.66667 7.88517 5.21867 8.33317 4.66667 8.33317C4.11467 8.33317 3.66667 7.88517 3.66667 7.33317C3.66667 6.78117 4.11467 6.33317 4.66667 6.33317ZM8 6.33317C8.552 6.33317 9 6.78117 9 7.33317C9 7.88517 8.552 8.33317 8 8.33317C7.448 8.33317 7 7.88517 7 7.33317C7 6.78117 7.448 6.33317 8 6.33317ZM11.3333 6.33317C11.8853 6.33317 12.3333 6.78117 12.3333 7.33317C12.3333 7.88517 11.8853 8.33317 11.3333 8.33317C10.7813 8.33317 10.3333 7.88517 10.3333 7.33317C10.3333 6.78117 10.7813 6.33317 11.3333 6.33317Z" fill="white"/>
+                </svg>
+              </span>
+              <span>
+                  {% with rating_dict|dict_key:article.pk as rating %}
+                    {% if rating > 0 %}+{% endif %}{{ rating }}
+                  {% endwith %}
+              </span>
+              <span>{{ article.date|timezone:player.time_zone|date:"H:i" }}</span>
+            </div>
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+
+    </div>
+  </section>
+{% endblock %}

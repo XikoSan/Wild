@@ -13,6 +13,7 @@ from player.player import Player
 from player.player_settings import PlayerSettings
 from wild_politics.settings import TIME_ZONE
 from ava_border.models.ava_border_ownership import AvaBorderOwnership
+from article.models.article import Article
 
 
 @login_required(login_url='/')
@@ -34,6 +35,7 @@ def view_profile(request, pk):
     r = redis.StrictRedis(host='redis', port=6379, db=0)
 
     timestamp = r.hget('online', str(char.pk))
+
     if timestamp:
         dtime = datetime.fromtimestamp(int(timestamp)).replace(tzinfo=pytz.timezone(TIME_ZONE)).astimezone(
             tz=pytz.timezone(player.time_zone)).strftime("%d.%m.%Y %H:%M:%S")
@@ -59,9 +61,30 @@ def view_profile(request, pk):
     cash_rating = cursor.fetchone()
     # ---------------------
 
+    player_articles = Article.objects.only('pk').filter(player=char).values('pk')
+
+    if player_articles:
+        articles_tuple = ()
+
+        for article in player_articles:
+            articles_tuple += (article['pk'],)
+
+        cursor.execute("with lines_con as(select count(*) from public.article_article_votes_con where article_id in %s), lines_pro as (select count(*) from public.article_article_votes_pro where article_id in %s) SELECT lines_pro.count - lines_con.count AS difference FROM lines_con, lines_pro;", [articles_tuple, articles_tuple])
+
+        carma = cursor.fetchall()[0][0]
+
+    else:
+        carma = 0
+    # ---------------------
+
     ava_border = None
+    png_use = False
     if AvaBorderOwnership.objects.filter(in_use=True, owner=char).exists():
-        ava_border = AvaBorderOwnership.objects.get(in_use=True, owner=char).border
+        border = AvaBorderOwnership.objects.get(in_use=True, owner=char)
+
+        ava_border = border.border
+        png_use = border.png_use
+
 
     party_back = True
 
@@ -79,9 +102,11 @@ def view_profile(request, pk):
                                   'dtime': dtime,
                                   'user_link': user_link,
                                   'cash_rating': cash_rating[0],
+                                  'carma': carma,
 
                                   'party_back': party_back,
 
                                   'page_name': char.nickname,
                                   'ava_border': ava_border,
+                                  'png_use': png_use,
                                   })

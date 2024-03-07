@@ -1,0 +1,44 @@
+-- Создание временной таблицы для сохранения данных
+CREATE TEMPORARY TABLE tmp_region_region AS SELECT * FROM public.region_region;
+CREATE TEMPORARY TABLE tmp_region_mapshape AS SELECT * FROM public.region_mapshape;
+CREATE TEMPORARY TABLE tmp_chat_stickerpack AS SELECT * FROM public.chat_stickerpack;
+CREATE TEMPORARY TABLE tmp_chat_sticker AS SELECT * FROM public.chat_sticker;
+
+
+-- Удаление данных из связанных таблиц и сброс счетчика последовательности
+TRUNCATE TABLE public.player_player RESTART IDENTITY CASCADE;
+
+TRUNCATE TABLE public.party_party RESTART IDENTITY CASCADE;
+
+TRUNCATE TABLE public.state_state RESTART IDENTITY CASCADE;
+
+
+
+-- Вставка данных из временной таблицы обратно
+
+INSERT INTO public.region_region (id, region_name, coal_proc, iron_proc, bauxite_proc, ore_cap, ore_has, oil_cap, oil_has, oil_type, gold_cap, gold_has, east, is_east, is_north, north, latitude, longitude, is_off, cash_tax, oil_tax, ore_tax, trade_tax, gold_depletion, oil_depletion, ore_depletion, on_map_id, oil_mark_id)
+SELECT id, region_name, coal_proc, iron_proc, bauxite_proc, ore_cap, ore_has, oil_cap, oil_has, oil_type, gold_cap, gold_has, east, is_east, is_north, north, latitude, longitude, is_off, cash_tax, oil_tax, ore_tax, trade_tax, gold_depletion, oil_depletion, ore_depletion, on_map_id, oil_mark_id
+FROM tmp_region_region;
+
+INSERT INTO public.region_mapshape (id, shape, zoom, region_id)
+SELECT id, shape, zoom, region_id
+FROM tmp_region_mapshape;
+
+INSERT INTO public.chat_stickerpack (id, title, creator, creator_link, description, deleted, price, percent)
+SELECT id, title, creator, creator_link, description, deleted, price, percent
+FROM tmp_chat_stickerpack;
+
+INSERT INTO public.chat_sticker (id, description, image, deleted, pack_id)
+SELECT id, description, image, deleted, pack_id
+FROM tmp_chat_sticker;
+
+
+-- Приведение регионов к дефолтным значениям
+update public.region_region set ore_has = ore_cap, oil_has = oil_cap, gold_has = gold_cap, cash_tax = 0, oil_tax = 0, ore_tax = 0, trade_tax = 0;
+
+-- очистка фоновых тасок
+DELETE FROM public.django_celery_beat_periodictask;
+DELETE FROM public.django_celery_beat_clockedschedule;
+DELETE FROM public.django_celery_beat_crontabschedule;
+DELETE FROM public.django_celery_beat_intervalschedule;
+DELETE FROM public.socialaccount_socialtoken;

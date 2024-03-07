@@ -13,6 +13,7 @@ from player.forms import ImageForm
 from player.logs.gold_log import GoldLog
 from player.player import Player
 from player.player_settings import PlayerSettings
+from article.models.article import Article
 from ava_border.models.ava_border_ownership import AvaBorderOwnership
 
 
@@ -49,7 +50,7 @@ def my_profile(request):
             image = Image.open(player.image)
             cropped_image = image.crop((x, y, w + x, h + y))
             resized_image = cropped_image.resize((250, 250), Image.ANTIALIAS)
-            resized_image.save(player.image.path)
+            resized_image.save(player.image.path, 'PNG')
 
             return redirect('my_profile')
     else:
@@ -95,8 +96,12 @@ def my_profile(request):
 
 
     ava_border = None
+    png_use = False
     if AvaBorderOwnership.objects.filter(in_use=True, owner=player).exists():
-        ava_border = AvaBorderOwnership.objects.get(in_use=True, owner=player).border
+        border = AvaBorderOwnership.objects.get(in_use=True, owner=player)
+
+        ava_border = border.border
+        png_use = border.png_use
 
     # ---------------------
     cursor = connection.cursor()
@@ -141,6 +146,21 @@ def my_profile(request):
     cursor.execute("with sum_limit (lim) as ( select SUM(store.cash) + player.cash from player_player as player join storage_storage as store on player.id = %s and store.owner_id = player.id and store.deleted = false group by player.id ), store_sum (owner_id, cash) as ( select store.owner_id, sum(store.cash) from storage_storage as store where store.deleted = false group by store.owner_id ) select count ( * ) + 1 from player_player as player join store_sum as store on store.owner_id = player.id where store.cash + player.cash > ( select lim from sum_limit );", [player.pk])
     cash_rating = cursor.fetchone()
     # ---------------------
+    player_articles = Article.objects.only('pk').filter(player=player).values('pk')
+
+    if player_articles:
+        articles_tuple = ()
+
+        for article in player_articles:
+            articles_tuple += (article['pk'],)
+
+        cursor.execute("with lines_con as(select count(*) from public.article_article_votes_con where article_id in %s), lines_pro as (select count(*) from public.article_article_votes_pro where article_id in %s) SELECT lines_pro.count - lines_con.count AS difference FROM lines_con, lines_pro;", [articles_tuple, articles_tuple])
+
+        carma = cursor.fetchall()[0][0]
+
+    else:
+        carma = 0
+    # ---------------------
 
     groups = list(player.account.groups.all().values_list('name', flat=True))
     page = 'player/profile.html'
@@ -156,6 +176,7 @@ def my_profile(request):
 
         'user_link': user_link,
         'cash_rating': cash_rating[0],
+        'carma': carma,
         # 'player_settings': player_settings,
         # 'countdown': UntilRecharge(player)
         'page_name': player.nickname,
@@ -170,7 +191,9 @@ def my_profile(request):
         'party_back': party_back,
         'full_auto': full_auto,
         'wiki_hide': wiki_hide,
+
         'ava_border': ava_border,
+        'png_use': png_use,
 
     })
     return response

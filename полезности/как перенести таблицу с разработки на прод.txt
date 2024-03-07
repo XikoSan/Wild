@@ -1,0 +1,37 @@
+выполнить в powershell:
+docker-compose exec db pg_dump -U postgres -E UTF8 --table public.region_region wild_politics > db.sql
+
+перенести файл в папку на сервере, поменять кодировку:
+iconv -f utf-16 -t utf-8 db.sql > reg.sql
+
+скопировать в контейнер БД:
+docker cp reg.sql wild-politics_db_1:./
+
+применить в БД, где этой таблички нет (-d это флаг БД на том же сервере):
+docker exec -i 80a568d8e455 psql -U postgres -d postgres -1 -f reg.sql
+
+
+выполнить через pgAdmin копирование данных между бд:
+
+update public.region_region t
+set region_name = i.region_name,
+    latitude = i.latitude,
+    longitude = i.longitude,
+    shape = i.shape,
+    on_map_id = i.on_map_id,
+    east = i.east,
+    north = i.north
+    
+FROM dblink('dbname=postgres', 
+           'SELECT id, region_name, latitude, longitude, shape, on_map_id, east, north from public.region_region')
+           as i(
+                id INT,
+                region_name character(50),
+                latitude NUMERIC(10, 7),
+                longitude NUMERIC(10, 7),
+                shape text,
+                on_map_id character(50),
+                east NUMERIC(5, 2),
+                north NUMERIC(5, 2)
+               )
+              where t.id = i.id

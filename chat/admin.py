@@ -2,30 +2,13 @@ from django.contrib import admin
 from django.contrib.admin import widgets
 from django.db import models
 
-from chat.models.models import Chat, Message
+from chat.models.messages.chat import Chat
+from chat.models.messages.message_block import MessageBlock
+from chat.models.messages.chat_members import ChatMembers
+
 from chat.models.sticker import Sticker
 from chat.models.sticker_pack import StickerPack
 from chat.models.stickers_ownership import StickersOwnership
-
-
-class ChatAdmin(admin.ModelAdmin):
-    formfield_overrides = {
-        models.ManyToManyField: {'widget': widgets.FilteredSelectMultiple(verbose_name='сообщения',
-                                                                          is_stacked=False)},
-    }
-
-
-admin.site.register(Chat, ChatAdmin)
-
-
-class MessageAdmin(admin.ModelAdmin):
-    fields = [
-        'author',
-        'content',
-        'timestamp',
-    ]
-
-    readonly_fields = ['timestamp', ]
 
 
 class StickerAdmin(admin.ModelAdmin):
@@ -42,7 +25,27 @@ class StickersOwnershipAdmin(admin.ModelAdmin):
     raw_id_fields = ('owner', 'pack')
 
 
-admin.site.register(Message, MessageAdmin)
+class ChatMembersAdmin(admin.ModelAdmin):
+    raw_id_fields = ('chat', 'player')
+
+
+class MessageBlockAdmin(admin.ModelAdmin):
+    raw_id_fields = ('chat',)
+
+
+class ChatMembersInline(admin.TabularInline):
+    model = ChatMembers
+
+
+class ChatAdmin(admin.ModelAdmin):
+    model = Chat
+    inlines = [ChatMembersInline]
+
+
+admin.site.register(Chat, ChatAdmin)
+admin.site.register(MessageBlock, MessageBlockAdmin)
+admin.site.register(ChatMembers, ChatMembersAdmin)
+
 admin.site.register(StickerPack)
 admin.site.register(StickersOwnership, StickersOwnershipAdmin)
 admin.site.register(Sticker, StickerAdmin)

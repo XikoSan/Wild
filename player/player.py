@@ -2,21 +2,24 @@
 import datetime
 import pytz
 import redis
+from dateutil.relativedelta import relativedelta
 from django.apps import apps
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.db import transaction
+from django.db.models.signals import pre_save
+from django.dispatch import receiver
 from django.utils import timezone
 from django.utils.timezone import make_aware
 from django.utils.translation import pgettext
 from django_celery_beat.models import PeriodicTask
-from dateutil.relativedelta import relativedelta
 
 from party.party import Party
 from party.position import PartyPosition
+from player.decorators.player import activity_event_reward
 from player.views.set_cah_log import set_cash_log
 from region.building.hospital import Hospital
-from region.region import Region
+from region.models.region import Region
 from state.models.state import State
 from wild_politics.settings import JResponse
 
@@ -24,14 +27,19 @@ from wild_politics.settings import JResponse
 class Player(models.Model):
     # учетная запись игрока
     account = models.OneToOneField('auth.User', default='', on_delete=models.CASCADE, verbose_name='Учетная запись')
+
     # Показатель того, что игрок забанен
     banned = models.BooleanField(default=False, null=False, verbose_name='Бан')
     # причина бана
     reason = models.TextField(max_length=25, default='', null=True, blank=True, verbose_name='Причина')
-    # Показатель того, что игрок забанен в чате
-    chat_ban = models.BooleanField(default=False, null=False, verbose_name='Бан чата')
     # последний использовавшийся ip
     user_ip = models.CharField(max_length=50, blank=True, verbose_name='IP пользователя')
+
+    # Показатель того, что игрок забанен в чате
+    chat_ban = models.BooleanField(default=False, null=False, verbose_name='Бан чата')
+    # Показатель того, что игрок забанен в статьях
+    articles_ban = models.BooleanField(default=False, null=False, verbose_name='Бан статей')
+
     # никнейм игрока
     nickname = models.CharField(max_length=30, blank=False, verbose_name='Никнейм')
     # фото профиля игрока
@@ -53,6 +61,9 @@ class Player(models.Model):
 
     # о себе
     bio = models.TextField(max_length=250, default='', null=True, blank=True, verbose_name='Биография')
+
+    # Показатель того, что игрок проходил обучение
+    educated = models.BooleanField(default=False, null=False, verbose_name='Прошёл обучение')
 
     # -----------партия----------------
 
@@ -195,7 +206,7 @@ class Player(models.Model):
                 event_part.prize_check()
                 event_part.save()
 
-    #       ---- общий счет ----
+            #       ---- общий счет ----
             if GlobalPart.objects.filter(
                     event=GameEvent.objects.get(running=True, event_start__lt=timezone.now(),
                                                 event_end__gt=timezone.now())
@@ -262,6 +273,23 @@ class Player(models.Model):
                     # навык изучен, удаляем запись
                     skill.delete()
 
+                    r = redis.StrictRedis(host='redis', port=6379, db=0)
+                    if player.party:
+                        # партийная информация
+                        if r.exists("party_skill_" + str(player.party.pk)):
+                            r.set("party_skill_" + str(player.party.pk),
+                                  int(float(r.get("party_skill_" + str(player.party.pk)))) + 1)
+                        else:
+                            r.set("party_skill_" + str(player.party.pk), 1)
+
+                    # общий счетчик
+                    r = redis.StrictRedis(host='redis', port=6379, db=0)
+                    # партийная информация
+                    if r.exists("all_skill"):
+                        r.set("all_skill", int(float(r.get("all_skill"))) + 1)
+                    else:
+                        r.set("all_skill", 1)
+
                 else:
                     break
 
@@ -295,6 +323,16 @@ class Player(models.Model):
             # return JResponse(data)
             return JResponse(data), 0
             # return HttpResponse('Дождитесь конца полёта')
+
+        # если дейлик закрыт - ловить нечего
+        if self.daily_fin:
+            data = {
+                'response': pgettext('mining', 'Нечего забирать'),
+                'header': pgettext('mining', 'Ошибка получения финансирования'),
+                'grey_btn': pgettext('mining', 'Закрыть'),
+            }
+            # return JResponse(data)
+            return JResponse(data), 0
 
         # energy_limit - количество энергии, которую надо выфармить за день
         if self.paid_consumption >= self.energy_limit:
@@ -357,6 +395,7 @@ class Player(models.Model):
 
         if not self.daily_fin and daily_procent == 100:
             self.gold += 100
+            activity_event_reward(self, 1)
 
         # отмечаем, что  дейлик закрыт:
         # если игрок прокачат навык, то не получит золотой бонус или Подпольное Финансирование
@@ -458,3 +497,17 @@ class Player(models.Model):
     class Meta:
         verbose_name = "Игрок"
         verbose_name_plural = "Игроки"
+
+
+# сигнал прослушивающий создание партии, после этого формирующий таску
+@receiver(pre_save, sender=Player)
+def save_pre(sender, instance, raw, using, update_fields, **kwargs):
+    pass
+    # if Player.objects.filter(pk=instance.pk).exists():
+    #     cards_count_pre = Player.objects.only("cards_count").get(pk=instance.pk).cards_count
+    #
+    #     if cards_count_pre != instance.cards_count:
+    #         WildpassLog = apps.get_model('player.WildpassLog')
+    #
+    #         prem_log = WildpassLog(player=instance, count=instance.cards_count-cards_count_pre, activity_txt='buying')
+    #         prem_log.save()

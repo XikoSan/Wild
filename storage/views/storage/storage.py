@@ -9,6 +9,9 @@ from storage.models.storage import Storage
 from storage.templatetags.check_up_limit import check_up_limit
 from war.models.wars.war import War
 from player.views.get_subclasses import get_subclasses
+from storage.models.stock import Stock
+from storage.models.good import Good
+from player.lootbox.lootbox import Lootbox
 
 
 # главная страница
@@ -44,19 +47,31 @@ def storage(request):
     # наличие алюминия и стали на текущем складе - для прокачки
     can_upgrade = False
 
-    limit_upgrade = True
+    limit_upgrade = False
 
     if storage:
-        if storage.aluminium >= 500 and storage.steel >= 500:
-            can_upgrade = True
+        if storage.level >= 5:
+            limit_upgrade = True
 
-        if storage.level < 5:
-            limit_upgrade = False
+        elif Good.objects.filter(name_ru='Алюминий').exists()\
+                and Good.objects.filter(name_ru='Сталь').exists():
+
+            alu = Good.objects.get(name_ru='Алюминий')
+            steel = Good.objects.get(name_ru='Сталь')
+
+            if Stock.objects.filter(storage=storage, good=alu, stock__gte=500).exists()\
+                    and Stock.objects.filter(storage=storage, good=steel, stock__gte=500).exists():
+                can_upgrade = True
+
 
     # ------------
     large_limit = 5
     medium_limit = 6
     small_limit = 5
+
+    lootbox_count = 0
+    if Lootbox.objects.filter(player=player).exists():
+        lootbox_count = Lootbox.objects.get(player=player).stock
 
     # отправляем в форму
     response = render(request, 'storage/redesign/storage.html', {
@@ -76,6 +91,9 @@ def storage(request):
         'large_limit': large_limit,
         'medium_limit': medium_limit,
         'small_limit': small_limit,
+
+        'lootbox_count': lootbox_count,
+
     })
 
     # if player_settings:

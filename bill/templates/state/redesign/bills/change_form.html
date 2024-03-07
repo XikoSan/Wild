@@ -1,0 +1,65 @@
+{% load dict_key %}
+{% load get_attr %}
+{% load get_diff %}
+{% load get_sum %}
+{% load get_mul %}
+{% load get_key_list %}
+{% load tz %}
+{% load l10n %}{% load i18n %}
+<tr>
+    {% with bill=data|dict_key:'bill' %}
+    <td>
+        {% with title=data|dict_key:'title' %}
+        <p>{{ title }}</p>
+        {% endwith %}
+        {% with player=data|dict_key:'player' %}
+        <p style="font-weight: 700;">{{ bill.voting_start|timezone:player.time_zone|date:"d.m.Y H:i" }}</p>
+         {% endwith %}
+    </td>
+
+    <td>
+        {{ bill.get_form_display }}
+    </td>
+
+    <!--видно на только пк-->
+    <td class="gover__tableDopInfo empty"></td>
+
+    <!--видно на только пк-->
+    <td class="gover__tableCancel">
+        <a href='/profile/{% localize off %}{{ bill.initiator.pk }}{% endlocalize %}' target="_blank">{{ bill.initiator }}</a>
+        {% with player=data|dict_key:'player' %}
+        {% if bill.initiator == player %}
+        <button onclick="cancel_bill('ChangeForm',{% localize off %}{{ bill.pk }}{% endlocalize %})">❌</button>
+        {% endif %}
+        {% endwith %}
+    </td>
+
+    <!--видно на только пк-->
+    <td class="gover__tableVote">
+        {% with is_deputy=data|dict_key:'is_deputy' %}
+            {% if is_deputy %}
+                {% with player=data|dict_key:'player' %}
+
+                    {% if player not in bill.votes_pro.all and player not in bill.votes_con.all %}
+        <button onclick="vote_bill('ChangeForm',{% localize off %}{{ bill.pk }}{% endlocalize %},'pro')">👍</button>
+        <button onclick="vote_bill('ChangeForm',{% localize off %}{{ bill.pk }}{% endlocalize %},'con')">👎</button>
+                    {% else %}
+                        {% if player in bill.votes_pro.all %}
+                        <button disabled>👍</button>
+                        {% endif %}
+                        {% if player in bill.votes_con.all %}
+                        <button disabled>👎</button>
+                        {% endif %}
+                    {% endif %}
+
+                {% endwith %}
+            {% endif %}
+        {% endwith %}
+
+    </td>
+
+    <td class="gover__tableInfoTd">
+        <button class="gover__tableInfo" onclick="goverInfoModal.getInnerContent(this)">&#8505</button>
+    </td>
+    {% endwith %}
+</tr>

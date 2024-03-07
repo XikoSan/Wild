@@ -25,10 +25,6 @@ def new_year(request):
     points = 0
     global_points = 0
 
-    ava_border_1 = None
-    ava_border_2 = None
-    ava_border_3 = None
-
     if GameEvent.objects.filter(running=True, type='ny', event_start__lt=timezone.now(), event_end__gt=timezone.now()).exists():
 
         event = GameEvent.objects.filter(running=True, type='ny', event_start__lt=timezone.now(), event_end__gt=timezone.now()).first()
@@ -38,16 +34,6 @@ def new_year(request):
 
         if GlobalPart.objects.filter(event=event).exists():
             global_points = GlobalPart.objects.get(event=event).points
-
-        if AvaBorder.objects.filter(pk=4).exists():
-            ava_border_1 = AvaBorder.objects.get(pk=4)
-
-        if AvaBorder.objects.filter(pk=5).exists():
-            ava_border_2 = AvaBorder.objects.get(pk=5)
-
-        if AvaBorder.objects.filter(pk=6).exists():
-            ava_border_3 = AvaBorder.objects.get(pk=6)
-
     else:
         return redirect('overview')
 
@@ -59,10 +45,6 @@ def new_year(request):
         'player': player,
         'points': points,
         'global_points': global_points,
-
-        'ava_border_1': ava_border_1,
-        'ava_border_2': ava_border_2,
-        'ava_border_3': ava_border_3,
 
     })
 

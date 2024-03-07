@@ -3,7 +3,7 @@ from django.db import models
 from django.utils import timezone
 from player.views.get_subclasses import get_subclasses
 from region.building.building import Building
-from region.region import Region
+from region.models.region import Region
 from state.models.treasury import Treasury
 from django.db.models import F
 import datetime
@@ -86,7 +86,7 @@ class PowerPlant(Building):
             # 'level_on': level_on,
         }
 
-        return data, 'region/buildings/power_plant.html'
+        return data, 'region/redesign/buildings/power_plant.html'
 
     # # получить информацию о потреблении угля в госе
     # @staticmethod

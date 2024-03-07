@@ -32,6 +32,8 @@ jQuery(document).ready(function ($) {
             $("#buy_row").show();
 
             $("#stocks").hide();
+            $("#stocks").removeClass("with_value");
+            document.getElementById('stocks').removeEventListener('click', handleStocksClick);
             $('#count').attr("max", 2147483647);
         }
         else{
@@ -39,6 +41,8 @@ jQuery(document).ready(function ($) {
             $("#stocks").show();
 
             if($('#good').val() !== null){
+                document.getElementById('stocks').addEventListener('click', handleStocksClick);
+                $("#stocks").addClass("with_value");
                 $("#stocks_value").html( numberWithSpaces(total_stocks[document.getElementById('create_default_storage').dataset.value][$('#good').val()]) );
                 $('#count').attr("max", total_stocks[document.getElementById('create_default_storage').dataset.value][$('#good').val()]);
             }
@@ -64,6 +68,10 @@ jQuery(document).ready(function ($) {
         // ставим товар по умолчанию
         $('#good').val('default');
         $('#create_good_default').show();
+
+        $("#stocks").removeClass("with_value");
+        document.getElementById('stocks').removeEventListener('click', handleStocksClick);
+
         document.getElementById('accept').disabled = true
 
         if($('#action').val() == 'sell'){
@@ -73,10 +81,24 @@ jQuery(document).ready(function ($) {
 
         var selected = $(e.target).val();
         for (good in groups_n_goods[selected]){
-            $('#create_good_' + good ).show();
-
+            $("#good").attr("disabled", false);
+            if($('#action').val() == 'sell'){
+//              добавляем товар в список, только если у нас есть такие запасы
+                if(
+                        total_stocks[document.getElementById('create_default_storage').dataset.value][good] !== undefined
+                     && total_stocks[document.getElementById('create_default_storage').dataset.value][good] > 0
+                ){
+                    $('#create_good_' + good ).show();
+                }
+                else{
+                    $('#create_good_' + good ).prop( "disabled", true );
+                    $('#create_good_' + good ).show();
+                }
+            }
+            else{
+                $('#create_good_' + good ).show();
+            }
         }
-        $("#good").attr("disabled", false);
     });
 
 //  выводить информацию о запасах
@@ -84,8 +106,17 @@ jQuery(document).ready(function ($) {
         document.getElementById('accept').disabled = false
 
         if($('#action').val() == 'sell'){
-            $("#stocks_value").html( numberWithSpaces(total_stocks[document.getElementById('create_default_storage').dataset.value][$('#good').val()]) );
-            $('#count').attr("max", total_stocks[document.getElementById('create_default_storage').dataset.value][$('#good').val()]);
+            document.getElementById('stocks').addEventListener('click', handleStocksClick);
+            $("#stocks").addClass("with_value");
+
+            if(total_stocks[document.getElementById('create_default_storage').dataset.value][$('#good').val()] !== undefined){
+                $("#stocks_value").html( numberWithSpaces(total_stocks[document.getElementById('create_default_storage').dataset.value][$('#good').val()]) );
+                $('#count').attr("max", total_stocks[document.getElementById('create_default_storage').dataset.value][$('#good').val()]);
+            }
+            else{
+                $("#stocks_value").html( 0 );
+                $('#count').attr("max", 0);
+            }
         }
     });
 
@@ -103,19 +134,21 @@ jQuery(document).ready(function ($) {
             success: function(data){
                 display_modal('notify', data.header, data.response, null, data.grey_btn);
 
-                var selected = $('#action').val();
+                if('success' in data){
+                    var selected = $('#action').val();
 
-                free_offers -= 1;
-                $("#free_offers").html(numberWithSpaces(free_offers));
+                    free_offers -= 1;
+                    $("#free_offers").html(numberWithSpaces(free_offers));
 
-                if(selected == 'sell'){
-                    total_stocks[document.getElementById('create_default_storage').dataset.value][$('#good').val()] -= $('#count').val();
-                    // заставляем пересчитать числа на экране, с учетом уменьшения запасов
-                    const changeEvent = new Event('change');
-                    // Получаем ссылку на элемент, для которого нужно вызвать событие
-                    const inputElement = document.getElementById('good');
-                    // Имитируем событие "change" для элемента
-                    inputElement.dispatchEvent(changeEvent);
+                    if(selected == 'sell'){
+                        total_stocks[document.getElementById('create_default_storage').dataset.value][$('#good').val()] -= $('#count').val();
+                        // заставляем пересчитать числа на экране, с учетом уменьшения запасов
+                        const changeEvent = new Event('change');
+                        // Получаем ссылку на элемент, для которого нужно вызвать событие
+                        const inputElement = document.getElementById('good');
+                        // Имитируем событие "change" для элемента
+                        inputElement.dispatchEvent(changeEvent);
+                    }
                 }
 
              }

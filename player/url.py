@@ -6,6 +6,7 @@ from player.views.eula import eula
 from player.views.game_event.halloween import halloween
 from player.views.lists.region_players import region_players_list
 from player.views.lists.world_players import world_players_list
+from player.views.lists.world_online import world_online_list
 from player.views.repost_reward import repost_reward
 from player.views.skills.up_skill import up_skill
 from .views.change_back_allow import change_back_allow
@@ -17,6 +18,7 @@ from .views.comma_list import comma_list
 from .views.expense_energy import expense_energy
 from .views.full_auto_allow import full_auto_allow
 from .views.game_event.new_year import new_year
+from event.views.winter_festival import winter_festival
 from .views.index import index
 from .views.lists.cash_top import cash_top
 from .views.lists.region_citizens import region_citizens_list
@@ -29,10 +31,20 @@ from .views.set_language import set_language
 from .views.set_timezone import set_timezone
 from .views.view_profile import view_profile
 from .views.wallet import wallet
+from .views.claim_reward import claim_reward
+from .views.open_lootboxes import open_lootboxes
+from .views.buy_lootboxes import buy_lootboxes
+from .views.answer_captcha import answer_captcha
 
 from player.views.translate.translate import edit_translations
 from player.views.translate.translations import translations
 from django.urls import path
+from django.views.generic import TemplateView
+
+from player.views.bonus_code.bonus_code import bonus_code
+from player.views.bonus_code.activate_code import activate_code
+
+from .views.dmg_tbl import dmg_tbl
 
 urlpatterns = [
 
@@ -40,6 +52,9 @@ urlpatterns = [
     url(r'^$', index, name='index'),
     # ЕУЛА
     url(r'^eula$', eula, name='eula'),
+    url(r'^dmg_tbl$', dmg_tbl, name='dmg_tbl'),
+    # Соглашение об обработке ПД
+    path('personal_data/', TemplateView.as_view(template_name='player/personal_data.html'), name='personal_data'),
     # регистрация нового персонажа
     url(r'^player/new/$', new_player, name='new_player'),
     # выход
@@ -47,6 +62,8 @@ urlpatterns = [
 
     # открытие списка всех игроков
     url(r'^world/players/', world_players_list, name='world_players_list'),
+    # открытие списка всех игроков
+    url(r'^world/online/', world_online_list, name='world_online_list'),
     # открытие списка населения региона
     url(r'^region/(?P<region_pk>\d+)/players/', region_players_list, name='region_players_list'),
     # открытие списка граждан региона
@@ -110,9 +127,29 @@ urlpatterns = [
     url(r'^halloween/$', halloween, name='halloween'),
     # новый год
     url(r'^new_year/$', new_year, name='new_year'),
+    # зимний фестиваль
+    url(r'^winter_festival/$', winter_festival, name='winter_festival'),
 
     # контексты переводов
     path('translations/', translations, name='translations'),
     # переводы
     path('edit-translation/<str:lang>/<str:context>/', edit_translations, name='edit_translations'),
+
+    # получение наград за обучение
+    url(r'^claim_reward/$', claim_reward, name='claim_reward'),
+
+    # открыть лутбоксы
+    url(r'^open_lootboxes/$', open_lootboxes, name='open_lootboxes'),
+
+    # купить лутбоксы
+    url(r'^buy_lootboxes/$', buy_lootboxes, name='buy_lootboxes'),
+
+    # ответ на капчу
+    url(r'^answer_captcha', answer_captcha, name='answer_captcha'),
+
+    # страница бонус-кода
+    url(r'^bonus_code', bonus_code, name='bonus_code'),
+
+    # активация бонус-кода
+    url(r'^activate_code/', activate_code, name='activate_code'),
 ]

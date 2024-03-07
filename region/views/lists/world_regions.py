@@ -12,7 +12,7 @@ from django.utils.translation import ugettext as _
 from player.decorators.player import check_player
 from player.player import Player
 from player.views.lists.get_thing_page import get_thing_page
-from region.region import Region
+from region.models.region import Region
 from wild_politics.settings import TIME_ZONE
 from region.views.lists.get_regions_online import get_region_online
 
@@ -52,7 +52,7 @@ def world_regions_list(request):
         # почему-то строкой выше айди складывается в формате (123,)
         pop_region.pk = pop_region.pk[0]
 
-        pop_region.pop, pop_region.online = get_region_online(region)
+        pop_region.pop, pop_region.online, players_online = get_region_online(region)
 
         regions_with_pop.append(pop_region)
 

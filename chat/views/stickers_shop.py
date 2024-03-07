@@ -41,7 +41,7 @@ def stickers_shop(request):
         stickers_dict[pack.pk] = available_stickers.filter(pack=pack)
 
 
-    return render(request, 'chat/stickers_shop.html', {'player': player,
+    return render(request, 'chat/sticker-shop.html', {'player': player,
                                                        'page_name': 'Магазин стикеров',
 
                                                        'available_packs': available_packs,

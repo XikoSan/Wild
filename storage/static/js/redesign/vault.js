@@ -91,9 +91,23 @@ function check_card(){
 
     display_modal('ask', wildpass_header, wildpass_text, wildpass_yes, wildpass_cancel)
 };
+
+//wild pass золото - проверка
+function check_card_4gold(){
+    $(".modal__ok").on( "click", gold_pragma);
+
+    display_modal('ask', wildpass_gold_header, wildpass_gold_text, wildpass_yes, wildpass_cancel)
+};
+
+//wild pass золото - установка флага на золото
+function gold_pragma(){
+    gold_usage = 1;
+    use_card();
+};
+
 //wild pass - использование
 function use_card(){
-    var sending_data = "&csrfmiddlewaretoken=" + csrftoken;
+    var sending_data = "&csrfmiddlewaretoken=" + csrftoken + "&gold_usage=" + gold_usage;
     $.ajax({
         type: "POST",
         url: "/use_card/",

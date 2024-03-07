@@ -46,6 +46,8 @@ def cancel_bill(request):
                             # если игрок - автор законопроекта
                             if player == bill.initiator:
 
+                                bill.bill_cancel()
+
                                 task = bill.task
                                 bill.task = None
                                 bill.save()
