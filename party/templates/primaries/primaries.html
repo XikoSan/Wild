@@ -1,0 +1,94 @@
+{% extends 'player/header.html' %}
+{% load static %}
+{% load l10n %}{% load i18n %}
+{% block for_scripts_and_css %}
+<script src="{% static 'js/primaries.js' %}?{{ csrf_token }}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="row" style="position: relative; min-width: 1500px">
+    <div class="col-xs-1 col-sm-1 col-md-1">
+    <!-- Tab links -->
+    </div>
+
+    <div class="col-xs-10 col-sm-10 col-md-10">
+        <!-- Tab content -->
+        <div id="over" class="tabcontent">
+            <div class="row">
+                <div class="col-xs-2 col-sm-2 col-md-2">
+                </div>
+                <div class="col-xs-8 col-sm-8 col-md-8" style="height: 850px; border: 10px solid #efefef; box-shadow: 5px 5px 10px #555;background: #efefef; border-radius: 5px; overflow-y: auto;">
+                    <div class="row">
+                        <div class="col-xs-2 col-sm-2 col-md-2">
+                        </div>
+                        <div class="col-xs-8 col-sm-8 col-md-8" align="center" style="margin-bottom: 30px">
+                            <h3>{% trans 'primaries_in_party' %}
+                                <!--если у партии есть аватарка-->
+                                {% if player.party.image %}
+                                <img src="{{ player.party.image.url }}" width="30" height="30">
+                                {% else %}
+                                <img src="{% static 'img/nopic_party.png' %}" width="30" height="30">
+                                {% endif %}
+                                {{ player.party }}</h3>
+                        </div>
+                        <div class="col-xs-2 col-sm-2 col-md-2">
+                            {% localize off %}
+                            <h3><font color="red" id="countdown" data-text="{{ remain }}"></font></h3>
+                            {% endlocalize %}
+                        </div>
+                    </div>
+                    {% for candidate in players_list %}
+                    <div class="row" style="border: 1px solid white;">
+                        <div class="col-xs-2 col-sm-2 col-md-2">
+                            <!--если пользователь загрузил аватарку-->
+                            <a href='profile/{{ member.pk }}' target="_blank">
+                                {% if candidate.image %}
+                                <img src="{{ candidate.image.url }}" width="50" height="50" align="right">
+                                {% else %}
+                                <img src="{% static 'img/nopic.png' %}" width="50" height="50" align="right">
+                                {% endif %}
+                            </a>
+                        </div>
+                        <div class="col-xs-8 col-sm-8 col-md-8">
+                            <a href='/profile/{% localize off %}{{ candidate.pk }}{% endlocalize %}' target="_blank">
+                                <h3>{{ candidate.nickname }}</h3>
+                            </a>
+                        </div>
+                        <div class="col-xs-2 col-sm-2 col-md-2">
+                            {% if can_vote %}
+                                {% if not vote %}
+                                    {% if candidate != player %}
+                                    <a style="cursor: pointer"
+                                            onclick="vote_prims(this)" data-party="{{ candidate.party.pk }}" data-candidate="{{ candidate.pk }}">
+                                        <h3>
+                                            <font color="green">
+                                                <div class="glyphicon glyphicon-plus">
+                                                </div>
+                                            </font>
+                                        </h3>
+                                    </a>
+                                    {% endif %}
+                                {% else %}
+                                    {% if vote.candidate == candidate %}
+                                    <h3>
+                                        <font color="green">
+                                            <div class="glyphicon glyphicon-ok">
+                                            </div>
+                                        </font>
+                                    </h3>
+                                    {% endif %}
+                                {% endif %}
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="col-xs-2 col-sm-2 col-md-2">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-1 col-sm-1 col-md-1">
+    </div>
+</div>
+{% endblock %}
