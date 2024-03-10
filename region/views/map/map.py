@@ -155,9 +155,6 @@ def map(request):
                 if fossil.good.pk not in ore_type_dict.keys():
                     ore_type_dict[fossil.good.pk] = fossil.good.name
 
-                from player.logs.print_log import log
-                log(f'{ region.region_name }: { fossil.percent }')
-                log(max_fossil)
                 if fossil.percent > max_fossil:
                     max_fossil_id = fossil.good.pk
                     max_fossil = fossil.percent
