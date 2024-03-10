@@ -22,6 +22,7 @@ from region.views.time_in_flight import time_in_flight
 from wild_politics.settings import JResponse
 from region.models.neighbours import Neighbours
 from player.views.timers import interval_in_seconds
+from region.models.fossils import Fossils
 
 
 # главная страница
@@ -107,6 +108,10 @@ def map(request):
         shapes_dict = {}
         online_dict = {}
         med_index_dict = {}
+        oil_type_dict = {}
+
+        ore_type_dict = {}
+        ore_has_dict = {}
 
         min_online = 0
         max_online = 0
@@ -116,6 +121,8 @@ def map(request):
         hospitals = Hospital.objects.all()
 
         neighbours = Neighbours.objects.all()
+
+        fossils = Fossils.objects.all()
 
         for region in regions:
             shapes_dict[region.pk] = shapes.get(region=region)
@@ -134,6 +141,29 @@ def map(request):
                 med_index_dict[region.pk] = hospitals.get(region=region).top
             else:
                 med_index_dict[region.pk] = 1
+
+            # типы нефти
+            if region.oil_mark.pk not in oil_type_dict.keys():
+                oil_type_dict[region.oil_mark.pk] = region.oil_mark.name
+
+            # типы руды
+            max_fossil = 0
+            max_fossil_id = None
+
+            for fossil in fossils.filter(region=region):
+
+                if fossil.good.pk not in ore_type_dict.keys():
+                    ore_type_dict[fossil.good.pk] = fossil.good.name
+
+                from player.logs.print_log import log
+                log(f'{ region.region_name }: { fossil.percent }')
+                log(max_fossil)
+                if fossil.percent > max_fossil:
+                    max_fossil_id = fossil.good.pk
+                    max_fossil = fossil.percent
+
+            ore_has_dict[region.pk] = max_fossil_id
+
 
         duration = 0
         estimate = 0
@@ -175,6 +205,10 @@ def map(request):
             'min_online': min_online,
             'max_online': max_online,
             'neighbours': neighbours,
+            'oil_type_dict': oil_type_dict,
+
+            'ore_type_dict': ore_type_dict,
+            'ore_has_dict': ore_has_dict,
 
             'med_index_dict': med_index_dict,
         })

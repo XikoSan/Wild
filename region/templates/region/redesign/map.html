@@ -3,6 +3,7 @@
 {% load floor_to_tens %}
 {% load dict_key %}
 {% load static %}
+{% load get_key_list %}
 {% load tz %}
 {% block content %}
 <script src='{% static "js/map.js" %}?{{ csrf_token }}'></script>
@@ -32,6 +33,28 @@
           <span>3</span>
           <span>4</span>
           <span>5</span>
+        </p>
+      </div>
+      <div class="map__top" data-name="oil">
+        <h2>Марки нефти</h2>
+        <div class="map__top-bar" style="background-image: linear-gradient(to right, #000000, #808080)"></div>
+        <p class="map__top-text">
+          <span>{{ oil_type_dict|dict_key:1 }}</span>
+          <span>{{ oil_type_dict|dict_key:7 }}</span>
+          <span>{{ oil_type_dict|dict_key:3 }}</span>
+        </p>
+      </div>
+      <div class="map__top" data-name="ore">
+        <h2>Залежи руд</h2>
+        <div style="display: flex;">
+            <div class="map__top-bar" style="background-color: #000000 !important; background-image: initial;"></div>
+            <div class="map__top-bar" style="background-color: #9B4F11 !important; background-image: initial;"></div>
+            <div class="map__top-bar" style="background-color: #C0C0C0 !important; background-image: initial;"></div>
+        </div>
+        <p class="map__top-text">
+          <span>{{ ore_type_dict|dict_key:4 }}</span>
+          <span>{{ ore_type_dict|dict_key:5 }}</span>
+          <span>{{ ore_type_dict|dict_key:6 }}</span>
         </p>
       </div>
 
@@ -167,6 +190,37 @@
             </svg>
           </span>
           Связи регионов
+        </label>
+      </div>
+
+      <div class="m-sett__form-check ct__check-box30">
+        <label>
+          <input value="oil" type="radio" name="map-layer" class="visually-hidden">
+          <svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(--c10two)"/>
+          </svg>
+          <span>
+            <svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(--c10two)"/>
+              <path d="M6.5 4.5L4.5 6.5V20.5H18.5L20.5 18.5V4.5H6.5Z" fill="var(--c10two)" stroke="var(--c10two)"/>
+            </svg>
+          </span>
+          Марки нефти
+        </label>
+      </div>
+      <div class="m-sett__form-check ct__check-box30">
+        <label>
+          <input value="ore" type="radio" name="map-layer" class="visually-hidden">
+          <svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(--c10two)"/>
+          </svg>
+          <span>
+            <svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(--c10two)"/>
+              <path d="M6.5 4.5L4.5 6.5V20.5H18.5L20.5 18.5V4.5H6.5Z" fill="var(--c10two)" stroke="var(--c10two)"/>
+            </svg>
+          </span>
+          Залежи руд
         </label>
       </div>
 
@@ -360,7 +414,7 @@ function addMarker(coordinates) {
 
   const planeIcon = L.icon({
     {% if player.pk == 1 %}
-    iconUrl: '/static/img/admin_plane.png',
+    iconUrl: '/static/img/congress.svg',
     {% else %}
 	iconUrl: '/static/img/flight.png',
 	{% endif %}
@@ -418,6 +472,18 @@ function addMarker(coordinates) {
 };
 
 
+ var oil_colors = {
+                    1:'#000000',
+                    7:'#404040',
+                    3:'#808080'
+                  };
+
+ var ore_colors = {
+                    4:'#000000',
+                    5:'#9B4F11',
+                    6:'#C0C0C0'
+                  };
+
  var region_props = {};
  var poly_list = [];
  var link_list = [];
@@ -466,7 +532,8 @@ function addMarker(coordinates) {
  region_props['{% localize off %}{{ district.on_map_id }}{% endlocalize %}'] = {};
  region_props['{% localize off %}{{ district.on_map_id }}{% endlocalize %}']['color'] = "#{% if district.state.color %}{{ district.state.color }}{% else %}{% if district.is_off %}000000{% else %}ffffff{% endif %}{% endif %}"
  region_props['{% localize off %}{{ district.on_map_id }}{% endlocalize %}']['online'] = {{ online_dict|dict_key:district.pk }};
- region_props['{% localize off %}{{ district.on_map_id }}{% endlocalize %}']['online'] = {{ online_dict|dict_key:district.pk }};
+ region_props['{% localize off %}{{ district.on_map_id }}{% endlocalize %}']['oil'] = {{ district.oil_mark.pk }};
+ region_props['{% localize off %}{{ district.on_map_id }}{% endlocalize %}']['ore'] = {{ ore_has_dict|dict_key:district.pk }};
  region_props['{% localize off %}{{ district.on_map_id }}{% endlocalize %}']['med_index'] = {{ med_index_dict|dict_key:district.pk }};
 
  poly_list.push(region_poly_{% localize off %}{{ district.pk }}{% endlocalize %});
@@ -545,6 +612,12 @@ function addMarker(coordinates) {
 
             if(mode == 'color'){
                 fillColor = region_props[geojson.options.data.id]['color'];
+            }
+            else if(mode == 'oil'){
+                fillColor = oil_colors[region_props[geojson.options.data.id]['oil']];
+            }
+            else if(mode == 'ore'){
+                fillColor = ore_colors[region_props[geojson.options.data.id]['ore']];
             }
             else{
                 var min_val = min_dict[mode];
