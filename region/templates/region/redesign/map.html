@@ -37,7 +37,11 @@
       </div>
       <div class="map__top" data-name="oil">
         <h2>Марки нефти</h2>
-        <div class="map__top-bar" style="background-image: linear-gradient(to right, #000000, #808080)"></div>
+        <div style="display: flex;">
+            <div class="map__top-bar" style="background-color: #000000 !important; background-image: initial;"></div>
+            <div class="map__top-bar" style="background-color: #404040 !important; background-image: initial;"></div>
+            <div class="map__top-bar" style="background-color: #808080 !important; background-image: initial;"></div>
+        </div>
         <p class="map__top-text">
           <span>{{ oil_type_dict|dict_key:1 }}</span>
           <span>{{ oil_type_dict|dict_key:7 }}</span>
