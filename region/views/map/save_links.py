@@ -41,12 +41,12 @@ def save_links(request):
         for link in links_list:
 
             if not Neighbours.objects.filter(
-                    Q(region_1=all_regions.get(on_map_id=int(link[0])), region_2=all_regions.get(on_map_id=int(link[1])))
-                    | Q(region_2=all_regions.get(on_map_id=int(link[0])), region_1=all_regions.get(on_map_id=int(link[1])))
+                    Q(region_1=all_regions.get(on_map_id=link[0]), region_2=all_regions.get(on_map_id=link[1]))
+                    | Q(region_2=all_regions.get(on_map_id=link[0]), region_1=all_regions.get(on_map_id=link[1]))
             ).exists():
                 neig = Neighbours(
-                    region_1=all_regions.get(on_map_id=int(link[0])),
-                    region_2=all_regions.get(on_map_id=int(link[1])),
+                    region_1=all_regions.get(on_map_id=link[0]),
+                    region_2=all_regions.get(on_map_id=link[1]),
                 )
                 neig.save()
 
