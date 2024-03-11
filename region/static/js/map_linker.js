@@ -9,7 +9,7 @@ function start_edit(){
     poly_list.forEach(function(geojson) {
         geojson.off("click");
         geojson.on("click", function(e) {
-            link_region(e.target.options.data.pk);
+            link_region(e.target.options.data.id);
         });
 
     });
