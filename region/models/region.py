@@ -124,11 +124,12 @@ class Region(models.Model):
     # # предел разведки
     # ore_explore_cap = models.DecimalField(default=00.00, max_digits=5, decimal_places=2, verbose_name='Руда: предел разведки')
 
-    # obsolete: процент добываемого в регионе угля
+    # оставлено для упрощения работы с картой:
+    # процент добываемого в регионе угля
     coal_proc = models.IntegerField(default=25, verbose_name='Процент угля')
-    # obsolete: процент добываемого в регионе железа
+    # процент добываемого в регионе железа
     iron_proc = models.IntegerField(default=25, verbose_name='Процент железа')
-    # obsolete: процент добываемого в регионе бокситов
+    # процент добываемого в регионе бокситов
     bauxite_proc = models.IntegerField(default=25, verbose_name='Процент бокситов')
 
     # централизация на карте

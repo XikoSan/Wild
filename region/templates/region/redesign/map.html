@@ -545,8 +545,9 @@ function addMarker(coordinates) {
  region_props['{% localize off %}{{ district.on_map_id }}{% endlocalize %}']['color'] = "#{% if district.state.color %}{{ district.state.color }}{% else %}{% if district.is_off %}000000{% else %}ffffff{% endif %}{% endif %}"
  region_props['{% localize off %}{{ district.on_map_id }}{% endlocalize %}']['online'] = {{ online_dict|dict_key:district.pk }};
  region_props['{% localize off %}{{ district.on_map_id }}{% endlocalize %}']['oil'] = {{ district.oil_mark.pk }};
+  region_props['{% localize off %}{{ district.on_map_id }}{% endlocalize %}']['oil_data'] = "{{ district.oil_has }} / {{ district.oil_cap }}";
  region_props['{% localize off %}{{ district.on_map_id }}{% endlocalize %}']['ore'] = {{ ore_has_dict|dict_key:district.pk }};
- region_props['{% localize off %}{{ district.on_map_id }}{% endlocalize %}']['ore_data'] = "{{ district.coal_proc }}% / {{ district.iron_proc }}% / {{ district.bauxite_proc }}%";
+ region_props['{% localize off %}{{ district.on_map_id }}{% endlocalize %}']['ore_data'] = "{{ district.coal_proc }}% / {{ district.iron_proc }}% / {{ district.bauxite_proc }}% <br> {{ district.ore_has }} / {{ district.ore_cap }}";
  region_props['{% localize off %}{{ district.on_map_id }}{% endlocalize %}']['med_index'] = {{ med_index_dict|dict_key:district.pk }};
 
  poly_list.push(region_poly_{% localize off %}{{ district.pk }}{% endlocalize %});
@@ -632,6 +633,15 @@ function addMarker(coordinates) {
             }
             else if(mode == 'oil'){
                 fillColor = oil_colors[region_props[geojson.options.data.id]['oil']];
+
+                var marker = L.marker([center_dict[geojson.options.data.id]['lat'], center_dict[geojson.options.data.id]['lng']],
+                                      {
+                                        alt: geojson.options.data.id,
+                                        icon: oreIcon
+                                      }).addTo(mymap)
+                                      .bindPopup(region_props[geojson.options.data.id]['oil_data']);
+
+                created_popups.push(marker);
             }
             else if(mode == 'ore'){
                 fillColor = ore_colors[region_props[geojson.options.data.id]['ore']];
