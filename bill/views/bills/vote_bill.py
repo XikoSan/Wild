@@ -65,7 +65,9 @@ def vote_bill(request):
                                     return JResponse(data)
 
                                 # если досрочное принятие разрешено
-                                if bill.accept_ahead:
+                                if bill.check_ahead():
+                                    from player.logs.print_log import log
+                                    log(bill.votes_pro.count() * 100 / DeputyMandate.objects.filter(player__isnull=False, parliament=parliament).count() >= bill.ahead_percent)
                                     # если после голосования голосов стало больше, чем процент досрочного принятия
                                     #           то принимаем законопроект
                                     if bill.votes_pro.count() * 100 / DeputyMandate.objects.filter(player__isnull=False, parliament=parliament).count() >= bill.ahead_percent \

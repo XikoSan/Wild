@@ -78,6 +78,10 @@ class Bill(models.Model):
         return
 
     # выполнить законопроект
+    def check_ahead(self):
+        return self.accept_ahead
+
+    # выполнить законопроект
     def do_bill(self):
         return
 

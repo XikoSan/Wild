@@ -49,6 +49,39 @@ class StartWar(Bill):
     region_to = models.ForeignKey(Region, on_delete=models.CASCADE, verbose_name='Регион-цель',
                                   related_name="region_to")
 
+    def check_ahead(self):
+
+        if not self.region_to.state:
+            return self.accept_ahead
+
+        # получим классы всех войн
+        war_classes = get_subclasses(War)
+
+        agr_regions = Region.objects.filter(state=self.parliament.state)
+        def_regions = Region.objects.filter(state=self.region_to.state)
+
+        accept_ahead = self.accept_ahead
+
+        from player.logs.print_log import log
+        log(agr_regions)
+        log(def_regions)
+
+        # проверяем по всем классам войн. Если есть атака - можно ускорить
+        for war_class in war_classes:
+            if war_class.objects.filter(
+                                        running=True,
+                                        agr_region__in=def_regions,
+                                        def_region__in=agr_regions,
+                                        deleted=False
+                                ).exists():
+                accept_ahead = True
+                break
+
+        log(accept_ahead)
+
+        return accept_ahead
+
+
     @staticmethod
     def new_bill(request, player, parliament):
 
@@ -233,10 +266,6 @@ class StartWar(Bill):
 
         first = None
         victimRegions = get_victims(state)
-
-        from player.logs.print_log import log
-        log(victimRegions)
-        log(list(victimRegions.keys()))
 
         if len(list(victimRegions.keys())) > 0:
             first = list(victimRegions.keys())[0]
