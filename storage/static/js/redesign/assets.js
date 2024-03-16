@@ -47,14 +47,14 @@ function transfer_pre() {
     });
     // считаем суммарный объем
     $('#total_vol').html(numberWithSpaces(total_vol));
-    // считаем стоимость, как сумма произведений объемов складов на множитель до выбранного склада-цели
+    // считаем стоимость, как окр.вверх( сумма произведений объемов складов на множитель до выбранного склада-цели, минус бонус Инфраструктуры )
     var sum_vol = 0;
     sum_vol = 0;
     storage_pos.forEach((value, key, map) => {
             if( !( selected_dest.val() == 'storage_none') ){
                 document.getElementById('accept').disabled = false
                 if( parseInt(key) != parseInt(selected_dest.val()) ){
-                    sum_vol += map.get(key) * trans_mul[selected_dest.val()][key];
+                    sum_vol += Math.ceil( ( map.get(key) * trans_mul[selected_dest.val()][key] ) * ( ( 100 - infr_mul[selected_dest.val()] - infr_mul[key] ) / 100 ) );
 
                 }
             }

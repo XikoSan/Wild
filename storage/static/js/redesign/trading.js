@@ -4,7 +4,13 @@ function insertAfter(newNode, existingNode) {
 
 function fill_delivery(id, storage){
     // указываем стоимость доставки
-    var delivery_sum = parseInt(offers_dict[id]['storages'][storage] * Math.ceil( $("#offer_count").val() * parseFloat(vol_map.get(offers_dict[id]['good_key']))));
+    var delivery_sum = parseInt(
+        Math.ceil(
+            (
+                offers_dict[id]['storages'][storage] * Math.ceil( $("#offer_count").val() * parseFloat(vol_map.get(offers_dict[id]['good_key'])))
+            ) * ( ( 100 - offers_dict[id]['infr'][storage] ) / 100 )
+        )
+    );
     document.getElementById("offer_delivery").innerHTML = '$' + numberWithSpaces(delivery_sum);
     document.getElementById("offer_sum").innerHTML = '$' + numberWithSpaces(offers_dict[id]['price'] * $("#offer_count").val());
     if (offers_dict[id]['type'] == 'sell'){
@@ -202,9 +208,13 @@ jQuery(document).ready(function ($) {
                             offers_dict[line['id']]['type'] = line['type'];
                             // склады
                             offers_dict[line['id']]['storages'] = {}
+                            // бонус инфраструктуры для этой пары складов
+                            offers_dict[line['id']]['infr'] = {}
                             for (var key in line['delivery']){
+//                              доставка
                                 offers_dict[line['id']]['storages'][key] = line['delivery'][key]['single'];
-
+//                              бонус инфраструктуры
+                                offers_dict[line['id']]['infr'][key] = line['delivery'][key]['infr'];
                             }
 
 

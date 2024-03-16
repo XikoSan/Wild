@@ -24,6 +24,7 @@ from war.models.wars.war import War
 from player.views.get_subclasses import get_subclasses
 from storage.models.stock import Stock
 from storage.models.good import Good
+from region.building.infrastructure import Infrastructure
 
 
 @login_required(login_url='/')
@@ -213,7 +214,11 @@ def accept_offer(request):
         # считаем доставку
         trans_mul = math.ceil(distance_counting(storage.region, offer.owner_storage.region) / 100)
 
-        delivery_price = math.ceil(int(count) * offer.offer_good.volume) * trans_mul
+        src_infr = Infrastructure.indexes[Infrastructure.get_stat(storage.region)[0]['top']]
+
+        dest_infr = Infrastructure.indexes[Infrastructure.get_stat(offer.owner_storage.region)[0]['top']]
+
+        delivery_price = math.ceil( math.ceil(int(count) * offer.offer_good.volume) * trans_mul * ( ( 100 - src_infr - dest_infr ) / 100 ) )
 
         # если оффер - продажа
         if offer.type == 'sell':

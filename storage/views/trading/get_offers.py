@@ -16,6 +16,7 @@ from player.views.get_subclasses import get_subclasses
 from storage.models.good import Good
 from storage.models.stock import Stock
 from math import ceil
+from region.building.infrastructure import Infrastructure
 
 
 @login_required(login_url='/')
@@ -197,9 +198,9 @@ def get_offers(request):
                 if len(delivery_dict) == 1:
                     delivery_dict[storage.pk]['default'] = True
                 delivery_dict[storage.pk]['single'] = trans_mul[storage.pk][offer.owner_storage.pk]
-
+                delivery_dict[storage.pk]['infr'] = Infrastructure.indexes[Infrastructure.get_stat(storage.region)[0]['top']] + Infrastructure.indexes[Infrastructure.get_stat(offer.owner_storage.region)[0]['top']]
                 # delivery_dict[storage.pk]['delivery'], prices = get_transfer_price(trans_mul, int(storage.pk), offer_value)
-                delivery_dict[storage.pk]['delivery'] = ceil(int(offer.count) * offer.offer_good.volume) * trans_mul[storage.pk][offer.owner_storage.pk]
+                delivery_dict[storage.pk]['delivery'] = ceil( ceil(int(offer.count) * offer.offer_good.volume) * trans_mul[storage.pk][offer.owner_storage.pk] * ( ( 100 - delivery_dict[storage.pk]['infr'] ) / 100 ) )
 
             offer_dict['delivery'] = delivery_dict
 

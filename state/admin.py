@@ -102,9 +102,20 @@ class ParliamentAdmin(admin.ModelAdmin):
     readonly_fields=('get_elections_day',)
 
 
+class TreasuryStockInline(admin.TabularInline):
+    model = TreasuryStock
+
+
+class TreasuryAdmin(admin.ModelAdmin):
+    search_fields = ['state__title', 'region__region_name']
+    raw_id_fields = ('state', 'region',)
+    list_display = ['state', 'region', ]
+    inlines = [TreasuryStockInline]
+
+
 # Register your models here.
 admin.site.register(State)
-admin.site.register(Treasury)
+admin.site.register(Treasury, TreasuryAdmin)
 admin.site.register(TreasuryLock, TreasuryLockAdmin)
 admin.site.register(Parliament, ParliamentAdmin)
 admin.site.register(ParliamentVoting, ParliamentVotingAdmin)

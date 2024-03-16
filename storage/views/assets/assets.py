@@ -12,6 +12,7 @@ from datetime import datetime
 from storage.views.storage.locks.get_storage import get_stocks
 from storage.models.good import Good
 from storage.models.stock import Stock
+from region.building.infrastructure import Infrastructure
 
 
 # главная страница
@@ -25,6 +26,8 @@ def assets(request):
     # - питер       = 8
     # - моск. обл.  = 1
     trans_mul = {}
+
+    infr_mul = {}
 
     goods_dict = {}
     cap_dict = {}
@@ -66,6 +69,9 @@ def assets(request):
             if not dest == storage:
                 trans_mul[storage.pk][dest.pk] = math.ceil(distance_counting(storage.region, dest.region) / 100)
 
+        # узнаем множитель Инфраструктуры для этого региона
+        infr_mul[storage.pk] = Infrastructure.indexes[Infrastructure.get_stat(storage.region)[0]['top']]
+
 
     groups = list(player.account.groups.all().values_list('name', flat=True))
     page = 'storage/assets.html'
@@ -85,6 +91,8 @@ def assets(request):
         'transport': Transport,
         'storage_cl': Storage,
         'trans_mul': trans_mul,
+
+        'infr_mul': infr_mul,
     })
 
     # if player_settings:

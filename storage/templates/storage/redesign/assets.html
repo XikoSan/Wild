@@ -156,6 +156,12 @@
         {% endfor %}
     };
 
+    var infr_mul = {
+        {% for key, value in infr_mul.items %}
+            {{ key }}: {{ value }},
+        {% endfor %}
+    };
+
     var storage_pos = new Map();
     <!--     также создаем словари складов для отправки данных   -->
     var send_storages_map = {};

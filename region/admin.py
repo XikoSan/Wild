@@ -5,6 +5,7 @@ from django.utils.html import format_html
 
 from region.building.defences import Defences
 from region.building.hospital import Hospital
+from region.building.infrastructure import Infrastructure
 from region.building.power_plant import PowerPlant
 from region.models.fossils import Fossils
 from region.models.map_shape import MapShape
@@ -79,6 +80,8 @@ class FossilsInline(admin.TabularInline):
 
 
 class RegionAdmin(admin.ModelAdmin):
+    search_fields = ['state__title', 'region_name', 'on_map_id']
+
     list_display = ('region_name', 'get_state', 'get_gold', 'get_oil', 'get_ore', 'is_off')
 
     inlines = [FossilsInline]
@@ -133,6 +136,7 @@ admin.site.register(MapShape, MapShapeAdmin)
 admin.site.register(Neighbours)
 admin.site.register(Fossils, FossilsAdmin)
 admin.site.register(Hospital, RateBuildingAdmin)
+admin.site.register(Infrastructure, RateBuildingAdmin)
 admin.site.register(PowerPlant, PowerPlantAdmin)
 admin.site.register(Defences, BuildingAdmin)
 admin.site.register(Terrain, TerrainAdmin)
