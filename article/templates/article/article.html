@@ -89,9 +89,9 @@
 {% endblock %}
 
 {% block content %}
-  <section class="articles custom-scroll"  id="comments-{% localize off %}{{ article.pk }}{% endlocalize %}">
+  <section class="articles custom-scroll">
     <!-- Заголовок -->
-    <h1 class="articles__title ct__page-title">ы
+    <h1 class="articles__title ct__page-title">
       <span class="ct__page-title-elipsis">{{ article.title }}</span>
     </h1>
 
@@ -185,7 +185,7 @@
           <!--Сообщения-->
           {% localize off %}{{ article.pk|json_script:"room-name" }}{% endlocalize %}
           {% localize off %}{{ player.pk|json_script:"player_id" }}{% endlocalize %}
-          <div class="overview__chat-messages">
+          <div class="overview__chat-messages" id="comments-{% localize off %}{{ article.pk }}{% endlocalize %}">
             {% for message in messages %}
                 {% if message|dict_key:'content' != 'ban_chat' and message|dict_key:'content' != 'delete_message' %}
             <!--сообщение-->
