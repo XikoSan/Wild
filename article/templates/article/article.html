@@ -18,7 +18,7 @@
 
     var sub_mode = '{% if subscription %}unsub{% else %}sub{% endif %}';
 
-    {% if comments %}
+    {% if comments and not player.chat_ban  %}
 
     // стикеры
     const overviewStickers = document.getElementById('overview__stickers');
@@ -76,7 +76,7 @@
   {% endif %}
 </script>
 
-{% if comments %}
+{% if comments and not player.chat_ban %}
     <script>
     const chat_conn_type = "{% if http_use %}ws{% else %}wss{% endif %}";
     </script>
@@ -132,7 +132,7 @@
                 <span id="rated_down" onclick="window.location.href = '/article/{% localize off %}{{ article.pk }}{% endlocalize %}/dislikes'" style="display: inline-block; cursor: pointer; ">{{ article_rated_down }}</span>
             </div>
         </div>
-        {% if comments %}
+        {% if comments and not player.chat_ban  %}
         <div class="DecorLine"></div>
 
         <div class="ct__top-tabs">
@@ -176,7 +176,7 @@
         {% endif %}
     </div>
 
-  {% if comments %}
+  {% if comments and not player.chat_ban  %}
     <div class="articles__chatBlock articleShowBlock articleShowBlock__chat">
 <!--        <p class="articles__noMessages">сообщений пока нет</p>-->
 
