@@ -23,6 +23,7 @@ from wild_politics.settings import JResponse
 from region.models.neighbours import Neighbours
 from player.views.timers import interval_in_seconds
 from region.models.fossils import Fossils
+from region.building.infrastructure import Infrastructure
 
 
 # главная страница
@@ -108,6 +109,7 @@ def map(request):
         shapes_dict = {}
         online_dict = {}
         med_index_dict = {}
+        infr_index_dict = {}
         oil_type_dict = {}
 
         ore_type_dict = {}
@@ -119,6 +121,8 @@ def map(request):
         shapes = MapShape.objects.all()
 
         hospitals = Hospital.objects.all()
+
+        infrastructure = Infrastructure.objects.all()
 
         neighbours = Neighbours.objects.all()
 
@@ -141,6 +145,12 @@ def map(request):
                 med_index_dict[region.pk] = hospitals.get(region=region).top
             else:
                 med_index_dict[region.pk] = 1
+
+            # инфраструктура регионов
+            if infrastructure.filter(region=region).exists():
+                infr_index_dict[region.pk] = infrastructure.get(region=region).top
+            else:
+                infr_index_dict[region.pk] = 1
 
             # типы нефти
             if region.oil_mark.pk not in oil_type_dict.keys():
@@ -207,7 +217,10 @@ def map(request):
             'ore_type_dict': ore_type_dict,
             'ore_has_dict': ore_has_dict,
 
+            # словарь медки
             'med_index_dict': med_index_dict,
+            # словарь инфры
+            'infr_index_dict': infr_index_dict,
         })
 
         # if player_settings:

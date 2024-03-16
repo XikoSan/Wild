@@ -35,6 +35,17 @@
           <span>5</span>
         </p>
       </div>
+      <div class="map__top" data-name="infr_index">
+        <h2>Индекс инфраструктуры</h2>
+        <div class="map__top-bar"></div>
+        <p class="map__top-text">
+          <span>1</span>
+          <span>2</span>
+          <span>3</span>
+          <span>4</span>
+          <span>5</span>
+        </p>
+      </div>
       <div class="map__top" data-name="oil">
         <h2>Марки нефти</h2>
         <div style="display: flex;">
@@ -130,6 +141,22 @@
             </svg>
           </span>
           Индекс медицины
+        </label>
+      </div>
+
+      <div class="m-sett__form-check ct__check-box30">
+        <label>
+          <input value="infr_index" type="radio" name="map-layer" class="visually-hidden">
+          <svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(--c10two)"/>
+          </svg>
+          <span>
+            <svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(--c10two)"/>
+              <path d="M6.5 4.5L4.5 6.5V20.5H18.5L20.5 18.5V4.5H6.5Z" fill="var(--c10two)" stroke="var(--c10two)"/>
+            </svg>
+          </span>
+          Индекс инфраструктуры
         </label>
       </div>
 
@@ -474,11 +501,13 @@ function addMarker(coordinates) {
  var min_dict = {
   'online': {% localize off %}{{ min_online }}{% endlocalize %},
   'med_index': 1,
+  'infr_index': 1,
 };
 
  var max_dict = {
   'online': {% localize off %}{{ max_online }}{% endlocalize %},
   'med_index': 5,
+  'infr_index': 5,
 };
 
 
@@ -549,6 +578,7 @@ function addMarker(coordinates) {
  region_props['{% localize off %}{{ district.on_map_id }}{% endlocalize %}']['ore'] = {{ ore_has_dict|dict_key:district.pk }};
  region_props['{% localize off %}{{ district.on_map_id }}{% endlocalize %}']['ore_data'] = "{{ district.coal_proc }}% / {{ district.iron_proc }}% / {{ district.bauxite_proc }}% <br> {{ district.ore_has }} / {{ district.ore_cap }}";
  region_props['{% localize off %}{{ district.on_map_id }}{% endlocalize %}']['med_index'] = {{ med_index_dict|dict_key:district.pk }};
+ region_props['{% localize off %}{{ district.on_map_id }}{% endlocalize %}']['infr_index'] = {{ infr_index_dict|dict_key:district.pk }};
 
  poly_list.push(region_poly_{% localize off %}{{ district.pk }}{% endlocalize %});
  center_dict['{% localize off %}{{ district.on_map_id }}{% endlocalize %}'] = { 'lat':{% localize off %}{{ district.latitude }}, 'lng':{{ district.longitude }}{% endlocalize %} };
