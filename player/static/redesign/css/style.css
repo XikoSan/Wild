@@ -2431,10 +2431,11 @@ a {
 }
 .articleShowBlock {
   display: none;
+  flex-grow: 1;
+  height: 100%;
 }
 .articleShowBlock.active {
   display: block;
-  flex-grow: 1;
 }
 .articles__title {
   position: relative;
@@ -2702,7 +2703,6 @@ a {
   line-height: 20rem;
   border: 0;
 }
-
 .panel-default > .panel-heading {
   color: #fff !important;
   background-color: #000 !important;
@@ -2717,6 +2717,9 @@ a {
 .articles .overview__stickers.active {
   bottom: 140rem;
 }
+.articleShowBlock__chat {
+  overflow: hidden;
+}
 .articleShowBlock__chat .ct__top-tabs {
   position: fixed;
   left: 0;
@@ -2726,9 +2729,14 @@ a {
   padding-bottom: 24rem;
 }
 .articles .articles__messages {
-  padding-bottom: 40rem;
   padding-left: 0;
   padding-right: 0;
+  height: 100%;
+}
+.articles .overview__chat-messages {
+  height: calc(100% - 20rem);
+  padding-bottom: 80rem;
+  overflow-y: auto;
 }
 
 @media (min-width: 1000px) {
@@ -2779,6 +2787,9 @@ a {
   }
   .articles .overview__stickers.active {
     bottom: 74rem;
+  }
+  .articles .overview__chat-messages {
+    height: calc(100% - 20rem);
   }
 }
 
