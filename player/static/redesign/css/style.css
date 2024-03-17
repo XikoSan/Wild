@@ -2431,10 +2431,12 @@ a {
 }
 .articleShowBlock {
   display: none;
+  flex-grow: 1;
+  height: 100%;
+  overflow: hidden;
 }
 .articleShowBlock.active {
   display: block;
-  flex-grow: 1;
 }
 .articles__title {
   position: relative;
@@ -2729,6 +2731,10 @@ a {
   padding-bottom: 40rem;
   padding-left: 0;
   padding-right: 0;
+  height: 100%;
+}
+.articles .overview__chat-messages {
+  height: calc(100% - 20rem);
 }
 
 @media (min-width: 1000px) {
@@ -2779,6 +2785,9 @@ a {
   }
   .articles .overview__stickers.active {
     bottom: 74rem;
+  }
+  .articles .overview__chat-messages {
+    height: calc(100% - 20rem);
   }
 }
 
