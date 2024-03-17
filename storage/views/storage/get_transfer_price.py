@@ -2,6 +2,7 @@ from player.player import Player
 from storage.models.storage import Storage
 from storage.models.transport import Transport
 from storage.models.stock import Stock
+from region.models.region import Region
 from math import ceil
 from region.building.infrastructure import Infrastructure
 
@@ -10,11 +11,12 @@ from region.building.infrastructure import Infrastructure
 # trans_mul- словарь множителей расстояния от склада до склада
 # dest     - pk Склада - цели
 # values   - формат данных JSON из запроса
+# dest_region - вместо ID склада передаётся id региона
 
 # выходные данные:
 # price    - общая цена перевозки
 # prices   - словарь: цель - стоимость
-def get_transfer_price(trans_mul, dest, values):
+def get_transfer_price(trans_mul, dest, values, dest_region=False):
     price = 0
     prices = {}
 
@@ -29,6 +31,12 @@ def get_transfer_price(trans_mul, dest, values):
 
     for warehouse in storages:
         infr_mul[warehouse.pk] = Infrastructure.indexes[Infrastructure.get_stat(warehouse.region)[0]['top']]
+
+    if dest_region:
+        dest_region = Region.objects.get(pk=dest)
+
+        dest = f'reg_{dest}'
+        infr_mul[dest] = Infrastructure.indexes[Infrastructure.get_stat(dest_region)[0]['top']]
 
     # список айдишников запасов, которые будем обрабатывать
     stocks_pk_list = []

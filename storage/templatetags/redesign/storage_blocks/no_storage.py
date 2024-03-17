@@ -20,7 +20,7 @@ def no_storage(player):
 
     price_dict = {}
     trans_mul = {}
-    trans_mul[0] = {}
+    trans_mul[player.region.pk] = {}
 
     # считаем стоиомость создания нового Склада
     # она равна 500 * количество Складов сейчас
@@ -55,7 +55,7 @@ def no_storage(player):
 
         trans_mul[0][storage.pk] = math.ceil(distance_counting(player.region, storage.region) / 100)
 
-    price, prices = get_transfer_price(trans_mul, 0, price_dict)
+    price, prices = get_transfer_price(trans_mul, player.region.pk, price_dict, dest_region=True)
     for source_storage_pk in prices:
         delivery_sum[storages.get(pk=source_storage_pk)] = prices[source_storage_pk]
 
