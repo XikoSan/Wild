@@ -86,8 +86,8 @@ def _append_message(chat_id, author, text):
 
     count = r.zcard(f'comments_{chat_id}')
 
-    if count > 50:
-        r.zremrangebyrank(f'comments_{chat_id}', 0, 0)
+    # if count > 100:
+    #     r.zremrangebyrank(f'comments_{chat_id}', 0, 0)
 
     return int(counter) + 1
 
