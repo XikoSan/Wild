@@ -39,8 +39,8 @@ def new_storage(request):
 
         paid_storage = Storage.actual.get(pk=int(request.POST.get('storage')))
         price_dict[paid_storage.pk] = {}
-        trans_mul[0] = {}
-        trans_mul[0][paid_storage.pk] = math.ceil(distance_counting(player.region, paid_storage.region) / 100)
+        trans_mul[f'reg_{player.region.pk}'] = {}
+        trans_mul[f'reg_{player.region.pk}'][paid_storage.pk] = math.ceil(distance_counting(player.region, paid_storage.region) / 100)
 
         # стоиомость создания нового Склада
         material_cost = 500
@@ -70,7 +70,7 @@ def new_storage(request):
         for stock in [aluminium_stock, steel_stock]:
             setattr(stock, 'stock', getattr(stock, 'stock') - material_cost)
 
-        price, prices = get_transfer_price(trans_mul, 0, price_dict)
+        price, prices = get_transfer_price(trans_mul, player.region.pk, price_dict, dest_region=True)
         if price > player.cash:
             data = {
                 'header': pgettext('storage', 'Новый Склад'),
