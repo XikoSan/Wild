@@ -20,7 +20,7 @@ def no_storage(player):
 
     price_dict = {}
     trans_mul = {}
-    trans_mul[player.region.pk] = {}
+    trans_mul[f'reg_{player.region.pk}'] = {}
 
     # считаем стоиомость создания нового Склада
     # она равна 500 * количество Складов сейчас
@@ -53,7 +53,7 @@ def no_storage(player):
         price_dict[storage.pk] = {}
         price_dict[storage.pk][aluminium_stock.pk] = price_dict[storage.pk][steel_stock.pk] = material_cost
 
-        trans_mul[player.region.pk][storage.pk] = math.ceil(distance_counting(player.region, storage.region) / 100)
+        trans_mul[f'reg_{player.region.pk}'][storage.pk] = math.ceil(distance_counting(player.region, storage.region) / 100)
 
     price, prices = get_transfer_price(trans_mul, player.region.pk, price_dict, dest_region=True)
     for source_storage_pk in prices:
