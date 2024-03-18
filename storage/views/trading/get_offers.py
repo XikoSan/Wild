@@ -182,6 +182,7 @@ def get_offers(request):
                     delivery_dict[storage.pk] = {}
                     delivery_dict[storage.pk]['delivery'] = 0
                     delivery_dict[storage.pk]['single'] = 0
+                    delivery_dict[storage.pk]['infr'] =  0
                     continue
 
                 trans_mul = {storage.pk: {}}
