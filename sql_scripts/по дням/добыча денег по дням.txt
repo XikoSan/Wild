@@ -1,0 +1,5 @@
+SELECT date,
+       cash
+FROM public.metrics_dailycash
+WHERE date >= '2024-01-01'
+ORDER BY date ASC;

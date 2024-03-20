@@ -1,0 +1,8 @@
+SELECT date,
+       SUM(CASE WHEN type = 'coal' THEN ore END) AS coal_volume,
+       SUM(CASE WHEN type = 'iron' THEN ore END) AS iron_volume,
+       SUM(CASE WHEN type = 'bauxite' THEN ore END) AS bauxite_volume
+FROM public.metrics_dailyore
+WHERE date >= '2024-01-01'
+GROUP BY date
+ORDER BY date ASC;

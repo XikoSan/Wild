@@ -1,0 +1,8 @@
+SELECT date,
+       SUM(CASE WHEN type = 'urals_oil' THEN oil END) AS urals_oil_volume,
+       SUM(CASE WHEN type = 'brent_oil' THEN oil END) AS brent_oil_volume,
+       SUM(CASE WHEN type = 'wti_oil' THEN oil END) AS wti_oil_volume
+FROM public.metrics_dailyoil
+WHERE date = '2024-01-01'
+GROUP BY date
+ORDER BY date ASC;
