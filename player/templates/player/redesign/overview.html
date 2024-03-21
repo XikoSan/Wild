@@ -157,6 +157,7 @@
 {% load get_class_name %}
 
 {% block content %}
+  {% with LANGUAGE_CODE='ru' %}
 <main>
 
   <section class="overview custom-scroll">
@@ -734,7 +735,11 @@
         {% if not player.chat_ban %}
         <div class="overview__chat-wrapper">
           <!--Сообщения-->
-          {% get_current_language as LANGUAGE_CODE %}
+
+            <!--в будущем использовать это (LANGUAGE_CODE) как ИД чата-->
+            {% get_current_language as LANGUAGE_CODE_T %}
+            <!--а пока что переменная объявляется выше-->
+
           {% get_language_info for LANGUAGE_CODE as lang %}
           {{ LANGUAGE_CODE|json_script:"room-name" }}
           {{ player.pk|json_script:"player_id" }}
@@ -1044,4 +1049,5 @@
   })
 
 </script>
+{% endwith %}
 {% endblock %}
