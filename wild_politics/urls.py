@@ -62,6 +62,8 @@ urlpatterns = [
 
                   url(r'', include('skill.urls')),
 
+                  url(r'', include('event.urls')),
+
                   url('__debug__/', include(debug_toolbar.urls)),
 
                   # url(r'', include('article.urls')),

@@ -22,6 +22,8 @@ from region.building.hospital import Hospital
 from region.models.region import Region
 from state.models.state import State
 from wild_politics.settings import JResponse
+from django.db import connection
+
 
 
 class Player(models.Model):
@@ -313,6 +315,28 @@ class Player(models.Model):
             endurance = 100
 
         daily_limit = 15000 + (power * 100) + (knowledge * 100) + (endurance * 100)
+
+        # ------------------
+
+        CashEvent = apps.get_model('event.CashEvent')
+        bonus = 0
+
+        if CashEvent.objects.filter(running=True, event_start__lt=timezone.now(),
+                                        event_end__gt=timezone.now()).exists():
+            cursor = connection.cursor()
+
+            cursor.execute(
+                f'SELECT event_invite.sender_id,SUM(player_player.endurance+player_player.knowledge+player_player.power)AS total_stats FROM public.event_invite INNER JOIN public.player_player ON event_invite.invited_id=player_player.id WHERE sender_id = {self.pk} GROUP BY event_invite.sender_id ORDER BY total_stats DESC limit 10;')
+
+            raw_top = cursor.fetchall()
+
+            if raw_top:
+                bonus = raw_top[0][1] // 10
+
+        if bonus > 0:
+            daily_limit = daily_limit * ( 1 + (bonus/100))
+
+        # ------------------
 
         if self.destination:
             data = {

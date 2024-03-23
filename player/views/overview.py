@@ -5,6 +5,7 @@ import pytz
 import random
 import redis
 import vk
+from django.apps import apps
 from vk.exceptions import VkAPIError
 from allauth.socialaccount.models import SocialAccount, SocialToken
 from dateutil.relativedelta import relativedelta
@@ -304,6 +305,7 @@ def overview(request):
     #
     #     except VkAPIError as e:
     #         pass
+
     assistant_name = ('Ann', 'Анна')
 
     if not player.educated:
@@ -348,6 +350,11 @@ def overview(request):
     # log(f'вилдпассы: {wp_prize}')
     #
     # log(f'всего: {gold_prize + prem_prize + wp_prize}')
+
+    CashEvent = apps.get_model('event.CashEvent')
+
+    inviting_event = CashEvent.objects.filter(running=True, event_start__lt=timezone.now(),
+                                event_end__gt=timezone.now()).exists()
 
     page = 'player/redesign/overview.html'
 
@@ -402,6 +409,8 @@ def overview(request):
 
         'has_event': has_event,
         'activity_event': activity_event,
+
+        'inviting_event': inviting_event,
 
         'assistant_name': assistant_name,
 

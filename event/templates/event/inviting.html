@@ -1,0 +1,215 @@
+{% extends 'player/redesign/header.html' %}
+{% load l10n %}{% load i18n %}
+{% load static %}
+{% load tz %}
+{% load capitalize %}
+{% load redesign.template_svg.nopic_list %}
+{% load get_divv %}
+{% load get_sum %}
+{% load dict_key %}
+
+{% block for_scripts_and_css %}
+<script src="{% static 'redesign/js/inviting.js' %}?{{ csrf_token }}"></script>
+<script>
+	const tabs = document.querySelectorAll('.articles__tabs:not(.invited__tabs) button');
+	const blocks = document.querySelectorAll('.articles__list:not(.invited__list)');
+	tabs.forEach((tab, index) => {
+		tab.addEventListener('click', () => {
+			tabs.forEach((el) => el.classList.remove('active'));
+			tab.classList.add('active');
+			blocks.forEach((el) => el.classList.remove('active'));
+			blocks[index].classList.add('active');
+		})
+	})
+
+	const invited_tabs = document.querySelectorAll('.articles__tabs.invited__tabs button');
+	const invited_blocks = document.querySelectorAll('.articles__list.invited__list');
+	invited_tabs.forEach((tab, index) => {
+		tab.addEventListener('click', () => {
+			invited_tabs.forEach((el) => el.classList.remove('active'));
+			tab.classList.add('active');
+			invited_blocks.forEach((el) => el.classList.remove('active'));
+			invited_blocks[index].classList.add('active');
+		})
+	})
+</script>
+{% endblock %}
+
+{% block content %}
+  <section class="articles">
+	    <!-- Заголовок -->
+  		<h1 class="create__title ct__page-title">Пригласи друзей<br>и получай награды!</h1>
+	  <div class="articles__inner">
+		  <div class="articles__tabs" {% if invited %} style="grid-template-columns: repeat(2, 1fr)"{% endif %}>
+			<button class="active">Регламент</button>
+			  {% if not invited %}
+			<button>Активировать</button>
+			  {% endif %}
+			<button>Приглашённые</button>
+		  </div>
+
+		  <div class="DecorLine"></div>
+
+	  <ul class="articles__list active">
+		<div class="ct__s">
+			<h2 class="ct__s-title">Регламент события:</h2>
+			<br>
+			<p class="ct__s-text">
+				Событие пройдёт с 23.03.24 по 31.05.24
+			</p>
+			<br>
+			<p class="ct__s-text">
+				Приглашайте новых игроков в проект, чтобы получать награды!
+			</p>
+			<br>
+			<p class="ct__s-text">
+				Новички должны указать ваш ID на вкладке "активировать", первые трое суток после регистрации.
+			</p>
+			<br>
+			<p class="ct__s-text">
+				Получайте по 1% к Финансированию за каждые десять уровней Характеристик, изученных приглашёнными игроками.
+			</p>
+			<br>
+			<p class="ct__s-text">
+				Войдите в топ-3 игроков, чьи подопечные развились больше всех - и получите денежный приз!
+			</p>
+			<br>
+			<p class="ct__s-text">
+				Нерезидентам РФ денежный приз будет выдан в виде эквивалента в игровой валюте.
+			</p>
+		</div>
+	  </ul>
+
+	  {% if not invited %}
+	  <ul class="articles__list">
+		<div class="ct__s">
+			<h2 class="ct__s-title">Активируйте приглашение от игрока</h2>
+			<br>
+			<p class="ct__s-text">
+				Укажите ID пользователя, пригласившего вас в игру.
+			</p>
+			<br>
+			<p class="ct__s-text">
+				Вы получите
+				<font style="color: var(--c10two);">7 дней премиум-аккаунта</font>
+				, а пригласивший - бонус к Финансированию.
+			</p>
+			<br>
+			<p class="ct__s-text">
+				Внимание: данная вкладка пропадёт после активации, изменить пригласившего будет нельзя!
+			</p>
+		</div>
+
+		<form method="POST" enctype="multipart/form-data" id="post-form" class="create__form" style="margin-top: 25rem;">
+		  {% csrf_token %}
+		  <!--Никнейм-->
+		  <h2>Введите ID пригласившего</h2>
+		  <input type="text" id="code" name="code" maxlength="4">
+
+			<div style="display: flex; justify-content: center; width: 100%;">
+				<button class="ct__top-tab ct__top-tab1 active ct__mid-btn">
+					<svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
+						<mask id="mask0_259_317" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+							<path class="geometry1" d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"></path>
+						</mask>
+						<g mask="url(#mask0_259_317)">
+							<path class="geometry2" d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z"></path>
+							<path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"></path>
+							<path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"></path>
+							<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"></path>
+						</g>
+					</svg>
+					<span>активировать</span>
+				</button>
+			</div>
+		</form>
+	  </ul>
+	  {% endif %}
+
+	  <ul class="articles__list">
+
+		  <div class="articles__tabs invited__tabs" style="grid-template-columns: repeat(2, 1fr)">
+			<button class="active">Приглашённые</button>
+			<button>Рейтинг</button>
+		  </div>
+		  <div class="DecorLine"></div>
+
+		  <ul class="articles__list invited__list active">
+
+		  <table class="ct__js-table">
+			  <tbody>
+
+				<tr>
+
+					  <td class="j-t-image"></td>
+					  <td class="j-t-nickname">Никнейм</td>
+					  <td class="j-t-bonus">Бонус</td>
+
+				</tr>
+
+				{% for line in invited_list %}
+				<tr>
+
+				  <td class="j-t-image" style="cursor: pointer" onclick="window.open('/profile/{% localize off %}{{ line.invited.pk }}{% endlocalize %}/')">
+					  {% if not line.invited.image %}
+					  	{% nopic_list player '' %}
+					  {% else %}
+					  	<img src="{{ line.invited.image.url }}">
+					  {% endif %}
+					</td>
+
+				  <td class="j-t-nickname" style="cursor: pointer" onclick="window.open('/profile/{% localize off %}{{ line.invited.pk }}{% endlocalize %}/')">
+					{{ line.invited.nickname }}
+					</td>
+
+				<td class="j-t-bonus" style="cursor: pointer" onclick="window.open('/profile/{% localize off %}{{ line.invited.pk }}{% endlocalize %}/')">
+					+{{  line.invited.power|get_sum:line.invited.knowledge|get_sum:line.invited.endurance|get_divv:10 }}%
+				</td>
+
+				</tr>
+				{% endfor %}
+			  </tbody>
+			</table>
+
+		  </ul>
+
+		  <ul class="articles__list invited__list">
+		  	<table class="ct__js-table">
+			  <tbody>
+
+				<tr>
+
+					  <td class="j-t-image"></td>
+					  <td class="j-t-nickname">Никнейм</td>
+					  <td class="j-t-bonus">награда</td>
+
+				</tr>
+
+				{% for line in top_players %}
+				<tr>
+
+				  <td class="j-t-image" style="cursor: pointer" onclick="window.open('/profile/{% localize off %}{{ line.pk }}{% endlocalize %}/')">
+					  {% if not line.image %}
+					  	{% nopic_list player '' %}
+					  {% else %}
+					  	<img src="{{ line.image.url }}">
+					  {% endif %}
+					</td>
+
+				  <td class="j-t-nickname" style="cursor: pointer" onclick="window.open('/profile/{% localize off %}{{ line.pk }}{% endlocalize %}/')">
+					{{ line.nickname }}
+					</td>
+
+				<td class="j-t-bonus" style="cursor: pointer" onclick="window.open('/profile/{% localize off %}{{ line.pk }}{% endlocalize %}/')">
+					+{{ top_dict|dict_key:line.pk|get_divv:10 }}% {% if forloop.counter0 == 0 %}, + ₽3000{% elif forloop.counter0 == 1 %}, + ₽2000{% elif forloop.counter0 == 2 %}, + ₽1000{% endif %}
+				</td>
+
+				</tr>
+				{% endfor %}
+			  </tbody>
+			</table>
+		  </ul>
+	  </ul>
+  </div>
+  </section>
+{% endblock %}
