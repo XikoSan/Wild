@@ -334,7 +334,7 @@ class Player(models.Model):
                 bonus = raw_top[0][1] // 10
 
         if bonus > 0:
-            daily_limit = daily_limit * ( 1 + (bonus/100))
+            daily_limit = int(daily_limit * ( 1 + (bonus/100)))
 
         # ------------------
 
