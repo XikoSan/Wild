@@ -38,6 +38,11 @@ def inviting_event(request):
         invited = True
 
     invited_list = Invite.objects.filter(sender=player)
+    total_bonus = 0
+    cash_reward = None
+
+    for line in invited_list:
+        total_bonus += (line.invited.power + line.invited.knowledge +  + line.invited.endurance) // 10
 
     cursor = connection.cursor()
 
@@ -56,8 +61,21 @@ def inviting_event(request):
 
     top_players_raw = Player.objects.filter(pk__in=top_pk_list)
 
+    top = 1
     for line in raw_top:
-        top_players.append(top_players_raw.get(pk=int(line[0])))
+        char = top_players_raw.get(pk=int(line[0]))
+        top_players.append(char)
+
+        if top == 1 and char == player:
+            cash_reward = 3000
+
+        if top == 2 and char == player:
+            cash_reward = 2000
+
+        if top == 3 and char == player:
+            cash_reward = 1000
+
+        top += 1
 
 
     page = 'event/inviting.html'
@@ -70,6 +88,8 @@ def inviting_event(request):
         'invited': invited,
 
         'invited_list': invited_list,
+        'total_bonus': total_bonus,
+        'cash_reward': cash_reward,
 
         'top_players': top_players,
         'top_dict': top_dict,

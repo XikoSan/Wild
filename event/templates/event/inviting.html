@@ -136,6 +136,16 @@
 
 		  <ul class="articles__list invited__list active">
 
+		<div class="ct__s" style="display: flex; justify-content: center;">
+			<h2 class="ct__s-title" style="background: linear-gradient(270deg, var(--c30) 0%, transparent 100%);">Бонус к Финансированию:</h2>
+			<h2 class="ct__s-title">+ {{ total_bonus }}%</h2>
+		</div>
+		{% if cash_reward %}
+		<div class="ct__s" style="display: flex; justify-content: center;">
+			<h2 class="ct__s-title" style="background: linear-gradient(270deg, var(--c30) 0%, transparent 100%);">Возможная награда:</h2>
+			<h2 class="ct__s-title">+ ₽{{ cash_reward }}</h2>
+		</div>
+		{% endif %}
 		  <table class="ct__js-table">
 			  <tbody>
 
@@ -163,7 +173,7 @@
 					</td>
 
 				<td class="j-t-bonus" style="cursor: pointer" onclick="window.open('/profile/{% localize off %}{{ line.invited.pk }}{% endlocalize %}/')">
-					+{{  line.invited.power|get_sum:line.invited.knowledge|get_sum:line.invited.endurance|get_divv:10 }}%
+					+ {{  line.invited.power|get_sum:line.invited.knowledge|get_sum:line.invited.endurance|get_divv:10 }}%
 				</td>
 
 				</tr>
@@ -201,7 +211,7 @@
 					</td>
 
 				<td class="j-t-bonus" style="cursor: pointer" onclick="window.open('/profile/{% localize off %}{{ line.pk }}{% endlocalize %}/')">
-					+{{ top_dict|dict_key:line.pk|get_divv:10 }}% {% if forloop.counter0 == 0 %}, + ₽3000{% elif forloop.counter0 == 1 %}, + ₽2000{% elif forloop.counter0 == 2 %}, + ₽1000{% endif %}
+					+ {{ top_dict|dict_key:line.pk|get_divv:10 }}% {% if forloop.counter0 == 0 %}, + ₽3000{% elif forloop.counter0 == 1 %}, + ₽2000{% elif forloop.counter0 == 2 %}, + ₽1000{% endif %}
 				</td>
 
 				</tr>
