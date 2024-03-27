@@ -390,7 +390,7 @@ class Player(models.Model):
         if timezone.now().date().weekday() == 5 or timezone.now().date().weekday() == 6:
             if count != 0:
                 is_weekend = True
-                count += count
+                count = count * 3
 
         taxed_count = 0
         PlayerRegionalExpense = apps.get_model('player.PlayerRegionalExpense')
