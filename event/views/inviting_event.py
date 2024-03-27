@@ -42,7 +42,9 @@ def inviting_event(request):
     cash_reward = None
 
     for line in invited_list:
-        total_bonus += (line.invited.power + line.invited.knowledge +  + line.invited.endurance) // 10
+        total_bonus += line.invited.power + line.invited.knowledge +  + line.invited.endurance
+
+    total_bonus = total_bonus // 10
 
     cursor = connection.cursor()
 
