@@ -189,6 +189,29 @@ def map(request):
                 admin_duration = math.floor(time_in_flight(admin, admin.destination))
                 admin_estimate = admin_duration - math.floor(interval_in_seconds(object=admin.task.clocked, start_fname=None, end_fname='clocked_time', delay_in_sec=None))
 
+        others_duration = {}
+        others_estimate = {}
+        others_coords = {}
+
+        chars_in_flight = Player.objects.only('id', 'region', 'destination', 'task').filter(destination__isnull=False).exclude(pk=1).exclude(pk=player.pk)
+
+        for char in chars_in_flight:
+            
+            others_coords[char.pk] = {}
+            
+            others_coords[char.pk]['src'] = {}
+            others_coords[char.pk]['src']['north'] = char.region.north
+            others_coords[char.pk]['src']['east'] = char.region.east
+            
+            others_coords[char.pk]['dst'] = {}
+            others_coords[char.pk]['dst']['north'] = char.destination.north
+            others_coords[char.pk]['dst']['east'] = char.destination.east
+            
+
+            others_duration[char.pk] = math.floor(time_in_flight(char, char.destination))
+            others_estimate[char.pk] = others_duration[char.pk] - math.floor(interval_in_seconds(object=char.task.clocked, start_fname=None, end_fname='clocked_time', delay_in_sec=None))
+
+
         groups = list(player.account.groups.all().values_list('name', flat=True))
         page = 'region/map.html'
         if 'redesign' not in groups:
@@ -207,6 +230,10 @@ def map(request):
             'admin': admin,
             'admin_duration': admin_duration,
             'admin_estimate': admin_estimate,
+            
+            'others_coords': others_coords,
+            'others_duration': others_duration,
+            'others_estimate': others_estimate,
 
             'online_dict': online_dict,
             'min_online': min_online,

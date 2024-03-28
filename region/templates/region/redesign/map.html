@@ -5,6 +5,8 @@
 {% load static %}
 {% load get_key_list %}
 {% load tz %}
+{% load get_key_list %}
+
 {% block content %}
 <script src='{% static "js/map.js" %}?{{ csrf_token }}'></script>
 <script src='{% static "js/leaflet.js" %}?{{ csrf_token }}'></script>
@@ -451,7 +453,7 @@ function addMarker(coordinates) {
 
   const planeIcon = L.icon({
     {% if player.pk == 1 %}
-    iconUrl: '/static/img/admin_plane.png',
+    iconUrl: '/static/img/planes/pretender/pretender_gold.svg',
     {% else %}
 	iconUrl: '/static/img/flight.png',
 	{% endif %}
@@ -477,20 +479,47 @@ function addMarker(coordinates) {
 
     admin_startCoords = adjustStartCoords(admin_startCoords, admin_endCoords, admin_duration, admin_estimate);
 
-    var angle = calculateAngle(admin_startCoords, admin_endCoords);
+    var admin_angle = calculateAngle(admin_startCoords, admin_endCoords);
 
     const admin_planeIcon = L.icon({
-      iconUrl: '/static/img/admin_plane.png',
+      iconUrl: '/static/img/planes/pretender/pretender_gold.svg',
       iconSize: [50, 50],
       iconAnchor: [25, 25],
     });
 
-    var admin_planeMarker = L.rotatedMarker(admin_startCoords, { icon: admin_planeIcon, rotationAngle: angle });
+    var admin_planeMarker = L.rotatedMarker(admin_startCoords, { icon: admin_planeIcon, rotationAngle: admin_angle });
     admin_planeMarker.addTo(mymap);
 
     animateFlight(admin_planeMarker, admin_startCoords, admin_endCoords, admin_duration-admin_estimate);
 
    {% endif %}
+ {% endif %}
+
+  {% if others_coords %}
+   {% for char in others_coords|get_key_list %}
+
+    var char_{% localize off %}{{ char }}{% endlocalize %}_startCoords = [{{ others_coords|dict_key:char|dict_key:'src'|dict_key:'north' }}, {{ others_coords|dict_key:char|dict_key:'src'|dict_key:'east' }}];
+    const char_{% localize off %}{{ char }}{% endlocalize %}_endCoords = [{{ others_coords|dict_key:char|dict_key:'dst'|dict_key:'north' }}, {{ others_coords|dict_key:char|dict_key:'dst'|dict_key:'east' }}];
+
+    const char_{% localize off %}{{ char }}{% endlocalize %}_duration = {% localize off %}{{ others_duration|dict_key:char }}{% endlocalize %}; // ДЛительность всего полёта: 60 секунд
+    const char_{% localize off %}{{ char }}{% endlocalize %}_estimate = {% localize off %}{{ others_estimate|dict_key:char }}{% endlocalize %}; // Пример: 30 секунд уже прошло
+
+    char_{% localize off %}{{ char }}{% endlocalize %}_startCoords = adjustStartCoords(char_{% localize off %}{{ char }}{% endlocalize %}_startCoords, char_{% localize off %}{{ char }}{% endlocalize %}_endCoords, char_{% localize off %}{{ char }}{% endlocalize %}_duration, char_{% localize off %}{{ char }}{% endlocalize %}_estimate);
+
+    var char_{% localize off %}{{ char }}{% endlocalize %}_angle = calculateAngle(char_{% localize off %}{{ char }}{% endlocalize %}_startCoords, char_{% localize off %}{{ char }}{% endlocalize %}_endCoords);
+
+    const char_{% localize off %}{{ char }}{% endlocalize %}_planeIcon = L.icon({
+      iconUrl: '/static/img/flight.png',
+      iconSize: [50, 50],
+      iconAnchor: [25, 25],
+    });
+
+    var char_{% localize off %}{{ char }}{% endlocalize %}_planeMarker = L.rotatedMarker(char_{% localize off %}{{ char }}{% endlocalize %}_startCoords, { icon: char_{% localize off %}{{ char }}{% endlocalize %}_planeIcon, rotationAngle: char_{% localize off %}{{ char }}{% endlocalize %}_angle });
+    char_{% localize off %}{{ char }}{% endlocalize %}_planeMarker.addTo(mymap);
+
+    animateFlight(char_{% localize off %}{{ char }}{% endlocalize %}_planeMarker, char_{% localize off %}{{ char }}{% endlocalize %}_startCoords, char_{% localize off %}{{ char }}{% endlocalize %}_endCoords, char_{% localize off %}{{ char }}{% endlocalize %}_duration-char_{% localize off %}{{ char }}{% endlocalize %}_estimate);
+
+   {% endfor %}
  {% endif %}
 
  var latlngs = L.rectangle(bounds).getLatLngs();
