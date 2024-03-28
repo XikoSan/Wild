@@ -453,7 +453,7 @@ function addMarker(coordinates) {
 
   const planeIcon = L.icon({
     {% if player.pk == 1 %}
-    iconUrl: '/static/img/planes/pretender/pretender_gold.svg',
+    iconUrl: '/static/img/planes/pretender/pretender_green.svg',
     {% else %}
 	iconUrl: '/static/img/flight.png',
 	{% endif %}
@@ -482,7 +482,7 @@ function addMarker(coordinates) {
     var admin_angle = calculateAngle(admin_startCoords, admin_endCoords);
 
     const admin_planeIcon = L.icon({
-      iconUrl: '/static/img/planes/pretender/pretender_gold.svg',
+      iconUrl: '/static/img/planes/pretender/pretender_green.svg',
       iconSize: [50, 50],
       iconAnchor: [25, 25],
     });
