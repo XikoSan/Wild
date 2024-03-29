@@ -3,7 +3,11 @@
 from django.shortcuts import redirect
 from django.shortcuts import render
 from player.player import Player
+from django.contrib.auth.decorators import login_required
+from player.decorators.player import check_player
 
+@login_required(login_url='/')
+@check_player
 def bonus_code(request):
 
     # Получаем объект персонажа, по его ключу
