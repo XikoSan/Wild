@@ -15,7 +15,7 @@ from event.models.inviting_event.invite import Invite
 from player.decorators.player import check_player
 from django.db import connection
 from event.models.inviting_event.cash_event import CashEvent
-
+from player.logs.cash_log import CashLog
 
 
 # главная страница
@@ -33,22 +33,34 @@ def inviting_event(request):
 
     invited = False
 
-    if request.user.date_joined + timedelta(days=3) < timezone.now() \
-            or Invite.objects.filter(invited=player).exists():
+    # если уже приглашен - то все
+    if Invite.objects.filter(invited=player).exists():
         invited = True
+
+    # если играет более трех дней
+    elif request.user.date_joined + timedelta(days=3) < timezone.now():
+        # проверяем, фармил ли последний месяц
+        # если нет - то пригласить можно (но прогресс будет считаться с момента принятия)
+        if CashLog.objects.filter(
+                                    player=player,
+                                    dtime__gt=timezone.now()-timedelta(days=30),
+                                    activity_txt='daily'
+                               ).exists():
+            invited = True
+
 
     invited_list = Invite.objects.filter(sender=player)
     total_bonus = 0
     cash_reward = None
 
     for line in invited_list:
-        total_bonus += line.invited.power + line.invited.knowledge +  + line.invited.endurance
+        total_bonus += ( line.invited.power + line.invited.knowledge +  + line.invited.endurance ) - line.exp
 
     total_bonus = total_bonus // 10
 
     cursor = connection.cursor()
 
-    cursor.execute('SELECT event_invite.sender_id,SUM(player_player.endurance+player_player.knowledge+player_player.power)AS total_stats FROM public.event_invite INNER JOIN public.player_player ON event_invite.invited_id=player_player.id GROUP BY event_invite.sender_id ORDER BY total_stats DESC limit 10;')
+    cursor.execute('SELECT event_invite.sender_id,SUM(player_player.endurance+player_player.knowledge+player_player.power-event_invite.exp)AS total_stats FROM public.event_invite INNER JOIN public.player_player ON event_invite.invited_id=player_player.id GROUP BY event_invite.sender_id ORDER BY total_stats DESC limit 10;')
     raw_top = cursor.fetchall()
 
     top_pk_list = []

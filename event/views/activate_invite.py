@@ -14,6 +14,7 @@ from player.decorators.player import check_player
 from player.player import Player
 from wild_politics.settings import JResponse
 from player.logs.prem_log import PremLog
+from player.logs.cash_log import CashLog
 
 
 # Открыть лутбоксы
@@ -26,16 +27,24 @@ def activate_invite(request):
         # получаем персонажа игрока
         player = Player.get_instance(account=request.user)
 
-        from player.logs.print_log import log
-        log(request.user.date_joined)
+        returned = False
 
         if request.user.date_joined + timedelta(days=3) < timezone.now():
-            data = {
-                'response': '3 дня с момента регистрации прошли...',
-                'header': 'Активация приглашения',
-                'grey_btn': 'Закрыть',
-            }
-            return JResponse(data)
+            # если фармил последний месяц - значит активный
+            if CashLog.objects.filter(
+                                        player=player,
+                                        dtime__gt=timezone.now() - timedelta(days=30),
+                                        activity_txt='daily'
+                                ).exists():
+                data = {
+                    'response': '3 дня с момента регистрации прошли...',
+                    'header': 'Активация приглашения',
+                    'grey_btn': 'Закрыть',
+                }
+                return JResponse(data)
+
+            else:
+                returned = True
 
         try:
             sender_pk = int(request.POST.get('code'))
@@ -48,9 +57,14 @@ def activate_invite(request):
             }
             return JResponse(data)
 
+        exp = 0
+        if returned:
+            exp = player.power + player.knowledge + player.endurance
+
         invite = Invite(
             sender=Player.get_instance(pk=sender_pk),
-            invited=player
+            invited=player,
+            exp=exp
         )
         invite.save()
 

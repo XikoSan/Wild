@@ -11,6 +11,9 @@ from player.player import Player
 from wild_politics.settings import JResponse
 from django.utils.translation import ugettext
 from django.utils.translation import pgettext
+from django.apps import apps
+from django.utils import timezone
+from django.db import connection
 
 
 # получение денег с дейлика
@@ -35,6 +38,28 @@ def daily_status(request):
             endurance = 100
 
         daily_limit = 15000 + (power * 100) + (knowledge * 100) + (endurance * 100)
+
+        # ------------------
+
+        CashEvent = apps.get_model('event.CashEvent')
+        bonus = 0
+
+        if CashEvent.objects.filter(running=True, event_start__lt=timezone.now(),
+                                    event_end__gt=timezone.now()).exists():
+            cursor = connection.cursor()
+
+            cursor.execute(
+                f'SELECT event_invite.sender_id,SUM(player_player.endurance+player_player.knowledge+player_player.power-event_invite.exp)AS total_stats FROM public.event_invite INNER JOIN public.player_player ON event_invite.invited_id=player_player.id WHERE sender_id = {player.pk} GROUP BY event_invite.sender_id ORDER BY total_stats DESC limit 1;')
+
+            raw_top = cursor.fetchall()
+
+            if raw_top:
+                bonus = raw_top[0][1] // 10
+
+        if bonus > 0:
+            daily_limit = int(daily_limit * (1 + (bonus / 100)))
+
+        # ------------------
 
         daily_energy_limit = 0
         if player.energy_limit - player.paid_consumption > 0:

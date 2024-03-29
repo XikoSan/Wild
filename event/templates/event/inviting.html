@@ -6,6 +6,7 @@
 {% load redesign.template_svg.nopic_list %}
 {% load get_divv %}
 {% load get_sum %}
+{% load get_diff %}
 {% load dict_key %}
 
 {% block for_scripts_and_css %}
@@ -173,7 +174,7 @@
 					</td>
 
 				<td class="j-t-bonus" style="cursor: pointer" onclick="window.open('/profile/{% localize off %}{{ line.invited.pk }}{% endlocalize %}/')">
-					+ {{  line.invited.power|get_sum:line.invited.knowledge|get_sum:line.invited.endurance|get_divv:10 }}%
+					+ {{  line.invited.power|get_sum:line.invited.knowledge|get_sum:line.invited.endurance|get_diff:line.exp|get_divv:10 }}%
 				</td>
 
 				</tr>
