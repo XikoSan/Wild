@@ -178,7 +178,7 @@ def assets_transfer(request):
                         else:
                             data = {
                                 'response': str(Storage.actual.get(pk=dest_pk_int).region.region_name) + ', '
-                                            + size_type + ' ' +  str(pgettext('assets', 'типоразмер:')) + ' ' +
+                                            + str(size_type) + ' ' +  str(pgettext('assets', 'типоразмер:')) + ' ' +
                                             # ' ' +
                                             str(pgettext('assets', 'недостаточно места для товара.')) + ' ' +
                                             str(pgettext('assets', 'Требуется: ')) + str(sent) + str(pgettext('assets', ', в наличии: ')) + str(exist_cap),
