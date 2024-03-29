@@ -439,6 +439,9 @@ function addMarker(coordinates) {
 	iconAnchor: [25, 25],
   });
 
+
+  var planeMarkers = L.featureGroup();
+
  {% if player.destination %}
 
   var startCoords = [{{ player.region.north }}, {{ player.region.east }}];
@@ -455,14 +458,14 @@ function addMarker(coordinates) {
     {% if player.pk == 1 %}
     iconUrl: '/static/img/planes/pretender/pretender_green.svg',
     {% else %}
-	iconUrl: '/static/img/flight.png',
+	iconUrl: '/static/img/planes/pretender/pretender_1.svg',
 	{% endif %}
 	iconSize: [50, 50],
 	iconAnchor: [25, 25],
   });
 
   var planeMarker = L.rotatedMarker(startCoords, { icon: planeIcon, rotationAngle: angle });
-  planeMarker.addTo(mymap);
+  planeMarkers.addLayer(planeMarker);
 
   animateFlight(planeMarker, startCoords, endCoords, duration-estimate);
 
@@ -488,7 +491,7 @@ function addMarker(coordinates) {
     });
 
     var admin_planeMarker = L.rotatedMarker(admin_startCoords, { icon: admin_planeIcon, rotationAngle: admin_angle });
-    admin_planeMarker.addTo(mymap);
+    planeMarkers.addLayer(admin_planeMarker);
 
     animateFlight(admin_planeMarker, admin_startCoords, admin_endCoords, admin_duration-admin_estimate);
 
@@ -509,18 +512,29 @@ function addMarker(coordinates) {
     var char_{% localize off %}{{ char }}{% endlocalize %}_angle = calculateAngle(char_{% localize off %}{{ char }}{% endlocalize %}_startCoords, char_{% localize off %}{{ char }}{% endlocalize %}_endCoords);
 
     const char_{% localize off %}{{ char }}{% endlocalize %}_planeIcon = L.icon({
-      iconUrl: '/static/img/flight.png',
+      iconUrl: '/static/img/planes/pretender/pretender_1.svg',
       iconSize: [50, 50],
       iconAnchor: [25, 25],
     });
 
     var char_{% localize off %}{{ char }}{% endlocalize %}_planeMarker = L.rotatedMarker(char_{% localize off %}{{ char }}{% endlocalize %}_startCoords, { icon: char_{% localize off %}{{ char }}{% endlocalize %}_planeIcon, rotationAngle: char_{% localize off %}{{ char }}{% endlocalize %}_angle });
-    char_{% localize off %}{{ char }}{% endlocalize %}_planeMarker.addTo(mymap);
+    planeMarkers.addLayer(char_{% localize off %}{{ char }}{% endlocalize %}_planeMarker);
 
     animateFlight(char_{% localize off %}{{ char }}{% endlocalize %}_planeMarker, char_{% localize off %}{{ char }}{% endlocalize %}_startCoords, char_{% localize off %}{{ char }}{% endlocalize %}_endCoords, char_{% localize off %}{{ char }}{% endlocalize %}_duration-char_{% localize off %}{{ char }}{% endlocalize %}_estimate);
 
    {% endfor %}
  {% endif %}
+
+  planeMarkers.addTo(mymap);
+
+   mymap.on('zoomend', function() {
+      if (mymap.getZoom() < 5){
+              mymap.removeLayer(planeMarkers);
+      }
+      else {
+              mymap.addLayer(planeMarkers);
+          }
+  })
 
  var latlngs = L.rectangle(bounds).getLatLngs();
 
