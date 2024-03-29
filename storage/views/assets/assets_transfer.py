@@ -76,8 +76,8 @@ def assets_transfer(request):
 
                 if not int(i_storg) in storages_pk:
                     data = {
-                        'response': pgettext('assets', 'Склад') + ' ' + i_storg + ' ' + pgettext('assets',
-                                                                                                 'вам не принадлежит'),
+                        'response': str(pgettext('assets', 'Склад')) + ' ' + i_storg + ' ' + str(pgettext('assets',
+                                                                                                 'вам не принадлежит')),
                         'header': pgettext('assets', 'Перемещение товара'),
                         'grey_btn': pgettext('assets', 'Закрыть'),
                     }
@@ -178,10 +178,10 @@ def assets_transfer(request):
                         else:
                             data = {
                                 'response': str(Storage.actual.get(pk=dest_pk_int).region.region_name) + ', '
-                                            + size_type + ' ' +  pgettext('assets', 'типоразмер:') + ' ' +
+                                            + size_type + ' ' +  str(pgettext('assets', 'типоразмер:')) + ' ' +
                                             # ' ' +
-                                            pgettext('assets', 'недостаточно места для товара.') + ' ' +
-                                            pgettext('assets', 'Требуется: ') + str(sent) + pgettext('assets', ', в наличии: ') + str(exist_cap),
+                                            str(pgettext('assets', 'недостаточно места для товара.')) + ' ' +
+                                            str(pgettext('assets', 'Требуется: ')) + str(sent) + str(pgettext('assets', ', в наличии: ')) + str(exist_cap),
 
                                 'header': pgettext('assets', 'Перемещение товара'),
                                 'grey_btn': pgettext('assets', 'Закрыть'),
@@ -189,10 +189,10 @@ def assets_transfer(request):
                             return JsonResponse(data)
                     else:
                         data = {
-                            'response': pgettext('assets', 'На складе в регионе ') + str(ret_storg.region.region_name) +
-                                        pgettext('assets', ' недостаточно товара ') + good + pgettext('assets', ' для передачи.') + '\n' +
-                                        pgettext('assets', 'Требуется: ') + str(required) + pgettext('assets',
-                                                                                                     ', в наличии: ') + str(
+                            'response': str(pgettext('assets', 'На складе в регионе ')) + str(ret_storg.region.region_name) +
+                                        str(pgettext('assets', ' недостаточно товара ')) + good + str(pgettext('assets', ' для передачи.')) + '\n' +
+                                        str(pgettext('assets', 'Требуется: ')) + str(required) + str(pgettext('assets',
+                                                                                                     ', в наличии: ')) + str(
                                 exist),
                             'header': pgettext('assets', 'Перемещение товара'),
                             'grey_btn': pgettext('assets', 'Закрыть'),
