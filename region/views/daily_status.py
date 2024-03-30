@@ -77,6 +77,11 @@ def daily_status(request):
         # сумма, которую уже можно забрать
         daily_current_sum = int((daily_limit - player.paid_sum) / 100 * daily_procent)
 
+        # бонус по выходным
+        if timezone.now().date().weekday() == 5 or timezone.now().date().weekday() == 6:
+            if daily_current_sum != 0:
+                daily_current_sum = daily_current_sum * 3
+
         data = {
             'energy_consumption': player.energy_consumption,
             'daily_energy_limit': daily_energy_limit,
