@@ -296,7 +296,11 @@ jQuery(document).ready(function ($) {
         id = active_offer;
         storage = $("#offer_default_storage").attr('data-value');
 
-        var delivery_sum = parseInt(offers_dict[id]['storages'][storage] * Math.ceil( $("#offer_count").val() * parseFloat(vol_map.get(offers_dict[id]['good_key']))));
+        var delivery_sum = Math.ceil( parseInt(
+                                            offers_dict[id]['storages'][storage] * Math.ceil( $("#offer_count").val() * parseFloat(vol_map.get(offers_dict[id]['good_key'])))
+                                        ) * ( ( 100 - offers_dict[id]['infr'][storage] ) / 100 )
+                                    );
+
         document.getElementById("offer_delivery").innerHTML = '$' + numberWithSpaces(delivery_sum);
         document.getElementById("offer_sum").innerHTML = '$' + numberWithSpaces(offers_dict[id]['price'] * $("#offer_count").val());
         if (offers_dict[id]['type'] == 'sell'){
