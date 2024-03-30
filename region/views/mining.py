@@ -86,7 +86,7 @@ def mining(request):
     # бонус по выходным
     if timezone.now().date().weekday() == 5 or timezone.now().date().weekday() == 6:
         if daily_current_sum != 0:
-            daily_current_sum += daily_current_sum
+            daily_current_sum = daily_current_sum * 3
 
     daily_energy_limit = 0
     if player.energy_limit - player.paid_consumption > 0:
