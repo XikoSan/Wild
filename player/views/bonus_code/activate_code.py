@@ -116,7 +116,7 @@ def activate_code(request):
             if text:
                 text += f', деньги: {number_format(code.cash)}'
             else:
-                text += f'деньги: {number_format(code.cash)}'
+                text = f'деньги: {number_format(code.cash)}'
 
         player.save()
 
