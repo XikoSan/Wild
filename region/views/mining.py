@@ -73,7 +73,7 @@ def mining(request):
 
     # бонус по выходным
     if timezone.now().date().weekday() == 5 or timezone.now().date().weekday() == 6:
-        daily_limit = daily_limit * 3
+        daily_limit = daily_limit * 2
 
     # 3500 - количество энергии, которую надо выфармить за день
     if player.paid_consumption >= player.energy_limit:

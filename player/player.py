@@ -342,7 +342,7 @@ class Player(models.Model):
         is_weekend = False
         if timezone.now().date().weekday() == 5 or timezone.now().date().weekday() == 6:
             is_weekend = True
-            daily_limit = daily_limit * 3
+            daily_limit = daily_limit * 2
 
         if self.destination:
             data = {

@@ -63,7 +63,7 @@ def daily_status(request):
 
         # бонус по выходным
         if timezone.now().date().weekday() == 5 or timezone.now().date().weekday() == 6:
-            daily_limit = daily_limit * 3
+            daily_limit = daily_limit * 2
 
         daily_energy_limit = 0
         if player.energy_limit - player.paid_consumption > 0:
