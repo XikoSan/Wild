@@ -340,6 +340,13 @@ SUMMERNOTE_CONFIG = {
             ['view', ['fullscreen', 'help']],
         ],
     },
+
+    'css': (
+        '/static/mod/iframe_mod.css',
+    ),
+    'js': (
+        '/static/mod/iframe_mod.js',
+    ),
 }
 
 
