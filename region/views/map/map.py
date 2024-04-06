@@ -24,6 +24,7 @@ from region.models.neighbours import Neighbours
 from player.views.timers import interval_in_seconds
 from region.models.fossils import Fossils
 from region.building.infrastructure import Infrastructure
+from state.models.capital import Capital
 
 
 # главная страница
@@ -114,6 +115,10 @@ def map(request):
 
         ore_type_dict = {}
         ore_has_dict = {}
+
+        capitals = []
+        for capital in Capital.objects.only('region').all().values_list('region'):
+            capitals.append(capital[0])
 
         min_online = 0
         max_online = 0
@@ -240,6 +245,9 @@ def map(request):
             'max_online': max_online,
             'neighbours': neighbours,
             'oil_type_dict': oil_type_dict,
+
+            # список регионов, в которых есть столица
+            'capitals': capitals,
 
             'ore_type_dict': ore_type_dict,
             'ore_has_dict': ore_has_dict,

@@ -536,6 +536,44 @@ function addMarker(coordinates) {
           }
   })
 
+<!-- ************************************* гербы столиц ************************************* -->
+
+    var capitalsMarkers = L.featureGroup();
+
+     {% for district in regions %}
+      {% if district.pk in capitals %}
+
+    const capital_{% localize off %}{{ district.pk }}{% endlocalize %}_Icon = L.icon({
+      iconUrl: '{% if district.state.image %}{{ district.state.image.url }}{% else %}/static/img/congress.svg{% endif %}',
+      iconSize: [50, 50],
+      iconAnchor: [25, 25],
+    });
+
+    var capital_{% localize off %}{{ district.pk }}{% endlocalize %}_Coords = [{{ district.north }}, {{ district.east }}];
+
+    var region_{% localize off %}{{ district.pk }}{% endlocalize %}_capitalMarker = L.rotatedMarker(capital_{% localize off %}{{ district.pk }}{% endlocalize %}_Coords, { icon: capital_{% localize off %}{{ district.pk }}{% endlocalize %}_Icon, rotationAngle: 0 }).on('click', function() {window.location.href = '/state/{% localize off %}{{ district.state.pk }}{% endlocalize %}/'});
+    capitalsMarkers.addLayer(region_{% localize off %}{{ district.pk }}{% endlocalize %}_capitalMarker);
+
+      {% endif %}
+   {% endfor %}
+
+   capitalsMarkers.addTo(mymap);
+
+    mymap.on('zoomend', function() {
+      if (mymap.getZoom() < 6){
+              mymap.removeLayer(capitalsMarkers);
+      }
+      else {
+              const checkedInputValue = getCheckedInput().value;
+              if (checkedInputValue === 'none') {
+                  mymap.addLayer(capitalsMarkers);
+              }
+          }
+  })
+
+
+<!-- ************************************* гербы столиц ************************************* -->
+
  var latlngs = L.rectangle(bounds).getLatLngs();
 
   const markers = new L.LayerGroup();
@@ -781,10 +819,12 @@ function addMarker(coordinates) {
   document.getElementById('filters').addEventListener('input', (evt) => {
     const checkedInputValue = getCheckedInput().value;
     remove_links();
+    mymap.removeLayer(capitalsMarkers);
 
     if (checkedInputValue === 'none') {
 
       document.querySelector('.map__tops').classList.remove('active');
+      mymap.addLayer(capitalsMarkers);
       repaint('color');
 
     }
