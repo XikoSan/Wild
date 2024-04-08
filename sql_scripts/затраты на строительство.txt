@@ -1,0 +1,16 @@
+SELECT region_name AS "Регион",
+       SUM(
+           CASE
+               WHEN con.building = 'Hospital' THEN con.exp_value * 800
+               WHEN con.building = 'PowerPlant' THEN con.exp_value * 100
+               WHEN con.building = 'Defences' THEN con.exp_value * 500
+               WHEN con.building = 'Infrastructure' THEN con.exp_value * 500
+               ELSE 0
+           END
+       ) AS "Наличные"
+FROM public.bill_construction AS con
+JOIN public.region_region AS reg ON reg.id = con.region_id
+WHERE con.voting_end >= '2024-04-01'
+GROUP BY region_name
+ORDER BY "Наличные" DESC
+LIMIT 10;

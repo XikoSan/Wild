@@ -454,15 +454,24 @@ function addMarker(coordinates) {
 
   var angle = calculateAngle(startCoords, endCoords);
 
+  {% localize off %}
+
   const planeIcon = L.icon({
     {% if player.pk == 1 %}
     iconUrl: '/static/img/planes/pretender/pretender_green.svg',
+
+    {% elif player.pk == 1088 %}
+    iconUrl: '/static/img/planes/trickster/trickster_1.svg',
+
     {% else %}
 	iconUrl: '/static/img/planes/pretender/pretender_1.svg',
 	{% endif %}
+
 	iconSize: [50, 50],
 	iconAnchor: [25, 25],
   });
+
+  {% endlocalize %}
 
   var planeMarker = L.rotatedMarker(startCoords, { icon: planeIcon, rotationAngle: angle });
   planeMarkers.addLayer(planeMarker);
@@ -511,11 +520,20 @@ function addMarker(coordinates) {
 
     var char_{% localize off %}{{ char }}{% endlocalize %}_angle = calculateAngle(char_{% localize off %}{{ char }}{% endlocalize %}_startCoords, char_{% localize off %}{{ char }}{% endlocalize %}_endCoords);
 
+    {% localize off %}
     const char_{% localize off %}{{ char }}{% endlocalize %}_planeIcon = L.icon({
+
+      {% if char == 1088 %}
+      iconUrl: '/static/img/planes/trickster/trickster_1.svg',
+
+      {% else %}
       iconUrl: '/static/img/planes/pretender/pretender_1.svg',
+      {% endif %}
+
       iconSize: [50, 50],
       iconAnchor: [25, 25],
     });
+    {% endlocalize %}
 
     var char_{% localize off %}{{ char }}{% endlocalize %}_planeMarker = L.rotatedMarker(char_{% localize off %}{{ char }}{% endlocalize %}_startCoords, { icon: char_{% localize off %}{{ char }}{% endlocalize %}_planeIcon, rotationAngle: char_{% localize off %}{{ char }}{% endlocalize %}_angle });
     planeMarkers.addLayer(char_{% localize off %}{{ char }}{% endlocalize %}_planeMarker);
