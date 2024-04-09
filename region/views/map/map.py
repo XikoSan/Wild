@@ -25,6 +25,7 @@ from player.views.timers import interval_in_seconds
 from region.models.fossils import Fossils
 from region.building.infrastructure import Infrastructure
 from state.models.capital import Capital
+from region.models.plane import Plane
 
 
 # главная страница
@@ -179,26 +180,24 @@ def map(request):
 
         duration = 0
         estimate = 0
+        plane = None
+
         if player.destination:
             duration = math.floor(time_in_flight(player, player.destination))
             estimate = duration - math.floor(interval_in_seconds(object=player.task.clocked, start_fname=None, end_fname='clocked_time', delay_in_sec=None))
 
-        admin = None
-        admin_duration = 0
-        admin_estimate = 0
-
-        if not player.pk == 1:
-            admin = Player.get_instance(pk=1)
-
-            if admin.destination:
-                admin_duration = math.floor(time_in_flight(admin, admin.destination))
-                admin_estimate = admin_duration - math.floor(interval_in_seconds(object=admin.task.clocked, start_fname=None, end_fname='clocked_time', delay_in_sec=None))
+            if Plane.objects.filter(player=player, in_use=True).exists():
+                plane = Plane.objects.filter(player=player, in_use=True)[0]
 
         others_duration = {}
         others_estimate = {}
         others_coords = {}
 
-        chars_in_flight = Player.objects.only('id', 'region', 'destination', 'task').filter(destination__isnull=False).exclude(pk=1).exclude(pk=player.pk)
+        planes = {}
+
+        chars_in_flight = Player.objects.only('id', 'region', 'destination', 'task').filter(destination__isnull=False).exclude(pk=player.pk)
+
+        chars_planes = Plane.objects.filter(player__in=chars_in_flight, in_use=True)
 
         for char in chars_in_flight:
             
@@ -216,6 +215,9 @@ def map(request):
             others_duration[char.pk] = math.floor(time_in_flight(char, char.destination))
             others_estimate[char.pk] = others_duration[char.pk] - math.floor(interval_in_seconds(object=char.task.clocked, start_fname=None, end_fname='clocked_time', delay_in_sec=None))
 
+            if chars_planes.filter(player=char).exists():
+                planes[char.pk] = chars_planes.get(player=char)
+
 
         groups = list(player.account.groups.all().values_list('name', flat=True))
         page = 'region/map.html'
@@ -231,14 +233,12 @@ def map(request):
 
             'duration': duration,
             'estimate': estimate,
+            'plane': plane,
 
-            'admin': admin,
-            'admin_duration': admin_duration,
-            'admin_estimate': admin_estimate,
-            
             'others_coords': others_coords,
             'others_duration': others_duration,
             'others_estimate': others_estimate,
+            'planes': planes,
 
             'online_dict': online_dict,
             'min_online': min_online,

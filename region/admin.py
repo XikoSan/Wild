@@ -13,6 +13,7 @@ from region.models.neighbours import Neighbours
 from region.models.region import Region
 from region.models.terrain.terrain import Terrain
 from region.models.terrain.terrain_modifier import TerrainModifier
+from region.models.plane import Plane
 
 
 def recount_rating(modeladmin, request, queryset):
@@ -27,6 +28,15 @@ class BuildingAdmin(admin.ModelAdmin):
 
     def get_region(self, obj):
         return obj.region.region_name
+
+
+class PlaneAdmin(admin.ModelAdmin):
+    list_display = ('plane', 'player')
+
+    raw_id_fields = ('player',)
+
+    fields = ['in_use', 'player', 'plane', 'color', 'image_tag']
+    readonly_fields = ['image_tag']
 
 
 class FossilsAdmin(admin.ModelAdmin):
@@ -141,3 +151,5 @@ admin.site.register(PowerPlant, PowerPlantAdmin)
 admin.site.register(Defences, BuildingAdmin)
 admin.site.register(Terrain, TerrainAdmin)
 admin.site.register(TerrainModifier, TerrainModifierAdmin)
+
+admin.site.register(Plane, PlaneAdmin)

@@ -2,7 +2,9 @@
 {% load l10n %}{% load i18n %}
 {% load floor_to_tens %}
 {% load dict_key %}
+{% load has_key %}
 {% load static %}
+{% load get_attr %}
 {% load get_key_list %}
 {% load tz %}
 {% load get_key_list %}
@@ -439,6 +441,7 @@ function addMarker(coordinates) {
 	iconAnchor: [25, 25],
   });
 
+  mymap.getPane('shadowPane').style.pointerEvents = 'none';
 
   var planeMarkers = L.featureGroup();
 
@@ -457,14 +460,10 @@ function addMarker(coordinates) {
   {% localize off %}
 
   const planeIcon = L.icon({
-    {% if player.pk == 1 %}
-    iconUrl: '/static/img/planes/pretender/pretender_green.svg',
-
-    {% elif player.pk == 1088 %}
-    iconUrl: '/static/img/planes/trickster/trickster_1.svg',
-
+    {% if plane %}
+      iconUrl: '/static/img/planes/{{ plane.plane }}/{{ plane.plane }}_{{ plane.color }}.svg',
     {% else %}
-	iconUrl: '/static/img/planes/pretender/pretender_1.svg',
+	  iconUrl: '/static/img/planes/pretender/pretender_1.svg',
 	{% endif %}
 
 	iconSize: [50, 50],
@@ -478,33 +477,6 @@ function addMarker(coordinates) {
 
   animateFlight(planeMarker, startCoords, endCoords, duration-estimate);
 
- {% endif %}
-
- {% if admin %}
-   {% if admin.destination %}
-
-    var admin_startCoords = [{{ admin.region.north }}, {{ admin.region.east }}];
-    const admin_endCoords = [{{ admin.destination.north }}, {{ admin.destination.east }}];
-
-    const admin_duration = {% localize off %}{{ admin_duration }}{% endlocalize %}; // ДЛительность всего полёта: 60 секунд
-    const admin_estimate = {% localize off %}{{ admin_estimate }}{% endlocalize %}; // Пример: 30 секунд уже прошло
-
-    admin_startCoords = adjustStartCoords(admin_startCoords, admin_endCoords, admin_duration, admin_estimate);
-
-    var admin_angle = calculateAngle(admin_startCoords, admin_endCoords);
-
-    const admin_planeIcon = L.icon({
-      iconUrl: '/static/img/planes/pretender/pretender_green.svg',
-      iconSize: [50, 50],
-      iconAnchor: [25, 25],
-    });
-
-    var admin_planeMarker = L.rotatedMarker(admin_startCoords, { icon: admin_planeIcon, rotationAngle: admin_angle });
-    planeMarkers.addLayer(admin_planeMarker);
-
-    animateFlight(admin_planeMarker, admin_startCoords, admin_endCoords, admin_duration-admin_estimate);
-
-   {% endif %}
  {% endif %}
 
   {% if others_coords %}
@@ -523,11 +495,10 @@ function addMarker(coordinates) {
     {% localize off %}
     const char_{% localize off %}{{ char }}{% endlocalize %}_planeIcon = L.icon({
 
-      {% if char == 1088 %}
-      iconUrl: '/static/img/planes/trickster/trickster_1.svg',
-
+      {% if planes|has_key:char %}
+        iconUrl: '/static/img/planes/{{ planes|dict_key:char|get_attr:'plane' }}/{{ planes|dict_key:char|get_attr:'plane' }}_{{ planes|dict_key:char|get_attr:'color' }}.svg',
       {% else %}
-      iconUrl: '/static/img/planes/pretender/pretender_1.svg',
+        iconUrl: '/static/img/planes/pretender/pretender_1.svg',
       {% endif %}
 
       iconSize: [50, 50],
