@@ -463,7 +463,7 @@ function addMarker(coordinates) {
     {% if plane %}
       iconUrl: '/static/img/planes/{{ plane.plane }}/{{ plane.plane }}_{{ plane.color }}.svg',
     {% else %}
-	  iconUrl: '/static/img/planes/pretender/pretender_1.svg',
+	  iconUrl: '/static/img/planes/nagger/nagger_base.svg',
 	{% endif %}
 
 	iconSize: [50, 50],
@@ -498,7 +498,7 @@ function addMarker(coordinates) {
       {% if planes|has_key:char %}
         iconUrl: '/static/img/planes/{{ planes|dict_key:char|get_attr:'plane' }}/{{ planes|dict_key:char|get_attr:'plane' }}_{{ planes|dict_key:char|get_attr:'color' }}.svg',
       {% else %}
-        iconUrl: '/static/img/planes/pretender/pretender_1.svg',
+        iconUrl: '/static/img/planes/nagger/nagger_base.svg',
       {% endif %}
 
       iconSize: [50, 50],
