@@ -22,20 +22,28 @@ class Plane(models.Model):
         'smuggler': ['base' ],
         'chaser': ['base', 'black' ],
         'nagger': ['base', ],
+        'reaper': ['base', 'black' ],
+        'cheater': ['base', 'black', 'green', 'green_cam', 'blue_cam' ],
     }
 
     # самолёт
     planesChoices = (
+                        ('nagger', 'Nagger'),
                         ('pretender', 'Pretender'),
                         ('trickster', 'Trickster'),
                         ('smuggler', 'Smuggler'),
                         ('chaser', 'Chaser'),
+                        ('reaper', 'Reaper'),
+                        ('cheater', 'Cheater'),
                     )
 
     colorChoices = (
                         ('base', 'базовый'),
                         ('green', 'зелёный'),
                         ('black', 'чёрный'),
+
+                        ('green_cam', 'зелёный камуфляж'),
+                        ('blue_cam', 'синий камуфляж'),
                     )
 
     plane = models.CharField(

@@ -30,16 +30,16 @@ function animateFlight(planeMarker, startCoords, endCoords, duration) {
   let currentTime = 0;
 
   const flightInterval = setInterval(() => {
-    currentTime += 0.1;
+    currentTime += 0.01;
     const newLat = startCoords[0] + latStep * currentTime;
     const newLon = startCoords[1] + lonStep * currentTime;
 
     planeMarker.setLatLng([newLat, newLon]);
 
-    if (currentTime + 0.1 >= duration) {
+    if (currentTime + 0.01 >= duration) {
       clearInterval(flightInterval);
     }
-  }, 100);
+  }, 10);
 }
 
 
