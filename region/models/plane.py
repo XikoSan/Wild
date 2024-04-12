@@ -16,6 +16,8 @@ class Plane(models.Model):
     # владелец склада
     player = models.ForeignKey(Player, default=None, null=True, on_delete=models.CASCADE, verbose_name='Владелец')
 
+
+
     planes = {
         'pretender': ['base', 'green' ],
         'trickster': ['base' ],
@@ -24,6 +26,7 @@ class Plane(models.Model):
         'nagger': ['base', ],
         'reaper': ['base', 'black' ],
         'cheater': ['base', 'black', 'green', 'green_cam', 'blue_cam' ],
+        'carrier': ['base' ],
     }
 
     # самолёт
@@ -35,6 +38,7 @@ class Plane(models.Model):
                         ('chaser', 'Chaser'),
                         ('reaper', 'Reaper'),
                         ('cheater', 'Cheater'),
+                        ('carrier', 'Carrier'),
                     )
 
     colorChoices = (

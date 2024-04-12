@@ -462,12 +462,15 @@ function addMarker(coordinates) {
   const planeIcon = L.icon({
     {% if plane %}
       iconUrl: '/static/img/planes/{{ plane.plane }}/{{ plane.plane }}_{{ plane.color }}.svg',
+      iconSize: [{% if plane.plane == 'carrier' %}60, 60{% else %}50, 50{% endif %}],
+      iconAnchor: [{% if plane.plane == 'carrier' %}30, 30{% else %}25, 25{% endif %}],
+
     {% else %}
 	  iconUrl: '/static/img/planes/nagger/nagger_base.svg',
-	{% endif %}
+      iconSize: [50, 50],
+	  iconAnchor: [25, 25],
 
-	iconSize: [50, 50],
-	iconAnchor: [25, 25],
+	{% endif %}
   });
 
   {% endlocalize %}
@@ -497,12 +500,16 @@ function addMarker(coordinates) {
 
       {% if planes|has_key:char %}
         iconUrl: '/static/img/planes/{{ planes|dict_key:char|get_attr:'plane' }}/{{ planes|dict_key:char|get_attr:'plane' }}_{{ planes|dict_key:char|get_attr:'color' }}.svg',
+
+        iconSize: [{% if planes|dict_key:char|get_attr:'plane' == 'carrier' %}60, 60{% else %}50, 50{% endif %}],
+        iconAnchor: [{% if planes|dict_key:char|get_attr:'plane' == 'carrier' %}30, 30{% else %}25, 25{% endif %}],
+
       {% else %}
         iconUrl: '/static/img/planes/nagger/nagger_base.svg',
-      {% endif %}
+        iconSize: [50, 50],
+        iconAnchor: [25, 25],
 
-      iconSize: [50, 50],
-      iconAnchor: [25, 25],
+      {% endif %}
     });
     {% endlocalize %}
 
