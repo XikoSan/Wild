@@ -25,8 +25,13 @@ class Plane(models.Model):
         'chaser': ['base', 'black' ],
         'nagger': ['base', ],
         'reaper': ['base', 'black' ],
-        'cheater': ['base', 'black', 'green', 'green_cam', 'blue_cam' ],
-        'carrier': ['base' ],
+        'cheater': ['base',
+                    'red', 'yellow', 'orange',
+                    'green', 'dark_blue', 'light_blue',
+                    'pink', 'violet', 'black',
+                    'green_cam', 'blue_cam', 'desert_cam'],
+        'carrier': ['base', 'pink', ],
+        'observer': ['base', ],
     }
 
     # самолёт
@@ -39,15 +44,23 @@ class Plane(models.Model):
                         ('reaper', 'Reaper'),
                         ('cheater', 'Cheater'),
                         ('carrier', 'Carrier'),
+                        ('observer', 'Observer'),
                     )
 
     colorChoices = (
                         ('base', 'базовый'),
+                        ('red', 'красный'),
+                        ('orange', 'оранжевый'),
+                        ('yellow', 'желтый'),
                         ('green', 'зелёный'),
+                        ('light_blue', 'голубой'),
+                        ('dark_blue', 'синий'),
+                        ('violet', 'фиолетовый'),
+                        ('pink', 'розовый'),
                         ('black', 'чёрный'),
-
                         ('green_cam', 'зелёный камуфляж'),
                         ('blue_cam', 'синий камуфляж'),
+                        ('desert_cam', 'песочный камуфляж'),
                     )
 
     plane = models.CharField(
