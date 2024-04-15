@@ -20,18 +20,32 @@ class Plane(models.Model):
 
     planes = {
         'pretender': ['base', 'green' ],
-        'trickster': ['base' ],
-        'smuggler': ['base' ],
+
+        'trickster': ['base',
+                      'red', 'yellow', 'orange',
+                      'green', 'dark_blue', 'light_blue',
+                      'pink', 'violet', 'black'],
+
+        'smuggler': ['base'],
+
         'chaser': ['base', 'black' ],
+
         'nagger': ['base', ],
+
         'reaper': ['base', 'black' ],
+
         'cheater': ['base',
                     'red', 'yellow', 'orange',
                     'green', 'dark_blue', 'light_blue',
                     'pink', 'violet', 'black',
                     'green_cam', 'blue_cam', 'desert_cam'],
+
         'carrier': ['base', 'pink', ],
-        'observer': ['base', ],
+
+        'observer': ['base',
+                     'red', 'yellow', 'orange',
+                     'green', 'dark_blue', 'light_blue',
+                     'pink', 'violet', 'black'],
     }
 
     # самолёт
