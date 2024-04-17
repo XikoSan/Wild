@@ -53,8 +53,8 @@ def kick_from_party(request, pk):
                             # удаляем все бюллетени за этого игрока
                             bultin.delete()
 
-                # если персонаж был депутатом
-                if DeputyMandate.objects.filter(player=kickin_player).exists():
+                # если персонаж был депутатом (но не президентский!)
+                if DeputyMandate.objects.filter(player=kickin_player, is_president=False).exists():
                     # предварительно получим парламент, из мандата игрока
                     for dm in DeputyMandate.objects.filter(player=kickin_player):
 

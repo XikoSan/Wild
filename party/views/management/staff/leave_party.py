@@ -63,8 +63,8 @@ def leave_party(request):
 
             # если партия состояла в парламенте
             if DeputyMandate.objects.filter(party=player.party).exists():
-                # если глава сам был депутатом
-                if DeputyMandate.objects.filter(party=player.party, player=player).exists():
+                # если глава сам был депутатом, но не президентом
+                if DeputyMandate.objects.filter(party=player.party, player=player, is_president=False).exists():
                     # предварительно получим парламент, из мандата игрока
                     parliament = DeputyMandate.objects.get(party=player.party, player=player).parliament
 
@@ -81,8 +81,8 @@ def leave_party(request):
                                 elif player in bill.votes_con.all():
                                     bill.votes_con.remove(player)
 
-                # лишаем его такого счастья
-                DeputyMandate.objects.filter(party=player.party).update(player=None)
+                    # лишаем его такого счастья
+                    DeputyMandate.objects.filter(party=player.party, player=player).update(player=None)
 
             # если персонаж был министром
             if Minister.objects.filter(player=player).exists():
