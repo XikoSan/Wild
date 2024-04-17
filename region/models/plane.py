@@ -42,6 +42,13 @@ class Plane(models.Model):
 
         'carrier': ['base', 'pink', ],
 
+        'striker': ['base', ],
+
+        'demolisher': ['base',
+                       'red', 'yellow', 'orange',
+                       'green', 'dark_blue', 'light_blue',
+                       'pink', 'violet', 'black'],
+
         'observer': ['base',
                      'red', 'yellow', 'orange',
                      'green', 'dark_blue', 'light_blue',
@@ -59,6 +66,8 @@ class Plane(models.Model):
                         ('cheater', 'Cheater'),
                         ('carrier', 'Carrier'),
                         ('observer', 'Observer'),
+                        ('striker', 'Striker'),
+                        ('demolisher', 'Demolisher'),
                     )
 
     colorChoices = (
