@@ -14,6 +14,8 @@ from bill.models.change_residency import ChangeResidency
 from bill.models.start_war import StartWar
 from bill.models.geological_surveys import GeologicalSurveys
 from bill.models.independence import Independence
+from bill.models.transfer_region import TransferRegion
+from bill.models.transfer_accept import TransferAccept
 
 def recount_rating(modeladmin, request, queryset):
     for bill in queryset:
@@ -64,3 +66,5 @@ admin.site.register(ChangeResidency, BillAdmin)
 admin.site.register(StartWar, BillAdmin)
 admin.site.register(PurchaseAuction, AuctionAdmin)
 admin.site.register(Independence, BillAdmin)
+admin.site.register(TransferRegion, BillAdmin)
+admin.site.register(TransferAccept, BillAdmin)

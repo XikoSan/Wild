@@ -9,6 +9,16 @@ jQuery(document).ready(function ($) {
         sending_data.append('explore_regions', document.getElementById('explore_resources_default_region').dataset.value);
         sending_data.append('change_taxes_regions', document.getElementById('change_taxes_default_region').dataset.value);
 
+        var trans_default = document.getElementById('transfer_region_default_region');
+        if (trans_default) {
+            sending_data.append('transfer_region_regions', trans_default.dataset.value);
+        }
+
+        var trans_state_default = document.getElementById('transfer_region_default_state');
+        if (trans_state_default) {
+            sending_data.append('transfer_region_states', trans_state_default.dataset.value);
+        }
+
         var ind_default = document.getElementById('independence_default_region');
         if (ind_default) {
             sending_data.append('independence_regions', ind_default.dataset.value);
