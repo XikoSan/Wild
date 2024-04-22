@@ -19,6 +19,9 @@ class Plane(models.Model):
 
 
     planes = {
+
+        'nagger': ['base', 'black_gold' ],
+
         'pretender': ['base', 'green' ],
 
         'trickster': ['base',
@@ -30,9 +33,7 @@ class Plane(models.Model):
 
         'chaser': ['base', 'black' ],
 
-        'nagger': ['base', ],
-
-        'reaper': ['base', 'black' ],
+        'reaper': ['base', 'black', 'gold' ],
 
         'cheater': ['base',
                     'red', 'yellow', 'orange',
@@ -81,6 +82,10 @@ class Plane(models.Model):
                         ('violet', 'фиолетовый'),
                         ('pink', 'розовый'),
                         ('black', 'чёрный'),
+
+                        ('gold', 'золотой'),
+
+                        ('black_gold', 'чёрно-золотой'),
                         ('green_cam', 'зелёный камуфляж'),
                         ('blue_cam', 'синий камуфляж'),
                         ('desert_cam', 'песочный камуфляж'),
