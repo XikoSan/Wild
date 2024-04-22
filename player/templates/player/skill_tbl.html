@@ -1,0 +1,39 @@
+{% load get_key_list %}
+{% load dict_key %}
+<html lang="ru-ru">
+
+
+<head>
+    <meta charset="UTF-8">
+    <title>баланс оружия в войнах</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="row">
+  <div class="col-md-3">
+    <h4>{{ terrain_type }}</h4>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Дней до прокачки</th>
+          <th>Сила</th>
+          <th>Интеллект</th>
+          <th>Выносливость</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for days in table %}
+          <tr>
+            <td>{{ days.0 }}</td>
+            <td>{{ days.1 }}</td>
+            <td>{{ days.2 }}</td>
+            <td>{{ days.3 }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    </div>
+</div>
+
+</body>
+</html>

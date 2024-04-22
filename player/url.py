@@ -45,6 +45,7 @@ from player.views.bonus_code.bonus_code import bonus_code
 from player.views.bonus_code.activate_code import activate_code
 
 from .views.dmg_tbl import dmg_tbl
+from .views.skill_tbl import skill_tbl
 
 urlpatterns = [
 
@@ -53,6 +54,7 @@ urlpatterns = [
     # ЕУЛА
     url(r'^eula$', eula, name='eula'),
     url(r'^dmg_tbl$', dmg_tbl, name='dmg_tbl'),
+    url(r'^skill_tbl$', skill_tbl, name='skill_tbl'),
     # Соглашение об обработке ПД
     path('personal_data/', TemplateView.as_view(template_name='player/personal_data.html'), name='personal_data'),
     # регистрация нового персонажа
