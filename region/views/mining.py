@@ -37,17 +37,23 @@ def mining(request):
     # лимит денег, доступный игроку
     power = player.power
     if power > 100:
-        power = 100
+        pwr_earn = ((power - 100) * 200) + 10000
+    else:
+        pwr_earn = power * 100
 
     knowledge = player.knowledge
     if knowledge > 100:
-        knowledge = 100
+        int_earn = ((knowledge - 100) * 200) + 10000
+    else:
+        int_earn = knowledge * 100
 
     endurance = player.endurance
     if endurance > 100:
-        endurance = 100
+        end_earn = ((endurance - 100) * 200) + 10000
+    else:
+        end_earn = endurance * 100
 
-    daily_limit = 15000 + (power * 100) + (knowledge * 100) + (endurance * 100)
+    daily_limit = 15000 + pwr_earn + int_earn + end_earn
 
     # ------------------
 
