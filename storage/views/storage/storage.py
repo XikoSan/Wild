@@ -47,13 +47,15 @@ def storage(request):
     # наличие алюминия и стали на текущем складе - для прокачки
     can_upgrade = False
 
-    limit_upgrade = False
+    limit_upgrade = None
 
     if storage:
         if storage.level >= 5:
-            limit_upgrade = True
+            if ( storage.level - 4 ) * 25 > player.knowledge:
+                limit_upgrade = ( storage.level - 4 ) * 25
 
-        elif Good.objects.filter(name_ru='Алюминий').exists()\
+        if not limit_upgrade and\
+                Good.objects.filter(name_ru='Алюминий').exists()\
                 and Good.objects.filter(name_ru='Сталь').exists():
 
             alu = Good.objects.get(name_ru='Алюминий')
@@ -65,10 +67,6 @@ def storage(request):
 
 
     # ------------
-    large_limit = 5
-    medium_limit = 6
-    small_limit = 5
-
     lootbox_count = 0
     if Lootbox.objects.filter(player=player).exists():
         lootbox_count = Lootbox.objects.get(player=player).stock
@@ -87,10 +85,6 @@ def storage(request):
 
         'can_upgrade': can_upgrade,
         'limit_upgrade': limit_upgrade,
-
-        'large_limit': large_limit,
-        'medium_limit': medium_limit,
-        'small_limit': small_limit,
 
         'lootbox_count': lootbox_count,
 

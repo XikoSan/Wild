@@ -42,11 +42,11 @@ def upgrade_storage(request):
 
         storage = Storage.actual.get(owner=player, region=player.region)
 
-        if storage.level >= 5:
+        if storage.level >= 5  and ( storage.level - 4 ) * 25 > player.knowledge:
             data = {
                 'header': pgettext('storage_upgrade', 'Улучшение Склада'),
                 'grey_btn': pgettext('mining', 'Закрыть'),
-                'response': pgettext('storage_upgrade', 'Уровень Склада - максимальный'),
+                'response': pgettext('storage_upgrade', f'Требуется Интеллект: { ( storage.level - 4 ) * 25 }'),
             }
             return JsonResponse(data)
 
