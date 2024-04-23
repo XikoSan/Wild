@@ -155,7 +155,8 @@ class AutoProduce(Log):
         price = schema.energy_cost
         count = int(player.energy // price)
 
-        consignment = 1
+        # лимит производства на единицу энергии
+        consignment = player.knowledge // 25 + 1
 
         # только для материалов
         if self.good.type == 'materials':
@@ -163,7 +164,7 @@ class AutoProduce(Log):
             Standardization = apps.get_model('skill.Standardization')
             if Standardization.objects.filter(player=player, level__gt=0).exists():
                 # лимит производства на единицу энергии
-                consignment = Standardization.objects.get(player=player).level + 1
+                consignment += Standardization.objects.get(player=player).level
                 # новое количество товара, которое можно сделать за эту энергию
                 count = player.energy // price * consignment
 
@@ -173,7 +174,7 @@ class AutoProduce(Log):
             MilitaryProduction = apps.get_model('skill.MilitaryProduction')
             if MilitaryProduction.objects.filter(player=player, level__gt=0).exists():
                 # лимит производства на единицу энергии
-                consignment = MilitaryProduction.objects.get(player=player).level + 1
+                consignment += MilitaryProduction.objects.get(player=player).level
                 # новое количество товара, которое можно сделать за эту энергию
                 count = player.energy // price * consignment
 

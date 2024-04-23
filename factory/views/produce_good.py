@@ -160,8 +160,10 @@ def produce_good(request):
         # получить по номеру схемы схему
         schema = Blueprint.objects.get(pk=schema_num)
 
+        # лимит производства на единицу энергии
+        consignment = player.knowledge // 25 + 1
         # получить затраты энергии
-        energy_cost = schema.energy_cost * count
+        energy_cost = schema.energy_cost * ceil(count / consignment)
 
         # только для материалов
         if good.type == 'materials':
@@ -169,7 +171,7 @@ def produce_good(request):
             Standardization = apps.get_model('skill.Standardization')
             if Standardization.objects.filter(player=player, level__gt=0).exists():
                 # лимит производства на единицу энергии
-                consignment = Standardization.objects.get(player=player).level + 1
+                consignment += Standardization.objects.get(player=player).level
                 # новая стоимость в энергии - цена за "пачку", даже неполную
                 energy_cost = ceil(count / consignment) * schema.energy_cost
 
@@ -179,7 +181,7 @@ def produce_good(request):
             MilitaryProduction = apps.get_model('skill.MilitaryProduction')
             if MilitaryProduction.objects.filter(player=player, level__gt=0).exists():
                 # лимит производства на единицу энергии
-                consignment = MilitaryProduction.objects.get(player=player).level + 1
+                consignment += MilitaryProduction.objects.get(player=player).level
                 # новая стоимость в энергии - цена за "пачку", даже неполную
                 energy_cost = ceil(count / consignment) * schema.energy_cost
 
