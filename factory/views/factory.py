@@ -80,11 +80,11 @@ def factory(request):
 
     Standardization = apps.get_model('skill.Standardization')
     if Standardization.objects.filter(player=player, level__gt=0).exists():
-        consignment_dict['materials'] = Standardization.objects.get(player=player).level
+        consignment_dict['materials'] += Standardization.objects.get(player=player).level
 
     MilitaryProduction = apps.get_model('skill.MilitaryProduction')
     if MilitaryProduction.objects.filter(player=player, level__gt=0).exists():
-        consignment_dict['units'] = MilitaryProduction.objects.get(player=player).level
+        consignment_dict['units'] += MilitaryProduction.objects.get(player=player).level
 
     # схемы производства
     schemas = {}
