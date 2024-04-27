@@ -1,27 +1,29 @@
+from dateutil.relativedelta import relativedelta
+from django import forms
+from django.contrib import admin
+from django.db import models
+from django.db import transaction
+from django.utils import timezone
 from re import findall
 
-from django.contrib import admin
-from django.db import transaction
 from party.position import PartyPosition
-from player.logs.cash_log import CashLog
-from player.logs.gold_log import GoldLog
-from player.logs.wildpass_log import WildpassLog
-from player.logs.skill_training import SkillTraining
-from player.logs.auto_mining import AutoMining
-from .player import Player
-from .player_settings import PlayerSettings
-from player.game_event.game_event import GameEvent
-from player.game_event.event_part import EventPart
-from player.game_event.global_part import GlobalPart
-from django.utils import timezone
-from player.player_regional_expence import PlayerRegionalExpense
-from player.game_event.energy_spent import EnergySpent
-from player.logs.donut_log import DonutLog
-from dateutil.relativedelta import relativedelta
-from player.lootbox.lootbox import Lootbox
-from player.logs.prem_log import PremLog
 from player.bonus_code.bonus_code import BonusCode
 from player.bonus_code.code_usage import CodeUsage
+from player.game_event.energy_spent import EnergySpent
+from player.game_event.event_part import EventPart
+from player.game_event.game_event import GameEvent
+from player.game_event.global_part import GlobalPart
+from player.logs.auto_mining import AutoMining
+from player.logs.cash_log import CashLog
+from player.logs.donut_log import DonutLog
+from player.logs.gold_log import GoldLog
+from player.logs.prem_log import PremLog
+from player.logs.skill_training import SkillTraining
+from player.logs.wildpass_log import WildpassLog
+from player.lootbox.lootbox import Lootbox
+from player.player_regional_expence import PlayerRegionalExpense
+from .player import Player
+from .player_settings import PlayerSettings
 
 
 @transaction.atomic
@@ -39,6 +41,7 @@ def add_premium_month(modeladmin, request, queryset):
 
         prem_log = PremLog(player=player, days=30, activity_txt='buying')
         prem_log.save()
+
 
 add_premium_month.short_description = 'Добавить 1 месяц према'
 
@@ -59,6 +62,7 @@ def add_3_premium_month(modeladmin, request, queryset):
         prem_log = PremLog(player=player, days=90, activity_txt='buying')
         prem_log.save()
 
+
 add_3_premium_month.short_description = 'Добавить 3 месяца према'
 
 
@@ -77,6 +81,7 @@ def add_6_premium_month(modeladmin, request, queryset):
 
         prem_log = PremLog(player=player, days=180, activity_txt='buying')
         prem_log.save()
+
 
 add_6_premium_month.short_description = 'Добавить 6 месяцев према'
 
@@ -136,13 +141,13 @@ class WildpassLogAdmin(admin.ModelAdmin):
 
 
 class PlayerSettingsAdmin(admin.ModelAdmin):
-    search_fields = ['player__nickname',]
+    search_fields = ['player__nickname', ]
     raw_id_fields = ('player',)
 
 
 class PlayerRegionalExpenseAdmin(admin.ModelAdmin):
     list_display = ('player', 'region', 'energy_consumption')
-    search_fields = ['player__nickname', 'region__region_name',]
+    search_fields = ['player__nickname', 'region__region_name', ]
     raw_id_fields = ('player', 'region',)
 
 
@@ -152,35 +157,61 @@ class EventPartAdmin(admin.ModelAdmin):
 
 
 class GlobalPartAdmin(admin.ModelAdmin):
-    raw_id_fields = ('event', )
+    raw_id_fields = ('event',)
 
 
 class EnergySpentAdmin(admin.ModelAdmin):
     search_fields = ['player__nickname', ]
-    raw_id_fields = ('player', )
+    raw_id_fields = ('player',)
 
 
 class DonutLogAdmin(admin.ModelAdmin):
     search_fields = ['player__nickname', ]
     list_display = ('player', 'dtime')
-    raw_id_fields = ('player', )
+    raw_id_fields = ('player',)
 
 
 class LootboxAdmin(admin.ModelAdmin):
     search_fields = ['player__nickname', ]
     list_display = ('player', 'stock')
-    raw_id_fields = ('player', )
+    raw_id_fields = ('player',)
+
+
+class PLayerAdminForm(forms.ModelForm):
+    # Дополнительные поля для сложения и вычитания
+    add_value = forms.IntegerField(label="Добавить", required=False)
+    subtract_value = forms.IntegerField(label="Вычесть", required=False)
+
+    class Meta:
+        model = Player
+        fields = '__all__'
 
 
 class PLayerAdmin(admin.ModelAdmin):
+    form = PLayerAdminForm
+
     search_fields = ['nickname', 'user_ip']
     raw_id_fields = ('account', 'party', 'region', 'residency',)
 
     actions = [
-                    add_premium_month,
-                    add_3_premium_month,
-                    add_6_premium_month,
+        add_premium_month,
+        add_3_premium_month,
+        add_6_premium_month,
     ]
+
+    # Переопределяем метод сохранения модели, чтобы учесть дополнительные поля
+    def save_model(self, request, obj, form, change):
+        add_value = form.cleaned_data.get('add_value')
+        subtract_value = form.cleaned_data.get('subtract_value')
+
+        if add_value:
+            obj.gold += add_value
+
+        if subtract_value:
+            obj.gold -= subtract_value
+
+        # Сохраняем изменения в базе данных
+        obj.save()
 
     # Функциия для отображения у игрока только тех постов,
     # которые относятся к текущему клану игрока
@@ -211,6 +242,7 @@ class PLayerAdmin(admin.ModelAdmin):
 class CodeUsageInline(admin.TabularInline):
     model = CodeUsage
 
+
 class BonusCodeAdmin(admin.ModelAdmin):
     search_fields = ['code', 'premium', 'gold', 'wild_pass', 'cash', ]
     list_display = ('get_name', 'reusable', 'date')
@@ -225,7 +257,7 @@ class BonusCodeAdmin(admin.ModelAdmin):
 class CodeUsageAdmin(admin.ModelAdmin):
     search_fields = ['player__nickname', ]
     list_display = ('code', 'player')
-    raw_id_fields = ('player', 'code', )
+    raw_id_fields = ('player', 'code',)
 
 
 # Register your models here.
