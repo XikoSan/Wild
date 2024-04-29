@@ -39,7 +39,7 @@ class TransferRegion(Bill):
     region = models.ForeignKey(Region, on_delete=models.CASCADE, verbose_name='Регион объявления')
 
     # принимающее государство
-    state = models.OneToOneField(State, on_delete=models.CASCADE, verbose_name='Принимает', related_name="catcher")
+    state = models.ForeignKey(State, on_delete=models.CASCADE, verbose_name='Принимает', related_name="catcher")
 
     acceptation_percent = 75
 

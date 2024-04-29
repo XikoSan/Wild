@@ -9,6 +9,11 @@ jQuery(document).ready(function ($) {
         sending_data.append('explore_regions', document.getElementById('explore_resources_default_region').dataset.value);
         sending_data.append('change_taxes_regions', document.getElementById('change_taxes_default_region').dataset.value);
 
+        var trans_acc_default = document.getElementById('transfer_accept_default_region');
+        if (trans_acc_default) {
+            sending_data.append('transfer_accept_regions', trans_acc_default.dataset.value);
+        }
+
         var trans_default = document.getElementById('transfer_region_default_region');
         if (trans_default) {
             sending_data.append('transfer_region_regions', trans_default.dataset.value);

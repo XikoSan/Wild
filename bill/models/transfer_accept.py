@@ -34,28 +34,17 @@ from war.models.wars.war import War
 
 # Принять регион
 class TransferAccept(Bill):
-    # возможность принять закон досрочно
-    accept_ahead = False
 
     # регион объявления
     region = models.ForeignKey(Region, on_delete=models.CASCADE, verbose_name='Регион объявления')
 
     # отдающее государство
-    state = models.OneToOneField(State, on_delete=models.CASCADE, verbose_name='Отдаёт', related_name="sender")
-
-    acceptation_percent = 75
+    state = models.ForeignKey(State, on_delete=models.CASCADE, verbose_name='Отдаёт', related_name="sender")
 
     @staticmethod
     def new_bill(request, player, parliament):
 
-        if not request.POST.get('transfer_region_regions'):
-            return {
-                'header': 'Новый законопроект',
-                'grey_btn': 'Закрыть',
-                'response': 'Не указан подходящий регион',
-            }
-
-        if not request.POST.get('transfer_region_states'):
+        if not request.POST.get('transfer_accept_regions'):
             return {
                 'header': 'Новый законопроект',
                 'grey_btn': 'Закрыть',
@@ -70,7 +59,7 @@ class TransferAccept(Bill):
             }
 
         try:
-            transfer_region = int(request.POST.get('transfer_region_regions'))
+            transfer_region = int(request.POST.get('transfer_accept_regions'))
 
         except ValueError:
             return {
@@ -79,40 +68,30 @@ class TransferAccept(Bill):
                 'response': 'ID региона должен быть целым числом',
             }
 
-        try:
-            transfer_state = int(request.POST.get('transfer_region_states'))
+        if Region.objects.filter(pk=transfer_region).exists():
 
-        except ValueError:
-            return {
-                'header': 'Новый законопроект',
-                'grey_btn': 'Закрыть',
-                'response': 'ID региона должен быть целым числом',
-            }
-
-        if not State.actual.filter(pk=transfer_state).exists():
-            return {
-                'response': 'Нет такого государства',
-                'header': 'Новый законопроект',
-                'grey_btn': 'Закрыть',
-            }
-
-        state = State.actual.get(pk=transfer_state)
-
-        if Region.objects.filter(pk=transfer_region, state=state).exists():
-
-            sender_parl = Parliament.objects.get(state=state)
             region = Region.objects.get(pk=transfer_region)
 
-            if TransferRegion.objects.filter(running=True,
-                                             parliament=sender_parl,
-                                             region=region,
-                                             state=parliament.state,
+            if not TransferRegion.objects.filter(
+                                                 region=region,
+                                                 state=parliament.state,
+                                             ).filter(
+                Q(running=True)
+                | Q(running=False, type='ac', voting_end__gte=timezone.now() - datetime.timedelta(seconds=10800))
                                              ).exists():
                 return {
                     'header': 'Новый законопроект',
                     'grey_btn': 'Закрыть',
                     'response': 'Указанный регион не передаётся',
                 }
+
+            transfer = TransferRegion.objects.filter(
+                                                 region=region,
+                                                 state=parliament.state,
+                                             ).filter(
+                Q(running=True)
+                | Q(running=False, type='ac', voting_end__gte=timezone.now() - datetime.timedelta(seconds=10800))
+                                             )[0]
 
             # ура, все проверили
             bill = TransferAccept(
@@ -121,7 +100,7 @@ class TransferAccept(Bill):
                 initiator=player,
                 voting_start=timezone.now(),
 
-                state=state,
+                state=transfer.parliament.state,
                 region=region,
             )
             bill.save()
@@ -146,6 +125,7 @@ class TransferAccept(Bill):
             sender_parl = Parliament.objects.get(state=self.state)
 
             if not TransferRegion.objects.filter(running=False,
+                                                 type='ac',
                                                  parliament=sender_parl,
                                                  region=self.region,
                                                  state=self.parliament.state,
@@ -207,7 +187,7 @@ class TransferAccept(Bill):
 
                                 all_goods = Good.objects.all()
 
-                                agr_tres = Treasury.objects.get(state=self.state)
+                                agr_tres = Treasury.objects.get(state=self.parliament.state)
                                 tres = Treasury.objects.get(region=self.region, deleted=False)
 
                                 # передаем деньги в полном объёме
@@ -275,9 +255,10 @@ class TransferAccept(Bill):
 
                         # для каждого типа законопроектов:
                         for type in bills_classes:
-                            # если есть активные законы в этом парламенте
-                            if type.objects.filter(parliament=self.parliament, running=True).exists():
+                            # если есть активные законы в парламенте государства, который отдает регион
+                            if type.objects.filter(parliament=sender_parl, running=True).exists():
                                 for bill in type.objects.filter(parliament=self.parliament, running=True):
+                                    # удаляем голоса депутатов из ЗП
                                     for deputate in deputates:
 
                                         if deputate in bill.votes_pro.all():
@@ -290,9 +271,9 @@ class TransferAccept(Bill):
                         DeputyMandate.objects.filter(party__pk__in=reg_parties).update(player=None)
 
                         # если есть президент (как должность)
-                        if President.objects.filter(state=self.parliament.state).exists():
+                        if President.objects.filter(state=self.state).exists():
                             # през
-                            pres = President.objects.get(state=self.parliament.state)
+                            pres = President.objects.get(state=self.state)
                             # если идут его выборы
                             if PresidentialVoting.objects.filter(running=True,
                                                                  president=pres
@@ -308,19 +289,19 @@ class TransferAccept(Bill):
                                         voting.candidates.remove(candidate)
                                 voting.save()
 
-                        # сбрасывать налоги на ноль
-                        Region.objects.filter(pk=self.region.pk).update(
-                            cash_tax=0,
-                            oil_tax=0,
-                            ore_tax=0,
-                            trade_tax=0,
-                            state=None,
-                            peace_date=timezone.now() + datetime.timedelta(days=14)
-                        )
-                        # чистить запросы прописки в этот рег
-                        ResidencyRequest.objects.filter(region=self.region).delete()
-                        # принят
-                        b_type = 'ac'
+                    # сбрасывать налоги на ноль
+                    Region.objects.filter(pk=self.region.pk).update(
+                        cash_tax=0,
+                        oil_tax=0,
+                        ore_tax=0,
+                        trade_tax=0,
+                        state=self.parliament.state,
+                        peace_date=timezone.now() + datetime.timedelta(days=14)
+                    )
+                    # чистить запросы прописки в этот рег
+                    ResidencyRequest.objects.filter(region=self.region).delete()
+                    # принят
+                    b_type = 'ac'
 
         else:
             b_type = 'rj'
@@ -340,8 +321,25 @@ class TransferAccept(Bill):
         # либо закончилось последние три часа, либо еще идет
         transfers = TransferRegion.objects.filter(state=state).filter(
             Q(running=True)
-            | Q(running=False, voting_end__gte=timezone.now() - datetime.timedelta(seconds=10800))
+            | Q(running=False, type='ac', voting_end__gte=timezone.now() - datetime.timedelta(seconds=10800))
         )
+
+        transfers_tmp = []
+        accepts = TransferAccept.objects.filter(
+            running=False, type='ac', voting_end__gte=timezone.now() - datetime.timedelta(seconds=10800)
+        )
+
+        for transfer in transfers:
+            if not accepts.filter(running=False,
+                                type='ac',
+                                voting_end__gte=timezone.now() - datetime.timedelta(seconds=10800),
+                                region=transfer.region,
+                                state=transfer.parliament.state
+                             ).exists():
+
+                transfers_tmp.append(transfer)
+
+        transfers = transfers_tmp
 
         data = {
             'transfers': transfers,
