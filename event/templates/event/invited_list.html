@@ -1,0 +1,57 @@
+{% extends 'player/redesign/header.html' %}
+{% load l10n %}{% load i18n %}
+{% load static %}
+{% load tz %}
+{% load capitalize %}
+{% load redesign.template_svg.nopic_list %}
+{% load get_divv %}
+{% load get_sum %}
+{% load get_diff %}
+{% load dict_key %}
+
+{% block for_scripts_and_css %}
+{% endblock %}
+
+{% block content %}
+  <section class="articles">
+	    <!-- Заголовок -->
+  		<h1 class="create__title ct__page-title">{{ page_name }}</h1>
+	  <div class="articles__inner">
+
+	  <table class="ct__js-table">
+		  <tbody>
+
+			<tr>
+
+				  <td class="j-t-image"></td>
+				  <td class="j-t-nickname">Никнейм</td>
+				  <td class="j-t-bonus">Бонус</td>
+
+			</tr>
+
+			{% for line in invited_list %}
+			<tr>
+
+			  <td class="j-t-image" style="cursor: pointer" onclick="window.open('/profile/{% localize off %}{{ line.invited.pk }}{% endlocalize %}/')">
+				  {% if not line.invited.image %}
+					{% nopic_list player '' %}
+				  {% else %}
+					<img src="{{ line.invited.image.url }}">
+				  {% endif %}
+				</td>
+
+			  <td class="j-t-nickname" style="cursor: pointer" onclick="window.open('/profile/{% localize off %}{{ line.invited.pk }}{% endlocalize %}/')">
+				{{ line.invited.nickname }}
+				</td>
+
+			<td class="j-t-bonus" style="cursor: pointer" onclick="window.open('/profile/{% localize off %}{{ line.invited.pk }}{% endlocalize %}/')">
+				+ {{  line.invited.power|get_sum:line.invited.knowledge|get_sum:line.invited.endurance|get_diff:line.exp|get_divv:10 }}%
+			</td>
+
+			</tr>
+			{% endfor %}
+		  </tbody>
+		</table>
+  </div>
+  </section>
+{% endblock %}

@@ -207,7 +207,7 @@
 				{% for line in top_players %}
 				<tr>
 
-				  <td class="j-t-image" style="cursor: pointer" onclick="window.open('/profile/{% localize off %}{{ line.pk }}{% endlocalize %}/')">
+				  <td class="j-t-image" style="cursor: pointer" onclick="window.open('/invited/{% localize off %}{{ line.pk }}{% endlocalize %}/')">
 					  {% if not line.image %}
 					  	{% nopic_list player '' %}
 					  {% else %}
@@ -215,11 +215,11 @@
 					  {% endif %}
 					</td>
 
-				  <td class="j-t-nickname" style="cursor: pointer" onclick="window.open('/profile/{% localize off %}{{ line.pk }}{% endlocalize %}/')">
+				  <td class="j-t-nickname" style="cursor: pointer" onclick="window.open('/invited/{% localize off %}{{ line.pk }}{% endlocalize %}/')">
 					{{ line.nickname }}
 					</td>
 
-				<td class="j-t-bonus" style="cursor: pointer" onclick="window.open('/profile/{% localize off %}{{ line.pk }}{% endlocalize %}/')">
+				<td class="j-t-bonus" style="cursor: pointer" onclick="window.open('/invited/{% localize off %}{{ line.pk }}{% endlocalize %}/')">
 					+ {{ top_dict|dict_key:line.pk|get_divv:10 }}% {% if forloop.counter0 == 0 %}, + ₽3000{% elif forloop.counter0 == 1 %}, + ₽2000{% elif forloop.counter0 == 2 %}, + ₽1000{% endif %}
 				</td>
 
