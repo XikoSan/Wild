@@ -10,6 +10,7 @@ from skill.models.skill import Skill
 from skill.models.excavation import Excavation
 # from skill.models.finance import Finance
 from skill.models.standardization import Standardization
+from skill.models.biochemistry import Biochemistry
 
 # запись об изучаемом навыке
 # новые классы навыков надо импортировать сюда
@@ -25,7 +26,7 @@ class SkillTraining(Log):
     )
 
     for skill_cl in skill_classes:
-        activityChoices = activityChoices + ((skill_cl.__name__, skill_cl._meta.verbose_name_raw),)
+        activityChoices = activityChoices + ( (skill_cl.__name__, skill_cl._meta.verbose_name_raw), )
 
     skill = models.CharField(
         max_length=20,
