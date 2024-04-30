@@ -9,4 +9,5 @@ urlpatterns = [
 
     # отменить изучение навыка
     url(r'^skill_cancel/$', skill_cancel, name='skill_cancel'),
+
 ]

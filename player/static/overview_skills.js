@@ -21,6 +21,26 @@ function up_skill(skill){
     });
 };
 
+function boost_skill(skill){
+
+    var sending_data = "&csrfmiddlewaretoken=" + csrftoken;
+    sending_data += "&skill=" + skill;
+    $.ajax({
+        type: "POST",
+        url: "/boost_skill/",
+        data:  sending_data,
+        cache: false,
+        success: function(data){
+            if (data.response == 'ok'){
+                location.reload();
+            }
+            else{
+                display_modal('notify', data.header, data.response, null, data.grey_btn);
+            }
+        }
+    });
+};
+
 // отменить изучение навыка
 function skill_cancel(e, skill_pk) {
 e.preventDefault();
