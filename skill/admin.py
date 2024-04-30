@@ -6,6 +6,8 @@ from skill.models.standardization import Standardization
 from skill.models.military_production import MilitaryProduction
 from skill.models.scouting import Scouting
 from skill.models.coherence import Coherence
+from skill.models.biochemistry import Biochemistry
+
 
 class SkillAdmin(admin.ModelAdmin):
     list_display = ('player', 'level', 'max_level',)
@@ -20,3 +22,4 @@ admin.site.register(Standardization, SkillAdmin)
 admin.site.register(MilitaryProduction, SkillAdmin)
 admin.site.register(Scouting, SkillAdmin)
 admin.site.register(Coherence, SkillAdmin)
+admin.site.register(Biochemistry, SkillAdmin)

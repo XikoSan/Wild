@@ -19,6 +19,7 @@ from storage.models.stock import Stock
 from storage.models.storage import Storage
 from storage.views.storage.locks.get_storage import get_stocks
 from storage.views.storage.locks.get_storage import get_storage
+from skill.models.biochemistry import Biochemistry
 
 
 @login_required(login_url='/')
@@ -92,6 +93,15 @@ def produce_good(request):
         good = Good.objects.get(pk=good)
         goods = [good.name_ru, ]
         ret_stocks, ret_st_stocks = get_stocks(storage, goods)
+
+        boosters_can = Biochemistry.objects.filter(player=player, level__gt=0).exists()
+        if good.name_ru in ['BCAA', 'Глицин', 'Мельдоний'] and not boosters_can:
+            data = {
+                'response': pgettext('factory', 'Вы не можете производить данный товар'),
+                'header': pgettext('factory', 'Ошибка производства'),
+                'grey_btn': pgettext('storage', 'Закрыть'),
+            }
+            return JsonResponse(data)
 
         # проверка, существует ли у товара схема с таким номером
         schema_num = request.POST.get('schema')

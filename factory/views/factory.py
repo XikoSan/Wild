@@ -16,6 +16,7 @@ from storage.models.good import Good
 from storage.models.stock import Stock
 from factory.models.blueprint import Blueprint
 from factory.models.component import Component
+from skill.models.biochemistry import Biochemistry
 
 
 @login_required(login_url='/')
@@ -37,6 +38,8 @@ def factory(request):
 
     stocks = Stock.objects.filter(storage__in=storages)
 
+    boosters_can = Biochemistry.objects.filter(player=player, level__gt=0).exists()
+
     goods = Good.objects.all()
 
     total_stocks = {}
@@ -57,6 +60,9 @@ def factory(request):
         good_names['Наличные'] = pgettext('goods', 'Наличные')
 
         for good in goods:
+            if good.name_ru in ['BCAA', 'Глицин', 'Мельдоний'] and not boosters_can:
+                continue
+
             good_names[good.pk] = good.name
 
             if good.type not in good_by_type.keys():
@@ -93,6 +99,9 @@ def factory(request):
     components = Component.objects.all()
 
     for blueprint in blueprints:
+        if blueprint.good.name_ru in ['BCAA', 'Глицин', 'Мельдоний'] and not boosters_can:
+            continue
+
         if not blueprint.good.pk in schemas:
             schemas[blueprint.good.pk] = {}
 

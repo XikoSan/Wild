@@ -13,6 +13,7 @@ from django.utils.translation import pgettext
 from factory.models.project import Project
 from storage.models.good import Good
 from factory.models.blueprint import Blueprint
+from skill.models.biochemistry import Biochemistry
 
 
 # выкопать ресурсы по запросу игрока
@@ -51,6 +52,15 @@ def start_auto_produce(request):
             return JResponse(data)
 
         good = Good.objects.get(pk=int(good))
+
+        boosters_can = Biochemistry.objects.filter(player=player, level__gt=0).exists()
+        if good.name_ru in ['BCAA', 'Глицин', 'Мельдоний'] and not boosters_can:
+            data = {
+                'response': pgettext('factory', 'Вы не можете производить данный товар'),
+                'header': pgettext('factory', 'Ошибка производства'),
+                'grey_btn': pgettext('storage', 'Закрыть'),
+            }
+            return JsonResponse(data)
 
         # производится ли такой товар?
         if not Blueprint.objects.filter(good=good).exists():
