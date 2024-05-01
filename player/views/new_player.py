@@ -24,6 +24,8 @@ from chat.models.messages.chat import Chat
 from chat.models.messages.chat_members import ChatMembers
 from player.lootbox.lootbox import Lootbox
 from player.game_event.game_event import GameEvent
+from storage.models.stock import Stock, Good
+
 
 # Функция создания нового персонажа
 def player_create(request, form):
@@ -50,6 +52,15 @@ def player_create(request, form):
 
     storage = Storage(owner=character, region=character.region)
     storage.save()
+
+    # выдаем игроку стартовые бустеры
+    for good in [Good.objects.get(name_ru='BCAA'), Good.objects.get(name_ru='Глицин'),Good.objects.get(name_ru='Мельдоний')]:
+        stock = Stock(
+            storage=storage,
+            stock=1,
+            good=good
+        )
+        stock.save()
 
     # mess = Message(player_from=Player.objects.get(pk=1), player_to=character, body=_(
     #     'Welcome! I am the creator and administrator of this game. This message was created automatically - but you can reply to me, ask your question right here, or by contacting me through VK/Discord. I highly recommend reading the “First Steps” article on the Wiki, and joining one of the parties in your state’s parliament. If you have any difficulties with the game or with team finding - write to me, I will help. Also, I will be glad to feedback. Have a nice game!'),
