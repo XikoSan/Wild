@@ -85,7 +85,7 @@ def boost_skill(request):
         storage = Storage.actual.get(owner=player, region=player.region)
 
         # считаем, сколько бустеров надо
-        boosters_need = getattr(player, skill) // 100 + 1
+        boosters_need = getattr(player, skill) // 50 + 1
 
         if not Stock.objects.filter(storage=storage, stock__gte=boosters_need, good=pills_dict[skill]).exists():
             data = {
