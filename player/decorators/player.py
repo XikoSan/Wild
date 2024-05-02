@@ -73,6 +73,7 @@ def check_player(func):
                 if Player.objects.filter(user_ip=cur_ip).exclude(
                         Q(pk=player.pk) |
                         Q(pk=491) | Q(pk=498) |
+                        Q(pk=85) | Q(pk=1313) |
                         Q(banned=True)
                 ).exists():
 
