@@ -27,9 +27,15 @@ class Plane(models.Model):
         'trickster': ['base',
                       'red', 'yellow', 'orange',
                       'green', 'dark_blue', 'light_blue',
-                      'pink', 'violet', 'black'],
+                      'pink', 'violet', 'black',
+                      'gold'
+                      ],
 
-        'smuggler': ['base'],
+        'smuggler': ['base',
+                     'red', 'yellow', 'orange',
+                     'green', 'dark_blue', 'light_blue',
+                     'violet',
+                     ],
 
         'chaser': ['base', 'black' ],
 
@@ -45,6 +51,8 @@ class Plane(models.Model):
 
         'striker': ['base', ],
 
+        'harrier': ['base', ],
+
         'demolisher': ['base',
                        'red', 'yellow', 'orange',
                        'green', 'dark_blue', 'light_blue',
@@ -54,6 +62,12 @@ class Plane(models.Model):
                      'red', 'yellow', 'orange',
                      'green', 'dark_blue', 'light_blue',
                      'pink', 'violet', 'black'],
+
+        'sprinter': ['base',
+                     'red', 'yellow', 'orange',
+                     'green', 'dark_blue', 'light_blue',
+                     'violet'
+                     ],
     }
 
     # самолёт
@@ -69,6 +83,8 @@ class Plane(models.Model):
                         ('observer', 'Observer'),
                         ('striker', 'Striker'),
                         ('demolisher', 'Demolisher'),
+                        ('sprinter', 'Sprinter'),
+                        ('harrier', 'Harrier'),
                     )
 
     colorChoices = (
