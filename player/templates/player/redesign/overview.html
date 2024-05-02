@@ -775,7 +775,7 @@
             {% for message in messages %}
                 {% if message|dict_key:'content' != 'ban_chat' and message|dict_key:'content' != 'delete_message' %}
             <!--сообщение-->
-            <div class="overview__chat-message" {% localize off %} data-counter='{{  message|dict_key:"counter" }}' {% endlocalize %} data-sender='{{  message|dict_key:"author" }}'>
+            <div class="overview__chat-message" {% localize off %} data-counter='{{  message|dict_key:"counter" }}' data-sender='{{  message|dict_key:"author" }}' {% endlocalize %} >
               <!--аватарка-->
               <a class="overview__chat-ava-link" href='/profile/{% localize off %}{{  message|dict_key:"author" }}{% endlocalize %}'>
                 {% if message|dict_key:'image_link' == 'nopic' %}
