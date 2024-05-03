@@ -67,6 +67,19 @@
         <button onclick="vote_bill('TransferAccept',{% localize off %}{{ bill.pk }}{% endlocalize %},'pro')">👍</button>
         <button onclick="vote_bill('TransferAccept',{% localize off %}{{ bill.pk }}{% endlocalize %},'con')">👎</button>
 
+                    {% elif has_right and player in bill.votes_pro.all %}
+                    {% with president=data|dict_key:'president' %}
+                        {% if president in bill.votes_pro.all %}
+                        <div style="display: flex; align-items: center; justify-content: space-between;">
+                            <div class="tableMobileModal__cancel">
+                                <span>подписано:</span>
+                                <a style="color: var(--c10two); text-decoration: underline;" href='/profile/{% localize off %}{{ president.pk }}{% endlocalize %}' target="_blank">{{ president }}</a>
+                            </div>
+                            <button {% if president in bill.votes_pro.all %} onclick="speedup_bill('TransferAccept',{% localize off %}{{ bill.pk }}{% endlocalize %})"{% else %}disabled{% endif %}>⏩</button>
+                        </div>
+                        {% endif %}
+                    {% endwith %}
+
                     {% else %}
                         {% if player in bill.votes_pro.all %}
                         <button disabled>👍</button>
