@@ -22,7 +22,8 @@
         store.owner_id = player.id
 
         where player.cash <> 10000
-         and player.natural_refill >= '02.05.2023'
+--              месяц, день, год
+         and player.natural_refill >= '05.04.2024'
 
          group by store.owner_id
          )
