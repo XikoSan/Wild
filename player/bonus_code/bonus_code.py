@@ -55,6 +55,11 @@ class BonusCode(models.Model):
                 ret += ', '
             ret += f'{number_format(self.cash)} $'
 
+        if self.plane and self.color:
+            if ret:
+                ret += ', '
+            ret += f'{self.get_plane_display()} {self.get_color_display()}'
+
         return ret
 
     # Свойства класса
