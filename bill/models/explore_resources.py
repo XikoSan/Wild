@@ -1,17 +1,21 @@
 # coding=utf-8
+import datetime
 from decimal import Decimal
-
 from django.db import models
+from django.db.models import Sum
+from django.db.models.functions import Coalesce
 from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 from django.utils import timezone
 from django.utils.translation import gettext_lazy
-from state.models.parliament.deputy_mandate import DeputyMandate
-from region.models.region import Region
-from bill.models.bill import Bill
-from state.models.treasury import Treasury
-from state.models.parliament.parliament import Parliament
 from math import ceil
+
+from bill.models.bill import Bill
+from region.models.region import Region
+from state.models.parliament.deputy_mandate import DeputyMandate
+from state.models.parliament.parliament import Parliament
+from state.models.treasury import Treasury
+
 
 # Разведать ресурсы
 class ExploreResources(Bill):
@@ -118,8 +122,21 @@ class ExploreResources(Bill):
 
             if self.region.state == self.parliament.state:
 
+                prev_bills = ExploreResources.objects.filter(
+                    parliament=self.parliament,
+                    region=self.region,
+                    resource=self.resource,
+                    voting_end__gt=timezone.now() - datetime.timedelta(seconds=86400)
+                ).values('region', 'resource').order_by('region').annotate(exp_value=Coalesce(Sum('exp_value'), 0))
+
+                exp_mul = int(ceil(prev_bills[0]['exp_value'] / getattr(self.region, self.resource + '_cap')))
+                remainder = prev_bills[0]['exp_value'] % getattr(self.region, self.resource + '_cap')
+
+                if remainder == 0:
+                    exp_mul += 1
+
                 cash_cost = float(
-                    getattr(region, self.resource + '_cap') - getattr(region, self.resource + '_has')) * self.exp_price
+                    getattr(region, self.resource + '_cap') - getattr(region, self.resource + '_has')) * self.exp_price * exp_mul
 
                 if cash_cost <= treasury.cash:
                     volume = getattr(region, self.resource + '_cap') - getattr(region, self.resource + '_has')
@@ -140,7 +157,7 @@ class ExploreResources(Bill):
 
                 else:
                     # узнаем, сколько можем разведать максимум
-                    hund_price = self.exp_price / 100
+                    hund_price = (self.exp_price * exp_mul) / 100
                     hund_points = treasury.cash // hund_price
 
                     price = hund_points * hund_price
@@ -155,10 +172,11 @@ class ExploreResources(Bill):
                         # setattr(region, self.resource + '_depletion', getattr(region, self.resource + '_depletion') + depletion)
 
                         # обновляем запасы в регионе
-                        setattr(region, self.resource + '_has', getattr(region, self.resource + '_has') + Decimal(hund_points/100))
+                        setattr(region, self.resource + '_has',
+                                getattr(region, self.resource + '_has') + Decimal(hund_points / 100))
 
                         self.cash_cost = treasury.cash
-                        self.exp_value = Decimal(hund_points/100)
+                        self.exp_value = Decimal(hund_points / 100)
                         setattr(treasury, 'cash', treasury.cash - price)
                         b_type = 'ac'
 
@@ -196,7 +214,32 @@ class ExploreResources(Bill):
         for resource in ExploreResources.resExpChoices:
             resources_dict[resource[0]] = resource[1]
 
-        data = {'regions': Region.objects.filter(state=state), 'resources': resources_dict}
+        parliament = Parliament.objects.get(state=state)
+
+        prev_bills = ExploreResources.objects.filter(
+            parliament=parliament,
+            voting_end__gt=timezone.now() - datetime.timedelta(seconds=86400)
+        ).values('region', 'resource').order_by('region').annotate(exp_value=Coalesce(Sum('exp_value'), 0))
+
+        exploration_dict = {}
+
+        for line in prev_bills:
+            if line['region'] not in exploration_dict:
+                exploration_dict[line['region']] = {}
+
+            if line['resource'] not in exploration_dict[line['region']]:
+                exploration_dict[line['region']][line['resource']] = float(line['exp_value'])
+            else:
+                exploration_dict[line['region']][line['resource']] += float(line['exp_value'])
+
+        from player.logs.print_log import log
+        log(exploration_dict)
+
+        data = {
+            'regions': Region.objects.filter(state=state),
+            'resources': resources_dict,
+            'exploration_dict': exploration_dict
+        }
 
         return data, 'state/redesign/drafts/explore_resources.html'
 
@@ -216,7 +259,8 @@ class ExploreResources(Bill):
             'president': president,
             'has_right': has_right,
             # проверяем, депутат ли этого парла игрок или нет
-            'is_deputy': DeputyMandate.objects.filter(player=player, parliament=Parliament.objects.get(state=player.region.state)).exists(),
+            'is_deputy': DeputyMandate.objects.filter(player=player, parliament=Parliament.objects.get(
+                state=player.region.state)).exists(),
         }
 
         return data, 'state/gov/bills/explore_resources.html'
@@ -230,14 +274,29 @@ class ExploreResources(Bill):
                     has_right = True
                     break
 
+        prev_bills = ExploreResources.objects.filter(
+            parliament=self.parliament,
+            region=self.region,
+            resource=self.resource,
+            voting_end__gt=timezone.now() - datetime.timedelta(seconds=86400)
+        ).values('region', 'resource').order_by('region').annotate(exp_value=Coalesce(Sum('exp_value'), 0))
+
+        exp_mul = int(ceil(prev_bills[0]['exp_value'] / getattr(self.region, self.resource + '_cap')))
+        remainder = prev_bills[0]['exp_value'] % getattr(self.region, self.resource + '_cap')
+
+        if remainder == 0:
+            exp_mul += 1
+
         data = {
             'bill': self,
             'title': self._meta.verbose_name_raw,
             'player': player,
+            'exp_mul': exp_mul,
             'president': president,
             'has_right': has_right,
             # проверяем, депутат ли этого парла игрок или нет
-            'is_deputy': DeputyMandate.objects.filter(player=player, parliament=Parliament.objects.get(state=player.region.state)).exists(),
+            'is_deputy': DeputyMandate.objects.filter(player=player, parliament=Parliament.objects.get(
+                state=player.region.state)).exists(),
         }
 
         return data, 'state/redesign/bills/explore_resources.html'

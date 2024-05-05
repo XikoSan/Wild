@@ -1,6 +1,7 @@
 {% load dict_key %}
 {% load get_attr %}
 {% load get_sum %}
+{% load has_key %}
 {% load get_key_list %}
 {% load l10n %}{% load i18n %}
 <!--разведка ресурсов-->
@@ -11,22 +12,56 @@
         {% for region in regions %}
             total_stocks["{{ region.pk }}"] = {};
             {% with resources=data|dict_key:'resources' %}
-                {% for resource in resources|get_key_list %}
-                
-                    {% with res_has=resource|get_sum:'_has' %}
-                    {% with res_cap=resource|get_sum:'_cap' %}
+                {% with exploration=data|dict_key:'exploration_dict' %}
 
-                        total_stocks["{{ region.pk }}"]["{{ resource }}_has"] = {{ region|get_attr:res_has }};
+                    {% for resource in resources|get_key_list %}
 
-                        total_stocks["{{ region.pk }}"]["{{ resource }}_cap"] = {{ region|get_attr:res_cap }};
+                        {% with res_has=resource|get_sum:'_has' %}
+                        {% with res_cap=resource|get_sum:'_cap' %}
 
-                    {% endwith %}
-                    {% endwith %}
+                                total_stocks["{{ region.pk }}"]["{{ resource }}_has"] = {{ region|get_attr:res_has }};
 
-                {% endfor %}
+                                total_stocks["{{ region.pk }}"]["{{ resource }}_cap"] = {{ region|get_attr:res_cap }};
+
+                            {% if exploration|has_key:region.pk %}
+
+                                {% with reg_exp=exploration|dict_key:region.pk %}
+                                    {% if reg_exp|has_key:resource %}
+                                total_stocks["{{ region.pk }}"]["{{ resource }}_exp"] = {{ reg_exp|dict_key:resource }};
+
+                                    {% else %}
+                                total_stocks["{{ region.pk }}"]["{{ resource }}_exp"] = 0;
+
+                                    {% endif %}
+                                {% endwith %}
+
+                            {% else %}
+                                total_stocks["{{ region.pk }}"]["{{ resource }}_exp"] = 0;
+                            {% endif %}
+
+                        {% endwith %}
+                        {% endwith %}
+
+                    {% endfor %}
+
+
+                {% endwith %}
             {% endwith %}
         {% endfor %}
     {% endwith %}
+
+    function calculateValue(value1, value2) {
+        let difference = 1
+
+        var quotient = Math.ceil(value1 / value2);
+        var remainder = value1 % value2;
+
+        if(remainder == 0){
+            quotient = quotient + 1;
+        }
+
+        return quotient
+    }
     
     function set_explore_val() {
         $('#explore_res_line').hide();
@@ -38,11 +73,21 @@
             $('#explore_res_has').html(total_stocks[document.getElementById('explore_resources_default_region').dataset.value][$('#explore_resources').val()+'_has'])
             $('#explore_res_cap').html(total_stocks[document.getElementById('explore_resources_default_region').dataset.value][$('#explore_resources').val()+'_cap'])
 
+            $('#explore_res_exp').html(total_stocks[document.getElementById('explore_resources_default_region').dataset.value][$('#explore_resources').val()+'_exp'])
+            var multiplier = calculateValue(
+                        total_stocks[document.getElementById('explore_resources_default_region').dataset.value][$(e.target).val()+'_exp'],
+                        total_stocks[document.getElementById('explore_resources_default_region').dataset.value][$(e.target).val()+'_cap']
+                    )
+            $('#explore_res_mul').html('X ' + multiplier.toString()
+                )
+
             need_val = parseFloat(total_stocks[document.getElementById('explore_resources_default_region').dataset.value][$('#explore_resources').val()+'_cap']) - parseFloat(total_stocks[document.getElementById('explore_resources_default_region').dataset.value][$('#explore_resources').val()+'_has'])
-            need_sum = parseInt((need_val).toFixed(2) * 100)
+            need_sum = parseInt((need_val).toFixed(2) * 100) * multiplier
             $('#explore_sum').html(numberWithSpaces(need_sum))
 
             $('#explore_res_line').show();
+            $('#explore_exp_line').show();
+            $('#explore_mul_line').show();
             $('#explore_sum_line').show();
         }
     }
@@ -51,6 +96,8 @@
     jQuery(document).ready(function ($) {
         $('#explore_resources').change(function(e) {
             $('#explore_res_line').hide();
+            $('#explore_exp_line').hide();
+            $('#explore_mul_line').hide();
             $('#explore_sum_line').hide();
 
             // если значение ресурса не пустое
@@ -58,11 +105,21 @@
                 $('#explore_res_has').html(total_stocks[document.getElementById('explore_resources_default_region').dataset.value][$(e.target).val()+'_has'])
                 $('#explore_res_cap').html(total_stocks[document.getElementById('explore_resources_default_region').dataset.value][$(e.target).val()+'_cap'])
 
+                $('#explore_res_exp').html(total_stocks[document.getElementById('explore_resources_default_region').dataset.value][$(e.target).val()+'_exp'])
+                var multiplier = calculateValue(
+                        total_stocks[document.getElementById('explore_resources_default_region').dataset.value][$(e.target).val()+'_exp'],
+                        total_stocks[document.getElementById('explore_resources_default_region').dataset.value][$(e.target).val()+'_cap']
+                    )
+                $('#explore_res_mul').html('X ' + multiplier.toString()
+                )
+
                 need_val = parseFloat(total_stocks[document.getElementById('explore_resources_default_region').dataset.value][$(e.target).val()+'_cap']) - parseFloat(total_stocks[document.getElementById('explore_resources_default_region').dataset.value][$(e.target).val()+'_has'])
-                need_sum = parseInt((need_val).toFixed(2) * 100)
+                need_sum = parseInt((need_val).toFixed(2) * 100) * multiplier
                 $('#explore_sum').html(numberWithSpaces(need_sum))
 
                 $('#explore_res_line').show();
+                $('#explore_exp_line').show();
+                $('#explore_mul_line').show();
                 $('#explore_sum_line').show();
             }
         });
@@ -110,6 +167,9 @@
     </label>
 
     <p id="explore_res_line" style="display: none">Запасы: <span id="explore_res_has"></span> / <span id="explore_res_cap"></span></p>
+
+    <p id="explore_exp_line" style="display: none">За последние сутки: <span id="explore_res_exp"></span></p>
+    <p id="explore_mul_line" style="display: none">Множитель: <b><span id="explore_res_mul"></span></b></p>
 
     <p id="explore_sum_line" style="display: none">Стоимость разведки: <b>$<span id="explore_sum"></span></b></p>
 

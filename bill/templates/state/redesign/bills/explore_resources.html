@@ -21,6 +21,7 @@
         {% with res_cap=bill.resource|get_sum:'_cap' %}
             {% with res_cap_val=bill.region|get_attr:res_cap %}
                 {% with res_hap_val=bill.region|get_attr:res_has %}
+                    {% with exp_mul=data|dict_key:'exp_mul' %}
     <td>
         <div class="gover__tableVote-wrappper">
             <div class="gover__withImage" style="margin-bottom: 4rem;">
@@ -36,10 +37,11 @@
     <!--видно на только пк-->
     <td class="gover__tableDopInfo">
         <span>
-            {% trans 'Наличные' context "goods" %}: {{ res_cap_val|get_diff:res_hap_val|get_mul:100 }}
+            {% trans 'Наличные' context "goods" %}: {{ res_cap_val|get_diff:res_hap_val|get_mul:100|get_mul:exp_mul }}
         </span>
     </td>
                     {% endwith %}
+                {% endwith %}
             {% endwith %}
         {% endwith %}
     {% endwith %}
