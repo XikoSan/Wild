@@ -21,6 +21,7 @@ from wild_politics.settings import JResponse
 from dateutil.relativedelta import relativedelta
 from player.logs.wildpass_log import WildpassLog
 from player.views.set_cah_log import set_cash_log
+from region.models.plane import Plane
 
 
 # Открыть лутбоксы
@@ -45,6 +46,15 @@ def activate_code(request):
             return JResponse(data)
 
         code = BonusCode.objects.get(code=request.POST.get('code'), date__gt=timezone.now())
+
+        if code.invite \
+                and request.user.date_joined + timedelta(days=7) < timezone.now():
+            data = {
+                'response': 'Инвайт-код можно активировать первые 7 дней игры',
+                'header': _('Активация кода'),
+                'grey_btn': _('Закрыть'),
+            }
+            return JResponse(data)
 
         if code.reusable:
             if CodeUsage.objects.filter(code=code, player=player).exists():
@@ -117,6 +127,30 @@ def activate_code(request):
                 text += f', деньги: {number_format(code.cash)}'
             else:
                 text = f'деньги: {number_format(code.cash)}'
+
+        # деньги
+        if code.plane and code.color:
+
+            Plane.objects.filter(player=player).update(in_use=False)
+
+            plane = Plane(
+                in_use=True,
+                player=player,
+                plane=code.plane,
+                color=code.color
+            )
+            plane.save()
+
+            if text:
+                if code.color == 'dreamflight':
+                    text += f', самолёт {code.get_color_display()}'
+                else:
+                    text += f', самолёт {code.get_plane_display()} {code.get_color_display()}'
+            else:
+                if code.color == 'dreamflight':
+                    text = f'самолёт {code.get_color_display()}'
+                else:
+                    text = f'самолёт {code.get_plane_display()} {code.get_color_display()}'
 
         player.save()
 

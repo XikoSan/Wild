@@ -3,12 +3,16 @@ from django.db import models
 from django.utils import timezone
 
 from player.player import Player
+from region.models.plane import Plane
 
 
 # бонус - код
 class BonusCode(models.Model):
     # код
     code = models.CharField(max_length=30, blank=False, verbose_name='Бонус-код')
+
+    # инвайт-код (первая неделя с регистрации)
+    invite = models.BooleanField(default=False, null=False, verbose_name='Инвайт-код')
 
     # многоразовый код
     reusable = models.BooleanField(default=False, null=False, verbose_name='Многоразовый')
@@ -24,6 +28,11 @@ class BonusCode(models.Model):
     wild_pass = models.IntegerField(default=0, verbose_name='Wild Pass')
     # бонус: деньги
     cash = models.IntegerField(default=0, verbose_name='Деньги')
+
+    # бонус: самолет
+    plane = models.CharField(blank=True, max_length=10, choices=Plane.planesChoices, verbose_name='Самолёт')
+    # цвет самолета
+    color = models.CharField(blank=True, max_length=20, choices=Plane.colorChoices, verbose_name='Цвет самолета')
 
     def __str__(self):
         ret = 'Код: '

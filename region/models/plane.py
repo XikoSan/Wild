@@ -20,7 +20,7 @@ class Plane(models.Model):
 
     planes = {
 
-        'nagger': ['base', 'black_gold' ],
+        'nagger': ['base', 'black_gold', 'dreamflight' ],
 
         'pretender': ['base', 'green' ],
 
@@ -101,7 +101,9 @@ class Plane(models.Model):
 
                         ('gold', 'золотой'),
 
+                        ('dreamflight', 'Dreamflight'), # сходка МСК 2024
                         ('black_gold', 'чёрно-золотой'),
+
                         ('green_cam', 'зелёный камуфляж'),
                         ('blue_cam', 'синий камуфляж'),
                         ('desert_cam', 'песочный камуфляж'),
@@ -113,7 +115,7 @@ class Plane(models.Model):
     )
 
     color = models.CharField(
-        max_length=10,
+        max_length=20,
         choices=colorChoices,
     )
 

@@ -10,6 +10,8 @@ from player.decorators.player import check_player
 @check_player
 def bonus_code(request):
 
+    code = request.GET.get('code', '')
+
     # Получаем объект персонажа, по его ключу
     # Текущий пользователь
     player = Player.get_instance(account=request.user)
@@ -17,4 +19,5 @@ def bonus_code(request):
     return render(request, 'player/redesign/bonus_code/bonus_code.html', {
         'page_name': 'Активировать бонус-код',
         'player': player,
+        'code': code,
     })

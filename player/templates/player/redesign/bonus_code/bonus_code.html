@@ -16,7 +16,7 @@
       {% csrf_token %}
       <!--Никнейм-->
       <h2>{% trans 'Бонус-код' %}</h2>
-      <input type="text" id="code" name="code" maxlength="30">
+      <input type="text" id="code" name="code" maxlength="30" {% if code %} value="{{ code }}"{% endif %}>
 
 		<div style="display: flex; justify-content: center; width: 100%; margin-top: 24rem;">
 			<button class="ct__top-tab ct__top-tab1 active ct__mid-btn">
