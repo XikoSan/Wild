@@ -129,11 +129,14 @@ class ExploreResources(Bill):
                     voting_end__gt=timezone.now() - datetime.timedelta(seconds=86400)
                 ).values('region', 'resource').order_by('region').annotate(exp_value=Coalesce(Sum('exp_value'), 0))
 
-                exp_mul = int(ceil(prev_bills[0]['exp_value'] / getattr(self.region, self.resource + '_cap')))
-                remainder = prev_bills[0]['exp_value'] % getattr(self.region, self.resource + '_cap')
+                if prev_bills:
+                    exp_mul = int(ceil(prev_bills[0]['exp_value'] / getattr(self.region, self.resource + '_cap')))
+                    remainder = prev_bills[0]['exp_value'] % getattr(self.region, self.resource + '_cap')
 
-                if remainder == 0:
-                    exp_mul += 1
+                    if remainder == 0:
+                        exp_mul += 1
+                else:
+                    exp_mul = 1
 
                 cash_cost = float(
                     getattr(region, self.resource + '_cap') - getattr(region, self.resource + '_has')) * self.exp_price * exp_mul
@@ -232,8 +235,8 @@ class ExploreResources(Bill):
             else:
                 exploration_dict[line['region']][line['resource']] += float(line['exp_value'])
 
-        from player.logs.print_log import log
-        log(exploration_dict)
+
+        
 
         data = {
             'regions': Region.objects.filter(state=state),
@@ -281,11 +284,15 @@ class ExploreResources(Bill):
             voting_end__gt=timezone.now() - datetime.timedelta(seconds=86400)
         ).values('region', 'resource').order_by('region').annotate(exp_value=Coalesce(Sum('exp_value'), 0))
 
-        exp_mul = int(ceil(prev_bills[0]['exp_value'] / getattr(self.region, self.resource + '_cap')))
-        remainder = prev_bills[0]['exp_value'] % getattr(self.region, self.resource + '_cap')
+        if prev_bills:
+            exp_mul = int(ceil(prev_bills[0]['exp_value'] / getattr(self.region, self.resource + '_cap')))
+            remainder = prev_bills[0]['exp_value'] % getattr(self.region, self.resource + '_cap')
 
-        if remainder == 0:
-            exp_mul += 1
+            if remainder == 0:
+                exp_mul += 1
+        else:
+            exp_mul = 1
+
 
         data = {
             'bill': self,
