@@ -45,11 +45,17 @@ class Plane(models.Model):
                     'red', 'yellow', 'orange',
                     'green', 'dark_blue', 'light_blue',
                     'pink', 'violet', 'black',
+                    'gold',
                     'green_cam', 'blue_cam', 'desert_cam'],
 
         'carrier': ['base', 'pink', ],
 
-        'striker': ['base', ],
+        'striker': ['base',
+                    'red', 'yellow', 'orange',
+                    'green', 'dark_blue', 'light_blue',
+                    'pink', 'violet', 'black',
+                    'gold'
+                    ],
 
         'harrier': ['base', ],
 
@@ -61,7 +67,9 @@ class Plane(models.Model):
         'observer': ['base',
                      'red', 'yellow', 'orange',
                      'green', 'dark_blue', 'light_blue',
-                     'pink', 'violet', 'black'],
+                     'pink', 'violet', 'black',
+                     'gold'
+                     ],
 
         'sprinter': ['base',
                      'red', 'yellow', 'orange',
