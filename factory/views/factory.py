@@ -60,7 +60,7 @@ def factory(request):
         good_names['Наличные'] = pgettext('goods', 'Наличные')
 
         for good in goods:
-            if good.name_ru in ['BCAA', 'Глицин', 'Мельдоний'] and not boosters_can:
+            if good.name_ru in ['BCAA', 'Глицин', 'Мельдоний', 'E-реагент', 'I-реагент', 'S-реагент'] and not boosters_can:
                 continue
 
             good_names[good.pk] = good.name
@@ -99,7 +99,7 @@ def factory(request):
     components = Component.objects.all()
 
     for blueprint in blueprints:
-        if blueprint.good.name_ru in ['BCAA', 'Глицин', 'Мельдоний'] and not boosters_can:
+        if blueprint.good.name_ru in ['BCAA', 'Глицин', 'Мельдоний', 'E-реагент', 'I-реагент', 'S-реагент'] and not boosters_can:
             continue
 
         if not blueprint.good.pk in schemas:

@@ -95,7 +95,7 @@ def produce_good(request):
         ret_stocks, ret_st_stocks = get_stocks(storage, goods)
 
         boosters_can = Biochemistry.objects.filter(player=player, level__gt=0).exists()
-        if good.name_ru in ['BCAA', 'Глицин', 'Мельдоний'] and not boosters_can:
+        if good.name_ru in ['BCAA', 'Глицин', 'Мельдоний', 'E-реагент', 'I-реагент', 'S-реагент'] and not boosters_can:
             data = {
                 'response': pgettext('factory', 'Вы не можете производить данный товар'),
                 'header': pgettext('factory', 'Ошибка производства'),
