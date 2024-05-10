@@ -41,10 +41,14 @@ class PartyAdmin(admin.ModelAdmin):
     readonly_fields=('get_primaries_day',)
 
 
+class PrimariesAdmin(admin.ModelAdmin):
+    search_fields = ['party__title', ]
+
+
 # Register your models here.
 admin.site.register(Party, PartyAdmin)
 admin.site.register(PartyPosition)
-admin.site.register(Primaries)
+admin.site.register(Primaries, PrimariesAdmin)
 admin.site.register(PrimBulletin)
 admin.site.register(PrimariesLeader)
 admin.site.register(PartyApply)

@@ -1,0 +1,290 @@
+{% extends 'player/redesign/header.html' %}
+{% load l10n %}{% load i18n %}
+{% load redesign.pagination %}
+{% load static %}
+{% load is_dict %}
+{% load get_attr %}
+{% load check_object %}
+{% load is_list %}
+{% load has_key %}
+{% load lower %}
+{% load get_class_name %}
+{% load get_key_list %}
+{% load dict_key %}
+
+{% load redesign.template_svg.nopic_party_list %}
+{% load redesign.template_svg.nopic_list %}
+
+{% block content %}
+<main>
+
+  <section class="earn custom-scroll">
+
+		<!--Блок таблицы-->
+    <div class="ct__js-table-container" id="js-ct-table-1">
+		<h1 class="ct__js-table-title ct__page-title">Праймериз: {{ player.party }}</h1>
+		<!--кнопка открытия настроек-->
+		<button class="ct__js-modal-sett-open">
+			<svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+			width="80px" height="76px" viewBox="0 0 1280.000000 1276.000000"
+			preserveAspectRatio="xMidYMid meet">
+			<g transform="translate(0.000000,1276.000000) scale(0.100000,-0.100000)"
+			fill="var(--c10two)" stroke="none">
+			<path d="M5975 12749 c-86 -6 -144 -14 -151 -22 -6 -6 -36 -95 -67 -197 -30
+			-102 -119 -396 -197 -655 -78 -258 -156 -516 -173 -571 l-30 -102 -188 -46
+			c-213 -52 -475 -135 -658 -208 -68 -27 -130 -47 -137 -44 -7 3 -301 221 -653
+			485 -353 265 -644 481 -649 481 -11 0 -250 -145 -362 -220 -206 -137 -422
+			-299 -608 -456 l-25 -21 271 -746 c150 -411 272 -752 272 -758 0 -6 -40 -56
+			-88 -112 -175 -202 -337 -420 -457 -615 -32 -52 -64 -96 -72 -99 -8 -3 -366 4
+			-796 16 -430 12 -794 21 -808 21 -23 0 -30 -9 -56 -67 -61 -137 -142 -353
+			-202 -538 -61 -186 -145 -494 -138 -502 2 -2 303 -204 668 -448 562 -377 665
+			-450 670 -473 3 -15 1 -72 -4 -127 -8 -99 -2 -525 11 -702 l7 -92 -668 -448
+			c-368 -246 -673 -450 -678 -453 -9 -6 22 -146 72 -320 71 -249 180 -554 284
+			-794 l17 -39 141 6 c78 4 443 14 810 24 l668 17 25 -29 c13 -17 68 -95 120
+			-174 113 -169 222 -314 350 -467 l93 -111 -275 -752 c-151 -414 -274 -757
+			-272 -761 5 -14 213 -185 361 -296 225 -170 606 -418 631 -412 7 2 299 219
+			649 482 l637 479 47 -15 c27 -9 84 -30 128 -48 183 -74 392 -141 619 -200 81
+			-21 149 -40 151 -42 3 -3 222 -724 386 -1273 38 -126 73 -239 78 -251 8 -18
+			24 -22 137 -33 314 -30 1078 -22 1110 12 6 7 36 95 67 197 30 102 119 396 197
+			655 78 259 156 516 173 571 l30 102 188 46 c213 52 475 135 658 208 68 27 130
+			47 137 44 7 -3 301 -221 653 -485 353 -265 644 -481 649 -481 11 0 250 145
+			362 220 206 137 422 299 608 456 l25 21 -271 746 c-150 411 -272 752 -272 758
+			0 6 40 56 88 112 175 202 337 420 457 615 32 52 64 96 72 99 8 3 366 -4 796
+			-16 430 -12 794 -21 808 -21 23 0 30 9 56 68 61 136 142 352 202 537 61 186
+			145 494 138 502 -2 2 -303 204 -668 448 -562 377 -665 450 -670 473 -3 15 -1
+			72 4 127 8 99 2 527 -11 702 l-7 92 668 448 c368 246 673 450 678 453 9 6 -22
+			146 -72 320 -71 249 -180 554 -284 794 l-17 39 -141 -6 c-78 -4 -443 -14 -810
+			-24 l-668 -17 -25 29 c-13 17 -68 95 -120 174 -113 169 -222 314 -350 467
+			l-93 111 275 752 c151 414 274 757 272 761 -5 14 -213 185 -361 296 -225 170
+			-606 418 -631 412 -7 -2 -299 -219 -649 -482 l-637 -479 -47 15 c-27 9 -84 30
+			-128 48 -183 74 -392 141 -619 200 -81 21 -149 40 -151 42 -3 3 -222 724 -386
+			1273 -38 127 -73 239 -78 251 -8 18 -24 22 -137 33 -164 16 -775 22 -959 10z
+			m2253 -2919 c73 -39 115 -83 151 -160 22 -46 26 -69 26 -140 0 -73 -4 -93 -28
+			-142 -32 -65 -95 -125 -165 -159 -70 -34 -198 -38 -274 -9 -259 97 -294 456
+			-58 598 76 45 102 52 200 49 74 -3 93 -7 148 -37z m-1586 -1425 c407 -47 749
+			-184 1073 -428 176 -133 407 -392 514 -575 177 -306 264 -594 291 -969 10
+			-128 9 -170 -5 -270 -45 -333 -152 -618 -334 -890 -437 -654 -1225 -1012
+			-2023 -918 -407 47 -749 184 -1073 428 -176 133 -407 392 -514 575 -177 306
+			-264 594 -291 969 -10 128 -9 170 5 270 33 241 90 435 190 639 274 563 772
+			963 1390 1119 244 62 523 80 777 50z m-3348 -134 c182 -89 246 -300 143 -472
+			-62 -103 -173 -163 -302 -162 -193 2 -335 144 -337 338 -3 248 268 409 496
+			296z m6489 -3167 c131 -46 218 -173 219 -321 1 -62 -4 -82 -31 -137 -37 -75
+			-92 -128 -170 -164 -81 -38 -202 -38 -282 -1 -79 37 -133 90 -171 167 -29 58
+			-33 77 -33 143 0 65 5 85 33 142 79 159 263 232 435 171z m-4919 -1565 c73
+			-27 148 -96 183 -167 24 -50 28 -69 28 -147 0 -73 -4 -99 -23 -136 -34 -70
+			-84 -122 -154 -160 -60 -32 -68 -34 -163 -34 -95 0 -103 2 -163 34 -74 40
+			-116 85 -150 159 -83 182 5 385 196 454 67 24 177 23 246 -3z"/>
+			</g>
+			</svg>
+		</button>
+		<!--модальное окно настроек-->
+		<div class="ct__js-modal-sett">
+			<button class="ct__js-modal-sett-close">
+				<svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M26 30H0V0H30V26L26 30Z" fill="var(--c10two)"/><path d="M4 4L26 26M4 26L26 4" stroke="var(--c60)" stroke-width="3"/>
+				</svg>
+			</button>
+		</div>
+		<!--время до конца выборов-->
+		<div class="war__type" style="margin-bottom: 24rem">
+			<span id="war_countdown" data-text="{% localize off %}{{ remain }}{% endlocalize %}" style="font-size: 18rem;">{{ time_text }}</span>
+		</div>
+		<!--таблица-->
+    	<table class="ct__js-table">
+	      <tbody>
+
+	        <tr>
+			  <td class="j-t-image"></td>
+			  <td class="j-t-title">Партия</td>
+			  <td class="j-t-action"></td>
+	        </tr>
+
+			{% for candidate in players_list %}
+			<tr>
+			  <td class="j-t-image" onclick="window.open('/profile/{% localize off %}{{ candidate.pk }}{% endlocalize %}/')">
+				{% if candidate.image %}
+				<img src="{{ candidate.image.url }}">
+				{% else %}
+				{% nopic_list player '' %}
+				{% endif %}
+			  </td>
+			  <td class="j-t-title" onclick="window.open('/profile/{% localize off %}{{ candidate.pk }}{% endlocalize %}/')">
+				  {{ candidate.nickname }}
+			  </td>
+			  <td class="j-t-action">
+				{% if vote %}
+					{% if vote.candidate == candidate %}
+				  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="var(--c10two)" version="1.1" id="Capa_1" width="800px" height="800px" viewBox="0 0 45.701 45.7" xml:space="preserve">
+					<g>
+						<g>
+							<path d="M20.687,38.332c-2.072,2.072-5.434,2.072-7.505,0L1.554,26.704c-2.072-2.071-2.072-5.433,0-7.504    c2.071-2.072,5.433-2.072,7.505,0l6.928,6.927c0.523,0.522,1.372,0.522,1.896,0L36.642,7.368c2.071-2.072,5.433-2.072,7.505,0    c0.995,0.995,1.554,2.345,1.554,3.752c0,1.407-0.559,2.757-1.554,3.752L20.687,38.332z"/>
+						</g>
+					</g>
+				</svg>
+					{% endif %}
+				{% else %}
+					{% if can_vote %}
+				  		{% if candidate != player %}
+					<a style="cursor: pointer" onclick="vote_prims(this)" data-party="{{ candidate.party.pk }}" data-candidate="{{ candidate.pk }}">
+						<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="var(--c10two)" version="1.1" id="Capa_1" width="800px" height="800px" viewBox="0 0 45.402 45.402" xml:space="preserve">
+							<g>
+								<path d="M41.267,18.557H26.832V4.134C26.832,1.851,24.99,0,22.707,0c-2.283,0-4.124,1.851-4.124,4.135v14.432H4.141   c-2.283,0-4.139,1.851-4.138,4.135c-0.001,1.141,0.46,2.187,1.207,2.934c0.748,0.749,1.78,1.222,2.92,1.222h14.453V41.27   c0,1.142,0.453,2.176,1.201,2.922c0.748,0.748,1.777,1.211,2.919,1.211c2.282,0,4.129-1.851,4.129-4.133V26.857h14.435   c2.283,0,4.134-1.867,4.133-4.15C45.399,20.425,43.548,18.557,41.267,18.557z"/>
+							</g>
+						</svg>
+					</a>
+				  		{% endif %}
+					{% endif %}
+				{% endif %}
+			  </td>
+			</tr>
+			{% endfor %}
+	      </tbody>
+	    </table>
+    </div>
+
+  <script src="{% static 'js/primaries.js' %}?{{ csrf_token }}"></script>
+
+    <script>
+
+      class JsTable {
+        constructor(data) {
+          this.settings = data;
+					this.tableContainer = document.getElementById(this.settings.tableContainerId);
+					console.log(this.tableContainer);
+
+          // сохраняем все ячейки
+          this.columns = [];
+          this.settings.columns.forEach((column) => {
+            let newColumnDomNodes = [...document.querySelectorAll(`.${column.className}`)]
+            this.columns.push(newColumnDomNodes);
+          });
+
+					// загрузка настроек из LocalStorage
+					this.loadFromLocalStorage()
+
+          // прячем колонки изначально
+          this.refreshTableColumns()
+
+					// окно модальных настроек
+					this.modalSett = {
+						node: null,
+						open: null,
+						close: null,
+					}
+					this.modalSett.node = this.tableContainer.querySelector('.ct__js-modal-sett')
+					this.modalSett.open = this.tableContainer.querySelector('.ct__js-modal-sett-open')
+					this.modalSett.close = this.tableContainer.querySelector('.ct__js-modal-sett-close')
+
+					this.modalSett.open.addEventListener('click', () => { this.openModalSettings() })
+					this.modalSett.close.addEventListener('click', () => { this.closeModalSettings() })
+
+					this.settings.columns.forEach((column, index) => {
+						this.modalSett.node.insertAdjacentHTML('beforeend', `
+							<label>
+								<input class="col${index} visually-hidden" type="checkbox" ${column.isVisible ? 'checked' : ''}>
+								<span></span>
+								${column.name}
+							</label>
+						`)
+						const currentCol = this.modalSett.node.querySelector(`.col${index}`)
+						currentCol.addEventListener('click', () => { this.checkboxClickHandler(column) })
+					})
+
+        }
+
+				openModalSettings() {
+					this.modalSett.node.classList.add('active');
+				}
+
+				closeModalSettings() {
+					this.modalSett.node.classList.remove('active');
+					console.log('click');
+					this.saveToLocalStorage();
+				}
+
+				checkboxClickHandler(column) {
+					column.isVisible = !column.isVisible;
+					this.refreshTableColumns();
+				}
+
+				refreshTableColumns() {
+					this.settings.columns.forEach((column, index) => {
+            if (!column.isVisible) {
+              this.columns[index].forEach((item) => item.style.display = 'none')
+            } else {
+              this.columns[index].forEach((item) => item.style.display = '')
+						}
+          });
+				}
+
+				saveToLocalStorage() {
+					let saveArray = [];
+					this.settings.columns.forEach((column) => {
+						saveArray.push(column.isVisible);
+					})
+					localStorage.setItem(`${this.settings.tableContainerId}`, JSON.stringify(saveArray))
+				}
+
+				loadFromLocalStorage() {
+					if (!localStorage.getItem(`${this.settings.tableContainerId}`)) return;
+					const loadedArray = JSON.parse(localStorage.getItem(`${this.settings.tableContainerId}`));
+					this.settings.columns.forEach((column, index) => {
+						column.isVisible = loadedArray[index];
+					})
+				}
+
+      }
+
+      const jsTable1 = new JsTable({
+        tableContainerId: 'js-ct-table-1',
+        columns: [
+			{ name: 'Герб', className: 'j-t-image', isVisible: true },
+			{ name: 'Партия', className: 'j-t-title', isVisible: true },
+			{ name: 'Действие', className: 'j-t-action', isVisible: true },
+        ],
+      })
+
+	/* обратный отсчет выборов */
+      window.addEventListener("load", function (event) {
+        if (document.getElementById("war_countdown") != undefined){
+
+            var war_cd_elem = document.getElementById("war_countdown");
+
+            //получает строку
+            var war_cd_sec_string = $('#war_countdown').attr('data-text');
+            var war_cd_sec = parseInt(war_cd_sec_string);
+
+            if (war_cd_sec == 0) { } else {
+
+                var war_cd_h = war_cd_sec/3600 ^ 0 ;
+                var war_cd_m = (war_cd_sec-war_cd_h*3600)/60 ^ 0 ;
+                var war_cd_s = war_cd_sec-war_cd_h*3600-war_cd_m*60 ;
+                war_cd_elem.innerHTML = (war_cd_h<10?"0"+war_cd_h:war_cd_h)+":"+(war_cd_m<10?"0"+war_cd_m:war_cd_m)+":"+(war_cd_s<10?"0"+war_cd_s:war_cd_s);
+                war_cd_sec = --war_cd_sec;
+
+
+                //запускаем функцию с повторением раз 1 секунду
+                var war_cd_id = setInterval(increase_frame, 1000);
+                function increase_frame() {
+
+                    var war_cd_h = war_cd_sec/3600 ^ 0 ;
+                    var war_cd_m = (war_cd_sec-war_cd_h*3600)/60 ^ 0 ;
+                    var war_cd_s = war_cd_sec-war_cd_h*3600-war_cd_m*60 ;
+                    war_cd_elem.innerHTML = (war_cd_h<10?"0"+war_cd_h:war_cd_h)+":"+(war_cd_m<10?"0"+war_cd_m:war_cd_m)+":"+(war_cd_s<10?"0"+war_cd_s:war_cd_s);
+
+                    if (war_cd_sec == 0) {
+                        clearInterval(war_cd_id);
+                    }
+                    else{
+                        war_cd_sec = --war_cd_sec;
+                    }
+                }
+            }
+        }
+   });
+
+    </script>
+
+	</section>
+</main>
+{% endblock %}

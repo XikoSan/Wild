@@ -1,14 +1,14 @@
+import time
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
-from player.decorators.player import check_player
-
-from player.player import Player
+from party.logs.membership_log import MembershipLog
 from party.party import Party
-
 from party.primaries.primaries import Primaries
 from party.primaries.primaries_bulletin import PrimBulletin
-from party.logs.membership_log import MembershipLog
+from player.decorators.player import check_player
+from player.player import Player
+from player.views.timers import interval_in_seconds
 
 
 # открытие страницы праймериз
@@ -53,10 +53,27 @@ def start_primaries(request, party_pk):
         if PrimBulletin.objects.filter(primaries=primaries, player=player).exists():
             vote = PrimBulletin.objects.get(primaries=Primaries.objects.get(party=party, running=True), player=player)
 
+    remain = interval_in_seconds(
+        primaries,
+        'prim_start',
+        end_fname=None,
+        delay_in_sec=86400
+        # delay_in_sec=60
+    )
+
+    time_text = None
+    if remain > 0:
+        time_text = time.strftime('%H:%M:%S', time.gmtime(remain))
+    else:
+        return redirect('party')
+
     # отправляем в форму
-    return render(request, 'primaries/primaries.html',
+    return render(request, 'primaries/redesign/primaries.html',
                   {'player': player,
                    'players_list': Player.objects.filter(pk__in=member_pks, party=party),
                    'can_vote': can_vote,
-                   'vote': vote
+                   'vote': vote,
+
+                   'remain': remain,
+                   'time_text': time_text,
                    })
