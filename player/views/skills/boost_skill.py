@@ -97,6 +97,15 @@ def boost_skill(request):
 
         skill_queue = SkillTraining.objects.filter(player=player).order_by('end_dtime')
 
+        if not skill_queue:
+            data = {
+                # 'response': _('positive_enrg_req'),
+                'response': 'Очередь прокачки Характеристик пуста',
+                'header': 'Ускорение навыка',
+                'grey_btn': 'Закрыть',
+            }
+            return JResponse(data)
+
         # Прокачивается тот навык, что хотят ускорить
         if not skill_queue[0].skill == skill:
             data = {
