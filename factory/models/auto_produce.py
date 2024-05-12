@@ -153,10 +153,10 @@ class AutoProduce(Log):
 
         # получаем число юнитов, которое может быть произведено по этой схеме
         price = schema.energy_cost
-        count = int(player.energy // price)
-
         # лимит производства на единицу энергии
-        consignment = player.knowledge // 25 + 1
+        consignment = ( player.knowledge // 25 ) + 1
+
+        count = int(player.energy // price) * consignment
 
         # только для материалов
         if self.good.type == 'materials':
