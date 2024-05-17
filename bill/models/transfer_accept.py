@@ -296,7 +296,6 @@ class TransferAccept(Bill):
                         ore_tax=0,
                         trade_tax=0,
                         state=self.parliament.state,
-                        peace_date=timezone.now() + datetime.timedelta(days=14)
                     )
                     # чистить запросы прописки в этот рег
                     ResidencyRequest.objects.filter(region=self.region).delete()

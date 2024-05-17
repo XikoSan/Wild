@@ -1,0 +1,49 @@
+
+        with store_sum(region_id, cash) as
+        (
+            select store.region_id, sum(store.cash)
+        from storage_storage as store
+        where
+        store.deleted = false
+        group
+        by
+        store.region_id
+        ),
+               
+        
+        player_sum(region_id, cash) as
+        (
+            select player.region_id, sum(player.cash)
+        from player_player as player
+            
+        where player.cash <> 10000
+--              месяц, день, год
+         and player.natural_refill >= '05.14.2024'
+            
+        group
+        by
+        player.region_id
+            
+        ),
+        
+
+       sum_cash(region_id, cash) as
+         (
+        select store.region_id, sum(player.cash) + sum(store.cash)
+        from player_sum as player
+
+        join
+        store_sum as store
+        on
+        store.region_id = player.region_id
+
+         group by store.region_id
+         )
+
+        select region_name, cash
+        from sum_cash
+                    
+         join public.region_region as region
+             on region.id = sum_cash.region_id
+        order by cash desc
+        ;
