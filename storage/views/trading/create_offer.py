@@ -214,42 +214,43 @@ def create_offer(request):
                 }
                 return JsonResponse(data)
 
-            # проверить наличие места на складе
-            ret_stocks, ret_st_stocks = get_stocks(s_storage, [good_obj.name_ru, ])
-
-            # узнаем размерность товара и сколько в этой размерности занято
-            sizetype_stocks = ret_st_stocks[good_obj.size]
-
-            if not s_storage.capacity_check(good_obj.size, count, sizetype_stocks):
-                data = {
-                    'header': pgettext('w_trading_new', 'Создание оффера'),
-                    'grey_btn': pgettext('mining', 'Закрыть'),
-                    'response': pgettext('w_trading_new', 'Недостаточно места на складе для закупаемого товара'),
-                }
-                return JsonResponse(data)
-
-            # добавляем к товару на складе место, которое занято скупками
-            type_good_list = Good.objects.filter(size=good_obj.size)
-            if TradeOffer.actual.filter(owner_storage=s_storage,
-                                        count__gt=0, type='buy',
-                                        offer_good__in=type_good_list
-                                    ).exists():
-
-                sizetype_stocks += int(TradeOffer.actual.filter(
-                    owner_storage=s_storage,
-                    count__gt=0,
-                    type='buy',
-                    offer_good__in=type_good_list
-                ).aggregate(count_sum=Sum('count'))['count_sum'])
+            if not good == -1:
+                # проверить наличие места на складе
+                ret_stocks, ret_st_stocks = get_stocks(s_storage, [good_obj.name_ru, ])
+    
+                # узнаем размерность товара и сколько в этой размерности занято
+                sizetype_stocks = ret_st_stocks[good_obj.size]
 
                 if not s_storage.capacity_check(good_obj.size, count, sizetype_stocks):
                     data = {
                         'header': pgettext('w_trading_new', 'Создание оффера'),
                         'grey_btn': pgettext('mining', 'Закрыть'),
-                        'response': pgettext('w_trading_new',
-                                             'Недостаточно места на складе, с учётом других закупочных ордеров'),
+                        'response': pgettext('w_trading_new', 'Недостаточно места на складе для закупаемого товара'),
                     }
                     return JsonResponse(data)
+
+                # добавляем к товару на складе место, которое занято скупками
+                type_good_list = Good.objects.filter(size=good_obj.size)
+                if TradeOffer.actual.filter(owner_storage=s_storage,
+                                            count__gt=0, type='buy',
+                                            offer_good__in=type_good_list
+                                        ).exists():
+
+                    sizetype_stocks += int(TradeOffer.actual.filter(
+                        owner_storage=s_storage,
+                        count__gt=0,
+                        type='buy',
+                        offer_good__in=type_good_list
+                    ).aggregate(count_sum=Sum('count'))['count_sum'])
+
+                    if not s_storage.capacity_check(good_obj.size, count, sizetype_stocks):
+                        data = {
+                            'header': pgettext('w_trading_new', 'Создание оффера'),
+                            'grey_btn': pgettext('mining', 'Закрыть'),
+                            'response': pgettext('w_trading_new',
+                                                 'Недостаточно места на складе, с учётом других закупочных ордеров'),
+                        }
+                        return JsonResponse(data)
 
             cost = count * price
             # списать деньги с игрока
