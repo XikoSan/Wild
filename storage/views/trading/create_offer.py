@@ -214,10 +214,10 @@ def create_offer(request):
                 }
                 return JsonResponse(data)
 
-            if not good == -1:
+            if not good == -1 and good_obj:
                 # проверить наличие места на складе
                 ret_stocks, ret_st_stocks = get_stocks(s_storage, [good_obj.name_ru, ])
-    
+
                 # узнаем размерность товара и сколько в этой размерности занято
                 sizetype_stocks = ret_st_stocks[good_obj.size]
 
