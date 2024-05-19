@@ -1,19 +1,21 @@
+from django.apps import apps
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
+from django.db.models import Sum
 from django.http import JsonResponse
 from django.utils import timezone
-from django.apps import apps
+from django.utils.translation import pgettext
+
 from player.decorators.player import check_player
 from player.player import Player
 from region.views.distance_counting import distance_counting
 from storage.models.cash_lock import CashLock
+from storage.models.good import Good
 from storage.models.good_lock import GoodLock
+from storage.models.stock import Stock
 from storage.models.storage import Storage
 from storage.models.trade_offer import TradeOffer
-from django.utils.translation import pgettext
-from storage.models.stock import Stock
-from storage.models.good import Good
-
+from storage.views.storage.locks.get_storage import get_stocks
 
 
 @login_required(login_url='/')
@@ -55,7 +57,6 @@ def create_offer(request):
             storages_pk.append(storage.pk)
 
         if not int(souce_pk) in storages_pk:
-
             data = {
                 'header': pgettext('w_trading_new', 'Создание оффера'),
                 'grey_btn': pgettext('mining', 'Закрыть'),
@@ -203,6 +204,7 @@ def create_offer(request):
                     'response': pgettext('w_trading_new', 'Стоимость товара слишком велика'),
                 }
                 return JsonResponse(data)
+
             # проверить, что стоимость товара не больше налички игрока
             if count * price > player.cash:
                 data = {
@@ -211,6 +213,44 @@ def create_offer(request):
                     'response': pgettext('w_trading_new', 'Недостаточно средств'),
                 }
                 return JsonResponse(data)
+
+            # проверить наличие места на складе
+            ret_stocks, ret_st_stocks = get_stocks(s_storage, [good_obj.name_ru, ])
+
+            # узнаем размерность товара и сколько в этой размерности занято
+            sizetype_stocks = ret_st_stocks[good_obj.size]
+
+            if not s_storage.capacity_check(good_obj.size, count, sizetype_stocks):
+                data = {
+                    'header': pgettext('w_trading_new', 'Создание оффера'),
+                    'grey_btn': pgettext('mining', 'Закрыть'),
+                    'response': pgettext('w_trading_new', 'Недостаточно места на складе для закупаемого товара'),
+                }
+                return JsonResponse(data)
+
+            # добавляем к товару на складе место, которое занято скупками
+            type_good_list = Good.objects.filter(size=good_obj.size)
+            if TradeOffer.actual.filter(owner_storage=s_storage,
+                                        count__gt=0, type='buy',
+                                        offer_good__in=type_good_list
+                                    ).exists():
+
+                sizetype_stocks += int(TradeOffer.actual.filter(
+                    owner_storage=s_storage,
+                    count__gt=0,
+                    type='buy',
+                    offer_good__in=type_good_list
+                ).aggregate(count_sum=Sum('count'))['count_sum'])
+
+                if not s_storage.capacity_check(good_obj.size, count, sizetype_stocks):
+                    data = {
+                        'header': pgettext('w_trading_new', 'Создание оффера'),
+                        'grey_btn': pgettext('mining', 'Закрыть'),
+                        'response': pgettext('w_trading_new',
+                                             'Недостаточно места на складе, с учётом других закупочных ордеров'),
+                    }
+                    return JsonResponse(data)
+
             cost = count * price
             # списать деньги с игрока
             setattr(player, 'cash', getattr(player, 'cash') - count * price)
