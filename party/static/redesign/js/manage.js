@@ -2,6 +2,36 @@ function insertAfter(newNode, existingNode) {
     existingNode.parentNode.insertBefore(newNode, existingNode.nextSibling);
 }
 
+// выдать золото игроку
+function gold_giving(){
+    var sending_data;
+    sending_data += "&csrfmiddlewaretoken=" + csrftoken + "&gold_sum=" + $('#gold_sum').val();
+
+    var member_default = document.getElementById('default_member');
+    if (member_default) {
+        sending_data += "&member=" + member_default.dataset.value;
+    }
+
+    $.ajax({
+        type: "POST",
+        url: "/give_party_gold/",
+        data:  sending_data,
+        cache: false,
+        success: function(data){
+            if (data.response == 'ok'){
+                document.getElementById('gold_sum').setAttribute("max", data.gold_val);
+                document.getElementById("gold_val").innerHTML = numberWithSpaces(data.gold_val);
+
+                display_modal('notify', data.header, data.payload, null, data.grey_btn)
+            }
+            else{
+                display_modal('notify', data.header, data.response, null, data.grey_btn)
+            }
+        }
+    });
+
+};
+
 //переименование партии
 jQuery(document).ready(function ($) {
     $('#rename_form').submit(function(e){

@@ -5026,7 +5026,40 @@ p.overview__love-stat-timer {
   line-height: 1.4;
 }
 
+.party__manageTabs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12rem;
+  width: 100%;
+  padding: 0 12rem;
+  margin-bottom: 12rem;
+}
+
+.party__manageTabs button {
+    font-size: 13rem;
+}
+
+.party__manageGold {
+  gap: 12rem;
+  width: 100%;
+  padding: 0 12rem;
+  margin-bottom: 12rem;
+}
+
 @media (min-width: 1000px) {
+
+  .party__manageGold {
+      width: 600rem;
+      margin: 0 auto;
+      margin-bottom: 12rem;
+  }
+
+  .party__manageTabs {
+      width: 600rem;
+      margin: 0 auto;
+      margin-bottom: 12rem;
+  }
+
   .party {
     margin-top: 100rem;
     margin-left: 330rem;
@@ -5105,6 +5138,8 @@ p.overview__love-stat-timer {
     margin: 0 auto;
   }
 }
+
+
 
 /*! state */
 

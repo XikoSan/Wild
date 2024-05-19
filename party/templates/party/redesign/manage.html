@@ -8,6 +8,8 @@
 {% load get_key_list %}
 {% load get_class_name %}
 
+{% load redesign.template_svg.nopic %}
+
 {% load redesign.template_svg.nopic_party %}
 {% load redesign.template_svg.noback_party %}
 
@@ -15,38 +17,14 @@
 
   <section class="party custom-scroll">
 		<h1 class="party__title ct__page-title">{% trans 'Управление партией' context "party_manage" %}</h1>
-	  
-		<div class="party__tabs-management ct__top-tabs">
-			<button class="ct__top-tab ct__top-tab1 active ct__mid-btn" onclick="switchMainBlocks(0)">
-				<svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
-					<mask id="mask0_259_317" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
-						<path class="geometry1" d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"/>
-					</mask>
-					<g mask="url(#mask0_259_317)">
-						<path class="geometry2" d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z"/>
-						<path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"/>
-						<path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"/>
-						<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
-					</g>
-				</svg>
-				<span>{% trans 'партия' context "party_manage" %}</span>
-			</button>		
 
-			<button class="ct__top-tab ct__top-tab2 ct__mid-btn" onclick="switchMainBlocks(1)">
-				<svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
-					<mask id="mask0_259_318" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
-						<path class="geometry1" d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"/>
-					</mask>
-					<g mask="url(#mask0_259_318)">
-						<path class="geometry2" d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z"/>
-						<path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"/>
-						<path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"/>
-						<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
-					</g>
-				</svg>
-				<span>{% trans 'должности' context "party_manage" %}</span>
-			</button>		
-		</div>
+		<div class="party__manageTabs articles__tabs">
+			<button class="active" onclick="switchMainBlocks(0)">партия</button>
+
+			<button onclick="switchMainBlocks(1)">должности</button>
+
+			<button onclick="switchMainBlocks(2)">золото</button>
+	  	</div>
 
 		<div class="partyblock1" id="partyblock1">
 
@@ -248,6 +226,89 @@
 			</div>
 		</div>
 
+	  	<div class="partyblock3" id="partyblock3" style="display: none;">
+			<div class="party__manageGold">
+
+				<div class="DecorLine"></div>
+
+				<div class="ct__s" style="margin-bottom: 12rem;">
+					<h2 class="ct__s-title">Выдача золота партии</h2>
+					<br>
+					<div class="ct__s" style="display: flex; justify-content: center;">
+						<h2 class="ct__s-title" style="background: linear-gradient(270deg, var(--c30) 0%, transparent 100%);">Баланс партии:</h2>
+						<h2 class="ct__s-title" style="color: #eb9929;">
+							G <div id="gold_val">{{ player.party.gold }}</div>
+						</h2>
+					</div>
+				</div>
+
+				<div class="ct__s" style="display: flex;justify-content: space-evenly; margin-bottom: 12rem;">
+					<h2 class="ct__s-title" style="background: initial;">Выдать:</h2>
+					<input class="store__num-right" type="number" max="{% localize off %}{{ player.party.gold }}{% endlocalize %}" min="0" value="0" name="gold_sum" id="gold_sum" style="margin: initial;">
+				</div>
+
+				<div class="ct__selectWithImage" style="margin-bottom: 12rem;">
+					{% for member in members %}
+					{% if forloop.counter0 == 0 %}
+					<div class="ct__selectWithImage-selected" id="default_member" data-value="{% localize off %}{{ member.pk }}{% endlocalize %}">
+						{% if member.image %}
+						<img class="offer_dummy_img" src="{{ member.image.url }}">
+						{% else %}
+						<img class="offer_dummy_img" src="" style="display: none">
+						{% nopic player '' 'width: 24rem; height: 24rem' %}
+						{% endif %}
+						<div class="ct__selectWithImage-firstText">
+							<span id="member_default">{{ member.nickname }}</span>
+							<svg class="ct__selectWithImage-arrow" width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
+							</svg>
+						</div>
+					</div>
+					{% endif %}
+					{% endfor %}
+					<div class="ct__selectWithImage-content custom-scroll custom-scroll--alt">
+						{% for member in members %}
+						<div id="transfer_region_{% localize off %}{{ member.pk }}{% endlocalize %}" {% if forloop.counter0 == 0 %}class="region_storage"{% endif %} data-value="{% localize off %}{{ member.pk }}{% endlocalize %}">
+
+							{% if member.image %}
+							<img class="offer_dummy_img" src="{{ member.image.url }}">
+							{% else %}
+							{% nopic player '' 'width: 24rem; height: 24rem' %}
+							{% endif %}
+
+							<span class="offer_dummy_region">{{ member.nickname }}</span>
+						</div>
+						{% endfor %}
+					</div>
+				</div>
+
+				<button class="earn__long-btn ct__long-btn btn" style="margin-bottom: 14rem;" onclick="gold_giving()">
+					<span style="display: inline-block;">выдать</span>
+
+					<svg width="176" height="31" viewBox="0 0 176 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<mask id="mask0_36_212" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="-1" width="176" height="32">
+						<path d="M0 5.78935L5.78947 -0.00012207H176V23.1578L169.053 30.1051H0V5.78935Z" fill="var(--c10two)"></path>
+						</mask>
+						<g mask="url(#mask0_36_212)">
+							<path d="M0 5.78935L5.78947 -0.00012207H176V23.1578L169.053 30.1051H0V5.78935Z" fill="var(--c10two)"></path>
+
+							<path class="treg1" opacity="0.2" d="M38.1333 -14.0492L68.5505 38.635H7.71606L38.1333 -14.0492Z" fill="var(--c10one)"></path>
+							<path class="treg2" opacity="0.2" d="M110.911 -13.8387L99.6371 22.9836L73.385 -5.19097L110.911 -13.8387Z" fill="var(--c10one)"></path>
+							<path class="treg3" opacity="0.2" d="M169.098 6.14752L158.04 25.3L146.983 6.14752L169.098 6.14752Z" fill="var(--c10one)"></path>
+
+						</g>
+					</svg>
+				</button>
+
+				<div class="ct__s">
+					<p class="ct__s-text">Золото начисляется на баланс партии за призовые места в еженедельном рейтинге, а также за особые заслуги.</p>
+					<br>
+					<p class="ct__s-text">Вы можете выдать золото с баланса партии любому однопартийцу.</p>
+				</div>
+
+			</div>
+		</div>
+
 	</section>
 
 	<!--название партии-->
@@ -377,15 +438,24 @@
 		const blocks = {
 		one: document.getElementById('partyblock1'),
 		two: document.getElementById('partyblock2'),
-		tabs: document.querySelectorAll('.party__tabs-management > button')
+		three: document.getElementById('partyblock3'),
+		tabs: document.querySelectorAll('.party__manageTabs > button')
 	  }
 	  function switchMainBlocks(num) {
 		if (num === 0) {
 		  blocks.one.style.display = '';
 		  blocks.two.style.display = 'none';
-		} else {
+		  blocks.three.style.display = 'none';
+		}
+		else if(num === 1){
 		  blocks.one.style.display = 'none';
 		  blocks.two.style.display = '';
+		  blocks.three.style.display = 'none';
+		}
+		else {
+		  blocks.one.style.display = 'none';
+		  blocks.two.style.display = 'none';
+		  blocks.three.style.display = '';
 		}
 		blocks.tabs.forEach((btn) => btn.classList.remove('active'));
 		blocks.tabs[num].classList.add('active');

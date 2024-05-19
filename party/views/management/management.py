@@ -28,9 +28,11 @@ def management(request):
                                   'page_name': pgettext('party_manage', 'Управление партией'),
                                   'player': player,
                                   'party': party,
-                                  'members_count': Player.objects.filter(party=player.party).count(),
                                   'roles_list': PartyPosition.objects.filter(party=player.party),
-                                  'roles_count': PartyPosition.objects.filter(party=player.party).count()
+                                  'roles_count': PartyPosition.objects.filter(party=player.party).count(),
+
+                                  'members_count': Player.objects.filter(party=player.party).count(),
+                                  'members': Player.objects.filter(party=player.party)
                                })
             else:
                 return redirect('party')
