@@ -47,10 +47,13 @@
         </form>
     </div>
     <ul class="store__list">
+        <li class="store__item" style="justify-content: center">
+            <p>{% trans 'Уровень:' context "has_storage" %} {{ storage|get_attr:'level' }}</p>
+        </li>
         <!-- ['small', 'medium', 'large'] -->
         {% for size in size_dict|get_key_list %}
         {% if goods_dict|has_key:size %}
-        <li class="store__item eduBlock2" {% if forloop.counter0 != 0 %}style="margin-top: 2vh"{% endif %}><!--шапка типоразмера-->
+        <li class="store__item eduBlock2" style="margin-top: 2vh"><!--шапка типоразмера-->
             {% with cap_name=size|get_sum:'_cap' %}
             <p>{{ size_dict|dict_key:size }} {% trans 'объём' context "has_storage" %}</p>
             <span>
