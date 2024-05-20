@@ -22,7 +22,11 @@ class Plane(models.Model):
 
         'nagger': ['base', 'black_gold', 'dreamflight' ],
 
-        'pretender': ['base', 'green' ],
+        'pretender': ['base',
+                      'red', 'yellow', 'orange',
+                      'green',
+                      'black',
+                      ],
 
         'trickster': ['base',
                       'red', 'yellow', 'orange',
@@ -48,7 +52,12 @@ class Plane(models.Model):
                     'gold',
                     'green_cam', 'blue_cam', 'desert_cam'],
 
-        'carrier': ['base', 'pink', ],
+        'carrier': ['base',
+                    'red', 'yellow', 'orange',
+                    'green', 'dark_blue', 'light_blue',
+                    'pink', 'violet', 'black',
+                    'gold',
+                    'green_pobeda',],
 
         'striker': ['base',
                     'red', 'yellow', 'orange',
@@ -57,7 +66,12 @@ class Plane(models.Model):
                     'gold'
                     ],
 
-        'harrier': ['base', ],
+        'harrier': ['base',
+                    'red', 'yellow', 'orange',
+                    'green', 'dark_blue', 'light_blue',
+                    'pink', 'violet', 'black',
+                    'gold'
+                    ],
 
         'demolisher': ['base',
                        'red', 'yellow', 'orange',
@@ -76,6 +90,9 @@ class Plane(models.Model):
                      'green', 'dark_blue', 'light_blue',
                      'violet'
                      ],
+
+        'sailor': ['base',
+                 ],
     }
 
     # самолёт
@@ -93,6 +110,7 @@ class Plane(models.Model):
                         ('demolisher', 'Demolisher'),
                         ('sprinter', 'Sprinter'),
                         ('harrier', 'Harrier'),
+                        ('sailor', 'Sailor'),
                     )
 
     colorChoices = (
@@ -115,6 +133,7 @@ class Plane(models.Model):
                         ('green_cam', 'зелёный камуфляж'),
                         ('blue_cam', 'синий камуфляж'),
                         ('desert_cam', 'песочный камуфляж'),
+                        ('pobeda', 'пузырьки'),  # в стиле лоукостера
                     )
 
     plane = models.CharField(
