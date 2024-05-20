@@ -367,6 +367,7 @@ class TransferAccept(Bill):
             'title': self._meta.verbose_name_raw,
             'player': player,
             'has_right': has_right,
+            'president': president,
             # проверяем, депутат ли этого парла игрок или нет
             'is_deputy': DeputyMandate.objects.filter(player=player, parliament=Parliament.objects.get(
                 state=player.region.state)).exists(),
