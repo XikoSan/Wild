@@ -55,6 +55,15 @@ def get_residency(request):
 
         region = Region.objects.get(pk=region)
 
+        if not request.user.is_superuser \
+                and region.limit_id and player.pk < region.limit_id:
+            data = {
+                'header': 'Получение прописки',
+                'grey_btn': 'Закрыть',
+                'response': 'Указанный регион закрыт для получения прописки',
+            }
+            return JResponse(data)
+
         if region.state:
             if region.state.residency == 'issue':
                 if not ResidencyRequest.objects.filter(char=player, region=region, state=region.state).exists():
