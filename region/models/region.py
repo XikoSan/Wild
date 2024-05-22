@@ -26,6 +26,9 @@ class Region(models.Model):
     # название региона
     on_map_id = models.CharField(max_length=50, default='', verbose_name='ID на карте')
 
+    # ID, ниже которого влететь в регион нельзя
+    limit_id = models.IntegerField(default=0, verbose_name='Ограничение лягушатника')
+
     # признак того что регион северный
     is_north = models.BooleanField(default=True, verbose_name='Северной широты')
     # координата широты

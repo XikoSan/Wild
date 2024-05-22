@@ -98,7 +98,7 @@ class RegionAdmin(admin.ModelAdmin):
 
     fields = (
         # шапка
-        ('is_off'),
+        ('is_off', 'limit_id'),
         ('region_name', 'on_map_id'),
         # координаты
         ('is_north', 'north', 'is_east', 'east'),

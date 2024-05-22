@@ -53,6 +53,15 @@ def map(request):
             }
             return JResponse(data)
 
+        if not request.user.is_superuser \
+                and destination.limit_id and player.pk < destination.limit_id:
+            data = {
+                'header': 'Ошибка полёта',
+                'grey_btn': 'Закрыть',
+                'response': 'Указанный регион закрыт для полётов',
+            }
+            return JResponse(data)
+
         cost = round(distance_counting(player.region, destination))
 
         if player.cash >= cost:

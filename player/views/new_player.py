@@ -37,7 +37,10 @@ def player_create(request, form):
     # settings = PlayerSettings(player=character)
     #     # settings.save()
 
-    start_pk = random.choice(Region.objects.all())
+    if Region.objects.filter(limit_id__gt=0).exists():
+        start_pk = random.choice(Region.objects.filter(limit_id__gt=0))
+    else:
+        start_pk = random.choice(Region.objects.all())
     # Помещаем нового персонажа в случаный регион и прописываем там же
     character.region = start_pk
     character.residency = start_pk

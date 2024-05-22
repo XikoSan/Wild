@@ -150,7 +150,7 @@ class TransferRegion(Bill):
     @staticmethod
     def get_new_draft(state):
 
-        regions = Region.objects.filter(state=state)
+        regions = Region.objects.filter(state=state).exclude(limit_id__gt=0)
 
         states = State.actual.exclude(pk=state.pk)
 

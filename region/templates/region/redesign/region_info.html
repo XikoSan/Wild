@@ -66,6 +66,15 @@
         </span>
 
         {% else %}
+
+            {% if not player.account.is_superuser and region.limit_id and player.pk < region.limit_id %}
+            <!--лягушатник-->
+            <span class="map__info-btn-cost">
+              закрытая зона
+            </span>
+
+            {% else %}
+
         {% csrf_token %}
         <input type="hidden" class="region_id" name="region" value="{{ region.pk }}">
         <button class="to_fly" style="cursor: pointer">{% trans 'отправиться' context "map" %}</button>
@@ -92,6 +101,7 @@
           {{ cost }}
         </span>
 
+            {% endif %}
         {% endif %}
 
     {% endif %}
