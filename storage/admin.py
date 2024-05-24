@@ -16,10 +16,11 @@ from storage.models.good import Good
 from storage.models.stock import Stock
 from modeltranslation.admin import TabbedTranslationAdmin
 
+
 class TradeOfferAdmin(admin.ModelAdmin):
     exclude = ('accepters',)
 
-    search_fields = ['player__nickname']
+    search_fields = ['owner_storage__owner__nickname']
     raw_id_fields = ('owner_storage',)
     list_display = ('owner_storage', 'type', 'get_good_name', 'price', 'deleted')
     list_filter = ('deleted',)
