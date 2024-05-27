@@ -24,8 +24,9 @@ class Plane(models.Model):
 
         'pretender': ['base',
                       'red', 'yellow', 'orange',
-                      'green',
-                      'black',
+                      'green', 'dark_blue', 'light_blue',
+                      'pink', 'violet', 'black',
+                      'wood',
                       ],
 
         'trickster': ['base',
@@ -43,7 +44,11 @@ class Plane(models.Model):
 
         'chaser': ['base', 'black' ],
 
-        'reaper': ['base', 'black', 'gold' ],
+        'reaper': ['base',
+                   'red', 'yellow', 'orange',
+                   'green', 'dark_blue', 'light_blue',
+                   'pink', 'violet', 'black',
+                   'gold' ],
 
         'cheater': ['base',
                     'red', 'yellow', 'orange',
@@ -88,7 +93,15 @@ class Plane(models.Model):
         'sprinter': ['base',
                      'red', 'yellow', 'orange',
                      'green', 'dark_blue', 'light_blue',
-                     'violet'
+                     'pink', 'violet', 'black',
+                     'gold'
+                     ],
+
+        'hammer': ['base',
+                     'red', 'yellow', 'orange',
+                     'green', 'dark_blue', 'light_blue',
+                     'pink', 'violet', 'black',
+                     'gold'
                      ],
 
         'sailor': ['base',
@@ -111,6 +124,7 @@ class Plane(models.Model):
                         ('sprinter', 'Sprinter'),
                         ('harrier', 'Harrier'),
                         ('sailor', 'Sailor'),
+                        ('hammer', 'Hammer'),
                     )
 
     colorChoices = (
@@ -133,6 +147,7 @@ class Plane(models.Model):
                         ('green_cam', 'зелёный камуфляж'),
                         ('blue_cam', 'синий камуфляж'),
                         ('desert_cam', 'песочный камуфляж'),
+                        ('wood', 'дерево'),
                         ('pobeda', 'пузырьки'),  # в стиле лоукостера
                     )
 
