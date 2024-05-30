@@ -14,6 +14,7 @@ from player.player_settings import PlayerSettings
 from wild_politics.settings import TIME_ZONE
 from ava_border.models.ava_border_ownership import AvaBorderOwnership
 from article.models.article import Article
+from region.models.plane import Plane
 
 
 @login_required(login_url='/')
@@ -83,7 +84,7 @@ def view_profile(request, pk):
         plane_url = f'/static/img/planes/{plane.plane}/{plane.plane}_{plane.color}.svg'
     else:
         plane_url = '/static/img/planes/pretender/pretender_1.svg'
-            
+
     # ---------------------
 
     ava_border = None
