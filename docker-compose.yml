@@ -1,7 +1,7 @@
 version: '3'
 services:
   db:
-    image: postgres:13-alpine
+    image: mirror.gcr.io/library/postgres:13-alpine
     command: postgres -c 'max_connections=1000'
     restart: always
     ports:
@@ -11,11 +11,11 @@ services:
       POSTGRES_DB: wild_politics
 
   redis:
-    image: redis:alpine
+    image: mirror.gcr.io/library/redis:alpine
     restart: always
 
   nginx:
-    image: nginx:alpine
+    image: mirror.gcr.io/library/nginx:alpine
     restart: always
     ports:
       - 80:80

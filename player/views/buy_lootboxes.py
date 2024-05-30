@@ -34,25 +34,25 @@ def buy_lootboxes(request):
             }
             return JResponse(data)
 
-        today = timezone.now().date()
-        was_buy = GoldLog.objects.filter(player=player, activity_txt='boxes', dtime__date=today).exists()
-
-        if was_buy:
-            data = {
-                'response': 'Вы можете приобрести наборы сундуков только раз в день',
-                'header': 'Приобретение сундуков',
-                'grey_btn': _('Закрыть'),
-            }
-            return JResponse(data)
-
-        if (buy_count == 50 or buy_count == 1000) and ( GoldLog.objects.filter(player=player, activity_txt='boxes', gold=40000).exists()\
-                or GoldLog.objects.filter(player=player, activity_txt='boxes', gold=75000).exists() ):
-            data = {
-                'response': 'Вы можете приобрести большие наборы сундуков только единожды',
-                'header': 'Приобретение сундуков',
-                'grey_btn': _('Закрыть'),
-            }
-            return JResponse(data)
+        # today = timezone.now().date()
+        # was_buy = GoldLog.objects.filter(player=player, activity_txt='boxes', dtime__date=today).exists()
+        #
+        # if was_buy:
+        #     data = {
+        #         'response': 'Вы можете приобрести наборы сундуков только раз в день',
+        #         'header': 'Приобретение сундуков',
+        #         'grey_btn': _('Закрыть'),
+        #     }
+        #     return JResponse(data)
+        #
+        # if (buy_count == 50 or buy_count == 1000) and ( GoldLog.objects.filter(player=player, activity_txt='boxes', gold=40000).exists()\
+        #         or GoldLog.objects.filter(player=player, activity_txt='boxes', gold=75000).exists() ):
+        #     data = {
+        #         'response': 'Вы можете приобрести большие наборы сундуков только единожды',
+        #         'header': 'Приобретение сундуков',
+        #         'grey_btn': _('Закрыть'),
+        #     }
+        #     return JResponse(data)
 
         buy_cost = buy_count * 1000
 
@@ -63,10 +63,10 @@ def buy_lootboxes(request):
             buy_cost = 8500
 
         if buy_count == 50:
-            buy_cost = 40000
+            buy_cost = 45000
 
         if buy_count == 100:
-            buy_cost = 75000
+            buy_cost = 85000
 
         if player.gold < buy_cost:
             data = {

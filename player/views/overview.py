@@ -306,6 +306,15 @@ def overview(request):
     #     except VkAPIError as e:
     #         pass
 
+    # from storage.views.vault.avia_box.generate_rewards import generate_rewards
+    #
+    # from player.logs.print_log import log
+    #
+    # for iter in range(1000):
+    #     log(generate_rewards(player))
+    #
+    # log(generate_rewards(player, True))
+
     assistant_name = ('Ann', 'Анна')
 
     if not player.educated:

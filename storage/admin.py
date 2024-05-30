@@ -15,6 +15,16 @@ from storage.models.transport import Transport
 from storage.models.good import Good
 from storage.models.stock import Stock
 from modeltranslation.admin import TabbedTranslationAdmin
+from storage.models.lootbox_prize import LootboxPrize
+
+
+class LootboxPrizeAdmin(admin.ModelAdmin):
+    list_display = ('player', 'deleted', 'plane', 'color')
+
+    raw_id_fields = ('player',)
+
+    fields = ['player', 'plane', 'color', 'image_tag', 'deleted']
+    readonly_fields = ['image_tag']
 
 
 class TradeOfferAdmin(admin.ModelAdmin):
@@ -135,3 +145,5 @@ admin.site.register(TradingLog)
 admin.site.register(AuctionLot, AuctionLotAdmin)
 admin.site.register(AuctionBet, AuctionBetAdmin)
 admin.site.register(BuyAuction, BuyAuctionAdmin)
+
+admin.site.register(LootboxPrize, LootboxPrizeAdmin)

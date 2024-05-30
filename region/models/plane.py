@@ -48,6 +48,7 @@ class Plane(models.Model):
                    'red', 'yellow', 'orange',
                    'green', 'dark_blue', 'light_blue',
                    'pink', 'violet', 'black',
+                   'airball',
                    'gold' ],
 
         'cheater': ['base',
@@ -62,7 +63,7 @@ class Plane(models.Model):
                     'green', 'dark_blue', 'light_blue',
                     'pink', 'violet', 'black',
                     'gold',
-                    'green_pobeda',],
+                    'pobeda',],
 
         'striker': ['base',
                     'red', 'yellow', 'orange',
@@ -81,7 +82,9 @@ class Plane(models.Model):
         'demolisher': ['base',
                        'red', 'yellow', 'orange',
                        'green', 'dark_blue', 'light_blue',
-                       'pink', 'violet', 'black'],
+                       'pink', 'violet', 'black',
+                       'gold'
+                       ],
 
         'observer': ['base',
                      'red', 'yellow', 'orange',
@@ -145,9 +148,11 @@ class Plane(models.Model):
                         ('black_gold', 'чёрно-золотой'),
 
                         ('green_cam', 'зелёный камуфляж'),
+                        ('green_white_cam', 'бело-зелёный камуфляж'),
                         ('blue_cam', 'синий камуфляж'),
                         ('desert_cam', 'песочный камуфляж'),
                         ('wood', 'дерево'),
+                        ('airball', 'Airball'),
                         ('pobeda', 'пузырьки'),  # в стиле лоукостера
                     )
 

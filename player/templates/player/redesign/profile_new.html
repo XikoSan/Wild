@@ -1,0 +1,566 @@
+{% extends 'player/redesign/header.html' %}
+{% load l10n %}{% load i18n %}
+{% load static %}
+{% load tz %}
+{% load capitalize %}
+{% load redesign.profile_blocks.repost_tab %}
+{% load redesign.template_svg.nopic %}
+{% block content %}
+<section class="profile">
+
+		<!-- НИКНЕЙМ -->
+		<h1 class="ct__nickname">
+			<button class="ct__nickname-edit ct__square-mid-btn" onclick="open_nickname()" style="z-index: 3;"> <!-- кнопка открыть редактирование -->
+				<svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M26 30H0V0H30V26L26 30Z" fill="var(--c10two)"/><path d="M5.5 21.5L22.5 4.5L26.5 8.5L9.5 25.5H5.5V21.5Z" stroke="var(--c60)" stroke-width="3"/>
+				</svg>
+			</button>
+
+			<button id="nickname_cancel" class="ct__nickname-exit ct__square-mid-btn" style="z-index: 3; display: none;" onclick="close_nickname()"> <!-- кнопка закрыть редактирование -->
+				<svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M26 30H0V0H30V26L26 30Z" fill="var(--c10two)"/><path d="M4 4L26 26M4 26L26 4" stroke="var(--c60)" stroke-width="3"/>
+				</svg>
+			</button>
+
+<!--			<span style="display: none;">-->
+			<span id="player_nickname_view">
+				{{ player.nickname }}
+			</span>
+			<input id="player_nickname" class="ct__nickname-input" value="{{ player.nickname }}" type="text" style="display: none">
+
+			<button id="nickname_send" class="ct__nickname-save ct__square-mid-btn" style="z-index: 3; display: none;" onclick="send_nickname()"><!-- кнопка применить редактирование -->
+				<svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M26 30H0V0H30V26L26 30Z" fill="var(--c10two)"/><path d="M2.5 13.5L11 22L28 5" stroke="var(--c60)" stroke-width="3"/>
+				</svg>
+				<span>-50G</span>
+			</button>
+		</h1>
+		<!-- конец НИКНЕЙМА -->
+
+		<div class="profile__mainFlex">
+				<div class="profile__top-wrapper profile__top-wrapper--pc">
+
+					<div class="profile__top-left profile__top-left--wide">
+
+						<button class="profile__id" id="profile__id">
+							<span>
+								ID: {{ player.pk }} <!-- значение ID игрока -->
+							</span>
+							<svg class="profile__id-corner" width="97" height="24" viewBox="0 0 97 24" fill="none"
+								xmlns="http://www.w3.org/2000/svg">
+								<rect width="73" height="24" fill="var(--c30)" />
+								<path d="M97 0L73 24V0H97Z" fill="var(--c30)" />
+							</svg>
+							<svg class="profile__id-copyed" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+								viewBox="0 0 24 24" fill="var(--c10two)">
+								<path
+									d="M22 2v22h-20v-22h3c1.23 0 2.181-1.084 3-2h8c.82.916 1.771 2 3 2h3zm-11 1c0 .552.448 1 1 1 .553 0 1-.448 1-1s-.447-1-1-1c-.552 0-1 .448-1 1zm9 1h-4l-2 2h-3.897l-2.103-2h-4v18h16v-18zm-13 9.729l.855-.791c1 .484 1.635.852 2.76 1.654 2.113-2.399 3.511-3.616 6.106-5.231l.279.64c-2.141 1.869-3.709 3.949-5.967 7.999-1.393-1.64-2.322-2.686-4.033-4.271z" />
+							</svg>
+						</button>
+
+						{% if player.image %}
+						<img src="{{ player.image.url }}" class="profile__ava profile__ava--wide" {% if player.party %}{% if player.party.members_image %}{% if party_back %}style="background-image: url({{ player.party.members_image.url }}); background-size: cover;"{% endif %}{% endif %}{% endif %}>
+						{% else %}{% nopic player 'profile__ava profile__ava--wide' %}{% endif %}
+						{% if ava_border %}
+							{% if png_use %}
+						<img src="{{ ava_border.image.url }}" class="profile__ava-border">
+							{% else %}
+						<svg class="profile__ava-border" viewBox="0 0 {% localize off %}{{ ava_border.box_x }} {{ ava_border.box_y }}{% endlocalize %}">
+							{% autoescape off %}
+							{{ ava_border.shape }}
+							{% endautoescape %}
+						</svg>
+							{% endif %}
+						{% endif %}
+
+						<form method="post" enctype="multipart/form-data" id="formUpload">
+							{% csrf_token %}
+							<label class="profile__load-img">
+								<input type="file" name="image" accept="image/*" id="id_image" class="visually-hidden">
+								<svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path class="profile__ava-rect" d="M26 30H0V0H30V26L26 30Z" fill="var(--c10two)"/><path d="M5.5 21.5L22.5 4.5L26.5 8.5L9.5 25.5H5.5V21.5Z" stroke="var(--c60)" stroke-width="3"/>
+								</svg>
+							</label>
+							<input type="hidden" name="x" id="id_x">
+							<input type="hidden" name="y" id="id_y">
+							<input type="hidden" name="width" id="id_width">
+							<input type="hidden" name="height" id="id_height">
+						</form>
+
+					</div>
+				</div>
+
+				<div class="profile__gridMenu">
+					<button class="profile__gridBtn pofile__infoBtn">
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+							<path fill='var(--c10one)'
+								d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-2.033 16.01c.564-1.789 1.632-3.932 1.821-4.474.273-.787-.211-1.136-1.74.209l-.34-.64c1.744-1.897 5.335-2.326 4.113.613-.763 1.835-1.309 3.074-1.621 4.03-.455 1.393.694.828 1.819-.211.153.25.203.331.356.619-2.498 2.378-5.271 2.588-4.408-.146zm4.742-8.169c-.532.453-1.32.443-1.761-.022-.441-.465-.367-1.208.164-1.661.532-.453 1.32-.442 1.761.022.439.466.367 1.209-.164 1.661z" />
+						</svg>
+						<span>{% trans 'инфо' context "profile" %}</span>
+					</button>
+
+					<button class="profile__gridBtn profile__settings">
+						<svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="80px" height="76px"
+							viewBox="0 0 1280.000000 1276.000000" preserveAspectRatio="xMidYMid meet">
+							<g transform="translate(0.000000,1276.000000) scale(0.100000,-0.100000)" fill="var(--c10one)"
+								stroke="none">
+								<path d="M5975 12749 c-86 -6 -144 -14 -151 -22 -6 -6 -36 -95 -67 -197 -30
+					-102 -119 -396 -197 -655 -78 -258 -156 -516 -173 -571 l-30 -102 -188 -46
+					c-213 -52 -475 -135 -658 -208 -68 -27 -130 -47 -137 -44 -7 3 -301 221 -653
+					485 -353 265 -644 481 -649 481 -11 0 -250 -145 -362 -220 -206 -137 -422
+					-299 -608 -456 l-25 -21 271 -746 c150 -411 272 -752 272 -758 0 -6 -40 -56
+					-88 -112 -175 -202 -337 -420 -457 -615 -32 -52 -64 -96 -72 -99 -8 -3 -366 4
+					-796 16 -430 12 -794 21 -808 21 -23 0 -30 -9 -56 -67 -61 -137 -142 -353
+					-202 -538 -61 -186 -145 -494 -138 -502 2 -2 303 -204 668 -448 562 -377 665
+					-450 670 -473 3 -15 1 -72 -4 -127 -8 -99 -2 -525 11 -702 l7 -92 -668 -448
+					c-368 -246 -673 -450 -678 -453 -9 -6 22 -146 72 -320 71 -249 180 -554 284
+					-794 l17 -39 141 6 c78 4 443 14 810 24 l668 17 25 -29 c13 -17 68 -95 120
+					-174 113 -169 222 -314 350 -467 l93 -111 -275 -752 c-151 -414 -274 -757
+					-272 -761 5 -14 213 -185 361 -296 225 -170 606 -418 631 -412 7 2 299 219
+					649 482 l637 479 47 -15 c27 -9 84 -30 128 -48 183 -74 392 -141 619 -200 81
+					-21 149 -40 151 -42 3 -3 222 -724 386 -1273 38 -126 73 -239 78 -251 8 -18
+					24 -22 137 -33 314 -30 1078 -22 1110 12 6 7 36 95 67 197 30 102 119 396 197
+					655 78 259 156 516 173 571 l30 102 188 46 c213 52 475 135 658 208 68 27 130
+					47 137 44 7 -3 301 -221 653 -485 353 -265 644 -481 649 -481 11 0 250 145
+					362 220 206 137 422 299 608 456 l25 21 -271 746 c-150 411 -272 752 -272 758
+					0 6 40 56 88 112 175 202 337 420 457 615 32 52 64 96 72 99 8 3 366 -4 796
+					-16 430 -12 794 -21 808 -21 23 0 30 9 56 68 61 136 142 352 202 537 61 186
+					145 494 138 502 -2 2 -303 204 -668 448 -562 377 -665 450 -670 473 -3 15 -1
+					72 4 127 8 99 2 527 -11 702 l-7 92 668 448 c368 246 673 450 678 453 9 6 -22
+					146 -72 320 -71 249 -180 554 -284 794 l-17 39 -141 -6 c-78 -4 -443 -14 -810
+					-24 l-668 -17 -25 29 c-13 17 -68 95 -120 174 -113 169 -222 314 -350 467
+					l-93 111 275 752 c151 414 274 757 272 761 -5 14 -213 185 -361 296 -225 170
+					-606 418 -631 412 -7 -2 -299 -219 -649 -482 l-637 -479 -47 15 c-27 9 -84 30
+					-128 48 -183 74 -392 141 -619 200 -81 21 -149 40 -151 42 -3 3 -222 724 -386
+					1273 -38 127 -73 239 -78 251 -8 18 -24 22 -137 33 -164 16 -775 22 -959 10z
+					m2253 -2919 c73 -39 115 -83 151 -160 22 -46 26 -69 26 -140 0 -73 -4 -93 -28
+					-142 -32 -65 -95 -125 -165 -159 -70 -34 -198 -38 -274 -9 -259 97 -294 456
+					-58 598 76 45 102 52 200 49 74 -3 93 -7 148 -37z m-1586 -1425 c407 -47 749
+					-184 1073 -428 176 -133 407 -392 514 -575 177 -306 264 -594 291 -969 10
+					-128 9 -170 -5 -270 -45 -333 -152 -618 -334 -890 -437 -654 -1225 -1012
+					-2023 -918 -407 47 -749 184 -1073 428 -176 133 -407 392 -514 575 -177 306
+					-264 594 -291 969 -10 128 -9 170 5 270 33 241 90 435 190 639 274 563 772
+					963 1390 1119 244 62 523 80 777 50z m-3348 -134 c182 -89 246 -300 143 -472
+					-62 -103 -173 -163 -302 -162 -193 2 -335 144 -337 338 -3 248 268 409 496
+					296z m6489 -3167 c131 -46 218 -173 219 -321 1 -62 -4 -82 -31 -137 -37 -75
+					-92 -128 -170 -164 -81 -38 -202 -38 -282 -1 -79 37 -133 90 -171 167 -29 58
+					-33 77 -33 143 0 65 5 85 33 142 79 159 263 232 435 171z m-4919 -1565 c73
+					-27 148 -96 183 -167 24 -50 28 -69 28 -147 0 -73 -4 -99 -23 -136 -34 -70
+					-84 -122 -154 -160 -60 -32 -68 -34 -163 -34 -95 0 -103 2 -163 34 -74 40
+					-116 85 -150 159 -83 182 5 385 196 454 67 24 177 23 246 -3z" />
+							</g>
+						</svg>
+						<span>{% trans 'настройки' context "profile" %}</span>
+					</button>
+
+					<a href='##' class="profile__gridBtn profile__gridBtn--disabled">
+						{% if ava_border %}
+							{% if png_use %}
+						<img width="40" height="40" src="{{ ava_border.image.url }}">
+							{% else %}
+						<svg width="40" height="40" viewBox="0 0 {% localize off %}{{ ava_border.box_x }} {{ ava_border.box_y }}{% endlocalize %}">
+							{% autoescape off %}
+							{{ ava_border.shape }}
+							{% endautoescape %}
+						</svg>
+							{% endif %}
+						{% else %}
+						<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<rect x="2" y="2" width="36" height="36" stroke="var(--c10one)" stroke-width="4" />
+							<rect x="5.5" y="5.5" width="29" height="29" stroke="var(--c10one)" />
+						</svg>
+						{% endif %}
+
+						<svg class='profile__outerLinkSvg' xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+							viewBox="0 0 24 24">
+							<path
+								d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"
+								fill='var(--c10one)' />
+						</svg>
+						<span>{% trans 'рамки' context "profile" %}</span>
+					</a>
+
+					<a href='##' class="profile__gridBtn profile__gridBtn--disabled">
+						<img src="{{ plane_url }}" alt="">
+						<svg class='profile__outerLinkSvg' xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+							viewBox="0 0 24 24">
+							<path
+								d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"
+								fill='var(--c10one)' />
+						</svg>
+						<span>{% trans 'самолёты' context "profile" %}</span>
+					</a>
+
+					<a href='##' class="profile__gridBtn profile__gridBtn--disabled">
+						<svg enable-background="new 0 0 100 100" width="24" height="24" id="Layer_1" version="1.1" viewBox="0 0 100 100" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"><defs id="defs6"></defs>
+							<g id="g6" transform="matrix(0.57421535,0,0,0.57421535,19.16395,11.269759)" style="fill='var(--c10one)'"><path d="m 53.701193,69.176192 c -23.099862,0 -41.891895,18.792034 -41.891895,41.891898 0,23.09986 18.792033,41.8919 41.891895,41.8919 23.099861,0 41.891898,-18.79204 41.891898,-41.8919 0,-23.099864 -18.792037,-41.891898 -41.891898,-41.891898 z m 0,2.327329 c 21.816377,0 39.564549,17.748189 39.564549,39.564569 0,21.81638 -17.748172,39.56455 -39.564549,39.56455 -21.816378,0 -39.564565,-17.74817 -39.564565,-39.56455 0,-21.81638 17.748187,-39.564569 39.564565,-39.564569 z m 0,3.490986 c -19.891697,0 -36.07358,16.183057 -36.07358,36.073583 0,19.89052 16.181883,36.07361 36.07358,36.07361 19.891696,0 36.073614,-16.18309 36.073614,-36.07361 0,-10.14714 -4.310341,-19.88131 -11.827591,-26.709689 -0.236186,-0.215324 -0.602908,-0.198819 -0.820494,0.03862 -0.216414,0.238532 -0.199908,0.606259 0.03862,0.822756 7.274109,6.607274 11.445788,16.028173 11.445788,25.848303 0,19.24933 -15.660615,34.90994 -34.909941,34.90994 -19.249326,0 -34.909915,-15.66061 -34.909915,-34.90994 0,-19.249324 15.660589,-34.909913 34.909915,-34.909913 4.132133,0 8.174869,0.713586 12.018449,2.122804 0.301371,0.111684 0.637176,-0.0429 0.747771,-0.345524 0.110511,-0.302543 -0.04516,-0.634888 -0.347786,-0.745433 -3.97152,-1.455743 -8.150153,-2.195512 -12.418434,-2.195512 z m 15.743561,3.65914 c -0.225798,-0.01324 -0.4495,0.105483 -0.556828,0.322735 -0.142013,0.288635 -0.02379,0.636505 0.263668,0.779608 0.777262,0.383981 1.54623,0.799968 2.288638,1.238659 0.09308,0.05589 0.196473,0.08185 0.297768,0.08185 0.198986,0 0.391773,-0.101462 0.500021,-0.284111 0.162876,-0.276989 0.07122,-0.633657 -0.2046,-0.797789 -0.766873,-0.454946 -1.564159,-0.885009 -2.36597,-1.281808 -0.07122,-0.03494 -0.14746,-0.05471 -0.222697,-0.05916 z m 4.520554,2.770562 c -0.146622,0.02547 -0.283105,0.105987 -0.375016,0.238616 -0.184995,0.262997 -0.122073,0.626368 0.140924,0.811446 0.3875,0.272298 0.768465,0.548952 1.14323,0.83633 0.105903,0.08027 0.231159,0.120481 0.354489,0.120481 0.174606,0 0.348457,-0.07833 0.46366,-0.227305 0.194378,-0.255959 0.146956,-0.621592 -0.109087,-0.815887 -0.388673,-0.296762 -0.782624,-0.587743 -1.184116,-0.868251 -0.131457,-0.09132 -0.287462,-0.1209 -0.434084,-0.09543 z" fill="var(--c10one)" id="path386" style="display:inline;fill='var(--c10one)';fill-opacity:1;stroke-width:0.837835"></path><path d="m 83.45,94.457643 c -2.034731,4.4e-5 -3.597444,0.991766 -4.688138,2.975169 -0.272742,0.506921 -0.933483,2.347116 -1.98223,5.520588 l -1.730521,5.25613 h 5.88377 v 2.71071 h -6.764762 l -9.281882,28.16493 h -1.25856 l -5.883768,-17.38821 -7.645684,7e-5 -5.852373,17.38814 h -1.132704 l -9.59652,-28.16493 h -7.016472 v -2.71071 h 6.104013 l -2.171014,-6.34702 c -0.943928,-2.798826 -1.541742,-4.440676 -1.793446,-4.925559 -0.818069,-1.65283 -2.370294,-2.479264 -4.656674,-2.479308 v -1.223124 h 15.794928 v 1.223124 h -0.755135 c -2.286398,4.4e-5 -3.429589,0.903612 -3.429576,2.710709 -1.3e-5,0.793418 0.461459,2.567499 1.384414,5.322248 l 1.919308,5.71893 h 12.900239 l 0.660744,-1.95038 -2.265408,-6.776777 c -0.29369,-0.881492 -0.786627,-1.851176 -1.478807,-2.909055 -0.587355,-0.903526 -1.447368,-1.542636 -2.58005,-1.91733 -0.398564,-0.132186 -1.027846,-0.198301 -1.88784,-0.198345 v -1.223124 h 16.612994 v 1.223124 h -1.132703 c -2.265444,4.4e-5 -3.398146,0.980746 -3.398113,2.942112 -3.3e-5,1.101953 0.471926,3.063355 1.415879,5.884225 l 1.667595,4.92555 h 12.90024 l 1.730521,-5.25613 c 0.922889,-2.79882 1.384362,-4.694113 1.384415,-5.685876 -5.3e-5,-1.145948 -0.534943,-1.928306 -1.604666,-2.347077 -0.797136,-0.308493 -1.835449,-0.46276 -3.114936,-0.462804 V 93.234519 H 83.5045 Z M 71.485252,110.92024 H 60.346994 l 3.618409,10.77679 h 3.964403 z m -3.555446,10.77679 h -3.964403 l 2.013647,5.95027 z m -10.131371,0 -3.681314,-10.77679 h -0.314639 l -3.649757,10.77679 z m -6.888927,-10.76901 -11.07715,-0.008 5.600698,16.7271 z" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:200px;line-height:125%;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman';text-align:center;letter-spacing:0px;word-spacing:-70px;text-anchor:middle;display:inline;fill: var(--c10one);fill-opacity:1;stroke:none;stroke-width:0.330228;stroke-dasharray:none" id="path2986"></path></g>
+							<path d="M 64.002,55.526 V 45 H 61.733 L 79.1,3 h -16 L 50,35.154 36.9,3 h -16 l 17.366,42 h -2.264 v 10.523 c 0,0 5.063896,-1.904326 7.40523,-2.491966 2.341334,-0.58764 4.315828,-1.096358 6.577414,-1.110111 2.261586,-0.01375 4.496085,0.431863 6.823593,1.021743 C 59.135745,53.532545 64.002,55.526 64.002,55.526 Z M 38.002,47 h 1.131 L 40,49 h 4 12 4 l 0.867,-2 h 1.135 v 7.229 C 58.469,52.18 54.371,51 50,51 c -4.369,0 -8.465,1.18 -11.998,3.228 z" fill="var(--c10one)" id="path5" style="fill='var(--c10one)'"></path>
+						</svg>
+						<svg class='profile__outerLinkSvg' xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+							viewBox="0 0 24 24">
+							<path
+								d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"
+								fill='var(--c10one)' />
+						</svg>
+						<span>{% trans 'награды' context "profile" %}</span>
+					</a>
+
+					<a href='##' class="profile__gridBtn profile__gridBtn--disabled">
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+							<path fill='var(--c10one)'
+								d="M9.939 0l-.939 4.971v1.098c0 1.066-.934 1.931-2 1.931s-2-.865-2-1.932v-1.097l2.996-4.971h1.943zm-3.052 0l-2.887 4.971v1.098c0 1.066-.934 1.931-2 1.931s-2-.865-2-1.932v-1.097l4.873-4.971h2.014zm17.113 6.068c0 1.067-.934 1.932-2 1.932s-2-.933-2-2v-1.098l-2.887-4.902h2.014l4.873 4.971v1.097zm-10-1.168v1.098c0 1.066-.934 2.002-2 2.002s-2-.933-2-2v-1.098l1.047-4.902h1.906l1.047 4.9zm2.004-4.9l2.994 5.002v1.098c0 1.067-.932 1.9-1.998 1.9s-2-.933-2-2v-1.098l-.939-4.902h1.943zm4.996 12v7h-18v-7h18zm2-2h-22v14h22v-14zm-13.751 6.054c0 .399-.228.734-.697.878-.267.082-.641.096-.967.01-.472-.123-.789-.469-.781-.985l.001-.078h.736v.079c0 .211.11.344.313.397.184.047.497.042.622-.114.046-.057.054-.178-.01-.241-.173-.168-.572-.181-1.005-.347-.352-.133-.565-.384-.565-.753 0-.435.304-.739.709-.849.275-.075.56-.064.813-.002.441.107.74.422.74.904v.079h-.732l-.004-.074c-.013-.179-.09-.282-.271-.319-.127-.026-.31-.033-.421.039-.121.079-.15.249.007.322.273.128.836.173 1.149.378.228.151.363.375.363.676zm1.892-.947h-.941v-1.042h-.756v2.875h.755v-1.171h.941v1.171h.756v-2.875h-.756v1.042zm3.833.406c0 .853-.549 1.487-1.414 1.487-.871 0-1.415-.642-1.415-1.487 0-.865.547-1.513 1.415-1.513.878 0 1.414.661 1.414 1.513zm-.755 0c0-.467-.192-.853-.659-.853-.471 0-.658.392-.658.853 0 .45.198.83.658.83.461 0 .659-.381.659-.83zm3.327-.498c0 .389-.179.713-.555.87-.129.053-.285.08-.464.08h-.55v.974h-.755v-2.875h1.305c.179 0 .335.027.464.081.375.156.555.479.555.87zm-1.568.328h.386l.185-.014c.184-.029.261-.136.261-.314s-.078-.284-.261-.313l-.185-.014h-.386v.655z" />
+						</svg>
+						<svg class='profile__outerLinkSvg' xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+							viewBox="0 0 24 24">
+							<path
+								d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"
+								fill='var(--c10one)' />
+						</svg>
+						<span>{% trans 'магазин' context "profile" %}</span>
+					</a>
+
+				</div>
+			</div>
+
+		<div class="profile__modal profile__modalInfo">
+				<button class="box__close">
+					<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M1 1L31 31M31 1L1.53571 30.4643" stroke-width="1" stroke="var(--c10one)" />
+					</svg>
+				</button>
+				<div class="ct__s">
+					<h2 class="ct__s-title">{% trans 'премиум-аккаунт' context "profile" %}</h2>
+					<p class="ct__s-text">
+						{% if premium %}{% trans 'до' context "profile" %} {{ premium|timezone:player.time_zone|date:"d.m.Y H:i" }}{% else %}{% trans 'не активен' context "profile" %}{% endif %}
+					</p>
+				</div>
+
+				<div class="ct__s">
+					<h2 class="ct__s-title">{% trans 'место в рейтинге' context "profile" %}</h2>
+					<p class="ct__s-text">
+						{{ cash_rating }}
+						<a href="/cash_top/">
+							{% trans '(к рейтингу)' context "profile" %}
+						</a>
+					</p>
+				</div>
+
+				<div class="ct__s">
+					<h2 class="ct__s-title">{% trans 'известность' context "profile" %}</h2>
+					<p class="ct__s-text">
+						{% if carma > 0 %}+{% endif %}{{ carma }}
+						<a href="/character_articles/{% localize off %}{{ player.pk }}{% endlocalize %}/">
+							{% trans '(к статьям)' context "profile" %}
+						</a>
+					</p>
+				</div>
+
+				<div class="ct__s">
+					<h2 class="ct__s-title">{% trans 'характеристики' context "profile" %}</h2>
+					<p class="ct__s-text">
+						<font color="FF0000">{{ player.power }}</font>
+						/
+						<font color="337AB7">{{ player.knowledge }}</font>
+						/
+						<font color="#18D04C">{{ player.endurance }}</font>
+						<a href="/skill_top/">
+							{% trans '(к рейтингу)' context "profile" %}
+						</a>
+					</p>
+				</div>
+
+
+				<div class="ct__s">
+					<h2 class="ct__s-title">{% trans 'место жительства' context "profile" %}</h2>
+					<p class="ct__s-text">
+						<a href="/region/{{ player.region.pk }}/">
+							{% trans player.region.region_name context "regions_list" %}
+						</a>
+					</p>
+				</div>
+
+				<div class="ct__s">
+					<h2 class="ct__s-title">{% trans 'прописка' context "profile" %}</h2>
+					<p class="ct__s-text">
+						<a href="/region/{{ player.residency.pk }}/">
+							{% trans player.residency.region_name context "regions_list" %}, {% trans 'с' context "profile" %}: {{ player.residency_date|timezone:player.time_zone|date:"d.m.Y H:i" }}
+						</a>
+					</p>
+				</div>
+
+				<div class="ct__s">
+					<h2 class="ct__s-title">{% trans 'партия' %}</h2>
+					<p class="ct__s-text">
+						{% if player.party %}
+						<a href='/party/{% localize off %}{{ player.party.pk }}{% endlocalize %}'>
+							{{ player.party.title }}
+						</a>
+						{% else %}{% trans 'беспартийный' %}{% endif %}
+						(
+						<a href="/party_history/{% localize off %}{{ player.pk }}{% endlocalize %}/">
+							{% trans 'история' context "profile" %}
+						</a>
+						)
+					</p>
+				</div>
+
+				<div class="ct__s">
+					<h2 class="ct__s-title">{% trans 'должность в партии' %}</h2>
+					<p class="ct__s-text">
+						{% if player.party_post %}
+							{% if player.party_post.based %}
+								{% trans player.party_post.title context "party_manage" %}
+							{% else %}
+								{{ player.party_post.title }}
+							{% endif %}
+						{% else %}{% trans 'беспартийный' %}{% endif %}
+					</p>
+				</div>
+
+				<div class="ct__s">
+					<h2 class="ct__s-title ct__s-title--about">
+						<!-- редактировать "о себе" -->
+						<button id="bio_edit" class="ct__s-edit ct__square-small-btn" onclick="open_bio()">
+							<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M20.8 24H0V0H24V20.8L20.8 24Z" fill="var(--c10two)"/>
+								<path d="M4.40002 17.2L18 3.6L21.2 6.8L7.60002 20.4H4.40002V17.2Z" stroke="var(--c60)" stroke-width="3"/>
+							</svg>
+						</button>
+						<!-- отмена редактирования "о себе" -->
+						<button id="bio_cancel" class="ct__s-exit ct__square-small-btn" style="display: none" onclick="close_bio()">
+							<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M20.8 24H0V0H24V20.8L20.8 24Z" fill="var(--c10two)"/>
+								<path d="M3 21L21 3M21 21L3 3" stroke="var(--c60)" stroke-width="3"/>
+							</svg>
+						</button>
+						<!-- схоранить редактирование "о себе" -->
+						<button id="bio_send" class="ct__s-save ct__square-small-btn" style="display: none" onclick="send_bio()">
+							<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M20.8 24H0V0H24V20.8L20.8 24Z" fill="var(--c10two)"/>
+								<path d="M2 10.8L8.8 17.6L22.4 4" stroke="var(--c60)" stroke-width="3"/>
+							</svg>
+						</button>
+						<span>{% trans 'о себе' %}:</span>
+					</h2>
+					<p id="player_bio_view" class="ct__s-text" >{% if not player.bio %}{{ user_link }}{% else %}{{ player.bio }}{% endif %}</p>
+					<textarea id="player_bio" class="profile__s-textarea" cols="30" rows="10" onfocus="hideProfileTop()" onblur="showProfileTop()" style="display: none">
+						{% if not player.bio %}{{ user_link }}{% else %}{{ player.bio }}{% endif %}
+					</textarea>
+				</div>
+			</div>
+
+	</section>
+
+<!--	<script>-->
+<!--	  const profileTopWrapper = document.querySelector('.profile__top-wrapper');-->
+<!--	  const profileInfoTab = document.querySelector('.profile__info-tab');-->
+<!--	  function hideProfileTop() {-->
+<!--		profileTopWrapper.classList.add('hidden');-->
+<!--		profileInfoTab.scrollTop(9999)-->
+<!--	  }-->
+<!--	  function showProfileTop() {-->
+<!--		profileTopWrapper.classList.remove('hidden');-->
+<!--	  }-->
+<!--	</script>-->
+
+	<!-- ОБРЕЗКА ИЗОБРАЖЕНИЙ МОДАЛКА -->
+	<div class="img_modal" id="modalCrop">
+		<div class="modal-cropper-wrapper">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" id="crop-close" aria-label="Close">
+							<span aria-hidden="true">×</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<img id="image" src="" alt="The image to preview" style="width: 274.129px; height: 274.129px; transform: translateX(-13.0647px);"></span>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<div class="btn-l-wrapper">
+					<div class="btn-group pull-left" role="group" style="margin-right: 5px;">
+						<button type="button" class="btn btn-default js-zoom-in">
+							<svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M1 18L6 13" stroke="var(--c60)"/>
+								<circle cx="11" cy="8" r="7.5" stroke="var(--c60)"/>
+								<path d="M11 4V12M15 8H7" stroke="var(--c60)"/>
+							</svg>
+						</button>
+						<button type="button" class="btn btn-default js-zoom-out">
+							<svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M1 18L6 13" stroke="var(--c60)"/>
+								<circle cx="11" cy="8" r="7.5" stroke="var(--c60)"/>
+								<path d="M15 8H7" stroke="var(--c60)"/>
+							</svg>
+						</button>
+					</div>
+					<div class="btn-group pull-left" role="group">
+						<button type="button" class="btn btn-default js-pic-up">
+							<svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M10 1L1 10M10 1L19 10M10 1V19" stroke="var(--c60)"/>
+							</svg>
+						</button>
+						<button type="button" class="btn btn-default js-pic-down">
+							<svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M10 18L19 9M10 18L1 9M10 18V0" stroke="black"/>
+							</svg>
+						</button>
+					</div>
+				</div>
+				<div class="btn-r-wrapper">
+					<button type="button" class="btn btn-default back-crop-js" data-dismiss="modal">{% trans 'Отмена' %}</button>
+					<button type="button" class="btn btn-primary js-crop-and-upload">{% trans 'Загрузить' %}{% if player.image %}, -100 G{% endif %}</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="{% static 'redesign/js/cropper.min.js' %}?{{ csrf_token }}"></script>
+	<!-- КОНЕЦ ОБРЕЗКИ ИЗОБРАЖЕНИЙ МОДАЛКА -->
+
+	<!-- МОДАЛЬНОЕ ОКНО НАСТРОЕК -->
+	<div class="m-sett">
+		<button class="m-sett__close ct__square-mid-btn">
+			<svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path d="M26 30H0V0H30V26L26 30Z" fill="var(--c10two)"/><path d="M4 4L26 26M4 26L26 4" stroke="var(--c60)" stroke-width="3"/>
+			</svg>
+		</button>
+		<!--выбор языка-->
+		<label class="m-sett__form-label ct__wide-modal-label-select">
+			<select id="lang_change">
+				{% get_current_language as LANGUAGE_CODE %}
+				{% get_available_languages as LANGUAGES %}
+				{% get_language_info_list for LANGUAGES as languages %}
+				{% for lang in languages %}
+				<option value='{{ lang.code }}' {% if lang.code == LANGUAGE_CODE %}selected{% endif %}>{{ lang.name_local|capitalize }}</option>
+				{% endfor %}
+			</select>
+			<svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
+			</svg>
+		</label>
+		<!--выбор часового пояса-->
+		<label class="m-sett__form-label ct__wide-modal-label-select">
+			<select id="tz_change">
+				{% for tz in timezones %}
+				<option value="{{ tz }}" {% if tz == player.time_zone %}selected{% endif %}>{{ tz }}</option>
+				{% endfor %}
+			</select>
+			<svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
+			</svg>
+		</label>
+		<!--чекбокс-->
+		<div class="m-sett__form-check ct__check-box30">
+			<label for="ava_back_change">
+				<input id="ava_back_change" type="checkbox" class="visually-hidden" {% if party_back %}checked{% endif %}>
+				<svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(--c10two)"/>
+				</svg>
+				<span>
+					<svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(--c10two)"/>
+						<path d="M6.5 4.5L4.5 6.5V20.5H18.5L20.5 18.5V4.5H6.5Z" fill="var(--c10two)" stroke="var(--c10two)"/>
+					</svg>
+				</span>
+				{% trans 'показывать партийный фон' context "profile" %}
+			</label>
+		</div>
+		<!--чекбокс-->
+		<div class="m-sett__form-check ct__check-box30">
+			<label for="full_auto">
+				<input id="full_auto" type="checkbox" class="visually-hidden" {% if full_auto %}checked{% endif %}>
+				<svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(--c10two)"/>
+				</svg>
+				<span>
+					<svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(--c10two)"/>
+						<path d="M6.5 4.5L4.5 6.5V20.5H18.5L20.5 18.5V4.5H6.5Z" fill="var(--c10two)" stroke="var(--c10two)"/>
+					</svg>
+				</span>
+				{% trans 'Энергетики в авто-добыче' context "profile" %}
+			</label>
+		</div>
+		<!--чекбокс-->
+		<div class="m-sett__form-check ct__check-box30">
+			<label for="wiki_hide">
+				<input id="wiki_hide" type="checkbox" class="visually-hidden" {% if wiki_hide %}checked{% endif %}>
+				<svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(--c10two)"/>
+				</svg>
+				<span>
+					<svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(--c10two)"/>
+						<path d="M6.5 4.5L4.5 6.5V20.5H18.5L20.5 18.5V4.5H6.5Z" fill="var(--c10two)" stroke="var(--c10two)"/>
+					</svg>
+				</span>
+				{% trans 'Скрыть кнопку Wiki' context "profile" %}
+			</label>
+		</div>
+		<form id="color_set" role="form" method="post" class="m-sett__form">
+			{% csrf_token %}
+			<div class="m-sett__colors">
+				<label class="m-sett__l-color">
+					<input type="color" value="#{{ color_back }}" name="color_back" id="color_back">
+				</label>
+				<label class="m-sett__l-color">
+					<input type="color" value="#{{ color_block }}" name="color_block" id="color_block">
+				</label>
+				<label class="m-sett__l-color">
+					<input type="color" value="#{{ color_text }}" name="color_text" id="color_text">
+				</label>
+				<label class="m-sett__l-color">
+					<input type="color" value="#{{ color_acct }}" name="color_acct" id="color_acct">
+				</label>
+			</div>
+			<button class="m-sett__save ct__mid-btn" style="margin-top: 20rem" onclick="color_default(event)">
+				<svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
+					<mask id="mask0_259_320" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+						<path d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"></path>
+					</mask>
+					<g mask="url(#mask0_259_320)">
+						<path d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" fill="var(--c10two)"></path>
+						<path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"></path>
+						<path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"></path>
+						<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"></path>
+					</g>
+				</svg>
+				<span>{% trans 'стандарт' context "profile" %}</span>
+			</button>
+			<button type="submit" class="m-sett__save ct__mid-btn">
+				<svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
+					<mask id="mask0_259_320" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+						<path d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"/>
+					</mask>
+					<g mask="url(#mask0_259_320)">
+						<path d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" fill="var(--c10two)"/>
+						<path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"/>
+						<path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"/>
+						<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
+					</g>
+				</svg>
+				<span>{% trans 'сохранить' %}</span>
+			</button>
+		</form>
+	</div>
+	<!-- КОНЕЦ МОДАЛЬНОГО ОКНА НАСТРОЕК -->
+	<script src="{% static 'redesign/js/copy_to_clip.js' %}?{{ csrf_token }}"></script>
+	<script>
+		const infoBtn = document.querySelector('.pofile__infoBtn');
+		const infoModal = document.querySelector('.profile__modalInfo');
+		const infoClose = infoModal.querySelector('.box__close');
+
+		infoBtn.addEventListener('click', () => { infoModal.classList.add('active'); });
+		infoClose.addEventListener('click', () => { infoModal.classList.remove('active'); });
+
+
+		if (document.getElementById('profile__id')) {
+			const buttonIdCopy = new IdCopy('{{ request.get_host }}/profile/{% autoescape off %}{{ player.pk }}{% endautoescape %}/');
+		}
+	</script>
+	<script src="{% static 'redesign/js/profile.js' %}?{{ csrf_token }}"></script>
+	<script src="{% static 'redesign/js/cropper.js' %}?{{ csrf_token }}"></script>
+
+{% endblock %}

@@ -14,6 +14,8 @@ class Lootbox(models.Model):
 
     # количество
     stock = models.IntegerField(default=0, verbose_name='Число сундуков')
+    # количество до гаранта
+    garant_in = models.IntegerField(default=50, verbose_name='До гаранта')
 
     def __str__(self):
         return str(self.stock) + ' сундуков ' + self.player.nickname

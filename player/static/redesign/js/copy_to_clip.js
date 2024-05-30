@@ -1,11 +1,16 @@
 const profileTopWrapper = document.querySelector('.profile__top-wrapper');
 const profileInfoTab = document.querySelector('.profile__info-tab');
+
 function hideProfileTop() {
-    profileTopWrapper.classList.add('hidden');
-    profileInfoTab.scrollTop(9999)
+    if (window.innerWidth < 1200) {
+        profileTopWrapper.classList.add('hidden');
+        profileInfoTab.scrollTop(9999);
+    }
 }
 function showProfileTop() {
-    profileTopWrapper.classList.remove('hidden');
+    if (window.innerWidth < 1200) {
+        profileTopWrapper.classList.remove('hidden');
+    }
 }
 
 class IdCopy {

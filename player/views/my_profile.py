@@ -15,6 +15,7 @@ from player.player import Player
 from player.player_settings import PlayerSettings
 from article.models.article import Article
 from ava_border.models.ava_border_ownership import AvaBorderOwnership
+from region.models.plane import Plane
 
 
 @login_required(login_url='/')
@@ -162,10 +163,26 @@ def my_profile(request):
         carma = 0
     # ---------------------
 
+    if Plane.objects.filter(in_use=True, player=player).exists():
+        plane = Plane.objects.get(in_use=True, player=player)
+        plane_url = f'/static/img/planes/{ plane.plane }/{ plane.plane }_{ plane.color }.svg'
+    else:
+        plane_url = '/static/img/planes/pretender/pretender_1.svg'
+
+    # ---------------------
+
+    if Plane.objects.filter(in_use=True, player=player).exists():
+        plane = Plane.objects.get(in_use=True, player=player)
+        plane_url = f'/static/img/planes/{ plane.plane }/{ plane.plane }_{ plane.color }.svg'
+    else:
+        plane_url = '/static/img/planes/pretender/pretender_1.svg'
+
+    # ---------------------
+
     groups = list(player.account.groups.all().values_list('name', flat=True))
     page = 'player/profile.html'
     if 'redesign' not in groups:
-        page = 'player/redesign/profile.html'
+        page = 'player/redesign/profile_new.html'
 
     response = render(request, page, {
         'player': player,
@@ -194,6 +211,7 @@ def my_profile(request):
 
         'ava_border': ava_border,
         'png_use': png_use,
+        'plane_url': plane_url,
 
     })
     return response
