@@ -45,7 +45,7 @@ def generate_rewards(player, garant=False):
 
     # определяем, что будет дропаться
     # определяем какая награда попадет в список
-    reward = random.choices(['gold', 'common', 'rare', 'epic'], weights=[55, 33, 11, 1])
+    reward = random.choices(['gold', 'common', 'rare', 'epic'], weights=[33, 55, 11, 1])
     nagrada = reward[0]
 
     if garant:
