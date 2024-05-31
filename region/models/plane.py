@@ -1,32 +1,38 @@
 # coding=utf-8
-from django.db import models
-from django.utils.translation import gettext_lazy, pgettext_lazy, ugettext as _
-from django.apps import apps
-from player.player import Player
 from django import forms
+from django.apps import apps
+from django.db import models
+from django.db.models.signals import post_delete, post_save
+from django.dispatch import receiver
 from django.utils.html import mark_safe
+from django.utils.translation import gettext_lazy, pgettext_lazy, ugettext as _
+
+from player.player import Player
 
 
 # Владелец самолёта
 class Plane(models.Model):
-
     # Показатель того, что игрок использует
     in_use = models.BooleanField(default=False, null=False, verbose_name='Используется')
 
     # владелец склада
     player = models.ForeignKey(Player, default=None, null=True, on_delete=models.CASCADE, verbose_name='Владелец')
 
+    # кастомное имя самолета
+    nickname = models.CharField(max_length=25, blank=True, default='', verbose_name='Никнейм')
 
+    # бортовой номер
+    number = models.IntegerField(default=0, verbose_name='Бортовой номер')
 
     planes = {
 
-        'nagger': ['base', 'black_gold', 'dreamflight' ],
+        'nagger': ['base', 'black_gold', 'dreamflight'],
 
         'pretender': ['base',
                       'red', 'yellow', 'orange',
                       'green', 'dark_blue', 'light_blue',
                       'pink', 'violet', 'black',
-                      'wood',
+                      'wood', 'gold'
                       ],
 
         'trickster': ['base',
@@ -42,14 +48,14 @@ class Plane(models.Model):
                      'violet',
                      ],
 
-        'chaser': ['base', 'black' ],
+        'chaser': ['base', 'black'],
 
         'reaper': ['base',
                    'red', 'yellow', 'orange',
                    'green', 'dark_blue', 'light_blue',
                    'pink', 'violet', 'black',
                    'airball',
-                   'gold' ],
+                   'gold'],
 
         'cheater': ['base',
                     'red', 'yellow', 'orange',
@@ -63,7 +69,7 @@ class Plane(models.Model):
                     'green', 'dark_blue', 'light_blue',
                     'pink', 'violet', 'black',
                     'gold',
-                    'pobeda',],
+                    'pobeda', ],
 
         'striker': ['base',
                     'red', 'yellow', 'orange',
@@ -101,65 +107,67 @@ class Plane(models.Model):
                      ],
 
         'hammer': ['base',
-                     'red', 'yellow', 'orange',
-                     'green', 'dark_blue', 'light_blue',
-                     'pink', 'violet', 'black',
-                     'gold'
-                     ],
+                   'red', 'yellow', 'orange',
+                   'green', 'dark_blue', 'light_blue',
+                   'pink', 'violet', 'black',
+                   'gold'
+                   ],
 
         'sailor': ['base',
-                 ],
+                   ],
     }
 
     # самолёт
     planesChoices = (
-                        ('nagger', 'Nagger'),
-                        ('pretender', 'Pretender'),
-                        ('trickster', 'Trickster'),
-                        ('smuggler', 'Smuggler'),
-                        ('chaser', 'Chaser'),
-                        ('reaper', 'Reaper'),
-                        ('cheater', 'Cheater'),
-                        ('carrier', 'Carrier'),
-                        ('observer', 'Observer'),
-                        ('striker', 'Striker'),
-                        ('demolisher', 'Demolisher'),
-                        ('sprinter', 'Sprinter'),
-                        ('harrier', 'Harrier'),
-                        ('sailor', 'Sailor'),
-                        ('hammer', 'Hammer'),
-                    )
+        ('nagger', 'Nagger'),
+        ('pretender', 'Pretender'),
+        ('trickster', 'Trickster'),
+        ('smuggler', 'Smuggler'),
+        ('chaser', 'Chaser'),
+        ('reaper', 'Reaper'),
+        ('cheater', 'Cheater'),
+        ('carrier', 'Carrier'),
+        ('observer', 'Observer'),
+        ('striker', 'Striker'),
+        ('demolisher', 'Demolisher'),
+        ('sprinter', 'Sprinter'),
+        ('harrier', 'Harrier'),
+        ('sailor', 'Sailor'),
+        ('hammer', 'Hammer'),
+    )
 
     colorChoices = (
-                        ('base', 'базовый'),
-                        ('red', 'красный'),
-                        ('orange', 'оранжевый'),
-                        ('yellow', 'желтый'),
-                        ('green', 'зелёный'),
-                        ('light_blue', 'голубой'),
-                        ('dark_blue', 'синий'),
-                        ('violet', 'фиолетовый'),
-                        ('pink', 'розовый'),
-                        ('black', 'чёрный'),
+        ('base', 'базовый'),
+        ('red', 'красный'),
+        ('orange', 'оранжевый'),
+        ('yellow', 'желтый'),
+        ('green', 'зелёный'),
+        ('light_blue', 'голубой'),
+        ('dark_blue', 'синий'),
+        ('violet', 'фиолетовый'),
+        ('pink', 'розовый'),
+        ('black', 'чёрный'),
 
-                        ('gold', 'золотой'),
+        ('gold', 'золотой'),
+        ('black_gold', 'чёрно-золотой'),
+        ('wood', 'дерево'),
 
-                        ('dreamflight', 'Dreamflight'), # сходка МСК 2024
-                        ('black_gold', 'чёрно-золотой'),
+        ('dreamflight', 'Dreamflight'),  # сходка МСК 2024
 
-                        ('green_cam', 'зелёный камуфляж'),
-                        ('green_white_cam', 'бело-зелёный камуфляж'),
-                        ('blue_cam', 'синий камуфляж'),
-                        ('desert_cam', 'песочный камуфляж'),
-                        ('wood', 'дерево'),
-                        ('airball', 'Airball'),
-                        ('pobeda', 'пузырьки'),  # в стиле лоукостера
-                    )
+        ('green_cam', 'зелёный камуфляж'),
+        ('green_white_cam', 'бело-зелёный камуфляж'),
+        ('blue_cam', 'синий камуфляж'),
+        ('desert_cam', 'песочный камуфляж'),
+        ('airball', 'Airball'),
+        ('pobeda', 'пузырьки'),  # в стиле лоукостера
+    )
 
     plane = models.CharField(
         max_length=10,
         choices=planesChoices,
     )
+
+    gold_colors = ['gold', 'black_gold', 'wood']
 
     color = models.CharField(
         max_length=20,
@@ -168,9 +176,10 @@ class Plane(models.Model):
 
     def image_tag(self):
         if self.plane:
-            return mark_safe(f'<img src="/static/img/planes/{ self.plane }/{ self.plane }_{ self.color }.svg" width="150" height="150" />')
+            return mark_safe(
+                f'<img src="/static/img/planes/{self.plane}/{self.plane}_{self.color}.svg" width="150" height="150" />')
         else:
-            return mark_safe(f'<img src="/static/img/planes/pretender/pretender_1.svg" width="150" height="150" />')
+            return mark_safe(f'<img src="/static/img/planes/nagger/nagger_base.svg" width="150" height="150" />')
 
     image_tag.short_description = 'Image'
     image_tag.allow_tags = True
@@ -186,3 +195,18 @@ class Plane(models.Model):
     class Meta:
         verbose_name = "Самолёт"
         verbose_name_plural = "Самолёты"
+
+
+# сигнал прослушивающий создание
+@receiver(post_save, sender=Plane)
+def save_post(sender, instance, created, **kwargs):
+    if created:
+        if instance.color in Plane.gold_colors:
+            last_number = Plane.objects.only('pk').filter(color__in=Plane.gold_colors).order_by(
+                '-number').first().number
+            instance.number = last_number + 1
+
+            instance.save()
+
+    if instance.in_use:
+        Plane.objects.filter(player=instance.player).exclude(pk=instance.pk).update(in_use=False)

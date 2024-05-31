@@ -34,6 +34,7 @@ urlpatterns = [
 
                   url(r'', include('player.url')),
                   url(r'', include('player.urls.skills')),
+                  url(r'', include('player.urls.customization')),
                   url(r'', include('region.urls')),
 
                   url(r'', include('article.urls.article')),

@@ -35,8 +35,8 @@ class PlaneAdmin(admin.ModelAdmin):
 
     raw_id_fields = ('player',)
 
-    fields = ['in_use', 'player', 'plane', 'color', 'image_tag']
-    readonly_fields = ['image_tag']
+    fields = ['in_use', 'player', 'plane', 'color', 'nickname', 'number', 'image_tag']
+    readonly_fields = ['image_tag', 'number']
 
 
 class FossilsAdmin(admin.ModelAdmin):

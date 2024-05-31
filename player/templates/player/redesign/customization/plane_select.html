@@ -1,0 +1,198 @@
+{% extends 'player/redesign/header.html' %}
+{% load l10n %}{% load i18n %}
+{% load static %}
+{% load redesign.wallet_operations %}
+{% load redesign.wallet_locks %}
+{% load redesign.wallet_cash %}
+{% load tz %}
+{% block content %}
+<section class="avabord custom-scroll">
+    <h1 class="avabord__title ct__page-title">Выбор авиации</h1>
+    <ul class="avabord__gridFly avabord__grid--noborder">
+        <li>
+            <button class='avabord__flyButton {% if not planes or not used %}active{% endif %}' data-id="0">
+                <img src="/static/img/planes/nagger/nagger_base.svg" alt="nagger_base">
+            </button>
+        </li>
+        {% for plane in planes %}
+        <li>
+            <button class="avabord__flyButton {% if plane == used %}active{% endif %}" data-id="{% localize off %}{{ plane.pk }}{% endlocalize %}">
+                <img src="/static/img/planes/{{ plane.plane }}/{{ plane.plane }}_{{ plane.color }}.svg" alt="{{ plane.plane }}_{{ plane.color }}">
+            </button>
+            <button class="ct__nickname-edit ct__square-mid-btn" data-id="{% localize off %}{{ plane.pk }}{% endlocalize %}"
+                                                                data-tail="{% localize off %}{% if plane.color in golds %}{{ plane.number }}{% else %}{{ plane.pk }}{% endif %}{% endlocalize %}"
+                                                                {% if plane.nickname %}data-nick="{{ plane.nickname }}"{% endif %}
+            >
+                <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M26 30H0V0H30V26L26 30Z" fill="var(--c10two)" />
+                    <path d="M5.5 21.5L22.5 4.5L26.5 8.5L9.5 25.5H5.5V21.5Z" stroke="var(--c60)" stroke-width="3" />
+                </svg>
+            </button>
+        </li>
+        {% endfor %}
+    </ul>
+</section>
+
+<div class="avabord__inputPopup">
+    <div class="avabord__inputPopupContent">
+        <div class='avabord__inputPopupFlex'>
+            <input type="text" placeholder='Введите новое имя' id="tail_number" style="color: var(--c10one);">
+        </div>
+        <div class="avabord__inputPopupFlex">
+
+            <button class="actives__confirm-btn ct__mid-btn" id="clear_nick">
+                <svg width="144" height="30" viewBox="0 0 144 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <mask id="mask0_259_319" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144"
+                        height="30">
+                        <path d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z" fill="var(--c10two)" />
+                    </mask>
+                    <g mask="url(#mask0_259_319)">
+                        <path d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" fill="var(--c10two)" />
+                        <path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z"
+                            fill="var(--c10one)" />
+                        <path class="treg2" opacity="0.15"
+                            d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)" />
+                        <path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z"
+                            fill="var(--c10one)" />
+                    </g>
+                </svg>
+                <span>сбросить</span>
+            </button>
+
+            <button class="actives__confirm-btn ct__mid-btn" id="set_nick">
+                <svg width="144" height="30" viewBox="0 0 144 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <mask id="mask0_259_319" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144"
+                        height="30">
+                        <path d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z" fill="var(--c10two)" />
+                    </mask>
+                    <g mask="url(#mask0_259_319)">
+                        <path d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" fill="var(--c10two)" />
+                        <path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z"
+                            fill="var(--c10one)" />
+                        <path class="treg2" opacity="0.15"
+                            d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)" />
+                        <path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z"
+                            fill="var(--c10one)" />
+                    </g>
+                </svg>
+                <span>подтвердить</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+  <script>
+      // сбросить ник самолета
+        function clear_nickname(id){
+            var sending_data = "&csrfmiddlewaretoken=" + csrftoken + "&plane_id=" + id;
+
+            $.ajax({
+                type: "POST",
+                url: "/clear_plane_nick/",
+                data:  sending_data,
+                cache: false,
+                success: function(data){
+                    if (data.response == 'ok'){
+                        var targetElement = document.querySelector('.avabord__flyButton.active');
+                        if (targetElement) {
+                            const nextElement = targetElement.nextElementSibling;
+                            $('#tail_number').val( nextElement.dataset.tail );
+
+                            delete nextElement.dataset.nick;
+                        }
+                    }
+                    else{
+                        display_modal('notify', data.header, data.response, null, data.grey_btn);
+                    }
+                }
+            });
+        };
+
+      // установить ник самолета
+        function set_nickname(id){
+
+            var nick = document.getElementById('tail_number').value
+
+            var sending_data = "&csrfmiddlewaretoken=" + csrftoken + "&plane_id=" + id + "&plane_nick=" + nick;
+
+            $.ajax({
+                type: "POST",
+                url: "/set_plane_nick/",
+                data:  sending_data,
+                cache: false,
+                success: function(data){
+                    if (data.response == 'ok'){
+                        var targetElement = document.querySelector('.avabord__flyButton.active');
+                        if (targetElement) {
+                            const nextElement = targetElement.nextElementSibling;
+                            nextElement.dataset.nick = nick;
+                        }
+                    }
+                    else{
+                        display_modal('notify', data.header, data.response, null, data.grey_btn);
+                    }
+                }
+            });
+        };
+
+      const buttons = document.querySelectorAll('.avabord__flyButton');
+      buttons.forEach((btn) => {
+          btn.addEventListener('click', () => {
+
+            var sending_data = "&csrfmiddlewaretoken=" + csrftoken + "&plane_id=" + btn.dataset.id;
+
+            $.ajax({
+                type: "POST",
+                url: "/choose_plane/",
+                data:  sending_data,
+                cache: false,
+                success: function(data){
+                    if (data.response == 'ok'){
+                          buttons.forEach((b) => b.classList.remove('active'));
+
+                          btn.classList.add('active');
+                    }
+                    else{
+                        display_modal('notify', data.header, data.response, null, data.grey_btn);
+                    }
+                }
+            });
+
+
+          });
+      });
+
+      const editPopup = document.querySelector('.avabord__inputPopup');
+      const editBtns = [...document.querySelectorAll('.ct__nickname-edit')];
+
+      editBtns.forEach((btn) => btn.addEventListener('click', () => {
+          editPopup.classList.add('active');
+
+          if (!("nick" in btn.dataset)) {
+            $('#tail_number').val( btn.dataset.tail );
+          }
+          else {
+            $('#tail_number').val( btn.dataset.nick );
+          }
+
+          const button = document.getElementById('clear_nick')
+          const newButton = button.cloneNode(true);
+          button.parentNode.replaceChild(newButton, button);
+
+          document.getElementById('clear_nick').addEventListener('click', function() { clear_nickname(btn.dataset.id); });
+
+          const button1 = document.getElementById('set_nick')
+          const newButton1 = button1.cloneNode(true);
+          button1.parentNode.replaceChild(newButton1, button1);
+
+          document.getElementById('set_nick').addEventListener('click', function() { set_nickname(btn.dataset.id); });
+
+      }));
+
+      editPopup.addEventListener('click', (evt) => {
+          if (evt.target.classList.contains('avabord__inputPopup')) {
+              editPopup.classList.remove('active');
+          }
+      })
+  </script>
+{% endblock %}
