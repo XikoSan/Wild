@@ -184,7 +184,7 @@
 										<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
 									</g>
 								</svg>
-								<span>{% trans '+ G 1000' context "storage_vault" %}</span>
+								<span>{% if wildpass_800 %}{% trans '+ G 800' context "storage_vault" %}{% else %}{% trans '+ G 1000' context "storage_vault" %}{% endif %}</span>
 							</button>
 							<button onclick="check_card()" class="ct__mid-btn">
 								<svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
@@ -382,7 +382,11 @@
 	{% endif %}
 
 	var wildpass_gold_header = '{% trans 'Обмен Wild Pass' context "storage_vault" %}';
+	{% if wildpass_800 %}
+	var wildpass_gold_text = '{% trans 'Вы обменяете премиум-карту на G 800. Данную операцию невозможно отменить. Продолжить?' context "storage_vault" %}';
+	{% else %}
 	var wildpass_gold_text = '{% trans 'Вы обменяете премиум-карту на G 1000. Данную операцию невозможно отменить. Продолжить?' context "storage_vault" %}';
+	{% endif %}
 
 	var wildpass_yes = '{% trans 'Продолжить' context "storage_assets" %}';
 	var wildpass_cancel = '{% trans 'Отмена' context "storage_assets" %}';

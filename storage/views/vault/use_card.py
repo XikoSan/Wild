@@ -6,6 +6,7 @@ from django.utils import timezone
 from player.decorators.player import check_player
 from player.player import Player
 from wild_politics.settings import JResponse
+import datetime
 
 
 # изучить навык
@@ -32,7 +33,10 @@ def use_card(request):
 
         # активация ради золота
         if int(request.POST.get('gold_usage')) == 1:
-            player.gold += 1000
+            if datetime.datetime.now() > datetime.datetime(2024, 6, 1, 0, 0):
+                player.gold += 800
+            else:
+                player.gold += 1000
 
         else:
             # время, к которому прибавляем месяц

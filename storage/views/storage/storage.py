@@ -71,6 +71,15 @@ def storage(request):
     if Lootbox.objects.filter(player=player).exists():
         lootbox_count = Lootbox.objects.get(player=player).stock
 
+    # ------------
+
+    import datetime
+
+    wildpass_800 = False
+    # if datetime.datetime.now() > datetime.datetime(2024, 5, 31, 23, 2):
+    if datetime.datetime.now() > datetime.datetime(2024, 6, 1, 0, 0):
+        wildpass_800 = True
+
     # отправляем в форму
     response = render(request, 'storage/redesign/storage.html', {
         'page_name': pgettext('storage', 'Склад'),
@@ -87,6 +96,8 @@ def storage(request):
         'limit_upgrade': limit_upgrade,
 
         'lootbox_count': lootbox_count,
+
+        'wildpass_800': wildpass_800,
 
     })
 
