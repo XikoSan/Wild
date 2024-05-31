@@ -134,7 +134,7 @@ def new_player(request):
 
                         image = Image.open(character.image)
                         cropped_image = image.crop((x, y, w + x, h + y))
-                        resized_image = cropped_image.resize((250, 250), Image.ANTIALIAS)
+                        resized_image = cropped_image.resize((400, 400), Image.ANTIALIAS)
                         resized_image.save(character.image.path)
 
                     except Exception as e:

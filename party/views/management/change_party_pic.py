@@ -49,7 +49,7 @@ def change_party_pic(request):
                 image = Image.open(getattr(player.party, mode_field))
 
                 cropped_image = image.crop((x, y, w + x, h + y))
-                resized_image = cropped_image.resize((250, 250), Image.ANTIALIAS)
+                resized_image = cropped_image.resize((400, 400), Image.ANTIALIAS)
                 resized_image.save(getattr(player.party, mode_field).path)
 
                 data = {
