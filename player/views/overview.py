@@ -306,14 +306,36 @@ def overview(request):
     #     except VkAPIError as e:
     #         pass
 
+
+
     # from storage.views.vault.avia_box.generate_rewards import generate_rewards
     #
     # from player.logs.print_log import log
     #
-    # for iter in range(1000):
-    #     log(generate_rewards(player))
+    # for attmpt in range(10):
+    #     for loop in range(10):
+    #         reward_sum = 0
+    #         total_reward_sum = 0
+    #         for iter in range(100):
+    #             reward, rarity = generate_rewards(player)
     #
-    # log(generate_rewards(player, True))
+    #             if rarity == 'gold':
+    #                 reward_sum += reward
+    #                 total_reward_sum += reward
+    #
+    #             elif rarity == 'epic':
+    #                 total_reward_sum += 5000
+    #
+    #             elif rarity == 'rare':
+    #                 total_reward_sum += 1000
+    #
+    #             elif rarity == 'common':
+    #                 total_reward_sum += 500
+    #
+    #         log(f'цикл {loop+1}, выпало золота: {reward_sum}, всего: {total_reward_sum}')
+    #     log(f'-----------------------------')
+
+
 
     assistant_name = ('Ann', 'Анна')
 
