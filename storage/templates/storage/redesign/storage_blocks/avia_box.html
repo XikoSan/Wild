@@ -98,9 +98,7 @@
                     <span>Открыть</span>
                 </button>
 
-                <button class="box__picOpen10 ct__mid-btn"
-                                                            disabled style="opacity: 0; cursor: auto;"
-                >
+                <button class="box__picOpen10 ct__mid-btn">
                     <svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
                         <mask id="mask0_258_219" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144"
                             height="30">
@@ -474,7 +472,7 @@
 
     <!-- Модалка с лутом 3 рулетки-->
     <div class="box__modal box__modal--3 custom-scroll box__modal3">
-        <button class="box__close box__close3">
+        <button class="box__close box__close3"  onclick="loot_aviaboxes()">
             <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M1 1L31 31M31 1L1.53571 30.4643" stroke-width="1" stroke="var(--c10one)" />
             </svg>
@@ -489,36 +487,42 @@
                 <div class='carListContainerDiv'>
                     <div class=' carListContainer'>
                         <ul class='carList'>
+                            {% for plane in common_list %}
                             <li class='carItem'>
-                                <img class='carImg' src='./img/tyan1.jpg'>
+                                <img class="carImg" src="/static/img/planes/{{ plane.0 }}/{{ plane.0 }}_{{ plane.1 }}.svg" alt="{{ plane.0 }}_{{ plane.1 }}">
+                            </li>
+                            {% endfor %}
+                            {% for plane in rare_list %}
+                            <li class='carItem'>
+                                <img class="carImg" src="/static/img/planes/{{ plane.0 }}/{{ plane.0 }}_{{ plane.1 }}.svg" alt="{{ plane.0 }}_{{ plane.1 }}">
+                            </li>
+                            {% endfor %}
+                            {% for plane in epic_list %}
+                            <li class='carItem'>
+                                <img class="carImg" src="/static/img/planes/{{ plane.0 }}/{{ plane.0 }}_{{ plane.1 }}.svg" alt="{{ plane.0 }}_{{ plane.1 }}">
+                            </li>
+                            {% endfor %}
+                            <li class='carItem'>
+                                <img class="carImg" src="/static/redesign/img/events/gold_500.svg" alt="gold_500">
                             </li>
                             <li class='carItem'>
-                                <img class='carImg' src='./img/tyan2.jpg'>
+                                <img class="carImg" src="/static/redesign/img/events/gold_1000.svg" alt="gold_1000">
                             </li>
                             <li class='carItem'>
-                                <img class='carImg' src='./img/tyan3.jpg'>
+                                <img class="carImg" src="/static/redesign/img/events/gold_3000.svg" alt="gold_3000">
                             </li>
                             <li class='carItem'>
-                                <img class='carImg' src='./img/tyan4.jpg'>
+                                <img class="carImg" src="/static/redesign/img/events/gold_5000.svg" alt="gold_5000">
                             </li>
                             <li class='carItem'>
-                                <img class='carImg' src='./img/tyan5.jpg'>
+                                <img class="carImg" src="/static/redesign/img/events/gold_100000.svg" alt="gold_100000">
                             </li>
+
+                            {% if variants|get_mod:2 == 1  %}
                             <li class='carItem'>
-                                <img class='carImg' src='./img/tyan6.jpg'>
+                                <img class="carImg" src="/static/redesign/img/events/gold_100000.svg" alt="gold_100000">
                             </li>
-                            <li class='carItem'>
-                                <img class='carImg' src='./img/tyan7.jpg'>
-                            </li>
-                            <li class='carItem'>
-                                <img class='carImg' src='./img/tyan8.jpg'>
-                            </li>
-                            <li class='carItem'>
-                                <img class='carImg' src='./img/tyan9.jpeg'>
-                            </li>
-                            <li class='carItem'>
-                                <img class='carImg' src='./img/tyan10.jpg'>
-                            </li>
+                            {% endif %}
                         </ul>
                     </div>
                 </div>
@@ -528,36 +532,42 @@
                 <div class='carListContainerDiv'>
                     <div class=' carListContainer'>
                         <ul class='carList'>
+                            {% for plane in common_list %}
                             <li class='carItem'>
-                                <img class='carImg' src='./img/tyan1.jpg'>
+                                <img class="carImg" src="/static/img/planes/{{ plane.0 }}/{{ plane.0 }}_{{ plane.1 }}.svg" alt="{{ plane.0 }}_{{ plane.1 }}">
+                            </li>
+                            {% endfor %}
+                            {% for plane in rare_list %}
+                            <li class='carItem'>
+                                <img class="carImg" src="/static/img/planes/{{ plane.0 }}/{{ plane.0 }}_{{ plane.1 }}.svg" alt="{{ plane.0 }}_{{ plane.1 }}">
+                            </li>
+                            {% endfor %}
+                            {% for plane in epic_list %}
+                            <li class='carItem'>
+                                <img class="carImg" src="/static/img/planes/{{ plane.0 }}/{{ plane.0 }}_{{ plane.1 }}.svg" alt="{{ plane.0 }}_{{ plane.1 }}">
+                            </li>
+                            {% endfor %}
+                            <li class='carItem'>
+                                <img class="carImg" src="/static/redesign/img/events/gold_500.svg" alt="gold_500">
                             </li>
                             <li class='carItem'>
-                                <img class='carImg' src='./img/tyan2.jpg'>
+                                <img class="carImg" src="/static/redesign/img/events/gold_1000.svg" alt="gold_1000">
                             </li>
                             <li class='carItem'>
-                                <img class='carImg' src='./img/tyan3.jpg'>
+                                <img class="carImg" src="/static/redesign/img/events/gold_3000.svg" alt="gold_3000">
                             </li>
                             <li class='carItem'>
-                                <img class='carImg' src='./img/tyan4.jpg'>
+                                <img class="carImg" src="/static/redesign/img/events/gold_5000.svg" alt="gold_5000">
                             </li>
                             <li class='carItem'>
-                                <img class='carImg' src='./img/tyan5.jpg'>
+                                <img class="carImg" src="/static/redesign/img/events/gold_100000.svg" alt="gold_100000">
                             </li>
+
+                            {% if variants|get_mod:2 == 1  %}
                             <li class='carItem'>
-                                <img class='carImg' src='./img/tyan6.jpg'>
+                                <img class="carImg" src="/static/redesign/img/events/gold_100000.svg" alt="gold_100000">
                             </li>
-                            <li class='carItem'>
-                                <img class='carImg' src='./img/tyan7.jpg'>
-                            </li>
-                            <li class='carItem'>
-                                <img class='carImg' src='./img/tyan8.jpg'>
-                            </li>
-                            <li class='carItem'>
-                                <img class='carImg' src='./img/tyan9.jpeg'>
-                            </li>
-                            <li class='carItem'>
-                                <img class='carImg' src='./img/tyan10.jpg'>
-                            </li>
+                            {% endif %}
                         </ul>
                     </div>
                 </div>
@@ -567,63 +577,69 @@
                 <div class='carListContainerDiv'>
                     <div class=' carListContainer'>
                         <ul class='carList'>
+                            {% for plane in common_list %}
                             <li class='carItem'>
-                                <img class='carImg' src='./img/tyan1.jpg'>
+                                <img class="carImg" src="/static/img/planes/{{ plane.0 }}/{{ plane.0 }}_{{ plane.1 }}.svg" alt="{{ plane.0 }}_{{ plane.1 }}">
+                            </li>
+                            {% endfor %}
+                            {% for plane in rare_list %}
+                            <li class='carItem'>
+                                <img class="carImg" src="/static/img/planes/{{ plane.0 }}/{{ plane.0 }}_{{ plane.1 }}.svg" alt="{{ plane.0 }}_{{ plane.1 }}">
+                            </li>
+                            {% endfor %}
+                            {% for plane in epic_list %}
+                            <li class='carItem'>
+                                <img class="carImg" src="/static/img/planes/{{ plane.0 }}/{{ plane.0 }}_{{ plane.1 }}.svg" alt="{{ plane.0 }}_{{ plane.1 }}">
+                            </li>
+                            {% endfor %}
+                            <li class='carItem'>
+                                <img class="carImg" src="/static/redesign/img/events/gold_500.svg" alt="gold_500">
                             </li>
                             <li class='carItem'>
-                                <img class='carImg' src='./img/tyan2.jpg'>
+                                <img class="carImg" src="/static/redesign/img/events/gold_1000.svg" alt="gold_1000">
                             </li>
                             <li class='carItem'>
-                                <img class='carImg' src='./img/tyan3.jpg'>
+                                <img class="carImg" src="/static/redesign/img/events/gold_3000.svg" alt="gold_3000">
                             </li>
                             <li class='carItem'>
-                                <img class='carImg' src='./img/tyan4.jpg'>
+                                <img class="carImg" src="/static/redesign/img/events/gold_5000.svg" alt="gold_5000">
                             </li>
                             <li class='carItem'>
-                                <img class='carImg' src='./img/tyan5.jpg'>
+                                <img class="carImg" src="/static/redesign/img/events/gold_100000.svg" alt="gold_100000">
                             </li>
+
+                            {% if variants|get_mod:2 == 1  %}
                             <li class='carItem'>
-                                <img class='carImg' src='./img/tyan6.jpg'>
+                                <img class="carImg" src="/static/redesign/img/events/gold_100000.svg" alt="gold_100000">
                             </li>
-                            <li class='carItem'>
-                                <img class='carImg' src='./img/tyan7.jpg'>
-                            </li>
-                            <li class='carItem'>
-                                <img class='carImg' src='./img/tyan8.jpg'>
-                            </li>
-                            <li class='carItem'>
-                                <img class='carImg' src='./img/tyan9.jpeg'>
-                            </li>
-                            <li class='carItem'>
-                                <img class='carImg' src='./img/tyan10.jpg'>
-                            </li>
+                            {% endif %}
                         </ul>
                     </div>
                 </div>
 
                 <div class="box__modal3info box__modalInfo">
                     <div class="box__modalBtns">
-                        <button class="box__picOpen ct__mid-btn" id='modal__restart3'>
-                            <svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
-                                <mask id="mask0_258_2331" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144"
-                                    height="30">
-                                    <path class="geometry1" d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z" />
-                                </mask>
-                                <g mask="url(#mask0_258_2331)">
-                                    <path class="geometry2" fill="var(--c10two)"
-                                        d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" />
-                                    <path class="treg1" opacity="0.15"
-                                        d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)" />
-                                    <path class="treg2" opacity="0.15"
-                                        d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)" />
-                                    <path class="treg3" opacity="0.15"
-                                        d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)" />
-                                </g>
-                            </svg>
-                            <span>Рестарт: 1500 G</span>
-                        </button>
+<!--                        <button class="box__picOpen ct__mid-btn" id='modal__restart3'>-->
+<!--                            <svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">-->
+<!--                                <mask id="mask0_258_2331" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144"-->
+<!--                                    height="30">-->
+<!--                                    <path class="geometry1" d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z" />-->
+<!--                                </mask>-->
+<!--                                <g mask="url(#mask0_258_2331)">-->
+<!--                                    <path class="geometry2" fill="var(&#45;&#45;c10two)"-->
+<!--                                        d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" />-->
+<!--                                    <path class="treg1" opacity="0.15"-->
+<!--                                        d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(&#45;&#45;c10one)" />-->
+<!--                                    <path class="treg2" opacity="0.15"-->
+<!--                                        d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(&#45;&#45;c10one)" />-->
+<!--                                    <path class="treg3" opacity="0.15"-->
+<!--                                        d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(&#45;&#45;c10one)" />-->
+<!--                                </g>-->
+<!--                            </svg>-->
+<!--                            <span>Рестарт: 1500 G</span>-->
+<!--                        </button>-->
 
-                        <button class="box__picOpen ct__mid-btn" id='modal__continue3'>
+                        <button class="box__picOpen ct__mid-btn" id='modal__continue3' onclick="loot_aviaboxes()">
                             <svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
                                 <mask id="mask0_258_2341" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144"
                                     height="30">
@@ -869,7 +885,7 @@
 				this.popup1continue = document.getElementById('modal__continue1');
 				this.popup3continue = document.getElementById('modal__continue3');
 				this.popup1restart = document.getElementById('modal__restart1');
-				this.popup3restart = document.getElementById('modal__restart3');
+<!--				this.popup3restart = document.getElementById('modal__restart3');-->
 
 				this.goldContent = document.querySelector('.box__itemCount--gold');
 				this.premContent = document.querySelector('.box__itemCount--prem');
@@ -1005,11 +1021,11 @@
                     };
 				});
 
-				this.popup3restart.addEventListener('click', () => {
-					carousel2.startCarousel('tyan3');
-					carousel3.startCarousel('tyan2');
-					carousel4.startCarousel('tyan1');
-				});
+<!--				this.popup3restart.addEventListener('click', () => {-->
+<!--					carousel2.startCarousel('tyan3');-->
+<!--					carousel3.startCarousel('tyan2');-->
+<!--					carousel4.startCarousel('tyan1');-->
+<!--				});-->
 
 				this.openChestBtn.addEventListener('click', async () => {
 
@@ -1044,11 +1060,39 @@
                     };
 				});
 
-				this.openChest10Btn.addEventListener('click', () => {
-					this.state.isPopup3Opened = true;
-					carousel2.startCarousel('tyan1');
-					carousel3.startCarousel('tyan2');
-					carousel4.startCarousel('tyan3');
+				this.openChest10Btn.addEventListener('click', async () => {
+
+                    var response = await open_aviaboxes(3, 'open');
+
+				    var data = await response.json();
+
+                    if(data !== null){
+                        if (data.response == 'ok'){
+                            actualize();
+
+                            this.state.isPopup3Opened = true;
+
+                            carousel1.startCarousel(
+                                    data.prizes[0][0][0].concat("_", data.prizes[0][0][1])
+                                                );
+
+                            carousel2.startCarousel(
+                                    data.prizes[0][0][0].concat("_", data.prizes[0][0][1])
+                                                );
+                            carousel3.startCarousel(
+                                    data.prizes[1][0][0].concat("_", data.prizes[1][0][1])
+                                                );
+                            carousel4.startCarousel(
+                                    data.prizes[2][0][0].concat("_", data.prizes[2][0][1])
+                                                );
+
+                            this.state.chestCount = data.boxes_count;
+                            this.state.garantCount = data.garant_count;
+                        }
+                        else{
+                            display_modal('notify', data.header, data.response, null, data.grey_btn);
+                        }
+                    };
 				});
 
 			}
