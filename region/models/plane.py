@@ -28,6 +28,8 @@ class Plane(models.Model):
 
         'nagger': ['base', 'black_gold', 'dreamflight'],
 
+        'beluzzo': ['base'],
+
         'pretender': ['base',
                       'red', 'yellow', 'orange',
                       'green', 'dark_blue', 'light_blue',
@@ -134,6 +136,7 @@ class Plane(models.Model):
         ('harrier', 'Harrier'),
         ('sailor', 'Sailor'),
         ('hammer', 'Hammer'),
+        ('beluzzo', 'Диск Белуццо'),
     )
 
     colorChoices = (
