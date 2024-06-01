@@ -1,0 +1,61 @@
+{% extends 'player/redesign/header.html' %}
+{% load l10n %}{% load i18n %}
+{% load static %}
+{% load redesign.wallet_operations %}
+{% load redesign.wallet_locks %}
+{% load redesign.wallet_cash %}
+{% load tz %}
+{% block content %}
+<section class="avabord custom-scroll">
+    <h1 class="avabord__title ct__page-title">Выбор авиации</h1>
+    <ul class="avabord__gridFly avabord__grid--noborder">
+        <li>
+            <button class='avabord__flyButton {% if not borders or not used %}active{% endif %}' data-id="0">
+                <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" style="
+                        width: 100%;
+                        height: 100%;
+                    ">
+                    <rect x="2" y="2" width="36" height="36" stroke="var(--c10one)" stroke-width="4"></rect>
+                    <rect x="5.5" y="5.5" width="29" height="29" stroke="var(--c10one)"></rect>
+                </svg>
+            </button>
+        </li>
+        {% for border in borders %}
+        <li>
+            <button class="avabord__flyButton {% if border == used %}active{% endif %}" data-id="{% localize off %}{{ border.pk }}{% endlocalize %}">
+                <img src="{% if border.border.image %}{{ border.border.image.url }}{% endif %}">
+            </button>
+        </li>
+        {% endfor %}
+    </ul>
+</section>
+
+  <script>
+      const buttons = document.querySelectorAll('.avabord__flyButton');
+      buttons.forEach((btn) => {
+          btn.addEventListener('click', () => {
+
+            var sending_data = "&csrfmiddlewaretoken=" + csrftoken + "&border_id=" + btn.dataset.id;
+
+            $.ajax({
+                type: "POST",
+                url: "/choose_border/",
+                data:  sending_data,
+                cache: false,
+                success: function(data){
+                    if (data.response == 'ok'){
+                          buttons.forEach((b) => b.classList.remove('active'));
+
+                          btn.classList.add('active');
+                    }
+                    else{
+                        display_modal('notify', data.header, data.response, null, data.grey_btn);
+                    }
+                }
+            });
+
+
+          });
+      });
+  </script>
+{% endblock %}

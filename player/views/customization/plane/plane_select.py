@@ -6,6 +6,7 @@ from django.utils.translation import ugettext as _
 from player.decorators.player import check_player
 from player.player import Player
 from region.models.plane import Plane
+from storage.models.lootbox_prize import LootboxPrize
 
 
 @login_required(login_url='/')
@@ -14,6 +15,14 @@ from region.models.plane import Plane
 def plane_select(request):
     # получаем персонажа
     player = Player.get_instance(account=request.user)
+
+    if LootboxPrize.objects.filter(player=player, deleted=False).exists():
+        for prize in LootboxPrize.objects.filter(player=player, deleted=False):
+            if not Plane.objects.filter(player=player, plane=prize.plane, color=prize.color).exists():
+                plane = Plane(player=player, plane=prize.plane, color=prize.color)
+                plane.save()
+
+        LootboxPrize.objects.filter(player=player, deleted=False).update(deleted=True)
 
     planes = None
     used = None
