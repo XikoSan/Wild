@@ -1,0 +1,26 @@
+{% extends 'player/redesign/header.html' %}
+{% load l10n %}{% load i18n %}
+{% load static %}
+{% load redesign.wallet_operations %}
+{% load redesign.wallet_locks %}
+{% load redesign.wallet_cash %}
+{% load tz %}
+{% block content %}
+<section class="avabord custom-scroll">
+    <h1 class="avabord__title ct__page-title">Авиация {{ char.nickname }}</h1>
+    <ul class="avabord__gridFly avabord__grid--noborder">
+        <li>
+            <button class='avabord__flyButton' data-id="0">
+                <img src="/static/img/planes/nagger/nagger_base.svg" alt="nagger_base">
+            </button>
+        </li>
+        {% for plane in planes %}
+        <li>
+            <button class="avabord__flyButton" data-id="{% localize off %}{{ plane.pk }}{% endlocalize %}">
+                <img src="/static/img/planes/{{ plane.plane }}/{{ plane.plane }}_{{ plane.color }}.svg" alt="{{ plane.plane }}_{{ plane.color }}">
+            </button>
+        </li>
+        {% endfor %}
+    </ul>
+</section>
+{% endblock %}
