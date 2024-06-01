@@ -821,14 +821,25 @@
 				setTimeout(() => {
 					this.list.style.transition = '';
 					this.list.style.transform = `translateX(-${((itemsLendth * 1) + (itemsLendth / 2) - 1) * 200 - 60}px)`;
+
+                    const cancelTransition = () => {
+						this.list.style.transition = 'none';
+						if (boxPage.state.isPopup1Opened) { this.modalInfo1.classList.add('active'); }
+						if (boxPage.state.isPopup3Opened) { this.modalInfo3.classList.add('active'); };
+					};
+					this.list.addEventListener('click', cancelTransition);
+					this.cancelTransitionRemove = () => { this.list.removeEventListener('click', cancelTransition); };
+
 					if (this.modalInfo1) {
 						setTimeout(() => {
 							if (boxPage.state.isPopup1Opened) { this.modalInfo1.classList.add('active'); };
+							this.list.removeEventListener('click', cancelTransition);
 						}, 7500);
 					}
 					if (this.modalInfo3) {
 						setTimeout(() => {
 							if (boxPage.state.isPopup3Opened) { this.modalInfo3.classList.add('active'); };
+							this.list.removeEventListener('click', cancelTransition);
 						}, 7500);
 					}
 				}, 0);
@@ -979,11 +990,13 @@
 				this.popupClose1.addEventListener('click', () => {
 					this.state.isPopup1Opened = false;
 					carousel1.modalInfo1.classList.remove('active');
+					carousel1.cancelTransitionRemove();
 				});
 				this.popup1continue.addEventListener('click', () => this.state.isPopup1Opened = false);
 				this.popupClose3.addEventListener('click', () => {
 					this.state.isPopup3Opened = false;
 					carousel4.modalInfo3.classList.remove('active');
+					carousel4.cancelTransitionRemove();
 				});
 				this.popup3continue.addEventListener('click', () => this.state.isPopup3Opened = false);
 
