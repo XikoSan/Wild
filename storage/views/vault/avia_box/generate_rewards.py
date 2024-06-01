@@ -76,4 +76,6 @@ def generate_rewards(player, garant=False):
             if nagrada == 'common':
                 reward_val = 500
 
+            nagrada = 'gold'
+
     return reward_val, nagrada
