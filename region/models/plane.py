@@ -47,7 +47,8 @@ class Plane(models.Model):
         'smuggler': ['base',
                      'red', 'yellow', 'orange',
                      'green', 'dark_blue', 'light_blue',
-                     'violet',
+                     'pink', 'violet', 'black',
+                     'gold'
                      ],
 
         'chaser': ['base', 'black'],
@@ -57,6 +58,7 @@ class Plane(models.Model):
                    'green', 'dark_blue', 'light_blue',
                    'pink', 'violet', 'black',
                    'airball',
+                   'green_cam', 'blue_cam', 'desert_cam',
                    'gold'],
 
         'cheater': ['base',
