@@ -54,7 +54,16 @@ def generate_rewards(player, garant=False):
         reward_val = random.choices([1000, 3000, 100000, ], weights=weights)[0]
 
     else:
-        reward_val = random.choices(prepare_plane_lists(nagrada))[0]
+        weights = []
+        reward_list = prepare_plane_lists(nagrada)
+
+        for reward_plane in reward_list:
+            if reward_plane[0] == 'beluzzo':
+                weights.append(0.1)
+            else:
+                weights.append(1)
+
+        reward_val = random.choices(reward_list, weights=weights)[0]
 
         if Plane.objects.filter(player=player, plane=reward_val[0], color=reward_val[1]).exists():
 

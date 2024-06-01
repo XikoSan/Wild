@@ -31,8 +31,12 @@ def avia_lootbox(request):
     rare_list = prepare_plane_lists('rare')
     epic_list = prepare_plane_lists('epic')
 
-    randint = random.randint(1, len(common_list)-2)
-    common_slice = common_list[ randint - 1 : randint + 2 ]
+    cleared_common = []
+    for elem in common_list:
+        if not elem[0] == 'beluzzo':
+            cleared_common.append(elem)
+    randint = random.randint(1, len(cleared_common)-2)
+    common_slice = cleared_common[ randint - 1 : randint + 2 ]
 
     randint = random.randint(1, len(rare_list)-2)
     rare_slice = rare_list[ randint - 1 : randint + 2 ]

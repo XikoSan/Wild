@@ -692,7 +692,9 @@
 
         <div class="box__modalGrid">
             {% for plane in common_list %}
+                {% if not plane.0 == 'beluzzo' %}
             <img src="/static/img/planes/{{ plane.0 }}/{{ plane.0 }}_{{ plane.1 }}.svg" alt="{{ plane.0 }}_{{ plane.1 }}">
+                {% endif %}
             {% endfor %}
         </div>
     </div>
@@ -975,8 +977,6 @@
 
 				    var data = await response.json();
 
-				    console.log(data);
-
                     if(data !== null){
                         if (data.response == 'ok'){
                             actualize();
@@ -994,6 +994,7 @@
                             carousel1.startCarousel(
                                     data.prizes[0][0][0].concat("_", data.prizes[0][0][1])
                                                 );
+
 
                             this.state.chestCount = data.boxes_count;
                             this.state.garantCount = data.garant_count;

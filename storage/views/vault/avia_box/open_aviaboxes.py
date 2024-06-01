@@ -131,7 +131,14 @@ def open_aviaboxes(request):
                         reward_color = tuple[1]
                         break
 
-                plane_name = f'{reward[0][0].upper()}{reward[0][1:].lower()} {reward_color}'
+                plane_name = 'самолёт'
+                for tuple in Plane.planesChoices:
+                    if reward[0] == tuple[0]:
+                        if tuple[0] == 'beluzzo':
+                            plane_name = f'{tuple[1]}'
+                        else:
+                            plane_name = f'{tuple[1]} {reward_color}'
+                        break
 
                 rarity = 'обычный'
 
