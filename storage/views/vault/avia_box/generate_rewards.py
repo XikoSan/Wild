@@ -21,6 +21,7 @@ def prepare_plane_lists(quality='common'):
 
     rare_colors = [
         'black', 'pink', 'green_white_cam', 'green_cam', 'blue_cam', 'desert_cam', 'pobeda', 'airball',
+        'corny', 'redline', 'standard', 'hexagon', 'white_cam',
     ]
 
     epic_colors = Plane.gold_colors

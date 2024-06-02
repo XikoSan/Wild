@@ -100,13 +100,14 @@ class Plane(models.Model):
                        'red', 'yellow', 'orange',
                        'green', 'dark_blue', 'light_blue',
                        'pink', 'violet', 'black',
+                       'standard', 'hexagon', 'white_cam',
                        'gold'
                        ],
 
         'observer': ['base',
                      'red', 'yellow', 'orange',
                      'green', 'dark_blue', 'light_blue',
-                     'pink', 'violet', 'black',
+                     'pink', 'violet', 'black', 'pobeda',
                      'gold', 'black_gold'
                      ],
 
@@ -167,7 +168,10 @@ class Plane(models.Model):
 
         ('dreamflight', 'Dreamflight'),  # сходка МСК 2024
 
+        ('hexagon', 'гексагон'),
+        ('standard', 'стандартная схема'),
         ('green_cam', 'зелёный камуфляж'),
+        ('white_cam', 'белый камуфляж'),
         ('green_white_cam', 'бело-зелёный камуфляж'),
         ('blue_cam', 'синий камуфляж'),
         ('desert_cam', 'песочный камуфляж'),
