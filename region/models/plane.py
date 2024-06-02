@@ -48,10 +48,13 @@ class Plane(models.Model):
                      'red', 'yellow', 'orange',
                      'green', 'dark_blue', 'light_blue',
                      'pink', 'violet', 'black',
+                     'green_cam', 'blue_cam', 'desert_cam',
                      'gold'
                      ],
 
-        'chaser': ['base', 'black'],
+        'chaser': ['base',
+                   'black'
+                   ],
 
         'reaper': ['base',
                    'red', 'yellow', 'orange',
@@ -86,6 +89,7 @@ class Plane(models.Model):
                     'red', 'yellow', 'orange',
                     'green', 'dark_blue', 'light_blue',
                     'pink', 'violet', 'black',
+                    'green_cam', 'blue_cam', 'desert_cam',
                     'gold'
                     ],
 
