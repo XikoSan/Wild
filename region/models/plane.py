@@ -41,6 +41,7 @@ class Plane(models.Model):
                       'red', 'yellow', 'orange',
                       'green', 'dark_blue', 'light_blue',
                       'pink', 'violet', 'black',
+                      'corny', 'redline',
                       'gold'
                       ],
 
@@ -170,6 +171,8 @@ class Plane(models.Model):
         ('green_white_cam', 'бело-зелёный камуфляж'),
         ('blue_cam', 'синий камуфляж'),
         ('desert_cam', 'песочный камуфляж'),
+        ('corny', 'царь полей'),
+        ('redline', 'красная линия'),
         ('airball', 'Airball'),
         ('pobeda', 'пузырьки'),  # в стиле лоукостера
     )
