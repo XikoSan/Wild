@@ -82,6 +82,8 @@ class Plane(models.Model):
                     'red', 'yellow', 'orange',
                     'green', 'dark_blue', 'light_blue',
                     'pink', 'violet', 'black',
+                    'green_white_cam',
+                    'green_cam', 'blue_cam', 'desert_cam',
                     'gold'
                     ],
 
@@ -104,7 +106,7 @@ class Plane(models.Model):
                      'red', 'yellow', 'orange',
                      'green', 'dark_blue', 'light_blue',
                      'pink', 'violet', 'black',
-                     'gold'
+                     'gold', 'black_gold'
                      ],
 
         'sprinter': ['base',
@@ -118,6 +120,7 @@ class Plane(models.Model):
                    'red', 'yellow', 'orange',
                    'green', 'dark_blue', 'light_blue',
                    'pink', 'violet', 'black',
+                   'green_cam', 'blue_cam', 'desert_cam',
                    'gold'
                    ],
 

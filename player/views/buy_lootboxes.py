@@ -96,11 +96,11 @@ def buy_lootboxes(request):
 
         for coauthor in LootboxCoauthor.objects.all():
             if coauthor.player != player:
-                coauthor.player.gold += ceil( buy_cost * coauthor.percent )
+                coauthor.player.gold += ceil( buy_cost * ( coauthor.percent / 100 ) )
                 from player.logs.print_log import log
 
                 coauthor.player.save()
-                GoldLog(player=coauthor.player, gold=ceil( buy_cost * coauthor.percent ), activity_txt='stckow').save()
+                GoldLog(player=coauthor.player, gold=ceil( buy_cost * ( coauthor.percent / 100 ) ), activity_txt='stckow').save()
 
         data = {
             'response': 'ok',
