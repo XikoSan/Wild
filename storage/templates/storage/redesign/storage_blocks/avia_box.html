@@ -936,7 +936,7 @@
 								value === 0 ? this.goToBuyBtn.style.display = '' : this.goToBuyBtn.style.display = 'none';
 								value === 0 ? this.chestImg.style.filter = 'grayscale(1)' : this.chestImg.style.filter = 'grayscale(0)';
 								value === 0 ? this.openChestBtns.style.display = 'none' : this.openChestBtns.style.display = '';
-								value >= 10 ? this.openChest10Btn.style.display = '' : this.openChest10Btn.style.display = 'none';
+								value >= 3 ? this.openChest10Btn.style.display = '' : this.openChest10Btn.style.display = 'none';
 								value > 0 ? this.chestCountContainer.style.display = '' : this.chestCountContainer.style.display = 'none';
 								if (value > 0) this.chestCount.textContent = value;
 								obj[prop] = value; return true;
