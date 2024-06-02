@@ -113,6 +113,8 @@ def open_aviaboxes(request):
             else:
                 lootboxes.garant_in -= 1
 
+            if lootboxes.garant_in < 0:
+                lootboxes.garant_in = 0
 
             if type == 'gold':
                 player.gold += reward
