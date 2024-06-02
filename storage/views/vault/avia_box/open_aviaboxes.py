@@ -103,6 +103,7 @@ def open_aviaboxes(request):
 
             if lootboxes.garant_in == 0:
                 reward, type = generate_rewards(player, True)
+                lootboxes.garant_in = 100
 
             else:
                 reward, type = generate_rewards(player)
