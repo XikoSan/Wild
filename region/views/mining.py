@@ -77,6 +77,22 @@ def mining(request):
 
     # ------------------
 
+    GameEvent = apps.get_model('player.GameEvent')
+    EventPart = apps.get_model('player.EventPart')
+    bonus = 0
+
+    if GameEvent.objects.filter(running=True, event_start__lt=timezone.now(),
+                                event_end__gt=timezone.now()).exists():
+        event = GameEvent.objects.get(running=True, event_start__lt=timezone.now(), event_end__gt=timezone.now())
+
+        if EventPart.objects.filter(player=player, event=event).exists():
+            bonus = EventPart.objects.get(player=player, event=event).boost
+
+    if bonus > 0:
+        daily_limit = int(daily_limit * (1 + (bonus / 100)))
+
+    # ------------------
+
     # бонус по выходным
     if timezone.now().date().weekday() == 5 or timezone.now().date().weekday() == 6:
         daily_limit = daily_limit * 2

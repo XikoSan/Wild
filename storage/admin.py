@@ -16,6 +16,13 @@ from storage.models.good import Good
 from storage.models.stock import Stock
 from modeltranslation.admin import TabbedTranslationAdmin
 from storage.models.lootbox_prize import LootboxPrize
+from storage.models.lootbox_coauthors import LootboxCoauthor
+
+
+class LootboxCoauthorAdmin(admin.ModelAdmin):
+    list_display = ('player', 'percent')
+
+    raw_id_fields = ('player',)
 
 
 class LootboxPrizeAdmin(admin.ModelAdmin):
@@ -147,3 +154,4 @@ admin.site.register(AuctionBet, AuctionBetAdmin)
 admin.site.register(BuyAuction, BuyAuctionAdmin)
 
 admin.site.register(LootboxPrize, LootboxPrizeAdmin)
+admin.site.register(LootboxCoauthor, LootboxCoauthorAdmin)

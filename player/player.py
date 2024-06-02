@@ -344,6 +344,22 @@ class Player(models.Model):
 
         # ------------------
 
+        GameEvent = apps.get_model('player.GameEvent')
+        EventPart = apps.get_model('player.EventPart')
+        bonus = 0
+
+        if GameEvent.objects.filter(running=True, event_start__lt=timezone.now(),
+                                        event_end__gt=timezone.now()).exists():
+            event = GameEvent.objects.get(running=True, event_start__lt=timezone.now(), event_end__gt=timezone.now())
+
+            if EventPart.objects.filter(player=self, event=event).exists():
+                bonus = EventPart.objects.get(player=self, event=event).boost
+
+        if bonus > 0:
+            daily_limit = int(daily_limit * ( 1 + (bonus/100)))
+
+        # ------------------
+
         # бонус по выходным
         is_weekend = False
         if timezone.now().date().weekday() == 5 or timezone.now().date().weekday() == 6:
