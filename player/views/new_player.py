@@ -96,7 +96,7 @@ def player_create(request, form):
     else:
         lbox = Lootbox(player=character)
 
-    lbox.stock += 1
+    lbox.stock += 3
     lbox.save()
 
     return character
