@@ -10,6 +10,7 @@ from player.player import Player
 from storage.views.vault.avia_box.generate_rewards import prepare_plane_lists
 import random
 
+
 # главная страница
 @login_required(login_url='/')
 @check_player
@@ -27,9 +28,9 @@ def avia_lootbox(request):
 
     page = 'storage/redesign/storage_blocks/avia_box.html'
 
-    common_list = prepare_plane_lists('common')
-    rare_list = prepare_plane_lists('rare')
-    epic_list = prepare_plane_lists('epic')
+    common_list = prepare_plane_lists(player, 'common')
+    rare_list = prepare_plane_lists(player, 'rare')
+    epic_list = prepare_plane_lists(player, 'epic')
 
     cleared_common = []
     for elem in common_list:

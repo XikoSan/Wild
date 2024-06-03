@@ -676,7 +676,14 @@
 
         <div class="box__modalGrid">
             {% for plane in epic_list %}
+            {% if plane.2 %}
+            <div class="profile__top-left">
+                <img src="/static/redesign/img/events/gold_5000.svg" class="profile__ava-border">
+                <img src="/static/img/planes/{{ plane.0 }}/{{ plane.0 }}_{{ plane.1 }}.svg" alt="{{ plane.0 }}_{{ plane.1 }}" style="opacity: 0.5;">
+            </div>
+            {% else %}
             <img src="/static/img/planes/{{ plane.0 }}/{{ plane.0 }}_{{ plane.1 }}.svg" alt="{{ plane.0 }}_{{ plane.1 }}">
+            {% endif %}
             {% endfor %}
         </div>
     </div>
@@ -692,7 +699,14 @@
 
         <div class="box__modalGrid">
             {% for plane in rare_list %}
+            {% if plane.2 %}
+            <div class="profile__top-left">
+                <img src="/static/redesign/img/events/gold_1000.svg" class="profile__ava-border">
+                <img src="/static/img/planes/{{ plane.0 }}/{{ plane.0 }}_{{ plane.1 }}.svg" alt="{{ plane.0 }}_{{ plane.1 }}" style="opacity: 0.5;">
+            </div>
+            {% else %}
             <img src="/static/img/planes/{{ plane.0 }}/{{ plane.0 }}_{{ plane.1 }}.svg" alt="{{ plane.0 }}_{{ plane.1 }}">
+            {% endif %}
             {% endfor %}
         </div>
     </div>
@@ -709,7 +723,14 @@
         <div class="box__modalGrid">
             {% for plane in common_list %}
                 {% if not plane.0 == 'beluzzo' %}
+            {% if plane.2 %}
+            <div class="profile__top-left">
+                <img src="/static/redesign/img/events/gold_500.svg" class="profile__ava-border">
+                <img src="/static/img/planes/{{ plane.0 }}/{{ plane.0 }}_{{ plane.1 }}.svg" alt="{{ plane.0 }}_{{ plane.1 }}" style="opacity: 0.5;">
+            </div>
+            {% else %}
             <img src="/static/img/planes/{{ plane.0 }}/{{ plane.0 }}_{{ plane.1 }}.svg" alt="{{ plane.0 }}_{{ plane.1 }}">
+            {% endif %}
                 {% endif %}
             {% endfor %}
         </div>

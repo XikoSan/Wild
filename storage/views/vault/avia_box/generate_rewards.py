@@ -10,7 +10,9 @@ from player.player import Player
 from region.models.plane import Plane
 from player.logs.gold_log import GoldLog
 
-def prepare_plane_lists(quality='common'):
+def prepare_plane_lists(player, quality='common'):
+
+    planes = Plane.objects.filter(player=player)
 
     common_colors = [
         'base',
@@ -34,7 +36,10 @@ def prepare_plane_lists(quality='common'):
                 continue
 
             if color in locals()[f'{quality}_colors']:
-                ret_list.append([plane, color])
+                if planes.filter(plane=plane, color=color).exists():
+                    ret_list.append([plane, color, True])
+                else:
+                    ret_list.append([plane, color, False])
 
     return ret_list
 
@@ -58,12 +63,9 @@ def generate_rewards(player, garant=False):
             weights = [50, 3, 0.1, ]
             reward_val = random.choices([1000, 3000, 100000, ], weights=weights)[0]
 
-        from player.logs.print_log import log
-        log(weights)
-
     else:
         weights = []
-        reward_list = prepare_plane_lists(nagrada)
+        reward_list = prepare_plane_lists(player, nagrada)
 
         for reward_plane in reward_list:
             if reward_plane[0] == 'beluzzo':
