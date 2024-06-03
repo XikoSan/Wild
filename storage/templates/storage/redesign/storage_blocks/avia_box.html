@@ -272,9 +272,9 @@
                                     d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)" />
                             </g>
                         </svg>
-                        <span>4500 G</span>
+                        <span>{% if 4500 in sold_packs %}5 000{% else %}4 500{% endif %} G</span>
                     </button>
-                    <p class="box__sale">скидка: <span>G 500</span></p>
+                    {% if not 4500 in sold_packs %}<p class="box__sale">скидка: <span>G 500</span></p>{% endif %}
                 </div>
             </li>
 
@@ -299,9 +299,9 @@
                                     d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)" />
                             </g>
                         </svg>
-                        <span>8500 G</span>
+                        <span>{% if 8500 in sold_packs %}10 000{% else %}8 500{% endif %} G</span>
                     </button>
-                    <p class="box__sale">скидка: <span>G 1500</span></p>
+                    {% if not 8500 in sold_packs %}<p class="box__sale">скидка: <span>G 1500</span></p>{% endif %}
                 </div>
             </li>
 
@@ -326,9 +326,9 @@
                                     d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)" />
                             </g>
                         </svg>
-                        <span>45 000 G</span>
+                        <span>{% if 45000 in sold_packs %}50 000{% else %}45 000{% endif %} G</span>
                     </button>
-                    <p class="box__sale">скидка: <span>G 5 000</span></p>
+                    {% if not 45000 in sold_packs %}<p class="box__sale">скидка: <span>G 5 000</span></p>{% endif %}
                 </div>
             </li>
 
@@ -353,9 +353,9 @@
                                     d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)" />
                             </g>
                         </svg>
-                        <span>85 000 G</span>
+                        <span>{% if 85000 in sold_packs %}100 000{% else %}85 000{% endif %} G</span>
                     </button>
-                    <p class="box__sale">скидка: <span>G 15 000</span></p>
+                    {% if not 85000 in sold_packs %}<p class="box__sale">скидка: <span>G 15 000</span></p>{% endif %}
                 </div>
             </li>
         </ul>

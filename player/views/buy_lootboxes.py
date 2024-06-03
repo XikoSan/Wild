@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from django.utils import translation
 from django.utils.translation import ugettext as _
-
+import pytz
 from player.decorators.player import check_player
 from player.logs.gold_log import GoldLog
 from player.lootbox.lootbox import Lootbox
@@ -70,6 +70,18 @@ def buy_lootboxes(request):
 
         if buy_count == 100:
             buy_cost = 85000
+
+        # -----------------------------------
+        date_msk = datetime(2024, 6, 2, 22, 0, 0)
+        timezone_msk = pytz.timezone('Europe/Moscow')
+        date_msk = timezone_msk.localize(date_msk)
+
+        # проверем покупали ли большие ящики
+        if GoldLog.objects.filter(player=player, activity_txt='boxes', gold=0-buy_cost,
+                                  dtime__gt=date_msk).exists():
+            buy_cost = buy_count * 1000
+
+        # -----------------------------------
 
         if player.gold < buy_cost:
             data = {
