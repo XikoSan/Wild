@@ -23,6 +23,14 @@ from math import ceil
 @check_player
 def buy_lootboxes(request):
     if request.method == "POST":
+
+        data = {
+            'response': 'Возможность покупать Аэрокейсы времена остановлена',
+            'header': 'Приобретение сундуков',
+            'grey_btn': _('Закрыть'),
+        }
+        return JResponse(data)
+
         # получаем персонажа игрока
         player = Player.get_instance(account=request.user)
 
