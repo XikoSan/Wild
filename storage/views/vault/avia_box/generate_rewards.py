@@ -51,8 +51,8 @@ def generate_rewards(player, garant=False):
         nagrada = 'epic'
 
     if nagrada == 'gold':
-        weights = [50, 3, 0.1, ]
-        reward_val = random.choices([1000, 3000, 100000, ], weights=weights)[0]
+        weights = [50, 3, 0.01, ]
+        reward_val = random.choices([1000, 300, 100000, ], weights=weights)[0]
 
     else:
         weights = []
