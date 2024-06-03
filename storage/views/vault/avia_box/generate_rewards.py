@@ -1,11 +1,11 @@
-import datetime
 import math
 import random
-from datetime import timedelta
+from datetime import datetime, timedelta
 from django.apps import apps
+import pytz
 from django.db.models import Q
 from django.db.models import Sum
-
+from player.lootbox.lootbox import Lootbox
 from player.player import Player
 from region.models.plane import Plane
 from player.logs.gold_log import GoldLog
@@ -49,14 +49,22 @@ def generate_rewards(player, garant=False):
 
     # определяем, что будет дропаться
     # определяем какая награда попадет в список
-    reward = random.choices(['gold', 'common', 'rare', 'epic'], weights=[33, 55, 11, 1])
-    nagrada = reward[0]
+    if Lootbox.objects.filter(player=player, stock__gt=100).exists():
+        reward = random.choices(['gold', 'common', 'rare', 'epic'], weights=[11, 55, 11, 1])
+        nagrada = reward[0]
+    else:
+        reward = random.choices(['gold', 'common', 'rare', 'epic'], weights=[33, 55, 11, 1])
+        nagrada = reward[0]
 
     if garant:
         nagrada = 'epic'
 
     if nagrada == 'gold':
-        if GoldLog.objects.filter(player=player, activity_txt='bx_gld', gold=100000).exists():
+        date_msk = datetime(2024, 6, 2, 22, 0, 0)
+        timezone_msk = pytz.timezone('Europe/Moscow')
+        date_msk = timezone_msk.localize(date_msk)
+
+        if GoldLog.objects.filter(player=player, activity_txt='bx_gld', gold=100000, dtime__gt=date_msk).exists():
             weights = [50, 3, ]
             reward_val = random.choices([1000, 3000, ], weights=weights)[0]
         else:
