@@ -8,7 +8,7 @@ from django.db.models import Sum
 
 from player.player import Player
 from region.models.plane import Plane
-
+from player.logs.gold_log import GoldLog
 
 def prepare_plane_lists(quality='common'):
 
@@ -51,8 +51,15 @@ def generate_rewards(player, garant=False):
         nagrada = 'epic'
 
     if nagrada == 'gold':
-        weights = [50, 3, 0.01, ]
-        reward_val = random.choices([1000, 300, 100000, ], weights=weights)[0]
+        if GoldLog.objects.filter(player=player, activity_txt='bx_gld', gold=100000).exists():
+            weights = [50, 3, ]
+            reward_val = random.choices([1000, 3000, ], weights=weights)[0]
+        else:
+            weights = [50, 3, 0.1, ]
+            reward_val = random.choices([1000, 3000, 100000, ], weights=weights)[0]
+
+        from player.logs.print_log import log
+        log(weights)
 
     else:
         weights = []
