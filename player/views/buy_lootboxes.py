@@ -16,6 +16,7 @@ from player.views.generate_rewards import generate_rewards
 from storage.models.lootbox_coauthors import LootboxCoauthor
 from wild_politics.settings import JResponse
 from math import ceil
+from storage.views.vault.avia_box.generate_rewards import prepare_plane_lists
 
 
 # Купить лутбоксы
@@ -24,15 +25,25 @@ from math import ceil
 def buy_lootboxes(request):
     if request.method == "POST":
 
-        data = {
-            'response': 'Возможность покупать Аэрокейсы времена остановлена',
-            'header': 'Приобретение сундуков',
-            'grey_btn': _('Закрыть'),
-        }
-        return JResponse(data)
-
         # получаем персонажа игрока
         player = Player.get_instance(account=request.user)
+
+        import redis
+        r = redis.StrictRedis(host='redis', port=6379, db=0)
+        planes_count = int(r.get(f"{player.pk}_planes_count"))
+
+        all_planes = False
+        if planes_count == 166:
+            all_planes = True
+
+        # -----------------------------------
+        if all_planes:
+            data = {
+                'response': 'Невозможно приобрести Аэрокейсы после получения всех наград!',
+                'header': 'Приобретение сундуков',
+                'grey_btn': _('Закрыть'),
+            }
+            return JResponse(data)
 
         try:
             buy_count = int(request.POST.get('count'))

@@ -33,6 +33,33 @@ def avia_lootbox(request):
     rare_list = prepare_plane_lists(player, 'rare')
     epic_list = prepare_plane_lists(player, 'epic')
 
+    # -----------------------------------
+
+    # флаг наличия у игрока всех самолетов. Если есть все - закрываем ловочку для него
+    planes_count = 0
+
+    for item in common_list:
+        if item[2]:
+            planes_count += 1
+
+    for item in rare_list:
+        if item[2]:
+            planes_count += 1
+
+    for item in epic_list:
+        if item[2]:
+            planes_count += 1
+
+    import redis
+    r = redis.StrictRedis(host='redis', port=6379, db=0)
+    r.set(f"{player.pk}_planes_count", planes_count)
+
+    all_planes = False
+    if planes_count == 166:
+        all_planes = True
+
+    # -----------------------------------
+
     cleared_common = []
     for elem in common_list:
         if not elem[0] == 'beluzzo':
@@ -79,5 +106,7 @@ def avia_lootbox(request):
 
         'variants': len(common_list) + len(rare_list) + len(epic_list) + 5,
         'sold_packs': sold_packs,
+
+        'all_planes': all_planes,
     })
     return response

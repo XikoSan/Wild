@@ -27,11 +27,19 @@ def loot_aviaboxes(request):
         # получаем персонажа игрока
         player = Player.get_instance(account=request.user)
 
+        import redis
+        r = redis.StrictRedis(host='redis', port=6379, db=0)
+
         if LootboxPrize.objects.filter(player=player, deleted=False).exists():
             for prize in LootboxPrize.objects.filter(player=player, deleted=False):
                 if not Plane.objects.filter(player=player, plane=prize.plane, color=prize.color).exists():
                     plane = Plane(player=player, plane=prize.plane, color=prize.color)
                     plane.save()
+
+                    if r.exists(f"{player.pk}_planes_count"):
+                        r.set(f"{player.pk}_planes_count", int(r.get(f"{player.pk}_planes_count")) + 1)
+                    else:
+                        r.set(f"{player.pk}_planes_count", 1)
 
             LootboxPrize.objects.filter(player=player).update(deleted=True)
 

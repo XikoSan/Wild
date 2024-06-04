@@ -50,7 +50,7 @@ def generate_rewards(player, garant=False):
     # определяем, что будет дропаться
     # определяем какая награда попадет в список
     if Lootbox.objects.filter(player=player, stock__gt=100).exists():
-        reward = random.choices(['gold', 'common', 'rare', 'epic'], weights=[11, 55, 11, 1])
+        reward = random.choices(['gold', 'common', 'rare', 'epic'], weights=[11, 55, 5, 1])
         nagrada = reward[0]
     else:
         reward = random.choices(['gold', 'common', 'rare', 'epic'], weights=[33, 55, 11, 1])
