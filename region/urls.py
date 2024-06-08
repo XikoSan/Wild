@@ -13,6 +13,7 @@ from .views.mining import mining
 from .views.retrieve_cash import retrieve_cash
 from .views.daily_status import daily_status
 from region.views.map.save_links import save_links
+from region.views.map.plane_info import plane_info
 
 urlpatterns = [
 
@@ -34,6 +35,8 @@ urlpatterns = [
     url(r'^map$', map, name='map'),
     # информация о регионе:
     url(r'^info/region/(?P<id>[A-Z]+-[A-Z]+)$', region_info, name='region_info'),
+    # информация о самолёте:
+    url(r'^info/plane/(?P<id>\d+)$', plane_info, name='region_info'),
 
     # открыть страницу региона
     url(r'^region/(?P<pk>\d+)/$', open_region, name='open_region'),

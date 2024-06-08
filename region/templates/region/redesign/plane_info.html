@@ -1,0 +1,33 @@
+{% load static %}
+{% load dict_key %}
+{% load get_type %}
+{% load tz %}
+{% load redesign.template_svg.nopic %}
+{% load l10n %}{% load i18n %}
+<img src="/static/img/planes/{{ plane.plane }}/{{ plane.plane }}_{{ plane.color }}.svg" class='map__infoRotateImg'>
+
+<div class="map__info-mid-text">
+  <p>{{ player.nickname }}</p>
+
+  <div style="display: flex; justify-content: space-around;">
+    <p>{% if plane.nickname %} {{ plane.nickname }} {% else %}{{ plane.get_plane_display }} {{ plane.get_color_display }}{% endif %}</p>
+    <p style="margin-left: 10rem;{% if plane.number %} color: #eb9929;{% endif %}">№ {% if plane.number %}{{ plane.number }}{% else %}{{ plane.pk }}{% endif %}</p>
+  </div>
+
+  <p>
+    {% if player.destination %}
+    <img src="static/img/regions/{{ player.destination.on_map_id }}.png">
+   {{ player.destination.region_name }}
+
+    {% else %}
+    <img src="static/img/regions/{{ player.region.on_map_id }}.png">
+   {{ player.region.region_name }}
+
+    {% endif %}
+  </p>
+</div>
+
+{% if player.image %}
+<img src="{{ player.image.url }}">
+{% else %}{% nopic player 'profile__ava' %}
+{% endif %}

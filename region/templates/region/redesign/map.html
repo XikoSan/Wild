@@ -282,6 +282,11 @@
 
     </div>
 
+      <!--НИЖНЯЯ ИНФО ПЛАШКА-->
+      <div id="plane_info" class="map__info map__info--fly" style="z-index: 1000; display: none;">
+
+      </div>
+
 	</section>
 
 {% endblock %}
@@ -405,6 +410,7 @@ function addMarker(coordinates) {
            for (i = 0; i < region_infos.length; i++) {
                region_infos[i].remove();
            }
+           document.getElementById('plane_info').style.display = "none";
 
            var div = document.createElement('div');
            div.className = 'region_info';
@@ -422,6 +428,34 @@ function addMarker(coordinates) {
        }
      });
  }
+
+ function get_plane_info(id) {
+     $.ajax({
+       type: "GET",
+       url: "info/plane/"+id,
+       dataType: "html",
+       cache: false,
+       success: function(data){
+
+           region_infos = document.getElementsByClassName("region_info");
+           for (i = 0; i < region_infos.length; i++) {
+               region_infos[i].remove();
+           }
+          document.getElementById('plane_info').style.display = "none";
+
+           var div = document.getElementById('plane_info').cloneNode(true);
+           div.className = div.className + ' region_info';
+           div.id = 'plane_' + id + '_info';
+
+           div.innerHTML = data;
+           div.style.display = "flex";
+
+           insertAfter(div, document.getElementById('plane_info'));
+           document.getElementById('plane_info').style.display = "flex";
+       }
+     });
+ }
+
      bounds = new L.LatLngBounds(new L.LatLng(90, 200), new L.LatLng(-90, -200));
         {% with map_shape=shapes_dict|dict_key:player.region.pk %}
      var mymap = L.map('mapid', { zoomControl: false, maxBounds: bounds, maxBoundsViscosity: 1.0, minZoom: 2 }).setView([{{ player.region.latitude }}, {{ player.region.longitude }}], {{ map_shape.zoom }});
@@ -473,13 +507,12 @@ function addMarker(coordinates) {
 	{% endif %}
   });
 
-  {% endlocalize %}
-
-  var planeMarker = L.rotatedMarker(startCoords, { icon: planeIcon, rotationAngle: angle });
+  var planeMarker = L.rotatedMarker(startCoords, { icon: planeIcon, rotationAngle: angle }).on('click', function() { get_plane_info({{ player.id }}); });
   planeMarkers.addLayer(planeMarker);
 
   animateFlight(planeMarker, startCoords, endCoords, duration-estimate);
 
+  {% endlocalize %}
  {% endif %}
 
   {% if others_coords %}
