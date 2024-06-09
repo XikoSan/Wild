@@ -546,7 +546,7 @@ function addMarker(coordinates) {
     });
     {% endlocalize %}
 
-    var char_{% localize off %}{{ char }}{% endlocalize %}_planeMarker = L.rotatedMarker(char_{% localize off %}{{ char }}{% endlocalize %}_startCoords, { icon: char_{% localize off %}{{ char }}{% endlocalize %}_planeIcon, rotationAngle: char_{% localize off %}{{ char }}{% endlocalize %}_angle });
+    var char_{% localize off %}{{ char }}{% endlocalize %}_planeMarker = L.rotatedMarker(char_{% localize off %}{{ char }}{% endlocalize %}_startCoords, { icon: char_{% localize off %}{{ char }}{% endlocalize %}_planeIcon, rotationAngle: char_{% localize off %}{{ char }}{% endlocalize %}_angle }).on('click', function() { get_plane_info({{ char }}); });;
     planeMarkers.addLayer(char_{% localize off %}{{ char }}{% endlocalize %}_planeMarker);
 
     animateFlight(char_{% localize off %}{{ char }}{% endlocalize %}_planeMarker, char_{% localize off %}{{ char }}{% endlocalize %}_startCoords, char_{% localize off %}{{ char }}{% endlocalize %}_endCoords, char_{% localize off %}{{ char }}{% endlocalize %}_duration-char_{% localize off %}{{ char }}{% endlocalize %}_estimate);
