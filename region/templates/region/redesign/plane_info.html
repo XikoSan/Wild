@@ -9,10 +9,12 @@
 <div class="map__info-mid-text">
   <p>{{ player.nickname }}</p>
 
+    {% if plane %}
   <div style="display: flex; justify-content: space-around;">
     <p>{% if plane.nickname %} {{ plane.nickname }} {% else %}{{ plane.get_plane_display }} {{ plane.get_color_display }}{% endif %}</p>
     <p style="margin-left: 10rem;{% if plane.number %} color: #eb9929;{% endif %}">№ {% if plane.number %}{{ plane.number }}{% else %}{{ plane.pk }}{% endif %}</p>
   </div>
+    {% endif %}
 
   <p>
     {% if player.destination %}
@@ -29,5 +31,5 @@
 
 {% if player.image %}
 <img src="{{ player.image.url }}">
-{% else %}{% nopic player 'profile__ava' %}
+{% else %}{% nopic player '' 'width: 60rem;	height: 60rem;' %}
 {% endif %}

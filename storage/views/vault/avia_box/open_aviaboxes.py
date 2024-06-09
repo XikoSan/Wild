@@ -64,14 +64,16 @@ def open_aviaboxes(request):
 
             LootboxPrize.objects.filter(player=player, deleted=False).update(deleted=True)
 
-        if not mode == 'rerun' \
-                and not Lootbox.objects.filter(player=player, stock__gt=0).exists():
-            data = {
-                'response': 'У вас нет Аэрокейсов',
-                'header': 'Открытие Аэрокейсов',
-                'grey_btn': _('Закрыть'),
-            }
-            return JResponse(data)
+        if not mode == 'rerun':
+            if not Lootbox.objects.filter(player=player, stock__gt=0).exists():
+                data = {
+                    'response': 'У вас нет Аэрокейсов',
+                    'header': 'Открытие Аэрокейсов',
+                    'grey_btn': _('Закрыть'),
+                }
+                return JResponse(data)
+
+        lootboxes = Lootbox.objects.get(player=player)
 
         try:
             open_count = int(request.POST.get('count'))
@@ -84,15 +86,14 @@ def open_aviaboxes(request):
             }
             return JResponse(data)
 
-        lootboxes = Lootbox.objects.get(player=player)
-
-        if open_count > lootboxes.stock:
-            data = {
-                'response': 'Недостаточно Аэрокейсов для открытия',
-                'header': 'Открытие Аэрокейсов',
-                'grey_btn': _('Закрыть'),
-            }
-            return JResponse(data)
+        if not mode == 'rerun':
+            if open_count > lootboxes.stock:
+                data = {
+                    'response': 'Недостаточно Аэрокейсов для открытия',
+                    'header': 'Открытие Аэрокейсов',
+                    'grey_btn': _('Закрыть'),
+                }
+                return JResponse(data)
 
         prizes = []
 
