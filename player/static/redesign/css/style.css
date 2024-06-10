@@ -1135,6 +1135,32 @@ a {
 	margin-bottom: 24rem;
 }
 
+.avabord__subtitle {
+	display: flex;
+	gap: 6rem;
+	align-items: center;
+	font-size: 16px;
+	text-transform: uppercase;
+	letter-spacing: 3px;
+	padding: 0 12rem;
+	max-width: 800rem;
+	margin: 36rem auto 12rem;
+	font-weight: 400;
+}
+
+.avabord__subtitle::before,
+.avabord__subtitle::after {
+	flex-grow: 1;
+	display: block;
+	height: 1px;
+	content: '';
+	background-image: linear-gradient(to right, transparent, var(--c10one));
+}
+
+.avabord__subtitle::after {
+	background-image: linear-gradient(to left, transparent, var(--c10one));
+}
+
 .avabord__grid,
 .avabord__gridFly {
 	display: grid;
@@ -8564,7 +8590,7 @@ p.overview__love-stat-timer {
 .box__modalGrid img {
 	object-fit: contain;
 	object-position: center;
-    width: 100%;
+	width: 100%;
 	height: 100%;
 }
 

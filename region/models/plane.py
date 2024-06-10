@@ -186,6 +186,18 @@ class Plane(models.Model):
         choices=planesChoices,
     )
 
+    common_colors = [
+        'base',
+        'red', 'yellow', 'orange',
+        'green', 'dark_blue', 'light_blue',
+        'violet',
+    ]
+
+    rare_colors = [
+        'black', 'pink', 'green_white_cam', 'green_cam', 'blue_cam', 'desert_cam', 'pobeda', 'airball',
+        'corny', 'redline', 'standard', 'hexagon', 'white_cam',
+    ]
+
     gold_colors = ['gold', 'black_gold', 'wood']
 
     color = models.CharField(

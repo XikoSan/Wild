@@ -14,18 +14,8 @@ def prepare_plane_lists(player, quality='common'):
 
     planes = Plane.objects.filter(player=player)
 
-    common_colors = [
-        'base',
-        'red', 'yellow', 'orange',
-        'green', 'dark_blue', 'light_blue',
-        'violet',
-    ]
-
-    rare_colors = [
-        'black', 'pink', 'green_white_cam', 'green_cam', 'blue_cam', 'desert_cam', 'pobeda', 'airball',
-        'corny', 'redline', 'standard', 'hexagon', 'white_cam',
-    ]
-
+    common_colors = Plane.common_colors
+    rare_colors = Plane.rare_colors
     epic_colors = Plane.gold_colors
 
     ret_list = []

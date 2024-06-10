@@ -5,16 +5,29 @@
 {% load redesign.wallet_locks %}
 {% load redesign.wallet_cash %}
 {% load tz %}
+{% load get_sum %}
+{% load dict_key %}
+
 {% block content %}
 <section class="avabord custom-scroll">
     <h1 class="avabord__title ct__page-title">Выбор авиации</h1>
+    {% for rarity in rarity_list %}
+
+    {% with rarity|get_sum:'_list' as list_name %}
+    {% with lists|dict_key:list_name as list %}
+
+    {% if rarity == 'common' or list %}
+
+    <h2 class='avabord__subtitle'>{% if rarity == 'common' %}ОБЫЧНЫЕ{% elif rarity == 'rare' %}ОСОБЫЕ{% else %}УНИКАЛЬНЫЕ{% endif %}</h2>
     <ul class="avabord__gridFly avabord__grid--noborder">
+        {% if rarity == 'common' %}
         <li>
-            <button class='avabord__flyButton {% if not planes or not used %}active{% endif %}' data-id="0">
+            <button class='avabord__flyButton {% if not list or not used %}active{% endif %}' data-id="0">
                 <img src="/static/img/planes/nagger/nagger_base.svg" alt="nagger_base">
             </button>
         </li>
-        {% for plane in planes %}
+        {% endif %}
+        {% for plane in list %}
         <li>
             <button class="avabord__flyButton {% if plane == used %}active{% endif %}" data-id="{% localize off %}{{ plane.pk }}{% endlocalize %}">
                 <img src="/static/img/planes/{{ plane.plane }}/{{ plane.plane }}_{{ plane.color }}.svg" alt="{{ plane.plane }}_{{ plane.color }}">
@@ -31,6 +44,12 @@
         </li>
         {% endfor %}
     </ul>
+    {% endif %}
+
+    {% endwith %}
+    {% endwith %}
+
+    {% endfor %}
 </section>
 
 <div class="avabord__inputPopup">

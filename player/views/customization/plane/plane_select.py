@@ -24,8 +24,13 @@ def plane_select(request):
 
         LootboxPrize.objects.filter(player=player, deleted=False).update(deleted=True)
 
-    planes = None
     used = None
+
+    lists = {
+        'common_list': [],
+        'rare_list': [],
+        'epic_list': [],
+    }
 
     if Plane.objects.filter(player=player).exists():
         planes = Plane.objects.filter(player=player).order_by('plane')
@@ -33,11 +38,26 @@ def plane_select(request):
         if planes.filter(in_use=True).exists():
             used = planes.get(in_use=True)
 
+        rare_colors = Plane.rare_colors
+        epic_colors = Plane.gold_colors
+
+        for plane in planes:
+
+            if plane.color in epic_colors:
+                lists['epic_list'].append(plane)
+
+            elif plane.color in rare_colors:
+                lists['rare_list'].append(plane)
+
+            else:
+                lists['common_list'].append(plane)
 
     return render(request, 'player/redesign/customization/plane_select.html', {
                                                             'page_name': _('Выбор авиации'),
                                                             'player': player,
-                                                            'planes': planes,
+
+                                                            'rarity_list': ['epic', 'rare', 'common' ],
+                                                            'lists': lists,
                                                             'used': used,
 
                                                             'golds': Plane.gold_colors,
