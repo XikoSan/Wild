@@ -4,7 +4,11 @@
 {% load tz %}
 {% load redesign.template_svg.nopic %}
 {% load l10n %}{% load i18n %}
+{% if plane %}
 <img src="/static/img/planes/{{ plane.plane }}/{{ plane.plane }}_{{ plane.color }}.svg" class='map__infoRotateImg'>
+{% else %}
+<img src="/static/img/planes/nagger/nagger_base.svg" class='map__infoRotateImg'>
+{% endif %}
 
 <div class="map__info-mid-text">
   <p>{{ player.nickname }}</p>
