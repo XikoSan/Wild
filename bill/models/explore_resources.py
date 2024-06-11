@@ -41,7 +41,7 @@ class ExploreResources(Bill):
     # объем разведки
     exp_value = models.DecimalField(default=00.00, max_digits=5, decimal_places=2, verbose_name='Объем разведки')
     # стоимость разведки за один пункт
-    exp_price = 100
+    exp_price = 1000
 
     @staticmethod
     def new_bill(request, player, parliament):

@@ -37,7 +37,7 @@
     <!--видно на только пк-->
     <td class="gover__tableDopInfo">
         <span>
-            {% trans 'Наличные' context "goods" %}: {{ res_cap_val|get_diff:res_hap_val|get_mul:100|get_mul:exp_mul }}
+            {% trans 'Наличные' context "goods" %}: {{ res_cap_val|get_diff:res_hap_val|get_mul:1000|get_mul:exp_mul }}
         </span>
     </td>
                     {% endwith %}
