@@ -37,7 +37,7 @@ def daily_status(request):
         if endurance > 100:
             endurance = 100
 
-        daily_limit = 15000 + (power * 100) + (knowledge * 100) + (endurance * 100)
+        daily_limit = 20000 + (power * 100) + (knowledge * 100) + (endurance * 100)
 
         # ------------------
 

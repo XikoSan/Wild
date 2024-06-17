@@ -53,7 +53,7 @@ def mining(request):
     else:
         end_earn = endurance * 100
 
-    daily_limit = 15000 + pwr_earn + int_earn + end_earn
+    daily_limit = 20000 + pwr_earn + int_earn + end_earn
 
     # ------------------
 
