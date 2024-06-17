@@ -335,6 +335,23 @@ def overview(request):
     #         log(f'цикл {loop+1}, выпало золота: {reward_sum}, всего: {total_reward_sum}')
     #     log(f'-----------------------------')
 
+    # from region.views.map.gold_index import form_development_top
+    # form_development_top()
+
+    from region.views.find_route import find_route
+    # from player.logs.print_log import log
+    #
+    # region_1 = Region.objects.get(pk=2)
+    # region_2 = Region.objects.get(pk=54)
+    # # excluded_regions = [Region.objects.get(id=40), Region.objects.get(id=5), Region.objects.get(id=17)]
+    # excluded_regions = []
+    #
+    # path, total_distance = find_route(region_1, region_2, excluded_regions)
+    # if path:
+    #     log(" -> ".join([str(region) for region in path]))
+    #     log(f"Стоимость: {total_distance} $")
+    # else:
+    #     log("Path not found")
 
 
     assistant_name = ('Ann', 'Анна')
