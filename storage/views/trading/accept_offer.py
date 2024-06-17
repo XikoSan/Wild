@@ -25,6 +25,7 @@ from player.views.get_subclasses import get_subclasses
 from storage.models.stock import Stock
 from storage.models.good import Good
 from region.building.infrastructure import Infrastructure
+from region.views.find_route import find_route
 
 
 @login_required(login_url='/')
@@ -212,7 +213,8 @@ def accept_offer(request):
             return JsonResponse(data)
 
         # считаем доставку
-        trans_mul = math.ceil(distance_counting(storage.region, offer.owner_storage.region) / 100)
+        # trans_mul = math.ceil(distance_counting(storage.region, offer.owner_storage.region) / 100)
+        path, trans_mul = find_route(storage.region, offer.owner_storage.region)
 
         src_infr = Infrastructure.indexes[Infrastructure.get_stat(storage.region)[0]['top']]
 

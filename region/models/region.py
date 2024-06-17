@@ -5,6 +5,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy, pgettext_lazy, ugettext as _
+from math import radians, sin, cos, sqrt, atan2
 
 from region.actual_manager import ActualManager
 from region.models.terrain.terrain import Terrain
@@ -146,6 +147,24 @@ class Region(models.Model):
 
     # срок истечения мирного времени
     peace_date = models.DateTimeField(default=timezone.now, blank=True, verbose_name='Мирное время, до')
+
+    def distance_to(self, other_region):
+        # Calculate distance using Haversine formula
+        R = 6371.0  # Earth radius in kilometers
+
+        lat1 = radians(self.latitude)
+        lon1 = radians(self.longitude)
+        lat2 = radians(other_region.latitude)
+        lon2 = radians(other_region.longitude)
+
+        dlon = lon2 - lon1
+        dlat = lat2 - lat1
+
+        a = sin(dlat / 2) ** 2 + cos(lat1) * cos(lat2) * sin(dlon / 2) ** 2
+        c = 2 * atan2(sqrt(a), sqrt(1 - a))
+
+        distance = R * c
+        return distance
 
     # сохранение профиля с изменением размеров и названия картинки профиля
     def save(self):
