@@ -82,7 +82,7 @@
                 )
 
             need_val = parseFloat(total_stocks[document.getElementById('explore_resources_default_region').dataset.value][$('#explore_resources').val()+'_cap']) - parseFloat(total_stocks[document.getElementById('explore_resources_default_region').dataset.value][$('#explore_resources').val()+'_has'])
-            need_sum = parseInt((need_val).toFixed(2) * 100) * multiplier
+            need_sum = parseInt((need_val).toFixed(2) * 1000) * multiplier
             $('#explore_sum').html(numberWithSpaces(need_sum))
 
             $('#explore_res_line').show();
@@ -114,7 +114,7 @@
                 )
 
                 need_val = parseFloat(total_stocks[document.getElementById('explore_resources_default_region').dataset.value][$(e.target).val()+'_cap']) - parseFloat(total_stocks[document.getElementById('explore_resources_default_region').dataset.value][$(e.target).val()+'_has'])
-                need_sum = parseInt((need_val).toFixed(2) * 100) * multiplier
+                need_sum = parseInt((need_val).toFixed(2) * 1000) * multiplier
                 $('#explore_sum').html(numberWithSpaces(need_sum))
 
                 $('#explore_res_line').show();
