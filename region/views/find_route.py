@@ -73,4 +73,4 @@ def find_route(start_region, end_region, excluded_regions=None, price=1):
                 distances_from_start[next_region_id] = new_cost
                 heapq.heappush(queue, (new_cost, next_region_id, path))
 
-    return [], None  # Если путь не найден, возвращаем пустой список и нулевое расстояние
+    return [], 30  # Если путь не найден, возвращаем пустой список и нулевое расстояние

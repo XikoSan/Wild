@@ -338,7 +338,7 @@ def overview(request):
     # from region.views.map.gold_index import form_development_top
     # form_development_top()
 
-    from region.views.find_route import find_route
+    # from region.views.find_route import find_route
     # from player.logs.print_log import log
     #
     # region_1 = Region.objects.get(pk=2)
