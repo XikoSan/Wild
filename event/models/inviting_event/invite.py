@@ -5,10 +5,13 @@ from django.apps import apps
 from event.models.inviting_event.cash_event import CashEvent
 from django.db.models import F
 from player.player import Player
-
+from event.models.inviting_event.cash_event import CashEvent
 
 # приглашение
 class Invite(models.Model):
+    # событие
+    event = models.ForeignKey(CashEvent, on_delete=models.CASCADE, blank=False, default=1, related_name='related_event',
+                               verbose_name='Событие')
     # игрок
     sender = models.ForeignKey(Player, on_delete=models.CASCADE, blank=False, related_name='sender',
                                verbose_name='Пригласивший')

@@ -329,10 +329,14 @@ class Player(models.Model):
 
         if CashEvent.objects.filter(running=True, event_start__lt=timezone.now(),
                                         event_end__gt=timezone.now()).exists():
+
+            event = CashEvent.objects.get(running=True, event_start__lt=timezone.now(),
+                                          event_end__gt=timezone.now())
+
             cursor = connection.cursor()
 
             cursor.execute(
-                f'SELECT event_invite.sender_id,SUM(player_player.endurance+player_player.knowledge+player_player.power-event_invite.exp)AS total_stats FROM public.event_invite INNER JOIN public.player_player ON event_invite.invited_id=player_player.id WHERE sender_id = {self.pk} GROUP BY event_invite.sender_id ORDER BY total_stats DESC limit 10;')
+                f'SELECT event_invite.sender_id,SUM(player_player.endurance+player_player.knowledge+player_player.power-event_invite.exp)*2 AS total_stats FROM public.event_invite INNER JOIN public.player_player ON event_invite.invited_id=player_player.id WHERE sender_id = {self.pk} and event_id = {event.id} GROUP BY event_invite.sender_id ORDER BY total_stats DESC limit 10;')
 
             raw_top = cursor.fetchall()
 

@@ -6,6 +6,7 @@
 {% load redesign.template_svg.nopic_list %}
 {% load get_divv %}
 {% load get_sum %}
+{% load get_mul %}
 {% load get_diff %}
 {% load dict_key %}
 
@@ -56,7 +57,7 @@
 			<h2 class="ct__s-title">Регламент события:</h2>
 			<br>
 			<p class="ct__s-text">
-				Событие пройдёт с 23.03.24 по 31.05.24
+				Событие пройдёт с 20.05.24 по 31.08.24
 			</p>
 			<br>
 			<p class="ct__s-text">
@@ -74,7 +75,7 @@
 			</p>
 			<br>
 			<p class="ct__s-text">
-				Получайте по 1% к Финансированию за каждые десять уровней Характеристик, изученных приглашёнными игроками.
+				Получайте по 2% к Финансированию за каждые десять уровней Характеристик, изученных приглашёнными игроками.
 				<br>
 				Для ранее игравших игроков бонус считается как разница между суммой Характеристик после и до возвращения в игру.
 			</p>
@@ -182,7 +183,7 @@
 					</td>
 
 				<td class="j-t-bonus" style="cursor: pointer" onclick="window.open('/profile/{% localize off %}{{ line.invited.pk }}{% endlocalize %}/')">
-					+ {{  line.invited.power|get_sum:line.invited.knowledge|get_sum:line.invited.endurance|get_diff:line.exp|get_divv:10 }}%
+					+ {{  line.invited.power|get_sum:line.invited.knowledge|get_sum:line.invited.endurance|get_diff:line.exp|get_divv:5 }}%
 				</td>
 
 				</tr>
@@ -220,7 +221,19 @@
 					</td>
 
 				<td class="j-t-bonus" style="cursor: pointer" onclick="window.open('/invited/{% localize off %}{{ line.pk }}{% endlocalize %}/')">
-					+ {{ top_dict|dict_key:line.pk|get_divv:10 }}% {% if forloop.counter0 == 0 %}, + ₽3000{% elif forloop.counter0 == 1 %}, + ₽2000{% elif forloop.counter0 == 2 %}, + ₽1000{% endif %}
+					+ {{ top_dict|dict_key:line.pk|get_divv:10 }}%
+					{% if forloop.counter0 == 0 %}, + ₽3000
+					{% elif forloop.counter0 == 1 %}, + ₽2000
+					{% elif forloop.counter0 == 2 %}, + ₽1000
+
+					{% elif forloop.counter0 == 3 %}, <p style="display: inline; color: #eb9929;">+ G10 000</p>
+					{% elif forloop.counter0 == 4 %}, <p style="display: inline; color: #eb9929;">+ G8 000</p>
+					{% elif forloop.counter0 == 5 %}, <p style="display: inline; color: #eb9929;">+ G6 000</p>
+					{% elif forloop.counter0 == 6 %}, <p style="display: inline; color: #eb9929;">+ G4 000</p>
+					{% elif forloop.counter0 == 7 %}, <p style="display: inline; color: #eb9929;">+ G2 000</p>
+					{% elif forloop.counter0 == 8 %}, <p style="display: inline; color: #eb9929;">+ G1 000</p>
+					{% elif forloop.counter0 == 9 %}, <p style="display: inline; color: #eb9929;">+ G500</p>
+					{% endif %}
 				</td>
 
 				</tr>

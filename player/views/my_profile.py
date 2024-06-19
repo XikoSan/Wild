@@ -16,6 +16,7 @@ from player.player_settings import PlayerSettings
 from article.models.article import Article
 from ava_border.models.ava_border_ownership import AvaBorderOwnership
 from region.models.plane import Plane
+from django.apps import apps
 
 
 @login_required(login_url='/')
@@ -171,6 +172,13 @@ def my_profile(request):
 
     # ---------------------
 
+    CashEvent = apps.get_model('event.CashEvent')
+
+    inviting_event = CashEvent.objects.filter(running=True, event_start__lt=timezone.now(),
+                                event_end__gt=timezone.now()).exists()
+
+    # ---------------------
+
     groups = list(player.account.groups.all().values_list('name', flat=True))
     page = 'player/profile.html'
     if 'redesign' not in groups:
@@ -204,6 +212,8 @@ def my_profile(request):
         'ava_border': ava_border,
         'png_use': png_use,
         'plane_url': plane_url,
+
+        'inviting_event': inviting_event,
 
     })
     return response

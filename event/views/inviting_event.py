@@ -27,6 +27,9 @@ def inviting_event(request):
                                     event_end__gt=timezone.now()).exists():
         return redirect('overview')
 
+    event = CashEvent.objects.get(running=True, event_start__lt=timezone.now(),
+                                    event_end__gt=timezone.now())
+
     Player = apps.get_model('player.Player')
 
     player = Player.get_instance(account=request.user)
@@ -34,7 +37,7 @@ def inviting_event(request):
     invited = False
 
     # если уже приглашен - то все
-    if Invite.objects.filter(invited=player).exists():
+    if Invite.objects.filter(invited=player, event=event).exists():
         invited = True
 
     # если играет более трех дней
@@ -49,18 +52,18 @@ def inviting_event(request):
             invited = True
 
 
-    invited_list = Invite.objects.filter(sender=player)
+    invited_list = Invite.objects.filter(sender=player, event=event)
     total_bonus = 0
     cash_reward = None
 
     for line in invited_list:
         total_bonus += ( line.invited.power + line.invited.knowledge +  + line.invited.endurance ) - line.exp
 
-    total_bonus = total_bonus // 10
+    total_bonus = total_bonus // 10 * 2
 
     cursor = connection.cursor()
 
-    cursor.execute('SELECT event_invite.sender_id,SUM(player_player.endurance+player_player.knowledge+player_player.power-event_invite.exp)AS total_stats FROM public.event_invite INNER JOIN public.player_player ON event_invite.invited_id=player_player.id GROUP BY event_invite.sender_id ORDER BY total_stats DESC limit 10;')
+    cursor.execute(f'SELECT event_invite.sender_id,SUM(player_player.endurance+player_player.knowledge+player_player.power-event_invite.exp)*2 AS total_stats FROM public.event_invite INNER JOIN public.player_player ON event_invite.invited_id=player_player.id where event_id = {event.id} GROUP BY event_invite.sender_id ORDER BY total_stats DESC limit 10;')
     raw_top = cursor.fetchall()
 
     top_pk_list = []
