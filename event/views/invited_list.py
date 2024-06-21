@@ -27,6 +27,9 @@ def invited_list(request, pk):
                                     event_end__gt=timezone.now()).exists():
         return redirect('overview')
 
+    event = CashEvent.objects.get(running=True, event_start__lt=timezone.now(),
+                                    event_end__gt=timezone.now())
+
     Player = apps.get_model('player.Player')
 
     player = Player.get_instance(account=request.user)
@@ -36,7 +39,7 @@ def invited_list(request, pk):
 
     char = Player.get_instance(pk=pk)
 
-    invited_list = Invite.objects.filter(sender=char)
+    invited_list = Invite.objects.filter(sender=char, event=event)
 
     page = 'event/invited_list.html'
     # отправляем в форму

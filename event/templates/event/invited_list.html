@@ -45,7 +45,7 @@
 				</td>
 
 			<td class="j-t-bonus" style="cursor: pointer" onclick="window.open('/profile/{% localize off %}{{ line.invited.pk }}{% endlocalize %}/')">
-				+ {{  line.invited.power|get_sum:line.invited.knowledge|get_sum:line.invited.endurance|get_diff:line.exp|get_divv:10 }}%
+				+ {{  line.invited.power|get_sum:line.invited.knowledge|get_sum:line.invited.endurance|get_diff:line.exp|get_divv:5 }}%
 			</td>
 
 			</tr>

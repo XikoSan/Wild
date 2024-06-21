@@ -221,7 +221,7 @@
 					</td>
 
 				<td class="j-t-bonus" style="cursor: pointer" onclick="window.open('/invited/{% localize off %}{{ line.pk }}{% endlocalize %}/')">
-					+ {{ top_dict|dict_key:line.pk|get_divv:10 }}%
+					+ {{ top_dict|dict_key:line.pk|get_divv:5 }}%
 					{% if forloop.counter0 == 0 %}, + ₽3000
 					{% elif forloop.counter0 == 1 %}, + ₽2000
 					{% elif forloop.counter0 == 2 %}, + ₽1000
