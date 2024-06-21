@@ -26,7 +26,7 @@
 				<div class="trading__tabs ct__top-tabs">
                 <!--Кнопка "госзакупки"-->
 <!--		      <button class="ct__top-tab ct__top-tab1 ct__mid-btn" onclick="openSearchSettingsModal()" style="cursor: pointer;">-->
-		      <button class="ct__top-tab ct__top-tab1 ct__mid-btn" onclick="window.location.href = '/auctions'" style="cursor: pointer;">
+		      <button class="ct__top-tab ct__top-tab1 ct__mid-btn" id="srch-btn" onclick="openSearchSettingsModal()" style="cursor: pointer;">
 		        <svg width="144" height="30" viewBox="0 0 144 30" fill="none" xmlns="http://www.w3.org/2000/svg">
 		          <path d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z" fill="url(#paint0_linear_6047_401)"/>
 		          <defs>
@@ -36,7 +36,7 @@
 		          </linearGradient>
 		          </defs>
 		        </svg>
-		        <span>{% trans 'госзакупки' context "trading" %}</span>
+		        <span>{% trans 'фильтры' context "trading" %}</span>
 		      </button>
               <!--Кнопка "создать"-->
 		      <button class="ct__top-tab ct__top-tab2 ct__mid-btn" onclick="toggleActiveClass('search-create')" style="cursor: pointer;">
@@ -54,7 +54,7 @@
 		      </button>
 		    </div>
 		    <!--Кнопка "настройки поиска"-->
-		    <button class="trading__search-open" id="srch-btn" onclick="openSearchSettingsModal()" style="cursor: pointer;">
+		    <button class="trading__search-open" onclick="window.location.href = '/auctions'" style="cursor: pointer;">
 		      <svg width="312" height="30" viewBox="0 0 312 30" fill="none" xmlns="http://www.w3.org/2000/svg">
 		        <path d="M0 5.76923L12.5 0H312V23.0769L297 30H0V5.76923Z" fill="url(#paint0_linear_607_4044)"/>
 		        <defs>
@@ -64,7 +64,7 @@
 		        </linearGradient>
 		        </defs>
 		      </svg>
-		      <span>{% trans 'настройки поиска' context "trading" %}</span>
+		      <span>{% trans 'государственные закупки' context "trading" %}</span>
 		    </button>
 				<!--Активные фильтры-->
 				<div class="trading__actveFilters">
@@ -76,7 +76,7 @@
 			</div>
 	    <!--Результаты поиска торговли-->
 	    <div class="trading__wrapper-overflow">
-	      <p class="trading__no-filters" id="offers_help">{% trans 'Выберите один или несколько критериев в настройках поиска' context "w_trading" %}</p>
+	      <p class="trading__no-filters" id="offers_help">{% trans 'Выберите один или несколько критериев в фильтрах' context "w_trading" %}</p>
 	      <p class="trading__no-filters" id="offers_none" style="display: none">{% trans 'Ничего не найдено' context "w_trading" %}</p>
 	      <table class="ct__js-table" style="display: none;" id="lines">
             <tbody>
