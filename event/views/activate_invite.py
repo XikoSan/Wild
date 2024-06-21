@@ -24,8 +24,29 @@ from player.logs.cash_log import CashLog
 def activate_invite(request):
     if request.method == "POST":
 
+        if not CashEvent.objects.filter(running=True, event_start__lt=timezone.now(),
+                                        event_end__gt=timezone.now()).exists():
+            data = {
+                'response': 'Событие неактивно',
+                'header': 'Активация приглашения',
+                'grey_btn': 'Закрыть',
+            }
+            return JResponse(data)
+
+        event = CashEvent.objects.get(running=True, event_start__lt=timezone.now(),
+                                      event_end__gt=timezone.now())
+
         # получаем персонажа игрока
         player = Player.get_instance(account=request.user)
+
+        # если уже приглашен - то все
+        if Invite.objects.filter(invited=player, event=event).exists():
+            data = {
+                'response': 'Игрок уже приглашен',
+                'header': 'Активация приглашения',
+                'grey_btn': 'Закрыть',
+            }
+            return JResponse(data)
 
         returned = False
 
@@ -64,7 +85,8 @@ def activate_invite(request):
         invite = Invite(
             sender=Player.get_instance(pk=sender_pk),
             invited=player,
-            exp=exp
+            exp=exp,
+            event=event,
         )
         invite.save()
 
