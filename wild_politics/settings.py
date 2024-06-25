@@ -287,7 +287,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-SESSION_COOKIE_AGE = 43200
+SESSION_COOKIE_AGE = 259200
 
 # 5 мегабайт. Нужно, чтобы загружать контуры регов
 DATA_UPLOAD_MAX_MEMORY_SIZE = 20971520
