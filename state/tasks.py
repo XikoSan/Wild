@@ -124,7 +124,7 @@ def set_mandates(pty_pk, parl_pk, places):
 
 
 # таска выключающая выборы
-@shared_task(name="finish_elections", queue='periodics')
+@shared_task(name="finish_elections")
 def finish_elections(parl_id):
     # включаем начало выборов
     parliament = Parliament.objects.get(pk=parl_id)
@@ -227,7 +227,7 @@ def finish_elections(parl_id):
         PeriodicTask.objects.filter(pk=task_id).delete()
 
 # таска включающая выборы
-@shared_task(name="start_elections", queue='periodics')
+@shared_task(name="start_elections")
 def start_elections(parl_id):
     parliament = Parliament.objects.select_related('task').prefetch_related('task__interval').only(
         'task__interval__every').get(
@@ -246,7 +246,7 @@ def start_elections(parl_id):
 
 
 # таска выключающая выборы
-@shared_task(name="finish_presidential", queue='periodics')
+@shared_task(name="finish_presidential")
 def finish_presidential(pres_id):
     # если президента нет - выходим
     if not President.objects.filter(pk=pres_id).exists():
@@ -334,7 +334,7 @@ def finish_presidential(pres_id):
 
 
 # таска включающая президентские выборы
-@shared_task(name="start_presidential", queue='periodics')
+@shared_task(name="start_presidential")
 def start_presidential(pres_id):
     president = President.objects.select_related('task').prefetch_related('task__interval').only(
         'task__interval__every').get(

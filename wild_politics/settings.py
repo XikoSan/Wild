@@ -45,21 +45,6 @@ CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
 CELERY_TASK_RESULT_EXPIRES = None
 CELERY_BROKER_TRANSPORT_OPTIONS = {'visibility_timeout': 950400}
 
-CELERY_TASK_QUEUES = {
-    'default': {
-        'exchange': 'default',
-        'exchange_type': 'direct',
-        'binding_key': 'default',
-    },
-    'new_queue': {
-        'exchange': 'periodics',
-        'exchange_type': 'direct',
-        'binding_key': 'periodics',
-    },
-}
-
-CELERY_TASK_DEFAULT_QUEUE = 'default'
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -288,6 +273,8 @@ EXCLUDED_NAMESPACES = [
     'generated',
     'confidential',
 ]
+
+USE_L10N = True
 
 USE_TZ = True
 
