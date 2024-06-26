@@ -72,6 +72,22 @@ services:
       - static:/app/static
       - media:/app/media
 
+  celery_periodics:
+    image: wildpolitics
+    restart: always
+    environment:
+      DB_PASS: ${DB_PASSWD}
+      SECRET_KEY: ${SECRET_KEY}
+    command: celery -A wild_politics worker -l info -Q periodics -n periodics
+    depends_on:
+      - db
+      - redis
+      - wildpolitics
+    volumes:
+      #- ./:/app
+      - static:/app/static
+      - media:/app/media
+
   celery_beat:
     image: wildpolitics
     restart: always

@@ -345,7 +345,7 @@ def observe_presidential_end(current_day, start, end):
 
 
 # таска выключающая праймериз
-@shared_task(name="finish_primaries")
+@shared_task(name="finish_primaries", queue='periodics')
 def finish_primaries(party_id):
     # если партии нет - выходим, а не падаем
     if not Party.objects.filter(pk=party_id).exists():
@@ -433,7 +433,7 @@ def finish_primaries(party_id):
 
 
 # таска включающая праймериз
-@shared_task(name="start_primaries")
+@shared_task(name="start_primaries", queue='periodics')
 def start_primaries(party_id):
     party = Party.objects.select_related('task').prefetch_related('task__interval').only('task__interval__every').get(
         pk=party_id)
