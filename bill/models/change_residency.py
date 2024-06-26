@@ -125,7 +125,7 @@ class ChangeResidency(Bill):
                 b_type = 'ac'
 
                 schedule, created = CrontabSchedule.objects.get_or_create(
-                    minute='*',
+                    minute=f'{timezone.now().minute}',
                     hour='*',
                     day_of_week='*',
                     day_of_month='*',
