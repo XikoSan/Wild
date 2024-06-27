@@ -62,7 +62,7 @@ services:
     environment:
       DB_PASS: ${DB_PASSWD}
       SECRET_KEY: ${SECRET_KEY}
-    command: celery -A wild_politics worker -l info
+    command: celery -A wild_politics worker -l info --concurrency=4
     depends_on:
       - db
       - redis
