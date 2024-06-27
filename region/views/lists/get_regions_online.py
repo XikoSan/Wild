@@ -56,7 +56,7 @@ def get_region_online(region):
 
         region_pop = characters_pk.count()
 
-        characters_pk = characters_pk.filter(account__last_login__gte=timezone.now()+timedelta(days=-1))
+        characters_pk = characters_pk.filter(account__last_login__gte=timezone.now()+timedelta(days=-3))
 
         if characters_pk:
             pk_list = []
