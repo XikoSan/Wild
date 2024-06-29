@@ -9,12 +9,13 @@ from django.utils import timezone
 from django.utils import translation
 from django.utils.translation import ugettext as _
 
+from event.models.inviting_event.cash_event import CashEvent
 from event.models.inviting_event.invite import Invite
 from player.decorators.player import check_player
+from player.logs.cash_log import CashLog
+from player.logs.prem_log import PremLog
 from player.player import Player
 from wild_politics.settings import JResponse
-from player.logs.prem_log import PremLog
-from player.logs.cash_log import CashLog
 
 
 # Открыть лутбоксы
@@ -53,10 +54,10 @@ def activate_invite(request):
         if request.user.date_joined + timedelta(days=3) < timezone.now():
             # если фармил последний месяц - значит активный
             if CashLog.objects.filter(
-                                        player=player,
-                                        dtime__gt=timezone.now() - timedelta(days=30),
-                                        activity_txt='daily'
-                                ).exists():
+                    player=player,
+                    dtime__gt=timezone.now() - timedelta(days=30),
+                    activity_txt='daily'
+            ).exists():
                 data = {
                     'response': '3 дня с момента регистрации прошли...',
                     'header': 'Активация приглашения',
