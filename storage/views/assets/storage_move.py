@@ -78,6 +78,9 @@ def storage_move(request):
         # если идет война за этот регион
         war_classes = get_subclasses(War)
         for war_cl in war_classes:
+            # исключение - тест войны
+            if war_cl.__name__ == 'EventWar':
+                continue
             # если есть войны за этот рег
             if war_cl.objects.filter(running=True, def_region=storage.region).exists():
                 data = {

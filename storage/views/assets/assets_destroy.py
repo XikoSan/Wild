@@ -53,23 +53,6 @@ def assets_destroy(request):
                 }
                 return JsonResponse(data)
 
-        sources_reg = []
-        for sources_pk in iv_storages_pk:
-            if storages.get(pk=sources_pk).region not in sources_reg:
-                sources_reg.append(storages.get(pk=sources_pk).region)
-
-        # классы всех типов войн
-        war_classes = get_subclasses(War)
-        for war_cl in war_classes:
-            # если есть войны за этот рег
-            if war_cl.objects.filter(running=True, def_region__in=sources_reg).exists():
-                data = {
-                    'response': pgettext('assets', 'Запрещено вывозить товары из атакованных регионов'),
-                    'header': pgettext('assets', 'Уничтожение товара'),
-                    'grey_btn': pgettext('assets', 'Закрыть'),
-                }
-                return JsonResponse(data)
-
         # список айдишников запасов, которые будем обрабатывать
         stocks_pk_list = []
         # идем по всем складам
