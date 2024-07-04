@@ -2,4 +2,4 @@ from django.apps import AppConfig
 
 
 class SkillConfig(AppConfig):
-    name = 'models'
+    name = 'skill'
