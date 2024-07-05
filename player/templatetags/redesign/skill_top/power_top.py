@@ -7,13 +7,14 @@ from player.player import Player
 
 register = template.Library()
 
-# класс игрока, с местом в рейтинге
-class PlayerWithTop(Player):
-    pk = 0
-    top = 0
+def create_temporary_player_class():
+    # класс игрока, с местом в рейтинге
+    class PPlayerWithTop(Player):
+        pk = 0
+        top = 0
 
-    class Meta:
-        abstract = True
+    return PPlayerWithTop
+
 
 
 @register.inclusion_tag('player/redesign/lists/uni_list_templatetag.html')
@@ -26,7 +27,9 @@ def power_top(request, player):
 
     for line in logs:
 
-        char = PlayerWithTop(
+        PPlayerWithTop = create_temporary_player_class()
+
+        char = PPlayerWithTop(
             nickname = line.nickname,
         )
         char.top = index

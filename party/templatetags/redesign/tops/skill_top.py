@@ -11,14 +11,14 @@ register = template.Library()
 import datetime
 
 
-# класс партии, в котором её место в топе - это поле
-class PartyWithMined(Party):
-    pk = 0
-    skill = 0
-    reward = 0
+def create_temporary_player_class():
+    # класс партии, в котором её место в топе - это поле
+    class PartyWithSkill(Party):
+        pk = 0
+        mined = 0
+        reward = 0
 
-    class Meta:
-        abstract = True
+    return PartyWithSkill
 
 
 @register.inclusion_tag('player/redesign/lists/uni_list_templatetag.html')
@@ -55,7 +55,9 @@ def skill_top(request, player):
     parties_with_size = []
 
     for party_tuple in result_list:
-        size_party = PartyWithMined(
+        PartyWithSkill = create_temporary_player_class()
+
+        size_party = PartyWithSkill(
             title = party_tuple[0].title,
             image = party_tuple[0].image,
         )

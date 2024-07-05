@@ -14,15 +14,15 @@ from django.db.models import Sum
 from metrics.models.daily_ore import DailyOre
 from metrics.models.daily_oil import DailyOil
 
+def create_temporary_player_class():
+    # класс партии, в котором её место в топе - это поле
+    class PartyWithMined(Party):
+        pk = 0
+        mined = 0
+        reward = 0
 
-# класс партии, в котором её место в топе - это поле
-class PartyWithMined(Party):
-    pk = 0
-    mined = 0
-    reward = 0
+    return PartyWithMined
 
-    class Meta:
-        abstract = True
 
 
 @register.inclusion_tag('player/redesign/lists/uni_list_templatetag.html')
@@ -53,6 +53,8 @@ def mining_top(request, player):
     parties_with_size = []
 
     for party_tuple in result_list:
+        PartyWithMined = create_temporary_player_class()
+
         size_party = PartyWithMined(
             title = party_tuple[0].title,
             image = party_tuple[0].image,
@@ -60,7 +62,11 @@ def mining_top(request, player):
         size_party.pk = party_tuple[0].pk,
 
         size_party.mined = party_tuple[1]
-        size_party.reward = int(15000 * (party_tuple[1] / (week_ore + week_oil)))
+
+        if week_ore + week_oil == 0:
+            size_party.reward = 0
+        else:
+            size_party.reward = int(15000 * (party_tuple[1] / (week_ore + week_oil)))
 
         parties_with_size.append(size_party)
 
