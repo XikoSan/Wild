@@ -127,7 +127,7 @@ class ExploreResources(Bill):
                     region=self.region,
                     resource=self.resource,
                     voting_end__gt=timezone.now() - datetime.timedelta(seconds=86400)
-                ).values('region', 'resource').order_by('region').annotate(exp_value=Coalesce(Sum('exp_value'), 0))
+                ).values('region', 'resource').order_by('region').annotate(exp_value=Coalesce(Sum('exp_value'), 0, output_field=models.DecimalField()))
 
                 if prev_bills:
                     exp_mul = int(ceil(prev_bills[0]['exp_value'] / getattr(self.region, self.resource + '_cap')))
@@ -222,7 +222,7 @@ class ExploreResources(Bill):
         prev_bills = ExploreResources.objects.filter(
             parliament=parliament,
             voting_end__gt=timezone.now() - datetime.timedelta(seconds=86400)
-        ).values('region', 'resource').order_by('region').annotate(exp_value=Coalesce(Sum('exp_value'), 0))
+        ).values('region', 'resource').order_by('region').annotate(exp_value=Coalesce(Sum('exp_value'), 0, output_field=models.DecimalField()))
 
         exploration_dict = {}
 
@@ -282,7 +282,7 @@ class ExploreResources(Bill):
             region=self.region,
             resource=self.resource,
             voting_end__gt=timezone.now() - datetime.timedelta(seconds=86400)
-        ).values('region', 'resource').order_by('region').annotate(exp_value=Coalesce(Sum('exp_value'), 0))
+        ).values('region', 'resource').order_by('region').annotate(exp_value=Coalesce(Sum('exp_value'), 0, output_field=models.DecimalField()))
 
         if prev_bills:
             exp_mul = int(ceil(prev_bills[0]['exp_value'] / getattr(self.region, self.resource + '_cap')))
