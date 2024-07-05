@@ -70,6 +70,7 @@ class ParliamentVoting(models.Model):
         PeriodicTask.objects.filter(name='Конец выборов, id парла ' + str(self.parliament.pk)).delete()
 
         self.task = PeriodicTask.objects.create(
+            enabled = True,
             name='Конец выборов, id парла ' + str(self.parliament.pk),
             task='finish_elections',
             # clocked=clock,

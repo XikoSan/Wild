@@ -111,6 +111,7 @@ class BuyAuction(models.Model):
         clock, created = ClockedSchedule.objects.get_or_create(clocked_time=start_time)
 
         self.task = PeriodicTask.objects.create(
+            enabled = True,
             name=self.__class__.__name__ + ', id ' + str(self.pk),
             task='run_auction',
             clocked=clock,

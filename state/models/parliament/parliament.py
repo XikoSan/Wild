@@ -67,6 +67,7 @@ class Parliament(models.Model):
         PeriodicTask.objects.filter(name='Начало выборов, id парла ' + str(self.pk)).delete()
 
         self.task = PeriodicTask.objects.create(
+            enabled = True,
             name='Начало выборов, id парла ' + str(self.pk),
             task='start_elections',
             crontab=schedule,

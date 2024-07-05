@@ -106,6 +106,7 @@ class Party(models.Model):
         PeriodicTask.objects.filter(name='Начало праймериз, id ' + str(self.pk)).delete()
 
         self.task = PeriodicTask.objects.create(
+            enabled = True,
             name='Начало праймериз, id ' + str(self.pk),
             task='start_primaries',
             crontab=schedule,

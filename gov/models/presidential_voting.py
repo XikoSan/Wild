@@ -78,6 +78,7 @@ class PresidentialVoting(models.Model):
         PeriodicTask.objects.filter(name='Конец выборов, id преза ' + str(self.president.pk)).delete()
 
         self.task = PeriodicTask.objects.create(
+            enabled = True,
             name='Конец выборов, id преза ' + str(self.president.pk),
             task='finish_presidential',
             crontab=schedule,

@@ -66,6 +66,7 @@ class Primaries(models.Model):
         PeriodicTask.objects.filter(name='Конец праймериз, id ' + str(self.party.pk)).delete()
 
         self.task = PeriodicTask.objects.create(
+            enabled = True,
             name='Конец праймериз, id ' + str(self.party.pk),
             task='finish_primaries',
             crontab=schedule,

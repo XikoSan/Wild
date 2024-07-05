@@ -49,6 +49,7 @@ def start_war(request):
                                                    )
 
         war.task = PeriodicTask.objects.create(
+            enabled = True,
             name=f'Война EventWar {war.pk}',
             task='war_round_task',
             # interval=schedule,
@@ -64,6 +65,7 @@ def start_war(request):
         )
 
         war.end_task = PeriodicTask.objects.create(
+            enabled = True,
             name=f'Завершение войны EventWar {war.pk}',
             task='end_war',
             clocked=clocked_schedule,

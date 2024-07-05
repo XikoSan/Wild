@@ -114,6 +114,7 @@ class AutoMining(Log):
 
 
         self.task = PeriodicTask.objects.create(
+            enabled = True,
             name=self.player.nickname + ' собирает ' + self.get_resource_display(),
             task='crude_retrieve',
             # interval=schedule,

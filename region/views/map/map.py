@@ -86,6 +86,7 @@ def map(request):
                 clock, created = ClockedSchedule.objects.get_or_create(clocked_time=start_time)
 
                 player.task = PeriodicTask.objects.create(
+                    enabled = True,
                     name=str(player.pk) + ' fly ' + str(player.destination.pk),
                     task='move_to_another_region',
                     clocked=clock,

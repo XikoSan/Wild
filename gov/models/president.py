@@ -74,6 +74,7 @@ class President(models.Model):
         PeriodicTask.objects.filter(name='Начало выборов, id преза ' + str(self.pk)).delete()
 
         self.task = PeriodicTask.objects.create(
+            enabled = True,
             name='Начало выборов, id преза ' + str(self.pk),
             task='start_presidential',
             crontab=schedule,

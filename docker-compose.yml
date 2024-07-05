@@ -89,6 +89,7 @@ services:
     restart: always
     environment:
       SECRET_KEY: ${SECRET_KEY}
+      CELERY_BROKER_URL: redis://redis:6379/0
     command: celery flower -A wild_politics --address=0.0.0.0 --port=5555 --basic_auth=${CELERY_LOGIN}:${CELERY_PASSWD}
     ports:
       - 5555:5555

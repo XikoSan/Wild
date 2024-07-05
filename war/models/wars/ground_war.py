@@ -120,6 +120,7 @@ class GroundWar(War):
         )
 
         self.task = PeriodicTask.objects.create(
+            enabled = True,
             name=f'Война GroundWar {self.pk}',
             task='war_round_task',
             # interval=schedule,
@@ -134,6 +135,7 @@ class GroundWar(War):
         )
 
         self.end_task = PeriodicTask.objects.create(
+            enabled = True,
             name=f'Завершение войны GroundWar {self.pk}',
             task='end_war',
             clocked=clocked_schedule,

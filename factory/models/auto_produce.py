@@ -95,6 +95,7 @@ class AutoProduce(Log):
             )
 
         self.task = PeriodicTask.objects.create(
+            enabled = True,
             name=self.player.nickname + ' производит ' + self.good.name,
             task='good_produce',
             # interval=schedule,
