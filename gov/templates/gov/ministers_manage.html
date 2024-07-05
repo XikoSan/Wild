@@ -156,7 +156,7 @@
         <div class="row flex" align="center" style="margin-top: 20px">
             <select id="minister_rights" multiple size="{{ bills_classes|get_len }}" style="width: 100%">
                 {% for bill_cl in bills_classes %}
-                <option id="{{ bill_cl|get_class_name }}" value="{{ bill_cl|get_class_name }}">{% with class_name=bill_cl|get_class_name %}{{ bills_dict|dict_key:class_name }}{% endwith %}</option>
+                <option id="{{ bill_cl }}" value="{{ bill_cl }}">{{ bills_dict|dict_key:bill_cl }}</option>
                 {% endfor %}
             </select>
         </div>

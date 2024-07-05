@@ -74,8 +74,12 @@ def ministers_manage(request):
 
         bills_classes = copy.copy(bills_classes_tmp)
 
+        rights = []
+
         for bill_cl in bills_classes:
             bills_dict[bill_cl.__name__] = bill_cl._meta.verbose_name_raw
+
+            rights.append(bill_cl.__name__)
 
         custom_rights = CustomRight.__subclasses__()
 
@@ -83,7 +87,7 @@ def ministers_manage(request):
             if c_right.__name__ == 'EnergyRights':
                 continue
 
-            bills_classes.append(c_right)
+            rights.append(c_right.__name__)
             bills_dict[c_right.__name__] = c_right._meta.verbose_name_raw
 
         # отправляем в форму
@@ -94,7 +98,7 @@ def ministers_manage(request):
                        'ministers': ministers,
                        'points': points,
 
-                       'bills_classes': bills_classes,
+                       'bills_classes': rights,
                        'bills_dict': bills_dict,
 
                        'page_name': 'Министры',
