@@ -294,7 +294,8 @@ SESSION_COOKIE_AGE = 259200
 DATA_UPLOAD_MAX_MEMORY_SIZE = 20971520
 
 # отладочная печать в Docker
-level = 'INFO'
+# level = 'INFO'
+level = 'DEBUG'
 
 if DEBUG:
     level = 'DEBUG'
