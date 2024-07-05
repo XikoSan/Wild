@@ -4,8 +4,7 @@
 <div class="gover__block gover__minis">
 
     <div class="gover__ministerTabs ct__top-tabs">
-        {% for right_cl in custom_rights %}
-        {% with class_name=right_cl|get_name_4class %}
+        {% for class_name in custom_rights %}
         <button class="ct__top-tab {{ class_name }} {% if forloop.counter0 == 0 %}active{% endif %} ct__mid-btn" onclick="switchMainBlocks('{{ class_name }}')">
             <svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
                 <mask id="mask0_259_317{{ forloop.counter0 }}" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
@@ -20,13 +19,12 @@
             </svg>
             <span>{{ translate_dict|dict_key:class_name }}</span>
         </button>
-        {% endwith %}
         {% endfor %}
     </div>
 
     <script>
 
-        const blocks = [{% for right_cl in custom_rights %}{% with class_name=right_cl|get_name_4class %}'.{{ class_name }}', {% endwith %}{% endfor %}];
+        const blocks = [{% for class_name in custom_rights %}'.{{ class_name }}',{% endfor %}];
         const tabBtns = document.querySelectorAll('.gover__ministerTabs .ct__top-tab');
 
         function switchMainBlocks(classNameToShow) {
@@ -50,10 +48,8 @@
 
     <div class="gover__decorLine"></div>
 
-    {% for right_cl in custom_rights %}
-        {% with class_name=right_cl|get_name_4class %}
+    {% for class_name in custom_rights %}
         <div class="{% if forloop.counter0 == 0 %}active{% endif %} {{ class_name }}_block">
-        {% endwith %}
         {% get_custom_right %}
     </div>
     {% endfor %}

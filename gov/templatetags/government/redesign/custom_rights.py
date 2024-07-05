@@ -27,7 +27,7 @@ def custom_rights(player, state):
             for c_right in custom_rights:
 
                 if right.right == c_right.__name__:
-                    rights.append(c_right)
+                    rights.append(c_right.__name__)
                     translate_dict[c_right.__name__] = c_right._meta.verbose_name_raw
 
     return {
