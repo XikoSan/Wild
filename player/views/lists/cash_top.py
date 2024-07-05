@@ -9,13 +9,14 @@ from player.player import Player
 from player.decorators.player import check_player
 from django.db import connection
 
-# класс игрока, с местом в рейтинге
-class PlayerWithTop(Player):
-    pk = 0
-    top = 0
+def create_temporary_player_class():
+    # класс игрока, с местом в рейтинге
+    class PlayerWithCash(Player):
+        pk = 0
+        top = 0
 
-    class Meta:
-        abstract = True
+    return PlayerWithCash
+
 
 # список богатейшего десятка
 # page - открываемая страница
@@ -45,11 +46,11 @@ def cash_top(request):
 
     for line in cash_top:
 
-        char = PlayerWithTop(
+        PlayerWithCash = create_temporary_player_class()
+
+        char = PlayerWithCash(
             nickname = line[1],
         )
-
-        from player.logs.print_log import log
 
         char.pk = line[0],
         # почему-то строкой выше айди складывается в формате (123,)
