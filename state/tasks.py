@@ -23,6 +23,7 @@ from party.primaries.primaries_leader import PrimariesLeader
 from region.models.region import Region
 
 @shared_task(name="run_bill")
+@transaction.atomic
 def run_bill(bill_type, bill_pk):
     bills_classes = get_subclasses(Bill)
     bills_dict = {}
@@ -57,6 +58,7 @@ def run_bill(bill_type, bill_pk):
 
 
 @shared_task
+@transaction.atomic
 def set_mandates(pty_pk, parl_pk, places):
     lv_places = places
     # все игроки партии-победителя
@@ -125,6 +127,7 @@ def set_mandates(pty_pk, parl_pk, places):
 
 # таска выключающая выборы
 @shared_task(name="finish_elections")
+@transaction.atomic
 def finish_elections(parl_id):
     # включаем начало выборов
     parliament = Parliament.objects.get(pk=parl_id)
@@ -228,6 +231,7 @@ def finish_elections(parl_id):
 
 # таска включающая выборы
 @shared_task(name="start_elections")
+@transaction.atomic
 def start_elections(parl_id):
     parliament = Parliament.objects.select_related('task').prefetch_related('task__interval').only(
         'task__interval__every').get(
@@ -247,6 +251,7 @@ def start_elections(parl_id):
 
 # таска выключающая выборы
 @shared_task(name="finish_presidential")
+@transaction.atomic
 def finish_presidential(pres_id):
     # если президента нет - выходим
     if not President.objects.filter(pk=pres_id).exists():
@@ -335,6 +340,7 @@ def finish_presidential(pres_id):
 
 # таска включающая президентские выборы
 @shared_task(name="start_presidential")
+@transaction.atomic
 def start_presidential(pres_id):
     president = President.objects.select_related('task').prefetch_related('task__interval').only(
         'task__interval__every').get(

@@ -1,26 +1,27 @@
-from celery import shared_task
-
-from django_celery_beat.models import PeriodicTask, PeriodicTasks, ClockedSchedule, CrontabSchedule
-import redis
-from player.player import Player
-from party.primaries.primaries import Primaries
-from .party import Party
-from django.utils import timezone
 import datetime
-from party.primaries.primaries_bulletin import PrimBulletin
-from party.primaries.primaries_leader import PrimariesLeader
-from state.models.parliament.parliament import Parliament
-from state.models.parliament.parliament_voting import ParliamentVoting
-from party.logs.party_apply import PartyApply
-from party.position import PartyPosition
-from datetime import timedelta
-from wild_politics.settings import TIME_ZONE
-from party.logs.membership_log import MembershipLog
+import redis
+from celery import shared_task
 from datetime import time
+from datetime import timedelta
+from django.db import transaction
 from django.db.models import Q
-from state import tasks
+from django.utils import timezone
+from django_celery_beat.models import PeriodicTask, PeriodicTasks, ClockedSchedule, CrontabSchedule
+
 from gov.models.president import President
 from gov.models.presidential_voting import PresidentialVoting
+from party.logs.membership_log import MembershipLog
+from party.logs.party_apply import PartyApply
+from party.position import PartyPosition
+from party.primaries.primaries import Primaries
+from party.primaries.primaries_bulletin import PrimBulletin
+from party.primaries.primaries_leader import PrimariesLeader
+from player.player import Player
+from state import tasks
+from state.models.parliament.parliament import Parliament
+from state.models.parliament.parliament_voting import ParliamentVoting
+from wild_politics.settings import TIME_ZONE
+from .party import Party
 
 
 # таска, создающая другие фоновые задачи за 12 часов:
@@ -29,7 +30,6 @@ from gov.models.presidential_voting import PresidentialVoting
 # - задачи през выборов
 @shared_task(name="tasks_observer")
 def tasks_observer():
-
     from player.logs.print_log import log
 
     # получаем текущее время
@@ -44,7 +44,6 @@ def tasks_observer():
     observe_elections(current_day, start, end)
     # президентские
     observe_presidential(current_day, start, end)
-
 
     if current_day == 0:
         current_day = 6
@@ -69,12 +68,11 @@ def observe_primaries(current_day, start, end):
         parties = []
 
         parties_bef = Party.objects.filter(
-                                        Q(primaries_day=current_day)
-                                        & Q(foundation_date__time__gte=start_time)
-                                       )
+            Q(primaries_day=current_day)
+            & Q(foundation_date__time__gte=start_time)
+        )
         for party in parties_bef:
             parties.append(party)
-
 
         if current_day == 6:
             next_day = 0
@@ -82,27 +80,28 @@ def observe_primaries(current_day, start, end):
             next_day = current_day + 1
 
         parties_aft = Party.objects.filter(
-                                        Q(primaries_day=next_day)
-                                        & Q(foundation_date__time__lt=end_time)
-                                       )
+            Q(primaries_day=next_day)
+            & Q(foundation_date__time__lt=end_time)
+        )
         for party in parties_aft:
             parties.append(party)
 
     else:
         parties = Party.objects.filter(
-                                        Q(primaries_day=current_day)
-                                        & Q(foundation_date__time__gte=start_time)
-                                        & Q(foundation_date__time__lt=end_time)
-                                       )
+            Q(primaries_day=current_day)
+            & Q(foundation_date__time__gte=start_time)
+            & Q(foundation_date__time__lt=end_time)
+        )
     # для каждой партии:
     for party in parties:
-    # если минута совпадает с текущей - стартовать праймериз прямо сейчас
+        # если минута совпадает с текущей - стартовать праймериз прямо сейчас
         if party.foundation_date.minute == timezone.now().minute:
             start_primaries(party.pk)
 
-    # иначе - создаём таску старта праймериз
+        # иначе - создаём таску старта праймериз
         else:
             party.setup_task()
+
 
 # запуск задач на завершение праймериз
 def observe_primaries_end(current_day, start, end):
@@ -114,12 +113,11 @@ def observe_primaries_end(current_day, start, end):
         parties = []
 
         parties_bef = Party.objects.filter(
-                                        Q(primaries_day=current_day)
-                                        & Q(foundation_date__time__gte=start_time)
-                                       )
+            Q(primaries_day=current_day)
+            & Q(foundation_date__time__gte=start_time)
+        )
         for party in parties_bef:
             parties.append(party)
-
 
         if current_day == 6:
             next_day = 0
@@ -127,28 +125,27 @@ def observe_primaries_end(current_day, start, end):
             next_day = current_day + 1
 
         parties_aft = Party.objects.filter(
-                                        Q(primaries_day=next_day)
-                                        & Q(foundation_date__time__lt=end_time)
-                                       )
+            Q(primaries_day=next_day)
+            & Q(foundation_date__time__lt=end_time)
+        )
         for party in parties_aft:
             parties.append(party)
 
     else:
         parties = Party.objects.filter(
-                                        Q(primaries_day=current_day)
-                                        & Q(foundation_date__time__gte=start_time)
-                                        & Q(foundation_date__time__lt=end_time)
-                                       )
+            Q(primaries_day=current_day)
+            & Q(foundation_date__time__gte=start_time)
+            & Q(foundation_date__time__lt=end_time)
+        )
     for party in parties:
-    # если минута совпадает с текущей - завершить праймериз прямо сейчас
+        # если минута совпадает с текущей - завершить праймериз прямо сейчас
         if party.foundation_date.minute == timezone.now().minute:
             finish_primaries(party.pk)
-    # иначе - создаём таску завершения праймериз
+        # иначе - создаём таску завершения праймериз
         else:
             if Primaries.objects.filter(party=party, running=True).exists():
                 primaries = Primaries.objects.filter(party=party, running=True).order_by('-prim_start')[0]
                 primaries.setup_task()
-
 
 
 # запуск задач на старт выборов в Парламент
@@ -162,12 +159,11 @@ def observe_elections(current_day, start, end):
         parliaments = []
 
         parties_bef = Parliament.objects.filter(
-                                        Q(elections_day=current_day)
-                                        & Q(foundation_date__time__gte=start_time)
-                                       )
+            Q(elections_day=current_day)
+            & Q(foundation_date__time__gte=start_time)
+        )
         for parl in parties_bef:
             parliaments.append(parl)
-
 
         if current_day == 6:
             next_day = 0
@@ -175,28 +171,29 @@ def observe_elections(current_day, start, end):
             next_day = current_day + 1
 
         parties_aft = Parliament.objects.filter(
-                                        Q(elections_day=next_day)
-                                        & Q(foundation_date__time__lt=end_time)
-                                       )
+            Q(elections_day=next_day)
+            & Q(foundation_date__time__lt=end_time)
+        )
         for parl in parties_aft:
             parliaments.append(parl)
 
     else:
         parliaments = Parliament.objects.filter(
-                                        Q(elections_day=current_day)
-                                        & Q(foundation_date__time__gte=start_time)
-                                        & Q(foundation_date__time__lt=end_time)
-                                       )
+            Q(elections_day=current_day)
+            & Q(foundation_date__time__gte=start_time)
+            & Q(foundation_date__time__lt=end_time)
+        )
 
     # для каждой партии:
     for parl in parliaments:
-    # если минута совпадает с текущей - стартовать праймериз прямо сейчас
+        # если минута совпадает с текущей - стартовать праймериз прямо сейчас
         if parl.foundation_date.minute == timezone.now().minute:
             tasks.start_elections(parl.pk)
 
-    # иначе - создаём таску старта праймериз
+        # иначе - создаём таску старта праймериз
         else:
             parl.setup_task()
+
 
 # запуск задач на завершение праймериз
 def observe_elections_end(current_day, start, end):
@@ -209,12 +206,11 @@ def observe_elections_end(current_day, start, end):
         parliaments = []
 
         parties_bef = Parliament.objects.filter(
-                                        Q(elections_day=current_day)
-                                        & Q(foundation_date__time__gte=start_time)
-                                       )
+            Q(elections_day=current_day)
+            & Q(foundation_date__time__gte=start_time)
+        )
         for parl in parties_bef:
             parliaments.append(parl)
-
 
         if current_day == 6:
             next_day = 0
@@ -222,30 +218,28 @@ def observe_elections_end(current_day, start, end):
             next_day = current_day + 1
 
         parties_aft = Parliament.objects.filter(
-                                        Q(elections_day=next_day)
-                                        & Q(foundation_date__time__lt=end_time)
-                                       )
+            Q(elections_day=next_day)
+            & Q(foundation_date__time__lt=end_time)
+        )
         for parl in parties_aft:
             parliaments.append(parl)
 
     else:
         parliaments = Parliament.objects.filter(
-                                        Q(elections_day=current_day)
-                                        & Q(foundation_date__time__gte=start_time)
-                                        & Q(foundation_date__time__lt=end_time)
-                                       )
+            Q(elections_day=current_day)
+            & Q(foundation_date__time__gte=start_time)
+            & Q(foundation_date__time__lt=end_time)
+        )
 
     for parl in parliaments:
-    # если минута совпадает с текущей - завершить праймериз прямо сейчас
+        # если минута совпадает с текущей - завершить праймериз прямо сейчас
         if parl.foundation_date.minute == timezone.now().minute:
             tasks.finish_elections(parl.pk)
-    # иначе - создаём таску завершения праймериз
+        # иначе - создаём таску завершения праймериз
         else:
             if ParliamentVoting.objects.filter(parliament=parl, running=True).exists():
                 voting = ParliamentVoting.objects.get(parliament=parl, running=True)
                 voting.setup_task()
-
-
 
 
 # запуск задач на старт выборов в Парламент
@@ -259,12 +253,11 @@ def observe_presidential(current_day, start, end):
         leaders = []
 
         parties_bef = President.objects.filter(
-                                        Q(elections_day=current_day)
-                                        & Q(foundation_date__time__gte=start_time)
-                                       )
+            Q(elections_day=current_day)
+            & Q(foundation_date__time__gte=start_time)
+        )
         for parl in parties_bef:
             leaders.append(parl)
-
 
         if current_day == 6:
             next_day = 0
@@ -272,28 +265,29 @@ def observe_presidential(current_day, start, end):
             next_day = current_day + 1
 
         parties_aft = President.objects.filter(
-                                        Q(elections_day=next_day)
-                                        & Q(foundation_date__time__lt=end_time)
-                                       )
+            Q(elections_day=next_day)
+            & Q(foundation_date__time__lt=end_time)
+        )
         for parl in parties_aft:
             leaders.append(parl)
 
     else:
         leaders = President.objects.filter(
-                                        Q(elections_day=current_day)
-                                        & Q(foundation_date__time__gte=start_time)
-                                        & Q(foundation_date__time__lt=end_time)
-                                       )
+            Q(elections_day=current_day)
+            & Q(foundation_date__time__gte=start_time)
+            & Q(foundation_date__time__lt=end_time)
+        )
 
     # для каждой партии:
     for parl in leaders:
-    # если минута совпадает с текущей - стартовать праймериз прямо сейчас
+        # если минута совпадает с текущей - стартовать праймериз прямо сейчас
         if parl.foundation_date.minute == timezone.now().minute:
             tasks.start_presidential(parl.pk)
 
-    # иначе - создаём таску старта праймериз
+        # иначе - создаём таску старта праймериз
         else:
             parl.setup_task()
+
 
 # запуск задач на завершение праймериз
 def observe_presidential_end(current_day, start, end):
@@ -306,12 +300,11 @@ def observe_presidential_end(current_day, start, end):
         leaders = []
 
         parties_bef = President.objects.filter(
-                                        Q(elections_day=current_day)
-                                        & Q(foundation_date__time__gte=start_time)
-                                       )
+            Q(elections_day=current_day)
+            & Q(foundation_date__time__gte=start_time)
+        )
         for parl in parties_bef:
             leaders.append(parl)
-
 
         if current_day == 6:
             next_day = 0
@@ -319,33 +312,33 @@ def observe_presidential_end(current_day, start, end):
             next_day = current_day + 1
 
         parties_aft = President.objects.filter(
-                                        Q(elections_day=next_day)
-                                        & Q(foundation_date__time__lt=end_time)
-                                       )
+            Q(elections_day=next_day)
+            & Q(foundation_date__time__lt=end_time)
+        )
         for parl in parties_aft:
             leaders.append(parl)
 
     else:
         leaders = President.objects.filter(
-                                        Q(elections_day=current_day)
-                                        & Q(foundation_date__time__gte=start_time)
-                                        & Q(foundation_date__time__lt=end_time)
-                                       )
+            Q(elections_day=current_day)
+            & Q(foundation_date__time__gte=start_time)
+            & Q(foundation_date__time__lt=end_time)
+        )
 
     for parl in leaders:
-    # если минута совпадает с текущей - завершить праймериз прямо сейчас
+        # если минута совпадает с текущей - завершить праймериз прямо сейчас
         if parl.foundation_date.minute == timezone.now().minute:
             tasks.finish_presidential(parl.pk)
-    # иначе - создаём таску завершения праймериз
+        # иначе - создаём таску завершения праймериз
         else:
             if PresidentialVoting.objects.filter(president=parl, running=True).exists():
                 voting = PresidentialVoting.objects.filter(president=parl, running=True)[0]
                 voting.setup_task()
 
 
-
 # таска выключающая праймериз
 @shared_task(name="finish_primaries")
+@transaction.atomic
 def finish_primaries(party_id):
     # если партии нет - выходим, а не падаем
     if not Party.objects.filter(pk=party_id).exists():
@@ -434,9 +427,14 @@ def finish_primaries(party_id):
 
 # таска включающая праймериз
 @shared_task(name="start_primaries")
+@transaction.atomic
 def start_primaries(party_id):
     party = Party.objects.select_related('task').prefetch_related('task__interval').only('task__interval__every').get(
         pk=party_id)
+
+    # если в этом часу уже запускали праймериз
+    if Primaries.objects.filter(party=party, prim_start__gt=timezone.now() - timedelta(hours=1)).exists():
+        return
 
     Primaries.objects.select_related('task').get_or_create(party=party, prim_start=timezone.now())
 
