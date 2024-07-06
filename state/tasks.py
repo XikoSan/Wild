@@ -1,26 +1,28 @@
 import datetime
 import operator
-from math import floor
-
 import redis
 from celery import shared_task
+from django.db import transaction
 from django.utils import timezone
 from django_celery_beat.models import ClockedSchedule, PeriodicTask, CrontabSchedule
+from math import floor
+
+from bill.models.bill import Bill
 from gov.models.minister import Minister
+from gov.models.president import President
+from gov.models.presidential_voting import PresidentialVoting
+from gov.models.vote import Vote
 from party.party import Party
+from party.primaries.primaries_leader import PrimariesLeader
 from player.player import Player
 from player.views.get_subclasses import get_subclasses
-from bill.models.bill import Bill
+from region.models.region import Region
 from state.models.parliament.bulletin import Bulletin
 from state.models.parliament.deputy_mandate import DeputyMandate
 from state.models.parliament.parliament_party import ParliamentParty
 from .models.parliament.parliament import Parliament
 from .models.parliament.parliament_voting import ParliamentVoting
-from gov.models.president import President
-from gov.models.presidential_voting import PresidentialVoting
-from gov.models.vote import Vote
-from party.primaries.primaries_leader import PrimariesLeader
-from region.models.region import Region
+
 
 @shared_task(name="run_bill")
 @transaction.atomic
@@ -44,7 +46,7 @@ def run_bill(bill_type, bill_pk):
         # считаем процент голосов за
         pro_percent = bill.votes_pro.count() * 100 / (bill.votes_pro.count() + bill.votes_con.count())
         # если голосов "за" больше, и процент голосов больше порога
-        if bill.votes_pro.all().count() > bill.votes_con.all().count()\
+        if bill.votes_pro.all().count() > bill.votes_con.all().count() \
                 and pro_percent > bill.acceptation_percent:
             bill.do_bill()
         else:
@@ -229,6 +231,7 @@ def finish_elections(parl_id):
     if task_id:
         PeriodicTask.objects.filter(pk=task_id).delete()
 
+
 # таска включающая выборы
 @shared_task(name="start_elections")
 @transaction.atomic
@@ -266,9 +269,9 @@ def finish_presidential(pres_id):
     if PresidentialVoting.objects.filter(president=president, task__isnull=False).exists():
         elections = PresidentialVoting.objects.get(president=president, task__isnull=False)
     else:
-        return 
+        return
 
-    # ================================================================
+        # ================================================================
 
     # получаем все голоса на этих выборах
     all_votes_count = Vote.objects.filter(voting=elections).count()
@@ -347,7 +350,7 @@ def start_presidential(pres_id):
         pk=pres_id)
 
     voting, created = PresidentialVoting.objects.select_related('task').get_or_create(president=president,
-                                                                                       voting_start=timezone.now())
+                                                                                      voting_start=timezone.now())
 
     prim_leaders = PrimariesLeader.objects.filter(
         party__in=Party.objects.filter(deleted=False, region__in=Region.objects.filter(state=president.state)))
