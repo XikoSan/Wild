@@ -14,13 +14,14 @@ from war.models.wars.player_damage import PlayerDamage
 from war.models.wars.war import War
 
 
-# класс игрока, с количеством нанесенного урона
-class PlayerWithTop(Player):
-    pk = 0
-    dmg = 0
+def create_temporary_player_class():
+    # класс игрока, с количеством нанесенного урона
+    class _PlayerWithTop(Player):
+        pk = 0
+        dmg = 0
 
-    class Meta:
-        abstract = True
+    return _PlayerWithTop
+
 
 
 # открыть список игроков, воюющих за сторону боя
@@ -48,7 +49,10 @@ def open_war_side_list(request, class_name, pk, side):
     index = 1
 
     for line in dmg_players:
-        char = PlayerWithTop(
+
+        _PlayerWithTop = create_temporary_player_class()
+
+        char = _PlayerWithTop(
             nickname=line.player.nickname,
         )
 
