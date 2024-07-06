@@ -28,8 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = not os.getenv('PROD')
-DEBUG = True
+DEBUG = not os.getenv('PROD')
 
 ALLOWED_HOSTS = ['mysite.com', 'localhost', '127.0.0.1', '192.168.0.150', '192.168.0.181', '307f41365796.vps.myjino.ru',
                  'test.wildpolitics.online', 'test.wildpolitics.ru', 'wildpolitics.ru']
@@ -295,7 +294,8 @@ SESSION_COOKIE_AGE = 259200
 DATA_UPLOAD_MAX_MEMORY_SIZE = 20971520
 
 # отладочная печать в Docker
-level = 'INFO'
+# level = 'INFO'
+level = 'DEBUG'
 
 if DEBUG:
     level = 'DEBUG'
