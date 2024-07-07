@@ -1,6 +1,6 @@
 function up_skill(skill){
-
-    var sending_data = "&csrfmiddlewaretoken=" + csrftoken;
+    var client = new ClientJS();
+    var sending_data = "&csrfmiddlewaretoken=" + csrftoken + "&fprint=" + client.getFingerprint();
     sending_data += "&skill=" + skill;
     $.ajax({
         type: "POST",

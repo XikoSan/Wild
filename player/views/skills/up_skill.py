@@ -23,6 +23,10 @@ def up_skill(request):
         # получаем персонажа
         player = Player.get_instance(account=request.user)
 
+        # fingerprinting
+        if request.POST.get('fprint'):
+            player.fingerprint = request.POST.get('fprint')
+
         skill_cls = None
         skill_obj = None
         cur_level = 0

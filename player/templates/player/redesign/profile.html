@@ -588,11 +588,7 @@
 
 
 		if (document.getElementById('profile__id')) {
-			{% if player.pk == 530 or player.pk == 1 %}
-			const buttonIdCopy = new IdCopy('{{ player.fingerprint }}');
-			{% else %}
 			const buttonIdCopy = new IdCopy('{{ request.get_host }}/profile/{% autoescape off %}{{ player.pk }}{% endautoescape %}/');
-			{% endif %}
 		}
 	</script>
 	<script src="{% static 'redesign/js/profile.js' %}?{{ csrf_token }}"></script>
