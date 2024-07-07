@@ -72,6 +72,12 @@ class TreasuryStockAdmin(admin.ModelAdmin):
         return obj.good.name
 
 
+class BulletinAdmin(admin.ModelAdmin):
+    search_fields = ['voting__parliament__state__title', 'player__nickname', 'party__title',]
+    raw_id_fields = ('voting', 'player', 'party')
+    list_display = ['voting', 'player', 'party', ]
+
+
 class ParliamentAdmin(admin.ModelAdmin):
     list_display = ('state', 'get_elections_day', 'size')
 
@@ -119,7 +125,7 @@ admin.site.register(Treasury, TreasuryAdmin)
 admin.site.register(TreasuryLock, TreasuryLockAdmin)
 admin.site.register(Parliament, ParliamentAdmin)
 admin.site.register(ParliamentVoting, ParliamentVotingAdmin)
-admin.site.register(Bulletin)
+admin.site.register(Bulletin, BulletinAdmin)
 admin.site.register(DeputyMandate, DeputyMandateAdmin)
 admin.site.register(ParliamentParty)
 admin.site.register(Capital, CapitalAdmin)
