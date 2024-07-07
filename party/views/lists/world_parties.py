@@ -8,13 +8,13 @@ from player.player import Player
 from player.decorators.player import check_player
 from party.party import Party
 
-# класс партии, в котором её размер - это поле
-class PartyWithSize(Party):
-    pk = 0
-    size = 0
+def create_temporary_party_class():
+    # класс партии, в котором её размер - это поле
+    class _PartyWithSize(Party):
+        pk = 0
+        size = 0
 
-    class Meta:
-        abstract = True
+    return _PartyWithSize
 
 # список всех партий игры
 # page - открываемая страница
@@ -31,6 +31,9 @@ def world_parties_list(request):
     parties_with_size = []
 
     for party in parties:
+
+        PartyWithSize = create_temporary_party_class()
+
         size_party = PartyWithSize(
             title = party.title,
             image = party.image,

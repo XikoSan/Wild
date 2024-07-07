@@ -7,7 +7,7 @@ from region.models.region import Region
 from player.player import Player
 from player.decorators.player import check_player
 from party.party import Party
-from party.views.lists.world_parties import PartyWithSize
+from party.views.lists.world_parties import create_temporary_party_class
 
 # список всех партий игры
 # page - открываемая страница
@@ -30,6 +30,9 @@ def region_parties_list(request, region_pk):
     parties_with_size = []
 
     for party in parties:
+
+        PartyWithSize = create_temporary_party_class()
+
         size_party = PartyWithSize(
             title = party.title,
             image = party.image,
