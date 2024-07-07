@@ -26,6 +26,14 @@ def up_skill(request):
         # fingerprinting
         if request.POST.get('fprint'):
             player.fingerprint = request.POST.get('fprint')
+        else:
+            data = {
+                # 'response': _('positive_enrg_req'),
+                'response': 'Отсутствует обязательный аргумент запроса',
+                'header': 'Изучение навыка',
+                'grey_btn': 'Закрыть',
+            }
+            return JResponse(data)
 
         skill_cls = None
         skill_obj = None

@@ -22,6 +22,15 @@ def expense_energy(request):
         if request.POST.get('fprint'):
             player.fingerprint = request.POST.get('fprint')
 
+        else:
+            data = {
+                # 'response': _('positive_enrg_req'),
+                'response': 'Отсутствует обязательный аргумент запроса',
+                'header': _('Пополнение энергии'),
+                'grey_btn': _('Закрыть'),
+            }
+            return JResponse(data)
+
         # время сейчас
         cur_time = timezone.now()
         # время, когда можно перезаряжаться
