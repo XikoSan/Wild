@@ -179,7 +179,9 @@ function recharge(){
             result = JSON.parse(data);
             //если у игрока хватает энергетиков для пополнения до ста
             if (result.response == 'ok'){
-                var token = "&csrfmiddlewaretoken=" + csrftoken;
+                var client = new ClientJS();
+
+                var token = "&csrfmiddlewaretoken=" + csrftoken + "&fprint=" + client.getFingerprint();
                 $.ajax({
                     beforeSend: function() {},
                     type: "POST",

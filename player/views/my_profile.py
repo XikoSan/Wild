@@ -182,7 +182,7 @@ def my_profile(request):
     groups = list(player.account.groups.all().values_list('name', flat=True))
     page = 'player/profile.html'
     if 'redesign' not in groups:
-        page = 'player/redesign/profile_new.html'
+        page = 'player/redesign/profile.html'
 
     response = render(request, page, {
         'player': player,

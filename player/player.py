@@ -36,6 +36,8 @@ class Player(models.Model):
     reason = models.TextField(max_length=25, default='', null=True, blank=True, verbose_name='Причина')
     # последний использовавшийся ip
     user_ip = models.CharField(max_length=50, blank=True, verbose_name='IP пользователя')
+    # отпечаток браузера
+    fingerprint = models.CharField(max_length=50, blank=True, verbose_name='Отпечаток браузера')
 
     # Показатель того, что игрок забанен в чате
     chat_ban = models.BooleanField(default=False, null=False, verbose_name='Бан чата')

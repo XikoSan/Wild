@@ -17,6 +17,11 @@ def expense_energy(request):
     if request.method == "POST":
         # получаем персонажа
         player = Player.get_instance(account=request.user)
+
+        # fingerprinting
+        if request.POST.get('fprint'):
+            player.fingerprint = request.POST.get('fprint')
+
         # время сейчас
         cur_time = timezone.now()
         # время, когда можно перезаряжаться

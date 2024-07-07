@@ -104,7 +104,7 @@ def view_profile(request, pk):
     groups = list(player.account.groups.all().values_list('name', flat=True))
     page = 'player/view_profile.html'
     if 'redesign' not in groups:
-        page = 'player/redesign/view_profile_new.html'
+        page = 'player/redesign/view_profile.html'
 
     return render(request, page, {'player': player,
                                   'char': char,
