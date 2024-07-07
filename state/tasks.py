@@ -6,7 +6,7 @@ from django.db import transaction
 from django.utils import timezone
 from django_celery_beat.models import ClockedSchedule, PeriodicTask, CrontabSchedule
 from math import floor
-
+from datetime import timedelta
 from bill.models.bill import Bill
 from gov.models.minister import Minister
 from gov.models.president import President
@@ -240,6 +240,10 @@ def start_elections(parl_id):
         'task__interval__every').get(
         pk=parl_id)
 
+    # если в этом часу уже запускали выборы
+    if ParliamentVoting.objects.filter(parliament=parliament, voting_start__gt=timezone.now() - timedelta(hours=1)).exists():
+        return
+
     parliament_voting, created = ParliamentVoting.objects.select_related('task').get_or_create(parliament=parliament,
                                                                                                voting_start=timezone.now())
     parliament_voting.running = True
@@ -348,6 +352,10 @@ def start_presidential(pres_id):
     president = President.objects.select_related('task').prefetch_related('task__interval').only(
         'task__interval__every').get(
         pk=pres_id)
+
+    # если в этом часу уже запускали выборы
+    if PresidentialVoting.objects.filter(president=president, voting_start__gt=timezone.now() - timedelta(hours=1)).exists():
+        return
 
     voting, created = PresidentialVoting.objects.select_related('task').get_or_create(president=president,
                                                                                       voting_start=timezone.now())

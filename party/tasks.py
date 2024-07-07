@@ -432,11 +432,13 @@ def start_primaries(party_id):
     party = Party.objects.select_related('task').prefetch_related('task__interval').only('task__interval__every').get(
         pk=party_id)
 
-    # если в этом часу уже запускали праймериз
-    if Primaries.objects.filter(party=party, prim_start__gt=timezone.now() - timedelta(hours=1)).exists():
-        return
+    if not party.deleted:
 
-    Primaries.objects.select_related('task').get_or_create(party=party, prim_start=timezone.now())
+        # если в этом часу уже запускали праймериз
+        if Primaries.objects.filter(party=party, prim_start__gt=timezone.now() - timedelta(hours=1)).exists():
+            return
+
+        Primaries.objects.select_related('task').get_or_create(party=party, prim_start=timezone.now())
 
     if party.task:
         task_id = party.task.pk
