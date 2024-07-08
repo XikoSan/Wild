@@ -32,8 +32,10 @@ warSocket.onmessage = function(e) {
 };
 
 warSocket.onclose = function(e) {
-    console.log('Chat socket closed unexpectedly');
-    display_modal('notify', 'Соединение прервалось', 'перезагрузите страницу, чтобы переподключиться', null, "Понятно");
+    if (!e.wasClean) {
+        console.log('Chat socket closed unexpectedly');
+        display_modal('notify', 'Соединение прервалось', 'перезагрузите страницу, чтобы переподключиться к чату', null, "Понятно");
+    }
 };
 
 function sendEvent() {

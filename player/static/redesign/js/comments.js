@@ -37,8 +37,10 @@ chatSocket.onmessage = function(e) {
 };
 
 chatSocket.onclose = function(e) {
-    console.log('Chat socket closed unexpectedly');
-    display_modal('notify', 'Соединение прервалось', 'перезагрузите страницу, чтобы переподключиться к чату', null, "Понятно");
+    if (!e.wasClean) {
+        console.log('Chat socket closed unexpectedly');
+        display_modal('notify', 'Соединение прервалось', 'перезагрузите страницу, чтобы переподключиться к чату', null, "Понятно");
+    }
 };
 
 document.querySelector('#comment-message-input-' + roomName).focus();
