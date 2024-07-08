@@ -67,7 +67,7 @@ def observe_primaries(current_day, start, end):
     if start.weekday() != end.weekday():
         parties = []
 
-        parties_bef = Party.objects.filter(
+        parties_bef = Party.objects.filter(deleted=False).filter(
             Q(primaries_day=current_day)
             & Q(foundation_date__time__gte=start_time)
         )
@@ -79,7 +79,7 @@ def observe_primaries(current_day, start, end):
         else:
             next_day = current_day + 1
 
-        parties_aft = Party.objects.filter(
+        parties_aft = Party.objects.filter(deleted=False).filter(
             Q(primaries_day=next_day)
             & Q(foundation_date__time__lt=end_time)
         )
@@ -87,7 +87,7 @@ def observe_primaries(current_day, start, end):
             parties.append(party)
 
     else:
-        parties = Party.objects.filter(
+        parties = Party.objects.filter(deleted=False).filter(
             Q(primaries_day=current_day)
             & Q(foundation_date__time__gte=start_time)
             & Q(foundation_date__time__lt=end_time)
@@ -112,7 +112,7 @@ def observe_primaries_end(current_day, start, end):
     if start.weekday() != end.weekday():
         parties = []
 
-        parties_bef = Party.objects.filter(
+        parties_bef = Party.objects.filter(deleted=False).filter(
             Q(primaries_day=current_day)
             & Q(foundation_date__time__gte=start_time)
         )
@@ -124,7 +124,7 @@ def observe_primaries_end(current_day, start, end):
         else:
             next_day = current_day + 1
 
-        parties_aft = Party.objects.filter(
+        parties_aft = Party.objects.filter(deleted=False).filter(
             Q(primaries_day=next_day)
             & Q(foundation_date__time__lt=end_time)
         )
@@ -132,7 +132,7 @@ def observe_primaries_end(current_day, start, end):
             parties.append(party)
 
     else:
-        parties = Party.objects.filter(
+        parties = Party.objects.filter(deleted=False).filter(
             Q(primaries_day=current_day)
             & Q(foundation_date__time__gte=start_time)
             & Q(foundation_date__time__lt=end_time)
