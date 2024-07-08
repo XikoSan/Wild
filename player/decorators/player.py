@@ -87,24 +87,24 @@ def check_player(func):
                     player.save()
 
 
-                # проверка по отпечатку браузера
-                if player.fingerprint:
-                        if Player.objects.filter(fingerprint=player.fingerprint).exclude(
-                                Q(pk=player.pk) |
-                                Q(banned=True)
-                        ).exists():
-
-                            players = Player.objects.filter(fingerprint=player.fingerprint).exclude(
-                                        Q(pk=player.pk) |
-                                        Q(banned=True)
-                                )
-                            for it_player in players:
-                                it_player.banned = True
-                                it_player.reason = f'один отпечаток браузера с {player.pk}'
-                                it_player.save()
-                            player.banned = True
-                            player.reason = f'один отпечаток браузера с {player.pk}'
-                            player.save()
+                # # проверка по отпечатку браузера
+                # if player.fingerprint:
+                #         if Player.objects.filter(fingerprint=player.fingerprint).exclude(
+                #                 Q(pk=player.pk) |
+                #                 Q(banned=True)
+                #         ).exists():
+                #
+                #             players = Player.objects.filter(fingerprint=player.fingerprint).exclude(
+                #                         Q(pk=player.pk) |
+                #                         Q(banned=True)
+                #                 )
+                #             for it_player in players:
+                #                 it_player.banned = True
+                #                 it_player.reason = f'один отпечаток браузера с {player.pk}'
+                #                 it_player.save()
+                #             player.banned = True
+                #             player.reason = f'один отпечаток браузера с {player.pk}'
+                #             player.save()
 
 
                 # Если игрок не забанен:
