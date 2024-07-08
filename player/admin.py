@@ -190,7 +190,7 @@ class PLayerAdminForm(forms.ModelForm):
 class PLayerAdmin(admin.ModelAdmin):
     form = PLayerAdminForm
 
-    search_fields = ['nickname', 'user_ip', 'party__title']
+    search_fields = ['nickname', 'user_ip', 'fingerprint', 'party__title']
     raw_id_fields = ('account', 'party', 'region', 'residency',)
 
     actions = [
