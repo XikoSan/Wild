@@ -349,9 +349,7 @@ def finish_presidential(pres_id):
 @shared_task(name="start_presidential")
 @transaction.atomic
 def start_presidential(pres_id):
-    president = President.objects.select_related('task').prefetch_related('task__interval').only(
-        'task__interval__every').get(
-        pk=pres_id)
+    president = President.objects.select_for_update().prefetch_related('task__interval').get(pk=pres_id)
 
     # если в этом часу уже запускали выборы
     if PresidentialVoting.objects.filter(president=president, voting_start__gt=timezone.now() - timedelta(hours=1)).exists():
