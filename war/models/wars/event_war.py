@@ -15,6 +15,8 @@ from django_celery_beat.models import PeriodicTask
 
 from player.player import Player
 from player.views.timers import interval_in_seconds, format_time
+from region.models.terrain.terrain_modifier import TerrainModifier
+from skill.models.coherence import Coherence
 from skill.models.scouting import Scouting
 from storage.models.stock import Stock
 from storage.models.storage import Storage
@@ -22,7 +24,6 @@ from war.models.wars.player_damage import PlayerDamage
 from war.models.wars.unit import Unit
 from war.models.wars.war import War
 from war.models.wars.war_side import WarSide
-from region.models.terrain.terrain_modifier import TerrainModifier
 
 
 # класс ивентовой войны
@@ -78,7 +79,7 @@ class EventWar(War):
         if self.graph:
             graph = eval(self.graph)
 
-            if not graph[-1][1] ==  self.hq_points:
+            if not graph[-1][1] == self.hq_points:
                 graph.append((timestamp, self.hq_points))
         else:
             graph.append((timestamp, self.hq_points))
@@ -92,13 +93,12 @@ class EventWar(War):
         for side in ['agr', 'def']:
 
             for fighter in [int(string) for string in r.lrange(f'{self.__class__.__name__}_{self.pk}_{side}', 0, -1)]:
-
                 p_damage, created = PlayerDamage.objects.get_or_create(
-                                                                    content_type=ContentType.objects.get_for_model(self.__class__),
-                                                                    object_id=self.pk,
-                                                                    player=Player.objects.only("pk").get(pk=fighter),
-                                                                    side=side,
-                                                                 )
+                    content_type=ContentType.objects.get_for_model(self.__class__),
+                    object_id=self.pk,
+                    player=Player.objects.only("pk").get(pk=fighter),
+                    side=side,
+                )
                 p_damage.damage = int(r.hget(f'{self.__class__.__name__}_{self.pk}_{side}_dmg', fighter))
 
                 player_damage_u.append(p_damage)
@@ -109,7 +109,6 @@ class EventWar(War):
                 fields=['damage', ],
                 batch_size=len(player_damage_u)
             )
-
 
     # завершить войну
     def war_end(self):
@@ -210,6 +209,19 @@ class EventWar(War):
                 for weapon in weapons:
                     units_dict[weapon.good] = weapon.stock
 
+        # знание местности
+        scouting_perk = 0
+        if Scouting.objects.filter(player=player, level__gt=0).exists():
+            unit_dmg = Scouting.objects.get(player=player).apply({'dmg': 100})
+            # если перк не применился, значит, игрок находится менее суток в реге, учитывать не надо
+            if unit_dmg > 100:
+                scouting_perk = Scouting.objects.get(player=player).level
+
+        # Слаженность
+        coherence_perk = False
+        if Coherence.objects.filter(player=player, level__gt=0).exists():
+            coherence_perk = True
+
         # --------------------------------------------------------------------------------------------
         data = []
         graph_html = None
@@ -221,7 +233,8 @@ class EventWar(War):
             timestamps, scores = zip(*data)
 
             # Преобразуйте значения timestamps в объекты datetime
-            timestamps = [datetime.datetime.fromtimestamp(int(timestamp)).astimezone(tz=pytz.timezone(player.time_zone)) for timestamp in timestamps]
+            timestamps = [datetime.datetime.fromtimestamp(int(timestamp)).astimezone(tz=pytz.timezone(player.time_zone))
+                          for timestamp in timestamps]
 
             # Создайте объект Scatter для построения графика
             fig = go.Figure(data=go.Scatter(x=timestamps, y=scores, mode='lines+markers'))
@@ -260,6 +273,11 @@ class EventWar(War):
 
             # война
             'war': self,
+            # модификаторы рельефа
+            'terrains': terrain_list,
+            # перки
+            'coherence_perk': coherence_perk,
+            'scouting_perk': scouting_perk,
             # время окончания войны
             'war_countdown': war_countdown,
             # форматированная строка текущего оставшегося времени
