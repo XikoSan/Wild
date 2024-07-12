@@ -66,16 +66,16 @@ def vote_bill(request):
 
                                 # если досрочное принятие разрешено
                                 if bill.check_ahead():
-                                    from player.logs.print_log import log
-                                    log(bill.votes_pro.count() * 100 / DeputyMandate.objects.filter(player__isnull=False, parliament=parliament).count() >= bill.ahead_percent)
-                                    # если после голосования голосов стало больше, чем процент досрочного принятия
-                                    #           то принимаем законопроект
-                                    if bill.votes_pro.count() * 100 / DeputyMandate.objects.filter(player__isnull=False, parliament=parliament).count() >= bill.ahead_percent \
-                                            or bill.votes_con.count() * 100 / DeputyMandate.objects.filter(player__isnull=False, parliament=parliament).count() >= bill.ahead_percent:
-                                        run_bill.apply_async(
-                                            (bill.__class__.__name__, bill.pk),
-                                            retry=False
-                                        )
+                                    # если количество мандатов, выданных кому-либо ещё, кроме президента, не нулевое
+                                    if DeputyMandate.objects.filter(player__isnull=False, parliament=parliament).exclude(is_president=True).count():
+                                        # если после голосования голосов стало больше, чем процент досрочного принятия
+                                        #           то принимаем законопроект
+                                        if bill.votes_pro.count() * 100 / DeputyMandate.objects.filter(player__isnull=False, parliament=parliament).count() >= bill.ahead_percent \
+                                                or bill.votes_con.count() * 100 / DeputyMandate.objects.filter(player__isnull=False, parliament=parliament).count() >= bill.ahead_percent:
+                                            run_bill.apply_async(
+                                                (bill.__class__.__name__, bill.pk),
+                                                retry=False
+                                            )
 
                                 data = {
                                     'response': 'ok',
