@@ -10,6 +10,8 @@ from player.views.timers import interval_in_seconds
 from region.models.region import Region
 from war.models.wars.war import War
 
+from war.models.wars.revolution.rebel import Rebel
+
 
 # страница войн
 @login_required(login_url='/')
@@ -74,6 +76,15 @@ def war_page(request):
                 delay_in_sec=86400
             )
 
+# -------------------------
+
+    rebels = Rebel.actual.filter(region=player.region)
+    rebels_count = rebels.count()
+
+    rebel_price = 500
+    if player.region == player.residency:
+        rebel_price = 300
+
     # отправляем в форму
     return render(request, 'war/redesign/war_page.html', {
         # самого игрока
@@ -84,5 +95,9 @@ def war_page(request):
         'state_wars_list': state_wars_list,
         # таймеры отсчета для обоих списков
         'war_countdowns': war_countdowns,
+        # повстанцы в этом регионе
+        'rebels': rebels,
+        'rebels_count': rebels_count,
+        'rebel_price': rebel_price,
 
     })
