@@ -38,5 +38,4 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(give_ammo),
     ]
