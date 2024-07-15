@@ -10,7 +10,10 @@ from django.core.files import File
 class NewPlayerForm(forms.ModelForm):
     class Meta:
         model = Player
-        fields = ('nickname', 'image', 'time_zone')
+        fields = (
+            'nickname', 'image', 'time_zone',
+            'utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term',
+        )
 
 
 class ImageForm(forms.ModelForm):

@@ -96,7 +96,10 @@ INSTALLED_APPS = [
     'modeltranslation',
     'django_summernote',
 
+    'tabbed_admin',
 ]
+
+TABBED_ADMIN_USE_JQUERY_UI = True
 
 SITE_ID = 1
 

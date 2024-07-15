@@ -5,6 +5,7 @@ from django.db import models
 from django.db import transaction
 from django.utils import timezone
 from re import findall
+from tabbed_admin import TabbedModelAdmin
 
 from party.position import PartyPosition
 from player.bonus_code.bonus_code import BonusCode
@@ -187,11 +188,95 @@ class PLayerAdminForm(forms.ModelForm):
         fields = '__all__'
 
 
-class PLayerAdmin(admin.ModelAdmin):
+class PLayerAdmin(TabbedModelAdmin):
     form = PLayerAdminForm
 
     search_fields = ['nickname', 'user_ip', 'fingerprint', 'party__title']
     raw_id_fields = ('account', 'party', 'region', 'residency',)
+    list_filter = ('utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', )
+
+    tab_overview = (
+        ('Профиль', {
+            'fields': ('nickname', 'account', 'image')
+        }),
+        ('Баны', {
+            'fields': ('banned', 'reason', 'chat_ban', 'articles_ban')
+        }),
+        ('Регион', {
+            'fields': ('region', 'residency', 'residency_date')
+        }),
+        ('Партия', {
+            'fields': ('party', 'party_post')
+        }),
+        ('О себе', {
+            'fields': ('bio',)
+        })
+    )
+    tab_storage = (
+        ('Кошелёк', {
+            'fields': ('cash', 'gold', 'bottles',)
+        }),
+        ('Изменение баланса золота', {
+            'fields': ('add_value', 'subtract_value', )
+        }),
+        ('Премиум-аккаунт', {
+            'fields': ('premium', 'cards_count',)
+        }),
+    )
+    tab_energy = (
+        ('Запасы', {
+            'fields': ('energy', 'last_refill')
+        }),
+        ('Прирост', {
+            'fields': ('natural_refill', 'last_top')
+        }),
+    )
+    tab_daily = (
+        ('Энергия', {
+            'fields': ('daily_fin', 'energy_consumption', 'paid_consumption', 'paid_sum')
+        }),
+    )
+    tab_skills = (
+        ('Навыки', {
+            'fields': ('power', 'knowledge', 'endurance')
+        }),
+    )
+    # tab_settings = (
+    #     PlayerSettingsInline,
+    # )
+    tab_tech = (
+        ('Техническое', {
+            'fields': ('user_ip', 'fingerprint', 'time_zone', 'educated')
+        }),
+    )
+    tab_flying = (
+        ('Регион', {
+            'fields': ('destination',)
+        }),
+        ('Время', {
+            'fields': ('arrival',)
+        }),
+        ('Задача', {
+            'fields': ('task',)
+        }),
+    )
+    tab_adv = (
+        ('Реклама', {
+            'fields': ('utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term')
+        }),
+    )
+
+    tabs = [
+        ('Основные', tab_overview),
+        ('Склад', tab_storage),
+        ('Энергия', tab_energy),
+        ('Дейлик', tab_daily),
+        ('Навыки', tab_skills),
+        ('Перелёты', tab_flying),
+        # ('Настройки', tab_settings),
+        ('Техническое', tab_tech),
+        ('Реклама', tab_adv),
+    ]
 
     actions = [
         add_premium_month,
