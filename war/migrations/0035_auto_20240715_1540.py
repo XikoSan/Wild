@@ -23,7 +23,7 @@ class Migration(migrations.Migration):
                 
                     if Stock.objects.filter(storage=storage, good=good).exists():
                 
-                        stock = Stock.objects.get(storage=storage, good=good)
+                        stock = Stock.objects.filter(storage=storage, good=good)[0]
                         stock.stock = 10000
                         stock.save()
                     
