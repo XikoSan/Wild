@@ -151,6 +151,13 @@ class Player(models.Model):
     # время прилёта
     arrival = models.DateTimeField(default=datetime.datetime(2000, 1, 1, 0, 0), blank=True)
 
+    # -----------рекламная кампания----------------
+    utm_source = models.CharField(max_length=50, blank=True, verbose_name='utm_source')
+    utm_medium = models.CharField(max_length=50, blank=True, verbose_name='utm_medium')
+    utm_campaign = models.CharField(max_length=50, blank=True, verbose_name='utm_campaign')
+    utm_content = models.CharField(max_length=50, blank=True, verbose_name='utm_content')
+    utm_term = models.CharField(max_length=50, blank=True, verbose_name='utm_term')
+
     def energy_cons(self, value, mul=1, region=None):
         self.energy_consumption += value * mul
         self.energy -= value

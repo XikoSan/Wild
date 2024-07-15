@@ -24,6 +24,27 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-118774469-1"></script>
   <script>
+      // Функция для получения параметра из URL
+      function getQueryParam(param) {
+          let urlParams = new URLSearchParams(window.location.search);
+          return urlParams.get(param);
+      }
+
+      // Сохранение UTM-меток в LocalStorage
+      function saveUTMParams() {
+          let utmParams = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
+          utmParams.forEach(param => {
+              let value = getQueryParam(param);
+              if (value) {
+                  localStorage.setItem(param, value);
+              }
+          });
+      }
+
+      // Вызов функции сохранения при загрузке страницы
+      saveUTMParams();
+  </script>
+  <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());

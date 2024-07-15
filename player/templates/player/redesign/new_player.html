@@ -79,6 +79,12 @@
         </svg>          
       </button>
       <!--конец кнопки Start-->
+
+	  	<input type="hidden" name="utm_source" id="utm_source">
+        <input type="hidden" name="utm_medium" id="utm_medium">
+        <input type="hidden" name="utm_campaign" id="utm_campaign">
+        <input type="hidden" name="utm_content" id="utm_content">
+        <input type="hidden" name="utm_term" id="utm_term">
     </form>
 
   </section>
@@ -196,7 +202,31 @@
 	</div>
 </div>
 <!-- КОНЕЦ ГЛОБАЛЬНОГО МОДАЛЬНОГО ОКНА -->
+<script>
+	// Функция для получения UTM-меток из LocalStorage
+	function getUTMParams() {
+		let utmParams = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
+		let params = {};
+		utmParams.forEach(param => {
+			let value = localStorage.getItem(param);
+			if (value) {
+				params[param] = value;
+			}
+		});
+		return params;
+	}
 
+	// Вставка UTM-меток в форму
+	function insertUTMParamsToForm() {
+		let params = getUTMParams();
+		for (let key in params) {
+			document.getElementById(key).value = params[key];
+		}
+	}
+
+	// Вызов функции вставки UTM-меток при загрузке страницы
+	insertUTMParamsToForm();
+</script>
 <script src='{% static "redesign/js/new_char.js" %}'></script>
 <script src="{% static 'redesign/js/header.js' %}?{{ csrf_token }}"></script>
 <!--<script src="{% static 'redesign/js/cropper.js' %}?{{ csrf_token }}"></script>-->
