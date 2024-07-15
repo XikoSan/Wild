@@ -216,6 +216,9 @@ class PLayerAdmin(TabbedModelAdmin):
         ('Кошелёк', {
             'fields': ('cash', 'gold', 'bottles',)
         }),
+        ('Изменение баланса золота', {
+            'fields': ('add_value', 'subtract_value', )
+        }),
         ('Премиум-аккаунт', {
             'fields': ('premium', 'cards_count',)
         }),
