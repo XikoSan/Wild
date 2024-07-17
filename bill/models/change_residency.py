@@ -162,6 +162,10 @@ class ChangeResidency(Bill):
             # удаляем таску
             PeriodicTask.objects.filter(pk=task_id).delete()
 
+            state.residency = self.residency
+            state.save()
+            b_type = 'ac'
+
         ChangeResidency.objects.filter(pk=self.pk).update(
             type=b_type, running=False, voting_end=timezone.now(),
             rifle_cost=rifle_cost, drone_cost=drone_cost
