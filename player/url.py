@@ -1,25 +1,36 @@
 # coding=utf-8
 from django.conf.urls import url
+from django.urls import path
+from django.views.generic import TemplateView
 
+from event.views.winter_festival import winter_festival
 from player.views.banned import banned
+from player.views.bonus_code.activate_code import activate_code
+from player.views.bonus_code.bonus_code import bonus_code
 from player.views.eula import eula
 from player.views.game_event.halloween import halloween
+from player.views.lists.damage_top import damage_top
 from player.views.lists.region_players import region_players_list
-from player.views.lists.world_players import world_players_list
 from player.views.lists.world_online import world_online_list
+from player.views.lists.world_players import world_players_list
 from player.views.repost_reward import repost_reward
 from player.views.skills.up_skill import up_skill
+from player.views.translate.translate import edit_translations
+from player.views.translate.translations import translations
+from .views.answer_captcha import answer_captcha
+from .views.buy_lootboxes import buy_lootboxes
 from .views.change_back_allow import change_back_allow
 from .views.change_bio import change_bio
 from .views.change_nickname import change_nickname
 from .views.change_wiki_hide_allow import change_wiki_hide_allow
+from .views.claim_reward import claim_reward
 from .views.color_change import color_change
 from .views.comma_list import comma_list
+from .views.dmg_tbl import dmg_tbl
 from .views.expense_energy import expense_energy
 from .views.full_auto_allow import full_auto_allow
 from .views.game_event.new_year import new_year
 from .views.game_event.summer import summer_festival
-from event.views.winter_festival import winter_festival
 from .views.index import index
 from .views.lists.cash_top import cash_top
 from .views.lists.region_citizens import region_citizens_list
@@ -27,26 +38,13 @@ from .views.lists.skill_top import skill_top
 from .views.my_profile import my_profile
 from .views.new_player import new_player
 from .views.no_social import no_social
+from .views.open_lootboxes import open_lootboxes
 from .views.overview import overview
 from .views.set_language import set_language
 from .views.set_timezone import set_timezone
+from .views.skill_tbl import skill_tbl
 from .views.view_profile import view_profile
 from .views.wallet import wallet
-from .views.claim_reward import claim_reward
-from .views.open_lootboxes import open_lootboxes
-from .views.buy_lootboxes import buy_lootboxes
-from .views.answer_captcha import answer_captcha
-
-from player.views.translate.translate import edit_translations
-from player.views.translate.translations import translations
-from django.urls import path
-from django.views.generic import TemplateView
-
-from player.views.bonus_code.bonus_code import bonus_code
-from player.views.bonus_code.activate_code import activate_code
-
-from .views.dmg_tbl import dmg_tbl
-from .views.skill_tbl import skill_tbl
 
 urlpatterns = [
 
@@ -76,8 +74,8 @@ urlpatterns = [
     url(r'^cash_top/', cash_top, name='cash_top'),
     # списки лучших по характеристикам
     url(r'^skill_top/', skill_top, name='skill_top'),
-    # # список урона игрока
-    # url(r'^character_wars/', character_wars, name='character_wars'),
+    # список урона игрока
+    url(r'^damage_top/', damage_top, name='damage_top'),
 
     # открытие "обзора"
     url(r'^overview$', overview, name='overview'),
