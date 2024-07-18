@@ -76,6 +76,8 @@ urlpatterns = [
     url(r'^cash_top/', cash_top, name='cash_top'),
     # списки лучших по характеристикам
     url(r'^skill_top/', skill_top, name='skill_top'),
+    # # список урона игрока
+    # url(r'^character_wars/', character_wars, name='character_wars'),
 
     # открытие "обзора"
     url(r'^overview$', overview, name='overview'),
