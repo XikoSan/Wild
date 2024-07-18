@@ -4,6 +4,7 @@ from allauth.socialaccount.models import SocialAccount
 from datetime import datetime
 from django.contrib.auth.decorators import login_required
 from django.db import connection
+from django.db.models import Sum
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils import timezone
 
