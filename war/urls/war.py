@@ -2,6 +2,7 @@
 from django.conf.urls import url
 from django.urls import path
 
+from war.views.character_wars import character_wars
 from war.views.open_war import open_war
 from war.views.open_war_side_list import open_war_side_list
 from war.views.send_squads import send_squads
@@ -22,4 +23,7 @@ urlpatterns = [
 
     # список воюющих за сторону
     path('war/<str:class_name>/<str:pk>/<str:side>/', open_war_side_list, name='open_war_side_list'),
+    
+    # урон игрока
+    url(r'^character_wars/(?P<pk>\d+)/$', character_wars, name='character_wars'),
 ]

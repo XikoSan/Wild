@@ -1,22 +1,24 @@
 import pytz
 from PIL import Image
 from allauth.socialaccount.models import SocialAccount
+from django.apps import apps
 from django.contrib.auth.decorators import login_required
 from django.db import connection
+from django.db.models import Sum
 from django.shortcuts import redirect
 from django.shortcuts import render
 from django.utils import timezone
 
+from article.models.article import Article
+from ava_border.models.ava_border_ownership import AvaBorderOwnership
 from gov.models.minister import Minister
 from player.decorators.player import check_player
 from player.forms import ImageForm
 from player.logs.gold_log import GoldLog
 from player.player import Player
 from player.player_settings import PlayerSettings
-from article.models.article import Article
-from ava_border.models.ava_border_ownership import AvaBorderOwnership
 from region.models.plane import Plane
-from django.apps import apps
+from war.models.wars.player_damage import PlayerDamage
 
 
 @login_required(login_url='/')
@@ -96,7 +98,6 @@ def my_profile(request):
         full_auto = setts.full_auto
         wiki_hide = setts.wiki_hide
 
-
     ava_border = None
     png_use = False
     if AvaBorderOwnership.objects.filter(in_use=True, owner=player).exists():
@@ -145,7 +146,9 @@ def my_profile(request):
     #     where
     #     store.cash + player.cash > (select lim from sum_limit);
 
-    cursor.execute("with sum_limit (lim) as ( select SUM(store.cash) + player.cash from player_player as player join storage_storage as store on player.id = %s and store.owner_id = player.id and store.deleted = false group by player.id ), store_sum (owner_id, cash) as ( select store.owner_id, sum(store.cash) from storage_storage as store where store.deleted = false group by store.owner_id ) select count ( * ) + 1 from player_player as player join store_sum as store on store.owner_id = player.id where store.cash + player.cash > ( select lim from sum_limit );", [player.pk])
+    cursor.execute(
+        "with sum_limit (lim) as ( select SUM(store.cash) + player.cash from player_player as player join storage_storage as store on player.id = %s and store.owner_id = player.id and store.deleted = false group by player.id ), store_sum (owner_id, cash) as ( select store.owner_id, sum(store.cash) from storage_storage as store where store.deleted = false group by store.owner_id ) select count ( * ) + 1 from player_player as player join store_sum as store on store.owner_id = player.id where store.cash + player.cash > ( select lim from sum_limit );",
+        [player.pk])
     cash_rating = cursor.fetchone()
     # ---------------------
     player_articles = Article.objects.only('pk').filter(player=player).values('pk')
@@ -156,7 +159,9 @@ def my_profile(request):
         for article in player_articles:
             articles_tuple += (article['pk'],)
 
-        cursor.execute("with lines_con as(select count(*) from public.article_article_votes_con where article_id in %s), lines_pro as (select count(*) from public.article_article_votes_pro where article_id in %s) SELECT lines_pro.count - lines_con.count AS difference FROM lines_con, lines_pro;", [articles_tuple, articles_tuple])
+        cursor.execute(
+            "with lines_con as(select count(*) from public.article_article_votes_con where article_id in %s), lines_pro as (select count(*) from public.article_article_votes_pro where article_id in %s) SELECT lines_pro.count - lines_con.count AS difference FROM lines_con, lines_pro;",
+            [articles_tuple, articles_tuple])
 
         carma = cursor.fetchall()[0][0]
 
@@ -164,9 +169,13 @@ def my_profile(request):
         carma = 0
     # ---------------------
 
+    dmg_sum = PlayerDamage.objects.filter(player=player).aggregate(dmg_sum=Sum('damage'))['dmg_sum']
+
+    # ---------------------
+
     if Plane.objects.filter(in_use=True, player=player).exists():
         plane = Plane.objects.get(in_use=True, player=player)
-        plane_url = f'/static/img/planes/{ plane.plane }/{ plane.plane }_{ plane.color }.svg'
+        plane_url = f'/static/img/planes/{plane.plane}/{plane.plane}_{plane.color}.svg'
     else:
         plane_url = '/static/img/planes/nagger/nagger_base.svg'
 
@@ -175,7 +184,7 @@ def my_profile(request):
     CashEvent = apps.get_model('event.CashEvent')
 
     inviting_event = CashEvent.objects.filter(running=True, event_start__lt=timezone.now(),
-                                event_end__gt=timezone.now()).exists()
+                                              event_end__gt=timezone.now()).exists()
 
     # ---------------------
 
@@ -194,6 +203,7 @@ def my_profile(request):
         'user_link': user_link,
         'cash_rating': cash_rating[0],
         'carma': carma,
+        'dmg_sum': dmg_sum,
         # 'player_settings': player_settings,
         # 'countdown': UntilRecharge(player)
         'page_name': player.nickname,
@@ -216,4 +226,5 @@ def my_profile(request):
         'inviting_event': inviting_event,
 
     })
+
     return response

@@ -28,7 +28,7 @@ class WarSide(models.Model):
 
     def __str__(self):
         # if self.content_object is not None:
-        return 'Сторона войны в ' + getattr(getattr(self.content_object, 'agr_region'), 'region_name')
+        return 'Сторона войны'
         # else:
         # return 'Сторона войны'
 
