@@ -7,14 +7,15 @@ from django.db import connection
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils import timezone
 
+from article.models.article import Article
+from ava_border.models.ava_border_ownership import AvaBorderOwnership
 from gov.models.minister import Minister
 from player.decorators.player import check_player
 from player.player import Player
 from player.player_settings import PlayerSettings
-from wild_politics.settings import TIME_ZONE
-from ava_border.models.ava_border_ownership import AvaBorderOwnership
-from article.models.article import Article
 from region.models.plane import Plane
+from war.models.wars.player_damage import PlayerDamage
+from wild_politics.settings import TIME_ZONE
 
 
 @login_required(login_url='/')
@@ -70,7 +71,9 @@ def view_profile(request, pk):
         for article in player_articles:
             articles_tuple += (article['pk'],)
 
-        cursor.execute("with lines_con as(select count(*) from public.article_article_votes_con where article_id in %s), lines_pro as (select count(*) from public.article_article_votes_pro where article_id in %s) SELECT lines_pro.count - lines_con.count AS difference FROM lines_con, lines_pro;", [articles_tuple, articles_tuple])
+        cursor.execute(
+            "with lines_con as(select count(*) from public.article_article_votes_con where article_id in %s), lines_pro as (select count(*) from public.article_article_votes_pro where article_id in %s) SELECT lines_pro.count - lines_con.count AS difference FROM lines_con, lines_pro;",
+            [articles_tuple, articles_tuple])
 
         carma = cursor.fetchall()[0][0]
 
@@ -98,7 +101,6 @@ def view_profile(request, pk):
         ava_border = border.border
         png_use = border.png_use
 
-
     party_back = True
 
     if PlayerSettings.objects.filter(player=char).exists():
@@ -116,7 +118,7 @@ def view_profile(request, pk):
                                   'user_link': user_link,
                                   'cash_rating': cash_rating[0],
                                   'carma': carma,
-                                  
+
                                   'dmg_sum': dmg_sum,
 
                                   'party_back': party_back,
