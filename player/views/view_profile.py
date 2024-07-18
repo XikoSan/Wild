@@ -76,6 +76,9 @@ def view_profile(request, pk):
 
     else:
         carma = 0
+    # ---------------------
+
+    dmg_sum = PlayerDamage.objects.filter(player=char).aggregate(dmg_sum=Sum('damage'))['dmg_sum']
 
     # ---------------------
 
@@ -113,6 +116,8 @@ def view_profile(request, pk):
                                   'user_link': user_link,
                                   'cash_rating': cash_rating[0],
                                   'carma': carma,
+                                  
+                                  'dmg_sum': dmg_sum,
 
                                   'party_back': party_back,
 

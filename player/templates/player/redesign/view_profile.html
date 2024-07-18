@@ -161,6 +161,19 @@
 				</div>
 
 				<div class="ct__s">
+					<h2 class="ct__s-title">{% trans 'суммарный урон' context "profile" %}</h2>
+					<p class="ct__s-text">
+						{{ dmg_sum }}
+						<a href="/character_wars/{% localize off %}{{ char.pk }}{% endlocalize %}/">
+							{% trans '(к войнам)' context "profile" %}
+						</a>
+						<a href="/damage_top/">
+							{% trans '(к рейтингу)' context "profile" %}
+						</a>
+					</p>
+				</div>
+
+				<div class="ct__s">
 					<h2 class="ct__s-title">{% trans 'характеристики' context "profile" %}</h2>
 					<p class="ct__s-text">
 						<font color="FF0000">{{ char.power }}</font>
