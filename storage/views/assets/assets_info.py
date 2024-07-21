@@ -21,13 +21,13 @@ def assets_info(request, pk):
 
         player = Player.get_instance(account=request.user)
 
-        if Storage.objects.filter(pk=pk, owner=player).exists():
+        if Storage.actual.filter(pk=pk, owner=player).exists():
 
             size_dict = {}
             for size in Good.sizeChoices:
                 size_dict[size[0]] = size[1]
 
-            storage = Storage.objects.get(pk=pk)
+            storage = Storage.actual.get(pk=pk)
 
             all_goods = Good.objects.all()
 
