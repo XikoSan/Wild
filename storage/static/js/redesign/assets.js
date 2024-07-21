@@ -185,6 +185,22 @@ jQuery(document).ready(function ($) {
             $(obj).hide();
         });
 
+        var div = document.getElementById('table_' + this.value);
+
+        if (div.childNodes.length === 3) {
+
+             $.ajax({
+               type: "GET",
+               url: "info/assets/"+this.value,
+               dataType: "html",
+               cache: false,
+               success: function(data){
+                   div.innerHTML = data;
+               }
+             });
+
+         }
+
         $('#table_' + this.value).show();
     });
 
