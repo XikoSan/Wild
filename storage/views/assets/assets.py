@@ -67,7 +67,6 @@ def assets(request):
         for dest in storages:
             if not dest == storage:
                 trans_mul[storage.pk][dest.pk] = math.ceil(distance_counting(storage.region, dest.region) / 100)
-                # todo: кешировать маршруты от склада до склада!
                 # path, trans_mul[storage.pk][dest.pk] = find_route(storage.region, dest.region)
 
         # узнаем множитель Инфраструктуры для этого региона

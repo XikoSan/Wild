@@ -54,8 +54,8 @@ def no_storage(player):
         price_dict[storage.pk] = {}
         price_dict[storage.pk][aluminium_stock.pk] = price_dict[storage.pk][steel_stock.pk] = material_cost
 
-        # trans_mul[f'reg_{player.region.pk}'][storage.pk] = math.ceil(distance_counting(player.region, storage.region) / 100)
-        path, trans_mul[f'reg_{player.region.pk}'][storage.pk] = find_route(player.region, storage.region)
+        trans_mul[f'reg_{player.region.pk}'][storage.pk] = math.ceil(distance_counting(player.region, storage.region) / 100)
+        # path, trans_mul[f'reg_{player.region.pk}'][storage.pk] = find_route(player.region, storage.region)
 
     price, prices = get_transfer_price(trans_mul, player.region.pk, price_dict, dest_region=True)
     for source_storage_pk in prices:
