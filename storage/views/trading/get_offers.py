@@ -188,26 +188,22 @@ def get_offers(request):
                     delivery_dict[storage.pk]['infr'] =  0
                     continue
 
-                if not storage.region in  distance_dict.keys():
-                    distance_dict[storage.region] = {}
+                # if not storage.region in  distance_dict.keys():
+                #     distance_dict[storage.region] = {}
 
                 trans_mul = {storage.pk: {}}
 
-                if not offer.owner_storage.region in distance_dict[storage.region].keys():
-                    # trans_mul[storage.pk][offer.owner_storage.pk] = math.ceil(
-                    #     distance_counting(storage.region, offer.owner_storage.region) / 100)
+                trans_mul[storage.pk][offer.owner_storage.pk] = math.ceil(distance_counting(storage.region, offer.owner_storage.region) / 100)
 
-                    path, total_price = find_route(storage.region, offer.owner_storage.region)
+                # if not offer.owner_storage.region in distance_dict[storage.region].keys():
+                #     path, total_price = find_route(storage.region, offer.owner_storage.region)
+                #
+                #     trans_mul[storage.pk][offer.owner_storage.pk] = total_price
+                #     distance_dict[storage.region][offer.owner_storage.region] = total_price
+                #
+                # else:
+                #     trans_mul[storage.pk][offer.owner_storage.pk] = distance_dict[storage.region][offer.owner_storage.region]
 
-                    trans_mul[storage.pk][offer.owner_storage.pk] = total_price
-                    distance_dict[storage.region][offer.owner_storage.region] = total_price
-
-                else:
-                    trans_mul[storage.pk][offer.owner_storage.pk] = distance_dict[storage.region][offer.owner_storage.region]
-
-                # offer_value = {}
-                # offer_value[str(offer.owner_storage.pk)] = {}
-                # offer_value[str(offer.owner_storage.pk)][offer.offer_good.pk] = offer.count
 
                 delivery_dict[storage.pk] = {}
                 delivery_dict[storage.pk]['name'] = storage.region.region_name

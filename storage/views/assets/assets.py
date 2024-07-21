@@ -50,26 +50,24 @@ def assets(request):
     for storage in storages:
         all_stocks[storage] = {}
 
-        for good in all_goods:
+        if storage == storages.first():
+            for good in all_goods:
 
-            if stocks.filter(storage=storage, good=good).exists():
+                if stocks.filter(storage=storage, good=good).exists():
 
-                stock = stocks.get(storage=storage, good=good, stock__gt=0)
+                    stock = stocks.get(storage=storage, good=good, stock__gt=0)
 
-            # else:
-            #     stock = Stock(storage=storage, good=good, stock=0)
-
-                if good.size in all_stocks[storage]:
-                    all_stocks[storage][good.size].append(stock)
-                else:
-                    all_stocks[storage][good.size] = [stock, ]
+                    if good.size in all_stocks[storage]:
+                        all_stocks[storage][good.size].append(stock)
+                    else:
+                        all_stocks[storage][good.size] = [stock, ]
 
 
         trans_mul[storage.pk] = {}
         for dest in storages:
             if not dest == storage:
-                # trans_mul[storage.pk][dest.pk] = math.ceil(distance_counting(storage.region, dest.region) / 100)
-                path, trans_mul[storage.pk][dest.pk] = find_route(storage.region, dest.region)
+                trans_mul[storage.pk][dest.pk] = math.ceil(distance_counting(storage.region, dest.region) / 100)
+                # path, trans_mul[storage.pk][dest.pk] = find_route(storage.region, dest.region)
 
         # узнаем множитель Инфраструктуры для этого региона
         infr_mul[storage.pk] = Infrastructure.indexes[Infrastructure.get_stat(storage.region)[0]['top']]

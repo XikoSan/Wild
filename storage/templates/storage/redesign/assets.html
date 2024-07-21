@@ -8,6 +8,45 @@
 {% load get_key_list %}
 
 {% block content %}
+<style>
+.loading-dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10vh;
+    padding-right: 24rem;
+}
+
+.loading-dots div {
+    width: 10px;
+    height: 10px;
+    margin: 0 5px;
+    background-color: var(--c10one);
+    border-radius: 50%;
+    animation: bounce 1.5s infinite ease-in-out;
+}
+
+.loading-dots div:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.loading-dots div:nth-child(2) {
+    animation-delay: 0.3s;
+}
+
+.loading-dots div:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+@keyframes bounce {
+    0%, 80%, 100% {
+        transform: scale(1);
+    }
+    40% {
+        transform: scale(1.5);
+    }
+}
+</style>
 <section class="actives custom-scroll">
     <form id="assets_actions_form" role="form">
     <!-- Заголовок -->
@@ -97,41 +136,50 @@
     <!-- Таблица Активов -->
     {% for storage in storages %}
     <div id="table_{% localize off %}{{ storage.pk }}{% endlocalize %}" class="actives__table" {% if forloop.counter0 != 0 %}style="display: none"{% endif %}>
-        <!--Наличные-->
-      <div class="ct__s">
-        <h2 class="ct__s-title">{% trans 'Уровень' context "storage" %}:</h2>
-        <p class="ct__s-text">
-          {{ storage|get_attr:'level' }}
-        </p>
-      </div>
-      <div class="ct__s">
-        <h2 class="ct__s-title">{{ storage.valut|dict_key:'cash' }}:</h2>
-        <p class="ct__s-text">
-          {{ storage|get_attr:'cash' }}
-        </p>
-      </div>
 
-    {% for size in size_dict|get_key_list %}
-        {% with stocks=all_stocks|dict_key:storage %}
-            {% if stocks|has_key:size %}
-                {% for stock in stocks|dict_key:size %}
-                    {% with good=stock|get_attr:'good' %}
-          <div class="ct__s">
-            <h2 class="ct__s-title">{{ good.name }}:</h2>
-            <div class="ct__s-text-input">
-                        <label>
-                            <input type="number" value="0" step="1" min="0" max="{% localize off %}{{ stock|get_attr:'stock' }}{% endlocalize %}" data-storage_id="{% localize off %}{{ storage.pk }}{% endlocalize %}" data-stock_id="{% localize off %}{{ stock.pk }}{% endlocalize %}" data-good_vol="{% localize off %}{{ stock.good.volume }}{% endlocalize %}" class="good_input" name="{% localize off %}{{ storage.pk }}_{{ stock.pk }}{% endlocalize %}">
-                        </label>
-                        <span>/ {{ stock|get_attr:'stock' }}</span>
-                        <span>{% trans 'объём (ед)' context "assets" %}: <span id="{% localize off %}{{ storage.pk }}_{{ stock.pk }}_places{% endlocalize %}" data-text="0">0</span></span>
-                    </div>
-          </div>
-                    {% endwith %}
-                {% endfor %}
-            {% endif %}
-        {% endwith %}
-    {% endfor %}
+        {% if forloop.counter0 == 0 %}
+              <!--Наличные-->
+              <div class="ct__s">
+                <h2 class="ct__s-title">{% trans 'Уровень' context "storage" %}:</h2>
+                <p class="ct__s-text">
+                  {{ storage|get_attr:'level' }}
+                </p>
+              </div>
+              <div class="ct__s">
+                <h2 class="ct__s-title">{{ storage.valut|dict_key:'cash' }}:</h2>
+                <p class="ct__s-text">
+                  {{ storage|get_attr:'cash' }}
+                </p>
+              </div>
 
+            {% for size in size_dict|get_key_list %}
+                {% with stocks=all_stocks|dict_key:storage %}
+                    {% if stocks|has_key:size %}
+                        {% for stock in stocks|dict_key:size %}
+                            {% with good=stock|get_attr:'good' %}
+                  <div class="ct__s">
+                    <h2 class="ct__s-title">{{ good.name }}:</h2>
+                    <div class="ct__s-text-input">
+                                <label>
+                                    <input type="number" value="0" step="1" min="0" max="{% localize off %}{{ stock|get_attr:'stock' }}{% endlocalize %}" data-storage_id="{% localize off %}{{ storage.pk }}{% endlocalize %}" data-stock_id="{% localize off %}{{ stock.pk }}{% endlocalize %}" data-good_vol="{% localize off %}{{ stock.good.volume }}{% endlocalize %}" class="good_input" name="{% localize off %}{{ storage.pk }}_{{ stock.pk }}{% endlocalize %}">
+                                </label>
+                                <span>/ {{ stock|get_attr:'stock' }}</span>
+                                <span>{% trans 'объём (ед)' context "assets" %}: <span id="{% localize off %}{{ storage.pk }}_{{ stock.pk }}_places{% endlocalize %}" data-text="0">0</span></span>
+                            </div>
+                  </div>
+                            {% endwith %}
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+            {% endfor %}
+
+        {% else %}
+            <div class="loading-dots">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        {% endif %}
 
     </div>
     {% endfor %}

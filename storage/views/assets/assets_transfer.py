@@ -64,8 +64,8 @@ def assets_transfer(request):
             trans_mul[storage.pk] = {}
             for dest in storages:
                 if not dest == storage:
-                    # trans_mul[storage.pk][dest.pk] = math.ceil(distance_counting(storage.region, dest.region) / 100)
-                    path, trans_mul[storage.pk][dest.pk] = find_route(storage.region, dest.region)
+                    trans_mul[storage.pk][dest.pk] = math.ceil(distance_counting(storage.region, dest.region) / 100)
+                    # path, trans_mul[storage.pk][dest.pk] = find_route(storage.region, dest.region)
 
         if dest_pk_int in storages_pk:
 
