@@ -47,10 +47,10 @@ def assets(request):
     # ненулевые запасы
     stocks = Stock.objects.filter(storage__in=storages, stock__gt=0, good__in=all_goods)
 
-    for storage in storages:
+    for i, storage in enumerate(storages):
         all_stocks[storage] = {}
 
-        if storage == storages.first():
+        if i == 0:
             for good in all_goods:
 
                 if stocks.filter(storage=storage, good=good).exists():
