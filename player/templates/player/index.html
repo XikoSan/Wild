@@ -243,10 +243,15 @@
     <div class="modal__inner-window">
       <h2 class="modal__header ct__nickname">
         <span>
-          Начало регистрации
+          Подарок лично вам!
         </span>
       </h2>
-      <p class="modal__text">Уважаемые игроки! <br> Регистрация в игре станет доступна <br> 29 октября, в 18:00 МСК.<br> Благодарим вас за интерес к проекту!</p>
+      <p class="modal__text">
+        Спасибо за ваш интерес к рекламе!
+        <br>Для комфортного старта, сохраните бонус-код, который можно активировать в профиле:
+        <br>KJK - C8F - UXQ - 8SY
+        <br>Желаем вам приятной игры!
+      </p>
 
       <div class="modal__btn-wrapper">
         <button class="modal__ok">
@@ -376,7 +381,7 @@
 
         this.isModalDisabled = this.getFromIsModalDisabledLS() ?? '';
 
-        if (false) {
+        if (this.isModalDisabled == 'yandex') {
           this.modal.classList.add('active');
         } else {
           this.modal.classList.remove('active');
@@ -393,7 +398,7 @@
       }
 
       getFromIsModalDisabledLS() {
-        return localStorage.getItem('isRegistrationDisabled');
+        return getQueryParam('utm_source');
       }
 
       setFromIsModalDisabledLS() {
