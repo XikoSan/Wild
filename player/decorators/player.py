@@ -74,6 +74,7 @@ def check_player(func):
                         Q(pk=player.pk) |
                         Q(pk=491) | Q(pk=498) |
                         Q(pk=85) | Q(pk=1313) |
+                        Q(pk=69) | Q(pk=90) |
                         Q(banned=True)
                 ).exists():
 
