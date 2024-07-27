@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-22 00:33+0300\n"
-"PO-Revision-Date: 2024-06-22 00:50+0300\n"
+"POT-Creation-Date: 2024-07-28 02:05+0300\n"
+"PO-Revision-Date: 2024-07-28 02:12+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -94,54 +94,59 @@ msgid "Дизлайкнувшие статью"
 msgstr "Dislikes"
 
 #: article/views/article_rated_list.py:57
-#: player/templatetags/redesign/skill_top/endurance_top.py:53
-#: player/templatetags/redesign/skill_top/knowledge_top.py:53
-#: player/templatetags/redesign/skill_top/power_top.py:53
-#: player/views/lists/cash_top.py:81 player/views/lists/region_citizens.py:36
+#: player/templatetags/redesign/skill_top/endurance_top.py:55
+#: player/templatetags/redesign/skill_top/knowledge_top.py:55
+#: player/templatetags/redesign/skill_top/power_top.py:56
+#: player/views/lists/cash_top.py:82 player/views/lists/damage_top.py:98
+#: player/views/lists/region_citizens.py:36
 #: player/views/lists/region_players.py:36
 #: player/views/lists/world_online.py:42 player/views/lists/world_players.py:30
-#: war/views/open_war_side_list.py:72
+#: war/views/open_war_side_list.py:76
 msgctxt "lists"
 msgid "Аватар"
 msgstr "Avatar"
 
 #: article/views/article_rated_list.py:62
 #: article/views/article_rated_list.py:63
-#: player/templatetags/redesign/skill_top/endurance_top.py:58
-#: player/templatetags/redesign/skill_top/endurance_top.py:59
-#: player/templatetags/redesign/skill_top/knowledge_top.py:58
-#: player/templatetags/redesign/skill_top/knowledge_top.py:59
-#: player/templatetags/redesign/skill_top/power_top.py:58
-#: player/templatetags/redesign/skill_top/power_top.py:59
-#: player/views/lists/cash_top.py:86 player/views/lists/cash_top.py:87
+#: player/templatetags/redesign/skill_top/endurance_top.py:60
+#: player/templatetags/redesign/skill_top/endurance_top.py:61
+#: player/templatetags/redesign/skill_top/knowledge_top.py:60
+#: player/templatetags/redesign/skill_top/knowledge_top.py:61
+#: player/templatetags/redesign/skill_top/power_top.py:61
+#: player/templatetags/redesign/skill_top/power_top.py:62
+#: player/views/lists/cash_top.py:87 player/views/lists/cash_top.py:88
+#: player/views/lists/damage_top.py:103 player/views/lists/damage_top.py:104
 #: player/views/lists/region_citizens.py:41
 #: player/views/lists/region_citizens.py:42
 #: player/views/lists/region_players.py:41
 #: player/views/lists/region_players.py:42
 #: player/views/lists/world_online.py:47 player/views/lists/world_online.py:48
 #: player/views/lists/world_players.py:35
-#: player/views/lists/world_players.py:36 war/views/open_war_side_list.py:77
-#: war/views/open_war_side_list.py:78
+#: player/views/lists/world_players.py:36 war/views/open_war_side_list.py:81
+#: war/views/open_war_side_list.py:82
 msgctxt "lists"
 msgid "Никнейм"
 msgstr "Nickname"
 
-#: article/views/article_rated_list.py:71 player/views/lists/cash_top.py:95
+#: article/views/article_rated_list.py:71 player/views/lists/cash_top.py:96
+#: player/views/lists/damage_top.py:118
 #: player/views/lists/region_citizens.py:50
 #: player/views/lists/region_players.py:50
 #: player/views/lists/world_online.py:56 player/views/lists/world_players.py:44
-#: war/views/open_war_side_list.py:92
+#: war/views/open_war_side_list.py:96
 msgctxt "lists"
 msgid "Герб"
 msgstr "Coat"
 
 #: article/views/article_rated_list.py:76
-#: article/views/article_rated_list.py:77 player/views/lists/cash_top.py:100
-#: player/views/lists/cash_top.py:101 player/views/lists/region_citizens.py:55
+#: article/views/article_rated_list.py:77 player/views/lists/cash_top.py:101
+#: player/views/lists/cash_top.py:102 player/views/lists/damage_top.py:123
+#: player/views/lists/damage_top.py:124
+#: player/views/lists/region_citizens.py:55
 #: player/views/lists/region_citizens.py:56
 #: player/views/lists/region_players.py:55
-#: player/views/lists/region_players.py:56 war/views/open_war_side_list.py:97
-#: war/views/open_war_side_list.py:98
+#: player/views/lists/region_players.py:56 war/views/open_war_side_list.py:101
+#: war/views/open_war_side_list.py:102
 msgctxt "lists"
 msgid "Партия"
 msgstr "Party"
@@ -224,19 +229,17 @@ msgstr "UAV"
 
 #: bill/templates/state/redesign/drafts/change_coat.html:93
 #: party/templates/party/redesign/manage.html:419
-#: player/templates/player/redesign/new_player.html:135
-#: player/templates/player/redesign/new_player.html:149
-#: player/templates/player/redesign/new_player.html:177
-#: player/templates/player/redesign/profile.html:380
-#: player/templates/player/redesign/profile_new.html:444
+#: player/templates/player/redesign/new_player.html:141
+#: player/templates/player/redesign/new_player.html:155
+#: player/templates/player/redesign/new_player.html:183
+#: player/templates/player/redesign/profile.html:510
 msgid "Отмена"
 msgstr "Cancel"
 
 #: bill/templates/state/redesign/drafts/change_coat.html:94
 #: party/templates/party/redesign/manage.html:420
-#: player/templates/player/redesign/new_player.html:136
-#: player/templates/player/redesign/profile.html:381
-#: player/templates/player/redesign/profile_new.html:445
+#: player/templates/player/redesign/new_player.html:142
+#: player/templates/player/redesign/profile.html:511
 msgid "Загрузить"
 msgstr "Upload"
 
@@ -293,7 +296,8 @@ msgstr "Personal Event Progression"
 
 #: event/templates/event/festival.html:396
 msgctxt "game_event"
-msgid "Заполняется ежедневным входом в игру, а также завершением Финансирования."
+msgid ""
+"Заполняется ежедневным входом в игру, а также завершением Финансирования."
 msgstr ""
 
 #: event/templates/event/festival.html:397
@@ -314,7 +318,9 @@ msgstr "Total Event Progression"
 #| msgctxt "game_event"
 #| msgid "Заполняется усилиями всех игроков сервера."
 msgctxt "game_event"
-msgid "Заполняется усилиями всех игроков сервера. Очки могут быть как заработаны, так и потеряны."
+msgid ""
+"Заполняется усилиями всех игроков сервера. Очки могут быть как заработаны, "
+"так и потеряны."
 msgstr "Fills with the efforts of all players on the server."
 
 #: event/templates/event/summer_festival.html:218
@@ -338,7 +344,9 @@ msgstr "game values and new avatar frames in two progressions!"
 
 #: event/templates/event/summer_festival.html:397
 msgctxt "game_event"
-msgid "Заполняется по тем же принципам, что и шкала Финансирования - тратами энергии игроком."
+msgid ""
+"Заполняется по тем же принципам, что и шкала Финансирования - тратами "
+"энергии игроком."
 msgstr ""
 
 #: event/templates/event/summer_festival.html:399
@@ -349,7 +357,7 @@ msgctxt "game_event"
 msgid "Заполняется суммой усилий всех игроков сервера."
 msgstr "Fills with the efforts of all players on the server."
 
-#: event/views/activate_invite.py:113 factory/views/cancel_auto.py:35
+#: event/views/activate_invite.py:114 factory/views/cancel_auto.py:35
 #: factory/views/start_auto.py:132 player/views/answer_captcha.py:51
 #: player/views/bonus_code/activate_code.py:177
 #: player/views/buy_lootboxes.py:144 player/views/change_back_allow.py:57
@@ -664,8 +672,8 @@ msgstr "Error during cancellation"
 #: factory/views/start_auto.py:70 factory/views/start_auto.py:103
 #: factory/views/start_auto.py:131
 #: party/views/management/staff/leave_party.py:38
-#: party/views/management/staff/leave_party.py:210 player/player.py:377
-#: player/player.py:388 player/player.py:409 region/views/cancel_auto.py:34
+#: party/views/management/staff/leave_party.py:210 player/player.py:386
+#: player/player.py:397 player/player.py:418 region/views/cancel_auto.py:34
 #: region/views/daily_status.py:95 region/views/do_mining.py:38
 #: region/views/do_mining.py:51 region/views/do_mining.py:61
 #: region/views/do_mining.py:74 region/views/do_mining.py:83
@@ -675,28 +683,28 @@ msgstr "Error during cancellation"
 #: region/views/map/save_links.py:61 region/views/retrieve_cash.py:41
 #: region/views/start_auto.py:28 region/views/start_auto.py:36
 #: region/views/start_auto.py:46 region/views/start_auto.py:55
-#: region/views/start_auto.py:81 storage/views/assets/assets_destroy.py:154
-#: storage/views/assets/assets_transfer.py:234
+#: region/views/start_auto.py:81 storage/views/assets/assets_destroy.py:137
+#: storage/views/assets/assets_transfer.py:237
 #: storage/views/assets/storage_move.py:37
 #: storage/views/assets/storage_move.py:46
 #: storage/views/assets/storage_move.py:55
 #: storage/views/assets/storage_move.py:65
 #: storage/views/assets/storage_move.py:73
-#: storage/views/assets/storage_move.py:85
-#: storage/views/assets/storage_move.py:104
+#: storage/views/assets/storage_move.py:88
+#: storage/views/assets/storage_move.py:107
 #: storage/views/storage/cash_transfer.py:34
 #: storage/views/storage/cash_transfer.py:43
 #: storage/views/storage/cash_transfer.py:56
 #: storage/views/storage/cash_transfer.py:65
 #: storage/views/storage/cash_transfer.py:74
-#: storage/views/storage/cash_transfer.py:103
-#: storage/views/storage/cash_transfer.py:123
-#: storage/views/storage/cash_transfer.py:131
-#: storage/views/storage/cash_transfer.py:143
+#: storage/views/storage/cash_transfer.py:106
+#: storage/views/storage/cash_transfer.py:126
+#: storage/views/storage/cash_transfer.py:134
+#: storage/views/storage/cash_transfer.py:146
 #: storage/views/storage/new_storage.py:38
-#: storage/views/storage/new_storage.py:62
-#: storage/views/storage/new_storage.py:82
-#: storage/views/storage/new_storage.py:105
+#: storage/views/storage/new_storage.py:63
+#: storage/views/storage/new_storage.py:83
+#: storage/views/storage/new_storage.py:106
 #: storage/views/storage/upgrade_storage.py:38
 #: storage/views/storage/upgrade_storage.py:48
 #: storage/views/storage/upgrade_storage.py:61
@@ -706,24 +714,24 @@ msgstr "Error during cancellation"
 #: storage/views/trading/accept_offer.py:69
 #: storage/views/trading/accept_offer.py:82
 #: storage/views/trading/accept_offer.py:94
-#: storage/views/trading/accept_offer.py:130
-#: storage/views/trading/accept_offer.py:141
-#: storage/views/trading/accept_offer.py:149
-#: storage/views/trading/accept_offer.py:157
-#: storage/views/trading/accept_offer.py:165
-#: storage/views/trading/accept_offer.py:187
-#: storage/views/trading/accept_offer.py:196
-#: storage/views/trading/accept_offer.py:210
-#: storage/views/trading/accept_offer.py:232
-#: storage/views/trading/accept_offer.py:256
-#: storage/views/trading/accept_offer.py:319
-#: storage/views/trading/accept_offer.py:327
-#: storage/views/trading/accept_offer.py:339
-#: storage/views/trading/accept_offer.py:347
-#: storage/views/trading/accept_offer.py:356
-#: storage/views/trading/accept_offer.py:368
-#: storage/views/trading/accept_offer.py:458
-#: storage/views/trading/accept_offer.py:472
+#: storage/views/trading/accept_offer.py:133
+#: storage/views/trading/accept_offer.py:144
+#: storage/views/trading/accept_offer.py:152
+#: storage/views/trading/accept_offer.py:160
+#: storage/views/trading/accept_offer.py:168
+#: storage/views/trading/accept_offer.py:190
+#: storage/views/trading/accept_offer.py:199
+#: storage/views/trading/accept_offer.py:213
+#: storage/views/trading/accept_offer.py:235
+#: storage/views/trading/accept_offer.py:259
+#: storage/views/trading/accept_offer.py:322
+#: storage/views/trading/accept_offer.py:330
+#: storage/views/trading/accept_offer.py:342
+#: storage/views/trading/accept_offer.py:350
+#: storage/views/trading/accept_offer.py:359
+#: storage/views/trading/accept_offer.py:371
+#: storage/views/trading/accept_offer.py:461
+#: storage/views/trading/accept_offer.py:475
 #: storage/views/trading/cancel_offer.py:43
 #: storage/views/trading/cancel_offer.py:56
 #: storage/views/trading/cancel_offer.py:64
@@ -753,7 +761,7 @@ msgstr "Error during cancellation"
 #: storage/views/trading/create_offer.py:294
 #: storage/views/trading/get_offers.py:45
 #: storage/views/trading/get_offers.py:67
-#: storage/views/trading/get_offers.py:261
+#: storage/views/trading/get_offers.py:257
 #: storage/views/trading/premium_trading.py:27
 #: storage/views/trading/premium_trading.py:39
 #: storage/views/trading/premium_trading.py:89
@@ -868,7 +876,7 @@ msgctxt "factory"
 msgid ". В наличии "
 msgstr ". In stock "
 
-#: factory/views/start_auto.py:30 player/player.py:375
+#: factory/views/start_auto.py:30 player/player.py:384
 #: region/views/do_mining.py:36 region/views/start_auto.py:26
 msgctxt "mining"
 msgid "Дождитесь конца полёта"
@@ -1202,14 +1210,12 @@ msgid "Участников"
 msgstr "Members"
 
 #: party/templates/party/redesign/party_view.html:90
-#: player/templates/player/redesign/profile.html:197
-#: player/templates/player/redesign/profile.html:221
-#: player/templates/player/redesign/profile_new.html:274
-#: player/templates/player/redesign/profile_new.html:298
-#: player/templates/player/redesign/view_profile.html:94
-#: player/templates/player/redesign/view_profile.html:118
-#: player/templates/player/redesign/view_profile_new.html:148
-#: player/templates/player/redesign/view_profile_new.html:172
+#: player/templates/player/redesign/profile.html:327
+#: player/templates/player/redesign/profile.html:350
+#: player/templates/player/redesign/profile.html:364
+#: player/templates/player/redesign/view_profile.html:148
+#: player/templates/player/redesign/view_profile.html:171
+#: player/templates/player/redesign/view_profile.html:185
 msgctxt "profile"
 msgid "(к рейтингу)"
 msgstr "(to Top)"
@@ -1243,17 +1249,17 @@ msgstr "apply"
 msgid "primaries_in_party"
 msgstr "Primaries in party"
 
-#: party/templatetags/redesign/tops/factory_top.py:99
+#: party/templatetags/redesign/tops/factory_top.py:101
 msgctxt "skill_top"
 msgid "Топ производства"
 msgstr "Production top"
 
-#: party/templatetags/redesign/tops/mining_top.py:97
+#: party/templatetags/redesign/tops/mining_top.py:103
 msgctxt "skill_top"
 msgid "Топ добычи"
 msgstr "Mining top"
 
-#: party/templatetags/redesign/tops/skill_top.py:100
+#: party/templatetags/redesign/tops/skill_top.py:102
 msgctxt "skill_top"
 msgid "Топ прироста Характеристик"
 msgstr "Skill increase top"
@@ -1265,11 +1271,11 @@ msgstr "Skill increase top"
 msgid "Топ партий"
 msgstr "Party type"
 
-#: party/views/lists/region_parties.py:86 party/views/lists/state_parties.py:40
+#: party/views/lists/region_parties.py:89 party/views/lists/state_parties.py:40
 msgid "Партии региона"
 msgstr "Region`s parties"
 
-#: party/views/lists/world_parties.py:87
+#: party/views/lists/world_parties.py:90
 msgid "Партии мира"
 msgstr "World`s parties"
 
@@ -1329,17 +1335,18 @@ msgstr "Incorrect color code"
 #: player/views/customization/plane/choose_plane.py:62
 #: player/views/customization/plane/clear_plane_nick.py:63
 #: player/views/customization/plane/set_plane_nick.py:82
-#: player/views/expense_energy.py:30 player/views/expense_energy.py:53
-#: player/views/expense_energy.py:62 player/views/expense_energy.py:73
-#: player/views/full_auto_allow.py:43 player/views/full_auto_allow.py:59
-#: player/views/new_player.py:145 player/views/new_player.py:158
-#: player/views/open_lootboxes.py:27 player/views/open_lootboxes.py:38
-#: player/views/open_lootboxes.py:49 player/views/open_lootboxes.py:59
-#: player/views/open_lootboxes.py:134 player/views/set_language.py:40
-#: player/views/set_language.py:56 player/views/set_timezone.py:29
-#: player/views/set_timezone.py:45 skill/views/skill_cancel.py:36
-#: skill/views/skill_cancel.py:44 skill/views/skill_cancel.py:52
-#: skill/views/skill_cancel.py:62 skill/views/skill_cancel.py:77
+#: player/views/expense_energy.py:30 player/views/expense_energy.py:44
+#: player/views/expense_energy.py:67 player/views/expense_energy.py:76
+#: player/views/expense_energy.py:87 player/views/full_auto_allow.py:43
+#: player/views/full_auto_allow.py:59 player/views/new_player.py:145
+#: player/views/new_player.py:158 player/views/open_lootboxes.py:27
+#: player/views/open_lootboxes.py:38 player/views/open_lootboxes.py:49
+#: player/views/open_lootboxes.py:59 player/views/open_lootboxes.py:134
+#: player/views/set_language.py:40 player/views/set_language.py:56
+#: player/views/set_timezone.py:29 player/views/set_timezone.py:45
+#: skill/views/skill_cancel.py:36 skill/views/skill_cancel.py:44
+#: skill/views/skill_cancel.py:52 skill/views/skill_cancel.py:62
+#: skill/views/skill_cancel.py:77
 #: storage/views/vault/avia_box/loot_aviaboxes.py:56
 #: storage/views/vault/avia_box/open_aviaboxes.py:37
 #: storage/views/vault/avia_box/open_aviaboxes.py:45
@@ -1382,16 +1389,16 @@ msgstr "You are not a member of any party"
 #: party/views/management/roles/new_role.py:79
 #: party/views/management/roles/remove_role.py:77
 #: player/views/color_change.py:102 region/views/do_mining.py:330
-#: storage/views/assets/assets_destroy.py:155
-#: storage/views/assets/assets_transfer.py:235
-#: storage/views/assets/storage_move.py:105
-#: storage/views/storage/cash_transfer.py:144
-#: storage/views/storage/new_storage.py:106
+#: storage/views/assets/assets_destroy.py:138
+#: storage/views/assets/assets_transfer.py:238
+#: storage/views/assets/storage_move.py:108
+#: storage/views/storage/cash_transfer.py:147
+#: storage/views/storage/new_storage.py:107
 #: storage/views/storage/upgrade_storage.py:96
-#: storage/views/trading/accept_offer.py:473
+#: storage/views/trading/accept_offer.py:476
 #: storage/views/trading/cancel_offer.py:165
 #: storage/views/trading/create_offer.py:295
-#: storage/views/trading/get_offers.py:262
+#: storage/views/trading/get_offers.py:258
 msgctxt "mining"
 msgid "Ошибка метода"
 msgstr "Method error"
@@ -1568,68 +1575,135 @@ msgctxt "cash_log"
 msgid "Навыки"
 msgstr "Skills"
 
-#: player/player.py:376 player/player.py:387 player/player.py:408
+#: player/player.py:385 player/player.py:396 player/player.py:417
 #: region/views/retrieve_cash.py:40
 msgctxt "mining"
 msgid "Ошибка получения финансирования"
 msgstr "Daily Funding Error"
 
-#: player/player.py:386 player/player.py:407
+#: player/player.py:395 player/player.py:416
 msgctxt "mining"
 msgid "Нечего забирать"
 msgstr "Nothing to get"
 
-#: player/templates/player/index.html:97
+#: player/templates/player/index.html:90 player/templates/player/index.html:258
+msgctxt "index"
+msgid "Ссылки"
+msgstr "Links"
+
+#: player/templates/player/index.html:100
+msgctxt "index_links"
+msgid "Официальная"
+msgstr "Official"
+
+#: player/templates/player/index.html:100
+msgctxt "index_links"
+msgid "Wiki игры"
+msgstr "game Wiki"
+
+#: player/templates/player/index.html:113
+msgctxt "index_links"
+msgid "Группа игры"
+msgstr "Game public at"
+
+#: player/templates/player/index.html:113
+#: player/templates/player/index.html:126
+msgctxt "index_links"
+msgid "Вконтакте"
+msgstr "VK"
+
+#: player/templates/player/index.html:126
+msgctxt "index_links"
+msgid "Общий чат игроков"
+msgstr "Common chat at"
+
+#: player/templates/player/index.html:140
+msgctxt "index_links"
+msgid "Новостной канал в"
+msgstr "Game channel at "
+
+#: player/templates/player/index.html:140
+#: player/templates/player/index.html:154
+msgctxt "index_links"
+msgid "Telegram"
+msgstr "Telegram"
+
+#: player/templates/player/index.html:154
+msgctxt "index_links"
+msgid "Общий чат игроков в"
+msgstr "Common chat at"
+
+#: player/templates/player/index.html:168
+msgctxt "index_links"
+msgid "Приложение"
+msgstr "Android"
+
+#: player/templates/player/index.html:168
+msgctxt "index_links"
+msgid "игры"
+msgstr "application"
+
+#: player/templates/player/index.html:246
 msgctxt "index"
 msgid "это экономико-политический симулятор"
 msgstr "is an economic and political simulator"
 
-#: player/templates/player/index.html:106
-msgctxt "index"
-msgid "Играть"
-msgstr "Play"
-
-#: player/templates/player/index.html:116
+#: player/templates/player/index.html:249
 msgctxt "index"
 msgid "Объединяйтесь в партии для контроля государств."
 msgstr "Unite in parties to control states."
 
-#: player/templates/player/index.html:117
+#: player/templates/player/index.html:250
 msgctxt "index"
 msgid "Перекраивайте карту мира."
 msgstr "Redraw the world map."
 
-#: player/templates/player/index.html:118
+#: player/templates/player/index.html:251
 msgctxt "index"
-msgid "Создайте бизнес своей мечты - добыча ископаемых, промышленность, торговля."
+msgid ""
+"Создайте бизнес своей мечты - добыча ископаемых, промышленность, торговля."
 msgstr "Create your dream business - mining, industry, trade."
 
-#: player/templates/player/index.html:119
+#: player/templates/player/index.html:252
 msgctxt "index"
 msgid "Воюйте и заключайте союзы."
 msgstr "Make war and make alliances."
 
-#: player/templates/player/index.html:120
+#: player/templates/player/index.html:253
 msgctxt "index"
 msgid "Расширяйте влияние своего государства."
 msgstr "Expand the influence of your state."
 
-#: player/templates/player/index.html:121
+#: player/templates/player/index.html:254
 msgctxt "index"
-msgid "Станьте владельцем популярной газеты, и заработайте на рекламе."
+msgid "Станьте владельцем популярной газеты и заработайте на рекламе."
 msgstr "Become the owner of a popular newspaper and earn from advertising."
 
-#: player/templates/player/index.html:124
-#: player/templates/player/index.html:168
+#: player/templates/player/index.html:259
+#: player/templates/player/index.html:320
+msgctxt "index"
+msgid "Мы в VK"
+msgstr "We at VK"
+
+#: player/templates/player/index.html:262
+msgctxt "index"
+msgid "Начни игру"
+msgstr "Play"
+
+#: player/templates/player/index.html:307
 msgctxt "index"
 msgid "Продолжая использование сайта, вы принимаете условия"
 msgstr "By continuing to use the site, you accept the terms of the"
 
-#: player/templates/player/index.html:125
-#: player/templates/player/index.html:168
+#: player/templates/player/index.html:308
 msgctxt "index"
 msgid "Пользовательского соглашения"
 msgstr "User Agreement"
+
+#: player/templates/player/index.html:309
+msgctxt "index"
+msgid "и порядка обработки персональных данных"
+msgstr "and the procedure of personal data processing"
 
 #: player/templates/player/redesign/bonus_code/bonus_code.html:14
 #, fuzzy
@@ -1683,7 +1757,9 @@ msgstr "play as usual - and get rewards!"
 #: player/templates/player/redesign/game_event/halloween.html:219
 msgctxt "game_event"
 msgid "- с 25.10 по 1.11 заполняй прогрессию события, расходуя энергию"
-msgstr "- from 25.10 to 1.11, complete the progression of the event by spending energy"
+msgstr ""
+"- from 25.10 to 1.11, complete the progression of the event by spending "
+"energy"
 
 #: player/templates/player/redesign/game_event/halloween.html:220
 msgctxt "game_event"
@@ -1720,14 +1796,22 @@ msgstr "game values and new avatar frames in two progressions!"
 #: player/templates/player/redesign/game_event/halloween2.html:395
 #: player/templates/player/redesign/game_event/newyear.html:396
 msgctxt "game_event"
-msgid "Заполняется расходованием энергии, как и ежедневное финансирование, и зависит только от твоих личных усилий."
-msgstr "It is filled with energy expenditure, like daily financing, and depends only on your personal efforts."
+msgid ""
+"Заполняется расходованием энергии, как и ежедневное финансирование, и "
+"зависит только от твоих личных усилий."
+msgstr ""
+"It is filled with energy expenditure, like daily financing, and depends only "
+"on your personal efforts."
 
 #: player/templates/player/redesign/game_event/halloween2.html:396
 #: player/templates/player/redesign/game_event/newyear.html:397
 msgctxt "game_event"
-msgid "Она позволит получить тебе премиум-аккаунт для комфортной игры, а также один из трёх этапов зимней прогрессионой рамки аватара."
-msgstr "It will allow you to get a premium account for a comfortable game, as well as one of the three stages of the winter progression avatar frame."
+msgid ""
+"Она позволит получить тебе премиум-аккаунт для комфортной игры, а также один "
+"из трёх этапов зимней прогрессионой рамки аватара."
+msgstr ""
+"It will allow you to get a premium account for a comfortable game, as well "
+"as one of the three stages of the winter progression avatar frame."
 
 #: player/templates/player/redesign/game_event/halloween2.html:398
 #: player/templates/player/redesign/game_event/newyear.html:399
@@ -1738,14 +1822,22 @@ msgstr "Fills with the efforts of all players on the server."
 #: player/templates/player/redesign/game_event/halloween2.html:399
 #: player/templates/player/redesign/game_event/newyear.html:400
 msgctxt "game_event"
-msgid "Ты не сможешь собрать награды, открытые в общей прогрессии, пока не пройдёшь соответствующий этап личной."
-msgstr "You will not be able to collect rewards unlocked in the general progression until you complete the corresponding stage of the personal one."
+msgid ""
+"Ты не сможешь собрать награды, открытые в общей прогрессии, пока не пройдёшь "
+"соответствующий этап личной."
+msgstr ""
+"You will not be able to collect rewards unlocked in the general progression "
+"until you complete the corresponding stage of the personal one."
 
 #: player/templates/player/redesign/game_event/halloween2.html:400
 #: player/templates/player/redesign/game_event/newyear.html:401
 msgctxt "game_event"
-msgid "Когда будет открыт очередной этап общей прогрессии, потрать энергию, чтобы получить свою награду"
-msgstr "When the next stage of the general progression is opened, spend energy to get your reward"
+msgid ""
+"Когда будет открыт очередной этап общей прогрессии, потрать энергию, чтобы "
+"получить свою награду"
+msgstr ""
+"When the next stage of the general progression is opened, spend energy to "
+"get your reward"
 
 #: player/templates/player/redesign/game_event/newyear.html:218
 msgctxt "game_event"
@@ -1985,8 +2077,8 @@ msgstr "Continue"
 
 #: player/templates/player/redesign/overview_skills.html:233
 msgctxt "skills"
-msgid "Отмена"
-msgstr "Cancel"
+msgid "Назад"
+msgstr ""
 
 #: player/templates/player/redesign/player_repost.html:4
 msgctxt "repost"
@@ -2069,186 +2161,49 @@ msgctxt "status"
 msgid "пополнить"
 msgstr "refill"
 
-#: player/templates/player/redesign/profile.html:176
-#: player/templates/player/redesign/profile_new.html:153
-msgctxt "profile"
-msgid "настройки"
-msgstr "settings"
-
-#: player/templates/player/redesign/profile.html:186
-#: player/templates/player/redesign/profile_new.html:263
-msgctxt "profile"
-msgid "премиум-аккаунт"
-msgstr "premium account"
-
-#: player/templates/player/redesign/profile.html:188
-#: player/templates/player/redesign/profile_new.html:265
-msgctxt "profile"
-msgid "до"
-msgstr "until"
-
-#: player/templates/player/redesign/profile.html:188
-#: player/templates/player/redesign/profile_new.html:265
-msgctxt "profile"
-msgid "не активен"
-msgstr "not active"
-
-#: player/templates/player/redesign/profile.html:193
-#: player/templates/player/redesign/profile_new.html:270
-#: player/templates/player/redesign/view_profile.html:90
-#: player/templates/player/redesign/view_profile_new.html:144
-msgctxt "profile"
-msgid "место в рейтинге"
-msgstr "rating place"
-
-#: player/templates/player/redesign/profile.html:203
-#: player/templates/player/redesign/profile_new.html:280
-#: player/templates/player/redesign/view_profile.html:100
-#: player/templates/player/redesign/view_profile_new.html:154
-msgctxt "profile"
-msgid "известность"
-msgstr "fame"
-
-#: player/templates/player/redesign/profile.html:207
-#: player/templates/player/redesign/profile_new.html:284
-#: player/templates/player/redesign/view_profile.html:104
-#: player/templates/player/redesign/view_profile_new.html:158
-msgctxt "profile"
-msgid "(к статьям)"
-msgstr "(to articles)"
-
-#: player/templates/player/redesign/profile.html:213
-#: player/templates/player/redesign/profile_new.html:290
-#: player/templates/player/redesign/view_profile.html:110
-#: player/templates/player/redesign/view_profile_new.html:164
-msgctxt "profile"
-msgid "характеристики"
-msgstr "characteristics"
-
-#: player/templates/player/redesign/profile.html:228
-#: player/templates/player/redesign/profile_new.html:305
-#: player/templates/player/redesign/view_profile.html:125
-#: player/templates/player/redesign/view_profile_new.html:179
-msgctxt "profile"
-msgid "место жительства"
-msgstr "region"
-
-#: player/templates/player/redesign/profile.html:237
-#: player/templates/player/redesign/profile_new.html:314
-#: player/templates/player/redesign/view_profile.html:134
-#: player/templates/player/redesign/view_profile_new.html:188
-msgctxt "profile"
-msgid "прописка"
-msgstr "residency"
-
-#: player/templates/player/redesign/profile.html:240
-#: player/templates/player/redesign/profile_new.html:317
-#: player/templates/player/redesign/view_profile.html:137
-#: player/templates/player/redesign/view_profile_new.html:191
-msgctxt "profile"
-msgid "с"
-msgstr "since"
-
-#: player/templates/player/redesign/profile.html:246
-#: player/templates/player/redesign/profile_new.html:323
-#: player/templates/player/redesign/view_profile.html:143
-#: player/templates/player/redesign/view_profile_new.html:197
-msgid "партия"
-msgstr "party"
-
-#: player/templates/player/redesign/profile.html:252
-#: player/templates/player/redesign/profile.html:270
-#: player/templates/player/redesign/profile_new.html:329
-#: player/templates/player/redesign/profile_new.html:347
-#: player/templates/player/redesign/view_profile.html:149
-#: player/templates/player/redesign/view_profile.html:167
-#: player/templates/player/redesign/view_profile_new.html:203
-#: player/templates/player/redesign/view_profile_new.html:221
-msgid "беспартийный"
-msgstr "unaffiliated"
-
-#: player/templates/player/redesign/profile.html:255
-#: player/templates/player/redesign/profile_new.html:332
-#: player/templates/player/redesign/view_profile.html:152
-#: player/templates/player/redesign/view_profile_new.html:206
-msgctxt "profile"
-msgid "история"
-msgstr "history"
-
-#: player/templates/player/redesign/profile.html:262
-#: player/templates/player/redesign/profile_new.html:339
-#: player/templates/player/redesign/view_profile.html:159
-#: player/templates/player/redesign/view_profile_new.html:213
-msgid "должность в партии"
-msgstr "position in the party"
-
-#: player/templates/player/redesign/profile.html:297
-#: player/templates/player/redesign/profile_new.html:374
-#: player/templates/player/redesign/view_profile.html:173
-#: player/templates/player/redesign/view_profile_new.html:227
-msgid "о себе"
-msgstr "bio"
-
-#: player/templates/player/redesign/profile.html:434
-#: player/templates/player/redesign/profile_new.html:498
-msgctxt "profile"
-msgid "показывать партийный фон"
-msgstr "show party background"
-
-#: player/templates/player/redesign/profile.html:450
-#: player/templates/player/redesign/profile_new.html:514
-msgctxt "profile"
-msgid "Энергетики в авто-добыче"
-msgstr "Batteries in auto-mining"
-
-#: player/templates/player/redesign/profile.html:466
-#: player/templates/player/redesign/profile_new.html:530
-msgctxt "profile"
-msgid "Скрыть кнопку Wiki"
-msgstr "Hide Wiki button"
-
-#: player/templates/player/redesign/profile.html:497
-#: player/templates/player/redesign/profile_new.html:561
-msgctxt "profile"
-msgid "стандарт"
-msgstr "standard"
-
-#: player/templates/player/redesign/profile.html:511
-#: player/templates/player/redesign/profile_new.html:575
-#: player/templates/player/translate/translate.html:36
-msgid "сохранить"
-msgstr "save"
-
-#: player/templates/player/redesign/profile_new.html:99
-#: player/templates/player/redesign/view_profile_new.html:72
+#: player/templates/player/redesign/profile.html:99
+#: player/templates/player/redesign/view_profile.html:72
 msgctxt "profile"
 msgid "инфо"
 msgstr ""
 
-#: player/templates/player/redesign/profile_new.html:180
-#: player/templates/player/redesign/view_profile_new.html:99
+#: player/templates/player/redesign/profile.html:153
+msgctxt "profile"
+msgid "настройки"
+msgstr "settings"
+
+#: player/templates/player/redesign/profile.html:180
+#: player/templates/player/redesign/view_profile.html:99
 msgctxt "profile"
 msgid "рамки"
 msgstr ""
 
-#: player/templates/player/redesign/profile_new.html:191
-#: player/templates/player/redesign/view_profile_new.html:110
+#: player/templates/player/redesign/profile.html:191
+#: player/templates/player/redesign/view_profile.html:110
 msgctxt "profile"
 msgid "самолёты"
 msgstr ""
 
-#: player/templates/player/redesign/profile_new.html:221
+#: player/templates/player/redesign/profile.html:221
 msgctxt "profile"
 msgid "пригласи друга"
 msgstr ""
 
-#: player/templates/player/redesign/profile_new.html:236
-#: player/templates/player/redesign/view_profile_new.html:124
+#: player/templates/player/redesign/profile.html:275
+#, fuzzy
+#| msgctxt "storage_assets"
+#| msgid "Активация"
+msgctxt "profile"
+msgid "ввести бонус-код"
+msgstr "Activation"
+
+#: player/templates/player/redesign/profile.html:289
+#: player/templates/player/redesign/view_profile.html:124
 msgctxt "profile"
 msgid "награды"
 msgstr ""
 
-#: player/templates/player/redesign/profile_new.html:250
+#: player/templates/player/redesign/profile.html:303
 #, fuzzy
 #| msgctxt "overview"
 #| msgid "магазин"
@@ -2256,14 +2211,139 @@ msgctxt "profile"
 msgid "магазин"
 msgstr "shop"
 
-#: player/templates/player/redesign/view_profile.html:83
-#: player/templates/player/redesign/view_profile_new.html:137
+#: player/templates/player/redesign/profile.html:316
+msgctxt "profile"
+msgid "премиум-аккаунт"
+msgstr "premium account"
+
+#: player/templates/player/redesign/profile.html:318
+msgctxt "profile"
+msgid "до"
+msgstr "until"
+
+#: player/templates/player/redesign/profile.html:318
+msgctxt "profile"
+msgid "не активен"
+msgstr "not active"
+
+#: player/templates/player/redesign/profile.html:323
+#: player/templates/player/redesign/view_profile.html:144
+msgctxt "profile"
+msgid "место в рейтинге"
+msgstr "rating place"
+
+#: player/templates/player/redesign/profile.html:333
+#: player/templates/player/redesign/view_profile.html:154
+msgctxt "profile"
+msgid "известность"
+msgstr "fame"
+
+#: player/templates/player/redesign/profile.html:337
+#: player/templates/player/redesign/view_profile.html:158
+msgctxt "profile"
+msgid "(к статьям)"
+msgstr "(to articles)"
+
+#: player/templates/player/redesign/profile.html:343
+#: player/templates/player/redesign/view_profile.html:164
+#, fuzzy
+#| msgctxt "storage_upgrade"
+#| msgid "Максимальный уровень"
+msgctxt "profile"
+msgid "суммарный урон"
+msgstr "Maximum level"
+
+#: player/templates/player/redesign/profile.html:347
+#: player/templates/player/redesign/view_profile.html:168
+#, fuzzy
+#| msgid "войн нет"
+msgctxt "profile"
+msgid "(к войнам)"
+msgstr "no wars"
+
+#: player/templates/player/redesign/profile.html:356
+#: player/templates/player/redesign/view_profile.html:177
+msgctxt "profile"
+msgid "характеристики"
+msgstr "characteristics"
+
+#: player/templates/player/redesign/profile.html:371
+#: player/templates/player/redesign/view_profile.html:192
+msgctxt "profile"
+msgid "место жительства"
+msgstr "region"
+
+#: player/templates/player/redesign/profile.html:380
+#: player/templates/player/redesign/view_profile.html:201
+msgctxt "profile"
+msgid "прописка"
+msgstr "residency"
+
+#: player/templates/player/redesign/profile.html:383
+#: player/templates/player/redesign/view_profile.html:204
+msgctxt "profile"
+msgid "с"
+msgstr "since"
+
+#: player/templates/player/redesign/profile.html:389
+#: player/templates/player/redesign/view_profile.html:210
+msgid "партия"
+msgstr "party"
+
+#: player/templates/player/redesign/profile.html:395
+#: player/templates/player/redesign/profile.html:413
+#: player/templates/player/redesign/view_profile.html:216
+#: player/templates/player/redesign/view_profile.html:234
+msgid "беспартийный"
+msgstr "unaffiliated"
+
+#: player/templates/player/redesign/profile.html:398
+#: player/templates/player/redesign/view_profile.html:219
+msgctxt "profile"
+msgid "история"
+msgstr "history"
+
+#: player/templates/player/redesign/profile.html:405
+#: player/templates/player/redesign/view_profile.html:226
+msgid "должность в партии"
+msgstr "position in the party"
+
+#: player/templates/player/redesign/profile.html:440
+#: player/templates/player/redesign/view_profile.html:240
+msgid "о себе"
+msgstr "bio"
+
+#: player/templates/player/redesign/profile.html:564
+msgctxt "profile"
+msgid "показывать партийный фон"
+msgstr "show party background"
+
+#: player/templates/player/redesign/profile.html:580
+msgctxt "profile"
+msgid "Энергетики в авто-добыче"
+msgstr "Batteries in auto-mining"
+
+#: player/templates/player/redesign/profile.html:596
+msgctxt "profile"
+msgid "Скрыть кнопку Wiki"
+msgstr "Hide Wiki button"
+
+#: player/templates/player/redesign/profile.html:627
+msgctxt "profile"
+msgid "стандарт"
+msgstr "standard"
+
+#: player/templates/player/redesign/profile.html:641
+#: player/templates/player/translate/translate.html:36
+msgid "сохранить"
+msgstr "save"
+
+#: player/templates/player/redesign/view_profile.html:137
 msgctxt "profile"
 msgid "был в сети"
 msgstr "was online"
 
-#: player/templates/player/redesign/view_profile.html:85
-#: player/templates/player/redesign/view_profile_new.html:139
+#: player/templates/player/redesign/view_profile.html:139
 msgid "давно"
 msgstr "long ago"
 
@@ -2307,46 +2387,47 @@ msgctxt "translations"
 msgid "Перевод"
 msgstr "Translation"
 
-#: player/templatetags/redesign/skill_top/endurance_top.py:46
-#: player/templatetags/redesign/skill_top/endurance_top.py:47
-#: player/templatetags/redesign/skill_top/knowledge_top.py:46
-#: player/templatetags/redesign/skill_top/knowledge_top.py:47
-#: player/templatetags/redesign/skill_top/power_top.py:46
-#: player/templatetags/redesign/skill_top/power_top.py:47
-#: player/views/lists/cash_top.py:74 player/views/lists/cash_top.py:75
+#: player/templatetags/redesign/skill_top/endurance_top.py:48
+#: player/templatetags/redesign/skill_top/endurance_top.py:49
+#: player/templatetags/redesign/skill_top/knowledge_top.py:48
+#: player/templatetags/redesign/skill_top/knowledge_top.py:49
+#: player/templatetags/redesign/skill_top/power_top.py:49
+#: player/templatetags/redesign/skill_top/power_top.py:50
+#: player/views/lists/cash_top.py:75 player/views/lists/cash_top.py:76
+#: player/views/lists/damage_top.py:91 player/views/lists/damage_top.py:92
 msgctxt "lists"
 msgid "Место"
 msgstr "Top"
 
-#: player/templatetags/redesign/skill_top/endurance_top.py:65
-#: player/templatetags/redesign/skill_top/endurance_top.py:66
+#: player/templatetags/redesign/skill_top/endurance_top.py:67
+#: player/templatetags/redesign/skill_top/endurance_top.py:68
 msgctxt "lists"
 msgid "Вын"
 msgstr "END"
 
-#: player/templatetags/redesign/skill_top/endurance_top.py:72
+#: player/templatetags/redesign/skill_top/endurance_top.py:74
 msgctxt "lists"
 msgid "Топ по Выносливости"
 msgstr "Endurance top"
 
-#: player/templatetags/redesign/skill_top/knowledge_top.py:64
-#: player/templatetags/redesign/skill_top/knowledge_top.py:65
+#: player/templatetags/redesign/skill_top/knowledge_top.py:66
+#: player/templatetags/redesign/skill_top/knowledge_top.py:67
 msgctxt "lists"
 msgid "Инт"
 msgstr "INT"
 
-#: player/templatetags/redesign/skill_top/knowledge_top.py:71
+#: player/templatetags/redesign/skill_top/knowledge_top.py:73
 msgctxt "lists"
 msgid "Топ по Интеллекту"
 msgstr "Intelligence top"
 
-#: player/templatetags/redesign/skill_top/power_top.py:64
-#: player/templatetags/redesign/skill_top/power_top.py:65
+#: player/templatetags/redesign/skill_top/power_top.py:67
+#: player/templatetags/redesign/skill_top/power_top.py:68
 msgctxt "lists"
 msgid "Сила"
 msgstr "STR"
 
-#: player/templatetags/redesign/skill_top/power_top.py:71
+#: player/templatetags/redesign/skill_top/power_top.py:74
 msgctxt "lists"
 msgid "Топ по Силе"
 msgstr "Strength top"
@@ -2434,13 +2515,13 @@ msgstr "Party background switch"
 msgid "Скрыть кнопку Wiki"
 msgstr ""
 
-#: player/views/claim_reward.py:83 player/views/expense_energy.py:71
+#: player/views/claim_reward.py:83 player/views/expense_energy.py:85
 msgid "Ошибка типа запроса"
 msgstr "Request type error"
 
 #: player/views/claim_reward.py:84 player/views/expense_energy.py:29
-#: player/views/expense_energy.py:52 player/views/expense_energy.py:61
-#: player/views/expense_energy.py:72
+#: player/views/expense_energy.py:43 player/views/expense_energy.py:66
+#: player/views/expense_energy.py:75 player/views/expense_energy.py:86
 msgid "Пополнение энергии"
 msgstr "Energy refill"
 
@@ -2483,15 +2564,15 @@ msgstr ""
 msgid "Выбор авиации"
 msgstr "category"
 
-#: player/views/expense_energy.py:28
+#: player/views/expense_energy.py:42
 msgid "Десять минут ещё не прошло"
 msgstr "Ten minutes have not yet passed"
 
-#: player/views/expense_energy.py:51
+#: player/views/expense_energy.py:65
 msgid "Пополнение энергии не требуется"
 msgstr "Energy refill is not required"
 
-#: player/views/expense_energy.py:60
+#: player/views/expense_energy.py:74
 msgid "Недостаточно Энергетиков. Создайте их в Хранилище Склада"
 msgstr "Not enough Batteries. Create them at the Storage tab of Warehouse"
 
@@ -2504,12 +2585,26 @@ msgctxt "game_event_ny"
 msgid "С новым годом!"
 msgstr ""
 
-#: player/views/lists/cash_top.py:110
+#: player/views/lists/cash_top.py:111
 #, fuzzy
 #| msgid "Топ богатейших"
 msgctxt "lists"
 msgid "Топ богатейших"
 msgstr "Top of richest"
+
+#: player/views/lists/damage_top.py:109 player/views/lists/damage_top.py:110
+#: war/views/open_war_side_list.py:87 war/views/open_war_side_list.py:88
+msgctxt "lists"
+msgid "Урон"
+msgstr "Damage"
+
+#: player/views/lists/damage_top.py:133
+#, fuzzy
+#| msgctxt "party_manage"
+#| msgid "Тип партии"
+msgctxt "lists"
+msgid "Топ по урону"
+msgstr "Party type"
 
 #: player/views/lists/region_citizens.py:64
 #, fuzzy
@@ -2872,7 +2967,7 @@ msgstr "Ore reserves in the region are not enough for mining"
 msgid "Регионы игры"
 msgstr ""
 
-#: region/views/map/map.py:237
+#: region/views/map/map.py:238
 msgid "Карта"
 msgstr ""
 
@@ -2884,6 +2979,7 @@ msgid "Игрок не существует"
 msgstr "Specified good does not exist"
 
 #: region/views/map/plane_info.py:39 region/views/map/region_info.py:48
+#: storage/views/assets/assets_info.py:65
 msgid "Некорректный запрос"
 msgstr ""
 
@@ -2933,8 +3029,11 @@ msgstr "Coherence"
 
 #: skill/models/coherence.py:16
 msgctxt "skills"
-msgid "бонус 10% за каждый вид юнитов, количество которых в отряде не менее 20%"
-msgstr "10% bonus for each type of unit, the number of which in the squad is at least 20%"
+msgid ""
+"бонус 10% за каждый вид юнитов, количество которых в отряде не менее 20%"
+msgstr ""
+"10% bonus for each type of unit, the number of which in the squad is at "
+"least 20%"
 
 #: skill/models/excavation.py:9 skill/models/excavation.py:38
 msgctxt "skills"
@@ -2973,8 +3072,12 @@ msgstr "Military production"
 
 #: skill/models/military_production.py:10
 msgctxt "skills"
-msgid "Добавляет возможность произвести дополнительные войска при тех же затратах энергии, с округлением затрат в большую сторону"
-msgstr "Adds the ability to produce additional troops with the same energy costs, with costs rounded up"
+msgid ""
+"Добавляет возможность произвести дополнительные войска при тех же затратах "
+"энергии, с округлением затрат в большую сторону"
+msgstr ""
+"Adds the ability to produce additional troops with the same energy costs, "
+"with costs rounded up"
 
 #: skill/models/military_production.py:20 skill/models/standardization.py:9
 #: skill/models/standardization.py:24
@@ -2989,13 +3092,21 @@ msgstr "Scouting"
 
 #: skill/models/scouting.py:16
 msgctxt "skills"
-msgid "бонус к урону 2% за уровень, если с момента прилёта игрока в регион прошло более суток"
-msgstr "bonus to damage 2% per level, if more than a day has passed since the player arrived in the region"
+msgid ""
+"бонус к урону 2% за уровень, если с момента прилёта игрока в регион прошло "
+"более суток"
+msgstr ""
+"bonus to damage 2% per level, if more than a day has passed since the player "
+"arrived in the region"
 
 #: skill/models/standardization.py:10
 msgctxt "skills"
-msgid "Добавляет возможность произвести дополнительные материалы при тех же затратах энергии, с округлением затрат в большую сторону"
-msgstr "Adds the ability to produce additional materials with the same energy costs, with costs rounded up"
+msgid ""
+"Добавляет возможность произвести дополнительные материалы при тех же "
+"затратах энергии, с округлением затрат в большую сторону"
+msgstr ""
+"Adds the ability to produce additional materials with the same energy costs, "
+"with costs rounded up"
 
 #: skill/views/skill_cancel.py:34
 msgid "ID навыка должен быть числом"
@@ -3085,7 +3196,8 @@ msgid "Малый"
 msgstr "Small"
 
 #: storage/models/storage.py:109
-#: storage/templates/storage/redesign/assets.html:102
+#: storage/templates/storage/redesign/assets.html:143
+#: storage/templates/storage/redesign/assets_info.html:11
 msgctxt "storage"
 msgid "Уровень"
 msgstr "Level"
@@ -3328,55 +3440,56 @@ msgctxt "w_trading"
 msgid "Поиск"
 msgstr "Search"
 
-#: storage/templates/storage/redesign/assets.html:14
-#: storage/views/assets/assets.py:85
+#: storage/templates/storage/redesign/assets.html:53
+#: storage/views/assets/assets.py:83
 msgctxt "assets"
 msgid "Активы"
 msgstr "Assets"
 
-#: storage/templates/storage/redesign/assets.html:24
+#: storage/templates/storage/redesign/assets.html:63
 msgctxt "assets"
 msgid "выбор действия"
 msgstr "action choice"
 
-#: storage/templates/storage/redesign/assets.html:25
+#: storage/templates/storage/redesign/assets.html:64
 msgctxt "assets"
 msgid "передать"
 msgstr "transfer"
 
-#: storage/templates/storage/redesign/assets.html:26
+#: storage/templates/storage/redesign/assets.html:65
 msgctxt "assets"
 msgid "уничтожить"
 msgstr "destroy"
 
-#: storage/templates/storage/redesign/assets.html:45
+#: storage/templates/storage/redesign/assets.html:84
 msgctxt "assets"
 msgid "уверен"
 msgstr ""
 
-#: storage/templates/storage/redesign/assets.html:51
+#: storage/templates/storage/redesign/assets.html:90
 msgctxt "assets"
 msgid "выберите склад"
 msgstr "choose warehouse"
 
-#: storage/templates/storage/redesign/assets.html:62
-#: storage/templates/storage/redesign/assets.html:126
+#: storage/templates/storage/redesign/assets.html:101
+#: storage/templates/storage/redesign/assets.html:167
+#: storage/templates/storage/redesign/assets_info.html:34
 msgctxt "assets"
 msgid "объём (ед)"
 msgstr "volume"
 
-#: storage/templates/storage/redesign/assets.html:64
+#: storage/templates/storage/redesign/assets.html:103
 msgctxt "assets"
 msgid "стоимость"
 msgstr "full price"
 
-#: storage/templates/storage/redesign/assets.html:79
+#: storage/templates/storage/redesign/assets.html:118
 msgctxt "assets"
 msgid "подтвердить"
 msgstr "accept"
 
 #: storage/templates/storage/redesign/storage.html:23
-#: storage/views/storage/storage.py:85
+#: storage/views/storage/storage.py:88
 msgctxt "storage"
 msgid "Склад"
 msgstr "Warehouse"
@@ -3453,7 +3566,8 @@ msgstr "Cant move Warehouse from region under attack"
 #: storage/templates/storage/redesign/storage.html:248
 msgctxt "storage_transfer"
 msgid "Вы можете перенести Склад в регион текущего местоположения (один раз)"
-msgstr "You can move the Warehouse to the region of the current location (once)"
+msgstr ""
+"You can move the Warehouse to the region of the current location (once)"
 
 #: storage/templates/storage/redesign/storage.html:261
 msgctxt "storage_transfer"
@@ -3497,7 +3611,8 @@ msgstr "Not enough materials"
 
 #: storage/templates/storage/redesign/storage.html:314
 msgctxt "storage_upgrade"
-msgid "После подтверждения улучшения Склада, его ёмкость изменится следующим образом"
+msgid ""
+"После подтверждения улучшения Склада, его ёмкость изменится следующим образом"
 msgstr ""
 
 #: storage/templates/storage/redesign/storage.html:321
@@ -3532,13 +3647,21 @@ msgstr "of Premium account"
 
 #: storage/templates/storage/redesign/storage.html:376
 msgctxt "storage_assets"
-msgid "Ваш премиум-аккаунт будет продлён на один месяц. Данную операцию невозможно отменить. Продолжить?"
-msgstr "Your premium account will be renewed for one month. This operation cannot be undone. Proceed?"
+msgid ""
+"Ваш премиум-аккаунт будет продлён на один месяц. Данную операцию невозможно "
+"отменить. Продолжить?"
+msgstr ""
+"Your premium account will be renewed for one month. This operation cannot be "
+"undone. Proceed?"
 
 #: storage/templates/storage/redesign/storage.html:378
 msgctxt "storage_assets"
-msgid "Вы активируете премиум-аккаунт, длительностью один месяц. Данную операцию невозможно отменить. Продолжить?"
-msgstr "You will activate a premium account, lasting one month. This operation cannot be undone. Proceed?"
+msgid ""
+"Вы активируете премиум-аккаунт, длительностью один месяц. Данную операцию "
+"невозможно отменить. Продолжить?"
+msgstr ""
+"You will activate a premium account, lasting one month. This operation "
+"cannot be undone. Proceed?"
 
 #: storage/templates/storage/redesign/storage.html:381
 #, fuzzy
@@ -3551,18 +3674,30 @@ msgstr "Wild Pass Trading"
 #: storage/templates/storage/redesign/storage.html:383
 #, fuzzy
 #| msgctxt "storage_assets"
-#| msgid "Вы активируете премиум-аккаунт, длительностью один месяц. Данную операцию невозможно отменить. Продолжить?"
+#| msgid ""
+#| "Вы активируете премиум-аккаунт, длительностью один месяц. Данную операцию "
+#| "невозможно отменить. Продолжить?"
 msgctxt "storage_vault"
-msgid "Вы обменяете премиум-карту на G 800. Данную операцию невозможно отменить. Продолжить?"
-msgstr "You will activate a premium account, lasting one month. This operation cannot be undone. Proceed?"
+msgid ""
+"Вы обменяете премиум-карту на G 800. Данную операцию невозможно отменить. "
+"Продолжить?"
+msgstr ""
+"You will activate a premium account, lasting one month. This operation "
+"cannot be undone. Proceed?"
 
 #: storage/templates/storage/redesign/storage.html:385
 #, fuzzy
 #| msgctxt "storage_assets"
-#| msgid "Вы активируете премиум-аккаунт, длительностью один месяц. Данную операцию невозможно отменить. Продолжить?"
+#| msgid ""
+#| "Вы активируете премиум-аккаунт, длительностью один месяц. Данную операцию "
+#| "невозможно отменить. Продолжить?"
 msgctxt "storage_vault"
-msgid "Вы обменяете премиум-карту на G 1000. Данную операцию невозможно отменить. Продолжить?"
-msgstr "You will activate a premium account, lasting one month. This operation cannot be undone. Proceed?"
+msgid ""
+"Вы обменяете премиум-карту на G 1000. Данную операцию невозможно отменить. "
+"Продолжить?"
+msgstr ""
+"You will activate a premium account, lasting one month. This operation "
+"cannot be undone. Proceed?"
 
 #: storage/templates/storage/redesign/storage.html:388
 msgctxt "storage_assets"
@@ -3610,12 +3745,9 @@ msgid "всего денег"
 msgstr "all money"
 
 #: storage/templates/storage/redesign/storage_blocks/has_storage.html:51
-#, fuzzy
-#| msgctxt "factory"
-#| msgid "Уровень"
 msgctxt "has_storage"
 msgid "Уровень:"
-msgstr "Level"
+msgstr "Level:"
 
 #: storage/templates/storage/redesign/storage_blocks/has_storage.html:58
 msgctxt "has_storage"
@@ -3892,91 +4024,89 @@ msgid "вам не принадлежит"
 msgstr "does not belong to you"
 
 #: storage/views/assets/assets_destroy.py:51
-#: storage/views/assets/assets_destroy.py:68
-#: storage/views/assets/assets_destroy.py:92
-#: storage/views/assets/assets_destroy.py:102
-#: storage/views/assets/assets_destroy.py:133
-#: storage/views/assets/assets_destroy.py:140
+#: storage/views/assets/assets_destroy.py:75
+#: storage/views/assets/assets_destroy.py:85
+#: storage/views/assets/assets_destroy.py:116
+#: storage/views/assets/assets_destroy.py:123
 msgctxt "assets"
 msgid "Уничтожение товара"
 msgstr "Goods destruction"
 
 #: storage/views/assets/assets_destroy.py:52
-#: storage/views/assets/assets_destroy.py:69
-#: storage/views/assets/assets_destroy.py:93
-#: storage/views/assets/assets_destroy.py:103
-#: storage/views/assets/assets_destroy.py:134
-#: storage/views/assets/assets_destroy.py:141
+#: storage/views/assets/assets_destroy.py:76
+#: storage/views/assets/assets_destroy.py:86
+#: storage/views/assets/assets_destroy.py:117
+#: storage/views/assets/assets_destroy.py:124
 #: storage/views/assets/assets_transfer.py:41
 #: storage/views/assets/assets_transfer.py:51
 #: storage/views/assets/assets_transfer.py:84
-#: storage/views/assets/assets_transfer.py:101
-#: storage/views/assets/assets_transfer.py:125
-#: storage/views/assets/assets_transfer.py:135
-#: storage/views/assets/assets_transfer.py:177
-#: storage/views/assets/assets_transfer.py:189
-#: storage/views/assets/assets_transfer.py:200
-#: storage/views/assets/assets_transfer.py:207
-#: storage/views/assets/assets_transfer.py:214
-#: storage/views/assets/assets_transfer.py:221
+#: storage/views/assets/assets_transfer.py:104
+#: storage/views/assets/assets_transfer.py:128
+#: storage/views/assets/assets_transfer.py:138
+#: storage/views/assets/assets_transfer.py:180
+#: storage/views/assets/assets_transfer.py:192
+#: storage/views/assets/assets_transfer.py:203
+#: storage/views/assets/assets_transfer.py:210
+#: storage/views/assets/assets_transfer.py:217
+#: storage/views/assets/assets_transfer.py:224
 msgctxt "assets"
 msgid "Закрыть"
 msgstr "Close"
 
-#: storage/views/assets/assets_destroy.py:67
-#: storage/views/assets/assets_transfer.py:99
-msgctxt "assets"
-msgid "Запрещено вывозить товары из атакованных регионов"
-msgstr "It is forbidden to export goods from the attacked regions"
-
-#: storage/views/assets/assets_destroy.py:91
-#: storage/views/assets/assets_transfer.py:123
+#: storage/views/assets/assets_destroy.py:74
+#: storage/views/assets/assets_transfer.py:126
 msgctxt "assets"
 msgid "Один или несколько запасов не принадлежат вашим складам"
 msgstr "One or more stocks do not belong in your warehouses"
 
-#: storage/views/assets/assets_destroy.py:101
-#: storage/views/assets/assets_transfer.py:133
+#: storage/views/assets/assets_destroy.py:84
+#: storage/views/assets/assets_transfer.py:136
 msgctxt "assets"
 msgid "Один или несколько запасов не существуют"
 msgstr "One or more stocks do not exist"
 
-#: storage/views/assets/assets_destroy.py:128
-#: storage/views/assets/assets_transfer.py:194
+#: storage/views/assets/assets_destroy.py:111
+#: storage/views/assets/assets_transfer.py:197
 msgctxt "assets"
 msgid "На складе в регионе "
 msgstr "At warehouse in the "
 
-#: storage/views/assets/assets_destroy.py:129
-#: storage/views/assets/assets_transfer.py:195
+#: storage/views/assets/assets_destroy.py:112
+#: storage/views/assets/assets_transfer.py:198
 msgctxt "assets"
 msgid " недостаточно товара "
 msgstr " not enough goods "
 
-#: storage/views/assets/assets_destroy.py:130
-#: storage/views/assets/assets_transfer.py:186
-#: storage/views/assets/assets_transfer.py:196
+#: storage/views/assets/assets_destroy.py:113
+#: storage/views/assets/assets_transfer.py:189
+#: storage/views/assets/assets_transfer.py:199
 msgctxt "assets"
 msgid "Требуется: "
 msgstr "Required: "
 
-#: storage/views/assets/assets_destroy.py:131
-#: storage/views/assets/assets_transfer.py:186
-#: storage/views/assets/assets_transfer.py:197
+#: storage/views/assets/assets_destroy.py:114
+#: storage/views/assets/assets_transfer.py:189
+#: storage/views/assets/assets_transfer.py:200
 msgctxt "assets"
 msgid ", в наличии: "
 msgstr ", in stock: "
 
-#: storage/views/assets/assets_destroy.py:139
+#: storage/views/assets/assets_destroy.py:122
 msgctxt "assets"
 msgid "Товары не выбраны"
 msgstr "No goods are selected"
 
-#: storage/views/assets/assets_destroy.py:153
-#: storage/views/assets/assets_transfer.py:233
+#: storage/views/assets/assets_destroy.py:136
+#: storage/views/assets/assets_transfer.py:236
 msgctxt "assets"
 msgid "Операции с товарами"
 msgstr "Operations with goods"
+
+#: storage/views/assets/assets_info.py:59
+#, fuzzy
+#| msgid "Такого языка в игре нет"
+msgid "Такого склада у вас нет"
+msgstr "There is no such language"
 
 #: storage/views/assets/assets_transfer.py:39
 msgctxt "assets"
@@ -3995,50 +4125,55 @@ msgid "Целевой Склад должен быть целым числом"
 msgstr "Target Warehouse ID must be an integer"
 
 #: storage/views/assets/assets_transfer.py:83
-#: storage/views/assets/assets_transfer.py:100
-#: storage/views/assets/assets_transfer.py:124
-#: storage/views/assets/assets_transfer.py:134
-#: storage/views/assets/assets_transfer.py:176
-#: storage/views/assets/assets_transfer.py:188
-#: storage/views/assets/assets_transfer.py:199
-#: storage/views/assets/assets_transfer.py:206
-#: storage/views/assets/assets_transfer.py:213
-#: storage/views/assets/assets_transfer.py:220
+#: storage/views/assets/assets_transfer.py:103
+#: storage/views/assets/assets_transfer.py:127
+#: storage/views/assets/assets_transfer.py:137
+#: storage/views/assets/assets_transfer.py:179
+#: storage/views/assets/assets_transfer.py:191
+#: storage/views/assets/assets_transfer.py:202
+#: storage/views/assets/assets_transfer.py:209
+#: storage/views/assets/assets_transfer.py:216
+#: storage/views/assets/assets_transfer.py:223
 msgctxt "assets"
 msgid "Перемещение товара"
 msgstr "Goods transfer"
 
-#: storage/views/assets/assets_transfer.py:175
+#: storage/views/assets/assets_transfer.py:102
+msgctxt "assets"
+msgid "Запрещено вывозить товары из атакованных регионов"
+msgstr "It is forbidden to export goods from the attacked regions"
+
+#: storage/views/assets/assets_transfer.py:178
 msgctxt "assets"
 msgid "Недостаточно средств для оплаты доставки"
 msgstr "Insufficient funds to pay for shipping"
 
-#: storage/views/assets/assets_transfer.py:183
+#: storage/views/assets/assets_transfer.py:186
 msgctxt "assets"
 msgid "типоразмер:"
 msgstr ""
 
-#: storage/views/assets/assets_transfer.py:185
+#: storage/views/assets/assets_transfer.py:188
 msgctxt "assets"
 msgid "недостаточно места для товара."
 msgstr "insufficient space for goods."
 
-#: storage/views/assets/assets_transfer.py:195
+#: storage/views/assets/assets_transfer.py:198
 msgctxt "assets"
 msgid " для передачи."
 msgstr " for transfer."
 
-#: storage/views/assets/assets_transfer.py:205
+#: storage/views/assets/assets_transfer.py:208
 msgctxt "assets"
 msgid "Товары для передачи не выбраны"
 msgstr "Goods to transfer are not selected"
 
-#: storage/views/assets/assets_transfer.py:212
+#: storage/views/assets/assets_transfer.py:215
 msgctxt "assets"
 msgid "В целевом Складе заполнены значения"
 msgstr "Values are filled in the target Warehouse"
 
-#: storage/views/assets/assets_transfer.py:219
+#: storage/views/assets/assets_transfer.py:222
 msgctxt "assets"
 msgid "Целевой Склад вам не принадлежит"
 msgstr "Target Warehouse does not belong to you"
@@ -4048,8 +4183,8 @@ msgstr "Target Warehouse does not belong to you"
 #: storage/views/assets/storage_move.py:54
 #: storage/views/assets/storage_move.py:64
 #: storage/views/assets/storage_move.py:72
-#: storage/views/assets/storage_move.py:84
-#: storage/views/assets/storage_move.py:103
+#: storage/views/assets/storage_move.py:87
+#: storage/views/assets/storage_move.py:106
 msgctxt "assets"
 msgid "Перемещение Склада"
 msgstr "Warehouse move"
@@ -4079,7 +4214,7 @@ msgctxt "assets"
 msgid "Указанный Склад уже в текущем регионе"
 msgstr "The specified Warehouse is already in the current region"
 
-#: storage/views/assets/storage_move.py:86
+#: storage/views/assets/storage_move.py:89
 msgctxt "assets"
 msgid "Нельзя переместить Склад из атакованного региона"
 msgstr "Cant move Warehouse from region under attack"
@@ -4089,11 +4224,11 @@ msgstr "Cant move Warehouse from region under attack"
 #: storage/views/storage/cash_transfer.py:55
 #: storage/views/storage/cash_transfer.py:64
 #: storage/views/storage/cash_transfer.py:73
-#: storage/views/storage/cash_transfer.py:102
-#: storage/views/storage/cash_transfer.py:122
-#: storage/views/storage/cash_transfer.py:130
-#: storage/views/storage/cash_transfer.py:142
-#: storage/views/storage/new_storage.py:104
+#: storage/views/storage/cash_transfer.py:105
+#: storage/views/storage/cash_transfer.py:125
+#: storage/views/storage/cash_transfer.py:133
+#: storage/views/storage/cash_transfer.py:145
+#: storage/views/storage/new_storage.py:105
 msgctxt "storage"
 msgid "Передача денег"
 msgstr "Cash transfer"
@@ -4124,24 +4259,24 @@ msgctxt "storage"
 msgid "В этом регионе нет Склада"
 msgstr "There is no Warehouse in this region"
 
-#: storage/views/storage/cash_transfer.py:104
+#: storage/views/storage/cash_transfer.py:107
 msgctxt "storage"
 msgid "Нельзя вывести деньги из атакованного региона"
 msgstr ""
 
-#: storage/views/storage/cash_transfer.py:124
+#: storage/views/storage/cash_transfer.py:127
 msgctxt "storage"
 msgid "Данные кошелька не совпадают с введенными"
 msgstr "Wallet data does not match the entered"
 
-#: storage/views/storage/cash_transfer.py:132
+#: storage/views/storage/cash_transfer.py:135
 msgctxt "storage"
 msgid "Недопустим ввод отрицательных чисел"
 msgstr "Entering negative numbers is not allowed"
 
 #: storage/views/storage/new_storage.py:36
-#: storage/views/storage/new_storage.py:60
-#: storage/views/storage/new_storage.py:80
+#: storage/views/storage/new_storage.py:61
+#: storage/views/storage/new_storage.py:81
 msgctxt "storage"
 msgid "Новый Склад"
 msgstr "New warehouse"
@@ -4151,7 +4286,7 @@ msgctxt "storage"
 msgid "Не найден Склад списания материалов"
 msgstr "Materials source warehouse not found"
 
-#: storage/views/storage/new_storage.py:61
+#: storage/views/storage/new_storage.py:62
 #, fuzzy
 #| msgctxt "storage"
 #| msgid "Недостаточно ресурсов"
@@ -4159,7 +4294,7 @@ msgctxt "storage"
 msgid "Недостаточно ресурса: "
 msgstr "Not enough resources"
 
-#: storage/views/storage/new_storage.py:81
+#: storage/views/storage/new_storage.py:82
 msgctxt "storage"
 msgid "Недостаточно денег на транспортировку"
 msgstr "Not enough money for transportation"
@@ -4187,24 +4322,24 @@ msgstr "Not enough material: "
 #: storage/views/trading/accept_offer.py:68
 #: storage/views/trading/accept_offer.py:81
 #: storage/views/trading/accept_offer.py:93
-#: storage/views/trading/accept_offer.py:129
-#: storage/views/trading/accept_offer.py:140
-#: storage/views/trading/accept_offer.py:148
-#: storage/views/trading/accept_offer.py:156
-#: storage/views/trading/accept_offer.py:164
-#: storage/views/trading/accept_offer.py:186
-#: storage/views/trading/accept_offer.py:195
-#: storage/views/trading/accept_offer.py:209
-#: storage/views/trading/accept_offer.py:231
-#: storage/views/trading/accept_offer.py:255
-#: storage/views/trading/accept_offer.py:318
-#: storage/views/trading/accept_offer.py:326
-#: storage/views/trading/accept_offer.py:338
-#: storage/views/trading/accept_offer.py:346
-#: storage/views/trading/accept_offer.py:355
-#: storage/views/trading/accept_offer.py:367
-#: storage/views/trading/accept_offer.py:457
-#: storage/views/trading/accept_offer.py:471
+#: storage/views/trading/accept_offer.py:132
+#: storage/views/trading/accept_offer.py:143
+#: storage/views/trading/accept_offer.py:151
+#: storage/views/trading/accept_offer.py:159
+#: storage/views/trading/accept_offer.py:167
+#: storage/views/trading/accept_offer.py:189
+#: storage/views/trading/accept_offer.py:198
+#: storage/views/trading/accept_offer.py:212
+#: storage/views/trading/accept_offer.py:234
+#: storage/views/trading/accept_offer.py:258
+#: storage/views/trading/accept_offer.py:321
+#: storage/views/trading/accept_offer.py:329
+#: storage/views/trading/accept_offer.py:341
+#: storage/views/trading/accept_offer.py:349
+#: storage/views/trading/accept_offer.py:358
+#: storage/views/trading/accept_offer.py:370
+#: storage/views/trading/accept_offer.py:460
+#: storage/views/trading/accept_offer.py:474
 msgctxt "w_trading"
 msgid "Принятие оффера"
 msgstr "Offer acceptance"
@@ -4232,53 +4367,53 @@ msgid "ID склада должно быть числом"
 msgstr "Warehouse ID must be a number"
 
 #: storage/views/trading/accept_offer.py:95
-#: storage/views/trading/accept_offer.py:211
+#: storage/views/trading/accept_offer.py:214
 #: storage/views/trading/cancel_offer.py:91
 msgctxt "w_trading"
 msgid "Выбранного склада игрока не существует"
 msgstr "The selected player's warehouse does not exist"
 
-#: storage/views/trading/accept_offer.py:131
-#: storage/views/trading/accept_offer.py:142
+#: storage/views/trading/accept_offer.py:134
+#: storage/views/trading/accept_offer.py:145
 msgctxt "w_trading"
 msgid "Нельзя принять оффер из атакованного региона"
 msgstr "Can't accept offer from region under attack"
 
-#: storage/views/trading/accept_offer.py:150
+#: storage/views/trading/accept_offer.py:153
 msgctxt "w_trading"
 msgid "Нельзя принять собственный оффер"
 msgstr "Can't accept own offer"
 
-#: storage/views/trading/accept_offer.py:158
+#: storage/views/trading/accept_offer.py:161
 msgctxt "w_trading"
 msgid "Оффер изменился, или вы ввели некорректное число"
 msgstr "The offer has changed or you have entered an incorrect quantity"
 
-#: storage/views/trading/accept_offer.py:166
+#: storage/views/trading/accept_offer.py:169
 #: storage/views/trading/cancel_offer.py:65
 msgctxt "w_trading"
 msgid "Оффер не существует или уже принят"
 msgstr "Offer does not exist or has already been accepted"
 
-#: storage/views/trading/accept_offer.py:188
+#: storage/views/trading/accept_offer.py:191
 msgctxt "w_trading"
 msgid "На выбранном складе недостаточно места для товара"
 msgstr "There is not enough space for the goods in the selected warehouse"
 
-#: storage/views/trading/accept_offer.py:197
+#: storage/views/trading/accept_offer.py:200
 msgctxt "w_trading"
 msgid "На выбранном складе недостаточно товара"
 msgstr "There are not enough goods in the selected warehouse"
 
-#: storage/views/trading/accept_offer.py:233
-#: storage/views/trading/accept_offer.py:357
+#: storage/views/trading/accept_offer.py:236
+#: storage/views/trading/accept_offer.py:360
 #: storage/views/trading/premium_trading.py:40
 msgctxt "w_trading"
 msgid "Недостаточно средств. Требуется $"
 msgstr "Insufficient funds. Required $"
 
-#: storage/views/trading/accept_offer.py:257
-#: storage/views/trading/accept_offer.py:340
+#: storage/views/trading/accept_offer.py:260
+#: storage/views/trading/accept_offer.py:343
 #: storage/views/trading/cancel_offer.py:109
 #: storage/views/trading/cancel_offer.py:141
 #: storage/views/trading/premium_trading.py:113
@@ -4286,29 +4421,29 @@ msgctxt "w_trading"
 msgid "Не удалось получить блокировку по офферу"
 msgstr "Failed to get lock by offer"
 
-#: storage/views/trading/accept_offer.py:320
+#: storage/views/trading/accept_offer.py:323
 msgctxt "w_trading"
 msgid "Ваши расходы на доставку больше прибыли"
 msgstr "Your shipping costs are more than income"
 
-#: storage/views/trading/accept_offer.py:328
+#: storage/views/trading/accept_offer.py:331
 #: storage/views/trading/premium_trading.py:101
 msgctxt "w_trading"
 msgid "В торговом предложении недостаточно средств"
 msgstr "There are not enough funds in the trade offer"
 
-#: storage/views/trading/accept_offer.py:348
+#: storage/views/trading/accept_offer.py:351
 #: storage/views/trading/premium_trading.py:121
 msgctxt "w_trading"
 msgid "В связанной блокировке недостаточно средств"
 msgstr "There are not enough funds in the associated lock"
 
-#: storage/views/trading/accept_offer.py:369
+#: storage/views/trading/accept_offer.py:372
 msgctxt "w_trading"
 msgid "Выбранного склада оффера не существует"
 msgstr "The selected offer warehouse does not exist"
 
-#: storage/views/trading/accept_offer.py:459
+#: storage/views/trading/accept_offer.py:462
 #: storage/views/trading/premium_trading.py:189
 msgctxt "w_trading"
 msgid "Оффера такого типа не существует"
@@ -4455,7 +4590,7 @@ msgstr "Trade offer successfully created"
 
 #: storage/views/trading/get_offers.py:44
 #: storage/views/trading/get_offers.py:66
-#: storage/views/trading/get_offers.py:260
+#: storage/views/trading/get_offers.py:256
 msgctxt "w_trading"
 msgid "Получение офферов"
 msgstr "Getting offers"
@@ -4465,17 +4600,17 @@ msgctxt "w_trading"
 msgid "Некорректный владелец"
 msgstr "Incorrect owner"
 
-#: storage/views/trading/get_offers.py:241
+#: storage/views/trading/get_offers.py:237
 msgctxt "w_trading"
 msgid "Отменить"
 msgstr "Cancel"
 
-#: storage/views/trading/get_offers.py:245
+#: storage/views/trading/get_offers.py:241
 msgctxt "w_trading"
 msgid "Купить"
 msgstr "Buy"
 
-#: storage/views/trading/get_offers.py:247
+#: storage/views/trading/get_offers.py:243
 msgctxt "w_trading"
 msgid "Продать"
 msgstr "Sell"
@@ -4522,25 +4657,36 @@ msgctxt "assets"
 msgid "Сундуки"
 msgstr "Chests"
 
-#: war/views/open_war_side_list.py:83 war/views/open_war_side_list.py:84
-msgctxt "lists"
-msgid "Урон"
-msgstr "Damage"
+#: war/templates/war/redesign/character_wars.html:16
+#, fuzzy
+#| msgctxt "w_trading"
+#| msgid "Мои"
+msgctxt "wars_list"
+msgid "Бои"
+msgstr "Mine"
 
-#: war/views/open_war_side_list.py:104
+#: war/views/open_war_side_list.py:108
 msgctxt "lists"
 msgid "атака"
 msgstr "attack"
 
-#: war/views/open_war_side_list.py:106
+#: war/views/open_war_side_list.py:110
 msgctxt "lists"
 msgid "оборона"
 msgstr "defence"
 
-#: war/views/open_war_side_list.py:110
+#: war/views/open_war_side_list.py:114
 msgctxt "lists"
 msgid "Урон за сторону:"
 msgstr "Damage of side:"
+
+#~ msgctxt "index"
+#~ msgid "Играть"
+#~ msgstr "Play"
+
+#~ msgctxt "skills"
+#~ msgid "Отмена"
+#~ msgstr "Cancel"
 
 #~ msgctxt "party_manage"
 #~ msgid "партия"
@@ -4557,10 +4703,6 @@ msgstr "Damage of side:"
 #~ msgctxt "skills"
 #~ msgid "изучается..."
 #~ msgstr "in process..."
-
-#~ msgctxt "storage_upgrade"
-#~ msgid "Максимальный уровень"
-#~ msgstr "Maximum level"
 
 #~ msgctxt "trading"
 #~ msgid "госзакупки"
@@ -4601,10 +4743,6 @@ msgstr "Damage of side:"
 #~ msgctxt "w_trading_new"
 #~ msgid "Склад"
 #~ msgstr "Warehouse"
-
-#~ msgctxt "w_trading_new"
-#~ msgid "Группа товаров"
-#~ msgstr "Goods category"
 
 #~ msgctxt "w_trading_new"
 #~ msgid "Выберите группу"
@@ -4731,8 +4869,12 @@ msgstr "Damage of side:"
 #~ msgstr "UAV - limit"
 
 #~ msgctxt "storage_upgrade"
-#~ msgid "Выберите товары в каждой из категорий, ёмкость Склада для которых будет увеличена"
-#~ msgstr "Select goods in each category for which the Warehouse capacity will be upgraded"
+#~ msgid ""
+#~ "Выберите товары в каждой из категорий, ёмкость Склада для которых будет "
+#~ "увеличена"
+#~ msgstr ""
+#~ "Select goods in each category for which the Warehouse capacity will be "
+#~ "upgraded"
 
 #~ msgctxt "assets"
 #~ msgid "На складе в регионе"
