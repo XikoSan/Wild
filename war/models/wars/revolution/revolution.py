@@ -248,8 +248,6 @@ class Revolution(War):
 
         tres = None
 
-        all_goods = Good.objects.all()
-
         # Захват Казны врага
         if Treasury.objects.filter(region=self.def_region, deleted=False).exists():
             tres = Treasury.objects.get(region=self.def_region, deleted=False)
@@ -330,8 +328,6 @@ class Revolution(War):
 
             else:
                 building = building_cl(region=self.def_region)
-
-            level_before = getattr(building, 'level')
 
             setattr(building, 'level', math.ceil(getattr(building, 'level') / 2))
             building.save()
