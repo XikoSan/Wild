@@ -9,6 +9,7 @@ import redis
 from datetime import timedelta
 from django.contrib.contenttypes.fields import GenericRelation
 from django.contrib.contenttypes.models import ContentType
+from django.db import connection
 from django.db import models
 from django.db import transaction
 from django.db.models import Q
@@ -31,6 +32,9 @@ from region.building.defences import Defences
 from region.building.hospital import Hospital
 from region.building.rate_building import RateBuilding
 from region.models.region import Region
+from region.models.terrain.terrain_modifier import TerrainModifier
+from skill.models.coherence import Coherence
+from skill.models.scouting import Scouting
 from skill.models.scouting import Scouting
 from state.models.capital import Capital
 from state.models.parliament.bulletin import Bulletin
@@ -50,9 +54,6 @@ from war.models.wars.player_damage import PlayerDamage
 from war.models.wars.unit import Unit
 from war.models.wars.war import War
 from war.models.wars.war_side import WarSide
-from region.models.terrain.terrain_modifier import TerrainModifier
-from skill.models.scouting import Scouting
-from skill.models.coherence import Coherence
 
 
 # класс наземной войны
@@ -120,7 +121,7 @@ class GroundWar(War):
         )
 
         self.task = PeriodicTask.objects.create(
-            enabled = True,
+            enabled=True,
             name=f'Война GroundWar {self.pk}',
             task='war_round_task',
             # interval=schedule,
@@ -135,7 +136,7 @@ class GroundWar(War):
         )
 
         self.end_task = PeriodicTask.objects.create(
-            enabled = True,
+            enabled=True,
             name=f'Завершение войны GroundWar {self.pk}',
             task='end_war',
             clocked=clocked_schedule,
@@ -392,51 +393,139 @@ class GroundWar(War):
 
         # Захват Складов врага
         if Storage.actual.filter(region=self.def_region).exists():
-            storages = Storage.actual.filter(region=self.def_region)
-            for storg in storages:
-                # половина сгорит, ещё половину - разграбляем
-                agr_tres.cash += math.ceil(getattr(storg, 'cash') / 4)
-                # сжигаем оставшееся
-                setattr(storg, 'cash', math.ceil(getattr(storg, 'cash') / 4))
 
-                for good in all_goods:
-                    # если у врага в казне есть такой товар
-                    if Stock.objects.filter(storage=storg, good=good, stock__gt=0).exists():
-                        storage_stock = Stock.objects.get(storage=storg, good=good)
+            with connection.cursor() as cursor:
+
+                # деление всех запасов в регионе на 4, возвращение результата
+                raw_sql = f""" 
+                        -- Шаг 1: Обновление значений в таблице storage_stock и деление cash
+                        WITH updated_stocks AS (
+                            UPDATE public.storage_stock AS sk
+                            SET stock = FLOOR(sk.stock / 4)
+                            FROM public.storage_storage AS st
+                            WHERE sk.storage_id = st.id
+                              AND st.deleted = false
+                              AND st.region_id = 4
+                              AND sk.stock != 0
+                            RETURNING sk.id, sk.good_id, sk.stock, st.id AS storage_id
+                        ),
+                        updated_cash AS (
+                            UPDATE public.storage_storage AS st
+                            SET cash = FLOOR(st.cash / 4)
+                            WHERE st.deleted = false
+                              AND st.region_id = {self.def_region.pk}
+                            RETURNING st.id, st.cash
+                        )
+                        -- Шаг 2: Выполнение выборки с новыми значениями
+                        SELECT
+                            us.good_id,
+                            SUM(us.stock) AS stock
+                        FROM
+                            updated_stocks us
+                        GROUP BY
+                            us.good_id
+                        
+                        UNION ALL
+                        
+                        SELECT
+                            '-1' AS good_id,
+                            SUM(uc.cash) AS stock
+                        FROM
+                            updated_cash uc
+                        ORDER BY
+                            stock DESC;
+                    """
+
+                cursor.execute(raw_sql)
+                results = cursor.fetchall()
+
+                for result in results:
+                    amount = int(result[1])
+                    # наличка
+                    if int(result[0]) == -1:
+                        agr_tres.cash += amount * 2
+
+                    else:
+                        good = all_goods.get(pk=int(result[0]))
                         # если уже есть запас у агрессора
                         if TreasuryStock.objects.filter(treasury=agr_tres, good=good).exists():
                             agr_tres_stock = TreasuryStock.objects.get(treasury=agr_tres, good=good)
                         else:
                             agr_tres_stock = TreasuryStock(treasury=agr_tres, good=good)
                         # отдаем четверть атакующему
-                        agr_tres_stock.stock += math.ceil(storage_stock.stock / 4)
-                        agr_tres_stock.save()
-                        # четверть остается у обороны
-                        storage_stock.stock = math.ceil(storage_stock.stock / 4)
-                        storage_stock.save()
-
-                # если есть блокировки - их тоже захватываем
-                if GoodLock.actual.filter(lock_storage=storg).exists():
-                    for lock in GoodLock.actual.filter(lock_storage=storg):
-                        # если уже есть запас у агрессора
-                        if TreasuryStock.objects.filter(treasury=agr_tres, good=lock.lock_good).exists():
-                            agr_tres_stock = TreasuryStock.objects.get(treasury=agr_tres, good=lock.lock_good)
-                        else:
-                            agr_tres_stock = TreasuryStock(treasury=agr_tres, good=lock.lock_good)
-
-                        agr_tres_stock.stock += math.ceil(lock.lock_count / 4)
+                        agr_tres_stock.stock += amount * 2
                         agr_tres_stock.save()
 
-                        lock.deleted = True
-                        lock.save()
+            # --------------------------------------------------------------
 
-                        # связанное торговое предложение
-                        if lock.lock_offer:
-                            lock.lock_offer.accept_date = timezone.now()
-                            lock.lock_offer.deleted = True
-                            lock.lock_offer.save()
+                # все торговые блокировки в регионе отмечаются как удаленные.
+                # четверть от того что там лежало возвращается в список
+                raw_sql = f""" 
+                        -- Шаг 1: Выборка из таблицы storage_goodlock с делением количества на 4 и фильтрацией по deleted
+                        WITH selected_locks AS (
+                            SELECT
+                                gl.id,
+                                gl.lock_good_id,
+                                FLOOR(gl.lock_count / 4) AS reduced_lock_count,
+                                st.id AS storage_id,
+                                gl.lock_offer_id
+                            FROM
+                                public.storage_goodlock AS gl
+                            INNER JOIN
+                                public.storage_storage AS st ON gl.lock_storage_id = st.id
+                            INNER JOIN
+                                public.storage_tradeoffer AS tof ON gl.lock_offer_id = tof.id
+                            WHERE
+                                st.deleted = false
+                                AND st.region_id = {self.def_region.pk}
+                                AND gl.lock_count != 0
+                                AND gl.deleted = false
+                                AND tof.deleted = false
+                        )
+                        -- Шаг 2: Обновление записей в таблице storage_tradeoffer
+                        , updated_offers AS (
+                            UPDATE public.storage_tradeoffer AS tof
+                            SET accept_date = CURRENT_TIMESTAMP,
+                                deleted = true
+                            FROM selected_locks sl
+                            WHERE tof.id = sl.lock_offer_id
+                            RETURNING tof.id
+                        )
+                        -- Шаг 3: Обновление записей в таблице storage_goodlock
+                        , updated_locks AS (
+                            UPDATE public.storage_goodlock AS gl
+                            SET deleted = true
+                            FROM selected_locks sl
+                            WHERE gl.id = sl.id
+                            RETURNING gl.lock_good_id, FLOOR(gl.lock_count / 4) AS reduced_lock_count
+                        )
+                        -- Шаг 4: Выполнение выборки с новыми значениями
+                        SELECT
+                            ul.lock_good_id,
+                            SUM(ul.reduced_lock_count) AS stock
+                        FROM
+                            updated_locks ul
+                        GROUP BY
+                            ul.lock_good_id
+                        ORDER BY
+                            stock DESC;
+                    """
 
-                storg.save()
+                cursor.execute(raw_sql)
+                results = cursor.fetchall()
+
+                for result in results:
+                    amount = int(result[1])
+                    good = all_goods.get(pk=int(result[0]))
+                    # если уже есть запас у агрессора
+                    if TreasuryStock.objects.filter(treasury=agr_tres, good=good).exists():
+                        agr_tres_stock = TreasuryStock.objects.get(treasury=agr_tres, good=good)
+                    else:
+                        agr_tres_stock = TreasuryStock(treasury=agr_tres, good=good)
+                    # отдаем четверть атакующему
+                    agr_tres_stock.stock += amount * 2
+                    agr_tres_stock.save()
+
             agr_tres.save()
 
         # 3. Разрушение зданий
@@ -469,7 +558,8 @@ class GroundWar(War):
                 if type.__name__ == 'Construction':
                     for res in getattr(type, building_cl.__name__)['resources'].keys():
 
-                        res_count = getattr(type, building_cl.__name__)['resources'][res] * (level_before - getattr(building, 'level'))
+                        res_count = getattr(type, building_cl.__name__)['resources'][res] * (
+                                    level_before - getattr(building, 'level'))
 
                         if res == 'Наличные':
                             comp_good = res
@@ -529,15 +619,16 @@ class GroundWar(War):
 
         # если есть активные войны из этого региона на другие
         for other_war_cl in war_classes:
-            if other_war_cl.objects.filter(running=True, agr_region=self.def_region).exists():
-                # каждый из них завершить
-                for other_war in other_war_cl.objects.filter(running=True, agr_region=self.def_region):
-                    pk = other_war.task.pk
-                    other_war.task = None
-                    other_war.running = False
-                    other_war.end_time = timezone.now()
-                    other_war.save()
-                    PeriodicTask.objects.filter(pk=pk).delete()
+            if other_war_cl.__name__ != 'Revolution':
+                if other_war_cl.objects.filter(running=True, agr_region=self.def_region).exists():
+                    # каждый из них завершить
+                    for other_war in other_war_cl.objects.filter(running=True, agr_region=self.def_region):
+                        pk = other_war.task.pk
+                        other_war.task = None
+                        other_war.running = False
+                        other_war.end_time = timezone.now()
+                        other_war.save()
+                        PeriodicTask.objects.filter(pk=pk).delete()
 
         self.def_region.save()
 
