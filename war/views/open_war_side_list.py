@@ -12,6 +12,7 @@ from player.player import Player
 from player.views.lists.get_thing_page import get_thing_page
 from war.models.wars.player_damage import PlayerDamage
 from war.models.wars.war import War
+from war.views.open_war import open_war
 
 
 def create_temporary_player_class():
@@ -30,6 +31,9 @@ def create_temporary_player_class():
 def open_war_side_list(request, class_name, pk, side):
     # получаем персонажа
     player = Player.get_instance(account=request.user)
+
+    if class_name == 'Revolution':
+        return open_war(request, class_name, pk)
 
     try:
         war_class = apps.get_model('war', class_name)
