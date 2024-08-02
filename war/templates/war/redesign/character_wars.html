@@ -9,6 +9,17 @@
 {% load redesign.template_svg.nopic %}
 {% load template_svg.war_icon %}
 
+{% block for_scripts_and_css %}
+{% if player == char %}
+<script src="{% static 'js/switch_visibility.js' %}?{{ csrf_token }}"></script>
+<style>
+    .grayscale {
+        filter: grayscale(100%);
+    }
+</style>
+{% endif %}
+{% endblock %}
+
 {% block content %}
   <section class="articles custom-scroll">
 	<!-- Заголовок -->
@@ -48,8 +59,12 @@
                 </div>
             </td>
 
-            <td class="ct__war_list">
-                {% war_icon player war_elem|dict_key:'war'|get_class_name '' 'margin-right: initial; position: initial' %}
+            <td class="ct__war_list" {% if player == char %} onclick="switch_visibility(this, '{{ war_elem|dict_key:'war'|get_class_name }}', {% localize off %}{{ war_elem|dict_key:'war'|get_attr:'pk' }}{% endlocalize %}, '{{ war_elem|dict_key:'side' }}')" {% endif %}>
+                {% if war_elem|dict_key:'hide' %}
+                    {% war_icon player war_elem|dict_key:'war'|get_class_name 'grayscale' 'margin-right: initial; position: initial' %}
+                {% else %}
+                    {% war_icon player war_elem|dict_key:'war'|get_class_name '' 'margin-right: initial; position: initial' %}
+                {% endif %}
             </td>
 
             <td class="j-t-nickname" style="cursor: pointer" onclick="{% localize off %}window.open('/war/{{ war_elem|dict_key:'war'|get_class_name }}/{{ war_elem|dict_key:'war'|get_attr:'pk' }}/'){% endlocalize %}">

@@ -9,6 +9,7 @@ from war.views.open_war_side_list import open_war_side_list
 from war.views.send_squads import send_squads
 from war.views.start_war import start_war
 from war.views.war_page import war_page
+from war.views.switch_war_visibility import switch_war_visibility
 
 urlpatterns = [
 
@@ -30,4 +31,7 @@ urlpatterns = [
 
     # начать ивентовую войну в регионе
     url(r'^join_revolution/$', join_revolution, name='join_revolution'),
+
+    # скрыть войну из списка боёв
+    url(r'^switch_war_visibility/$', switch_war_visibility, name='switch_war_visibility'),
 ]

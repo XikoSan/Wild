@@ -18,6 +18,9 @@ class PlayerDamage(models.Model):
     # игрок
     player = models.ForeignKey(Player, on_delete=models.CASCADE, verbose_name='Игрок')
 
+    # Скрывать в списке
+    hide = models.BooleanField(default=False, null=False, verbose_name='Скрыто')
+
     # сторона войны
     warSideChoices = (
         ('agr', 'Атака'),
