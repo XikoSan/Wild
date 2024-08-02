@@ -351,12 +351,19 @@ class Revolution(War):
             if other_war_cl.objects.filter(running=True, def_region=self.def_region).exclude(pk=self.pk).exists():
                 # каждый из них завершить
                 for other_war in other_war_cl.objects.filter(running=True, def_region=self.def_region).exclude(pk=self.pk):
+
                     pk = other_war.task.pk
+                    end_pk = other_war.end_task.pk
+
                     other_war.task = None
+                    other_war.end_task = None
+
                     other_war.running = False
                     other_war.end_time = timezone.now()
                     other_war.save()
+
                     PeriodicTask.objects.filter(pk=pk).delete()
+                    PeriodicTask.objects.filter(pk=end_pk).delete()
 
         # если есть активные войны из этого региона на другие
         for other_war_cl in war_classes:
@@ -364,11 +371,17 @@ class Revolution(War):
                 # каждый из них завершить
                 for other_war in other_war_cl.objects.filter(running=True, agr_region=self.def_region):
                     pk = other_war.task.pk
+                    end_pk = other_war.end_task.pk
+
                     other_war.task = None
+                    other_war.end_task = None
+
                     other_war.running = False
                     other_war.end_time = timezone.now()
                     other_war.save()
+
                     PeriodicTask.objects.filter(pk=pk).delete()
+                    PeriodicTask.objects.filter(pk=end_pk).delete()
                     
 
         # 1.1.6 заменяем у захваченного региона государство

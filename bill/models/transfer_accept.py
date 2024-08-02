@@ -30,6 +30,7 @@ from storage.models.auction.auction import BuyAuction
 from storage.models.good import Good
 from storage.models.good_lock import GoodLock
 from war.models.wars.war import War
+from war.models.wars.revolution.revolution import Revolution
 
 
 # Принять регион
@@ -336,7 +337,9 @@ class TransferAccept(Bill):
                                 state=transfer.parliament.state
                              ).exists():
 
-                transfers_tmp.append(transfer)
+                if transfer.region.state == transfer.parliament.state:
+
+                    transfers_tmp.append(transfer)
 
         transfers = transfers_tmp
 

@@ -388,6 +388,8 @@ class GroundWar(War):
         # 1.1.6 заменяем у захваченного региона государство
         self.def_region.state = self.agr_region.state
 
+        self.def_region.peace_date = datetime.datetime(2020, 10, 28, 0, 0)
+
         # 2. Снос складов
         tres = None
 
@@ -597,11 +599,17 @@ class GroundWar(War):
                 for other_war in other_war_cl.objects.filter(running=True, agr_region=self.agr_region,
                                                              def_region=self.def_region).exclude(pk=self.pk):
                     pk = other_war.task.pk
+                    end_pk = other_war.end_task.pk
+
                     other_war.task = None
+                    other_war.end_task = None
+
                     other_war.running = False
                     other_war.end_time = timezone.now()
                     other_war.save()
+
                     PeriodicTask.objects.filter(pk=pk).delete()
+                    PeriodicTask.objects.filter(pk=end_pk).delete()
 
         for other_war_cl in war_classes:
             # если есть ДРУГИЕ войны такого типа этого же агрессора
@@ -611,11 +619,17 @@ class GroundWar(War):
                 for other_war in other_war_cl.objects.filter(running=True, agr_region__state=self.agr_region.state,
                                                              def_region=self.def_region).exclude(pk=self.pk):
                     pk = other_war.task.pk
+                    end_pk = other_war.end_task.pk
+
                     other_war.task = None
+                    other_war.end_task = None
+
                     other_war.running = False
                     other_war.end_time = timezone.now()
                     other_war.save()
+
                     PeriodicTask.objects.filter(pk=pk).delete()
+                    PeriodicTask.objects.filter(pk=end_pk).delete()
 
         # если есть активные войны из этого региона на другие
         for other_war_cl in war_classes:
