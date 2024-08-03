@@ -3,11 +3,13 @@ from django.conf.urls import url
 from django.urls import path
 
 from war.views.character_wars import character_wars
+from war.views.join_revolution import join_revolution
 from war.views.open_war import open_war
 from war.views.open_war_side_list import open_war_side_list
 from war.views.send_squads import send_squads
 from war.views.start_war import start_war
 from war.views.war_page import war_page
+from war.views.switch_war_visibility import switch_war_visibility
 
 urlpatterns = [
 
@@ -26,4 +28,10 @@ urlpatterns = [
     
     # урон игрока
     url(r'^character_wars/(?P<pk>\d+)/$', character_wars, name='character_wars'),
+
+    # начать ивентовую войну в регионе
+    url(r'^join_revolution/$', join_revolution, name='join_revolution'),
+
+    # скрыть войну из списка боёв
+    url(r'^switch_war_visibility/$', switch_war_visibility, name='switch_war_visibility'),
 ]

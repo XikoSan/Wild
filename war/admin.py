@@ -5,6 +5,8 @@ from war.models.wars.ground_war import GroundWar
 from war.models.wars.war_side import WarSide
 from war.models.wars.unit import Unit
 from war.models.wars.player_damage import PlayerDamage
+from war.models.wars.revolution.rebel import Rebel
+from war.models.wars.revolution.revolution import Revolution
 
 
 class SquadAdmin(admin.ModelAdmin):
@@ -38,10 +40,28 @@ class UnitAdmin(admin.ModelAdmin):
         return obj.good.name
 
 
+class RebelAdmin(admin.ModelAdmin):
+    search_fields = ['get_nickname', 'get_region_name', ]
+    raw_id_fields = ('region', 'player',)
+    list_display = ['get_nickname', 'get_region_name', 'resident', 'deleted', ]
+
+
+    def get_nickname(self, obj):
+        return obj.player.nickname
+    get_nickname.short_description = 'Игрок'
+
+    def get_region_name(self, obj):
+        return obj.region.region_name
+    get_region_name.short_description = 'Регион'
+
+
 # Register your models here.
 admin.site.register(EventWar)
 admin.site.register(GroundWar)
+admin.site.register(Revolution)
 admin.site.register(WarSide)
 
 admin.site.register(PlayerDamage)
 admin.site.register(Unit, UnitAdmin)
+
+admin.site.register(Rebel, RebelAdmin)

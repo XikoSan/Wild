@@ -53,10 +53,14 @@ def character_wars(request, pk):
         """
         raw_sql += class_subq
 
-    raw_sql += f'where pd.player_id = {char.id} ORDER BY start_time DESC;'
+    if player == char:
+        raw_sql += f'where pd.player_id = {char.id} ORDER BY start_time DESC;'
+
+    else:
+        raw_sql += f'where pd.player_id = {char.id} and pd.hide = false ORDER BY start_time DESC;'
 
     #  в итоге выйдет что-то такое (оставил для понимания)
-
+    #
     # raw_sql = """
     #     SELECT pd.*, COALESCE(e.start_time, gw.start_time, re.start_time) AS start_time
     #         FROM public.war_playerdamage as pd
@@ -115,7 +119,6 @@ def character_wars(request, pk):
         ret_elem.pop('object_id')
 
         ret_list.append(ret_elem)
-
 
     page = 'war/redesign/character_wars.html'
 
