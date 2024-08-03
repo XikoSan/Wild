@@ -210,35 +210,39 @@ class StartWar(Bill):
 
         if self.region.state == self.parliament.state:
 
-            # получим классы всех войн
-            war_classes = get_subclasses(War)
-            war_class = None
-
-            for war_cl in war_classes:
-                if war_cl.__name__ == self.war_type:
-                    war_class = war_cl
-                    break
-    
-            if war_class.objects.filter(
-                    running=True,
-                    agr_region=self.region,
-                    def_region=self.region_to,
-                    deleted=False
-            ).exists():
+            if self.region_to.peace_date > timezone.now():
                 b_type = 'rj'
 
             else:
-                b_type = 'ac'
+                # получим классы всех войн
+                war_classes = get_subclasses(War)
+                war_class = None
 
-            # если закон принят
-            if b_type == 'ac':
-                new_war = war_class(
-                    running=True,
-                    agr_region=self.region,
-                    def_region=self.region_to,
-                )
+                for war_cl in war_classes:
+                    if war_cl.__name__ == self.war_type:
+                        war_class = war_cl
+                        break
 
-                new_war.save()
+                if war_class.objects.filter(
+                        running=True,
+                        agr_region=self.region,
+                        def_region=self.region_to,
+                        deleted=False
+                ).exists():
+                    b_type = 'rj'
+
+                else:
+                    b_type = 'ac'
+
+                # если закон принят
+                if b_type == 'ac':
+                    new_war = war_class(
+                        running=True,
+                        agr_region=self.region,
+                        def_region=self.region_to,
+                    )
+
+                    new_war.save()
         else:
             b_type = 'rj'
 
