@@ -1,9 +1,12 @@
 {% extends 'player/redesign/header.html' %}
 {% load l10n %}{% load i18n %}
 {% load floor_to_tens %}
+{% load floor_val %}
 {% load static %}
 {% load tz %}
+{% load dict_key %}
 {% block content %}
+{% load get_mul %}
 
 <section class="earn" id="mining_main">
     <h1 class="earn__title ct__page-title">{% trans 'Добыча' context "mining" %}</h1>
@@ -56,7 +59,17 @@
     <div class="earn__card ct__card">
         <h3>{% trans 'Золото' context "mining" %}</h3>
         <span>{% trans 'Запасы' context "mining" %}: {{ player.region.gold_has }} / {{ player.region.gold_cap }}</span>
-        <p></p>
+        <p>
+            <span style="display: inline-block;color: #eb9929;">
+                + G <span style="display: inline-block;" class="be_mined" data-modifier="0.1">10</span>
+            </span>
+            {% if false %}
+            &nbsp;
+            <span style="display: inline-block;">
+                + $ <span style="display: inline-block;" class="be_mined" data-modifier="150">100</span>
+            </span>
+            {% endif %}
+        </p>
         <form class="mining_form" role="form">
             {% csrf_token %}
             <input type="hidden" name="resource" value="gold">
@@ -82,33 +95,45 @@
     <div class="earn__card ct__card">
         <h3>{% trans 'Нефть' context "mining" %}</h3>
         <span>{% trans 'Запасы' context "mining" %}: {{ player.region.oil_has }} / {{ player.region.oil_cap }}</span>
-        <p>{% trans 'Марка нефти' context "mining" %}: {{ oil_mark }}</p>
-			<form class="mining_form" role="form">
-                {% csrf_token %}
-                <input type="hidden" name="resource" value="oil">
-				<input type="number" min="0" max="100" value="{{ player.energy|floor_to_tens }}" step="10" name="energy">
-                {% if player.destination %}
-                <button type="button" class="btn btn-danger">{% trans 'в полете' context "daily_header" %}</button>
-                {% else %}
-                    {% if premium %}
-                <button class="start_auto" onclick="start_auto(event, 'oil')" style="{% if auto_mining.resource == 'oil' %}display:none{% endif %}">{% trans 'авто' context "mining" %}</button>
-                <button class="cancel_auto" onclick="cancel_auto(event)" style="{% if not auto_mining or auto_mining.resource != 'oil' %}display:none {% endif %}">
-                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<circle cx="7" cy="7" r="6.5" stroke="var(--c60)"></circle>
-						<path d="M7 2.24V7.07L10.71 10.78" stroke="var(--c60)"></path>
-					</svg>
-                    <span>{{ auto_mining.task.start_time|timezone:player.time_zone|date:"H:i" }}</span>
-                </button>
-                    {% endif %}
-                <button class="btn-mining eduBlock1">{% trans 'добыча' context "mining" %}</button>
+        <p>
+            <span style="display: inline-block;">
+                + {{ oil_mark }}: <span style="display: inline-block;" class="be_mined" data-modifier="{{ be_mined_dict|dict_key:'oil' }}">{% with modif=be_mined_dict|dict_key:'oil' %}{{ player.energy|floor_to_tens|get_mul:modif|floor_val }}{% endwith %}</span>
+            </span>
+        </p>
+        <form class="mining_form" role="form">
+            {% csrf_token %}
+            <input type="hidden" name="resource" value="oil">
+            <input type="number" min="0" max="100" value="{{ player.energy|floor_to_tens }}" step="10" name="energy">
+            {% if player.destination %}
+            <button type="button" class="btn btn-danger">{% trans 'в полете' context "daily_header" %}</button>
+            {% else %}
+                {% if premium %}
+            <button class="start_auto" onclick="start_auto(event, 'oil')" style="{% if auto_mining.resource == 'oil' %}display:none{% endif %}">{% trans 'авто' context "mining" %}</button>
+            <button class="cancel_auto" onclick="cancel_auto(event)" style="{% if not auto_mining or auto_mining.resource != 'oil' %}display:none {% endif %}">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="7" cy="7" r="6.5" stroke="var(--c60)"></circle>
+                    <path d="M7 2.24V7.07L10.71 10.78" stroke="var(--c60)"></path>
+                </svg>
+                <span>{{ auto_mining.task.start_time|timezone:player.time_zone|date:"H:i" }}</span>
+            </button>
                 {% endif %}
-			</form>
+            <button class="btn-mining eduBlock1">{% trans 'добыча' context "mining" %}</button>
+            {% endif %}
+        </form>
         <svg width="314" height="100" viewBox="0 0 314 100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.46447 11.5355L11.5355 2.46447C12.4732 1.52678 13.745 1 15.0711 1H308C310.761 1 313 3.23857 313 6V94C313 96.7614 310.761 99 308 99H6C3.23858 99 1 96.7614 1 94V15.0711C1 13.745 1.52678 12.4732 2.46447 11.5355Z" fill="var(--c30)" stroke="var(--c30)"/></svg>
     </div>
     <div class="earn__card ct__card">
         <h3>{% trans 'Руда' context "mining" %}</h3>
         <span>{% trans 'Запасы' context "mining" %}: {{ player.region.ore_has }} / {{ player.region.ore_cap }}</span>
-        <p>{% trans 'Качество руды' context "mining" %}: {% for fossil in fossils %}{{ fossil.percent }}% {% if not forloop.last %} / {% endif %}{% endfor %}</p>
+        <p>
+            <span style="display: inline-block;">
+                +
+                {% for fossil in fossils %}
+                    {{ fossil.good.name|slice:":1" }}: <span style="display: inline-block;" class="be_mined" data-modifier="{{ be_mined_dict|dict_key:fossil }}">{% with modif=be_mined_dict|dict_key:fossil %}{{ player.energy|floor_to_tens|get_mul:modif|floor_val }}{% endwith %}</span>
+                    {% if not forloop.last %} / {% endif %}
+                {% endfor %}
+            </span>
+        </p>
         <form class="mining_form" role="form">
             {% csrf_token %}
             <input type="hidden" name="resource" value="ore">
@@ -145,6 +170,32 @@
 {% if premium %}
 <script src='{% static "js/auto_mining.js" %}?{{ csrf_token }}'></script>
 {% endif %}
+
+<script>
+    function applyModifier(input, beMinedElement, modifier) {
+        input.addEventListener('input', () => {
+            const newValue = input.value * modifier;
+            beMinedElement.textContent = Math.floor(newValue);
+        });
+    }
+
+    // Ищем все формы с классом .mining_form
+    const forms = document.querySelectorAll('.mining_form');
+
+    forms.forEach(form => {
+        // Находим поле input[type="number"]
+        const input = form.querySelector('input[type="number"]');
+        // Находим все элементы с классом .be_mined внутри .earn__card
+        const beMinedElements = form.closest('.earn__card').querySelectorAll('.be_mined');
+
+        beMinedElements.forEach(beMinedElement => {
+            // Получаем модификатор из атрибута data-modifier
+            const modifier = parseFloat(beMinedElement.getAttribute('data-modifier'));
+            // Применяем функцию для каждой пары input и beMinedElement
+            applyModifier(input, beMinedElement, modifier);
+        });
+    });
+</script>
 
 <script>
     var check_edu = true;

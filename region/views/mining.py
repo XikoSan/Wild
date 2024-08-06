@@ -2,6 +2,7 @@ import datetime
 import pytz
 from django.apps import apps
 from django.contrib.auth.decorators import login_required
+from django.db import connection
 from django.shortcuts import render
 from django.utils import timezone
 from django.utils.timezone import make_aware
@@ -11,7 +12,9 @@ from player.decorators.player import check_player
 from player.logs.auto_mining import AutoMining
 from player.player import Player
 from region.models.fossils import Fossils
-from django.db import connection
+from skill.models.excavation import Excavation
+from skill.models.fracturing import Fracturing
+from state.models.state import State
 
 
 # главная страница
@@ -64,7 +67,7 @@ def mining(request):
                                 event_end__gt=timezone.now()).exists():
 
         event = CashEvent.objects.get(running=True, event_start__lt=timezone.now(),
-                                event_end__gt=timezone.now())
+                                      event_end__gt=timezone.now())
 
         cursor = connection.cursor()
 
@@ -124,6 +127,36 @@ def mining(request):
 
     fossils = Fossils.objects.filter(region=player.region).order_by('-good__name_ru')
 
+    be_mined_dict = {}
+
+    for mineral in fossils:
+        # облагаем налогом добытую руду
+        total_ore = (1 / 50) * mineral.percent * (1 + player.endurance * 0.01)
+        # экскавация
+        if Excavation.objects.filter(player=player, level__gt=0).exists():
+            total_ore = Excavation.objects.get(player=player).apply({'sum': total_ore})
+
+        if not player.account.date_joined + datetime.timedelta(days=7) > timezone.now():
+            taxed_ore = State.get_taxes(player.region, total_ore, 'ore', mineral.good)
+        else:
+            taxed_ore = total_ore
+
+        be_mined_dict[mineral] = taxed_ore
+
+    # облагаем налогом добытую нефть
+    total_oil = (1 / 10) * 20 * (1 + player.endurance * 0.01)
+
+    # гидроразрыв
+    if Fracturing.objects.filter(player=player, level__gt=0).exists():
+        total_oil = Fracturing.objects.get(player=player).apply({'sum': total_oil})
+
+    if not player.account.date_joined + datetime.timedelta(days=7) > timezone.now():
+        taxed_oil = State.get_taxes(player.region, total_oil, 'oil', player.region.oil_mark)
+    else:
+        taxed_oil = total_oil
+
+    be_mined_dict['oil'] = taxed_oil
+
     groups = list(player.account.groups.all().values_list('name', flat=True))
     page = 'region/mining.html'
     if 'redesign' not in groups:
@@ -141,6 +174,8 @@ def mining(request):
         'daily_energy_limit': daily_energy_limit,
         'daily_procent': daily_procent,
         'daily_current_sum': daily_current_sum,
+
+        'be_mined_dict': be_mined_dict,
 
         'oil_mark': oil_mark,
         'fossils': fossils,
