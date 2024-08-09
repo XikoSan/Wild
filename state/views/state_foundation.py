@@ -1,16 +1,19 @@
 import random
-
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
 
+from bill.models.independence import Independence
 from player.decorators.player import check_player
 from player.player import Player
 from region.models.region import Region
 from state.models.capital import Capital
-from state.models.state import State
-from state.models.treasury import Treasury
-from wild_politics.settings import JResponse
 from state.models.parliament.parliament import Parliament
+from state.models.state import State
+from django.utils import timezone
+from state.models.treasury import Treasury
+from war.models.wars.revolution.revolution import Revolution
+from wild_politics.settings import JResponse
+from datetime import timedelta
 
 # основание государства
 @login_required(login_url='/')
@@ -34,6 +37,31 @@ def state_foundation(request):
         if region.state:
             data = {
                 'response': 'Государство в этом регионе уже есть',
+                'header': 'Основание государства',
+                'grey_btn': 'Закрыть',
+            }
+            return JResponse(data)
+
+        if Revolution.objects.filter(
+                                        running=False,
+                                        hq_points__lt=0,
+                                        deleted=False,
+                                        end_time__gt=timezone.now() - timedelta(hours=12),
+                                     ).exists():
+            data = {
+                'response': 'Невозможно создать государство в первые 12 часов после восстания',
+                'header': 'Основание государства',
+                'grey_btn': 'Закрыть',
+            }
+            return JResponse(data)
+
+        if Independence.objects.filter(
+                                        running=False,
+                                        type='ac',
+                                        voting_end__gt=timezone.now() - timedelta(hours=12),
+                                     ).exists():
+            data = {
+                'response': 'Невозможно создать государство в первые 12 часов после объявления независимости',
                 'header': 'Основание государства',
                 'grey_btn': 'Закрыть',
             }
