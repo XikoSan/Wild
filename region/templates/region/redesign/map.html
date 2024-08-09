@@ -557,7 +557,7 @@ function addMarker(coordinates) {
   planeMarkers.addTo(mymap);
 
    mymap.on('zoomend', function() {
-      if (mymap.getZoom() < 6){
+      if (mymap.getZoom() < 5){
               mymap.removeLayer(planeMarkers);
       }
       else {
