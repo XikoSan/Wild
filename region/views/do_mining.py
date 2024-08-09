@@ -1,23 +1,27 @@
 # coding=utf-8
-from decimal import Decimal
 import datetime
+import redis
+from decimal import Decimal
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from django.utils import timezone
-from player.decorators.player import check_player
+from django.utils.translation import pgettext
+
 from player.decorators.captcha import captcha
+from player.decorators.player import check_player
 from player.logs.gold_log import GoldLog
 from player.player import Player
+from region.building.defences import Defences
+from region.building.hospital import Hospital
+from region.models.fossils import Fossils
+from skill.models.excavation import Excavation
+from skill.models.fracturing import Fracturing
 from state.models.state import State
+from storage.models.stock import Stock, Good
 from storage.models.storage import Storage
 from storage.views.storage.locks.get_storage import get_stocks
 from wild_politics.settings import JResponse
-from skill.models.excavation import Excavation
-from skill.models.fracturing import Fracturing
-from django.utils.translation import pgettext
-import redis
-from storage.models.stock import Stock, Good
-from region.models.fossils import Fossils
+
 
 # выкопать ресурсы по запросу игрока
 @login_required(login_url='/')
@@ -137,7 +141,7 @@ def do_mining(request):
             goods = [player.region.oil_mark.name_ru]
             ret_stocks, ret_st_stocks = get_stocks(storage, goods)
             # облагаем налогом добытую нефть
-            total_oil = (count / 10) * 20 * (1+ player.endurance * 0.01)
+            total_oil = (count / 10) * 20 * (1 + player.endurance * 0.01)
 
             # гидроразрыв
             if Fracturing.objects.filter(player=player, level__gt=0).exists():
@@ -152,20 +156,24 @@ def do_mining(request):
             r = redis.StrictRedis(host='redis', port=6379, db=0)
             # общее
             if r.exists("daily_" + player.region.oil_type):
-                r.set("daily_" + player.region.oil_type, int(float(r.get("daily_" + player.region.oil_type))) + int(total_oil))
+                r.set("daily_" + player.region.oil_type,
+                      int(float(r.get("daily_" + player.region.oil_type))) + int(total_oil))
             else:
                 r.set("daily_" + player.region.oil_type, int(total_oil))
 
             # регион
             if r.exists("daily_" + str(player.region.pk) + '_' + player.region.oil_type):
-                r.set("daily_" + str(player.region.pk) + '_' +  player.region.oil_type, int(float(r.get("daily_" + str(player.region.pk) + '_' + player.region.oil_type))) + int(total_oil))
+                r.set("daily_" + str(player.region.pk) + '_' + player.region.oil_type,
+                      int(float(r.get("daily_" + str(player.region.pk) + '_' + player.region.oil_type))) + int(
+                          total_oil))
             else:
-                r.set("daily_" + str(player.region.pk) + '_' +  player.region.oil_type, int(total_oil))
+                r.set("daily_" + str(player.region.pk) + '_' + player.region.oil_type, int(total_oil))
 
             if player.party:
                 # партийная информация
                 if r.exists("party_mining_" + str(player.party.pk)):
-                    r.set("party_mining_" + str(player.party.pk), int(float(r.get("party_mining_" + str(player.party.pk)))) + int(total_oil))
+                    r.set("party_mining_" + str(player.party.pk),
+                          int(float(r.get("party_mining_" + str(player.party.pk)))) + int(total_oil))
                 else:
                     r.set("party_mining_" + str(player.party.pk), int(total_oil))
 
@@ -184,12 +192,13 @@ def do_mining(request):
 
             else:
                 # если места нет или его меньше чем пак ресурсов, забиваем под крышку
-                mined_result[player.region.oil_type] = getattr(storage, player.region.oil_mark.size + '_cap') - sizetype_stocks
+                mined_result[player.region.oil_type] = getattr(storage,
+                                                               player.region.oil_mark.size + '_cap') - sizetype_stocks
                 # устанавливаем новое значение как остаток до полного склада с учетом блокировок + старое значение ресурса
                 stock, created = Stock.objects.get_or_create(storage=storage,
                                                              good=player.region.oil_mark
                                                              )
-                stock.stock += ( getattr(storage, player.region.oil_mark.size + '_cap') - sizetype_stocks )
+                stock.stock += (getattr(storage, player.region.oil_mark.size + '_cap') - sizetype_stocks)
 
                 mined_stocks_u.append(stock)
 
@@ -226,7 +235,7 @@ def do_mining(request):
 
             for mineral in fossils:
                 # облагаем налогом добытую руду
-                total_ore = (count / 50) * mineral.percent * (1+ player.endurance * 0.01)
+                total_ore = (count / 50) * mineral.percent * (1 + player.endurance * 0.01)
                 # экскавация
                 if Excavation.objects.filter(player=player, level__gt=0).exists():
                     total_ore = Excavation.objects.get(player=player).apply({'sum': total_ore})
@@ -248,7 +257,9 @@ def do_mining(request):
                 if r.exists("daily_" + str(player.region.pk) + '_' + fossils_dict[mineral.good.name_ru]):
 
                     r.set("daily_" + str(player.region.pk) + '_' + fossils_dict[mineral.good.name_ru],
-                          int(float(r.get("daily_" + str(player.region.pk) + '_' + fossils_dict[mineral.good.name_ru]))) + int(total_ore))
+                          int(float(r.get(
+                              "daily_" + str(player.region.pk) + '_' + fossils_dict[mineral.good.name_ru]))) + int(
+                              total_ore))
                 else:
                     r.set("daily_" + str(player.region.pk) + '_' + fossils_dict[mineral.good.name_ru], int(total_ore))
 
@@ -281,7 +292,8 @@ def do_mining(request):
                 else:
                     # если места нет или его меньше чем пак ресурсов, забиваем под крышку
                     if taxed_ore > 0:
-                        mined_result[fossils_dict[mineral.good.name_ru]] = getattr(storage, mineral.good.size + '_cap') - sizetype_stocks
+                        mined_result[fossils_dict[mineral.good.name_ru]] = getattr(storage,
+                                                                                   mineral.good.size + '_cap') - sizetype_stocks
                         # устанавливаем новое значение как остаток до полного склада с учетом блокировок + старое значение ресурса
                         stock, created = Stock.objects.get_or_create(storage=storage,
                                                                      good=mineral.good
@@ -298,16 +310,102 @@ def do_mining(request):
             if player.educated:
                 player.region.ore_has -= Decimal((count / 10) * 0.01)
 
+        elif resource == 'Defences':
+
+            if not player.region.state:
+                if Defences.objects.filter(region=player.region, level__gt=0).exists():
+
+                    result, mined = Defences.objects.get(region=player.region).plundering(count)
+
+                    if result:
+                        data = {
+                            'response': result['response'],
+                            'header': result['header'],
+                            'grey_btn': pgettext('mining', 'Закрыть'),
+                        }
+                        return JResponse(data)
+
+                    if mined:
+                        mined_result['trophies'] = mined
+
+                    good = Good.objects.get(
+                        name_ru='Трофеи'
+                    )
+
+                    stock, created = Stock.objects.get_or_create(storage=storage,
+                                                                 good=good
+                                                                 )
+                    stock.stock += mined_result['trophies']
+                    mined_stocks_u.append(stock)
+
+                else:
+                    data = {
+                        'response': 'В регионе нет Укреплений, или они уже разграблены',
+                        'header': 'Разграбление',
+                        'grey_btn': pgettext('mining', 'Закрыть'),
+                    }
+                    return JResponse(data)
+            else:
+                data = {
+                    'response': 'Регион должен быть независимым',
+                    'header': 'Разграбление',
+                    'grey_btn': pgettext('mining', 'Закрыть'),
+                }
+                return JResponse(data)
+
+        elif resource == 'Hospital':
+
+            if not player.region.state:
+                if Hospital.objects.filter(region=player.region, level__gt=0).exists():
+
+                    result, mined = Hospital.objects.get(region=player.region).plundering(count)
+
+                    if result:
+                        data = {
+                            'response': result['response'],
+                            'header': result['header'],
+                            'grey_btn': pgettext('mining', 'Закрыть'),
+                        }
+                        return JResponse(data)
+
+                    if mined:
+                        mined_result['adrenalin'] = mined
+
+                    good = Good.objects.get(
+                        name_ru='Адреналин'
+                    )
+
+                    stock, created = Stock.objects.get_or_create(storage=storage,
+                                                                 good=good
+                                                                 )
+                    stock.stock += mined_result['adrenalin']
+                    mined_stocks_u.append(stock)
+
+                else:
+                    data = {
+                        'response': 'В регионе нет Госпиталя, или он уже разграблен',
+                        'header': 'Разграбление',
+                        'grey_btn': pgettext('mining', 'Закрыть'),
+                    }
+                    return JResponse(data)
+            else:
+                data = {
+                    'response': 'Регион должен быть независимым',
+                    'header': 'Разграбление',
+                    'grey_btn': pgettext('mining', 'Закрыть'),
+                }
+                return JResponse(data)
+
         if mined_result:
             # обновляем существующие запасы
             if mined_stocks_u:
                 Stock.objects.bulk_update(
                     mined_stocks_u,
-                    fields=['stock',],
+                    fields=['stock', ],
                     batch_size=len(mined_stocks_u)
                 )
 
-            if resource != 'gold':
+            if resource != 'gold' and resource != 'Defences' and resource != 'Hospital':
                 player.energy_cons(count)
             else:
                 player.energy -= count

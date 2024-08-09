@@ -23,6 +23,9 @@ class Building(models.Model):
     def get_stat(region):
         return
 
+    def plundering(self, count):
+        return
+
     def __str__(self):
         return self.region.region_name
 

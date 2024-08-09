@@ -15,7 +15,8 @@ from region.models.fossils import Fossils
 from skill.models.excavation import Excavation
 from skill.models.fracturing import Fracturing
 from state.models.state import State
-
+from region.building.defences import Defences
+from region.building.hospital import Hospital
 
 # главная страница
 @login_required(login_url='/')
@@ -125,6 +126,8 @@ def mining(request):
         if type in player.region.oil_mark.name:
             oil_mark = type
 
+    # --------------------
+
     fossils = Fossils.objects.filter(region=player.region).order_by('-good__name_ru')
 
     be_mined_dict = {}
@@ -157,6 +160,21 @@ def mining(request):
 
     be_mined_dict['oil'] = taxed_oil
 
+    # --------------------
+
+    defences_level = 0
+
+    if not player.region.state:
+        if Defences.objects.filter(region=player.region, level__gt=0).exists():
+            defences_level = Defences.objects.get(region=player.region).level
+
+    hospital_level = 0
+
+    if not player.region.state:
+        if Hospital.objects.filter(region=player.region, level__gt=0).exists():
+            hospital_level = Hospital.objects.get(region=player.region).level
+
+
     groups = list(player.account.groups.all().values_list('name', flat=True))
     page = 'region/mining.html'
     if 'redesign' not in groups:
@@ -179,6 +197,9 @@ def mining(request):
 
         'oil_mark': oil_mark,
         'fossils': fossils,
+
+        'defences_level': defences_level,
+        'hospital_level': hospital_level,
     })
 
     # if player_settings:

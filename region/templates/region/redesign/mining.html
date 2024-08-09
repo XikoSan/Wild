@@ -156,6 +156,48 @@
         </form>
         <svg width="314" height="100" viewBox="0 0 314 100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.46447 11.5355L11.5355 2.46447C12.4732 1.52678 13.745 1 15.0711 1H308C310.761 1 313 3.23857 313 6V94C313 96.7614 310.761 99 308 99H6C3.23858 99 1 96.7614 1 94V15.0711C1 13.745 1.52678 12.4732 2.46447 11.5355Z" fill="var(--c30)" stroke="var(--c30)"/></svg>
     </div>
+    {% if not player.region.state %}
+    <div class="earn__card ct__card">
+        <h3>Укрепления</h3>
+        <span>{% trans 'Запасы' context "mining" %}: {{ defences_level }}</span>
+        <p>
+            <span style="display: inline-block;">
+                + Трофеи: <span style="display: inline-block;" class="be_mined" data-modifier="0.01">{% with modif=0.01 %}{{ player.energy|floor_to_tens|get_mul:modif|floor_val }}{% endwith %}</span>
+            </span>
+        </p>
+        <form class="mining_form" role="form">
+            {% csrf_token %}
+            <input type="hidden" name="resource" value="Defences">
+            <input type="number" min="0" max="100" value="{{ player.energy|floor_to_tens }}" step="10" name="energy">
+            {% if player.destination %}
+            <button type="button" class="btn btn-danger">{% trans 'в полете' context "daily_header" %}</button>
+            {% else %}
+            <button class="btn-mining eduBlock1">{% trans 'добыча' context "mining" %}</button>
+            {% endif %}
+        </form>
+        <svg width="314" height="100" viewBox="0 0 314 100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.46447 11.5355L11.5355 2.46447C12.4732 1.52678 13.745 1 15.0711 1H308C310.761 1 313 3.23857 313 6V94C313 96.7614 310.761 99 308 99H6C3.23858 99 1 96.7614 1 94V15.0711C1 13.745 1.52678 12.4732 2.46447 11.5355Z" fill="var(--c30)" stroke="var(--c30)"/></svg>
+    </div>
+    <div class="earn__card ct__card">
+        <h3>Госпиталь</h3>
+        <span>{% trans 'Запасы' context "mining" %}: {{ hospital_level }}</span>
+        <p>
+            <span style="display: inline-block;">
+                + Адреналин: <span style="display: inline-block;" class="be_mined" data-modifier="0.01">{% with modif=0.01 %}{{ player.energy|floor_to_tens|get_mul:modif|floor_val }}{% endwith %}</span>
+            </span>
+        </p>
+        <form class="mining_form" role="form">
+            {% csrf_token %}
+            <input type="hidden" name="resource" value="Hospital">
+            <input type="number" min="0" max="100" value="{{ player.energy|floor_to_tens }}" step="10" name="energy">
+            {% if player.destination %}
+            <button type="button" class="btn btn-danger">{% trans 'в полете' context "daily_header" %}</button>
+            {% else %}
+            <button class="btn-mining eduBlock1">{% trans 'добыча' context "mining" %}</button>
+            {% endif %}
+        </form>
+        <svg width="314" height="100" viewBox="0 0 314 100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.46447 11.5355L11.5355 2.46447C12.4732 1.52678 13.745 1 15.0711 1H308C310.761 1 313 3.23857 313 6V94C313 96.7614 310.761 99 308 99H6C3.23858 99 1 96.7614 1 94V15.0711C1 13.745 1.52678 12.4732 2.46447 11.5355Z" fill="var(--c30)" stroke="var(--c30)"/></svg>
+    </div>
+    {% endif %}
 </section>
 
 {% endblock %}

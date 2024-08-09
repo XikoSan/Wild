@@ -1,9 +1,12 @@
 # coding=utf-8
 import math
+from django.utils.translation import pgettext
 
-from region.building.rate_building import RateBuilding
 from region.building.power_plant import PowerPlant
+from region.building.rate_building import RateBuilding
 from state.models.state import State
+
+
 # госпиталь здание в регионе
 class Hospital(RateBuilding):
     # словарь индексов, с процентом от числа зданий (за вычетом вышест. рейтингов)
@@ -41,6 +44,26 @@ class Hospital(RateBuilding):
     #     # иначе - возвращаем первый индекс
     #     else:
     #         return 1
+
+    def plundering(self, count):
+
+        if count < 100:
+            return {
+                       'response': 'Недостаточно энергии, необходимо: 100',
+                       'header': 'Разграбление',
+                   }, None
+
+        if 1 > self.level:
+            return {
+                       'response': 'Недостаточно уровней Госпиталя',
+                       'header': 'Разграбление',
+                   }, None
+
+        self.level -= 1
+
+        self.save()
+
+        return None, 1
 
     # получить строки с информацией об уровне и рейтинге здания
     @staticmethod
@@ -88,7 +111,7 @@ class Hospital(RateBuilding):
                 efficiency = PowerPlant.get_power_efficiency(region=building.region)
 
             # список с госпиталями и реальным уровнем. Словарь здесь не подойдет, нужно сортировать
-            real_level += ((building, math.floor(building.level * (efficiency / 100))), )
+            real_level += ((building, math.floor(building.level * (efficiency / 100))),)
 
         real_level = sorted(real_level, key=lambda x: x[1], reverse=True)
 
