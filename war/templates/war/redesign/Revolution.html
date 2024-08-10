@@ -350,14 +350,6 @@
 	/* создание выскакивающего сообщения */
 	const messagesContainer = document.querySelector('.war__playerDamage');
 	function createDamageMessage(src, points, isLeft) {
-		const newMessage = document.createElement('div');
-		isLeft ? newMessage.classList.add('left') : newMessage.classList.add('right');
-		isLeft ?
-			newMessage.insertAdjacentHTML('beforeend', `<img src="${src}"><span>+${points.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")}</span>`)
-			:
-			newMessage.insertAdjacentHTML('beforeend', `<span>+${points.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")}</span><img src="${src}">`);
-		messagesContainer.appendChild(newMessage);
-		setTimeout(() => newMessage.remove(), 5000);
 	}
 
 	/* обратный отсчет боя */
