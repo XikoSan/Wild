@@ -20,6 +20,7 @@ from storage.models.storage import Storage
 from storage.views.storage.locks.get_storage import get_stocks
 from storage.views.storage.locks.get_storage import get_storage
 from skill.models.biochemistry import Biochemistry
+from skill.models.trophy_engineering import TrophyEngineering
 
 
 @login_required(login_url='/')
@@ -96,6 +97,15 @@ def produce_good(request):
 
         boosters_can = Biochemistry.objects.filter(player=player, level__gt=0).exists()
         if good.name_ru in ['BCAA', 'Глицин', 'Мельдоний', 'E-реагент', 'I-реагент', 'S-реагент'] and not boosters_can:
+            data = {
+                'response': pgettext('factory', 'Вы не можете производить данный товар'),
+                'header': pgettext('factory', 'Ошибка производства'),
+                'grey_btn': pgettext('storage', 'Закрыть'),
+            }
+            return JsonResponse(data)
+
+        trophy_can = TrophyEngineering.objects.filter(player=player, level__gt=0).exists()
+        if (not good.name_ru.find("Трофейные") == -1) and not trophy_can:
             data = {
                 'response': pgettext('factory', 'Вы не можете производить данный товар'),
                 'header': pgettext('factory', 'Ошибка производства'),

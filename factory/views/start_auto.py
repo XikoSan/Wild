@@ -14,6 +14,7 @@ from factory.models.project import Project
 from storage.models.good import Good
 from factory.models.blueprint import Blueprint
 from skill.models.biochemistry import Biochemistry
+from skill.models.trophy_engineering import TrophyEngineering
 
 
 # выкопать ресурсы по запросу игрока
@@ -60,7 +61,16 @@ def start_auto_produce(request):
                 'header': pgettext('factory', 'Ошибка производства'),
                 'grey_btn': pgettext('storage', 'Закрыть'),
             }
-            return JsonResponse(data)
+            return JResponse(data)
+
+        trophy_can = TrophyEngineering.objects.filter(player=player, level__gt=0).exists()
+        if (not good.name_ru.find("Трофейные") == -1) and not trophy_can:
+            data = {
+                'response': pgettext('factory', 'Вы не можете производить данный товар'),
+                'header': pgettext('factory', 'Ошибка производства'),
+                'grey_btn': pgettext('storage', 'Закрыть'),
+            }
+            return JResponse(data)
 
         # производится ли такой товар?
         if not Blueprint.objects.filter(good=good).exists():

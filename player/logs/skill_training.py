@@ -11,6 +11,7 @@ from skill.models.excavation import Excavation
 # from skill.models.finance import Finance
 from skill.models.standardization import Standardization
 from skill.models.biochemistry import Biochemistry
+from skill.models.trophy_engineering import TrophyEngineering
 
 # запись об изучаемом навыке
 # новые классы навыков надо импортировать сюда

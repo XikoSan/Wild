@@ -17,6 +17,7 @@ from storage.models.stock import Stock
 from factory.models.blueprint import Blueprint
 from factory.models.component import Component
 from skill.models.biochemistry import Biochemistry
+from skill.models.trophy_engineering import TrophyEngineering
 
 
 @login_required(login_url='/')
@@ -40,6 +41,8 @@ def factory(request):
 
     boosters_can = Biochemistry.objects.filter(player=player, level__gt=0).exists()
 
+    trophy_can = TrophyEngineering.objects.filter(player=player, level__gt=0).exists()
+
     goods = Good.objects.all()
 
     total_stocks = {}
@@ -61,6 +64,9 @@ def factory(request):
 
         for good in goods:
             if good.name_ru in ['BCAA', 'Глицин', 'Мельдоний', 'E-реагент', 'I-реагент', 'S-реагент'] and not boosters_can:
+                continue
+
+            if (not good.name_ru.find("Трофейные") == -1) and not trophy_can:
                 continue
 
             good_names[good.pk] = good.name
