@@ -7,6 +7,7 @@ from war.models.wars.unit import Unit
 from war.models.wars.player_damage import PlayerDamage
 from war.models.wars.revolution.rebel import Rebel
 from war.models.wars.revolution.revolution import Revolution
+from region.models.terrain.terrain_modifier import TerrainModifier
 
 
 class SquadAdmin(admin.ModelAdmin):
@@ -31,10 +32,16 @@ class SquadAdmin(admin.ModelAdmin):
             return ''
 
 
+class TerrainModifierInline(admin.TabularInline):
+    model = TerrainModifier
+
+
+
 class UnitAdmin(admin.ModelAdmin):
     search_fields = ['good__name_ru',]
     raw_id_fields = ('good',)
     list_display = ['get_unit_name', 'damage', 'energy', ]
+    inlines = [TerrainModifierInline]
 
     def get_unit_name(self, obj):
         return obj.good.name
