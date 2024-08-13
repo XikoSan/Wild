@@ -94,7 +94,14 @@
 <!--		<path d="M361 163L355 157L355 169L361 175M361 181L355 175L355 181L361 187M361 193L355 187" stroke="var(&#45;&#45;c10two)"/>-->
 <!--		</g>-->
 <!--	</svg>-->
-    {% block content %}
+	<script>
+		var help_text = {
+				'no_data': 'У меня нет информации по этому элементу для вас',
+			    {% block gui_help %}
+    			{% endblock %}
+		}
+	</script>
+	{% block content %}
     {% endblock %}
 <!--	<svg width="362" class="border-bottom" height="194" viewBox="0 0 362 194" fill="none" xmlns="http://www.w3.org/2000/svg">-->
 <!--		<g>-->
@@ -178,7 +185,13 @@
 
 <!-- ОБУЧЕНИЕ -->
 <section class="edu" id="eduWindow">
-<div class="edu__content" id="eduContent">
+<button class="edu__glow click m-sett__close ct__square-mid-btn" id="hide_gui_help" style="display: none" onclick="hide_gui_help()">
+	<svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+		<path d="M26 30H0V0H30V26L26 30Z" fill="var(--c10two)"></path>
+		<path d="M4 4L26 26M4 26L26 4" stroke="var(--c60)" stroke-width="3"></path>
+	</svg>
+</button>
+<div class="edu__content" id="eduContent" style="z-index: 8;">
   <img class="edu__img" src="/static/redesign/img/Ann.png" alt="">
   <img class="edu__rewardImg" id="eduRewardImg">
   <p class="edu__text" id="eduText"></p>
@@ -194,6 +207,8 @@
 <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>-->
 <script src="{% static 'redesign/js/header.js' %}?{{ csrf_token }}"></script>
 <script src="{% static 'redesign/js/status.js' %}?{{ csrf_token }}"></script>
+
+<script src="/static/redesign/js/gui_help.js"></script>
 {% block for_scripts_and_css %}
 {% endblock %}
 {% if not player.account.is_superuser and is_check %}

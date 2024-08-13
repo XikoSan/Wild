@@ -3,6 +3,7 @@
 {% load bootstrap3 %}
 {% load l10n %}{% load i18n %}{% load tz %}
 {% load redesign.overview_blocks.skills %}
+{% load redesign.gui_help.player_help %}
 {% load redesign.template_svg.nopic %}
 {% load template_svg.war_icon %}
 
@@ -156,6 +157,11 @@
 {% load get_key_list %}
 {% load get_class_name %}
 
+<!--	</svg>-->
+{% block gui_help %}
+  {% player_help player %}
+{% endblock %}
+
 {% block content %}
   {% with LANGUAGE_CODE='ru' %}
 <main>
@@ -207,7 +213,7 @@
       <div class="overview__view active" id="overview__view">
         <div class="over-view__view-info-wrapper">
           <!--Блок МИР-->
-          <div class="overview__view-info ct__view-info eduBlock1">
+          <div class="overview__view-info ct__view-info eduBlock1 gui_help" data-helpId="overview world block">
             <h2>{% trans 'мир' %}</h2>
             <ul class="ct__view-info-list">
               <li class="ct__view-info-item" onclick="window.location.href = '/world/players/'" style="cursor: pointer">
@@ -263,7 +269,7 @@
             </svg>  
           </div>
           <!--Блок ГОСУДАРСТВО-->
-          <div class="overview__view-info ct__view-info eduBlock1">
+          <div class="overview__view-info ct__view-info eduBlock1 gui_help" data-helpId="overview state block">
             <h2>{% if player.region.state %}{{ player.region.state.title|truncatechars:24 }}{% else %}{% trans 'независимый регион' %}{% endif %}</h2>
             <ul class="ct__view-info-list">
               <li class="ct__view-info-item">
@@ -320,7 +326,7 @@
             {% endif %}
           </div>
           <!--Блок ОБЛАСТЬ-->
-          <div class="overview__view-info ct__view-info eduBlock2">
+          <div class="overview__view-info ct__view-info eduBlock2 gui_help" data-helpId="overview region block">
             <h2>{% trans player.region.region_name context "regions_list" %}</h2>
             <ul class="ct__view-info-list">
               <li class="ct__view-info-item" onclick="window.location.href = '/region/{% localize off %}{{ player.region.pk }}{% endlocalize %}/players/'" style="cursor: pointer">
@@ -357,7 +363,7 @@
           {% if war %}
           <a href="/war/{{ war|get_class_name }}/{{ war.pk }}/" class="overview__war">
           {% else %}
-          <a class="overview__war">
+          <a class="overview__war gui_help" data-helpid="overview war block">
           {% endif %}
             {% if war %}
             <!--информация когда есть война-->
@@ -397,7 +403,7 @@
         {% else %}
           {% if has_event %}
           <!--Блок ИВЕНТ-->
-          <a href="/summer_festival/" class="overview__event">
+          <a href="/summer_festival/" class="overview__event gui_help" data-helpid="overview event block">
             <!--сообщение что войн нет-->
             {% if has_event.type == 'hl' %}
             <p class="overview__war-no event">Тыквенный спас</p>
@@ -637,7 +643,7 @@
         <!--Нижний турбо блок-->
         <div class="overview__love">
           <!--Левая колонка-->
-          <div class="overview__love-left">
+          <div class="overview__love-left gui_help" data-helpid="overview skills block">
             <button class="overview__love-stat-btn love_power_mob_btn eduBlock3" onclick="setStatTab(0)" style="cursor: pointer">
               <h3>{% trans 'сила' context "overview" %}</h3>
               <div style="background-color: tomato;" class="overview__love-stat-btn-line"></div>
@@ -656,7 +662,7 @@
           </div>
           <!--конец левой колонки-->
           <!--Правая колонка-->
-          <div class="overview__love-right" id="overview__love">
+          <div class="overview__love-right " id="overview__love">
             <!--Блок со СТАТАМИ-->
             <div class="overview__love-stat" id="overview__love-stat">
               {% skills player %}
@@ -665,7 +671,7 @@
             <div class="overview__love-part active" id="overview__love-part">
               {% if has_voting %}
               <!-- кнопка выборов лидера -->
-              <a href="{% url 'pres_elections' pres_pk=president.pk %}" class="overview__love-part-vote-main">{% trans 'Выборы лидера' context "overview" %}</a>
+              <a href="{% url 'pres_elections' pres_pk=president.pk %}" class="overview__love-part-vote-main gui_help"  data-helpid="overview pres_elections block">{% trans 'Выборы лидера' context "overview" %}</a>
               {% elif has_parl_voting %}
               <!-- кнопка выборов -->
               <a href="{% url 'parl_elections' parl_pk=parliament.pk %}" class="overview__love-part-vote">{% trans 'Выборы' context "overview" %}</a>
