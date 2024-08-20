@@ -452,7 +452,7 @@ class Player(models.Model):
         #             taxed_count += daily_limit
 
         if not self.daily_fin and daily_procent == 100:
-            self.gold += 200
+            self.gold += 100
             activity_event_reward(self, 1)
 
         # отмечаем, что  дейлик закрыт:
