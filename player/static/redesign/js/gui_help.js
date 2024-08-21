@@ -86,6 +86,14 @@ function createGlowDiv(width, height, left, top, el) {
   }
 
 function show_gui_help() {
+    const classElems = eduWindow.querySelectorAll(`.${'edu__glow'}`);
+
+    classElems.forEach((el) => {
+        if (el.id != 'hide_gui_help'){
+            el.remove();
+        }
+    });
+
     eduWindow.style.opacity = '';
     eduWindow.classList.add('active')
 
@@ -94,8 +102,10 @@ function show_gui_help() {
     const awaitedDomElems = document.querySelectorAll(`.${'gui_help'}`);
 
       awaitedDomElems.forEach((el) => {
-        const box = el.getBoundingClientRect();
-        createGlowDiv(box.width, box.height, box.left, box.top, el);
+        if (el.style.display !== 'none'){
+            const box = el.getBoundingClientRect();
+            createGlowDiv(box.width, box.height, box.left, box.top, el);
+        }
       });
 }
 
