@@ -107,7 +107,7 @@ def do_mining(request):
         if resource == 'gold':
             # если запасов ресурса недостаточно
             # отключено, если игрок не прошел обучение
-            if player.educated and player.region.gold_has < Decimal((count / 10) * 0.01):
+            if player.educated and player.region.gold_has < round(Decimal((count / 10) * 0.01), 2):
                 data = {
                     # 'response': pgettext('mul_ten_enrg_req'),
                     'response': pgettext('mining', 'Запасов золота в регионе недостаточно для добычи'),
