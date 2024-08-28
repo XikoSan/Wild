@@ -189,7 +189,7 @@ class AutoMining(Log):
 
         if self.resource == 'gold':
             # если запасов ресурса недостаточно
-            if player.region.gold_has < Decimal((count / 10) * 0.01):
+            if player.region.gold_has < round(Decimal((count / 10) * 0.01), 2):
                 # ждем следующего цикла
                 return
 
