@@ -7,6 +7,7 @@ from player.decorators.player import check_player
 from player.player import Player
 from wild_politics.settings import JResponse
 import datetime
+from django.apps import apps
 
 
 # изучить навык
@@ -31,12 +32,17 @@ def use_card(request):
             }
             return JResponse(data)
 
+        WildpassLog = apps.get_model('player.WildpassLog')
+        GoldLog = apps.get_model('player.GoldLog')
+        PremLog = apps.get_model('player.PremLog')
+
         # активация ради золота
         if int(request.POST.get('gold_usage')) == 1:
-            if datetime.datetime.now() > datetime.datetime(2024, 6, 1, 0, 0):
-                player.gold += 800
-            else:
-                player.gold += 1000
+            # начисляем золото
+            player.gold += 800
+
+            gold_log = GoldLog(player=player, gold=800, activity_txt='wpass')
+            gold_log.save()
 
         else:
             # время, к которому прибавляем месяц
@@ -47,8 +53,14 @@ def use_card(request):
 
             player.premium = from_time + relativedelta(months=1)
 
+            prem_log = PremLog(player=player, days=30, activity_txt='wpass')
+            prem_log.save()
+
         player.cards_count -= 1
         player.save()
+
+        wp_log = WildpassLog(player=player, count=-1, activity_txt='using')
+        wp_log.save()
 
         data = {
             'response': 'ok',

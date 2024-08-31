@@ -17,6 +17,7 @@ class PremLog(Log):
         ('buying',  'Покупка'),
         ('bonus',  'Бонус-код'),
         ('lootbox', 'Награда из лутбокса'),
+        ('wpass', 'Активация Wildpass'),
     )
     activity_txt = models.CharField(
         max_length=7,

@@ -18,6 +18,7 @@ class WildpassLog(Log):
         ('lootbox', 'Награда из лутбокса'),
         ('bonus', 'Бонус-код'),
         ('trading', 'Торговля в игре'),
+        ('using', 'Активация'),
     )
     activity_txt = models.CharField(
         max_length=7,
