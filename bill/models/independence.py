@@ -21,6 +21,7 @@ from state.models.parliament.parliament import Parliament
 from state.models.parliament.parliament_party import ParliamentParty
 from state.models.treasury import Treasury
 from war.models.wars.war import War
+from war.models.martial import Martial
 
 
 # Объявить независимость региона
@@ -61,6 +62,13 @@ class Independence(Bill):
         if Region.objects.filter(pk=independence_regions, state=parliament.state).exists():
 
             region = Region.objects.get(pk=independence_regions, state=parliament.state)
+
+            if Martial.objects.filter(active=True, state=parliament.state, region=region).exists():
+                return {
+                    'header': 'Новый законопроект',
+                    'grey_btn': 'Закрыть',
+                    'response': 'В данном регионе введено военное положение',
+                }
 
             # столица этого госа
             if Capital.objects.filter(region=region).exists():
@@ -122,6 +130,10 @@ class Independence(Bill):
 
             # его казна
             elif Treasury.objects.filter(region=self.region, deleted=False).exists():
+                b_type = 'rj'
+
+            #  если введено военное положение
+            elif Martial.objects.filter(active=True, state=self.parliament.state, region=self.region).exists():
                 b_type = 'rj'
 
             else:
@@ -233,7 +245,13 @@ class Independence(Bill):
     @staticmethod
     def get_new_draft(state):
 
-        regions = Region.objects.filter(state=state)
+        martial_regions = Martial.objects.filter(active=True, state=state).values_list('region__pk')
+        mar_pk_list = []
+
+        for m_reg in martial_regions:
+            mar_pk_list.append(m_reg[0])
+
+        regions = Region.objects.filter(state=state).exclude(pk__in=mar_pk_list)
 
         # столица этого госа
         capital_region_pk = Capital.objects.only("region").get(state=state).region.pk

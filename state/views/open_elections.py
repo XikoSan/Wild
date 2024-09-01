@@ -1,10 +1,9 @@
 import time
 from datetime import timedelta
-from itertools import chain
-
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 from django.utils import timezone
+from itertools import chain
 
 from party.party import Party
 from player.decorators.player import check_player
@@ -14,6 +13,7 @@ from region.models.region import Region
 from state.models.parliament.bulletin import Bulletin
 from state.models.parliament.parliament import Parliament
 from state.models.parliament.parliament_voting import ParliamentVoting
+from war.models.martial import Martial
 
 
 # открытие страницы выборов
@@ -37,7 +37,14 @@ def open_elections(request, parl_pk):
                 player=player)
         # регионы государства, в котором идут выборы
         state = Parliament.objects.get(pk=parl_pk).state
-        regions_of_state = Region.objects.filter(state=state)
+        # отсекаем регионы с военным положением
+        martial_regions = Martial.objects.filter(active=True, days_left__gte=5, state=state).values_list('region__pk')
+        mar_pk_list = []
+
+        for m_reg in martial_regions:
+            mar_pk_list.append(m_reg[0])
+
+        regions_of_state = Region.objects.filter(state=state).exclude(pk__in=mar_pk_list)
         # для всех регионов государства
         # getting parties of state
         parties = None
@@ -57,8 +64,8 @@ def open_elections(request, parl_pk):
         votingRight = None
         regions_of_state = Region.objects.filter(state=state)
         if regions_of_state.filter(pk=player.residency.pk).exists() \
-                and player.residency_date + timedelta(days=1) < timezone.now()\
-                    and player.power + player.knowledge + player.endurance >= 10:
+                and player.residency_date + timedelta(days=1) < timezone.now() \
+                and player.power + player.knowledge + player.endurance >= 10:
             votingRight = True
 
         remain = interval_in_seconds(

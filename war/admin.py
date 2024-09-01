@@ -8,6 +8,7 @@ from war.models.wars.player_damage import PlayerDamage
 from war.models.wars.revolution.rebel import Rebel
 from war.models.wars.revolution.revolution import Revolution
 from region.models.terrain.terrain_modifier import TerrainModifier
+from war.models.martial import Martial
 
 
 class SquadAdmin(admin.ModelAdmin):
@@ -62,6 +63,12 @@ class RebelAdmin(admin.ModelAdmin):
     get_region_name.short_description = 'Регион'
 
 
+class MartialAdmin(admin.ModelAdmin):
+    list_display = ('region', 'active', 'days_left', 'active_end')
+
+    raw_id_fields = ('region',)
+
+
 # Register your models here.
 admin.site.register(EventWar)
 admin.site.register(GroundWar)
@@ -72,3 +79,5 @@ admin.site.register(PlayerDamage)
 admin.site.register(Unit, UnitAdmin)
 
 admin.site.register(Rebel, RebelAdmin)
+
+admin.site.register(Martial, MartialAdmin)

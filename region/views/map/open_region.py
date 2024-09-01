@@ -14,6 +14,7 @@ from region.models.fossils import Fossils
 from region.models.region import Region
 from region.views.distance_counting import distance_counting
 from region.views.time_in_flight import time_in_flight
+from war.models.martial import Martial
 
 
 @login_required(login_url='/')
@@ -50,6 +51,10 @@ def open_region(request, pk):
 
     terrains = region.terrain.all()
 
+    martial = False
+    if Martial.objects.filter(active=True, region=region).exists():
+        martial = True
+
     return render(request, 'region/redesign/region_view.html', {
         'page_name': region.region_name,
         'player': player,
@@ -69,6 +74,8 @@ def open_region(request, pk):
         'parties_count': parties_count,
 
         'building_classes': get_subclasses(Building),
+
+        'martial': martial,
 
         # 'wars_cnt': wars_cnt,
     })

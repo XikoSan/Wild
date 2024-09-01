@@ -4,18 +4,20 @@ from django.db import models
 from django_celery_beat.models import PeriodicTask
 
 from bill.models.change_coat import ChangeCoat
+from bill.models.change_form import ChangeForm
+from bill.models.change_residency import ChangeResidency
 from bill.models.change_taxes import ChangeTaxes
 from bill.models.change_title import ChangeTitle
 from bill.models.construction import Construction
 from bill.models.explore_resources import ExploreResources
-from bill.models.purchase_auction import PurchaseAuction
-from bill.models.change_form import ChangeForm
-from bill.models.change_residency import ChangeResidency
-from bill.models.start_war import StartWar
 from bill.models.geological_surveys import GeologicalSurveys
 from bill.models.independence import Independence
-from bill.models.transfer_region import TransferRegion
+from bill.models.martial_law import MartialLaw
+from bill.models.purchase_auction import PurchaseAuction
+from bill.models.start_war import StartWar
 from bill.models.transfer_accept import TransferAccept
+from bill.models.transfer_region import TransferRegion
+
 
 def recount_rating(modeladmin, request, queryset):
     for bill in queryset:
@@ -26,6 +28,7 @@ def recount_rating(modeladmin, request, queryset):
         queryset.model.objects.select_related('task').filter(pk=bill.pk).update(task=None)
         # удаляем таску
         PeriodicTask.objects.filter(pk=task_identificator).delete()
+
 
 recount_rating.short_description = 'Выполнить досрочно'
 
@@ -68,3 +71,4 @@ admin.site.register(PurchaseAuction, AuctionAdmin)
 admin.site.register(Independence, BillAdmin)
 admin.site.register(TransferRegion, BillAdmin)
 admin.site.register(TransferAccept, BillAdmin)
+admin.site.register(MartialLaw, BillAdmin)

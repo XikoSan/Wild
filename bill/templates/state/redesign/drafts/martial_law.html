@@ -1,21 +1,19 @@
 {% load dict_key %}
 {% load get_attr %}
 {% load get_sum %}
+{% load has_key %}
 {% load get_key_list %}
 {% load l10n %}{% load i18n %}
-
-<!--объявление независимости-->
-<div class="gover__newInner Independence">
-    
+<!--разведка ресурсов-->
+<div class="gover__newInner MartialLaw">
     {% with regions=data|dict_key:'regions' %}
-    {% if regions %}
     <div class="ct__selectWithImage">
         {% for region in regions %}
         {% if forloop.counter0 == 0 %}
-        <div class="ct__selectWithImage-selected" id="independence_default_region" data-value="{% localize off %}{{ region.pk }}{% endlocalize %}">
-            <img id="independence_default_img" src="/static/img/regions/{{ region.on_map_id }}.png">
+        <div class="ct__selectWithImage-selected" id="martial_law_default_region" data-value="{% localize off %}{{ region.pk }}{% endlocalize %}">
+            <img id="explore_resources_default_img" src="/static/img/regions/{{ region.on_map_id }}.png">
             <div class="ct__selectWithImage-firstText">
-                <span id="independence_default_reg">{% trans region.region_name context "regions_list" %}</span>
+                <span id="explore_resources_default_reg">{% trans region.region_name context "regions_list" %}</span>
                 <svg class="ct__selectWithImage-arrow" width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
                 </svg>
@@ -25,13 +23,24 @@
         {% endfor %}
         <div class="ct__selectWithImage-content custom-scroll custom-scroll--alt">
             {% for region in regions %}
-            <div id="independence_{% localize off %}{{ region.pk }}{% endlocalize %}" {% if forloop.counter0 == 0 %}class="region_storage"{% endif %} data-func="set_explore_val" data-value="{% localize off %}{{ region.pk }}{% endlocalize %}">
+            <div id="explore_resources_{% localize off %}{{ region.pk }}{% endlocalize %}" {% if forloop.counter0 == 0 %}class="region_storage"{% endif %} data-func="set_explore_val" data-value="{% localize off %}{{ region.pk }}{% endlocalize %}">
                 <img class="offer_dummy_img" src="/static/img/regions/{{ region.on_map_id }}.png">
                 <span class="offer_dummy_region">{% trans region.region_name context "regions_list" %}</span>
             </div>
             {% endfor %}
         </div>
     </div>
+    {% endwith %}
+
+    <label class="ct__wide-modal-label-select">
+        <select name="martial_law_mode" id="martial_law_mode">
+            <option id="martial_law_mode_set" value="set">Военное положение</option>
+            <option id="martial_law_mode_free" selected value="free">Снятие ограничений</option>
+        </select>
+        <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
+        </svg>
+    </label>
 
     <button type="submit" class="ct__mid-btn active">
         <svg width="144" height="30" viewBox="0 0 144 30" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -47,8 +56,5 @@
         </svg>
         <span>предложить</span>
     </button>
-    {% else %}
-    <h3>Нет доступных регионов</h3>
-    {% endif %}
-    {% endwith %}
 </div>
+

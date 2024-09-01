@@ -10,10 +10,10 @@ from region.building.power_plant import PowerPlant
 from region.models.fossils import Fossils
 from region.models.map_shape import MapShape
 from region.models.neighbours import Neighbours
+from region.models.plane import Plane
 from region.models.region import Region
 from region.models.terrain.terrain import Terrain
 from region.models.terrain.terrain_modifier import TerrainModifier
-from region.models.plane import Plane
 
 
 def recount_rating(modeladmin, request, queryset):

@@ -1,10 +1,9 @@
 import time
 from datetime import timedelta
-from itertools import chain
-
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 from django.utils import timezone
+from itertools import chain
 
 from gov.models.president import President
 from gov.models.presidential_voting import PresidentialVoting
@@ -17,6 +16,7 @@ from region.models.region import Region
 from state.models.parliament.bulletin import Bulletin
 from state.models.parliament.parliament import Parliament
 from state.models.parliament.parliament_voting import ParliamentVoting
+from war.models.martial import Martial
 
 
 # открытие страницы выборов
@@ -39,10 +39,9 @@ def open_pres_elections(request, pres_pk):
         vote = None
         # если игрок уже голосовал
         if Vote.objects.filter(
-                                voting=voting,
-                                player=player
-                            ).exists():
-
+                voting=voting,
+                player=player
+        ).exists():
             vote = Vote.objects.get(
                 voting=voting,
                 player=player
@@ -51,7 +50,15 @@ def open_pres_elections(request, pres_pk):
         # право голосовать на текущих выборах.
         # Появляется, если с момента взятия прописки прошли сутки
         votingRight = None
-        regions_of_state = Region.objects.filter(state=president.state)
+        # отсекаем регионы с военным положением
+        martial_regions = Martial.objects.filter(active=True, days_left__gte=5, state=president.state).values_list('region__pk')
+        mar_pk_list = []
+
+        for m_reg in martial_regions:
+            mar_pk_list.append(m_reg[0])
+
+        regions_of_state = Region.objects.filter(state=president.state).exclude(pk__in=mar_pk_list)
+
         if regions_of_state.filter(pk=player.residency.pk).exists() \
                 and player.residency_date + timedelta(days=1) < timezone.now():
             votingRight = True

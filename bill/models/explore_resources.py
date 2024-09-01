@@ -15,6 +15,7 @@ from region.models.region import Region
 from state.models.parliament.deputy_mandate import DeputyMandate
 from state.models.parliament.parliament import Parliament
 from state.models.treasury import Treasury
+from war.models.martial import Martial
 
 
 # Разведать ресурсы
@@ -66,6 +67,13 @@ class ExploreResources(Bill):
         if Region.objects.filter(pk=explore_region, state=parliament.state).exists():
 
             region = Region.objects.get(pk=explore_region, state=parliament.state)
+
+            if Martial.objects.filter(active=True, state=parliament.state, region=region).exists():
+                return {
+                    'header': 'Новый законопроект',
+                    'grey_btn': 'Закрыть',
+                    'response': 'В данном регионе введено военное положение',
+                }
 
             resources_list = []
             for resource in ExploreResources.resExpChoices:
@@ -120,73 +128,79 @@ class ExploreResources(Bill):
 
             region = Region.objects.get(pk=self.region.pk)
 
-            if self.region.state == self.parliament.state:
+            #  если введено военное положение
+            if Martial.objects.filter(active=True, state=self.parliament.state, region=self.region).exists():
+                b_type = 'rj'
 
-                prev_bills = ExploreResources.objects.filter(
-                    parliament=self.parliament,
-                    region=self.region,
-                    resource=self.resource,
-                    voting_end__gt=timezone.now() - datetime.timedelta(seconds=86400)
-                ).values('region', 'resource').order_by('region').annotate(exp_value=Coalesce(Sum('exp_value'), 0, output_field=models.DecimalField()))
+            else:
 
-                if prev_bills:
-                    exp_mul = int(ceil(prev_bills[0]['exp_value'] / getattr(self.region, self.resource + '_cap')))
-                    remainder = prev_bills[0]['exp_value'] % getattr(self.region, self.resource + '_cap')
+                if self.region.state == self.parliament.state:
 
-                    if remainder == 0:
-                        exp_mul += 1
-                else:
-                    exp_mul = 1
+                    prev_bills = ExploreResources.objects.filter(
+                        parliament=self.parliament,
+                        region=self.region,
+                        resource=self.resource,
+                        voting_end__gt=timezone.now() - datetime.timedelta(seconds=86400)
+                    ).values('region', 'resource').order_by('region').annotate(exp_value=Coalesce(Sum('exp_value'), 0, output_field=models.DecimalField()))
 
-                cash_cost = float(
-                    getattr(region, self.resource + '_cap') - getattr(region, self.resource + '_has')) * self.exp_price * exp_mul
+                    if prev_bills:
+                        exp_mul = int(ceil(prev_bills[0]['exp_value'] / getattr(self.region, self.resource + '_cap')))
+                        remainder = prev_bills[0]['exp_value'] % getattr(self.region, self.resource + '_cap')
 
-                if cash_cost <= treasury.cash:
-                    volume = getattr(region, self.resource + '_cap') - getattr(region, self.resource + '_has')
-                    # обновляем запасы в регионе до максимума
-                    setattr(region, self.resource + '_has', getattr(region, self.resource + '_cap'))
+                        if remainder == 0:
+                            exp_mul += 1
+                    else:
+                        exp_mul = 1
 
-                    # # истощение: смотрим, сколько десятков пунктов разведывают
-                    # depletion = int(ceil(volume / 10))
-                    # # уменьшаем лимит в регионе
-                    # setattr(region, self.resource + '_cap', getattr(region, self.resource + '_cap') - depletion)
-                    # # увеличиваем истощение
-                    # setattr(region, self.resource + '_depletion', getattr(region, self.resource + '_depletion') + depletion)
+                    cash_cost = float(
+                        getattr(region, self.resource + '_cap') - getattr(region, self.resource + '_has')) * self.exp_price * exp_mul
 
-                    self.cash_cost = cash_cost
-                    self.exp_value = Decimal(volume)
-                    setattr(treasury, 'cash', getattr(treasury, 'cash') - self.cash_cost)
-                    b_type = 'ac'
+                    if cash_cost <= treasury.cash:
+                        volume = getattr(region, self.resource + '_cap') - getattr(region, self.resource + '_has')
+                        # обновляем запасы в регионе до максимума
+                        setattr(region, self.resource + '_has', getattr(region, self.resource + '_cap'))
 
-                else:
-                    # узнаем, сколько можем разведать максимум
-                    hund_price = (self.exp_price * exp_mul) / 100
-                    hund_points = treasury.cash // hund_price
-
-                    price = hund_points * hund_price
-
-                    # если эта величина - как минимум один пункт
-                    if hund_points >= 1:
                         # # истощение: смотрим, сколько десятков пунктов разведывают
-                        # depletion = int(ceil(hund_points / 1000))
+                        # depletion = int(ceil(volume / 10))
                         # # уменьшаем лимит в регионе
                         # setattr(region, self.resource + '_cap', getattr(region, self.resource + '_cap') - depletion)
                         # # увеличиваем истощение
                         # setattr(region, self.resource + '_depletion', getattr(region, self.resource + '_depletion') + depletion)
 
-                        # обновляем запасы в регионе
-                        setattr(region, self.resource + '_has',
-                                getattr(region, self.resource + '_has') + Decimal(hund_points / 100))
-
-                        self.cash_cost = treasury.cash
-                        self.exp_value = Decimal(hund_points / 100)
-                        setattr(treasury, 'cash', treasury.cash - price)
+                        self.cash_cost = cash_cost
+                        self.exp_value = Decimal(volume)
+                        setattr(treasury, 'cash', getattr(treasury, 'cash') - self.cash_cost)
                         b_type = 'ac'
 
                     else:
-                        b_type = 'rj'
-            else:
-                b_type = 'rj'
+                        # узнаем, сколько можем разведать максимум
+                        hund_price = (self.exp_price * exp_mul) / 100
+                        hund_points = treasury.cash // hund_price
+
+                        price = hund_points * hund_price
+
+                        # если эта величина - как минимум один пункт
+                        if hund_points >= 1:
+                            # # истощение: смотрим, сколько десятков пунктов разведывают
+                            # depletion = int(ceil(hund_points / 1000))
+                            # # уменьшаем лимит в регионе
+                            # setattr(region, self.resource + '_cap', getattr(region, self.resource + '_cap') - depletion)
+                            # # увеличиваем истощение
+                            # setattr(region, self.resource + '_depletion', getattr(region, self.resource + '_depletion') + depletion)
+
+                            # обновляем запасы в регионе
+                            setattr(region, self.resource + '_has',
+                                    getattr(region, self.resource + '_has') + Decimal(hund_points / 100))
+
+                            self.cash_cost = treasury.cash
+                            self.exp_value = Decimal(hund_points / 100)
+                            setattr(treasury, 'cash', treasury.cash - price)
+                            b_type = 'ac'
+
+                        else:
+                            b_type = 'rj'
+                else:
+                    b_type = 'rj'
 
             # если закон принят
             if b_type == 'ac':
@@ -235,11 +249,17 @@ class ExploreResources(Bill):
             else:
                 exploration_dict[line['region']][line['resource']] += float(line['exp_value'])
 
+        # регионы с военным положением
+        martial_regions = Martial.objects.filter(active=True, state=state).values_list('region__pk')
+        mar_pk_list = []
 
-        
+        for m_reg in martial_regions:
+            mar_pk_list.append(m_reg[0])
+
+        regions = Region.objects.filter(state=state).exclude(pk__in=mar_pk_list)
 
         data = {
-            'regions': Region.objects.filter(state=state),
+            'regions': regions,
             'resources': resources_dict,
             'exploration_dict': exploration_dict
         }

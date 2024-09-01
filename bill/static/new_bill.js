@@ -5,9 +5,26 @@ jQuery(document).ready(function ($) {
 
         var sending_data = new FormData(this);
         sending_data.append('bill_type', current_bill);
-        sending_data.append('construction_regions', document.getElementById('construction_default_region').dataset.value);
-        sending_data.append('explore_regions', document.getElementById('explore_resources_default_region').dataset.value);
-        sending_data.append('change_taxes_regions', document.getElementById('change_taxes_default_region').dataset.value);
+
+        var construction_default = document.getElementById('construction_default_region');
+        if (construction_default) {
+            sending_data.append('construction_regions', construction_default.dataset.value);
+        }
+
+        var explore_resources_default = document.getElementById('explore_resources_default_region');
+        if (explore_resources_default) {
+            sending_data.append('explore_regions', explore_resources_default.dataset.value);
+        }
+
+        var taxes_default = document.getElementById('change_taxes_default_region');
+        if (explore_resources_default) {
+            taxes_default.append('change_taxes_regions', taxes_default.dataset.value);
+        }
+
+        var martial_default = document.getElementById('martial_law_default_region');
+        if (explore_resources_default) {
+            sending_data.append('martial_law_regions', martial_default.dataset.value);
+        }
 
         var trans_acc_default = document.getElementById('transfer_accept_default_region');
         if (trans_acc_default) {

@@ -127,6 +127,7 @@
 </script>
 
     {% with regions=data|dict_key:'regions' %}
+    {% if regions %}
     <div class="ct__selectWithImage">
         {% for region in regions %}
         {% if forloop.counter0 == 0 %}
@@ -150,7 +151,6 @@
             {% endfor %}
         </div>
     </div>
-    {% endwith %}
 
     <label class="ct__wide-modal-label-select">
         {% with resources=data|dict_key:'resources' %}
@@ -187,5 +187,9 @@
         </svg>
         <span>предложить</span>
     </button>
+    {% else %}
+    <h3>Нет доступных регионов</h3>
+    {% endif %}
+    {% endwith %}
 </div>
 

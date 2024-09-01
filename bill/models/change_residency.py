@@ -107,8 +107,8 @@ class ChangeResidency(Bill):
 
         treasury = Treasury.get_instance(state=state)
 
-        rifle = Good.objects.get(name='Автоматы')
-        drone = Good.objects.get(name='Дроны')
+        rifle = Good.objects.get(name_ru='Автоматы')
+        drone = Good.objects.get(name_ru='Дроны')
 
         if self.residency == 'issue':
 

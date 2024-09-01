@@ -22,8 +22,8 @@ def residency_pay(treasury_pk):
         r.delete(f'residency_pay_{treasury_pk}')
 
     treasury = Treasury.get_instance(pk=treasury_pk)
-    rifle = Good.objects.get(name='Автоматы')
-    drone = Good.objects.get(name='Дроны')
+    rifle = Good.objects.get(name_ru='Автоматы')
+    drone = Good.objects.get(name_ru='Дроны')
 
     # если в казне нет одного из ресурсов - сразу чистим
     if TreasuryStock.objects.filter(treasury=treasury, good=rifle, stock=0).exists() \

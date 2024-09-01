@@ -18,6 +18,7 @@ from state.models.treasury_stock import TreasuryStock
 from storage.models.good import Good
 import copy
 from django.db.models import F
+from war.models.martial import Martial
 
 
 # Построить здание
@@ -110,6 +111,13 @@ class Construction(Bill):
 
             region = Region.objects.get(pk=construction_region, state=parliament.state)
 
+            if Martial.objects.filter(active=True, state=parliament.state, region=region).exists():
+                return {
+                    'header': 'Новый законопроект',
+                    'grey_btn': 'Закрыть',
+                    'response': 'В данном регионе введено военное положение',
+                }
+
             schemas_list = []
             for schema in Construction.building_schemas:
                 schemas_list.append(schema[0])
@@ -179,87 +187,93 @@ class Construction(Bill):
         for building_cl in building_classes:
             building_dict[building_cl.__name__] = building_cl
 
-        if self.region.state == self.parliament.state:
-            # если такой тип строений существует
-            if self.building in building_dict:
+        #  если введено военное положение
+        if Martial.objects.filter(active=True, state=self.parliament.state, region=self.region).exists():
+            b_type = 'rj'
 
-                if treasury.cash != 0:
+        else:
 
-                    if self.building:
+            if self.region.state == self.parliament.state:
+                # если такой тип строений существует
+                if self.building in building_dict:
 
-                        if building_dict[self.building].objects.filter(region=self.region).exists():
-                            building = building_dict[self.building].objects.get(region=self.region)
+                    if treasury.cash != 0:
 
-                        else:
-                            # создание строения в указанном регионе
-                            building = building_dict[self.building](region=self.region)
+                        if self.building:
 
-                        # проверяем наличие всех ресурсов в казне, для стройки
-                        all_exists = True
+                            if building_dict[self.building].objects.filter(region=self.region).exists():
+                                building = building_dict[self.building].objects.get(region=self.region)
 
-                        # todo: перенести словари компонентов, требуемых для постройки, в классы зданий
-                        for component in getattr(self, self.building)['resources'].keys():
+                            else:
+                                # создание строения в указанном регионе
+                                building = building_dict[self.building](region=self.region)
 
-                            exp_price = getattr(self, self.building)['resources'][component] * self.exp_value
+                            # проверяем наличие всех ресурсов в казне, для стройки
+                            all_exists = True
 
-                            if component == 'Наличные':
-                                if getattr(treasury, 'cash') < exp_price:
+                            # todo: перенести словари компонентов, требуемых для постройки, в классы зданий
+                            for component in getattr(self, self.building)['resources'].keys():
+
+                                exp_price = getattr(self, self.building)['resources'][component] * self.exp_value
+
+                                if component == 'Наличные':
+                                    if getattr(treasury, 'cash') < exp_price:
+                                        all_exists = False
+                                        break
+
+                                elif not TreasuryStock.objects.filter(treasury=treasury,
+                                                                          good=Good.objects.get(name=component),
+                                                                          stock__gte=exp_price
+                                                                      ).exists():
                                     all_exists = False
                                     break
 
-                            elif not TreasuryStock.objects.filter(treasury=treasury,
-                                                                      good=Good.objects.get(name=component),
-                                                                      stock__gte=exp_price
-                                                                  ).exists():
-                                all_exists = False
-                                break
+                            if all_exists:
+                                setattr(building, 'level', getattr(building, 'level') + self.exp_value)
 
-                        if all_exists:
-                            setattr(building, 'level', getattr(building, 'level') + self.exp_value)
+                                for resource in getattr(self, self.building)['resources'].keys():
 
-                            for resource in getattr(self, self.building)['resources'].keys():
+                                    exp_price = getattr(self, self.building)['resources'][resource] * self.exp_value
 
-                                exp_price = getattr(self, self.building)['resources'][resource] * self.exp_value
+                                    if resource == 'Наличные':
+                                        treasury.cash -= exp_price
 
-                                if resource == 'Наличные':
-                                    treasury.cash -= exp_price
+                                    else:
+                                        TreasuryStock.objects.filter(treasury=treasury,
+                                                                     good=Good.objects.get(name=resource),
+                                                                     stock__gte=exp_price
+                                                                     ).update(stock=F('stock') - exp_price)
 
-                                else:
-                                    TreasuryStock.objects.filter(treasury=treasury,
-                                                                 good=Good.objects.get(name=resource),
-                                                                 stock__gte=exp_price
-                                                                 ).update(stock=F('stock') - exp_price)
+                                b_type = 'ac'
 
-                            b_type = 'ac'
-
+                            else:
+                                b_type = 'rj'
                         else:
                             b_type = 'rj'
+
+                        # если закон принят
+                        if b_type == 'ac':
+                            self.save()
+                            treasury.save()
+                            building.save()
+
+                            # если это рейтинговое строение
+                            if RateBuilding in building_dict[self.building].__bases__:
+                                # пересчитаем рейтинг
+                                building_dict[self.building].recount_rating()
+
+                            elif self.building == 'PowerPlant':
+                                for building_cl in building_classes:
+                                    if RateBuilding in building_cl.__bases__:
+                                        # пересчитаем рейтинг
+                                        building_cl.recount_rating()
+
                     else:
                         b_type = 'rj'
-
-                    # если закон принят
-                    if b_type == 'ac':
-                        self.save()
-                        treasury.save()
-                        building.save()
-
-                        # если это рейтинговое строение
-                        if RateBuilding in building_dict[self.building].__bases__:
-                            # пересчитаем рейтинг
-                            building_dict[self.building].recount_rating()
-
-                        elif self.building == 'PowerPlant':
-                            for building_cl in building_classes:
-                                if RateBuilding in building_cl.__bases__:
-                                    # пересчитаем рейтинг
-                                    building_cl.recount_rating()
-
                 else:
                     b_type = 'rj'
             else:
                 b_type = 'rj'
-        else:
-            b_type = 'rj'
 
         Construction.objects.filter(pk=self.pk).update(type=b_type, running=False, voting_end=timezone.now())
 
@@ -332,7 +346,13 @@ class Construction(Bill):
     @staticmethod
     def get_new_draft(state):
 
-        regions = Region.objects.filter(state=state)
+        martial_regions = Martial.objects.filter(active=True, state=state).values_list('region__pk')
+        mar_pk_list = []
+
+        for m_reg in martial_regions:
+            mar_pk_list.append(m_reg[0])
+
+        regions = Region.objects.filter(state=state).exclude(pk__in=mar_pk_list)
 
         # получим классы всех строений
         building_classes = get_subclasses(Building)

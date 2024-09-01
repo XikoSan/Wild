@@ -183,7 +183,15 @@
 
     </div><!--конец ТОП блок-->
 		<div class="party__regionInfo">
+            {% if martial %}
 			<div class="party__regionInfo-block">
+                <p style="display: flex; justify-content: center;">Военное положение</p>
+			</div>
+
+			<div class="party__mmid-line"></div>
+            {% endif %}
+
+            <div class="party__regionInfo-block">
                 <p>Жителей: <span><a style="color: var(--c10two);" href="/region/{{ region.pk }}/players/">{{ players_count }}</a></span></p>
                 <p>Граждан: <span><a style="color: var(--c10two);" href="/region/{{ region.pk }}/citizens/">{{ residents_count }}</a></span></p>
                 <p>Партий: <span>{{ parties_count }}</span></p>

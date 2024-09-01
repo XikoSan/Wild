@@ -28,6 +28,7 @@ from storage.models.auction.auction import BuyAuction
 from storage.models.good import Good
 from storage.models.good_lock import GoodLock
 from war.models.wars.war import War
+from war.models.martial import Martial
 
 
 # Передать регион указанному государству
@@ -91,6 +92,13 @@ class TransferRegion(Bill):
 
             region = Region.objects.get(pk=transfer_region)
 
+            if Martial.objects.filter(active=True, state=parliament.state, region=region).exists():
+                return {
+                    'header': 'Новый законопроект',
+                    'grey_btn': 'Закрыть',
+                    'response': 'В данном регионе введено военное положение',
+                }
+
             # регионы, с которых атакуют
             war_types = get_subclasses(War)
             for type in war_types:
@@ -137,7 +145,13 @@ class TransferRegion(Bill):
     # выполнить законопроект
     def do_bill(self):
 
-        TransferRegion.objects.filter(pk=self.pk).update(type='ac', running=False, voting_end=timezone.now())
+        if Martial.objects.filter(active=True, state=self.parliament.state, region=self.region).exists():
+            b_type = 'rj'
+
+        else:
+            b_type = 'ac'
+
+        TransferRegion.objects.filter(pk=self.pk).update(type=b_type, running=False, voting_end=timezone.now())
 
     @staticmethod
     def get_draft(state):
@@ -150,7 +164,13 @@ class TransferRegion(Bill):
     @staticmethod
     def get_new_draft(state):
 
-        regions = Region.objects.filter(state=state).exclude(limit_id__gt=0)
+        martial_regions = Martial.objects.filter(active=True, state=state).values_list('region__pk')
+        mar_pk_list = []
+
+        for m_reg in martial_regions:
+            mar_pk_list.append(m_reg[0])
+
+        regions = Region.objects.filter(state=state).exclude(limit_id__gt=0).exclude(pk__in=mar_pk_list)
 
         states = State.actual.exclude(pk=state.pk)
 
