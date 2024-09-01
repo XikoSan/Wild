@@ -49,39 +49,31 @@ class Martial(models.Model):
 
         now_time = timezone.now()
 
-        schedule = CrontabSchedule.objects.create(
-            minute='*',
-            hour='*',
-            day_of_week='*',
-            day_of_month='*',
-            month_of_year='*',
-        )
+        if CrontabSchedule.objects.filter(
+                minute=str(timezone.localtime(now_time, pytz.timezone('Europe/Moscow')).minute),
+                hour=str(timezone.localtime(now_time, pytz.timezone('Europe/Moscow')).hour),
+                day_of_week='*',
+                day_of_month='*',
+                month_of_year='*',
+        ).exists():
 
-        # if CrontabSchedule.objects.filter(
-        #         minute=str(timezone.localtime(now_time, pytz.timezone('Europe/Moscow')).minute),
-        #         hour=str(timezone.localtime(now_time, pytz.timezone('Europe/Moscow')).hour),
-        #         day_of_week='*',
-        #         day_of_month='*',
-        #         month_of_year='*',
-        # ).exists():
-        #
-        #     schedule = CrontabSchedule.objects.filter(
-        #         minute=str(timezone.localtime(now_time, pytz.timezone('Europe/Moscow')).minute),
-        #         hour=str(timezone.localtime(now_time, pytz.timezone('Europe/Moscow')).hour),
-        #         day_of_week='*',
-        #         day_of_month='*',
-        #         month_of_year='*',
-        #     ).first()
-        #
-        # else:
-        #
-        #     schedule = CrontabSchedule.objects.create(
-        #         minute=str(timezone.localtime(now_time, pytz.timezone('Europe/Moscow')).minute),
-        #         hour=str(timezone.localtime(now_time, pytz.timezone('Europe/Moscow')).hour),
-        #         day_of_week='*',
-        #         day_of_month='*',
-        #         month_of_year='*',
-        #     )
+            schedule = CrontabSchedule.objects.filter(
+                minute=str(timezone.localtime(now_time, pytz.timezone('Europe/Moscow')).minute),
+                hour=str(timezone.localtime(now_time, pytz.timezone('Europe/Moscow')).hour),
+                day_of_week='*',
+                day_of_month='*',
+                month_of_year='*',
+            ).first()
+
+        else:
+
+            schedule = CrontabSchedule.objects.create(
+                minute=str(timezone.localtime(now_time, pytz.timezone('Europe/Moscow')).minute),
+                hour=str(timezone.localtime(now_time, pytz.timezone('Europe/Moscow')).hour),
+                day_of_week='*',
+                day_of_month='*',
+                month_of_year='*',
+            )
 
         self.task = PeriodicTask.objects.create(
             enabled=True,

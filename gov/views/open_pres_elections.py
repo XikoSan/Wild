@@ -49,6 +49,7 @@ def open_pres_elections(request, pres_pk):
 
         # право голосовать на текущих выборах.
         # Появляется, если с момента взятия прописки прошли сутки
+        # А также если в регионе прописки нет военного положения
         votingRight = None
         # отсекаем регионы с военным положением
         martial_regions = Martial.objects.filter(active=True, days_left__gte=5, state=president.state).values_list('region__pk')

@@ -61,6 +61,7 @@ def open_elections(request, parl_pk):
 
         # право голосовать на текущих выборах.
         # Появляется, если с момента взятия прописки прошли сутки
+        # А также если в регионе прописки нет военного положения
         votingRight = None
         regions_of_state = Region.objects.filter(state=state)
         if regions_of_state.filter(pk=player.residency.pk).exists() \
