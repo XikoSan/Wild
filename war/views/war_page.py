@@ -11,6 +11,7 @@ from region.models.region import Region
 from war.models.wars.war import War
 
 from war.models.wars.revolution.rebel import Rebel
+from war.models.martial import Martial
 
 
 # страница войн
@@ -81,9 +82,15 @@ def war_page(request):
     rebels = Rebel.actual.filter(region=player.region)
     rebels_count = rebels.count()
 
-    rebel_price = 500
-    if player.region == player.residency:
+    if Martial.objects.filter(active=True, region=player.region).exists():
         rebel_price = 300
+        if player.region == player.residency:
+            rebel_price = 100
+
+    else:
+        rebel_price = 500
+        if player.region == player.residency:
+            rebel_price = 300
 
     # отправляем в форму
     return render(request, 'war/redesign/war_page.html', {

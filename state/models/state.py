@@ -84,9 +84,12 @@ class State(models.Model):
     # получить налог с указанной суммы указанного ресурса
     @staticmethod
     def check_taxes(region, sum, mode):
+
+        Martial = apps.get_model('war', 'Martial')
         taxed_sum = sum
+
         # если в регионе есть гос
-        if region.state:
+        if region.state and not Martial.objects.filter(active=True, region=region, state=region.state).exists():
             # если налог в регион не равен налогу в государстве
             if getattr(region, mode + '_tax') != getattr(region.state, mode + '_tax'):
                 # берем из региона
@@ -105,9 +108,12 @@ class State(models.Model):
     # получить налог с указанной суммы указанного ресурса
     @staticmethod
     def get_taxes(region, sum, mode, resource):
+
+        Martial = apps.get_model('war', 'Martial')
         taxed_sum = sum
+
         # если в регионе есть гос
-        if region.state:
+        if region.state and not Martial.objects.filter(active=True, region=region, state=region.state).exists():
             # казна
             treasury_cl = apps.get_model('state.Treasury')
             treasury = treasury_cl.get_instance(state=region.state, deleted=False)

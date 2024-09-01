@@ -8,6 +8,7 @@ from django.utils import timezone
 from player.decorators.player import check_player
 from player.logs.gold_log import GoldLog
 from player.player import Player
+from war.models.martial import Martial
 from war.models.wars.revolution.rebel import Rebel
 from war.models.wars.revolution.revolution import Revolution
 from wild_politics.settings import JResponse
@@ -23,8 +24,22 @@ def join_revolution(request):
         # получаем персонажа
         player = Player.get_instance(account=request.user)
 
+        price = 500
+        resident = False
+
+        if Martial.objects.filter(active=True, region=player.region).exists():
+            if player.region == player.residency:
+                price = 100
+                resident = True
+            else:
+                price = 300
+        else:
+            if player.region == player.residency:
+                price = 300
+                resident = True
+
         # проверяем наличие голды
-        if player.gold < 500:
+        if player.gold < price:
             data = {
                 'response': 'Недостаточно золота',
                 'header': 'Участие в восстании',
@@ -34,10 +49,10 @@ def join_revolution(request):
 
         if Rebel.actual.filter(region=player.region).count() == 2 \
                 and Revolution.objects.filter(
-                                                agr_region=player.region,
-                                                def_region=player.region,
-                                                end_time__gt=timezone.now() - datetime.timedelta(days=7)
-                                              ).exists():
+            agr_region=player.region,
+            def_region=player.region,
+            end_time__gt=timezone.now() - datetime.timedelta(days=7)
+        ).exists():
             data = {
                 'response': 'С момента завершения последнего восстания не прошло 7 дней',
                 'header': 'Участие в восстании',
@@ -79,12 +94,6 @@ def join_revolution(request):
                 'grey_btn': 'Закрыть',
             }
             return JResponse(data)
-
-        price = 500
-        resident = False
-        if player.region == player.residency:
-            price = 300
-            resident = True
 
         rebel = Rebel(
             region=player.region,
