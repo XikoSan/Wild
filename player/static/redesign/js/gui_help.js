@@ -52,6 +52,12 @@ function showHelp(id) {
   eduNextBtn.addEventListener('click', () => {
       eduContent.style.opacity = '';
       eduContent.classList.remove('active')
+
+      eduNextBtn.style.opacity = '';
+      eduNextBtn.classList.remove('active')
+
+      eduPrevBtn.style.opacity = '';
+      eduPrevBtn.classList.remove('active')
   });
 
   var text = ((help_text[id] == null) ? help_text['no_data'] : help_text[id]);

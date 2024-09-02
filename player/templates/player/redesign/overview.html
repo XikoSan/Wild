@@ -671,13 +671,13 @@
             <div class="overview__love-part active" id="overview__love-part">
               {% if has_voting %}
               <!-- кнопка выборов лидера -->
-              <a href="{% url 'pres_elections' pres_pk=president.pk %}" class="overview__love-part-vote-main gui_help"  data-helpid="overview pres_elections block">{% trans 'Выборы лидера' context "overview" %}</a>
+              <a href="{% url 'pres_elections' pres_pk=president.pk %}" class="overview__love-part-vote-main gui_help" data-helpid="overview pres_elections block">{% trans 'Выборы лидера' context "overview" %}</a>
               {% elif has_parl_voting %}
               <!-- кнопка выборов -->
-              <a href="{% url 'parl_elections' parl_pk=parliament.pk %}" class="overview__love-part-vote">{% trans 'Выборы' context "overview" %}</a>
+              <a href="{% url 'parl_elections' parl_pk=parliament.pk %}" class="overview__love-part-vote gui_help" data-helpid="overview parl_elections block">{% trans 'Выборы' context "overview" %}</a>
               {% endif %}
               <!--партии государства-->
-              <div class="overview__par active">
+              <div class="overview__par active gui_help" data-helpid="overview state_paties block">
                 <button class="overview__par-title" onclick="opentParBlock(0)">
                   {% trans 'партии' context "overview" %} {% if player.region.state %}{% trans 'государства' context "overview" %}{% else %}{% trans 'региона' context "overview" %}{% endif %}
                   <svg class="overview__par-title-svg" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -721,7 +721,7 @@
               </div>
               {% if has_parl %}
               <!--парламент-->
-              <div class="overview__par">
+              <div class="overview__par gui_help" data-helpid="overview parl_paties block">
                 <button class="overview__par-title" onclick="opentParBlock(1)">
                   {% trans 'парламент' context "overview" %}
                   <svg class="overview__par-title-svg" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -18,10 +18,10 @@
 </button>
 <!--сила-->
 <div class="overview__love-stat-content active">
-  <h2>{% trans 'Сила' context "skills" %}</h2>
+  <h2 class="gui_help" data-helpid="overview power_skill block">{% trans 'Сила' context "skills" %}</h2>
   <div style="background-color: tomato;"></div>
   {% if train and train.skill == 'power' %}
-  <p class="overview__love-stat-timer">{% trans 'Завершение' context "skills" %}: {{ train.end_dtime|timezone:player.time_zone|date:"d.m.Y H:i" }}</p>
+  <p class="overview__love-stat-timer gui_help" data-helpid="overview current_skill block">{% trans 'Завершение' context "skills" %}: {{ train.end_dtime|timezone:player.time_zone|date:"d.m.Y H:i" }}</p>
   {% endif %}
   <div class="overview__love-stat-price-time">
     <p class="overview__love-p-with-svg">
@@ -63,7 +63,7 @@
       </button>
 
       {% if train and train.skill == 'power' %}
-      <button class="overview__love-stat-learn" onclick="boost_skill('power')" style="cursor: pointer;">
+      <button class="overview__love-stat-learn gui_help" data-helpid="overview boost_skill block" onclick="boost_skill('power')" style="cursor: pointer;">
         <svg fill="var(--c60)" width="20rem" height="20rem" viewBox="0 0 32 32" version="1.1" id="svg1" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" style="margin-top: 2rem;">
           <defs id="defs1"></defs>
           <title id="title1">pill</title>
@@ -84,10 +84,10 @@
 </div>
 <!--интеллект-->
 <div class="overview__love-stat-content">
-  <h2>{% trans 'Интеллект' context "skills" %}</h2>
+  <h2 class="gui_help" data-helpid="overview knowledge_skill block">{% trans 'Интеллект' context "skills" %}</h2>
   <div style="background-color: #4791FF;"></div>
   {% if train and train.skill == 'knowledge' %}
-  <p class="overview__love-stat-timer">{% trans 'Завершение' context "skills" %}: {{ train.end_dtime|timezone:player.time_zone|date:"d.m.Y H:i" }}</p>
+  <p class="overview__love-stat-timer gui_help" data-helpid="overview current_skill block">{% trans 'Завершение' context "skills" %}: {{ train.end_dtime|timezone:player.time_zone|date:"d.m.Y H:i" }}</p>
   {% endif %}
   <div class="overview__love-stat-price-time">
     <p class="overview__love-p-with-svg">
@@ -129,7 +129,7 @@
       </button>
 
       {% if train and train.skill == 'knowledge' %}
-      <button class="overview__love-stat-learn" onclick="boost_skill('knowledge')" style="cursor: pointer;">
+      <button class="overview__love-stat-learn gui_help" data-helpid="overview boost_skill block" onclick="boost_skill('knowledge')" style="cursor: pointer;">
         <svg fill="var(--c60)" width="20rem" height="20rem" viewBox="0 0 32 32" version="1.1" id="svg1" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" style="margin-top: 2rem;">
           <defs id="defs1"></defs>
           <title id="title1">pill</title>
@@ -146,10 +146,10 @@
 </div>
 <!--выносливость-->
 <div class="overview__love-stat-content">
-  <h2>{% trans 'Выносливость' context "skills" %}</h2>
+  <h2 class="gui_help" data-helpid="overview endurance_skill block">{% trans 'Выносливость' context "skills" %}</h2>
   <div style="background-color: #8DFF47;"></div>
   {% if train and train.skill == 'endurance' %}
-  <p class="overview__love-stat-timer">{% trans 'Завершение' context "skills" %}: {{ train.end_dtime|timezone:player.time_zone|date:"d.m.Y H:i" }}</p>
+  <p class="overview__love-stat-timer gui_help" data-helpid="overview current_skill block">{% trans 'Завершение' context "skills" %}: {{ train.end_dtime|timezone:player.time_zone|date:"d.m.Y H:i" }}</p>
   {% endif %}
   <div class="overview__love-stat-price-time">
     <p class="overview__love-p-with-svg">
@@ -191,7 +191,7 @@
       </button>
 
       {% if train and train.skill == 'endurance' %}
-      <button class="overview__love-stat-learn" onclick="boost_skill('endurance')" style="cursor: pointer;">
+      <button class="overview__love-stat-learn gui_help" data-helpid="overview boost_skill block" onclick="boost_skill('endurance')" style="cursor: pointer;">
         <svg width="20rem" height="20rem" viewBox="0 0 72 72" id="emoji" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" style="
             margin-top: 2rem;
         ">
@@ -239,7 +239,7 @@
     <p class="overview__love-prem-timer">{% trans 'Завершение' context "skills" %}: {{ last_skill.end_dtime|timezone:player.time_zone|date:"d.m.Y H:i" }}</p>
     {% endif %}
     <!--премиум очередь навыков-->
-    <ul class="overview__love-prem-list">
+    <ul class="overview__love-prem-list gui_help" data-helpid="overview skills_queue block">
     {% for perk in queue %}
     <li {% if perk == last_skill %}onclick="skill_cancel(event, {% localize off %}{{ perk.pk }}{% endlocalize %})" style="cursor: pointer"{% endif %} class="overview__love-prem-item
     {% if perk.skill == 'power' %}
