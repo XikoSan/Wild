@@ -207,10 +207,5 @@
 	  var loaded_blocks = [{% if blocks_pk %}{% localize off %}{% for block_pk in blocks_pk %}{{ block_pk }}, {% endfor %}{% endlocalize %}{% endif %}];
     </script>
     <script src='{% static "js/dialogue.js" %}?{{ csrf_token }}'></script>
-	<script>
-	chatSocket.onopen = function() {
-		mark_as_read();
-	}
-	</script>
 </section>
 {% endblock %}

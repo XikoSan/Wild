@@ -39,6 +39,10 @@ def dialogues(request):
     # + признак непрочитанного диалога (из redis)
     dialogs_data = {}
 
+    from player.logs.print_log import log
+
+    log('tick 1')
+
     if chats_pk:
         # по айдишникам чатов получаем даты последних сообщений
         r = redis.StrictRedis(host='redis', port=6379, db=0)
@@ -58,14 +62,21 @@ def dialogues(request):
         # сортируем tuple по timestamp. Чем он больше - тем новее диалог
         sorted_tuples = sorted(chats_tuple, key=lambda x: x[1], reverse=True)
 
-    
+        log('tick 2')
+
         sorted_tuples = sorted_tuples[:50]
 
         # получим собеседников
         companions = ChatMembers.objects.filter(chat__pk__in=chats_pk).exclude(player=player)
 
+        log('tick 3')
+
+        lopp = 1
+
         # берем последние сообщения последних 50 чатов
         for dialog in sorted_tuples:
+
+            log(f'tick 4 loop {lopp}')
             messages = []
 
             dialogs.append(dialog[0])
@@ -126,6 +137,11 @@ def dialogues(request):
                 dialogs_data[dialog[0]]['author'] = None
                 dialogs_data[dialog[0]]['author_nickname'] = 'Удаленный аккаунт'
                 dialogs_data[dialog[0]]['image_link'] = 'nopic'
+
+            lopp += 1
+
+    log(dialogs_data)
+    log('tick 5')
 
     # отправляем в форму
     return render(request, 'chat/dialogues.html', {

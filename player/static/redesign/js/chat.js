@@ -3,7 +3,7 @@ const playerId = JSON.parse(document.getElementById('player_id').textContent);
 
 let attempts = 0;
 const maxAttempts = 5;
-const reconnectInterval = 5000; // 10 секунд
+const reconnectInterval = 5000; // 5 секунд
 
 function connectWebSocket() {
     const chatSocket = new WebSocket(
