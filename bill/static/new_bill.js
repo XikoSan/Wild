@@ -17,12 +17,12 @@ jQuery(document).ready(function ($) {
         }
 
         var taxes_default = document.getElementById('change_taxes_default_region');
-        if (explore_resources_default) {
-            taxes_default.append('change_taxes_regions', taxes_default.dataset.value);
+        if (taxes_default) {
+            sending_data.append('change_taxes_regions', taxes_default.dataset.value);
         }
 
         var martial_default = document.getElementById('martial_law_default_region');
-        if (explore_resources_default) {
+        if (martial_default) {
             sending_data.append('martial_law_regions', martial_default.dataset.value);
         }
 
