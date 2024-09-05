@@ -14,6 +14,7 @@ from region.models.plane import Plane
 from region.models.region import Region
 from region.models.terrain.terrain import Terrain
 from region.models.terrain.terrain_modifier import TerrainModifier
+from modeltranslation.admin import TabbedTranslationAdmin
 
 
 def recount_rating(modeladmin, request, queryset):
@@ -46,7 +47,13 @@ class FossilsAdmin(admin.ModelAdmin):
     list_display = ('get_region', 'get_good', 'percent')
 
     def get_region(self, obj):
-        return obj.region.region_name
+
+        if self.region.region_name:
+            reg_name = self.region.region_name
+        else:
+            reg_name = self.region.region_name_ru
+
+        return reg_name
 
     def get_good(self, obj):
         return obj.good.name
@@ -89,17 +96,19 @@ class FossilsInline(admin.TabularInline):
     model = Fossils
 
 
-class RegionAdmin(admin.ModelAdmin):
+class RegionAdmin(TabbedTranslationAdmin):
     search_fields = ['state__title', 'region_name', 'on_map_id']
 
+    list_tabs = ['region_name', ]
     list_display = ('region_name', 'get_state', 'get_gold', 'get_oil', 'get_ore', 'is_off')
 
     inlines = [FossilsInline]
 
     fields = (
         # шапка
+        ('region_name'),
+        ('on_map_id'),
         ('is_off', 'limit_id'),
-        ('region_name', 'on_map_id'),
         # координаты
         ('is_north', 'north', 'is_east', 'east'),
         # централизация
@@ -122,6 +131,12 @@ class RegionAdmin(admin.ModelAdmin):
             is_stacked=False
         )},
     }
+
+    # def get_region_name(self, obj):
+    #     if obj.state:
+    #         return obj.state.title
+    #     else:
+    #         return ''
 
     def get_state(self, obj):
         if obj.state:

@@ -20,7 +20,13 @@ class Fossils(models.Model):
     percent = models.IntegerField(default=25, verbose_name='Процент')
 
     def __str__(self):
-        return self.region.region_name + ': ' + str(self.percent) + '% ' + self.good.name
+
+        if self.region.region_name:
+            reg_name = self.region.region_name
+        elif self.region.region_name_ru:
+            reg_name = self.region.region_name_ru
+
+        return reg_name + ': ' + str(self.percent) + '% ' + self.good.name
 
     # Свойства класса
     class Meta:

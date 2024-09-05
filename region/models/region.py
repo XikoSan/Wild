@@ -6,11 +6,16 @@ from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy, pgettext_lazy, ugettext as _
 from math import radians, sin, cos, sqrt, atan2
+from modeltranslation.translator import translator, TranslationOptions
 
 from region.actual_manager import ActualManager
 from region.models.terrain.terrain import Terrain
 from state.models.state import State
 from storage.models.good import Good
+
+
+class RegionTranslation(TranslationOptions):
+    fields = ('region_name',)
 
 
 # Чтобы перевод региона появился в PO файлах, требуется дописать его в конце html файла 'map'!
@@ -175,9 +180,16 @@ class Region(models.Model):
             raise forms.ValidationError('Сумма процентов добываемых минералов должна быть равна ста')
 
     def __str__(self):
+
+        if not self.region_name:
+            return self.region_name_ru
+
         return self.region_name
 
     # Свойства класса
     class Meta:
         verbose_name = "Регион"
         verbose_name_plural = "Регионы"
+
+
+translator.register(Region, RegionTranslation)
