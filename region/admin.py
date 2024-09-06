@@ -114,7 +114,7 @@ class RegionAdmin(TabbedTranslationAdmin):
         # централизация
         ('longitude', 'latitude'),
         # гос
-        ('state', 'peace_date'),
+        ('state', 'joined_since', 'peace_date'),
         # налоги
         ('cash_tax', 'oil_tax', 'ore_tax', 'trade_tax'),
         # ресы

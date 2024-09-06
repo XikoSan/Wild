@@ -4,6 +4,7 @@ from django import forms
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.utils import timezone
+import datetime
 from django.utils.translation import gettext_lazy, pgettext_lazy, ugettext as _
 from math import radians, sin, cos, sqrt, atan2
 from modeltranslation.translator import translator, TranslationOptions
@@ -47,6 +48,10 @@ class Region(models.Model):
     # ---------- Государство ----------
     state = models.ForeignKey(State, default=None, blank=True, null=True, on_delete=models.SET_NULL,
                               verbose_name='Государство', related_name="reg_state")
+
+    # дата присоединения региона к государству (требуется для выборов)
+    joined_since = models.DateTimeField(default=datetime.datetime(2024, 9, 4, 0, 0), blank=True, verbose_name='В составе с')
+
     # ---------- Налоги ----------
     # Деньги:
     cash_tax = models.DecimalField(default=00.00, validators=[MinValueValidator(0), MaxValueValidator(100)],

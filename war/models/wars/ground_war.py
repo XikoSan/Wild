@@ -387,6 +387,7 @@ class GroundWar(War):
 
         # 1.1.6 заменяем у захваченного региона государство
         self.def_region.state = self.agr_region.state
+        self.def_region.joined_since = timezone.now()
 
         self.def_region.peace_date = datetime.datetime(2020, 10, 28, 0, 0)
 

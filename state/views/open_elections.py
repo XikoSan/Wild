@@ -44,7 +44,9 @@ def open_elections(request, parl_pk):
         for m_reg in martial_regions:
             mar_pk_list.append(m_reg[0])
 
-        regions_of_state = Region.objects.filter(state=state).exclude(pk__in=mar_pk_list)
+        regions_of_state = Region.objects.filter(state=state, joined_since__lt=ParliamentVoting.objects.get(
+                                                    parliament=Parliament.objects.get(pk=parl_pk),
+                                                    running=True).voting_start).exclude(pk__in=mar_pk_list)
         # для всех регионов государства
         # getting parties of state
         parties = None
