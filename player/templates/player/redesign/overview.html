@@ -969,9 +969,6 @@
     const chat_conn_type = "{% if http_use %}ws{% else %}wss{% endif %}";
     </script>
     <script src='{% static "redesign/js/chat.js" %}?{{ csrf_token }}'></script>
-    {% if player.account.groups.all.0.name == "chat_moderator" %}
-    <script src='{% static "redesign/js/chat_admin.js" %}?{{ csrf_token }}'></script>
-    {% endif %}
     <audio id="padoru" preload="auto"><source src='{% static "redesign/audio/padoru.mp3" %}?{{ csrf_token }}'></audio>
     </div>
     <!--конец Враппера двух вкладок-->
