@@ -30,6 +30,7 @@ services:
       - certbot:/etc/letsencrypt
       - certbot:/var/www/certbot
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./var/log/nginx:/var/log/nginx  #log файлы.
       # - ./certs:/etc/letsencrypt
     # command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
 
