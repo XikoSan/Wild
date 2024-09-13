@@ -20,8 +20,17 @@ def has_party(player):
     last_prim_lead = None
     if PrimariesLeader.objects.filter(party=player.party).exists():
         last_prim_lead = PrimariesLeader.objects.get(party=player.party)
+
     # отправляем в форму
     if Primaries.objects.filter(party=Party.objects.get(pk=player.party.pk), running=True).exists():
+
+        # если при объявлении праймериз случилось задвоение, то мы его уберем
+        if Primaries.objects.filter(party=Party.objects.get(pk=player.party.pk), running=True).count() > 1:
+            # получаем id записи, которую удалять не будем
+            first_pk = Primaries.objects.filter(party=Party.objects.get(pk=player.party.pk), running=True).order_by('prim_start').first().pk
+            # остальные в топку
+            Primaries.objects.filter(party=Party.objects.get(pk=player.party.pk), running=True).exclude(pk=first_pk).delete()
+
         prims = Primaries.objects.get(party=player.party, running=True)
 
     online_dict = {}
