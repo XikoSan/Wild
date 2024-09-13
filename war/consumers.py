@@ -385,10 +385,11 @@ def _send_damage(fighter, war_type, war_id, storage_pk, units, side):
 
             units_count = int(units[unit])
 
-            stock = Stock.objects.select_for_update().get(storage=storage, good=db_unit.good)
+            if not war_type == 'EventWar':
+                stock = Stock.objects.select_for_update().get(storage=storage, good=db_unit.good)
 
-            stock.stock -= units_count
-            stock.save()
+                stock.stock -= units_count
+                stock.save()
 
             unit_dmg = math.floor( (units_count * db_unit.damage) * (1 + player.power/100) )
 
