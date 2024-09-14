@@ -25,6 +25,13 @@ from storage.views.vault.avia_box.generate_rewards import prepare_plane_lists
 def buy_lootboxes(request):
     if request.method == "POST":
 
+        data = {
+            'response': 'Аэрокейсы отключены',
+            'header': 'Приобретение сундуков',
+            'grey_btn': _('Закрыть'),
+        }
+        return JResponse(data)
+
         # получаем персонажа игрока
         player = Player.get_instance(account=request.user)
 

@@ -24,6 +24,13 @@ from storage.models.lootbox_prize import LootboxPrize
 def open_aviaboxes(request):
     if request.method == "POST":
 
+        data = {
+            'response': 'Аэрокейсы отключены',
+            'header': 'Открытие Аэрокейсов',
+            'grey_btn': _('Закрыть'),
+        }
+        return JResponse(data)
+
         # получаем персонажа игрока
         player = Player.get_instance(account=request.user)
 

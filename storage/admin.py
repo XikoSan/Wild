@@ -30,7 +30,7 @@ class LootboxPrizeAdmin(admin.ModelAdmin):
 
     raw_id_fields = ('player',)
 
-    fields = ['player', 'plane', 'color', 'image_tag', 'deleted']
+    fields = ['player', 'plane', 'color', 'image_tag', 'date', 'replaced', 'deleted']
     readonly_fields = ['image_tag']
 
 

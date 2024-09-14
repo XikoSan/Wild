@@ -6,7 +6,7 @@ from player.player import Player
 from django import forms
 from django.utils.html import mark_safe
 from region.models.plane import Plane
-
+from datetime import datetime
 
 # дроп из лутбокса. Можно заменить или забрать
 class LootboxPrize(models.Model):
@@ -15,6 +15,8 @@ class LootboxPrize(models.Model):
     deleted = models.BooleanField(default=False, null=False, verbose_name='Удалено')
     # заменено
     replaced = models.BooleanField(default=False, null=False, verbose_name='Заменено')
+    # время создания записи
+    date = models.DateTimeField(default=datetime(2024, 9, 13, 12, 0), blank=True, verbose_name='Дата выпадения')
 
     # владелец склада
     player = models.ForeignKey(Player, default=None, null=True, on_delete=models.CASCADE, verbose_name='Владелец')
