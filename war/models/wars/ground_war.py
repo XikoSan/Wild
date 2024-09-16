@@ -320,7 +320,7 @@ class GroundWar(War):
 
         # удаляем партии и кандидатов в презы этого рега
         ParliamentParty.objects.filter(party__in=Party.objects.filter(region=self.def_region)).delete()
-        DeputyMandate.objects.filter(party__in=Party.objects.filter(region=self.def_region)).delete()
+        DeputyMandate.objects.filter(party__in=Party.objects.filter(region=self.def_region)).update(party=None, player=None)
         Bulletin.objects.filter(party__in=Party.objects.filter(region=self.def_region)).delete()
         # если есть гос
         if self.def_region.state:

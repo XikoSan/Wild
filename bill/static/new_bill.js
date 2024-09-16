@@ -56,6 +56,11 @@ jQuery(document).ready(function ($) {
             sending_data.append('war_region_to', def_default.dataset.value);
         }
 
+        var transfer_default = document.getElementById('transfer_resources_default_state');
+        if (def_default) {
+            sending_data.append('transfer_state_to', transfer_default.dataset.value);
+        }
+
         $.ajax({
               url: "/new_bill/",
               type: "POST",

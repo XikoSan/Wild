@@ -269,7 +269,8 @@ class TransferAccept(Bill):
                                             bill.votes_con.remove()
 
                         # теперь можно чистить депутатов
-                        DeputyMandate.objects.filter(party__pk__in=reg_parties).update(player=None)
+                        DeputyMandate.objects.filter(party__pk__in=reg_parties).update(party=None, player=None)
+                        ParliamentParty.objects.filter(party__in=reg_parties).delete()
 
                         # если есть президент (как должность)
                         if President.objects.filter(state=self.state).exists():

@@ -17,6 +17,7 @@ from bill.models.purchase_auction import PurchaseAuction
 from bill.models.start_war import StartWar
 from bill.models.transfer_accept import TransferAccept
 from bill.models.transfer_region import TransferRegion
+from bill.models.transfer_resources import TransferResources
 
 
 def recount_rating(modeladmin, request, queryset):
@@ -53,6 +54,11 @@ class BillAdmin(admin.ModelAdmin):
     }
 
 
+class TransferResourcesAdmin(BillAdmin):
+
+    raw_id_fields = ('send_good', 'send_treasury', 'take_treasury',)
+
+
 class AuctionAdmin(BillAdmin):
     list_display = ('voting_start', 'good', 'buy_value', 'cash_cost')
 
@@ -72,3 +78,4 @@ admin.site.register(Independence, BillAdmin)
 admin.site.register(TransferRegion, BillAdmin)
 admin.site.register(TransferAccept, BillAdmin)
 admin.site.register(MartialLaw, BillAdmin)
+admin.site.register(TransferResources, BillAdmin)

@@ -315,9 +315,17 @@ LOGGING = {
             'class': 'logging.StreamHandler',
         },
     },
+
     'root': {
         'handlers': ['console'],
         'level': 'INFO',
+    },
+
+    'daphne': {
+        'handlers': [
+            'console',
+        ],
+        'level': 'DEBUG'
     },
 }
 
