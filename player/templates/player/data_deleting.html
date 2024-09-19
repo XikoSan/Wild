@@ -1,0 +1,26 @@
+{% load l10n %}{% load i18n %}{% load tz %}
+<html lang="ru-ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{% trans 'Инструкция по удалению персональных данных' context "data_deleting" %}</title>
+</head>
+<body>
+    <h1 align="center">{% trans 'Инструкция по удалению персональных данных' context "data_deleting" %}</h1>
+    <div flex style="margin-top: 50px">
+{% trans 'Для полного удаления ваших персональных данных, вам необходимо составить обращение в свободной форме, и отправить его по адресу электронной почты' context "data_deleting" %} <a href="mailto:wildpolitics@yandex.com">wildpolitics@yandex.com</a>.
+<br>
+<br>
+{% trans 'В обращении требуется указать полное игровое имя вашего персонажа в Проекте, а также его уникальный ID (доступен в профиле персонажа).' context "data_deleting" %}
+<br>
+<br>
+{% trans 'После получения вашего обращения, мы попросим вас подтвердить владение указанным в заявке аккаунтом, связавшись с вами внутри Проекта.' context "data_deleting" %}
+<br>
+<br>
+{% trans 'На обработку вашего обращения отводится до 14 календарных дней.' context "data_deleting" %}
+<br>
+<br>
+    <b>{% trans 'После обработки вашего заявления и удаления аккаунта, его восстановление будет невозможно!' context "data_deleting" %}</b>
+<br>
+    </div>
+</body>
+</html>

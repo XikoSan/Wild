@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-28 02:05+0300\n"
-"PO-Revision-Date: 2024-07-28 02:12+0300\n"
+"POT-Creation-Date: 2024-09-19 18:27+0300\n"
+"PO-Revision-Date: 2024-09-19 18:34+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -37,13 +37,13 @@ msgstr "edit"
 
 #: article/templates/article/article.html:346
 #: chat/templates/chat/dialogue.html:160
-#: player/templates/player/redesign/overview.html:942
+#: player/templates/player/redesign/overview.html:948
 msgid "У вас пока еще нет стикеров"
 msgstr "You don't have stickers yet"
 
 #: article/templates/article/article.html:359
 #: chat/templates/chat/dialogue.html:173
-#: player/templates/player/redesign/overview.html:955
+#: player/templates/player/redesign/overview.html:961
 msgctxt "overview"
 msgid "магазин"
 msgstr "shop"
@@ -101,7 +101,7 @@ msgstr "Dislikes"
 #: player/views/lists/region_citizens.py:36
 #: player/views/lists/region_players.py:36
 #: player/views/lists/world_online.py:42 player/views/lists/world_players.py:30
-#: war/views/open_war_side_list.py:76
+#: war/views/open_war_side_list.py:80
 msgctxt "lists"
 msgid "Аватар"
 msgstr "Avatar"
@@ -122,8 +122,8 @@ msgstr "Avatar"
 #: player/views/lists/region_players.py:42
 #: player/views/lists/world_online.py:47 player/views/lists/world_online.py:48
 #: player/views/lists/world_players.py:35
-#: player/views/lists/world_players.py:36 war/views/open_war_side_list.py:81
-#: war/views/open_war_side_list.py:82
+#: player/views/lists/world_players.py:36 war/views/open_war_side_list.py:85
+#: war/views/open_war_side_list.py:86
 msgctxt "lists"
 msgid "Никнейм"
 msgstr "Nickname"
@@ -133,7 +133,7 @@ msgstr "Nickname"
 #: player/views/lists/region_citizens.py:50
 #: player/views/lists/region_players.py:50
 #: player/views/lists/world_online.py:56 player/views/lists/world_players.py:44
-#: war/views/open_war_side_list.py:96
+#: war/views/open_war_side_list.py:100
 msgctxt "lists"
 msgid "Герб"
 msgstr "Coat"
@@ -145,8 +145,8 @@ msgstr "Coat"
 #: player/views/lists/region_citizens.py:55
 #: player/views/lists/region_citizens.py:56
 #: player/views/lists/region_players.py:55
-#: player/views/lists/region_players.py:56 war/views/open_war_side_list.py:101
-#: war/views/open_war_side_list.py:102
+#: player/views/lists/region_players.py:56 war/views/open_war_side_list.py:105
+#: war/views/open_war_side_list.py:106
 msgctxt "lists"
 msgid "Партия"
 msgstr "Party"
@@ -163,12 +163,12 @@ msgstr "State"
 msgid "Финансирование"
 msgstr "Financing"
 
-#: bill/models/change_taxes.py:39 bill/models/explore_resources.py:30
+#: bill/models/change_taxes.py:39 bill/models/explore_resources.py:31
 #: bill/models/geological_surveys.py:27
 msgid "Нефть"
 msgstr "Oil"
 
-#: bill/models/change_taxes.py:40 bill/models/explore_resources.py:31
+#: bill/models/change_taxes.py:40 bill/models/explore_resources.py:32
 #: bill/models/geological_surveys.py:28
 msgid "Руда"
 msgstr "Ore"
@@ -177,16 +177,18 @@ msgstr "Ore"
 msgid "Торговля"
 msgstr "Trading"
 
-#: bill/models/construction.py:320 bill/models/construction.py:386
-#: bill/models/construction.py:407 bill/models/construction.py:441
-#: bill/models/construction.py:476 bill/models/construction.py:497
+#: bill/models/construction.py:334 bill/models/construction.py:406
+#: bill/models/construction.py:427 bill/models/construction.py:461
+#: bill/models/construction.py:496 bill/models/construction.py:517
 #: bill/templates/state/redesign/bills/explore_resources.html:40
 #: bill/templates/state/redesign/bills/purchase_auction.html:31
+#: bill/templates/state/redesign/bills/transfer_resources.html:41
 #: bill/templates/state/redesign/drafts/construction.html:79
 #: bill/templates/state/redesign/reviewed/explore_resources.html:36
 #: bill/templates/state/redesign/reviewed/purchase_auction.html:32
+#: bill/templates/state/redesign/reviewed/transfer_resources.html:41
 #: factory/models/production_log.py:30 factory/models/production_log.py:55
-#: factory/views/factory.py:60 factory/views/produce_good.py:212
+#: factory/views/factory.py:63 factory/views/produce_good.py:222
 #: state/models/treasury.py:38
 #: state/templates/state/redesign/gov/treasury.html:15
 #: storage/migrations/0075_auto_20230914_2245.py:13
@@ -196,7 +198,7 @@ msgctxt "goods"
 msgid "Наличные"
 msgstr "Cash"
 
-#: bill/models/explore_resources.py:29 bill/models/geological_surveys.py:26
+#: bill/models/explore_resources.py:30 bill/models/geological_surveys.py:26
 msgid "Золото"
 msgstr "Gold"
 
@@ -248,7 +250,7 @@ msgstr "Upload"
 msgid "Диалог с {char.nickname}"
 msgstr ""
 
-#: chat/views/messages/dialogues.py:132
+#: chat/views/messages/dialogues.py:148
 msgid "Диалоги"
 msgstr ""
 
@@ -358,9 +360,9 @@ msgid "Заполняется суммой усилий всех игроков 
 msgstr "Fills with the efforts of all players on the server."
 
 #: event/views/activate_invite.py:114 factory/views/cancel_auto.py:35
-#: factory/views/start_auto.py:132 player/views/answer_captcha.py:51
+#: factory/views/start_auto.py:142 player/views/answer_captcha.py:51
 #: player/views/bonus_code/activate_code.py:177
-#: player/views/buy_lootboxes.py:144 player/views/change_back_allow.py:57
+#: player/views/buy_lootboxes.py:151 player/views/change_back_allow.py:57
 #: player/views/change_wiki_hide_allow.py:57
 #: player/views/customization/border/choose_border.py:60
 #: player/views/customization/plane/choose_plane.py:60
@@ -372,7 +374,8 @@ msgstr "Fills with the efforts of all players on the server."
 #: region/views/daily_status.py:96 region/views/map/save_links.py:62
 #: region/views/retrieve_cash.py:42 region/views/start_auto.py:82
 #: storage/views/vault/avia_box/loot_aviaboxes.py:54
-#: storage/views/vault/avia_box/open_aviaboxes.py:175
+#: storage/views/vault/avia_box/open_aviaboxes.py:182
+#: war/views/switch_war_visibility.py:90
 msgid "Ошибка метода"
 msgstr "Method error"
 
@@ -605,7 +608,7 @@ msgid "Уровень"
 msgstr "Level"
 
 #: factory/templates/factory/redesign/factory.html:13
-#: factory/views/factory.py:138
+#: factory/views/factory.py:144
 msgctxt "factory"
 msgid "Производство"
 msgstr "Production"
@@ -641,18 +644,20 @@ msgid "авто-производство"
 msgstr "auto-production"
 
 #: factory/templates/factory/redesign/factory.html:167
-#: region/templates/region/redesign/mining.html:31
-#: region/templates/region/redesign/mining.html:65
-#: region/templates/region/redesign/mining.html:91
-#: region/templates/region/redesign/mining.html:117
+#: region/templates/region/redesign/mining.html:34
+#: region/templates/region/redesign/mining.html:78
+#: region/templates/region/redesign/mining.html:108
+#: region/templates/region/redesign/mining.html:142
+#: region/templates/region/redesign/mining.html:173
+#: region/templates/region/redesign/mining.html:193
 msgctxt "daily_header"
 msgid "в полете"
 msgstr "in flight"
 
 #: factory/templates/factory/redesign/factory.html:183
-#: region/templates/region/redesign/mining.html:68
-#: region/templates/region/redesign/mining.html:94
-#: region/templates/region/redesign/mining.html:120
+#: region/templates/region/redesign/mining.html:81
+#: region/templates/region/redesign/mining.html:111
+#: region/templates/region/redesign/mining.html:145
 msgctxt "mining"
 msgid "авто"
 msgstr "auto"
@@ -667,19 +672,22 @@ msgctxt "mining"
 msgid "Ошибка при отмене"
 msgstr "Error during cancellation"
 
-#: factory/views/cancel_auto.py:34 factory/views/start_auto.py:32
-#: factory/views/start_auto.py:40 factory/views/start_auto.py:50
-#: factory/views/start_auto.py:70 factory/views/start_auto.py:103
-#: factory/views/start_auto.py:131
+#: factory/views/cancel_auto.py:34 factory/views/start_auto.py:33
+#: factory/views/start_auto.py:41 factory/views/start_auto.py:51
+#: factory/views/start_auto.py:80 factory/views/start_auto.py:113
+#: factory/views/start_auto.py:141
 #: party/views/management/staff/leave_party.py:38
 #: party/views/management/staff/leave_party.py:210 player/player.py:386
 #: player/player.py:397 player/player.py:418 region/views/cancel_auto.py:34
-#: region/views/daily_status.py:95 region/views/do_mining.py:38
-#: region/views/do_mining.py:51 region/views/do_mining.py:61
-#: region/views/do_mining.py:74 region/views/do_mining.py:83
-#: region/views/do_mining.py:92 region/views/do_mining.py:111
-#: region/views/do_mining.py:133 region/views/do_mining.py:207
-#: region/views/do_mining.py:329 region/views/map/save_links.py:33
+#: region/views/daily_status.py:95 region/views/do_mining.py:42
+#: region/views/do_mining.py:55 region/views/do_mining.py:65
+#: region/views/do_mining.py:78 region/views/do_mining.py:87
+#: region/views/do_mining.py:96 region/views/do_mining.py:115
+#: region/views/do_mining.py:137 region/views/do_mining.py:216
+#: region/views/do_mining.py:324 region/views/do_mining.py:345
+#: region/views/do_mining.py:352 region/views/do_mining.py:367
+#: region/views/do_mining.py:388 region/views/do_mining.py:395
+#: region/views/do_mining.py:427 region/views/map/save_links.py:33
 #: region/views/map/save_links.py:61 region/views/retrieve_cash.py:41
 #: region/views/start_auto.py:28 region/views/start_auto.py:36
 #: region/views/start_auto.py:46 region/views/start_auto.py:55
@@ -774,137 +782,140 @@ msgctxt "mining"
 msgid "Закрыть"
 msgstr "Close"
 
-#: factory/views/produce_good.py:38
+#: factory/views/produce_good.py:39
 msgctxt "factory"
 msgid "Дождитесь конца полёта"
 msgstr "Wait until the end of the flight"
-
-#: factory/views/produce_good.py:39 factory/views/produce_good.py:50
-#: factory/views/produce_good.py:66 factory/views/produce_good.py:80
-#: factory/views/produce_good.py:87 factory/views/produce_good.py:101
-#: factory/views/produce_good.py:113 factory/views/produce_good.py:123
-#: factory/views/produce_good.py:134 factory/views/produce_good.py:144
-#: factory/views/produce_good.py:152 factory/views/produce_good.py:161
-#: factory/views/produce_good.py:202 factory/views/produce_good.py:230
-#: factory/views/produce_good.py:254 factory/views/start_auto.py:60
-#: factory/views/start_auto.py:81 factory/views/start_auto.py:91
-msgctxt "factory"
-msgid "Ошибка производства"
-msgstr "Production error"
 
 #: factory/views/produce_good.py:40 factory/views/produce_good.py:51
 #: factory/views/produce_good.py:67 factory/views/produce_good.py:81
 #: factory/views/produce_good.py:88 factory/views/produce_good.py:102
-#: factory/views/produce_good.py:114 factory/views/produce_good.py:124
-#: factory/views/produce_good.py:135 factory/views/produce_good.py:145
-#: factory/views/produce_good.py:153 factory/views/produce_good.py:162
-#: factory/views/produce_good.py:203 factory/views/produce_good.py:231
-#: factory/views/produce_good.py:255 factory/views/start_auto.py:61
-#: factory/views/start_auto.py:82 factory/views/start_auto.py:92
+#: factory/views/produce_good.py:111 factory/views/produce_good.py:123
+#: factory/views/produce_good.py:133 factory/views/produce_good.py:144
+#: factory/views/produce_good.py:154 factory/views/produce_good.py:162
+#: factory/views/produce_good.py:171 factory/views/produce_good.py:212
+#: factory/views/produce_good.py:240 factory/views/produce_good.py:264
+#: factory/views/start_auto.py:61 factory/views/start_auto.py:70
+#: factory/views/start_auto.py:91 factory/views/start_auto.py:101
+msgctxt "factory"
+msgid "Ошибка производства"
+msgstr "Production error"
+
+#: factory/views/produce_good.py:41 factory/views/produce_good.py:52
+#: factory/views/produce_good.py:68 factory/views/produce_good.py:82
+#: factory/views/produce_good.py:89 factory/views/produce_good.py:103
+#: factory/views/produce_good.py:112 factory/views/produce_good.py:124
+#: factory/views/produce_good.py:134 factory/views/produce_good.py:145
+#: factory/views/produce_good.py:155 factory/views/produce_good.py:163
+#: factory/views/produce_good.py:172 factory/views/produce_good.py:213
+#: factory/views/produce_good.py:241 factory/views/produce_good.py:265
+#: factory/views/start_auto.py:62 factory/views/start_auto.py:71
+#: factory/views/start_auto.py:92 factory/views/start_auto.py:102
 msgctxt "storage"
 msgid "Закрыть"
 msgstr "Close"
 
-#: factory/views/produce_good.py:49
+#: factory/views/produce_good.py:50
 msgctxt "factory"
 msgid "Склад не заполнен"
 msgstr "Warehouse not specified"
 
-#: factory/views/produce_good.py:65
+#: factory/views/produce_good.py:66
 msgctxt "factory"
 msgid "Указанный Склад вам не принадлежит"
 msgstr "Specified Warehouse does not belong to you"
 
-#: factory/views/produce_good.py:79 factory/views/produce_good.py:86
+#: factory/views/produce_good.py:80 factory/views/produce_good.py:87
 msgctxt "factory"
 msgid "Указанный товар не существует"
 msgstr "Specified good does not exist"
 
-#: factory/views/produce_good.py:100 factory/views/start_auto.py:59
+#: factory/views/produce_good.py:101 factory/views/produce_good.py:110
+#: factory/views/start_auto.py:60 factory/views/start_auto.py:69
 msgctxt "factory"
 msgid "Вы не можете производить данный товар"
 msgstr "You cannot produce this product"
 
-#: factory/views/produce_good.py:112 factory/views/start_auto.py:80
+#: factory/views/produce_good.py:122 factory/views/start_auto.py:90
 msgctxt "factory"
 msgid "Номер схемы - не число"
 msgstr "Schema number is not a number"
 
-#: factory/views/produce_good.py:122 factory/views/start_auto.py:90
+#: factory/views/produce_good.py:132 factory/views/start_auto.py:100
 msgctxt "factory"
 msgid "Указанной схемы не существует"
 msgstr "Specified schema does not exist"
 
-#: factory/views/produce_good.py:133
+#: factory/views/produce_good.py:143
 msgctxt "factory"
 msgid "Количество - не число"
 msgstr "Quantity is not a number"
 
-#: factory/views/produce_good.py:143
+#: factory/views/produce_good.py:153
 msgctxt "factory"
 msgid "Количество товара должно быть положительным числом"
 msgstr "Quantity of item must be a positive number"
 
-#: factory/views/produce_good.py:151
+#: factory/views/produce_good.py:161
 msgctxt "factory"
 msgid "Количество товара слишком велико"
 msgstr "The quantity of goods is too large"
 
-#: factory/views/produce_good.py:163
+#: factory/views/produce_good.py:173
 msgctxt "factory"
 msgid "Недостаточно места на складе для товара. В наличии "
 msgstr "Insufficient space for goods. Free space "
 
-#: factory/views/produce_good.py:165 factory/views/produce_good.py:205
-#: factory/views/produce_good.py:234 factory/views/produce_good.py:258
+#: factory/views/produce_good.py:175 factory/views/produce_good.py:215
+#: factory/views/produce_good.py:244 factory/views/produce_good.py:268
 msgctxt "factory"
 msgid ", требуется "
 msgstr ", required "
 
-#: factory/views/produce_good.py:204
+#: factory/views/produce_good.py:214
 msgctxt "factory"
 msgid "Недостаточно энергии. В наличии "
 msgstr "Not enough energy. Now "
 
-#: factory/views/produce_good.py:232 factory/views/produce_good.py:256
+#: factory/views/produce_good.py:242 factory/views/produce_good.py:266
 msgctxt "factory"
 msgid "Недостаточно "
 msgstr "Not enough "
 
-#: factory/views/produce_good.py:233 factory/views/produce_good.py:257
+#: factory/views/produce_good.py:243 factory/views/produce_good.py:267
 msgctxt "factory"
 msgid ". В наличии "
 msgstr ". In stock "
 
-#: factory/views/start_auto.py:30 player/player.py:384
-#: region/views/do_mining.py:36 region/views/start_auto.py:26
+#: factory/views/start_auto.py:31 player/player.py:384
+#: region/views/do_mining.py:40 region/views/start_auto.py:26
 msgctxt "mining"
 msgid "Дождитесь конца полёта"
 msgstr "Wait until the end of the flight"
 
-#: factory/views/start_auto.py:31 factory/views/start_auto.py:39
-#: factory/views/start_auto.py:49 factory/views/start_auto.py:69
-#: factory/views/start_auto.py:102 factory/views/start_auto.py:130
+#: factory/views/start_auto.py:32 factory/views/start_auto.py:40
+#: factory/views/start_auto.py:50 factory/views/start_auto.py:79
+#: factory/views/start_auto.py:112 factory/views/start_auto.py:140
 msgctxt "auto_produce"
 msgid "Ошибка автоматического производства"
 msgstr "Automatic production error"
 
-#: factory/views/start_auto.py:38 region/views/start_auto.py:34
+#: factory/views/start_auto.py:39 region/views/start_auto.py:34
 msgctxt "mining"
 msgid "Премиум-аккаунт не активен. Продлите его"
 msgstr "Please renew premium account"
 
-#: factory/views/start_auto.py:48
+#: factory/views/start_auto.py:49
 msgctxt "auto_produce"
 msgid "Неизвестный тип товара"
 msgstr "Unknown good type"
 
-#: factory/views/start_auto.py:68
+#: factory/views/start_auto.py:78
 msgctxt "auto_produce"
 msgid "Данный товар невозможно произвести"
 msgstr "This good cannot be prduced"
 
-#: factory/views/start_auto.py:101
+#: factory/views/start_auto.py:111
 msgctxt "auto_produce"
 msgid "Указанный склад вам не принадлежит"
 msgstr "Specified Warehouse does not belong to you"
@@ -914,7 +925,7 @@ msgid "отклонить всё"
 msgstr "reject everything"
 
 #: party/templates/party/redesign/lists/party_top.html:26
-#: region/views/mining.py:134
+#: region/views/mining.py:185
 msgid "Добыча"
 msgstr ""
 
@@ -1323,9 +1334,10 @@ msgstr "Incorrect color code"
 #: player/views/bonus_code/activate_code.py:73
 #: player/views/bonus_code/activate_code.py:170
 #: player/views/bonus_code/activate_code.py:179
-#: player/views/buy_lootboxes.py:44 player/views/buy_lootboxes.py:55
-#: player/views/buy_lootboxes.py:109 player/views/buy_lootboxes.py:146
-#: player/views/change_back_allow.py:43 player/views/change_back_allow.py:59
+#: player/views/buy_lootboxes.py:31 player/views/buy_lootboxes.py:51
+#: player/views/buy_lootboxes.py:62 player/views/buy_lootboxes.py:116
+#: player/views/buy_lootboxes.py:153 player/views/change_back_allow.py:43
+#: player/views/change_back_allow.py:59
 #: player/views/change_wiki_hide_allow.py:43
 #: player/views/change_wiki_hide_allow.py:59 player/views/claim_reward.py:85
 #: player/views/color_change.py:32 player/views/color_change.py:44
@@ -1348,12 +1360,15 @@ msgstr "Incorrect color code"
 #: skill/views/skill_cancel.py:52 skill/views/skill_cancel.py:62
 #: skill/views/skill_cancel.py:77
 #: storage/views/vault/avia_box/loot_aviaboxes.py:56
-#: storage/views/vault/avia_box/open_aviaboxes.py:37
-#: storage/views/vault/avia_box/open_aviaboxes.py:45
-#: storage/views/vault/avia_box/open_aviaboxes.py:72
-#: storage/views/vault/avia_box/open_aviaboxes.py:85
-#: storage/views/vault/avia_box/open_aviaboxes.py:94
-#: storage/views/vault/avia_box/open_aviaboxes.py:177
+#: storage/views/vault/avia_box/open_aviaboxes.py:30
+#: storage/views/vault/avia_box/open_aviaboxes.py:44
+#: storage/views/vault/avia_box/open_aviaboxes.py:52
+#: storage/views/vault/avia_box/open_aviaboxes.py:79
+#: storage/views/vault/avia_box/open_aviaboxes.py:92
+#: storage/views/vault/avia_box/open_aviaboxes.py:101
+#: storage/views/vault/avia_box/open_aviaboxes.py:184
+#: war/views/switch_war_visibility.py:40 war/views/switch_war_visibility.py:48
+#: war/views/switch_war_visibility.py:64 war/views/switch_war_visibility.py:92
 msgid "Закрыть"
 msgstr "Close"
 
@@ -1388,7 +1403,7 @@ msgstr "You are not a member of any party"
 #: party/views/management/gold/give_party_gold.py:108
 #: party/views/management/roles/new_role.py:79
 #: party/views/management/roles/remove_role.py:77
-#: player/views/color_change.py:102 region/views/do_mining.py:330
+#: player/views/color_change.py:102 region/views/do_mining.py:428
 #: storage/views/assets/assets_destroy.py:138
 #: storage/views/assets/assets_transfer.py:238
 #: storage/views/assets/storage_move.py:108
@@ -1586,7 +1601,54 @@ msgctxt "mining"
 msgid "Нечего забирать"
 msgstr "Nothing to get"
 
-#: player/templates/player/index.html:90 player/templates/player/index.html:258
+#: player/templates/player/data_deleting.html:5
+#: player/templates/player/data_deleting.html:8
+msgctxt "data_deleting"
+msgid "Инструкция по удалению персональных данных"
+msgstr "Personal data deletion instruction"
+
+#: player/templates/player/data_deleting.html:10
+msgctxt "data_deleting"
+msgid ""
+"Для полного удаления ваших персональных данных, вам необходимо составить "
+"обращение в свободной форме, и отправить его по адресу электронной почты"
+msgstr ""
+"For completely deleting of your personal data, you need to write a request "
+"in free form and send it to the email address"
+
+#: player/templates/player/data_deleting.html:13
+msgctxt "data_deleting"
+msgid ""
+"В обращении требуется указать полное игровое имя вашего персонажа в Проекте, "
+"а также его уникальный ID (доступен в профиле персонажа)."
+msgstr ""
+"In your request, you must indicate the full game name of your character in "
+"the Project, as well as its unique ID (available in the character profile)."
+
+#: player/templates/player/data_deleting.html:16
+msgctxt "data_deleting"
+msgid ""
+"После получения вашего обращения, мы попросим вас подтвердить владение "
+"указанным в заявке аккаунтом, связавшись с вами внутри Проекта."
+msgstr ""
+"After receiving your request, we will ask you to confirm ownership of the "
+"account specified in the application by contacting you within the Project."
+
+#: player/templates/player/data_deleting.html:19
+msgctxt "data_deleting"
+msgid "На обработку вашего обращения отводится до 14 календарных дней."
+msgstr "It will take up to 14 calendar days to process your request."
+
+#: player/templates/player/data_deleting.html:22
+msgctxt "data_deleting"
+msgid ""
+"После обработки вашего заявления и удаления аккаунта, его восстановление "
+"будет невозможно!"
+msgstr ""
+"Once your application has been processed and your account has been deleted, "
+"it will be impossible to restore it!"
+
+#: player/templates/player/index.html:90 player/templates/player/index.html:255
 msgctxt "index"
 msgid "Ссылки"
 msgstr "Links"
@@ -1633,74 +1695,74 @@ msgctxt "index_links"
 msgid "Общий чат игроков в"
 msgstr "Common chat at"
 
-#: player/templates/player/index.html:168
+#: player/templates/player/index.html:165
 msgctxt "index_links"
 msgid "Приложение"
 msgstr "Android"
 
-#: player/templates/player/index.html:168
+#: player/templates/player/index.html:165
 msgctxt "index_links"
 msgid "игры"
 msgstr "application"
 
-#: player/templates/player/index.html:246
+#: player/templates/player/index.html:243
 msgctxt "index"
 msgid "это экономико-политический симулятор"
 msgstr "is an economic and political simulator"
 
-#: player/templates/player/index.html:249
+#: player/templates/player/index.html:246
 msgctxt "index"
 msgid "Объединяйтесь в партии для контроля государств."
 msgstr "Unite in parties to control states."
 
-#: player/templates/player/index.html:250
+#: player/templates/player/index.html:247
 msgctxt "index"
 msgid "Перекраивайте карту мира."
 msgstr "Redraw the world map."
 
-#: player/templates/player/index.html:251
+#: player/templates/player/index.html:248
 msgctxt "index"
 msgid ""
 "Создайте бизнес своей мечты - добыча ископаемых, промышленность, торговля."
 msgstr "Create your dream business - mining, industry, trade."
 
-#: player/templates/player/index.html:252
+#: player/templates/player/index.html:249
 msgctxt "index"
 msgid "Воюйте и заключайте союзы."
 msgstr "Make war and make alliances."
 
-#: player/templates/player/index.html:253
+#: player/templates/player/index.html:250
 msgctxt "index"
 msgid "Расширяйте влияние своего государства."
 msgstr "Expand the influence of your state."
 
-#: player/templates/player/index.html:254
+#: player/templates/player/index.html:251
 msgctxt "index"
 msgid "Станьте владельцем популярной газеты и заработайте на рекламе."
 msgstr "Become the owner of a popular newspaper and earn from advertising."
 
-#: player/templates/player/index.html:259
-#: player/templates/player/index.html:320
+#: player/templates/player/index.html:256
+#: player/templates/player/index.html:317
 msgctxt "index"
 msgid "Мы в VK"
 msgstr "We at VK"
 
-#: player/templates/player/index.html:262
+#: player/templates/player/index.html:259
 msgctxt "index"
 msgid "Начни игру"
 msgstr "Play"
 
-#: player/templates/player/index.html:307
+#: player/templates/player/index.html:304
 msgctxt "index"
 msgid "Продолжая использование сайта, вы принимаете условия"
 msgstr "By continuing to use the site, you accept the terms of the"
 
-#: player/templates/player/index.html:308
+#: player/templates/player/index.html:305
 msgctxt "index"
 msgid "Пользовательского соглашения"
 msgstr "User Agreement"
 
-#: player/templates/player/index.html:309
+#: player/templates/player/index.html:306
 msgctxt "index"
 msgid "и порядка обработки персональных данных"
 msgstr "and the procedure of personal data processing"
@@ -1928,82 +1990,82 @@ msgstr "Avatar"
 msgid "Часовой пояс"
 msgstr "Timezone"
 
-#: player/templates/player/redesign/overview.html:179
+#: player/templates/player/redesign/overview.html:185
 msgid "обзор"
 msgstr "overview"
 
-#: player/templates/player/redesign/overview.html:200
+#: player/templates/player/redesign/overview.html:206
 msgid "чат"
 msgstr "chat"
 
-#: player/templates/player/redesign/overview.html:211
+#: player/templates/player/redesign/overview.html:217
 msgid "мир"
 msgstr "world"
 
-#: player/templates/player/redesign/overview.html:267
+#: player/templates/player/redesign/overview.html:273
 msgid "независимый регион"
 msgstr "free region"
 
-#: player/templates/player/redesign/overview.html:382
+#: player/templates/player/redesign/overview.html:388
 msgid "войн нет"
 msgstr "no wars"
 
-#: player/templates/player/redesign/overview.html:410
+#: player/templates/player/redesign/overview.html:416
 msgctxt "overview"
 msgid "С новым годом!"
 msgstr "Happy New Year!"
 
-#: player/templates/player/redesign/overview.html:566
+#: player/templates/player/redesign/overview.html:572
 msgctxt "overview"
 msgid "Летний фестиваль"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:642
+#: player/templates/player/redesign/overview.html:648
 msgctxt "overview"
 msgid "сила"
 msgstr "STR"
 
-#: player/templates/player/redesign/overview.html:647
+#: player/templates/player/redesign/overview.html:653
 msgctxt "overview"
 msgid "инт"
 msgstr "INT"
 
-#: player/templates/player/redesign/overview.html:652
+#: player/templates/player/redesign/overview.html:658
 msgctxt "overview"
 msgid "вын"
 msgstr "END"
 
-#: player/templates/player/redesign/overview.html:668
+#: player/templates/player/redesign/overview.html:674
 msgctxt "overview"
 msgid "Выборы лидера"
 msgstr "Presidential elections"
 
-#: player/templates/player/redesign/overview.html:671
+#: player/templates/player/redesign/overview.html:677
 msgctxt "overview"
 msgid "Выборы"
 msgstr "Elections"
 
-#: player/templates/player/redesign/overview.html:676
+#: player/templates/player/redesign/overview.html:682
 msgctxt "overview"
 msgid "партии"
 msgstr "parties"
 
-#: player/templates/player/redesign/overview.html:676
+#: player/templates/player/redesign/overview.html:682
 msgctxt "overview"
 msgid "государства"
 msgstr "of state"
 
-#: player/templates/player/redesign/overview.html:676
+#: player/templates/player/redesign/overview.html:682
 msgctxt "overview"
 msgid "региона"
 msgstr "of region"
 
-#: player/templates/player/redesign/overview.html:713
-#: player/templates/player/redesign/overview.html:758
+#: player/templates/player/redesign/overview.html:719
+#: player/templates/player/redesign/overview.html:764
 msgid "партий нет"
 msgstr "no parties"
 
-#: player/templates/player/redesign/overview.html:720
+#: player/templates/player/redesign/overview.html:726
 msgctxt "overview"
 msgid "парламент"
 msgstr "parliament"
@@ -2011,7 +2073,7 @@ msgstr "parliament"
 #: player/templates/player/redesign/overview_skills.html:21
 #: skill/models/biochemistry.py:20 skill/models/coherence.py:21
 #: skill/models/excavation.py:15 skill/models/finance.py:15
-#: skill/models/scouting.py:21
+#: skill/models/scouting.py:21 skill/models/trophy_engineering.py:20
 msgctxt "skills"
 msgid "Сила"
 msgstr "Strength"
@@ -2043,6 +2105,7 @@ msgstr "up skill"
 #: skill/models/excavation.py:20 skill/models/finance.py:20
 #: skill/models/fracturing.py:15 skill/models/military_production.py:15
 #: skill/models/scouting.py:26 skill/models/standardization.py:15
+#: skill/models/trophy_engineering.py:15
 msgctxt "skills"
 msgid "Интеллект"
 msgstr "Intelligence"
@@ -2050,7 +2113,7 @@ msgstr "Intelligence"
 #: player/templates/player/redesign/overview_skills.html:149
 #: skill/models/biochemistry.py:25 skill/models/excavation.py:25
 #: skill/models/finance.py:25 skill/models/fracturing.py:20
-#: skill/models/scouting.py:31
+#: skill/models/scouting.py:31 skill/models/trophy_engineering.py:25
 msgctxt "skills"
 msgid "Выносливость"
 msgstr "Endurance"
@@ -2497,7 +2560,7 @@ msgstr ""
 msgid "Активация кода"
 msgstr "Activation"
 
-#: player/views/buy_lootboxes.py:145 player/views/open_lootboxes.py:133
+#: player/views/buy_lootboxes.py:152 player/views/open_lootboxes.py:133
 msgid "Открытие сундуков"
 msgstr ""
 
@@ -2593,7 +2656,7 @@ msgid "Топ богатейших"
 msgstr "Top of richest"
 
 #: player/views/lists/damage_top.py:109 player/views/lists/damage_top.py:110
-#: war/views/open_war_side_list.py:87 war/views/open_war_side_list.py:88
+#: war/views/open_war_side_list.py:91 war/views/open_war_side_list.py:92
 msgctxt "lists"
 msgid "Урон"
 msgstr "Damage"
@@ -2692,17 +2755,17 @@ msgstr ""
 msgid "Финансы"
 msgstr "Funds"
 
-#: region/models/region.py:105
+#: region/models/region.py:115
 msgctxt "goods"
 msgid "WTI"
 msgstr "WTI"
 
-#: region/models/region.py:106
+#: region/models/region.py:116
 msgctxt "goods"
 msgid "Brent"
 msgstr "Brent"
 
-#: region/models/region.py:107
+#: region/models/region.py:117
 msgctxt "goods"
 msgid "Urals"
 msgstr "Urals"
@@ -2735,137 +2798,81 @@ msgstr "Hospital top"
 msgid "Уровень ТЭЦ"
 msgstr "Power plant level"
 
-#: region/templates/region/redesign/map.html:883
-msgctxt "regions_list"
-msgid "Тюрингия"
-msgstr "Thuringia"
-
-#: region/templates/region/redesign/map.html:885
-msgctxt "regions_list"
-msgid "Саксония"
-msgstr "Saxony"
-
-#: region/templates/region/redesign/map.html:887
-msgctxt "regions_list"
-msgid "Чехия"
-msgstr "Czech Republic"
-
-#: region/templates/region/redesign/map.html:889
-msgctxt "regions_list"
-msgid "Нижнесилезское воеводство"
-msgstr "Lower Silesian Voivodeship"
-
-#: region/templates/region/redesign/map.html:891
-msgctxt "regions_list"
-msgid "Любушское воеводство"
-msgstr "Lubusz Voivodeship"
-
-#: region/templates/region/redesign/map.html:893
-msgctxt "regions_list"
-msgid "Бавария"
-msgstr "Bavaria"
-
-#: region/templates/region/redesign/map.html:895
-msgctxt "regions_list"
-msgid "Бранденбург"
-msgstr "Brandenburg"
-
-#: region/templates/region/redesign/map.html:897
-msgctxt "regions_list"
-msgid "Саксония-Анхальт"
-msgstr "Saxony-Anhalt"
-
-#: region/templates/region/redesign/map.html:899
-msgctxt "regions_list"
-msgid "Австрия"
-msgstr "Republic of Austria"
-
-#: region/templates/region/redesign/map.html:901
-msgctxt "regions_list"
-msgid "Опольское воеводство"
-msgstr "Opole Voivodeship"
-
-#: region/templates/region/redesign/mining.html:9
+#: region/templates/region/redesign/mining.html:12
 msgctxt "mining"
 msgid "Добыча"
 msgstr "Work"
 
-#: region/templates/region/redesign/mining.html:11
+#: region/templates/region/redesign/mining.html:14
 msgctxt "daily_header"
 msgid "Потрать энергию и получи"
 msgstr "Spend energy and get"
 
-#: region/templates/region/redesign/mining.html:12
+#: region/templates/region/redesign/mining.html:15
 msgctxt "daily_header"
 msgid "до"
 msgstr "up to"
 
-#: region/templates/region/redesign/mining.html:12
+#: region/templates/region/redesign/mining.html:15
 msgctxt "daily_header"
 msgid "за день!"
 msgstr "per day!"
 
-#: region/templates/region/redesign/mining.html:15
+#: region/templates/region/redesign/mining.html:18
 msgctxt "daily_header"
 msgid "энергии потрачено"
 msgstr "energy spent"
 
-#: region/templates/region/redesign/mining.html:33
+#: region/templates/region/redesign/mining.html:36
 msgctxt "daily_header"
 msgid "получаем"
 msgstr "receiving..."
 
-#: region/templates/region/redesign/mining.html:34
+#: region/templates/region/redesign/mining.html:37
 msgctxt "daily_header"
 msgid "получить"
 msgstr "get"
 
-#: region/templates/region/redesign/mining.html:53
+#: region/templates/region/redesign/mining.html:56
 msgctxt "daily_header"
 msgid "уже получено"
 msgstr "already received"
 
-#: region/templates/region/redesign/mining.html:57
+#: region/templates/region/redesign/mining.html:60
 #: region/templates/region/redesign/region_info.html:20
 msgctxt "mining"
 msgid "Золото"
 msgstr "Gold"
 
-#: region/templates/region/redesign/mining.html:58
-#: region/templates/region/redesign/mining.html:84
-#: region/templates/region/redesign/mining.html:110
+#: region/templates/region/redesign/mining.html:61
+#: region/templates/region/redesign/mining.html:97
+#: region/templates/region/redesign/mining.html:127
+#: region/templates/region/redesign/mining.html:162
+#: region/templates/region/redesign/mining.html:182
 msgctxt "mining"
 msgid "Запасы"
 msgstr "Stocks"
 
-#: region/templates/region/redesign/mining.html:77
-#: region/templates/region/redesign/mining.html:103
-#: region/templates/region/redesign/mining.html:129
+#: region/templates/region/redesign/mining.html:90
+#: region/templates/region/redesign/mining.html:120
+#: region/templates/region/redesign/mining.html:154
+#: region/templates/region/redesign/mining.html:175
+#: region/templates/region/redesign/mining.html:195
 msgctxt "mining"
 msgid "добыча"
 msgstr "work"
 
-#: region/templates/region/redesign/mining.html:83
+#: region/templates/region/redesign/mining.html:96
 #: region/templates/region/redesign/region_info.html:31
 msgctxt "mining"
 msgid "Нефть"
 msgstr "Oil"
 
-#: region/templates/region/redesign/mining.html:85
-msgctxt "mining"
-msgid "Марка нефти"
-msgstr "Oil brand"
-
-#: region/templates/region/redesign/mining.html:109
+#: region/templates/region/redesign/mining.html:126
 #: region/templates/region/redesign/region_info.html:42
 msgctxt "mining"
 msgid "Руда"
 msgstr "Ore"
-
-#: region/templates/region/redesign/mining.html:111
-msgctxt "mining"
-msgid "Качество руды"
-msgstr "Ore quality"
 
 #: region/templates/region/redesign/region_info.html:65
 msgctxt "map"
@@ -2883,82 +2890,82 @@ msgstr "go fly"
 msgid "Независимый регион"
 msgstr ""
 
-#: region/templates/region/redesign/region_view.html:195
+#: region/templates/region/redesign/region_view.html:203
 msgid "Запасы золота"
 msgstr ""
 
-#: region/templates/region/redesign/region_view.html:196
+#: region/templates/region/redesign/region_view.html:204
 msgid "Запасы нефти"
 msgstr ""
 
-#: region/templates/region/redesign/region_view.html:197
+#: region/templates/region/redesign/region_view.html:205
 msgid "Марка нефти"
 msgstr ""
 
-#: region/templates/region/redesign/region_view.html:211
+#: region/templates/region/redesign/region_view.html:219
 msgid "Региональные налоги"
 msgstr ""
 
-#: region/templates/region/redesign/region_view.html:212
+#: region/templates/region/redesign/region_view.html:220
 #: state/templates/state/redesign/state_view.html:158
 msgid "На финансирование"
 msgstr ""
 
-#: region/templates/region/redesign/region_view.html:213
+#: region/templates/region/redesign/region_view.html:221
 #: state/templates/state/redesign/state_view.html:159
 msgid "На добычу"
 msgstr ""
 
-#: region/templates/region/redesign/region_view.html:214
+#: region/templates/region/redesign/region_view.html:222
 #: state/templates/state/redesign/state_view.html:160
 msgid "На торговлю"
 msgstr ""
 
-#: region/views/do_mining.py:37 region/views/do_mining.py:50
-#: region/views/do_mining.py:60 region/views/do_mining.py:73
-#: region/views/do_mining.py:82 region/views/do_mining.py:91
-#: region/views/do_mining.py:110 region/views/do_mining.py:132
-#: region/views/do_mining.py:206 region/views/do_mining.py:328
+#: region/views/do_mining.py:41 region/views/do_mining.py:54
+#: region/views/do_mining.py:64 region/views/do_mining.py:77
+#: region/views/do_mining.py:86 region/views/do_mining.py:95
+#: region/views/do_mining.py:114 region/views/do_mining.py:136
+#: region/views/do_mining.py:215 region/views/do_mining.py:426
 msgctxt "mining"
 msgid "Ошибка добычи ресурсов"
 msgstr "Mining error"
 
-#: region/views/do_mining.py:49 region/views/start_auto.py:53
+#: region/views/do_mining.py:53 region/views/start_auto.py:53
 msgctxt "mining"
 msgid "У вас нет склада в этом регионе"
 msgstr "You haven`t Warehouse in this region"
 
-#: region/views/do_mining.py:62
+#: region/views/do_mining.py:66
 msgctxt "mining"
 msgid "Количество энергии - не число"
 msgstr "Energy amount is not a number"
 
-#: region/views/do_mining.py:72
+#: region/views/do_mining.py:76
 msgctxt "mining"
 msgid "Количество Энергии должно быть положительным"
 msgstr "The amount of Energy must be positive"
 
-#: region/views/do_mining.py:81
+#: region/views/do_mining.py:85
 msgctxt "mining"
 msgid "Количество Энергии должно быть кратно десяти"
 msgstr "The amount of Energy must be a multiple of ten"
 
-#: region/views/do_mining.py:90
+#: region/views/do_mining.py:94
 msgctxt "mining"
 msgid "Недостаточно энергии"
 msgstr "Not enough energy"
 
-#: region/views/do_mining.py:109
+#: region/views/do_mining.py:113
 msgctxt "mining"
 msgid "Запасов золота в регионе недостаточно для добычи"
 msgstr "Gold reserves in the region are not enough for mining"
 
-#: region/views/do_mining.py:131
+#: region/views/do_mining.py:135
 msgctxt "mining"
 msgid "Запасов нефти в регионе недостаточно для добычи"
 msgstr "Oil reserves in the region are not enough for mining"
 
-#: region/views/do_mining.py:205
+#: region/views/do_mining.py:214
 msgctxt "mining"
 msgid "Запасов руды в регионе недостаточно для добычи"
 msgstr "Ore reserves in the region are not enough for mining"
@@ -3107,6 +3114,19 @@ msgid ""
 msgstr ""
 "Adds the ability to produce additional materials with the same energy costs, "
 "with costs rounded up"
+
+#: skill/models/trophy_engineering.py:9 skill/models/trophy_engineering.py:34
+#, fuzzy
+#| msgctxt "trading"
+#| msgid "Выбранная категория"
+msgctxt "skills"
+msgid "Трофейная инженерия"
+msgstr "Selected category"
+
+#: skill/models/trophy_engineering.py:10
+msgctxt "skills"
+msgid "Открывает возможность конвертации оружия в трофейные образцы"
+msgstr ""
 
 #: skill/views/skill_cancel.py:34
 msgid "ID навыка должен быть числом"
@@ -4642,13 +4662,13 @@ msgctxt "w_trading"
 msgid "Торговое предложение успешно принято"
 msgstr "Trade offer successfully accepted"
 
-#: storage/views/vault/avia_box/avia_lootbox.py:92
+#: storage/views/vault/avia_box/avia_lootbox.py:95
 msgctxt "assets"
 msgid "Аэрокейсы"
 msgstr "Aircases"
 
 #: storage/views/vault/avia_box/loot_aviaboxes.py:55
-#: storage/views/vault/avia_box/open_aviaboxes.py:176
+#: storage/views/vault/avia_box/open_aviaboxes.py:183
 msgid "Открытие Аэрокейсов"
 msgstr ""
 
@@ -4657,7 +4677,7 @@ msgctxt "assets"
 msgid "Сундуки"
 msgstr "Chests"
 
-#: war/templates/war/redesign/character_wars.html:16
+#: war/templates/war/redesign/character_wars.html:27
 #, fuzzy
 #| msgctxt "w_trading"
 #| msgid "Мои"
@@ -4665,20 +4685,92 @@ msgctxt "wars_list"
 msgid "Бои"
 msgstr "Mine"
 
-#: war/views/open_war_side_list.py:108
+#: war/views/open_war_side_list.py:112
 msgctxt "lists"
 msgid "атака"
 msgstr "attack"
 
-#: war/views/open_war_side_list.py:110
+#: war/views/open_war_side_list.py:114
 msgctxt "lists"
 msgid "оборона"
 msgstr "defence"
 
-#: war/views/open_war_side_list.py:114
+#: war/views/open_war_side_list.py:118
 msgctxt "lists"
 msgid "Урон за сторону:"
 msgstr "Damage of side:"
+
+#: war/views/switch_war_visibility.py:38
+#, fuzzy
+#| msgid "Нет такого навыка"
+msgid "Нет такого типа войн"
+msgstr "No such skill"
+
+#: war/views/switch_war_visibility.py:39 war/views/switch_war_visibility.py:47
+#: war/views/switch_war_visibility.py:63 war/views/switch_war_visibility.py:91
+#, fuzzy
+#| msgctxt "profile"
+#| msgid "Скрыть кнопку Wiki"
+msgid "Скрытие войны"
+msgstr "Hide Wiki button"
+
+#: war/views/switch_war_visibility.py:46
+#, fuzzy
+#| msgid "Нет такого навыка"
+msgid "Нет такой войны"
+msgstr "No such skill"
+
+#: war/views/switch_war_visibility.py:62
+msgid "Нет такой записи об участии в бою"
+msgstr ""
+
+#~ msgctxt "regions_list"
+#~ msgid "Тюрингия"
+#~ msgstr "Thuringia"
+
+#~ msgctxt "regions_list"
+#~ msgid "Саксония"
+#~ msgstr "Saxony"
+
+#~ msgctxt "regions_list"
+#~ msgid "Чехия"
+#~ msgstr "Czech Republic"
+
+#~ msgctxt "regions_list"
+#~ msgid "Нижнесилезское воеводство"
+#~ msgstr "Lower Silesian Voivodeship"
+
+#~ msgctxt "regions_list"
+#~ msgid "Любушское воеводство"
+#~ msgstr "Lubusz Voivodeship"
+
+#~ msgctxt "regions_list"
+#~ msgid "Бавария"
+#~ msgstr "Bavaria"
+
+#~ msgctxt "regions_list"
+#~ msgid "Бранденбург"
+#~ msgstr "Brandenburg"
+
+#~ msgctxt "regions_list"
+#~ msgid "Саксония-Анхальт"
+#~ msgstr "Saxony-Anhalt"
+
+#~ msgctxt "regions_list"
+#~ msgid "Австрия"
+#~ msgstr "Republic of Austria"
+
+#~ msgctxt "regions_list"
+#~ msgid "Опольское воеводство"
+#~ msgstr "Opole Voivodeship"
+
+#~ msgctxt "mining"
+#~ msgid "Марка нефти"
+#~ msgstr "Oil brand"
+
+#~ msgctxt "mining"
+#~ msgid "Качество руды"
+#~ msgstr "Ore quality"
 
 #~ msgctxt "index"
 #~ msgid "Играть"

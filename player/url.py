@@ -7,6 +7,7 @@ from event.views.winter_festival import winter_festival
 from player.views.banned import banned
 from player.views.bonus_code.activate_code import activate_code
 from player.views.bonus_code.bonus_code import bonus_code
+from player.views.data_deleting import data_deleting
 from player.views.eula import eula
 from player.views.game_event.halloween import halloween
 from player.views.lists.damage_top import damage_top
@@ -52,6 +53,9 @@ urlpatterns = [
     url(r'^$', index, name='index'),
     # ЕУЛА
     url(r'^eula$', eula, name='eula'),
+    # удаление данных - us
+    url(r'^data_deleting', data_deleting, name='data_deleting'),
+
     url(r'^dmg_tbl$', dmg_tbl, name='dmg_tbl'),
     url(r'^skill_tbl$', skill_tbl, name='skill_tbl'),
     # Соглашение об обработке ПД
