@@ -22,7 +22,7 @@ urlpatterns = [
     url(r'^load_message_block$', get_message_block, name='get_message_block'),
 
     # страница новой рассылки
-    url(r'^new_admin_sending$', new_admin_sending, name='new_admin_sending'),
+    url(r'^new_admin_sending/$', new_admin_sending, name='new_admin_sending'),
     # новая рассылка админа
     url(r'^create_admin_sending/$', create_admin_sending, name='create_admin_sending'),
 ]
