@@ -103,6 +103,15 @@ def admin_sending(text):
 def create_admin_sending(request):
     if request.method == "POST":
 
+        if not request.user.is_superuser:
+            data = {
+                # 'response': _('positive_enrg_req'),
+                'response': 'Недостаточно прав',
+                'header': 'Новая рассылка',
+                'grey_btn': 'Закрыть',
+            }
+            return JResponse(data)
+
         admin_sending.delay(request.POST.get('message'))
 
         data = {
@@ -115,7 +124,7 @@ def create_admin_sending(request):
         data = {
             # 'response': _('positive_enrg_req'),
             'response': 'Ошибка типа запроса',
-            'header': 'Новая статья',
+            'header': 'Новая рассылка',
             'grey_btn': 'Закрыть',
         }
         return JResponse(data)

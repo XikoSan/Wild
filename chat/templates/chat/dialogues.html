@@ -25,6 +25,7 @@
   <section class="dialogs custom-scroll">
 		<h1 class="dialogs__title ct__page-title">
 			Диалоги
+			{% if user.is_superuser %}
 			<button class="nav__svg-newMessage " onclick="window.location.href = '/new_admin_sending/'" style="cursor: pointer">
 
 				<svg width="43" height="27" viewBox="0 0 43 27" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -35,6 +36,7 @@
 				</svg>
 
 			</button>
+			{% endif %}
 		</h1>
 		<ul class="dialogs__grid">
 			{% for dialog in dialogs %}
