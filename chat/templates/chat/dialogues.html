@@ -23,7 +23,19 @@
 <main>
 
   <section class="dialogs custom-scroll">
-		<h1 class="dialogs__title ct__page-title">Диалоги</h1>
+		<h1 class="dialogs__title ct__page-title">
+			Диалоги
+			<button class="nav__svg-newMessage " onclick="window.location.href = '/new_admin_sending/'" style="cursor: pointer">
+
+				<svg width="43" height="27" viewBox="0 0 43 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M16.2073 14.4351L0 25.6548V1.00525L16.2073 14.4351Z" fill="var(--c10two)"></path>
+					<path d="M25.8514 14.4398L42.0587 25.6594V1.00989L25.8514 14.4398Z" fill="var(--c10two)"></path>
+					<path d="M1.93774 0L9.08032 6.04102V6.04297L21.3049 16.3809L33.5295 6.04102L40.6702 0H32.4104H10.1975H1.93774Z" fill="var(--c10two)"></path>
+					<path d="M17.2631 15.9076L2.27258 26.7068H9.91768H32.2556H39.9007L24.9082 15.9076L21.0857 18.6621L17.2631 15.9076Z" fill="var(--c10two)"></path>
+				</svg>
+
+			</button>
+		</h1>
 		<ul class="dialogs__grid">
 			{% for dialog in dialogs %}
 			<li>
