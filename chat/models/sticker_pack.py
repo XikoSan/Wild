@@ -4,6 +4,12 @@ from django.db import models
 
 from player.actual_manager import ActualManager
 from player.player import Player
+from modeltranslation.translator import translator, TranslationOptions
+
+
+class StickerPackTranslation(TranslationOptions):
+    fields = ('title', 'creator', 'description',)
+
 
 # набор стикеров
 class StickerPack(models.Model):
@@ -42,3 +48,5 @@ class StickerPack(models.Model):
     class Meta:
         verbose_name = "Стикерпак"
         verbose_name_plural = "Стикерпаки"
+
+translator.register(StickerPack, StickerPackTranslation)

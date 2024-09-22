@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-22 19:33+0300\n"
-"PO-Revision-Date: 2024-09-22 19:35+0300\n"
+"POT-Creation-Date: 2024-09-22 21:09+0300\n"
+"PO-Revision-Date: 2024-09-22 21:13+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -79,7 +79,6 @@ msgid "обновить"
 msgstr "update"
 
 #: article/templates/article/new_article.html:86
-#: chat/templates/chat/mass_sending/new_sending.html:44
 msgctxt "article"
 msgid "опубликовать"
 msgstr "publish"
@@ -245,6 +244,41 @@ msgstr "Cancel"
 #: player/templates/player/redesign/profile.html:511
 msgid "Загрузить"
 msgstr "Upload"
+
+#: chat/templates/chat/dialogue.html:31
+msgctxt "chat"
+msgid "Загрузить предыдущие сообщения"
+msgstr "Load previous messages"
+
+#: chat/templates/chat/dialogues.html:27
+msgctxt "chat"
+msgid "Диалоги"
+msgstr "Dialogues"
+
+#: chat/templates/chat/mass_sending/new_sending.html:18
+msgctxt "chat"
+msgid "Новая рассылка"
+msgstr "New mailing"
+
+#: chat/templates/chat/mass_sending/new_sending.html:44
+msgctxt "chat"
+msgid "отправить"
+msgstr "send"
+
+#: chat/templates/chat/sticker-shop.html:39
+msgctxt "chat"
+msgid "Магазин стикеров"
+msgstr "Stickers shop"
+
+#: chat/templates/chat/sticker-shop.html:72
+msgctxt "chat"
+msgid "Купить набор"
+msgstr "Buy a pack"
+
+#: chat/templates/chat/sticker-shop.html:116
+msgctxt "chat"
+msgid "Похоже, вы скупили все стикерпаки. Ожидайте выхода новых!"
+msgstr "Looks like you've bought all the sticker packs. Stay tuned for more!"
 
 #: chat/views/messages/dialogue.py:169
 #, python-brace-format

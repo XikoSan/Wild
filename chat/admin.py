@@ -9,6 +9,7 @@ from chat.models.messages.chat_members import ChatMembers
 from chat.models.sticker import Sticker
 from chat.models.sticker_pack import StickerPack
 from chat.models.stickers_ownership import StickersOwnership
+from modeltranslation.admin import TabbedTranslationAdmin
 
 
 class StickerAdmin(admin.ModelAdmin):
@@ -17,6 +18,12 @@ class StickerAdmin(admin.ModelAdmin):
 
     def get_pack_name(self, obj):
         return obj.pack.title
+
+
+class StickerPackAdmin(TabbedTranslationAdmin):
+
+    raw_id_fields = ('owner',)
+    list_display = ('title', 'creator', 'price')
 
 
 class StickersOwnershipAdmin(admin.ModelAdmin):
@@ -46,6 +53,6 @@ admin.site.register(Chat, ChatAdmin)
 admin.site.register(MessageBlock, MessageBlockAdmin)
 admin.site.register(ChatMembers, ChatMembersAdmin)
 
-admin.site.register(StickerPack)
+admin.site.register(StickerPack, StickerPackAdmin)
 admin.site.register(StickersOwnership, StickersOwnershipAdmin)
 admin.site.register(Sticker, StickerAdmin)

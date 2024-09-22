@@ -36,7 +36,7 @@
 {% block content %}
 <section class="shop custom-scroll">
 
-  <h1 class="shop__title ct__page-title">Магазин стикеров</h1>
+  <h1 class="shop__title ct__page-title">{% trans 'Магазин стикеров' context "chat" %}</h1>
 
   <div class="shop__container">
     {% if available_packs %}
@@ -46,7 +46,7 @@
       <li>
         <button class="shop__tab {% if forloop.counter0 == 0 %}active{% endif %}">
           <img src="{{ header_img_dict|dict_key:pack.pk }}">
-          <span>{{ pack.title }}</span>
+          <span>{% if not pack.title %}{{ pack.title_en }}{% else %}{{ pack.title }}{% endif %}</span>
         </button>
       </li>
       {% endfor %}
@@ -62,14 +62,14 @@
           <div class="shop__stickersText">
             <p>Автор: <a href="{{ available_packs|first|get_attr:'creator_link' }}">{{ pack.creator }}</a></p>
             {% autoescape off %}
-                {{ pack.description }}
+                {% if not pack.description %}{{ pack.description_en }}{% else %}{{ pack.description }}{% endif %}
              {% endautoescape %}
           </div>
 
           <div class="shop__line"></div>
 
           <div class="shop__stickersBuy">
-            <h3>Купить набор:</h3>
+            <h3>{% trans 'Купить набор' context "chat" %}:</h3>
             <form class="buy_pack_form" role="form">
               {% csrf_token %}
               <input type="hidden" id="pack_id" name="pack_id" value="{% localize off %}{{ pack.pk }}{% endlocalize %}">
@@ -113,7 +113,7 @@
     text-align: center;
     margin: 0;
     font-size: 15em;
-">Похоже, вы скупили все стикерпаки. Ожидайте выхода новых!</h2>
+">{% trans 'Похоже, вы скупили все стикерпаки. Ожидайте выхода новых!' context "chat" %}</h2>
     {% endif %}
   </div>
 
