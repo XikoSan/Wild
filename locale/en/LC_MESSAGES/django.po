@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-19 19:25+0300\n"
-"PO-Revision-Date: 2024-09-19 19:29+0300\n"
+"POT-Creation-Date: 2024-09-22 19:33+0300\n"
+"PO-Revision-Date: 2024-09-22 19:35+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -79,6 +79,7 @@ msgid "обновить"
 msgstr "update"
 
 #: article/templates/article/new_article.html:86
+#: chat/templates/chat/mass_sending/new_sending.html:44
 msgctxt "article"
 msgid "опубликовать"
 msgstr "publish"
@@ -1356,9 +1357,6 @@ msgstr "Incorrect color code"
 #: player/views/open_lootboxes.py:59 player/views/open_lootboxes.py:134
 #: player/views/set_language.py:40 player/views/set_language.py:56
 #: player/views/set_timezone.py:29 player/views/set_timezone.py:45
-#: skill/views/skill_cancel.py:36 skill/views/skill_cancel.py:44
-#: skill/views/skill_cancel.py:52 skill/views/skill_cancel.py:62
-#: skill/views/skill_cancel.py:77
 #: storage/views/vault/avia_box/loot_aviaboxes.py:56
 #: storage/views/vault/avia_box/open_aviaboxes.py:30
 #: storage/views/vault/avia_box/open_aviaboxes.py:44
@@ -2252,6 +2250,7 @@ msgstr "in queue"
 #: player/templates/player/redesign/overview_skills.html:60
 #: player/templates/player/redesign/overview_skills.html:126
 #: player/templates/player/redesign/overview_skills.html:188
+#: skill/templates/redesign/skill/skill_list.html:84
 msgctxt "skills"
 msgid "изучить"
 msgstr "up skill"
@@ -2297,7 +2296,7 @@ msgstr "Continue"
 #: player/templates/player/redesign/overview_skills.html:233
 msgctxt "skills"
 msgid "Назад"
-msgstr ""
+msgstr "Back"
 
 #: player/templates/player/redesign/player_repost.html:4
 msgctxt "repost"
@@ -2805,11 +2804,9 @@ msgid "С новым годом!"
 msgstr ""
 
 #: player/views/lists/cash_top.py:111
-#, fuzzy
-#| msgid "Топ богатейших"
 msgctxt "lists"
 msgid "Топ богатейших"
-msgstr "Top of richest"
+msgstr "Richest top"
 
 #: player/views/lists/damage_top.py:109 player/views/lists/damage_top.py:110
 #: war/views/open_war_side_list.py:91 war/views/open_war_side_list.py:92
@@ -2818,26 +2815,19 @@ msgid "Урон"
 msgstr "Damage"
 
 #: player/views/lists/damage_top.py:133
-#, fuzzy
-#| msgctxt "party_manage"
-#| msgid "Тип партии"
 msgctxt "lists"
 msgid "Топ по урону"
-msgstr "Party type"
+msgstr "Damage top"
 
 #: player/views/lists/region_citizens.py:64
-#, fuzzy
-#| msgid "Граждане региона"
 msgctxt "lists"
 msgid "Граждане региона"
 msgstr "Region citizens"
 
 #: player/views/lists/region_players.py:64
-#, fuzzy
-#| msgid "Жители региона"
 msgctxt "lists"
 msgid "Жители региона"
-msgstr "Region citizens"
+msgstr "Region residents"
 
 #: player/views/lists/skill_top.py:21
 msgid "Топ по характеристикам"
@@ -2846,22 +2836,16 @@ msgstr "Skill top"
 #: player/views/lists/world_online.py:61 player/views/lists/world_online.py:62
 #: player/views/lists/world_players.py:49
 #: player/views/lists/world_players.py:50
-#, fuzzy
-#| msgid "Регион"
 msgctxt "lists"
 msgid "Регион"
 msgstr "Region"
 
 #: player/views/lists/world_online.py:70
-#, fuzzy
-#| msgid "Мировой онлайн"
 msgctxt "lists"
 msgid "Мировой онлайн"
 msgstr "World online"
 
 #: player/views/lists/world_players.py:58
-#, fuzzy
-#| msgid "Мировое население"
 msgctxt "lists"
 msgid "Мировое население"
 msgstr "World pop"
@@ -2898,9 +2882,117 @@ msgstr "There is no such timezone"
 msgid "Изменение часового пояса"
 msgstr "Timezone change"
 
+#: player/views/skills/boost_skill.py:57 player/views/skills/up_skill.py:59
+#: skill/views/skill_cancel.py:74
+msgctxt "skills"
+msgid "Нет такого навыка"
+msgstr "No such skill"
+
+#: player/views/skills/boost_skill.py:58 player/views/skills/boost_skill.py:71
+#: player/views/skills/boost_skill.py:79 player/views/skills/boost_skill.py:93
+#: player/views/skills/boost_skill.py:103
+#: player/views/skills/boost_skill.py:112
+#: player/views/skills/boost_skill.py:122
+#: player/views/skills/boost_skill.py:167
+msgctxt "skills"
+msgid "Ускорение навыка"
+msgstr "Skill acceleration"
+
+#: player/views/skills/boost_skill.py:59 player/views/skills/boost_skill.py:72
+#: player/views/skills/boost_skill.py:80 player/views/skills/boost_skill.py:94
+#: player/views/skills/boost_skill.py:104
+#: player/views/skills/boost_skill.py:113
+#: player/views/skills/boost_skill.py:123
+#: player/views/skills/boost_skill.py:168 player/views/skills/up_skill.py:35
+#: player/views/skills/up_skill.py:61 player/views/skills/up_skill.py:77
+#: player/views/skills/up_skill.py:97 player/views/skills/up_skill.py:107
+#: player/views/skills/up_skill.py:115 player/views/skills/up_skill.py:123
+#: player/views/skills/up_skill.py:192 skill/views/skill_cancel.py:35
+#: skill/views/skill_cancel.py:43 skill/views/skill_cancel.py:51
+#: skill/views/skill_cancel.py:61 skill/views/skill_cancel.py:76
+#: skill/views/skill_cancel.py:100
+msgctxt "core"
+msgid "Закрыть"
+msgstr "Close"
+
+#: player/views/skills/boost_skill.py:70
+msgctxt "skills"
+msgid "Нельзя ускорить навык"
+msgstr "You can't speed up the skill"
+
+#: player/views/skills/boost_skill.py:78
+msgctxt "skills"
+msgid "Нет склада с бустерами в этом регионе"
+msgstr "There is no booster at the warehouse in this region"
+
+#: player/views/skills/boost_skill.py:92
+#, python-format
+msgctxt "skills"
+msgid "Недостаточно бустера %(booster_name)s. Требуется: %(boosters_need)s."
+msgstr "Not enough booster %(booster_name)s. Required: %(boosters_need)s."
+
+#: player/views/skills/boost_skill.py:102
+msgctxt "skills"
+msgid "Очередь прокачки Характеристик пуста"
+msgstr "The Characteristics upgrade queue is empty"
+
+#: player/views/skills/boost_skill.py:111
+msgctxt "skills"
+msgid "Вы прокачиваете другую Характеристику"
+msgstr "You are leveling up another Characteristic"
+
+#: player/views/skills/boost_skill.py:121
+msgctxt "skills"
+msgid "Нельзя ускорить последние пять минут улучшения"
+msgstr "You can't speed up the last five minutes of the upgrade"
+
+#: player/views/skills/boost_skill.py:166 player/views/skills/up_skill.py:190
+#: skill/views/skill_cancel.py:98
+msgctxt "core"
+msgid "Ошибка типа запроса"
+msgstr "Request type error"
+
 #: player/views/skills/skill_queue.py:30 skill/views/skills_list.py:59
 msgid "Навыки"
 msgstr "Skills"
+
+#: player/views/skills/up_skill.py:33
+msgctxt "skills"
+msgid "Отсутствует обязательный аргумент запроса"
+msgstr "A required request argument is missing"
+
+#: player/views/skills/up_skill.py:34 player/views/skills/up_skill.py:60
+#: player/views/skills/up_skill.py:76 player/views/skills/up_skill.py:96
+#: player/views/skills/up_skill.py:106 player/views/skills/up_skill.py:114
+#: player/views/skills/up_skill.py:122 player/views/skills/up_skill.py:191
+msgctxt "skills"
+msgid "Изучение навыка"
+msgstr "Skill learning"
+
+#: player/views/skills/up_skill.py:75
+msgctxt "skills"
+msgid "Ваш уровень характеристик недостаточен"
+msgstr "Your characteristics level is insufficient"
+
+#: player/views/skills/up_skill.py:95
+msgctxt "skills"
+msgid "Данный навык изучен полностью или полностью запланирован"
+msgstr "This skill is fully learned or fully planned"
+
+#: player/views/skills/up_skill.py:104
+msgctxt "skills"
+msgid "Недостаточно денег, необходимо: "
+msgstr "Not enough money, required: "
+
+#: player/views/skills/up_skill.py:113
+msgctxt "skills"
+msgid "Навык уже изучается"
+msgstr "The skill is already being learned"
+
+#: player/views/skills/up_skill.py:121
+msgctxt "skills"
+msgid "Очередь навыков заполнена"
+msgstr "Skill queue is full"
 
 #: player/views/translate/translate.py:89
 #, python-brace-format
@@ -3178,12 +3270,12 @@ msgstr "Unknown resource type"
 #: skill/models/biochemistry.py:9 skill/models/biochemistry.py:34
 msgctxt "skills"
 msgid "Биохимия"
-msgstr ""
+msgstr "Biochemistry"
 
 #: skill/models/biochemistry.py:10
 msgctxt "skills"
 msgid "Открывает возможность производства бустеров Характеристик"
-msgstr ""
+msgstr "Gives the ability to produce boosters of Characteristics"
 
 #: skill/models/coherence.py:15 skill/models/coherence.py:62
 msgctxt "skills"
@@ -3272,39 +3364,56 @@ msgstr ""
 "with costs rounded up"
 
 #: skill/models/trophy_engineering.py:9 skill/models/trophy_engineering.py:34
-#, fuzzy
-#| msgctxt "trading"
-#| msgid "Выбранная категория"
 msgctxt "skills"
 msgid "Трофейная инженерия"
-msgstr "Selected category"
+msgstr "Trophy engineering"
 
 #: skill/models/trophy_engineering.py:10
 msgctxt "skills"
 msgid "Открывает возможность конвертации оружия в трофейные образцы"
-msgstr ""
+msgstr "Unlocks the ability to convert weapons into trophy samples"
 
-#: skill/views/skill_cancel.py:34
+#: skill/templates/redesign/skill/skill_list.html:52
+msgctxt "skills"
+msgid "уровень"
+msgstr "level"
+
+#: skill/templates/redesign/skill/skill_list.html:52
+msgctxt "skills"
+msgid "в очереди"
+msgstr "in queue"
+
+#: skill/templates/redesign/skill/skill_list.html:54
+msgctxt "skills"
+msgid "время изучения"
+msgstr "skill up time"
+
+#: skill/templates/redesign/skill/skill_list.html:62
+msgctxt "skills"
+msgid "недоступно"
+msgstr "unavailable"
+
+#: skill/views/skill_cancel.py:33
+msgctxt "skills"
 msgid "ID навыка должен быть числом"
 msgstr "Skill ID must be a number"
 
-#: skill/views/skill_cancel.py:35 skill/views/skill_cancel.py:43
-#: skill/views/skill_cancel.py:51 skill/views/skill_cancel.py:61
-#: skill/views/skill_cancel.py:76
-msgid "Ошибка отмены навыка"
-msgstr "Skill cancellation error"
-
-#: skill/views/skill_cancel.py:42
-msgid "У вас нет активного премиум-аккаунта"
-msgstr "You do not have an active premium account"
-
+#: skill/views/skill_cancel.py:34 skill/views/skill_cancel.py:42
 #: skill/views/skill_cancel.py:50 skill/views/skill_cancel.py:60
+#: skill/views/skill_cancel.py:75 skill/views/skill_cancel.py:99
+msgctxt "skills"
+msgid "Отмена навыка"
+msgstr "Skill cancellation"
+
+#: skill/views/skill_cancel.py:41
+msgctxt "skills"
+msgid "У вас нет активного премиум-аккаунта"
+msgstr "You don't have an active premium account"
+
+#: skill/views/skill_cancel.py:49 skill/views/skill_cancel.py:59
+msgctxt "skills"
 msgid "Нет навыков в очереди"
 msgstr "No skills in queue"
-
-#: skill/views/skill_cancel.py:75
-msgid "Нет такого навыка"
-msgstr "No such skill"
 
 #: state/models/state.py:37
 msgid "Свободная"
@@ -4438,7 +4547,7 @@ msgstr "There is no Warehouse in this region"
 #: storage/views/storage/cash_transfer.py:107
 msgctxt "storage"
 msgid "Нельзя вывести деньги из атакованного региона"
-msgstr ""
+msgstr "It is impossible to withdraw money from the attacked region"
 
 #: storage/views/storage/cash_transfer.py:127
 msgctxt "storage"
@@ -4463,12 +4572,9 @@ msgid "Не найден Склад списания материалов"
 msgstr "Materials source warehouse not found"
 
 #: storage/views/storage/new_storage.py:62
-#, fuzzy
-#| msgctxt "storage"
-#| msgid "Недостаточно ресурсов"
 msgctxt "storage"
 msgid "Недостаточно ресурса: "
-msgstr "Not enough resources"
+msgstr "Not enough resource: "
 
 #: storage/views/storage/new_storage.py:82
 msgctxt "storage"
@@ -4880,6 +4986,12 @@ msgstr "No such skill"
 msgid "Нет такой записи об участии в бою"
 msgstr ""
 
+#~ msgid "Ошибка отмены навыка"
+#~ msgstr "Skill cancellation error"
+
+#~ msgid "Нет такого навыка"
+#~ msgstr "No such skill"
+
 #~ msgctxt "regions_list"
 #~ msgid "Тюрингия"
 #~ msgstr "Thuringia"
@@ -4943,14 +5055,6 @@ msgstr ""
 #~ msgctxt "party_manage"
 #~ msgid "должности"
 #~ msgstr "positions"
-
-#~ msgctxt "skills"
-#~ msgid "недоступно"
-#~ msgstr "unavailable"
-
-#~ msgctxt "skills"
-#~ msgid "изучается..."
-#~ msgstr "in process..."
 
 #~ msgctxt "trading"
 #~ msgid "госзакупки"

@@ -12,6 +12,8 @@ from player.views.get_subclasses import get_subclasses
 from skill.models.excavation import Excavation
 from skill.models.skill import Skill
 from wild_politics.settings import JResponse
+from django.utils.translation import pgettext
+
 
 
 # изучить навык
@@ -28,10 +30,9 @@ def up_skill(request):
             player.fingerprint = request.POST.get('fprint')
         else:
             data = {
-                # 'response': _('positive_enrg_req'),
-                'response': 'Отсутствует обязательный аргумент запроса',
-                'header': 'Изучение навыка',
-                'grey_btn': 'Закрыть',
+                'response': pgettext('skills', 'Отсутствует обязательный аргумент запроса'),
+                'header': pgettext('skills', 'Изучение навыка'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
 
@@ -55,10 +56,9 @@ def up_skill(request):
 
         if skill not in skills_list:
             data = {
-                # 'response': _('positive_enrg_req'),
-                'response': 'Нет такого навыка',
-                'header': 'Изучение навыка',
-                'grey_btn': 'Закрыть',
+                'response': pgettext('skills', 'Нет такого навыка'),
+                'header': pgettext('skills', 'Изучение навыка'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
 
@@ -72,10 +72,9 @@ def up_skill(request):
 
             if not has_right:
                 data = {
-                    # 'response': _('positive_enrg_req'),
-                    'response': 'Ваш уровень характеристик недостаточен',
-                    'header': 'Изучение навыка',
-                    'grey_btn': 'Закрыть',
+                    'response': pgettext('skills', 'Ваш уровень характеристик недостаточен'),
+                    'header': pgettext('skills', 'Изучение навыка'),
+                    'grey_btn': pgettext('core', 'Закрыть'),
                 }
                 return JResponse(data)
 
@@ -93,37 +92,35 @@ def up_skill(request):
 
             if cur_level + skill_cnt >= skill_cls.max_level:
                 data = {
-                    # 'response': _('positive_enrg_req'),
-                    'response': 'Данный навык изучен полностью или полностью запланирован',
-                    'header': 'Изучение навыка',
-                    'grey_btn': 'Закрыть',
+                    'response': pgettext('skills', 'Данный навык изучен полностью или полностью запланирован'),
+                    'header': pgettext('skills', 'Изучение навыка'),
+                    'grey_btn': pgettext('core', 'Закрыть'),
                 }
                 return JResponse(data)
 
         if skill in ['power', 'knowledge', 'endurance']:
             if player.cash < ((getattr(player, skill) + skill_cnt + 1) ** 2) * 10:
                 data = {
-                    # 'response': _('positive_enrg_req'),
-                    'response': 'Недостаточно денег, необходимо: ' + str(
+                    'response': pgettext('skills', 'Недостаточно денег, необходимо: ') + str(
                         ((getattr(player, skill) + skill_cnt + 1) ** 2) * 10),
-                    'header': 'Изучение навыка',
-                    'grey_btn': 'Закрыть',
+                    'header': pgettext('skills', 'Изучение навыка'),
+                    'grey_btn': pgettext('core', 'Закрыть'),
                 }
                 return JResponse(data)
 
         if not premium and SkillTraining.objects.filter(player=player).exists():
             data = {
-                'response': 'Навык уже изучается',
-                'header': 'Изучение навыка',
-                'grey_btn': 'Закрыть',
+                'response': pgettext('skills', 'Навык уже изучается'),
+                'header': pgettext('skills', 'Изучение навыка'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
 
         if SkillTraining.objects.filter(player=player).count() > 5:
             data = {
-                'response': 'Очередь навыков заполнена',
-                'header': 'Изучение навыка',
-                'grey_btn': 'Закрыть',
+                'response': pgettext('skills', 'Очередь навыков заполнена'),
+                'header': pgettext('skills', 'Изучение навыка'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
 
@@ -190,9 +187,8 @@ def up_skill(request):
     # если страницу только грузят
     else:
         data = {
-            # 'response': _('positive_enrg_req'),
-            'response': 'Ошибка типа запроса',
-            'header': 'Изучение навыка',
-            'grey_btn': 'Закрыть',
+            'response': pgettext('core', 'Ошибка типа запроса'),
+            'header': pgettext('skills', 'Изучение навыка'),
+            'grey_btn': pgettext('core', 'Закрыть'),
         }
         return JResponse(data)

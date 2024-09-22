@@ -6,6 +6,7 @@
 {% load get_hh_mm_ss %}
 {% load has_key %}
 {% load get_attr %}
+{% load l10n %}{% load i18n %}
 {% load get_class_name %}
 {% block content %}
 <script>
@@ -48,9 +49,9 @@
 				<div class="skills__dopInfoBlock">
 					<div class="skills__line"></div>
 					<p class="skills__levelTime">
-						<span>уровень: {{ skills_dict|dict_key:cl_name }} / {{ skill_cl|get_attr:'max_level' }} {% if q_level %}({{ q_level }} в очереди){% endif %}</span>
+						<span>{% trans 'уровень' context "skills" %}: {{ skills_dict|dict_key:cl_name }} / {{ skill_cl|get_attr:'max_level' }} {% if q_level %}({{ q_level }} {% trans 'в очереди' context "skills" %}){% endif %}</span>
 						{% if not train or premium and has_slot  %}
-						<span>время изучения: 
+						<span>{% trans 'время изучения' context "skills" %}: 
 									{% if premium %}
                                     {{ skills_dict|dict_key:cl_name|get_sum:q_level|get_sum:1|get_mul:2400|get_hh_mm_ss }}
                                     {% else %}
@@ -58,7 +59,7 @@
                                     {% endif %}
 						</span>
 						{% else %}
-						<span>недоступно</span>
+						<span>{% trans 'недоступно' context "skills" %}</span>
 						{% endif %}
 					</p>
 				</div>
@@ -80,7 +81,7 @@
 							<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
 						</g>
 					</svg>
-					<span>изучить</span>
+					<span>{% trans 'изучить' context "skills" %}</span>
 				</button>
 					{% endif %}
 				{% endif %}

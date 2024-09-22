@@ -16,6 +16,7 @@ from skill.models.skill import Skill
 from storage.models.stock import Stock, Good
 from storage.models.storage import Storage
 from wild_politics.settings import JResponse
+from django.utils.translation import pgettext
 
 
 # ускорить навык
@@ -53,10 +54,9 @@ def boost_skill(request):
 
         if skill not in skills_list:
             data = {
-                # 'response': _('positive_enrg_req'),
-                'response': 'Нет такого навыка',
-                'header': 'Ускорение навыка',
-                'grey_btn': 'Закрыть',
+                'response': pgettext('skills', 'Нет такого навыка'),
+                'header': pgettext('skills', 'Ускорение навыка'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
 
@@ -67,18 +67,17 @@ def boost_skill(request):
 
         if skill_cls:
             data = {
-                # 'response': _('positive_enrg_req'),
-                'response': 'Нельзя ускорить навык',
-                'header': 'Ускорение навыка',
-                'grey_btn': 'Закрыть',
+                'response': pgettext('skills', 'Нельзя ускорить навык'),
+                'header': pgettext('skills', 'Ускорение навыка'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
 
         if not Storage.actual.filter(owner=player, region=player.region).exists():
             data = {
-                'response': 'Нет склада с бустерами в этом регионе',
-                'header': 'Ускорение навыка',
-                'grey_btn': 'Закрыть',
+                'response': pgettext('skills', 'Нет склада с бустерами в этом регионе'),
+                'header': pgettext('skills', 'Ускорение навыка'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
 
@@ -88,10 +87,11 @@ def boost_skill(request):
         boosters_need = getattr(player, skill) // 50 + 1
 
         if not Stock.objects.filter(storage=storage, stock__gte=boosters_need, good=pills_dict[skill]).exists():
+            booster_name = pills_dict[skill].name
             data = {
-                'response': f'Недостаточно бустера {pills_dict[skill].name}. Требуется: {boosters_need}',
-                'header': 'Ускорение навыка',
-                'grey_btn': 'Закрыть',
+                'response': pgettext('skills', "Недостаточно бустера %(booster_name)s. Требуется: %(boosters_need)s.") % {"booster_name": booster_name, "boosters_need": boosters_need},
+                'header': pgettext('skills', 'Ускорение навыка'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
 
@@ -99,20 +99,18 @@ def boost_skill(request):
 
         if not skill_queue:
             data = {
-                # 'response': _('positive_enrg_req'),
-                'response': 'Очередь прокачки Характеристик пуста',
-                'header': 'Ускорение навыка',
-                'grey_btn': 'Закрыть',
+                'response': pgettext('skills', 'Очередь прокачки Характеристик пуста'),
+                'header': pgettext('skills', 'Ускорение навыка'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
 
         # Прокачивается тот навык, что хотят ускорить
         if not skill_queue[0].skill == skill:
             data = {
-                # 'response': _('positive_enrg_req'),
-                'response': 'Вы прокачиваете другую Характеристику',
-                'header': 'Ускорение навыка',
-                'grey_btn': 'Закрыть',
+                'response': pgettext('skills', 'Вы прокачиваете другую Характеристику'),
+                'header': pgettext('skills', 'Ускорение навыка'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
 
@@ -120,9 +118,9 @@ def boost_skill(request):
         if not (skill_queue[0].end_dtime > timezone.now()
                 and skill_queue[0].end_dtime - timezone.now() > datetime.timedelta(seconds=300)):
             data = {
-                'response': 'Нельзя ускорить последние пять минут улучшения',
-                'header': 'Ускорение навыка',
-                'grey_btn': 'Закрыть',
+                'response': pgettext('skills', 'Нельзя ускорить последние пять минут улучшения'),
+                'header': pgettext('skills', 'Ускорение навыка'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
 
@@ -165,9 +163,8 @@ def boost_skill(request):
     # если страницу только грузят
     else:
         data = {
-            # 'response': _('positive_enrg_req'),
-            'response': 'Ошибка типа запроса',
-            'header': 'Ускорение навыка',
-            'grey_btn': 'Закрыть',
+            'response': pgettext('core', 'Ошибка типа запроса'),
+            'header': pgettext('skills', 'Ускорение навыка'),
+            'grey_btn': pgettext('core', 'Закрыть'),
         }
         return JResponse(data)
