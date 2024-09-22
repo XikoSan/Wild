@@ -6,12 +6,12 @@
 <!--передача ресурсов-->
 <div class="gover__newInner TransferResources">
     <script>
-        var total_stocks = {};
+        var transfer_total_stocks = {};
 
    {% with stocks=data|dict_key:'stocks' %}
         {% for stock in stocks|get_key_list %}
 
-            total_stocks["{{ stock }}"] = {% localize off %}{{ stocks|dict_key:stock }}{% endlocalize %};
+            transfer_total_stocks["{{ stock }}"] = {% localize off %}{{ stocks|dict_key:stock }}{% endlocalize %};
 
         {% endfor %}
    {% endwith %}
@@ -64,7 +64,7 @@
         if (transferResources.value !== "") {
 
             // Получаем значение из словаря по ключу из селекта
-            const maxVal = total_stocks[transferResources.value];
+            const maxVal = transfer_total_stocks[transferResources.value];
 
             // Устанавливаем атрибут max у transfer_resources_value
             transferResourcesValue.setAttribute('max', maxVal);
