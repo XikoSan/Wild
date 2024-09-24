@@ -19,6 +19,7 @@ from player.player import Player
 from player.player_settings import PlayerSettings
 from region.models.plane import Plane
 from war.models.wars.player_damage import PlayerDamage
+from player.logs.test_log import TestLog
 
 
 @login_required(login_url='/')
@@ -188,6 +189,14 @@ def my_profile(request):
 
     # ---------------------
 
+    user_agent = request.META.get('HTTP_USER_AGENT', '')
+    test_points = None
+
+    if "WildPoliticsApp" in user_agent:
+        test_points = TestLog.objects.filter(player=player).count()
+
+    # ---------------------
+
     groups = list(player.account.groups.all().values_list('name', flat=True))
     page = 'player/profile.html'
     if 'redesign' not in groups:
@@ -224,6 +233,8 @@ def my_profile(request):
         'plane_url': plane_url,
 
         'inviting_event': inviting_event,
+
+        'test_points': test_points,
 
     })
 

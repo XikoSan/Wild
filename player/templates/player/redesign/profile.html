@@ -319,6 +319,18 @@
 					</p>
 				</div>
 
+				{% if test_points %}
+				<div class="ct__s">
+					<h2 class="ct__s-title">{% trans 'очки тестирования Android' context "profile" %}</h2>
+					<p class="ct__s-text">
+						{{ test_points }}
+<!--						<a href="/cash_top/">-->
+<!--							{% trans '(к регламенту)' context "profile" %}-->
+<!--						</a>-->
+					</p>
+				</div>
+				{% endif %}
+
 				<div class="ct__s">
 					<h2 class="ct__s-title">{% trans 'место в рейтинге' context "profile" %}</h2>
 					<p class="ct__s-text">
