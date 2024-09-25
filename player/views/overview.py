@@ -267,7 +267,7 @@ def overview(request):
             delay_in_sec=86400
         )
 
-    player, reward_message = old_server_rewards(player)
+    # player, reward_message = old_server_rewards(player)
 
     # call_donut_message = False
     #
