@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-22 21:09+0300\n"
-"PO-Revision-Date: 2024-09-22 21:13+0300\n"
+"POT-Creation-Date: 2024-09-26 01:56+0300\n"
+"PO-Revision-Date: 2024-09-26 01:56+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -37,13 +37,12 @@ msgstr "edit"
 
 #: article/templates/article/article.html:346
 #: chat/templates/chat/dialogue.html:160
-#: player/templates/player/redesign/overview.html:948
 msgid "У вас пока еще нет стикеров"
 msgstr "You don't have stickers yet"
 
 #: article/templates/article/article.html:359
 #: chat/templates/chat/dialogue.html:173
-#: player/templates/player/redesign/overview.html:961
+#: player/templates/player/redesign/overview.html:965
 msgctxt "overview"
 msgid "магазин"
 msgstr "shop"
@@ -234,14 +233,14 @@ msgstr "UAV"
 #: player/templates/player/redesign/new_player.html:141
 #: player/templates/player/redesign/new_player.html:155
 #: player/templates/player/redesign/new_player.html:183
-#: player/templates/player/redesign/profile.html:510
+#: player/templates/player/redesign/profile.html:522
 msgid "Отмена"
 msgstr "Cancel"
 
 #: bill/templates/state/redesign/drafts/change_coat.html:94
 #: party/templates/party/redesign/manage.html:420
 #: player/templates/player/redesign/new_player.html:142
-#: player/templates/player/redesign/profile.html:511
+#: player/templates/player/redesign/profile.html:523
 msgid "Загрузить"
 msgstr "Upload"
 
@@ -1102,6 +1101,69 @@ msgctxt "has_party"
 msgid "исключить"
 msgstr "expel"
 
+#: party/templates/party/redesign/party.html:158
+msgctxt "education"
+msgid ""
+"Вам доступен общий список партий со всего света, чтобы Вы могли выбрать ту, "
+"что больше всего Вам подходит."
+msgstr ""
+"You have access to a comprehensive list of parties from around the world, so "
+"you can choose the one that suits you best."
+
+#: party/templates/party/redesign/party.html:161
+msgctxt "education"
+msgid ""
+"В свою очередь, рекомендую присмотреться к крупным коллективам - обычно, они "
+"предоставляют наиболее выгодные условия новым участникам."
+msgstr ""
+"In turn, I recommend looking into larger groups—usually, they offer the most "
+"favorable conditions for new members."
+
+#: party/templates/party/redesign/party.html:165
+msgctxt "education"
+msgid ""
+"Выберите любую партию, и нажмите Вступить. После чего, рекомендую связаться "
+"с её главой. А я же свяжусь с Вами позже. Благодарю за внимание!"
+msgstr ""
+"Choose any party and click Join. After that, I recommend reaching out to its "
+"leader. I will get in touch with you later. Thank you for your attention!"
+
+#: party/templates/party/redesign/party.html:169
+msgctxt "education"
+msgid "Успехов вам!"
+msgstr "Good luck to you!"
+
+#: party/templates/party/redesign/party.html:175
+msgctxt "education"
+msgid ""
+"К сожалению, я не смогла подобрать для вас ни одной партии со свободным "
+"вступлением."
+msgstr ""
+"Unfortunately, I couldn't find any parties with open enrollment for you."
+
+#: party/templates/party/redesign/party.html:178
+msgctxt "education"
+msgid ""
+"Поэтому, предлагаю вам вернуться к общему чату в Обзоре, и предложить свою "
+"кандидатуру там."
+msgstr ""
+"Therefore, I suggest you return to the general chat in Overview and propose "
+"your candidacy there."
+
+#: party/templates/party/redesign/party.html:181
+msgctxt "education"
+msgid ""
+"Альтернативный вариант - создать собственную партию. Но будьте готовы "
+"самостоятельно обучать и организовывать людей."
+msgstr ""
+"An alternative option is to create your own party. But be prepared to train "
+"and organize people yourself."
+
+#: party/templates/party/redesign/party.html:184
+msgctxt "education"
+msgid "На этом наша экскурсия завершается. Благодарю за внимание!"
+msgstr "This concludes our tour. Thank you for your attention!"
+
 #: party/templates/party/redesign/party_blocks/has_party.html:12
 #: party/templates/party/redesign/party_blocks/no_party.html:10
 msgctxt "has_party"
@@ -1256,9 +1318,9 @@ msgid "Участников"
 msgstr "Members"
 
 #: party/templates/party/redesign/party_view.html:90
-#: player/templates/player/redesign/profile.html:327
-#: player/templates/player/redesign/profile.html:350
-#: player/templates/player/redesign/profile.html:364
+#: player/templates/player/redesign/profile.html:339
+#: player/templates/player/redesign/profile.html:362
+#: player/templates/player/redesign/profile.html:376
 #: player/templates/player/redesign/view_profile.html:148
 #: player/templates/player/redesign/view_profile.html:171
 #: player/templates/player/redesign/view_profile.html:185
@@ -1573,7 +1635,7 @@ msgstr "You are not a member of the specified party"
 msgid "Партия"
 msgstr "Party"
 
-#: player/decorators/captcha.py:98 war/consumers.py:122
+#: player/decorators/captcha.py:101 war/consumers.py:122
 msgid "Пройдите Captcha"
 msgstr ""
 
@@ -2094,6 +2156,21 @@ msgctxt "game_event"
 msgid "С новым годом!"
 msgstr "Merry Cristmas and Happy New Year!"
 
+#: player/templates/player/redesign/header.html:199
+msgctxt "education"
+msgid "Назад"
+msgstr "Back"
+
+#: player/templates/player/redesign/header.html:200
+msgctxt "education"
+msgid "Дальше"
+msgstr "Continue"
+
+#: player/templates/player/redesign/header.html:202
+msgctxt "education"
+msgid "Не показывать обучение"
+msgstr "Do not show starting guide"
+
 #: player/templates/player/redesign/lists/skill_top.html:26
 msgid "Сила"
 msgstr "Strength"
@@ -2178,85 +2255,252 @@ msgstr "Avatar"
 msgid "Часовой пояс"
 msgstr "Timezone"
 
-#: player/templates/player/redesign/overview.html:185
+#: player/templates/player/redesign/overview.html:92
+#, python-format
+msgctxt "education"
+msgid ""
+"Здравствуйте! Меня зовут %(assistant)s, я ваш ассистент. Добро пожаловать в "
+"мир Wild Politics!"
+msgstr ""
+"Hi there! My name is %(assistant)s, and I'm your assistant. Welcome to the "
+"world of Wild Politics!"
+
+#: player/templates/player/redesign/overview.html:95
+msgctxt "education"
+msgid "Wild Politics - это экономико-политический симулятор."
+msgstr "Wild Politics is an economic and political simulator."
+
+#: player/templates/player/redesign/overview.html:98
+msgctxt "education"
+msgid ""
+"Множество игроков, объединённых общими целями, развивают свои государства и "
+"расширяют их влияние."
+msgstr ""
+"A multitude of players, united by common goals, develop their nations and "
+"expand their influence."
+
+#: player/templates/player/redesign/overview.html:101
+msgctxt "education"
+msgid "Создают крупные партии, чтобы повести их за собой, к вершинам власти."
+msgstr "They form major parties to lead them to the heights of power."
+
+#: player/templates/player/redesign/overview.html:104
+msgctxt "education"
+msgid ""
+"Ведут крупномасштабные войны и заключают союзы, объединяющие целые "
+"континенты."
+msgstr ""
+"They wage large-scale wars and forge alliances that unite entire continents."
+
+#: player/templates/player/redesign/overview.html:107
+msgctxt "education"
+msgid ""
+"Создают бизнесы и корпорации. Основывают торговые сети. Распространяют своё "
+"влияние при помощи популярных СМИ."
+msgstr ""
+"They build businesses and corporations, establish trade networks, and spread "
+"their influence through popular media."
+
+#: player/templates/player/redesign/overview.html:110
+msgctxt "education"
+msgid ""
+"Вы обязательно добьётесь всего этого. Но для начала, позвольте познакомить "
+"Вас с текущим положением дел."
+msgstr ""
+"You’ll definitely achieve all of this. But first, let me introduce you to "
+"the current state of affairs."
+
+#: player/templates/player/redesign/overview.html:116
+#, python-format
+msgctxt "education"
+msgid ""
+"Сейчас Вы находитесь в государстве %(state)s, которому принадлежит регион "
+"%(region)s. Здесь представлена различная информация о регионе нашего "
+"местонахождения, а также мире в целом"
+msgstr ""
+"You are currently in the state %(state)s, which includes the region "
+"%(region)s. Here you will find various information about the region where we "
+"are located, as well as the world as a whole"
+
+#: player/templates/player/redesign/overview.html:118
+msgctxt "education"
+msgid ""
+"Сейчас Вы находитесь в независимом регионе. Здесь представлена различная "
+"информация о регионе нашего местонахождения, а также мире в целом"
+msgstr ""
+"You are currently in an independent region. Here you will find various "
+"information about the region where we are located, as well as the world as a "
+"whole"
+
+#: player/templates/player/redesign/overview.html:124
+msgctxt "education"
+msgid ""
+"В любом регионе государства можно основать партию, либо присоединиться к "
+"одной из уже существующих. Некоторые из них, по итогам выборов, проходят в "
+"Парламенты своих стран. Вы обязательно подберёте партию по душе - но чуть "
+"позже."
+msgstr ""
+"In any region of the state, you can either start your own party or join one "
+"of the existing ones. Some of these parties, after elections, make it into "
+"their countries' Parliaments. You'll definitely find a party that suits you "
+"— but that will come a bit later."
+
+#: player/templates/player/redesign/overview.html:127
+msgctxt "education"
+msgid ""
+"А сейчас обратите внимание на ваши характеристики. Их рекомендуется "
+"развивать постоянно, при наличии свободных средств."
+msgstr ""
+"For now, take a look at your characteristics. It’s recommended to keep "
+"improving them whenever you have the money."
+
+#: player/templates/player/redesign/overview.html:131
+msgctxt "education"
+msgid "Давайте сделаем вклад в ваше будущее прямо сейчас!"
+msgstr "Let's invest in your future right now!"
+
+#: player/templates/player/redesign/overview.html:135
+msgctxt "education"
+msgid ""
+"Отлично! Это маленький шаг для Вас, но гигантский скачок для Вашей карьеры!"
+msgstr "Great! This is a small step for you, but a giant leap for your career!"
+
+#: player/templates/player/redesign/overview.html:138
+#: region/templates/region/redesign/map.html:947
+#: region/templates/region/redesign/mining.html:308
+#: region/templates/region/redesign/mining.html:327
+#: storage/templates/storage/redesign/storage.html:517
+msgctxt "education"
+msgid "Награда: 200 золота"
+msgstr "Reward: 200 gold"
+
+#: player/templates/player/redesign/overview.html:142
+msgctxt "education"
+msgid ""
+"Общение - важная часть Вашей работы. Вам ещё предстоит множество раз "
+"договариваться и строить совместные планы, а также плести заговоры и рушить "
+"чужие."
+msgstr ""
+"Communication is a crucial part of your job. You’ll need to negotiate and "
+"collaborate on plans many times, as well as weave conspiracies and undermine "
+"others."
+
+#: player/templates/player/redesign/overview.html:147
+msgctxt "education"
+msgid ""
+"При желании, загляните сюда позже, и поздоровайтесь с коллегами. Обратите "
+"внимание, что люди вашего социального уровня не приемлют грубостей и "
+"оскорблений. Помните, вежливость - лучшее оружие политика."
+msgstr ""
+"If you wish, feel free to stop by here later and say hello to your "
+"colleagues. Keep in mind that people at your social level do not accept "
+"rudeness or insults. Remember, courtesy is a politician's best weapon."
+
+#: player/templates/player/redesign/overview.html:150
+msgctxt "education"
+msgid ""
+"Мне только что поступил звонок от Ваших инвесторов. Они ожидают от Вас "
+"конкретных действий, и готовы за них платить. Давайте заработаем сегодня "
+"много денег!"
+msgstr ""
+"I just received a call from your investors. They expect concrete actions "
+"from you and are ready to pay for them. Let’s make a lot of money today!"
+
+#: player/templates/player/redesign/overview.html:189
+msgctxt "overview"
 msgid "обзор"
 msgstr "overview"
 
-#: player/templates/player/redesign/overview.html:206
+#: player/templates/player/redesign/overview.html:210
+msgctxt "overview"
 msgid "чат"
 msgstr "chat"
 
-#: player/templates/player/redesign/overview.html:217
+#: player/templates/player/redesign/overview.html:221
+msgctxt "overview"
 msgid "мир"
 msgstr "world"
 
-#: player/templates/player/redesign/overview.html:273
+#: player/templates/player/redesign/overview.html:277
+msgctxt "overview"
 msgid "независимый регион"
 msgstr "free region"
 
-#: player/templates/player/redesign/overview.html:388
+#: player/templates/player/redesign/overview.html:392
+msgctxt "overview"
 msgid "войн нет"
 msgstr "no wars"
 
-#: player/templates/player/redesign/overview.html:416
+#: player/templates/player/redesign/overview.html:420
 msgctxt "overview"
 msgid "С новым годом!"
 msgstr "Happy New Year!"
 
-#: player/templates/player/redesign/overview.html:572
+#: player/templates/player/redesign/overview.html:576
 msgctxt "overview"
 msgid "Летний фестиваль"
-msgstr ""
+msgstr "Summer festival"
 
-#: player/templates/player/redesign/overview.html:648
+#: player/templates/player/redesign/overview.html:619
+msgctxt "overview"
+msgid "Зимний фестиваль"
+msgstr "Winter festival"
+
+#: player/templates/player/redesign/overview.html:652
 msgctxt "overview"
 msgid "сила"
 msgstr "STR"
 
-#: player/templates/player/redesign/overview.html:653
+#: player/templates/player/redesign/overview.html:657
 msgctxt "overview"
 msgid "инт"
 msgstr "INT"
 
-#: player/templates/player/redesign/overview.html:658
+#: player/templates/player/redesign/overview.html:662
 msgctxt "overview"
 msgid "вын"
 msgstr "END"
 
-#: player/templates/player/redesign/overview.html:674
+#: player/templates/player/redesign/overview.html:678
 msgctxt "overview"
 msgid "Выборы лидера"
 msgstr "Presidential elections"
 
-#: player/templates/player/redesign/overview.html:677
+#: player/templates/player/redesign/overview.html:681
 msgctxt "overview"
 msgid "Выборы"
 msgstr "Elections"
 
-#: player/templates/player/redesign/overview.html:682
+#: player/templates/player/redesign/overview.html:686
 msgctxt "overview"
 msgid "партии"
 msgstr "parties"
 
-#: player/templates/player/redesign/overview.html:682
+#: player/templates/player/redesign/overview.html:686
 msgctxt "overview"
 msgid "государства"
 msgstr "of state"
 
-#: player/templates/player/redesign/overview.html:682
+#: player/templates/player/redesign/overview.html:686
 msgctxt "overview"
 msgid "региона"
 msgstr "of region"
 
-#: player/templates/player/redesign/overview.html:719
-#: player/templates/player/redesign/overview.html:764
+#: player/templates/player/redesign/overview.html:723
+#: player/templates/player/redesign/overview.html:768
+msgctxt "overview"
 msgid "партий нет"
 msgstr "no parties"
 
-#: player/templates/player/redesign/overview.html:726
+#: player/templates/player/redesign/overview.html:730
 msgctxt "overview"
 msgid "парламент"
 msgstr "parliament"
+
+#: player/templates/player/redesign/overview.html:952
+msgctxt "overview"
+msgid "У вас пока еще нет стикеров"
+msgstr "You don't have stickers yet"
 
 #: player/templates/player/redesign/overview_skills.html:21
 #: skill/models/biochemistry.py:20 skill/models/coherence.py:21
@@ -2331,6 +2575,140 @@ msgstr "Continue"
 msgctxt "skills"
 msgid "Назад"
 msgstr "Back"
+
+#: player/templates/player/redesign/player_help.html:6
+msgctxt "screen_help"
+msgid ""
+"Здесь собрана информация о мире игры: население, онлайн, число партий, "
+"стран, независимых регионов"
+msgstr ""
+"Here you can find information about the game world: population, online, "
+"number of parties, countries, independent regions"
+
+#: player/templates/player/redesign/player_help.html:8
+msgctxt "screen_help"
+msgid ""
+"Здесь вы можете узнать информацию о государстве вашего местонахождения: "
+"население, онлайн, число партий"
+msgstr ""
+"Here you can find out information about the country of your location: "
+"population, online, number of parties"
+
+#: player/templates/player/redesign/player_help.html:10
+msgctxt "screen_help"
+msgid ""
+"Здесь вы можете узнать больше о регионе вашего местонахождения: население, "
+"онлайн, число партий"
+msgstr ""
+"Here you can find out more about the region where you live: population, "
+"online, number of parties"
+
+#: player/templates/player/redesign/player_help.html:12
+msgctxt "screen_help"
+msgid ""
+"Здесь отображается ближайшая к вам война, проходящая в государстве или мире "
+"в целом"
+msgstr ""
+"This displays the war closest to you, either in the country or in the world "
+"as a whole."
+
+#: player/templates/player/redesign/player_help.html:14
+msgctxt "screen_help"
+msgid ""
+"Это особое событие, проходящее в мире Wild Politics прямо сейчас. Успейте "
+"принять участие!"
+msgstr ""
+"This is a special event happening in the world of Wild Politics right now. "
+"Hurry up to participate!"
+
+#: player/templates/player/redesign/player_help.html:18
+msgctxt "screen_help"
+msgid ""
+"Сила вашего персонажа влияет на конечный урон в войнах. Также, каждая из "
+"Характеристик повышает выплаты Финансирования"
+msgstr ""
+"Your character's strength affects the final damage in wars. Also, each of "
+"the Attributes increases the Funding payouts."
+
+#: player/templates/player/redesign/player_help.html:20
+msgctxt "screen_help"
+msgid ""
+"Интеллект влияет на объёмы производимой продукции и возможность улучшения "
+"Склада. Также, каждая из Характеристик повышает выплаты Финансирования"
+msgstr ""
+"Intelligence affects the volume of manufactured products and the possibility "
+"of upgrading the Warehouse. Also, each of the Characteristics increases the "
+"Financing payments"
+
+#: player/templates/player/redesign/player_help.html:22
+msgctxt "screen_help"
+msgid ""
+"Выносливость вашего персонажа повышает объёмы добываемого сырья. Также, "
+"каждая из Характеристик повышает выплаты Финансирования"
+msgstr ""
+"Your character's Endurance increases the volume of raw materials mined. "
+"Also, each of the Characteristics increases the Funding payments"
+
+#: player/templates/player/redesign/player_help.html:24
+msgctxt "screen_help"
+msgid ""
+"Здесь вы можете развить своего персонажа, улучшив одну их трёх основных "
+"характеристик - Силу, Интеллект, Выносливость"
+msgstr ""
+"Here you can develop your character by improving one of the three main "
+"characteristics - Strength, Intelligence, Endurance"
+
+#: player/templates/player/redesign/player_help.html:26
+msgctxt "screen_help"
+msgid ""
+"Очередь последующей прокачки Характеристик, доступна с Премиум-аккаунтом"
+msgstr ""
+"Queue for subsequent pumping of Characteristics, available with a Premium "
+"account"
+
+#: player/templates/player/redesign/player_help.html:28
+msgctxt "screen_help"
+msgid "Время завершения прокачки Характеристики, улучшаемой в данный момент"
+msgstr "Completion time of the Stat currently being upgraded"
+
+#: player/templates/player/redesign/player_help.html:30
+msgctxt "screen_help"
+msgid ""
+"При наличии на Складе текущего региона бустеров, вы можете ускорить прокачку "
+"Характеристики, нажав на эту кнопку"
+msgstr ""
+"If there are boosters in the Warehouse of the current region, you can speed "
+"up the pumping of the Stat by clicking on this button"
+
+#: player/templates/player/redesign/player_help.html:34
+msgctxt "screen_help"
+msgid "Выборы президента, проходящие в стране вашего местонахождения"
+msgstr "Presidential elections taking place in your country of location"
+
+#: player/templates/player/redesign/player_help.html:36
+msgctxt "screen_help"
+msgid "Выборы в парламент, проходящие в стране вашего местонахождения"
+msgstr ""
+"Parliamentary elections taking place in the country where you are located"
+
+#: player/templates/player/redesign/player_help.html:40
+msgctxt "screen_help"
+msgid "Общий чат, где вы можете пообщаться со всеми игроками"
+msgstr "Common chat where you can communicate with all players"
+
+#: player/templates/player/redesign/player_help.html:42
+msgctxt "screen_help"
+msgid "Все партии, существующие в данном государстве"
+msgstr "All parties existing in a given state"
+
+#: player/templates/player/redesign/player_help.html:44
+msgctxt "screen_help"
+msgid ""
+"Партии, представленные в парламенте государства, и процент занимаемых ими "
+"мест"
+msgstr ""
+"Parties represented in the state parliament and the percentage of seats they "
+"hold"
 
 #: player/templates/player/redesign/player_repost.html:4
 msgctxt "repost"
@@ -2478,25 +2856,38 @@ msgctxt "profile"
 msgid "не активен"
 msgstr "not active"
 
-#: player/templates/player/redesign/profile.html:323
+#: player/templates/player/redesign/profile.html:324
+msgctxt "profile"
+msgid "очки тестирования Android"
+msgstr ""
+
+#: player/templates/player/redesign/profile.html:328
+#, fuzzy
+#| msgctxt "overview"
+#| msgid "парламент"
+msgctxt "profile"
+msgid "(к регламенту)"
+msgstr "parliament"
+
+#: player/templates/player/redesign/profile.html:335
 #: player/templates/player/redesign/view_profile.html:144
 msgctxt "profile"
 msgid "место в рейтинге"
 msgstr "rating place"
 
-#: player/templates/player/redesign/profile.html:333
+#: player/templates/player/redesign/profile.html:345
 #: player/templates/player/redesign/view_profile.html:154
 msgctxt "profile"
 msgid "известность"
 msgstr "fame"
 
-#: player/templates/player/redesign/profile.html:337
+#: player/templates/player/redesign/profile.html:349
 #: player/templates/player/redesign/view_profile.html:158
 msgctxt "profile"
 msgid "(к статьям)"
 msgstr "(to articles)"
 
-#: player/templates/player/redesign/profile.html:343
+#: player/templates/player/redesign/profile.html:355
 #: player/templates/player/redesign/view_profile.html:164
 #, fuzzy
 #| msgctxt "storage_upgrade"
@@ -2505,7 +2896,7 @@ msgctxt "profile"
 msgid "суммарный урон"
 msgstr "Maximum level"
 
-#: player/templates/player/redesign/profile.html:347
+#: player/templates/player/redesign/profile.html:359
 #: player/templates/player/redesign/view_profile.html:168
 #, fuzzy
 #| msgid "войн нет"
@@ -2513,79 +2904,79 @@ msgctxt "profile"
 msgid "(к войнам)"
 msgstr "no wars"
 
-#: player/templates/player/redesign/profile.html:356
+#: player/templates/player/redesign/profile.html:368
 #: player/templates/player/redesign/view_profile.html:177
 msgctxt "profile"
 msgid "характеристики"
 msgstr "characteristics"
 
-#: player/templates/player/redesign/profile.html:371
+#: player/templates/player/redesign/profile.html:383
 #: player/templates/player/redesign/view_profile.html:192
 msgctxt "profile"
 msgid "место жительства"
 msgstr "region"
 
-#: player/templates/player/redesign/profile.html:380
+#: player/templates/player/redesign/profile.html:392
 #: player/templates/player/redesign/view_profile.html:201
 msgctxt "profile"
 msgid "прописка"
 msgstr "residency"
 
-#: player/templates/player/redesign/profile.html:383
+#: player/templates/player/redesign/profile.html:395
 #: player/templates/player/redesign/view_profile.html:204
 msgctxt "profile"
 msgid "с"
 msgstr "since"
 
-#: player/templates/player/redesign/profile.html:389
+#: player/templates/player/redesign/profile.html:401
 #: player/templates/player/redesign/view_profile.html:210
 msgid "партия"
 msgstr "party"
 
-#: player/templates/player/redesign/profile.html:395
-#: player/templates/player/redesign/profile.html:413
+#: player/templates/player/redesign/profile.html:407
+#: player/templates/player/redesign/profile.html:425
 #: player/templates/player/redesign/view_profile.html:216
 #: player/templates/player/redesign/view_profile.html:234
 msgid "беспартийный"
 msgstr "unaffiliated"
 
-#: player/templates/player/redesign/profile.html:398
+#: player/templates/player/redesign/profile.html:410
 #: player/templates/player/redesign/view_profile.html:219
 msgctxt "profile"
 msgid "история"
 msgstr "history"
 
-#: player/templates/player/redesign/profile.html:405
+#: player/templates/player/redesign/profile.html:417
 #: player/templates/player/redesign/view_profile.html:226
 msgid "должность в партии"
 msgstr "position in the party"
 
-#: player/templates/player/redesign/profile.html:440
+#: player/templates/player/redesign/profile.html:452
 #: player/templates/player/redesign/view_profile.html:240
 msgid "о себе"
 msgstr "bio"
 
-#: player/templates/player/redesign/profile.html:564
+#: player/templates/player/redesign/profile.html:576
 msgctxt "profile"
 msgid "показывать партийный фон"
 msgstr "show party background"
 
-#: player/templates/player/redesign/profile.html:580
+#: player/templates/player/redesign/profile.html:592
 msgctxt "profile"
 msgid "Энергетики в авто-добыче"
-msgstr "Batteries in auto-mining"
+msgstr "Energy drinks in auto-mining"
 
-#: player/templates/player/redesign/profile.html:596
+#: player/templates/player/redesign/profile.html:608
 msgctxt "profile"
 msgid "Скрыть кнопку Wiki"
 msgstr "Hide Wiki button"
 
-#: player/templates/player/redesign/profile.html:627
+#: player/templates/player/redesign/profile.html:639
 msgctxt "profile"
 msgid "стандарт"
 msgstr "standard"
 
-#: player/templates/player/redesign/profile.html:641
+#: player/templates/player/redesign/profile.html:653
 #: player/templates/player/translate/translate.html:36
 msgid "сохранить"
 msgstr "save"
@@ -2826,11 +3217,11 @@ msgstr "Energy refill is not required"
 
 #: player/views/expense_energy.py:74
 msgid "Недостаточно Энергетиков. Создайте их в Хранилище Склада"
-msgstr "Not enough Batteries. Create them at the Storage tab of Warehouse"
+msgstr "Not enough Energy drinks. Create them at the Storage tab of Warehouse"
 
 #: player/views/full_auto_allow.py:42 player/views/full_auto_allow.py:58
 msgid "Энергетики в авто-добыче"
-msgstr "Use Batteries in auto-mining"
+msgstr "Use Energy drinks in auto-mining"
 
 #: player/views/game_event/new_year.py:43
 msgctxt "game_event_ny"
@@ -2896,7 +3287,32 @@ msgstr "New character"
 msgid "Ошибка в форме профиля"
 msgstr "Profile form error"
 
-#: player/views/overview.py:366
+#: player/views/overview.py:373 player/views/overview.py:376
+msgctxt "education"
+msgid "Анна"
+msgstr "Ann"
+
+#: player/views/overview.py:376
+msgctxt "education"
+msgid "Лин"
+msgstr "Lin"
+
+#: player/views/overview.py:376
+msgctxt "education"
+msgid "Мария"
+msgstr "Maria"
+
+#: player/views/overview.py:376
+msgctxt "education"
+msgid "София"
+msgstr "Sofia"
+
+#: player/views/overview.py:376
+msgctxt "education"
+msgid "Ольга"
+msgstr "Olga"
+
+#: player/views/overview.py:382
 msgid "Обзор"
 msgstr "Overview"
 
@@ -3080,6 +3496,56 @@ msgstr "Hospital top"
 msgid "Уровень ТЭЦ"
 msgstr "Power plant level"
 
+#: region/templates/region/redesign/map.html:932
+msgctxt "education"
+msgid "Это - политическая карта всего нашего мира. Она поделена на регионы."
+msgstr "This is the political map of entire world. It is divided into regions."
+
+#: region/templates/region/redesign/map.html:935
+msgctxt "education"
+msgid ""
+"Каждый регион может быть независимым, быть столицей государства, либо же "
+"принадлежать государству на правах провинции."
+msgstr ""
+"Each region can be independent, serve as the capital of a state, or belong "
+"to a state as a province."
+
+#: region/templates/region/redesign/map.html:938
+msgctxt "education"
+msgid ""
+"Нажав на любую территорию, Вы откроете небольшое окно с информацией о ней."
+msgstr ""
+"Clicking on any territory will open a small window with information about it."
+
+#: region/templates/region/redesign/map.html:941
+msgctxt "education"
+msgid ""
+"Краткая информация о регионе позволит Вам узнать его название и владельца, а "
+"также проверить, есть ли там запасы сырья."
+msgstr ""
+"A brief overview of the region will let you know its name and owner, as well "
+"as check if there are any resource deposits."
+
+#: region/templates/region/redesign/map.html:944
+msgctxt "education"
+msgid ""
+"Для перемещения здесь же доступна кнопка вызова Вашего личного самолёта. Вам "
+"потребуется лишь оплатить затраты на топливо, подождать совсем немного - и "
+"вот вы уже на другом конце мира!"
+msgstr ""
+"To move around, there’s a button available to call your personal airplane. "
+"You just need to pay for the fuel costs, wait a little bit—and you’ll be on "
+"the other side of the world!"
+
+#: region/templates/region/redesign/map.html:951
+msgctxt "education"
+msgid ""
+"Чтобы начать путь к покорению всех этих территорий, нам потребуются "
+"союзники. Позвольте помочь выбрать Вам партию, хотя бы на первое время."
+msgstr ""
+"To start the journey of conquering all these territories, we’ll need allies. "
+"Let me help you choose a party, at least for the time being."
+
 #: region/templates/region/redesign/mining.html:12
 msgctxt "mining"
 msgid "Добыча"
@@ -3155,6 +3621,108 @@ msgstr "Oil"
 msgctxt "mining"
 msgid "Руда"
 msgstr "Ore"
+
+#: region/templates/region/redesign/mining.html:291
+msgctxt "education"
+msgid ""
+"Итак. В наших с Вами силах - организовывать работы на месторождениях сырья, "
+"а также добывать золото на местных приисках."
+msgstr ""
+"So, it’s within our power to organize operations at resource deposits and "
+"mine for gold at the local sites."
+
+#: region/templates/region/redesign/mining.html:294
+msgctxt "education"
+msgid ""
+"Организация работ потребует затрат Ваших сил, выраженных в Энергии, но, "
+"взамен гарантирует поток Финансирования."
+msgstr ""
+"Organizing operations will require your effort, represented by Energy, but "
+"in return, it guarantees a steady flow of Funding."
+
+#: region/templates/region/redesign/mining.html:297
+msgctxt "education"
+msgid ""
+"Обратите внимание, что золото мы добываем по личной инициативе, поэтому "
+"инвесторы не будут оплачивать Вам эти работы."
+msgstr ""
+"Keep in mind that gold mining is done on your own initiative, so investors "
+"won’t be paying you for this work."
+
+#: region/templates/region/redesign/mining.html:300
+msgctxt "education"
+msgid ""
+"Давайте попробуем выбить часть Финансирования из них прямо сейчас, "
+"организовав добычу сырья."
+msgstr ""
+"Let’s try to secure some of that Funding from them right now by organizing "
+"resource extraction."
+
+#: region/templates/region/redesign/mining.html:304
+msgctxt "education"
+msgid "Отлично! Работа выполнена, средства поступили. Можно забирать."
+msgstr ""
+"Great! The work is done, and the funds have arrived. You can go ahead and "
+"collect them."
+
+#: region/templates/region/redesign/mining.html:312
+msgctxt "education"
+msgid ""
+"Я стараюсь, чтобы Ваше расписание не было загружено слишком сильно. "
+"Благодаря этому, вы можете постепенно восстановить Энергию естественным "
+"путём."
+msgstr ""
+"I’m making sure your schedule isn’t too overloaded. This way, you can "
+"gradually recover your Energy naturally."
+
+#: region/templates/region/redesign/mining.html:317
+msgctxt "education"
+msgid ""
+"Но иногда, обстоятельства требуют от нас вложения дополнительных сил. На "
+"этот случай у нас есть Энергетики."
+msgstr ""
+"However, sometimes circumstances demand that we put in extra effort. For "
+"such cases, we have Energy drinks."
+
+#: region/templates/region/redesign/mining.html:320
+msgctxt "education"
+msgid ""
+"Энергетики - ценный ресурс, получаемый за Золото, которое мы с Вами "
+"добываем. Они позволяют восполнять запасы Энергии без ожидания."
+msgstr ""
+"Energy drinks are a valuable resource obtained in exchange for the Gold we "
+"mine. They allow you to replenish your Energy without waiting."
+
+#: region/templates/region/redesign/mining.html:323
+msgctxt "education"
+msgid ""
+"Я как раз принесла вам баночку. Или вам перелить в более изящную ёмкость?"
+msgstr ""
+"I just brought you a can. Would you like me to pour it into a fancier "
+"container?"
+
+#: region/templates/region/redesign/mining.html:331
+msgctxt "education"
+msgid ""
+"Как ощущения? Снова полны сил? Тогда давайте организуем добычу сырья ещё "
+"раз, чтобы Ваш заряд бодрости не пропал даром!"
+msgstr ""
+"How does it feel? Are you full of energy again? Then let’s organize resource "
+"extraction once more so your boost doesn’t go to waste!"
+
+#: region/templates/region/redesign/mining.html:335
+msgctxt "education"
+msgid "Отлично! А вот и новый транш..."
+msgstr "Great! And here comes the new funding..."
+
+#: region/templates/region/redesign/mining.html:339
+msgctxt "education"
+msgid ""
+"Теперь, давайте изучим добытое Вами. Для этого совершим прогулку до "
+"регионального Склада."
+msgstr ""
+"Now, let’s take a look at what you’ve collected. We’ll take a stroll to the "
+"regional Warehouse for that."
 
 #: region/templates/region/redesign/region_info.html:65
 msgctxt "map"
@@ -3826,7 +4394,7 @@ msgstr "vault"
 #: storage/templates/storage/redesign/storage.html:119
 msgctxt "storage_assets"
 msgid "энергетики"
-msgstr "batteries"
+msgstr "energy drinks"
 
 #: storage/templates/storage/redesign/storage.html:126
 #: storage/templates/storage/redesign/storage.html:146
@@ -4047,6 +4615,173 @@ msgstr "Continue"
 msgctxt "storage_transfer"
 msgid "Отмена"
 msgstr "Cancel"
+
+#: storage/templates/storage/redesign/storage.html:480
+msgctxt "education"
+msgid ""
+"Это Ваш cклад. Таких Складов у Вас может быть много, но этот - Ваш первый."
+msgstr "This is your storage. There are many like it, but this one is your."
+
+#: storage/templates/storage/redesign/storage.html:483
+msgctxt "education"
+msgid ""
+"Он состоит из двух крупных разделов - непосредственно Склада и защищённого "
+"Хранилища, которое всегда у Вас под рукой."
+msgstr ""
+"It consists of two main sections—the Warehouse itself and a secure Storage "
+"that’s always at your disposal."
+
+#: storage/templates/storage/redesign/storage.html:486
+msgctxt "education"
+msgid ""
+"У Вас даже может не быть Склада в регионе Вашего местонахождения, но "
+"Хранилище - будет всегда."
+msgstr ""
+"You might not even have a Warehouse in your current region, but the Storage "
+"will always be available to you."
+
+#: storage/templates/storage/redesign/storage.html:489
+msgctxt "education"
+msgid "Для начала же, посмотрим на запасы Склада. Они поделены на три размера:"
+msgstr ""
+"To start, let’s take a look at the supplies in the Warehouse. They are "
+"divided into three sizes:"
+
+#: storage/templates/storage/redesign/storage.html:494
+msgctxt "education"
+msgid "- большой объём, который позволяет хранить Вам необработанное сырьё"
+msgstr "- a large capacity that allows you to store raw materials."
+
+#: storage/templates/storage/redesign/storage.html:497
+msgctxt "education"
+msgid "- средний объём, хранящий, в основном, материалы и некоторые товары"
+msgstr "- a medium capacity that primarily holds materials and some goods."
+
+#: storage/templates/storage/redesign/storage.html:500
+msgctxt "education"
+msgid "- малый объём, занимаемый, в основном, оружием."
+msgstr "- a small capacity that is mostly occupied by weapons."
+
+#: storage/templates/storage/redesign/storage.html:503
+msgctxt "education"
+msgid ""
+"Вам ничего не мешает занять весь малый объём только танками, к примеру. А в "
+"большом объёме же у Вас хранятся те ресурсы, что Вы распорядились добыть."
+msgstr ""
+"You can fill the entire small capacity with tanks, for example. Meanwhile, "
+"the large capacity is where you store the resources you decided to extract."
+
+#: storage/templates/storage/redesign/storage.html:506
+msgctxt "education"
+msgid ""
+"Когда Вы приметесь торговать, то обратите внимание, что та часть запасов, "
+"что Вы захотели продать, со Склада не пропадает до тех пор, пока их не "
+"купят. Поэтому, распоряжайтесь объёмом своих Складов с умом."
+msgstr ""
+"When you start trading, keep in mind that the portion of your supplies you "
+"intend to sell doesn’t disappear from the Warehouse until it’s purchased. "
+"So, manage your Warehouse space wisely."
+
+#: storage/templates/storage/redesign/storage.html:509
+msgctxt "education"
+msgid ""
+"Помимо запасов, на Склад можно Выложить Наличные, которыми будут "
+"оплачиваться производство заказанных Вами товаров."
+msgstr ""
+"In addition to supplies, you can also deposit Cash in the Warehouse, which "
+"will be used to pay for the production of the goods you ordered."
+
+#: storage/templates/storage/redesign/storage.html:514
+msgctxt "education"
+msgid ""
+"Чтобы выложить Наличные, Вам потребуется прилететь в регион Склада, и "
+"указать сумму, которая должна остаться здесь."
+msgstr ""
+"To deposit Cash, you’ll need to fly to the Warehouse region and specify the "
+"amount that should remain there."
+
+#: storage/templates/storage/redesign/storage.html:521
+msgctxt "education"
+msgid ""
+"Ладно, это скучно - глядеть на булыжники и нефтяную жижу. Давайте посмотрим "
+"на действительно ценные вещи!"
+msgstr ""
+"Alright, it’s boring to just look at rocks and oil sludge. Let’s check out "
+"the really valuable items!"
+
+#: storage/templates/storage/redesign/storage.html:526
+msgctxt "education"
+msgid ""
+"Помните Энергетики, которые я Вам давала? Они лежат именно здесь. В тёмном, "
+"прохладном месте. Здесь же, мы можем заказать производство новых, расходуя "
+"Золото."
+msgstr ""
+"Remember the Energy drinks I gave you? They are stored right here, in a "
+"dark, cool place. Here, we can also order the production of new ones, using "
+"Gold."
+
+#: storage/templates/storage/redesign/storage.html:531
+msgctxt "education"
+msgid "Так же, в Хранилище находятся Wild Pass. Это карты премиум-доступа."
+msgstr ""
+"Additionally, the Storage contains Wild Passes. These are premium access "
+"cards."
+
+#: storage/templates/storage/redesign/storage.html:536
+msgctxt "education"
+msgid ""
+"При их активации, Вы получите возможности, позволяющие облегчить улучшение "
+"Ваших характеристик, а также упростить организацию работ на рудниках и "
+"заводах."
+msgstr ""
+"When activated, they provide you with capabilities that make it easier to "
+"enhance your stats and streamline operations at mines and factories."
+
+#: storage/templates/storage/redesign/storage.html:539
+msgctxt "education"
+msgid ""
+"Этими предметами можно свободно торговать - они всегда высоко ценятся, и "
+"прочие политики готовы платить за них крупные суммы денег."
+msgstr ""
+"These items can be freely traded—they are always highly valued, and other "
+"politicians are willing to pay substantial sums for them."
+
+#: storage/templates/storage/redesign/storage.html:542
+msgctxt "education"
+msgid ""
+"Раздел Склад позволяет Вам управлять тем Складом, который находится в "
+"регионе Вашего местоположения."
+msgstr ""
+"The Warehouse section allows you to manage the Warehouse located in your "
+"current region."
+
+#: storage/templates/storage/redesign/storage.html:545
+msgctxt "education"
+msgid ""
+"Но, обратите внимание - в других регионах Склада у Вас ещё нет. Поэтому, его "
+"потребуется построить там."
+msgstr ""
+"However, keep in mind that you don’t have a Warehouse in other regions yet. "
+"So, you will need to build one there."
+
+#: storage/templates/storage/redesign/storage.html:548
+msgctxt "education"
+msgid ""
+"Список всех Складов доступен в разделе Активы. Там же Вы сможете "
+"организовать перевозку своих товаров из одного региона в другой."
+msgstr ""
+"A list of all your Warehouses is available in the Assets section. There, you "
+"can also arrange for the transportation of your goods from one region to "
+"another."
+
+#: storage/templates/storage/redesign/storage.html:551
+msgctxt "education"
+msgid ""
+"Всё это время, мы с Вами решали задачи, которые были ограничены одним "
+"регионом. Теперь же, давайте посмотрим на мир шире!"
+msgstr ""
+"All this time, we’ve been dealing with tasks limited to one region. Now, "
+"let’s take a broader look at the world!"
 
 #: storage/templates/storage/redesign/storage_blocks/has_storage.html:27
 msgctxt "has_storage"
@@ -5045,10 +5780,6 @@ msgstr ""
 #~ msgctxt "regions_list"
 #~ msgid "Любушское воеводство"
 #~ msgstr "Lubusz Voivodeship"
-
-#~ msgctxt "regions_list"
-#~ msgid "Бавария"
-#~ msgstr "Bavaria"
 
 #~ msgctxt "regions_list"
 #~ msgid "Бранденбург"

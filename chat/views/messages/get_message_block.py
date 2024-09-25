@@ -83,7 +83,7 @@ def get_message_block(request):
         data = {
             # 'response': _('positive_enrg_req'),
             'response': 'Ошибка типа запроса',
-            'header': 'Новый стикерпак',
+            'header': 'Получение сообщений',
             'grey_btn': 'Закрыть',
         }
         return JResponse(data)

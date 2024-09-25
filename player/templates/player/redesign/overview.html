@@ -89,61 +89,65 @@
     onCloseEdu: () => { console.log(`[EDU]: Education closed`); claim_reward('edu_00'); },
     pages: [
       {
-        text: 'Здравствуйте! Меня зовут {{ assistant_name.1 }}, я ваш ассистент. Добро пожаловать в мир Wild Politics!',
+        text: "{% blocktrans with assistant=assistant_name.1 context "education" %}Здравствуйте! Меня зовут {{ assistant }}, я ваш ассистент. Добро пожаловать в мир Wild Politics!{% endblocktrans %}",
       },
       {
-        text: 'Wild Politics - это экономико-политический симулятор.',
+        text: "{% trans 'Wild Politics - это экономико-политический симулятор.' context 'education' %}",
       },
       {
-        text: 'Множество игроков, объединённых общими целями, развивают свои государства и расширяют их влияние.',
+        text: "{% trans 'Множество игроков, объединённых общими целями, развивают свои государства и расширяют их влияние.' context 'education' %}",
       },
       {
-        text: 'Создают крупные партии, чтобы повести их за собой, к вершинам власти.',
+        text: "{% trans 'Создают крупные партии, чтобы повести их за собой, к вершинам власти.' context 'education' %}",
       },
       {
-        text: 'Ведут крупномасштабные войны и заключают союзы, объединяющие целые континенты.',
+        text: "{% trans 'Ведут крупномасштабные войны и заключают союзы, объединяющие целые континенты.' context 'education' %}",
       },
       {
-        text: 'Создают бизнесы и корпорации. Основывают торговые сети. Распространяют своё влияние при помощи популярных СМИ.',
+        text: "{% trans 'Создают бизнесы и корпорации. Основывают торговые сети. Распространяют своё влияние при помощи популярных СМИ.' context 'education' %}",
       },
       {
-        text: 'Вы обязательно добьётесь всего этого. Но для начала, позвольте познакомить Вас с текущим положением дел.',
+        text: "{% trans 'Вы обязательно добьётесь всего этого. Но для начала, позвольте познакомить Вас с текущим положением дел.' context 'education' %}",
         awaitedDomElemClass: 'eduBlock1',
         onlyGlowing: true,
       },
       {
-        text: 'Сейчас Вы находитесь в {% if player.region.state %}государстве {{ player.region.state.title }}, которому принадлежит регион {{ player.region.region_name }}{% else %}независимом регионе{% endif %}. Здесь представлена различная информация о регионе нашего местонахождения, а также мире в целом',
+        {% if player.region.state %}
+          text: "{% blocktrans with state=player.region.state.title region=player.region.region_name context "education" %}Сейчас Вы находитесь в государстве {{ state }}, которому принадлежит регион {{ region }}. Здесь представлена различная информация о регионе нашего местонахождения, а также мире в целом{% endblocktrans %}",
+        {% else %}
+          text: "{% trans 'Сейчас Вы находитесь в независимом регионе. Здесь представлена различная информация о регионе нашего местонахождения, а также мире в целом' context 'education' %}",
+        {% endif %}
         awaitedDomElemClass: 'eduBlock2',
         onlyGlowing: true,
       },
       {
-        text: 'В любом регионе государства можно основать партию, либо присоединиться к одной из уже существующих. Некоторые из них, по итогам выборов, проходят в Парламенты своих стран. Вы обязательно подберёте партию по душе - но чуть позже.',
+        text: "{% trans 'В любом регионе государства можно основать партию, либо присоединиться к одной из уже существующих. Некоторые из них, по итогам выборов, проходят в Парламенты своих стран. Вы обязательно подберёте партию по душе - но чуть позже.' context 'education' %}",
       },
       {
-        text: 'А сейчас обратите внимание на ваши характеристики. Их рекомендуется развивать постоянно, при наличии свободных средств.',
+        text: "{% trans 'А сейчас обратите внимание на ваши характеристики. Их рекомендуется развивать постоянно, при наличии свободных средств.' context 'education' %}",
         awaitedDomElemClass: 'eduBlock3',
       },
       {
-        text: 'Давайте сделаем вклад в ваше будущее прямо сейчас!',
+        text: "{% trans 'Давайте сделаем вклад в ваше будущее прямо сейчас!' context 'education' %}",
         awaitedDomElemClass: 'eduBlock4',
       },
       {
-        text: 'Отлично! Это маленький шаг для Вас, но гигантский скачок для Вашей карьеры!',
+        text: "{% trans 'Отлично! Это маленький шаг для Вас, но гигантский скачок для Вашей карьеры!' context 'education' %}",
       },
       {
-        text: 'Награда: 200 золота',
+        text: '{% trans 'Награда: 200 золота' context 'education' %}',
         rewardImgUrl: '/static/redesign/img/200_gold.png',
       },
       {
-        text: 'Общение - важная часть Вашей работы. Вам ещё предстоит множество раз договариваться и строить совместные планы, а также плести заговоры и рушить чужие.',
+        text: "{% trans 'Общение - важная часть Вашей работы. Вам ещё предстоит множество раз договариваться и строить совместные планы, а также плести заговоры и рушить чужие.' context 'education' %}",
         awaitedDomElemClass: 'eduBlock5',
         onlyMobileInteractive: true,
       },
       {
-        text: 'При желании, загляните сюда позже, и поздоровайтесь с коллегами. Обратите внимание, что люди вашего социального уровня не приемлют грубостей и оскорблений. Помните, вежливость - лучшее оружие политика.'
+        text: "{% trans 'При желании, загляните сюда позже, и поздоровайтесь с коллегами. Обратите внимание, что люди вашего социального уровня не приемлют грубостей и оскорблений. Помните, вежливость - лучшее оружие политика.' context 'education' %}",
       },
       {
-        text: 'Мне только что поступил звонок от Ваших инвесторов. Они ожидают от Вас конкретных действий, и готовы за них платить. Давайте заработаем сегодня много денег!',
+        text: "{% trans 'Мне только что поступил звонок от Ваших инвесторов. Они ожидают от Вас конкретных действий, и готовы за них платить. Давайте заработаем сегодня много денег!' context 'education' %}",
       },
     ]
   })
@@ -182,7 +186,7 @@
             <path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
           </g>
         </svg>
-        <span>{% trans 'обзор' %}</span>
+        <span>{% trans 'обзор' context "overview" %}</span>
       </button>
       {% if not wiki_hide %}
       <a class="overview__tabs-wiki" href="https://wiki.wildpolitics.ru/" target="_blank" rel="noopener noreferrer">
@@ -203,7 +207,7 @@
             <path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
           </g>
         </svg>
-        <span>{% trans 'чат' %}</span>
+        <span>{% trans 'чат' context "overview" %}</span>
       </button>
     </div>
 
@@ -214,7 +218,7 @@
         <div class="over-view__view-info-wrapper">
           <!--Блок МИР-->
           <div class="overview__view-info ct__view-info eduBlock1 gui_help" data-helpId="overview world block">
-            <h2>{% trans 'мир' %}</h2>
+            <h2>{% trans 'мир' context "overview" %}</h2>
             <ul class="ct__view-info-list">
               <li class="ct__view-info-item" onclick="window.location.href = '/world/players/'" style="cursor: pointer">
                 <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -270,7 +274,7 @@
           </div>
           <!--Блок ГОСУДАРСТВО-->
           <div class="overview__view-info ct__view-info eduBlock1 gui_help" data-helpId="overview state block">
-            <h2>{% if player.region.state %}{{ player.region.state.title|truncatechars:24 }}{% else %}{% trans 'независимый регион' %}{% endif %}</h2>
+            <h2>{% if player.region.state %}{{ player.region.state.title|truncatechars:24 }}{% else %}{% trans 'независимый регион' context "overview" %}{% endif %}</h2>
             <ul class="ct__view-info-list">
               <li class="ct__view-info-item">
                 <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -327,7 +331,7 @@
           </div>
           <!--Блок ОБЛАСТЬ-->
           <div class="overview__view-info ct__view-info eduBlock2 gui_help" data-helpId="overview region block">
-            <h2>{% trans player.region.region_name context "regions_list" %}</h2>
+            <h2>{{ player.region.region_name }}</h2>
             <ul class="ct__view-info-list">
               <li class="ct__view-info-item" onclick="window.location.href = '/region/{% localize off %}{{ player.region.pk }}{% endlocalize %}/players/'" style="cursor: pointer">
                 <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -385,7 +389,7 @@
             </div>
             {% else %}
             <!--сообщение что войн нет-->
-            <p class="overview__war-no">{% trans 'войн нет' %}</p>
+            <p class="overview__war-no">{% trans 'войн нет' context "overview" %}</p>
             <!--иконка мира-->
             <svg class="overview__war-icon" width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
               <mask id="path-1-inside-1_758_442" fill="var(--c10one)">
@@ -612,7 +616,7 @@
           {% if activity_event %}
           <!--Блок ИВЕНТ-->
           <a href="/winter_festival/" class="overview__event">
-            <p class="overview__war-no event">Зимний фестиваль</p>
+            <p class="overview__war-no event">{% trans 'Зимний фестиваль' context "overview" %}</p>
             <!--иконка снежинки-->
             <svg
                width="34"
@@ -716,7 +720,7 @@
                 </ul>
                 {% else %}
                 <!--партий нет-->
-                <p class="overview__par-no"><span>{% trans 'партий нет' %}</span></p>
+                <p class="overview__par-no"><span>{% trans 'партий нет' context "overview" %}</span></p>
                 {% endif %}
               </div>
               {% if has_parl %}
@@ -761,7 +765,7 @@
                 </ul>
                 {% else %}
                 <!--партий нет-->
-                <p class="overview__par-no"><span>{% trans 'партий нет' %}</span></p>
+                <p class="overview__par-no"><span>{% trans 'партий нет' context "overview" %}</span></p>
                 {% endif %}
               </div>
               {% endif %}
@@ -945,7 +949,7 @@
         {% else %}
         <!--Информация когда стиков нет-->
         <div class="overview__stickers-no">
-          <p>{% trans 'У вас пока еще нет стикеров' %}</p>
+          <p>{% trans 'У вас пока еще нет стикеров' context "overview" %}</p>
           <a href="{% url 'stickers_shop' %}" class="overview__stickers-no-link active ct__mid-btn">
             <svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
               <mask id="mask0_2259_233177" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">

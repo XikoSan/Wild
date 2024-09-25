@@ -39,6 +39,7 @@ from war.models.wars.war import War
 from wild_politics.settings import TIME_ZONE
 from player.views.old_server_reward import old_server_rewards
 from player.logs.test_log import TestLog
+from django.utils.translation import pgettext
 
 
 # главная страница
@@ -267,8 +268,6 @@ def overview(request):
             delay_in_sec=86400
         )
 
-    # player, reward_message = old_server_rewards(player)
-
     # call_donut_message = False
     #
     # if SocialToken.objects.filter(account__user=player.account, account__provider='vk').exists():
@@ -371,10 +370,10 @@ def overview(request):
     #     log("Path not found")
 
 
-    assistant_name = ('Ann', 'Анна')
+    assistant_name = ('Ann', pgettext('education', 'Анна'))
 
     if not player.educated:
-        assistant_name = random.choice([('Ann', 'Анна'), ('Lin', 'Лин'),  ('Maria', 'Мария'), ('Sofia', 'София'), ('Olga', 'Ольга')])
+        assistant_name = random.choice([('Ann', pgettext('education', 'Анна')), ('Lin', pgettext('education', 'Лин')),  ('Maria', pgettext('education', 'Мария')), ('Sofia', pgettext('education', 'София')), ('Olga', pgettext('education', 'Ольга'))])
 
     page = 'player/redesign/overview.html'
 
@@ -431,8 +430,6 @@ def overview(request):
         'activity_event': activity_event,
 
         'assistant_name': assistant_name,
-
-        'reward_message': reward_message,
     })
 
     # r.flushdb()

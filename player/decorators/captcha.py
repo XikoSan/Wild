@@ -39,6 +39,9 @@ def captcha(func):
             # Получаем игрока
             player = Player.objects.only('pk').get(account=request.user)
 
+            if not player.educated:
+                return func(request, *args, **kwargs)
+
             # язык из настроек
             if PlayerSettings.objects.filter(player=player).exists():
                 player_settings = PlayerSettings.objects.get(player=player)
