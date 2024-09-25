@@ -2,9 +2,10 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 from django.utils.translation import ugettext as _
 
+from party.position import PartyPosition, Party
 from player.decorators.player import check_player
 from player.player import Player
-from party.position import PartyPosition, Party
+from state.models.parliament.parliament_party import ParliamentParty
 
 
 # главная страница
@@ -22,12 +23,16 @@ def party(request):
             positions = PartyPosition.objects.filter(party=player.party).exclude(party_lead=True)
 
         elif player.party_post.party_sec:
-            positions = PartyPosition.objects.filter(party=player.party).exclude(party_lead=True).exclude(party_sec=True)
+            positions = PartyPosition.objects.filter(party=player.party).exclude(party_lead=True).exclude(
+                party_sec=True)
 
     has_open = False
     if not player.educated:
+        # если есть открытые партии
         if Party.objects.filter(deleted=False, type='op').exists():
-            has_open = True
+            # если среди них есть те, что состоят в парламенте
+            if ParliamentParty.objects.filter(party__in=Party.objects.filter(deleted=False, type='op')).exists():
+                has_open = True
 
     page = 'party/party.html'
     if 'redesign' not in groups:

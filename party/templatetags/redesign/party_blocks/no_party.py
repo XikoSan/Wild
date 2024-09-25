@@ -1,8 +1,9 @@
 from django import template
 
-from party.party import Party
 from party.logs.party_apply import PartyApply
+from party.party import Party
 from player.player import Player
+from state.models.parliament.parliament_party import ParliamentParty
 
 register = template.Library()
 
@@ -31,7 +32,7 @@ def no_party(player):
 
     if not player.educated:
         if Party.objects.filter(deleted=False, type='op').exists():
-            all_parties = reversed(Party.objects.filter(deleted=False, type='op'))
+            all_parties = reversed(Party.objects.filter(deleted=False, type='op', pk__in=ParliamentParty.objects.values('party_id')))
 
     return {
         # игрок
