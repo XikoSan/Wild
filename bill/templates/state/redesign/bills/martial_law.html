@@ -29,9 +29,9 @@
     <!--видно на только пк-->
     <td class="gover__tableDopInfo">
         {% if bill.mode == 'set' %}
-        Военное положение
+        {% trans 'Военное положение' context "martial_law" %}
         {% else %}
-        Снятие ограничений
+        {% trans 'Снятие ограничений' context "martial_law" %}
         {% endif %}
     </td>
 
@@ -61,7 +61,7 @@
                         {% if president in bill.votes_pro.all %}
                         <div style="display: flex; align-items: center; justify-content: space-between;">
                             <div class="tableMobileModal__cancel">
-                                <span>подписано:</span>
+                                <span>{% trans 'подписано' context "martial_law" %}:</span>
                                 <a style="color: var(--c10two); text-decoration: underline;" href='/profile/{% localize off %}{{ president.pk }}{% endlocalize %}' target="_blank">{{ president }}</a>
                             </div>
                             <button {% if president in bill.votes_pro.all %} onclick="speedup_bill('MartialLaw',{% localize off %}{{ bill.pk }}{% endlocalize %})"{% else %}disabled{% endif %}>⏩</button>

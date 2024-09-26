@@ -25,7 +25,7 @@
     <td class="gover__tableDopInfo">
         <div class="gover__tableVote-wrappper">
             <div class="gover__withImage" style="margin-bottom: 4rem;">
-                <span>Лотов: {{ bill.lots_count }}</span>
+                <span>{% trans 'Лотов' context "purchase_auction" %}: {{ bill.lots_count }}</span>
             </div>
             <div class="gover__withImage">
                 <span>{% trans 'Наличные' context "goods" %}: {{ bill.cash_cost }}</span>
@@ -59,7 +59,7 @@
                         {% if president in bill.votes_pro.all %}
                         <div style="display: flex; align-items: center; justify-content: space-between;">
                             <div class="tableMobileModal__cancel">
-                                <span>подписано:</span>
+                                <span>{% trans 'подписано' context "purchase_auction" %}:</span>
                                 <a style="color: var(--c10two); text-decoration: underline;" href='/profile/{% localize off %}{{ president.pk }}{% endlocalize %}' target="_blank">{{ president }}</a>
                             </div>
                             <button {% if president in bill.votes_pro.all %} onclick="speedup_bill('PurchaseAuction',{% localize off %}{{ bill.pk }}{% endlocalize %})"{% else %}disabled{% endif %}>⏩</button>
