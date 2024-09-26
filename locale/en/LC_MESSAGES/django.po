@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-26 01:56+0300\n"
-"PO-Revision-Date: 2024-09-26 01:56+0300\n"
+"POT-Creation-Date: 2024-09-26 23:56+0300\n"
+"PO-Revision-Date: 2024-09-26 23:54+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -228,6 +228,51 @@ msgctxt "goods"
 msgid "БПЛА"
 msgstr "UAV"
 
+#: bill/templates/state/redesign/bills/change_title.html:53
+msgctxt "change_title"
+msgid "подписано"
+msgstr "signed"
+
+#: bill/templates/state/redesign/bills/construction.html:71
+msgctxt "construction"
+msgid "подписано"
+msgstr "signed"
+
+#: bill/templates/state/redesign/bills/explore_resources.html:75
+msgctxt "explore_resources"
+msgid "подписано"
+msgstr "signed"
+
+#: bill/templates/state/redesign/bills/martial_law.html:32
+msgctxt "martial_law"
+msgid "Военное положение"
+msgstr "Martial law"
+
+#: bill/templates/state/redesign/bills/martial_law.html:34
+msgctxt "martial_law"
+msgid "Снятие ограничений"
+msgstr "Lifting restrictions"
+
+#: bill/templates/state/redesign/bills/martial_law.html:64
+msgctxt "martial_law"
+msgid "подписано"
+msgstr "signed"
+
+#: bill/templates/state/redesign/bills/purchase_auction.html:28
+msgctxt "purchase_auction"
+msgid "Лотов"
+msgstr "Count of lots"
+
+#: bill/templates/state/redesign/bills/purchase_auction.html:62
+msgctxt "purchase_auction"
+msgid "подписано"
+msgstr "signed"
+
+#: bill/templates/state/redesign/drafts/change_coat.html:13
+msgctxt "change_coat_draft"
+msgid "Новый герб государства"
+msgstr "New state coat of arms"
+
 #: bill/templates/state/redesign/drafts/change_coat.html:93
 #: party/templates/party/redesign/manage.html:419
 #: player/templates/player/redesign/new_player.html:141
@@ -243,6 +288,24 @@ msgstr "Cancel"
 #: player/templates/player/redesign/profile.html:523
 msgid "Загрузить"
 msgstr "Upload"
+
+#: bill/templates/state/redesign/drafts/change_coat.html:111
+#: bill/templates/state/redesign/drafts/change_form.html:34
+#: bill/templates/state/redesign/drafts/change_residency.html:57
+#: bill/templates/state/redesign/drafts/change_taxes.html:124
+#: bill/templates/state/redesign/drafts/change_title.html:24
+#: bill/templates/state/redesign/drafts/construction.html:188
+#: bill/templates/state/redesign/drafts/explore_resources.html:188
+#: bill/templates/state/redesign/drafts/independence.html:48
+#: bill/templates/state/redesign/drafts/martial_law.html:57
+#: bill/templates/state/redesign/drafts/purchase_auction.html:77
+#: bill/templates/state/redesign/drafts/start_war.html:129
+#: bill/templates/state/redesign/drafts/transfer_accept.html:48
+#: bill/templates/state/redesign/drafts/transfer_region.html:107
+#: bill/templates/state/redesign/drafts/transfer_resources.html:194
+msgctxt "bill_draft"
+msgid "предложить"
+msgstr "propose law"
 
 #: chat/templates/chat/dialogue.html:31
 msgctxt "chat"
@@ -983,6 +1046,21 @@ msgctxt "party_manage"
 msgid "Управление партией"
 msgstr "Party management"
 
+#: party/templates/party/redesign/manage.html:22
+msgctxt "party_manage"
+msgid "партия"
+msgstr "party"
+
+#: party/templates/party/redesign/manage.html:24
+msgctxt "party_manage"
+msgid "должности"
+msgstr "positions"
+
+#: party/templates/party/redesign/manage.html:26
+msgctxt "party_manage"
+msgid "золото"
+msgstr "gold"
+
 #: party/templates/party/redesign/manage.html:95
 msgctxt "party_manage"
 msgid "Тип партии"
@@ -1019,12 +1097,9 @@ msgid "роспуск невозможен"
 msgstr "not available"
 
 #: party/templates/party/redesign/manage.html:120
-#, fuzzy
-#| msgctxt "overview"
-#| msgid "парламент"
 msgctxt "party_manage"
 msgid "Цвет в парламенте"
-msgstr "parliament"
+msgstr "Color in parliament"
 
 #: party/templates/party/redesign/manage.html:121
 #: party/templates/party/redesign/manage.html:336
@@ -1064,15 +1139,50 @@ msgctxt "party_manage"
 msgid "действия"
 msgstr "action"
 
+#: party/templates/party/redesign/manage.html:235
+msgctxt "party_manage"
+msgid "Выдача золота партии"
+msgstr "Distributing party`s gold"
+
+#: party/templates/party/redesign/manage.html:238
+msgctxt "party_manage"
+msgid "Баланс партии"
+msgstr "Баланс партии"
+
+#: party/templates/party/redesign/manage.html:246
+msgctxt "party_manage"
+msgid "Выдать"
+msgstr "Distribute"
+
+#: party/templates/party/redesign/manage.html:286
+msgctxt "party_manage"
+msgid "выдать"
+msgstr "distribute"
+
+#: party/templates/party/redesign/manage.html:304
+msgctxt "party_manage"
+msgid ""
+"Золото начисляется на баланс партии за призовые места в еженедельном "
+"рейтинге, а также за особые заслуги."
+msgstr ""
+"Gold is credited to the party's balance for top positions in the weekly "
+"rankings, as well as for special achievements."
+
+#: party/templates/party/redesign/manage.html:306
+msgctxt "party_manage"
+msgid "Вы можете выдать золото с баланса партии любому однопартийцу."
+msgstr ""
+"You can distribute gold from the party's balance to any fellow party member."
+
 #: party/templates/party/redesign/manage.html:319
 msgctxt "party_manage"
 msgid "Смена названия партии"
-msgstr "Party title change"
+msgstr "Changing the party's name"
 
 #: party/templates/party/redesign/manage.html:347
 msgctxt "party_manage"
 msgid "Смена описания партии"
-msgstr "Party description change"
+msgstr "Changing the party's description"
 
 #: party/templates/party/redesign/new_party.html:15
 #: party/views/management/new_party.py:85
@@ -1388,12 +1498,9 @@ msgid "Партии мира"
 msgstr "World`s parties"
 
 #: party/views/management/color_change.py:36
-#, fuzzy
-#| msgctxt "profile"
-#| msgid "Некорректный код цвета"
 msgctxt "party_manage"
 msgid "Некорректный код цвета партии"
-msgstr "Incorrect color code"
+msgstr "Invalid party color code"
 
 #: party/views/management/color_change.py:37 player/views/color_change.py:31
 #: player/views/color_change.py:43 player/views/color_change.py:55
@@ -1468,27 +1575,18 @@ msgstr "Close"
 
 #: party/views/management/color_change.py:54
 #: party/views/management/gold/give_party_gold.py:94
-#, fuzzy
-#| msgctxt "no_party"
-#| msgid "Вы не состоите в партии"
 msgctxt "party_manage"
 msgid "Вы не являетесь лидером партии"
-msgstr "You are not a member of any party"
+msgstr "You are not the party leader"
 
 #: party/views/management/color_change.py:55
 #: party/views/management/color_change.py:62
-#, fuzzy
-#| msgctxt "party_manage"
-#| msgid "Ошибка изменения цветов игры"
 msgctxt "party_manage"
 msgid "Ошибка изменения цвета партии"
-msgstr "Error changing game colors"
+msgstr "Error changing the party color"
 
 #: party/views/management/color_change.py:61
 #: party/views/management/gold/give_party_gold.py:101
-#, fuzzy
-#| msgctxt "no_party"
-#| msgid "Вы не состоите в партии"
 msgctxt "party_manage"
 msgid "Вы не состоите в партии"
 msgstr "You are not a member of any party"
@@ -1631,7 +1729,7 @@ msgctxt "party"
 msgid "Вы не состоите в указанной партии"
 msgstr "You are not a member of the specified party"
 
-#: party/views/party.py:38
+#: party/views/party.py:43
 msgid "Партия"
 msgstr "Party"
 
@@ -2027,6 +2125,11 @@ msgstr "Activation"
 #: player/templates/player/redesign/bonus_code/bonus_code.html:18
 msgid "Бонус-код"
 msgstr ""
+
+#: player/templates/player/redesign/customization/view_borders.html:10
+msgctxt "view_borders"
+msgid "Рамки аватара"
+msgstr "Avatar frames"
 
 #: player/templates/player/redesign/game_event/halloween.html:128
 #: player/views/game_event/halloween.py:57
@@ -3847,15 +3950,12 @@ msgstr ""
 #: region/views/map/save_links.py:31
 msgctxt "mining"
 msgid "нет полномочий"
-msgstr ""
+msgstr "no access"
 
 #: region/views/map/save_links.py:32
-#, fuzzy
-#| msgctxt "no_party"
-#| msgid "в регионе"
 msgctxt "mining"
 msgid "связи регионов"
-msgstr "at"
+msgstr "regions links"
 
 #: region/views/map/save_links.py:60 region/views/start_auto.py:27
 #: region/views/start_auto.py:35 region/views/start_auto.py:45
@@ -5708,13 +5808,143 @@ msgctxt "assets"
 msgid "Сундуки"
 msgstr "Chests"
 
+#: war/templates/war/redesign/EventWar.html:50
+msgctxt "war_page"
+msgid "Тестовая война"
+msgstr "Test war"
+
+#: war/templates/war/redesign/EventWar.html:143
+#: war/templates/war/redesign/GroundWar.html:144
+#: war/templates/war/redesign/Revolution.html:143
+msgctxt "war_page"
+msgid "Атака"
+msgstr "Attack side"
+
+#: war/templates/war/redesign/EventWar.html:149
+#: war/templates/war/redesign/GroundWar.html:150
+#: war/templates/war/redesign/Revolution.html:149
+msgctxt "war_page"
+msgid "Война завершилась"
+msgstr "War ended at"
+
+#: war/templates/war/redesign/EventWar.html:152
+#: war/templates/war/redesign/GroundWar.html:153
+#: war/templates/war/redesign/Revolution.html:152
+msgctxt "war_page"
+msgid "До конца боя"
+msgstr "Until the end of the war"
+
+#: war/templates/war/redesign/EventWar.html:158
+#: war/templates/war/redesign/GroundWar.html:159
+#: war/templates/war/redesign/Revolution.html:158
+msgctxt "war_page"
+msgid "Защита"
+msgstr "Defence side"
+
+#: war/templates/war/redesign/EventWar.html:177
+#: war/templates/war/redesign/EventWar.html:184
+#: war/templates/war/redesign/EventWar.html:255
+#: war/templates/war/redesign/GroundWar.html:174
+#: war/templates/war/redesign/GroundWar.html:181
+#: war/templates/war/redesign/GroundWar.html:252
+#: war/templates/war/redesign/Revolution.html:178
+#: war/templates/war/redesign/Revolution.html:185
+#: war/templates/war/redesign/Revolution.html:256
+msgctxt "war_page"
+msgid "Урон"
+msgstr "Damage"
+
+#: war/templates/war/redesign/EventWar.html:198
+#: war/templates/war/redesign/GroundWar.html:195
+#: war/templates/war/redesign/Revolution.html:199
+msgctxt "war_page"
+msgid "Баланс сил"
+msgstr "Balance of power"
+
+#: war/templates/war/redesign/EventWar.html:201
+#: war/templates/war/redesign/GroundWar.html:198
+#: war/templates/war/redesign/Revolution.html:202
+msgctxt "war_page"
+msgid "условие"
+msgstr "condition"
+
+#: war/templates/war/redesign/EventWar.html:202
+#: war/templates/war/redesign/GroundWar.html:199
+#: war/templates/war/redesign/Revolution.html:203
+msgctxt "war_page"
+msgid "больше"
+msgstr "more"
+
+#: war/templates/war/redesign/EventWar.html:203
+#: war/templates/war/redesign/GroundWar.html:200
+#: war/templates/war/redesign/Revolution.html:204
+msgctxt "war_page"
+msgid "меньше"
+msgstr "less"
+
+#: war/templates/war/redesign/EventWar.html:204
+#: war/templates/war/redesign/GroundWar.html:201
+#: war/templates/war/redesign/Revolution.html:205
+msgctxt "war_page"
+msgid "не важно"
+msgstr "no matter"
+
+#: war/templates/war/redesign/EventWar.html:229
+#: war/templates/war/redesign/GroundWar.html:226
+#: war/templates/war/redesign/Revolution.html:230
+msgctxt "war_page"
+msgid "очки"
+msgstr "points"
+
+#: war/templates/war/redesign/EventWar.html:245
+#: war/templates/war/redesign/GroundWar.html:242
+#: war/templates/war/redesign/Revolution.html:246
+msgctxt "war_page"
+msgid "сторона боя"
+msgstr "war side"
+
+#: war/templates/war/redesign/EventWar.html:246
+#: war/templates/war/redesign/GroundWar.html:243
+#: war/templates/war/redesign/Revolution.html:247
+msgctxt "war_page"
+msgid "атака"
+msgstr "attack side"
+
+#: war/templates/war/redesign/EventWar.html:247
+#: war/templates/war/redesign/GroundWar.html:244
+#: war/templates/war/redesign/Revolution.html:248
+msgctxt "war_page"
+msgid "защита"
+msgstr "defence side"
+
+#: war/templates/war/redesign/EventWar.html:274
+#: war/templates/war/redesign/GroundWar.html:271
+#: war/templates/war/redesign/Revolution.html:275
+msgctxt "war_page"
+msgid "в бой"
+msgstr "fight"
+
+#: war/templates/war/redesign/EventWar.html:323
+#: war/templates/war/redesign/GroundWar.html:320
+#: war/templates/war/redesign/Revolution.html:324
+msgctxt "war_page"
+msgid "нет войск"
+msgstr "no troops"
+
+#: war/templates/war/redesign/GroundWar.html:51
+msgctxt "war_page"
+msgid "Наземная война"
+msgstr "Ground war"
+
+#: war/templates/war/redesign/Revolution.html:50
+msgctxt "war_page"
+msgid "Восстание в регионе"
+msgstr "Rebellion in region"
+
 #: war/templates/war/redesign/character_wars.html:27
-#, fuzzy
-#| msgctxt "w_trading"
-#| msgid "Мои"
 msgctxt "wars_list"
 msgid "Бои"
-msgstr "Mine"
+msgstr "Wars"
 
 #: war/views/open_war_side_list.py:112
 msgctxt "lists"
@@ -5812,14 +6042,6 @@ msgstr ""
 #~ msgctxt "skills"
 #~ msgid "Отмена"
 #~ msgstr "Cancel"
-
-#~ msgctxt "party_manage"
-#~ msgid "партия"
-#~ msgstr "party"
-
-#~ msgctxt "party_manage"
-#~ msgid "должности"
-#~ msgstr "positions"
 
 #~ msgctxt "trading"
 #~ msgid "госзакупки"
@@ -5994,10 +6216,6 @@ msgstr ""
 #~ "upgraded"
 
 #~ msgctxt "assets"
-#~ msgid "На складе в регионе"
-#~ msgstr "At warehouse in the"
-
-#~ msgctxt "assets"
 #~ msgid "недостаточно товара"
 #~ msgstr "not enough goods"
 
@@ -6063,9 +6281,6 @@ msgstr ""
 #~ msgctxt "goods"
 #~ msgid "Навыки"
 #~ msgstr "Skills"
-
-#~ msgid "Тестовый сервер войн"
-#~ msgstr "War test server"
 
 #, fuzzy
 #~ msgctxt "goods"
