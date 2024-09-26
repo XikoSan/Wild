@@ -19,11 +19,11 @@
 		<h1 class="party__title ct__page-title">{% trans 'Управление партией' context "party_manage" %}</h1>
 
 		<div class="party__manageTabs articles__tabs">
-			<button class="active" onclick="switchMainBlocks(0)">партия</button>
+			<button class="active" onclick="switchMainBlocks(0)">{% trans 'партия' context "party_manage" %}</button>
 
-			<button onclick="switchMainBlocks(1)">должности</button>
+			<button onclick="switchMainBlocks(1)">{% trans 'должности' context "party_manage" %}</button>
 
-			<button onclick="switchMainBlocks(2)">золото</button>
+			<button onclick="switchMainBlocks(2)">{% trans 'золото' context "party_manage" %}</button>
 	  	</div>
 
 		<div class="partyblock1" id="partyblock1">
@@ -232,10 +232,10 @@
 				<div class="DecorLine"></div>
 
 				<div class="ct__s" style="margin-bottom: 12rem;">
-					<h2 class="ct__s-title">Выдача золота партии</h2>
+					<h2 class="ct__s-title">{% trans 'Выдача золота партии' context "party_manage" %}</h2>
 					<br>
 					<div class="ct__s" style="display: flex; justify-content: center;">
-						<h2 class="ct__s-title" style="background: linear-gradient(270deg, var(--c30) 0%, transparent 100%);">Баланс партии:</h2>
+						<h2 class="ct__s-title" style="background: linear-gradient(270deg, var(--c30) 0%, transparent 100%);">{% trans 'Баланс партии' context "party_manage" %}:</h2>
 						<h2 class="ct__s-title" style="color: #eb9929;">
 							G <div id="gold_val">{{ player.party.gold }}</div>
 						</h2>
@@ -243,7 +243,7 @@
 				</div>
 
 				<div class="ct__s" style="display: flex;justify-content: space-evenly; margin-bottom: 12rem;">
-					<h2 class="ct__s-title" style="background: initial;">Выдать:</h2>
+					<h2 class="ct__s-title" style="background: initial;">{% trans 'Выдать' context "party_manage" %}:</h2>
 					<input class="store__num-right" type="number" max="{% localize off %}{{ player.party.gold }}{% endlocalize %}" min="0" value="0" name="gold_sum" id="gold_sum" style="margin: initial;">
 				</div>
 
@@ -283,7 +283,7 @@
 				</div>
 
 				<button class="earn__long-btn ct__long-btn btn" style="margin-bottom: 14rem;" onclick="gold_giving()">
-					<span style="display: inline-block;">выдать</span>
+					<span style="display: inline-block;">{% trans 'выдать' context "party_manage" %}</span>
 
 					<svg width="176" height="31" viewBox="0 0 176 31" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<mask id="mask0_36_212" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="-1" width="176" height="32">
@@ -301,9 +301,9 @@
 				</button>
 
 				<div class="ct__s">
-					<p class="ct__s-text">Золото начисляется на баланс партии за призовые места в еженедельном рейтинге, а также за особые заслуги.</p>
+					<p class="ct__s-text">{% trans 'Золото начисляется на баланс партии за призовые места в еженедельном рейтинге, а также за особые заслуги.' context "party_manage" %}</p>
 					<br>
-					<p class="ct__s-text">Вы можете выдать золото с баланса партии любому однопартийцу.</p>
+					<p class="ct__s-text">{% trans 'Вы можете выдать золото с баланса партии любому однопартийцу.' context "party_manage" %}</p>
 				</div>
 
 			</div>

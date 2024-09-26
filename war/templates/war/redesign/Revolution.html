@@ -47,7 +47,7 @@
 </script>
 <section class="war">
     <!-- Заголовок -->
-    <h1 class="war__title ct__page-title">Восстание в регионе {{ war.def_region.region_name }}</h1>
+    <h1 class="war__title ct__page-title">{% trans 'Восстание в регионе' context "war_page" %} {{ war.def_region.region_name }}</h1>
 
     <div class="war__top">
       <div class="war__type">
@@ -140,22 +140,22 @@
 
       <div class="war__sides">
         <div class="war__gerbs">
-          <p>Атака:</p>
+          <p>{% trans 'Атака' context "war_page" %}:</p>
           <img src="/static/img/regions/{{ war.agr_region.on_map_id }}.png">
         </div>
 
         <p>
           {% if not war.running %}
-            <span>Война завершилась:</span><br>
+            <span>{% trans 'Война завершилась' context "war_page" %}:</span><br>
             <span>{{ war.end_time|timezone:player.time_zone|date:"d.m.y H:i" }}</span>
            {% else %}
-          <span>До конца боя:</span><br>
+          <span>{% trans 'До конца боя' context "war_page" %}:</span><br>
           <span id='war_countdown' data-text="{% localize off %}{{ war_countdown }}{% endlocalize %}">{{ dtime_str }}</span>
             {% endif %}
         </p>
 
         <div class="war__gerbs">
-          <p>Защита:</p>
+          <p>{% trans 'Защита' context "war_page" %}:</p>
           <img src="/static/img/regions/{{ war.def_region.on_map_id }}.png">
         </div>
       </div>
@@ -175,14 +175,14 @@
       <div class="war__damage">
         <div class="war__playerDamage"></div>
         <p>
-          <span>Урон:</span>
+          <span>{% trans 'Урон' context "war_page" %}:</span>
           <span id="agr_dmg">{{ agr_dmg }}</span>
         </p>
         <p id="delta_dmg">
           {{ delta }}
         </p>
         <p>
-          <span>Урон:</span>
+          <span>{% trans 'Урон' context "war_page" %}:</span>
           <span id="def_dmg">{{ def_dmg }}</span>
         </p>
       </div>
@@ -196,13 +196,13 @@
 
       <div class="war__prem-grid">
         <div class="war__prem-col">
-          <span>Баланс сил:</span>
+          <span>{% trans 'Баланс сил' context "war_page" %}:</span>
           <label class="ct__wide-modal-label-select ct__wide-modal-label-select--100">
             <select>
-              <option value="disabled" disabled selected>условие</option>
-              <option value="more">больше</option>
-              <option value="less">меньше</option>
-              <option value="disabled">не важно</option>
+              <option value="disabled" disabled selected>{% trans 'условие' context "war_page" %}</option>
+              <option value="more">{% trans 'больше' context "war_page" %}</option>
+              <option value="less">{% trans 'меньше' context "war_page" %}</option>
+              <option value="disabled">{% trans 'не важно' context "war_page" %}</option>
             </select>
             <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
@@ -227,7 +227,7 @@
           </div>
         </div>
         <div class="war__prem-col">
-          <span>очки:</span>
+          <span>{% trans 'очки' context "war_page" %}:</span>
           <label>
             <input type="number">
           </label>
@@ -243,9 +243,9 @@
             <div class="war__enter-left">
                 <label class="ct__wide-modal-label-select ct__wide-modal-label-select--100">
                     <select id="war_side">
-                      <option disabled selected>сторона боя</option>
-                      <option value="agr">атака</option>
-                      <option value="def">защита</option>
+                      <option disabled selected>{% trans 'сторона боя' context "war_page" %}</option>
+                      <option value="agr">{% trans 'атака' context "war_page" %}</option>
+                      <option value="def">{% trans 'защита' context "war_page" %}</option>
                     </select>
                     <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
@@ -253,7 +253,7 @@
                 </label>
 
                 <div class="war__enter-str">
-                    <span>Урон:</span>
+                    <span>{% trans 'Урон' context "war_page" %}:</span>
                     <span id="damage_count">0</span>
                 </div>
             </div>
@@ -272,7 +272,7 @@
                         <path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
                     </g>
                 </svg>
-                <span>в бой</span>
+                <span>{% trans 'в бой' context "war_page" %}</span>
             </button>
         </div>
     </div>
@@ -321,7 +321,7 @@
             {% endif %}
             {% endfor %}
         {% else %}
-            <span style="margin: auto;">нет войск</span>
+            <span style="margin: auto;">{% trans 'нет войск' context "war_page" %}</span>
         {% endif %}
 	</div>
     {% endif %}
