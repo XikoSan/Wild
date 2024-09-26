@@ -29,7 +29,7 @@
                 <span>Лотов: {{ bill.lots_count }}</span>
             </div>
             <div class="gover__withImage">
-                <span>{% trans 'Наличные' context "goods" %}: {{ bill.cash_cost }}</span>
+                <span>{% trans 'Наличные' context "purchase_auction_reviewed" %}: {{ bill.cash_cost }}</span>
             </div>
         </div>
     </td>
@@ -43,11 +43,11 @@
     <td class="gover__tableVote">
         <div class="gover__tableVote-wrappper">
             {% if bill.type == 'ac' %}
-            <p>принят</p>
+            <p>{% trans 'принят' context "purchase_auction_reviewed" %}</p>
             {% elif bill.type == 'rj' %}
-            <p>отклонён</p>
+            <p>{% trans 'отклонён' context "purchase_auction_reviewed" %}</p>
             {% elif bill.type == 'cn' %}
-            <p>отменён</p>
+            <p>{% trans 'отменён' context "purchase_auction_reviewed" %}</p>
             {% endif %}
 
             <p><span>{{ bill.votes_pro.all.count }}</span><span>{{ bill.votes_con.all.count }}</span></p>

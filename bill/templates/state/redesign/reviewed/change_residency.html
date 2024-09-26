@@ -32,10 +32,10 @@
         {% if bill.residency == 'issue' %}
         <div class="gover__tableVote-wrappper">
             <div class="gover__withImage" style="margin-bottom: 4rem;">
-                <span>{% trans 'Автоматы' context "goods" %}: {{ bill.rifle_cost }}</span>
+                <span>{% trans 'Автоматы' context "change_residency_reviewed" %}: {{ bill.rifle_cost }}</span>
             </div>
             <div class="gover__withImage">
-                <span>{% trans 'БПЛА' context "goods" %}: {{ bill.drone_cost }}</span>
+                <span>{% trans 'БПЛА' context "change_residency_reviewed" %}: {{ bill.drone_cost }}</span>
             </div>
         </div>
         {% else %}
@@ -52,11 +52,11 @@
     <td class="gover__tableVote">
         <div class="gover__tableVote-wrappper">
             {% if bill.type == 'ac' %}
-            <p>принят</p>
+            <p>{% trans 'принят' context "change_residency_reviewed" %}</p>
             {% elif bill.type == 'rj' %}
-            <p>отклонён</p>
+            <p>{% trans 'отклонён' context "change_residency_reviewed" %}</p>
             {% elif bill.type == 'cn' %}
-            <p>отменён</p>
+            <p>{% trans 'отменён' context "change_residency_reviewed" %}</p>
             {% endif %}
 
             <p><span>{{ bill.votes_pro.all.count }}</span><span>{{ bill.votes_con.all.count }}</span></p>

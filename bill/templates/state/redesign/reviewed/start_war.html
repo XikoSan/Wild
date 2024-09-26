@@ -74,11 +74,11 @@
     <td class="gover__tableVote">
         <div class="gover__tableVote-wrappper">
             {% if bill.type == 'ac' %}
-            <p>принят</p>
+            <p>{% trans 'принят' context "start_war_reviewed" %}</p>
             {% elif bill.type == 'rj' %}
-            <p>отклонён</p>
+            <p>{% trans 'отклонён' context "start_war_reviewed" %}</p>
             {% elif bill.type == 'cn' %}
-            <p>отменён</p>
+            <p>{% trans 'отменён' context "start_war_reviewed" %}</p>
             {% endif %}
 
             <p><span>{{ bill.votes_pro.all.count }}</span><span>{{ bill.votes_con.all.count }}</span></p>
