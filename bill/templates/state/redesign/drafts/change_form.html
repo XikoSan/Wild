@@ -5,11 +5,11 @@
 {% load l10n %}{% load i18n %}
 <!--новая форма правления-->
 <div class="gover__newInner ChangeForm">
-    <h2>Новая форма правления государства:</h2>
+    <h2>{% trans 'Новая форма правления государства' context "change_form_draft" %}:</h2>
     {% with forms=data|dict_key:'forms' %}
     <label class="ct__wide-modal-label-select">
         <select name="new_state_form" id="new_state_form">
-            <option id="change_form_default" value="default" disabled selected>выберите форму правления</option>
+            <option id="change_form_default" value="default" disabled selected>{% trans 'выберите форму правления' context "change_form_draft" %}</option>
             {% for form in forms|get_key_list %}
             <option id="change_form_{{ form }}" value="{{ form }}">{{ forms|dict_key:form }}</option>
             {% endfor %}

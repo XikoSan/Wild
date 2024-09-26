@@ -91,7 +91,7 @@
     <label class="ct__wide-modal-label-select">
         {% with goods=data|dict_key:'goods' %}
         <select name="transfer_resources" id="transfer_resources" onchange="set_transfer_val()">
-            <option id="transfer_resources_default" disabled selected value>выберите товар</option>
+            <option id="transfer_resources_default" disabled selected value>{% trans 'выберите товар' context "transfer_resources_draft" %}</option>
             {% for good in goods %}
             <option id="transfer_resources_{% localize off %}{{ good.pk }}{% endlocalize %}" value="{{ good.pk }}">{{ good.name }}</option>
             {% endfor %}
@@ -161,7 +161,7 @@
     </div>
     {% endwith %}
 
-    <span>количество:</span>
+    <span>{% trans 'количество' context "transfer_resources_draft" %}:</span>
     
     <div class="gover__newInner-twoWithInput">
 
@@ -177,7 +177,7 @@
         </div>
     </div>
 
-    <p>стоимость передачи:&nbsp;<b>$<span id="transfer_resources_sum">0</span></b></p>
+    <p>{% trans 'стоимость передачи' context "transfer_resources_draft" %}:&nbsp;<b>$<span id="transfer_resources_sum">0</span></b></p>
 
     <button type="submit" class="ct__mid-btn active">
         <svg width="144" height="30" viewBox="0 0 144 30" fill="none" xmlns="http://www.w3.org/2000/svg">

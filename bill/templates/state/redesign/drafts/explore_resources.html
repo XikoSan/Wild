@@ -155,7 +155,7 @@
     <label class="ct__wide-modal-label-select">
         {% with resources=data|dict_key:'resources' %}
         <select name="explore_resources" id="explore_resources">
-            <option id="explore_resource_default" disabled selected>выберите ресурс</option>
+            <option id="explore_resource_default" disabled selected>{% trans 'выберите ресурс' context "explore_resources_draft" %}</option>
             {% for resource in resources|get_key_list %}
             <option id="explore_resource_{{ resource }}" value="{{ resource }}">{{ resources|dict_key:resource }}</option>
             {% endfor %}
@@ -166,12 +166,12 @@
         </svg>
     </label>
 
-    <p id="explore_res_line" style="display: none">Запасы: <span id="explore_res_has"></span> / <span id="explore_res_cap"></span></p>
+    <p id="explore_res_line" style="display: none">{% trans 'Запасы' context "explore_resources_draft" %}: <span id="explore_res_has"></span> / <span id="explore_res_cap"></span></p>
 
-    <p id="explore_exp_line" style="display: none">За последние сутки: <span id="explore_res_exp"></span></p>
-    <p id="explore_mul_line" style="display: none">Множитель: <b><span id="explore_res_mul"></span></b></p>
+    <p id="explore_exp_line" style="display: none">{% trans 'За последние сутки' context "explore_resources_draft" %}: <span id="explore_res_exp"></span></p>
+    <p id="explore_mul_line" style="display: none">{% trans 'Множитель' context "explore_resources_draft" %}: <b><span id="explore_res_mul"></span></b></p>
 
-    <p id="explore_sum_line" style="display: none">стоимость разведки: <b>$<span id="explore_sum"></span></b></p>
+    <p id="explore_sum_line" style="display: none">{% trans 'стоимость разведки' context "explore_resources_draft" %}: <b>$<span id="explore_sum"></span></b></p>
 
     <button type="submit" class="ct__mid-btn active">
         <svg width="144" height="30" viewBox="0 0 144 30" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -188,7 +188,7 @@
         <span>{% trans 'предложить' context "bill_draft" %}</span>
     </button>
     {% else %}
-    <h3>Нет доступных регионов</h3>
+    <h3>{% trans 'Нет доступных регионов' context "explore_resources_draft" %}</h3>
     {% endif %}
     {% endwith %}
 </div>

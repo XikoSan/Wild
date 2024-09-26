@@ -14,7 +14,7 @@
         <div class="ct__selectWithImage-selected" id="transfer_accept_default_region" data-value="{% localize off %}{{ transfer.region.pk }}{% endlocalize %}">
             <img id="transfer_accept_default_img" src="/static/img/regions/{{ transfer.region.on_map_id }}.png">
             <div class="ct__selectWithImage-firstText">
-                <span id="transfer_accept_default_reg">{% trans transfer.region.region_name context "regions_list" %}</span>
+                <span id="transfer_accept_default_reg">{{ region.region_name }}</span>
                 <svg class="ct__selectWithImage-arrow" width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
                 </svg>
@@ -26,7 +26,7 @@
             {% for transfer in transfers %}
             <div id="transfer_accept_{% localize off %}{{ transfer.region.pk }}{% endlocalize %}" {% if forloop.counter0 == 0 %}class="region_storage"{% endif %} data-value="{% localize off %}{{ transfer.region.pk }}{% endlocalize %}">
                 <img class="offer_dummy_img" src="/static/img/regions/{{ transfer.region.on_map_id }}.png">
-                <span class="offer_dummy_region">{% trans transfer.region.region_name context "regions_list" %}</span>
+                <span class="offer_dummy_region">{{ region.region_name }}</span>
             </div>
             {% endfor %}
         </div>

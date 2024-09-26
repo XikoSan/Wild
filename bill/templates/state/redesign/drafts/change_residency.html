@@ -5,12 +5,12 @@
 {% load l10n %}{% load i18n %}
 <!--новый способ выдачи прописки-->
 <div class="gover__newInner ChangeResidency">
-    <h2>Способ выдачи прописки:</h2>
+    <h2>{% trans 'Способ выдачи прописки' context "change_residency_draft" %}:</h2>
 
     <label class="ct__wide-modal-label-select">
         <select name="change_residency_residency" id="change_residency_residency">
-            <option id="change_residency_residency_issue" value="issue">выдается министром</option>
-            <option id="change_residency_residency_free" selected value="free">свободная</option>
+            <option id="change_residency_residency_issue" value="issue">{% trans 'выдается министром' context "change_residency_draft" %}</option>
+            <option id="change_residency_residency_free" selected value="free">{% trans 'свободная' context "change_residency_draft" %}</option>
         </select>
         <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
@@ -18,12 +18,12 @@
     </label>
 
     <div id="change_residency_price" class="gover__newInner-flexColumn active" style="display: none">
-        <h3>стоимость:</h3>
+        <h3>{% trans 'стоимость' context "change_residency_draft" %}:</h3>
         {% with rifle_cost=data|dict_key:'rifle_cost' %}
-        <p style="margin-top: 5rem;">{% trans 'Автоматы' context "goods" %}: <b>{{ rifle_cost }}</b></p>
+        <p style="margin-top: 5rem;">{% trans 'Автоматы' context "change_residency_draft" %}: <b>{{ rifle_cost }}</b></p>
         {% endwith %}
         {% with drone_cost=data|dict_key:'drone_cost' %}
-        <p style="margin-top: 5rem;">{% trans 'БПЛА' context "goods" %}: <b>{{ drone_cost }}</b></p>
+        <p style="margin-top: 5rem;">{% trans 'БПЛА' context "change_residency_draft" %}: <b>{{ drone_cost }}</b></p>
         {% endwith %}
     </div>
     <script>

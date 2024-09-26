@@ -21,7 +21,7 @@
     <label class="ct__wide-modal-label-select">
         {% with goods=data|dict_key:'goods_dict' %}
         <select name="purchase_goods" id="purchase_goods">
-            <option id="purchase_good_default" disabled selected>выберите товар</option>
+            <option id="purchase_good_default" disabled selected>{% trans 'выберите товар' context "purchase_auction_draft" %}</option>
             {% for good in goods|get_key_list %}
             <option id="purchase_good_{{ good }}" value="{{ good }}">{{ goods|dict_key:good }}</option>
             {% endfor %}
@@ -33,7 +33,7 @@
     </label>
 
     <div class="gover__newInner-twoWithInput gover__newInner-twoWithInput--small">
-        <span>количество лотов:</span>
+        <span>{% trans 'количество лотов' context "purchase_auction_draft" %}:</span>
         <div>
             <label>
                 <input id="purchase_lots" type="number" min="1" max="10" step="1" name="purchase_lots" maxlength="3">
@@ -43,7 +43,7 @@
     </div>
 
     <div class="gover__newInner-twoWithInput">
-        <span>количество:</span>
+        <span>{% trans 'количество' context "purchase_auction_draft" %}:</span>
         <div>
             <label>
                 <input id="purchase_value" type="number" min="0" max="9223372036854775807" step="1" name="purchase_value" maxlength="3">
@@ -52,7 +52,7 @@
     </div>
 
     <div class="gover__newInner-twoWithInput">
-        <span>цена:</span>
+        <span>{% trans 'цена' context "purchase_auction_draft" %}:</span>
         <div>
             <label>
                 <input id="purchase_price" type="number" min="0" max="9223372036854775807" step="1" name="purchase_price" maxlength="3">
@@ -60,7 +60,7 @@
         </div>
     </div>
 
-    <p>стоимость: <b>$<span id="purchase_cost">0</span></b></p>
+    <p>{% trans 'стоимость' context "purchase_auction_draft" %}: <b>$<span id="purchase_cost">0</span></b></p>
 
     <button type="submit" class="ct__mid-btn active">
         <svg width="144" height="30" viewBox="0 0 144 30" fill="none" xmlns="http://www.w3.org/2000/svg">

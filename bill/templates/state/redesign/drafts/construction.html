@@ -149,7 +149,7 @@
     <label class="ct__wide-modal-label-select">
         {% with schemas=data|dict_key:'schemas' %}
         <select name="construction_buildings" id="construction_buildings">
-            <option id="construction_building_default" disabled selected value>выберите строение</option>
+            <option id="construction_building_default" disabled selected value>{% trans 'выберите строение' context "construction_draft" %}</option>
             {% for schema in schemas|get_key_list %}
             <option id="construction_building_{{ schema }}" value="{{ schema }}">{{ schemas|dict_key:schema|dict_key:'title' }}</option>
             {% endfor %}
@@ -160,9 +160,9 @@
         </svg>
     </label>
 
-    <p class="gover__newInner-infoText"><span>Уровень: </span><span id="construction_building_lvl"></span> + <input type="number" min="1" max="1000" step="1" id="construction_value" name="construction_value" maxlength="3" class="gover__newInner-textIput"> = <span id="construction_building_new"></span></p>
+    <p class="gover__newInner-infoText"><span>{% trans 'Уровень' context "construction_draft" %}: </span><span id="construction_building_lvl"></span> + <input type="number" min="1" max="1000" step="1" id="construction_value" name="construction_value" maxlength="3" class="gover__newInner-textIput"> = <span id="construction_building_new"></span></p>
 
-    <h3>Затраты:</h3>
+    <h3>{% trans 'Затраты' context "construction_draft" %}:</h3>
     <table class="gover__newInner-table">
         <tbody>
             <tr id="construction_component_header" style="display: none"></tr>
@@ -188,7 +188,7 @@
         <span>{% trans 'предложить' context "bill_draft" %}</span>
     </button>
     {% else %}
-    <h3>Нет доступных регионов</h3>
+    <h3>{% trans 'Нет доступных регионов' context "construction_draft" %}</h3>
     {% endif %}
     {% endwith %}
 </div>

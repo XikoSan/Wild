@@ -49,8 +49,8 @@
     </script>
     <label id="change_taxes_select" class="ct__wide-modal-label-select">
         <select name="change_taxes_destination" id="change_taxes_destination" class="new-nalog-select">
-            <option id="change_taxes_destination_state" selected value="destination_state">государство</option>
-            <option id="change_taxes_destination_region" value="destination_region">регион</option>
+            <option id="change_taxes_destination_state" selected value="destination_state">{% trans 'государство' context "change_taxes_draft" %}</option>
+            <option id="change_taxes_destination_region" value="destination_region">{% trans 'регион' context "change_taxes_draft" %}</option>
         </select>
         <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
@@ -58,11 +58,11 @@
     </label>
     <label class="ct__wide-modal-label-select">
         <select name="change_taxes_tax_mod" id="change_taxes_tax_mod">
-            <option id="change_taxes_tax_mod_default" value='default' disabled selected>Выберите налог</option>
-            <option id="change_taxes_tax_mod_default_cash" value="cash">Финансирование</option>
-            <option id="change_taxes_tax_mod_default_oil" value="oil">Добыча нефти</option>
-            <option id="change_taxes_tax_mod_default_ore" value="ore">Добыча руд</option>
-            <option id="change_taxes_tax_mod_default_trade" value="trade">Торговля</option>
+            <option id="change_taxes_tax_mod_default" value='default' disabled selected>{% trans 'Выберите налог' context "change_taxes_draft" %}</option>
+            <option id="change_taxes_tax_mod_default_cash" value="cash">{% trans 'Финансирование' context "change_taxes_draft" %}</option>
+            <option id="change_taxes_tax_mod_default_oil" value="oil">{% trans 'Добыча нефти' context "change_taxes_draft" %}</option>
+            <option id="change_taxes_tax_mod_default_ore" value="ore">{% trans 'Добыча руд' context "change_taxes_draft" %}</option>
+            <option id="change_taxes_tax_mod_default_trade" value="trade">{% trans 'Торговля' context "change_taxes_draft" %}</option>
         </select>
         <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
@@ -102,9 +102,9 @@
         {% endwith %}
     </div>
 
-    <p>Текущий налог: <span id="change_taxes_tax_lvl">0</span>%</p>
+    <p>{% trans 'Текущий налог' context "change_taxes_draft" %}: <span id="change_taxes_tax_lvl">0</span>%</p>
     <div class="gover__newInner-flexCenter">
-        <span>Новый налог:</span>
+        <span>{% trans 'Новый налог' context "change_taxes_draft" %}:</span>
         <input class="gover__newInner-textIput" type="number" min="0" max="90" step="1" id="change_taxes_value" name="change_taxes_value" maxlength="3">
         <span>%</span>
     </div>
