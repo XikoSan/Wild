@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-26 23:56+0300\n"
-"PO-Revision-Date: 2024-09-26 23:54+0300\n"
+"POT-Creation-Date: 2024-09-28 02:18+0300\n"
+"PO-Revision-Date: 2024-09-28 02:53+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -183,9 +183,6 @@ msgstr "Trading"
 #: bill/templates/state/redesign/bills/purchase_auction.html:31
 #: bill/templates/state/redesign/bills/transfer_resources.html:41
 #: bill/templates/state/redesign/drafts/construction.html:79
-#: bill/templates/state/redesign/reviewed/explore_resources.html:36
-#: bill/templates/state/redesign/reviewed/purchase_auction.html:32
-#: bill/templates/state/redesign/reviewed/transfer_resources.html:41
 #: factory/models/production_log.py:30 factory/models/production_log.py:55
 #: factory/views/factory.py:63 factory/views/produce_good.py:222
 #: state/models/treasury.py:38
@@ -201,9 +198,22 @@ msgstr "Cash"
 msgid "Золото"
 msgstr "Gold"
 
+#: bill/templates/state/redesign/bills.html:18
+msgctxt "bills_reviewed"
+msgid "объявление войны"
+msgstr "declaration of war"
+
+#: bill/templates/state/redesign/bills.html:24
+msgctxt "bills_reviewed"
+msgid "Саксония-Анхальт"
+msgstr "Saxony-Anhalt"
+
+#: bill/templates/state/redesign/bills.html:29
+msgctxt "bills_reviewed"
+msgid "наземная"
+msgstr "Ground war"
+
 #: bill/templates/state/redesign/bills/change_residency.html:34
-#: bill/templates/state/redesign/drafts/change_residency.html:23
-#: bill/templates/state/redesign/reviewed/change_residency.html:35
 #: factory/migrations/0023_auto_20230911_0014.py:43
 #: factory/migrations/0023_auto_20230911_0014.py:187
 #: factory/models/project.py:148 state/models/treasury.py:85
@@ -216,8 +226,6 @@ msgid "Автоматы"
 msgstr "Rifles"
 
 #: bill/templates/state/redesign/bills/change_residency.html:37
-#: bill/templates/state/redesign/drafts/change_residency.html:26
-#: bill/templates/state/redesign/reviewed/change_residency.html:38
 #: factory/migrations/0023_auto_20230911_0014.py:296
 #: factory/models/project.py:264 state/models/treasury.py:109
 #: storage/migrations/0067_auto_20230715_1635.py:67
@@ -268,24 +276,30 @@ msgctxt "purchase_auction"
 msgid "подписано"
 msgstr "signed"
 
+#: bill/templates/state/redesign/bills/start_war.html:41
+#, fuzzy
+#| msgctxt "war_page"
+#| msgid "Наземная война"
+msgctxt "start_war"
+msgid "Наземная война"
+msgstr "Ground war"
+
 #: bill/templates/state/redesign/drafts/change_coat.html:13
 msgctxt "change_coat_draft"
 msgid "Новый герб государства"
 msgstr "New state coat of arms"
 
 #: bill/templates/state/redesign/drafts/change_coat.html:93
-#: party/templates/party/redesign/manage.html:419
-#: player/templates/player/redesign/new_player.html:141
-#: player/templates/player/redesign/new_player.html:155
-#: player/templates/player/redesign/new_player.html:183
-#: player/templates/player/redesign/profile.html:522
+#, fuzzy
+#| msgid "Отмена"
+msgctxt "change_coat_draft"
 msgid "Отмена"
 msgstr "Cancel"
 
 #: bill/templates/state/redesign/drafts/change_coat.html:94
-#: party/templates/party/redesign/manage.html:420
-#: player/templates/player/redesign/new_player.html:142
-#: player/templates/player/redesign/profile.html:523
+#, fuzzy
+#| msgid "Загрузить"
+msgctxt "change_coat_draft"
 msgid "Загрузить"
 msgstr "Upload"
 
@@ -306,6 +320,694 @@ msgstr "Upload"
 msgctxt "bill_draft"
 msgid "предложить"
 msgstr "propose law"
+
+#: bill/templates/state/redesign/drafts/change_form.html:8
+#, fuzzy
+#| msgctxt "change_coat_draft"
+#| msgid "Новый герб государства"
+msgctxt "change_form_draft"
+msgid "Новая форма правления государства"
+msgstr "New state coat of arms"
+
+#: bill/templates/state/redesign/drafts/change_form.html:12
+#, fuzzy
+#| msgctxt "w_trading_new"
+#| msgid "Выберите группу"
+msgctxt "change_form_draft"
+msgid "выберите форму правления"
+msgstr "Choose category"
+
+#: bill/templates/state/redesign/drafts/change_residency.html:8
+msgctxt "change_residency_draft"
+msgid "Способ выдачи прописки"
+msgstr ""
+
+#: bill/templates/state/redesign/drafts/change_residency.html:12
+#, fuzzy
+#| msgid "Выдаётся министром"
+msgctxt "change_residency_draft"
+msgid "выдается министром"
+msgstr "Issued by minister"
+
+#: bill/templates/state/redesign/drafts/change_residency.html:13
+#, fuzzy
+#| msgid "Свободная"
+msgctxt "change_residency_draft"
+msgid "свободная"
+msgstr "Free"
+
+#: bill/templates/state/redesign/drafts/change_residency.html:21
+#, fuzzy
+#| msgctxt "assets"
+#| msgid "стоимость"
+msgctxt "change_residency_draft"
+msgid "стоимость"
+msgstr "full price"
+
+#: bill/templates/state/redesign/drafts/change_residency.html:23
+#, fuzzy
+#| msgctxt "goods"
+#| msgid "Автоматы"
+msgctxt "change_residency_draft"
+msgid "Автоматы"
+msgstr "Rifles"
+
+#: bill/templates/state/redesign/drafts/change_residency.html:26
+#, fuzzy
+#| msgctxt "goods"
+#| msgid "БПЛА"
+msgctxt "change_residency_draft"
+msgid "БПЛА"
+msgstr "UAV"
+
+#: bill/templates/state/redesign/drafts/change_taxes.html:52
+#, fuzzy
+#| msgid "Государство"
+msgctxt "change_taxes_draft"
+msgid "государство"
+msgstr "State"
+
+#: bill/templates/state/redesign/drafts/change_taxes.html:53
+#, fuzzy
+#| msgctxt "trading"
+#| msgid "регион"
+msgctxt "change_taxes_draft"
+msgid "регион"
+msgstr "region"
+
+#: bill/templates/state/redesign/drafts/change_taxes.html:61
+#, fuzzy
+#| msgctxt "assets"
+#| msgid "выберите склад"
+msgctxt "change_taxes_draft"
+msgid "Выберите налог"
+msgstr "choose warehouse"
+
+#: bill/templates/state/redesign/drafts/change_taxes.html:62
+#, fuzzy
+#| msgid "Финансирование"
+msgctxt "change_taxes_draft"
+msgid "Финансирование"
+msgstr "Financing"
+
+#: bill/templates/state/redesign/drafts/change_taxes.html:63
+#, fuzzy
+#| msgctxt "mining"
+#| msgid "Марка нефти"
+msgctxt "change_taxes_draft"
+msgid "Добыча нефти"
+msgstr "Oil brand"
+
+#: bill/templates/state/redesign/drafts/change_taxes.html:64
+#, fuzzy
+#| msgctxt "mining"
+#| msgid "Добыча"
+msgctxt "change_taxes_draft"
+msgid "Добыча руд"
+msgstr "Work"
+
+#: bill/templates/state/redesign/drafts/change_taxes.html:65
+#, fuzzy
+#| msgid "Торговля"
+msgctxt "change_taxes_draft"
+msgid "Торговля"
+msgstr "Trading"
+
+#: bill/templates/state/redesign/drafts/change_taxes.html:105
+msgctxt "change_taxes_draft"
+msgid "Текущий налог"
+msgstr ""
+
+#: bill/templates/state/redesign/drafts/change_taxes.html:107
+#, fuzzy
+#| msgctxt "cash_log"
+#| msgid "Новый Склад"
+msgctxt "change_taxes_draft"
+msgid "Новый налог"
+msgstr "New Warehouse"
+
+#: bill/templates/state/redesign/drafts/change_title.html:8
+#, fuzzy
+#| msgctxt "change_coat_draft"
+#| msgid "Новый герб государства"
+msgctxt "change_title_draft"
+msgid "Новое название государства"
+msgstr "New state coat of arms"
+
+#: bill/templates/state/redesign/drafts/construction.html:152
+#, fuzzy
+#| msgctxt "assets"
+#| msgid "выберите склад"
+msgctxt "construction_draft"
+msgid "выберите строение"
+msgstr "choose warehouse"
+
+#: bill/templates/state/redesign/drafts/construction.html:163
+#, fuzzy
+#| msgctxt "factory"
+#| msgid "Уровень"
+msgctxt "construction_draft"
+msgid "Уровень"
+msgstr "Level"
+
+#: bill/templates/state/redesign/drafts/construction.html:165
+msgctxt "construction_draft"
+msgid "Затраты"
+msgstr ""
+
+#: bill/templates/state/redesign/drafts/construction.html:191
+#, fuzzy
+#| msgctxt "storage_upgrade"
+#| msgid "Недостаточно материалов"
+msgctxt "construction_draft"
+msgid "Нет доступных регионов"
+msgstr "Not enough materials"
+
+#: bill/templates/state/redesign/drafts/explore_resources.html:158
+#, fuzzy
+#| msgctxt "trading"
+#| msgid "выберите товар"
+msgctxt "explore_resources_draft"
+msgid "выберите ресурс"
+msgstr "choose good"
+
+#: bill/templates/state/redesign/drafts/explore_resources.html:169
+#, fuzzy
+#| msgctxt "mining"
+#| msgid "Запасы"
+msgctxt "explore_resources_draft"
+msgid "Запасы"
+msgstr "Stocks"
+
+#: bill/templates/state/redesign/drafts/explore_resources.html:171
+#, fuzzy
+#| msgid "Пополнение энергии"
+msgctxt "explore_resources_draft"
+msgid "За последние сутки"
+msgstr "Energy refill"
+
+#: bill/templates/state/redesign/drafts/explore_resources.html:172
+#, fuzzy
+#| msgctxt "trading"
+#| msgid "создатель"
+msgctxt "explore_resources_draft"
+msgid "Множитель"
+msgstr "creator"
+
+#: bill/templates/state/redesign/drafts/explore_resources.html:174
+#, fuzzy
+#| msgctxt "no_storage"
+#| msgid "Стоимость создания"
+msgctxt "explore_resources_draft"
+msgid "стоимость разведки"
+msgstr "Creation cost"
+
+#: bill/templates/state/redesign/drafts/explore_resources.html:191
+#, fuzzy
+#| msgctxt "storage_upgrade"
+#| msgid "Недостаточно материалов"
+msgctxt "explore_resources_draft"
+msgid "Нет доступных регионов"
+msgstr "Not enough materials"
+
+#: bill/templates/state/redesign/drafts/independence.html:51
+#, fuzzy
+#| msgctxt "storage_upgrade"
+#| msgid "Недостаточно материалов"
+msgctxt "independence_draft"
+msgid "Нет доступных регионов"
+msgstr "Not enough materials"
+
+#: bill/templates/state/redesign/drafts/martial_law.html:37
+#, fuzzy
+#| msgctxt "martial_law"
+#| msgid "Военное положение"
+msgctxt "martial_law_draft"
+msgid "Военное положение"
+msgstr "Martial law"
+
+#: bill/templates/state/redesign/drafts/martial_law.html:38
+#, fuzzy
+#| msgctxt "martial_law"
+#| msgid "Снятие ограничений"
+msgctxt "martial_law_draft"
+msgid "Снятие ограничений"
+msgstr "Lifting restrictions"
+
+#: bill/templates/state/redesign/drafts/purchase_auction.html:24
+#, fuzzy
+#| msgctxt "trading"
+#| msgid "выберите товар"
+msgctxt "purchase_auction_draft"
+msgid "выберите товар"
+msgstr "choose good"
+
+#: bill/templates/state/redesign/drafts/purchase_auction.html:36
+#, fuzzy
+#| msgctxt "trading"
+#| msgid "количество"
+msgctxt "purchase_auction_draft"
+msgid "количество лотов"
+msgstr "quantity"
+
+#: bill/templates/state/redesign/drafts/purchase_auction.html:46
+#, fuzzy
+#| msgctxt "trading"
+#| msgid "количество"
+msgctxt "purchase_auction_draft"
+msgid "количество"
+msgstr "quantity"
+
+#: bill/templates/state/redesign/drafts/purchase_auction.html:55
+#, fuzzy
+#| msgctxt "factory"
+#| msgid "цена"
+msgctxt "purchase_auction_draft"
+msgid "цена"
+msgstr "price"
+
+#: bill/templates/state/redesign/drafts/purchase_auction.html:63
+#, fuzzy
+#| msgctxt "assets"
+#| msgid "стоимость"
+msgctxt "purchase_auction_draft"
+msgid "стоимость"
+msgstr "full price"
+
+#: bill/templates/state/redesign/drafts/start_war.html:112
+msgctxt "start_war_draft"
+msgid "нет общих границ"
+msgstr ""
+
+#: bill/templates/state/redesign/drafts/transfer_region.html:110
+#, fuzzy
+#| msgctxt "storage_upgrade"
+#| msgid "Недостаточно материалов"
+msgctxt "transfer_region_draft"
+msgid "Нет доступных регионов"
+msgstr "Not enough materials"
+
+#: bill/templates/state/redesign/drafts/transfer_resources.html:94
+#, fuzzy
+#| msgctxt "trading"
+#| msgid "выберите товар"
+msgctxt "transfer_resources_draft"
+msgid "выберите товар"
+msgstr "choose good"
+
+#: bill/templates/state/redesign/drafts/transfer_resources.html:164
+#, fuzzy
+#| msgctxt "trading"
+#| msgid "количество"
+msgctxt "transfer_resources_draft"
+msgid "количество"
+msgstr "quantity"
+
+#: bill/templates/state/redesign/drafts/transfer_resources.html:180
+#, fuzzy
+#| msgctxt "no_storage"
+#| msgid "Стоимость создания"
+msgctxt "transfer_resources_draft"
+msgid "стоимость передачи"
+msgstr "Creation cost"
+
+#: bill/templates/state/redesign/new_bill.html:82
+#, fuzzy
+#| msgctxt "bill_draft"
+#| msgid "предложить"
+msgctxt "new_bill_reviewed"
+msgid "предложить"
+msgstr "propose law"
+
+#: bill/templates/state/redesign/reviewed/change_coat.html:25
+#, fuzzy
+#| msgctxt "no_party"
+#| msgid "региональные"
+msgctxt "change_coat_reviewed"
+msgid "оригинальный размер"
+msgstr "regional parties"
+
+#: bill/templates/state/redesign/reviewed/change_coat.html:28
+#, fuzzy
+#| msgctxt "skills"
+#| msgid "недоступно"
+msgctxt "change_coat_reviewed"
+msgid "недоступно"
+msgstr "unavailable"
+
+#: bill/templates/state/redesign/reviewed/change_residency.html:35
+#, fuzzy
+#| msgctxt "goods"
+#| msgid "Автоматы"
+msgctxt "change_residency_reviewed"
+msgid "Автоматы"
+msgstr "Rifles"
+
+#: bill/templates/state/redesign/reviewed/change_residency.html:38
+#, fuzzy
+#| msgctxt "goods"
+#| msgid "БПЛА"
+msgctxt "change_residency_reviewed"
+msgid "БПЛА"
+msgstr "UAV"
+
+#: bill/templates/state/redesign/reviewed/change_residency.html:55
+#, fuzzy
+#| msgctxt "party_requests"
+#| msgid "Принять"
+msgctxt "change_residency_reviewed"
+msgid "принят"
+msgstr "Accept"
+
+#: bill/templates/state/redesign/reviewed/change_residency.html:57
+#, fuzzy
+#| msgctxt "party_requests"
+#| msgid "Отклонить"
+msgctxt "change_residency_reviewed"
+msgid "отклонён"
+msgstr "Reject"
+
+#: bill/templates/state/redesign/reviewed/change_residency.html:59
+#, fuzzy
+#| msgid "Отмена"
+msgctxt "change_residency_reviewed"
+msgid "отменён"
+msgstr "Cancel"
+
+#: bill/templates/state/redesign/reviewed/change_taxes.html:30
+#, fuzzy
+#| msgid "Государство"
+msgctxt "change_taxes_reviewed"
+msgid "всё государство"
+msgstr "State"
+
+#: bill/templates/state/redesign/reviewed/change_taxes.html:58
+#, fuzzy
+#| msgctxt "party_requests"
+#| msgid "Принять"
+msgctxt "change_taxes_reviewed"
+msgid "принят"
+msgstr "Accept"
+
+#: bill/templates/state/redesign/reviewed/change_taxes.html:60
+#, fuzzy
+#| msgctxt "party_requests"
+#| msgid "Отклонить"
+msgctxt "change_taxes_reviewed"
+msgid "отклонён"
+msgstr "Reject"
+
+#: bill/templates/state/redesign/reviewed/change_taxes.html:62
+#, fuzzy
+#| msgid "Отмена"
+msgctxt "change_taxes_reviewed"
+msgid "отменён"
+msgstr "Cancel"
+
+#: bill/templates/state/redesign/reviewed/change_title.html:37
+#, fuzzy
+#| msgctxt "party_requests"
+#| msgid "Принять"
+msgctxt "change_title_reviewed"
+msgid "принят"
+msgstr "Accept"
+
+#: bill/templates/state/redesign/reviewed/change_title.html:39
+#, fuzzy
+#| msgctxt "party_requests"
+#| msgid "Отклонить"
+msgctxt "change_title_reviewed"
+msgid "отклонён"
+msgstr "Reject"
+
+#: bill/templates/state/redesign/reviewed/change_title.html:41
+#, fuzzy
+#| msgid "Отмена"
+msgctxt "change_title_reviewed"
+msgid "отменён"
+msgstr "Cancel"
+
+#: bill/templates/state/redesign/reviewed/construction.html:55
+#, fuzzy
+#| msgctxt "party_requests"
+#| msgid "Принять"
+msgctxt "construction_reviewed"
+msgid "принят"
+msgstr "Accept"
+
+#: bill/templates/state/redesign/reviewed/construction.html:57
+#, fuzzy
+#| msgctxt "party_requests"
+#| msgid "Отклонить"
+msgctxt "construction_reviewed"
+msgid "отклонён"
+msgstr "Reject"
+
+#: bill/templates/state/redesign/reviewed/construction.html:59
+#, fuzzy
+#| msgid "Отмена"
+msgctxt "construction_reviewed"
+msgid "отменён"
+msgstr "Cancel"
+
+#: bill/templates/state/redesign/reviewed/explore_resources.html:36
+#, fuzzy
+#| msgctxt "goods"
+#| msgid "Наличные"
+msgctxt "explore_resources_reviewed"
+msgid "Наличные"
+msgstr "Cash"
+
+#: bill/templates/state/redesign/reviewed/explore_resources.html:49
+#, fuzzy
+#| msgctxt "party_requests"
+#| msgid "Принять"
+msgctxt "explore_resources_reviewed"
+msgid "принят"
+msgstr "Accept"
+
+#: bill/templates/state/redesign/reviewed/explore_resources.html:51
+#, fuzzy
+#| msgctxt "party_requests"
+#| msgid "Отклонить"
+msgctxt "explore_resources_reviewed"
+msgid "отклонён"
+msgstr "Reject"
+
+#: bill/templates/state/redesign/reviewed/explore_resources.html:53
+#, fuzzy
+#| msgid "Отмена"
+msgctxt "explore_resources_reviewed"
+msgid "отменён"
+msgstr "Cancel"
+
+#: bill/templates/state/redesign/reviewed/geological_surveys.html:36
+#, fuzzy
+#| msgctxt "goods"
+#| msgid "Буровые установки"
+msgctxt "geological_surveys_reviewed"
+msgid "Буровые установки"
+msgstr "Drills"
+
+#: bill/templates/state/redesign/reviewed/geological_surveys.html:49
+#, fuzzy
+#| msgctxt "party_requests"
+#| msgid "Принять"
+msgctxt "geological_surveys_reviewed"
+msgid "принят"
+msgstr "Accept"
+
+#: bill/templates/state/redesign/reviewed/geological_surveys.html:51
+#, fuzzy
+#| msgctxt "party_requests"
+#| msgid "Отклонить"
+msgctxt "geological_surveys_reviewed"
+msgid "отклонён"
+msgstr "Reject"
+
+#: bill/templates/state/redesign/reviewed/geological_surveys.html:53
+#, fuzzy
+#| msgid "Отмена"
+msgctxt "geological_surveys_reviewed"
+msgid "отменён"
+msgstr "Cancel"
+
+#: bill/templates/state/redesign/reviewed/independence.html:41
+#, fuzzy
+#| msgctxt "party_requests"
+#| msgid "Принять"
+msgctxt "independence_reviewed"
+msgid "принят"
+msgstr "Accept"
+
+#: bill/templates/state/redesign/reviewed/independence.html:43
+#, fuzzy
+#| msgctxt "party_requests"
+#| msgid "Отклонить"
+msgctxt "independence_reviewed"
+msgid "отклонён"
+msgstr "Reject"
+
+#: bill/templates/state/redesign/reviewed/independence.html:45
+#, fuzzy
+#| msgid "Отмена"
+msgctxt "independence_reviewed"
+msgid "отменён"
+msgstr "Cancel"
+
+#: bill/templates/state/redesign/reviewed/martial_law.html:46
+#, fuzzy
+#| msgctxt "party_requests"
+#| msgid "Принять"
+msgctxt "martial_law_reviewed"
+msgid "принят"
+msgstr "Accept"
+
+#: bill/templates/state/redesign/reviewed/martial_law.html:48
+#, fuzzy
+#| msgctxt "party_requests"
+#| msgid "Отклонить"
+msgctxt "martial_law_reviewed"
+msgid "отклонён"
+msgstr "Reject"
+
+#: bill/templates/state/redesign/reviewed/martial_law.html:50
+#, fuzzy
+#| msgid "Отмена"
+msgctxt "martial_law_reviewed"
+msgid "отменён"
+msgstr "Cancel"
+
+#: bill/templates/state/redesign/reviewed/purchase_auction.html:32
+#, fuzzy
+#| msgctxt "goods"
+#| msgid "Наличные"
+msgctxt "purchase_auction_reviewed"
+msgid "Наличные"
+msgstr "Cash"
+
+#: bill/templates/state/redesign/reviewed/purchase_auction.html:46
+#, fuzzy
+#| msgctxt "party_requests"
+#| msgid "Принять"
+msgctxt "purchase_auction_reviewed"
+msgid "принят"
+msgstr "Accept"
+
+#: bill/templates/state/redesign/reviewed/purchase_auction.html:48
+#, fuzzy
+#| msgctxt "party_requests"
+#| msgid "Отклонить"
+msgctxt "purchase_auction_reviewed"
+msgid "отклонён"
+msgstr "Reject"
+
+#: bill/templates/state/redesign/reviewed/purchase_auction.html:50
+#, fuzzy
+#| msgid "Отмена"
+msgctxt "purchase_auction_reviewed"
+msgid "отменён"
+msgstr "Cancel"
+
+#: bill/templates/state/redesign/reviewed/start_war.html:77
+#, fuzzy
+#| msgctxt "party_requests"
+#| msgid "Принять"
+msgctxt "start_war_reviewed"
+msgid "принят"
+msgstr "Accept"
+
+#: bill/templates/state/redesign/reviewed/start_war.html:79
+#, fuzzy
+#| msgctxt "party_requests"
+#| msgid "Отклонить"
+msgctxt "start_war_reviewed"
+msgid "отклонён"
+msgstr "Reject"
+
+#: bill/templates/state/redesign/reviewed/start_war.html:81
+#, fuzzy
+#| msgid "Отмена"
+msgctxt "start_war_reviewed"
+msgid "отменён"
+msgstr "Cancel"
+
+#: bill/templates/state/redesign/reviewed/transfer_accept.html:60
+#, fuzzy
+#| msgctxt "party_requests"
+#| msgid "Принять"
+msgctxt "transfer_accept_reviewed"
+msgid "принят"
+msgstr "Accept"
+
+#: bill/templates/state/redesign/reviewed/transfer_accept.html:62
+#, fuzzy
+#| msgctxt "party_requests"
+#| msgid "Отклонить"
+msgctxt "transfer_accept_reviewed"
+msgid "отклонён"
+msgstr "Reject"
+
+#: bill/templates/state/redesign/reviewed/transfer_accept.html:64
+#, fuzzy
+#| msgid "Отмена"
+msgctxt "transfer_accept_reviewed"
+msgid "отменён"
+msgstr "Cancel"
+
+#: bill/templates/state/redesign/reviewed/transfer_region.html:60
+#, fuzzy
+#| msgctxt "party_requests"
+#| msgid "Принять"
+msgctxt "transfer_region_reviewed"
+msgid "принят"
+msgstr "Accept"
+
+#: bill/templates/state/redesign/reviewed/transfer_region.html:62
+#, fuzzy
+#| msgctxt "party_requests"
+#| msgid "Отклонить"
+msgctxt "transfer_region_reviewed"
+msgid "отклонён"
+msgstr "Reject"
+
+#: bill/templates/state/redesign/reviewed/transfer_region.html:64
+#, fuzzy
+#| msgid "Отмена"
+msgctxt "transfer_region_reviewed"
+msgid "отменён"
+msgstr "Cancel"
+
+#: bill/templates/state/redesign/reviewed/transfer_resources.html:41
+#, fuzzy
+#| msgctxt "goods"
+#| msgid "Наличные"
+msgctxt "transfer_resources_reviewed"
+msgid "Наличные"
+msgstr "Cash"
+
+#: bill/templates/state/redesign/reviewed/transfer_resources.html:54
+#, fuzzy
+#| msgctxt "party_requests"
+#| msgid "Принять"
+msgctxt "transfer_resources_reviewed"
+msgid "принят"
+msgstr "Accept"
+
+#: bill/templates/state/redesign/reviewed/transfer_resources.html:56
+#, fuzzy
+#| msgctxt "party_requests"
+#| msgid "Отклонить"
+msgctxt "transfer_resources_reviewed"
+msgid "отклонён"
+msgstr "Reject"
+
+#: bill/templates/state/redesign/reviewed/transfer_resources.html:58
+#, fuzzy
+#| msgid "Отмена"
+msgctxt "transfer_resources_reviewed"
+msgid "отменён"
+msgstr "Cancel"
 
 #: chat/templates/chat/dialogue.html:31
 msgctxt "chat"
@@ -1183,6 +1885,20 @@ msgstr "Changing the party's name"
 msgctxt "party_manage"
 msgid "Смена описания партии"
 msgstr "Changing the party's description"
+
+#: party/templates/party/redesign/manage.html:419
+#: player/templates/player/redesign/new_player.html:141
+#: player/templates/player/redesign/new_player.html:155
+#: player/templates/player/redesign/new_player.html:183
+#: player/templates/player/redesign/profile.html:522
+msgid "Отмена"
+msgstr "Cancel"
+
+#: party/templates/party/redesign/manage.html:420
+#: player/templates/player/redesign/new_player.html:142
+#: player/templates/player/redesign/profile.html:523
+msgid "Загрузить"
+msgstr "Upload"
 
 #: party/templates/party/redesign/new_party.html:15
 #: party/views/management/new_party.py:85
@@ -2472,7 +3188,7 @@ msgstr "Great! This is a small step for you, but a giant leap for your career!"
 #: region/templates/region/redesign/map.html:947
 #: region/templates/region/redesign/mining.html:308
 #: region/templates/region/redesign/mining.html:327
-#: storage/templates/storage/redesign/storage.html:517
+#: storage/templates/storage/redesign/storage.html:513
 msgctxt "education"
 msgid "Награда: 200 золота"
 msgstr "Reward: 200 gold"
@@ -4382,7 +5098,6 @@ msgid "Выберите один или несколько критериев с
 msgstr "Select one or more criteria on the right and click \"Search\""
 
 #: storage/templates/storage/auctions/auctions.html:31
-#: storage/templates/storage/redesign/trading/trading.html:80
 msgctxt "w_trading"
 msgid "Ничего не найдено"
 msgstr "Nothing found"
@@ -4475,6 +5190,137 @@ msgctxt "assets"
 msgid "подтвердить"
 msgstr "accept"
 
+#: storage/templates/storage/redesign/auctions/auctions.html:22
+msgctxt "auctions"
+msgid "Государственные закупки"
+msgstr "Public procurement"
+
+#: storage/templates/storage/redesign/auctions/auctions.html:36
+msgctxt "auctions"
+msgid "фильтры"
+msgstr "search filters"
+
+#: storage/templates/storage/redesign/auctions/auctions.html:40
+msgctxt "auctions"
+msgid "Выбранная категория"
+msgstr "Selected category"
+
+#: storage/templates/storage/redesign/auctions/auctions.html:42
+msgctxt "auctions"
+msgid "Выбранный товар"
+msgstr "Selected good"
+
+#: storage/templates/storage/redesign/auctions/auctions.html:48
+msgctxt "auctions"
+msgid "Выберите один или несколько критериев в фильтрах"
+msgstr "Select one or more criteria in the filters"
+
+#: storage/templates/storage/redesign/auctions/auctions.html:49
+msgctxt "auctions"
+msgid "Ничего не найдено"
+msgstr "Nothing found"
+
+#: storage/templates/storage/redesign/auctions/auctions.html:54
+#: storage/templates/storage/redesign/auctions/auctions.html:170
+msgctxt "auctions"
+msgid "товар"
+msgstr "good"
+
+#: storage/templates/storage/redesign/auctions/auctions.html:56
+msgctxt "auctions"
+msgid "создано"
+msgstr "created"
+
+#: storage/templates/storage/redesign/auctions/auctions.html:60
+msgctxt "auctions"
+msgid "государство"
+msgstr "state"
+
+#: storage/templates/storage/redesign/auctions/auctions.html:62
+msgctxt "auctions"
+msgid "количество"
+msgstr "quantity"
+
+#: storage/templates/storage/redesign/auctions/auctions.html:64
+msgctxt "auctions"
+msgid "цена"
+msgstr "price"
+
+#: storage/templates/storage/redesign/auctions/auctions.html:66
+msgctxt "auctions"
+msgid "лотов"
+msgstr "lots"
+
+#: storage/templates/storage/redesign/auctions/auctions.html:68
+msgctxt "auctions"
+msgid "минимум"
+msgstr "min"
+
+#: storage/templates/storage/redesign/auctions/auctions.html:70
+msgctxt "auctions"
+msgid "максимум"
+msgstr "max"
+
+#: storage/templates/storage/redesign/auctions/auctions.html:130
+msgctxt "auctions"
+msgid "Настройки поиска"
+msgstr "Search filters"
+
+#: storage/templates/storage/redesign/auctions/auctions.html:132
+msgctxt "auctions"
+msgid "тип предложения"
+msgstr "offer type"
+
+#: storage/templates/storage/redesign/auctions/auctions.html:135
+msgctxt "auctions"
+msgid "Продажа"
+msgstr "Sell"
+
+#: storage/templates/storage/redesign/auctions/auctions.html:136
+msgctxt "auctions"
+msgid "Покупка"
+msgstr "Buy"
+
+#: storage/templates/storage/redesign/auctions/auctions.html:143
+msgctxt "auctions"
+msgid "создатель"
+msgstr "creator"
+
+#: storage/templates/storage/redesign/auctions/auctions.html:146
+msgctxt "auctions"
+msgid "Все"
+msgstr "All"
+
+#: storage/templates/storage/redesign/auctions/auctions.html:148
+msgctxt "auctions"
+msgid "Партия"
+msgstr "Party"
+
+#: storage/templates/storage/redesign/auctions/auctions.html:150
+msgctxt "auctions"
+msgid "Мои"
+msgstr "Mine"
+
+#: storage/templates/storage/redesign/auctions/auctions.html:157
+msgctxt "auctions"
+msgid "выбор категории"
+msgstr "category"
+
+#: storage/templates/storage/redesign/auctions/auctions.html:160
+msgctxt "auctions"
+msgid "выберите категорию"
+msgstr "select a category"
+
+#: storage/templates/storage/redesign/auctions/auctions.html:173
+msgctxt "auctions"
+msgid "выберите товар"
+msgstr "choose good"
+
+#: storage/templates/storage/redesign/auctions/auctions.html:195
+msgctxt "auctions"
+msgid "поиск"
+msgstr "search"
+
 #: storage/templates/storage/redesign/storage.html:23
 #: storage/views/storage/storage.py:88
 msgctxt "storage"
@@ -4521,34 +5367,29 @@ msgstr "use Wild Pass"
 #: storage/templates/storage/redesign/storage.html:187
 msgctxt "storage_vault"
 msgid "+ G 800"
-msgstr ""
+msgstr "+ G 800"
 
 #: storage/templates/storage/redesign/storage.html:187
 msgctxt "storage_vault"
 msgid "+ G 1000"
-msgstr ""
+msgstr "+ G 1000"
 
 #: storage/templates/storage/redesign/storage.html:201
-#, fuzzy
-#| msgctxt "game_event"
-#| msgid "премиум день"
 msgctxt "storage_vault"
 msgid "+ премиум"
-msgstr "day of Premium"
+msgstr "+ premium"
 
 #: storage/templates/storage/redesign/storage.html:244
-#: storage/templates/storage/redesign/storage.html:399
+#: storage/templates/storage/redesign/storage.html:395
 msgctxt "storage_transfer"
 msgid "Перемещение Склада"
 msgstr "Warehouse move"
 
 #: storage/templates/storage/redesign/storage.html:246
-#, fuzzy
-#| msgctxt "assets"
-#| msgid "Нельзя переместить Склад из атакованного региона"
 msgctxt "storage_transfer"
 msgid "Нельзя Вывезти Склад из региона боевых действий"
-msgstr "Cant move Warehouse from region under attack"
+msgstr ""
+"It is not possible to move goods of this warehouse from the combat zone"
 
 #: storage/templates/storage/redesign/storage.html:248
 msgctxt "storage_transfer"
@@ -4578,12 +5419,9 @@ msgid "Стоимость"
 msgstr "Price"
 
 #: storage/templates/storage/redesign/storage.html:274
-#, fuzzy
-#| msgctxt "assets"
-#| msgid "Требуется:"
 msgctxt "storage_upgrade"
 msgid "Требуется"
-msgstr "Required:"
+msgstr "Required"
 
 #: storage/templates/storage/redesign/storage.html:291
 #: storage/templates/storage/redesign/storage.html:364
@@ -4601,6 +5439,8 @@ msgctxt "storage_upgrade"
 msgid ""
 "После подтверждения улучшения Склада, его ёмкость изменится следующим образом"
 msgstr ""
+"After confirming the upgrade of the Warehouse, its capacity will change as "
+"follows:"
 
 #: storage/templates/storage/redesign/storage.html:321
 msgctxt "storage_upgrade"
@@ -4651,78 +5491,56 @@ msgstr ""
 "cannot be undone. Proceed?"
 
 #: storage/templates/storage/redesign/storage.html:381
-#, fuzzy
-#| msgctxt "w_trading"
-#| msgid "Торговля Wild Pass"
 msgctxt "storage_vault"
 msgid "Обмен Wild Pass"
-msgstr "Wild Pass Trading"
+msgstr "Using of Wild Pass"
 
-#: storage/templates/storage/redesign/storage.html:383
-#, fuzzy
-#| msgctxt "storage_assets"
-#| msgid ""
-#| "Вы активируете премиум-аккаунт, длительностью один месяц. Данную операцию "
-#| "невозможно отменить. Продолжить?"
+#: storage/templates/storage/redesign/storage.html:382
 msgctxt "storage_vault"
 msgid ""
 "Вы обменяете премиум-карту на G 800. Данную операцию невозможно отменить. "
 "Продолжить?"
 msgstr ""
-"You will activate a premium account, lasting one month. This operation "
-"cannot be undone. Proceed?"
+"You will exchange your premium card for G 800. This transaction cannot be "
+"cancelled. Continue?"
 
-#: storage/templates/storage/redesign/storage.html:385
-#, fuzzy
-#| msgctxt "storage_assets"
-#| msgid ""
-#| "Вы активируете премиум-аккаунт, длительностью один месяц. Данную операцию "
-#| "невозможно отменить. Продолжить?"
-msgctxt "storage_vault"
-msgid ""
-"Вы обменяете премиум-карту на G 1000. Данную операцию невозможно отменить. "
-"Продолжить?"
-msgstr ""
-"You will activate a premium account, lasting one month. This operation "
-"cannot be undone. Proceed?"
-
-#: storage/templates/storage/redesign/storage.html:388
+#: storage/templates/storage/redesign/storage.html:384
 msgctxt "storage_assets"
 msgid "Продолжить"
 msgstr "Continue"
 
-#: storage/templates/storage/redesign/storage.html:389
+#: storage/templates/storage/redesign/storage.html:385
 msgctxt "storage_assets"
 msgid "Отмена"
 msgstr "Cancel"
 
-#: storage/templates/storage/redesign/storage.html:400
+#: storage/templates/storage/redesign/storage.html:396
 msgctxt "storage_transfer"
 msgid "Склад будет перемещен в регион вашего местонахождения"
 msgstr "The warehouse will be moved to the region of your location"
 
-#: storage/templates/storage/redesign/storage.html:400
+#: storage/templates/storage/redesign/storage.html:396
 msgctxt "storage_transfer"
 msgid "Больше этот Склад переместить не получится. Продолжить?"
 msgstr "This Warehouse can no longer be moved. Proceed?"
 
-#: storage/templates/storage/redesign/storage.html:401
+#: storage/templates/storage/redesign/storage.html:397
 msgctxt "storage_transfer"
 msgid "Продолжить"
 msgstr "Continue"
 
-#: storage/templates/storage/redesign/storage.html:402
+#: storage/templates/storage/redesign/storage.html:398
 msgctxt "storage_transfer"
 msgid "Отмена"
 msgstr "Cancel"
 
-#: storage/templates/storage/redesign/storage.html:480
+#: storage/templates/storage/redesign/storage.html:476
 msgctxt "education"
 msgid ""
 "Это Ваш cклад. Таких Складов у Вас может быть много, но этот - Ваш первый."
 msgstr "This is your storage. There are many like it, but this one is your."
 
-#: storage/templates/storage/redesign/storage.html:483
+#: storage/templates/storage/redesign/storage.html:479
 msgctxt "education"
 msgid ""
 "Он состоит из двух крупных разделов - непосредственно Склада и защищённого "
@@ -4731,7 +5549,7 @@ msgstr ""
 "It consists of two main sections—the Warehouse itself and a secure Storage "
 "that’s always at your disposal."
 
-#: storage/templates/storage/redesign/storage.html:486
+#: storage/templates/storage/redesign/storage.html:482
 msgctxt "education"
 msgid ""
 "У Вас даже может не быть Склада в регионе Вашего местонахождения, но "
@@ -4740,29 +5558,29 @@ msgstr ""
 "You might not even have a Warehouse in your current region, but the Storage "
 "will always be available to you."
 
-#: storage/templates/storage/redesign/storage.html:489
+#: storage/templates/storage/redesign/storage.html:485
 msgctxt "education"
 msgid "Для начала же, посмотрим на запасы Склада. Они поделены на три размера:"
 msgstr ""
 "To start, let’s take a look at the supplies in the Warehouse. They are "
 "divided into three sizes:"
 
-#: storage/templates/storage/redesign/storage.html:494
+#: storage/templates/storage/redesign/storage.html:490
 msgctxt "education"
 msgid "- большой объём, который позволяет хранить Вам необработанное сырьё"
 msgstr "- a large capacity that allows you to store raw materials."
 
-#: storage/templates/storage/redesign/storage.html:497
+#: storage/templates/storage/redesign/storage.html:493
 msgctxt "education"
 msgid "- средний объём, хранящий, в основном, материалы и некоторые товары"
 msgstr "- a medium capacity that primarily holds materials and some goods."
 
-#: storage/templates/storage/redesign/storage.html:500
+#: storage/templates/storage/redesign/storage.html:496
 msgctxt "education"
 msgid "- малый объём, занимаемый, в основном, оружием."
 msgstr "- a small capacity that is mostly occupied by weapons."
 
-#: storage/templates/storage/redesign/storage.html:503
+#: storage/templates/storage/redesign/storage.html:499
 msgctxt "education"
 msgid ""
 "Вам ничего не мешает занять весь малый объём только танками, к примеру. А в "
@@ -4771,7 +5589,7 @@ msgstr ""
 "You can fill the entire small capacity with tanks, for example. Meanwhile, "
 "the large capacity is where you store the resources you decided to extract."
 
-#: storage/templates/storage/redesign/storage.html:506
+#: storage/templates/storage/redesign/storage.html:502
 msgctxt "education"
 msgid ""
 "Когда Вы приметесь торговать, то обратите внимание, что та часть запасов, "
@@ -4782,7 +5600,7 @@ msgstr ""
 "intend to sell doesn’t disappear from the Warehouse until it’s purchased. "
 "So, manage your Warehouse space wisely."
 
-#: storage/templates/storage/redesign/storage.html:509
+#: storage/templates/storage/redesign/storage.html:505
 msgctxt "education"
 msgid ""
 "Помимо запасов, на Склад можно Выложить Наличные, которыми будут "
@@ -4791,7 +5609,7 @@ msgstr ""
 "In addition to supplies, you can also deposit Cash in the Warehouse, which "
 "will be used to pay for the production of the goods you ordered."
 
-#: storage/templates/storage/redesign/storage.html:514
+#: storage/templates/storage/redesign/storage.html:510
 msgctxt "education"
 msgid ""
 "Чтобы выложить Наличные, Вам потребуется прилететь в регион Склада, и "
@@ -4800,7 +5618,7 @@ msgstr ""
 "To deposit Cash, you’ll need to fly to the Warehouse region and specify the "
 "amount that should remain there."
 
-#: storage/templates/storage/redesign/storage.html:521
+#: storage/templates/storage/redesign/storage.html:517
 msgctxt "education"
 msgid ""
 "Ладно, это скучно - глядеть на булыжники и нефтяную жижу. Давайте посмотрим "
@@ -4809,7 +5627,7 @@ msgstr ""
 "Alright, it’s boring to just look at rocks and oil sludge. Let’s check out "
 "the really valuable items!"
 
-#: storage/templates/storage/redesign/storage.html:526
+#: storage/templates/storage/redesign/storage.html:522
 msgctxt "education"
 msgid ""
 "Помните Энергетики, которые я Вам давала? Они лежат именно здесь. В тёмном, "
@@ -4820,14 +5638,14 @@ msgstr ""
 "dark, cool place. Here, we can also order the production of new ones, using "
 "Gold."
 
-#: storage/templates/storage/redesign/storage.html:531
+#: storage/templates/storage/redesign/storage.html:527
 msgctxt "education"
 msgid "Так же, в Хранилище находятся Wild Pass. Это карты премиум-доступа."
 msgstr ""
 "Additionally, the Storage contains Wild Passes. These are premium access "
 "cards."
 
-#: storage/templates/storage/redesign/storage.html:536
+#: storage/templates/storage/redesign/storage.html:532
 msgctxt "education"
 msgid ""
 "При их активации, Вы получите возможности, позволяющие облегчить улучшение "
@@ -4837,7 +5655,7 @@ msgstr ""
 "When activated, they provide you with capabilities that make it easier to "
 "enhance your stats and streamline operations at mines and factories."
 
-#: storage/templates/storage/redesign/storage.html:539
+#: storage/templates/storage/redesign/storage.html:535
 msgctxt "education"
 msgid ""
 "Этими предметами можно свободно торговать - они всегда высоко ценятся, и "
@@ -4846,7 +5664,7 @@ msgstr ""
 "These items can be freely traded—they are always highly valued, and other "
 "politicians are willing to pay substantial sums for them."
 
-#: storage/templates/storage/redesign/storage.html:542
+#: storage/templates/storage/redesign/storage.html:538
 msgctxt "education"
 msgid ""
 "Раздел Склад позволяет Вам управлять тем Складом, который находится в "
@@ -4855,7 +5673,7 @@ msgstr ""
 "The Warehouse section allows you to manage the Warehouse located in your "
 "current region."
 
-#: storage/templates/storage/redesign/storage.html:545
+#: storage/templates/storage/redesign/storage.html:541
 msgctxt "education"
 msgid ""
 "Но, обратите внимание - в других регионах Склада у Вас ещё нет. Поэтому, его "
@@ -4864,7 +5682,7 @@ msgstr ""
 "However, keep in mind that you don’t have a Warehouse in other regions yet. "
 "So, you will need to build one there."
 
-#: storage/templates/storage/redesign/storage.html:548
+#: storage/templates/storage/redesign/storage.html:544
 msgctxt "education"
 msgid ""
 "Список всех Складов доступен в разделе Активы. Там же Вы сможете "
@@ -4874,7 +5692,7 @@ msgstr ""
 "can also arrange for the transportation of your goods from one region to "
 "another."
 
-#: storage/templates/storage/redesign/storage.html:551
+#: storage/templates/storage/redesign/storage.html:547
 msgctxt "education"
 msgid ""
 "Всё это время, мы с Вами решали задачи, которые были ограничены одним "
@@ -4986,12 +5804,14 @@ msgid "Выбранный товар"
 msgstr "Selected good"
 
 #: storage/templates/storage/redesign/trading/trading.html:79
-#, fuzzy
-#| msgctxt "w_trading"
-#| msgid "Выберите один или несколько критериев в настройках поиска"
-msgctxt "w_trading"
+msgctxt "trading"
 msgid "Выберите один или несколько критериев в фильтрах"
 msgstr "Select one or more criteria in the filters"
+
+#: storage/templates/storage/redesign/trading/trading.html:80
+msgctxt "trading"
+msgid "Ничего не найдено"
+msgstr "Nothing found"
 
 #: storage/templates/storage/redesign/trading/trading.html:85
 #: storage/templates/storage/redesign/trading/trading.html:345
@@ -5029,13 +5849,19 @@ msgstr "offer type"
 
 #: storage/templates/storage/redesign/trading/trading.html:130
 #: storage/templates/storage/redesign/trading/trading.html:219
-msgctxt "w_trading"
+#, fuzzy
+#| msgctxt "w_trading"
+#| msgid "Продажа"
+msgctxt "trading"
 msgid "Продажа"
 msgstr "Sell"
 
 #: storage/templates/storage/redesign/trading/trading.html:131
 #: storage/templates/storage/redesign/trading/trading.html:220
-msgctxt "w_trading"
+#, fuzzy
+#| msgctxt "w_trading"
+#| msgid "Покупка"
+msgctxt "trading"
 msgid "Покупка"
 msgstr "Buy"
 
@@ -5045,17 +5871,25 @@ msgid "создатель"
 msgstr "creator"
 
 #: storage/templates/storage/redesign/trading/trading.html:141
-msgctxt "w_trading"
+#, fuzzy
+#| msgctxt "w_trading"
+#| msgid "Все"
+msgctxt "trading"
 msgid "Все"
 msgstr "All"
 
 #: storage/templates/storage/redesign/trading/trading.html:143
-msgctxt "w_trading"
+#, fuzzy
+#| msgid "Партия"
+msgctxt "trading"
 msgid "Партия"
 msgstr "Party"
 
 #: storage/templates/storage/redesign/trading/trading.html:145
-msgctxt "w_trading"
+#, fuzzy
+#| msgctxt "w_trading"
+#| msgid "Мои"
+msgctxt "trading"
 msgid "Мои"
 msgstr "Mine"
 
@@ -5089,17 +5923,26 @@ msgid "поиск"
 msgstr "search"
 
 #: storage/templates/storage/redesign/trading/trading.html:208
-msgctxt "w_trading_new"
+#, fuzzy
+#| msgctxt "w_trading_new"
+#| msgid "Новое торговое предложение"
+msgctxt "trading_new"
 msgid "Новое торговое предложение"
 msgstr "New trade offer"
 
 #: storage/templates/storage/redesign/trading/trading.html:210
-msgctxt "w_trading_new"
+#, fuzzy
+#| msgctxt "w_trading_new"
+#| msgid "Доступно"
+msgctxt "trading_new"
 msgid "Доступно"
 msgstr "Available"
 
 #: storage/templates/storage/redesign/trading/trading.html:294
-msgctxt "w_trading_new"
+#, fuzzy
+#| msgctxt "w_trading_new"
+#| msgid "Будет заблокировано"
+msgctxt "trading_new"
 msgid "Будет заблокировано"
 msgstr "Will be blocked on wallet"
 
@@ -5459,9 +6302,10 @@ msgid "Улучшение Склада"
 msgstr "Warehouse upgrade"
 
 #: storage/views/storage/upgrade_storage.py:49
+#, python-format
 msgctxt "storage_upgrade"
-msgid "Требуется Интеллект: { ( storage.level - 4 ) * 25 }"
-msgstr ""
+msgid "Требуется Интеллект: %(int_require)s"
+msgstr "Intelligence Required: %(int_require)s"
 
 #: storage/views/storage/upgrade_storage.py:62
 msgctxt "storage_upgrade"
@@ -5985,6 +6829,18 @@ msgstr "No such skill"
 msgid "Нет такой записи об участии в бою"
 msgstr ""
 
+#~ msgctxt "storage_vault"
+#~ msgid ""
+#~ "Вы обменяете премиум-карту на G 1000. Данную операцию невозможно "
+#~ "отменить. Продолжить?"
+#~ msgstr ""
+#~ "You will exchange your premium card for G 1 000. This transaction cannot "
+#~ "be cancelled. Continue?"
+
+#~ msgctxt "w_trading"
+#~ msgid "Партия"
+#~ msgstr "Party"
+
 #~ msgid "Ошибка отмены навыка"
 #~ msgstr "Skill cancellation error"
 
@@ -6016,20 +6872,12 @@ msgstr ""
 #~ msgstr "Brandenburg"
 
 #~ msgctxt "regions_list"
-#~ msgid "Саксония-Анхальт"
-#~ msgstr "Saxony-Anhalt"
-
-#~ msgctxt "regions_list"
 #~ msgid "Австрия"
 #~ msgstr "Republic of Austria"
 
 #~ msgctxt "regions_list"
 #~ msgid "Опольское воеводство"
 #~ msgstr "Opole Voivodeship"
-
-#~ msgctxt "mining"
-#~ msgid "Марка нефти"
-#~ msgstr "Oil brand"
 
 #~ msgctxt "mining"
 #~ msgid "Качество руды"
@@ -6082,10 +6930,6 @@ msgstr ""
 #~ msgctxt "w_trading_new"
 #~ msgid "Склад"
 #~ msgstr "Warehouse"
-
-#~ msgctxt "w_trading_new"
-#~ msgid "Выберите группу"
-#~ msgstr "Choose category"
 
 #~ msgctxt "w_trading_new"
 #~ msgid "Товар"

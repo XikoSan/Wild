@@ -76,8 +76,8 @@
 			</div>
 	    <!--Результаты поиска торговли-->
 	    <div class="trading__wrapper-overflow">
-	      <p class="trading__no-filters" id="offers_help">{% trans 'Выберите один или несколько критериев в фильтрах' context "w_trading" %}</p>
-	      <p class="trading__no-filters" id="offers_none" style="display: none">{% trans 'Ничего не найдено' context "w_trading" %}</p>
+	      <p class="trading__no-filters" id="offers_help">{% trans 'Выберите один или несколько критериев в фильтрах' context "trading" %}</p>
+	      <p class="trading__no-filters" id="offers_none" style="display: none">{% trans 'Ничего не найдено' context "trading" %}</p>
 	      <table class="ct__js-table" style="display: none;" id="lines">
             <tbody>
                 <tr id="offers_header">
@@ -127,8 +127,8 @@
       <h3>{% trans 'тип предложения' context "trading" %}:</h3>
       <label class="search-modal__label ct__wide-modal-label-select">
         <select name="trade_actions" id="trade_actions">
-			<option selected value='sell'>{% trans 'Продажа' context "w_trading" %}</option>
-			<option value='buy'>{% trans 'Покупка' context "w_trading" %}</option>
+			<option selected value='sell'>{% trans 'Продажа' context "trading" %}</option>
+			<option value='buy'>{% trans 'Покупка' context "trading" %}</option>
         </select>
 		<svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
 			<path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
@@ -138,11 +138,11 @@
       <h3>{% trans 'создатель' context "trading" %}:</h3>
       <label class="search-modal__label ct__wide-modal-label-select">
         <select name="trade_owner" id="trade_owner">
-            <option selected value='all'>{% trans 'Все' context "w_trading" %}</option>
+            <option selected value='all'>{% trans 'Все' context "trading" %}</option>
             {% if player.party %}
-            <option value='party'>{% trans 'Партия' context "w_trading" %}</option>
+            <option value='party'>{% trans 'Партия' context "trading" %}</option>
             {% endif %}
-            <option value='mine'>{% trans 'Мои' context "w_trading" %}</option>
+            <option value='mine'>{% trans 'Мои' context "trading" %}</option>
         </select>
         <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
@@ -205,9 +205,9 @@
         </svg>
       </button>
       <!--Заголовок-->
-      <h2>{% trans 'Новое торговое предложение' context "w_trading_new" %}</h2>
+      <h2>{% trans 'Новое торговое предложение' context "trading_new" %}</h2>
 			<!--текст-->
-			<h4>{% trans 'Доступно' context "w_trading_new" %}:
+			<h4>{% trans 'Доступно' context "trading_new" %}:
                 <span id="free_offers">{% if free_offers > 0 %}{{ free_offers }}{% else %}0{% endif %}</span>
                 <span>/ {{ total_offers }}</span>
                 <br>
@@ -216,8 +216,8 @@
       <h3>{% trans 'тип предложения' context "trading" %}:</h3>
       <label class="search-modal__label ct__wide-modal-label-select">
         <select name="action" id="action">
-			<option selected value='sell'>{% trans 'Продажа' context "w_trading" %}</option>
-			<option value='buy'>{% trans 'Покупка' context "w_trading" %}</option>
+			<option selected value='sell'>{% trans 'Продажа' context "trading" %}</option>
+			<option value='buy'>{% trans 'Покупка' context "trading" %}</option>
         </select>
         <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
@@ -291,7 +291,7 @@
             <input id="price" name="price" type="number" class="search-modal__withInput-input" value="0">
         </div>
         <div class="search-modal__withInput search-modal__withInput--margin" id="buy_row" style="display: none">
-            <span class="search-modal__withInput-text">{% trans 'Будет заблокировано' context "w_trading_new" %}</span>
+            <span class="search-modal__withInput-text">{% trans 'Будет заблокировано' context "trading_new" %}</span>
             <span class="search-modal__withInput-text" id="cash_to_lock">$0</span>
         </div>
       <!--Кнопка ПОИСК-->

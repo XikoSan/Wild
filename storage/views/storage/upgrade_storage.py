@@ -46,7 +46,7 @@ def upgrade_storage(request):
             data = {
                 'header': pgettext('storage_upgrade', 'Улучшение Склада'),
                 'grey_btn': pgettext('mining', 'Закрыть'),
-                'response': pgettext('storage_upgrade', f'Требуется Интеллект: { ( storage.level - 4 ) * 25 }'),
+                'response': pgettext('storage_upgrade', "Требуется Интеллект: %(int_require)s") % { "int_require": ( storage.level - 4 ) * 25 },
             }
             return JsonResponse(data)
 

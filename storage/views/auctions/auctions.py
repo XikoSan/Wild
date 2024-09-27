@@ -29,11 +29,11 @@ def auctions(request):
     for type in Good.typeChoices:
         types_texts[type[0]] = type[1]
 
-    return render(request, 'storage/auctions/auctions.html', {'player': player,
-                                                                'storage_cl': Storage,
-                                                                'transport': Transport,
+    return render(request, 'storage/redesign/auctions/auctions.html', {'player': player,
+                                                                    'storage_cl': Storage,
+                                                                    'transport': Transport,
 
-                                                                'goods': goods,
-                                                                'goods_by_types': goods_by_types,
-                                                                'types_texts': types_texts,
-                                                            })
+                                                                    'goods': goods,
+                                                                    'goods_by_types': goods_by_types,
+                                                                    'types_texts': types_texts,
+                                                                })

@@ -77,6 +77,7 @@ def get_auctions(request):
                           'good_name': offer.good.pk,
                           'time': offer_time.strftime('%d.%m %H:%M'),
                           'owner': offer.treasury_lock.lock_treasury.state.title,
+                          'owner_img': offer.treasury_lock.lock_treasury.state.image.url,
                           'count': offer_lots.aggregate(Sum('count'))['count__sum'],
                           'price': offer_lots[0].start_price,
                           'lot_cnt': offer_lots.count(),

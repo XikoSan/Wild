@@ -1,0 +1,329 @@
+{% extends 'player/redesign/header.html' %}
+{% load static %}
+{% load dict_key %}
+{% load get_attr %}
+{% load get_len %}
+{% load get_sum %}
+{% load l10n %}{% load i18n %}
+{% load redesign.template_svg.nopic %}
+{% load redesign.template_svg.nopic_list %}
+{% load get_key_list %}
+
+{% block content %}
+<style>
+.with_value {
+    color: var(--c10two);
+    cursor: pointer;
+    border-bottom: 1px dashed var(--c10two);
+}
+</style>
+  <section class="trading">
+    <!--Заголовок страницы-->
+    <h1 class="trading__title ct__page-title">{% trans 'Государственные закупки' context "auctions" %}</h1>
+    <div class="trading__flex-wrapper">
+        <div class="trading__left-col">
+            <!--Кнопка "настройки поиска"-->
+            <button class="trading__search-open" id="srch-btn" onclick="openSearchSettingsModal()" style="cursor: pointer;">
+              <svg width="312" height="30" viewBox="0 0 312 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 5.76923L12.5 0H312V23.0769L297 30H0V5.76923Z" fill="url(#paint0_linear_607_4044)"/>
+                <defs>
+                <linearGradient id="paint0_linear_607_4044" x1="0" y1="0" x2="270.439" y2="122.073" gradientUnits="userSpaceOnUse">
+                <stop stop-color="var(--c30)"/>
+                <stop offset="1" stop-color="var(--c30)" stop-opacity="0"/>
+                </linearGradient>
+                </defs>
+              </svg>
+              <span>{% trans 'фильтры' context "auctions" %}</span>
+            </button>
+            <!--Активные фильтры-->
+            <div class="trading__actveFilters">
+                <h3 id='filter-cats-header' style="display: none">{% trans 'Выбранная категория' context "auctions" %}:</h3>
+                <ul id='filter-cats'></ul>
+                <h3 id='filter-good-header' style="display: none">{% trans 'Выбранный товар' context "auctions" %}:</h3>
+                <ul id='filter-good'></ul>
+            </div>
+        </div>
+	    <!--Результаты поиска торговли-->
+	    <div class="trading__wrapper-overflow">
+	      <p class="trading__no-filters" id="offers_help">{% trans 'Выберите один или несколько критериев в фильтрах' context "auctions" %}</p>
+	      <p class="trading__no-filters" id="offers_none" style="display: none">{% trans 'Ничего не найдено' context "auctions" %}</p>
+	      <table class="ct__js-table" style="display: none;" id="lines">
+            <tbody>
+                <tr id="offers_header">
+                    <!--герб госа-->
+                    <td class="j-t-three" style="text-align: right;"></td>
+                    <!--государство-->
+                    <td class="j-t-four ct__js-tablePC" style="text-align: center;">{% trans 'государство' context "auctions" %}</td>
+                    <!--дата создания-->
+                    <td class="j-t-two ct__js-tablePC">{% trans 'создано' context "auctions" %}</td>
+                    <!--товар-->
+                    <td class="j-t-one" style="text-align: left;">{% trans 'товар' context "auctions" %}</td>
+                    <!--количество-->
+                    <td class="j-t-five ct__js-tablePC" style="text-align: center;">{% trans 'количество' context "auctions" %}</td>
+                    <!--цена начальная-->
+                    <td class="j-t-six ct__js-tablePC"  style="text-align: center;">{% trans 'цена' context "auctions" %}</td>
+                    <!--число лотов-->
+                    <td class="j-t-seven"  style="text-align: center;">{% trans 'лотов' context "auctions" %}</td>
+                    <!--ставка мин-->
+                    <td class="j-t-eight ct__js-tablePC"  style="text-align: center;">{% trans 'минимум' context "auctions" %}</td>
+                    <!--ставка макс-->
+                    <td class="j-t-nine"  style="text-align: center;">{% trans 'максимум' context "auctions" %}</td>
+                </tr>
+
+                <tr id="dummy_line" style="display: none; cursor: pointer">
+                    <!--герб госа-->
+                    <td class="j-t-three" style="text-align: center;">
+                        <img class="offer_gos" src="" alt="">
+                        <svg class="offer_noimg" width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg" onclick="window.location.href = 'state/{{ player.region.state.pk }}/'" style="cursor: pointer; flex-shrink: 0; display: none">
+                          <g clip-path="url(#clip0_719_1078)">
+                          <path d="M0.491699 16.9875C0.491699 7.87313 7.87737 0.487457 16.9917 0.487457C26.106 0.487457 33.4917 7.87313 33.4917 16.9875C33.4917 26.1018 26.106 33.4875 16.9917 33.4875C7.87737 33.4875 0.491699 26.1018 0.491699 16.9875Z" stroke="var(--c10two)"/>
+                          <path d="M16.2592 1.71561V4.40533C16.3253 4.37682 16.4058 4.35403 16.4954 4.33842C16.5851 4.32281 16.682 4.31471 16.78 4.31464C16.9631 4.31477 17.139 4.34291 17.2706 4.39314V1.71561H16.2592ZM16.7436 5.35272C16.4899 5.35298 16.2407 5.39844 16.021 5.48455C15.8013 5.57067 15.6188 5.69442 15.4919 5.84342V6.7694C15.6339 6.71639 15.8231 6.67309 16.0432 6.64318C16.2634 6.61328 16.5081 6.59764 16.7565 6.59762C17.0082 6.59768 17.256 6.61377 17.4783 6.64448C17.7006 6.6752 17.8907 6.7196 18.0319 6.77381H18.0374C18.0402 6.76963 18.0429 6.76543 18.0456 6.76123V5.90751C17.9273 5.74146 17.7424 5.60137 17.5121 5.50326C17.2819 5.40514 17.0156 5.35297 16.7436 5.35272ZM16.7316 7.62156C16.5306 7.62348 15.664 7.66601 14.6557 8.22305C13.672 8.76649 13.127 9.41527 13.127 9.41527C13.127 9.41527 12.3711 10.1942 11.711 11.5801C11.2055 12.6412 11.0306 13.745 11.0306 13.745H22.5204C22.5204 13.745 22.3793 12.8269 21.8114 11.5801C21.2372 10.3191 20.4003 9.41527 20.4003 9.41527C20.4003 9.41527 19.489 8.51052 18.8184 8.14612C17.8005 7.59306 16.7754 7.62182 16.7754 7.62182C16.7754 7.62182 16.7603 7.62129 16.7316 7.62156ZM9.92453 14.7933L9.50676 15.6916H9.92453H23.607H24.0247L23.607 14.7933H9.92453ZM9.9837 16.7013V18.2707H10.9826V16.7013H9.9837ZM13.1217 16.7013V18.2707H14.1206V16.7013H13.1217ZM16.2597 16.7013V18.2707H17.2586V16.7013H16.2597ZM19.3977 16.7013V18.2707H20.3966V16.7013H19.3977ZM22.5489 16.7013V18.2707H23.5478V16.7013H22.5489ZM7.37247 19.2717V20.1909H26.1577V19.2717H7.37247ZM8.17779 21.1937V24.5541H9.18564V21.1937H8.17779ZM10.873 21.1937V24.5541H11.8808V21.1937H10.873ZM13.5549 21.1937V24.5541H14.5626V21.1937H13.5549ZM16.2501 21.1937V24.5541H17.2578V21.1937H16.2501ZM18.9451 21.1937V24.5541H19.953V21.1937H18.9451ZM21.6403 21.1937V24.5541H22.6482V21.1937H21.6403ZM24.3355 21.1937V24.5541H25.3433V21.1937H24.3355ZM4.69922 25.5657V27.2415H28.8281V25.5657H4.69922Z" fill="var(--c10one)"/>
+                          </g>
+                          <defs>
+                          <clipPath id="clip0_719_1078">
+                          <rect width="34" height="34" fill="var(--c10one)"/>
+                          </clipPath>
+                          </defs>
+                        </svg>
+                    </td>
+                    <!--государство-->
+                    <td class="j-t-four ct__js-tablePC" style="text-align: center;"></td>
+                    <!--дата создания-->
+                    <td class="j-t-two ct__js-tablePC">
+                    </td>
+                    <!--товар-->
+                    <td class="j-t-one" style="text-align: left;"></td>
+                    <!--количество-->
+                    <td class="j-t-five ct__js-tablePC" style="text-align: center;"></td>
+                    <!--цена начальная-->
+                    <td class="j-t-six ct__js-tablePC"  style="text-align: center;">
+                    </td>
+                    <!--число лотов-->
+                    <td class="j-t-seven"  style="text-align: center;">
+                    </td>
+                    <!--ставка мин-->
+                    <td class="j-t-eight ct__js-tablePC"  style="text-align: center;">
+                    </td>
+                    <!--ставка макс-->
+                    <td class="j-t-nine"  style="text-align: center;">
+                    </td>
+                </tr>
+			</tbody>
+            </table>
+            <script>
+                var last_item = 'offers_header';
+            </script>
+	    </div>
+    </div>
+	</section>
+
+  <!--МОДАЛЬНЫЕ НАСТРОЙКИ ПОИСКА-->
+  <form class="search-modal movable custom-scroll" id="offers_search_form" role="form">
+    <div class="search-modal__wrapper">
+      <!--Кнопка закрытия модалки-->
+      <button class="m-sett__close ct__square-mid-btn" id="closeSearch">
+        <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M26 30H0V0H30V26L26 30Z" fill="var(--c10two)"/><path d="M4 4L26 26M4 26L26 4" stroke="var(--c60)" stroke-width="3"/>
+        </svg>
+      </button>
+      <!--Заголовок-->
+      <h2>{% trans 'Настройки поиска' context "auctions" %}</h2>
+<!--      &lt;!&ndash;Выбор действия&ndash;&gt;-->
+<!--      <h3>{% trans 'тип предложения' context "auctions" %}:</h3>-->
+<!--      <label class="search-modal__label ct__wide-modal-label-select">-->
+<!--        <select name="trade_actions" id="trade_actions">-->
+<!--			<option selected value='sell'>{% trans 'Продажа' context "auctions" %}</option>-->
+<!--			<option value='buy'>{% trans 'Покупка' context "auctions" %}</option>-->
+<!--        </select>-->
+<!--		<svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+<!--			<path d="M1 1L7.5 7L14 1" stroke="var(&#45;&#45;c10one)"/>-->
+<!--		</svg>-->
+<!--      </label>-->
+<!--      &lt;!&ndash;Выбор источника&ndash;&gt;-->
+<!--      <h3>{% trans 'создатель' context "auctions" %}:</h3>-->
+<!--      <label class="search-modal__label ct__wide-modal-label-select">-->
+<!--        <select name="trade_owner" id="trade_owner">-->
+<!--            <option selected value='all'>{% trans 'Все' context "auctions" %}</option>-->
+<!--            {% if player.party %}-->
+<!--            <option value='party'>{% trans 'Партия' context "auctions" %}</option>-->
+<!--            {% endif %}-->
+<!--            <option value='mine'>{% trans 'Мои' context "auctions" %}</option>-->
+<!--        </select>-->
+<!--        <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+<!--            <path d="M1 1L7.5 7L14 1" stroke="var(&#45;&#45;c10one)"/>-->
+<!--        </svg>-->
+<!--      </label>-->
+      <!--Выбор категорий-->
+      <h3>{% trans 'выбор категории' context "auctions" %}:</h3>
+      <label class="search-modal__label ct__wide-modal-label-select">
+        <select name="trade_groups" id="trade_groups">
+            <option id="group_default" value='default' disabled selected>{% trans 'выберите категорию' context "auctions" %}</option>
+            {% for group in goods_by_types|get_key_list %}
+            <option value='{{ group }}'>{{ types_texts|dict_key:group }}</option>
+            {% endfor %}
+        </select>
+        <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
+        </svg>
+      </label>
+      <!--Выбор товара-->
+      <h3>{% trans 'товар' context "auctions" %}:</h3>
+      <label class="search-modal__label ct__wide-modal-label-select">
+        <select id="trade_goods">
+          <option id="good_default" value='null' selected>{% trans 'выберите товар' context "auctions" %}</option>
+            {% for good in goods %}
+            <option id="good_{% localize off %}{{ good.pk }}{% endlocalize %}" value='{% localize off %}{{ good.pk }}{% endlocalize %}' style="display: none">{{ good.name }}</option>
+            {% endfor %}
+        </select>
+        <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
+        </svg>
+      </label>
+      <!--Кнопка ПОИСК-->
+      <button class="search-modal__confirm-btn ct__mid-btn" id="searchBtn" disabled>
+        <svg width="144" height="30" viewBox="0 0 144 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <mask id="mask0_259_319" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+            <path d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z" fill="var(--c10two)"/>
+          </mask>
+          <g mask="url(#mask0_259_319)">
+            <path d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" fill="var(--c10two)"/>
+            <path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"/>
+            <path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"/>
+            <path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
+          </g>
+        </svg>
+        <span>{% trans 'поиск' context "auctions" %}</span>
+      </button>
+      <!--конец блока-->
+    </div>
+  </form>
+{% endblock %}
+
+{% block for_scripts_and_css %}
+<script src='{% static "js/redesign/auctions.js" %}?{{ csrf_token }}'></script>
+<style>
+.search-modal__confirm-btn:disabled {
+  filter: grayscale(1);
+  cursor: auto;
+}
+</style>
+<script>
+
+    var groups_n_goods = {};
+    var goods_names = new Map();
+
+    {% for group in goods_by_types|get_key_list %}
+        groups_n_goods['{{ group }}'] = {};
+        {% for good in goods_by_types|dict_key:group %}
+
+            groups_n_goods['{{ group }}'][{% localize off %}{{ good.pk }}{% endlocalize %}] = '{{ good.name }}';
+            goods_names.set('{{ good.pk }}', '{{ good.name }}');
+
+        {% endfor %}
+    {% endfor %}
+
+
+   const button = document.getElementById('closeSearch');
+
+   button.addEventListener('click', function(event) {
+     event.preventDefault();
+     document.getElementById('offers_search_form').classList.remove('active')
+   });
+
+
+  function toggleActiveClass(id, e = null) {
+    document.getElementById(id).classList.toggle('active');
+    if (id === 'search-buy' && e !== null){
+        fill_by_offers_dict($(e.currentTarget).attr('data-id'));
+    }
+    else if(id === 'search-buy' && e === null){
+        active_offer = null;
+    }
+
+  }
+  function closeSearchSettingsModal() {
+    document.getElementById('offers_search_form').classList.remove('active')
+  }
+  function openSearchSettingsModal() {
+    document.getElementById('offers_search_form').classList.add('active')
+  }
+
+  	class ActiveFilters {
+		constructor() {
+			this._catFilters_head = document.getElementById('filter-cats-header');
+			this._catFilters = document.getElementById('filter-cats');
+
+			this._goodFilter_head = document.getElementById('filter-good-header');
+			this._goodFilter = document.getElementById('filter-good');
+
+			this._catSelect = document.getElementById('trade_groups');
+			this._goodSelect = document.getElementById('trade_goods');
+			this._searchBtn = document.getElementById('searchBtn');
+		}
+
+		setEventListeners() {
+			this._searchBtn.addEventListener('click', () => {
+				this._cats = [...this._catSelect.selectedOptions].map((opt) => opt.innerText);
+				if(this._goodSelect.value != 'null'){
+				    this._good = this._goodSelect.value;
+				}
+				else{
+				    this._good = null;
+				}
+				this._renderCatFilters();
+				this._renderGoodFilters();
+			})
+		}
+
+		_renderCatFilters = () => {
+		    this._catFilters_head.style.display = 'none';
+			this._catFilters.innerHTML = '';
+
+			if (this._cats){
+			    this._catFilters_head.style.display = 'block';
+			    this._catFilters.insertAdjacentHTML('beforeend', `${[...this._cats.map((cat) => `<li>${cat}</li>`)].join('')}`)
+            }
+		}
+
+		_renderGoodFilters() {
+		    this._goodFilter_head.style.display = 'none';
+			this._goodFilter.innerHTML = '';
+
+			if (this._good){
+			    this._goodFilter_head.style.display = 'block';
+			    var good_text = groups_n_goods[$('#trade_groups').val()][this._good];
+			    this._goodFilter.insertAdjacentHTML('beforeend', `<li>${good_text}</li>`)
+            }
+		}
+	}
+
+	const filters = new ActiveFilters();
+	filters.setEventListeners();
+
+    $('#trade_groups').change(function(e) {
+
+        // скрываем все товары из вариантов
+        $("#trade_goods option").each(function()
+        {
+            $(this).hide();
+        });
+        $('#good_default').show();
+        $('#trade_goods').val('null');
+        document.getElementById('trade_goods').dispatchEvent(new Event('change'));
+
+        var selected = $(e.target).val();
+        for (good in groups_n_goods[selected]){
+            $('#good_' + good ).show();
+        }
+
+        if (selected != 'default' && selected != null){
+            document.getElementById('searchBtn').removeAttribute("disabled");
+        }
+        else{
+            document.getElementById('searchBtn').setAttribute("disabled", 'true');
+        }
+    });
+
+
+</script>
+{% endblock %}
