@@ -379,11 +379,7 @@
 	{% endif %}
 
 	var wildpass_gold_header = '{% trans 'Обмен Wild Pass' context "storage_vault" %}';
-	{% if wildpass_800 %}
 	var wildpass_gold_text = '{% trans 'Вы обменяете премиум-карту на G 800. Данную операцию невозможно отменить. Продолжить?' context "storage_vault" %}';
-	{% else %}
-	var wildpass_gold_text = '{% trans 'Вы обменяете премиум-карту на G 1000. Данную операцию невозможно отменить. Продолжить?' context "storage_vault" %}';
-	{% endif %}
 
 	var wildpass_yes = '{% trans 'Продолжить' context "storage_assets" %}';
 	var wildpass_cancel = '{% trans 'Отмена' context "storage_assets" %}';
