@@ -336,7 +336,7 @@
         <li class="lSlider__item">
           <button class="lSlider__btn">
             <picture>
-              <source media="(min-width: 1200px)" srcset="/static/img/index/{% if lang %}{{ lang }}_{% endif %}scn_1.png">
+              <source media="(min-width: 1200px)" srcset="/static/img/index/{% if lang %}{{ lang }}_{% endif %}scn_1_mini.png">
               <img src="/static/img/index/{% if lang %}{{ lang }}_{% endif %}mob_1.png" alt="Wildpolitics - скриншот игры" class="lSlider__img">
             </picture>
           </button>
@@ -344,7 +344,7 @@
         <li class="lSlider__item">
           <button class="lSlider__btn">
             <picture>
-              <source media="(min-width: 1200px)" srcset="/static/img/index/{% if lang %}{{ lang }}_{% endif %}scn_2.png">
+              <source media="(min-width: 1200px)" srcset="/static/img/index/{% if lang %}{{ lang }}_{% endif %}scn_2_mini.png">
               <img src="/static/img/index/{% if lang %}{{ lang }}_{% endif %}mob_2.png" alt="Wildpolitics - скриншот игры" class="lSlider__img">
             </picture>
           </button>
@@ -352,7 +352,7 @@
         <li class="lSlider__item">
           <button class="lSlider__btn">
             <picture>
-              <source media="(min-width: 1200px)" srcset="/static/img/index/{% if lang %}{{ lang }}_{% endif %}scn_3.png">
+              <source media="(min-width: 1200px)" srcset="/static/img/index/{% if lang %}{{ lang }}_{% endif %}scn_3_mini.png">
               <img src="/static/img/index/{% if lang %}{{ lang }}_{% endif %}mob_3.png" alt="Wildpolitics - скриншот игры" class="lSlider__img">
             </picture>
           </button>
@@ -360,7 +360,7 @@
         <li class="lSlider__item">
           <button class="lSlider__btn">
             <picture>
-              <source media="(min-width: 1200px)" srcset="/static/img/index/{% if lang %}{{ lang }}_{% endif %}scn_4.png">
+              <source media="(min-width: 1200px)" srcset="/static/img/index/{% if lang %}{{ lang }}_{% endif %}scn_4_mini.png">
               <img src="/static/img/index/{% if lang %}{{ lang }}_{% endif %}mob_4.png" alt="Wildpolitics - скриншот игры" class="lSlider__img">
             </picture>
           </button>
@@ -374,27 +374,27 @@
 
     <ul class="popupSlider__list" id="popupSlider__list">
       <li class="popupSlider__item">
-        <picture>
-          <source media="(min-width: 1200px)" srcset="/static/img/index/{% if lang %}{{ lang }}_{% endif %}scn_1.png">
-          <img src="/static/img/index/{% if lang %}{{ lang }}_{% endif %}mob_1.png" alt="Wildpolitics - скриншот игры" class="lSlider__img">
+        <picture class="lazy_loaded">
+          <source media="(min-width: 1200px)" data-srcset="/static/img/index/{% if lang %}{{ lang }}_{% endif %}scn_1.png">
+          <img data-src="/static/img/index/{% if lang %}{{ lang }}_{% endif %}mob_1.png" alt="Wildpolitics - скриншот игры" class="lSlider__img">
         </picture>
       </li>
       <li class="popupSlider__item">
-        <picture>
-          <source media="(min-width: 1200px)" srcset="/static/img/index/{% if lang %}{{ lang }}_{% endif %}scn_2.png">
-          <img src="/static/img/index/{% if lang %}{{ lang }}_{% endif %}mob_2.png" alt="Wildpolitics - скриншот игры" class="lSlider__img">
+        <picture class="lazy_loaded">
+          <source media="(min-width: 1200px)" data-srcset="/static/img/index/{% if lang %}{{ lang }}_{% endif %}scn_2.png">
+          <img data-src="/static/img/index/{% if lang %}{{ lang }}_{% endif %}mob_2.png" alt="Wildpolitics - скриншот игры" class="lSlider__img">
         </picture>
       </li>
       <li class="popupSlider__item">
-        <picture>
-          <source media="(min-width: 1200px)" srcset="/static/img/index/{% if lang %}{{ lang }}_{% endif %}scn_3.png">
-          <img src="/static/img/index/{% if lang %}{{ lang }}_{% endif %}mob_3.png" alt="Wildpolitics - скриншот игры" class="lSlider__img">
+        <picture class="lazy_loaded">
+          <source media="(min-width: 1200px)" data-srcset="/static/img/index/{% if lang %}{{ lang }}_{% endif %}scn_3.png">
+          <img data-src="/static/img/index/{% if lang %}{{ lang }}_{% endif %}mob_3.png" alt="Wildpolitics - скриншот игры" class="lSlider__img">
         </picture>
       </li>
       <li class="popupSlider__item">
-        <picture>
-          <source media="(min-width: 1200px)" srcset="/static/img/index/{% if lang %}{{ lang }}_{% endif %}scn_4.png">
-          <img src="/static/img/index/{% if lang %}{{ lang }}_{% endif %}mob_4.png" alt="Wildpolitics - скриншот игры" class="lSlider__img">
+        <picture class="lazy_loaded">
+          <source media="(min-width: 1200px)" data-srcset="/static/img/index/{% if lang %}{{ lang }}_{% endif %}scn_4.png">
+          <img data-src="/static/img/index/{% if lang %}{{ lang }}_{% endif %}mob_4.png" alt="Wildpolitics - скриншот игры" class="lSlider__img">
         </picture>
       </li>
     </ul>
@@ -613,6 +613,42 @@
     }
 
     const domainInfoModal = new DomainInfoModal();
+
+    <!--догружать картинки после загрузки сайта-->
+
+    window.onload = function() {
+
+      // Находим все элементы с классом "lazy_loaded"
+      var lazyElements = document.querySelectorAll('.lazy_loaded');
+
+      lazyElements.forEach(function(element) {
+        // Проверяем, является ли элемент тегом <picture>
+        if (element.tagName.toLowerCase() === 'picture') {
+
+          // Находим все <source> внутри <picture> и задаем srcset для каждого
+          var sources = element.getElementsByTagName('source');
+          for (var i = 0; i < sources.length; i++) {
+            var source = sources[i];
+            if (source.getAttribute('data-srcset')) {
+              source.srcset = source.getAttribute('data-srcset'); // Загружаем srcset из атрибута data-srcset
+            }
+          }
+
+          // Загружаем <img> внутри <picture>
+          var img = element.getElementsByTagName('img')[0];
+          if (img && img.getAttribute('data-src')) {
+            img.src = img.getAttribute('data-src'); // Загружаем src из атрибута data-src
+          }
+        }
+        // Если элемент является тегом <img>, загружаем его src
+        else if (element.tagName.toLowerCase() === 'img') {
+          if (element.getAttribute('data-src')) {
+            element.src = element.getAttribute('data-src'); // Загружаем src из атрибута data-src
+          }
+        }
+      });
+
+    };
 
   </script>
 
