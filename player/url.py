@@ -46,6 +46,7 @@ from .views.set_timezone import set_timezone
 from .views.skill_tbl import skill_tbl
 from .views.view_profile import view_profile
 from .views.wallet import wallet
+from .views.assetlinks_view import assetlinks_view
 
 urlpatterns = [
 
@@ -143,6 +144,8 @@ urlpatterns = [
     path('translations/', translations, name='translations'),
     # переводы
     path('edit-translation/<str:lang>/<str:context>/', edit_translations, name='edit_translations'),
+    # подпись приложения на сайте
+    path('.well-known/assetlinks.json', assetlinks_view, name='assetlinks'),
 
     # получение наград за обучение
     url(r'^claim_reward/$', claim_reward, name='claim_reward'),
