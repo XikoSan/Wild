@@ -6681,6 +6681,142 @@ p.overview__love-stat-timer {
 	}
 }
 
+/*! procurement */
+
+.procur {
+	padding-top: 14rem;
+	padding-bottom: 24rem;
+	height: calc(100% - 60rem);
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+.procur__title {
+	margin: 0;
+	margin-bottom: 12rem;
+	padding: 0 12rem;
+	padding-top: 4rem;
+	height: max-content;
+}
+
+.procur__title i {
+	position: relative;
+	top: 4rem;
+	display: block;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	font-style: normal;
+	padding: 4rem 0;
+}
+
+.procur__list {
+	display: grid;
+	padding: 0 12rem;
+	list-style: none;
+}
+
+.procur__item .gover__decorLine {
+	position: relative;
+	width: 100%;
+	margin: 0;
+	top: 5rem;
+}
+
+.procur__itemInfoBlock {
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 12rem;
+	font-size: 14rem;
+	width: 100%;
+}
+
+.procur__itemInfoBlock p {
+	margin: 0;
+	display: flex;
+	gap: 4rem;
+	flex-direction: column;
+}
+
+.procur__itemInfoBlock span:last-of-type {
+	color: var(--c10two);
+}
+
+.procur__itemInfoBlock img {
+	display: block;
+	width: 32rem;
+	height: 32rem;
+}
+
+.procur__itemRow {
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	font-size: 14rem;
+	color: var(--c10one);
+	width: 100%;
+	gap: 4rem;
+}
+
+.procur__itemRow > label {
+	position: relative;
+	height: 24rem;
+	width: 120rem;
+}
+
+.procur__itemRow > label::before {
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: block;
+	width: 100%;
+	height: 100%;
+	content: '';
+	border: 1px solid var(--c10one);
+	opacity: 0.25;
+	pointer-events: none;
+}
+
+.procur__itemRow > label input {
+	display: block;
+	width: 100%;
+	font-size: 14rem;
+	line-height: 24rem;
+	color: var(--c10one);
+	padding: 0 4rem;
+	background-color: transparent;
+	border: 0;
+}
+
+.procur__itemRow > button {
+	color: var(--c60);
+	background-color: var(--c10two);
+	border: 0;
+	height: 24rem;
+	line-height: 24rem;
+}
+
+@media (min-width: 1000px) {
+	.procur {
+		padding-top: 14rem;
+		padding-bottom: 72rem;
+		margin-top: 100rem;
+		height: calc(100% - 100rem);
+		margin-left: 330rem;
+	}
+	.procur__list {
+		display: flex;
+		flex-wrap: wrap;
+		align-content: center;
+		margin: 0 auto;
+		gap: 12rem 24rem;
+		max-width: 1020rem;
+	}
+}
+
 /*! rank-edit-modal */
 
 .rank-edit {
@@ -6892,7 +7028,7 @@ p.overview__love-stat-timer {
 .login__links {
 	position: relative;
 	display: flex;
-	justify-content: space-around;
+	justify-content: space-between;
 	align-items: center;
 	gap: 33rem;
 	margin-top: -20rem;
@@ -7211,7 +7347,6 @@ p.overview__love-stat-timer {
 .popupSlider.active {
 	opacity: 1;
 	pointer-events: all;
-    z-index: 2;
 }
 
 .popupSlider__list {
