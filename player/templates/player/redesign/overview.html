@@ -12,6 +12,22 @@
 <script src="/static/redesign/js/education_n.js"></script>
 {% endif %}
 
+<style>
+  /* По умолчанию изображение скрыто, виден только SVG */
+  .lazy_loaded img {
+    display: none;
+  }
+
+  /* Когда изображение загружено, SVG скрывается */
+  .loaded img {
+    display: block;
+  }
+
+  .loaded svg {
+    display: none;
+  }
+</style>
+
 <script>
     window.onload = function war_countdown() {
     if (document.getElementById("closest_war-countdown") != undefined){
@@ -797,11 +813,16 @@
             <div class="overview__chat-message" {% localize off %} data-counter='{{  message|dict_key:"counter" }}' data-sender='{{  message|dict_key:"author" }}' {% endlocalize %} >
               <!--аватарка-->
               <a class="overview__chat-ava-link" href='/profile/{% localize off %}{{  message|dict_key:"author" }}{% endlocalize %}'>
-                {% if message|dict_key:'image_link' == 'nopic' %}
+
+                <picture class="lazy_loaded">
+
+                  <source {% if not message|dict_key:'image_link' == 'nopic' %} data-srcset="{{  message|dict_key:'image_link'  }}" {% endif %}>
+
+                  <img class="overview__chat-ava" data-src="" alt="тег нужен, чтобы загружать картинку в source">
+
                   {% nopic player 'overview__chat-ava' %}
-                {% else %}
-                  <img src="{{  message|dict_key:'image_link'  }}" class="overview__chat-ava">
-                {% endif %}
+
+                </picture>
               </a>
               <div class="overview__chat-message-wrapper">
                 <!--ник и дата-->
@@ -998,6 +1019,22 @@
       display_modal('notify', 'Твоя награда!', '{{ reward_message }}', null, 'Закрыть');
       {% endif %}
 
+
+      // Находим все элементы с классом "lazy_loaded"
+      var lazyElements = document.querySelectorAll('.lazy_loaded');
+
+      lazyElements.forEach(function(element) {
+        var img = element.querySelector('img');  // Находим тег <img> внутри <picture>
+        var source = element.querySelector('source'); // Находим тег <source>
+
+        // Если у <source> есть атрибут data-srcset, загружаем его
+        if (source && source.getAttribute('data-srcset')) {
+          source.srcset = source.getAttribute('data-srcset');
+        }
+
+        // Добавляем класс loaded, который скрывает SVG и показывает изображение
+        element.classList.add('loaded');
+      });
   }
 
   function audio_play(pk) {
