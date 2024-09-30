@@ -16,9 +16,9 @@
       <!--аватар-->
 		{% if player.party.image %}
 		<!--Картинка партии-->
-	  	<img class="party__top-ava" src="{{ player.party.image.url }}" alt="{{ player.party.title }}">
+	  	<img class="party__top-ava" src="{{ player.party.image.url }}" alt="{{ player.party.title }}" onclick="window.location.href = '/party/{{ player.party.pk }}/'" style="cursor: pointer">
 		{% else %}
-		{% nopic_party player 'party__top-ava' %}
+		{% nopic_party player 'party__top-ava' 'cursor: pointer' '/party' player.party.pk %}
 		{% endif %}
 
       <!--инфа в топ блоке-->
