@@ -243,7 +243,7 @@
                 {% for storage in storages %}
                 <div id="create_storage_{% localize off %}{{ storage.pk }}{% endlocalize %}" {% if forloop.counter0 == 0 %}class="first_storage"{% endif %} data-value="{% localize off %}{{ storage.pk }}{% endlocalize %}">
                     <img class="offer_dummy_img" src="static/img/regions/{{ storage.region.on_map_id }}.png">
-                    <span class="offer_dummy_region">{% trans storage.region.region_name context "regions_list" %}</span>
+                    <span class="offer_dummy_region">{{ storage.region.region_name }}</span>
                 </div>
                 {% endfor %}
             </div>

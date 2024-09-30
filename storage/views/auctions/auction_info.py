@@ -55,7 +55,7 @@ def auction_info(request, pk):
             'owner': bet.good_lock.lock_storage.owner
         }
 
-    return render(request, 'storage/auctions/auction_info.html', {'player': player,
+    return render(request, 'storage/redesign/auctions/auction_info.html', {'player': player,
                                                                   'auction': auction,
                                                                   'lots': lots,
                                                                   'bets_dict': bets_dict,
