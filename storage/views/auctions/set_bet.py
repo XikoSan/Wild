@@ -10,6 +10,7 @@ from storage.models.good_lock import GoodLock
 from storage.models.storage import Storage
 from storage.models.good import Good
 from storage.models.stock import Stock
+from django.utils.translation import pgettext
 
 # переименование игрока
 @login_required(login_url='/')
@@ -25,17 +26,17 @@ def set_bet(request):
 
         except ValueError:
             data = {
-                'header': 'Лот - не число',
-                'grey_btn': 'Закрыть',
-                'response': 'ID лота должно быть числом',
+                'header': pgettext("auction", 'Лот - не число'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext("auction", 'ID лота должно быть числом'),
             }
             return JsonResponse(data)
 
         if not AuctionLot.actual.filter(pk=lot_id).exists():
             data = {
-                'header': 'Лот не существует',
-                'grey_btn': 'Закрыть',
-                'response': 'Указанный лот не существует',
+                'header': pgettext("auction", 'Лот не существует'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext("auction", 'Указанный лот не существует'),
             }
             return JsonResponse(data)
 
@@ -46,17 +47,17 @@ def set_bet(request):
 
         except ValueError:
             data = {
-                'header': 'Склад - не число',
-                'grey_btn': 'Закрыть',
-                'response': 'ID склада должно быть числом',
+                'header': pgettext("auction", 'Склад - не число'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext("auction", 'ID склада должно быть числом'),
             }
             return JsonResponse(data)
 
         if not Storage.actual.filter(pk=storage_id, owner=player).exists():
             data = {
-                'header': 'Склад не существует',
-                'grey_btn': 'Закрыть',
-                'response': 'Указанный склад не существует',
+                'header': pgettext("auction", 'Склад не существует'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext("auction", 'Указанный склад не существует'),
             }
             return JsonResponse(data)
 
@@ -65,9 +66,9 @@ def set_bet(request):
         # узнаем, хватает ли ресурса на выбранном складе
         if not Stock.objects.filter(storage=storage, good=lot.auction.good, stock__gte=lot.count).exists():
             data = {
-                'header': 'Недостаточно товаров',
-                'grey_btn': 'Закрыть',
-                'response': 'На указанном складе недостаточно товара',
+                'header': pgettext("auction", 'Недостаточно товаров'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext("auction", 'На указанном складе недостаточно товара'),
             }
             return JsonResponse(data)
 
@@ -78,9 +79,9 @@ def set_bet(request):
 
         except ValueError:
             data = {
-                'header': 'Цена - не число',
-                'grey_btn': 'Закрыть',
-                'response': 'Цена товара должна быть числом',
+                'header': pgettext("auction", 'Цена - не число'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext("auction", 'Цена товара должна быть числом'),
             }
             return JsonResponse(data)
 
@@ -90,25 +91,25 @@ def set_bet(request):
 
         if current_bet and count >= current_bet.price:
             data = {
-                'header': 'Ставка слишком велика',
-                'grey_btn': 'Закрыть',
-                'response': 'Ставка должна быть меньше существующей',
+                'header': pgettext("auction", 'Ставка слишком велика'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response':  pgettext("auction", 'Ставка должна быть меньше существующей'),
             }
             return JsonResponse(data)
 
         elif count > lot.start_price:
             data = {
-                'header': 'Ставка слишком велика',
-                'grey_btn': 'Закрыть',
-                'response': 'Ставка должна быть не больше начальной',
+                'header': pgettext("auction", 'Ставка слишком велика'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext("auction", 'Ставка должна быть не больше начальной'),
             }
             return JsonResponse(data)
 
         elif count < 1:
             data = {
-                'header': 'Ставка слишком мала',
-                'grey_btn': 'Закрыть',
-                'response': 'Ставка должна быть не меньше 1',
+                'header': pgettext("auction", 'Ставка слишком мала'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext("auction", 'Ставка должна быть не меньше 1'),
             }
             return JsonResponse(data)
 
@@ -155,6 +156,8 @@ def set_bet(request):
     # если страницу только грузят
     else:
         data = {
-            'response': 'Ты уверен что тебе сюда, путник?',
+            'response': pgettext('core', 'Ошибка типа запроса'),
+            'header': pgettext('skills', 'Изучение навыка'),
+            'grey_btn': pgettext('core', 'Закрыть'),
         }
-        return JsonResponse(data)
+        return JResponse(data)

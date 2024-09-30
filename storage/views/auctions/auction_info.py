@@ -1,15 +1,15 @@
 import datetime
-
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
+from django.utils.translation import pgettext
 
 from player.decorators.player import check_player
 from player.player import Player
 from storage.models.auction.auction import BuyAuction
 from storage.models.auction.auction_bet import AuctionBet
 from storage.models.auction.auction_lot import AuctionLot
-from storage.models.storage import Storage
 from storage.models.stock import Stock
+from storage.models.storage import Storage
 
 
 @login_required(login_url='/')
@@ -56,8 +56,10 @@ def auction_info(request, pk):
         }
 
     return render(request, 'storage/redesign/auctions/auction_info.html', {'player': player,
-                                                                  'auction': auction,
-                                                                  'lots': lots,
-                                                                  'bets_dict': bets_dict,
-                                                                  'storages': storages
-                                                                  })
+                                                                           'page_name': pgettext('auction',
+                                                                                                 'Закупка товаров'),
+                                                                           'auction': auction,
+                                                                           'lots': lots,
+                                                                           'bets_dict': bets_dict,
+                                                                           'storages': storages
+                                                                           })
