@@ -35,7 +35,7 @@ from region.models.plane import Plane
 def map(request):
     player = Player.get_instance(account=request.user)
 
-    regions = Region.objects.all()
+    regions = Region.with_off.all()
 
     # форма по перелету игрока в другой регион
     if request.method == "POST":
