@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-30 23:44+0300\n"
-"PO-Revision-Date: 2024-09-30 23:45+0300\n"
+"POT-Creation-Date: 2024-10-01 18:48+0300\n"
+"PO-Revision-Date: 2024-10-01 18:53+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -1708,6 +1708,21 @@ msgstr "Specified Warehouse does not belong to you"
 msgid "отклонить всё"
 msgstr "reject everything"
 
+#: party/templates/party/redesign/lists/party_history_list.html:19
+msgctxt "party_hist"
+msgid "партия"
+msgstr "party"
+
+#: party/templates/party/redesign/lists/party_history_list.html:20
+msgctxt "party_hist"
+msgid "дата вступления"
+msgstr "join date"
+
+#: party/templates/party/redesign/lists/party_history_list.html:21
+msgctxt "party_hist"
+msgid "дата выхода"
+msgstr "exit date"
+
 #: party/templates/party/redesign/lists/party_top.html:26
 #: region/views/mining.py:185
 msgid "Добыча"
@@ -2182,6 +2197,11 @@ msgstr "Mining top"
 msgctxt "skill_top"
 msgid "Топ прироста Характеристик"
 msgstr "Skill increase top"
+
+#: party/views/lists/party_history.py:36
+msgctxt "party_hist"
+msgid "Партийная активность "
+msgstr "Party activity of "
 
 #: party/views/lists/party_top.py:21
 #, fuzzy
@@ -2988,57 +3008,57 @@ msgstr "Intelligence"
 msgid "Выносливость"
 msgstr "Endurance"
 
-#: player/templates/player/redesign/menu.html:8
+#: player/templates/player/redesign/menu.html:7
 msgctxt "menu"
 msgid "обзор"
 msgstr "overview"
 
-#: player/templates/player/redesign/menu.html:36
+#: player/templates/player/redesign/menu.html:35
 msgctxt "menu"
 msgid "статьи"
 msgstr "articles"
 
-#: player/templates/player/redesign/menu.html:47
+#: player/templates/player/redesign/menu.html:46
 msgctxt "menu"
 msgid "добыча"
 msgstr "work"
 
-#: player/templates/player/redesign/menu.html:58
+#: player/templates/player/redesign/menu.html:57
 msgctxt "menu"
 msgid "склад"
 msgstr "warehouse"
 
-#: player/templates/player/redesign/menu.html:69
+#: player/templates/player/redesign/menu.html:68
 msgctxt "menu"
 msgid "активы"
 msgstr "assets"
 
-#: player/templates/player/redesign/menu.html:87
+#: player/templates/player/redesign/menu.html:86
 msgctxt "menu"
 msgid "торговля"
 msgstr "trading"
 
-#: player/templates/player/redesign/menu.html:97
+#: player/templates/player/redesign/menu.html:96
 msgctxt "menu"
 msgid "производство"
 msgstr "production"
 
-#: player/templates/player/redesign/menu.html:110
+#: player/templates/player/redesign/menu.html:109
 msgctxt "menu"
 msgid "карта"
 msgstr "map"
 
-#: player/templates/player/redesign/menu.html:120
+#: player/templates/player/redesign/menu.html:119
 msgctxt "menu"
 msgid "партия"
 msgstr "party"
 
-#: player/templates/player/redesign/menu.html:147
+#: player/templates/player/redesign/menu.html:146
 msgctxt "menu"
 msgid "правительство"
 msgstr "government"
 
-#: player/templates/player/redesign/menu.html:161
+#: player/templates/player/redesign/menu.html:160
 msgctxt "menu"
 msgid "войны"
 msgstr "wars"
@@ -5024,115 +5044,6 @@ msgctxt "goods"
 msgid "Дроны - кубов"
 msgstr "UAV - volume"
 
-#: storage/templates/storage/auctions/auction_info.html:15
-#: storage/templates/storage/auctions/auctions.html:39
-msgctxt "w_trading"
-msgid "Владелец"
-msgstr "Owner"
-
-#: storage/templates/storage/auctions/auction_info.html:26
-#: storage/templates/storage/auctions/auctions.html:37
-msgctxt "w_trading"
-msgid "Товар"
-msgstr "Good"
-
-#: storage/templates/storage/auctions/auction_info.html:29
-msgctxt "w_auctions"
-msgid "Завершение"
-msgstr "Ends at"
-
-#: storage/templates/storage/auctions/auction_info.html:34
-msgctxt "w_auctions"
-msgid "Лоты"
-msgstr "Lots"
-
-#: storage/templates/storage/auctions/auction_info.html:43
-#: storage/templates/storage/auctions/auctions.html:40
-msgctxt "w_trading"
-msgid "Количество"
-msgstr "Quantity"
-
-#: storage/templates/storage/auctions/auction_info.html:51
-#: storage/templates/storage/auctions/auction_info.html:102
-msgctxt "w_auctions"
-msgid "Ставка"
-msgstr "Bid"
-
-#: storage/templates/storage/auctions/auction_info.html:57
-msgctxt "w_auctions"
-msgid "начальная"
-msgstr "starting bid"
-
-#: storage/templates/storage/auctions/auction_info.html:63
-msgctxt "w_auctions"
-msgid "Лидер"
-msgstr "Leader"
-
-#: storage/templates/storage/auctions/auction_info.html:77
-msgctxt "w_auctions"
-msgid "отсутствует"
-msgstr "absent"
-
-#: storage/templates/storage/auctions/auction_info.html:89
-msgctxt "w_auctions"
-msgid "Склад"
-msgstr "Warehouse"
-
-#: storage/templates/storage/auctions/auction_info.html:119
-msgctxt "w_auctions"
-msgid "Сделать ставку"
-msgstr "Make bid"
-
-#: storage/templates/storage/auctions/auctions.html:30
-msgctxt "w_trading"
-msgid "Выберите один или несколько критериев справа и нажмите \"Поиск\""
-msgstr "Select one or more criteria on the right and click \"Search\""
-
-#: storage/templates/storage/auctions/auctions.html:31
-msgctxt "w_trading"
-msgid "Ничего не найдено"
-msgstr "Nothing found"
-
-#: storage/templates/storage/auctions/auctions.html:38
-msgctxt "w_auctions"
-msgid "Дата создания"
-msgstr "Creation date"
-
-#: storage/templates/storage/auctions/auctions.html:41
-msgctxt "w_trading"
-msgid "Цена (шт.)"
-msgstr "Price (pcs.)"
-
-#: storage/templates/storage/auctions/auctions.html:42
-msgctxt "w_trading"
-msgid "Лотов"
-msgstr "№ of lots"
-
-#: storage/templates/storage/auctions/auctions.html:43
-msgctxt "w_trading"
-msgid "Ставка (мин)"
-msgstr "Bet (low)"
-
-#: storage/templates/storage/auctions/auctions.html:44
-msgctxt "w_trading"
-msgid "Ставка (макс)"
-msgstr "Bet (high)"
-
-#: storage/templates/storage/auctions/auctions.html:45
-msgctxt "w_trading"
-msgid "Действие"
-msgstr "Action"
-
-#: storage/templates/storage/auctions/auctions.html:78
-msgctxt "w_trading"
-msgid "Выберите товар"
-msgstr "Choose good"
-
-#: storage/templates/storage/auctions/auctions.html:85
-msgctxt "w_trading"
-msgid "Поиск"
-msgstr "Search"
-
 #: storage/templates/storage/redesign/assets.html:53
 #: storage/views/assets/assets.py:83
 msgctxt "assets"
@@ -5186,34 +5097,34 @@ msgctxt "auction"
 msgid "Закупка"
 msgstr "Procurement"
 
-#: storage/templates/storage/redesign/auctions/auction_info.html:45
+#: storage/templates/storage/redesign/auctions/auction_info.html:47
 msgctxt "auction"
 msgid "Завершение"
 msgstr "Ends at"
 
-#: storage/templates/storage/redesign/auctions/auction_info.html:67
+#: storage/templates/storage/redesign/auctions/auction_info.html:69
 msgctxt "auction"
 msgid "количество"
 msgstr "quantity"
 
-#: storage/templates/storage/redesign/auctions/auction_info.html:71
-#: storage/templates/storage/redesign/auctions/auction_info.html:143
-#: storage/templates/storage/redesign/auctions/auction_info.html:154
+#: storage/templates/storage/redesign/auctions/auction_info.html:73
+#: storage/templates/storage/redesign/auctions/auction_info.html:145
+#: storage/templates/storage/redesign/auctions/auction_info.html:156
 msgctxt "auction"
 msgid "ставка"
 msgstr "bet"
 
-#: storage/templates/storage/redesign/auctions/auction_info.html:82
+#: storage/templates/storage/redesign/auctions/auction_info.html:84
 msgctxt "auction"
 msgid "лидер"
 msgstr "leader"
 
-#: storage/templates/storage/redesign/auctions/auction_info.html:89
+#: storage/templates/storage/redesign/auctions/auction_info.html:91
 msgctxt "auction"
 msgid "отсутствует"
 msgstr "absent"
 
-#: storage/templates/storage/redesign/auctions/auction_info.html:114
+#: storage/templates/storage/redesign/auctions/auction_info.html:116
 msgctxt "auction"
 msgid "склад"
 msgstr "warehouse"
@@ -6230,7 +6141,7 @@ msgctxt "assets"
 msgid "Нельзя переместить Склад из атакованного региона"
 msgstr "Cant move Warehouse from region under attack"
 
-#: storage/views/auctions/auction_info.py:59
+#: storage/views/auctions/auction_info.py:60
 msgctxt "auction"
 msgid "Закупка товаров"
 msgstr "Goods procurement"
@@ -6932,6 +6843,86 @@ msgstr "No such skill"
 #: war/views/switch_war_visibility.py:62
 msgid "Нет такой записи об участии в бою"
 msgstr ""
+
+#~ msgctxt "w_trading"
+#~ msgid "Владелец"
+#~ msgstr "Owner"
+
+#~ msgctxt "w_trading"
+#~ msgid "Товар"
+#~ msgstr "Good"
+
+#~ msgctxt "w_auctions"
+#~ msgid "Завершение"
+#~ msgstr "Ends at"
+
+#~ msgctxt "w_auctions"
+#~ msgid "Лоты"
+#~ msgstr "Lots"
+
+#~ msgctxt "w_trading"
+#~ msgid "Количество"
+#~ msgstr "Quantity"
+
+#~ msgctxt "w_auctions"
+#~ msgid "Ставка"
+#~ msgstr "Bid"
+
+#~ msgctxt "w_auctions"
+#~ msgid "начальная"
+#~ msgstr "starting bid"
+
+#~ msgctxt "w_auctions"
+#~ msgid "Лидер"
+#~ msgstr "Leader"
+
+#~ msgctxt "w_auctions"
+#~ msgid "отсутствует"
+#~ msgstr "absent"
+
+#~ msgctxt "w_auctions"
+#~ msgid "Склад"
+#~ msgstr "Warehouse"
+
+#~ msgctxt "w_auctions"
+#~ msgid "Сделать ставку"
+#~ msgstr "Make bid"
+
+#~ msgctxt "w_trading"
+#~ msgid "Выберите один или несколько критериев справа и нажмите \"Поиск\""
+#~ msgstr "Select one or more criteria on the right and click \"Search\""
+
+#~ msgctxt "w_trading"
+#~ msgid "Ничего не найдено"
+#~ msgstr "Nothing found"
+
+#~ msgctxt "w_trading"
+#~ msgid "Цена (шт.)"
+#~ msgstr "Price (pcs.)"
+
+#~ msgctxt "w_trading"
+#~ msgid "Лотов"
+#~ msgstr "№ of lots"
+
+#~ msgctxt "w_trading"
+#~ msgid "Ставка (мин)"
+#~ msgstr "Bet (low)"
+
+#~ msgctxt "w_trading"
+#~ msgid "Ставка (макс)"
+#~ msgstr "Bet (high)"
+
+#~ msgctxt "w_trading"
+#~ msgid "Действие"
+#~ msgstr "Action"
+
+#~ msgctxt "w_trading"
+#~ msgid "Выберите товар"
+#~ msgstr "Choose good"
+
+#~ msgctxt "w_trading"
+#~ msgid "Поиск"
+#~ msgstr "Search"
 
 #~ msgctxt "bills_reviewed"
 #~ msgid "объявление войны"

@@ -8,6 +8,7 @@ from player.player import Player
 from player.decorators.player import check_player
 from party.party import Party
 from party.logs.membership_log import MembershipLog
+from django.utils.translation import pgettext
 
 
 # список всех партий игры
@@ -31,13 +32,11 @@ def party_history_list(request, char_pk):
     lines = get_thing_page(parties, page, 50)
 
     # отправляем в форму
-    return render(request, 'lists/party_history_list.html', {
-        'page_name': 'Партийная активность ' + character.nickname,
+    return render(request, 'party/redesign/lists/party_history_list.html', {
+        'page_name': pgettext('party_hist', 'Партийная активность ') + character.nickname,
 
         'player': player,
 
         'character': character,
-        'lines': lines,
-
-        'entries_count': MembershipLog.objects.filter(player=character).count()
+        'lines': lines
     })

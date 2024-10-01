@@ -1,0 +1,48 @@
+{% extends 'player/redesign/header.html' %}
+{% load l10n %}{% load i18n %}
+{% load static %}
+{% load redesign.template_svg.nopic_party_list %}
+{% load redesign.pagination %}
+
+{% load tz %}
+{% block content %}
+<section class="earn custom-scroll">
+		<!--Блок таблицы-->
+    <div class="ct__js-table-container" id="js-ct-table-1">
+        <h1 class="ct__js-table-title ct__page-title">{{ page_name }}</h1>
+
+        <!--таблица-->
+    	<table class="ct__js-table">
+	      <tbody>
+	        <tr>
+              <td class="j-t-img"></td>
+              <td class="j-t-name">{% trans 'партия' context "party_hist" %}</td>
+              <td class="j-t-since">{% trans 'дата вступления' context "party_hist" %}</td>
+              <td class="j-t-exit">{% trans 'дата выхода' context "party_hist" %}</td>
+	        </tr>
+
+			{% for log in lines %}
+			<tr>
+              <td class="j-t-img" style="cursor: pointer" onclick="window.open('/party/{{ log.party.pk }}/')">
+                  {% if log.party.image %}
+                    <img src="{{ log.party.image.url }}">
+                  {% else %}
+                    {% nopic_party_list player '' %}
+                  {% endif %}
+              </td>
+              <td class="j-t-name" style="cursor: pointer" onclick="window.open('/party/{{ log.party.pk }}/')">
+                  {{ log.party.title }}
+              </td>
+              <td class="j-t-since">{{ log.dtime|timezone:player.time_zone|date:"d.m.Y H:i" }}</td>
+              <td class="j-t-exit">{% if log.exit_dtime %}{{ log.exit_dtime|timezone:player.time_zone|date:"d.m.Y H:i" }}{% endif %}</td>
+			</tr>
+			{% endfor %}
+	      </tbody>
+	    </table>
+			<!--пагинация-->
+			{% pagination lines %}
+			<!--конец: пагинация-->
+    </div>
+
+</section>
+{% endblock %}
