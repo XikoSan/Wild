@@ -72,12 +72,16 @@ def get_auctions(request):
 
             offer_time = timezone.localtime(offer.create_date, pytz.timezone(player.time_zone))
 
+            img_url = 'None'
+            if offer.treasury_lock.lock_treasury.state.image:
+                img_url = offer.treasury_lock.lock_treasury.state.image.url
+
             offer_dict = {'id': offer.pk,
                           'good': offer.good.name,
                           'good_name': offer.good.pk,
                           'time': offer_time.strftime('%d.%m %H:%M'),
                           'owner': offer.treasury_lock.lock_treasury.state.title,
-                          'owner_img': offer.treasury_lock.lock_treasury.state.image.url,
+                          'owner_img': img_url,
                           'count': offer_lots.aggregate(Sum('count'))['count__sum'],
                           'price': offer_lots[0].start_price,
                           'lot_cnt': offer_lots.count(),

@@ -5049,6 +5049,13 @@ p.overview__love-stat-timer {
 	object-position: center;
 }
 
+.party__top-ava.sm {
+	position: relative;
+	top: 1px;
+	width: 80rem;
+	height: 80rem;
+}
+
 .party__top-content {
 	display: flex;
 	flex-direction: column;
@@ -5513,7 +5520,9 @@ p.overview__love-stat-timer {
 		width: calc(100vw - 330rem);
 		height: calc(100vh - 100rem);
 	}
-	.party__top-ava {
+	.party__top-ava,
+	.party__top-ava.sm {
+		top: 0;
 		width: 160rem;
 		height: 160rem;
 		margin-right: 12rem;
@@ -6714,13 +6723,45 @@ p.overview__love-stat-timer {
 	display: grid;
 	padding: 0 12rem;
 	list-style: none;
+	gap: 12rem;
+}
+
+.procur__item {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	gap: 12rem;
+	background-color: var(--c30);
+	padding: 12rem;
+}
+
+.procur__item::before,
+.procur__item::after {
+	position: absolute;
+	top: -1px;
+	left: -1px;
+	display: block;
+	width: 12rem;
+	height: 12rem;
+	content: '';
+	background-color: var(--c60);
+	clip-path: polygon(0 0, 100% 0, 0 100%);
+	pointer-events: none;
+}
+
+.procur__item::after {
+	top: initial;
+	left: initial;
+	bottom: -1px;
+	right: -1px;
+	transform: scale(-1);
 }
 
 .procur__item .gover__decorLine {
 	position: relative;
 	width: 100%;
 	margin: 0;
-	top: 5rem;
+	top: -1rem;
 }
 
 .procur__itemInfoBlock {
@@ -6811,9 +6852,10 @@ p.overview__love-stat-timer {
 		display: flex;
 		flex-wrap: wrap;
 		align-content: center;
+		justify-content: center;
 		margin: 0 auto;
-		gap: 12rem 24rem;
-		max-width: 1020rem;
+		gap: 12rem;
+		max-width: 1040rem;
 	}
 }
 
