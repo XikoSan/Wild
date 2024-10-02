@@ -9,6 +9,7 @@ from player.views.customization.plane.clear_plane_nick import clear_plane_nick
 from player.views.customization.plane.plane_select import plane_select
 from player.views.customization.plane.set_plane_nick import set_plane_nick
 from player.views.customization.plane.view_planes import view_planes
+from player.views.customization.medals.medals import view_medals
 
 urlpatterns = [
 
@@ -24,6 +25,8 @@ urlpatterns = [
     # очистить позывной самолета
     url(r'^clear_plane_nick/$', clear_plane_nick, name='clear_plane_nick'),
 
+    # --------------
+
     # страница выбора рамок
     url(r'^border_select/$', border_select, name='border_select'),
 
@@ -35,4 +38,9 @@ urlpatterns = [
 
     # просмотр рамок игрока
     url(r'^view_borders/(?P<pk>\d+)/$', view_borders, name='view_borders'),
+
+    # --------------
+
+    # просмотр наград игрока
+    url(r'^medals/(?P<pk>\d+)/$', view_medals, name='view_medals'),
 ]

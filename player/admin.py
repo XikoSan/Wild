@@ -26,6 +26,7 @@ from player.player_regional_expence import PlayerRegionalExpense
 from .player import Player
 from .player_settings import PlayerSettings
 from player.logs.test_log import TestLog
+from player.models.medal import Medal
 
 
 @transaction.atomic
@@ -352,6 +353,12 @@ class TestLogAdmin(admin.ModelAdmin):
     raw_id_fields = ('player', )
 
 
+class MedalAdmin(admin.ModelAdmin):
+    search_fields = ['player__nickname', ]
+    list_display = ('player', 'type', 'count')
+    raw_id_fields = ('player', )
+
+
 # Register your models here.
 admin.site.register(Player, PLayerAdmin)
 admin.site.register(PlayerSettings, PlayerSettingsAdmin)
@@ -376,3 +383,4 @@ admin.site.register(BonusCode, BonusCodeAdmin)
 admin.site.register(CodeUsage, CodeUsageAdmin)
 
 admin.site.register(TestLog, TestLogAdmin)
+admin.site.register(Medal, MedalAdmin)
