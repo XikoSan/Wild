@@ -22,6 +22,9 @@ class Medal(models.Model):
     # вид награды
     medalTypeChoices = (
         ('year', 'За год игры в WP'),
+        ('alpha', 'За альфа-тест WP'),
+        ('beta', 'За бета-тест WP'),
+        ('public', 'За открытый тест WP'),
     )
     type = models.CharField(
         max_length=10,
