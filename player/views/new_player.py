@@ -25,6 +25,7 @@ from chat.models.messages.chat_members import ChatMembers
 from player.lootbox.lootbox import Lootbox
 from player.game_event.game_event import GameEvent
 from storage.models.stock import Stock, Good
+from player.models.medal import Medal
 
 
 # Функция создания нового персонажа
@@ -98,6 +99,9 @@ def player_create(request, form):
     #
     # lbox.stock += 3
     # lbox.save()
+
+    medal = Medal(player=character, count=1, type='public')
+    medal.save()
 
     return character
 
