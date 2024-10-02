@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-01 18:48+0300\n"
-"PO-Revision-Date: 2024-10-01 18:53+0300\n"
+"POT-Creation-Date: 2024-10-03 02:15+0300\n"
+"PO-Revision-Date: 2024-10-03 02:16+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -2275,8 +2275,8 @@ msgstr "Incorrect color code"
 #: player/views/expense_energy.py:30 player/views/expense_energy.py:44
 #: player/views/expense_energy.py:67 player/views/expense_energy.py:76
 #: player/views/expense_energy.py:87 player/views/full_auto_allow.py:43
-#: player/views/full_auto_allow.py:59 player/views/new_player.py:145
-#: player/views/new_player.py:158 player/views/open_lootboxes.py:27
+#: player/views/full_auto_allow.py:59 player/views/new_player.py:149
+#: player/views/new_player.py:162 player/views/open_lootboxes.py:27
 #: player/views/open_lootboxes.py:38 player/views/open_lootboxes.py:49
 #: player/views/open_lootboxes.py:59 player/views/open_lootboxes.py:134
 #: player/views/set_language.py:40 player/views/set_language.py:56
@@ -2851,6 +2851,51 @@ msgstr ""
 msgctxt "view_borders"
 msgid "Рамки аватара"
 msgstr "Avatar frames"
+
+#: player/templates/player/redesign/customization/view_medals.html:11
+msgctxt "medals"
+msgid "Награды игрока"
+msgstr "Medals of"
+
+#: player/templates/player/redesign/customization/view_medals.html:22
+msgctxt "medals"
+msgid "За год игры в Wild Politics"
+msgstr "Wild Politics Annual Medal"
+
+#: player/templates/player/redesign/customization/view_medals.html:23
+msgctxt "medals"
+msgid "Выдаётся в каждую годовщину игры в WP"
+msgstr "Awarded on every anniversary of playing WP"
+
+#: player/templates/player/redesign/customization/view_medals.html:65
+msgctxt "medals"
+msgid "За альфа-тест Wild Politics"
+msgstr "Alpha Test Medal"
+
+#: player/templates/player/redesign/customization/view_medals.html:66
+msgctxt "medals"
+msgid "Выдаётся игрокам, игравшим в WP до 3.11.2018"
+msgstr "Awarded to players who played WP before 11/3/2018"
+
+#: player/templates/player/redesign/customization/view_medals.html:108
+msgctxt "medals"
+msgid "За бета-тест Wild Politics"
+msgstr "Beta Test Medal"
+
+#: player/templates/player/redesign/customization/view_medals.html:109
+msgctxt "medals"
+msgid "Выдаётся игрокам, игравшим в WP до 28.09.2020"
+msgstr "Awarded to players who played WP before 09/28/2019"
+
+#: player/templates/player/redesign/customization/view_medals.html:152
+msgctxt "medals"
+msgid "За открытый тест Wild Politics"
+msgstr "Open Test Medal"
+
+#: player/templates/player/redesign/customization/view_medals.html:153
+msgctxt "medals"
+msgid "Выдаётся игрокам, игравшим в WP с 9.09.2021"
+msgstr "Awarded to players who have played WP since 09/09/2021"
 
 #: player/templates/player/redesign/game_event/halloween.html:128
 #: player/views/game_event/halloween.py:57
@@ -4023,6 +4068,11 @@ msgstr "product selection"
 msgid "Просмотр рамок"
 msgstr ""
 
+#: player/views/customization/medals/medals.py:43
+msgctxt "medals"
+msgid "Награды"
+msgstr "Medals"
+
 #: player/views/customization/plane/plane_select.py:56
 #: player/views/customization/plane/view_planes.py:33
 #, fuzzy
@@ -4099,15 +4149,15 @@ msgctxt "lists"
 msgid "Мировое население"
 msgstr "World pop"
 
-#: player/views/new_player.py:143
+#: player/views/new_player.py:147
 msgid ": попробуйте создать персонажа, не загружая изображение"
 msgstr ": try creating a character without loading an image"
 
-#: player/views/new_player.py:144 player/views/new_player.py:157
+#: player/views/new_player.py:148 player/views/new_player.py:161
 msgid "Новый персонаж"
 msgstr "New character"
 
-#: player/views/new_player.py:156
+#: player/views/new_player.py:160
 msgid "Ошибка в форме профиля"
 msgstr "Profile form error"
 
@@ -5102,29 +5152,29 @@ msgctxt "auction"
 msgid "Завершение"
 msgstr "Ends at"
 
-#: storage/templates/storage/redesign/auctions/auction_info.html:69
+#: storage/templates/storage/redesign/auctions/auction_info.html:63
 msgctxt "auction"
 msgid "количество"
 msgstr "quantity"
 
-#: storage/templates/storage/redesign/auctions/auction_info.html:73
-#: storage/templates/storage/redesign/auctions/auction_info.html:145
-#: storage/templates/storage/redesign/auctions/auction_info.html:156
+#: storage/templates/storage/redesign/auctions/auction_info.html:67
+#: storage/templates/storage/redesign/auctions/auction_info.html:139
+#: storage/templates/storage/redesign/auctions/auction_info.html:150
 msgctxt "auction"
 msgid "ставка"
 msgstr "bet"
 
-#: storage/templates/storage/redesign/auctions/auction_info.html:84
+#: storage/templates/storage/redesign/auctions/auction_info.html:78
 msgctxt "auction"
 msgid "лидер"
 msgstr "leader"
 
-#: storage/templates/storage/redesign/auctions/auction_info.html:91
+#: storage/templates/storage/redesign/auctions/auction_info.html:85
 msgctxt "auction"
 msgid "отсутствует"
 msgstr "absent"
 
-#: storage/templates/storage/redesign/auctions/auction_info.html:116
+#: storage/templates/storage/redesign/auctions/auction_info.html:110
 msgctxt "auction"
 msgid "склад"
 msgstr "warehouse"
