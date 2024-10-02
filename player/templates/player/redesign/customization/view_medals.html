@@ -8,7 +8,7 @@
 {% block content %}
 <section class="rewards custom-scroll">
 			<!-- Заголовок -->
-			<h1 class="rewards__title ct__page-title">{% trans 'Награды игрока' context "medals" %} {{ player.nickname }}</h1>
+			<h1 class="rewards__title ct__page-title">{% trans 'Награды игрока' context "medals" %} {{ char.nickname }}</h1>
 
 			<ul class="rewards__grid">
 				{% for type in types_list %}
