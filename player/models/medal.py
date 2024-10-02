@@ -6,7 +6,7 @@ from django.db.models.signals import post_delete, post_save
 from django.dispatch import receiver
 from django.utils.html import mark_safe
 from django.utils.translation import gettext_lazy, pgettext_lazy, ugettext as _
-
+from django.utils import timezone
 from player.player import Player
 
 
@@ -16,6 +16,9 @@ class Medal(models.Model):
     # владелец склада
     player = models.ForeignKey(Player, default=None, null=True, on_delete=models.CASCADE, verbose_name='Владелец')
 
+    # дата обновления записи
+    dtime = models.DateTimeField(default=timezone.now, blank=True,
+                                 verbose_name='Время обновления записи')
     # количество медалей
     count = models.IntegerField(default=0, verbose_name='Количество медалей')
 
