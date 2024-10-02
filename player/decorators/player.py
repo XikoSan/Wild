@@ -10,6 +10,7 @@ from django.utils import timezone
 from django.utils import translation
 from django.utils.translation import check_for_language
 from datetime import timedelta
+# from player.models.medal import Medal
 
 # from event.models.enter_event.activity_event import ActivityEvent
 # from event.models.enter_event.event_part import ActivityEventPart
@@ -47,6 +48,9 @@ def check_player(func):
 
             # проверяем, нужно ли начислить бонус за вход
             activity_event_check(player)
+
+            # проверяем, нужно ли выдать медаль за год
+            annual_medal_check(player)
 
             # записываем время последнего онлайна
             r = redis.StrictRedis(host='redis', port=6379, db=0)
@@ -134,6 +138,43 @@ def get_client_ip(request):
     else:
         ip = request.META.get('REMOTE_ADDR')
     return ip
+
+
+def annual_medal_check(player):
+    # Текущая дата
+    current_date = timezone.now()
+
+    Medal = apps.get_model("player", "Medal")
+
+    # Проверим, когда игрок зарегистрировался
+    registration_date = player.account.date_joined
+
+    # Получим последнюю медаль игрока, если она существует
+    last_medal = Medal.objects.filter(player=player, type='year').order_by('-dtime').first()
+
+    # Если последняя медаль есть, проверим дату
+    if last_medal:
+        last_medal_date = last_medal.dtime
+        # Если прошёл год с момента последней медали
+        if current_date >= last_medal_date.replace(year=last_medal_date.year + 1):
+            # Обновляем дату последней медали на текущий год
+            last_medal.count += 1
+            last_medal.dtime = registration_date.replace(year=current_date.year)
+            last_medal.save()
+
+            player.gold += (last_medal.count * 100)
+            player.save()
+
+    else:
+        # Если медали нет, но прошёл год с момента регистрации
+        if current_date >= registration_date.replace(year=registration_date.year + 1):
+            # Создаём новую медаль
+            new_medal = Medal(player=player, count=1, type='year',
+                              dtime=registration_date.replace(year=current_date.year))
+            new_medal.save()
+
+            player.gold += 100
+            player.save()
 
 
 def activity_event_check(player):
