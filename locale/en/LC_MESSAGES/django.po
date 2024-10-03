@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-04 02:01+0300\n"
-"PO-Revision-Date: 2024-10-04 02:03+0300\n"
+"POT-Creation-Date: 2024-10-04 02:40+0300\n"
+"PO-Revision-Date: 2024-10-04 02:40+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -149,6 +149,144 @@ msgstr "Coat"
 msgctxt "lists"
 msgid "Партия"
 msgstr "Party"
+
+#: article/views/change_article.py:23 article/views/change_article.py:34
+#: article/views/change_article.py:42 article/views/change_article.py:54
+#: article/views/change_article.py:74
+msgctxt "change_article"
+msgid "Редактировать статью"
+msgstr "Edit article"
+
+#: article/views/change_article.py:24 article/views/change_article.py:35
+#: article/views/change_article.py:43 article/views/change_article.py:55
+#: article/views/change_article.py:75 article/views/create_article.py:68
+#: article/views/create_article.py:77 article/views/create_article.py:87
+#: article/views/create_article.py:120 article/views/subscription.py:30
+#: article/views/subscription.py:64 article/views/subscription.py:73
+#: article/views/vote_article.py:48 article/views/vote_article.py:66
+#: article/views/vote_article.py:75 bill/views/bills/cancel_bill.py:72
+#: bill/views/bills/cancel_bill.py:79 bill/views/bills/cancel_bill.py:86
+#: bill/views/bills/cancel_bill.py:93 bill/views/bills/cancel_bill.py:100
+#: bill/views/bills/cancel_bill.py:107 bill/views/bills/cancel_bill.py:115
+#: player/views/change_bio.py:34 player/views/skills/boost_skill.py:59
+#: player/views/skills/boost_skill.py:72 player/views/skills/boost_skill.py:80
+#: player/views/skills/boost_skill.py:94 player/views/skills/boost_skill.py:104
+#: player/views/skills/boost_skill.py:113
+#: player/views/skills/boost_skill.py:123
+#: player/views/skills/boost_skill.py:168 player/views/skills/up_skill.py:35
+#: player/views/skills/up_skill.py:61 player/views/skills/up_skill.py:77
+#: player/views/skills/up_skill.py:97 player/views/skills/up_skill.py:107
+#: player/views/skills/up_skill.py:115 player/views/skills/up_skill.py:123
+#: player/views/skills/up_skill.py:192 skill/views/skill_cancel.py:35
+#: skill/views/skill_cancel.py:43 skill/views/skill_cancel.py:51
+#: skill/views/skill_cancel.py:61 skill/views/skill_cancel.py:76
+#: skill/views/skill_cancel.py:100 storage/views/auctions/set_bet.py:30
+#: storage/views/auctions/set_bet.py:38 storage/views/auctions/set_bet.py:51
+#: storage/views/auctions/set_bet.py:59 storage/views/auctions/set_bet.py:70
+#: storage/views/auctions/set_bet.py:83 storage/views/auctions/set_bet.py:95
+#: storage/views/auctions/set_bet.py:103 storage/views/auctions/set_bet.py:111
+#: storage/views/auctions/set_bet.py:161
+msgctxt "core"
+msgid "Закрыть"
+msgstr "Close"
+
+#: article/views/change_article.py:25
+msgctxt "change_article"
+msgid "ID статьи не передан"
+msgstr "Article ID not sent"
+
+#: article/views/change_article.py:36
+msgctxt "change_article"
+msgid "ID статьи должно быть целым числом"
+msgstr "Article ID must be an integer"
+
+#: article/views/change_article.py:44
+msgctxt "change_article"
+msgid "Неизвестная статья"
+msgstr "Unknown article"
+
+#: article/views/change_article.py:56
+msgctxt "change_article"
+msgid "Текст статьи не должен быть пустым"
+msgstr "The text of the article should not be empty"
+
+#: article/views/change_article.py:73 article/views/create_article.py:118
+#: article/views/subscription.py:71 article/views/vote_article.py:73
+#: bill/views/bills/cancel_bill.py:113 bill/views/bills/new_bill.py:77
+#: player/views/change_bio.py:32 player/views/skills/boost_skill.py:166
+#: player/views/skills/up_skill.py:190 skill/views/skill_cancel.py:98
+#: storage/views/auctions/set_bet.py:159
+msgctxt "core"
+msgid "Ошибка типа запроса"
+msgstr "Request type error"
+
+#: article/views/create_article.py:67 article/views/create_article.py:76
+#: article/views/create_article.py:86 article/views/create_article.py:119
+#: article/views/new_article.py:27
+#, fuzzy
+#| msgctxt "new_party"
+#| msgid "Новая партия"
+msgctxt "new_article"
+msgid "Новая статья"
+msgstr "New party"
+
+#: article/views/create_article.py:69
+#, fuzzy, python-format
+#| msgctxt "party_manage"
+#| msgid "Достигнуто ограничение на число должностей"
+msgctxt "new_article"
+msgid "Вы достигли ограничения на число статей - %(limit)s штук"
+msgstr "Positions limit Reached"
+
+#: article/views/create_article.py:78
+#, fuzzy
+#| msgctxt "party_manage"
+#| msgid "Название не может быть пустым"
+msgctxt "new_article"
+msgid "Название статьи не должно быть пустым"
+msgstr "Position title cannot be empty"
+
+#: article/views/create_article.py:88
+#, fuzzy
+#| msgctxt "party_manage"
+#| msgid "Название не может быть пустым"
+msgctxt "new_article"
+msgid "Текст статьи не должен быть пустым"
+msgstr "Position title cannot be empty"
+
+#: article/views/subscription.py:29 article/views/subscription.py:63
+#: article/views/subscription.py:72
+msgctxt "author_sub"
+msgid "Подписка"
+msgstr "Subscription"
+
+#: article/views/subscription.py:31
+msgctxt "author_sub"
+msgid "ID автора должно быть целым числом"
+msgstr "Author ID must be an integer"
+
+#: article/views/subscription.py:62
+msgctxt "author_sub"
+msgid "Нет такого автора"
+msgstr "There is no such author"
+
+#: article/views/vote_article.py:46
+msgctxt "vote_article"
+msgid "Не выбрана оценка статьи"
+msgstr "No article rating selected"
+
+#: article/views/vote_article.py:47 article/views/vote_article.py:65
+#: article/views/vote_article.py:74
+msgctxt "vote_article"
+msgid "Оценить статью"
+msgstr "Rate the article "
+
+#: article/views/vote_article.py:64
+#, fuzzy
+#| msgid "Нет такого навыка"
+msgctxt "core"
+msgid "Нет такой статьи"
+msgstr "No such skill"
 
 #: bill/models/change_taxes.py:21
 msgid "Регион"
@@ -993,6 +1131,44 @@ msgstr "Reject"
 msgctxt "transfer_resources_reviewed"
 msgid "отменён"
 msgstr "Cancel"
+
+#: bill/views/bills/cancel_bill.py:70
+msgctxt "cancel_bill"
+msgid "Вы не автор законопроекта"
+msgstr "You are not the author of the bill"
+
+#: bill/views/bills/cancel_bill.py:71 bill/views/bills/cancel_bill.py:78
+#: bill/views/bills/cancel_bill.py:85 bill/views/bills/cancel_bill.py:92
+#: bill/views/bills/cancel_bill.py:99 bill/views/bills/cancel_bill.py:106
+#: bill/views/bills/cancel_bill.py:114
+msgctxt "cancel_bill"
+msgid "Отмена законопроекта"
+msgstr "Bill cancellation "
+
+#: bill/views/bills/cancel_bill.py:77
+msgctxt "cancel_bill"
+msgid "Нет такого законопроекта"
+msgstr "There is no such bill"
+
+#: bill/views/bills/cancel_bill.py:84
+msgctxt "cancel_bill"
+msgid "Нет такого вида законопроекта"
+msgstr "There is no such type of bill"
+
+#: bill/views/bills/cancel_bill.py:91
+msgctxt "cancel_bill"
+msgid "Вы - не депутат этого парламента"
+msgstr "You are not a member of this parliament"
+
+#: bill/views/bills/cancel_bill.py:98
+msgctxt "cancel_bill"
+msgid "В этом государстве нет парламента"
+msgstr "There is no parliament in this state"
+
+#: bill/views/bills/cancel_bill.py:105
+msgctxt "cancel_bill"
+msgid "В этом регионе нет государства"
+msgstr "There is no state in this region"
 
 #: chat/templates/chat/dialogue.html:31
 msgctxt "chat"
@@ -4085,6 +4261,11 @@ msgstr "Incorrect value"
 msgid "Настройка партийного фона"
 msgstr "Party background switch"
 
+#: player/views/change_bio.py:33
+msgctxt "change_bio"
+msgid "Изменение описания профиля"
+msgstr "Changing the profile description"
+
 #: player/views/change_wiki_hide_allow.py:42
 #: player/views/change_wiki_hide_allow.py:58
 msgid "Скрыть кнопку Wiki"
@@ -4224,32 +4405,32 @@ msgstr "New character"
 msgid "Ошибка в форме профиля"
 msgstr "Profile form error"
 
-#: player/views/overview.py:375 player/views/overview.py:378
+#: player/views/overview.py:372 player/views/overview.py:375
 msgctxt "education"
 msgid "Анна"
 msgstr "Ann"
 
-#: player/views/overview.py:378
+#: player/views/overview.py:375
 msgctxt "education"
 msgid "Лин"
 msgstr "Lin"
 
-#: player/views/overview.py:378
+#: player/views/overview.py:375
 msgctxt "education"
 msgid "Мария"
 msgstr "Maria"
 
-#: player/views/overview.py:378
+#: player/views/overview.py:375
 msgctxt "education"
 msgid "София"
 msgstr "Sofia"
 
-#: player/views/overview.py:378
+#: player/views/overview.py:375
 msgctxt "education"
 msgid "Ольга"
 msgstr "Olga"
 
-#: player/views/overview.py:384
+#: player/views/overview.py:381
 msgid "Обзор"
 msgstr "Overview"
 
@@ -4285,28 +4466,6 @@ msgctxt "skills"
 msgid "Ускорение навыка"
 msgstr "Skill acceleration"
 
-#: player/views/skills/boost_skill.py:59 player/views/skills/boost_skill.py:72
-#: player/views/skills/boost_skill.py:80 player/views/skills/boost_skill.py:94
-#: player/views/skills/boost_skill.py:104
-#: player/views/skills/boost_skill.py:113
-#: player/views/skills/boost_skill.py:123
-#: player/views/skills/boost_skill.py:168 player/views/skills/up_skill.py:35
-#: player/views/skills/up_skill.py:61 player/views/skills/up_skill.py:77
-#: player/views/skills/up_skill.py:97 player/views/skills/up_skill.py:107
-#: player/views/skills/up_skill.py:115 player/views/skills/up_skill.py:123
-#: player/views/skills/up_skill.py:192 skill/views/skill_cancel.py:35
-#: skill/views/skill_cancel.py:43 skill/views/skill_cancel.py:51
-#: skill/views/skill_cancel.py:61 skill/views/skill_cancel.py:76
-#: skill/views/skill_cancel.py:100 storage/views/auctions/set_bet.py:30
-#: storage/views/auctions/set_bet.py:38 storage/views/auctions/set_bet.py:51
-#: storage/views/auctions/set_bet.py:59 storage/views/auctions/set_bet.py:70
-#: storage/views/auctions/set_bet.py:83 storage/views/auctions/set_bet.py:95
-#: storage/views/auctions/set_bet.py:103 storage/views/auctions/set_bet.py:111
-#: storage/views/auctions/set_bet.py:161
-msgctxt "core"
-msgid "Закрыть"
-msgstr "Close"
-
 #: player/views/skills/boost_skill.py:70
 msgctxt "skills"
 msgid "Нельзя ускорить навык"
@@ -4337,12 +4496,6 @@ msgstr "You are leveling up another Characteristic"
 msgctxt "skills"
 msgid "Нельзя ускорить последние пять минут улучшения"
 msgstr "You can't speed up the last five minutes of the upgrade"
-
-#: player/views/skills/boost_skill.py:166 player/views/skills/up_skill.py:190
-#: skill/views/skill_cancel.py:98 storage/views/auctions/set_bet.py:159
-msgctxt "core"
-msgid "Ошибка типа запроса"
-msgstr "Request type error"
 
 #: player/views/skills/skill_queue.py:30 skill/views/skills_list.py:59
 msgid "Навыки"
@@ -6957,6 +7110,12 @@ msgstr "No such skill"
 msgid "Нет такой записи об участии в бою"
 msgstr ""
 
+#, fuzzy
+#~| msgid "Пополнение энергии"
+#~ msgctxt "author_sub"
+#~ msgid "Пополнение энергии"
+#~ msgstr "Energy refill"
+
 #~ msgctxt "w_trading"
 #~ msgid "Владелец"
 #~ msgstr "Owner"
@@ -7063,9 +7222,6 @@ msgstr ""
 
 #~ msgid "Ошибка отмены навыка"
 #~ msgstr "Skill cancellation error"
-
-#~ msgid "Нет такого навыка"
-#~ msgstr "No such skill"
 
 #~ msgctxt "regions_list"
 #~ msgid "Тюрингия"

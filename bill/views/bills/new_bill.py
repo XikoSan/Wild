@@ -1,10 +1,11 @@
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
+from django.utils.translation import pgettext
 
+from bill.models.bill import Bill
 from player.decorators.player import check_player
 from player.player import Player
 from player.views.get_subclasses import get_subclasses
-from bill.models.bill import Bill
 from state.models.parliament.deputy_mandate import DeputyMandate
 from state.models.parliament.parliament import Parliament
 from wild_politics.settings import JResponse
@@ -73,7 +74,7 @@ def new_bill(request):
     # если страницу только грузят
     else:
         data = {
-            'response': 'Ошибка типа запроса',
+            'response': pgettext('core', 'Ошибка типа запроса'),
             'header': 'Основание государства',
             'grey_btn': 'Закрыть',
         }

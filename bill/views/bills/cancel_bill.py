@@ -9,6 +9,7 @@ from bill.models.bill import Bill
 from state.models.parliament.deputy_mandate import DeputyMandate
 from state.models.parliament.parliament import Parliament
 from wild_politics.settings import JResponse
+from django.utils.translation import pgettext
 
 
 # отменить законопроект
@@ -66,51 +67,51 @@ def cancel_bill(request):
 
                             else:
                                 data = {
-                                    'response': 'Вы не автор законопроекта',
-                                    'header': 'Голосование',
-                                    'grey_btn': 'Закрыть',
+                                    'response': pgettext('cancel_bill', 'Вы не автор законопроекта'),
+                                    'header': pgettext('cancel_bill', 'Отмена законопроекта'),
+                                    'grey_btn': pgettext('core', 'Закрыть'),
                                 }
                                 return JResponse(data)
                         else:
                             data = {
-                                'response': 'Нет такого законопроекта',
-                                'header': 'Голосование',
-                                'grey_btn': 'Закрыть',
+                                'response': pgettext('cancel_bill', 'Нет такого законопроекта'),
+                                'header': pgettext('cancel_bill', 'Отмена законопроекта'),
+                                'grey_btn': pgettext('core', 'Закрыть'),
                             }
                             return JResponse(data)
                     else:
                         data = {
-                            'response': 'Нет такого вида законопроекта',
-                            'header': 'Голосование',
-                            'grey_btn': 'Закрыть',
+                            'response': pgettext('cancel_bill', 'Нет такого вида законопроекта'),
+                            'header': pgettext('cancel_bill', 'Отмена законопроекта'),
+                            'grey_btn': pgettext('core', 'Закрыть'),
                         }
                         return JResponse(data)
                 else:
                     data = {
-                        'response': 'Вы - не депутат этого парламента',
-                        'header': 'Голосование',
-                        'grey_btn': 'Закрыть',
+                        'response': pgettext('cancel_bill', 'Вы - не депутат этого парламента'),
+                        'header': pgettext('cancel_bill', 'Отмена законопроекта'),
+                        'grey_btn': pgettext('core', 'Закрыть'),
                     }
                     return JResponse(data)
             else:
                 data = {
-                    'response': 'В этом государстве нет парламента',
-                    'header': 'Голосование',
-                    'grey_btn': 'Закрыть',
+                    'response': pgettext('cancel_bill', 'В этом государстве нет парламента'),
+                    'header': pgettext('cancel_bill', 'Отмена законопроекта'),
+                    'grey_btn': pgettext('core', 'Закрыть'),
                 }
                 return JResponse(data)
         else:
             data = {
-                'response': 'В этом регионе нет государства',
-                'header': 'Голосование',
-                'grey_btn': 'Закрыть',
+                'response': pgettext('cancel_bill', 'В этом регионе нет государства'),
+                'header': pgettext('cancel_bill', 'Отмена законопроекта'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
     # если страницу только грузят
     else:
         data = {
-            'response': 'Ошибка типа запроса',
-            'header': 'Основание государства',
-            'grey_btn': 'Закрыть',
+            'response': pgettext('core', 'Ошибка типа запроса'),
+            'header': pgettext('cancel_bill', 'Отмена законопроекта'),
+            'grey_btn': pgettext('core', 'Закрыть'),
         }
         return JResponse(data)

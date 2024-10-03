@@ -368,7 +368,7 @@ def overview(request):
     #     log(f"Стоимость: {total_distance} $")
     # else:
     #     log("Path not found")
-    
+
     assistant_name = ('Ann', pgettext('education', 'Анна'))
 
     if not player.educated:

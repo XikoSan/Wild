@@ -10,6 +10,7 @@ from article.forms import NewArticleForm
 from wild_politics.settings import JResponse
 from django.utils import timezone
 import datetime
+from django.utils.translation import pgettext
 from django.db import connection
 
 
@@ -63,18 +64,18 @@ def create_article(request):
 
         if posted_count >= limit:
             data = {
-                'header': 'Новая статья',
-                'grey_btn': 'Закрыть',
-                'response': f'Вы достигли ограничения на число статей - {limit} штук',
+                'header': pgettext('new_article', 'Новая статья'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('new_article', 'Вы достигли ограничения на число статей - %(limit)s штук') % { "limit": limit },
             }
             return JResponse(data)
         # =======================================================================
 
         if not request.POST.get('title', ''):
             data = {
-                'header': 'Новая статья',
-                'grey_btn': 'Закрыть',
-                'response': 'Название статьи не должно быть пустым',
+                'header': pgettext('new_article', 'Новая статья'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('new_article', 'Название статьи не должно быть пустым'),
             }
             return JResponse(data)
 
@@ -82,9 +83,9 @@ def create_article(request):
 
         if not body:
             data = {
-                'header': 'Новая статья',
-                'grey_btn': 'Закрыть',
-                'response': 'Текст статьи не должен быть пустым',
+                'header': pgettext('new_article', 'Новая статья'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('new_article', 'Текст статьи не должен быть пустым'),
             }
             return JResponse(data)
 
@@ -114,8 +115,8 @@ def create_article(request):
     else:
         data = {
             # 'response': _('positive_enrg_req'),
-            'response': 'Ошибка типа запроса',
-            'header': 'Новая статья',
-            'grey_btn': 'Закрыть',
+            'response': pgettext('core', 'Ошибка типа запроса'),
+            'header': pgettext('new_article', 'Новая статья'),
+            'grey_btn': pgettext('core', 'Закрыть'),
         }
         return JResponse(data)

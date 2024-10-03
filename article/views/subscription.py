@@ -10,6 +10,7 @@ from state.tasks import run_bill
 from wild_politics.settings import JResponse
 from article.models.article import Article
 from article.models.subscription import Subscription
+from django.utils.translation import pgettext
 
 # новый законопроект
 @login_required(login_url='/')
@@ -25,9 +26,9 @@ def subscription(request):
 
         except ValueError:
             data = {
-                'header': 'Подписка',
-                'grey_btn': 'Закрыть',
-                'response': 'ID автора должно быть целым числом',
+                'header': pgettext('author_sub', 'Подписка'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('author_sub', 'ID автора должно быть целым числом'),
             }
             return JResponse(data)
 
@@ -58,17 +59,17 @@ def subscription(request):
 
         else:
             data = {
-                'response': 'Нет такого автора',
-                'header': 'Подписка',
-                'grey_btn': 'Закрыть',
+                'response': pgettext('author_sub', 'Нет такого автора'),
+                'header': pgettext('author_sub', 'Подписка'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
 
     # если страницу только грузят
     else:
         data = {
-            'response': 'Ошибка типа запроса',
-            'header': 'Подписка',
-            'grey_btn': 'Закрыть',
+            'response': pgettext('core', 'Ошибка типа запроса'),
+            'header': pgettext('author_sub', 'Подписка'),
+            'grey_btn': pgettext('core', 'Закрыть'),
         }
         return JResponse(data)

@@ -8,6 +8,7 @@ from player.player import Player
 from article.models.article import Article
 from article.forms import NewArticleForm
 from wild_politics.settings import JResponse
+from django.utils.translation import pgettext
 
 
 # открыть статью
@@ -19,9 +20,9 @@ def change_article(request):
 
         if not request.POST.get('article_pk'):
             data = {
-                'header': 'Редактировать статью',
-                'grey_btn': 'Закрыть',
-                'response': 'ID статьи не передан',
+                'header': pgettext('change_article', 'Редактировать статью'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('change_article', 'ID статьи не передан'),
             }
             return JResponse(data)
 
@@ -30,17 +31,17 @@ def change_article(request):
 
         except ValueError:
             data = {
-                'header': 'Редактировать статью',
-                'grey_btn': 'Закрыть',
-                'response': 'ID статьи должно быть целым числом',
+                'header': pgettext('change_article', 'Редактировать статью'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('change_article', 'ID статьи должно быть целым числом'),
             }
             return JResponse(data)
 
         if not Article.objects.filter(pk=article_pk).exists():
             data = {
-                'header': 'Редактировать статью',
-                'grey_btn': 'Закрыть',
-                'response': 'Неизвестная статья',
+                'header': pgettext('change_article', 'Редактировать статью'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('change_article', 'Неизвестная статья'),
             }
             return JResponse(data)
 
@@ -50,9 +51,9 @@ def change_article(request):
 
         if not body:
             data = {
-                'header': 'Редактировать статью',
-                'grey_btn': 'Закрыть',
-                'response': 'Текст статьи не должен быть пустым',
+                'header': pgettext('change_article', 'Редактировать статью'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('change_article', 'Текст статьи не должен быть пустым'),
             }
             return JResponse(data)
 
@@ -69,9 +70,8 @@ def change_article(request):
     # если страницу только грузят
     else:
         data = {
-            # 'response': _('positive_enrg_req'),
-            'response': 'Ошибка типа запроса',
-            'header': 'Редактировать статью',
-            'grey_btn': 'Закрыть',
+            'response': pgettext('core', 'Ошибка типа запроса'),
+            'header': pgettext('change_article', 'Редактировать статью'),
+            'grey_btn': pgettext('core', 'Закрыть'),
         }
         return JResponse(data)

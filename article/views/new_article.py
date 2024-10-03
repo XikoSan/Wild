@@ -1,12 +1,13 @@
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.shortcuts import redirect, render
+from django.utils.translation import pgettext
 from itertools import chain
 
+from article.forms import NewArticleForm
+from article.models.article import Article
 from player.decorators.player import check_player
 from player.player import Player
-from article.models.article import Article
-from article.forms import NewArticleForm
 
 
 # открыть статью
@@ -23,7 +24,7 @@ def new_article(request):
 
     # отправляем в форму
     return render(request, 'article/new_article.html', {
-        'page_name': 'Новая статья',
+        'page_name': pgettext('new_article', 'Новая статья'),
         # самого игрока
         'player': player,
         # форму статьи

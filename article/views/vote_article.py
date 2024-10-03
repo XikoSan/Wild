@@ -9,7 +9,7 @@ from state.models.parliament.parliament import Parliament
 from state.tasks import run_bill
 from wild_politics.settings import JResponse
 from article.models.article import Article
-
+from django.utils.translation import pgettext
 
 # новый законопроект
 @login_required(login_url='/')
@@ -43,9 +43,9 @@ def vote_article(request):
 
             else:
                 data = {
-                    'response': 'Надо оценить!',
-                    'header': 'Оценить статью',
-                    'grey_btn': 'Закрыть',
+                    'response': pgettext('vote_article', 'Не выбрана оценка статьи'),
+                    'header': pgettext('vote_article', 'Оценить статью'),
+                    'grey_btn': pgettext('core', 'Закрыть'),
                 }
                 return JResponse(data)
 
@@ -61,17 +61,17 @@ def vote_article(request):
 
         else:
             data = {
-                'response': 'Нет такой статьи',
-                'header': 'Оценить статью',
-                'grey_btn': 'Закрыть',
+                'response': pgettext('core', 'Нет такой статьи'),
+                'header': pgettext('vote_article', 'Оценить статью'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
 
     # если страницу только грузят
     else:
         data = {
-            'response': 'Ошибка типа запроса',
-            'header': 'Оценить статью',
-            'grey_btn': 'Закрыть',
+            'response': pgettext('core', 'Ошибка типа запроса'),
+            'header': pgettext('vote_article', 'Оценить статью'),
+            'grey_btn': pgettext('core', 'Закрыть'),
         }
         return JResponse(data)
