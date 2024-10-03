@@ -369,6 +369,9 @@ def overview(request):
     # else:
     #     log("Path not found")
 
+    from chat.tasks import remove_comments
+
+    remove_comments()
 
     assistant_name = ('Ann', pgettext('education', 'Анна'))
 

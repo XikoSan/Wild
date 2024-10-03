@@ -65,35 +65,37 @@ function connectWebSocket() {
         attempts = 0;
     };
 
-    document.querySelector('#comment-message-input-' + roomName).focus();
-    document.querySelector('#comment-message-input-' + roomName).onkeyup = function(e) {
-        if (e.keyCode === 13) {  // enter, return
-            document.querySelector('#comment-message-submit-' + roomName).click();
-        }
-    };
+    if (document.querySelector('#comment-message-input-' + roomName) !== null){
 
-    document.querySelector('#comment-message-submit-' + roomName).onclick = function(e) {
-        const messageInputDom = document.querySelector('#comment-message-input-' + roomName);
-        const message = messageInputDom.value;
-        if( !(message == '') && message.replace(/\s/g, '').length ){
+        document.querySelector('#comment-message-input-' + roomName).focus();
+        document.querySelector('#comment-message-input-' + roomName).onkeyup = function(e) {
+            if (e.keyCode === 13) {  // enter, return
+                document.querySelector('#comment-message-submit-' + roomName).click();
+            }
+        };
+
+        document.querySelector('#comment-message-submit-' + roomName).onclick = function(e) {
+            const messageInputDom = document.querySelector('#comment-message-input-' + roomName);
+            const message = messageInputDom.value;
+            if( !(message == '') && message.replace(/\s/g, '').length ){
+                chatSocket.send(JSON.stringify({
+                    'message': message
+                }));
+                messageInputDom.value = '';
+            }
+        };
+
+        $(".sticker_img").click(function () {
             chatSocket.send(JSON.stringify({
-                'message': message
+                'sticker': $(this).attr('id')
             }));
-            messageInputDom.value = '';
-        }
-    };
+        })
 
-    $(".sticker_img").click(function () {
-        chatSocket.send(JSON.stringify({
-            'sticker': $(this).attr('id')
-        }));
-    })
-
-    $(".overview__chat").on("click", ".overview__chat-message-header > h3", function(e){
-        elem = $(this).closest('.overview__chat-wrapper').find(".overview__chat-controls-input")
-        elem.val($(this).html() + ', ' + elem.val());
-    });
-
+        $(".overview__chat").on("click", ".overview__chat-message-header > h3", function(e){
+            elem = $(this).closest('.overview__chat-wrapper').find(".overview__chat-controls-input")
+            elem.val($(this).html() + ', ' + elem.val());
+        });
+    }
 }
 
 // Запуск первой попытки подключения

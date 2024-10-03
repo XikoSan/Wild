@@ -15,6 +15,42 @@ from chat.models.stickers_ownership import StickersOwnership
 from player.decorators.player import check_player
 from player.player import Player
 from django.utils import timezone
+from article.models.comments_block import CommentsBlock
+
+# преобразует последовательность из памяти в сообщения
+def tuple_to_comments(player, messages, tuple, r):
+    for scan in tuple:
+        b = json.loads(scan[0])
+
+        # if not Player.objects.filter(pk=int(b['author'])).exists():
+        #     r.zremrangebyscore('chat', int(scan[1]), int(scan[1]))
+        #     continue
+
+        author = Player.objects.filter(pk=int(b['author'])).only('id', 'nickname', 'image', 'time_zone').get()
+        # сначала делаем из наивного времени aware, потом задаем ЧП игрока
+        b['dtime'] = datetime.datetime.fromtimestamp(int(b['dtime'])).astimezone(
+            tz=pytz.timezone(player.time_zone)).strftime("%d.%m.%y %H:%M")
+        b['author'] = author.pk
+        b['counter'] = int(scan[1])
+        if len(author.nickname) > 25:
+            b['author_nickname'] = f'{ author.nickname[:25] }...'
+        else:
+            b['author_nickname'] = author.nickname
+        if author.image:
+            b['image_link'] = author.image.url
+        else:
+            b['image_link'] = 'nopic'
+
+        b['user_pic'] = False
+        # если сообщение - ссылка на изображение
+        image_extensions = ['.jpg', '.jpeg', '.png', '.gif']
+        if any(extension in b['content'].lower() for extension in image_extensions):
+            b['user_pic'] = True
+
+        messages.append(b)
+
+    return messages
+
 
 
 # открыть статью
@@ -26,13 +62,13 @@ def view_article(request, pk):
 
     voted = None
     subscription = False
-    comments = True
+    editable = True
 
     if Article.objects.filter(pk=pk).exists():
         article = Article.objects.get(pk=pk)
 
         if article.date < timezone.now() - datetime.timedelta(days=1):
-            comments = False
+            editable = False
 
         if player in article.votes_pro.all():
             voted = 'pro'
@@ -61,15 +97,16 @@ def view_article(request, pk):
 
     r = None
 
-    if not player.chat_ban and comments:
+    if not player.chat_ban:
         r = redis.StrictRedis(host='redis', port=6379, db=0)
 
         counter = 0
 
-        if r.hlen(f'counter_{article.pk}') > 0:
-            counter = r.hget(f'counter_{article.pk}', 'counter')
+        # if r.hlen(f'counter_{article.pk}') > 0:
+        #     counter = r.hget(f'counter_{article.pk}', 'counter')
 
-        redis_list = r.zrangebyscore(f'comments_{article.pk}', 0, counter, withscores=True)
+        redis_list = r.zrevrange(f'comments_{article.pk}', 0, -1, withscores=True)
+        redis_list.reverse()
 
         for scan in redis_list:
             b = json.loads(scan[0])
@@ -104,6 +141,38 @@ def view_article(request, pk):
 
             messages.append(b)
 
+        if CommentsBlock.objects.filter(article=int(article.pk)).exists():
+            blocks_pk = []
+            # все блоки сообщений, которые мы набрали на вывод
+            messages_arch = []
+            # суммарная длина этих блоков
+            messages_db_total = 0
+
+            for mess_block in CommentsBlock.objects.only("pk").filter(article=article).order_by('-date'):
+
+                block = CommentsBlock.objects.get(pk=mess_block.pk)
+                blocks_pk.append(block.pk)
+                redis_dump = eval(block.messages)
+
+                # добавляем сообщения из БД
+                tmp_messages = []
+                tuple_to_comments(player, tmp_messages, redis_dump, r)
+
+                messages_arch.append(tmp_messages)
+
+                messages_db_total += len(tmp_messages)
+
+                if messages_db_total + len(redis_list) >= 50:
+                    break
+
+            db_blocks = []
+
+            messages_arch.reverse()
+            for messages_block in messages_arch:
+                db_blocks += messages_block
+
+            messages = db_blocks + messages
+
         stickers = StickersOwnership.objects.filter(owner=player)
 
         for sticker_own in stickers:
@@ -134,7 +203,7 @@ def view_article(request, pk):
         'subscription': subscription,
 
         # комментарии выключены (прошли сутки)
-        'comments': comments,
+        'editable': editable,
 
         # комментарии
         'messages': messages,

@@ -18,7 +18,7 @@
 
     var sub_mode = '{% if subscription %}unsub{% else %}sub{% endif %}';
 
-    {% if comments and not player.chat_ban  %}
+    {% if not player.chat_ban and editable %}
 
     // стикеры
     const overviewStickers = document.getElementById('overview__stickers');
@@ -39,6 +39,8 @@
             overviewStickersContainers[index].classList.add('active');
         })
     })
+
+    {% endif %}
 
     //вкладки
     const blocks = document.querySelectorAll('.articleShowBlock');
@@ -73,10 +75,9 @@
 
     document.addEventListener("DOMContentLoaded", ready);
 
-  {% endif %}
 </script>
 
-{% if comments and not player.chat_ban %}
+{% if not player.chat_ban %}
     <script>
     const chat_conn_type = "{% if http_use %}ws{% else %}wss{% endif %}";
     </script>
@@ -105,7 +106,7 @@
                 {{ article.date|timezone:player.time_zone|date:"d.m.Y" }}
             </span>
             {% if article.player == player %}
-                {% if comments %}
+                {% if editable %}
                 <button onclick="window.location.href = '/article/{% localize off %}{{ article.pk }}{% endlocalize %}/edit/'" style="cursor: pointer; ">{% trans 'редактировать' context "article" %}</button>
                 {% endif %}
             {% else %}
@@ -132,7 +133,7 @@
                 <span id="rated_down" onclick="window.location.href = '/article/{% localize off %}{{ article.pk }}{% endlocalize %}/dislikes'" style="display: inline-block; cursor: pointer; ">{{ article_rated_down }}</span>
             </div>
         </div>
-        {% if comments and not player.chat_ban  %}
+        {% if not player.chat_ban  %}
         <div class="DecorLine"></div>
 
         <div class="ct__top-tabs">
@@ -176,7 +177,7 @@
         {% endif %}
     </div>
 
-  {% if comments and not player.chat_ban  %}
+  {% if not player.chat_ban  %}
     <div class="articles__chatBlock articleShowBlock articleShowBlock__chat">
 <!--        <p class="articles__noMessages">сообщений пока нет</p>-->
 
@@ -274,7 +275,7 @@
 <!--            <div class="DecorLine"></div>-->
 
         </div>
-
+        {% if editable %}
         <!--Отправка сообщений, стикеры-->
         <div class="overview__chat-controls">
             <!--ввод ссобщения-->
@@ -365,7 +366,7 @@
             <!--конец: МОдальный выбор стикеров-->
 
         </div>
-
+        {% endif %}
         <div class="ct__top-tabs">
             <button class="ct__top-tab ct__top-tab2 active ct__mid-btn">
                 <svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">

@@ -13,6 +13,7 @@ from django.utils import timezone
 from chat.models.stickers_ownership import StickersOwnership
 from chat.models.sticker import Sticker
 from player.player import Player
+from article.models.comments_block import CommentsBlock
 
 
 def _get_player(account):
@@ -62,6 +63,20 @@ def _get_awa(image):
     return image.url
 
 
+def get_last_id_from_db(chat_id):
+    ret_id = 0
+
+    block = CommentsBlock.objects.filter(article=int(chat_id)).order_by('-date').first()
+    if not block:
+        return ret_id
+
+    db_dump = eval(block.messages)
+
+    ret_id = db_dump[-1][1]
+
+    return ret_id
+
+
 def _append_message(chat_id, author, text):
     message = {'author': author.pk,
                'content': text,
@@ -72,12 +87,19 @@ def _append_message(chat_id, author, text):
 
     counter = 0
 
-    if r.hlen(f'counter_{chat_id}') > 0:
-        counter = r.hget(f'counter_{chat_id}', 'counter')
+    redis_list = r.zrevrange(f'comments_{chat_id}', 0, 0, withscores=True)
 
-    r.hset(f'counter_{chat_id}', 'counter', int(counter) + 1)
+    # if r.hlen(f'counter_{chat_id}') > 0:
+    #     counter = r.hget(f'counter_{chat_id}', 'counter')
 
-    o_json = json.dumps(message, indent=2, default=str)
+    # если в редисе ничего нет, то либо чат новый, либо всё в БД
+    if redis_list:
+        counter = redis_list[0][1]
+    # подглядим в БД
+    else:
+        counter = get_last_id_from_db(chat_id)
+
+    o_json = json.dumps(message, indent=2, default=str, ensure_ascii=False)
 
     from player.logs.print_log import log
     log(int(counter))

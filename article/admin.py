@@ -4,6 +4,7 @@ from django.db import models
 from django_summernote.admin import SummernoteModelAdmin
 
 from article.models.article import Article
+from article.models.comments_block import CommentsBlock
 from article.models.subscription import Subscription
 
 
@@ -25,6 +26,7 @@ class ArticleAdmin(SummernoteModelAdmin, admin.ModelAdmin):
         )},
     }
 
+
 class SubscriptionAdmin(admin.ModelAdmin):
     search_fields = ['player__nickname', 'author__nickname']
 
@@ -34,5 +36,10 @@ class SubscriptionAdmin(admin.ModelAdmin):
     raw_id_fields = ('player', 'author',)
 
 
+class CommentsBlockAdmin(admin.ModelAdmin):
+    raw_id_fields = ('article',)
+
+
 admin.site.register(Article, ArticleAdmin)
+admin.site.register(CommentsBlock, CommentsBlockAdmin)
 admin.site.register(Subscription, SubscriptionAdmin)

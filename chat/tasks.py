@@ -1,12 +1,15 @@
-from celery import shared_task
-from django_celery_beat.models import PeriodicTask
+import datetime
 import redis
+from celery import shared_task
+from django.db.models import Q
+from django.utils import timezone
+from django_celery_beat.models import PeriodicTask
+
+from article.models.article import Article
+from article.models.comments_block import CommentsBlock
 from chat.models.messages.chat import Chat
 from chat.models.messages.message_block import MessageBlock
-from article.models.article import Article
-from django.utils import timezone
-import datetime
-from django.db.models import Q
+
 
 # сохраняем чаты в БД, чтобы не болтались в ОЗУ вечность
 @shared_task(name="save_chats")
@@ -39,8 +42,19 @@ def remove_comments():
             Q(date__lt=timezone.now() - datetime.timedelta(days=1))
             & Q(date__gte=timezone.now() - datetime.timedelta(days=3))
                                                         ).values('pk'):
+        article_id = int(article["pk"])
 
-        r.delete(f'comments_{article["pk"]}')
-        r.delete(f'counter_{article["pk"]}')
+        if r.zcard(f'comments_{article_id}') > 0:
+
+            redis_list = r.zrevrange(f'comments_{article_id}', 0, -1, withscores=True)
+            redis_list.reverse()
+
+            block = CommentsBlock(
+                article=Article.objects.get(pk=str(article_id)),
+                messages=str(redis_list)
+            )
+            block.save()
+
+            r.zremrangebyrank(f'comments_{article_id}', 0, -1)
 
     
