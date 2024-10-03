@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-10-04 02:40+0300\n"
-"PO-Revision-Date: 2024-10-04 02:40+0300\n"
+"PO-Revision-Date: 2024-10-04 02:43+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -223,36 +223,26 @@ msgstr "Request type error"
 #: article/views/create_article.py:67 article/views/create_article.py:76
 #: article/views/create_article.py:86 article/views/create_article.py:119
 #: article/views/new_article.py:27
-#, fuzzy
-#| msgctxt "new_party"
-#| msgid "Новая партия"
 msgctxt "new_article"
 msgid "Новая статья"
-msgstr "New party"
+msgstr "New article"
 
 #: article/views/create_article.py:69
-#, fuzzy, python-format
-#| msgctxt "party_manage"
-#| msgid "Достигнуто ограничение на число должностей"
+#, python-format
 msgctxt "new_article"
 msgid "Вы достигли ограничения на число статей - %(limit)s штук"
-msgstr "Positions limit Reached"
+msgstr ""
+"You have reached the limit on the number of articles - %(limit)s pieces"
 
 #: article/views/create_article.py:78
-#, fuzzy
-#| msgctxt "party_manage"
-#| msgid "Название не может быть пустым"
 msgctxt "new_article"
 msgid "Название статьи не должно быть пустым"
-msgstr "Position title cannot be empty"
+msgstr "The title of the article must not be empty"
 
 #: article/views/create_article.py:88
-#, fuzzy
-#| msgctxt "party_manage"
-#| msgid "Название не может быть пустым"
 msgctxt "new_article"
 msgid "Текст статьи не должен быть пустым"
-msgstr "Position title cannot be empty"
+msgstr "The text of the article should not be empty"
 
 #: article/views/subscription.py:29 article/views/subscription.py:63
 #: article/views/subscription.py:72
