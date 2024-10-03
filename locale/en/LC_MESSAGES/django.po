@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-03 02:15+0300\n"
-"PO-Revision-Date: 2024-10-03 02:16+0300\n"
+"POT-Creation-Date: 2024-10-04 02:01+0300\n"
+"PO-Revision-Date: 2024-10-04 02:03+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -19,28 +19,28 @@ msgstr ""
 "X-Generator: Poedit 3.4.4\n"
 
 #: article/templates/article/article.html:16
-#: article/templates/article/article.html:112
+#: article/templates/article/article.html:110
 msgctxt "article"
 msgid "подписаться"
 msgstr "subscribe"
 
 #: article/templates/article/article.html:17
-#: article/templates/article/article.html:112
+#: article/templates/article/article.html:110
 msgctxt "article"
 msgid "отписаться"
 msgstr "unsubscribe"
 
-#: article/templates/article/article.html:109
+#: article/templates/article/article.html:107
 msgctxt "article"
 msgid "редактировать"
 msgstr "edit"
 
-#: article/templates/article/article.html:346
+#: article/templates/article/article.html:344
 #: chat/templates/chat/dialogue.html:160
 msgid "У вас пока еще нет стикеров"
 msgstr "You don't have stickers yet"
 
-#: article/templates/article/article.html:359
+#: article/templates/article/article.html:357
 #: chat/templates/chat/dialogue.html:173
 #: player/templates/player/redesign/overview.html:986
 msgctxt "overview"
@@ -1890,7 +1890,6 @@ msgstr "Changing the party's description"
 #: player/templates/player/redesign/new_player.html:141
 #: player/templates/player/redesign/new_player.html:155
 #: player/templates/player/redesign/new_player.html:183
-#: player/templates/player/redesign/profile.html:522
 msgid "Отмена"
 msgstr "Cancel"
 
@@ -2837,15 +2836,84 @@ msgstr ""
 "LEGISLATION."
 
 #: player/templates/player/redesign/bonus_code/bonus_code.html:14
-#, fuzzy
-#| msgctxt "storage_assets"
-#| msgid "Активация"
+msgctxt "bonus_code"
 msgid "Активация бонус-кода"
-msgstr "Activation"
+msgstr "Bonus code activation"
 
 #: player/templates/player/redesign/bonus_code/bonus_code.html:18
+msgctxt "bonus_code"
 msgid "Бонус-код"
+msgstr "Enter bonus code"
+
+#: player/templates/player/redesign/bonus_code/bonus_code.html:34
+msgctxt "bonus_code"
+msgid "активировать"
+msgstr "activate"
+
+#: player/templates/player/redesign/bonus_code/bonus_code.html:41
+msgctxt "bonus_code"
+msgid "Информация о бонус-кодах"
+msgstr "About bonus codes"
+
+#: player/templates/player/redesign/bonus_code/bonus_code.html:44
+msgctxt "bonus_code"
+msgid "Коды можно получить во время различных акций и мероприятий."
+msgstr "Codes can be obtained during various promotions and events."
+
+#: player/templates/player/redesign/bonus_code/bonus_code.html:48
+msgctxt "bonus_code"
+msgid ""
+"Коды могут содержать дни Премиум аккаунта, внутриигровую валюту и прочие "
+"игровые ресурсы."
 msgstr ""
+"Codes may contain Premium account days, in-game currency and other game "
+"resources."
+
+#: player/templates/player/redesign/bonus_code/bonus_code.html:52
+msgctxt "bonus_code"
+msgid "Коды могут быть использованы одним или несколькими игроками."
+msgstr "Codes can be used by one or more players."
+
+#: player/templates/player/redesign/bonus_code/bonus_code.html:56
+msgctxt "bonus_code"
+msgid "Срок действия у каждого кода свой и может быть указан на его носителе."
+msgstr ""
+"Each code has its own validity period and may be indicated on its carrier."
+
+#: player/templates/player/redesign/customization/border_select.html:10
+msgctxt "border_select"
+msgid "Выбор рамок аватара"
+msgstr "Avatar frames select"
+
+#: player/templates/player/redesign/customization/plane_select.html:13
+msgctxt "plane_select"
+msgid "Выбор авиации"
+msgstr "Aircraft select"
+
+#: player/templates/player/redesign/customization/plane_select.html:21
+msgctxt "plane_select"
+msgid "ОБЫЧНЫЕ"
+msgstr "COMMON"
+
+#: player/templates/player/redesign/customization/plane_select.html:21
+msgctxt "plane_select"
+msgid "ОСОБЫЕ"
+msgstr "SPECIAL"
+
+#: player/templates/player/redesign/customization/plane_select.html:21
+msgctxt "plane_select"
+msgid "УНИКАЛЬНЫЕ"
+msgstr "UNIQUE"
+
+#: player/templates/player/redesign/customization/plane_select.html:78
+msgctxt "plane_select"
+msgid "сбросить"
+msgstr "reset"
+
+#: player/templates/player/redesign/customization/plane_select.html:97
+msgctxt "plane_select"
+msgid "подтвердить"
+msgstr "confirm"
 
 #: player/templates/player/redesign/customization/view_borders.html:10
 msgctxt "view_borders"
@@ -3664,7 +3732,7 @@ msgstr "refill"
 #: player/templates/player/redesign/view_profile.html:72
 msgctxt "profile"
 msgid "инфо"
-msgstr ""
+msgstr "info"
 
 #: player/templates/player/redesign/profile.html:153
 msgctxt "profile"
@@ -3675,37 +3743,31 @@ msgstr "settings"
 #: player/templates/player/redesign/view_profile.html:99
 msgctxt "profile"
 msgid "рамки"
-msgstr ""
+msgstr "avatar frames"
 
 #: player/templates/player/redesign/profile.html:191
 #: player/templates/player/redesign/view_profile.html:110
 msgctxt "profile"
 msgid "самолёты"
-msgstr ""
+msgstr "aircrafts"
 
 #: player/templates/player/redesign/profile.html:221
 msgctxt "profile"
 msgid "пригласи друга"
-msgstr ""
+msgstr "invite a friend"
 
 #: player/templates/player/redesign/profile.html:275
-#, fuzzy
-#| msgctxt "storage_assets"
-#| msgid "Активация"
 msgctxt "profile"
 msgid "ввести бонус-код"
-msgstr "Activation"
+msgstr "enter bonus code"
 
 #: player/templates/player/redesign/profile.html:289
 #: player/templates/player/redesign/view_profile.html:124
 msgctxt "profile"
 msgid "награды"
-msgstr ""
+msgstr "medals"
 
 #: player/templates/player/redesign/profile.html:303
-#, fuzzy
-#| msgctxt "overview"
-#| msgid "магазин"
 msgctxt "profile"
 msgid "магазин"
 msgstr "shop"
@@ -3728,15 +3790,12 @@ msgstr "not active"
 #: player/templates/player/redesign/profile.html:324
 msgctxt "profile"
 msgid "очки тестирования Android"
-msgstr ""
+msgstr "Android testing points"
 
 #: player/templates/player/redesign/profile.html:328
-#, fuzzy
-#| msgctxt "overview"
-#| msgid "парламент"
 msgctxt "profile"
 msgid "(к регламенту)"
-msgstr "parliament"
+msgstr "(to the regulations)"
 
 #: player/templates/player/redesign/profile.html:335
 #: player/templates/player/redesign/view_profile.html:144
@@ -3758,20 +3817,15 @@ msgstr "(to articles)"
 
 #: player/templates/player/redesign/profile.html:355
 #: player/templates/player/redesign/view_profile.html:164
-#, fuzzy
-#| msgctxt "storage_upgrade"
-#| msgid "Максимальный уровень"
 msgctxt "profile"
 msgid "суммарный урон"
-msgstr "Maximum level"
+msgstr "total damage"
 
 #: player/templates/player/redesign/profile.html:359
 #: player/templates/player/redesign/view_profile.html:168
-#, fuzzy
-#| msgid "войн нет"
 msgctxt "profile"
 msgid "(к войнам)"
-msgstr "no wars"
+msgstr "(to wars)"
 
 #: player/templates/player/redesign/profile.html:368
 #: player/templates/player/redesign/view_profile.html:177
@@ -3825,6 +3879,11 @@ msgstr "position in the party"
 msgid "о себе"
 msgstr "bio"
 
+#: player/templates/player/redesign/profile.html:522
+msgctxt "profile"
+msgid "Отмена"
+msgstr "Cancel"
+
 #: player/templates/player/redesign/profile.html:576
 msgctxt "profile"
 msgid "показывать партийный фон"
@@ -3846,7 +3905,7 @@ msgid "стандарт"
 msgstr "standard"
 
 #: player/templates/player/redesign/profile.html:653
-#: player/templates/player/translate/translate.html:36
+msgctxt "profile"
 msgid "сохранить"
 msgstr "save"
 
@@ -3883,6 +3942,10 @@ msgstr "Cash"
 msgctxt "translations"
 msgid "без контекста"
 msgstr "no context"
+
+#: player/templates/player/translate/translate.html:36
+msgid "сохранить"
+msgstr "save"
 
 #: player/templates/player/translate/translate.html:51
 msgctxt "translations"
@@ -4161,32 +4224,32 @@ msgstr "New character"
 msgid "Ошибка в форме профиля"
 msgstr "Profile form error"
 
-#: player/views/overview.py:373 player/views/overview.py:376
+#: player/views/overview.py:375 player/views/overview.py:378
 msgctxt "education"
 msgid "Анна"
 msgstr "Ann"
 
-#: player/views/overview.py:376
+#: player/views/overview.py:378
 msgctxt "education"
 msgid "Лин"
 msgstr "Lin"
 
-#: player/views/overview.py:376
+#: player/views/overview.py:378
 msgctxt "education"
 msgid "Мария"
 msgstr "Maria"
 
-#: player/views/overview.py:376
+#: player/views/overview.py:378
 msgctxt "education"
 msgid "София"
 msgstr "Sofia"
 
-#: player/views/overview.py:376
+#: player/views/overview.py:378
 msgctxt "education"
 msgid "Ольга"
 msgstr "Olga"
 
-#: player/views/overview.py:382
+#: player/views/overview.py:384
 msgid "Обзор"
 msgstr "Overview"
 
