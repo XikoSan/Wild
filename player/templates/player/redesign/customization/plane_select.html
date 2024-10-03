@@ -10,7 +10,7 @@
 
 {% block content %}
 <section class="avabord custom-scroll">
-    <h1 class="avabord__title ct__page-title">Выбор авиации</h1>
+    <h1 class="avabord__title ct__page-title">{% trans 'Выбор авиации' context "plane_select" %}</h1>
     {% for rarity in rarity_list %}
 
     {% with rarity|get_sum:'_list' as list_name %}
@@ -18,7 +18,7 @@
 
     {% if rarity == 'common' or list %}
 
-    <h2 class='avabord__subtitle'>{% if rarity == 'common' %}ОБЫЧНЫЕ{% elif rarity == 'rare' %}ОСОБЫЕ{% else %}УНИКАЛЬНЫЕ{% endif %}</h2>
+    <h2 class='avabord__subtitle'>{% if rarity == 'common' %}{% trans 'ОБЫЧНЫЕ' context "plane_select" %}{% elif rarity == 'rare' %}{% trans 'ОСОБЫЕ' context "plane_select" %}{% else %}{% trans 'УНИКАЛЬНЫЕ' context "plane_select" %}{% endif %}</h2>
     <ul class="avabord__gridFly avabord__grid--noborder">
         {% if rarity == 'common' %}
         <li>
@@ -75,7 +75,7 @@
                             fill="var(--c10one)" />
                     </g>
                 </svg>
-                <span>сбросить</span>
+                <span>{% trans 'сбросить' context "plane_select" %}</span>
             </button>
 
             <button class="actives__confirm-btn ct__mid-btn" id="set_nick">
@@ -94,7 +94,7 @@
                             fill="var(--c10one)" />
                     </g>
                 </svg>
-                <span>подтвердить</span>
+                <span>{% trans 'подтвердить' context "plane_select" %}</span>
             </button>
         </div>
     </div>

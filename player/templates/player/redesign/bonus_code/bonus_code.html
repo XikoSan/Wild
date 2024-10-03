@@ -11,11 +11,11 @@
 {% block content %}
   <section class="profile">
   <!-- Заголовок -->
-  <h1 class="create__title ct__page-title">{% trans 'Активация бонус-кода' %}</h1>
+  <h1 class="create__title ct__page-title">{% trans 'Активация бонус-кода' context "bonus_code" %}</h1>
 	<form method="POST" enctype="multipart/form-data" id="post-form" class="create__form">
       {% csrf_token %}
       <!--Никнейм-->
-      <h2>{% trans 'Бонус-код' %}</h2>
+      <h2>{% trans 'Бонус-код' context "bonus_code" %}</h2>
       <input type="text" id="code" name="code" maxlength="30" {% if code %} value="{{ code }}"{% endif %}>
 
 		<div style="display: flex; justify-content: center; width: 100%; margin-top: 24rem;">
@@ -31,29 +31,29 @@
 						<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"></path>
 					</g>
 				</svg>
-				<span>активировать</span>
+				<span>{% trans 'активировать' context "bonus_code" %}</span>
 			</button>
 		</div>
     </form>
 
     <div class="profile__info-tab" style="margin-top: 48rem;">
 		<div class="ct__s">
-			<h2 class="ct__s-title">Информация о бонус-кодах:</h2>
+			<h2 class="ct__s-title">{% trans 'Информация о бонус-кодах' context "bonus_code" %}:</h2>
 			<br>
 			<p class="ct__s-text">
-				Коды можно получить во время различных акций и мероприятий.
+				{% trans 'Коды можно получить во время различных акций и мероприятий.' context "bonus_code" %}
 			</p>
 			<br>
 			<p class="ct__s-text">
-				Коды могут содержать дни Премиум аккаунта, внутриигровую валюту и прочие игровые ресурсы.
+				{% trans 'Коды могут содержать дни Премиум аккаунта, внутриигровую валюту и прочие игровые ресурсы.' context "bonus_code" %}
 			</p>
 			<br>
 			<p class="ct__s-text">
-				Коды могут быть использованы одним или несколькими игроками.
+				{% trans 'Коды могут быть использованы одним или несколькими игроками.' context "bonus_code" %}
 			</p>
 			<br>
 			<p class="ct__s-text">
-				Срок действия у каждого кода свой и может быть указан на его носителе.
+				{% trans 'Срок действия у каждого кода свой и может быть указан на его носителе.' context "bonus_code" %}
 			</p>
 		</div>
 	</div>
