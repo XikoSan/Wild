@@ -95,24 +95,24 @@ function connectWebSocket() {
             elem = $(this).closest('.overview__chat-wrapper').find(".overview__chat-controls-input")
             elem.val($(this).html() + ', ' + elem.val());
         });
-
-        $(".overview__chat-messages").on("click", ".message__ban", function(e){
-            chatSocket.send(JSON.stringify({
-                'message': 'ban_chat',
-                'destination': $(this).parent().parent().parent().parent().data('sender')
-            }));
-
-        });
-
-        $(".overview__chat-messages").on("click", ".message__delete", function(e){
-            chatSocket.send(JSON.stringify({
-                'message': 'delete_message',
-                'counter': $(this).parent().parent().parent().parent().data('counter')
-            }));
-            $(this).parent().parent().parent().parent().remove();
-        });
-
     }
+
+    $(".overview__chat-messages").on("click", ".message__ban", function(e){
+        chatSocket.send(JSON.stringify({
+            'message': 'ban_chat',
+            'destination': $(this).parent().parent().parent().parent().data('sender')
+        }));
+
+    });
+
+    $(".overview__chat-messages").on("click", ".message__delete", function(e){
+        chatSocket.send(JSON.stringify({
+            'message': 'delete_message',
+            'counter': $(this).parent().parent().parent().parent().data('counter')
+        }));
+        $(this).parent().parent().parent().parent().remove();
+    });
+
 }
 
 // Запуск первой попытки подключения

@@ -53,10 +53,33 @@ def _check_has_pack(message, packs):
         return False, None
 
 
-def _delete_message(chat_id, counter):
+def _delete_message(article_id, counter):
     r = redis.StrictRedis(host='redis', port=6379, db=0)
 
-    r.zremrangebyscore(f'comments_{chat_id}', counter, counter)
+    # Попытка удалить комментарий из Redis
+    deleted_count = r.zremrangebyscore(f'comments_{article_id}', counter, counter)
+
+    # Если комментарий не был найден и удален в Redis
+    if deleted_count == 0:
+        # Ищем все блоки комментариев для данной статьи
+        blocks = CommentsBlock.objects.filter(article__pk=article_id)
+
+        # Проходим по каждому блоку
+        for block in blocks:
+            try:
+                # Извлекаем сохраненные комментарии (предположим, что это строка и мы можем преобразовать её обратно в список)
+                messages = eval(block.messages)  # Используйте безопасный метод для преобразования строки в список
+
+                # Ищем комментарий с нужным score (counter) и удаляем его из списка
+                updated_messages = [msg for msg in messages if msg[1] != counter]
+
+                # Если комментарий был найден и удален, обновляем блок в БД
+                if len(messages) != len(updated_messages):
+                    block.messages = str(updated_messages)
+                    block.save()
+
+            except Exception as e:
+                pass
 
 
 def _get_awa(image):
@@ -191,7 +214,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
             if message == 'delete_message' \
                     and text_data_json['counter']:
                 counter = int(text_data_json['counter'])
-                await sync_to_async(_delete_message, thread_sensitive=True)(chat_id=self.room_name, counter=counter)
+                await sync_to_async(_delete_message, thread_sensitive=True)(article_id=self.room_name, counter=counter)
 
             else:
                 if message == 'ban_chat' \

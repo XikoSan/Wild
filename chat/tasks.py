@@ -33,7 +33,7 @@ def save_chats():
             r.zremrangebyrank(f'dialogue_{chat_id}', 0, -1)
 
 
-# удаляем комментарии к статьям, чтобы не болтались в ОЗУ вечность
+# удаляем комментарии к статьям, и складываем их в БД
 @shared_task(name="remove_comments")
 def remove_comments():
     r = redis.StrictRedis(host='redis', port=6379, db=0)
