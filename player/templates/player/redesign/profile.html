@@ -666,7 +666,7 @@
 
 
 		if (document.getElementById('profile__id')) {
-			const buttonIdCopy = new IdCopy('{{ request.get_host }}/profile/{% autoescape off %}{{ player.pk }}{% endautoescape %}/');
+			const buttonIdCopy = new IdCopy('{{ request.get_host }}/profile/{% localize off %}{{ char.pk }}{% endlocalize %}/');
 		}
 	</script>
 	<script src="{% static 'redesign/js/profile.js' %}?{{ csrf_token }}"></script>
