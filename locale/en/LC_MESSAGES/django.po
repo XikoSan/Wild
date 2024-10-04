@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-04 03:06+0300\n"
-"PO-Revision-Date: 2024-10-04 03:07+0300\n"
+"POT-Creation-Date: 2024-10-05 00:42+0300\n"
+"PO-Revision-Date: 2024-10-05 00:45+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -3141,6 +3141,16 @@ msgctxt "medals"
 msgid "Выдаётся игрокам, игравшим в WP с 9.09.2021"
 msgstr "Awarded to players who have played WP since 09/09/2021"
 
+#: player/templates/player/redesign/customization/view_medals.html:202
+msgctxt "medals"
+msgid "За нанесение урона в боях"
+msgstr "For damage in wars"
+
+#: player/templates/player/redesign/customization/view_medals.html:203
+msgctxt "medals"
+msgid "Выдаётся за каждый миллион урона, нанесённый игроком"
+msgstr "Awarded for every million damage dealt by the player"
+
 #: player/templates/player/redesign/game_event/halloween.html:128
 #: player/views/game_event/halloween.py:57
 msgctxt "game_event"
@@ -4312,7 +4322,7 @@ msgstr "product selection"
 msgid "Просмотр рамок"
 msgstr ""
 
-#: player/views/customization/medals/medals.py:43
+#: player/views/customization/medals/medals.py:55
 msgctxt "medals"
 msgid "Награды"
 msgstr "Medals"
@@ -4593,6 +4603,7 @@ msgid "Уровень ТЭЦ"
 msgstr "Power plant level"
 
 #: region/templates/region/redesign/map.html:24
+#: region/templates/region/redesign/map.html:131
 msgctxt "map"
 msgid "Онлайн"
 msgstr "Online"
