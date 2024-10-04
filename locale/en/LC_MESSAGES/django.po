@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-04 02:40+0300\n"
-"PO-Revision-Date: 2024-10-04 02:43+0300\n"
+"POT-Creation-Date: 2024-10-04 03:06+0300\n"
+"PO-Revision-Date: 2024-10-04 03:07+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -76,6 +76,16 @@ msgstr "Articles of"
 msgctxt "article"
 msgid "обновить"
 msgstr "update"
+
+#: article/templates/article/new_article.html:18
+msgctxt "article"
+msgid "Новая статья"
+msgstr "New article"
+
+#: article/templates/article/new_article.html:63
+msgctxt "article"
+msgid "Заголовок статьи"
+msgstr "Article headerline"
 
 #: article/templates/article/new_article.html:86
 msgctxt "article"
@@ -4582,6 +4592,45 @@ msgstr "Hospital top"
 msgid "Уровень ТЭЦ"
 msgstr "Power plant level"
 
+#: region/templates/region/redesign/map.html:24
+msgctxt "map"
+msgid "Онлайн"
+msgstr "Online"
+
+#: region/templates/region/redesign/map.html:32
+#: region/templates/region/redesign/map.html:147
+msgctxt "map"
+msgid "Индекс медицины"
+msgstr "Medicine index"
+
+#: region/templates/region/redesign/map.html:43
+#: region/templates/region/redesign/map.html:163
+msgctxt "map"
+msgid "Индекс инфраструктуры"
+msgstr "Infrastructure index"
+
+#: region/templates/region/redesign/map.html:54
+#: region/templates/region/redesign/map.html:243
+msgctxt "map"
+msgid "Марки нефти"
+msgstr "Oil grades"
+
+#: region/templates/region/redesign/map.html:67
+#: region/templates/region/redesign/map.html:258
+msgctxt "map"
+msgid "Залежи руд"
+msgstr "Ore deposits"
+
+#: region/templates/region/redesign/map.html:227
+msgctxt "map"
+msgid "Связи регионов"
+msgstr "Regional links"
+
+#: region/templates/region/redesign/map.html:274
+msgctxt "map"
+msgid "Без фильтра"
+msgstr "No filter"
+
 #: region/templates/region/redesign/map.html:932
 msgctxt "education"
 msgid "Это - политическая карта всего нашего мира. Она поделена на регионы."
@@ -6015,12 +6064,14 @@ msgid "регион"
 msgstr "region"
 
 #: storage/templates/storage/redesign/trading/trading.html:86
+#: storage/templates/storage/redesign/trading/trading.html:281
 #: storage/templates/storage/redesign/trading/trading.html:353
 msgctxt "trading"
 msgid "количество"
 msgstr "quantity"
 
 #: storage/templates/storage/redesign/trading/trading.html:87
+#: storage/templates/storage/redesign/trading/trading.html:290
 #: storage/templates/storage/redesign/trading/trading.html:340
 msgctxt "trading"
 msgid "цена"
@@ -6104,26 +6155,22 @@ msgid "поиск"
 msgstr "search"
 
 #: storage/templates/storage/redesign/trading/trading.html:208
-#, fuzzy
-#| msgctxt "w_trading_new"
-#| msgid "Новое торговое предложение"
-msgctxt "trading_new"
+msgctxt "trading"
 msgid "Новое торговое предложение"
 msgstr "New trade offer"
 
 #: storage/templates/storage/redesign/trading/trading.html:210
-#, fuzzy
-#| msgctxt "w_trading_new"
-#| msgid "Доступно"
-msgctxt "trading_new"
+msgctxt "trading"
 msgid "Доступно"
 msgstr "Available"
 
+#: storage/templates/storage/redesign/trading/trading.html:214
+msgctxt "trading"
+msgid "(+5 за каждый Склад)"
+msgstr "+5 for each Warehouse"
+
 #: storage/templates/storage/redesign/trading/trading.html:294
-#, fuzzy
-#| msgctxt "w_trading_new"
-#| msgid "Будет заблокировано"
-msgctxt "trading_new"
+msgctxt "trading"
 msgid "Будет заблокировано"
 msgstr "Will be blocked on wallet"
 
@@ -7100,6 +7147,14 @@ msgstr "No such skill"
 msgid "Нет такой записи об участии в бою"
 msgstr ""
 
+#~ msgctxt "trading_new"
+#~ msgid "количество"
+#~ msgstr "quantity"
+
+#~ msgctxt "trading_new"
+#~ msgid "цена"
+#~ msgstr "price"
+
 #, fuzzy
 #~| msgid "Пополнение энергии"
 #~ msgctxt "author_sub"
@@ -7245,10 +7300,6 @@ msgstr ""
 #~ msgid "Опольское воеводство"
 #~ msgstr "Opole Voivodeship"
 
-#~ msgctxt "mining"
-#~ msgid "Качество руды"
-#~ msgstr "Ore quality"
-
 #~ msgctxt "index"
 #~ msgid "Играть"
 #~ msgstr "Play"
@@ -7280,10 +7331,6 @@ msgstr ""
 #~ msgctxt "skill_cancel"
 #~ msgid "Отмена"
 #~ msgstr "Cancel"
-
-#~ msgctxt "w_trading_new"
-#~ msgid "+5 за каждый Склад"
-#~ msgstr "+5 for each Warehouse"
 
 #~ msgctxt "w_trading_new"
 #~ msgid "Продажа"

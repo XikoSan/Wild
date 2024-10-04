@@ -21,7 +21,7 @@
     <!--ВЕРХНЯЯ ПЛАШКА-->
     <div class="map__tops" style="z-index: 999">
       <div class="map__top" data-name="online">
-        <h2>Онлайн</h2>
+        <h2>{% trans 'Онлайн' context "map" %}</h2>
         <div class="map__top-bar"></div>
         <p class="map__top-text">
           <span>{{ min_online }}</span>
@@ -29,7 +29,7 @@
         </p>
       </div>
       <div class="map__top" data-name="med_index">
-        <h2>Индекс медицины</h2>
+        <h2>{% trans 'Индекс медицины' context "map" %}</h2>
         <div class="map__top-bar"></div>
         <p class="map__top-text">
           <span>1</span>
@@ -40,7 +40,7 @@
         </p>
       </div>
       <div class="map__top" data-name="infr_index">
-        <h2>Индекс инфраструктуры</h2>
+        <h2>{% trans 'Индекс инфраструктуры' context "map" %}</h2>
         <div class="map__top-bar"></div>
         <p class="map__top-text">
           <span>1</span>
@@ -51,7 +51,7 @@
         </p>
       </div>
       <div class="map__top" data-name="oil">
-        <h2>Марки нефти</h2>
+        <h2>{% trans 'Марки нефти' context "map" %}</h2>
         <div style="display: flex;">
             <div class="map__top-bar" style="background-color: #000000 !important; background-image: initial;"></div>
             <div class="map__top-bar" style="background-color: #404040 !important; background-image: initial;"></div>
@@ -64,7 +64,7 @@
         </p>
       </div>
       <div class="map__top" data-name="ore">
-        <h2>Залежи руд</h2>
+        <h2>{% trans 'Залежи руд' context "map" %}</h2>
         <div style="display: flex;">
             <div class="map__top-bar" style="background-color: #000000 !important; background-image: initial;"></div>
             <div class="map__top-bar" style="background-color: #9B4F11 !important; background-image: initial;"></div>
@@ -128,7 +128,7 @@
               <path d="M6.5 4.5L4.5 6.5V20.5H18.5L20.5 18.5V4.5H6.5Z" fill="var(--c10two)" stroke="var(--c10two)"/>
             </svg>
           </span>
-          Онлайн
+          {% trans 'Онлайн' context "map" %}
         </label>
       </div>
 
@@ -144,7 +144,7 @@
               <path d="M6.5 4.5L4.5 6.5V20.5H18.5L20.5 18.5V4.5H6.5Z" fill="var(--c10two)" stroke="var(--c10two)"/>
             </svg>
           </span>
-          Индекс медицины
+          {% trans 'Индекс медицины' context "map" %}
         </label>
       </div>
 
@@ -160,7 +160,7 @@
               <path d="M6.5 4.5L4.5 6.5V20.5H18.5L20.5 18.5V4.5H6.5Z" fill="var(--c10two)" stroke="var(--c10two)"/>
             </svg>
           </span>
-          Индекс инфраструктуры
+          {% trans 'Индекс инфраструктуры' context "map" %}
         </label>
       </div>
 
@@ -224,7 +224,7 @@
               <path d="M6.5 4.5L4.5 6.5V20.5H18.5L20.5 18.5V4.5H6.5Z" fill="var(--c10two)" stroke="var(--c10two)"/>
             </svg>
           </span>
-          Связи регионов
+          {% trans 'Связи регионов' context "map" %}
         </label>
       </div>
 
@@ -240,7 +240,7 @@
               <path d="M6.5 4.5L4.5 6.5V20.5H18.5L20.5 18.5V4.5H6.5Z" fill="var(--c10two)" stroke="var(--c10two)"/>
             </svg>
           </span>
-          Марки нефти
+          {% trans 'Марки нефти' context "map" %}
         </label>
       </div>
       <div class="m-sett__form-check ct__check-box30">
@@ -255,7 +255,7 @@
               <path d="M6.5 4.5L4.5 6.5V20.5H18.5L20.5 18.5V4.5H6.5Z" fill="var(--c10two)" stroke="var(--c10two)"/>
             </svg>
           </span>
-          Залежи руд
+          {% trans 'Залежи руд' context "map" %}
         </label>
       </div>
 
@@ -271,7 +271,7 @@
               <path d="M6.5 4.5L4.5 6.5V20.5H18.5L20.5 18.5V4.5H6.5Z" fill="var(--c10two)" stroke="var(--c10two)"/>
             </svg>
           </span>
-          Без фильтра
+          {% trans 'Без фильтра' context "map" %}
         </label>
       </div>
 

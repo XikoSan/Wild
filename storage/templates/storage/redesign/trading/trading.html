@@ -205,13 +205,13 @@
         </svg>
       </button>
       <!--Заголовок-->
-      <h2>{% trans 'Новое торговое предложение' context "trading_new" %}</h2>
+      <h2>{% trans 'Новое торговое предложение' context "trading" %}</h2>
 			<!--текст-->
-			<h4>{% trans 'Доступно' context "trading_new" %}:
+			<h4>{% trans 'Доступно' context "trading" %}:
                 <span id="free_offers">{% if free_offers > 0 %}{{ free_offers }}{% else %}0{% endif %}</span>
                 <span>/ {{ total_offers }}</span>
                 <br>
-				(+5 за каждый Склад)</h4>
+				{% trans '(+5 за каждый Склад)' context "trading" %}</h4>
       <!--Выбор действия-->
       <h3>{% trans 'тип предложения' context "trading" %}:</h3>
       <label class="search-modal__label ct__wide-modal-label-select">
@@ -278,7 +278,7 @@
       </label>
         <!--количество-->
         <div class="search-modal__withInput search-modal__withInput--margin">
-            <span class="search-modal__withInput-text">количество</span>
+            <span class="search-modal__withInput-text">{% trans 'количество' context "trading" %}</span>
             <input id="count" name="count" type="number" class="search-modal__withInput-input" min="0" value="0">
             <div id="stocks" style="display: inline-block">
                 <span class="search-modal__withInput-text">/</span>
@@ -287,11 +287,11 @@
         </div>
         <!--цена-->
         <div class="search-modal__withInput search-modal__withInput--margin">
-            <span class="search-modal__withInput-text">цена</span>
+            <span class="search-modal__withInput-text">{% trans 'цена' context "trading" %}</span>
             <input id="price" name="price" type="number" class="search-modal__withInput-input" value="0">
         </div>
         <div class="search-modal__withInput search-modal__withInput--margin" id="buy_row" style="display: none">
-            <span class="search-modal__withInput-text">{% trans 'Будет заблокировано' context "trading_new" %}</span>
+            <span class="search-modal__withInput-text">{% trans 'Будет заблокировано' context "trading" %}</span>
             <span class="search-modal__withInput-text" id="cash_to_lock">$0</span>
         </div>
       <!--Кнопка ПОИСК-->

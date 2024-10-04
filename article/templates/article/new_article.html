@@ -15,7 +15,7 @@
    <section class="articles custom-scroll">
     <!-- Заголовок -->
     <h1 class="articles__title ct__page-title">
-      Новая статья
+      {% trans 'Новая статья' context 'article' %}
     </h1>
 
 <!--    <div class="articles__inner">-->
@@ -60,7 +60,7 @@
 			<div class="articles__inner">
 <!--			<div class="DecorLine"></div>-->
 				<label class="articles__titleInput">
-					<input type="text" id="title" name="title" placeholder="Заголовок статьи">
+					<input type="text" id="title" name="title" placeholder="{% trans 'Заголовок статьи' context 'article' %}">
 				</label>
 
 				<label class="articles__textarea">
