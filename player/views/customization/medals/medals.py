@@ -6,6 +6,7 @@ from django.utils.translation import pgettext
 from player.decorators.player import check_player
 from player.models.medal import Medal
 from player.player import Player
+from war.models.wars.player_damage import PlayerDamage
 
 
 @login_required(login_url='/')
@@ -38,6 +39,17 @@ def view_medals(request, pk):
         else:
             exists_dict[type] = None
 
+    # ----- медаль за урон -----
+
+    dmg_sum = PlayerDamage.objects.filter(player=char).aggregate(dmg_sum=Sum('damage'))['dmg_sum']
+    types_list.append('mln_dmg')
+
+    if dmg_sum and dmg_sum//1000000 > 0:
+        exists_dict['mln_dmg'] = dmg_sum//1000000
+
+    else:
+        exists_dict['mln_dmg'] = None
+
 
     return render(request, 'player/redesign/customization/view_medals.html', {
         'page_name': pgettext('medals', 'Награды'),
@@ -46,5 +58,4 @@ def view_medals(request, pk):
 
         'types_list': types_list,
         'exists_dict': exists_dict,
-        'medals': medals,
     })

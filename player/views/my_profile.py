@@ -172,6 +172,9 @@ def my_profile(request):
 
     dmg_sum = PlayerDamage.objects.filter(player=player).aggregate(dmg_sum=Sum('damage'))['dmg_sum']
 
+    if not dmg_sum:
+        dmg_sum = 0
+
     # ---------------------
 
     if Plane.objects.filter(in_use=True, player=player).exists():
