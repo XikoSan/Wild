@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-04 03:06+0300\n"
-"PO-Revision-Date: 2024-10-04 03:07+0300\n"
+"POT-Creation-Date: 2024-10-06 00:59+0300\n"
+"PO-Revision-Date: 2024-10-06 01:01+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -2385,13 +2385,19 @@ msgstr "Party activity of "
 msgid "Топ партий"
 msgstr "Party type"
 
-#: party/views/lists/region_parties.py:89 party/views/lists/state_parties.py:40
+#: party/views/lists/region_parties.py:89
 msgid "Партии региона"
 msgstr "Region`s parties"
 
-#: party/views/lists/world_parties.py:90
+#: party/views/lists/state_parties.py:101
+msgctxt "state_parties"
+msgid "Партии государства"
+msgstr "State parties"
+
+#: party/views/lists/world_parties.py:91
+msgctxt "world_parties"
 msgid "Партии мира"
-msgstr "World`s parties"
+msgstr "World parties"
 
 #: party/views/management/color_change.py:36
 msgctxt "party_manage"
@@ -3140,6 +3146,16 @@ msgstr "Open Test Medal"
 msgctxt "medals"
 msgid "Выдаётся игрокам, игравшим в WP с 9.09.2021"
 msgstr "Awarded to players who have played WP since 09/09/2021"
+
+#: player/templates/player/redesign/customization/view_medals.html:202
+msgctxt "medals"
+msgid "За нанесение урона в боях"
+msgstr "For damage in wars"
+
+#: player/templates/player/redesign/customization/view_medals.html:203
+msgctxt "medals"
+msgid "Выдаётся за каждый миллион урона, нанесённый игроком"
+msgstr "Awarded for every million damage dealt by the player"
 
 #: player/templates/player/redesign/game_event/halloween.html:128
 #: player/views/game_event/halloween.py:57
@@ -4312,7 +4328,7 @@ msgstr "product selection"
 msgid "Просмотр рамок"
 msgstr ""
 
-#: player/views/customization/medals/medals.py:43
+#: player/views/customization/medals/medals.py:55
 msgctxt "medals"
 msgid "Награды"
 msgstr "Medals"
@@ -4593,6 +4609,7 @@ msgid "Уровень ТЭЦ"
 msgstr "Power plant level"
 
 #: region/templates/region/redesign/map.html:24
+#: region/templates/region/redesign/map.html:131
 msgctxt "map"
 msgid "Онлайн"
 msgstr "Online"
@@ -5156,6 +5173,17 @@ msgstr "Free"
 #: state/models/state.py:38
 msgid "Выдаётся министром"
 msgstr "Issued by minister"
+
+#: state/templates/state/redesign/set_mandate.html:46
+#: state/views/set_mandate_view.py:35
+msgctxt "set_mandate"
+msgid "Выдача мандата"
+msgstr "Issuance of a mandate"
+
+#: state/templates/state/redesign/set_mandate.html:189
+msgctxt "set_mandate"
+msgid "выдать"
+msgstr "issue"
 
 #: state/templates/state/redesign/state_view.html:143
 msgid "Столица"
