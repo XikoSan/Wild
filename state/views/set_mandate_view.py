@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
+from django.utils.translation import pgettext
 
 from player.decorators.player import check_player
 from player.player import Player
@@ -14,7 +15,7 @@ def set_mandate_view(request):
     player = Player.get_instance(account=request.user)
     # если у игрока есть партия
     # и он в ней лидер
-    if player.party\
+    if player.party \
             and player.party_post.party_lead:
         # если есть свободные мандаты
         if DeputyMandate.objects.filter(player=None).exists():
@@ -31,6 +32,7 @@ def set_mandate_view(request):
 
             # отправляем в форму
             return render(request, 'state/redesign/set_mandate.html', {
+                'page_name': pgettext('set_mandate', 'Выдача мандата'),
                 # самого игрока
                 'player': player,
                 # список кандидатов
