@@ -1,13 +1,23 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
-
-from player.views.lists.get_thing_page import get_thing_page
+from django.utils.translation import pgettext
 from django.utils.translation import ugettext as _
-from region.models.region import Region
-from player.player import Player
-from player.decorators.player import check_player
+
 from party.party import Party
+from player.decorators.player import check_player
+from player.player import Player
+from player.views.lists.get_thing_page import get_thing_page
+from region.models.region import Region
 from state.models.state import State
+
+
+def create_temporary_party_class():
+    # класс партии, в котором её размер - это поле
+    class _PartyWithSize(Party):
+        pk = 0
+        size = 0
+
+    return _PartyWithSize
 
 
 # список всех партий госа
@@ -29,21 +39,69 @@ def state_parties_list(request, state_pk):
     # получаем партии для текущей страницы
     page = request.GET.get('page')
     parties = Party.objects.filter(deleted=False, region__in=regions_state).order_by('foundation_date', 'title')
-    lines = get_thing_page(parties, page, 50)
 
-    party_sizes = {}
-    for party in lines:
-        party_sizes[party] = Player.objects.filter(party=party).count()
+    parties_with_size = []
+
+    for party in parties:
+        PartyWithSize = create_temporary_party_class()
+
+        size_party = PartyWithSize(
+            title=party.title,
+            image=party.image,
+            region=party.region
+        )
+        size_party.pk = party.pk,
+        # почему-то строкой выше айди складывается в формате (123,)
+        size_party.pk = size_party.pk[0]
+
+        size_party.size = Player.objects.filter(party=party).count()
+
+        parties_with_size.append(size_party)
+
+    lines = get_thing_page(parties_with_size, page, 50)
+
+    header = {
+
+        'image': {
+            'text': '',
+            'select_text': 'Герб',
+            'visible': 'true'
+        },
+
+        'title': {
+            'text': 'Партия',
+            'select_text': 'Партия',
+            'visible': 'true'
+        },
+
+        'size': {
+            'text': 'Размер',
+            'select_text': 'Размер',
+            'visible': 'true'
+        },
+
+        'region': {
+            'on_map_id':
+                {
+                    'text': '',
+                    'select_text': 'Герб',
+                    'visible': 'true'
+                },
+            'region_name':
+                {
+                    'text': 'Регион',
+                    'select_text': 'Регион',
+                    'visible': 'true'
+                }
+        },
+    }
 
     # отправляем в форму
-    return render(request, 'lists/state_parties_list.html', {
-        'page_name': _('Партии региона'),
+    return render(request, 'player/redesign/lists/universal_list.html', {
+        'page_name': pgettext('state_parties', 'Партии государства'),
 
         'player': player,
+
+        'header': header,
         'lines': lines,
-        'sizes': party_sizes,
-
-        'request_state': request_state,
-
-        'parties_count': parties.count()
     })

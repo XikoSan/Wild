@@ -1,12 +1,13 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
-
-from player.views.lists.get_thing_page import get_thing_page
+from django.utils.translation import pgettext
 from django.utils.translation import ugettext as _
 
-from player.player import Player
-from player.decorators.player import check_player
 from party.party import Party
+from player.decorators.player import check_player
+from player.player import Player
+from player.views.lists.get_thing_page import get_thing_page
+
 
 def create_temporary_party_class():
     # класс партии, в котором её размер - это поле
@@ -15,6 +16,7 @@ def create_temporary_party_class():
         size = 0
 
     return _PartyWithSize
+
 
 # список всех партий игры
 # page - открываемая страница
@@ -31,13 +33,12 @@ def world_parties_list(request):
     parties_with_size = []
 
     for party in parties:
-
         PartyWithSize = create_temporary_party_class()
 
         size_party = PartyWithSize(
-            title = party.title,
-            image = party.image,
-            region = party.region
+            title=party.title,
+            image=party.image,
+            region=party.region
         )
         size_party.pk = party.pk,
         # почему-то строкой выше айди складывается в формате (123,)
@@ -69,25 +70,25 @@ def world_parties_list(request):
             'visible': 'true'
         },
 
-        'region':{
+        'region': {
             'on_map_id':
-            {
-                'text': '',
-                'select_text': 'Герб',
-                'visible': 'true'
-            },
+                {
+                    'text': '',
+                    'select_text': 'Герб',
+                    'visible': 'true'
+                },
             'region_name':
-            {
-                'text': 'Регион',
-                'select_text': 'Регион',
-                'visible': 'true'
-            }
+                {
+                    'text': 'Регион',
+                    'select_text': 'Регион',
+                    'visible': 'true'
+                }
         },
     }
 
     # отправляем в форму
     return render(request, 'player/redesign/lists/universal_list.html', {
-        'page_name': _('Партии мира'),
+        'page_name': pgettext('world_parties', 'Партии мира'),
 
         'player': player,
 

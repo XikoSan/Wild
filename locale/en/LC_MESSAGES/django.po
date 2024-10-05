@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-06 00:29+0300\n"
-"PO-Revision-Date: 2024-10-06 00:25+0300\n"
+"POT-Creation-Date: 2024-10-06 00:59+0300\n"
+"PO-Revision-Date: 2024-10-06 01:01+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -2385,13 +2385,19 @@ msgstr "Party activity of "
 msgid "Топ партий"
 msgstr "Party type"
 
-#: party/views/lists/region_parties.py:89 party/views/lists/state_parties.py:40
+#: party/views/lists/region_parties.py:89
 msgid "Партии региона"
 msgstr "Region`s parties"
 
-#: party/views/lists/world_parties.py:90
+#: party/views/lists/state_parties.py:101
+msgctxt "state_parties"
+msgid "Партии государства"
+msgstr "State parties"
+
+#: party/views/lists/world_parties.py:91
+msgctxt "world_parties"
 msgid "Партии мира"
-msgstr "World`s parties"
+msgstr "World parties"
 
 #: party/views/management/color_change.py:36
 msgctxt "party_manage"
