@@ -30,7 +30,7 @@ def set_mandate_view(request):
             candidates = Player.objects.filter(party=player.party).exclude(pk__in=deputates_pk)
 
             # отправляем в форму
-            return render(request, 'state/set_mandate.html', {
+            return render(request, 'state/redesign/set_mandate.html', {
                 # самого игрока
                 'player': player,
                 # список кандидатов
