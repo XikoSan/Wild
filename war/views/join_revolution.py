@@ -74,7 +74,8 @@ def join_revolution(request):
 
         if Rebel.actual.filter(
                 player=player,
-                region=player.region
+                region=player.region,
+                dtime__gt=timezone.now() - datetime.timedelta(days=10)
         ).exists():
             data = {
                 'response': 'Вы уже являетесь участником восстания здесь',

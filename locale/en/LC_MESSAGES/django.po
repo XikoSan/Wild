@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-06 00:59+0300\n"
-"PO-Revision-Date: 2024-10-06 01:01+0300\n"
+"POT-Creation-Date: 2024-10-06 20:04+0300\n"
+"PO-Revision-Date: 2024-10-06 20:09+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -7136,6 +7136,43 @@ msgctxt "wars_list"
 msgid "Бои"
 msgstr "Wars"
 
+#: war/templates/war/redesign/war_page.html:65
+msgctxt "war_page"
+msgid "Список войн"
+msgstr "War list"
+
+#: war/templates/war/redesign/war_page.html:83
+msgctxt "war_page"
+msgid "Поднять восстание"
+msgstr "Raise a rebellion"
+
+#: war/templates/war/redesign/war_page.html:168
+msgctxt "war_page"
+msgid "активно"
+msgstr "recently used"
+
+#: war/templates/war/redesign/war_page.html:189
+#: war/templates/war/redesign/war_page.html:213
+msgctxt "war_page"
+msgid "Все войны"
+msgstr "All wars"
+
+#: war/templates/war/redesign/war_page.html:204
+msgctxt "war_page"
+msgid "Гос. войны"
+msgstr "State wars"
+
+#: war/templates/war/redesign/war_page.html:245
+#: war/templates/war/redesign/war_page.html:284
+msgctxt "war_page"
+msgid "войн нет"
+msgstr "no wars"
+
+#: war/templates/war/redesign/war_page.html:252
+msgctxt "war_page"
+msgid "Государственные"
+msgstr "State wars"
+
 #: war/views/open_war_side_list.py:112
 msgctxt "lists"
 msgid "атака"
@@ -7174,6 +7211,11 @@ msgstr "No such skill"
 #: war/views/switch_war_visibility.py:62
 msgid "Нет такой записи об участии в бою"
 msgstr ""
+
+#: war/views/war_page.py:104
+msgctxt "war_page"
+msgid "Войны"
+msgstr "Wars"
 
 #~ msgctxt "trading_new"
 #~ msgid "количество"

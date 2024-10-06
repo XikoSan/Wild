@@ -62,7 +62,7 @@
 <section class="war">
 		<!-- Заголовок -->
 		<h1 class="war__title ct__page-title">
-			Список войн
+			{% trans 'Список войн' context "war_page" %}
 			{% if player.account.is_superuser %}
 			<!-- кнопка начать бой -->
 			<form method="POST" enctype="multipart/form-data" id="start_war">
@@ -80,7 +80,7 @@
 		</h1>
 
 		<div class="war__revoBlock">
-				<h2>Поднять восстание</h2>
+				<h2>{% trans 'Поднять восстание' context "war_page" %}</h2>
 
 				<div class="war__revoBlockFlex">
 					<div class="war__revoIcons">
@@ -165,7 +165,7 @@
 									fill="var(--c10one)" />
 							</g>
 						</svg>
-						<span>активно</span>
+						<span>{% trans 'активно' context "war_page" %}</span>
 					</button>
 					{% endif %}
 				</div>
@@ -186,7 +186,7 @@
 						<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
 					</g>
 				</svg>
-				<span>Все войны</span>
+				<span>{% trans 'Все войны' context "war_page" %}</span>
 			</button>
 
 			<button class="ct__top-tab ct__top-tab2 ct__mid-btn" onclick="switchMainBlocks(1)">
@@ -201,7 +201,7 @@
 						<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
 					</g>
 				</svg>
-				<span>Гос. войны</span>
+				<span>{% trans 'Гос. войны' context "war_page" %}</span>
 			</button>
 		</div>
 
@@ -210,7 +210,7 @@
 
 			<!-- 1й список -->
 			<div class="war__list active" id="war-block1">
-				<h2>Все войны</h2>
+				<h2>{% trans 'Все войны' context "war_page" %}</h2>
 
 				{% if wars_list %}
 
@@ -242,14 +242,14 @@
 				{% endfor %}
 
 				{% else %}
-				<h2>войн нет</h2>
+				<h2>{% trans 'войн нет' context "war_page" %}</h2>
 
 				{% endif%}
 			</div>
 
 			<!-- 2й список -->
 			<div class="war__list" id="war-block2">
-				<h2>Государственные</h2>
+				<h2>{% trans 'Государственные' context "war_page" %}</h2>
 
 					{% if state_wars_list %}
 
@@ -281,7 +281,7 @@
 					{% endfor %}
 
 					{% else %}
-					<h2>войн нет</h2>
+					<h2>{% trans 'войн нет' context "war_page" %}</h2>
 
 					{% endif%}
 			</div>
