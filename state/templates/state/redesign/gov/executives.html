@@ -21,7 +21,7 @@
 			{% nopic player '' 'width: 80rem; height: 80rem' %}
 			{% endif %}
 			<div class="goverGuysModal__itemText">
-				<h2>Президент</h2>
+				<h2>{% trans 'Президент' context "executives" %}</h2>
 				<div class="goverGuysModal__itemText-block">
 					<p>{{ pres_mandate.player.nickname }}</p>
 				</div>
@@ -31,9 +31,9 @@
 		<li class="goverGuysModal__item">
 			{% cross player '' 'width: 80rem; height: 80rem' %}
 			<div class="goverGuysModal__itemText">
-				<h2>Президент</h2>
+				<h2>{% trans 'Президент' context "executives" %}</h2>
 				<div class="goverGuysModal__itemText-block">
-					<p>Место вакантно</p>
+					<p>{% trans 'Место вакантно' context "executives" %}</p>
 				</div>
 			</div>
 		</li>
@@ -61,7 +61,7 @@
 		<li class="goverGuysModal__item" onclick="window.location.href = '/ministers_manage/'" style="cursor: pointer">
 			{% plus player '' 'width: 80rem; height: 80rem' %}
 			<div class="goverGuysModal__itemText">
-				<h2>Добавить министра</h2>
+				<h2>{% trans 'Добавить министра' context "executives" %}</h2>
 				<div class="goverGuysModal__itemText-block">
 				</div>
 			</div>

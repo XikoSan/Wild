@@ -66,7 +66,7 @@
 								<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
 							</g>
 						</svg>
-						<span>Инфо</span>
+						<span>{% trans 'Инфо' context "state_view" %}</span>
 					</button>
 
 					<button class="state__tab ct__mid-btn">
@@ -81,7 +81,7 @@
 								<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
 							</g>
 						</svg>
-						<span>Регионы</span>
+						<span>{% trans 'Регионы' context "state_view" %}</span>
 					</button>
 
 					<button class="state__tab ct__mid-btn">
@@ -96,7 +96,7 @@
 								<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
 							</g>
 						</svg>
-						<span>Партии</span>
+						<span>{% trans 'Партии' context "state_view" %}</span>
 					</button>
 
 					<button class="state__tab ct__mid-btn">
@@ -111,7 +111,7 @@
 								<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
 							</g>
 						</svg>
-						<span>Казна</span>
+						<span>{% trans 'Казна' context "state_view" %}</span>
 					</button>
 
         </div><!--кнопки конец-->
@@ -122,15 +122,15 @@
 
 		<div class="party__regionInfo stateBlock active">
 			<div class="party__regionInfo-block">
-				<p>Форма правления: <span style="text-align: right;">{{ state.get_type_display }}</span></p>
+				<p>{% trans 'Форма правления' context "state_view" %}: <span style="text-align: right;">{{ state.get_type_display }}</span></p>
 				{% if president %}
 					{% if president.leader %}
-				<p>Президент: <span style="color: var(--c10two); cursor: pointer" onclick="window.location.href = '/profile/{% localize off %}{{ president.leader.pk }}{% endlocalize %}'">{{ president.leader.nickname }}</span></p>
+				<p>{% trans 'Президент' context "state_view" %}: <span style="color: var(--c10two); cursor: pointer" onclick="window.location.href = '/profile/{% localize off %}{{ president.leader.pk }}{% endlocalize %}'">{{ president.leader.nickname }}</span></p>
 					{% else %}
-				<p>Президент: <span>не избран</span></p>
+				<p>{% trans 'Президент' context "state_view" %}: <span>{% trans 'не избран' context "state_view" %}</span></p>
 					{% endif %}
 					{% if last_voting %}
-				<p>Начало срока: <span>{{ last_voting.voting_end|timezone:player.time_zone|date:"d.m.Y H:i" }}</span></p>
+				<p>{% trans 'Начало срока' context "state_view" %}: <span>{{ last_voting.voting_end|timezone:player.time_zone|date:"d.m.Y H:i" }}</span></p>
 					{% endif %}
 				{% endif %}
 			</div>
@@ -138,26 +138,26 @@
 			<div class="party__mmid-line"></div>
 
 			<div class="party__regionInfo-block">
-				<p>Жителей: <span>{{ players_count }}</span></p>
-				<p>Партий: <span>{{ parties_count }}</span></p>
-				<p>{% trans 'Столица' %}: <span style="color: var(--c10two); cursor: pointer" onclick="window.location.href = '/region/{{ capital.pk }}/'"">{{ capital.region_name }}</span></p>
-				<p>{% trans 'Прописка' %}: <span>{{ state.get_residency_display }}</span></p>
-				<p>Дата основания: <span>{{ state.foundation_date|timezone:player.time_zone|date:"d.m.Y H:i" }}</span></p>
+				<p>{% trans 'Жителей' context "state_view" %}: <span>{{ players_count }}</span></p>
+				<p>{% trans 'Партий' context "state_view" %}: <span>{{ parties_count }}</span></p>
+				<p>{% trans 'Столица' context "state_view" %}: <span style="color: var(--c10two); cursor: pointer" onclick="window.location.href = '/region/{{ capital.pk }}/'"">{{ capital.region_name }}</span></p>
+				<p>{% trans 'Прописка' context "state_view" %}: <span>{{ state.get_residency_display }}</span></p>
+				<p>{% trans 'Дата основания' context "state_view" %}: <span>{{ state.foundation_date|timezone:player.time_zone|date:"d.m.Y H:i" }}</span></p>
 			</div>
 
 			<div class="party__mmid-line"></div>
 
 			<div class="party__regionInfo-block">
-				<p>Баланс электросети: <span {% if energy_consumption > energy_production %}style="color: var(--c10two);"{% endif %}>{{ energy_consumption }} / {{ energy_production }}</span></p>
+				<p>{% trans 'Баланс электросети' context "state_view" %}: <span {% if energy_consumption > energy_production %}style="color: var(--c10two);"{% endif %}>{{ energy_consumption }} / {{ energy_production }}</span></p>
 			</div>
 
 			<div class="party__mmid-line"></div>
 
 			<div class="party__regionInfo-block">
-				<h2>{% trans 'Государственные налоги' %}:</h2>
-				<p>{% trans 'На финансирование' %}: <span>{{ state.cash_tax }} %</span></p>
-				<p>{% trans 'На добычу' %}: <span>{{ state.oil_tax }} % / {{ state.ore_tax }} %</span></p>
-				<p>{% trans 'На торговлю' %}: <span>{{ state.trade_tax }} %</span></p>
+				<h2>{% trans 'Государственные налоги' context "state_view" %}:</h2>
+				<p>{% trans 'На финансирование' context "state_view" %}: <span>{{ state.cash_tax }} %</span></p>
+				<p>{% trans 'На добычу' context "state_view" %}: <span>{{ state.oil_tax }} % / {{ state.ore_tax }} %</span></p>
+				<p>{% trans 'На торговлю' context "state_view" %}: <span>{{ state.trade_tax }} %</span></p>
 			</div>
 		</div>
 
@@ -169,9 +169,9 @@
 
 					<tr>
 						<td></td>
-						<td>Регион</td>
-						<td>Жители</td>
-						<td>Запасы</td>
+						<td>{% trans 'Регион' context "state_view" %}</td>
+						<td>{% trans 'Жители' context "state_view" %}</td>
+						<td>{% trans 'Запасы' context "state_view" %}</td>
 					</tr>
 					{% for region in regions_state %}
 					<tr>
@@ -198,10 +198,10 @@
 				<tbody>
 					<tr>
 						<td></td>
-						<td>Название</td>
-						<td>Размер</td>
+						<td>{% trans 'Название' context "state_view" %}</td>
+						<td>{% trans 'Размер' context "state_view" %}</td>
 						<td></td>
-						<td>Регион</td>
+						<td>{% trans 'Регион' context "state_view" %}</td>
 					</tr>
 					{% for party in parties_of_state %}
 					<tr>

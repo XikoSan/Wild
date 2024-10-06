@@ -6,7 +6,7 @@ from django.db import models
 from django.utils import timezone
 from player.actual_manager import ActualManager
 from regime.regime import Regime
-from django.utils.translation import gettext_lazy
+from django.utils.translation import gettext_lazy, pgettext_lazy
 from storage.models.good import Good
 
 
@@ -24,8 +24,8 @@ class State(models.Model):
     foundation_date = models.DateTimeField(default=timezone.now, blank=True, null=True)
     # тип государства
     stateTypeChoices = (
-        ('Temporary', 'Временное правительство'),
-        ('Presidential', 'Президентская республика'),
+        ('Temporary', pgettext_lazy('state_view', 'Временное правительство')),
+        ('Presidential', pgettext_lazy('state_view', 'Президентская республика')),
     )
     type = models.CharField(
         max_length=15,
@@ -34,8 +34,8 @@ class State(models.Model):
     )
     # прописка
     residencyTypeChoices = (
-        ('free', gettext_lazy('Свободная')),
-        ('issue', gettext_lazy('Выдаётся министром')),
+        ('free', pgettext_lazy('state_view', 'Свободная')),
+        ('issue', pgettext_lazy('state_view', 'Выдаётся министром')),
     )
     residency = models.CharField(
         max_length=5,

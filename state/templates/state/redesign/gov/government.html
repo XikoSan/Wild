@@ -176,7 +176,7 @@ if (mainElement && openModalBtnElement && closeModalBtnElement) {
 {% block content %}
   <section class="gover custom-scroll">
     <!-- Заголовок -->
-    <h1 class="gover__title ct__page-title">Парламент</h1>
+    <h1 class="gover__title ct__page-title">{% trans 'Парламент' context "government" %}</h1>
 
 
     <!--ТОП БЛОК-->
@@ -211,7 +211,7 @@ if (mainElement && openModalBtnElement && closeModalBtnElement) {
 		{% if player.region.state %}
 		<h2 class="party__top-name">{{ state.title }}</h2>
 	  	{% else %}
-		<h2 class="party__top-name">Независимый регион</h2>
+		<h2 class="party__top-name">{% trans 'Независимый регион' context "government" %}</h2>
 	  	{% endif %}
 
 		<p class="gover__topVyb">
@@ -230,17 +230,17 @@ if (mainElement && openModalBtnElement && closeModalBtnElement) {
 							<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
 						</g>
 					</svg>
-					<span>выборы</span>
+					<span>{% trans 'выборы' context "government" %}</span>
 				</button>
 
 				{% else %}
-				<span>Выборы:</span>
+				<span>{% trans 'Выборы' context "government" %}:</span>
 				<span>{{ next_voting_date|timezone:player.time_zone|date:"d.m.y H:i" }}</span>
 				{% endif %}
 
 			{% else %}
 				<button class="earn__long-btn ct__long-btn btn" style="margin-top: -60rem;" onclick="state_foundation()" style="cursor: pointer">
-					<span style="display: inline-block;">основать государство</span>
+					<span style="display: inline-block;">{% trans 'основать государство' context "government" %}</span>
 					<svg width="176" height="31" viewBox="0 0 176 31" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<mask id="mask0_36_212" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="-1" width="176" height="32">
 						<path d="M0 5.78935L5.78947 -0.00012207H176V23.1578L169.053 30.1051H0V5.78935Z" fill="var(--c10two)"></path>
@@ -261,7 +261,7 @@ if (mainElement && openModalBtnElement && closeModalBtnElement) {
 		{% if player.region.state %}
         <div class="party__region">
           <img src="static/img/regions/{{ capital.on_map_id }}.png">
-          <p>Столица: {{ capital.region_name }}</p>
+          <p>{% trans 'Столица' context "government" %}: {{ capital.region_name }}</p>
         </div>
 	    {% endif %}
       </div>
@@ -284,7 +284,7 @@ if (mainElement && openModalBtnElement && closeModalBtnElement) {
 							<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
 						</g>
 					</svg>
-					<span>законопроекты</span>
+					<span>{% trans 'законопроекты' context "government" %}</span>
 				</button>
 
 				{% if is_deputate %}
@@ -300,7 +300,7 @@ if (mainElement && openModalBtnElement && closeModalBtnElement) {
 							<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
 						</g>
 					</svg>
-					<span>новый</span>
+					<span>{% trans 'новый' context "government" %}</span>
 				</button>
 
 					{% if has_custom_right %}
@@ -316,7 +316,7 @@ if (mainElement && openModalBtnElement && closeModalBtnElement) {
 							<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
 						</g>
 					</svg>
-					<span>министр</span>
+					<span>{% trans 'министр' context "government" %}</span>
 				</button>
 					{% endif %}
 
@@ -334,7 +334,7 @@ if (mainElement && openModalBtnElement && closeModalBtnElement) {
 							<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
 						</g>
 					</svg>
-					<span>история</span>
+					<span>{% trans 'история' context "government" %}</span>
 				</button>
 
 				<button class="gover__tab ct__mid-btn" data-block="gover">
@@ -349,7 +349,7 @@ if (mainElement && openModalBtnElement && closeModalBtnElement) {
 							<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
 						</g>
 					</svg>
-					<span>парламент</span>
+					<span>{% trans 'парламент' context "government" %}</span>
 				</button>
 				{% endif %}
 				<button class="gover__tab ct__mid-btn" data-block="coffers">
@@ -364,7 +364,7 @@ if (mainElement && openModalBtnElement && closeModalBtnElement) {
 							<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
 						</g>
 					</svg>
-					<span>казна</span>
+					<span>{% trans 'казна' context "government" %}</span>
 				</button>
 			</div>
 		</div><!--конец КНОПКИ-ТАБЫ-->
