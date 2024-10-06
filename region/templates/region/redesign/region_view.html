@@ -66,7 +66,7 @@
               <path d="M18.1408 33.0126L27.9822 8.34319C28.5792 7.71017 28.915 8.26561 29.0083 8.62246L19.4001 33.0126H18.1408Z" fill="var(--c10one)"></path>
               <path d="M0.5 17C0.5 7.88567 7.88567 0.5 17 0.5C26.1143 0.5 33.5 7.88567 33.5 17C33.5 26.1143 26.1143 33.5 17 33.5C7.88567 33.5 0.5 26.1143 0.5 17Z" stroke="var(--c10two)"></path>
             </svg>
-            <p style="margin-left: 10rem;">{% trans 'Независимый регион' %}</p>
+            <p style="margin-left: 10rem;">{% trans 'Независимый регион' context "region_view" %}</p>
             {% endif %}
         </div>
 
@@ -85,11 +85,11 @@
                             <path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
                         </g>
                     </svg>
-                    <span style="font-size: 13rem;">получить прописку</span>
+                    <span style="font-size: 13rem;">{% trans 'получить прописку' context "region_view" %}</span>
                 </button>
                 {% else %}
                     {% if request %}
-                    <p class="profile__repost-status" style="width: 100%; max-width: 144rem; margin: inherit;">запрос отправлен</p>
+                    <p class="profile__repost-status" style="width: 100%; max-width: 144rem; margin: inherit;">{% trans 'запрос отправлен' context "region_view" %}</p>
                     {% else %}
                       <button onclick="get_residency({{ region.pk }})" class="party__top-content-request ct__mid-btn">
                             <svg width="144" height="30" viewBox="0 0 144 30" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -103,7 +103,7 @@
                                     <path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
                                 </g>
                             </svg>
-                            <span style="font-size: 13rem;">запросить прописку</span>
+                            <span style="font-size: 13rem;">{% trans 'запросить прописку' context "region_view" %}</span>
                         </button>
                     {% endif %}
                 {% endif %}
@@ -139,12 +139,12 @@
                 {% endif %}
 
             {% else %}
-              <p class="profile__repost-status" style="width: 100%; max-width: 144rem; margin: inherit;">в полёте</p>
+              <p class="profile__repost-status" style="width: 100%; max-width: 144rem; margin: inherit;">{% trans 'в полёте' context "region_view" %}</p>
             {% endif %}
         {% else %}
             {% if not player.destination %}
                 {% if player.region == region %}
-                    <p class="profile__repost-status" style="width: 100%; max-width: 144rem; margin: inherit;">регион прописки</p>
+                    <p class="profile__repost-status" style="width: 100%; max-width: 144rem; margin: inherit;">{% trans 'регион прописки' context "region_view" %}</p>
                 {% else %}
                     <div class="map__info-btn-block" style="justify-content: inherit; width: 210rem;">
                         {% csrf_token %}
@@ -175,7 +175,7 @@
                     </div>
                 {% endif %}
             {% else %}
-              <p class="profile__repost-status" style="width: 100%; max-width: 144rem; margin: inherit;">в полёте</p>
+              <p class="profile__repost-status" style="width: 100%; max-width: 144rem; margin: inherit;">{% trans 'в полёте' context "region_view" %}</p>
             {% endif %}
         {% endif %}
 
@@ -185,27 +185,27 @@
 		<div class="party__regionInfo">
             {% if martial %}
 			<div class="party__regionInfo-block">
-                <p style="display: flex; justify-content: center;">Военное положение</p>
+                <p style="display: flex; justify-content: center;">{% trans 'Военное положение' context "region_view" %}</p>
 			</div>
 
 			<div class="party__mmid-line"></div>
             {% endif %}
 
             <div class="party__regionInfo-block">
-                <p>Жителей: <span><a style="color: var(--c10two);" href="/region/{{ region.pk }}/players/">{{ players_count }}</a></span></p>
-                <p>Граждан: <span><a style="color: var(--c10two);" href="/region/{{ region.pk }}/citizens/">{{ residents_count }}</a></span></p>
-                <p>Партий: <span>{{ parties_count }}</span></p>
+                <p>{% trans 'Жителей' context "state_view" %}: <span><a style="color: var(--c10two);" href="/region/{{ region.pk }}/players/">{{ players_count }}</a></span></p>
+                <p>{% trans 'Граждан' context "region_view" %}: <span><a style="color: var(--c10two);" href="/region/{{ region.pk }}/citizens/">{{ residents_count }}</a></span></p>
+                <p>{% trans 'Партий' context "state_view" %}: <span>{{ parties_count }}</span></p>
 			</div>
 
 			<div class="party__mmid-line"></div>
 
             <div class="party__regionInfo-block">
-				<p>{% trans 'Запасы золота' %}: <span>{{ region.gold_has }} / {{ region.gold_cap }}</span></p>
-				<p>{% trans 'Запасы нефти' %}: <span>{{ region.oil_has }} / {{ region.oil_cap }}</span></p>
-				<p>{% trans 'Марка нефти' %}: <span>{{ region.oil_mark.name }}</span></p>
-				<p>Запасы руд: <span>{{ region.ore_has }} / {{ region.ore_cap }}</span></p>
-				<p>Качество руды:</p>
-				<p>(уголь / железо / бокситы)<span>{% for fossil in fossils %}{{ fossil.percent }} % {% if not forloop.last %} / {% endif %}{% endfor %}</span></p>
+				<p>{% trans 'Запасы золота' context "region_view" %}: <span>{{ region.gold_has }} / {{ region.gold_cap }}</span></p>
+				<p>{% trans 'Запасы нефти' context "region_view" %}: <span>{{ region.oil_has }} / {{ region.oil_cap }}</span></p>
+				<p>{% trans 'Марка нефти' context "region_view" %}: <span>{{ region.oil_mark.name }}</span></p>
+				<p>{% trans 'Запасы руд' context "region_view" %}: <span>{{ region.ore_has }} / {{ region.ore_cap }}</span></p>
+				<p>{% trans 'Качество руды' context "region_view" %}:</p>
+				<p>({% trans 'уголь' context "region_view" %} / {% trans 'железо' context "region_view" %} / {% trans 'бокситы' context "region_view" %})<span>{% for fossil in fossils %}{{ fossil.percent }} % {% if not forloop.last %} / {% endif %}{% endfor %}</span></p>
 			</div>
 
 			<div class="party__mmid-line"></div>
@@ -216,16 +216,16 @@
             {% endfor %}
 
 			<div class="party__regionInfo-block">
-				<h2>{% trans 'Региональные налоги' %}:</h2>
-				<p>{% trans 'На финансирование' %}: <span>{{ region.cash_tax }} %</span></p>
-				<p>{% trans 'На добычу' %} (нефть / руда): <span>{{ region.oil_tax }} % / {{ region.ore_tax }} %</span></p>
-				<p>{% trans 'На торговлю' %}: <span>{{ region.trade_tax }} %</span></p>
+				<h2>{% trans 'Региональные налоги' context "region_view" %}:</h2>
+				<p>{% trans 'На финансирование' context "region_view" %}: <span>{{ region.cash_tax }} %</span></p>
+				<p>{% trans 'На добычу  (нефть / руда)' context "region_view" %}: <span>{{ region.oil_tax }} % / {{ region.ore_tax }} %</span></p>
+				<p>{% trans 'На торговлю' context "region_view" %}: <span>{{ region.trade_tax }} %</span></p>
 			</div>
 
             <div class="party__mmid-line"></div>
 
             <div class="party__regionInfo-block">
-                <h2>Рельеф региона:</h2>
+                <h2>{% trans 'Рельеф региона' context "region_view" %}:</h2>
                 <p style="
                     display: flex;
                     justify-content: space-evenly;

@@ -1,5 +1,6 @@
-{% load i18n %}{% load dict_key %}
+{% load l10n %}{% load i18n %}
+{% load dict_key %}
 <div class="party__regionInfo-block">
-    <p>{% trans 'Уровень Инфраструктуры' %}: <span>{% with level=data|dict_key:'level' %}{{ level }}{% endwith %}</span></p>
-    <p>{% trans 'Рейтинг Инфраструктуры' %}: <span>{% with top=data|dict_key:'top' %}{{ top }}{% endwith %}</span></p>
+    <p>{% trans 'Уровень Инфраструктуры' context "region_view" %}: <span>{% with level=data|dict_key:'level' %}{{ level }}{% endwith %}</span></p>
+    <p>{% trans 'Рейтинг Инфраструктуры' context "region_view" %}: <span>{% with top=data|dict_key:'top' %}{{ top }}{% endwith %}</span></p>
 </div>

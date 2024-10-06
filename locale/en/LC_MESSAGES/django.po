@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-06 22:06+0300\n"
-"PO-Revision-Date: 2024-10-06 22:08+0300\n"
+"POT-Creation-Date: 2024-10-06 23:24+0300\n"
+"PO-Revision-Date: 2024-10-06 23:27+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -4580,31 +4580,33 @@ msgctxt "goods"
 msgid "Urals"
 msgstr "Urals"
 
-#: region/templates/region/redesign/buildings/defences.html:3
+#: region/templates/region/redesign/buildings/defences.html:4
+msgctxt "region_view"
 msgid "Уровень Укреплений"
 msgstr "Fortifications level"
 
-#: region/templates/region/redesign/buildings/hospital.html:3
+#: region/templates/region/redesign/buildings/hospital.html:4
+msgctxt "region_view"
 msgid "Уровень Госпиталя"
 msgstr "Hospital level"
 
-#: region/templates/region/redesign/buildings/hospital.html:4
+#: region/templates/region/redesign/buildings/hospital.html:5
+msgctxt "region_view"
 msgid "Рейтинг Госпиталя"
 msgstr "Hospital top"
 
-#: region/templates/region/redesign/buildings/infrastructure.html:3
-#, fuzzy
-#| msgid "Уровень Госпиталя"
-msgid "Уровень Инфраструктуры"
-msgstr "Hospital level"
-
 #: region/templates/region/redesign/buildings/infrastructure.html:4
-#, fuzzy
-#| msgid "Рейтинг Госпиталя"
-msgid "Рейтинг Инфраструктуры"
-msgstr "Hospital top"
+msgctxt "region_view"
+msgid "Уровень Инфраструктуры"
+msgstr "Infrastructure level"
 
-#: region/templates/region/redesign/buildings/power_plant.html:3
+#: region/templates/region/redesign/buildings/infrastructure.html:5
+msgctxt "region_view"
+msgid "Рейтинг Инфраструктуры"
+msgstr "Infrastructure top"
+
+#: region/templates/region/redesign/buildings/power_plant.html:4
+msgctxt "region_view"
 msgid "Уровень ТЭЦ"
 msgstr "Power plant level"
 
@@ -4889,36 +4891,122 @@ msgid "отправиться"
 msgstr "go fly"
 
 #: region/templates/region/redesign/region_view.html:69
+msgctxt "region_view"
 msgid "Независимый регион"
-msgstr ""
+msgstr "Free region"
+
+#: region/templates/region/redesign/region_view.html:88
+msgctxt "region_view"
+msgid "получить прописку"
+msgstr "get a residency"
+
+#: region/templates/region/redesign/region_view.html:92
+msgctxt "region_view"
+msgid "запрос отправлен"
+msgstr "request sent"
+
+#: region/templates/region/redesign/region_view.html:106
+msgctxt "region_view"
+msgid "запросить прописку"
+msgstr "request a residency"
+
+#: region/templates/region/redesign/region_view.html:142
+#: region/templates/region/redesign/region_view.html:178
+msgctxt "region_view"
+msgid "в полёте"
+msgstr "in flight"
+
+#: region/templates/region/redesign/region_view.html:147
+msgctxt "region_view"
+msgid "регион прописки"
+msgstr "region of registration"
+
+#: region/templates/region/redesign/region_view.html:188
+msgctxt "region_view"
+msgid "Военное положение"
+msgstr "Martial law"
+
+#: region/templates/region/redesign/region_view.html:195
+#: state/templates/state/redesign/state_view.html:141
+msgctxt "state_view"
+msgid "Жителей"
+msgstr "Residents"
+
+#: region/templates/region/redesign/region_view.html:196
+msgctxt "region_view"
+msgid "Граждан"
+msgstr "Number of citizens"
+
+#: region/templates/region/redesign/region_view.html:197
+#: state/templates/state/redesign/state_view.html:142
+msgctxt "state_view"
+msgid "Партий"
+msgstr "Parties"
 
 #: region/templates/region/redesign/region_view.html:203
+msgctxt "region_view"
 msgid "Запасы золота"
-msgstr ""
+msgstr "Gold reserves"
 
 #: region/templates/region/redesign/region_view.html:204
+msgctxt "region_view"
 msgid "Запасы нефти"
-msgstr ""
+msgstr "Oil reserves"
 
 #: region/templates/region/redesign/region_view.html:205
+msgctxt "region_view"
 msgid "Марка нефти"
-msgstr ""
+msgstr "Oil grade"
+
+#: region/templates/region/redesign/region_view.html:206
+msgctxt "region_view"
+msgid "Запасы руд"
+msgstr "Ore reserves"
+
+#: region/templates/region/redesign/region_view.html:207
+msgctxt "region_view"
+msgid "Качество руды"
+msgstr "Ore quality"
+
+#: region/templates/region/redesign/region_view.html:208
+msgctxt "region_view"
+msgid "уголь"
+msgstr "Coal"
+
+#: region/templates/region/redesign/region_view.html:208
+msgctxt "region_view"
+msgid "железо"
+msgstr "Iron"
+
+#: region/templates/region/redesign/region_view.html:208
+msgctxt "region_view"
+msgid "бокситы"
+msgstr "Bauxites"
 
 #: region/templates/region/redesign/region_view.html:219
+msgctxt "region_view"
 msgid "Региональные налоги"
-msgstr ""
+msgstr "Rgional taxes"
 
 #: region/templates/region/redesign/region_view.html:220
+msgctxt "region_view"
 msgid "На финансирование"
-msgstr ""
+msgstr "for Funding"
 
 #: region/templates/region/redesign/region_view.html:221
-msgid "На добычу"
-msgstr ""
+msgctxt "region_view"
+msgid "На добычу  (нефть / руда)"
+msgstr "for mining (oil / ore)"
 
 #: region/templates/region/redesign/region_view.html:222
+msgctxt "region_view"
 msgid "На торговлю"
-msgstr ""
+msgstr "for trading"
+
+#: region/templates/region/redesign/region_view.html:228
+msgctxt "region_view"
+msgid "Рельеф региона"
+msgstr "Relief of the region"
 
 #: region/views/do_mining.py:41 region/views/do_mining.py:54
 #: region/views/do_mining.py:64 region/views/do_mining.py:77
@@ -5323,16 +5411,6 @@ msgstr "not elected"
 msgctxt "state_view"
 msgid "Начало срока"
 msgstr "Term beginning, since"
-
-#: state/templates/state/redesign/state_view.html:141
-msgctxt "state_view"
-msgid "Жителей"
-msgstr "Residents"
-
-#: state/templates/state/redesign/state_view.html:142
-msgctxt "state_view"
-msgid "Партий"
-msgstr "Parties"
 
 #: state/templates/state/redesign/state_view.html:143
 msgctxt "state_view"
@@ -7788,10 +7866,6 @@ msgstr "Wars"
 #~ msgctxt "factory"
 #~ msgid "Вы получили "
 #~ msgstr "You received "
-
-#~ msgctxt "factory"
-#~ msgid " золота"
-#~ msgstr " of Gold"
 
 #, fuzzy
 #~ msgctxt "goods"
