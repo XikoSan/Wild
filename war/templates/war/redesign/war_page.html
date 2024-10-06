@@ -124,6 +124,7 @@
 						{% endwith %}
 					</div>
 
+					{% if can_join_rebel %}
 					<form method="POST" enctype="multipart/form-data" id="join_revolution">
 						{% csrf_token %}
 						<button type="submit" class="box__picOpen ct__mid-btn">
@@ -146,6 +147,27 @@
 							<span>{{ rebel_price }} G</span>
 						</button>
 					</form>
+					{% else %}
+					<button type="submit" class="box__picOpen ct__mid-btn" style="filter: grayscale(1); cursor: auto;">
+						<svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
+							<mask id="mask0_258_233" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144"
+								height="30">
+								<path class="geometry1" d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z" />
+							</mask>
+							<g mask="url(#mask0_258_233)">
+								<path class="geometry2" fill="var(--c10two)"
+									d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" />
+								<path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z"
+									fill="var(--c10one)" />
+								<path class="treg2" opacity="0.15"
+									d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)" />
+								<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z"
+									fill="var(--c10one)" />
+							</g>
+						</svg>
+						<span>активно</span>
+					</button>
+					{% endif %}
 				</div>
 
 			</div>

@@ -1,6 +1,9 @@
+import datetime
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.shortcuts import render
+from django.utils import timezone
+from django.utils.translation import pgettext
 from itertools import chain
 
 from player.decorators.player import check_player
@@ -8,10 +11,9 @@ from player.player import Player
 from player.views.get_subclasses import get_subclasses
 from player.views.timers import interval_in_seconds
 from region.models.region import Region
-from war.models.wars.war import War
-
-from war.models.wars.revolution.rebel import Rebel
 from war.models.martial import Martial
+from war.models.wars.revolution.rebel import Rebel
+from war.models.wars.war import War
 
 
 # страница войн
@@ -77,9 +79,14 @@ def war_page(request):
                 delay_in_sec=86400
             )
 
-# -------------------------
+    # -------------------------
+    # может присоединиться к восстанию
+    can_join_rebel = True
 
-    rebels = Rebel.actual.filter(region=player.region)
+    if Rebel.objects.filter(player=player, dtime__gt=timezone.now() - datetime.timedelta(days=10)):
+        can_join_rebel = False
+
+    rebels = Rebel.actual.filter(region=player.region, dtime__gt=timezone.now() - datetime.timedelta(days=10))
     rebels_count = rebels.count()
 
     if Martial.objects.filter(active=True, region=player.region).exists():
@@ -94,6 +101,7 @@ def war_page(request):
 
     # отправляем в форму
     return render(request, 'war/redesign/war_page.html', {
+        'page_name': pgettext('war_page', 'Войны'),
         # самого игрока
         'player': player,
         # список войн
@@ -106,5 +114,6 @@ def war_page(request):
         'rebels': rebels,
         'rebels_count': rebels_count,
         'rebel_price': rebel_price,
+        'can_join_rebel': can_join_rebel,
 
     })
