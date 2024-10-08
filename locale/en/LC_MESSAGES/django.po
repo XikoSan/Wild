@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-06 00:59+0300\n"
-"PO-Revision-Date: 2024-10-06 01:01+0300\n"
+"POT-Creation-Date: 2024-10-06 23:24+0300\n"
+"PO-Revision-Date: 2024-10-06 23:27+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -4580,31 +4580,33 @@ msgctxt "goods"
 msgid "Urals"
 msgstr "Urals"
 
-#: region/templates/region/redesign/buildings/defences.html:3
+#: region/templates/region/redesign/buildings/defences.html:4
+msgctxt "region_view"
 msgid "Уровень Укреплений"
 msgstr "Fortifications level"
 
-#: region/templates/region/redesign/buildings/hospital.html:3
+#: region/templates/region/redesign/buildings/hospital.html:4
+msgctxt "region_view"
 msgid "Уровень Госпиталя"
 msgstr "Hospital level"
 
-#: region/templates/region/redesign/buildings/hospital.html:4
+#: region/templates/region/redesign/buildings/hospital.html:5
+msgctxt "region_view"
 msgid "Рейтинг Госпиталя"
 msgstr "Hospital top"
 
-#: region/templates/region/redesign/buildings/infrastructure.html:3
-#, fuzzy
-#| msgid "Уровень Госпиталя"
-msgid "Уровень Инфраструктуры"
-msgstr "Hospital level"
-
 #: region/templates/region/redesign/buildings/infrastructure.html:4
-#, fuzzy
-#| msgid "Рейтинг Госпиталя"
-msgid "Рейтинг Инфраструктуры"
-msgstr "Hospital top"
+msgctxt "region_view"
+msgid "Уровень Инфраструктуры"
+msgstr "Infrastructure level"
 
-#: region/templates/region/redesign/buildings/power_plant.html:3
+#: region/templates/region/redesign/buildings/infrastructure.html:5
+msgctxt "region_view"
+msgid "Рейтинг Инфраструктуры"
+msgstr "Infrastructure top"
+
+#: region/templates/region/redesign/buildings/power_plant.html:4
+msgctxt "region_view"
 msgid "Уровень ТЭЦ"
 msgstr "Power plant level"
 
@@ -4889,39 +4891,122 @@ msgid "отправиться"
 msgstr "go fly"
 
 #: region/templates/region/redesign/region_view.html:69
+msgctxt "region_view"
 msgid "Независимый регион"
-msgstr ""
+msgstr "Free region"
+
+#: region/templates/region/redesign/region_view.html:88
+msgctxt "region_view"
+msgid "получить прописку"
+msgstr "get a residency"
+
+#: region/templates/region/redesign/region_view.html:92
+msgctxt "region_view"
+msgid "запрос отправлен"
+msgstr "request sent"
+
+#: region/templates/region/redesign/region_view.html:106
+msgctxt "region_view"
+msgid "запросить прописку"
+msgstr "request a residency"
+
+#: region/templates/region/redesign/region_view.html:142
+#: region/templates/region/redesign/region_view.html:178
+msgctxt "region_view"
+msgid "в полёте"
+msgstr "in flight"
+
+#: region/templates/region/redesign/region_view.html:147
+msgctxt "region_view"
+msgid "регион прописки"
+msgstr "region of registration"
+
+#: region/templates/region/redesign/region_view.html:188
+msgctxt "region_view"
+msgid "Военное положение"
+msgstr "Martial law"
+
+#: region/templates/region/redesign/region_view.html:195
+#: state/templates/state/redesign/state_view.html:141
+msgctxt "state_view"
+msgid "Жителей"
+msgstr "Residents"
+
+#: region/templates/region/redesign/region_view.html:196
+msgctxt "region_view"
+msgid "Граждан"
+msgstr "Number of citizens"
+
+#: region/templates/region/redesign/region_view.html:197
+#: state/templates/state/redesign/state_view.html:142
+msgctxt "state_view"
+msgid "Партий"
+msgstr "Parties"
 
 #: region/templates/region/redesign/region_view.html:203
+msgctxt "region_view"
 msgid "Запасы золота"
-msgstr ""
+msgstr "Gold reserves"
 
 #: region/templates/region/redesign/region_view.html:204
+msgctxt "region_view"
 msgid "Запасы нефти"
-msgstr ""
+msgstr "Oil reserves"
 
 #: region/templates/region/redesign/region_view.html:205
+msgctxt "region_view"
 msgid "Марка нефти"
-msgstr ""
+msgstr "Oil grade"
+
+#: region/templates/region/redesign/region_view.html:206
+msgctxt "region_view"
+msgid "Запасы руд"
+msgstr "Ore reserves"
+
+#: region/templates/region/redesign/region_view.html:207
+msgctxt "region_view"
+msgid "Качество руды"
+msgstr "Ore quality"
+
+#: region/templates/region/redesign/region_view.html:208
+msgctxt "region_view"
+msgid "уголь"
+msgstr "Coal"
+
+#: region/templates/region/redesign/region_view.html:208
+msgctxt "region_view"
+msgid "железо"
+msgstr "Iron"
+
+#: region/templates/region/redesign/region_view.html:208
+msgctxt "region_view"
+msgid "бокситы"
+msgstr "Bauxites"
 
 #: region/templates/region/redesign/region_view.html:219
+msgctxt "region_view"
 msgid "Региональные налоги"
-msgstr ""
+msgstr "Rgional taxes"
 
 #: region/templates/region/redesign/region_view.html:220
-#: state/templates/state/redesign/state_view.html:158
+msgctxt "region_view"
 msgid "На финансирование"
-msgstr ""
+msgstr "for Funding"
 
 #: region/templates/region/redesign/region_view.html:221
-#: state/templates/state/redesign/state_view.html:159
-msgid "На добычу"
-msgstr ""
+msgctxt "region_view"
+msgid "На добычу  (нефть / руда)"
+msgstr "for mining (oil / ore)"
 
 #: region/templates/region/redesign/region_view.html:222
-#: state/templates/state/redesign/state_view.html:160
+msgctxt "region_view"
 msgid "На торговлю"
-msgstr ""
+msgstr "for trading"
+
+#: region/templates/region/redesign/region_view.html:228
+msgctxt "region_view"
+msgid "Рельеф региона"
+msgstr "Relief of the region"
 
 #: region/views/do_mining.py:41 region/views/do_mining.py:54
 #: region/views/do_mining.py:64 region/views/do_mining.py:77
@@ -5166,13 +5251,114 @@ msgctxt "skills"
 msgid "Нет навыков в очереди"
 msgstr "No skills in queue"
 
+#: state/models/state.py:27
+msgctxt "state_view"
+msgid "Временное правительство"
+msgstr "Provisional Government"
+
+#: state/models/state.py:28
+msgctxt "state_view"
+msgid "Президентская республика"
+msgstr "Presidential Republic"
+
 #: state/models/state.py:37
+msgctxt "state_view"
 msgid "Свободная"
 msgstr "Free"
 
 #: state/models/state.py:38
+msgctxt "state_view"
 msgid "Выдаётся министром"
 msgstr "Issued by minister"
+
+#: state/templates/state/redesign/gov/executives.html:24
+#: state/templates/state/redesign/gov/executives.html:34
+msgctxt "executives"
+msgid "Президент"
+msgstr "President"
+
+#: state/templates/state/redesign/gov/executives.html:36
+msgctxt "executives"
+msgid "Место вакантно"
+msgstr "Vacant place"
+
+#: state/templates/state/redesign/gov/executives.html:64
+msgctxt "executives"
+msgid "Добавить министра"
+msgstr "Add Minister"
+
+#: state/templates/state/redesign/gov/government.html:179
+msgctxt "government"
+msgid "Парламент"
+msgstr "Parliament"
+
+#: state/templates/state/redesign/gov/government.html:214
+msgctxt "government"
+msgid "Независимый регион"
+msgstr "Free region"
+
+#: state/templates/state/redesign/gov/government.html:233
+msgctxt "government"
+msgid "выборы"
+msgstr "elections"
+
+#: state/templates/state/redesign/gov/government.html:237
+msgctxt "government"
+msgid "Выборы"
+msgstr "Elections"
+
+#: state/templates/state/redesign/gov/government.html:243
+msgctxt "government"
+msgid "основать государство"
+msgstr "Found a state"
+
+#: state/templates/state/redesign/gov/government.html:264
+msgctxt "government"
+msgid "Столица"
+msgstr "Capital"
+
+#: state/templates/state/redesign/gov/government.html:287
+msgctxt "government"
+msgid "законопроекты"
+msgstr "bills"
+
+#: state/templates/state/redesign/gov/government.html:303
+msgctxt "government"
+msgid "новый"
+msgstr "new bill"
+
+#: state/templates/state/redesign/gov/government.html:319
+msgctxt "government"
+msgid "министр"
+msgstr "minister"
+
+#: state/templates/state/redesign/gov/government.html:337
+msgctxt "government"
+msgid "история"
+msgstr "history"
+
+#: state/templates/state/redesign/gov/government.html:352
+msgctxt "government"
+msgid "парламент"
+msgstr "parliament"
+
+#: state/templates/state/redesign/gov/government.html:367
+msgctxt "government"
+msgid "казна"
+msgstr "treasury"
+
+#: state/templates/state/redesign/gov/parliament.html:46
+msgctxt "parliament"
+msgid "мест"
+msgstr ""
+
+#: state/templates/state/redesign/gov/parliament.html:116
+#, fuzzy
+#| msgctxt "party_manage"
+#| msgid "Управление партией"
+msgctxt "parliament"
+msgid "нет парламентских партий"
+msgstr "Party management"
 
 #: state/templates/state/redesign/set_mandate.html:46
 #: state/views/set_mandate_view.py:35
@@ -5185,17 +5371,112 @@ msgctxt "set_mandate"
 msgid "выдать"
 msgstr "issue"
 
+#: state/templates/state/redesign/state_view.html:69
+msgctxt "state_view"
+msgid "Инфо"
+msgstr "Info"
+
+#: state/templates/state/redesign/state_view.html:84
+msgctxt "state_view"
+msgid "Регионы"
+msgstr "Regions"
+
+#: state/templates/state/redesign/state_view.html:99
+msgctxt "state_view"
+msgid "Партии"
+msgstr "Parties"
+
+#: state/templates/state/redesign/state_view.html:114
+msgctxt "state_view"
+msgid "Казна"
+msgstr "Treasury"
+
+#: state/templates/state/redesign/state_view.html:125
+msgctxt "state_view"
+msgid "Форма правления"
+msgstr "Form of government"
+
+#: state/templates/state/redesign/state_view.html:128
+#: state/templates/state/redesign/state_view.html:130
+msgctxt "state_view"
+msgid "Президент"
+msgstr "President"
+
+#: state/templates/state/redesign/state_view.html:130
+msgctxt "state_view"
+msgid "не избран"
+msgstr "not elected"
+
+#: state/templates/state/redesign/state_view.html:133
+msgctxt "state_view"
+msgid "Начало срока"
+msgstr "Term beginning, since"
+
 #: state/templates/state/redesign/state_view.html:143
+msgctxt "state_view"
 msgid "Столица"
-msgstr ""
+msgstr "Capital"
 
 #: state/templates/state/redesign/state_view.html:144
+msgctxt "state_view"
 msgid "Прописка"
 msgstr "Residency"
 
+#: state/templates/state/redesign/state_view.html:145
+msgctxt "state_view"
+msgid "Дата основания"
+msgstr "Foundation date"
+
+#: state/templates/state/redesign/state_view.html:151
+msgctxt "state_view"
+msgid "Баланс электросети"
+msgstr "Power grid balance"
+
 #: state/templates/state/redesign/state_view.html:157
+msgctxt "state_view"
 msgid "Государственные налоги"
-msgstr ""
+msgstr "State taxes"
+
+#: state/templates/state/redesign/state_view.html:158
+msgctxt "state_view"
+msgid "На финансирование"
+msgstr "Funding"
+
+#: state/templates/state/redesign/state_view.html:159
+msgctxt "state_view"
+msgid "На добычу"
+msgstr "Mining"
+
+#: state/templates/state/redesign/state_view.html:160
+msgctxt "state_view"
+msgid "На торговлю"
+msgstr "Trading"
+
+#: state/templates/state/redesign/state_view.html:172
+#: state/templates/state/redesign/state_view.html:204
+msgctxt "state_view"
+msgid "Регион"
+msgstr "Region"
+
+#: state/templates/state/redesign/state_view.html:173
+msgctxt "state_view"
+msgid "Жители"
+msgstr "Residents"
+
+#: state/templates/state/redesign/state_view.html:174
+msgctxt "state_view"
+msgid "Запасы"
+msgstr "Stocks"
+
+#: state/templates/state/redesign/state_view.html:201
+msgctxt "state_view"
+msgid "Название"
+msgstr "Title"
+
+#: state/templates/state/redesign/state_view.html:202
+msgctxt "state_view"
+msgid "Размер"
+msgstr "Size"
 
 #: storage/migrations/0067_auto_20230715_1635.py:13 storage/models/good.py:25
 #: storage/models/storage.py:30
@@ -7136,6 +7417,43 @@ msgctxt "wars_list"
 msgid "Бои"
 msgstr "Wars"
 
+#: war/templates/war/redesign/war_page.html:65
+msgctxt "war_page"
+msgid "Список войн"
+msgstr "War list"
+
+#: war/templates/war/redesign/war_page.html:83
+msgctxt "war_page"
+msgid "Поднять восстание"
+msgstr "Raise a rebellion"
+
+#: war/templates/war/redesign/war_page.html:168
+msgctxt "war_page"
+msgid "активно"
+msgstr "recently used"
+
+#: war/templates/war/redesign/war_page.html:189
+#: war/templates/war/redesign/war_page.html:213
+msgctxt "war_page"
+msgid "Все войны"
+msgstr "All wars"
+
+#: war/templates/war/redesign/war_page.html:204
+msgctxt "war_page"
+msgid "Гос. войны"
+msgstr "State wars"
+
+#: war/templates/war/redesign/war_page.html:245
+#: war/templates/war/redesign/war_page.html:284
+msgctxt "war_page"
+msgid "войн нет"
+msgstr "no wars"
+
+#: war/templates/war/redesign/war_page.html:252
+msgctxt "war_page"
+msgid "Государственные"
+msgstr "State wars"
+
 #: war/views/open_war_side_list.py:112
 msgctxt "lists"
 msgid "атака"
@@ -7174,6 +7492,11 @@ msgstr "No such skill"
 #: war/views/switch_war_visibility.py:62
 msgid "Нет такой записи об участии в бою"
 msgstr ""
+
+#: war/views/war_page.py:104
+msgctxt "war_page"
+msgid "Войны"
+msgstr "Wars"
 
 #~ msgctxt "trading_new"
 #~ msgid "количество"
@@ -7543,10 +7866,6 @@ msgstr ""
 #~ msgctxt "factory"
 #~ msgid "Вы получили "
 #~ msgstr "You received "
-
-#~ msgctxt "factory"
-#~ msgid " золота"
-#~ msgstr " of Gold"
 
 #, fuzzy
 #~ msgctxt "goods"
