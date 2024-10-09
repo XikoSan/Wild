@@ -80,6 +80,7 @@
 					</td>
 					<td class="j-t-four" style="text-align: right;">{% trans 'Действие' context "no_party" %}</td>
 				</tr>
+				{% localize off %}
 				{% if party_count != 0 %}
 					{% for party in all_parties %}
 				<tr>
@@ -117,6 +118,7 @@
 				</tr>
 					{% endfor %}
 				{% endif %}
+				{% endlocalize %}
 			</tbody>
 		</table>
 	</div>
@@ -141,6 +143,7 @@
 					</td>
 					<td class="j-t-four" style="text-align: right;">{% trans 'Действие' context "no_party" %}</td>
 				</tr>
+				{% localize off %}
 				{% if regional_count != 0 %}
 					{% for party in regional_parties %}
 				<tr>
@@ -171,6 +174,7 @@
 				</tr>
 					{% endfor %}
 				{% endif %}
+				{% endlocalize %}
 			</tbody>
 		</table>
 	</div>

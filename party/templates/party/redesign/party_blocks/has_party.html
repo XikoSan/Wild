@@ -16,7 +16,7 @@
       <!--аватар-->
 		{% if player.party.image %}
 		<!--Картинка партии-->
-	  	<img class="party__top-ava" src="{{ player.party.image.url }}" alt="{{ player.party.title }}" onclick="window.location.href = '/party/{{ player.party.pk }}/'" style="cursor: pointer">
+	  	<img class="party__top-ava" src="{{ player.party.image.url }}" alt="{{ player.party.title }}" {% localize off %} onclick="window.location.href = '/party/{{ player.party.pk }}/'" {% endlocalize %} style="cursor: pointer">
 		{% else %}
 		{% nopic_party player 'party__top-ava' 'cursor: pointer' '/party' player.party.pk %}
 		{% endif %}
@@ -29,7 +29,7 @@
         <div class="party__top-btns">
 			{% if primaries != None %}
           <!--праймериз-->
-          <button style="cursor: pointer" class="party__primer" onclick="window.location.href = '{% url 'start_primaries' party_pk=player.party.pk %}'">
+          <button style="cursor: pointer" class="party__primer" {% localize off %} onclick="window.location.href = '{% url 'start_primaries' party_pk=player.party.pk %}'" {% endlocalize %}>
 			<svg width="26" height="30" viewBox="0 0 26 30" fill="none" xmlns="http://www.w3.org/2000/svg">
 				<path d="M3 27.5V2.5H23V16.9288C23 22.0625 15.5 20 15.5 20C15.5 20 17.3975 27.5 12.2025 27.5H3ZM25.5 17.9825V0H0.5V30H13.2362C17.19 30 25.5 20.9712 25.5 17.9825ZM11.7912 18.75C14.6137 13.6875 16.5737 11.0875 19.25 8.75125L18.9025 7.95C15.6575 9.97 13.9112 11.4912 11.27 14.4887C9.86375 13.4862 9.07 13.0275 7.82 12.4213L6.75 13.4113C8.88875 15.3925 10.05 16.7 11.7912 18.75Z" fill="var(--c10two)"/>
 			</svg>
@@ -101,7 +101,7 @@
           </button>
 			{% else %}
 			<div class="party__exit" id="leave_party_form" role="form">
-				<input class="visually-hidden" type="hidden" name="party_id" id="party_id" value="{{ player.party.pk }}">
+				<input class="visually-hidden" type="hidden" name="party_id" id="party_id" value="{% localize off %}{{ player.party.pk }}{% endlocalize %}">
 				<button style="cursor: pointer" onclick="leave_check()" class="btn btn-danger" value="Покинуть партию">
 					<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" fill="var(--c10two)"><path d="M11 21h8v-2l1-1v4h-9v2l-10-3v-18l10-3v2h9v5l-1-1v-3h-8v18zm10.053-9l-3.293-3.293.707-.707 4.5 4.5-4.5 4.5-.707-.707 3.293-3.293h-9.053v-1h9.053z"/></svg>
 				</button>
@@ -110,7 +110,7 @@
 
         </div><!--кнопки конец-->
 
-        <div class="party__region" onclick="window.location.href = 'region/{{ player.party.region.pk }}/'">
+        <div class="party__region" onclick="window.location.href = 'region/{% localize off %}{{ player.party.region.pk }}{% endlocalize %}/'">
           <img src="static/img/regions/{{ player.party.region.on_map_id }}.png">
           <p>{% trans player.party.region.region_name context "regions_list" %}</p>
         </div>
