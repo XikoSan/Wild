@@ -167,7 +167,7 @@ class Plane(models.Model):
         ('wood', 'дерево'),
 
         ('dreamflight', 'Dreamflight'),  # сходка МСК 2024
-        ('android', 'Android tester'),  # тест андроида осенью 2024
+        ('android', 'Android'),  # тест андроида осенью 2024
 
         ('hexagon', 'гексагон'),
         ('standard', 'стандартная схема'),
