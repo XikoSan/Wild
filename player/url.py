@@ -9,7 +9,9 @@ from player.views.bonus_code.activate_code import activate_code
 from player.views.bonus_code.bonus_code import bonus_code
 from player.views.data_deleting import data_deleting
 from player.views.eula import eula
+from player.views.game_event.buy_test_prizes import buy_test_prizes
 from player.views.game_event.halloween import halloween
+from player.views.game_event.test_shop import test_shop
 from player.views.lists.damage_top import damage_top
 from player.views.lists.region_players import region_players_list
 from player.views.lists.world_online import world_online_list
@@ -19,6 +21,7 @@ from player.views.skills.up_skill import up_skill
 from player.views.translate.translate import edit_translations
 from player.views.translate.translations import translations
 from .views.answer_captcha import answer_captcha
+from .views.assetlinks_view import assetlinks_view
 from .views.buy_lootboxes import buy_lootboxes
 from .views.change_back_allow import change_back_allow
 from .views.change_bio import change_bio
@@ -46,7 +49,6 @@ from .views.set_timezone import set_timezone
 from .views.skill_tbl import skill_tbl
 from .views.view_profile import view_profile
 from .views.wallet import wallet
-from .views.assetlinks_view import assetlinks_view
 
 urlpatterns = [
 
@@ -164,4 +166,10 @@ urlpatterns = [
 
     # активация бонус-кода
     url(r'^activate_code/', activate_code, name='activate_code'),
+
+    # магазин очков тестирования андроид
+    url(r'^test_shop/', test_shop, name='test_shop'),
+    # купить тест призы
+    url(r'^buy_test_prizes/$', buy_test_prizes, name='buy_test_prizes'),
+
 ]

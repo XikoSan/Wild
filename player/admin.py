@@ -27,6 +27,7 @@ from .player import Player
 from .player_settings import PlayerSettings
 from player.logs.test_log import TestLog
 from player.models.medal import Medal
+from player.logs.test_point_usage import TestPointUsage
 
 
 @transaction.atomic
@@ -353,6 +354,12 @@ class TestLogAdmin(admin.ModelAdmin):
     raw_id_fields = ('player', )
 
 
+class TestPointUsageAdmin(admin.ModelAdmin):
+    search_fields = ['player__nickname', ]
+    list_display = ('player', 'count', 'dtime')
+    raw_id_fields = ('player', )
+
+
 class MedalAdmin(admin.ModelAdmin):
     search_fields = ['player__nickname', ]
     list_display = ('player', 'type', 'count')
@@ -383,4 +390,6 @@ admin.site.register(BonusCode, BonusCodeAdmin)
 admin.site.register(CodeUsage, CodeUsageAdmin)
 
 admin.site.register(TestLog, TestLogAdmin)
+admin.site.register(TestPointUsage, TestPointUsageAdmin)
+
 admin.site.register(Medal, MedalAdmin)

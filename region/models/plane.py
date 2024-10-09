@@ -126,7 +126,7 @@ class Plane(models.Model):
                    'gold'
                    ],
 
-        'sailor': ['base',
+        'sailor': ['base', 'android',
                    ],
     }
 
@@ -167,6 +167,7 @@ class Plane(models.Model):
         ('wood', 'дерево'),
 
         ('dreamflight', 'Dreamflight'),  # сходка МСК 2024
+        ('android', 'Android tester'),  # тест андроида осенью 2024
 
         ('hexagon', 'гексагон'),
         ('standard', 'стандартная схема'),
@@ -195,7 +196,7 @@ class Plane(models.Model):
 
     rare_colors = [
         'black', 'pink', 'green_white_cam', 'green_cam', 'blue_cam', 'desert_cam', 'pobeda', 'airball',
-        'corny', 'redline', 'standard', 'hexagon', 'white_cam',
+        'corny', 'redline', 'standard', 'hexagon', 'white_cam', 'android',
     ]
 
     gold_colors = ['gold', 'black_gold', 'wood']

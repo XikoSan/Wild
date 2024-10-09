@@ -49,21 +49,21 @@ def overview(request):
     player = Player.get_instance(account=request.user)
     wiki_hide = False
 
-    user_agent = request.META.get('HTTP_USER_AGENT', '')
-
-    if "WildPoliticsApp" in user_agent:
-        if TestLog.objects.filter(player=player).exists():
-            tst_log = TestLog.objects.filter(player=player).order_by('-dtime').first()
-            from player.logs.print_log import log
-            log(tst_log.dtime)
-
-            if tst_log.dtime < timezone.now() - datetime.timedelta(days=1):
-                new_tst = TestLog(player=player)
-                new_tst.save()
-
-        else:
-            new_tst = TestLog(player=player)
-            new_tst.save()
+    # user_agent = request.META.get('HTTP_USER_AGENT', '')
+    #
+    # if "WildPoliticsApp" in user_agent:
+    #     if TestLog.objects.filter(player=player).exists():
+    #         tst_log = TestLog.objects.filter(player=player).order_by('-dtime').first()
+    #         from player.logs.print_log import log
+    #         log(tst_log.dtime)
+    #
+    #         if tst_log.dtime < timezone.now() - datetime.timedelta(days=1):
+    #             new_tst = TestLog(player=player)
+    #             new_tst.save()
+    #
+    #     else:
+    #         new_tst = TestLog(player=player)
+    #         new_tst.save()
 
     if PlayerSettings.objects.filter(player=player).exists():
         wiki_hide = PlayerSettings.objects.get(player=player).wiki_hide
