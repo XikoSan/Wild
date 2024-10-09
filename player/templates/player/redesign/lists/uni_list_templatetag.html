@@ -108,7 +108,7 @@
 								  {% if line|get_class_name == 'Player' or line|get_class_name == 'PlayerWithTop' %}
 							  		<!--нет картинки: игрок-->
 							  		{% nopic_list player '' %}
-								  {% elif line|get_class_name == 'PartyWithSize' or line|get_class_name == 'PartyWithMined' %}
+								  {% elif line|get_class_name == '_PartyWithSize' or line|get_class_name == 'PartyWithMined' %}
 									<!--нет картинки: партия-->
 							  		{% nopic_party_list player '' %}
 								  {% endif %}
