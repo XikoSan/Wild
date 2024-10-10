@@ -64,8 +64,8 @@ def check_player(func):
             player.save()
 
             # Тут добавить УЗ суперов для обхода блокировки.
-            if player.pk == 1 or request.user.is_staff:
-                # if True:
+            # if player.pk == 1 or request.user.is_staff:
+            if True:
                 # Возвращение выполнения основной(переданной в check_player)
                 # функции - func, с переданными ей аргументами - *args и **kwargs
                 return func(request, *args, **kwargs)
