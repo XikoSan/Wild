@@ -40,8 +40,6 @@ def party_color_change(request):
                     return JResponse(data)
 
                 changing_party.color = party_color[1:]
-                from player.logs.print_log import log
-                log(changing_party.color)
                 changing_party.save()
 
                 data = {

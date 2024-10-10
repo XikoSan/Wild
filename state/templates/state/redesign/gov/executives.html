@@ -14,16 +14,21 @@
 
 	<ul class="goverGuysModal__list">
 		{% if pres_mandate.player %}
-		<li class="goverGuysModal__item" onclick="window.open('/profile/{% localize off %}{{ pres_mandate.player.pk }}{% endlocalize %}/')" style="cursor: pointer">
+		<li class="goverGuysModal__item">
+			<div onclick="window.open('/profile/{% localize off %}{{ pres_mandate.player.pk }}{% endlocalize %}/')" style="cursor: pointer">
 			{% if pres_mandate.player.image %}
 			<img src="{{ pres_mandate.player.image.url }}">
 			{% else %}
 			{% nopic player '' 'width: 80rem; height: 80rem' %}
 			{% endif %}
+			</div>
 			<div class="goverGuysModal__itemText">
 				<h2>{% trans 'Президент' context "executives" %}</h2>
 				<div class="goverGuysModal__itemText-block">
-					<p>{{ pres_mandate.player.nickname }}</p>
+					<p onclick="window.open('/profile/{% localize off %}{{ pres_mandate.player.pk }}{% endlocalize %}/')" style="cursor: pointer">{{ pres_mandate.player.nickname }}</p>
+					{% if pres_mandate.player == player %}
+					<button type="submit" class="ct__btn-half-screen" style="cursor: pointer" onclick="window.location.href = '/state_manage/'">{% trans 'управление' context "executives" %}</button>
+					{% endif %}
 				</div>
 			</div>
 		</li>

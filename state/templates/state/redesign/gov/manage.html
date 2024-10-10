@@ -1,0 +1,81 @@
+{% extends 'player/redesign/header.html' %}
+{% load static %}
+{% load bootstrap3 %}
+{% load l10n %}{% load i18n %}{% load tz %}
+{% load dict_key %}
+{% load get_sum %}
+{% load get_attr %}
+{% load get_key_list %}
+{% load get_class_name %}
+
+{% load redesign.template_svg.nopic %}
+
+{% block content %}
+
+  <section class="party custom-scroll">
+		<h1 class="party__title ct__page-title">{% trans 'Управление государством' context "state_manage" %}</h1>
+
+		<form id="color_set" role="form" method="post" class="party__colorContainer">
+			{% csrf_token %}
+			<input type="color" value="#{{ state.color }}" name="state_color" id="state_color">
+			<span>{% trans 'Цвет на карте' context "state_manage" %}</span>
+			<button type="submit" class="ct__btn-half-screen" style="cursor: pointer">{% trans 'сохранить' context "state_manage" %}</button>
+		</form>
+
+		<div class="party__mmid-line"></div>
+
+		<div class="party__name-edit-block">
+			<div class="party__name-edit-before">
+
+				<button class="party__name-edit-btn" onclick="openModalByAddClass('#state-desc-edit')">
+					<svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path class="profile__ava-rect" d="M26 30H0V0H30V26L26 30Z" fill="var(--c10two)"></path><path d="M5.5 21.5L22.5 4.5L26.5 8.5L9.5 25.5H5.5V21.5Z" stroke="var(--c60)" stroke-width="3"></path>
+					</svg>
+				</button>
+
+				<p class="party__mana-name party__mana-name--desc" id="state_deskr">
+					{% if state.message %}
+						{{ state.message }}
+					{% else %}
+						{% trans 'добавить сообщение от государства' context "state_manage" %}
+					{% endif %}
+				</p>
+			</div>
+		</div>
+
+
+
+	</section>
+
+	<!--описание государства-->
+	<div class="rank-edit" id="state-desc-edit">
+		<div class="rank-edit__overlay" onclick="closeModalByRemoveClass('#state-desc-edit')"></div>
+		<form id="deskr_form" class="rank-edit__content">
+			{% csrf_token %}
+			<h2 class="rank-edit__title">{% trans 'Смена приветственного сообщения' context "state_manage" %}:</h2>
+			<textarea class="rank-edit__textarea" name="new_state_deskr" id="state-desc-area" cols="30" rows="10">{% if state.message %}{{ state.message }}{% endif %}</textarea>
+			
+			<div class="party__mmid-line"></div>
+			
+			<button type="submit" class="rank-edit__delete ct__mid-btn">
+				<svg width="144" height="30" viewBox="0 0 144 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<mask id="mask0_259_319" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+						<path d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z" fill="var(--c10two)"/>
+					</mask>
+					<g mask="url(#mask0_259_319)">
+						<path d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" fill="var(--c10two)"/>
+						<path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"/>
+						<path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"/>
+						<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
+					</g>
+				</svg>
+				<span>{% trans 'сохранить' context "state_manage" %}</span>
+			</button>
+
+		</form>
+	</div>
+{% endblock %}
+
+{% block for_scripts_and_css %}
+	<script src='{% static "js/state_manage.js" %}?{{ csrf_token }}'></script>
+{% endblock %}

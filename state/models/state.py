@@ -22,6 +22,10 @@ class State(models.Model):
     color = models.CharField(max_length=6, default="008542", verbose_name='Цвет государства')
     # время основания партии
     foundation_date = models.DateTimeField(default=timezone.now, blank=True, null=True)
+
+    # приветственное сообщение государства
+    message = models.CharField(max_length=300, blank=True, default='', verbose_name='сообщение')
+
     # тип государства
     stateTypeChoices = (
         ('Temporary', pgettext_lazy('state_view', 'Временное правительство')),

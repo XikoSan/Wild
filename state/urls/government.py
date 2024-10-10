@@ -3,11 +3,11 @@ from django.conf.urls import url
 
 from state.views.government import government
 from state.views.open_elections import open_elections
-from state.views.set_mandate_view import set_mandate_view
+from state.views.open_state import open_state
 from state.views.set_mandate import set_mandate
+from state.views.set_mandate_view import set_mandate_view
 from state.views.state_foundation import state_foundation
 from state.views.vote_elections import vote_elections
-from state.views.open_state import open_state
 
 urlpatterns = [
 
