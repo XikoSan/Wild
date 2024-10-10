@@ -12,7 +12,7 @@ from war.models.martial import Martial
 from war.models.wars.revolution.rebel import Rebel
 from war.models.wars.revolution.revolution import Revolution
 from wild_politics.settings import JResponse
-
+from django.utils.translation import pgettext
 
 # запуск войны в текущем регионе
 @login_required(login_url='/')
@@ -23,6 +23,14 @@ def join_revolution(request):
 
         # получаем персонажа
         player = Player.get_instance(account=request.user)
+        
+        if player.power + player.knowledge + player.endurance < 15:
+            data = {
+                'response': pgettext('join_revolution', 'Поднятие восстания доступно начиная с суммы Характеристик в 15 ед.'),
+                'header': pgettext('join_revolution', 'Участие в восстании'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+            }
+            return JResponse(data)
 
         price = 500
         resident = False
@@ -41,9 +49,9 @@ def join_revolution(request):
         # проверяем наличие голды
         if player.gold < price:
             data = {
-                'response': 'Недостаточно золота',
-                'header': 'Участие в восстании',
-                'grey_btn': 'Закрыть',
+                'response': pgettext('join_revolution', 'Недостаточно золота'),
+                'header': pgettext('join_revolution', 'Участие в восстании'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
 
@@ -54,9 +62,9 @@ def join_revolution(request):
             end_time__gt=timezone.now() - datetime.timedelta(days=7)
         ).exists():
             data = {
-                'response': 'С момента завершения последнего восстания не прошло 7 дней',
-                'header': 'Участие в восстании',
-                'grey_btn': 'Закрыть',
+                'response': pgettext('join_revolution', 'С момента завершения последнего восстания не прошло 7 дней'),
+                'header': pgettext('join_revolution', 'Участие в восстании'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
 
@@ -66,9 +74,9 @@ def join_revolution(request):
 
             if not player.region == player.residency:
                 data = {
-                    'response': 'Для участия в восстании требуется прописка',
-                    'header': 'Участие в восстании',
-                    'grey_btn': 'Закрыть',
+                    'response': pgettext('join_revolution', 'Для участия в восстании требуется прописка'),
+                    'header': pgettext('join_revolution', 'Участие в восстании'),
+                    'grey_btn': pgettext('core', 'Закрыть'),
                 }
                 return JResponse(data)
 
@@ -78,9 +86,9 @@ def join_revolution(request):
                 dtime__gt=timezone.now() - datetime.timedelta(days=10)
         ).exists():
             data = {
-                'response': 'Вы уже являетесь участником восстания здесь',
-                'header': 'Участие в восстании',
-                'grey_btn': 'Закрыть',
+                'response': pgettext('join_revolution', 'Вы уже являетесь участником восстания здесь'),
+                'header': pgettext('join_revolution', 'Участие в восстании'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
 
@@ -90,9 +98,9 @@ def join_revolution(request):
                 dtime__gt=timezone.now() - datetime.timedelta(days=10)
         ).exists():
             data = {
-                'response': 'Вы принимали участие в восстании последние 10 дней',
-                'header': 'Участие в восстании',
-                'grey_btn': 'Закрыть',
+                'response': pgettext('join_revolution', 'Вы принимали участие в восстании последние 10 дней'),
+                'header': pgettext('join_revolution', 'Участие в восстании'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
 
@@ -129,8 +137,8 @@ def join_revolution(request):
     # если страницу только грузят
     else:
         data = {
-            'response': 'Ошибка типа запроса',
-            'header': 'Участие в восстании',
-            'grey_btn': 'Закрыть',
+            'grey_btn': pgettext('core', 'Закрыть'),
+            'response': pgettext('mining', 'Ошибка метода'),
+            'header': pgettext('join_revolution', 'Участие в восстании'),
         }
         return JResponse(data)
