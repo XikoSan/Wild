@@ -75,7 +75,7 @@ def new_bill(request):
     else:
         data = {
             'response': pgettext('core', 'Ошибка типа запроса'),
-            'header': pgettext('new_bill', 'Основание государства'),
+            'header': pgettext('new_bill', 'Новый законопроект'),
             'grey_btn': pgettext('core', 'Закрыть'),
         }
         return JResponse(data)
