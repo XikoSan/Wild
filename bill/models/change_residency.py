@@ -3,9 +3,11 @@
 import json
 from django.apps import apps
 from django.db import models
+from django.db.models import F
 from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 from django.utils import timezone
+from django.utils.translation import pgettext
 from django_celery_beat.models import PeriodicTask, CrontabSchedule
 
 from bill.models.bill import Bill
@@ -19,7 +21,6 @@ from state.models.state import State
 from state.models.treasury import Treasury
 from state.models.treasury_stock import TreasuryStock
 from storage.models.good import Good
-from django.db.models import F
 
 
 # Изменить способ получения прописки в государстве
@@ -49,9 +50,9 @@ class ChangeResidency(Bill):
 
         if ChangeResidency.objects.filter(running=True, initiator=player).exists():
             return {
-                'header': 'Новый законопроект',
-                'grey_btn': 'Закрыть',
-                'response': 'Ограничение: не более одного законопроекта данного типа',
+                'header': pgettext('new_bill', 'Новый законопроект'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('new_bill', 'Ограничение: не более одного законопроекта данного типа'),
             }
 
         new_form = request.POST.get('change_residency_residency')
@@ -63,23 +64,23 @@ class ChangeResidency(Bill):
 
         if new_form == '':
             return {
-                'header': 'Новый законопроект',
-                'grey_btn': 'Закрыть',
-                'response': 'Тип получения прописки должен быть указан',
+                'header': pgettext('new_bill', 'Новый законопроект'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('new_bill', 'Тип получения прописки должен быть указан'),
             }
 
         elif not new_form in choice_list:
             return {
-                'header': 'Новый законопроект',
-                'grey_btn': 'Закрыть',
-                'response': 'Такого типа получения прописки не существует',
+                'header': pgettext('new_bill', 'Новый законопроект'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('new_bill', 'Такого типа получения прописки не существует'),
             }
 
         if new_form == parliament.state.residency:
             return {
-                'header': 'Новый законопроект',
-                'grey_btn': 'Закрыть',
-                'response': 'Этот тип получения прописки уже выбран',
+                'header': pgettext('new_bill', 'Новый законопроект'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('new_bill', 'Этот тип получения прописки уже выбран'),
             }
 
         # ура, все проверили
@@ -117,7 +118,7 @@ class ChangeResidency(Bill):
             rifle_cost = ChangeResidency.rifle_price * regions_cnt
             drone_cost = ChangeResidency.drone_price * regions_cnt
 
-            if TreasuryStock.objects.filter(treasury=treasury, good=rifle, stock__gte=rifle_cost).exists()\
+            if TreasuryStock.objects.filter(treasury=treasury, good=rifle, stock__gte=rifle_cost).exists() \
                     and TreasuryStock.objects.filter(treasury=treasury, good=drone, stock__gte=drone_cost).exists():
 
                 state.residency = self.residency
@@ -183,7 +184,6 @@ class ChangeResidency(Bill):
 
         return data, 'state/gov/drafts/change_residency.html'
 
-
     @staticmethod
     def get_new_draft(state):
 
@@ -195,7 +195,6 @@ class ChangeResidency(Bill):
         }
 
         return data, 'state/redesign/drafts/change_residency.html'
-
 
     def get_bill(self, player, minister, president):
 
@@ -256,14 +255,14 @@ class ChangeResidency(Bill):
 
         regions_cnt = Region.objects.filter(state=player.region.state).count()
 
-        data = {'bill': self, 'title': self._meta.verbose_name_raw, 'player': player,}
+        data = {'bill': self, 'title': self._meta.verbose_name_raw, 'player': player, }
 
         return data, 'state/gov/reviewed/change_residency.html'
 
-# получить шаблон рассмотренного законопроекта
+    # получить шаблон рассмотренного законопроекта
     def get_new_reviewed_bill(self, player):
 
-        data = {'bill': self, 'title': self._meta.verbose_name_raw, 'player': player,}
+        data = {'bill': self, 'title': self._meta.verbose_name_raw, 'player': player, }
 
         return data, 'state/redesign/reviewed/change_residency.html'
 

@@ -20,6 +20,7 @@ from region.views.distance_counting import distance_counting
 from state.models.parliament.deputy_mandate import DeputyMandate
 from state.models.parliament.parliament import Parliament
 from state.models.state import State
+from django.utils.translation import pgettext
 from state.models.treasury import Treasury
 from state.models.treasury_lock import TreasuryLock
 from state.models.treasury_stock import TreasuryStock
@@ -57,32 +58,32 @@ class TransferResources(Bill):
 
         if not request.POST.get('transfer_state_to'):
             return {
-                'header': 'Новый законопроект',
-                'grey_btn': 'Закрыть',
-                'response': 'Не указано подходящее государство',
+                'header': pgettext('new_bill', 'Новый законопроект'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('new_bill', 'Не указано подходящее государство'),
             }
 
         if not request.POST.get('transfer_resources'):
             return {
-                'header': 'Новый законопроект',
-                'grey_btn': 'Закрыть',
-                'response': 'Не указан подходящий товар',
+                'header': pgettext('new_bill', 'Новый законопроект'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('new_bill', 'Не указан подходящий товар'),
             }
 
         if not request.POST.get('transfer_resources_value'):
             return {
-                'header': 'Новый законопроект',
-                'grey_btn': 'Закрыть',
-                'response': 'Не указано количество товара',
+                'header': pgettext('new_bill', 'Новый законопроект'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('new_bill', 'Не указано количество товара'),
             }
 
         # ------------
 
         if TransferResources.objects.filter(running=True, initiator=player).exists():
             return {
-                'header': 'Новый законопроект',
-                'grey_btn': 'Закрыть',
-                'response': 'Ограничение: не более одного законопроекта данного типа',
+                'header': pgettext('new_bill', 'Новый законопроект'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('new_bill', 'Ограничение: не более одного законопроекта данного типа'),
             }
 
         # ------------
@@ -92,18 +93,18 @@ class TransferResources(Bill):
 
         except ValueError:
             return {
-                'header': 'Новый законопроект',
-                'grey_btn': 'Закрыть',
-                'response': 'Количество товара должно быть целым числом',
+                'header': pgettext('new_bill', 'Новый законопроект'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('new_bill', 'Количество товара должно быть целым числом'),
             }
 
         # ------------
 
         if not Treasury.objects.filter(state=parliament.state, deleted=False).exists():
             return {
-                'header': 'Новый законопроект',
-                'grey_btn': 'Закрыть',
-                'response': 'Не найдена казна государства',
+                'header': pgettext('new_bill', 'Новый законопроект'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('new_bill', 'Не найдена казна государства'),
             }
 
         tres = Treasury.objects.get(state=parliament.state, deleted=False)
@@ -115,25 +116,25 @@ class TransferResources(Bill):
 
         except ValueError:
             return {
-                'header': 'Новый законопроект',
-                'grey_btn': 'Закрыть',
-                'response': 'ID товара должен быть целым числом',
+                'header': pgettext('new_bill', 'Новый законопроект'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('new_bill', 'ID товара должен быть целым числом'),
             }
 
         if not Good.objects.filter(pk=transfer_res_pk).exists():
             return {
-                'header': 'Новый законопроект',
-                'grey_btn': 'Закрыть',
-                'response': 'Не найден товар с переданным ID',
+                'header': pgettext('new_bill', 'Новый законопроект'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('new_bill', 'Не найден товар с переданным ID'),
             }
 
         good = Good.objects.get(pk=transfer_res_pk)
 
         if not TreasuryStock.objects.filter(treasury=tres, good=good, stock__gte=transfer_value).exists():
             return {
-                'header': 'Новый законопроект',
-                'grey_btn': 'Закрыть',
-                'response': 'В казне нет требуемого количества товара',
+                'header': pgettext('new_bill', 'Новый законопроект'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('new_bill', 'В казне нет требуемого количества товара'),
             }
 
         # ------------
@@ -143,16 +144,16 @@ class TransferResources(Bill):
 
         except ValueError:
             return {
-                'header': 'Новый законопроект',
-                'grey_btn': 'Закрыть',
-                'response': 'ID региона должен быть целым числом',
+                'header': pgettext('new_bill', 'Новый законопроект'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('new_bill', 'ID региона должен быть целым числом'),
             }
 
         if not State.objects.filter(pk=transfer_state_pk, deleted=False).exists():
             return {
-                'header': 'Новый законопроект',
-                'grey_btn': 'Закрыть',
-                'response': 'Указанное государство не найдено',
+                'header': pgettext('new_bill', 'Новый законопроект'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('new_bill', 'Указанное государство не найдено'),
             }
 
         dest_state = State.objects.get(pk=transfer_state_pk, deleted=False)
@@ -169,9 +170,9 @@ class TransferResources(Bill):
             # если есть активные войны этого типа
             if type.objects.filter(running=True, deleted=False, def_region=tres.region).exists():
                 return {
-                    'response': 'Запрещено вывозить товары из атакованных регионов',
-                    'header': 'Новый законопроект',
-                    'grey_btn': 'Закрыть',
+                    'response': pgettext('new_bill', 'Запрещено вывозить товары из атакованных регионов'),
+                    'header': pgettext('new_bill', 'Новый законопроект'),
+                    'grey_btn': pgettext('core', 'Закрыть'),
                 }
 
         # ура, все проверили

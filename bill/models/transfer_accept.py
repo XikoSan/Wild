@@ -7,7 +7,7 @@ from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 from django.utils import timezone
 from django.utils.translation import gettext_lazy
-
+from django.utils.translation import pgettext
 from bill.models.bill import Bill
 from bill.models.transfer_region import TransferRegion
 from gov.models.president import President
@@ -47,16 +47,16 @@ class TransferAccept(Bill):
 
         if not request.POST.get('transfer_accept_regions'):
             return {
-                'header': 'Новый законопроект',
-                'grey_btn': 'Закрыть',
-                'response': 'Не указан подходящий регион',
+                'header': pgettext('new_bill', 'Новый законопроект'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('new_bill', 'Не указан подходящий регион'),
             }
 
         if TransferAccept.objects.filter(running=True, initiator=player).exists():
             return {
-                'header': 'Новый законопроект',
-                'grey_btn': 'Закрыть',
-                'response': 'Ограничение: не более одного законопроекта данного типа',
+                'header': pgettext('new_bill', 'Новый законопроект'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('new_bill', 'Ограничение: не более одного законопроекта данного типа'),
             }
 
         try:
@@ -64,9 +64,9 @@ class TransferAccept(Bill):
 
         except ValueError:
             return {
-                'header': 'Новый законопроект',
-                'grey_btn': 'Закрыть',
-                'response': 'ID региона должен быть целым числом',
+                'header': pgettext('new_bill', 'Новый законопроект'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('new_bill', 'ID региона должен быть целым числом'),
             }
 
         if Region.objects.filter(pk=transfer_region).exists():
@@ -81,9 +81,9 @@ class TransferAccept(Bill):
                 | Q(running=False, type='ac', voting_end__gte=timezone.now() - datetime.timedelta(seconds=10800))
                                              ).exists():
                 return {
-                    'header': 'Новый законопроект',
-                    'grey_btn': 'Закрыть',
-                    'response': 'Указанный регион не передаётся',
+                    'header': pgettext('new_bill', 'Новый законопроект'),
+                    'grey_btn': pgettext('core', 'Закрыть'),
+                    'response': pgettext('new_bill', 'Указанный регион не передаётся'),
                 }
 
             transfer = TransferRegion.objects.filter(
@@ -112,9 +112,9 @@ class TransferAccept(Bill):
 
         else:
             return {
-                'response': 'Нет такого региона',
-                'header': 'Новый законопроект',
-                'grey_btn': 'Закрыть',
+                'response': pgettext('new_bill', 'Нет такого региона'),
+                'header': pgettext('new_bill', 'Новый законопроект'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
 
     # выполнить законопроект

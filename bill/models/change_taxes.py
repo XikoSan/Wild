@@ -6,9 +6,10 @@ from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 from django.utils import timezone
 from django.utils.translation import gettext_lazy
+from django.utils.translation import pgettext
 
-from region.models.region import Region
 from bill.models.bill import Bill
+from region.models.region import Region
 from state.models.parliament.deputy_mandate import DeputyMandate
 from state.models.parliament.parliament import Parliament
 from state.models.state import State
@@ -60,9 +61,9 @@ class ChangeTaxes(Bill):
 
         if ChangeTaxes.objects.filter(running=True, initiator=player).exists():
             return {
-                'header': 'Новый законопроект',
-                'grey_btn': 'Закрыть',
-                'response': 'Ограничение: не более одного законопроекта данного типа',
+                'header': pgettext('new_bill', 'Новый законопроект'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('new_bill', 'Ограничение: не более одного законопроекта данного типа'),
             }
 
         # узнаем режим смены налогов
@@ -79,9 +80,9 @@ class ChangeTaxes(Bill):
 
             except ValueError:
                 return {
-                    'header': 'Новый законопроект',
-                    'grey_btn': 'Закрыть',
-                    'response': 'ID региона должен быть целым числом',
+                    'header': pgettext('new_bill', 'Новый законопроект'),
+                    'grey_btn': pgettext('core', 'Закрыть'),
+                    'response': pgettext('new_bill', 'ID региона должен быть целым числом'),
                 }
 
             if Region.objects.filter(pk=bill_region_pk, state=parliament.state).exists():
@@ -89,9 +90,9 @@ class ChangeTaxes(Bill):
 
             else:
                 return {
-                    'response': 'Нет такого региона',
-                    'header': 'Новый законопроект',
-                    'grey_btn': 'Закрыть',
+                    'response': pgettext('new_bill', 'Нет такого региона'),
+                    'header': pgettext('new_bill', 'Новый законопроект'),
+                    'grey_btn': pgettext('core', 'Закрыть'),
                 }
 
         elif destination == 'destination_state':
@@ -99,9 +100,9 @@ class ChangeTaxes(Bill):
 
         else:
             return {
-                'response': 'Не указана цель смены налога',
-                'header': 'Новый законопроект',
-                'grey_btn': 'Закрыть',
+                'response': pgettext('new_bill', 'Не указана цель смены налога'),
+                'header': pgettext('new_bill', 'Новый законопроект'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
 
         # узнаем, какой налог меняем
@@ -109,9 +110,9 @@ class ChangeTaxes(Bill):
 
         if tax_mod not in ['cash', 'oil', 'ore', 'trade']:
             return {
-                'response': 'Не указан изменяемый налог',
-                'header': 'Новый законопроект',
-                'grey_btn': 'Закрыть',
+                'response': pgettext('new_bill', 'Не указан изменяемый налог'),
+                'header': pgettext('new_bill', 'Новый законопроект'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
 
         # узнаем величину налога
@@ -120,17 +121,17 @@ class ChangeTaxes(Bill):
 
         except ValueError:
             return {
-                'header': 'Новый законопроект',
-                'grey_btn': 'Закрыть',
-                'response': 'Новая величина налога должна быть целым числом',
+                'header': pgettext('new_bill', 'Новый законопроект'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('new_bill', 'Новая величина налога должна быть целым числом'),
             }
 
         # проверяем попадание в интервал 0..100
         if new_tax < 0 or new_tax > 90:
             return {
-                'header': 'Новый законопроект',
-                'grey_btn': 'Закрыть',
-                'response': 'Новая величина налога должна быть целым числом в интервале 0..90',
+                'header': pgettext('new_bill', 'Новый законопроект'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('new_bill', 'Новая величина налога должна быть целым числом в интервале 0..90'),
             }
 
         # ура, все проверили
@@ -183,7 +184,8 @@ class ChangeTaxes(Bill):
             else:
                 b_type = 'rj'
 
-        ChangeTaxes.objects.filter(pk=self.pk).update(type=b_type, running=False, old_tax=old_tax, voting_end=timezone.now())
+        ChangeTaxes.objects.filter(pk=self.pk).update(type=b_type, running=False, old_tax=old_tax,
+                                                      voting_end=timezone.now())
 
     # отменить законопроект
     def bill_cancel(self):
@@ -268,7 +270,7 @@ class ChangeTaxes(Bill):
 
         return data, 'state/gov/reviewed/change_taxes.html'
 
-# получить шаблон рассмотренного законопроекта
+    # получить шаблон рассмотренного законопроекта
     def get_new_reviewed_bill(self, player):
 
         data = {'bill': self, 'title': self._meta.verbose_name_raw, 'player': player}

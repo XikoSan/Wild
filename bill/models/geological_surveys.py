@@ -1,17 +1,19 @@
 # coding=utf-8
 from decimal import Decimal
-
 from django.db import models
 from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 from django.utils import timezone
 from django.utils.translation import gettext_lazy
-from state.models.parliament.deputy_mandate import DeputyMandate
-from region.models.region import Region
-from bill.models.bill import Bill
-from state.models.treasury import Treasury
-from state.models.parliament.parliament import Parliament
+from django.utils.translation import pgettext
 from math import ceil
+
+from bill.models.bill import Bill
+from region.models.region import Region
+from state.models.parliament.deputy_mandate import DeputyMandate
+from state.models.parliament.parliament import Parliament
+from state.models.treasury import Treasury
+
 
 # Геологические изыскания
 # снимает истощение запасов в регионе
@@ -47,9 +49,9 @@ class GeologicalSurveys(Bill):
 
         if GeologicalSurveys.objects.filter(running=True, initiator=player).exists():
             return {
-                'header': 'Новый законопроект',
-                'grey_btn': 'Закрыть',
-                'response': 'Ограничение: не более одного законопроекта данного типа',
+                'header': pgettext('new_bill', 'Новый законопроект'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('new_bill', 'Ограничение: не более одного законопроекта данного типа'),
             }
 
         try:
@@ -57,9 +59,9 @@ class GeologicalSurveys(Bill):
 
         except ValueError:
             return {
-                'header': 'Новый законопроект',
-                'grey_btn': 'Закрыть',
-                'response': 'ID региона должен быть целым числом',
+                'header': pgettext('new_bill', 'Новый законопроект'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('new_bill', 'ID региона должен быть целым числом'),
             }
 
         if Region.objects.filter(pk=explore_region, state=parliament.state).exists():
@@ -76,9 +78,9 @@ class GeologicalSurveys(Bill):
 
                 if getattr(region, explore_resource + '_depletion') <= 0:
                     return {
-                        'header': 'Новый законопроект',
-                        'grey_btn': 'Закрыть',
-                        'response': 'Истощения в регионе нет',
+                        'header': pgettext('new_bill', 'Новый законопроект'),
+                        'grey_btn': pgettext('core', 'Закрыть'),
+                        'response': pgettext('new_bill', 'Истощения в регионе нет'),
                     }
 
                 # ура, все проверили
@@ -99,15 +101,15 @@ class GeologicalSurveys(Bill):
 
             else:
                 return {
-                    'response': 'Нет такого ресурса',
-                    'header': 'Новый законопроект',
-                    'grey_btn': 'Закрыть',
+                    'response': pgettext('new_bill', 'Нет такого ресурса'),
+                    'header': pgettext('new_bill', 'Новый законопроект'),
+                    'grey_btn': pgettext('core', 'Закрыть'),
                 }
         else:
             return {
-                'response': 'Нет такого региона',
-                'header': 'Новый законопроект',
-                'grey_btn': 'Закрыть',
+                'response': pgettext('new_bill', 'Нет такого региона'),
+                'header': pgettext('new_bill', 'Новый законопроект'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
 
     # выполнить законопроект
@@ -124,7 +126,8 @@ class GeologicalSurveys(Bill):
                 drilling_cost = int(getattr(region, self.resource + '_depletion')) * self.exp_price
 
                 if drilling_cost <= treasury.drilling:
-                    volume = int(getattr(region, self.resource + '_cap') + getattr(region, self.resource + '_depletion'))
+                    volume = int(
+                        getattr(region, self.resource + '_cap') + getattr(region, self.resource + '_depletion'))
                     # обновляем запасы в регионе до максимума
                     setattr(region, self.resource + '_cap', volume)
                     setattr(region, self.resource + '_depletion', 0)
@@ -142,7 +145,8 @@ class GeologicalSurveys(Bill):
                     if exp_points >= 1:
                         # обновляем запасы в регионе
                         setattr(region, self.resource + '_cap', getattr(region, self.resource + '_cap') + exp_points)
-                        setattr(region, self.resource + '_depletion', getattr(region, self.resource + '_depletion') - exp_points)
+                        setattr(region, self.resource + '_depletion',
+                                getattr(region, self.resource + '_depletion') - exp_points)
 
                         self.drilling_cost = exp_points * self.exp_price
                         self.exp_value = exp_points * self.exp_price
@@ -192,7 +196,8 @@ class GeologicalSurveys(Bill):
             'president': president,
             'has_right': has_right,
             # проверяем, депутат ли этого парла игрок или нет
-            'is_deputy': DeputyMandate.objects.filter(player=player, parliament=Parliament.objects.get(state=player.region.state)).exists(),
+            'is_deputy': DeputyMandate.objects.filter(player=player, parliament=Parliament.objects.get(
+                state=player.region.state)).exists(),
         }
 
         return data, 'state/gov/bills/geological_surveys.html'

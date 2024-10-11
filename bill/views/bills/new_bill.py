@@ -45,37 +45,37 @@ def new_bill(request):
 
                     else:
                         data = {
-                            'response': 'Нет такого вида законопроекта',
-                            'header': 'Новый законопроект',
-                            'grey_btn': 'Закрыть',
+                            'response': pgettext('new_bill', 'Нет такого вида законопроекта'),
+                            'header': pgettext('new_bill', 'Новый законопроект'),
+                            'grey_btn': pgettext('core', 'Закрыть'),
                         }
                         return JResponse(data)
                 else:
                     data = {
                         'response': 'Вы - не депутат этого парламента',
-                        'header': 'Новый законопроект',
-                        'grey_btn': 'Закрыть',
+                        'header': pgettext('new_bill', 'Новый законопроект'),
+                        'grey_btn': pgettext('core', 'Закрыть'),
                     }
                     return JResponse(data)
             else:
                 data = {
-                    'response': 'В этом государстве нет парламента',
-                    'header': 'Новый законопроект',
-                    'grey_btn': 'Закрыть',
+                    'response': pgettext('new_bill', 'В этом государстве нет парламента'),
+                    'header': pgettext('new_bill', 'Новый законопроект'),
+                    'grey_btn': pgettext('core', 'Закрыть'),
                 }
                 return JResponse(data)
         else:
             data = {
-                'response': 'В этом регионе нет государства',
-                'header': 'Новый законопроект',
-                'grey_btn': 'Закрыть',
+                'response': pgettext('new_bill', 'В этом регионе нет государства'),
+                'header': pgettext('new_bill', 'Новый законопроект'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
     # если страницу только грузят
     else:
         data = {
             'response': pgettext('core', 'Ошибка типа запроса'),
-            'header': 'Основание государства',
-            'grey_btn': 'Закрыть',
+            'header': pgettext('new_bill', 'Основание государства'),
+            'grey_btn': pgettext('core', 'Закрыть'),
         }
         return JResponse(data)

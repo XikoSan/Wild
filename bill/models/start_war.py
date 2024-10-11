@@ -5,7 +5,7 @@ from django.db.models import Q
 from django.db.models.signals import post_delete, post_save
 from django.dispatch import receiver
 from django.utils import timezone
-
+from django.utils.translation import pgettext
 from bill.models.bill import Bill
 from bill.views.get_victim_regions import get_victims
 from player.views.get_subclasses import get_subclasses
@@ -62,10 +62,6 @@ class StartWar(Bill):
 
         accept_ahead = self.accept_ahead
 
-        from player.logs.print_log import log
-        log(agr_regions)
-        log(def_regions)
-
         # проверяем по всем классам войн. Если есть атака - можно ускорить
         for war_class in war_classes:
             if war_class.objects.filter(
@@ -77,8 +73,6 @@ class StartWar(Bill):
                 accept_ahead = True
                 break
 
-        log(accept_ahead)
-
         return accept_ahead
 
 
@@ -87,9 +81,9 @@ class StartWar(Bill):
 
         if StartWar.objects.filter(running=True, initiator=player).exists():
             return {
-                'header': 'Новый законопроект',
-                'grey_btn': 'Закрыть',
-                'response': 'Ограничение: не более одного законопроекта данного типа',
+                'header': pgettext('new_bill', 'Новый законопроект'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('new_bill', 'Ограничение: не более одного законопроекта данного типа'),
             }
         # если айди корректное
         try:
@@ -97,16 +91,16 @@ class StartWar(Bill):
 
         except ValueError:
             return {
-                'header': 'Новый законопроект',
-                'grey_btn': 'Закрыть',
-                'response': 'ID плацдарма должен быть целым числом',
+                'header': pgettext('new_bill', 'Новый законопроект'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('new_bill', 'ID плацдарма должен быть целым числом'),
             }
 
         if not Region.objects.filter(pk=region_from).exists():
             return {
-                'header': 'Новый законопроект',
-                'grey_btn': 'Закрыть',
-                'response': 'Неизвестный плацдарм',
+                'header': pgettext('new_bill', 'Новый законопроект'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('new_bill', 'Неизвестный плацдарм'),
             }
         # если айди корректное
         try:
@@ -114,23 +108,23 @@ class StartWar(Bill):
 
         except ValueError:
             return {
-                'header': 'Новый законопроект',
-                'grey_btn': 'Закрыть',
-                'response': 'ID целевого региона должен быть целым числом',
+                'header': pgettext('new_bill', 'Новый законопроект'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('new_bill', 'ID целевого региона должен быть целым числом'),
             }
 
         if not Region.objects.filter(pk=region_to).exists():
             return {
-                'header': 'Новый законопроект',
-                'grey_btn': 'Закрыть',
-                'response': 'Неизвестный целевой регион',
+                'header': pgettext('new_bill', 'Новый законопроект'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('new_bill', 'Неизвестный целевой регион'),
             }
         # регион не один и тот же
         if region_to == region_from:
             return {
-                'header': 'Новый законопроект',
-                'grey_btn': 'Закрыть',
-                'response': 'Нельзя напасть на самих себя',
+                'header': pgettext('new_bill', 'Новый законопроект'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('new_bill', 'Нельзя напасть на самих себя'),
             }
 
         region_from = Region.objects.get(pk=region_from)
@@ -139,9 +133,9 @@ class StartWar(Bill):
         # гос регионов не один и тот же
         if region_to.state == region_from.state:
             return {
-                'header': 'Новый законопроект',
-                'grey_btn': 'Закрыть',
-                'response': 'Нельзя напасть на самих себя',
+                'header': pgettext('new_bill', 'Новый законопроект'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('new_bill', 'Нельзя напасть на самих себя'),
             }
 
         # получим классы всех войн
@@ -158,9 +152,9 @@ class StartWar(Bill):
 
         if not class_ok:
             return {
-                'header': 'Новый законопроект',
-                'grey_btn': 'Закрыть',
-                'response': 'Такого вида войн не существует',
+                'header': pgettext('new_bill', 'Новый законопроект'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('new_bill', 'Такого вида войн не существует'),
             }
 
         if war_class.objects.filter(
@@ -170,9 +164,9 @@ class StartWar(Bill):
                 deleted=False
         ).exists():
             return {
-                'header': 'Новый законопроект',
-                'grey_btn': 'Закрыть',
-                'response': 'Такая война уже идёт',
+                'header': pgettext('new_bill', 'Новый законопроект'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('new_bill', 'Такая война уже идёт'),
             }
 
         # если связь регионов есть
@@ -181,9 +175,9 @@ class StartWar(Bill):
             region_1=region_to,
             region_2=region_from)).exists():
             return {
-                'header': 'Новый законопроект',
-                'grey_btn': 'Закрыть',
-                'response': 'Указанные регионы не граничат между собой',
+                'header': pgettext('new_bill', 'Новый законопроект'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('new_bill', 'Указанные регионы не граничат между собой'),
             }
 
         # ура, все проверили

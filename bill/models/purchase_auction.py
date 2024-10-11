@@ -4,6 +4,7 @@ from django.db import models
 from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 from django.utils import timezone
+from django.utils.translation import pgettext
 
 from bill.models.bill import Bill
 from state.models.parliament.deputy_mandate import DeputyMandate
@@ -12,8 +13,8 @@ from state.models.treasury import Treasury
 from state.models.treasury_lock import TreasuryLock
 from storage.models.auction.auction import BuyAuction
 from storage.models.auction.auction_lot import AuctionLot
-from storage.models.storage import Storage
 from storage.models.good import Good
+from storage.models.storage import Storage
 
 
 # Аукцион закупки
@@ -42,9 +43,9 @@ class PurchaseAuction(Bill):
 
         if PurchaseAuction.objects.filter(running=True, initiator=player).exists():
             return {
-                'header': 'Новый законопроект',
-                'grey_btn': 'Закрыть',
-                'response': 'Ограничение: не более одного законопроекта данного типа',
+                'header': pgettext('new_bill', 'Новый законопроект'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('new_bill', 'Ограничение: не более одного законопроекта данного типа'),
             }
 
         # получаем объем закупки
@@ -53,16 +54,17 @@ class PurchaseAuction(Bill):
 
         except ValueError:
             return {
-                'header': 'Новый законопроект',
-                'grey_btn': 'Закрыть',
-                'response': 'Объём закупки должна быть целым числом',
+                'header': pgettext('new_bill', 'Новый законопроект'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('new_bill', 'Объём закупки должна быть целым числом'),
             }
 
         if not 0 < purchase_value < 1000000000000:
             return {
-                'header': 'Новый законопроект',
-                'grey_btn': 'Закрыть',
-                'response': 'Объём закупки имеет ограничение в интервале от 0 до 1 000 000 000 000',
+                'header': pgettext('new_bill', 'Новый законопроект'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('new_bill',
+                                     'Объём закупки имеет ограничение в интервале от 0 до 1 000 000 000 000'),
             }
 
         # получаем стоимость закупки
@@ -71,16 +73,17 @@ class PurchaseAuction(Bill):
 
         except ValueError:
             return {
-                'header': 'Новый законопроект',
-                'grey_btn': 'Закрыть',
-                'response': 'Цена закупки должна быть целым числом',
+                'header': pgettext('new_bill', 'Новый законопроект'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('new_bill', 'Цена закупки должна быть целым числом'),
             }
 
         if not 0 < purchase_price < 1000000000000:
             return {
-                'header': 'Новый законопроект',
-                'grey_btn': 'Закрыть',
-                'response': 'Цена закупки имеет ограничение в интервале от 0 до 1 000 000 000 000',
+                'header': pgettext('new_bill', 'Новый законопроект'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('new_bill',
+                                     'Цена закупки имеет ограничение в интервале от 0 до 1 000 000 000 000'),
             }
 
         # получаем количество лотов
@@ -89,34 +92,34 @@ class PurchaseAuction(Bill):
 
         except ValueError:
             return {
-                'header': 'Новый законопроект',
-                'grey_btn': 'Закрыть',
-                'response': 'Количество лотов должно быть целым числом',
+                'header': pgettext('new_bill', 'Новый законопроект'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('new_bill', 'Количество лотов должно быть целым числом'),
             }
 
         if not 0 < purchase_lots <= 10:
             return {
-                'header': 'Новый законопроект',
-                'grey_btn': 'Закрыть',
-                'response': 'Количество лотов должно быть числом от 1 до 10',
+                'header': pgettext('new_bill', 'Новый законопроект'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('new_bill', 'Количество лотов должно быть числом от 1 до 10'),
             }
 
         if purchase_lots > purchase_value:
             return {
-                'header': 'Новый законопроект',
-                'grey_btn': 'Закрыть',
-                'response': 'Количество лотов не может быть больше объёма закупки',
+                'header': pgettext('new_bill', 'Новый законопроект'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('new_bill', 'Количество лотов не может быть больше объёма закупки'),
             }
 
         # получаем ID товара
         try:
-            purchase_good = int( request.POST.get('purchase_goods') )
+            purchase_good = int(request.POST.get('purchase_goods'))
 
         except ValueError:
             return {
-                'header': 'Новый законопроект',
-                'grey_btn': 'Закрыть',
-                'response': 'ID товара должен быть целым числом',
+                'header': pgettext('new_bill', 'Новый законопроект'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('new_bill', 'ID товара должен быть целым числом'),
             }
 
         if Good.objects.filter(pk=purchase_good).exists():
@@ -141,9 +144,9 @@ class PurchaseAuction(Bill):
 
         else:
             return {
-                'response': 'Нет такого ресурса',
-                'header': 'Новый законопроект',
-                'grey_btn': 'Закрыть',
+                'response': pgettext('new_bill', 'Нет такого ресурса'),
+                'header': pgettext('new_bill', 'Новый законопроект'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
 
     # выполнить законопроект
@@ -311,6 +314,7 @@ class PurchaseAuction(Bill):
 def save_post(sender, instance, created, **kwargs):
     if created:
         instance.setup_task()
+
 
 # сигнал удаляющий таску
 @receiver(post_delete, sender=PurchaseAuction)

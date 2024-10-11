@@ -8,6 +8,7 @@ from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 from django.utils import timezone
 from django.utils.translation import gettext_lazy
+from django.utils.translation import pgettext
 from math import ceil
 
 from bill.models.bill import Bill
@@ -49,9 +50,9 @@ class ExploreResources(Bill):
 
         if ExploreResources.objects.filter(running=True, initiator=player).exists():
             return {
-                'header': 'Новый законопроект',
-                'grey_btn': 'Закрыть',
-                'response': 'Ограничение: не более одного законопроекта данного типа',
+                'header': pgettext('new_bill', 'Новый законопроект'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('new_bill', 'Ограничение: не более одного законопроекта данного типа'),
             }
 
         try:
@@ -59,9 +60,9 @@ class ExploreResources(Bill):
 
         except ValueError:
             return {
-                'header': 'Новый законопроект',
-                'grey_btn': 'Закрыть',
-                'response': 'ID региона должен быть целым числом',
+                'header': pgettext('new_bill', 'Новый законопроект'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('new_bill', 'ID региона должен быть целым числом'),
             }
 
         if Region.objects.filter(pk=explore_region, state=parliament.state).exists():
@@ -70,9 +71,9 @@ class ExploreResources(Bill):
 
             if Martial.objects.filter(active=True, state=parliament.state, region=region).exists():
                 return {
-                    'header': 'Новый законопроект',
-                    'grey_btn': 'Закрыть',
-                    'response': 'В данном регионе введено военное положение',
+                    'header': pgettext('new_bill', 'Новый законопроект'),
+                    'grey_btn': pgettext('core', 'Закрыть'),
+                    'response': pgettext('new_bill', 'В данном регионе введено военное положение'),
                 }
 
             resources_list = []
@@ -85,9 +86,9 @@ class ExploreResources(Bill):
 
                 if not getattr(region, explore_resource + '_cap') > getattr(region, explore_resource + '_has'):
                     return {
-                        'header': 'Новый законопроект',
-                        'grey_btn': 'Закрыть',
-                        'response': 'Недопустима разведка в минус',
+                        'header': pgettext('new_bill', 'Новый законопроект'),
+                        'grey_btn': pgettext('core', 'Закрыть'),
+                        'response': pgettext('new_bill', 'Недопустима разведка в минус'),
                     }
 
                 # ура, все проверили
@@ -108,15 +109,15 @@ class ExploreResources(Bill):
 
             else:
                 return {
-                    'response': 'Нет такого ресурса',
-                    'header': 'Новый законопроект',
-                    'grey_btn': 'Закрыть',
+                    'response': pgettext('new_bill', 'Нет такого ресурса'),
+                    'header': pgettext('new_bill', 'Новый законопроект'),
+                    'grey_btn': pgettext('core', 'Закрыть'),
                 }
         else:
             return {
-                'response': 'Нет такого региона',
-                'header': 'Новый законопроект',
-                'grey_btn': 'Закрыть',
+                'response': pgettext('new_bill', 'Нет такого региона'),
+                'header': pgettext('new_bill', 'Новый законопроект'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
 
     # выполнить законопроект
@@ -141,7 +142,8 @@ class ExploreResources(Bill):
                         region=self.region,
                         resource=self.resource,
                         voting_end__gt=timezone.now() - datetime.timedelta(seconds=86400)
-                    ).values('region', 'resource').order_by('region').annotate(exp_value=Coalesce(Sum('exp_value'), 0, output_field=models.DecimalField()))
+                    ).values('region', 'resource').order_by('region').annotate(
+                        exp_value=Coalesce(Sum('exp_value'), 0, output_field=models.DecimalField()))
 
                     if prev_bills:
                         exp_mul = int(ceil(prev_bills[0]['exp_value'] / getattr(self.region, self.resource + '_cap')))
@@ -153,7 +155,8 @@ class ExploreResources(Bill):
                         exp_mul = 1
 
                     cash_cost = float(
-                        getattr(region, self.resource + '_cap') - getattr(region, self.resource + '_has')) * self.exp_price * exp_mul
+                        getattr(region, self.resource + '_cap') - getattr(region,
+                                                                          self.resource + '_has')) * self.exp_price * exp_mul
 
                     if cash_cost <= treasury.cash:
                         volume = getattr(region, self.resource + '_cap') - getattr(region, self.resource + '_has')
@@ -236,7 +239,8 @@ class ExploreResources(Bill):
         prev_bills = ExploreResources.objects.filter(
             parliament=parliament,
             voting_end__gt=timezone.now() - datetime.timedelta(seconds=86400)
-        ).values('region', 'resource').order_by('region').annotate(exp_value=Coalesce(Sum('exp_value'), 0, output_field=models.DecimalField()))
+        ).values('region', 'resource').order_by('region').annotate(
+            exp_value=Coalesce(Sum('exp_value'), 0, output_field=models.DecimalField()))
 
         exploration_dict = {}
 
@@ -302,7 +306,8 @@ class ExploreResources(Bill):
             region=self.region,
             resource=self.resource,
             voting_end__gt=timezone.now() - datetime.timedelta(seconds=86400)
-        ).values('region', 'resource').order_by('region').annotate(exp_value=Coalesce(Sum('exp_value'), 0, output_field=models.DecimalField()))
+        ).values('region', 'resource').order_by('region').annotate(
+            exp_value=Coalesce(Sum('exp_value'), 0, output_field=models.DecimalField()))
 
         if prev_bills:
             exp_mul = int(ceil(prev_bills[0]['exp_value'] / getattr(self.region, self.resource + '_cap')))
@@ -312,7 +317,6 @@ class ExploreResources(Bill):
                 exp_mul += 1
         else:
             exp_mul = 1
-
 
         data = {
             'bill': self,

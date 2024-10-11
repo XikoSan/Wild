@@ -11,6 +11,7 @@ from django.db import models
 from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 from django.utils import timezone
+from django.utils.translation import pgettext
 
 from bill.models.bill import Bill
 from state.models.parliament.deputy_mandate import DeputyMandate
@@ -28,18 +29,18 @@ class ChangeCoat(Bill):
 
         if ChangeCoat.objects.filter(running=True, initiator=player).exists():
             return {
-                'header': 'Новый законопроект',
-                'grey_btn': 'Закрыть',
-                'response': 'Ограничение: не более одного законопроекта данного типа',
+                'header': pgettext('new_bill', 'Новый законопроект'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('new_bill', 'Ограничение: не более одного законопроекта данного типа'),
             }
 
         form = ImageForm(request.POST, request.FILES)
 
         if not form.is_valid():
             return {
-                'header': 'Новый законопроект',
-                'grey_btn': 'Закрыть',
-                'response': 'Ошибка формы нового герба',
+                'header': pgettext('new_bill', 'Новый законопроект'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('new_bill', 'Ошибка формы нового герба'),
             }
 
         # ура, все проверили

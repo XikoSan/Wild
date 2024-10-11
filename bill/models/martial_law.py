@@ -10,6 +10,7 @@ from django.dispatch import receiver
 from django.utils import timezone
 from django.utils.translation import gettext_lazy
 from math import ceil
+from django.utils.translation import pgettext
 
 from bill.models.bill import Bill
 from region.models.region import Region
@@ -43,9 +44,9 @@ class MartialLaw(Bill):
 
         if MartialLaw.objects.filter(running=True, initiator=player).exists():
             return {
-                'header': 'Новый законопроект',
-                'grey_btn': 'Закрыть',
-                'response': 'Ограничение: не более одного законопроекта данного типа',
+                'header': pgettext('new_bill', 'Новый законопроект'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('new_bill', 'Ограничение: не более одного законопроекта данного типа'),
             }
 
         law_mode = request.POST.get('martial_law_mode')
@@ -57,16 +58,16 @@ class MartialLaw(Bill):
 
         if law_mode == '':
             return {
-                'header': 'Новый законопроект',
-                'grey_btn': 'Закрыть',
-                'response': 'Режим военного положения должен быть указан',
+                'header': pgettext('new_bill', 'Новый законопроект'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('new_bill', 'Режим военного положения должен быть указан'),
             }
 
         elif not law_mode in choice_list:
             return {
-                'header': 'Новый законопроект',
-                'grey_btn': 'Закрыть',
-                'response': 'Такого режима военного положения не существует',
+                'header': pgettext('new_bill', 'Новый законопроект'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('new_bill', 'Такого режима военного положения не существует'),
             }
 
         try:
@@ -74,9 +75,9 @@ class MartialLaw(Bill):
 
         except ValueError:
             return {
-                'header': 'Новый законопроект',
-                'grey_btn': 'Закрыть',
-                'response': 'ID региона должен быть целым числом',
+                'header': pgettext('new_bill', 'Новый законопроект'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('new_bill', 'ID региона должен быть целым числом'),
             }
 
         if Region.objects.filter(pk=martial_region, state=parliament.state).exists():
@@ -85,17 +86,17 @@ class MartialLaw(Bill):
 
             if law_mode == 'free' and not Martial.objects.filter(active=False, region=region).exists():
                 return {
-                    'header': 'Новый законопроект',
-                    'grey_btn': 'Закрыть',
-                    'response': 'Этот режим военного положения уже выбран',
+                    'header': pgettext('new_bill', 'Новый законопроект'),
+                    'grey_btn': pgettext('core', 'Закрыть'),
+                    'response': pgettext('new_bill', 'Этот режим военного положения уже выбран'),
                 }
 
             if law_mode == 'set' and Martial.objects.filter(active=True, region=region).exists():
 
                 return {
-                    'header': 'Новый законопроект',
-                    'grey_btn': 'Закрыть',
-                    'response': 'Этот режим военного положения уже выбран',
+                    'header': pgettext('new_bill', 'Новый законопроект'),
+                    'grey_btn': pgettext('core', 'Закрыть'),
+                    'response': pgettext('new_bill', 'Этот режим военного положения уже выбран'),
                 }
 
             # если пытаются установить ВП, а с момента отмены предыдущего прошло менее двух недель
@@ -103,9 +104,9 @@ class MartialLaw(Bill):
                                                              active_end__gt=timezone.now() - datetime.timedelta(minutes=20160)
                                                             ).exists():
                 return {
-                    'header': 'Новый законопроект',
-                    'grey_btn': 'Закрыть',
-                    'response': 'Прошло менее двух недель с момента отмены предыдущего военного положения',
+                    'header': pgettext('new_bill', 'Новый законопроект'),
+                    'grey_btn': pgettext('core', 'Закрыть'),
+                    'response': pgettext('new_bill', 'Прошло менее двух недель с момента отмены предыдущего военного положения'),
                 }
 
             # ура, все проверили
@@ -126,9 +127,9 @@ class MartialLaw(Bill):
 
         else:
             return {
-                'response': 'Нет такого региона',
-                'header': 'Новый законопроект',
-                'grey_btn': 'Закрыть',
+                'response': pgettext('new_bill', 'Нет такого региона'),
+                'header': pgettext('new_bill', 'Новый законопроект'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
 
     # выполнить законопроект

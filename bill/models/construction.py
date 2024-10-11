@@ -92,9 +92,9 @@ class Construction(Bill):
 
         if Construction.objects.filter(running=True, initiator=player).exists():
             return {
-                'header': 'Новый законопроект',
-                'grey_btn': 'Закрыть',
-                'response': 'Ограничение: не более одного законопроекта данного типа',
+                'header': pgettext('new_bill', 'Новый законопроект'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('new_bill', 'Ограничение: не более одного законопроекта данного типа'),
             }
 
         try:
@@ -102,9 +102,9 @@ class Construction(Bill):
 
         except ValueError:
             return {
-                'header': 'Новый законопроект',
-                'grey_btn': 'Закрыть',
-                'response': 'ID региона должен быть целым числом',
+                'header': pgettext('new_bill', 'Новый законопроект'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('new_bill', 'ID региона должен быть целым числом'),
             }
 
         if Region.objects.filter(pk=construction_region, state=parliament.state).exists():
@@ -113,9 +113,9 @@ class Construction(Bill):
 
             if Martial.objects.filter(active=True, state=parliament.state, region=region).exists():
                 return {
-                    'header': 'Новый законопроект',
-                    'grey_btn': 'Закрыть',
-                    'response': 'В данном регионе введено военное положение',
+                    'header': pgettext('new_bill', 'Новый законопроект'),
+                    'grey_btn': pgettext('core', 'Закрыть'),
+                    'response': pgettext('new_bill', 'В данном регионе введено военное положение'),
                 }
 
             schemas_list = []
@@ -131,16 +131,16 @@ class Construction(Bill):
 
                 except ValueError:
                     return {
-                        'header': 'Новый законопроект',
-                        'grey_btn': 'Закрыть',
-                        'response': 'Уровни здания должны быть целым числом',
+                        'header': pgettext('new_bill', 'Новый законопроект'),
+                        'grey_btn': pgettext('core', 'Закрыть'),
+                        'response': pgettext('new_bill', 'Уровни здания должны быть целым числом'),
                     }
 
                 if not 1 <= new_levels <= 1000:
                     return {
-                        'header': 'Новый законопроект',
-                        'grey_btn': 'Закрыть',
-                        'response': 'Уровни здания должны быть числом в интервале 1-1000',
+                        'header': pgettext('new_bill', 'Новый законопроект'),
+                        'grey_btn': pgettext('core', 'Закрыть'),
+                        'response': pgettext('new_bill', 'Уровни здания должны быть числом в интервале 1-1000'),
                     }
 
                 # ура, все проверили
@@ -162,15 +162,15 @@ class Construction(Bill):
 
             else:
                 return {
-                    'response': 'Нет такого здания',
-                    'header': 'Новый законопроект',
-                    'grey_btn': 'Закрыть',
+                    'response': pgettext('new_bill', 'Нет такого здания'),
+                    'header': pgettext('new_bill', 'Новый законопроект'),
+                    'grey_btn': pgettext('core', 'Закрыть'),
                 }
         else:
             return {
-                'response': 'Нет такого региона',
-                'header': 'Новый законопроект',
-                'grey_btn': 'Закрыть',
+                'response': pgettext('new_bill', 'Нет такого региона'),
+                'header': pgettext('new_bill', 'Новый законопроект'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
 
     # выполнить законопроект

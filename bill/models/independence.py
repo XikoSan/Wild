@@ -6,6 +6,7 @@ from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 from django.utils import timezone
 from django.utils.translation import gettext_lazy
+from django.utils.translation import pgettext
 
 from bill.models.bill import Bill
 from gov.models.president import President
@@ -20,8 +21,8 @@ from state.models.parliament.deputy_mandate import DeputyMandate
 from state.models.parliament.parliament import Parliament
 from state.models.parliament.parliament_party import ParliamentParty
 from state.models.treasury import Treasury
-from war.models.wars.war import War
 from war.models.martial import Martial
+from war.models.wars.war import War
 
 
 # Объявить независимость региона
@@ -37,16 +38,16 @@ class Independence(Bill):
 
         if not request.POST.get('independence_regions'):
             return {
-                'header': 'Новый законопроект',
-                'grey_btn': 'Закрыть',
-                'response': 'Не указан подходящий регион',
+                'header': pgettext('new_bill', 'Новый законопроект'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('new_bill', 'Не указан подходящий регион'),
             }
 
         if Independence.objects.filter(running=True, initiator=player).exists():
             return {
-                'header': 'Новый законопроект',
-                'grey_btn': 'Закрыть',
-                'response': 'Ограничение: не более одного законопроекта данного типа',
+                'header': pgettext('new_bill', 'Новый законопроект'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('new_bill', 'Ограничение: не более одного законопроекта данного типа'),
             }
 
         try:
@@ -54,9 +55,9 @@ class Independence(Bill):
 
         except ValueError:
             return {
-                'header': 'Новый законопроект',
-                'grey_btn': 'Закрыть',
-                'response': 'ID региона должен быть целым числом',
+                'header': pgettext('new_bill', 'Новый законопроект'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('new_bill', 'ID региона должен быть целым числом'),
             }
 
         if Region.objects.filter(pk=independence_regions, state=parliament.state).exists():
@@ -65,8 +66,8 @@ class Independence(Bill):
 
             if Martial.objects.filter(active=True, state=parliament.state, region=region).exists():
                 return {
-                    'header': 'Новый законопроект',
-                    'grey_btn': 'Закрыть',
+                    'header': pgettext('new_bill', 'Новый законопроект'),
+                    'grey_btn': pgettext('core', 'Закрыть'),
                     'response': 'В данном регионе введено военное положение',
                 }
 
@@ -74,16 +75,16 @@ class Independence(Bill):
             if Capital.objects.filter(region=region).exists():
                 return {
                     'response': 'Регион является столицей',
-                    'header': 'Новый законопроект',
-                    'grey_btn': 'Закрыть',
+                    'header': pgettext('new_bill', 'Новый законопроект'),
+                    'grey_btn': pgettext('core', 'Закрыть'),
                 }
 
             # его казна
             if Treasury.objects.filter(region=region, deleted=False).exists():
                 return {
                     'response': 'В регионе размещена казна государства',
-                    'header': 'Новый законопроект',
-                    'grey_btn': 'Закрыть',
+                    'header': pgettext('new_bill', 'Новый законопроект'),
+                    'grey_btn': pgettext('core', 'Закрыть'),
                 }
 
             # регионы, с которых атакуют
@@ -93,8 +94,8 @@ class Independence(Bill):
                 if type.objects.filter(running=True, deleted=False, agr_region=region).exists():
                     return {
                         'response': 'Регион является плацдармом атаки',
-                        'header': 'Новый законопроект',
-                        'grey_btn': 'Закрыть',
+                        'header': pgettext('new_bill', 'Новый законопроект'),
+                        'grey_btn': pgettext('core', 'Закрыть'),
                     }
 
             # ура, все проверили
@@ -115,8 +116,8 @@ class Independence(Bill):
         else:
             return {
                 'response': 'Нет такого региона',
-                'header': 'Новый законопроект',
-                'grey_btn': 'Закрыть',
+                'header': pgettext('new_bill', 'Новый законопроект'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
 
     # выполнить законопроект

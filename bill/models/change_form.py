@@ -5,6 +5,7 @@ from django.db import models
 from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 from django.utils import timezone
+from django.utils.translation import pgettext
 
 from bill.models.bill import Bill
 from regime.presidential import Presidential
@@ -41,9 +42,9 @@ class ChangeForm(Bill):
 
         if ChangeForm.objects.filter(running=True, initiator=player).exists():
             return {
-                'header': 'Новый законопроект',
-                'grey_btn': 'Закрыть',
-                'response': 'Ограничение: не более одного законопроекта данного типа',
+                'header': pgettext('new_bill', 'Новый законопроект'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('new_bill', 'Ограничение: не более одного законопроекта данного типа'),
             }
 
         new_form = request.POST.get('new_state_form')
@@ -55,16 +56,16 @@ class ChangeForm(Bill):
 
         if new_form == '':
             return {
-                'header': 'Новый законопроект',
-                'grey_btn': 'Закрыть',
-                'response': 'Новая форма государства должна быть указана',
+                'header': pgettext('new_bill', 'Новый законопроект'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('new_bill', 'Новая форма государства должна быть указана'),
             }
 
         elif not new_form in choice_list:
             return {
-                'header': 'Новый законопроект',
-                'grey_btn': 'Закрыть',
-                'response': 'Такой формы государства не существует',
+                'header': pgettext('new_bill', 'Новый законопроект'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('new_bill', 'Такой формы государства не существует'),
             }
 
         # ура, все проверили
@@ -122,7 +123,6 @@ class ChangeForm(Bill):
 
         return data, 'state/gov/drafts/change_form.html'
 
-
     @staticmethod
     def get_new_draft(state):
         current_regime = None
@@ -140,7 +140,6 @@ class ChangeForm(Bill):
         data = {'forms': forms_dict}
 
         return data, 'state/redesign/drafts/change_form.html'
-
 
     def get_bill(self, player, minister, president):
 
