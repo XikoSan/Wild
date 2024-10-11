@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-06 23:24+0300\n"
-"PO-Revision-Date: 2024-10-09 16:49+0300\n"
+"POT-Creation-Date: 2024-10-11 03:17+0300\n"
+"PO-Revision-Date: 2024-10-11 03:19+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -42,7 +42,7 @@ msgstr "You don't have stickers yet"
 
 #: article/templates/article/article.html:357
 #: chat/templates/chat/dialogue.html:173
-#: player/templates/player/redesign/overview.html:986
+#: player/templates/player/redesign/overview.html:1030
 msgctxt "overview"
 msgid "магазин"
 msgstr "shop"
@@ -178,9 +178,12 @@ msgstr "Edit article"
 #: bill/views/bills/cancel_bill.py:79 bill/views/bills/cancel_bill.py:86
 #: bill/views/bills/cancel_bill.py:93 bill/views/bills/cancel_bill.py:100
 #: bill/views/bills/cancel_bill.py:107 bill/views/bills/cancel_bill.py:115
-#: player/views/change_bio.py:34 player/views/skills/boost_skill.py:59
-#: player/views/skills/boost_skill.py:72 player/views/skills/boost_skill.py:80
-#: player/views/skills/boost_skill.py:94 player/views/skills/boost_skill.py:104
+#: gov/views/color_change.py:30 gov/views/color_change.py:44
+#: gov/views/color_change.py:60 gov/views/switch_description.py:24
+#: gov/views/switch_description.py:42 player/views/change_bio.py:34
+#: player/views/skills/boost_skill.py:59 player/views/skills/boost_skill.py:72
+#: player/views/skills/boost_skill.py:80 player/views/skills/boost_skill.py:94
+#: player/views/skills/boost_skill.py:104
 #: player/views/skills/boost_skill.py:113
 #: player/views/skills/boost_skill.py:123
 #: player/views/skills/boost_skill.py:168 player/views/skills/up_skill.py:35
@@ -195,7 +198,10 @@ msgstr "Edit article"
 #: storage/views/auctions/set_bet.py:59 storage/views/auctions/set_bet.py:70
 #: storage/views/auctions/set_bet.py:83 storage/views/auctions/set_bet.py:95
 #: storage/views/auctions/set_bet.py:103 storage/views/auctions/set_bet.py:111
-#: storage/views/auctions/set_bet.py:161
+#: storage/views/auctions/set_bet.py:161 war/views/join_revolution.py:31
+#: war/views/join_revolution.py:54 war/views/join_revolution.py:67
+#: war/views/join_revolution.py:79 war/views/join_revolution.py:91
+#: war/views/join_revolution.py:103 war/views/join_revolution.py:140
 msgctxt "core"
 msgid "Закрыть"
 msgstr "Close"
@@ -1884,6 +1890,74 @@ msgstr "Specified Warehouse does not belong to you"
 msgid "отклонить всё"
 msgstr "reject everything"
 
+#: gov/views/color_change.py:28
+#, fuzzy
+#| msgctxt "party_manage"
+#| msgid "Вы не являетесь лидером партии"
+msgctxt "edit_state_color"
+msgid "Вы не являетесь лидером государства"
+msgstr "You are not the party leader"
+
+#: gov/views/color_change.py:29 gov/views/color_change.py:43
+#: gov/views/color_change.py:59
+#, fuzzy
+#| msgid "Государство"
+msgctxt "edit_state_color"
+msgid "Цвет государства"
+msgstr "State"
+
+#: gov/views/color_change.py:42
+#, fuzzy
+#| msgctxt "party_manage"
+#| msgid "Некорректный код цвета партии"
+msgctxt "edit_state_color"
+msgid "Некорректный код цвета партии"
+msgstr "Invalid party color code"
+
+#: gov/views/color_change.py:58 gov/views/switch_description.py:43
+#: party/views/management/color_change.py:66
+#: party/views/management/gold/give_party_gold.py:108
+#: party/views/management/roles/new_role.py:79
+#: party/views/management/roles/remove_role.py:77
+#: player/views/color_change.py:102 region/views/do_mining.py:428
+#: storage/views/assets/assets_destroy.py:138
+#: storage/views/assets/assets_transfer.py:238
+#: storage/views/assets/storage_move.py:108
+#: storage/views/storage/cash_transfer.py:147
+#: storage/views/storage/new_storage.py:107
+#: storage/views/storage/upgrade_storage.py:96
+#: storage/views/trading/accept_offer.py:476
+#: storage/views/trading/cancel_offer.py:165
+#: storage/views/trading/create_offer.py:295
+#: storage/views/trading/get_offers.py:258 war/views/join_revolution.py:141
+msgctxt "mining"
+msgid "Ошибка метода"
+msgstr "Method error"
+
+#: gov/views/manage_view.py:25
+#, fuzzy
+#| msgctxt "party_manage"
+#| msgid "Управление партией"
+msgctxt "set_mandate"
+msgid "Управление государством"
+msgstr "Party management"
+
+#: gov/views/switch_description.py:22
+#, fuzzy
+#| msgctxt "party_manage"
+#| msgid "Вы не являетесь лидером партии"
+msgctxt "edit_state_descr"
+msgid "Вы не являетесь лидером государства"
+msgstr "You are not the party leader"
+
+#: gov/views/switch_description.py:23 gov/views/switch_description.py:44
+#, fuzzy
+#| msgctxt "cancel_bill"
+#| msgid "В этом регионе нет государства"
+msgctxt "edit_state_descr"
+msgid "Сообщение от государства"
+msgstr "There is no state in this region"
+
 #: party/templates/party/redesign/lists/party_history_list.html:19
 msgctxt "party_hist"
 msgid "партия"
@@ -2071,7 +2145,7 @@ msgstr "Cancel"
 
 #: party/templates/party/redesign/manage.html:420
 #: player/templates/player/redesign/new_player.html:142
-#: player/templates/player/redesign/profile.html:523
+#: player/templates/player/redesign/profile.html:525
 msgid "Загрузить"
 msgstr "Upload"
 
@@ -2249,31 +2323,31 @@ msgid "все партии"
 msgstr "all parties"
 
 #: party/templates/party/redesign/party_blocks/no_party.html:70
-#: party/templates/party/redesign/party_blocks/no_party.html:131
+#: party/templates/party/redesign/party_blocks/no_party.html:133
 msgctxt "no_party"
 msgid "Партия"
 msgstr "Party"
 
 #: party/templates/party/redesign/party_blocks/no_party.html:81
-#: party/templates/party/redesign/party_blocks/no_party.html:142
+#: party/templates/party/redesign/party_blocks/no_party.html:144
 msgctxt "no_party"
 msgid "Действие"
 msgstr "Action"
 
-#: party/templates/party/redesign/party_blocks/no_party.html:107
-#: party/templates/party/redesign/party_blocks/no_party.html:161
+#: party/templates/party/redesign/party_blocks/no_party.html:108
+#: party/templates/party/redesign/party_blocks/no_party.html:164
 msgctxt "no_party"
 msgid "Вступить"
 msgstr "Join"
 
-#: party/templates/party/redesign/party_blocks/no_party.html:111
-#: party/templates/party/redesign/party_blocks/no_party.html:165
+#: party/templates/party/redesign/party_blocks/no_party.html:112
+#: party/templates/party/redesign/party_blocks/no_party.html:168
 msgctxt "no_party"
 msgid "Отменить заявку"
 msgstr "Cancel application"
 
-#: party/templates/party/redesign/party_blocks/no_party.html:113
-#: party/templates/party/redesign/party_blocks/no_party.html:167
+#: party/templates/party/redesign/party_blocks/no_party.html:114
+#: party/templates/party/redesign/party_blocks/no_party.html:170
 msgctxt "no_party"
 msgid "Подать заявку"
 msgstr "Apply"
@@ -2319,9 +2393,9 @@ msgid "Участников"
 msgstr "Members"
 
 #: party/templates/party/redesign/party_view.html:90
-#: player/templates/player/redesign/profile.html:339
-#: player/templates/player/redesign/profile.html:362
-#: player/templates/player/redesign/profile.html:376
+#: player/templates/player/redesign/profile.html:341
+#: player/templates/player/redesign/profile.html:364
+#: player/templates/player/redesign/profile.html:378
 #: player/templates/player/redesign/view_profile.html:148
 #: player/templates/player/redesign/view_profile.html:171
 #: player/templates/player/redesign/view_profile.html:185
@@ -2412,9 +2486,9 @@ msgid "Некорректный код цвета"
 msgstr "Incorrect color code"
 
 #: party/views/management/color_change.py:38
-#: party/views/management/color_change.py:56
-#: party/views/management/color_change.py:63
-#: party/views/management/color_change.py:70
+#: party/views/management/color_change.py:54
+#: party/views/management/color_change.py:61
+#: party/views/management/color_change.py:68
 #: party/views/management/gold/give_party_gold.py:96
 #: party/views/management/gold/give_party_gold.py:103
 #: party/views/management/gold/give_party_gold.py:110
@@ -2456,8 +2530,8 @@ msgstr "Incorrect color code"
 #: player/views/expense_energy.py:30 player/views/expense_energy.py:44
 #: player/views/expense_energy.py:67 player/views/expense_energy.py:76
 #: player/views/expense_energy.py:87 player/views/full_auto_allow.py:43
-#: player/views/full_auto_allow.py:59 player/views/new_player.py:149
-#: player/views/new_player.py:162 player/views/open_lootboxes.py:27
+#: player/views/full_auto_allow.py:59 player/views/new_player.py:176
+#: player/views/new_player.py:189 player/views/open_lootboxes.py:27
 #: player/views/open_lootboxes.py:38 player/views/open_lootboxes.py:49
 #: player/views/open_lootboxes.py:59 player/views/open_lootboxes.py:134
 #: player/views/set_language.py:40 player/views/set_language.py:56
@@ -2475,44 +2549,25 @@ msgstr "Incorrect color code"
 msgid "Закрыть"
 msgstr "Close"
 
-#: party/views/management/color_change.py:54
+#: party/views/management/color_change.py:52
 #: party/views/management/gold/give_party_gold.py:94
 msgctxt "party_manage"
 msgid "Вы не являетесь лидером партии"
 msgstr "You are not the party leader"
 
-#: party/views/management/color_change.py:55
-#: party/views/management/color_change.py:62
+#: party/views/management/color_change.py:53
+#: party/views/management/color_change.py:60
 msgctxt "party_manage"
 msgid "Ошибка изменения цвета партии"
 msgstr "Error changing the party color"
 
-#: party/views/management/color_change.py:61
+#: party/views/management/color_change.py:59
 #: party/views/management/gold/give_party_gold.py:101
 msgctxt "party_manage"
 msgid "Вы не состоите в партии"
 msgstr "You are not a member of any party"
 
-#: party/views/management/color_change.py:68
-#: party/views/management/gold/give_party_gold.py:108
-#: party/views/management/roles/new_role.py:79
-#: party/views/management/roles/remove_role.py:77
-#: player/views/color_change.py:102 region/views/do_mining.py:428
-#: storage/views/assets/assets_destroy.py:138
-#: storage/views/assets/assets_transfer.py:238
-#: storage/views/assets/storage_move.py:108
-#: storage/views/storage/cash_transfer.py:147
-#: storage/views/storage/new_storage.py:107
-#: storage/views/storage/upgrade_storage.py:96
-#: storage/views/trading/accept_offer.py:476
-#: storage/views/trading/cancel_offer.py:165
-#: storage/views/trading/create_offer.py:295
-#: storage/views/trading/get_offers.py:258
-msgctxt "mining"
-msgid "Ошибка метода"
-msgstr "Method error"
-
-#: party/views/management/color_change.py:69 player/views/color_change.py:103
+#: party/views/management/color_change.py:67 player/views/color_change.py:103
 msgctxt "party_manage"
 msgid "Ошибка изменения цветов игры"
 msgstr "Error changing game colors"
@@ -3626,7 +3681,7 @@ msgctxt "overview"
 msgid "парламент"
 msgstr "parliament"
 
-#: player/templates/player/redesign/overview.html:973
+#: player/templates/player/redesign/overview.html:1017
 msgctxt "overview"
 msgid "У вас пока еще нет стикеров"
 msgstr "You don't have stickers yet"
@@ -3953,150 +4008,140 @@ msgctxt "profile"
 msgid "ввести бонус-код"
 msgstr "enter bonus code"
 
-#: player/templates/player/redesign/profile.html:289
+#: player/templates/player/redesign/profile.html:303
 #: player/templates/player/redesign/view_profile.html:124
 msgctxt "profile"
 msgid "награды"
 msgstr "medals"
 
-#: player/templates/player/redesign/profile.html:303
+#: player/templates/player/redesign/profile.html:317
 msgctxt "profile"
 msgid "магазин"
 msgstr "shop"
 
-#: player/templates/player/redesign/profile.html:316
+#: player/templates/player/redesign/profile.html:330
 msgctxt "profile"
 msgid "премиум-аккаунт"
 msgstr "premium account"
 
-#: player/templates/player/redesign/profile.html:318
+#: player/templates/player/redesign/profile.html:332
 msgctxt "profile"
 msgid "до"
 msgstr "until"
 
-#: player/templates/player/redesign/profile.html:318
+#: player/templates/player/redesign/profile.html:332
 msgctxt "profile"
 msgid "не активен"
 msgstr "not active"
 
-#: player/templates/player/redesign/profile.html:324
-msgctxt "profile"
-msgid "очки тестирования Android"
-msgstr "Android testing points"
-
-#: player/templates/player/redesign/profile.html:328
-msgctxt "profile"
-msgid "(к регламенту)"
-msgstr "(to the regulations)"
-
-#: player/templates/player/redesign/profile.html:335
+#: player/templates/player/redesign/profile.html:337
 #: player/templates/player/redesign/view_profile.html:144
 msgctxt "profile"
 msgid "место в рейтинге"
 msgstr "rating place"
 
-#: player/templates/player/redesign/profile.html:345
+#: player/templates/player/redesign/profile.html:347
 #: player/templates/player/redesign/view_profile.html:154
 msgctxt "profile"
 msgid "известность"
 msgstr "fame"
 
-#: player/templates/player/redesign/profile.html:349
+#: player/templates/player/redesign/profile.html:351
 #: player/templates/player/redesign/view_profile.html:158
 msgctxt "profile"
 msgid "(к статьям)"
 msgstr "(to articles)"
 
-#: player/templates/player/redesign/profile.html:355
+#: player/templates/player/redesign/profile.html:357
 #: player/templates/player/redesign/view_profile.html:164
 msgctxt "profile"
 msgid "суммарный урон"
 msgstr "total damage"
 
-#: player/templates/player/redesign/profile.html:359
+#: player/templates/player/redesign/profile.html:361
 #: player/templates/player/redesign/view_profile.html:168
 msgctxt "profile"
 msgid "(к войнам)"
 msgstr "(to wars)"
 
-#: player/templates/player/redesign/profile.html:368
+#: player/templates/player/redesign/profile.html:370
 #: player/templates/player/redesign/view_profile.html:177
 msgctxt "profile"
 msgid "характеристики"
 msgstr "characteristics"
 
-#: player/templates/player/redesign/profile.html:383
+#: player/templates/player/redesign/profile.html:385
 #: player/templates/player/redesign/view_profile.html:192
 msgctxt "profile"
 msgid "место жительства"
 msgstr "region"
 
-#: player/templates/player/redesign/profile.html:392
+#: player/templates/player/redesign/profile.html:394
 #: player/templates/player/redesign/view_profile.html:201
 msgctxt "profile"
 msgid "прописка"
 msgstr "residency"
 
-#: player/templates/player/redesign/profile.html:395
+#: player/templates/player/redesign/profile.html:397
 #: player/templates/player/redesign/view_profile.html:204
 msgctxt "profile"
 msgid "с"
 msgstr "since"
 
-#: player/templates/player/redesign/profile.html:401
+#: player/templates/player/redesign/profile.html:403
 #: player/templates/player/redesign/view_profile.html:210
 msgid "партия"
 msgstr "party"
 
-#: player/templates/player/redesign/profile.html:407
-#: player/templates/player/redesign/profile.html:425
+#: player/templates/player/redesign/profile.html:409
+#: player/templates/player/redesign/profile.html:427
 #: player/templates/player/redesign/view_profile.html:216
 #: player/templates/player/redesign/view_profile.html:234
 msgid "беспартийный"
 msgstr "unaffiliated"
 
-#: player/templates/player/redesign/profile.html:410
+#: player/templates/player/redesign/profile.html:412
 #: player/templates/player/redesign/view_profile.html:219
 msgctxt "profile"
 msgid "история"
 msgstr "history"
 
-#: player/templates/player/redesign/profile.html:417
+#: player/templates/player/redesign/profile.html:419
 #: player/templates/player/redesign/view_profile.html:226
 msgid "должность в партии"
 msgstr "position in the party"
 
-#: player/templates/player/redesign/profile.html:452
+#: player/templates/player/redesign/profile.html:454
 #: player/templates/player/redesign/view_profile.html:240
 msgid "о себе"
 msgstr "bio"
 
-#: player/templates/player/redesign/profile.html:522
+#: player/templates/player/redesign/profile.html:524
 msgctxt "profile"
 msgid "Отмена"
 msgstr "Cancel"
 
-#: player/templates/player/redesign/profile.html:576
+#: player/templates/player/redesign/profile.html:578
 msgctxt "profile"
 msgid "показывать партийный фон"
 msgstr "show party background"
 
-#: player/templates/player/redesign/profile.html:592
+#: player/templates/player/redesign/profile.html:594
 msgctxt "profile"
 msgid "Энергетики в авто-добыче"
 msgstr "Energy drinks in auto-mining"
 
-#: player/templates/player/redesign/profile.html:608
+#: player/templates/player/redesign/profile.html:610
 msgctxt "profile"
 msgid "Скрыть кнопку Wiki"
 msgstr "Hide Wiki button"
 
-#: player/templates/player/redesign/profile.html:639
+#: player/templates/player/redesign/profile.html:641
 msgctxt "profile"
 msgid "стандарт"
 msgstr "standard"
 
-#: player/templates/player/redesign/profile.html:653
+#: player/templates/player/redesign/profile.html:655
 msgctxt "profile"
 msgid "сохранить"
 msgstr "save"
@@ -4409,15 +4454,46 @@ msgctxt "lists"
 msgid "Мировое население"
 msgstr "World pop"
 
-#: player/views/new_player.py:147
+#: player/views/new_player.py:93
+msgctxt "start_messages"
+msgid ""
+"Добро пожаловать в Wild Politics! Вы всегда можете обратиться ко мне прямо в "
+"этом чате - либо связаться со мной через группу игры ВК или чат в Телеграмм. "
+"Я открыт к любым вопросам и пожеланиям."
+msgstr ""
+"Welcome to Wild Politics! You can always contact me directly in this chat - "
+"or contact me through the chat in Telegram. I am open to any questions and "
+"wishes."
+
+#: player/views/new_player.py:94
+msgctxt "start_messages"
+msgid ""
+"Если найдётся время, расскажите, пожалуйста, о своих впечатлениях от игры - "
+"мне это важно. Приятной игры!"
+msgstr ""
+"If you have time, please tell me about your impressions of the game - it is "
+"important to me. Enjoy the game!"
+
+#: player/views/new_player.py:115
+#, python-format
+msgctxt "start_messages"
+msgid ""
+"Добро пожаловать в государство %(state_title)s! Это автоматическое "
+"сообщение, созданное игрой. Но вы можете связаться со мной напрямую, просто "
+"ответив на него"
+msgstr ""
+"Welcome to the %(state_title)s! This is an automated message generated by "
+"the game. But you can contact me directly by simply replying to it."
+
+#: player/views/new_player.py:174
 msgid ": попробуйте создать персонажа, не загружая изображение"
 msgstr ": try creating a character without loading an image"
 
-#: player/views/new_player.py:148 player/views/new_player.py:161
+#: player/views/new_player.py:175 player/views/new_player.py:188
 msgid "Новый персонаж"
 msgstr "New character"
 
-#: player/views/new_player.py:160
+#: player/views/new_player.py:187
 msgid "Ошибка в форме профиля"
 msgstr "Profile form error"
 
@@ -5251,38 +5327,46 @@ msgctxt "skills"
 msgid "Нет навыков в очереди"
 msgstr "No skills in queue"
 
-#: state/models/state.py:27
+#: state/models/state.py:31
 msgctxt "state_view"
 msgid "Временное правительство"
 msgstr "Provisional Government"
 
-#: state/models/state.py:28
+#: state/models/state.py:32
 msgctxt "state_view"
 msgid "Президентская республика"
 msgstr "Presidential Republic"
 
-#: state/models/state.py:37
+#: state/models/state.py:41
 msgctxt "state_view"
 msgid "Свободная"
 msgstr "Free"
 
-#: state/models/state.py:38
+#: state/models/state.py:42
 msgctxt "state_view"
 msgid "Выдаётся министром"
 msgstr "Issued by minister"
 
-#: state/templates/state/redesign/gov/executives.html:24
-#: state/templates/state/redesign/gov/executives.html:34
+#: state/templates/state/redesign/gov/executives.html:26
+#: state/templates/state/redesign/gov/executives.html:39
 msgctxt "executives"
 msgid "Президент"
 msgstr "President"
 
-#: state/templates/state/redesign/gov/executives.html:36
+#: state/templates/state/redesign/gov/executives.html:30
+#, fuzzy
+#| msgctxt "storage_assets"
+#| msgid "Продление"
+msgctxt "executives"
+msgid "управление"
+msgstr "Renewal"
+
+#: state/templates/state/redesign/gov/executives.html:41
 msgctxt "executives"
 msgid "Место вакантно"
 msgstr "Vacant place"
 
-#: state/templates/state/redesign/gov/executives.html:64
+#: state/templates/state/redesign/gov/executives.html:69
 msgctxt "executives"
 msgid "Добавить министра"
 msgstr "Add Minister"
@@ -5346,6 +5430,32 @@ msgstr "parliament"
 msgctxt "government"
 msgid "казна"
 msgstr "treasury"
+
+#: state/templates/state/redesign/gov/manage.html:16
+msgctxt "state_manage"
+msgid "Управление государством"
+msgstr "State management"
+
+#: state/templates/state/redesign/gov/manage.html:21
+msgctxt "state_manage"
+msgid "Цвет на карте"
+msgstr "Color on the map"
+
+#: state/templates/state/redesign/gov/manage.html:22
+#: state/templates/state/redesign/gov/manage.html:72
+msgctxt "state_manage"
+msgid "сохранить"
+msgstr "save"
+
+#: state/templates/state/redesign/gov/manage.html:40
+msgctxt "state_manage"
+msgid "добавить сообщение от государства"
+msgstr "add a message from the state"
+
+#: state/templates/state/redesign/gov/manage.html:55
+msgctxt "state_manage"
+msgid "Смена приветственного сообщения"
+msgstr "Change the welcome message"
 
 #: state/templates/state/redesign/gov/parliament.html:46
 msgctxt "parliament"
@@ -7454,6 +7564,51 @@ msgctxt "war_page"
 msgid "Государственные"
 msgstr "State wars"
 
+#: war/views/join_revolution.py:29
+msgctxt "join_revolution"
+msgid "Поднятие восстания доступно начиная с суммы Характеристик в 15 ед."
+msgstr ""
+
+#: war/views/join_revolution.py:30 war/views/join_revolution.py:53
+#: war/views/join_revolution.py:66 war/views/join_revolution.py:78
+#: war/views/join_revolution.py:90 war/views/join_revolution.py:102
+#: war/views/join_revolution.py:142
+#, fuzzy
+#| msgctxt "war_page"
+#| msgid "Поднять восстание"
+msgctxt "join_revolution"
+msgid "Участие в восстании"
+msgstr "Raise a rebellion"
+
+#: war/views/join_revolution.py:52
+#, fuzzy
+msgctxt "join_revolution"
+msgid "Недостаточно золота"
+msgstr "Not enough "
+
+#: war/views/join_revolution.py:65
+msgctxt "join_revolution"
+msgid "С момента завершения последнего восстания не прошло 7 дней"
+msgstr ""
+
+#: war/views/join_revolution.py:77
+msgctxt "join_revolution"
+msgid "Для участия в восстании требуется прописка"
+msgstr ""
+
+#: war/views/join_revolution.py:89
+#, fuzzy
+#| msgctxt "party_manage"
+#| msgid "Вы не являетесь лидером партии"
+msgctxt "join_revolution"
+msgid "Вы уже являетесь участником восстания здесь"
+msgstr "You are not the party leader"
+
+#: war/views/join_revolution.py:101
+msgctxt "join_revolution"
+msgid "Вы принимали участие в восстании последние 10 дней"
+msgstr ""
+
 #: war/views/open_war_side_list.py:112
 msgctxt "lists"
 msgid "атака"
@@ -7497,6 +7652,14 @@ msgstr ""
 msgctxt "war_page"
 msgid "Войны"
 msgstr "Wars"
+
+#~ msgctxt "profile"
+#~ msgid "очки тестирования Android"
+#~ msgstr "Android testing points"
+
+#~ msgctxt "profile"
+#~ msgid "(к регламенту)"
+#~ msgstr "(to the regulations)"
 
 #~ msgctxt "trading_new"
 #~ msgid "количество"
@@ -7849,11 +8012,6 @@ msgstr "Wars"
 
 #~ msgid "Население региона"
 #~ msgstr "Region pop"
-
-#, fuzzy
-#~ msgctxt "party_manage"
-#~ msgid "Недостаточно прав!"
-#~ msgstr "Not enough "
 
 #~ msgctxt "factory"
 #~ msgid "Внезапно!"
