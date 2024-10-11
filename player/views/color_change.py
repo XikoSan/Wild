@@ -99,7 +99,7 @@ def color_change(request):
     # если страницу только грузят
     else:
         data = {
-            'response': pgettext('mining', 'Ошибка метода'),
+            'response': pgettext('core', 'Ошибка метода'),
             'header': pgettext('party_manage', 'Ошибка изменения цветов игры'),
             'grey_btn': _('Закрыть'),
         }

@@ -105,6 +105,6 @@ def storage_move(request):
         data = {
             'header': pgettext('assets', 'Перемещение Склада'),
             'grey_btn': pgettext('mining', 'Закрыть'),
-            'response': pgettext('mining', 'Ошибка метода'),
+            'response': pgettext('core', 'Ошибка метода'),
         }
         return JsonResponse(data)

@@ -292,6 +292,6 @@ def create_offer(request):
         data = {
             'header': pgettext('w_trading_new', 'Создание оффера'),
             'grey_btn': pgettext('mining', 'Закрыть'),
-            'response': pgettext('mining', 'Ошибка метода'),
+            'response': pgettext('core', 'Ошибка метода'),
         }
         return JsonResponse(data)

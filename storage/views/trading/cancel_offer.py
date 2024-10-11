@@ -162,6 +162,6 @@ def cancel_offer(request):
         data = {
             'header': pgettext('w_trading', 'Отмена оффера'),
             'grey_btn': pgettext('mining', 'Закрыть'),
-            'response': pgettext('mining', 'Ошибка метода'),
+            'response': pgettext('core', 'Ошибка метода'),
         }
         return JsonResponse(data)

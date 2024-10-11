@@ -63,7 +63,7 @@ def party_color_change(request):
             return JResponse(data)
     else:
         data = {
-            'response': pgettext('mining', 'Ошибка метода'),
+            'response': pgettext('core', 'Ошибка метода'),
             'header': pgettext('party_manage', 'Ошибка изменения цветов игры'),
             'grey_btn': _('Закрыть'),
         }

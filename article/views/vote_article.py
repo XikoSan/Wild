@@ -61,7 +61,7 @@ def vote_article(request):
 
         else:
             data = {
-                'response': pgettext('core', 'Нет такой статьи'),
+                'response': pgettext('vote_article', 'Нет такой статьи'),
                 'header': pgettext('vote_article', 'Оценить статью'),
                 'grey_btn': pgettext('core', 'Закрыть'),
             }

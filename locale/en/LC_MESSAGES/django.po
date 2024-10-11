@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-11 03:17+0300\n"
-"PO-Revision-Date: 2024-10-11 03:19+0300\n"
+"POT-Creation-Date: 2024-10-12 00:10+0300\n"
+"PO-Revision-Date: 2024-10-12 00:25+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -190,18 +190,26 @@ msgstr "Edit article"
 #: player/views/skills/up_skill.py:61 player/views/skills/up_skill.py:77
 #: player/views/skills/up_skill.py:97 player/views/skills/up_skill.py:107
 #: player/views/skills/up_skill.py:115 player/views/skills/up_skill.py:123
-#: player/views/skills/up_skill.py:192 skill/views/skill_cancel.py:35
-#: skill/views/skill_cancel.py:43 skill/views/skill_cancel.py:51
-#: skill/views/skill_cancel.py:61 skill/views/skill_cancel.py:76
-#: skill/views/skill_cancel.py:100 storage/views/auctions/set_bet.py:30
-#: storage/views/auctions/set_bet.py:38 storage/views/auctions/set_bet.py:51
-#: storage/views/auctions/set_bet.py:59 storage/views/auctions/set_bet.py:70
-#: storage/views/auctions/set_bet.py:83 storage/views/auctions/set_bet.py:95
-#: storage/views/auctions/set_bet.py:103 storage/views/auctions/set_bet.py:111
-#: storage/views/auctions/set_bet.py:161 war/views/join_revolution.py:31
-#: war/views/join_revolution.py:54 war/views/join_revolution.py:67
-#: war/views/join_revolution.py:79 war/views/join_revolution.py:91
-#: war/views/join_revolution.py:103 war/views/join_revolution.py:140
+#: player/views/skills/up_skill.py:192 region/views/map/get_residency.py:32
+#: region/views/map/get_residency.py:43 region/views/map/get_residency.py:51
+#: region/views/map/get_residency.py:62 region/views/map/get_residency.py:89
+#: region/views/map/get_residency.py:154 region/views/map/map.py:52
+#: region/views/map/map.py:61 region/views/map/map.py:108
+#: region/views/map/map.py:116 region/views/map/plane_info.py:35
+#: region/views/map/plane_info.py:42 region/views/map/region_info.py:43
+#: region/views/map/region_info.py:51 region/views/map/save_links.py:61
+#: skill/views/skill_cancel.py:35 skill/views/skill_cancel.py:43
+#: skill/views/skill_cancel.py:51 skill/views/skill_cancel.py:61
+#: skill/views/skill_cancel.py:76 skill/views/skill_cancel.py:100
+#: storage/views/auctions/set_bet.py:30 storage/views/auctions/set_bet.py:38
+#: storage/views/auctions/set_bet.py:51 storage/views/auctions/set_bet.py:59
+#: storage/views/auctions/set_bet.py:70 storage/views/auctions/set_bet.py:83
+#: storage/views/auctions/set_bet.py:95 storage/views/auctions/set_bet.py:103
+#: storage/views/auctions/set_bet.py:111 storage/views/auctions/set_bet.py:161
+#: war/views/join_revolution.py:31 war/views/join_revolution.py:54
+#: war/views/join_revolution.py:67 war/views/join_revolution.py:79
+#: war/views/join_revolution.py:91 war/views/join_revolution.py:103
+#: war/views/join_revolution.py:140
 msgctxt "core"
 msgid "Закрыть"
 msgstr "Close"
@@ -285,14 +293,12 @@ msgstr "No article rating selected"
 #: article/views/vote_article.py:74
 msgctxt "vote_article"
 msgid "Оценить статью"
-msgstr "Rate the article "
+msgstr "Article rate"
 
 #: article/views/vote_article.py:64
-#, fuzzy
-#| msgid "Нет такого навыка"
-msgctxt "core"
+msgctxt "vote_article"
 msgid "Нет такой статьи"
-msgstr "No such skill"
+msgstr "No such article"
 
 #: bill/models/change_taxes.py:21
 msgid "Регион"
@@ -1654,10 +1660,10 @@ msgstr "Error during cancellation"
 #: region/views/do_mining.py:352 region/views/do_mining.py:367
 #: region/views/do_mining.py:388 region/views/do_mining.py:395
 #: region/views/do_mining.py:427 region/views/map/save_links.py:33
-#: region/views/map/save_links.py:61 region/views/retrieve_cash.py:41
-#: region/views/start_auto.py:28 region/views/start_auto.py:36
-#: region/views/start_auto.py:46 region/views/start_auto.py:55
-#: region/views/start_auto.py:81 storage/views/assets/assets_destroy.py:137
+#: region/views/retrieve_cash.py:41 region/views/start_auto.py:28
+#: region/views/start_auto.py:36 region/views/start_auto.py:46
+#: region/views/start_auto.py:55 region/views/start_auto.py:81
+#: storage/views/assets/assets_destroy.py:137
 #: storage/views/assets/assets_transfer.py:237
 #: storage/views/assets/storage_move.py:37
 #: storage/views/assets/storage_move.py:46
@@ -1920,6 +1926,8 @@ msgstr "Invalid party color code"
 #: party/views/management/roles/new_role.py:79
 #: party/views/management/roles/remove_role.py:77
 #: player/views/color_change.py:102 region/views/do_mining.py:428
+#: region/views/map/get_residency.py:155 region/views/map/plane_info.py:41
+#: region/views/map/region_info.py:50
 #: storage/views/assets/assets_destroy.py:138
 #: storage/views/assets/assets_transfer.py:238
 #: storage/views/assets/storage_move.py:108
@@ -1930,7 +1938,7 @@ msgstr "Invalid party color code"
 #: storage/views/trading/cancel_offer.py:165
 #: storage/views/trading/create_offer.py:295
 #: storage/views/trading/get_offers.py:258 war/views/join_revolution.py:141
-msgctxt "mining"
+msgctxt "core"
 msgid "Ошибка метода"
 msgstr "Method error"
 
@@ -1957,6 +1965,16 @@ msgstr "You are not the party leader"
 msgctxt "edit_state_descr"
 msgid "Сообщение от государства"
 msgstr "There is no state in this region"
+
+#: party/party.py:27
+msgctxt "party_view"
+msgid "Открытая"
+msgstr "Open"
+
+#: party/party.py:28
+msgctxt "party_view"
+msgid "Частная"
+msgstr "Private"
 
 #: party/templates/party/redesign/lists/party_history_list.html:19
 msgctxt "party_hist"
@@ -2099,7 +2117,7 @@ msgstr "Distributing party`s gold"
 #: party/templates/party/redesign/manage.html:238
 msgctxt "party_manage"
 msgid "Баланс партии"
-msgstr "Баланс партии"
+msgstr "Party balance"
 
 #: party/templates/party/redesign/manage.html:246
 msgctxt "party_manage"
@@ -4474,7 +4492,7 @@ msgstr ""
 "If you have time, please tell me about your impressions of the game - it is "
 "important to me. Enjoy the game!"
 
-#: player/views/new_player.py:115
+#: player/views/new_player.py:115 region/tasks.py:49
 #, python-format
 msgctxt "start_messages"
 msgid ""
@@ -5137,25 +5155,94 @@ msgstr "Ore reserves in the region are not enough for mining"
 msgid "Регионы игры"
 msgstr ""
 
-#: region/views/map/map.py:238
+#: region/views/map/get_residency.py:30
+msgctxt "get_residency"
+msgid "Дождитесь конца полёта"
+msgstr "Please wait until the end of the flight"
+
+#: region/views/map/get_residency.py:31 region/views/map/get_residency.py:42
+#: region/views/map/get_residency.py:50 region/views/map/get_residency.py:61
+#: region/views/map/get_residency.py:153
+msgctxt "get_residency"
+msgid "Получение прописки"
+msgstr "Residence permit taking"
+
+#: region/views/map/get_residency.py:44
+msgctxt "get_residency"
+msgid "ID региона должен быть целым числом"
+msgstr "Region ID must be an integer"
+
+#: region/views/map/get_residency.py:52
+msgctxt "get_residency"
+msgid "Региона не существует"
+msgstr "The region does not exist"
+
+#: region/views/map/get_residency.py:63
+msgctxt "get_residency"
+msgid "Указанный регион закрыт для получения прописки"
+msgstr "The specified region is closed for registration"
+
+#: region/views/map/get_residency.py:88
+msgctxt "get_residency"
+msgid "Запрос прописки"
+msgstr "Request for residence permit"
+
+#: region/views/map/get_residency.py:90
+msgctxt "get_residency"
+msgid "Заявка уже существует"
+msgstr "The request already exists"
+
+#: region/views/map/map.py:51 region/views/map/map.py:60
+#: region/views/map/map.py:107 region/views/map/map.py:115
+msgctxt "start_fly"
+msgid "Ошибка полёта"
+msgstr "Flight error"
+
+#: region/views/map/map.py:53
+msgctxt "start_fly"
+msgid "Указанный регион не существует"
+msgstr "The specified region does not exist"
+
+#: region/views/map/map.py:62
+msgctxt "start_fly"
+msgid "Указанный регион закрыт для полётов"
+msgstr "The specified region is closed to flights"
+
+#: region/views/map/map.py:109
+msgctxt "start_fly"
+msgid "Вы уже в полёте"
+msgstr "You are already in flight"
+
+#: region/views/map/map.py:117
+#, python-format
+msgctxt "start_fly"
+msgid "Недостаточно денег. В наличии: $%(cash)s, требуется: $%(cost)s"
+msgstr "Not enough money. Available: $%(cash)s, required: $%(cost)s"
+
+#: region/views/map/map.py:236
+msgctxt "map"
 msgid "Карта"
-msgstr ""
+msgstr "Map"
 
 #: region/views/map/plane_info.py:34
-#, fuzzy
-#| msgctxt "factory"
-#| msgid "Указанный товар не существует"
+msgctxt "plane_info"
 msgid "Игрок не существует"
-msgstr "Specified good does not exist"
+msgstr "The player does not exist"
 
-#: region/views/map/plane_info.py:39 region/views/map/region_info.py:48
-#: storage/views/assets/assets_info.py:65
-msgid "Некорректный запрос"
-msgstr ""
+#: region/views/map/plane_info.py:36 region/views/map/plane_info.py:43
+msgctxt "plane_info"
+msgid "Информация о самолёте"
+msgstr "Aircraft information"
 
 #: region/views/map/region_info.py:42
+msgctxt "region_info"
 msgid "Такого региона нет"
-msgstr ""
+msgstr "There is no such region"
+
+#: region/views/map/region_info.py:44 region/views/map/region_info.py:52
+msgctxt "region_info"
+msgid "Информация о регионе"
+msgstr "Region information"
 
 #: region/views/map/save_links.py:31
 msgctxt "mining"
@@ -6476,6 +6563,13 @@ msgctxt "trading"
 msgid "Ничего не найдено"
 msgstr "Nothing found"
 
+#: storage/templates/storage/redesign/trading/trading.html:84
+#: storage/templates/storage/redesign/trading/trading.html:166
+#: storage/templates/storage/redesign/trading/trading.html:266
+msgctxt "trading"
+msgid "товар"
+msgstr "good"
+
 #: storage/templates/storage/redesign/trading/trading.html:85
 #: storage/templates/storage/redesign/trading/trading.html:345
 msgctxt "trading"
@@ -6555,12 +6649,6 @@ msgstr "category"
 msgctxt "trading"
 msgid "выберите категорию"
 msgstr "select a category"
-
-#: storage/templates/storage/redesign/trading/trading.html:166
-#: storage/templates/storage/redesign/trading/trading.html:266
-msgctxt "trading"
-msgid "товар"
-msgstr "good"
 
 #: storage/templates/storage/redesign/trading/trading.html:169
 #: storage/templates/storage/redesign/trading/trading.html:269
@@ -6751,6 +6839,10 @@ msgstr "Operations with goods"
 #| msgid "Такого языка в игре нет"
 msgid "Такого склада у вас нет"
 msgstr "There is no such language"
+
+#: storage/views/assets/assets_info.py:65
+msgid "Некорректный запрос"
+msgstr ""
 
 #: storage/views/assets/assets_transfer.py:39
 msgctxt "assets"
@@ -7652,6 +7744,10 @@ msgstr ""
 msgctxt "war_page"
 msgid "Войны"
 msgstr "Wars"
+
+#~ msgctxt "mining"
+#~ msgid "Ошибка метода"
+#~ msgstr "Method error"
 
 #~ msgctxt "profile"
 #~ msgid "очки тестирования Android"

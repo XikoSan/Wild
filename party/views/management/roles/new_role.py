@@ -76,7 +76,7 @@ def new_role(request):
     # если страницу только грузят
     else:
         data = {
-            'response': pgettext('mining', 'Ошибка метода'),
+            'response': pgettext('core', 'Ошибка метода'),
             'header': pgettext('party_manage', 'Новая должность'),
             'grey_btn': _('Закрыть'),
         }

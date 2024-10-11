@@ -138,7 +138,7 @@ def join_revolution(request):
     else:
         data = {
             'grey_btn': pgettext('core', 'Закрыть'),
-            'response': pgettext('mining', 'Ошибка метода'),
+            'response': pgettext('core', 'Ошибка метода'),
             'header': pgettext('join_revolution', 'Участие в восстании'),
         }
         return JResponse(data)

@@ -425,6 +425,6 @@ def do_mining(request):
         data = {
             'header': pgettext('mining', 'Ошибка добычи ресурсов'),
             'grey_btn': pgettext('mining', 'Закрыть'),
-            'response': pgettext('mining', 'Ошибка метода'),
+            'response': pgettext('core', 'Ошибка метода'),
         }
         return JResponse(data)

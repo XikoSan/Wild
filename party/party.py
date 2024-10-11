@@ -9,6 +9,7 @@ from django.db.models.signals import post_save, post_delete, pre_save
 from django.dispatch import receiver
 from django.utils import timezone
 from django_celery_beat.models import ClockedSchedule, PeriodicTask, CrontabSchedule
+from django.utils.translation import gettext_lazy, pgettext_lazy
 from io import BytesIO
 
 from region.models.region import Region
@@ -23,8 +24,8 @@ class Party(models.Model):
     open = 'op'
     private = 'pt'
     partyTypeChoices = (
-        (open, 'Открытая'),
-        (private, 'Частная'),
+        (open, pgettext_lazy('party_view', 'Открытая')),
+        (private, pgettext_lazy('party_view', 'Частная')),
     )
     type = models.CharField(
         max_length=2,

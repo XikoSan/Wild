@@ -20,6 +20,7 @@ from region.views.distance_counting import distance_counting
 from region.views.lists.get_regions_online import get_region_online
 from region.views.time_in_flight import time_in_flight
 from wild_politics.settings import JResponse
+from django.utils.translation import pgettext
 from region.models.neighbours import Neighbours
 from player.views.timers import interval_in_seconds
 from region.models.fossils import Fossils
@@ -47,18 +48,18 @@ def map(request):
 
         else:
             data = {
-                'header': 'Ошибка полёта',
-                'grey_btn': 'Закрыть',
-                'response': 'Указанный регион не существует',
+                'header': pgettext('start_fly', 'Ошибка полёта'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('start_fly', 'Указанный регион не существует'),
             }
             return JResponse(data)
 
         if not request.user.is_superuser \
                 and destination.limit_id and player.pk < destination.limit_id:
             data = {
-                'header': 'Ошибка полёта',
-                'grey_btn': 'Закрыть',
-                'response': 'Указанный регион закрыт для полётов',
+                'header': pgettext('start_fly', 'Ошибка полёта'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response':  pgettext('start_fly', 'Указанный регион закрыт для полётов'),
             }
             return JResponse(data)
 
@@ -103,17 +104,18 @@ def map(request):
 
             else:
                 data = {
-                    'header': 'Ошибка полёта',
-                    'grey_btn': 'Закрыть',
-                    'response': 'Вы уже в полёте',
+                    'header': pgettext('start_fly', 'Ошибка полёта'),
+                    'grey_btn': pgettext('core', 'Закрыть'),
+                    'response': pgettext('start_fly', 'Вы уже в полёте'),
                 }
                 return JResponse(data)
 
         else:
             data = {
-                'header': 'Ошибка полёта',
-                'grey_btn': 'Закрыть',
-                'response': 'Недостаточно денег. В наличии: $' + str(player.cash) + ' , требуется: $' + str(cost),
+                'header':  pgettext('start_fly', 'Ошибка полёта'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('start_fly', "Недостаточно денег. В наличии: $%(cash)s, требуется: $%(cost)s") % {"cash": player.cash, "cost": cost},
+
             }
             return JResponse(data)
 
@@ -228,14 +230,10 @@ def map(request):
             if chars_planes.filter(player=char).exists():
                 planes[char.pk] = chars_planes.get(player=char)
 
-
-        groups = list(player.account.groups.all().values_list('name', flat=True))
-        page = 'region/map.html'
-        if 'redesign' not in groups:
-            page = 'region/redesign/map.html'
+        page = 'region/redesign/map.html'
 
         response = render(request, page, {
-            'page_name': _('Карта'),
+            'page_name': pgettext('map', 'Карта'),
 
             'player': player,
             'regions': regions,

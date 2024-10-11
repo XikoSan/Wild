@@ -58,7 +58,7 @@ def save_links(request):
     else:
         data = {
             'header': pgettext('mining', 'Ошибка автоматической добычи ресурсов'),
-            'grey_btn': pgettext('mining', 'Закрыть'),
+            'grey_btn': pgettext('core', 'Закрыть'),
             'response': ugettext('Ошибка метода'),
 
         }

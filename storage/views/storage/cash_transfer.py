@@ -144,6 +144,6 @@ def cash_transfer(request):
         data = {
             'header': pgettext('storage', 'Передача денег'),
             'grey_btn': pgettext('mining', 'Закрыть'),
-            'response': pgettext('mining', 'Ошибка метода'),
+            'response': pgettext('core', 'Ошибка метода'),
         }
         return JsonResponse(data)

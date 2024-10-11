@@ -40,7 +40,7 @@ def switch_description(request):
     else:
         data = {
             'grey_btn': pgettext('core', 'Закрыть'),
-            'response': pgettext('mining', 'Ошибка метода'),
+            'response': pgettext('core', 'Ошибка метода'),
             'header': pgettext('edit_state_descr', 'Сообщение от государства'),
         }
         return JResponse(data)

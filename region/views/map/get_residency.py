@@ -14,6 +14,7 @@ from state.models.parliament.bulletin import Bulletin
 from state.models.parliament.parliament_voting import ParliamentVoting
 from gov.models.vote import Vote
 from gov.models.presidential_voting import PresidentialVoting
+from django.utils.translation import pgettext
 
 # получить прописку
 @login_required(login_url='/')
@@ -26,10 +27,9 @@ def get_residency(request):
 
         if player.destination:
             data = {
-                # 'response': _('wait_flight_end'),
-                'response': 'Дождитесь конца полёта',
-                'header': 'Получение прописки',
-                'grey_btn': 'Закрыть',
+                'response': pgettext('get_residency', 'Дождитесь конца полёта'),
+                'header': pgettext('get_residency', 'Получение прописки'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
 
@@ -39,17 +39,17 @@ def get_residency(request):
 
         except ValueError:
             data = {
-                'header': 'Получение прописки',
-                'grey_btn': 'Закрыть',
-                'response': 'ID региона должен быть целым числом',
+                'header': pgettext('get_residency', 'Получение прописки'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('get_residency', 'ID региона должен быть целым числом'),
             }
             return JsonResponse(data)
 
         if not Region.objects.filter(pk=region).exists():
             data = {
-                'header': 'Получение прописки',
-                'grey_btn': 'Закрыть',
-                'response': 'Региона не существует',
+                'header': pgettext('get_residency', 'Получение прописки'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('get_residency', 'Региона не существует'),
             }
             return JsonResponse(data)
 
@@ -58,9 +58,9 @@ def get_residency(request):
         if not request.user.is_superuser \
                 and region.limit_id and player.pk < region.limit_id:
             data = {
-                'header': 'Получение прописки',
-                'grey_btn': 'Закрыть',
-                'response': 'Указанный регион закрыт для получения прописки',
+                'header': pgettext('get_residency', 'Получение прописки'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('get_residency', 'Указанный регион закрыт для получения прописки'),
             }
             return JResponse(data)
 
@@ -85,9 +85,9 @@ def get_residency(request):
 
                 else:
                     data = {
-                        'header': 'Запрос прописки',
-                        'grey_btn': 'Закрыть',
-                        'response': 'Заявка уже существует',
+                        'header': pgettext('get_residency', 'Запрос прописки'),
+                        'grey_btn': pgettext('core', 'Закрыть'),
+                        'response': pgettext('get_residency', 'Заявка уже существует'),
                     }
                     return JsonResponse(data)
             else:
@@ -150,8 +150,8 @@ def get_residency(request):
 
     else:
         data = {
-            'header': 'Получение прописки',
-            'grey_btn': 'Закрыть',
-            'response': 'Ты уверен что тебе сюда, путник?',
+            'header': pgettext('get_residency', 'Получение прописки'),
+            'grey_btn': pgettext('core', 'Закрыть'),
+            'response': pgettext('core', 'Ошибка метода'),
         }
         return JResponse(data)

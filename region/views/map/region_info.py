@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from django.http import JsonResponse
 from django.shortcuts import redirect
 from django.shortcuts import render, get_object_or_404
-from django.utils.translation import ugettext as _
+from django.utils.translation import pgettext
 from time import gmtime
 from time import strftime
 from player.decorators.player import check_player
@@ -39,12 +39,16 @@ def region_info(request, id):
 
         else:
             data = {
-                'response': _('Такого региона нет'),
+                'response': pgettext('region_info', 'Такого региона нет'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'header': pgettext('region_info', 'Информация о регионе'),
             }
             return JsonResponse(data)
 
     else:
         data = {
-            'response': _('Некорректный запрос'),
+            'response': pgettext('core', 'Ошибка метода'),
+            'grey_btn': pgettext('core', 'Закрыть'),
+            'header': pgettext('region_info', 'Информация о регионе'),
         }
         return JsonResponse(data)

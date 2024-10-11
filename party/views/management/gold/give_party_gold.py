@@ -105,7 +105,7 @@ def give_party_gold(request):
             return JResponse(data)
     else:
         data = {
-            'response': pgettext('mining', 'Ошибка метода'),
+            'response': pgettext('core', 'Ошибка метода'),
             'header': 'Выдача золота',
             'grey_btn': _('Закрыть'),
         }

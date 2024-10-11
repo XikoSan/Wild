@@ -55,7 +55,7 @@ def state_color_change(request):
 
     else:
         data = {
-            'response': pgettext('mining', 'Ошибка метода'),
+            'response': pgettext('core', 'Ошибка метода'),
             'header': pgettext('edit_state_color', 'Цвет государства'),
             'grey_btn': pgettext('core', 'Закрыть'),
         }

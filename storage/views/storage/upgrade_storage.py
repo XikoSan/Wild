@@ -93,6 +93,6 @@ def upgrade_storage(request):
         data = {
             'header': pgettext('storage_upgrade', 'Улучшение Склада'),
             'grey_btn': pgettext('mining', 'Закрыть'),
-            'response': pgettext('mining', 'Ошибка метода'),
+            'response': pgettext('core', 'Ошибка метода'),
         }
         return JsonResponse(data)
