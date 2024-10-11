@@ -26,6 +26,8 @@ from player.lootbox.lootbox import Lootbox
 from player.game_event.game_event import GameEvent
 from storage.models.stock import Stock, Good
 from player.models.medal import Medal
+from gov.models.president import President
+from django.utils.translation import pgettext
 
 
 # Функция создания нового персонажа
@@ -88,8 +90,33 @@ def player_create(request, form):
         player=character,
     )
 
-    _append_message(chat_id=chat_id, author=admin, text='Добро пожаловать в Wild Politics! Вы всегда можете обратиться ко мне прямо в этом чате - либо связаться со мной через группу игры ВК или чат в Телеграмм. Я открыт к любым вопросам и пожеланиям.')
-    _append_message(chat_id=chat_id, author=admin, text='Если найдётся время, расскажите, пожалуйста, о своих впечатлениях от игры - мне это важно. Приятной игры!')
+    _append_message(chat_id=chat_id, author=admin, text=pgettext('start_messages', 'Добро пожаловать в Wild Politics! Вы всегда можете обратиться ко мне прямо в этом чате - либо связаться со мной через группу игры ВК или чат в Телеграмм. Я открыт к любым вопросам и пожеланиям.'))
+    _append_message(chat_id=chat_id, author=admin, text=pgettext('start_messages', 'Если найдётся время, расскажите, пожалуйста, о своих впечатлениях от игры - мне это важно. Приятной игры!'))
+
+    if character.region.state:
+        if President.objects.filter(state=character.region.state).exists():
+            pres_post = President.objects.get(state=character.region.state)
+            # если на посту есть игрок
+            if pres_post.leader:
+
+                pres_chat = Chat.objects.create()
+                pres_chat_id = pres_chat.pk
+
+                member, created = ChatMembers.objects.get_or_create(
+                    chat=pres_chat,
+                    player=pres_post.leader,
+                )
+                member, created = ChatMembers.objects.get_or_create(
+                    chat=pres_chat,
+                    player=character,
+                )
+
+                if not character.region.state.message:
+                    pres_text = pgettext('start_messages', "Добро пожаловать в государство %(state_title)s! Это автоматическое сообщение, созданное игрой. Но вы можете связаться со мной напрямую, просто ответив на него") % {"state_title": character.region.state }
+                else:
+                    pres_text = character.region.state.message
+
+                _append_message(chat_id=pres_chat_id, author=pres_post.leader, text=pres_text)
 
     # if GameEvent.objects.filter(running=True, type='ny', event_start__lt=timezone.now(), event_end__gt=timezone.now()).exists():
     # if Lootbox.objects.filter(player=character).exists():

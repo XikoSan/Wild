@@ -28,7 +28,7 @@ def switch_description(request):
         state = DeputyMandate.objects.get(player=player, is_president=True).parliament.state
 
         desk = request.POST.get('new_state_deskr')
-        state.message = desk
+        state.message = desk[:300]
         state.save()
 
         data = {
