@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-12 00:10+0300\n"
-"PO-Revision-Date: 2024-10-12 00:25+0300\n"
+"POT-Creation-Date: 2024-10-12 00:46+0300\n"
+"PO-Revision-Date: 2024-10-12 01:00+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -178,12 +178,18 @@ msgstr "Edit article"
 #: bill/views/bills/cancel_bill.py:79 bill/views/bills/cancel_bill.py:86
 #: bill/views/bills/cancel_bill.py:93 bill/views/bills/cancel_bill.py:100
 #: bill/views/bills/cancel_bill.py:107 bill/views/bills/cancel_bill.py:115
-#: gov/views/color_change.py:30 gov/views/color_change.py:44
-#: gov/views/color_change.py:60 gov/views/switch_description.py:24
-#: gov/views/switch_description.py:42 player/views/change_bio.py:34
-#: player/views/skills/boost_skill.py:59 player/views/skills/boost_skill.py:72
-#: player/views/skills/boost_skill.py:80 player/views/skills/boost_skill.py:94
-#: player/views/skills/boost_skill.py:104
+#: bill/views/bills/speedup_bill.py:35 bill/views/bills/speedup_bill.py:44
+#: bill/views/bills/speedup_bill.py:70 bill/views/bills/speedup_bill.py:85
+#: bill/views/bills/speedup_bill.py:96 bill/views/bills/speedup_bill.py:104
+#: bill/views/bills/speedup_bill.py:127 bill/views/bills/speedup_bill.py:134
+#: bill/views/bills/speedup_bill.py:141 bill/views/bills/speedup_bill.py:148
+#: bill/views/bills/speedup_bill.py:155 bill/views/bills/speedup_bill.py:162
+#: bill/views/bills/speedup_bill.py:170 gov/views/color_change.py:30
+#: gov/views/color_change.py:44 gov/views/color_change.py:60
+#: gov/views/switch_description.py:24 gov/views/switch_description.py:42
+#: player/views/change_bio.py:34 player/views/skills/boost_skill.py:59
+#: player/views/skills/boost_skill.py:72 player/views/skills/boost_skill.py:80
+#: player/views/skills/boost_skill.py:94 player/views/skills/boost_skill.py:104
 #: player/views/skills/boost_skill.py:113
 #: player/views/skills/boost_skill.py:123
 #: player/views/skills/boost_skill.py:168 player/views/skills/up_skill.py:35
@@ -1182,6 +1188,89 @@ msgctxt "cancel_bill"
 msgid "В этом регионе нет государства"
 msgstr "There is no state in this region"
 
+#: bill/views/bills/speedup_bill.py:33
+msgctxt "speedup_bill"
+msgid "Вы - не депутат этого парламента"
+msgstr "You are not a member of this parliament"
+
+#: bill/views/bills/speedup_bill.py:34 bill/views/bills/speedup_bill.py:43
+#: bill/views/bills/speedup_bill.py:69 bill/views/bills/speedup_bill.py:84
+#: bill/views/bills/speedup_bill.py:95 bill/views/bills/speedup_bill.py:103
+#: bill/views/bills/speedup_bill.py:126 bill/views/bills/speedup_bill.py:133
+#: bill/views/bills/speedup_bill.py:140 bill/views/bills/speedup_bill.py:147
+#: bill/views/bills/speedup_bill.py:154 bill/views/bills/speedup_bill.py:161
+#: bill/views/bills/speedup_bill.py:169
+msgctxt "speedup_bill"
+msgid "Досрочное принятие"
+msgstr "Early acceptance"
+
+#: bill/views/bills/speedup_bill.py:42
+msgctxt "speedup_bill"
+msgid "Вы - не министр этого государства"
+msgstr "You are not a minister of this state"
+
+#: bill/views/bills/speedup_bill.py:68
+msgctxt "speedup_bill"
+msgid "Нет права досрочно принимать этот законопроект"
+msgstr "There is no right to acceptance this bill early"
+
+#: bill/views/bills/speedup_bill.py:83
+msgctxt "speedup_bill"
+msgid "В вашем государстве нет лидера"
+msgstr "There is no leader in your state"
+
+#: bill/views/bills/speedup_bill.py:102
+msgctxt "speedup_bill"
+msgid "Лидер государства ещё не подписал этот законопроект"
+msgstr "The head of state has not yet signed this bill"
+
+#: bill/views/bills/speedup_bill.py:125
+msgctxt "speedup_bill"
+msgid "Досрочное принятие запрещено"
+msgstr "Early acceptance is prohibited"
+
+#: bill/views/bills/speedup_bill.py:132
+msgctxt "speedup_bill"
+msgid "Надо проголосовать!"
+msgstr "We need to vote!"
+
+#: bill/views/bills/speedup_bill.py:139
+msgctxt "speedup_bill"
+msgid "Нет такого законопроекта"
+msgstr "There is no such bill"
+
+#: bill/views/bills/speedup_bill.py:146
+msgctxt "speedup_bill"
+msgid "Нет такого вида законопроекта"
+msgstr "There is no such type of bill"
+
+#: bill/views/bills/speedup_bill.py:153
+msgctxt "speedup_bill"
+msgid "В этом государстве нет парламента"
+msgstr "There is no parliament in this state"
+
+#: bill/views/bills/speedup_bill.py:168 gov/views/color_change.py:58
+#: gov/views/switch_description.py:43 party/views/management/color_change.py:66
+#: party/views/management/gold/give_party_gold.py:108
+#: party/views/management/roles/new_role.py:79
+#: party/views/management/roles/remove_role.py:77
+#: player/views/color_change.py:102 region/views/do_mining.py:428
+#: region/views/map/get_residency.py:155 region/views/map/plane_info.py:41
+#: region/views/map/region_info.py:50
+#: storage/views/assets/assets_destroy.py:138
+#: storage/views/assets/assets_transfer.py:238
+#: storage/views/assets/storage_move.py:108
+#: storage/views/storage/cash_transfer.py:147
+#: storage/views/storage/new_storage.py:107
+#: storage/views/storage/upgrade_storage.py:96
+#: storage/views/trading/accept_offer.py:476
+#: storage/views/trading/cancel_offer.py:165
+#: storage/views/trading/create_offer.py:295
+#: storage/views/trading/get_offers.py:258 war/views/join_revolution.py:141
+msgctxt "core"
+msgid "Ошибка метода"
+msgstr "Method error"
+
 #: chat/templates/chat/dialogue.html:31
 msgctxt "chat"
 msgid "Загрузить предыдущие сообщения"
@@ -1919,28 +2008,6 @@ msgstr "State"
 msgctxt "edit_state_color"
 msgid "Некорректный код цвета партии"
 msgstr "Invalid party color code"
-
-#: gov/views/color_change.py:58 gov/views/switch_description.py:43
-#: party/views/management/color_change.py:66
-#: party/views/management/gold/give_party_gold.py:108
-#: party/views/management/roles/new_role.py:79
-#: party/views/management/roles/remove_role.py:77
-#: player/views/color_change.py:102 region/views/do_mining.py:428
-#: region/views/map/get_residency.py:155 region/views/map/plane_info.py:41
-#: region/views/map/region_info.py:50
-#: storage/views/assets/assets_destroy.py:138
-#: storage/views/assets/assets_transfer.py:238
-#: storage/views/assets/storage_move.py:108
-#: storage/views/storage/cash_transfer.py:147
-#: storage/views/storage/new_storage.py:107
-#: storage/views/storage/upgrade_storage.py:96
-#: storage/views/trading/accept_offer.py:476
-#: storage/views/trading/cancel_offer.py:165
-#: storage/views/trading/create_offer.py:295
-#: storage/views/trading/get_offers.py:258 war/views/join_revolution.py:141
-msgctxt "core"
-msgid "Ошибка метода"
-msgstr "Method error"
 
 #: gov/views/manage_view.py:25
 #, fuzzy

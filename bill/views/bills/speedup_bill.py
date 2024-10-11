@@ -11,6 +11,8 @@ from state.tasks import run_bill
 from wild_politics.settings import JResponse
 from gov.models.minister import Minister
 from gov.models.president import President
+from django.utils.translation import pgettext
+
 # новый законопроект
 @login_required(login_url='/')
 @check_player
@@ -28,18 +30,18 @@ def speedup_bill(request):
                 # проверяем, депутат ли этого парла игрок или нет
                 if not DeputyMandate.objects.filter(player=player, parliament=parliament).exists():
                     data = {
-                        'response': 'Вы - не депутат этого парламента',
-                        'header': 'Досрочное принятие',
-                        'grey_btn': 'Закрыть',
+                        'response': pgettext('speedup_bill', 'Вы - не депутат этого парламента'),
+                        'header': pgettext('speedup_bill', 'Досрочное принятие'),
+                        'grey_btn': pgettext('core', 'Закрыть'),
                     }
                     return JResponse(data)
 
                 minister = None
                 if not Minister.objects.filter(state=parliament.state, player=player).exists():
                     data = {
-                        'response': 'Вы - не министр этого государства',
-                        'header': 'Досрочное принятие',
-                        'grey_btn': 'Закрыть',
+                        'response': pgettext('speedup_bill', 'Вы - не министр этого государства'),
+                        'header': pgettext('speedup_bill', 'Досрочное принятие'),
+                        'grey_btn': pgettext('core', 'Закрыть'),
                     }
                     return JResponse(data)
                     
@@ -63,9 +65,9 @@ def speedup_bill(request):
 
                     if not has_right:
                         data = {
-                            'response': 'Нет права досрочно принимать этот законопроект',
-                            'header': 'Досрочное принятие',
-                            'grey_btn': 'Закрыть',
+                            'response': pgettext('speedup_bill', 'Нет права досрочно принимать этот законопроект'),
+                            'header': pgettext('speedup_bill', 'Досрочное принятие'),
+                            'grey_btn': pgettext('core', 'Закрыть'),
                         }
                         return JResponse(data)
 
@@ -76,22 +78,30 @@ def speedup_bill(request):
                         if President.objects.filter(state=parliament.state, leader__isnull=False).exists():
                             president = President.objects.get(state=parliament.state).leader
 
+                        else:
+                            data = {
+                                'response': pgettext('speedup_bill', 'В вашем государстве нет лидера'),
+                                'header': pgettext('speedup_bill', 'Досрочное принятие'),
+                                'grey_btn': pgettext('core', 'Закрыть'),
+                            }
+                            return JResponse(data)
+
                         votes_pro = bill.votes_pro.all()
                         votes_con = bill.votes_con.all()
 
                         if player in votes_con:
                             data = {
                                 'response': 'Вы проголосовали против, досрочное принятие невозможно',
-                                'header': 'Досрочное принятие',
-                                'grey_btn': 'Закрыть',
+                                'header': pgettext('speedup_bill', 'Досрочное принятие'),
+                                'grey_btn': pgettext('core', 'Закрыть'),
                             }
                             return JResponse(data)
 
                         if not president in votes_pro:
                             data = {
-                                'response': 'Президент ещё не подписал этот законопроект',
-                                'header': 'Досрочное принятие',
-                                'grey_btn': 'Закрыть',
+                                'response': pgettext('speedup_bill', 'Лидер государства ещё не подписал этот законопроект'),
+                                'header': pgettext('speedup_bill', 'Досрочное принятие'),
+                                'grey_btn': pgettext('core', 'Закрыть'),
                             }
                             return JResponse(data)
 
@@ -112,51 +122,51 @@ def speedup_bill(request):
 
                             else:
                                 data = {
-                                    'response': 'Досрочное принятие запрещено',
-                                    'header': 'Досрочное принятие',
-                                    'grey_btn': 'Закрыть',
+                                    'response': pgettext('speedup_bill', 'Досрочное принятие запрещено'),
+                                    'header': pgettext('speedup_bill', 'Досрочное принятие'),
+                                    'grey_btn': pgettext('core', 'Закрыть'),
                                 }
                                 return JResponse(data)
                         else:
                             data = {
-                                'response': 'Надо проголосовать!',
-                                'header': 'Досрочное принятие',
-                                'grey_btn': 'Закрыть',
+                                'response': pgettext('speedup_bill', 'Надо проголосовать!'),
+                                'header': pgettext('speedup_bill', 'Досрочное принятие'),
+                                'grey_btn': pgettext('core', 'Закрыть'),
                             }
                             return JResponse(data)
                     else:
                         data = {
-                            'response': 'Нет такого законопроекта',
-                            'header': 'Досрочное принятие',
-                            'grey_btn': 'Закрыть',
+                            'response': pgettext('speedup_bill', 'Нет такого законопроекта'),
+                            'header': pgettext('speedup_bill', 'Досрочное принятие'),
+                            'grey_btn': pgettext('core', 'Закрыть'),
                         }
                         return JResponse(data)
                 else:
                     data = {
-                        'response': 'Нет такого вида законопроекта',
-                        'header': 'Досрочное принятие',
-                        'grey_btn': 'Закрыть',
+                        'response': pgettext('speedup_bill', 'Нет такого вида законопроекта'),
+                        'header': pgettext('speedup_bill', 'Досрочное принятие'),
+                        'grey_btn': pgettext('core', 'Закрыть'),
                     }
                     return JResponse(data)
             else:
                 data = {
-                    'response': 'В этом государстве нет парламента',
-                    'header': 'Досрочное принятие',
-                    'grey_btn': 'Закрыть',
+                    'response': pgettext('speedup_bill', 'В этом государстве нет парламента'),
+                    'header': pgettext('speedup_bill', 'Досрочное принятие'),
+                    'grey_btn': pgettext('core', 'Закрыть'),
                 }
                 return JResponse(data)
         else:
             data = {
                 'response': 'В этом регионе нет государства',
-                'header': 'Досрочное принятие',
-                'grey_btn': 'Закрыть',
+                'header': pgettext('speedup_bill', 'Досрочное принятие'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
     # если страницу только грузят
     else:
         data = {
-            'response': 'Ошибка типа запроса',
-            'header': 'Основание государства',
-            'grey_btn': 'Закрыть',
+            'response': pgettext('core', 'Ошибка метода'),
+            'header': pgettext('speedup_bill', 'Досрочное принятие'),
+            'grey_btn': pgettext('core', 'Закрыть'),
         }
         return JResponse(data)
