@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-11 03:17+0300\n"
-"PO-Revision-Date: 2024-10-11 03:19+0300\n"
+"POT-Creation-Date: 2024-10-12 02:54+0300\n"
+"PO-Revision-Date: 2024-10-12 02:54+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -174,10 +174,68 @@ msgstr "Edit article"
 #: article/views/create_article.py:120 article/views/subscription.py:30
 #: article/views/subscription.py:64 article/views/subscription.py:73
 #: article/views/vote_article.py:48 article/views/vote_article.py:66
-#: article/views/vote_article.py:75 bill/views/bills/cancel_bill.py:72
+#: article/views/vote_article.py:75 bill/models/change_coat.py:33
+#: bill/models/change_coat.py:42 bill/models/change_form.py:46
+#: bill/models/change_form.py:60 bill/models/change_form.py:67
+#: bill/models/change_residency.py:54 bill/models/change_residency.py:68
+#: bill/models/change_residency.py:75 bill/models/change_residency.py:82
+#: bill/models/change_taxes.py:65 bill/models/change_taxes.py:84
+#: bill/models/change_taxes.py:95 bill/models/change_taxes.py:105
+#: bill/models/change_taxes.py:115 bill/models/change_taxes.py:125
+#: bill/models/change_taxes.py:133 bill/models/change_title.py:26
+#: bill/models/change_title.py:35 bill/models/construction.py:96
+#: bill/models/construction.py:106 bill/models/construction.py:117
+#: bill/models/construction.py:135 bill/models/construction.py:142
+#: bill/models/construction.py:167 bill/models/construction.py:173
+#: bill/models/explore_resources.py:54 bill/models/explore_resources.py:64
+#: bill/models/explore_resources.py:75 bill/models/explore_resources.py:90
+#: bill/models/explore_resources.py:114 bill/models/explore_resources.py:120
+#: bill/models/geological_surveys.py:53 bill/models/geological_surveys.py:63
+#: bill/models/geological_surveys.py:82 bill/models/geological_surveys.py:106
+#: bill/models/geological_surveys.py:112 bill/models/independence.py:42
+#: bill/models/independence.py:49 bill/models/independence.py:59
+#: bill/models/independence.py:70 bill/models/independence.py:79
+#: bill/models/independence.py:87 bill/models/independence.py:98
+#: bill/models/independence.py:120 bill/models/martial_law.py:48
+#: bill/models/martial_law.py:62 bill/models/martial_law.py:69
+#: bill/models/martial_law.py:79 bill/models/martial_law.py:90
+#: bill/models/martial_law.py:98 bill/models/martial_law.py:108
+#: bill/models/martial_law.py:132 bill/models/purchase_auction.py:47
+#: bill/models/purchase_auction.py:58 bill/models/purchase_auction.py:65
+#: bill/models/purchase_auction.py:77 bill/models/purchase_auction.py:84
+#: bill/models/purchase_auction.py:96 bill/models/purchase_auction.py:103
+#: bill/models/purchase_auction.py:110 bill/models/purchase_auction.py:121
+#: bill/models/purchase_auction.py:149 bill/models/start_war.py:85
+#: bill/models/start_war.py:95 bill/models/start_war.py:102
+#: bill/models/start_war.py:112 bill/models/start_war.py:119
+#: bill/models/start_war.py:126 bill/models/start_war.py:137
+#: bill/models/start_war.py:156 bill/models/start_war.py:168
+#: bill/models/start_war.py:179 bill/models/transfer_accept.py:51
+#: bill/models/transfer_accept.py:58 bill/models/transfer_accept.py:68
+#: bill/models/transfer_accept.py:85 bill/models/transfer_accept.py:117
+#: bill/models/transfer_region.py:53 bill/models/transfer_region.py:60
+#: bill/models/transfer_region.py:67 bill/models/transfer_region.py:77
+#: bill/models/transfer_region.py:87 bill/models/transfer_region.py:98
+#: bill/models/transfer_region.py:110 bill/models/transfer_region.py:117
+#: bill/models/transfer_region.py:142 bill/models/transfer_resources.py:62
+#: bill/models/transfer_resources.py:69 bill/models/transfer_resources.py:76
+#: bill/models/transfer_resources.py:85 bill/models/transfer_resources.py:97
+#: bill/models/transfer_resources.py:106 bill/models/transfer_resources.py:120
+#: bill/models/transfer_resources.py:127 bill/models/transfer_resources.py:136
+#: bill/models/transfer_resources.py:148 bill/models/transfer_resources.py:155
+#: bill/models/transfer_resources.py:175 bill/views/bills/cancel_bill.py:72
 #: bill/views/bills/cancel_bill.py:79 bill/views/bills/cancel_bill.py:86
 #: bill/views/bills/cancel_bill.py:93 bill/views/bills/cancel_bill.py:100
 #: bill/views/bills/cancel_bill.py:107 bill/views/bills/cancel_bill.py:115
+#: bill/views/bills/new_bill.py:50 bill/views/bills/new_bill.py:57
+#: bill/views/bills/new_bill.py:64 bill/views/bills/new_bill.py:71
+#: bill/views/bills/new_bill.py:79 bill/views/bills/speedup_bill.py:35
+#: bill/views/bills/speedup_bill.py:44 bill/views/bills/speedup_bill.py:70
+#: bill/views/bills/speedup_bill.py:85 bill/views/bills/speedup_bill.py:96
+#: bill/views/bills/speedup_bill.py:104 bill/views/bills/speedup_bill.py:127
+#: bill/views/bills/speedup_bill.py:134 bill/views/bills/speedup_bill.py:141
+#: bill/views/bills/speedup_bill.py:148 bill/views/bills/speedup_bill.py:155
+#: bill/views/bills/speedup_bill.py:162 bill/views/bills/speedup_bill.py:170
 #: gov/views/color_change.py:30 gov/views/color_change.py:44
 #: gov/views/color_change.py:60 gov/views/switch_description.py:24
 #: gov/views/switch_description.py:42 player/views/change_bio.py:34
@@ -190,18 +248,26 @@ msgstr "Edit article"
 #: player/views/skills/up_skill.py:61 player/views/skills/up_skill.py:77
 #: player/views/skills/up_skill.py:97 player/views/skills/up_skill.py:107
 #: player/views/skills/up_skill.py:115 player/views/skills/up_skill.py:123
-#: player/views/skills/up_skill.py:192 skill/views/skill_cancel.py:35
-#: skill/views/skill_cancel.py:43 skill/views/skill_cancel.py:51
-#: skill/views/skill_cancel.py:61 skill/views/skill_cancel.py:76
-#: skill/views/skill_cancel.py:100 storage/views/auctions/set_bet.py:30
-#: storage/views/auctions/set_bet.py:38 storage/views/auctions/set_bet.py:51
-#: storage/views/auctions/set_bet.py:59 storage/views/auctions/set_bet.py:70
-#: storage/views/auctions/set_bet.py:83 storage/views/auctions/set_bet.py:95
-#: storage/views/auctions/set_bet.py:103 storage/views/auctions/set_bet.py:111
-#: storage/views/auctions/set_bet.py:161 war/views/join_revolution.py:31
-#: war/views/join_revolution.py:54 war/views/join_revolution.py:67
-#: war/views/join_revolution.py:79 war/views/join_revolution.py:91
-#: war/views/join_revolution.py:103 war/views/join_revolution.py:140
+#: player/views/skills/up_skill.py:192 region/views/map/get_residency.py:32
+#: region/views/map/get_residency.py:43 region/views/map/get_residency.py:51
+#: region/views/map/get_residency.py:62 region/views/map/get_residency.py:89
+#: region/views/map/get_residency.py:154 region/views/map/map.py:52
+#: region/views/map/map.py:61 region/views/map/map.py:108
+#: region/views/map/map.py:116 region/views/map/plane_info.py:35
+#: region/views/map/plane_info.py:42 region/views/map/region_info.py:43
+#: region/views/map/region_info.py:51 region/views/map/save_links.py:61
+#: skill/views/skill_cancel.py:35 skill/views/skill_cancel.py:43
+#: skill/views/skill_cancel.py:51 skill/views/skill_cancel.py:61
+#: skill/views/skill_cancel.py:76 skill/views/skill_cancel.py:100
+#: storage/views/auctions/set_bet.py:30 storage/views/auctions/set_bet.py:38
+#: storage/views/auctions/set_bet.py:51 storage/views/auctions/set_bet.py:59
+#: storage/views/auctions/set_bet.py:70 storage/views/auctions/set_bet.py:83
+#: storage/views/auctions/set_bet.py:95 storage/views/auctions/set_bet.py:103
+#: storage/views/auctions/set_bet.py:111 storage/views/auctions/set_bet.py:161
+#: war/views/join_revolution.py:31 war/views/join_revolution.py:54
+#: war/views/join_revolution.py:67 war/views/join_revolution.py:79
+#: war/views/join_revolution.py:91 war/views/join_revolution.py:103
+#: war/views/join_revolution.py:140
 msgctxt "core"
 msgid "Закрыть"
 msgstr "Close"
@@ -285,40 +351,199 @@ msgstr "No article rating selected"
 #: article/views/vote_article.py:74
 msgctxt "vote_article"
 msgid "Оценить статью"
-msgstr "Rate the article "
+msgstr "Article rate"
 
 #: article/views/vote_article.py:64
-#, fuzzy
-#| msgid "Нет такого навыка"
-msgctxt "core"
+msgctxt "vote_article"
 msgid "Нет такой статьи"
-msgstr "No such skill"
+msgstr "No such article"
 
-#: bill/models/change_taxes.py:21
+#: bill/models/change_coat.py:32 bill/models/change_coat.py:41
+#: bill/models/change_form.py:45 bill/models/change_form.py:59
+#: bill/models/change_form.py:66 bill/models/change_residency.py:53
+#: bill/models/change_residency.py:67 bill/models/change_residency.py:74
+#: bill/models/change_residency.py:81 bill/models/change_taxes.py:64
+#: bill/models/change_taxes.py:83 bill/models/change_taxes.py:94
+#: bill/models/change_taxes.py:104 bill/models/change_taxes.py:114
+#: bill/models/change_taxes.py:124 bill/models/change_taxes.py:132
+#: bill/models/change_title.py:25 bill/models/change_title.py:34
+#: bill/models/construction.py:95 bill/models/construction.py:105
+#: bill/models/construction.py:116 bill/models/construction.py:134
+#: bill/models/construction.py:141 bill/models/construction.py:166
+#: bill/models/construction.py:172 bill/models/explore_resources.py:53
+#: bill/models/explore_resources.py:63 bill/models/explore_resources.py:74
+#: bill/models/explore_resources.py:89 bill/models/explore_resources.py:113
+#: bill/models/explore_resources.py:119 bill/models/geological_surveys.py:52
+#: bill/models/geological_surveys.py:62 bill/models/geological_surveys.py:81
+#: bill/models/geological_surveys.py:105 bill/models/geological_surveys.py:111
+#: bill/models/independence.py:41 bill/models/independence.py:48
+#: bill/models/independence.py:58 bill/models/independence.py:69
+#: bill/models/independence.py:78 bill/models/independence.py:86
+#: bill/models/independence.py:97 bill/models/independence.py:119
+#: bill/models/martial_law.py:47 bill/models/martial_law.py:61
+#: bill/models/martial_law.py:68 bill/models/martial_law.py:78
+#: bill/models/martial_law.py:89 bill/models/martial_law.py:97
+#: bill/models/martial_law.py:107 bill/models/martial_law.py:131
+#: bill/models/purchase_auction.py:46 bill/models/purchase_auction.py:57
+#: bill/models/purchase_auction.py:64 bill/models/purchase_auction.py:76
+#: bill/models/purchase_auction.py:83 bill/models/purchase_auction.py:95
+#: bill/models/purchase_auction.py:102 bill/models/purchase_auction.py:109
+#: bill/models/purchase_auction.py:120 bill/models/purchase_auction.py:148
+#: bill/models/start_war.py:84 bill/models/start_war.py:94
+#: bill/models/start_war.py:101 bill/models/start_war.py:111
+#: bill/models/start_war.py:118 bill/models/start_war.py:125
+#: bill/models/start_war.py:136 bill/models/start_war.py:155
+#: bill/models/start_war.py:167 bill/models/start_war.py:178
+#: bill/models/transfer_accept.py:50 bill/models/transfer_accept.py:57
+#: bill/models/transfer_accept.py:67 bill/models/transfer_accept.py:84
+#: bill/models/transfer_accept.py:116 bill/models/transfer_region.py:52
+#: bill/models/transfer_region.py:59 bill/models/transfer_region.py:66
+#: bill/models/transfer_region.py:76 bill/models/transfer_region.py:86
+#: bill/models/transfer_region.py:97 bill/models/transfer_region.py:109
+#: bill/models/transfer_region.py:116 bill/models/transfer_region.py:141
+#: bill/models/transfer_resources.py:61 bill/models/transfer_resources.py:68
+#: bill/models/transfer_resources.py:75 bill/models/transfer_resources.py:84
+#: bill/models/transfer_resources.py:96 bill/models/transfer_resources.py:105
+#: bill/models/transfer_resources.py:119 bill/models/transfer_resources.py:126
+#: bill/models/transfer_resources.py:135 bill/models/transfer_resources.py:147
+#: bill/models/transfer_resources.py:154 bill/models/transfer_resources.py:174
+#: bill/views/bills/new_bill.py:49 bill/views/bills/new_bill.py:56
+#: bill/views/bills/new_bill.py:63 bill/views/bills/new_bill.py:70
+#: bill/views/bills/new_bill.py:78
+msgctxt "new_bill"
+msgid "Новый законопроект"
+msgstr "New bill"
+
+#: bill/models/change_coat.py:34 bill/models/change_form.py:47
+#: bill/models/change_residency.py:55 bill/models/change_taxes.py:66
+#: bill/models/change_title.py:27 bill/models/construction.py:97
+#: bill/models/explore_resources.py:55 bill/models/geological_surveys.py:54
+#: bill/models/independence.py:50 bill/models/martial_law.py:49
+#: bill/models/purchase_auction.py:48 bill/models/start_war.py:86
+#: bill/models/transfer_accept.py:59 bill/models/transfer_region.py:68
+#: bill/models/transfer_resources.py:86
+msgctxt "new_bill"
+msgid "Ограничение: не более одного законопроекта данного типа"
+msgstr "Limit: no more than one bill of this type"
+
+#: bill/models/change_coat.py:43
+msgctxt "new_bill"
+msgid "Ошибка формы нового герба"
+msgstr "Error in the form of the new coat of arms"
+
+#: bill/models/change_form.py:61
+msgctxt "new_bill"
+msgid "Новая форма государства должна быть указана"
+msgstr "The new form of government must be specified"
+
+#: bill/models/change_form.py:68
+msgctxt "new_bill"
+msgid "Такой формы государства не существует"
+msgstr "This form of government does not exist."
+
+#: bill/models/change_residency.py:69
+msgctxt "new_bill"
+msgid "Тип получения прописки должен быть указан"
+msgstr "The type of registration must be specified"
+
+#: bill/models/change_residency.py:76
+msgctxt "new_bill"
+msgid "Такого типа получения прописки не существует"
+msgstr "This type of registration does not exist"
+
+#: bill/models/change_residency.py:83
+msgctxt "new_bill"
+msgid "Этот тип получения прописки уже выбран"
+msgstr "This type of registration has already been selected"
+
+#: bill/models/change_taxes.py:22
 msgid "Регион"
 msgstr "Region"
 
-#: bill/models/change_taxes.py:22
+#: bill/models/change_taxes.py:23
 msgid "Государство"
 msgstr "State"
 
-#: bill/models/change_taxes.py:38
+#: bill/models/change_taxes.py:39
 msgid "Финансирование"
 msgstr "Financing"
 
-#: bill/models/change_taxes.py:39 bill/models/explore_resources.py:31
-#: bill/models/geological_surveys.py:27
+#: bill/models/change_taxes.py:40 bill/models/explore_resources.py:32
+#: bill/models/geological_surveys.py:29
 msgid "Нефть"
 msgstr "Oil"
 
-#: bill/models/change_taxes.py:40 bill/models/explore_resources.py:32
-#: bill/models/geological_surveys.py:28
+#: bill/models/change_taxes.py:41 bill/models/explore_resources.py:33
+#: bill/models/geological_surveys.py:30
 msgid "Руда"
 msgstr "Ore"
 
-#: bill/models/change_taxes.py:41
+#: bill/models/change_taxes.py:42
 msgid "Торговля"
 msgstr "Trading"
+
+#: bill/models/change_taxes.py:85 bill/models/construction.py:107
+#: bill/models/explore_resources.py:65 bill/models/geological_surveys.py:64
+#: bill/models/independence.py:60 bill/models/martial_law.py:80
+#: bill/models/transfer_accept.py:69 bill/models/transfer_region.py:78
+#: bill/models/transfer_resources.py:149
+msgctxt "new_bill"
+msgid "ID региона должен быть целым числом"
+msgstr "Region ID must be an integer"
+
+#: bill/models/change_taxes.py:93 bill/models/construction.py:171
+#: bill/models/explore_resources.py:118 bill/models/geological_surveys.py:110
+#: bill/models/martial_law.py:130 bill/models/transfer_accept.py:115
+#: bill/models/transfer_region.py:140
+msgctxt "new_bill"
+msgid "Нет такого региона"
+msgstr "There is no such region"
+
+#: bill/models/change_taxes.py:103
+msgctxt "new_bill"
+msgid "Не указана цель смены налога"
+msgstr "The target of the tax change is not specified"
+
+#: bill/models/change_taxes.py:113
+msgctxt "new_bill"
+msgid "Не указан изменяемый налог"
+msgstr "Variable tax not specified"
+
+#: bill/models/change_taxes.py:126
+msgctxt "new_bill"
+msgid "Новая величина налога должна быть целым числом"
+msgstr "The new tax amount must be an integer"
+
+#: bill/models/change_taxes.py:134
+msgctxt "new_bill"
+msgid "Новая величина налога должна быть целым числом в интервале 0..90"
+msgstr "The new tax amount must be an integer in the range 0..90"
+
+#: bill/models/change_title.py:36
+msgctxt "new_bill"
+msgid "Новое название не должно быть пустым"
+msgstr "The new name must not be empty"
+
+#: bill/models/construction.py:118 bill/models/explore_resources.py:76
+#: bill/models/transfer_region.py:99
+msgctxt "new_bill"
+msgid "В данном регионе введено военное положение"
+msgstr "Martial law has been declared in this region"
+
+#: bill/models/construction.py:136
+msgctxt "new_bill"
+msgid "Уровни здания должны быть целым числом"
+msgstr "Building levels must be an integer"
+
+#: bill/models/construction.py:143
+msgctxt "new_bill"
+msgid "Уровни здания должны быть числом в интервале 1-1000"
+msgstr "Building levels must be a number in the range 1-1000"
+
+#: bill/models/construction.py:165
+msgctxt "new_bill"
+msgid "Нет такого здания"
+msgstr "There is no such building"
 
 #: bill/models/construction.py:334 bill/models/construction.py:406
 #: bill/models/construction.py:427 bill/models/construction.py:461
@@ -338,9 +563,200 @@ msgctxt "goods"
 msgid "Наличные"
 msgstr "Cash"
 
-#: bill/models/explore_resources.py:30 bill/models/geological_surveys.py:26
+#: bill/models/explore_resources.py:31 bill/models/geological_surveys.py:28
 msgid "Золото"
 msgstr "Gold"
+
+#: bill/models/explore_resources.py:91
+msgctxt "new_bill"
+msgid "Недопустима разведка в минус"
+msgstr "Minus exploration is not allowed"
+
+#: bill/models/explore_resources.py:112 bill/models/geological_surveys.py:104
+#: bill/models/purchase_auction.py:147
+msgctxt "new_bill"
+msgid "Нет такого ресурса"
+msgstr "There is no such resource"
+
+#: bill/models/geological_surveys.py:83
+msgctxt "new_bill"
+msgid "Истощения в регионе нет"
+msgstr "There is no depletion in the region"
+
+#: bill/models/independence.py:43 bill/models/transfer_accept.py:52
+#: bill/models/transfer_region.py:54
+msgctxt "new_bill"
+msgid "Не указан подходящий регион"
+msgstr "No suitable region specified"
+
+#: bill/models/martial_law.py:63
+msgctxt "new_bill"
+msgid "Режим военного положения должен быть указан"
+msgstr "The martial law regime must be specified"
+
+#: bill/models/martial_law.py:70
+msgctxt "new_bill"
+msgid "Такого режима военного положения не существует"
+msgstr "There is no such martial law regime."
+
+#: bill/models/martial_law.py:91 bill/models/martial_law.py:99
+msgctxt "new_bill"
+msgid "Этот режим военного положения уже выбран"
+msgstr "This martial law regime has already been chosen"
+
+#: bill/models/martial_law.py:109
+msgctxt "new_bill"
+msgid ""
+"Прошло менее двух недель с момента отмены предыдущего военного положения"
+msgstr ""
+"Less than two weeks have passed since the previous martial law was lifted."
+
+#: bill/models/purchase_auction.py:59
+msgctxt "new_bill"
+msgid "Объём закупки должна быть целым числом"
+msgstr "The purchase volume must be an integer."
+
+#: bill/models/purchase_auction.py:67
+msgctxt "new_bill"
+msgid "Объём закупки имеет ограничение в интервале от 0 до 1 000 000 000 000"
+msgstr ""
+"The purchase volume has a limitation in the range from 0 to 1,000,000,000,000"
+
+#: bill/models/purchase_auction.py:78
+msgctxt "new_bill"
+msgid "Цена закупки должна быть целым числом"
+msgstr "The purchase price must be an integer."
+
+#: bill/models/purchase_auction.py:86
+msgctxt "new_bill"
+msgid "Цена закупки имеет ограничение в интервале от 0 до 1 000 000 000 000"
+msgstr ""
+"The purchase price has a limit in the range from 0 to 1,000,000,000,000"
+
+#: bill/models/purchase_auction.py:97
+msgctxt "new_bill"
+msgid "Количество лотов должно быть целым числом"
+msgstr "The number of lots must be an integer"
+
+#: bill/models/purchase_auction.py:104
+msgctxt "new_bill"
+msgid "Количество лотов должно быть числом от 1 до 10"
+msgstr "The number of lots must be between 1 and 10."
+
+#: bill/models/purchase_auction.py:111
+msgctxt "new_bill"
+msgid "Количество лотов не может быть больше объёма закупки"
+msgstr "The number of lots cannot be greater than the purchase volume."
+
+#: bill/models/purchase_auction.py:122 bill/models/transfer_resources.py:121
+msgctxt "new_bill"
+msgid "ID товара должен быть целым числом"
+msgstr "Good ID must be an integer"
+
+#: bill/models/start_war.py:96
+msgctxt "new_bill"
+msgid "ID плацдарма должен быть целым числом"
+msgstr "The attack site ID must be an integer"
+
+#: bill/models/start_war.py:103
+msgctxt "new_bill"
+msgid "Неизвестный плацдарм"
+msgstr "Unknown attack site"
+
+#: bill/models/start_war.py:113
+msgctxt "new_bill"
+msgid "ID целевого региона должен быть целым числом"
+msgstr "The target region ID must be an integer"
+
+#: bill/models/start_war.py:120
+msgctxt "new_bill"
+msgid "Неизвестный целевой регион"
+msgstr "Unknown target region"
+
+#: bill/models/start_war.py:127 bill/models/start_war.py:138
+msgctxt "new_bill"
+msgid "Нельзя напасть на самих себя"
+msgstr "You can't attack yourself"
+
+#: bill/models/start_war.py:157
+msgctxt "new_bill"
+msgid "Такого вида войн не существует"
+msgstr "This kind of war does not exist"
+
+#: bill/models/start_war.py:169
+msgctxt "new_bill"
+msgid "Такая война уже идёт"
+msgstr "Such a war is already underway"
+
+#: bill/models/start_war.py:180
+msgctxt "new_bill"
+msgid "Указанные регионы не граничат между собой"
+msgstr "The regions listed do not border each other"
+
+#: bill/models/transfer_accept.py:86
+msgctxt "new_bill"
+msgid "Указанный регион не передаётся"
+msgstr "The specified region is not transferring"
+
+#: bill/models/transfer_region.py:61 bill/models/transfer_resources.py:63
+msgctxt "new_bill"
+msgid "Не указано подходящее государство"
+msgstr "No applicable country specified"
+
+#: bill/models/transfer_region.py:88
+msgctxt "new_bill"
+msgid "ID государства должен быть целым числом"
+msgstr "The state ID must be an integer"
+
+#: bill/models/transfer_region.py:108
+msgctxt "new_bill"
+msgid "Регион является плацдармом атаки"
+msgstr "The region is a attack site"
+
+#: bill/models/transfer_region.py:115
+msgctxt "new_bill"
+msgid "Нет такого государства"
+msgstr "There is no such state"
+
+#: bill/models/transfer_resources.py:70
+msgctxt "new_bill"
+msgid "Не указан подходящий товар"
+msgstr "No suitable product specified"
+
+#: bill/models/transfer_resources.py:77
+msgctxt "new_bill"
+msgid "Не указано количество товара"
+msgstr "The quantity of the product is not specified"
+
+#: bill/models/transfer_resources.py:98
+msgctxt "new_bill"
+msgid "Количество товара должно быть целым числом"
+msgstr "The quantity of the product must be an integer"
+
+#: bill/models/transfer_resources.py:107
+msgctxt "new_bill"
+msgid "Не найдена казна государства"
+msgstr "State treasury not found"
+
+#: bill/models/transfer_resources.py:128
+msgctxt "new_bill"
+msgid "Не найден товар с переданным ID"
+msgstr "No product found with the given ID"
+
+#: bill/models/transfer_resources.py:137
+msgctxt "new_bill"
+msgid "В казне нет требуемого количества товара"
+msgstr "The treasury does not have the required amount of goods"
+
+#: bill/models/transfer_resources.py:156
+msgctxt "new_bill"
+msgid "Указанное государство не найдено"
+msgstr "The specified state was not found"
+
+#: bill/models/transfer_resources.py:173
+msgctxt "new_bill"
+msgid "Запрещено вывозить товары из атакованных регионов"
+msgstr "It is forbidden to export goods from the attacked regions"
 
 #: bill/templates/state/redesign/bills/change_residency.html:34
 #: factory/migrations/0023_auto_20230911_0014.py:43
@@ -419,15 +835,11 @@ msgid "Новый герб государства"
 msgstr "New state coat of arms"
 
 #: bill/templates/state/redesign/drafts/change_coat.html:93
-#, fuzzy
-#| msgid "Отмена"
 msgctxt "change_coat_draft"
 msgid "Отмена"
 msgstr "Cancel"
 
 #: bill/templates/state/redesign/drafts/change_coat.html:94
-#, fuzzy
-#| msgid "Загрузить"
 msgctxt "change_coat_draft"
 msgid "Загрузить"
 msgstr "Upload"
@@ -451,113 +863,76 @@ msgid "предложить"
 msgstr "propose law"
 
 #: bill/templates/state/redesign/drafts/change_form.html:8
-#, fuzzy
-#| msgctxt "change_coat_draft"
-#| msgid "Новый герб государства"
 msgctxt "change_form_draft"
 msgid "Новая форма правления государства"
-msgstr "New state coat of arms"
+msgstr "New form of government of the state"
 
 #: bill/templates/state/redesign/drafts/change_form.html:12
-#, fuzzy
-#| msgctxt "w_trading_new"
-#| msgid "Выберите группу"
 msgctxt "change_form_draft"
 msgid "выберите форму правления"
-msgstr "Choose category"
+msgstr "select form of government"
 
 #: bill/templates/state/redesign/drafts/change_residency.html:8
 msgctxt "change_residency_draft"
 msgid "Способ выдачи прописки"
-msgstr ""
+msgstr "Method of issuing registration"
 
 #: bill/templates/state/redesign/drafts/change_residency.html:12
-#, fuzzy
-#| msgid "Выдаётся министром"
 msgctxt "change_residency_draft"
 msgid "выдается министром"
 msgstr "Issued by minister"
 
 #: bill/templates/state/redesign/drafts/change_residency.html:13
-#, fuzzy
-#| msgid "Свободная"
 msgctxt "change_residency_draft"
 msgid "свободная"
 msgstr "Free"
 
 #: bill/templates/state/redesign/drafts/change_residency.html:21
-#, fuzzy
-#| msgctxt "assets"
-#| msgid "стоимость"
 msgctxt "change_residency_draft"
 msgid "стоимость"
-msgstr "full price"
+msgstr "price"
 
 #: bill/templates/state/redesign/drafts/change_residency.html:23
-#, fuzzy
-#| msgctxt "goods"
-#| msgid "Автоматы"
 msgctxt "change_residency_draft"
 msgid "Автоматы"
 msgstr "Rifles"
 
 #: bill/templates/state/redesign/drafts/change_residency.html:26
-#, fuzzy
-#| msgctxt "goods"
-#| msgid "БПЛА"
 msgctxt "change_residency_draft"
 msgid "БПЛА"
 msgstr "UAV"
 
 #: bill/templates/state/redesign/drafts/change_taxes.html:52
-#, fuzzy
-#| msgid "Государство"
 msgctxt "change_taxes_draft"
 msgid "государство"
-msgstr "State"
+msgstr "state"
 
 #: bill/templates/state/redesign/drafts/change_taxes.html:53
-#, fuzzy
-#| msgctxt "trading"
-#| msgid "регион"
 msgctxt "change_taxes_draft"
 msgid "регион"
 msgstr "region"
 
 #: bill/templates/state/redesign/drafts/change_taxes.html:61
-#, fuzzy
-#| msgctxt "assets"
-#| msgid "выберите склад"
 msgctxt "change_taxes_draft"
 msgid "Выберите налог"
-msgstr "choose warehouse"
+msgstr "Select tax"
 
 #: bill/templates/state/redesign/drafts/change_taxes.html:62
-#, fuzzy
-#| msgid "Финансирование"
 msgctxt "change_taxes_draft"
 msgid "Финансирование"
 msgstr "Financing"
 
 #: bill/templates/state/redesign/drafts/change_taxes.html:63
-#, fuzzy
-#| msgctxt "mining"
-#| msgid "Марка нефти"
 msgctxt "change_taxes_draft"
 msgid "Добыча нефти"
-msgstr "Oil brand"
+msgstr "Oil extracting"
 
 #: bill/templates/state/redesign/drafts/change_taxes.html:64
-#, fuzzy
-#| msgctxt "mining"
-#| msgid "Добыча"
 msgctxt "change_taxes_draft"
 msgid "Добыча руд"
-msgstr "Work"
+msgstr "Ore mining"
 
 #: bill/templates/state/redesign/drafts/change_taxes.html:65
-#, fuzzy
-#| msgid "Торговля"
 msgctxt "change_taxes_draft"
 msgid "Торговля"
 msgstr "Trading"
@@ -565,23 +940,17 @@ msgstr "Trading"
 #: bill/templates/state/redesign/drafts/change_taxes.html:105
 msgctxt "change_taxes_draft"
 msgid "Текущий налог"
-msgstr ""
+msgstr "Current tax"
 
 #: bill/templates/state/redesign/drafts/change_taxes.html:107
-#, fuzzy
-#| msgctxt "cash_log"
-#| msgid "Новый Склад"
 msgctxt "change_taxes_draft"
 msgid "Новый налог"
-msgstr "New Warehouse"
+msgstr "New tax"
 
 #: bill/templates/state/redesign/drafts/change_title.html:8
-#, fuzzy
-#| msgctxt "change_coat_draft"
-#| msgid "Новый герб государства"
 msgctxt "change_title_draft"
 msgid "Новое название государства"
-msgstr "New state coat of arms"
+msgstr "New name of the state"
 
 #: bill/templates/state/redesign/drafts/construction.html:152
 #, fuzzy
@@ -761,120 +1130,79 @@ msgid "стоимость передачи"
 msgstr "Creation cost"
 
 #: bill/templates/state/redesign/new_bill.html:82
-#, fuzzy
-#| msgctxt "bill_draft"
-#| msgid "предложить"
-msgctxt "new_bill_reviewed"
+msgctxt "new_bill"
 msgid "предложить"
 msgstr "propose law"
 
 #: bill/templates/state/redesign/reviewed/change_coat.html:25
-#, fuzzy
-#| msgctxt "no_party"
-#| msgid "региональные"
 msgctxt "change_coat_reviewed"
 msgid "оригинальный размер"
-msgstr "regional parties"
+msgstr "original size"
 
 #: bill/templates/state/redesign/reviewed/change_coat.html:28
-#, fuzzy
-#| msgctxt "skills"
-#| msgid "недоступно"
 msgctxt "change_coat_reviewed"
 msgid "недоступно"
 msgstr "unavailable"
 
 #: bill/templates/state/redesign/reviewed/change_residency.html:35
-#, fuzzy
-#| msgctxt "goods"
-#| msgid "Автоматы"
 msgctxt "change_residency_reviewed"
 msgid "Автоматы"
 msgstr "Rifles"
 
 #: bill/templates/state/redesign/reviewed/change_residency.html:38
-#, fuzzy
-#| msgctxt "goods"
-#| msgid "БПЛА"
 msgctxt "change_residency_reviewed"
 msgid "БПЛА"
 msgstr "UAV"
 
 #: bill/templates/state/redesign/reviewed/change_residency.html:55
-#, fuzzy
-#| msgctxt "party_requests"
-#| msgid "Принять"
 msgctxt "change_residency_reviewed"
 msgid "принят"
-msgstr "Accept"
+msgstr "accepted"
 
 #: bill/templates/state/redesign/reviewed/change_residency.html:57
-#, fuzzy
-#| msgctxt "party_requests"
-#| msgid "Отклонить"
 msgctxt "change_residency_reviewed"
 msgid "отклонён"
-msgstr "Reject"
+msgstr "rejected"
 
 #: bill/templates/state/redesign/reviewed/change_residency.html:59
-#, fuzzy
-#| msgid "Отмена"
 msgctxt "change_residency_reviewed"
 msgid "отменён"
-msgstr "Cancel"
+msgstr "cancelled"
 
 #: bill/templates/state/redesign/reviewed/change_taxes.html:30
-#, fuzzy
-#| msgid "Государство"
 msgctxt "change_taxes_reviewed"
 msgid "всё государство"
-msgstr "State"
+msgstr "all state"
 
 #: bill/templates/state/redesign/reviewed/change_taxes.html:58
-#, fuzzy
-#| msgctxt "party_requests"
-#| msgid "Принять"
 msgctxt "change_taxes_reviewed"
 msgid "принят"
-msgstr "Accept"
+msgstr "accepted"
 
 #: bill/templates/state/redesign/reviewed/change_taxes.html:60
-#, fuzzy
-#| msgctxt "party_requests"
-#| msgid "Отклонить"
 msgctxt "change_taxes_reviewed"
 msgid "отклонён"
-msgstr "Reject"
+msgstr "rejected"
 
 #: bill/templates/state/redesign/reviewed/change_taxes.html:62
-#, fuzzy
-#| msgid "Отмена"
 msgctxt "change_taxes_reviewed"
 msgid "отменён"
-msgstr "Cancel"
+msgstr "cancelled"
 
 #: bill/templates/state/redesign/reviewed/change_title.html:37
-#, fuzzy
-#| msgctxt "party_requests"
-#| msgid "Принять"
 msgctxt "change_title_reviewed"
 msgid "принят"
-msgstr "Accept"
+msgstr "accepted"
 
 #: bill/templates/state/redesign/reviewed/change_title.html:39
-#, fuzzy
-#| msgctxt "party_requests"
-#| msgid "Отклонить"
 msgctxt "change_title_reviewed"
 msgid "отклонён"
-msgstr "Reject"
+msgstr "rejected"
 
 #: bill/templates/state/redesign/reviewed/change_title.html:41
-#, fuzzy
-#| msgid "Отмена"
 msgctxt "change_title_reviewed"
 msgid "отменён"
-msgstr "Cancel"
+msgstr "cancelled"
 
 #: bill/templates/state/redesign/reviewed/construction.html:55
 #, fuzzy
@@ -1175,6 +1503,104 @@ msgstr "There is no parliament in this state"
 msgctxt "cancel_bill"
 msgid "В этом регионе нет государства"
 msgstr "There is no state in this region"
+
+#: bill/views/bills/new_bill.py:48
+msgctxt "new_bill"
+msgid "Нет такого вида законопроекта"
+msgstr "There is no such type of bill"
+
+#: bill/views/bills/new_bill.py:62
+msgctxt "new_bill"
+msgid "В этом государстве нет парламента"
+msgstr "There is no parliament in this state"
+
+#: bill/views/bills/new_bill.py:69
+msgctxt "new_bill"
+msgid "В этом регионе нет государства"
+msgstr "There is no state in this region"
+
+#: bill/views/bills/speedup_bill.py:33
+msgctxt "speedup_bill"
+msgid "Вы - не депутат этого парламента"
+msgstr "You are not a member of this parliament"
+
+#: bill/views/bills/speedup_bill.py:34 bill/views/bills/speedup_bill.py:43
+#: bill/views/bills/speedup_bill.py:69 bill/views/bills/speedup_bill.py:84
+#: bill/views/bills/speedup_bill.py:95 bill/views/bills/speedup_bill.py:103
+#: bill/views/bills/speedup_bill.py:126 bill/views/bills/speedup_bill.py:133
+#: bill/views/bills/speedup_bill.py:140 bill/views/bills/speedup_bill.py:147
+#: bill/views/bills/speedup_bill.py:154 bill/views/bills/speedup_bill.py:161
+#: bill/views/bills/speedup_bill.py:169
+msgctxt "speedup_bill"
+msgid "Досрочное принятие"
+msgstr "Early acceptance"
+
+#: bill/views/bills/speedup_bill.py:42
+msgctxt "speedup_bill"
+msgid "Вы - не министр этого государства"
+msgstr "You are not a minister of this state"
+
+#: bill/views/bills/speedup_bill.py:68
+msgctxt "speedup_bill"
+msgid "Нет права досрочно принимать этот законопроект"
+msgstr "There is no right to acceptance this bill early"
+
+#: bill/views/bills/speedup_bill.py:83
+msgctxt "speedup_bill"
+msgid "В вашем государстве нет лидера"
+msgstr "There is no leader in your state"
+
+#: bill/views/bills/speedup_bill.py:102
+msgctxt "speedup_bill"
+msgid "Лидер государства ещё не подписал этот законопроект"
+msgstr "The head of state has not yet signed this bill"
+
+#: bill/views/bills/speedup_bill.py:125
+msgctxt "speedup_bill"
+msgid "Досрочное принятие запрещено"
+msgstr "Early acceptance is prohibited"
+
+#: bill/views/bills/speedup_bill.py:132
+msgctxt "speedup_bill"
+msgid "Надо проголосовать!"
+msgstr "We need to vote!"
+
+#: bill/views/bills/speedup_bill.py:139
+msgctxt "speedup_bill"
+msgid "Нет такого законопроекта"
+msgstr "There is no such bill"
+
+#: bill/views/bills/speedup_bill.py:146
+msgctxt "speedup_bill"
+msgid "Нет такого вида законопроекта"
+msgstr "There is no such type of bill"
+
+#: bill/views/bills/speedup_bill.py:153
+msgctxt "speedup_bill"
+msgid "В этом государстве нет парламента"
+msgstr "There is no parliament in this state"
+
+#: bill/views/bills/speedup_bill.py:168 gov/views/color_change.py:58
+#: gov/views/switch_description.py:43 party/views/management/color_change.py:66
+#: party/views/management/gold/give_party_gold.py:108
+#: party/views/management/roles/new_role.py:79
+#: party/views/management/roles/remove_role.py:77
+#: player/views/color_change.py:102 region/views/do_mining.py:428
+#: region/views/map/get_residency.py:155 region/views/map/plane_info.py:41
+#: region/views/map/region_info.py:50
+#: storage/views/assets/assets_destroy.py:138
+#: storage/views/assets/assets_transfer.py:238
+#: storage/views/assets/storage_move.py:108
+#: storage/views/storage/cash_transfer.py:147
+#: storage/views/storage/new_storage.py:107
+#: storage/views/storage/upgrade_storage.py:96
+#: storage/views/trading/accept_offer.py:476
+#: storage/views/trading/cancel_offer.py:165
+#: storage/views/trading/create_offer.py:295
+#: storage/views/trading/get_offers.py:258 war/views/join_revolution.py:141
+msgctxt "core"
+msgid "Ошибка метода"
+msgstr "Method error"
 
 #: chat/templates/chat/dialogue.html:31
 msgctxt "chat"
@@ -1654,10 +2080,10 @@ msgstr "Error during cancellation"
 #: region/views/do_mining.py:352 region/views/do_mining.py:367
 #: region/views/do_mining.py:388 region/views/do_mining.py:395
 #: region/views/do_mining.py:427 region/views/map/save_links.py:33
-#: region/views/map/save_links.py:61 region/views/retrieve_cash.py:41
-#: region/views/start_auto.py:28 region/views/start_auto.py:36
-#: region/views/start_auto.py:46 region/views/start_auto.py:55
-#: region/views/start_auto.py:81 storage/views/assets/assets_destroy.py:137
+#: region/views/retrieve_cash.py:41 region/views/start_auto.py:28
+#: region/views/start_auto.py:36 region/views/start_auto.py:46
+#: region/views/start_auto.py:55 region/views/start_auto.py:81
+#: storage/views/assets/assets_destroy.py:137
 #: storage/views/assets/assets_transfer.py:237
 #: storage/views/assets/storage_move.py:37
 #: storage/views/assets/storage_move.py:46
@@ -1914,26 +2340,6 @@ msgctxt "edit_state_color"
 msgid "Некорректный код цвета партии"
 msgstr "Invalid party color code"
 
-#: gov/views/color_change.py:58 gov/views/switch_description.py:43
-#: party/views/management/color_change.py:66
-#: party/views/management/gold/give_party_gold.py:108
-#: party/views/management/roles/new_role.py:79
-#: party/views/management/roles/remove_role.py:77
-#: player/views/color_change.py:102 region/views/do_mining.py:428
-#: storage/views/assets/assets_destroy.py:138
-#: storage/views/assets/assets_transfer.py:238
-#: storage/views/assets/storage_move.py:108
-#: storage/views/storage/cash_transfer.py:147
-#: storage/views/storage/new_storage.py:107
-#: storage/views/storage/upgrade_storage.py:96
-#: storage/views/trading/accept_offer.py:476
-#: storage/views/trading/cancel_offer.py:165
-#: storage/views/trading/create_offer.py:295
-#: storage/views/trading/get_offers.py:258 war/views/join_revolution.py:141
-msgctxt "mining"
-msgid "Ошибка метода"
-msgstr "Method error"
-
 #: gov/views/manage_view.py:25
 #, fuzzy
 #| msgctxt "party_manage"
@@ -1957,6 +2363,16 @@ msgstr "You are not the party leader"
 msgctxt "edit_state_descr"
 msgid "Сообщение от государства"
 msgstr "There is no state in this region"
+
+#: party/party.py:27
+msgctxt "party_view"
+msgid "Открытая"
+msgstr "Open"
+
+#: party/party.py:28
+msgctxt "party_view"
+msgid "Частная"
+msgstr "Private"
 
 #: party/templates/party/redesign/lists/party_history_list.html:19
 msgctxt "party_hist"
@@ -2099,7 +2515,7 @@ msgstr "Distributing party`s gold"
 #: party/templates/party/redesign/manage.html:238
 msgctxt "party_manage"
 msgid "Баланс партии"
-msgstr "Баланс партии"
+msgstr "Party balance"
 
 #: party/templates/party/redesign/manage.html:246
 msgctxt "party_manage"
@@ -4474,7 +4890,7 @@ msgstr ""
 "If you have time, please tell me about your impressions of the game - it is "
 "important to me. Enjoy the game!"
 
-#: player/views/new_player.py:115
+#: player/views/new_player.py:115 region/tasks.py:49
 #, python-format
 msgctxt "start_messages"
 msgid ""
@@ -5137,25 +5553,94 @@ msgstr "Ore reserves in the region are not enough for mining"
 msgid "Регионы игры"
 msgstr ""
 
-#: region/views/map/map.py:238
+#: region/views/map/get_residency.py:30
+msgctxt "get_residency"
+msgid "Дождитесь конца полёта"
+msgstr "Please wait until the end of the flight"
+
+#: region/views/map/get_residency.py:31 region/views/map/get_residency.py:42
+#: region/views/map/get_residency.py:50 region/views/map/get_residency.py:61
+#: region/views/map/get_residency.py:153
+msgctxt "get_residency"
+msgid "Получение прописки"
+msgstr "Residence permit taking"
+
+#: region/views/map/get_residency.py:44
+msgctxt "get_residency"
+msgid "ID региона должен быть целым числом"
+msgstr "Region ID must be an integer"
+
+#: region/views/map/get_residency.py:52
+msgctxt "get_residency"
+msgid "Региона не существует"
+msgstr "The region does not exist"
+
+#: region/views/map/get_residency.py:63
+msgctxt "get_residency"
+msgid "Указанный регион закрыт для получения прописки"
+msgstr "The specified region is closed for registration"
+
+#: region/views/map/get_residency.py:88
+msgctxt "get_residency"
+msgid "Запрос прописки"
+msgstr "Request for residence permit"
+
+#: region/views/map/get_residency.py:90
+msgctxt "get_residency"
+msgid "Заявка уже существует"
+msgstr "The request already exists"
+
+#: region/views/map/map.py:51 region/views/map/map.py:60
+#: region/views/map/map.py:107 region/views/map/map.py:115
+msgctxt "start_fly"
+msgid "Ошибка полёта"
+msgstr "Flight error"
+
+#: region/views/map/map.py:53
+msgctxt "start_fly"
+msgid "Указанный регион не существует"
+msgstr "The specified region does not exist"
+
+#: region/views/map/map.py:62
+msgctxt "start_fly"
+msgid "Указанный регион закрыт для полётов"
+msgstr "The specified region is closed to flights"
+
+#: region/views/map/map.py:109
+msgctxt "start_fly"
+msgid "Вы уже в полёте"
+msgstr "You are already in flight"
+
+#: region/views/map/map.py:117
+#, python-format
+msgctxt "start_fly"
+msgid "Недостаточно денег. В наличии: $%(cash)s, требуется: $%(cost)s"
+msgstr "Not enough money. Available: $%(cash)s, required: $%(cost)s"
+
+#: region/views/map/map.py:236
+msgctxt "map"
 msgid "Карта"
-msgstr ""
+msgstr "Map"
 
 #: region/views/map/plane_info.py:34
-#, fuzzy
-#| msgctxt "factory"
-#| msgid "Указанный товар не существует"
+msgctxt "plane_info"
 msgid "Игрок не существует"
-msgstr "Specified good does not exist"
+msgstr "The player does not exist"
 
-#: region/views/map/plane_info.py:39 region/views/map/region_info.py:48
-#: storage/views/assets/assets_info.py:65
-msgid "Некорректный запрос"
-msgstr ""
+#: region/views/map/plane_info.py:36 region/views/map/plane_info.py:43
+msgctxt "plane_info"
+msgid "Информация о самолёте"
+msgstr "Aircraft information"
 
 #: region/views/map/region_info.py:42
+msgctxt "region_info"
 msgid "Такого региона нет"
-msgstr ""
+msgstr "There is no such region"
+
+#: region/views/map/region_info.py:44 region/views/map/region_info.py:52
+msgctxt "region_info"
+msgid "Информация о регионе"
+msgstr "Region information"
 
 #: region/views/map/save_links.py:31
 msgctxt "mining"
@@ -5792,7 +6277,7 @@ msgstr "destroy"
 #: storage/templates/storage/redesign/assets.html:84
 msgctxt "assets"
 msgid "уверен"
-msgstr ""
+msgstr "sure"
 
 #: storage/templates/storage/redesign/assets.html:90
 msgctxt "assets"
@@ -6476,6 +6961,13 @@ msgctxt "trading"
 msgid "Ничего не найдено"
 msgstr "Nothing found"
 
+#: storage/templates/storage/redesign/trading/trading.html:84
+#: storage/templates/storage/redesign/trading/trading.html:166
+#: storage/templates/storage/redesign/trading/trading.html:266
+msgctxt "trading"
+msgid "товар"
+msgstr "good"
+
 #: storage/templates/storage/redesign/trading/trading.html:85
 #: storage/templates/storage/redesign/trading/trading.html:345
 msgctxt "trading"
@@ -6555,12 +7047,6 @@ msgstr "category"
 msgctxt "trading"
 msgid "выберите категорию"
 msgstr "select a category"
-
-#: storage/templates/storage/redesign/trading/trading.html:166
-#: storage/templates/storage/redesign/trading/trading.html:266
-msgctxt "trading"
-msgid "товар"
-msgstr "good"
 
 #: storage/templates/storage/redesign/trading/trading.html:169
 #: storage/templates/storage/redesign/trading/trading.html:269
@@ -6752,6 +7238,10 @@ msgstr "Operations with goods"
 msgid "Такого склада у вас нет"
 msgstr "There is no such language"
 
+#: storage/views/assets/assets_info.py:65
+msgid "Некорректный запрос"
+msgstr ""
+
 #: storage/views/assets/assets_transfer.py:39
 msgctxt "assets"
 msgid "Целевой Склад не заполнен"
@@ -6795,7 +7285,7 @@ msgstr "Insufficient funds to pay for shipping"
 #: storage/views/assets/assets_transfer.py:186
 msgctxt "assets"
 msgid "типоразмер:"
-msgstr ""
+msgstr "size:"
 
 #: storage/views/assets/assets_transfer.py:188
 msgctxt "assets"
@@ -7653,6 +8143,21 @@ msgctxt "war_page"
 msgid "Войны"
 msgstr "Wars"
 
+#~ msgctxt "new_bill"
+#~ msgid "Основание государства"
+#~ msgstr "Found a state"
+
+#, fuzzy
+#~| msgctxt "bill_draft"
+#~| msgid "предложить"
+#~ msgctxt "new_bill_reviewed"
+#~ msgid "предложить"
+#~ msgstr "propose law"
+
+#~ msgctxt "mining"
+#~ msgid "Ошибка метода"
+#~ msgstr "Method error"
+
 #~ msgctxt "profile"
 #~ msgid "очки тестирования Android"
 #~ msgstr "Android testing points"
@@ -7778,9 +8283,6 @@ msgstr "Wars"
 #~ msgctxt "w_trading"
 #~ msgid "Партия"
 #~ msgstr "Party"
-
-#~ msgid "Ошибка отмены навыка"
-#~ msgstr "Skill cancellation error"
 
 #~ msgctxt "regions_list"
 #~ msgid "Тюрингия"
