@@ -157,7 +157,7 @@
         {% else %}
         <!--Информация когда стиков нет-->
         <div class="overview__stickers-no">
-          <p>{% trans 'У вас пока еще нет стикеров' %}</p>
+          <p>{% trans 'У вас пока еще нет стикеров' context "overview" %}</p>
           <a href="{% url 'stickers_shop' %}" class="overview__stickers-no-link active ct__mid-btn">
             <svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
               <mask id="mask0_2259_233177" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">

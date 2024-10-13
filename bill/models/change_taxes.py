@@ -5,7 +5,7 @@ from django.db import models
 from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 from django.utils import timezone
-from django.utils.translation import gettext_lazy
+from django.utils.translation import pgettext_lazy
 from django.utils.translation import pgettext
 
 from bill.models.bill import Bill
@@ -19,8 +19,8 @@ from state.models.state import State
 class ChangeTaxes(Bill):
     # где меняем
     destination_vari = (
-        ('Region', gettext_lazy('Регион')),
-        ('State', gettext_lazy('Государство')),
+        ('Region', pgettext_lazy('change_taxes_draft', 'Регион')),
+        ('State', pgettext_lazy('change_taxes_draft', 'Государство')),
     )
     destination = models.CharField(
         max_length=6,
@@ -36,10 +36,10 @@ class ChangeTaxes(Bill):
 
     # что меняем
     tax_mod_vari = (
-        ('cash', gettext_lazy('Финансирование')),
-        ('oil', gettext_lazy('Нефть')),
-        ('ore', gettext_lazy('Руда')),
-        ('trade', gettext_lazy('Торговля')),
+        ('cash', pgettext_lazy('change_taxes_draft', 'Финансирование')),
+        ('oil', pgettext_lazy('change_taxes_draft', 'Нефть')),
+        ('ore', pgettext_lazy('change_taxes_draft', 'Руда')),
+        ('trade', pgettext_lazy('change_taxes_draft', 'Торговля')),
     )
     tax_mod = models.CharField(
         max_length=6,

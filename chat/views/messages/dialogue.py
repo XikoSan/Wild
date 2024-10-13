@@ -16,6 +16,7 @@ from chat.dialogue_consumers import _mark_as_read
 from chat.models.messages.chat import Chat
 from chat.models.messages.chat_members import ChatMembers
 from chat.models.messages.message_block import MessageBlock
+from django.utils.translation import pgettext
 from chat.models.sticker import Sticker
 from chat.models.stickers_ownership import StickersOwnership
 from gov.models.minister import Minister
@@ -166,7 +167,7 @@ def dialogue(request, pk):
     page = 'chat/dialogue.html'
 
     return render(request, page, {
-        'page_name': _(f'Диалог с {char.nickname}'),
+        'page_name': pgettext('chat', "Диалог с %(nickname)s") % {"nickname": char.nickname},
 
         'player': player,
         'char': char,

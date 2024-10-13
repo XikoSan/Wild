@@ -7,7 +7,7 @@ from django.db.models.functions import Coalesce
 from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 from django.utils import timezone
-from django.utils.translation import gettext_lazy
+from django.utils.translation import pgettext_lazy
 from django.utils.translation import pgettext
 from math import ceil
 
@@ -28,9 +28,9 @@ class ExploreResources(Bill):
     oil = 'oil'
     ore = 'ore'
     resExpChoices = (
-        (gold, gettext_lazy('Золото')),
-        (oil, gettext_lazy('Нефть')),
-        (ore, gettext_lazy('Руда')),
+        (gold, pgettext_lazy('explore_resources_draft', 'Золото')),
+        (oil, pgettext_lazy('explore_resources_draft', 'Нефть')),
+        (ore, pgettext_lazy('explore_resources_draft', 'Руда')),
     )
     resource = models.CharField(
         max_length=4,
