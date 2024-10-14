@@ -33,17 +33,25 @@ def move_to_another_region(id):
 
                 if not pres_post.leader == player:
 
-                    pres_chat = Chat.objects.create()
-                    pres_chat_id = pres_chat.pk
+                    common_chats = ChatMembers.objects.filter(player=player).values_list('chat_id', flat=True) \
+                        .intersection(ChatMembers.objects.filter(player=pres_post.leader).values_list('chat_id', flat=True))
 
-                    member, created = ChatMembers.objects.get_or_create(
-                        chat=pres_chat,
-                        player=pres_post.leader,
-                    )
-                    member, created = ChatMembers.objects.get_or_create(
-                        chat=pres_chat,
-                        player=player,
-                    )
+                    if not common_chats:
+
+                        pres_chat = Chat.objects.create()
+                        pres_chat_id = pres_chat.pk
+
+                        member, created = ChatMembers.objects.get_or_create(
+                            chat=pres_chat,
+                            player=pres_post.leader,
+                        )
+                        member, created = ChatMembers.objects.get_or_create(
+                            chat=pres_chat,
+                            player=player,
+                        )
+
+                    else:
+                        pres_chat_id = common_chats[0]
 
                     if not player.region.state.message:
                         pres_text = pgettext('start_messages', "Добро пожаловать в государство %(state_title)s! Это автоматическое сообщение, созданное игрой. Но вы можете связаться со мной напрямую, просто ответив на него") % {"state_title": player.region.state }
