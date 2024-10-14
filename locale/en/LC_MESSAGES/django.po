@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-12 02:54+0300\n"
+"POT-Creation-Date: 2024-10-13 16:24+0300\n"
 "PO-Revision-Date: 2024-10-12 02:54+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -37,6 +37,8 @@ msgstr "edit"
 
 #: article/templates/article/article.html:344
 #: chat/templates/chat/dialogue.html:160
+#: player/templates/player/redesign/overview.html:1017
+msgctxt "overview"
 msgid "У вас пока еще нет стикеров"
 msgstr "You don't have stickers yet"
 
@@ -457,28 +459,42 @@ msgid "Этот тип получения прописки уже выбран"
 msgstr "This type of registration has already been selected"
 
 #: bill/models/change_taxes.py:22
+#, fuzzy
+#| msgid "Регион"
+msgctxt "change_taxes_draft"
 msgid "Регион"
 msgstr "Region"
 
 #: bill/models/change_taxes.py:23
+#, fuzzy
+#| msgid "Государство"
+msgctxt "change_taxes_draft"
 msgid "Государство"
 msgstr "State"
 
 #: bill/models/change_taxes.py:39
+#: bill/templates/state/redesign/drafts/change_taxes.html:62
+msgctxt "change_taxes_draft"
 msgid "Финансирование"
 msgstr "Financing"
 
-#: bill/models/change_taxes.py:40 bill/models/explore_resources.py:32
-#: bill/models/geological_surveys.py:29
+#: bill/models/change_taxes.py:40
+#, fuzzy
+#| msgid "Нефть"
+msgctxt "change_taxes_draft"
 msgid "Нефть"
 msgstr "Oil"
 
-#: bill/models/change_taxes.py:41 bill/models/explore_resources.py:33
-#: bill/models/geological_surveys.py:30
+#: bill/models/change_taxes.py:41
+#, fuzzy
+#| msgid "Руда"
+msgctxt "change_taxes_draft"
 msgid "Руда"
 msgstr "Ore"
 
 #: bill/models/change_taxes.py:42
+#: bill/templates/state/redesign/drafts/change_taxes.html:65
+msgctxt "change_taxes_draft"
 msgid "Торговля"
 msgstr "Trading"
 
@@ -564,8 +580,25 @@ msgid "Наличные"
 msgstr "Cash"
 
 #: bill/models/explore_resources.py:31 bill/models/geological_surveys.py:28
+#, fuzzy
+#| msgid "Золото"
+msgctxt "explore_resources_draft"
 msgid "Золото"
 msgstr "Gold"
+
+#: bill/models/explore_resources.py:32 bill/models/geological_surveys.py:29
+#, fuzzy
+#| msgid "Нефть"
+msgctxt "explore_resources_draft"
+msgid "Нефть"
+msgstr "Oil"
+
+#: bill/models/explore_resources.py:33 bill/models/geological_surveys.py:30
+#, fuzzy
+#| msgid "Руда"
+msgctxt "explore_resources_draft"
+msgid "Руда"
+msgstr "Ore"
 
 #: bill/models/explore_resources.py:91
 msgctxt "new_bill"
@@ -917,11 +950,6 @@ msgctxt "change_taxes_draft"
 msgid "Выберите налог"
 msgstr "Select tax"
 
-#: bill/templates/state/redesign/drafts/change_taxes.html:62
-msgctxt "change_taxes_draft"
-msgid "Финансирование"
-msgstr "Financing"
-
 #: bill/templates/state/redesign/drafts/change_taxes.html:63
 msgctxt "change_taxes_draft"
 msgid "Добыча нефти"
@@ -931,11 +959,6 @@ msgstr "Oil extracting"
 msgctxt "change_taxes_draft"
 msgid "Добыча руд"
 msgstr "Ore mining"
-
-#: bill/templates/state/redesign/drafts/change_taxes.html:65
-msgctxt "change_taxes_draft"
-msgid "Торговля"
-msgstr "Trading"
 
 #: bill/templates/state/redesign/drafts/change_taxes.html:105
 msgctxt "change_taxes_draft"
@@ -1637,9 +1660,10 @@ msgctxt "chat"
 msgid "Похоже, вы скупили все стикерпаки. Ожидайте выхода новых!"
 msgstr "Looks like you've bought all the sticker packs. Stay tuned for more!"
 
-#: chat/views/messages/dialogue.py:169
-#, python-brace-format
-msgid "Диалог с {char.nickname}"
+#: chat/views/messages/dialogue.py:170
+#, python-format
+msgctxt "chat"
+msgid "Диалог с %(nickname)s"
 msgstr ""
 
 #: chat/views/messages/dialogues.py:148
@@ -4096,11 +4120,6 @@ msgstr "no parties"
 msgctxt "overview"
 msgid "парламент"
 msgstr "parliament"
-
-#: player/templates/player/redesign/overview.html:1017
-msgctxt "overview"
-msgid "У вас пока еще нет стикеров"
-msgstr "You don't have stickers yet"
 
 #: player/templates/player/redesign/overview_skills.html:21
 #: skill/models/biochemistry.py:20 skill/models/coherence.py:21
@@ -8142,6 +8161,15 @@ msgstr ""
 msgctxt "war_page"
 msgid "Войны"
 msgstr "Wars"
+
+#~ msgid "У вас пока еще нет стикеров"
+#~ msgstr "You don't have stickers yet"
+
+#~ msgid "Финансирование"
+#~ msgstr "Financing"
+
+#~ msgid "Торговля"
+#~ msgstr "Trading"
 
 #~ msgctxt "new_bill"
 #~ msgid "Основание государства"
