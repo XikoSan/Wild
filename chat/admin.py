@@ -46,6 +46,8 @@ class ChatMembersInline(admin.TabularInline):
 
 class ChatAdmin(admin.ModelAdmin):
     model = Chat
+    raw_id_fields = ('state',)
+    list_display = ('pk', 'state')
     inlines = [ChatMembersInline]
 
 

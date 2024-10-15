@@ -99,7 +99,7 @@ def player_create(request, form):
             # если на посту есть игрок
             if pres_post.leader:
 
-                pres_chat = Chat.objects.create(gov=True)
+                pres_chat = Chat.objects.create(state=player.region.state)
                 pres_chat_id = pres_chat.pk
 
                 member, created = ChatMembers.objects.get_or_create(

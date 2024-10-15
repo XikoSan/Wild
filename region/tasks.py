@@ -45,7 +45,7 @@ def move_to_another_region(id):
 
                     if not common_chats:
 
-                        pres_chat = Chat.objects.create(gov=True)
+                        pres_chat = Chat.objects.create(state=player.region.state)
                         pres_chat_id = pres_chat.pk
 
                         member, created = ChatMembers.objects.get_or_create(
