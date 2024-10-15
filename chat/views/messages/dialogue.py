@@ -112,6 +112,20 @@ def dialogue(request, pk, state_pk=None):
                 player=char,
             )
 
+        # если общие чаты были, но среди них не нашлось ЛС
+        if not chat_id and not state_pk:
+            chat = Chat.objects.create()
+            chat_id = chat.pk
+
+            member, created = ChatMembers.objects.get_or_create(
+                chat=chat,
+                player=player,
+            )
+            member, created = ChatMembers.objects.get_or_create(
+                chat=chat,
+                player=char,
+            )
+
         r = redis.StrictRedis(host='redis', port=6379, db=0)
 
         # counter = 0
