@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-13 16:24+0300\n"
-"PO-Revision-Date: 2024-10-12 02:54+0300\n"
+"POT-Creation-Date: 2024-10-15 03:21+0300\n"
+"PO-Revision-Date: 2024-10-15 03:22+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -1630,10 +1630,20 @@ msgctxt "chat"
 msgid "Загрузить предыдущие сообщения"
 msgstr "Load previous messages"
 
-#: chat/templates/chat/dialogues.html:27
+#: chat/templates/chat/dialogues.html:42
 msgctxt "chat"
 msgid "Диалоги"
 msgstr "Dialogues"
+
+#: chat/templates/chat/dialogues.html:60
+msgctxt "chat"
+msgid "все"
+msgstr "all"
+
+#: chat/templates/chat/dialogues.html:61
+msgctxt "chat"
+msgid "государственные"
+msgstr "from states"
 
 #: chat/templates/chat/mass_sending/new_sending.html:18
 msgctxt "chat"
@@ -1660,13 +1670,13 @@ msgctxt "chat"
 msgid "Похоже, вы скупили все стикерпаки. Ожидайте выхода новых!"
 msgstr "Looks like you've bought all the sticker packs. Stay tuned for more!"
 
-#: chat/views/messages/dialogue.py:170
+#: chat/views/messages/dialogue.py:176
 #, python-format
 msgctxt "chat"
 msgid "Диалог с %(nickname)s"
 msgstr ""
 
-#: chat/views/messages/dialogues.py:148
+#: chat/views/messages/dialogues.py:232
 msgid "Диалоги"
 msgstr ""
 
@@ -4909,7 +4919,7 @@ msgstr ""
 "If you have time, please tell me about your impressions of the game - it is "
 "important to me. Enjoy the game!"
 
-#: player/views/new_player.py:115 region/tasks.py:49
+#: player/views/new_player.py:115 region/tasks.py:64
 #, python-format
 msgctxt "start_messages"
 msgid ""
