@@ -33,12 +33,19 @@ def move_to_another_region(id):
 
                 if not pres_post.leader == player:
 
-                    common_chats = ChatMembers.objects.filter(player=player).values_list('chat_id', flat=True) \
-                        .intersection(ChatMembers.objects.filter(player=pres_post.leader).values_list('chat_id', flat=True))
+                    common_chats = ChatMembers.objects.filter(
+                        player=player,
+                        chat__gov=True
+                    ).values_list('chat_id', flat=True).intersection(
+                        ChatMembers.objects.filter(
+                            player=pres_post.leader,
+                            chat__gov=True
+                        ).values_list('chat_id', flat=True)
+                    )
 
                     if not common_chats:
 
-                        pres_chat = Chat.objects.create()
+                        pres_chat = Chat.objects.create(gov=True)
                         pres_chat_id = pres_chat.pk
 
                         member, created = ChatMembers.objects.get_or_create(

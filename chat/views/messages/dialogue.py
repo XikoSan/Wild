@@ -64,7 +64,7 @@ def tuple_to_messages(player, messages, tuple, r):
 @login_required(login_url='/')
 @check_player
 # Открытие страницы диалога с персонажем
-def dialogue(request, pk):
+def dialogue(request, pk, state_pk=None):
     # Получаем объект персонажа, по его ключу
     # Текущий пользователь
     player = Player.get_instance(account=request.user)
@@ -86,12 +86,18 @@ def dialogue(request, pk):
         chat_id = None
         blocks_pk = []
 
-        player1_chats = ChatMembers.objects.filter(player=player).values('chat')
-        player2_chats = ChatMembers.objects.filter(player=char).values('chat')
+        player1_chats = ChatMembers.objects.filter(player=player).values('chat', 'chat__state__pk')
+        player2_chats = ChatMembers.objects.filter(player=char).values('chat', 'chat__state__pk')
         common_chats = player1_chats.intersection(player2_chats)
 
         if common_chats:
-            chat_id = common_chats[0]['chat']
+            for c_chat in common_chats:
+                # если это ЛС без айди госа
+                # или же айди госа есть и они совпали
+                if ( not state_pk and not c_chat['chat__state__pk'] )\
+                        or (str(c_chat['chat__state__pk']) == state_pk):
+                    chat_id = c_chat['chat']
+                    break
 
         else:
             chat = Chat.objects.create()

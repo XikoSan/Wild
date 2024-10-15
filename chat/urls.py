@@ -18,6 +18,8 @@ urlpatterns = [
     url(r'^im/$', dialogues, name='dialogues'),
     # диалог с пользователем
     url(r'^im/(?P<pk>\d+)/$', dialogue, name='dialogue'),
+    # диалог с государством
+    url(r'^im/(?P<pk>\d+)/(?P<state_pk>\d+)/$', dialogue, name='state_dialogue'),
     # получить блок сообщений
     url(r'^load_message_block$', get_message_block, name='get_message_block'),
 

@@ -1,0 +1,41 @@
+DO $$ 
+BEGIN
+   -- Удаляем временную таблицу, если она существует
+   IF EXISTS (SELECT FROM pg_tables WHERE tablename = 'temp_chat_ids') THEN
+      DROP TABLE temp_chat_ids;
+   END IF;
+END $$;
+
+-- Создаем временную таблицу для хранения chat_id на удаление
+CREATE TEMP TABLE temp_chat_ids AS
+WITH common_chat_ids AS (
+    SELECT chat_id
+    FROM public.chat_chatmembers
+    WHERE player_id = 2173
+    INTERSECT
+    SELECT chat_id
+    FROM public.chat_chatmembers
+    WHERE player_id = 2193
+),
+min_chat AS (
+    SELECT MIN(chat_id) AS min_chat_id
+    FROM common_chat_ids
+)
+SELECT chat_id
+FROM common_chat_ids
+WHERE chat_id <> (SELECT min_chat_id FROM min_chat);
+
+-- Удаляем записи из chat_chatmembers
+DELETE FROM public.chat_chatmembers
+WHERE chat_id IN (SELECT chat_id FROM temp_chat_ids);
+
+-- Удаляем записи из chat_messageblock
+DELETE FROM public.chat_messageblock
+WHERE chat_id IN (SELECT chat_id FROM temp_chat_ids);
+
+-- Удаляем записи из chat_chat
+DELETE FROM public.chat_chat
+WHERE id IN (SELECT chat_id FROM temp_chat_ids);
+
+-- Удаляем временную таблицу
+DROP TABLE temp_chat_ids;
