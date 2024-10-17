@@ -22,7 +22,7 @@ from state.models.parliament.deputy_mandate import DeputyMandate
 from state.models.parliament.parliament_party import ParliamentParty
 from .models.parliament.parliament import Parliament
 from .models.parliament.parliament_voting import ParliamentVoting
-
+from war.models.martial import Martial
 
 @shared_task(name="run_bill")
 @transaction.atomic
@@ -172,12 +172,24 @@ def finish_elections(parl_id):
     if not all_votes_count == 0:
         all_votes = Bulletin.objects.filter(voting=elections)
 
+        # отсекаем регионы с военным положением
+        martial_regions = Martial.objects.filter(active=True, days_left__gte=5, state=parliament.state).values_list('region__pk')
+        mar_pk_list = []
+
+        for m_reg in martial_regions:
+            mar_pk_list.append(m_reg[0])
+        # получим все регионы государства, чтобы проверять, есть ли эта партия еще в госе или нет
+        regions_of_state = Region.objects.filter(state=parliament.state, joined_since__lt=elections.voting_start).exclude(pk__in=mar_pk_list)
+
         # словарь с партиями и количеством голосов за них
         bulltins_dic = {}
         # партии для исключения
         parties_voted = []
         # для каждой партии подсчитываем количество бюллетеней
         for vote in all_votes:
+            if vote.party.region not in regions_of_state:
+                continue
+
             if vote.party in bulltins_dic:
                 bulltins_dic[vote.party] += 1
             else:
