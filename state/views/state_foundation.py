@@ -47,6 +47,7 @@ def state_foundation(request):
                                         hq_points__lt=0,
                                         deleted=False,
                                         end_time__gt=timezone.now() - timedelta(hours=12),
+                                        def_region=region,
                                      ).exists():
             data = {
                 'response': 'Невозможно создать государство в первые 12 часов после восстания',
@@ -59,6 +60,7 @@ def state_foundation(request):
                                         running=False,
                                         type='ac',
                                         voting_end__gt=timezone.now() - timedelta(hours=12),
+                                        def_region=region,
                                      ).exists():
             data = {
                 'response': 'Невозможно создать государство в первые 12 часов после объявления независимости',
