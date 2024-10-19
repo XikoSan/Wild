@@ -20,7 +20,7 @@ from state.models.treasury import Treasury
 from state.models.treasury_stock import TreasuryStock
 from storage.models.good import Good
 from war.models.martial import Martial
-
+from django.utils.translation import pgettext_lazy
 
 # Военное положение
 class MartialLaw(Bill):
@@ -239,8 +239,8 @@ class MartialLaw(Bill):
     # Свойства класса
     class Meta:
 
-        verbose_name = "Военное положение"
-        verbose_name_plural = "Военные положения"
+        verbose_name = pgettext_lazy('new_bill', "Военное положение")
+        verbose_name_plural = pgettext_lazy('new_bill', "Военные положения")
 
 
 # сигнал прослушивающий создание законопроекта, после этого формирующий таску

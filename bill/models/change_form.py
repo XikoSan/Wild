@@ -14,6 +14,7 @@ from regime.temporary import Temporary
 from state.models.parliament.deputy_mandate import DeputyMandate
 from state.models.parliament.parliament import Parliament
 from state.models.state import State
+from django.utils.translation import pgettext_lazy
 
 
 # Изменить название государства
@@ -21,8 +22,8 @@ from state.models.state import State
 class ChangeForm(Bill):
     # тип государства
     stateTypeChoices = (
-        ('Temporary', 'Временное правительство'),
-        ('Presidential', 'Президентская республика'),
+        ('Temporary', pgettext_lazy('new_bill', 'Временное правительство')),
+        ('Presidential', pgettext_lazy('new_bill', 'Президентская республика')),
     )
 
     form = models.CharField(
@@ -204,9 +205,8 @@ class ChangeForm(Bill):
 
     # Свойства класса
     class Meta:
-        verbose_name = "Новая форма правления государства"
-        verbose_name_plural = "Новые формы правления государств"
-
+        verbose_name = pgettext_lazy('new_bill', "Новая форма правления государства")
+        verbose_name_plural = pgettext_lazy('new_bill', "Новые формы правления государств")
 
 # сигнал прослушивающий создание законопроекта, после этого формирующий таску
 @receiver(post_save, sender=ChangeForm)

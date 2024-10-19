@@ -5,6 +5,7 @@ from django.utils.translation import pgettext
 from region.building.power_plant import PowerPlant
 from region.building.rate_building import RateBuilding
 from state.models.state import State
+from django.utils.translation import pgettext_lazy
 
 
 # госпиталь здание в регионе
@@ -150,5 +151,5 @@ class Hospital(RateBuilding):
 
     # Свойства класса
     class Meta:
-        verbose_name = "Больница"
-        verbose_name_plural = "Больницы"
+        verbose_name = pgettext_lazy('new_bill', "Больница")
+        verbose_name_plural = pgettext_lazy('new_bill', "Больницы")

@@ -28,7 +28,7 @@ def new_bill(player, parliament):
         if bill_cl.__name__ in state_type_cl.forbidden_bills:
             continue
 
-        translate_dict[bill_cl.__name__] = bill_cl._meta.verbose_name_raw
+        translate_dict[bill_cl.__name__] = bill_cl._meta.verbose_name
 
     return {
         'player': player,

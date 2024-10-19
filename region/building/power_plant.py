@@ -9,6 +9,9 @@ from django.db.models import F
 import datetime
 from django.db import transaction
 import time
+from django.utils.translation import pgettext_lazy
+
+
 # Электростанция - здание в регионе
 class PowerPlant(Building):
     # сколько производит каждый уровень электростанции
@@ -189,5 +192,5 @@ class PowerPlant(Building):
 
     # Свойства класса
     class Meta:
-        verbose_name = "ТЭЦ"
-        verbose_name_plural = "Теплоэлектростанции"
+        verbose_name = pgettext_lazy('new_bill', "ТЭЦ")
+        verbose_name_plural = pgettext_lazy('new_bill', "Электростанции")

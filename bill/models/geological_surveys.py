@@ -223,8 +223,8 @@ class GeologicalSurveys(Bill):
         # этот тип ЗП выключен
         abstract = True
 
-        verbose_name = "Геологические изыскания"
-        verbose_name_plural = "Геологические изыскания"
+        verbose_name = pgettext_lazy('new_bill', "Геологические изыскания")
+        verbose_name_plural = pgettext_lazy('new_bill', "Геологические изыскания")
 
 
 # сигнал прослушивающий создание законопроекта, после этого формирующий таску

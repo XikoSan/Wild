@@ -6,6 +6,7 @@ from django.db import transaction
 from django.db.models import F
 from django.utils import timezone
 from django.utils.translation import pgettext
+from django.utils.translation import pgettext_lazy
 
 from player.views.get_subclasses import get_subclasses
 from region.building.building import Building
@@ -58,5 +59,5 @@ class Defences(Building):
 
     # Свойства класса
     class Meta:
-        verbose_name = "Укрепления"
-        verbose_name_plural = "Укрепления"
+        verbose_name = pgettext_lazy('new_bill', "Укрепления")
+        verbose_name_plural = pgettext_lazy('new_bill', "Укрепления")

@@ -350,8 +350,8 @@ class ExploreResources(Bill):
     # Свойства класса
     class Meta:
 
-        verbose_name = "Разведка ресурсов"
-        verbose_name_plural = "Разведки ресурсов"
+        verbose_name = pgettext_lazy('new_bill', "Разведка ресурсов")
+        verbose_name_plural = pgettext_lazy('new_bill', "Разведки ресурсов")
 
 
 # сигнал прослушивающий создание законопроекта, после этого формирующий таску

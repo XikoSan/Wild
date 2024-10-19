@@ -29,6 +29,7 @@ from storage.models.good import Good
 from storage.models.good_lock import GoodLock
 from war.models.martial import Martial
 from war.models.wars.war import War
+from django.utils.translation import pgettext_lazy
 
 
 # Передать ресурсы указанному государству
@@ -341,8 +342,8 @@ class TransferResources(Bill):
     # Свойства класса
     class Meta:
 
-        verbose_name = "Передача ресурсов"
-        verbose_name_plural = "Передачи ресурсов"
+        verbose_name = pgettext_lazy('new_bill', "Передача товаров")
+        verbose_name_plural = pgettext_lazy('new_bill', "Передачи товаров")
 
 
 # сигнал прослушивающий создание законопроекта, после этого формирующий таску

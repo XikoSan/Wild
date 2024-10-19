@@ -29,7 +29,7 @@ from storage.models.good import Good
 from storage.models.good_lock import GoodLock
 from war.models.wars.war import War
 from war.models.martial import Martial
-
+from django.utils.translation import pgettext_lazy
 
 # Передать регион указанному государству
 class TransferRegion(Bill):
@@ -235,8 +235,8 @@ class TransferRegion(Bill):
     # Свойства класса
     class Meta:
 
-        verbose_name = "Передача региона"
-        verbose_name_plural = "Передачи регионов"
+        verbose_name = pgettext_lazy('new_bill', "Передача региона")
+        verbose_name_plural = pgettext_lazy('new_bill', "Передачи регионов")
 
 
 # сигнал прослушивающий создание законопроекта, после этого формирующий таску

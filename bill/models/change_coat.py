@@ -17,6 +17,7 @@ from bill.models.bill import Bill
 from state.models.parliament.deputy_mandate import DeputyMandate
 from state.models.parliament.parliament import Parliament
 from state.models.state import State
+from django.utils.translation import pgettext_lazy
 
 
 # Изменить герб государства
@@ -176,8 +177,8 @@ class ChangeCoat(Bill):
     # Свойства класса
     class Meta:
 
-        verbose_name = "Новый герб государства"
-        verbose_name_plural = "Смена гербов государств"
+        verbose_name = pgettext_lazy('new_bill', "Новый герб государства")
+        verbose_name_plural = pgettext_lazy('new_bill', "Смена гербов государств")
 
 
 # сигнал прослушивающий создание законопроекта, после этого формирующий таску

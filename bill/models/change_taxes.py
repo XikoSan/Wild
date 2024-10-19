@@ -283,8 +283,8 @@ class ChangeTaxes(Bill):
     # Свойства класса
     class Meta:
 
-        verbose_name = "Изменение налогов"
-        verbose_name_plural = "Изменения налогов"
+        verbose_name = pgettext_lazy('new_bill', "Изменение налогов")
+        verbose_name_plural = pgettext_lazy('new_bill', "Изменения налогов")
 
 
 # сигнал прослушивающий создание законопроекта, после этого формирующий таску

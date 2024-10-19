@@ -21,6 +21,7 @@ from state.models.state import State
 from state.models.treasury import Treasury
 from state.models.treasury_stock import TreasuryStock
 from storage.models.good import Good
+from django.utils.translation import pgettext_lazy
 
 
 # Изменить способ получения прописки в государстве
@@ -269,8 +270,8 @@ class ChangeResidency(Bill):
     # Свойства класса
     class Meta:
         # abstract = True
-        verbose_name = "Новый способ выдачи прописки"
-        verbose_name_plural = "Новые способы выдачи прописки"
+        verbose_name = pgettext_lazy('new_bill', "Новый способ выдачи прописки")
+        verbose_name_plural = pgettext_lazy('new_bill', "Новые способы выдачи прописки")
 
 
 # сигнал прослушивающий создание законопроекта, после этого формирующий таску

@@ -15,6 +15,7 @@ from storage.models.auction.auction import BuyAuction
 from storage.models.auction.auction_lot import AuctionLot
 from storage.models.good import Good
 from storage.models.storage import Storage
+from django.utils.translation import pgettext_lazy
 
 
 # Аукцион закупки
@@ -305,8 +306,8 @@ class PurchaseAuction(Bill):
     # Свойства класса
     class Meta:
 
-        verbose_name = "Закупка товаров"
-        verbose_name_plural = "Закупки товаров"
+        verbose_name = pgettext_lazy('new_bill', "Закупка товаров")
+        verbose_name_plural = pgettext_lazy('new_bill', "Закупки товаров")
 
 
 # сигнал прослушивающий создание законопроекта, после этого формирующий таску

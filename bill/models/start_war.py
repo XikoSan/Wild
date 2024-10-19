@@ -16,6 +16,7 @@ from state.models.parliament.parliament import Parliament
 from war.models.wars.war import War
 from war.models.wars.event_war import EventWar
 from war.models.wars.ground_war import GroundWar
+from django.utils.translation import pgettext_lazy
 
 
 # Объявить войну
@@ -339,8 +340,8 @@ class StartWar(Bill):
     # Свойства класса
     class Meta:
         # abstract = True
-        verbose_name = "Объявление войны"
-        verbose_name_plural = "Объявления войн"
+        verbose_name = pgettext_lazy('new_bill', "Объявление войны")
+        verbose_name_plural = pgettext_lazy('new_bill', "Объявления войн")
 
 
 # сигнал прослушивающий создание законопроекта, после этого формирующий таску

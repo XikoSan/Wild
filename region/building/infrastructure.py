@@ -4,6 +4,9 @@ import math
 from region.building.rate_building import RateBuilding
 from region.building.power_plant import PowerPlant
 from state.models.state import State
+from django.utils.translation import pgettext_lazy
+
+
 # инфраструктура здание в регионе
 class Infrastructure(RateBuilding):
     # словарь индексов, с процентом от числа зданий (за вычетом вышест. рейтингов)
@@ -112,5 +115,5 @@ class Infrastructure(RateBuilding):
 
     # Свойства класса
     class Meta:
-        verbose_name = "Инфраструктура"
-        verbose_name_plural = "Инфраструктуры"
+        verbose_name = pgettext_lazy('new_bill', "Инфраструктура")
+        verbose_name_plural = pgettext_lazy('new_bill', "Инфраструктуры")

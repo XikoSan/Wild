@@ -31,6 +31,7 @@ from storage.models.good import Good
 from storage.models.good_lock import GoodLock
 from war.models.wars.war import War
 from war.models.wars.revolution.revolution import Revolution
+from django.utils.translation import pgettext_lazy
 
 
 # Принять регион
@@ -398,8 +399,8 @@ class TransferAccept(Bill):
     # Свойства класса
     class Meta:
 
-        verbose_name = "Принятие региона"
-        verbose_name_plural = "Принятия регионов"
+        verbose_name = pgettext_lazy('new_bill', "Принятие региона")
+        verbose_name_plural = pgettext_lazy('new_bill', "Принятия регионов")
 
 
 # сигнал прослушивающий создание законопроекта, после этого формирующий таску

@@ -10,6 +10,7 @@ from state.models.parliament.deputy_mandate import DeputyMandate
 from state.models.parliament.parliament import Parliament
 from state.models.state import State
 from django.utils.translation import pgettext
+from django.utils.translation import pgettext_lazy
 
 
 # Изменить название государства
@@ -150,8 +151,8 @@ class ChangeTitle(Bill):
     # Свойства класса
     class Meta:
 
-        verbose_name = "Переименование государства"
-        verbose_name_plural = "Переименования государств"
+        verbose_name = pgettext_lazy('new_bill', "Переименование государства")
+        verbose_name_plural = pgettext_lazy('new_bill', "Переименования государств")
 
 
 # сигнал прослушивающий создание законопроекта, после этого формирующий таску

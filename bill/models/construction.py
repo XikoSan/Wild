@@ -19,13 +19,14 @@ from storage.models.good import Good
 import copy
 from django.db.models import F
 from war.models.martial import Martial
+from django.utils.translation import pgettext_lazy
 
 
 # Построить здание
 class Construction(Bill):
     # -------------vvvvvvv---------------Строительные схемы---------------vvvvvvv---------------
     Hospital = {
-        'title': 'Больницы',
+        'title': pgettext_lazy('new_bill', "Больница"),
 
         'resources':
             {
@@ -35,7 +36,7 @@ class Construction(Bill):
     }
 
     PowerPlant = {
-        'title': 'ТЭЦ',
+        'title': pgettext_lazy('new_bill', "ТЭЦ"),
 
         'resources':
             {
@@ -46,7 +47,7 @@ class Construction(Bill):
     }
 
     Defences = {
-        'title': 'Укрепления',
+        'title': pgettext_lazy('new_bill', "Укрепления"),
 
         'resources':
             {
@@ -56,7 +57,7 @@ class Construction(Bill):
     }
 
     Infrastructure = {
-        'title': 'Инфраструктура',
+        'title': pgettext_lazy('new_bill', "Инфраструктура"),
 
         'resources':
             {
@@ -74,7 +75,7 @@ class Construction(Bill):
     building_schemas = ()
 
     for building_cl in building_classes:
-        building_schemas = building_schemas + ((building_cl.__name__, building_cl._meta.verbose_name_raw),)
+        building_schemas = building_schemas + ((building_cl.__name__, building_cl._meta.verbose_name),)
 
     building = models.CharField(
         max_length=20,
@@ -531,8 +532,8 @@ class Construction(Bill):
     # Свойства класса
     class Meta:
 
-        verbose_name = "Строительство"
-        verbose_name_plural = "Строительства"
+        verbose_name = pgettext_lazy('new_bill', "Строительство")
+        verbose_name_plural = pgettext_lazy('new_bill', "Строительства")
 
 
 # сигнал прослушивающий создание законопроекта, после этого формирующий таску

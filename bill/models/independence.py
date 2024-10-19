@@ -23,6 +23,7 @@ from state.models.parliament.parliament_party import ParliamentParty
 from state.models.treasury import Treasury
 from war.models.martial import Martial
 from war.models.wars.war import War
+from django.utils.translation import pgettext_lazy
 
 
 # Объявить независимость региона
@@ -324,8 +325,8 @@ class Independence(Bill):
     # Свойства класса
     class Meta:
 
-        verbose_name = "Объявление независимости"
-        verbose_name_plural = "Объявления независимости"
+        verbose_name = pgettext_lazy('new_bill', "Объявление независимости")
+        verbose_name_plural = pgettext_lazy('new_bill', "Объявления независимости")
 
 
 # сигнал прослушивающий создание законопроекта, после этого формирующий таску
