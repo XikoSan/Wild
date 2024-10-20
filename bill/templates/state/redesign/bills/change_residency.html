@@ -20,9 +20,9 @@
 
     <td>
         {% if bill.residency == 'issue' %}
-        Выдаётся министром
+        {% trans 'выдается министром' context "change_residency_draft" %}
         {% else %}
-        Свободная
+        {% trans 'свободная' context "change_residency_draft" %}
         {% endif %}
     </td>
 
@@ -38,7 +38,7 @@
             </div>
         </div>
         {% else %}
-        <span>Бесплатно</span>
+<!--        <span>{% trans 'Бесплатно' context "bill_draft" %}</span>-->
         {% endif %}
     </td>
 
@@ -68,7 +68,7 @@
                         {% if president in bill.votes_pro.all %}
                         <div style="display: flex; align-items: center; justify-content: space-between;">
                             <div class="tableMobileModal__cancel">
-                                <span>подписано:</span>
+                                <span>{% trans 'подписано' context "bill" %}:</span>
                                 <a style="color: var(--c10two); text-decoration: underline;" href='/profile/{% localize off %}{{ president.pk }}{% endlocalize %}' target="_blank">{{ president }}</a>
                             </div>
                             <button {% if president in bill.votes_pro.all %} onclick="speedup_bill('ChangeResidency',{% localize off %}{{ bill.pk }}{% endlocalize %})"{% else %}disabled{% endif %}>⏩</button>

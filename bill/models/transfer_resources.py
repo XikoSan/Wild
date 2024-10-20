@@ -320,7 +320,7 @@ class TransferResources(Bill):
 
         data = {
             'bill': self,
-            'title': self._meta.verbose_name_raw,
+            'title': self._meta.verbose_name,
             'player': player,
             'transfer_price': transfer_price,
             # проверяем, депутат ли этого парла игрок или нет
@@ -332,7 +332,7 @@ class TransferResources(Bill):
 
     def get_new_reviewed_bill(self, player):
 
-        data = {'bill': self, 'title': self._meta.verbose_name_raw, 'player': player}
+        data = {'bill': self, 'title': self._meta.verbose_name, 'player': player}
 
         return data, 'state/redesign/reviewed/transfer_resources.html'
 

@@ -207,7 +207,7 @@ class TransferRegion(Bill):
 
         data = {
             'bill': self,
-            'title': self._meta.verbose_name_raw,
+            'title': self._meta.verbose_name,
             'player': player,
             # проверяем, депутат ли этого парла игрок или нет
             'is_deputy': DeputyMandate.objects.filter(player=player, parliament=Parliament.objects.get(
@@ -225,7 +225,7 @@ class TransferRegion(Bill):
 
     def get_new_reviewed_bill(self, player):
 
-        data = {'bill': self, 'title': self._meta.verbose_name_raw, 'player': player}
+        data = {'bill': self, 'title': self._meta.verbose_name, 'player': player}
 
         return data, 'state/redesign/reviewed/transfer_region.html'
 

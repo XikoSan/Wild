@@ -250,7 +250,7 @@ class PurchaseAuction(Bill):
 
         data = {
             'bill': self,
-            'title': self._meta.verbose_name_raw,
+            'title': self._meta.verbose_name,
             'player': player,
             'president': president,
             'has_right': has_right,
@@ -272,7 +272,7 @@ class PurchaseAuction(Bill):
 
         data = {
             'bill': self,
-            'title': self._meta.verbose_name_raw,
+            'title': self._meta.verbose_name,
             'player': player,
             'president': president,
             'has_right': has_right,
@@ -286,14 +286,14 @@ class PurchaseAuction(Bill):
     # получить шаблон рассмотренного законопроекта
     def get_reviewed_bill(self, player):
 
-        data = {'bill': self, 'title': self._meta.verbose_name_raw, 'player': player}
+        data = {'bill': self, 'title': self._meta.verbose_name, 'player': player}
 
         return data, 'state/gov/reviewed/purchase_auction.html'
 
     # получить шаблон рассмотренного законопроекта
     def get_new_reviewed_bill(self, player):
 
-        data = {'bill': self, 'title': self._meta.verbose_name_raw, 'player': player}
+        data = {'bill': self, 'title': self._meta.verbose_name, 'player': player}
 
         return data, 'state/redesign/reviewed/purchase_auction.html'
 

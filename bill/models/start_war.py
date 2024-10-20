@@ -32,7 +32,7 @@ class StartWar(Bill):
     for war_cl in war_classes:
         if war_cl.__name__ == 'EventWar':
             continue
-        war_choices = war_choices + ((war_cl.__name__, war_cl._meta.verbose_name_raw),)
+        war_choices = war_choices + ((war_cl.__name__, war_cl._meta.verbose_name),)
 
     war_type = models.CharField(
         max_length=20,
@@ -288,7 +288,7 @@ class StartWar(Bill):
 
         data = {
             'bill': self,
-            'title': self._meta.verbose_name_raw,
+            'title': self._meta.verbose_name,
             'player': player,
             'president': president,
             'has_right': has_right,
@@ -310,7 +310,7 @@ class StartWar(Bill):
 
         data = {
             'bill': self,
-            'title': self._meta.verbose_name_raw,
+            'title': self._meta.verbose_name,
             'player': player,
             'president': president,
             'has_right': has_right,
@@ -324,13 +324,13 @@ class StartWar(Bill):
     # получить шаблон рассмотренного законопроекта
     def get_reviewed_bill(self, player):
 
-        data = {'bill': self, 'title': self._meta.verbose_name_raw, 'player': player}
+        data = {'bill': self, 'title': self._meta.verbose_name, 'player': player}
 
         return data, 'state/gov/reviewed/start_war.html'
 
     # получить шаблон рассмотренного законопроекта
     def get_new_reviewed_bill(self, player):
-        data = {'bill': self, 'title': self._meta.verbose_name_raw, 'player': player}
+        data = {'bill': self, 'title': self._meta.verbose_name, 'player': player}
 
         return data, 'state/redesign/reviewed/start_war.html'
 

@@ -5,7 +5,7 @@
 {% load l10n %}{% load i18n %}
 <!--объявление войны-->
 <div class="gover__newInner StartWar">
-    <h2>Плацдарм:</h2>
+    <h2>{% trans 'Плацдарм' context "start_war_draft" %}:</h2>
     {% with regions=data|dict_key:'reg_list' %}
     <div class="ct__selectWithImage">
         {% for region in regions %}
@@ -32,7 +32,7 @@
     </div>
     {% endwith %}
 
-    <h2>Цель:</h2>
+    <h2>{% trans 'Цель' context "start_war_draft" %}:</h2>
     {% with regions=data|dict_key:'victims_list' %}
         {% with first=data|dict_key:'first' %}
             {% if regions %}

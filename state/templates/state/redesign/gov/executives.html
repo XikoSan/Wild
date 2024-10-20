@@ -17,7 +17,7 @@
 		<li class="goverGuysModal__item">
 			<div onclick="window.open('/profile/{% localize off %}{{ pres_mandate.player.pk }}{% endlocalize %}/')" style="cursor: pointer">
 			{% if pres_mandate.player.image %}
-			<img src="{{ pres_mandate.player.image.url }}">
+			<img src="{{ pres_mandate.player.image.url }}" style="width: 80rem;	height: 80rem;">
 			{% else %}
 			{% nopic player '' 'width: 80rem; height: 80rem' %}
 			{% endif %}

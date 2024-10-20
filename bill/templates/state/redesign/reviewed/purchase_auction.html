@@ -26,7 +26,7 @@
     <td class="gover__tableDopInfo">
         <div class="gover__tableVote-wrappper">
             <div class="gover__withImage" style="margin-bottom: 4rem;">
-                <span>Лотов: {{ bill.lots_count }}</span>
+                <span>{% trans 'Лотов' context "purchase_auction" %}: {{ bill.lots_count }}</span>
             </div>
             <div class="gover__withImage">
                 <span>{% trans 'Наличные' context "purchase_auction_reviewed" %}: {{ bill.cash_cost }}</span>

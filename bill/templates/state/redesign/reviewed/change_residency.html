@@ -21,9 +21,9 @@
 
     <td>
         {% if bill.residency == 'issue' %}
-        Выдаётся министром
+        {% trans 'выдается министром' context "change_residency_draft" %}
         {% else %}
-        Свободная
+        {% trans 'свободная' context "change_residency_draft" %}
         {% endif %}
     </td>
 
@@ -39,7 +39,7 @@
             </div>
         </div>
         {% else %}
-        <span>Бесплатно</span>
+<!--        <span>{% trans 'Бесплатно' context "bill_draft" %}</span>-->
         {% endif %}
     </td>
 

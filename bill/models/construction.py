@@ -438,7 +438,7 @@ class Construction(Bill):
 
         data = {
             'bill': self,
-            'title': self._meta.verbose_name_raw,
+            'title': self._meta.verbose_name,
             'player': player,
             'president': president,
             'has_right': has_right,
@@ -472,7 +472,7 @@ class Construction(Bill):
 
         data = {
             'bill': self,
-            'title': self._meta.verbose_name_raw,
+            'title': self._meta.verbose_name,
             'player': player,
             'president': president,
             'has_right': has_right,
@@ -499,7 +499,7 @@ class Construction(Bill):
                 good_names[resource] = goods.get(name_ru=resource).name
 
         data = {'bill': self,
-                'title': self._meta.verbose_name_raw,
+                'title': self._meta.verbose_name,
                 'player': player,
                 'good_names': good_names}
 
@@ -520,7 +520,7 @@ class Construction(Bill):
                 good_names[resource] = goods.get(name_ru=resource).name
 
         data = {'bill': self,
-                'title': self._meta.verbose_name_raw,
+                'title': self._meta.verbose_name,
                 'player': player,
                 'good_names': good_names}
 

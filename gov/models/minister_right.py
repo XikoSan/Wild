@@ -1,12 +1,14 @@
 # coding=utf-8
 from django.db import models
+from django.utils.translation import pgettext_lazy
 
 from bill.models.bill import Bill
-from player.views.get_subclasses import get_subclasses
-from state.models.state import State
 from gov.models.custom_rights.energy_rights import EnergyRights
 from gov.models.custom_rights.foreign_rights import ForeignRights
 from gov.models.custom_rights.mining_stats import MiningStats
+from player.views.get_subclasses import get_subclasses
+from state.models.state import State
+
 
 class MinisterRight(models.Model):
     # тип законопроекта, который можно ускорять
@@ -15,10 +17,10 @@ class MinisterRight(models.Model):
     bill_choises = ()
 
     for bill_cl in bill_classes:
-        bill_choises = bill_choises + ((bill_cl.__name__, bill_cl._meta.verbose_name_raw),)
+        bill_choises = bill_choises + ((bill_cl.__name__, bill_cl._meta.verbose_name),)
 
-    bill_choises = bill_choises + (('ForeignRights', 'Министр иностранных дел'),)
-    bill_choises = bill_choises + (('MiningStats', 'Статистика добычи'),)
+    bill_choises = bill_choises + (('ForeignRights', pgettext_lazy('new_bill', 'Министр иностранных дел')),)
+    bill_choises = bill_choises + (('MiningStats', pgettext_lazy('new_bill', 'Статистика добычи')),)
 
     right = models.CharField(
         max_length=20,

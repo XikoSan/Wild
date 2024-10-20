@@ -29,8 +29,8 @@ from django.utils.translation import pgettext_lazy
 class ChangeResidency(Bill):
     # тип государства
     residencyTypeChoices = (
-        ('free', 'Свободная'),
-        ('issue', 'Выдаётся министром'),
+        ('free', pgettext_lazy('change_residency_draft', 'Свободная')),
+        ('issue', pgettext_lazy('change_residency_draft', 'Выдаётся министром')),
     )
 
     residency = models.CharField(
@@ -210,7 +210,7 @@ class ChangeResidency(Bill):
 
         data = {
             'bill': self,
-            'title': self._meta.verbose_name_raw,
+            'title': self._meta.verbose_name,
             'player': player,
             'president': president,
             'has_right': has_right,
@@ -237,7 +237,7 @@ class ChangeResidency(Bill):
 
         data = {
             'bill': self,
-            'title': self._meta.verbose_name_raw,
+            'title': self._meta.verbose_name,
             'player': player,
             'president': president,
             'has_right': has_right,
@@ -256,14 +256,14 @@ class ChangeResidency(Bill):
 
         regions_cnt = Region.objects.filter(state=player.region.state).count()
 
-        data = {'bill': self, 'title': self._meta.verbose_name_raw, 'player': player, }
+        data = {'bill': self, 'title': self._meta.verbose_name, 'player': player, }
 
         return data, 'state/gov/reviewed/change_residency.html'
 
     # получить шаблон рассмотренного законопроекта
     def get_new_reviewed_bill(self, player):
 
-        data = {'bill': self, 'title': self._meta.verbose_name_raw, 'player': player, }
+        data = {'bill': self, 'title': self._meta.verbose_name, 'player': player, }
 
         return data, 'state/redesign/reviewed/change_residency.html'
 

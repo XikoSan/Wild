@@ -29,8 +29,8 @@ class MartialLaw(Bill):
 
     # режим
     modeChoices = (
-        ('free', 'Снятие ограничений'),
-        ('set', 'Военное положение'),
+        ('free', pgettext_lazy('martial_law_draft', 'Снятие ограничений')),
+        ('set', pgettext_lazy('martial_law_draft', 'Военное положение')),
     )
 
     mode = models.CharField(
@@ -210,7 +210,7 @@ class MartialLaw(Bill):
 
         data = {
             'bill': self,
-            'title': self._meta.verbose_name_raw,
+            'title': self._meta.verbose_name,
             'player': player,
             'president': president,
             'has_right': has_right,
@@ -224,12 +224,12 @@ class MartialLaw(Bill):
     # получить шаблон рассмотренного законопроекта
     def get_reviewed_bill(self, player):
 
-        data = {'bill': self, 'title': self._meta.verbose_name_raw, 'player': player}
+        data = {'bill': self, 'title': self._meta.verbose_name, 'player': player}
 
         return data, 'state/gov/reviewed/martial_law.html'
 
     def get_new_reviewed_bill(self, player):
-        data = {'bill': self, 'title': self._meta.verbose_name_raw, 'player': player}
+        data = {'bill': self, 'title': self._meta.verbose_name, 'player': player}
 
         return data, 'state/redesign/reviewed/martial_law.html'
 
