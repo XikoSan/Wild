@@ -383,7 +383,7 @@ class Player(models.Model):
             data = {
                 'response': pgettext('mining', 'Дождитесь конца полёта'),
                 'header': pgettext('mining', 'Ошибка получения финансирования'),
-                'grey_btn': pgettext('mining', 'Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             # return JResponse(data)
             return JResponse(data), 0
@@ -394,7 +394,7 @@ class Player(models.Model):
             data = {
                 'response': pgettext('mining', 'Нечего забирать'),
                 'header': pgettext('mining', 'Ошибка получения финансирования'),
-                'grey_btn': pgettext('mining', 'Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             # return JResponse(data)
             return JResponse(data), 0
@@ -415,7 +415,7 @@ class Player(models.Model):
             data = {
                 'response': pgettext('mining', 'Нечего забирать'),
                 'header': pgettext('mining', 'Ошибка получения финансирования'),
-                'grey_btn': pgettext('mining', 'Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             # return JResponse(data)
             return JResponse(data), 0

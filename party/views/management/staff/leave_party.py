@@ -35,7 +35,7 @@ def leave_party(request):
             if Player.objects.filter(party=Party.objects.get(pk=request.POST.get('party_id'))).count() > 1:
                 data = {
                     'header': pgettext('party', 'Выход из партии'),
-                    'grey_btn': pgettext('mining', 'Закрыть'),
+                    'grey_btn': pgettext('core', 'Закрыть'),
                     'response': pgettext('party', 'Вы не исключили всех однопартийцев'),
                 }
                 return JsonResponse(data)
@@ -207,7 +207,7 @@ def leave_party(request):
     else:
         data = {
             'header': pgettext('party', 'Выход из партии'),
-            'grey_btn': pgettext('mining', 'Закрыть'),
+            'grey_btn': pgettext('core', 'Закрыть'),
             'response': pgettext('party', 'Вы не состоите в указанной партии'),
         }
         return JsonResponse(data)

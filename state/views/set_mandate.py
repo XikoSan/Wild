@@ -5,6 +5,7 @@ from player.decorators.player import check_player
 from player.player import Player
 from state.models.parliament.deputy_mandate import DeputyMandate
 from wild_politics.settings import JResponse
+from django.utils.translation import pgettext
 
 
 # проголосовать на выборах в парламент государства
@@ -26,9 +27,9 @@ def set_mandate(request):
                 # проверяем, есть ли такой игрок в этой партии
                 if not Player.objects.filter(pk=int(candidate_pk), party=player.party).exists():
                     data = {
-                        'response': 'В партии нет такого кандидата',
-                        'header': 'Выдача мандата',
-                        'grey_btn': 'Закрыть',
+                        'response': pgettext('set_mandate', 'В партии нет такого кандидата'),
+                        'header': pgettext('set_mandate', 'Выдача мандата'),
+                        'grey_btn': pgettext('core', 'Закрыть'),
                     }
                     return JResponse(data)
 
@@ -37,9 +38,9 @@ def set_mandate(request):
                 # проверяем, есть ли мандат с таким кадитатом:
                 if DeputyMandate.objects.filter(player=candidate).exists():
                     data = {
-                        'response': 'У кандидата уже есть мандат',
-                        'header': 'Выдача мандата',
-                        'grey_btn': 'Закрыть',
+                        'response': pgettext('set_mandate', 'У кандидата уже есть мандат'),
+                        'header': pgettext('set_mandate', 'Выдача мандата'),
+                        'grey_btn': pgettext('core', 'Закрыть'),
                     }
                     return JResponse(data)
 
@@ -50,32 +51,32 @@ def set_mandate(request):
                 mandate.save()
 
                 data = {
-                    'response': 'Мандат успешно выдан',
-                    'header': 'Выдача мандата',
-                    'grey_btn': 'Закрыть',
+                    'response': pgettext('set_mandate', 'Мандат успешно выдан'),
+                    'header': pgettext('set_mandate', 'Выдача мандата'),
+                    'grey_btn': pgettext('core', 'Закрыть'),
                 }
                 return JResponse(data)
 
             else:
                 data = {
-                    'response': 'Нет свободных мандатов',
-                    'header': 'Выдача мандата',
-                    'grey_btn': 'Закрыть',
+                    'response': pgettext('set_mandate', 'Нет свободных мандатов'),
+                    'header': pgettext('set_mandate', 'Выдача мандата'),
+                    'grey_btn': pgettext('core', 'Закрыть'),
                 }
                 return JResponse(data)
         else:
             data = {
-                'response': 'Вы - не лидер партии',
-                'header': 'Выдача мандата',
-                'grey_btn': 'Закрыть',
+                'response': pgettext('set_mandate', 'Вы - не лидер партии'),
+                'header': pgettext('set_mandate', 'Выдача мандата'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
 
     # если страницу только грузят
     else:
         data = {
-            'response': 'Ошибка типа запроса',
-            'header': 'Основание государства',
-            'grey_btn': 'Закрыть',
+            'response': pgettext('core', 'Ошибка типа запроса'),
+            'header': pgettext('set_mandate', 'Выдача мандата'),
+            'grey_btn': pgettext('core', 'Закрыть'),
         }
         return JResponse(data)

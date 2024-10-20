@@ -5,6 +5,7 @@ from player.decorators.player import check_player
 from player.logs.gold_log import GoldLog
 from player.player import Player
 from wild_politics.settings import JResponse
+from django.utils.translation import pgettext
 
 
 # расход энергии со склада на пополнения её у персонажа
@@ -18,10 +19,9 @@ def change_nickname(request):
 
         if player.gold < 50:
             data = {
-                # 'response': _('positive_enrg_req'),
-                'response': 'Недостаточно золота, необходимо: 50',
-                'header': 'Переименование',
-                'grey_btn': 'Закрыть',
+                'response': pgettext('change_nickname', 'Недостаточно золота, необходимо: 50'),
+                'header': pgettext('change_nickname', 'Смена никнейма'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
 
@@ -29,17 +29,17 @@ def change_nickname(request):
 
         if nickname == '':
             data = {
-                'response': 'Никнейм не может быть пустым',
-                'header': 'Переименование',
-                'grey_btn': 'Закрыть',
+                'response': pgettext('change_nickname', 'Никнейм не может быть пустым'),
+                'header': pgettext('change_nickname', 'Смена никнейма'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
 
         if nickname == player.nickname:
             data = {
-                'response': 'Никнейм не изменился',
-                'header': 'Переименование',
-                'grey_btn': 'Закрыть',
+                'response': pgettext('change_nickname', 'Никнейм не изменился'),
+                'header': pgettext('change_nickname', 'Смена никнейма'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
 
@@ -60,9 +60,8 @@ def change_nickname(request):
     # если страницу только грузят
     else:
         data = {
-            # 'response': _('positive_enrg_req'),
-            'response': 'Ошибка типа запроса',
-            'header': 'Переименование',
-            'grey_btn': 'Закрыть',
+            'response': pgettext('core', 'Ошибка типа запроса'),
+            'header': pgettext('change_nickname', 'Смена никнейма'),
+            'grey_btn': pgettext('core', 'Закрыть'),
         }
         return JResponse(data)

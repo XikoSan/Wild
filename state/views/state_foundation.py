@@ -14,6 +14,7 @@ from state.models.treasury import Treasury
 from war.models.wars.revolution.revolution import Revolution
 from wild_politics.settings import JResponse
 from datetime import timedelta
+from django.utils.translation import pgettext
 
 # основание государства
 @login_required(login_url='/')
@@ -36,9 +37,9 @@ def state_foundation(request):
         # если в регионе уже есть государство
         if region.state:
             data = {
-                'response': 'Государство в этом регионе уже есть',
-                'header': 'Основание государства',
-                'grey_btn': 'Закрыть',
+                'response': pgettext('state_foundation', 'Государство в этом регионе уже есть'),
+                'header': pgettext('state_foundation', 'Основание государства'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
 
@@ -50,9 +51,9 @@ def state_foundation(request):
                                         def_region=region,
                                      ).exists():
             data = {
-                'response': 'Невозможно создать государство в первые 12 часов после восстания',
-                'header': 'Основание государства',
-                'grey_btn': 'Закрыть',
+                'response': pgettext('state_foundation', 'Невозможно создать государство в первые 12 часов после восстания'),
+                'header': pgettext('state_foundation', 'Основание государства'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
 
@@ -63,9 +64,10 @@ def state_foundation(request):
                                         region=region,
                                      ).exists():
             data = {
-                'response': 'Невозможно создать государство в первые 12 часов после объявления независимости',
-                'header': 'Основание государства',
-                'grey_btn': 'Закрыть',
+                'response': pgettext('state_foundation',
+                                     'Невозможно создать государство в первые 12 часов после объявления независимости'),
+                'header': pgettext('state_foundation', 'Основание государства'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
 
@@ -104,8 +106,8 @@ def state_foundation(request):
     # если страницу только грузят
     else:
         data = {
-            'response': 'Ошибка типа запроса',
-            'header': 'Основание государства',
-            'grey_btn': 'Закрыть',
+            'response': pgettext('core', 'Ошибка типа запроса'),
+            'header': pgettext('state_foundation', 'Основание государства'),
+            'grey_btn': pgettext('core', 'Закрыть'),
         }
         return JResponse(data)

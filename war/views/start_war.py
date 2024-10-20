@@ -11,6 +11,7 @@ from player.player import Player
 from war.models.wars.event_war import EventWar
 from war.models.wars.war_side import WarSide
 from wild_politics.settings import JResponse
+from django.utils.translation import pgettext
 
 
 # запуск войны в текущем регионе
@@ -98,8 +99,8 @@ def start_war(request):
     # если страницу только грузят
     else:
         data = {
-            'response': 'Ошибка типа запроса',
-            'header': 'Основание государства',
-            'grey_btn': 'Закрыть',
+            'response': pgettext('core', 'Ошибка типа запроса'),
+            'header': pgettext('state_foundation', 'Основание государства'),
+            'grey_btn': pgettext('core', 'Закрыть'),
         }
         return JResponse(data)

@@ -9,25 +9,24 @@ from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from django.shortcuts import redirect, render
 from django.utils import timezone
-from django.utils.translation import ugettext as _
+from django.utils.translation import pgettext
 
-from player.forms import ImageForm
-from region.building.hospital import Hospital
-from player.forms import NewPlayerForm
-from player.player import Player
-from region.models.region import Region
-from storage.models.storage import Storage
-# from django.db.models import F
-from wild_politics.settings import JResponse
 from chat.dialogue_consumers import _append_message
 from chat.models.messages.chat import Chat
 from chat.models.messages.chat_members import ChatMembers
-from player.lootbox.lootbox import Lootbox
-from player.game_event.game_event import GameEvent
-from storage.models.stock import Stock, Good
-from player.models.medal import Medal
 from gov.models.president import President
-from django.utils.translation import pgettext
+from player.forms import ImageForm
+from player.forms import NewPlayerForm
+from player.game_event.game_event import GameEvent
+from player.lootbox.lootbox import Lootbox
+from player.models.medal import Medal
+from player.player import Player
+from region.building.hospital import Hospital
+from region.models.region import Region
+from storage.models.stock import Stock, Good
+from storage.models.storage import Storage
+# from django.db.models import F
+from wild_politics.settings import JResponse
 
 
 # Функция создания нового персонажа
@@ -60,10 +59,11 @@ def player_create(request, form):
     storage.save()
 
     if Good.objects.filter(name_ru='BCAA').exists() \
-        and Good.objects.filter(name_ru='Глицин').exists() \
+            and Good.objects.filter(name_ru='Глицин').exists() \
             and Good.objects.filter(name_ru='Мельдоний').exists():
         # выдаем игроку стартовые бустеры
-        for good in [Good.objects.get(name_ru='BCAA'), Good.objects.get(name_ru='Глицин'),Good.objects.get(name_ru='Мельдоний')]:
+        for good in [Good.objects.get(name_ru='BCAA'), Good.objects.get(name_ru='Глицин'),
+                     Good.objects.get(name_ru='Мельдоний')]:
             stock = Stock(
                 storage=storage,
                 stock=1,
@@ -90,8 +90,10 @@ def player_create(request, form):
         player=character,
     )
 
-    _append_message(chat_id=chat_id, author=admin, text=pgettext('start_messages', 'Добро пожаловать в Wild Politics! Вы всегда можете обратиться ко мне прямо в этом чате - либо связаться со мной через группу игры ВК или чат в Телеграмм. Я открыт к любым вопросам и пожеланиям.'))
-    _append_message(chat_id=chat_id, author=admin, text=pgettext('start_messages', 'Если найдётся время, расскажите, пожалуйста, о своих впечатлениях от игры - мне это важно. Приятной игры!'))
+    _append_message(chat_id=chat_id, author=admin, text=pgettext('start_messages',
+                                                                 'Добро пожаловать в Wild Politics! Вы всегда можете обратиться ко мне прямо в этом чате - либо связаться со мной через группу игры ВК или чат в Телеграмм. Я открыт к любым вопросам и пожеланиям.'))
+    _append_message(chat_id=chat_id, author=admin, text=pgettext('start_messages',
+                                                                 'Если найдётся время, расскажите, пожалуйста, о своих впечатлениях от игры - мне это важно. Приятной игры!'))
 
     if character.region.state:
         if President.objects.filter(state=character.region.state).exists():
@@ -112,7 +114,9 @@ def player_create(request, form):
                 )
 
                 if not character.region.state.message:
-                    pres_text = pgettext('start_messages', "Добро пожаловать в государство %(state_title)s! Это автоматическое сообщение, созданное игрой. Но вы можете связаться со мной напрямую, просто ответив на него") % {"state_title": character.region.state }
+                    pres_text = pgettext('start_messages',
+                                         "Добро пожаловать в государство %(state_title)s! Это автоматическое сообщение, созданное игрой. Но вы можете связаться со мной напрямую, просто ответив на него") % {
+                                    "state_title": character.region.state}
                 else:
                     pres_text = character.region.state.message
 
@@ -171,9 +175,10 @@ def new_player(request):
                     except Exception as e:
                         transaction.savepoint_rollback(sid)
                         data = {
-                            'response': str(type(e).__name__) + _(': попробуйте создать персонажа, не загружая изображение'),
-                            'header': _('Новый персонаж'),
-                            'grey_btn': _('Закрыть'),
+                            'response': str(type(e).__name__) + ': ' + pgettext('new_player', 'попробуйте создать персонажа, не загружая изображение'),
+
+                            'header': pgettext('new_player', 'Новый персонаж'),
+                            'grey_btn': pgettext('core', 'Закрыть'),
                         }
                         return JResponse(data)
 
@@ -184,9 +189,9 @@ def new_player(request):
 
             else:
                 data = {
-                    'response': _('Ошибка в форме профиля'),
-                    'header': _('Новый персонаж'),
-                    'grey_btn': _('Закрыть'),
+                    'response': pgettext('new_player', 'Ошибка в форме профиля'),
+                    'header': pgettext('new_player', 'Новый персонаж'),
+                    'grey_btn': pgettext('core', 'Закрыть'),
                 }
                 return JResponse(data)
 
