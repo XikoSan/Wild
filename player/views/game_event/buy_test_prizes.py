@@ -31,7 +31,7 @@ def buy_test_prizes(request):
 
         type = request.POST.get('type')
 
-        if type not in ['7_prem', 'plane', 'cash', 'gold', 'wildpass', '30_prem']:
+        if type not in ['7_prem', '7_prem_2', 'plane', 'cash', 'gold', 'gold_100_1', 'gold_100_2', 'wildpass', '30_prem']:
             data = {
                 'response': 'Некорректно указан товар',
                 'header': 'Покупка за очки тестирования',
@@ -72,6 +72,35 @@ def buy_test_prizes(request):
         points = 0
 
         if type == '7_prem':
+
+            if points_before - points_used < 1:
+                data = {
+                    'response': 'Недостаточно очков',
+                    'header': 'Покупка за очки тестирования',
+                    'grey_btn': 'Закрыть',
+                }
+                return JResponse(data)
+
+            # время, к которому прибавляем месяц
+            if player.premium > timezone.now():
+                from_time = player.premium
+            else:
+                from_time = timezone.now()
+
+            player.premium = from_time + relativedelta(days=7)
+
+            player.save()
+
+            prem_log = PremLog(player=player, days=7, activity_txt='bonus')
+            prem_log.save()
+
+            points = 1
+
+        # --------------------------------------
+
+        points = 0
+
+        if type == '7_prem_2':
 
             if points_before - points_used < 1:
                 data = {
@@ -155,6 +184,46 @@ def buy_test_prizes(request):
             goldlog.save()
 
             points = 9
+
+        # --------------------------------------
+
+        if type == 'gold_100_1':
+
+            if points_before - points_used < 1:
+                data = {
+                    'response': 'Недостаточно очков',
+                    'header': 'Покупка за очки тестирования',
+                    'grey_btn': 'Закрыть',
+                }
+                return JResponse(data)
+
+            player.gold += 100
+            player.save()
+
+            goldlog = GoldLog(player=player, gold=100, activity_txt='bonus')
+            goldlog.save()
+
+            points = 1
+
+        # --------------------------------------
+
+        if type == 'gold_100_2':
+
+            if points_before - points_used < 1:
+                data = {
+                    'response': 'Недостаточно очков',
+                    'header': 'Покупка за очки тестирования',
+                    'grey_btn': 'Закрыть',
+                }
+                return JResponse(data)
+
+            player.gold += 100
+            player.save()
+
+            goldlog = GoldLog(player=player, gold=100, activity_txt='bonus')
+            goldlog.save()
+
+            points = 1
 
         # --------------------------------------
 
