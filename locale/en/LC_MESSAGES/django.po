@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-20 02:02+0300\n"
-"PO-Revision-Date: 2024-10-20 02:10+0300\n"
+"POT-Creation-Date: 2024-10-20 21:42+0300\n"
+"PO-Revision-Date: 2024-10-20 21:38+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -473,6 +473,22 @@ msgctxt "new_bill"
 msgid "Новые формы правления государств"
 msgstr "New government forms"
 
+#: bill/models/change_residency.py:32
+#, fuzzy
+#| msgctxt "state_view"
+#| msgid "Свободная"
+msgctxt "change_residency_draft"
+msgid "Свободная"
+msgstr "Free"
+
+#: bill/models/change_residency.py:33
+#, fuzzy
+#| msgctxt "state_view"
+#| msgid "Выдаётся министром"
+msgctxt "change_residency_draft"
+msgid "Выдаётся министром"
+msgstr "Issued by minister"
+
 #: bill/models/change_residency.py:70
 msgctxt "new_bill"
 msgid "Тип получения прописки должен быть указан"
@@ -499,15 +515,11 @@ msgid "Новые способы выдачи прописки"
 msgstr "New methods of registration issuing"
 
 #: bill/models/change_taxes.py:22
-#, fuzzy
-#| msgid "Регион"
 msgctxt "change_taxes_draft"
 msgid "Регион"
 msgstr "Region"
 
 #: bill/models/change_taxes.py:23
-#, fuzzy
-#| msgid "Государство"
 msgctxt "change_taxes_draft"
 msgid "Государство"
 msgstr "State"
@@ -519,15 +531,11 @@ msgid "Финансирование"
 msgstr "Financing"
 
 #: bill/models/change_taxes.py:40
-#, fuzzy
-#| msgid "Нефть"
 msgctxt "change_taxes_draft"
 msgid "Нефть"
 msgstr "Oil"
 
 #: bill/models/change_taxes.py:41
-#, fuzzy
-#| msgid "Руда"
 msgctxt "change_taxes_draft"
 msgid "Руда"
 msgstr "Ore"
@@ -731,6 +739,18 @@ msgstr "Independence declaration"
 msgctxt "new_bill"
 msgid "Объявления независимости"
 msgstr "Independence declarations"
+
+#: bill/models/martial_law.py:32
+#: bill/templates/state/redesign/drafts/martial_law.html:38
+msgctxt "martial_law_draft"
+msgid "Снятие ограничений"
+msgstr "Removal of restrictions"
+
+#: bill/models/martial_law.py:33
+#: bill/templates/state/redesign/drafts/martial_law.html:37
+msgctxt "martial_law_draft"
+msgid "Военное положение"
+msgstr "Martial law"
 
 #: bill/models/martial_law.py:63
 msgctxt "new_bill"
@@ -961,6 +981,32 @@ msgctxt "new_bill"
 msgid "Передачи товаров"
 msgstr "Transfers of goods"
 
+#: bill/templates/state/redesign/bills/change_coat.html:60
+#: bill/templates/state/redesign/bills/change_residency.html:71
+#: bill/templates/state/redesign/bills/change_taxes.html:74
+#: bill/templates/state/redesign/bills/change_title.html:53
+#: bill/templates/state/redesign/bills/construction.html:71
+#: bill/templates/state/redesign/bills/explore_resources.html:75
+#: bill/templates/state/redesign/bills/martial_law.html:64
+#: bill/templates/state/redesign/bills/purchase_auction.html:62
+msgctxt "bill"
+msgid "подписано"
+msgstr "signed"
+
+#: bill/templates/state/redesign/bills/change_residency.html:23
+#: bill/templates/state/redesign/drafts/change_residency.html:12
+#: bill/templates/state/redesign/reviewed/change_residency.html:24
+msgctxt "change_residency_draft"
+msgid "выдается министром"
+msgstr "Issued by minister"
+
+#: bill/templates/state/redesign/bills/change_residency.html:25
+#: bill/templates/state/redesign/drafts/change_residency.html:13
+#: bill/templates/state/redesign/reviewed/change_residency.html:26
+msgctxt "change_residency_draft"
+msgid "свободная"
+msgstr "Free"
+
 #: bill/templates/state/redesign/bills/change_residency.html:34
 #: factory/migrations/0023_auto_20230911_0014.py:43
 #: factory/migrations/0023_auto_20230911_0014.py:187
@@ -984,20 +1030,11 @@ msgctxt "goods"
 msgid "БПЛА"
 msgstr "UAV"
 
-#: bill/templates/state/redesign/bills/change_title.html:53
-msgctxt "change_title"
-msgid "подписано"
-msgstr "signed"
-
-#: bill/templates/state/redesign/bills/construction.html:71
-msgctxt "construction"
-msgid "подписано"
-msgstr "signed"
-
-#: bill/templates/state/redesign/bills/explore_resources.html:75
-msgctxt "explore_resources"
-msgid "подписано"
-msgstr "signed"
+#: bill/templates/state/redesign/bills/change_residency.html:41
+#: bill/templates/state/redesign/reviewed/change_residency.html:42
+msgctxt "bill_draft"
+msgid "Бесплатно"
+msgstr "Free"
 
 #: bill/templates/state/redesign/bills/martial_law.html:32
 msgctxt "martial_law"
@@ -1009,25 +1046,13 @@ msgctxt "martial_law"
 msgid "Снятие ограничений"
 msgstr "Lifting restrictions"
 
-#: bill/templates/state/redesign/bills/martial_law.html:64
-msgctxt "martial_law"
-msgid "подписано"
-msgstr "signed"
-
 #: bill/templates/state/redesign/bills/purchase_auction.html:28
+#: bill/templates/state/redesign/reviewed/purchase_auction.html:29
 msgctxt "purchase_auction"
 msgid "Лотов"
 msgstr "Count of lots"
 
-#: bill/templates/state/redesign/bills/purchase_auction.html:62
-msgctxt "purchase_auction"
-msgid "подписано"
-msgstr "signed"
-
 #: bill/templates/state/redesign/bills/start_war.html:41
-#, fuzzy
-#| msgctxt "war_page"
-#| msgid "Наземная война"
 msgctxt "start_war"
 msgid "Наземная война"
 msgstr "Ground war"
@@ -1079,16 +1104,6 @@ msgstr "select form of government"
 msgctxt "change_residency_draft"
 msgid "Способ выдачи прописки"
 msgstr "Method of issuing registration"
-
-#: bill/templates/state/redesign/drafts/change_residency.html:12
-msgctxt "change_residency_draft"
-msgid "выдается министром"
-msgstr "Issued by minister"
-
-#: bill/templates/state/redesign/drafts/change_residency.html:13
-msgctxt "change_residency_draft"
-msgid "свободная"
-msgstr "Free"
 
 #: bill/templates/state/redesign/drafts/change_residency.html:21
 msgctxt "change_residency_draft"
@@ -1183,7 +1198,7 @@ msgstr "Last 24h"
 #: bill/templates/state/redesign/drafts/explore_resources.html:172
 msgctxt "explore_resources_draft"
 msgid "Множитель"
-msgstr "multiplier"
+msgstr "Mltiplier"
 
 #: bill/templates/state/redesign/drafts/explore_resources.html:174
 msgctxt "explore_resources_draft"
@@ -1196,105 +1211,69 @@ msgid "Нет доступных регионов"
 msgstr "No regions available"
 
 #: bill/templates/state/redesign/drafts/independence.html:51
-#, fuzzy
-#| msgctxt "storage_upgrade"
-#| msgid "Недостаточно материалов"
 msgctxt "independence_draft"
 msgid "Нет доступных регионов"
-msgstr "Not enough materials"
-
-#: bill/templates/state/redesign/drafts/martial_law.html:37
-#, fuzzy
-#| msgctxt "martial_law"
-#| msgid "Военное положение"
-msgctxt "martial_law_draft"
-msgid "Военное положение"
-msgstr "Martial law"
-
-#: bill/templates/state/redesign/drafts/martial_law.html:38
-#, fuzzy
-#| msgctxt "martial_law"
-#| msgid "Снятие ограничений"
-msgctxt "martial_law_draft"
-msgid "Снятие ограничений"
-msgstr "Lifting restrictions"
+msgstr "Not enough regions"
 
 #: bill/templates/state/redesign/drafts/purchase_auction.html:24
-#, fuzzy
-#| msgctxt "trading"
-#| msgid "выберите товар"
 msgctxt "purchase_auction_draft"
 msgid "выберите товар"
 msgstr "choose good"
 
 #: bill/templates/state/redesign/drafts/purchase_auction.html:36
-#, fuzzy
-#| msgctxt "trading"
-#| msgid "количество"
 msgctxt "purchase_auction_draft"
 msgid "количество лотов"
-msgstr "quantity"
+msgstr "number of lots"
 
 #: bill/templates/state/redesign/drafts/purchase_auction.html:46
-#, fuzzy
-#| msgctxt "trading"
-#| msgid "количество"
 msgctxt "purchase_auction_draft"
 msgid "количество"
 msgstr "quantity"
 
 #: bill/templates/state/redesign/drafts/purchase_auction.html:55
-#, fuzzy
-#| msgctxt "factory"
-#| msgid "цена"
 msgctxt "purchase_auction_draft"
 msgid "цена"
 msgstr "price"
 
 #: bill/templates/state/redesign/drafts/purchase_auction.html:63
-#, fuzzy
-#| msgctxt "assets"
-#| msgid "стоимость"
 msgctxt "purchase_auction_draft"
 msgid "стоимость"
-msgstr "full price"
+msgstr "cost"
+
+#: bill/templates/state/redesign/drafts/start_war.html:8
+msgctxt "start_war_draft"
+msgid "Плацдарм"
+msgstr ""
+
+#: bill/templates/state/redesign/drafts/start_war.html:35
+msgctxt "start_war_draft"
+msgid "Цель"
+msgstr ""
 
 #: bill/templates/state/redesign/drafts/start_war.html:112
 msgctxt "start_war_draft"
 msgid "нет общих границ"
-msgstr ""
+msgstr "there are no common borders"
 
 #: bill/templates/state/redesign/drafts/transfer_region.html:110
-#, fuzzy
-#| msgctxt "storage_upgrade"
-#| msgid "Недостаточно материалов"
 msgctxt "transfer_region_draft"
 msgid "Нет доступных регионов"
-msgstr "Not enough materials"
+msgstr "Not enough regions"
 
 #: bill/templates/state/redesign/drafts/transfer_resources.html:94
-#, fuzzy
-#| msgctxt "trading"
-#| msgid "выберите товар"
 msgctxt "transfer_resources_draft"
 msgid "выберите товар"
 msgstr "choose good"
 
 #: bill/templates/state/redesign/drafts/transfer_resources.html:164
-#, fuzzy
-#| msgctxt "trading"
-#| msgid "количество"
 msgctxt "transfer_resources_draft"
 msgid "количество"
 msgstr "quantity"
 
 #: bill/templates/state/redesign/drafts/transfer_resources.html:180
-#, fuzzy
-#| msgctxt "no_storage"
-#| msgid "Стоимость создания"
 msgctxt "transfer_resources_draft"
 msgid "стоимость передачи"
-msgstr "Creation cost"
+msgstr "cost of transfer"
 
 #: bill/templates/state/redesign/new_bill.html:82
 msgctxt "new_bill"
@@ -1407,212 +1386,139 @@ msgid "отменён"
 msgstr "cancelled"
 
 #: bill/templates/state/redesign/reviewed/geological_surveys.html:36
-#, fuzzy
-#| msgctxt "goods"
-#| msgid "Буровые установки"
 msgctxt "geological_surveys_reviewed"
 msgid "Буровые установки"
 msgstr "Drills"
 
 #: bill/templates/state/redesign/reviewed/geological_surveys.html:49
-#, fuzzy
-#| msgctxt "party_requests"
-#| msgid "Принять"
 msgctxt "geological_surveys_reviewed"
 msgid "принят"
-msgstr "Accept"
+msgstr "accepted"
 
 #: bill/templates/state/redesign/reviewed/geological_surveys.html:51
-#, fuzzy
-#| msgctxt "party_requests"
-#| msgid "Отклонить"
 msgctxt "geological_surveys_reviewed"
 msgid "отклонён"
-msgstr "Reject"
+msgstr "rejected"
 
 #: bill/templates/state/redesign/reviewed/geological_surveys.html:53
-#, fuzzy
-#| msgid "Отмена"
 msgctxt "geological_surveys_reviewed"
 msgid "отменён"
-msgstr "Cancel"
+msgstr "cancelled"
 
 #: bill/templates/state/redesign/reviewed/independence.html:41
-#, fuzzy
-#| msgctxt "party_requests"
-#| msgid "Принять"
 msgctxt "independence_reviewed"
 msgid "принят"
-msgstr "Accept"
+msgstr "accepted"
 
 #: bill/templates/state/redesign/reviewed/independence.html:43
-#, fuzzy
-#| msgctxt "party_requests"
-#| msgid "Отклонить"
 msgctxt "independence_reviewed"
 msgid "отклонён"
-msgstr "Reject"
+msgstr "rejected"
 
 #: bill/templates/state/redesign/reviewed/independence.html:45
-#, fuzzy
-#| msgid "Отмена"
 msgctxt "independence_reviewed"
 msgid "отменён"
-msgstr "Cancel"
+msgstr "cancelled"
 
 #: bill/templates/state/redesign/reviewed/martial_law.html:46
-#, fuzzy
-#| msgctxt "party_requests"
-#| msgid "Принять"
 msgctxt "martial_law_reviewed"
 msgid "принят"
-msgstr "Accept"
+msgstr "accepted"
 
 #: bill/templates/state/redesign/reviewed/martial_law.html:48
-#, fuzzy
-#| msgctxt "party_requests"
-#| msgid "Отклонить"
 msgctxt "martial_law_reviewed"
 msgid "отклонён"
-msgstr "Reject"
+msgstr "rejected"
 
 #: bill/templates/state/redesign/reviewed/martial_law.html:50
-#, fuzzy
-#| msgid "Отмена"
 msgctxt "martial_law_reviewed"
 msgid "отменён"
-msgstr "Cancel"
+msgstr "cancelled"
 
 #: bill/templates/state/redesign/reviewed/purchase_auction.html:32
-#, fuzzy
-#| msgctxt "goods"
-#| msgid "Наличные"
 msgctxt "purchase_auction_reviewed"
 msgid "Наличные"
 msgstr "Cash"
 
 #: bill/templates/state/redesign/reviewed/purchase_auction.html:46
-#, fuzzy
-#| msgctxt "party_requests"
-#| msgid "Принять"
 msgctxt "purchase_auction_reviewed"
 msgid "принят"
-msgstr "Accept"
+msgstr "accepted"
 
 #: bill/templates/state/redesign/reviewed/purchase_auction.html:48
-#, fuzzy
-#| msgctxt "party_requests"
-#| msgid "Отклонить"
 msgctxt "purchase_auction_reviewed"
 msgid "отклонён"
-msgstr "Reject"
+msgstr "rejected"
 
 #: bill/templates/state/redesign/reviewed/purchase_auction.html:50
-#, fuzzy
-#| msgid "Отмена"
 msgctxt "purchase_auction_reviewed"
 msgid "отменён"
-msgstr "Cancel"
+msgstr "cancelled"
 
 #: bill/templates/state/redesign/reviewed/start_war.html:77
-#, fuzzy
-#| msgctxt "party_requests"
-#| msgid "Принять"
 msgctxt "start_war_reviewed"
 msgid "принят"
-msgstr "Accept"
+msgstr "accepted"
 
 #: bill/templates/state/redesign/reviewed/start_war.html:79
-#, fuzzy
-#| msgctxt "party_requests"
-#| msgid "Отклонить"
 msgctxt "start_war_reviewed"
 msgid "отклонён"
-msgstr "Reject"
+msgstr "rejected"
 
 #: bill/templates/state/redesign/reviewed/start_war.html:81
-#, fuzzy
-#| msgid "Отмена"
 msgctxt "start_war_reviewed"
 msgid "отменён"
-msgstr "Cancel"
+msgstr "cancelled"
 
 #: bill/templates/state/redesign/reviewed/transfer_accept.html:60
-#, fuzzy
-#| msgctxt "party_requests"
-#| msgid "Принять"
 msgctxt "transfer_accept_reviewed"
 msgid "принят"
-msgstr "Accept"
+msgstr "accepted"
 
 #: bill/templates/state/redesign/reviewed/transfer_accept.html:62
-#, fuzzy
-#| msgctxt "party_requests"
-#| msgid "Отклонить"
 msgctxt "transfer_accept_reviewed"
 msgid "отклонён"
-msgstr "Reject"
+msgstr "rejected"
 
 #: bill/templates/state/redesign/reviewed/transfer_accept.html:64
-#, fuzzy
-#| msgid "Отмена"
 msgctxt "transfer_accept_reviewed"
 msgid "отменён"
-msgstr "Cancel"
+msgstr "cancelled"
 
 #: bill/templates/state/redesign/reviewed/transfer_region.html:60
-#, fuzzy
-#| msgctxt "party_requests"
-#| msgid "Принять"
 msgctxt "transfer_region_reviewed"
 msgid "принят"
-msgstr "Accept"
+msgstr "accepted"
 
 #: bill/templates/state/redesign/reviewed/transfer_region.html:62
-#, fuzzy
-#| msgctxt "party_requests"
-#| msgid "Отклонить"
 msgctxt "transfer_region_reviewed"
 msgid "отклонён"
-msgstr "Reject"
+msgstr "rejected"
 
 #: bill/templates/state/redesign/reviewed/transfer_region.html:64
-#, fuzzy
-#| msgid "Отмена"
 msgctxt "transfer_region_reviewed"
 msgid "отменён"
-msgstr "Cancel"
+msgstr "cancelled"
 
 #: bill/templates/state/redesign/reviewed/transfer_resources.html:41
-#, fuzzy
-#| msgctxt "goods"
-#| msgid "Наличные"
 msgctxt "transfer_resources_reviewed"
 msgid "Наличные"
 msgstr "Cash"
 
 #: bill/templates/state/redesign/reviewed/transfer_resources.html:54
-#, fuzzy
-#| msgctxt "party_requests"
-#| msgid "Принять"
 msgctxt "transfer_resources_reviewed"
 msgid "принят"
-msgstr "Accept"
+msgstr "accepted"
 
 #: bill/templates/state/redesign/reviewed/transfer_resources.html:56
-#, fuzzy
-#| msgctxt "party_requests"
-#| msgid "Отклонить"
 msgctxt "transfer_resources_reviewed"
 msgid "отклонён"
-msgstr "Reject"
+msgstr "rejected"
 
 #: bill/templates/state/redesign/reviewed/transfer_resources.html:58
-#, fuzzy
-#| msgid "Отмена"
 msgctxt "transfer_resources_reviewed"
 msgid "отменён"
-msgstr "Cancel"
+msgstr "cancelled"
 
 #: bill/views/bills/cancel_bill.py:70
 msgctxt "cancel_bill"
@@ -1625,7 +1531,7 @@ msgstr "You are not the author of the bill"
 #: bill/views/bills/cancel_bill.py:114
 msgctxt "cancel_bill"
 msgid "Отмена законопроекта"
-msgstr "Bill cancellation "
+msgstr "Bill cancellation"
 
 #: bill/views/bills/cancel_bill.py:77
 msgctxt "cancel_bill"
@@ -1799,7 +1705,7 @@ msgstr "Looks like you've bought all the sticker packs. Stay tuned for more!"
 #, python-format
 msgctxt "chat"
 msgid "Диалог с %(nickname)s"
-msgstr ""
+msgstr "Dialogue with %(nickname)s"
 
 #: chat/views/messages/dialogues.py:232
 msgid "Диалоги"
@@ -1832,12 +1738,9 @@ msgid "Зимний феститваль в WP:"
 msgstr "Winter festival in WP:"
 
 #: event/templates/event/festival.html:394
-#, fuzzy
-#| msgctxt "game_event"
-#| msgid "игровые ценности и новые рамки для аватара в двух прогрессиях!"
 msgctxt "game_event"
 msgid "ускорение прокачки, премиум и Ящики в двух прогрессиях!"
-msgstr "game values and new avatar frames in two progressions!"
+msgstr "Boost your leveling, premium and Crates in two progressions!"
 
 #: event/templates/event/festival.html:395
 #: event/templates/event/summer_festival.html:396
@@ -1851,12 +1754,12 @@ msgstr "Personal Event Progression"
 msgctxt "game_event"
 msgid ""
 "Заполняется ежедневным входом в игру, а также завершением Финансирования."
-msgstr ""
+msgstr "Filled by daily login to the game, as well as completion of Funding."
 
 #: event/templates/event/festival.html:397
 msgctxt "game_event"
 msgid "Если вы пропустите день - то потеряете одно очко прогрессии."
-msgstr ""
+msgstr "If you miss a day, you will lose one progression point."
 
 #: event/templates/event/festival.html:398
 #: event/templates/event/summer_festival.html:398
@@ -1867,33 +1770,29 @@ msgid "Общая прогрессия события"
 msgstr "Total Event Progression"
 
 #: event/templates/event/festival.html:399
-#, fuzzy
-#| msgctxt "game_event"
-#| msgid "Заполняется усилиями всех игроков сервера."
 msgctxt "game_event"
 msgid ""
 "Заполняется усилиями всех игроков сервера. Очки могут быть как заработаны, "
 "так и потеряны."
-msgstr "Fills with the efforts of all players on the server."
+msgstr ""
+"Filled by the efforts of all players on the server. Points can be both "
+"earned and lost."
 
 #: event/templates/event/summer_festival.html:218
 #: player/views/game_event/summer.py:44
 msgctxt "game_event"
 msgid "Летний фестиваль"
-msgstr ""
+msgstr "Summer Festival"
 
 #: event/templates/event/summer_festival.html:393
 msgctxt "game_event"
 msgid "Летний феститваль в WP:"
-msgstr ""
+msgstr "Summer Festival in WP:"
 
 #: event/templates/event/summer_festival.html:394
-#, fuzzy
-#| msgctxt "game_event"
-#| msgid "игровые ценности и новые рамки для аватара в двух прогрессиях!"
 msgctxt "game_event"
 msgid "увеличение Финансирования, премиум и Аэрокейсы в двух прогрессиях!"
-msgstr "game values and new avatar frames in two progressions!"
+msgstr "Increase in Financing, Premium and Aerocases in two progressions!"
 
 #: event/templates/event/summer_festival.html:397
 msgctxt "game_event"
@@ -1901,14 +1800,13 @@ msgid ""
 "Заполняется по тем же принципам, что и шкала Финансирования - тратами "
 "энергии игроком."
 msgstr ""
+"It is filled according to the same principles as the Financing scale - by "
+"the player's energy expenditure."
 
 #: event/templates/event/summer_festival.html:399
-#, fuzzy
-#| msgctxt "game_event"
-#| msgid "Заполняется усилиями всех игроков сервера."
 msgctxt "game_event"
 msgid "Заполняется суммой усилий всех игроков сервера."
-msgstr "Fills with the efforts of all players on the server."
+msgstr "Filled with the sum of the efforts of all players on the server."
 
 #: event/views/activate_invite.py:114 factory/views/cancel_auto.py:35
 #: factory/views/start_auto.py:142 player/views/answer_captcha.py:51
@@ -1933,7 +1831,7 @@ msgstr "Method error"
 #: event/views/winter_festival.py:45
 msgctxt "game_event_ny"
 msgid "Зимний фестиваль"
-msgstr ""
+msgstr "Winter festival"
 
 #: factory/migrations/0023_auto_20230911_0014.py:18 state/models/treasury.py:42
 #: storage/migrations/0067_auto_20230715_1635.py:22
@@ -2471,6 +2369,16 @@ msgctxt "auto_produce"
 msgid "Указанный склад вам не принадлежит"
 msgstr "Specified Warehouse does not belong to you"
 
+#: gov/models/minister_right.py:22
+msgctxt "new_bill"
+msgid "Министр иностранных дел"
+msgstr "Minister of Foreign Affairs"
+
+#: gov/models/minister_right.py:23
+msgctxt "new_bill"
+msgid "Статистика добычи"
+msgstr "Mining stats"
+
 #: gov/templates/state/redesign/forms/foreign_right.html:20
 msgid "отклонить всё"
 msgstr "reject everything"
@@ -2492,12 +2400,9 @@ msgid "Некорректный код цвета партии"
 msgstr "Invalid state color code"
 
 #: gov/views/manage_view.py:25
-#, fuzzy
-#| msgctxt "party_manage"
-#| msgid "Управление партией"
 msgctxt "set_mandate"
 msgid "Управление государством"
-msgstr "Party management"
+msgstr "State management"
 
 #: gov/views/switch_description.py:22
 msgctxt "edit_state_descr"
@@ -3392,7 +3297,7 @@ msgstr "Common chat at"
 #: player/templates/player/index.html:140
 msgctxt "index_links"
 msgid "Новостной канал в"
-msgstr "Game channel at "
+msgstr "Game channel at"
 
 #: player/templates/player/index.html:140
 #: player/templates/player/index.html:154
@@ -4961,7 +4866,7 @@ msgstr "Use Energy drinks in auto-mining"
 #: player/views/game_event/new_year.py:43
 msgctxt "game_event_ny"
 msgid "С новым годом!"
-msgstr ""
+msgstr "Happy New Year!"
 
 #: player/views/lists/cash_top.py:111
 msgctxt "lists"
@@ -5039,7 +4944,7 @@ msgid ""
 "ответив на него"
 msgstr ""
 "Welcome to the %(state_title)s! This is an automated message generated by "
-"the game. But you can contact me directly by simply replying to it."
+"the game. But you can contact me directly by simply replying to it"
 
 #: player/views/new_player.py:174
 msgid ": попробуйте создать персонажа, не загружая изображение"
@@ -6097,15 +6002,17 @@ msgstr "Change the welcome message"
 #: state/templates/state/redesign/gov/parliament.html:46
 msgctxt "parliament"
 msgid "мест"
-msgstr ""
+msgstr "places"
+
+#: state/templates/state/redesign/gov/parliament.html:97
+msgctxt "parliament"
+msgid "свободно"
+msgstr "free chair"
 
 #: state/templates/state/redesign/gov/parliament.html:116
-#, fuzzy
-#| msgctxt "party_manage"
-#| msgid "Управление партией"
 msgctxt "parliament"
 msgid "нет парламентских партий"
-msgstr "Party management"
+msgstr "no parliamentary parties"
 
 #: state/templates/state/redesign/set_mandate.html:46
 #: state/views/set_mandate_view.py:35
@@ -6868,12 +6775,12 @@ msgstr ""
 #: storage/templates/storage/redesign/storage.html:490
 msgctxt "education"
 msgid "- большой объём, который позволяет хранить Вам необработанное сырьё"
-msgstr "- a large capacity that allows you to store raw materials."
+msgstr "- a large capacity that allows you to store raw materials"
 
 #: storage/templates/storage/redesign/storage.html:493
 msgctxt "education"
 msgid "- средний объём, хранящий, в основном, материалы и некоторые товары"
-msgstr "- a medium capacity that primarily holds materials and some goods."
+msgstr "- a medium capacity that primarily holds materials and some goods"
 
 #: storage/templates/storage/redesign/storage.html:496
 msgctxt "education"
@@ -7885,11 +7792,9 @@ msgid "Достигнут лимит торговых предложений"
 msgstr "Trading offer limit reached"
 
 #: storage/views/trading/create_offer.py:86
-#, fuzzy
-#| msgid "ID навыка должен быть числом"
 msgctxt "w_trading_new"
 msgid "ID товара должен быть целым числом"
-msgstr "Skill ID must be a number"
+msgstr "Good ID must be a number"
 
 #: storage/views/trading/create_offer.py:93
 msgctxt "w_trading_new"
@@ -7942,20 +7847,14 @@ msgid "Недостаточно средств"
 msgstr "Insufficient funds"
 
 #: storage/views/trading/create_offer.py:228
-#, fuzzy
-#| msgctxt "factory"
-#| msgid "Недостаточно места на складе для товара. В наличии "
 msgctxt "w_trading_new"
 msgid "Недостаточно места на складе для закупаемого товара"
-msgstr "Insufficient space for goods. Free space "
+msgstr "There is not enough space in the warehouse for the purchased goods"
 
 #: storage/views/trading/create_offer.py:251
-#, fuzzy
-#| msgctxt "factory"
-#| msgid "Недостаточно места на складе для товара. В наличии "
 msgctxt "w_trading_new"
 msgid "Недостаточно места на складе, с учётом других закупочных ордеров"
-msgstr "Insufficient space for goods. Free space "
+msgstr "Not enough space in warehouse considering other purchase orders"
 
 #: storage/views/trading/create_offer.py:285
 msgctxt "w_trading_new"
@@ -8210,46 +8109,41 @@ msgstr "State wars"
 msgctxt "join_revolution"
 msgid "Поднятие восстания доступно начиная с суммы Характеристик в 15 ед."
 msgstr ""
+"Raising a rebellion is available starting with a Characteristics total of 15 "
+"units"
 
 #: war/views/join_revolution.py:30 war/views/join_revolution.py:53
 #: war/views/join_revolution.py:66 war/views/join_revolution.py:78
 #: war/views/join_revolution.py:90 war/views/join_revolution.py:102
 #: war/views/join_revolution.py:142
-#, fuzzy
-#| msgctxt "war_page"
-#| msgid "Поднять восстание"
 msgctxt "join_revolution"
 msgid "Участие в восстании"
-msgstr "Raise a rebellion"
+msgstr "Revolution participation"
 
 #: war/views/join_revolution.py:52
-#, fuzzy
 msgctxt "join_revolution"
 msgid "Недостаточно золота"
-msgstr "Not enough "
+msgstr "Not enough gold"
 
 #: war/views/join_revolution.py:65
 msgctxt "join_revolution"
 msgid "С момента завершения последнего восстания не прошло 7 дней"
-msgstr ""
+msgstr "It has not been 7 days since the end of the last revolution"
 
 #: war/views/join_revolution.py:77
 msgctxt "join_revolution"
 msgid "Для участия в восстании требуется прописка"
-msgstr ""
+msgstr "Для участия в революции необходима регистрация"
 
 #: war/views/join_revolution.py:89
-#, fuzzy
-#| msgctxt "party_manage"
-#| msgid "Вы не являетесь лидером партии"
 msgctxt "join_revolution"
 msgid "Вы уже являетесь участником восстания здесь"
-msgstr "You are not the party leader"
+msgstr "You are already a participant of this revolution"
 
 #: war/views/join_revolution.py:101
 msgctxt "join_revolution"
 msgid "Вы принимали участие в восстании последние 10 дней"
-msgstr ""
+msgstr "You have already taken part in the uprising in the last 10 days"
 
 #: war/views/open_war_side_list.py:112
 msgctxt "lists"
@@ -8294,6 +8188,22 @@ msgstr ""
 msgctxt "war_page"
 msgid "Войны"
 msgstr "Wars"
+
+#~ msgctxt "construction"
+#~ msgid "подписано"
+#~ msgstr "signed"
+
+#~ msgctxt "explore_resources"
+#~ msgid "подписано"
+#~ msgstr "signed"
+
+#~ msgctxt "martial_law"
+#~ msgid "подписано"
+#~ msgstr "signed"
+
+#~ msgctxt "purchase_auction"
+#~ msgid "подписано"
+#~ msgstr "signed"
 
 #~ msgctxt "new_bill"
 #~ msgid "Передача ресурсов"
