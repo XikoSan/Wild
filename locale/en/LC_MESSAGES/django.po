@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-20 21:42+0300\n"
-"PO-Revision-Date: 2024-10-20 21:38+0300\n"
+"POT-Creation-Date: 2024-10-23 00:11+0300\n"
+"PO-Revision-Date: 2024-10-23 00:15+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -240,7 +240,13 @@ msgstr "Edit article"
 #: bill/views/bills/speedup_bill.py:162 bill/views/bills/speedup_bill.py:170
 #: gov/views/color_change.py:30 gov/views/color_change.py:44
 #: gov/views/color_change.py:60 gov/views/switch_description.py:24
-#: gov/views/switch_description.py:42 player/views/change_bio.py:34
+#: gov/views/switch_description.py:42
+#: party/views/management/staff/leave_party.py:38
+#: party/views/management/staff/leave_party.py:210 player/player.py:386
+#: player/player.py:397 player/player.py:418 player/views/change_bio.py:34
+#: player/views/change_nickname.py:24 player/views/change_nickname.py:34
+#: player/views/change_nickname.py:42 player/views/change_nickname.py:65
+#: player/views/new_player.py:181 player/views/new_player.py:194
 #: player/views/skills/boost_skill.py:59 player/views/skills/boost_skill.py:72
 #: player/views/skills/boost_skill.py:80 player/views/skills/boost_skill.py:94
 #: player/views/skills/boost_skill.py:104
@@ -261,6 +267,11 @@ msgstr "Edit article"
 #: skill/views/skill_cancel.py:35 skill/views/skill_cancel.py:43
 #: skill/views/skill_cancel.py:51 skill/views/skill_cancel.py:61
 #: skill/views/skill_cancel.py:76 skill/views/skill_cancel.py:100
+#: state/views/set_mandate.py:32 state/views/set_mandate.py:43
+#: state/views/set_mandate.py:56 state/views/set_mandate.py:64
+#: state/views/set_mandate.py:71 state/views/set_mandate.py:80
+#: state/views/state_foundation.py:42 state/views/state_foundation.py:56
+#: state/views/state_foundation.py:70 state/views/state_foundation.py:111
 #: storage/views/auctions/set_bet.py:30 storage/views/auctions/set_bet.py:38
 #: storage/views/auctions/set_bet.py:51 storage/views/auctions/set_bet.py:59
 #: storage/views/auctions/set_bet.py:70 storage/views/auctions/set_bet.py:83
@@ -269,7 +280,7 @@ msgstr "Edit article"
 #: war/views/join_revolution.py:31 war/views/join_revolution.py:54
 #: war/views/join_revolution.py:67 war/views/join_revolution.py:79
 #: war/views/join_revolution.py:91 war/views/join_revolution.py:103
-#: war/views/join_revolution.py:140
+#: war/views/join_revolution.py:140 war/views/start_war.py:104
 msgctxt "core"
 msgid "Закрыть"
 msgstr "Close"
@@ -297,9 +308,11 @@ msgstr "The text of the article should not be empty"
 #: article/views/change_article.py:73 article/views/create_article.py:118
 #: article/views/subscription.py:71 article/views/vote_article.py:73
 #: bill/views/bills/cancel_bill.py:113 bill/views/bills/new_bill.py:77
-#: player/views/change_bio.py:32 player/views/skills/boost_skill.py:166
-#: player/views/skills/up_skill.py:190 skill/views/skill_cancel.py:98
-#: storage/views/auctions/set_bet.py:159
+#: player/views/change_bio.py:32 player/views/change_nickname.py:63
+#: player/views/skills/boost_skill.py:166 player/views/skills/up_skill.py:190
+#: skill/views/skill_cancel.py:98 state/views/set_mandate.py:78
+#: state/views/state_foundation.py:109 storage/views/auctions/set_bet.py:159
+#: war/views/start_war.py:102
 msgctxt "core"
 msgid "Ошибка типа запроса"
 msgstr "Request type error"
@@ -474,17 +487,11 @@ msgid "Новые формы правления государств"
 msgstr "New government forms"
 
 #: bill/models/change_residency.py:32
-#, fuzzy
-#| msgctxt "state_view"
-#| msgid "Свободная"
 msgctxt "change_residency_draft"
 msgid "Свободная"
 msgstr "Free"
 
 #: bill/models/change_residency.py:33
-#, fuzzy
-#| msgctxt "state_view"
-#| msgid "Выдаётся министром"
 msgctxt "change_residency_draft"
 msgid "Выдаётся министром"
 msgstr "Issued by minister"
@@ -1243,12 +1250,12 @@ msgstr "cost"
 #: bill/templates/state/redesign/drafts/start_war.html:8
 msgctxt "start_war_draft"
 msgid "Плацдарм"
-msgstr ""
+msgstr "Bridgehead"
 
 #: bill/templates/state/redesign/drafts/start_war.html:35
 msgctxt "start_war_draft"
 msgid "Цель"
-msgstr ""
+msgstr "Target"
 
 #: bill/templates/state/redesign/drafts/start_war.html:112
 msgctxt "start_war_draft"
@@ -1639,7 +1646,7 @@ msgstr "There is no parliament in this state"
 #: party/views/management/gold/give_party_gold.py:108
 #: party/views/management/roles/new_role.py:79
 #: party/views/management/roles/remove_role.py:77
-#: player/views/color_change.py:102 region/views/do_mining.py:428
+#: player/views/color_change.py:102 region/views/do_mining.py:443
 #: region/views/map/get_residency.py:155 region/views/map/plane_info.py:41
 #: region/views/map/region_info.py:50
 #: storage/views/assets/assets_destroy.py:138
@@ -2124,19 +2131,16 @@ msgstr "Error during cancellation"
 #: factory/views/cancel_auto.py:34 factory/views/start_auto.py:33
 #: factory/views/start_auto.py:41 factory/views/start_auto.py:51
 #: factory/views/start_auto.py:80 factory/views/start_auto.py:113
-#: factory/views/start_auto.py:141
-#: party/views/management/staff/leave_party.py:38
-#: party/views/management/staff/leave_party.py:210 player/player.py:386
-#: player/player.py:397 player/player.py:418 region/views/cancel_auto.py:34
+#: factory/views/start_auto.py:141 region/views/cancel_auto.py:34
 #: region/views/daily_status.py:95 region/views/do_mining.py:42
 #: region/views/do_mining.py:55 region/views/do_mining.py:65
 #: region/views/do_mining.py:78 region/views/do_mining.py:87
 #: region/views/do_mining.py:96 region/views/do_mining.py:115
-#: region/views/do_mining.py:137 region/views/do_mining.py:216
-#: region/views/do_mining.py:324 region/views/do_mining.py:345
-#: region/views/do_mining.py:352 region/views/do_mining.py:367
-#: region/views/do_mining.py:388 region/views/do_mining.py:395
-#: region/views/do_mining.py:427 region/views/map/save_links.py:33
+#: region/views/do_mining.py:152 region/views/do_mining.py:231
+#: region/views/do_mining.py:339 region/views/do_mining.py:360
+#: region/views/do_mining.py:367 region/views/do_mining.py:382
+#: region/views/do_mining.py:403 region/views/do_mining.py:410
+#: region/views/do_mining.py:442 region/views/map/save_links.py:33
 #: region/views/retrieve_cash.py:41 region/views/start_auto.py:28
 #: region/views/start_auto.py:36 region/views/start_auto.py:46
 #: region/views/start_auto.py:55 region/views/start_auto.py:81
@@ -2369,6 +2373,26 @@ msgctxt "auto_produce"
 msgid "Указанный склад вам не принадлежит"
 msgstr "Specified Warehouse does not belong to you"
 
+#: gov/models/custom_rights/foreign_rights.py:99
+msgctxt "minister_right"
+msgid "МИД"
+msgstr "MFA"
+
+#: gov/models/custom_rights/foreign_rights.py:100
+msgctxt "minister_right"
+msgid "Министр иностранных дел"
+msgstr "Minister of Foreign Affairs"
+
+#: gov/models/custom_rights/mining_stats.py:111
+msgctxt "minister_right"
+msgid "Добыча сырья"
+msgstr "Mining stats"
+
+#: gov/models/custom_rights/mining_stats.py:112
+msgctxt "minister_right"
+msgid "Статистика добычи"
+msgstr "Mining stats"
+
 #: gov/models/minister_right.py:22
 msgctxt "new_bill"
 msgid "Министр иностранных дел"
@@ -2379,9 +2403,57 @@ msgctxt "new_bill"
 msgid "Статистика добычи"
 msgstr "Mining stats"
 
+#: gov/templates/gov/redesign/elections.html:25
+msgctxt "pres_elections"
+msgid "Выборы президента"
+msgstr "Presidential elections"
+
+#: gov/templates/gov/redesign/elections.html:98
+msgctxt "pres_elections"
+msgid "Кандидат"
+msgstr "Candidate"
+
+#: gov/templates/state/redesign/forms/foreign_right.html:13
+msgctxt "foreign_right"
+msgid "Запросы прописки"
+msgstr "Request for residence permit"
+
+#: gov/templates/state/redesign/forms/foreign_right.html:13
+msgctxt "foreign_right"
+msgid "Последние прописавшиеся"
+msgstr "The latest new residents"
+
 #: gov/templates/state/redesign/forms/foreign_right.html:20
+msgctxt "foreign_right"
 msgid "отклонить всё"
 msgstr "reject everything"
+
+#: gov/templates/state/redesign/forms/foreign_right.html:84
+msgctxt "foreign_right"
+msgid "Запросов прописки нет"
+msgstr "No registration requests"
+
+#: gov/templates/state/redesign/forms/mining_stats.html:19
+msgctxt "mining_stats"
+msgid "Регион"
+msgstr "Region"
+
+#: gov/templates/state/redesign/forms/mining_stats.html:22
+msgctxt "mining_stats"
+msgid "Финансирование"
+msgstr "Financing"
+
+#: gov/templates/state/redesign/forms/mining_stats.html:25
+#: gov/templates/state/redesign/forms/mining_stats.html:52
+msgctxt "mining_stats"
+msgid "Нефть"
+msgstr "Oil"
+
+#: gov/templates/state/redesign/forms/mining_stats.html:31
+#: gov/templates/state/redesign/forms/mining_stats.html:66
+msgctxt "mining_stats"
+msgid "Золото"
+msgstr "Gold"
 
 #: gov/views/color_change.py:28
 msgctxt "edit_state_color"
@@ -2520,8 +2592,8 @@ msgid "Цвет в парламенте"
 msgstr "Color in parliament"
 
 #: party/templates/party/redesign/manage.html:121
-#: party/templates/party/redesign/manage.html:356
-#: party/templates/party/redesign/manage.html:384
+#: party/templates/party/redesign/manage.html:336
+#: party/templates/party/redesign/manage.html:364
 msgctxt "party_manage"
 msgid "сохранить"
 msgstr "save"
@@ -2557,27 +2629,27 @@ msgctxt "party_manage"
 msgid "действия"
 msgstr "action"
 
-#: party/templates/party/redesign/manage.html:255
+#: party/templates/party/redesign/manage.html:235
 msgctxt "party_manage"
 msgid "Выдача золота партии"
 msgstr "Distributing party`s gold"
 
-#: party/templates/party/redesign/manage.html:258
+#: party/templates/party/redesign/manage.html:238
 msgctxt "party_manage"
 msgid "Баланс партии"
 msgstr "Party balance"
 
-#: party/templates/party/redesign/manage.html:266
+#: party/templates/party/redesign/manage.html:246
 msgctxt "party_manage"
 msgid "Выдать"
 msgstr "Distribute"
 
-#: party/templates/party/redesign/manage.html:306
+#: party/templates/party/redesign/manage.html:286
 msgctxt "party_manage"
 msgid "выдать"
 msgstr "distribute"
 
-#: party/templates/party/redesign/manage.html:324
+#: party/templates/party/redesign/manage.html:304
 msgctxt "party_manage"
 msgid ""
 "Золото начисляется на баланс партии за призовые места в еженедельном "
@@ -2586,30 +2658,30 @@ msgstr ""
 "Gold is credited to the party's balance for top positions in the weekly "
 "rankings, as well as for special achievements."
 
-#: party/templates/party/redesign/manage.html:326
+#: party/templates/party/redesign/manage.html:306
 msgctxt "party_manage"
 msgid "Вы можете выдать золото с баланса партии любому однопартийцу."
 msgstr ""
 "You can distribute gold from the party's balance to any fellow party member."
 
-#: party/templates/party/redesign/manage.html:339
+#: party/templates/party/redesign/manage.html:319
 msgctxt "party_manage"
 msgid "Смена названия партии"
 msgstr "Changing the party's name"
 
-#: party/templates/party/redesign/manage.html:367
+#: party/templates/party/redesign/manage.html:347
 msgctxt "party_manage"
 msgid "Смена описания партии"
 msgstr "Changing the party's description"
 
-#: party/templates/party/redesign/manage.html:439
+#: party/templates/party/redesign/manage.html:419
 #: player/templates/player/redesign/new_player.html:141
 #: player/templates/player/redesign/new_player.html:155
 #: player/templates/player/redesign/new_player.html:183
 msgid "Отмена"
 msgstr "Cancel"
 
-#: party/templates/party/redesign/manage.html:440
+#: party/templates/party/redesign/manage.html:420
 #: player/templates/player/redesign/new_player.html:142
 #: player/templates/player/redesign/profile.html:525
 msgid "Загрузить"
@@ -2996,8 +3068,7 @@ msgstr "Incorrect color code"
 #: player/views/expense_energy.py:30 player/views/expense_energy.py:44
 #: player/views/expense_energy.py:67 player/views/expense_energy.py:76
 #: player/views/expense_energy.py:87 player/views/full_auto_allow.py:43
-#: player/views/full_auto_allow.py:59 player/views/new_player.py:176
-#: player/views/new_player.py:189 player/views/open_lootboxes.py:27
+#: player/views/full_auto_allow.py:59 player/views/open_lootboxes.py:27
 #: player/views/open_lootboxes.py:38 player/views/open_lootboxes.py:49
 #: player/views/open_lootboxes.py:59 player/views/open_lootboxes.py:134
 #: player/views/set_language.py:40 player/views/set_language.py:56
@@ -4788,6 +4859,27 @@ msgctxt "change_bio"
 msgid "Изменение описания профиля"
 msgstr "Changing the profile description"
 
+#: player/views/change_nickname.py:22
+msgctxt "change_nickname"
+msgid "Недостаточно золота, необходимо: 50"
+msgstr "Not enough gold, required: 50"
+
+#: player/views/change_nickname.py:23 player/views/change_nickname.py:33
+#: player/views/change_nickname.py:41 player/views/change_nickname.py:64
+msgctxt "change_nickname"
+msgid "Смена никнейма"
+msgstr "Nickname changing"
+
+#: player/views/change_nickname.py:32
+msgctxt "change_nickname"
+msgid "Никнейм не может быть пустым"
+msgstr "Nickname cannot be empty"
+
+#: player/views/change_nickname.py:40
+msgctxt "change_nickname"
+msgid "Никнейм не изменился"
+msgstr "Nickname hasn't changed"
+
 #: player/views/change_wiki_hide_allow.py:42
 #: player/views/change_wiki_hide_allow.py:58
 msgid "Скрыть кнопку Wiki"
@@ -4915,7 +5007,7 @@ msgctxt "lists"
 msgid "Мировое население"
 msgstr "World pop"
 
-#: player/views/new_player.py:93
+#: player/views/new_player.py:94
 msgctxt "start_messages"
 msgid ""
 "Добро пожаловать в Wild Politics! Вы всегда можете обратиться ко мне прямо в "
@@ -4926,7 +5018,7 @@ msgstr ""
 "or contact me through the chat in Telegram. I am open to any questions and "
 "wishes."
 
-#: player/views/new_player.py:94
+#: player/views/new_player.py:96
 msgctxt "start_messages"
 msgid ""
 "Если найдётся время, расскажите, пожалуйста, о своих впечатлениях от игры - "
@@ -4935,7 +5027,7 @@ msgstr ""
 "If you have time, please tell me about your impressions of the game - it is "
 "important to me. Enjoy the game!"
 
-#: player/views/new_player.py:115 region/tasks.py:64
+#: player/views/new_player.py:118 region/tasks.py:64
 #, python-format
 msgctxt "start_messages"
 msgid ""
@@ -4946,15 +5038,18 @@ msgstr ""
 "Welcome to the %(state_title)s! This is an automated message generated by "
 "the game. But you can contact me directly by simply replying to it"
 
-#: player/views/new_player.py:174
-msgid ": попробуйте создать персонажа, не загружая изображение"
-msgstr ": try creating a character without loading an image"
+#: player/views/new_player.py:178
+msgctxt "new_player"
+msgid "попробуйте создать персонажа, не загружая изображение"
+msgstr "try creating a character without loading an image"
 
-#: player/views/new_player.py:175 player/views/new_player.py:188
+#: player/views/new_player.py:180 player/views/new_player.py:193
+msgctxt "new_player"
 msgid "Новый персонаж"
 msgstr "New character"
 
-#: player/views/new_player.py:187
+#: player/views/new_player.py:192
+msgctxt "new_player"
 msgid "Ошибка в форме профиля"
 msgstr "Profile form error"
 
@@ -5563,8 +5658,8 @@ msgstr "Relief of the region"
 #: region/views/do_mining.py:41 region/views/do_mining.py:54
 #: region/views/do_mining.py:64 region/views/do_mining.py:77
 #: region/views/do_mining.py:86 region/views/do_mining.py:95
-#: region/views/do_mining.py:114 region/views/do_mining.py:136
-#: region/views/do_mining.py:215 region/views/do_mining.py:426
+#: region/views/do_mining.py:114 region/views/do_mining.py:151
+#: region/views/do_mining.py:230 region/views/do_mining.py:441
 msgctxt "mining"
 msgid "Ошибка добычи ресурсов"
 msgstr "Mining error"
@@ -5599,12 +5694,12 @@ msgctxt "mining"
 msgid "Запасов золота в регионе недостаточно для добычи"
 msgstr "Gold reserves in the region are not enough for mining"
 
-#: region/views/do_mining.py:135
+#: region/views/do_mining.py:150
 msgctxt "mining"
 msgid "Запасов нефти в регионе недостаточно для добычи"
 msgstr "Oil reserves in the region are not enough for mining"
 
-#: region/views/do_mining.py:214
+#: region/views/do_mining.py:229
 msgctxt "mining"
 msgid "Запасов руды в регионе недостаточно для добычи"
 msgstr "Ore reserves in the region are not enough for mining"
@@ -6015,6 +6110,9 @@ msgid "нет парламентских партий"
 msgstr "no parliamentary parties"
 
 #: state/templates/state/redesign/set_mandate.html:46
+#: state/views/set_mandate.py:31 state/views/set_mandate.py:42
+#: state/views/set_mandate.py:55 state/views/set_mandate.py:63
+#: state/views/set_mandate.py:70 state/views/set_mandate.py:79
 #: state/views/set_mandate_view.py:35
 msgctxt "set_mandate"
 msgid "Выдача мандата"
@@ -6131,6 +6229,58 @@ msgstr "Title"
 msgctxt "state_view"
 msgid "Размер"
 msgstr "Size"
+
+#: state/views/set_mandate.py:30
+msgctxt "set_mandate"
+msgid "В партии нет такого кандидата"
+msgstr "There is no such candidate in the party"
+
+#: state/views/set_mandate.py:41
+msgctxt "set_mandate"
+msgid "У кандидата уже есть мандат"
+msgstr "The candidate already has a mandate"
+
+#: state/views/set_mandate.py:54
+msgctxt "set_mandate"
+msgid "Мандат успешно выдан"
+msgstr "The mandate has been successfully issued"
+
+#: state/views/set_mandate.py:62
+msgctxt "set_mandate"
+msgid "Нет свободных мандатов"
+msgstr "There are no free mandates"
+
+#: state/views/set_mandate.py:69
+msgctxt "set_mandate"
+msgid "Вы - не лидер партии"
+msgstr "You are not the party leader"
+
+#: state/views/state_foundation.py:40
+msgctxt "state_foundation"
+msgid "Государство в этом регионе уже есть"
+msgstr "There is already a state in this region"
+
+#: state/views/state_foundation.py:41 state/views/state_foundation.py:55
+#: state/views/state_foundation.py:69 state/views/state_foundation.py:110
+#: war/views/start_war.py:103
+msgctxt "state_foundation"
+msgid "Основание государства"
+msgstr "State foundation"
+
+#: state/views/state_foundation.py:54
+msgctxt "state_foundation"
+msgid "Невозможно создать государство в первые 12 часов после восстания"
+msgstr ""
+"It is impossible to create a state in the first 12 hours after an uprising"
+
+#: state/views/state_foundation.py:68
+msgctxt "state_foundation"
+msgid ""
+"Невозможно создать государство в первые 12 часов после объявления "
+"независимости"
+msgstr ""
+"It is impossible to create a state in the first 12 hours after declaring "
+"independence"
 
 #: storage/migrations/0067_auto_20230715_1635.py:13 storage/models/good.py:25
 #: storage/models/storage.py:30
@@ -8215,9 +8365,6 @@ msgstr "Wars"
 
 #~ msgid "У вас пока еще нет стикеров"
 #~ msgstr "You don't have stickers yet"
-
-#~ msgid "Финансирование"
-#~ msgstr "Financing"
 
 #~ msgid "Торговля"
 #~ msgstr "Trading"
