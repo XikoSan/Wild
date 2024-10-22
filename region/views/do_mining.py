@@ -123,6 +123,21 @@ def do_mining(request):
             gold_log = GoldLog(player=player, gold=int(count / 10), activity_txt='mine')
             # mined_result['cash'] = count
 
+            r = redis.StrictRedis(host='redis', port=6379, db=0)
+
+            # региональная статистика
+            if r.exists("daily_gold_" + str(player.region.pk)):
+                r.set("daily_gold_" + str(player.region.pk),
+                      int(r.get("daily_gold_" + str(player.region.pk))) + int(count / 10))
+            else:
+                r.set("daily_gold_" + str(player.region.pk), int(count / 10))
+
+            # общая статистика
+            if r.exists("daily_gold"):
+                r.set("daily_gold", int(r.get("daily_gold")) + int(count / 10))
+            else:
+                r.set("daily_gold", int(count / 10))
+
             if player.educated:
                 player.region.gold_has -= Decimal((count / 10) * 0.01)
 

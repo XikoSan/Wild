@@ -10,14 +10,14 @@
 
 <!--министр - блок МИД-->
 <h2 style="margin: 0; font-size: 16rem; font-weight: 400;text-align: center;">
-    {% if requests %}Запросы прописки{% elif history %}Последние прописавшиеся{% endif %}
+    {% if requests %}{% trans 'Запросы прописки' context "foreign_right" %}{% elif history %}{% trans 'Последние прописавшиеся' context "foreign_right" %}{% endif %}
 </h2>
 
 {% with history=data|dict_key:'history' %}
 {% with requests=data|dict_key:'requests' %}
 
 {% if requests %}
-<button onclick="residency_reject_all(event)" class="ForeignRights_block-cancelAll" style="cursor: pointer">{% trans 'отклонить всё' %}</button>
+<button onclick="residency_reject_all(event)" class="ForeignRights_block-cancelAll" style="cursor: pointer">{% trans 'отклонить всё' context "foreign_right" %}</button>
 {% endif %}
 
 <table class="gover__table">
@@ -81,7 +81,7 @@
 
         {% else %}
         <h2 style="margin: 0; font-size: 16rem; font-weight: 400;text-align: center;">
-            Запросов прописки нет
+            {% trans 'Запросов прописки нет' context "foreign_right" %}
         </h2>
         {% endif %}
     </tbody>

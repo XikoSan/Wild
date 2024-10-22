@@ -8,16 +8,31 @@ from django.utils import timezone
 from django_celery_beat.models import PeriodicTask
 
 from metrics.models.daily_cash import DailyCash
+from metrics.models.daily_gold import DailyGold
 from metrics.models.daily_oil import DailyOil
 from metrics.models.daily_ore import DailyOre
+from party.party import Party
 from region.models.region import Region
 from storage.models.storage import Storage
-from party.party import Party
 
 
 @shared_task(name="save_daily")
 def save_daily():
     r = redis.StrictRedis(host='redis', port=6379, db=0)
+
+    # ----------- золото -----------
+    gold = 0
+    if r.exists("daily_gold"):
+        gold = int(r.get("daily_gold"))
+        r.delete("daily_gold")
+
+    DailyGold.objects.create(
+        gold=gold
+    )
+    # очищаем информацию по регионам
+    for region in Region.objects.all():
+        if r.exists("daily_gold_" + str(region.pk)):
+            r.delete("daily_gold_" + str(region.pk))
 
     # ----------- деньги -----------
     cash = 0
@@ -130,7 +145,7 @@ def save_daily():
             for party_tuple in sorted_items:
                 # начисляем золото в процентном соотношении
                 if party_tuple[1] > 0:
-                    party_tuple[0].gold += 15000 * ( party_tuple[1] / all_skills )
+                    party_tuple[0].gold += 15000 * (party_tuple[1] / all_skills)
                     party_tuple[0].save()
 
         # производство
@@ -160,6 +175,5 @@ def save_daily():
             for party_tuple in sorted_items:
                 # начисляем золото в процентном соотношении
                 if party_tuple[1] > 0:
-                    party_tuple[0].gold += 15000 * ( party_tuple[1] / all_produced )
+                    party_tuple[0].gold += 15000 * (party_tuple[1] / all_produced)
                     party_tuple[0].save()
-

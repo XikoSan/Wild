@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-20 23:14+0300\n"
-"PO-Revision-Date: 2024-10-20 23:20+0300\n"
+"POT-Creation-Date: 2024-10-23 00:11+0300\n"
+"PO-Revision-Date: 2024-10-23 00:15+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -1646,7 +1646,7 @@ msgstr "There is no parliament in this state"
 #: party/views/management/gold/give_party_gold.py:108
 #: party/views/management/roles/new_role.py:79
 #: party/views/management/roles/remove_role.py:77
-#: player/views/color_change.py:102 region/views/do_mining.py:428
+#: player/views/color_change.py:102 region/views/do_mining.py:443
 #: region/views/map/get_residency.py:155 region/views/map/plane_info.py:41
 #: region/views/map/region_info.py:50
 #: storage/views/assets/assets_destroy.py:138
@@ -2136,11 +2136,11 @@ msgstr "Error during cancellation"
 #: region/views/do_mining.py:55 region/views/do_mining.py:65
 #: region/views/do_mining.py:78 region/views/do_mining.py:87
 #: region/views/do_mining.py:96 region/views/do_mining.py:115
-#: region/views/do_mining.py:137 region/views/do_mining.py:216
-#: region/views/do_mining.py:324 region/views/do_mining.py:345
-#: region/views/do_mining.py:352 region/views/do_mining.py:367
-#: region/views/do_mining.py:388 region/views/do_mining.py:395
-#: region/views/do_mining.py:427 region/views/map/save_links.py:33
+#: region/views/do_mining.py:152 region/views/do_mining.py:231
+#: region/views/do_mining.py:339 region/views/do_mining.py:360
+#: region/views/do_mining.py:367 region/views/do_mining.py:382
+#: region/views/do_mining.py:403 region/views/do_mining.py:410
+#: region/views/do_mining.py:442 region/views/map/save_links.py:33
 #: region/views/retrieve_cash.py:41 region/views/start_auto.py:28
 #: region/views/start_auto.py:36 region/views/start_auto.py:46
 #: region/views/start_auto.py:55 region/views/start_auto.py:81
@@ -2373,6 +2373,26 @@ msgctxt "auto_produce"
 msgid "Указанный склад вам не принадлежит"
 msgstr "Specified Warehouse does not belong to you"
 
+#: gov/models/custom_rights/foreign_rights.py:99
+msgctxt "minister_right"
+msgid "МИД"
+msgstr "MFA"
+
+#: gov/models/custom_rights/foreign_rights.py:100
+msgctxt "minister_right"
+msgid "Министр иностранных дел"
+msgstr "Minister of Foreign Affairs"
+
+#: gov/models/custom_rights/mining_stats.py:111
+msgctxt "minister_right"
+msgid "Добыча сырья"
+msgstr "Mining stats"
+
+#: gov/models/custom_rights/mining_stats.py:112
+msgctxt "minister_right"
+msgid "Статистика добычи"
+msgstr "Mining stats"
+
 #: gov/models/minister_right.py:22
 msgctxt "new_bill"
 msgid "Министр иностранных дел"
@@ -2383,9 +2403,57 @@ msgctxt "new_bill"
 msgid "Статистика добычи"
 msgstr "Mining stats"
 
+#: gov/templates/gov/redesign/elections.html:25
+msgctxt "pres_elections"
+msgid "Выборы президента"
+msgstr "Presidential elections"
+
+#: gov/templates/gov/redesign/elections.html:98
+msgctxt "pres_elections"
+msgid "Кандидат"
+msgstr "Candidate"
+
+#: gov/templates/state/redesign/forms/foreign_right.html:13
+msgctxt "foreign_right"
+msgid "Запросы прописки"
+msgstr "Request for residence permit"
+
+#: gov/templates/state/redesign/forms/foreign_right.html:13
+msgctxt "foreign_right"
+msgid "Последние прописавшиеся"
+msgstr "The latest new residents"
+
 #: gov/templates/state/redesign/forms/foreign_right.html:20
+msgctxt "foreign_right"
 msgid "отклонить всё"
 msgstr "reject everything"
+
+#: gov/templates/state/redesign/forms/foreign_right.html:84
+msgctxt "foreign_right"
+msgid "Запросов прописки нет"
+msgstr "No registration requests"
+
+#: gov/templates/state/redesign/forms/mining_stats.html:19
+msgctxt "mining_stats"
+msgid "Регион"
+msgstr "Region"
+
+#: gov/templates/state/redesign/forms/mining_stats.html:22
+msgctxt "mining_stats"
+msgid "Финансирование"
+msgstr "Financing"
+
+#: gov/templates/state/redesign/forms/mining_stats.html:25
+#: gov/templates/state/redesign/forms/mining_stats.html:52
+msgctxt "mining_stats"
+msgid "Нефть"
+msgstr "Oil"
+
+#: gov/templates/state/redesign/forms/mining_stats.html:31
+#: gov/templates/state/redesign/forms/mining_stats.html:66
+msgctxt "mining_stats"
+msgid "Золото"
+msgstr "Gold"
 
 #: gov/views/color_change.py:28
 msgctxt "edit_state_color"
@@ -2524,8 +2592,8 @@ msgid "Цвет в парламенте"
 msgstr "Color in parliament"
 
 #: party/templates/party/redesign/manage.html:121
-#: party/templates/party/redesign/manage.html:356
-#: party/templates/party/redesign/manage.html:384
+#: party/templates/party/redesign/manage.html:336
+#: party/templates/party/redesign/manage.html:364
 msgctxt "party_manage"
 msgid "сохранить"
 msgstr "save"
@@ -2561,27 +2629,27 @@ msgctxt "party_manage"
 msgid "действия"
 msgstr "action"
 
-#: party/templates/party/redesign/manage.html:255
+#: party/templates/party/redesign/manage.html:235
 msgctxt "party_manage"
 msgid "Выдача золота партии"
 msgstr "Distributing party`s gold"
 
-#: party/templates/party/redesign/manage.html:258
+#: party/templates/party/redesign/manage.html:238
 msgctxt "party_manage"
 msgid "Баланс партии"
 msgstr "Party balance"
 
-#: party/templates/party/redesign/manage.html:266
+#: party/templates/party/redesign/manage.html:246
 msgctxt "party_manage"
 msgid "Выдать"
 msgstr "Distribute"
 
-#: party/templates/party/redesign/manage.html:306
+#: party/templates/party/redesign/manage.html:286
 msgctxt "party_manage"
 msgid "выдать"
 msgstr "distribute"
 
-#: party/templates/party/redesign/manage.html:324
+#: party/templates/party/redesign/manage.html:304
 msgctxt "party_manage"
 msgid ""
 "Золото начисляется на баланс партии за призовые места в еженедельном "
@@ -2590,30 +2658,30 @@ msgstr ""
 "Gold is credited to the party's balance for top positions in the weekly "
 "rankings, as well as for special achievements."
 
-#: party/templates/party/redesign/manage.html:326
+#: party/templates/party/redesign/manage.html:306
 msgctxt "party_manage"
 msgid "Вы можете выдать золото с баланса партии любому однопартийцу."
 msgstr ""
 "You can distribute gold from the party's balance to any fellow party member."
 
-#: party/templates/party/redesign/manage.html:339
+#: party/templates/party/redesign/manage.html:319
 msgctxt "party_manage"
 msgid "Смена названия партии"
 msgstr "Changing the party's name"
 
-#: party/templates/party/redesign/manage.html:367
+#: party/templates/party/redesign/manage.html:347
 msgctxt "party_manage"
 msgid "Смена описания партии"
 msgstr "Changing the party's description"
 
-#: party/templates/party/redesign/manage.html:439
+#: party/templates/party/redesign/manage.html:419
 #: player/templates/player/redesign/new_player.html:141
 #: player/templates/player/redesign/new_player.html:155
 #: player/templates/player/redesign/new_player.html:183
 msgid "Отмена"
 msgstr "Cancel"
 
-#: party/templates/party/redesign/manage.html:440
+#: party/templates/party/redesign/manage.html:420
 #: player/templates/player/redesign/new_player.html:142
 #: player/templates/player/redesign/profile.html:525
 msgid "Загрузить"
@@ -5590,8 +5658,8 @@ msgstr "Relief of the region"
 #: region/views/do_mining.py:41 region/views/do_mining.py:54
 #: region/views/do_mining.py:64 region/views/do_mining.py:77
 #: region/views/do_mining.py:86 region/views/do_mining.py:95
-#: region/views/do_mining.py:114 region/views/do_mining.py:136
-#: region/views/do_mining.py:215 region/views/do_mining.py:426
+#: region/views/do_mining.py:114 region/views/do_mining.py:151
+#: region/views/do_mining.py:230 region/views/do_mining.py:441
 msgctxt "mining"
 msgid "Ошибка добычи ресурсов"
 msgstr "Mining error"
@@ -5626,12 +5694,12 @@ msgctxt "mining"
 msgid "Запасов золота в регионе недостаточно для добычи"
 msgstr "Gold reserves in the region are not enough for mining"
 
-#: region/views/do_mining.py:135
+#: region/views/do_mining.py:150
 msgctxt "mining"
 msgid "Запасов нефти в регионе недостаточно для добычи"
 msgstr "Oil reserves in the region are not enough for mining"
 
-#: region/views/do_mining.py:214
+#: region/views/do_mining.py:229
 msgctxt "mining"
 msgid "Запасов руды в регионе недостаточно для добычи"
 msgstr "Ore reserves in the region are not enough for mining"
@@ -8297,9 +8365,6 @@ msgstr "Wars"
 
 #~ msgid "У вас пока еще нет стикеров"
 #~ msgstr "You don't have stickers yet"
-
-#~ msgid "Финансирование"
-#~ msgstr "Financing"
 
 #~ msgid "Торговля"
 #~ msgstr "Trading"

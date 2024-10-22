@@ -22,7 +22,7 @@
 
 		<!--Блок таблицы-->
     <div class="ct__js-table-container" id="js-ct-table-1">
-		<h1 class="ct__js-table-title ct__page-title">Выборы президента: {{ state.title }}</h1>
+		<h1 class="ct__js-table-title ct__page-title">{% trans 'Выборы президента' context "pres_elections" %}: {{ state.title }}</h1>
 		<!--кнопка открытия настроек-->
 		<button class="ct__js-modal-sett-open">
 			<svg version="1.0" xmlns="http://www.w3.org/2000/svg"
@@ -95,7 +95,7 @@
 
 	        <tr>
 			  <td class="j-t-image"></td>
-			  <td class="j-t-title">Кандидат</td>
+			  <td class="j-t-title">{% trans 'Кандидат' context "pres_elections" %}</td>
 			  <td class="j-t-action"></td>
 	        </tr>
 

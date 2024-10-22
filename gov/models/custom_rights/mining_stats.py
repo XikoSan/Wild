@@ -1,5 +1,6 @@
 import json
 import redis
+from django.utils.translation import pgettext_lazy
 
 from gov.models.custom_rights.custom_right import CustomRight
 from player.player import Player
@@ -21,6 +22,13 @@ class MiningStats(CustomRight):
         for region in Region.objects.filter(state=state):
             region_dict[region] = {}
 
+            # блестяшки
+            if r.exists("daily_gold_" + str(region.pk)):
+                region_dict[region]['gold'] = int(r.get("daily_gold_" + str(region.pk)))
+            else:
+                region_dict[region]['gold'] = 0
+
+            # бабо$и
             if r.exists("daily_cash_" + str(region.pk)):
                 region_dict[region]['cash'] = int(r.get("daily_cash_" + str(region.pk)))
             else:
@@ -61,6 +69,13 @@ class MiningStats(CustomRight):
         for region in Region.objects.filter(state=state):
             region_dict[region] = {}
 
+            # блестяшки
+            if r.exists("daily_gold_" + str(region.pk)):
+                region_dict[region]['gold'] = int(r.get("daily_gold_" + str(region.pk)))
+            else:
+                region_dict[region]['gold'] = 0
+
+            # бабо$и
             if r.exists("daily_cash_" + str(region.pk)):
                 region_dict[region]['cash'] = int(r.get("daily_cash_" + str(region.pk)))
             else:
@@ -93,5 +108,5 @@ class MiningStats(CustomRight):
     # Свойства класса
     class Meta:
         abstract = True
-        verbose_name = "Добыча сырья"
-        verbose_name_plural = "Статистика добычи"
+        verbose_name = pgettext_lazy('minister_right', "Добыча сырья")
+        verbose_name_plural = pgettext_lazy('minister_right', "Статистика добычи")

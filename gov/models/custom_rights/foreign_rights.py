@@ -1,5 +1,6 @@
 import json
 import redis
+from django.utils.translation import pgettext_lazy
 
 from gov.models.custom_rights.custom_right import CustomRight
 from gov.models.residency_request import ResidencyRequest
@@ -95,5 +96,5 @@ class ForeignRights(CustomRight):
     # Свойства класса
     class Meta:
         abstract = True
-        verbose_name = "МИД"
-        verbose_name_plural = "Министр иностранных дел"
+        verbose_name = pgettext_lazy('minister_right', "МИД")
+        verbose_name_plural = pgettext_lazy('minister_right', "Министр иностранных дел")
