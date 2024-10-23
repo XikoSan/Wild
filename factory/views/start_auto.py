@@ -30,7 +30,7 @@ def start_auto_produce(request):
             data = {
                 'response': pgettext('mining', 'Дождитесь конца полёта'),
                 'header': pgettext('auto_produce', 'Ошибка автоматического производства'),
-                'grey_btn': pgettext('mining', 'Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
 
@@ -38,7 +38,7 @@ def start_auto_produce(request):
             data = {
                 'response': pgettext('mining', 'Премиум-аккаунт не активен. Продлите его'),
                 'header': pgettext('auto_produce', 'Ошибка автоматического производства'),
-                'grey_btn': pgettext('mining', 'Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
 
@@ -48,7 +48,7 @@ def start_auto_produce(request):
             data = {
                 'response': pgettext('auto_produce', 'Неизвестный тип товара'),
                 'header': pgettext('auto_produce', 'Ошибка автоматического производства'),
-                'grey_btn': pgettext('mining', 'Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
 
@@ -59,7 +59,7 @@ def start_auto_produce(request):
             data = {
                 'response': pgettext('factory', 'Вы не можете производить данный товар'),
                 'header': pgettext('factory', 'Ошибка производства'),
-                'grey_btn': pgettext('storage', 'Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
 
@@ -68,7 +68,7 @@ def start_auto_produce(request):
             data = {
                 'response': pgettext('factory', 'Вы не можете производить данный товар'),
                 'header': pgettext('factory', 'Ошибка производства'),
-                'grey_btn': pgettext('storage', 'Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
 
@@ -77,7 +77,7 @@ def start_auto_produce(request):
             data = {
                 'response': pgettext('auto_produce', 'Данный товар невозможно произвести'),
                 'header': pgettext('auto_produce', 'Ошибка автоматического производства'),
-                'grey_btn': pgettext('mining', 'Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
 
@@ -89,7 +89,7 @@ def start_auto_produce(request):
             data = {
                 'response': pgettext('factory', 'Номер схемы - не число'),
                 'header': pgettext('factory', 'Ошибка производства'),
-                'grey_btn': pgettext('storage', 'Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JsonResponse(data)
 
@@ -99,7 +99,7 @@ def start_auto_produce(request):
             data = {
                 'response': pgettext('factory', 'Указанной схемы не существует'),
                 'header': pgettext('factory', 'Ошибка производства'),
-                'grey_btn': pgettext('storage', 'Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JsonResponse(data)
 
@@ -110,7 +110,7 @@ def start_auto_produce(request):
             data = {
                 'response': pgettext('auto_produce', 'Указанный склад вам не принадлежит'),
                 'header': pgettext('auto_produce', 'Ошибка автоматического производства'),
-                'grey_btn': pgettext('mining', 'Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
 
@@ -138,8 +138,8 @@ def start_auto_produce(request):
     else:
         data = {
             'header': pgettext('auto_produce', 'Ошибка автоматического производства'),
-            'grey_btn': pgettext('mining', 'Закрыть'),
-            'response': ugettext('Ошибка метода'),
+            'grey_btn': pgettext('core', 'Закрыть'),
+            'response': pgettext('core', 'Ошибка типа запроса'),
 
         }
         return JResponse(data)

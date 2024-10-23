@@ -1,16 +1,16 @@
 import redis
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
-from django.utils.translation import ugettext as _
+from django.utils.translation import pgettext
 
 from chat.models.messages.chat_members import ChatMembers
 from chat.models.messages.message_block import Chat
 from chat.models.messages.message_block import MessageBlock
+from chat.views.messages.dialogue import tuple_to_messages
+from gov.models.president import President, State
 from player.decorators.player import check_player
 from player.player import Player
 from player.views.lists.get_thing_page import get_thing_page
-from chat.views.messages.dialogue import tuple_to_messages
-from gov.models.president import President, State
 
 
 # сообщения игрока
@@ -71,9 +71,6 @@ def dialogues(request):
 
         cycles = 2
 
-        from player.logs.print_log import log
-        log(f'лидер {state_leader}')
-
         if not state_leader:
             sorted_tuples = sorted_tuples[:50]
             tuples_list.append(sorted_tuples)
@@ -89,7 +86,6 @@ def dialogues(request):
                     # нашли наше сообщение
                     if elem[0] == member[0]:
                         # если у него есть гос и это наш
-                        log(f'диалог {member[0]} гос {member[1]}')
                         if member[1] and member[1] == state_leader.pk:
                             # не более 50
                             if len(gov) < 50:
@@ -101,9 +97,6 @@ def dialogues(request):
                                 personal.append(elem)
                         break
 
-            log(f'личные {personal}')
-            log(f'госа {gov}')
-
             tuples_list.append(personal)
             tuples_list.append(gov)
 
@@ -112,8 +105,6 @@ def dialogues(request):
 
         for x in range(cycles):
             lopp = 1
-
-            log(f'цикл {x} список {tuples_list[x]}')
 
             sorted_tuples = tuples_list[x]
 
@@ -229,7 +220,7 @@ def dialogues(request):
 
     # отправляем в форму
     return render(request, 'chat/dialogues.html', {
-        'page_name': _('Диалоги'),
+        'page_name': pgettext('chat', "Диалоги"),
 
         'player': player,
         'state_leader': state_leader,

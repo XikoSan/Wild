@@ -75,7 +75,7 @@ class Independence(Bill):
             # столица этого госа
             if Capital.objects.filter(region=region).exists():
                 return {
-                    'response': 'Регион является столицей',
+                    'response': pgettext('new_bill', 'Регион является столицей'),
                     'header': pgettext('new_bill', 'Новый законопроект'),
                     'grey_btn': pgettext('core', 'Закрыть'),
                 }
@@ -83,7 +83,7 @@ class Independence(Bill):
             # его казна
             if Treasury.objects.filter(region=region, deleted=False).exists():
                 return {
-                    'response': 'В регионе размещена казна государства',
+                    'response': pgettext('new_bill', 'В регионе размещена казна государства'),
                     'header': pgettext('new_bill', 'Новый законопроект'),
                     'grey_btn': pgettext('core', 'Закрыть'),
                 }
@@ -94,7 +94,7 @@ class Independence(Bill):
                 # если есть активные войны этого типа
                 if type.objects.filter(running=True, deleted=False, agr_region=region).exists():
                     return {
-                        'response': 'Регион является плацдармом атаки',
+                        'response': pgettext('new_bill', 'Регион является плацдармом атаки'),
                         'header': pgettext('new_bill', 'Новый законопроект'),
                         'grey_btn': pgettext('core', 'Закрыть'),
                     }
@@ -116,7 +116,7 @@ class Independence(Bill):
 
         else:
             return {
-                'response': 'Нет такого региона',
+                'response': pgettext('new_bill', 'Нет такого региона'),
                 'header': pgettext('new_bill', 'Новый законопроект'),
                 'grey_btn': pgettext('core', 'Закрыть'),
             }

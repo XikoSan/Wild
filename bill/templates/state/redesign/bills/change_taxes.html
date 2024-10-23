@@ -26,7 +26,7 @@
             {% else %}
             <img src="{% static 'img/congress.svg' %}" onclick="window.location.href = 'state/{{ bill.parliament.state.pk }}/'" style="cursor: pointer;">
             {% endif %}
-            <span>всё государство</span>
+            <span>{% trans 'всё государство' context "bill" %}</span>
         </div>
         {% else %}
         <div class="gover__withImage">

@@ -206,6 +206,11 @@
 
 	  var loaded_blocks = [{% if blocks_pk %}{% localize off %}{% for block_pk in blocks_pk %}{{ block_pk }}, {% endfor %}{% endlocalize %}{% endif %}];
     </script>
+	<script>
+	var header_text = "{% trans 'Соединение прервалось' context "chat" %}";
+	var body_text = "{% trans 'Перезагрузите страницу, чтобы переподключиться к чату' context "chat" %}";
+	var ok_text = "{% trans 'Закрыть' context "core" %}";
+	</script>
     <script src='{% static "js/dialogue.js" %}?{{ csrf_token }}'></script>
 </section>
 {% endblock %}

@@ -1,15 +1,17 @@
+import datetime
 from django.contrib.auth.decorators import login_required
+from django.db import connection
+from django.db.models import Count
 from django.db.models import Q
 from django.shortcuts import render
+from django.utils import timezone
+from django.utils.translation import pgettext
 from itertools import chain
-from django.db import connection
-from player.decorators.player import check_player
-from player.player import Player
+
 from article.models.article import Article
 from article.models.subscription import Subscription
-from django.db.models import Count
-from django.utils import timezone
-import datetime
+from player.decorators.player import check_player
+from player.player import Player
 
 
 # страница войн
@@ -113,7 +115,7 @@ def articles(request):
 
     # отправляем в форму
     return render(request, 'article/articles.html', {
-        'page_name': 'Статьи',
+        'page_name': pgettext('article', 'Статьи'),
         # самого игрока
         'player': player,
 

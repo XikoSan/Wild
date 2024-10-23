@@ -31,7 +31,7 @@ def cancel_auto_produce(request):
     else:
         data = {
             'header': pgettext('mining', 'Ошибка при отмене'),
-            'grey_btn': pgettext('mining', 'Закрыть'),
-            'response': ugettext('Ошибка метода'),
+            'grey_btn': pgettext('core', 'Закрыть'),
+            'response': pgettext('core', 'Ошибка типа запроса'),
         }
         return JResponse(data)

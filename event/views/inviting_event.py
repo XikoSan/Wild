@@ -9,7 +9,6 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.utils import timezone
 from django.utils.translation import pgettext
-from django.utils.translation import ugettext as _
 
 from event.models.inviting_event.invite import Invite
 from player.decorators.player import check_player
@@ -98,7 +97,7 @@ def inviting_event(request):
     page = 'event/inviting.html'
     # отправляем в форму
     response = render(request, page, {
-        'page_name': 'Пригласи друга!',
+        'page_name': pgettext('game_event', 'Пригласи друга!'),
 
         'player': player,
 

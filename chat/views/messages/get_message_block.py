@@ -2,7 +2,7 @@ import json
 import redis
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
-
+from django.utils.translation import pgettext
 from chat.models.messages.chat import Chat
 from chat.models.messages.chat_members import ChatMembers
 from chat.models.messages.message_block import MessageBlock
@@ -23,9 +23,9 @@ def get_message_block(request):
 
         except ValueError:
             return {
-                'header': 'Получение сообщений',
-                'grey_btn': 'Закрыть',
-                'response': 'ID комнаты должен быть целым числом',
+                'response': pgettext('chat', 'ID комнаты должен быть целым числом'),
+                'header': pgettext('chat', 'Получение сообщений'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
 
         # получаем персонажа
@@ -33,9 +33,9 @@ def get_message_block(request):
 
         if not Chat.objects.filter(pk=room_id).exists():
             data = {
-                'response': 'Указанная комната не найдена',
-                'header': 'Получение сообщений',
-                'grey_btn': 'Закрыть',
+                'response': pgettext('chat', 'Указанная комната не найдена'),
+                'header': pgettext('chat', 'Получение сообщений'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
 
@@ -46,9 +46,9 @@ def get_message_block(request):
         members = ChatMembers.objects.filter(chat=chat)
         if not members.filter(player=player).exists():
             data = {
-                'response': 'Вы не состоите в этом чате',
-                'header': 'Получение сообщений',
-                'grey_btn': 'Закрыть',
+                'response': pgettext('chat', 'Вы не состоите в этом чате'),
+                'header': pgettext('chat', 'Получение сообщений'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
 
@@ -81,9 +81,8 @@ def get_message_block(request):
     # если страницу только грузят
     else:
         data = {
-            # 'response': _('positive_enrg_req'),
-            'response': 'Ошибка типа запроса',
-            'header': 'Получение сообщений',
-            'grey_btn': 'Закрыть',
+            'response': pgettext('core', 'Ошибка типа запроса'),
+            'header': pgettext('chat', 'Получение сообщений'),
+            'grey_btn': pgettext('core', 'Закрыть'),
         }
         return JResponse(data)

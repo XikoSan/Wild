@@ -1,7 +1,7 @@
 import json
 import re
 from datetime import datetime
-
+from django.utils.translation import pgettext
 import bleach
 import pytz
 import redis
@@ -18,6 +18,10 @@ from article.models.comments_block import CommentsBlock
 
 def _get_player(account):
     return Player.objects.select_related('account').get(account=account)
+
+
+def _get_blocked_txt():
+    return pgettext('chat', 'Успешно заблокирован')
 
 
 def _get_sticker_packs(pk):
@@ -256,7 +260,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
                 # Сообщить об успешном бане
                 await self.send(text_data=json.dumps({
-                    'message': 'Успешно заблокирован',
+                    'message': await sync_to_async(_get_blocked_txt, thread_sensitive=True)(),
                     'time': datetime.now().time().strftime("%H:%M"),
                     'id': banned_player.pk,
                     'image': banned_image_url,

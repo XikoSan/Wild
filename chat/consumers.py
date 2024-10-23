@@ -1,17 +1,17 @@
-import json
-import re
-from datetime import datetime
-
 import bleach
+import json
 import pytz
+import re
 import redis
 from asgiref.sync import sync_to_async
 from channels.generic.websocket import AsyncWebsocketConsumer
+from datetime import datetime
 from django.contrib.auth.models import User
 from django.utils import timezone
+from django.utils.translation import pgettext
 
-from chat.models.stickers_ownership import StickersOwnership
 from chat.models.sticker import Sticker
+from chat.models.stickers_ownership import StickersOwnership
 from player.player import Player
 
 
@@ -67,6 +67,10 @@ def _delete_message(counter):
 
 def _get_awa(image):
     return image.url
+
+
+def _get_blocked_txt():
+    return pgettext('chat', 'Успешно заблокирован')
 
 
 def _append_message(chat_id, author, text):
@@ -144,7 +148,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
         image_extensions = ['.jpg', '.jpeg', '.png', '.gif']
         if message and \
                 message[:4] == 'http' and \
-                    any(message.lower().endswith(extension) for extension in image_extensions):
+                any(message.lower().endswith(extension) for extension in image_extensions):
             message = '<img src="' + message + '">'
 
         sticker_only = False
@@ -154,14 +158,14 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
         if sticker_only:
             link, desc = await sync_to_async(_check_has_pack, thread_sensitive=True)(message=message,
-                                                                                   packs=self.sticker_packs)
+                                                                                     packs=self.sticker_packs)
 
             if link:
-                if desc in ['padoru',]:
+                if desc in ['padoru', ]:
                     desc = '\'' + desc + '\''
-                    message = '<img src="' + link + '" width="250" height="250" onclick="audio_play(' + desc +')" style="cursor: pointer">'
+                    message = '<img src="' + link + '" width="250" height="250" onclick="audio_play(' + desc + ')" style="cursor: pointer">'
                 else:
-                	message = '<img src="' + link + '" width="250" height="250" style="pointer-events: none;">'
+                    message = '<img src="' + link + '" width="250" height="250" style="pointer-events: none;">'
 
         counter = await sync_to_async(_append_message, thread_sensitive=True)(chat_id=self.room_name,
                                                                               author=self.player,
@@ -190,7 +194,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                     image_url = self.player.image.url
 
                 if len(self.player.nickname) > 25:
-                    nickname = f'{ self.player.nickname[:25] }...'
+                    nickname = f'{self.player.nickname[:25]}...'
                 else:
                     nickname = self.player.nickname
 
@@ -219,7 +223,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
                 # Сообщить об успешном бане
                 await self.send(text_data=json.dumps({
-                    'message': 'Успешно заблокирован',
+                    'message': await sync_to_async(_get_blocked_txt, thread_sensitive=True)(),
+                    'nickname': 'Chat system',
                     'time': datetime.now().time().strftime("%H:%M"),
                     'id': banned_player.pk,
                     'image': banned_image_url,

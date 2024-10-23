@@ -73,7 +73,7 @@ function connectWebSocket() {
                 console.log(`Reconnect attempt ${attempts}...`);
                 return setTimeout(connectWebSocket, reconnectInterval); // Повторная попытка через 10 секунд
             } else {
-                display_modal('notify', 'Соединение прервалось', 'Перезагрузите страницу, чтобы переподключиться к чату', null, "Понятно");
+                display_modal('notify', header_text, body_text, null, ok_text);
             }
         }
     };

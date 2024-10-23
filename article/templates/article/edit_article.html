@@ -8,6 +8,11 @@
 {% load redesign.template_svg.nopic %}
 
 {% block for_scripts_and_css %}
+<script>
+	var header_text = "{% trans 'Редактировать статью' context "article" %}";
+	var body_text = "{% trans 'Статья не может быть пустой' context "article" %}";
+	var ok_text = "{% trans 'Закрыть' context "core" %}";
+</script>
 <script src='{% static "js/edit_article.js" %}?{{ csrf_token }}'></script>
 {% endblock %}
 

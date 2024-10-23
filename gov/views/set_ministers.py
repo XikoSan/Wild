@@ -10,7 +10,7 @@ from player.decorators.player import check_player
 from player.player import Player
 from player.views.get_subclasses import get_subclasses
 from state.models.parliament.deputy_mandate import DeputyMandate
-
+from django.utils.translation import pgettext
 from gov.models.minister_right import MinisterRight
 
 
@@ -32,9 +32,9 @@ def set_ministers(request):
         # игрок - президент
         if not DeputyMandate.objects.filter(player=player, is_president=True).exists():
             data = {
-                'header': 'Назначение министров',
-                'grey_btn': 'Закрыть',
-                'response': 'Вы не президент',
+                'header': pgettext('set_ministers', 'Назначение министров'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('set_ministers', 'Вы не президент'),
             }
             return JsonResponse(data)
 
@@ -48,9 +48,9 @@ def set_ministers(request):
             # игрок вообще существует
             if not Player.objects.filter(pk=minister).exists():
                 data = {
-                    'header': 'Назначение министров',
-                    'grey_btn': 'Закрыть',
-                    'response': 'Игрока с id ' + minister + ' не существует',
+                    'header': pgettext('set_ministers', 'Назначение министров'),
+                    'grey_btn': pgettext('core', 'Закрыть'),
+                    'response': pgettext('set_ministers', "Игрока с id %(minister)s не существует") % { "minister": minister },
                 }
                 return JsonResponse(data)
 
@@ -58,9 +58,9 @@ def set_ministers(request):
 
             if not DeputyMandate.objects.filter(player=user, parliament=pres_mandate.parliament).exists():
                 data = {
-                    'header': 'Назначение министров',
-                    'grey_btn': 'Закрыть',
-                    'response': 'Депутата с id игрока ' + minister + ' в вашем парламенте нет',
+                    'header': pgettext('set_ministers', 'Назначение министров'),
+                    'grey_btn': pgettext('core', 'Закрыть'),
+                    'response': pgettext('set_ministers', "Депутата с id игрока %(minister)s в вашем парламенте нет") % { "minister": minister },
                 }
                 return JsonResponse(data)
 
@@ -79,9 +79,9 @@ def set_ministers(request):
                 points += right_iter * 2
                 if not right in bills_classes_list:
                     data = {
-                        'header': 'Назначение министров',
-                        'grey_btn': 'Закрыть',
-                        'response': 'Указанного права министров не существует: ' + right,
+                        'header': pgettext('set_ministers', 'Назначение министров'),
+                        'grey_btn': pgettext('core', 'Закрыть'),
+                        'response':  pgettext('set_ministers', "Указанного права министров не существует: %(right)s") % { "right": right },
                     }
                     return JsonResponse(data)
                 right_iter += 1
@@ -89,9 +89,9 @@ def set_ministers(request):
         # сумма очков не больше десяти
         if points > 13:
             data = {
-                'header': 'Назначение министров',
-                'grey_btn': 'Закрыть',
-                'response': 'Сумма очков назначения министров превышает 13',
+                'header': pgettext('set_ministers', 'Назначение министров'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('set_ministers', 'Сумма очков назначения министров превышает 13'),
             }
             return JsonResponse(data)
 
@@ -178,6 +178,8 @@ def set_ministers(request):
     # если страницу только грузят
     else:
         data = {
-            'response': 'Ты уверен что тебе сюда, путник?',
+            'response': pgettext('core', 'Ошибка метода'),
+            'header': pgettext('set_ministers', 'Назначение министров'),
+            'grey_btn': pgettext('core', 'Закрыть'),
         }
         return JsonResponse(data)

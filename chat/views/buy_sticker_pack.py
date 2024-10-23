@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
-
+from django.utils.translation import pgettext
 from chat.models.sticker_pack import StickerPack
 from chat.models.stickers_ownership import StickersOwnership
 from player.decorators.player import check_player
@@ -20,9 +20,9 @@ def buy_sticker_pack(request):
 
         except ValueError:
             data = {
-                'header': 'Новый стикерпак',
-                'grey_btn': 'Закрыть',
-                'response': 'ID стикерпака должен быть целым числом',
+                'header': pgettext('chat', 'Новый стикерпак'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('chat', 'ID стикерпака должен быть целым числом'),
             }
             return JResponse(data)
 
@@ -31,9 +31,9 @@ def buy_sticker_pack(request):
 
         if not StickerPack.actual.filter(pk=pack_id).exists():
             data = {
-                'response': 'Указанный набор стикеров не найден',
-                'header': 'Новый стикерпак',
-                'grey_btn': 'Закрыть',
+                'response': pgettext('chat', 'Указанный набор стикеров не найден'),
+                'header': pgettext('chat', 'Новый стикерпак'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
 
@@ -42,17 +42,17 @@ def buy_sticker_pack(request):
 
         if player.gold < pack.price:
             data = {
-                'response': 'Недостаточно золота, необходимо: ' + str(pack.price),
-                'header': 'Новый стикерпак',
-                'grey_btn': 'Закрыть',
+                'response': pgettext('new_article', 'Недостаточно золота, необходимо: %(price)s') % { "price": pack.price },
+                'header': pgettext('chat', 'Новый стикерпак'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
 
         if StickersOwnership.objects.filter(owner=player, pack=pack).exists():
             data = {
-                'response': 'У вас уже есть данный набор',
-                'header': 'Новый стикерпак',
-                'grey_btn': 'Закрыть',
+                'response': pgettext('chat', 'У вас уже есть данный набор'),
+                'header': pgettext('chat', 'Новый стикерпак'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
 
@@ -85,9 +85,8 @@ def buy_sticker_pack(request):
     # если страницу только грузят
     else:
         data = {
-            # 'response': _('positive_enrg_req'),
-            'response': 'Ошибка типа запроса',
-            'header': 'Новый стикерпак',
-            'grey_btn': 'Закрыть',
+            'response': pgettext('core', 'Ошибка типа запроса'),
+            'header': pgettext('chat', 'Новый стикерпак'),
+            'grey_btn': pgettext('core', 'Закрыть'),
         }
         return JResponse(data)

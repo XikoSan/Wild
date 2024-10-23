@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from django.shortcuts import redirect
 from django.http import JsonResponse
-
+from django.utils.translation import pgettext
 from gov.models.minister import Minister
 from gov.models.residency_request import ResidencyRequest
 from player.decorators.player import check_player
@@ -20,9 +20,9 @@ def residency_reject_all(request):
     # игрок - министр
     if not Minister.objects.filter(player=player, state=player.region.state).exists():
         data = {
-            'header': 'МИД',
-            'grey_btn': 'Закрыть',
-            'response': 'Вы не министр в государстве пребывания',
+            'header': pgettext('mfa', 'МИД'),
+            'grey_btn': pgettext('core', 'Закрыть'),
+            'response': pgettext('mfa', 'Вы не министр в государстве пребывания'),
         }
         return JsonResponse(data)
 
@@ -35,9 +35,9 @@ def residency_reject_all(request):
 
     if not has_right:
         data = {
-            'header': 'МИД',
-            'grey_btn': 'Закрыть',
-            'response': 'Вы не МИД',
+            'header': pgettext('mfa', 'МИД'),
+            'grey_btn': pgettext('core', 'Закрыть'),
+            'response': pgettext('mfa', 'Вы не МИД'),
         }
         return JsonResponse(data)
 

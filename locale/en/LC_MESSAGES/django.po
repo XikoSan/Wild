@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-23 00:11+0300\n"
-"PO-Revision-Date: 2024-10-23 00:15+0300\n"
+"POT-Creation-Date: 2024-10-24 01:24+0300\n"
+"PO-Revision-Date: 2024-10-24 01:26+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -49,7 +49,17 @@ msgctxt "overview"
 msgid "магазин"
 msgstr "shop"
 
-#: article/templates/article/articles.html:29
+#: article/templates/article/article.html:384
+msgctxt "article"
+msgid "статья"
+msgstr "article"
+
+#: article/templates/article/article.html:402
+msgctxt "article"
+msgid "комментарии"
+msgstr "comments"
+
+#: article/templates/article/articles.html:29 article/views/articles.py:118
 msgctxt "article"
 msgid "Статьи"
 msgstr "Articles"
@@ -74,22 +84,180 @@ msgctxt "articles_list"
 msgid "Статьи"
 msgstr "Articles of"
 
-#: article/templates/article/edit_article.html:46
+#: article/templates/article/edit_article.html:12
+msgctxt "article"
+msgid "Редактировать статью"
+msgstr "Edit article"
+
+#: article/templates/article/edit_article.html:13
+#: article/templates/article/new_article.html:13
+msgctxt "article"
+msgid "Статья не может быть пустой"
+msgstr "Article cannot be empty"
+
+#: article/templates/article/edit_article.html:14
+#: article/templates/article/new_article.html:14
+#: article/views/change_article.py:24 article/views/change_article.py:35
+#: article/views/change_article.py:43 article/views/change_article.py:55
+#: article/views/change_article.py:75 article/views/create_article.py:68
+#: article/views/create_article.py:77 article/views/create_article.py:87
+#: article/views/create_article.py:120 article/views/subscription.py:30
+#: article/views/subscription.py:64 article/views/subscription.py:73
+#: article/views/vote_article.py:48 article/views/vote_article.py:66
+#: article/views/vote_article.py:75 bill/models/change_coat.py:34
+#: bill/models/change_coat.py:43 bill/models/change_form.py:47
+#: bill/models/change_form.py:61 bill/models/change_form.py:68
+#: bill/models/change_residency.py:55 bill/models/change_residency.py:69
+#: bill/models/change_residency.py:76 bill/models/change_residency.py:83
+#: bill/models/change_taxes.py:65 bill/models/change_taxes.py:84
+#: bill/models/change_taxes.py:95 bill/models/change_taxes.py:105
+#: bill/models/change_taxes.py:115 bill/models/change_taxes.py:125
+#: bill/models/change_taxes.py:133 bill/models/change_title.py:27
+#: bill/models/change_title.py:36 bill/models/construction.py:97
+#: bill/models/construction.py:107 bill/models/construction.py:118
+#: bill/models/construction.py:136 bill/models/construction.py:143
+#: bill/models/construction.py:168 bill/models/construction.py:174
+#: bill/models/explore_resources.py:54 bill/models/explore_resources.py:64
+#: bill/models/explore_resources.py:75 bill/models/explore_resources.py:90
+#: bill/models/explore_resources.py:114 bill/models/explore_resources.py:120
+#: bill/models/geological_surveys.py:53 bill/models/geological_surveys.py:63
+#: bill/models/geological_surveys.py:82 bill/models/geological_surveys.py:106
+#: bill/models/geological_surveys.py:112 bill/models/independence.py:43
+#: bill/models/independence.py:50 bill/models/independence.py:60
+#: bill/models/independence.py:71 bill/models/independence.py:80
+#: bill/models/independence.py:88 bill/models/independence.py:99
+#: bill/models/independence.py:121 bill/models/martial_law.py:48
+#: bill/models/martial_law.py:62 bill/models/martial_law.py:69
+#: bill/models/martial_law.py:79 bill/models/martial_law.py:90
+#: bill/models/martial_law.py:98 bill/models/martial_law.py:108
+#: bill/models/martial_law.py:132 bill/models/purchase_auction.py:48
+#: bill/models/purchase_auction.py:59 bill/models/purchase_auction.py:66
+#: bill/models/purchase_auction.py:78 bill/models/purchase_auction.py:85
+#: bill/models/purchase_auction.py:97 bill/models/purchase_auction.py:104
+#: bill/models/purchase_auction.py:111 bill/models/purchase_auction.py:122
+#: bill/models/purchase_auction.py:150 bill/models/start_war.py:86
+#: bill/models/start_war.py:96 bill/models/start_war.py:103
+#: bill/models/start_war.py:113 bill/models/start_war.py:120
+#: bill/models/start_war.py:127 bill/models/start_war.py:138
+#: bill/models/start_war.py:157 bill/models/start_war.py:169
+#: bill/models/start_war.py:180 bill/models/transfer_accept.py:52
+#: bill/models/transfer_accept.py:59 bill/models/transfer_accept.py:69
+#: bill/models/transfer_accept.py:86 bill/models/transfer_accept.py:118
+#: bill/models/transfer_region.py:53 bill/models/transfer_region.py:60
+#: bill/models/transfer_region.py:67 bill/models/transfer_region.py:77
+#: bill/models/transfer_region.py:87 bill/models/transfer_region.py:98
+#: bill/models/transfer_region.py:110 bill/models/transfer_region.py:117
+#: bill/models/transfer_region.py:142 bill/models/transfer_resources.py:63
+#: bill/models/transfer_resources.py:70 bill/models/transfer_resources.py:77
+#: bill/models/transfer_resources.py:86 bill/models/transfer_resources.py:98
+#: bill/models/transfer_resources.py:107 bill/models/transfer_resources.py:121
+#: bill/models/transfer_resources.py:128 bill/models/transfer_resources.py:137
+#: bill/models/transfer_resources.py:149 bill/models/transfer_resources.py:156
+#: bill/models/transfer_resources.py:176 bill/views/bills/cancel_bill.py:72
+#: bill/views/bills/cancel_bill.py:79 bill/views/bills/cancel_bill.py:86
+#: bill/views/bills/cancel_bill.py:93 bill/views/bills/cancel_bill.py:100
+#: bill/views/bills/cancel_bill.py:107 bill/views/bills/cancel_bill.py:115
+#: bill/views/bills/new_bill.py:50 bill/views/bills/new_bill.py:57
+#: bill/views/bills/new_bill.py:64 bill/views/bills/new_bill.py:71
+#: bill/views/bills/new_bill.py:79 bill/views/bills/speedup_bill.py:35
+#: bill/views/bills/speedup_bill.py:44 bill/views/bills/speedup_bill.py:70
+#: bill/views/bills/speedup_bill.py:85 bill/views/bills/speedup_bill.py:96
+#: bill/views/bills/speedup_bill.py:104 bill/views/bills/speedup_bill.py:127
+#: bill/views/bills/speedup_bill.py:134 bill/views/bills/speedup_bill.py:141
+#: bill/views/bills/speedup_bill.py:148 bill/views/bills/speedup_bill.py:155
+#: bill/views/bills/speedup_bill.py:162 bill/views/bills/speedup_bill.py:170
+#: chat/templates/chat/dialogue.html:212 chat/views/buy_sticker_pack.py:24
+#: chat/views/buy_sticker_pack.py:36 chat/views/buy_sticker_pack.py:47
+#: chat/views/buy_sticker_pack.py:55 chat/views/buy_sticker_pack.py:90
+#: chat/views/messages/get_message_block.py:28
+#: chat/views/messages/get_message_block.py:38
+#: chat/views/messages/get_message_block.py:51
+#: chat/views/messages/get_message_block.py:86
+#: event/views/activate_invite.py:33 event/views/activate_invite.py:48
+#: event/views/activate_invite.py:64 event/views/activate_invite.py:78
+#: event/views/activate_invite.py:116 factory/views/cancel_auto.py:34
+#: factory/views/produce_good.py:41 factory/views/produce_good.py:52
+#: factory/views/produce_good.py:68 factory/views/produce_good.py:82
+#: factory/views/produce_good.py:89 factory/views/produce_good.py:103
+#: factory/views/produce_good.py:112 factory/views/produce_good.py:124
+#: factory/views/produce_good.py:134 factory/views/produce_good.py:145
+#: factory/views/produce_good.py:155 factory/views/produce_good.py:163
+#: factory/views/produce_good.py:172 factory/views/produce_good.py:213
+#: factory/views/produce_good.py:241 factory/views/produce_good.py:265
+#: factory/views/start_auto.py:33 factory/views/start_auto.py:41
+#: factory/views/start_auto.py:51 factory/views/start_auto.py:62
+#: factory/views/start_auto.py:71 factory/views/start_auto.py:80
+#: factory/views/start_auto.py:92 factory/views/start_auto.py:102
+#: factory/views/start_auto.py:113 factory/views/start_auto.py:141
+#: gov/views/color_change.py:30 gov/views/color_change.py:44
+#: gov/views/color_change.py:60
+#: gov/views/custom_rights/foreign/residency_reject_all.py:24
+#: gov/views/custom_rights/foreign/residency_reject_all.py:39
+#: gov/views/set_ministers.py:36 gov/views/set_ministers.py:52
+#: gov/views/set_ministers.py:62 gov/views/set_ministers.py:83
+#: gov/views/set_ministers.py:93 gov/views/set_ministers.py:183
+#: gov/views/switch_description.py:24 gov/views/switch_description.py:42
+#: party/views/management/staff/leave_party.py:38
+#: party/views/management/staff/leave_party.py:210 player/player.py:386
+#: player/player.py:397 player/player.py:418 player/views/change_bio.py:34
+#: player/views/change_nickname.py:24 player/views/change_nickname.py:34
+#: player/views/change_nickname.py:42 player/views/change_nickname.py:65
+#: player/views/new_player.py:181 player/views/new_player.py:194
+#: player/views/skills/boost_skill.py:59 player/views/skills/boost_skill.py:72
+#: player/views/skills/boost_skill.py:80 player/views/skills/boost_skill.py:94
+#: player/views/skills/boost_skill.py:104
+#: player/views/skills/boost_skill.py:113
+#: player/views/skills/boost_skill.py:123
+#: player/views/skills/boost_skill.py:168 player/views/skills/up_skill.py:35
+#: player/views/skills/up_skill.py:61 player/views/skills/up_skill.py:77
+#: player/views/skills/up_skill.py:97 player/views/skills/up_skill.py:107
+#: player/views/skills/up_skill.py:115 player/views/skills/up_skill.py:123
+#: player/views/skills/up_skill.py:192 region/views/map/get_residency.py:32
+#: region/views/map/get_residency.py:43 region/views/map/get_residency.py:51
+#: region/views/map/get_residency.py:62 region/views/map/get_residency.py:89
+#: region/views/map/get_residency.py:154 region/views/map/map.py:52
+#: region/views/map/map.py:61 region/views/map/map.py:108
+#: region/views/map/map.py:116 region/views/map/plane_info.py:35
+#: region/views/map/plane_info.py:42 region/views/map/region_info.py:43
+#: region/views/map/region_info.py:51 region/views/map/save_links.py:61
+#: skill/views/skill_cancel.py:35 skill/views/skill_cancel.py:43
+#: skill/views/skill_cancel.py:51 skill/views/skill_cancel.py:61
+#: skill/views/skill_cancel.py:76 skill/views/skill_cancel.py:100
+#: state/views/set_mandate.py:32 state/views/set_mandate.py:43
+#: state/views/set_mandate.py:56 state/views/set_mandate.py:64
+#: state/views/set_mandate.py:71 state/views/set_mandate.py:80
+#: state/views/state_foundation.py:42 state/views/state_foundation.py:56
+#: state/views/state_foundation.py:70 state/views/state_foundation.py:111
+#: storage/views/auctions/set_bet.py:30 storage/views/auctions/set_bet.py:38
+#: storage/views/auctions/set_bet.py:51 storage/views/auctions/set_bet.py:59
+#: storage/views/auctions/set_bet.py:70 storage/views/auctions/set_bet.py:83
+#: storage/views/auctions/set_bet.py:95 storage/views/auctions/set_bet.py:103
+#: storage/views/auctions/set_bet.py:111 storage/views/auctions/set_bet.py:161
+#: war/views/join_revolution.py:31 war/views/join_revolution.py:54
+#: war/views/join_revolution.py:67 war/views/join_revolution.py:79
+#: war/views/join_revolution.py:91 war/views/join_revolution.py:103
+#: war/views/join_revolution.py:140 war/views/start_war.py:104
+msgctxt "core"
+msgid "Закрыть"
+msgstr "Close"
+
+#: article/templates/article/edit_article.html:51
 msgctxt "article"
 msgid "обновить"
 msgstr "update"
 
-#: article/templates/article/new_article.html:18
+#: article/templates/article/new_article.html:12
+#: article/templates/article/new_article.html:23
 msgctxt "article"
 msgid "Новая статья"
 msgstr "New article"
 
-#: article/templates/article/new_article.html:63
+#: article/templates/article/new_article.html:68
 msgctxt "article"
 msgid "Заголовок статьи"
 msgstr "Article headerline"
 
-#: article/templates/article/new_article.html:86
+#: article/templates/article/new_article.html:91
 msgctxt "article"
 msgid "опубликовать"
 msgstr "publish"
@@ -169,122 +337,6 @@ msgctxt "change_article"
 msgid "Редактировать статью"
 msgstr "Edit article"
 
-#: article/views/change_article.py:24 article/views/change_article.py:35
-#: article/views/change_article.py:43 article/views/change_article.py:55
-#: article/views/change_article.py:75 article/views/create_article.py:68
-#: article/views/create_article.py:77 article/views/create_article.py:87
-#: article/views/create_article.py:120 article/views/subscription.py:30
-#: article/views/subscription.py:64 article/views/subscription.py:73
-#: article/views/vote_article.py:48 article/views/vote_article.py:66
-#: article/views/vote_article.py:75 bill/models/change_coat.py:34
-#: bill/models/change_coat.py:43 bill/models/change_form.py:47
-#: bill/models/change_form.py:61 bill/models/change_form.py:68
-#: bill/models/change_residency.py:55 bill/models/change_residency.py:69
-#: bill/models/change_residency.py:76 bill/models/change_residency.py:83
-#: bill/models/change_taxes.py:65 bill/models/change_taxes.py:84
-#: bill/models/change_taxes.py:95 bill/models/change_taxes.py:105
-#: bill/models/change_taxes.py:115 bill/models/change_taxes.py:125
-#: bill/models/change_taxes.py:133 bill/models/change_title.py:27
-#: bill/models/change_title.py:36 bill/models/construction.py:97
-#: bill/models/construction.py:107 bill/models/construction.py:118
-#: bill/models/construction.py:136 bill/models/construction.py:143
-#: bill/models/construction.py:168 bill/models/construction.py:174
-#: bill/models/explore_resources.py:54 bill/models/explore_resources.py:64
-#: bill/models/explore_resources.py:75 bill/models/explore_resources.py:90
-#: bill/models/explore_resources.py:114 bill/models/explore_resources.py:120
-#: bill/models/geological_surveys.py:53 bill/models/geological_surveys.py:63
-#: bill/models/geological_surveys.py:82 bill/models/geological_surveys.py:106
-#: bill/models/geological_surveys.py:112 bill/models/independence.py:43
-#: bill/models/independence.py:50 bill/models/independence.py:60
-#: bill/models/independence.py:71 bill/models/independence.py:80
-#: bill/models/independence.py:88 bill/models/independence.py:99
-#: bill/models/independence.py:121 bill/models/martial_law.py:48
-#: bill/models/martial_law.py:62 bill/models/martial_law.py:69
-#: bill/models/martial_law.py:79 bill/models/martial_law.py:90
-#: bill/models/martial_law.py:98 bill/models/martial_law.py:108
-#: bill/models/martial_law.py:132 bill/models/purchase_auction.py:48
-#: bill/models/purchase_auction.py:59 bill/models/purchase_auction.py:66
-#: bill/models/purchase_auction.py:78 bill/models/purchase_auction.py:85
-#: bill/models/purchase_auction.py:97 bill/models/purchase_auction.py:104
-#: bill/models/purchase_auction.py:111 bill/models/purchase_auction.py:122
-#: bill/models/purchase_auction.py:150 bill/models/start_war.py:86
-#: bill/models/start_war.py:96 bill/models/start_war.py:103
-#: bill/models/start_war.py:113 bill/models/start_war.py:120
-#: bill/models/start_war.py:127 bill/models/start_war.py:138
-#: bill/models/start_war.py:157 bill/models/start_war.py:169
-#: bill/models/start_war.py:180 bill/models/transfer_accept.py:52
-#: bill/models/transfer_accept.py:59 bill/models/transfer_accept.py:69
-#: bill/models/transfer_accept.py:86 bill/models/transfer_accept.py:118
-#: bill/models/transfer_region.py:53 bill/models/transfer_region.py:60
-#: bill/models/transfer_region.py:67 bill/models/transfer_region.py:77
-#: bill/models/transfer_region.py:87 bill/models/transfer_region.py:98
-#: bill/models/transfer_region.py:110 bill/models/transfer_region.py:117
-#: bill/models/transfer_region.py:142 bill/models/transfer_resources.py:63
-#: bill/models/transfer_resources.py:70 bill/models/transfer_resources.py:77
-#: bill/models/transfer_resources.py:86 bill/models/transfer_resources.py:98
-#: bill/models/transfer_resources.py:107 bill/models/transfer_resources.py:121
-#: bill/models/transfer_resources.py:128 bill/models/transfer_resources.py:137
-#: bill/models/transfer_resources.py:149 bill/models/transfer_resources.py:156
-#: bill/models/transfer_resources.py:176 bill/views/bills/cancel_bill.py:72
-#: bill/views/bills/cancel_bill.py:79 bill/views/bills/cancel_bill.py:86
-#: bill/views/bills/cancel_bill.py:93 bill/views/bills/cancel_bill.py:100
-#: bill/views/bills/cancel_bill.py:107 bill/views/bills/cancel_bill.py:115
-#: bill/views/bills/new_bill.py:50 bill/views/bills/new_bill.py:57
-#: bill/views/bills/new_bill.py:64 bill/views/bills/new_bill.py:71
-#: bill/views/bills/new_bill.py:79 bill/views/bills/speedup_bill.py:35
-#: bill/views/bills/speedup_bill.py:44 bill/views/bills/speedup_bill.py:70
-#: bill/views/bills/speedup_bill.py:85 bill/views/bills/speedup_bill.py:96
-#: bill/views/bills/speedup_bill.py:104 bill/views/bills/speedup_bill.py:127
-#: bill/views/bills/speedup_bill.py:134 bill/views/bills/speedup_bill.py:141
-#: bill/views/bills/speedup_bill.py:148 bill/views/bills/speedup_bill.py:155
-#: bill/views/bills/speedup_bill.py:162 bill/views/bills/speedup_bill.py:170
-#: gov/views/color_change.py:30 gov/views/color_change.py:44
-#: gov/views/color_change.py:60 gov/views/switch_description.py:24
-#: gov/views/switch_description.py:42
-#: party/views/management/staff/leave_party.py:38
-#: party/views/management/staff/leave_party.py:210 player/player.py:386
-#: player/player.py:397 player/player.py:418 player/views/change_bio.py:34
-#: player/views/change_nickname.py:24 player/views/change_nickname.py:34
-#: player/views/change_nickname.py:42 player/views/change_nickname.py:65
-#: player/views/new_player.py:181 player/views/new_player.py:194
-#: player/views/skills/boost_skill.py:59 player/views/skills/boost_skill.py:72
-#: player/views/skills/boost_skill.py:80 player/views/skills/boost_skill.py:94
-#: player/views/skills/boost_skill.py:104
-#: player/views/skills/boost_skill.py:113
-#: player/views/skills/boost_skill.py:123
-#: player/views/skills/boost_skill.py:168 player/views/skills/up_skill.py:35
-#: player/views/skills/up_skill.py:61 player/views/skills/up_skill.py:77
-#: player/views/skills/up_skill.py:97 player/views/skills/up_skill.py:107
-#: player/views/skills/up_skill.py:115 player/views/skills/up_skill.py:123
-#: player/views/skills/up_skill.py:192 region/views/map/get_residency.py:32
-#: region/views/map/get_residency.py:43 region/views/map/get_residency.py:51
-#: region/views/map/get_residency.py:62 region/views/map/get_residency.py:89
-#: region/views/map/get_residency.py:154 region/views/map/map.py:52
-#: region/views/map/map.py:61 region/views/map/map.py:108
-#: region/views/map/map.py:116 region/views/map/plane_info.py:35
-#: region/views/map/plane_info.py:42 region/views/map/region_info.py:43
-#: region/views/map/region_info.py:51 region/views/map/save_links.py:61
-#: skill/views/skill_cancel.py:35 skill/views/skill_cancel.py:43
-#: skill/views/skill_cancel.py:51 skill/views/skill_cancel.py:61
-#: skill/views/skill_cancel.py:76 skill/views/skill_cancel.py:100
-#: state/views/set_mandate.py:32 state/views/set_mandate.py:43
-#: state/views/set_mandate.py:56 state/views/set_mandate.py:64
-#: state/views/set_mandate.py:71 state/views/set_mandate.py:80
-#: state/views/state_foundation.py:42 state/views/state_foundation.py:56
-#: state/views/state_foundation.py:70 state/views/state_foundation.py:111
-#: storage/views/auctions/set_bet.py:30 storage/views/auctions/set_bet.py:38
-#: storage/views/auctions/set_bet.py:51 storage/views/auctions/set_bet.py:59
-#: storage/views/auctions/set_bet.py:70 storage/views/auctions/set_bet.py:83
-#: storage/views/auctions/set_bet.py:95 storage/views/auctions/set_bet.py:103
-#: storage/views/auctions/set_bet.py:111 storage/views/auctions/set_bet.py:161
-#: war/views/join_revolution.py:31 war/views/join_revolution.py:54
-#: war/views/join_revolution.py:67 war/views/join_revolution.py:79
-#: war/views/join_revolution.py:91 war/views/join_revolution.py:103
-#: war/views/join_revolution.py:140 war/views/start_war.py:104
-msgctxt "core"
-msgid "Закрыть"
-msgstr "Close"
-
 #: article/views/change_article.py:25
 msgctxt "change_article"
 msgid "ID статьи не передан"
@@ -308,14 +360,23 @@ msgstr "The text of the article should not be empty"
 #: article/views/change_article.py:73 article/views/create_article.py:118
 #: article/views/subscription.py:71 article/views/vote_article.py:73
 #: bill/views/bills/cancel_bill.py:113 bill/views/bills/new_bill.py:77
-#: player/views/change_bio.py:32 player/views/change_nickname.py:63
-#: player/views/skills/boost_skill.py:166 player/views/skills/up_skill.py:190
-#: skill/views/skill_cancel.py:98 state/views/set_mandate.py:78
-#: state/views/state_foundation.py:109 storage/views/auctions/set_bet.py:159
-#: war/views/start_war.py:102
+#: chat/views/buy_sticker_pack.py:88
+#: chat/views/messages/get_message_block.py:84
+#: event/views/activate_invite.py:114 factory/views/cancel_auto.py:35
+#: factory/views/start_auto.py:142 player/views/change_bio.py:32
+#: player/views/change_nickname.py:63 player/views/skills/boost_skill.py:166
+#: player/views/skills/up_skill.py:190 skill/views/skill_cancel.py:98
+#: state/views/set_mandate.py:78 state/views/state_foundation.py:109
+#: storage/views/auctions/set_bet.py:159 war/views/start_war.py:102
 msgctxt "core"
 msgid "Ошибка типа запроса"
 msgstr "Request type error"
+
+#: article/views/character_articles.py:38
+#, python-format
+msgctxt "article"
+msgid "Статьи: %(nickname)s"
+msgstr "Articles: %(nickname)s"
 
 #: article/views/create_article.py:67 article/views/create_article.py:76
 #: article/views/create_article.py:86 article/views/create_article.py:119
@@ -340,6 +401,12 @@ msgstr "The title of the article must not be empty"
 msgctxt "new_article"
 msgid "Текст статьи не должен быть пустым"
 msgstr "The text of the article should not be empty"
+
+#: article/views/edit_article.py:31
+#, python-format
+msgctxt "article"
+msgid "Редактировать: %(title)s"
+msgstr "Edit: %(title)s"
 
 #: article/views/subscription.py:29 article/views/subscription.py:63
 #: article/views/subscription.py:72
@@ -564,8 +631,8 @@ msgstr "Region ID must be an integer"
 
 #: bill/models/change_taxes.py:93 bill/models/construction.py:172
 #: bill/models/explore_resources.py:118 bill/models/geological_surveys.py:110
-#: bill/models/martial_law.py:130 bill/models/transfer_accept.py:116
-#: bill/models/transfer_region.py:140
+#: bill/models/independence.py:119 bill/models/martial_law.py:130
+#: bill/models/transfer_accept.py:116 bill/models/transfer_region.py:140
 msgctxt "new_bill"
 msgid "Нет такого региона"
 msgstr "There is no such region"
@@ -736,6 +803,21 @@ msgstr "Geological surveys"
 msgctxt "new_bill"
 msgid "Не указан подходящий регион"
 msgstr "No suitable region specified"
+
+#: bill/models/independence.py:78
+msgctxt "new_bill"
+msgid "Регион является столицей"
+msgstr "The region is the capital"
+
+#: bill/models/independence.py:86
+msgctxt "new_bill"
+msgid "В регионе размещена казна государства"
+msgstr "The state treasury is located in the region"
+
+#: bill/models/independence.py:97 bill/models/transfer_region.py:108
+msgctxt "new_bill"
+msgid "Регион является плацдармом атаки"
+msgstr "The region is a attack site"
 
 #: bill/models/independence.py:328
 msgctxt "new_bill"
@@ -918,11 +1000,6 @@ msgctxt "new_bill"
 msgid "ID государства должен быть целым числом"
 msgstr "The state ID must be an integer"
 
-#: bill/models/transfer_region.py:108
-msgctxt "new_bill"
-msgid "Регион является плацдармом атаки"
-msgstr "The region is a attack site"
-
 #: bill/models/transfer_region.py:115
 msgctxt "new_bill"
 msgid "Нет такого государства"
@@ -988,6 +1065,11 @@ msgctxt "new_bill"
 msgid "Передачи товаров"
 msgstr "Transfers of goods"
 
+#: bill/templates/state/redesign/bills/change_coat.html:24
+msgctxt "bill"
+msgid "оригинальный размер"
+msgstr "original size"
+
 #: bill/templates/state/redesign/bills/change_coat.html:60
 #: bill/templates/state/redesign/bills/change_residency.html:71
 #: bill/templates/state/redesign/bills/change_taxes.html:74
@@ -1042,6 +1124,11 @@ msgstr "UAV"
 msgctxt "bill_draft"
 msgid "Бесплатно"
 msgstr "Free"
+
+#: bill/templates/state/redesign/bills/change_taxes.html:29
+msgctxt "bill"
+msgid "всё государство"
+msgstr "all state"
 
 #: bill/templates/state/redesign/bills/martial_law.html:32
 msgctxt "martial_law"
@@ -1642,7 +1729,8 @@ msgid "В этом государстве нет парламента"
 msgstr "There is no parliament in this state"
 
 #: bill/views/bills/speedup_bill.py:168 gov/views/color_change.py:58
-#: gov/views/switch_description.py:43 party/views/management/color_change.py:66
+#: gov/views/set_ministers.py:181 gov/views/switch_description.py:43
+#: party/views/management/color_change.py:66
 #: party/views/management/gold/give_party_gold.py:108
 #: party/views/management/roles/new_role.py:79
 #: party/views/management/roles/remove_role.py:77
@@ -1663,12 +1751,27 @@ msgctxt "core"
 msgid "Ошибка метода"
 msgstr "Method error"
 
+#: chat/comment_consumers.py:24 chat/consumers.py:73
+msgctxt "chat"
+msgid "Успешно заблокирован"
+msgstr "Successfully blocked"
+
 #: chat/templates/chat/dialogue.html:31
 msgctxt "chat"
 msgid "Загрузить предыдущие сообщения"
 msgstr "Load previous messages"
 
-#: chat/templates/chat/dialogues.html:42
+#: chat/templates/chat/dialogue.html:210
+msgctxt "chat"
+msgid "Соединение прервалось"
+msgstr "The connection was lost"
+
+#: chat/templates/chat/dialogue.html:211
+msgctxt "chat"
+msgid "Перезагрузите страницу, чтобы переподключиться к чату"
+msgstr "Please refresh the page to reconnect to the chat"
+
+#: chat/templates/chat/dialogues.html:42 chat/views/messages/dialogues.py:223
 msgctxt "chat"
 msgid "Диалоги"
 msgstr "Dialogues"
@@ -1693,7 +1796,7 @@ msgctxt "chat"
 msgid "отправить"
 msgstr "send"
 
-#: chat/templates/chat/sticker-shop.html:39
+#: chat/templates/chat/sticker-shop.html:39 chat/views/stickers_shop.py:45
 msgctxt "chat"
 msgid "Магазин стикеров"
 msgstr "Stickers shop"
@@ -1708,15 +1811,62 @@ msgctxt "chat"
 msgid "Похоже, вы скупили все стикерпаки. Ожидайте выхода новых!"
 msgstr "Looks like you've bought all the sticker packs. Stay tuned for more!"
 
+#: chat/views/buy_sticker_pack.py:23 chat/views/buy_sticker_pack.py:35
+#: chat/views/buy_sticker_pack.py:46 chat/views/buy_sticker_pack.py:54
+#: chat/views/buy_sticker_pack.py:89
+msgctxt "chat"
+msgid "Новый стикерпак"
+msgstr "New sticker pack"
+
+#: chat/views/buy_sticker_pack.py:25
+msgctxt "chat"
+msgid "ID стикерпака должен быть целым числом"
+msgstr "Sticker pack ID must be an integer"
+
+#: chat/views/buy_sticker_pack.py:34
+msgctxt "chat"
+msgid "Указанный набор стикеров не найден"
+msgstr "The specified sticker pack was not found"
+
+#: chat/views/buy_sticker_pack.py:45
+#, python-format
+msgctxt "new_article"
+msgid "Недостаточно золота, необходимо: %(price)s"
+msgstr "Not enough gold, required: %(price)s"
+
+#: chat/views/buy_sticker_pack.py:53
+msgctxt "chat"
+msgid "У вас уже есть данный набор"
+msgstr "You already have this set"
+
 #: chat/views/messages/dialogue.py:190
 #, python-format
 msgctxt "chat"
 msgid "Диалог с %(nickname)s"
 msgstr "Dialogue with %(nickname)s"
 
-#: chat/views/messages/dialogues.py:232
-msgid "Диалоги"
-msgstr ""
+#: chat/views/messages/get_message_block.py:26
+msgctxt "chat"
+msgid "ID комнаты должен быть целым числом"
+msgstr "The room ID must be an integer"
+
+#: chat/views/messages/get_message_block.py:27
+#: chat/views/messages/get_message_block.py:37
+#: chat/views/messages/get_message_block.py:50
+#: chat/views/messages/get_message_block.py:85
+msgctxt "chat"
+msgid "Получение сообщений"
+msgstr "Receive of messages"
+
+#: chat/views/messages/get_message_block.py:36
+msgctxt "chat"
+msgid "Указанная комната не найдена"
+msgstr "The specified room was not found"
+
+#: chat/views/messages/get_message_block.py:49
+msgctxt "chat"
+msgid "Вы не состоите в этом чате"
+msgstr "You are not a member of this chat"
 
 #: event/templates/event/festival.html:218
 msgctxt "game_event"
@@ -1785,6 +1935,198 @@ msgstr ""
 "Filled by the efforts of all players on the server. Points can be both "
 "earned and lost."
 
+#: event/templates/event/invited_list.html:27
+#: event/templates/event/inviting.html:165
+#: event/templates/event/inviting.html:203
+msgctxt "game_event"
+msgid "Никнейм"
+msgstr "Nickname"
+
+#: event/templates/event/invited_list.html:28
+#: event/templates/event/inviting.html:166
+msgctxt "game_event"
+msgid "Бонус"
+msgstr "Bonus"
+
+#: event/templates/event/inviting.html:43
+msgctxt "game_event"
+msgid "Пригласи друзей"
+msgstr "Invite your friends"
+
+#: event/templates/event/inviting.html:43
+msgctxt "game_event"
+msgid "и получай награды!"
+msgstr "and get rewards!"
+
+#: event/templates/event/inviting.html:46
+msgctxt "game_event"
+msgid "Регламент"
+msgstr "Regulations"
+
+#: event/templates/event/inviting.html:48
+msgctxt "game_event"
+msgid "Активировать"
+msgstr "Activate"
+
+#: event/templates/event/inviting.html:50
+#: event/templates/event/inviting.html:142
+msgctxt "game_event"
+msgid "Приглашённые"
+msgstr "Invited"
+
+#: event/templates/event/inviting.html:57
+msgctxt "game_event"
+msgid "Регламент события"
+msgstr "Event regulations"
+
+#: event/templates/event/inviting.html:60
+msgctxt "game_event"
+msgid "Событие пройдёт с"
+msgstr "The event will take place from"
+
+#: event/templates/event/inviting.html:60
+msgctxt "game_event"
+msgid "по"
+msgstr "to"
+
+#: event/templates/event/inviting.html:64
+msgctxt "game_event"
+msgid ""
+"Приглашайте новых игроков в проект и возвращайте уже игравших, чтобы "
+"получать награды!"
+msgstr ""
+"Invite new players to the project and bring back those who have already "
+"played to receive rewards!"
+
+#: event/templates/event/inviting.html:68
+msgctxt "game_event"
+msgid ""
+"Новички должны указать ваш ID на вкладке \"активировать\", первые трое суток "
+"после регистрации."
+msgstr ""
+"Newbies must enter your ID in the \"activate\" tab within the first three "
+"days after registration."
+
+#: event/templates/event/inviting.html:70
+msgctxt "game_event"
+msgid ""
+"Игроки, заходившие в проект более 30 дней назад, также имеют доступ к "
+"указанной вкладке."
+msgstr ""
+"Players who entered the project more than 30 days ago also have access to "
+"the specified tab."
+
+#: event/templates/event/inviting.html:74
+msgctxt "game_event"
+msgid ""
+"ВАЖНО: вернувшимся в проект игрокам необходимо сделать это до получения "
+"Финансирования!"
+msgstr ""
+"IMPORTANT: players returning to the project must do this before receiving "
+"Funding!"
+
+#: event/templates/event/inviting.html:78
+#, python-format
+msgctxt "game_event"
+msgid ""
+"Получайте по 2%% к Финансированию за каждые десять уровней Характеристик, "
+"изученных приглашёнными игроками."
+msgstr ""
+"Receive 2%% to Funding for every ten levels of Attributes learned by invited "
+"players."
+
+#: event/templates/event/inviting.html:80
+msgctxt "game_event"
+msgid ""
+"Для ранее игравших игроков бонус считается как разница между суммой "
+"Характеристик после и до возвращения в игру."
+msgstr ""
+"For previously played players, the bonus is calculated as the difference "
+"between the sum of the Characteristics after and before returning to the "
+"game."
+
+#: event/templates/event/inviting.html:84
+msgctxt "game_event"
+msgid ""
+"Войдите в топ-3 игроков, чьи подопечные развились больше всех - и получите "
+"денежный приз!"
+msgstr ""
+"Be among the top 3 players whose wards have developed the most - and get a "
+"cash prize!"
+
+#: event/templates/event/inviting.html:88
+msgctxt "game_event"
+msgid ""
+"Нерезидентам РФ денежный приз будет выдан в виде эквивалента в игровой "
+"валюте."
+msgstr ""
+"For non-residents of the Russian Federation, the cash prize will be issued "
+"in the form of an equivalent in game currency."
+
+#: event/templates/event/inviting.html:96
+msgctxt "game_event"
+msgid "Активируйте приглашение от игрока"
+msgstr "Activate the player's invitation"
+
+#: event/templates/event/inviting.html:99
+msgctxt "game_event"
+msgid "Укажите ID пользователя, пригласившего вас в игру."
+msgstr "Please enter the ID of the user who invited you to the game."
+
+#: event/templates/event/inviting.html:103
+msgctxt "game_event"
+msgid "Вы получите"
+msgstr "You will receive"
+
+#: event/templates/event/inviting.html:104
+msgctxt "game_event"
+msgid "7 дней премиум-аккаунта"
+msgstr "7 days of Premium account"
+
+#: event/templates/event/inviting.html:105
+msgctxt "game_event"
+msgid ", а пригласивший - бонус к Финансированию."
+msgstr ", and the inviter gets a bonus to Financing."
+
+#: event/templates/event/inviting.html:109
+msgctxt "game_event"
+msgid ""
+"Внимание: данная вкладка пропадёт после активации, изменить пригласившего "
+"будет нельзя!"
+msgstr ""
+"Attention: this tab will disappear after activation, it will be impossible "
+"to change the inviter!"
+
+#: event/templates/event/inviting.html:116
+msgctxt "game_event"
+msgid "Введите ID пригласившего"
+msgstr "Enter the inviter's ID"
+
+#: event/templates/event/inviting.html:132
+msgctxt "game_event"
+msgid "активировать"
+msgstr "activate"
+
+#: event/templates/event/inviting.html:143
+msgctxt "game_event"
+msgid "Рейтинг"
+msgstr "Rating"
+
+#: event/templates/event/inviting.html:150
+msgctxt "game_event"
+msgid "Бонус к Финансированию"
+msgstr "Financing bonus"
+
+#: event/templates/event/inviting.html:155
+msgctxt "game_event"
+msgid "Возможная награда"
+msgstr "Possible reward"
+
+#: event/templates/event/inviting.html:204
+msgctxt "game_event"
+msgid "награда"
+msgstr "reward"
+
 #: event/templates/event/summer_festival.html:218
 #: player/views/game_event/summer.py:44
 msgctxt "game_event"
@@ -1815,25 +2157,43 @@ msgctxt "game_event"
 msgid "Заполняется суммой усилий всех игроков сервера."
 msgstr "Filled with the sum of the efforts of all players on the server."
 
-#: event/views/activate_invite.py:114 factory/views/cancel_auto.py:35
-#: factory/views/start_auto.py:142 player/views/answer_captcha.py:51
-#: player/views/bonus_code/activate_code.py:177
-#: player/views/buy_lootboxes.py:151 player/views/change_back_allow.py:57
-#: player/views/change_wiki_hide_allow.py:57
-#: player/views/customization/border/choose_border.py:60
-#: player/views/customization/plane/choose_plane.py:60
-#: player/views/customization/plane/clear_plane_nick.py:61
-#: player/views/customization/plane/set_plane_nick.py:80
-#: player/views/full_auto_allow.py:57 player/views/open_lootboxes.py:132
-#: player/views/set_language.py:54 player/views/set_timezone.py:43
-#: region/views/cancel_auto.py:35 region/views/daily_status.py:94
-#: region/views/daily_status.py:96 region/views/map/save_links.py:62
-#: region/views/retrieve_cash.py:42 region/views/start_auto.py:82
-#: storage/views/vault/avia_box/loot_aviaboxes.py:54
-#: storage/views/vault/avia_box/open_aviaboxes.py:182
-#: war/views/switch_war_visibility.py:90
-msgid "Ошибка метода"
-msgstr "Method error"
+#: event/views/activate_invite.py:31
+msgctxt "game_event"
+msgid "Событие неактивно"
+msgstr "Event is inactive"
+
+#: event/views/activate_invite.py:32 event/views/activate_invite.py:47
+#: event/views/activate_invite.py:63 event/views/activate_invite.py:77
+#: event/views/activate_invite.py:115
+msgctxt "game_event"
+msgid "Активация приглашения"
+msgstr "Activate invitation"
+
+#: event/views/activate_invite.py:46
+msgctxt "game_event"
+msgid "Игрок уже приглашен"
+msgstr "The player has already been invited"
+
+#: event/views/activate_invite.py:62
+msgctxt "game_event"
+msgid "3 дня с момента регистрации прошли..."
+msgstr "3 days since registration already passed..."
+
+#: event/views/activate_invite.py:76
+msgctxt "game_event"
+msgid "ID пригласившего указан некорректно"
+msgstr "The inviter's ID is incorrect"
+
+#: event/views/invited_list.py:46
+#, python-format
+msgctxt "game_event"
+msgid "Приглашённые игроком %(nickname)s"
+msgstr "Invited by player %(nickname)s"
+
+#: event/views/inviting_event.py:100
+msgctxt "game_event"
+msgid "Пригласи друга!"
+msgstr "Invite a friend!"
 
 #: event/views/winter_festival.py:45
 msgctxt "game_event_ny"
@@ -2128,113 +2488,6 @@ msgctxt "mining"
 msgid "Ошибка при отмене"
 msgstr "Error during cancellation"
 
-#: factory/views/cancel_auto.py:34 factory/views/start_auto.py:33
-#: factory/views/start_auto.py:41 factory/views/start_auto.py:51
-#: factory/views/start_auto.py:80 factory/views/start_auto.py:113
-#: factory/views/start_auto.py:141 region/views/cancel_auto.py:34
-#: region/views/daily_status.py:95 region/views/do_mining.py:42
-#: region/views/do_mining.py:55 region/views/do_mining.py:65
-#: region/views/do_mining.py:78 region/views/do_mining.py:87
-#: region/views/do_mining.py:96 region/views/do_mining.py:115
-#: region/views/do_mining.py:152 region/views/do_mining.py:231
-#: region/views/do_mining.py:339 region/views/do_mining.py:360
-#: region/views/do_mining.py:367 region/views/do_mining.py:382
-#: region/views/do_mining.py:403 region/views/do_mining.py:410
-#: region/views/do_mining.py:442 region/views/map/save_links.py:33
-#: region/views/retrieve_cash.py:41 region/views/start_auto.py:28
-#: region/views/start_auto.py:36 region/views/start_auto.py:46
-#: region/views/start_auto.py:55 region/views/start_auto.py:81
-#: storage/views/assets/assets_destroy.py:137
-#: storage/views/assets/assets_transfer.py:237
-#: storage/views/assets/storage_move.py:37
-#: storage/views/assets/storage_move.py:46
-#: storage/views/assets/storage_move.py:55
-#: storage/views/assets/storage_move.py:65
-#: storage/views/assets/storage_move.py:73
-#: storage/views/assets/storage_move.py:88
-#: storage/views/assets/storage_move.py:107
-#: storage/views/storage/cash_transfer.py:34
-#: storage/views/storage/cash_transfer.py:43
-#: storage/views/storage/cash_transfer.py:56
-#: storage/views/storage/cash_transfer.py:65
-#: storage/views/storage/cash_transfer.py:74
-#: storage/views/storage/cash_transfer.py:106
-#: storage/views/storage/cash_transfer.py:126
-#: storage/views/storage/cash_transfer.py:134
-#: storage/views/storage/cash_transfer.py:146
-#: storage/views/storage/new_storage.py:38
-#: storage/views/storage/new_storage.py:63
-#: storage/views/storage/new_storage.py:83
-#: storage/views/storage/new_storage.py:106
-#: storage/views/storage/upgrade_storage.py:38
-#: storage/views/storage/upgrade_storage.py:48
-#: storage/views/storage/upgrade_storage.py:61
-#: storage/views/storage/upgrade_storage.py:95
-#: storage/views/trading/accept_offer.py:48
-#: storage/views/trading/accept_offer.py:56
-#: storage/views/trading/accept_offer.py:69
-#: storage/views/trading/accept_offer.py:82
-#: storage/views/trading/accept_offer.py:94
-#: storage/views/trading/accept_offer.py:133
-#: storage/views/trading/accept_offer.py:144
-#: storage/views/trading/accept_offer.py:152
-#: storage/views/trading/accept_offer.py:160
-#: storage/views/trading/accept_offer.py:168
-#: storage/views/trading/accept_offer.py:190
-#: storage/views/trading/accept_offer.py:199
-#: storage/views/trading/accept_offer.py:213
-#: storage/views/trading/accept_offer.py:235
-#: storage/views/trading/accept_offer.py:259
-#: storage/views/trading/accept_offer.py:322
-#: storage/views/trading/accept_offer.py:330
-#: storage/views/trading/accept_offer.py:342
-#: storage/views/trading/accept_offer.py:350
-#: storage/views/trading/accept_offer.py:359
-#: storage/views/trading/accept_offer.py:371
-#: storage/views/trading/accept_offer.py:461
-#: storage/views/trading/accept_offer.py:475
-#: storage/views/trading/cancel_offer.py:43
-#: storage/views/trading/cancel_offer.py:56
-#: storage/views/trading/cancel_offer.py:64
-#: storage/views/trading/cancel_offer.py:77
-#: storage/views/trading/cancel_offer.py:90
-#: storage/views/trading/cancel_offer.py:108
-#: storage/views/trading/cancel_offer.py:140
-#: storage/views/trading/cancel_offer.py:164
-#: storage/views/trading/create_offer.py:36
-#: storage/views/trading/create_offer.py:47
-#: storage/views/trading/create_offer.py:62
-#: storage/views/trading/create_offer.py:71
-#: storage/views/trading/create_offer.py:85
-#: storage/views/trading/create_offer.py:92
-#: storage/views/trading/create_offer.py:113
-#: storage/views/trading/create_offer.py:123
-#: storage/views/trading/create_offer.py:131
-#: storage/views/trading/create_offer.py:142
-#: storage/views/trading/create_offer.py:150
-#: storage/views/trading/create_offer.py:166
-#: storage/views/trading/create_offer.py:185
-#: storage/views/trading/create_offer.py:203
-#: storage/views/trading/create_offer.py:212
-#: storage/views/trading/create_offer.py:227
-#: storage/views/trading/create_offer.py:249
-#: storage/views/trading/create_offer.py:284
-#: storage/views/trading/create_offer.py:294
-#: storage/views/trading/get_offers.py:45
-#: storage/views/trading/get_offers.py:67
-#: storage/views/trading/get_offers.py:257
-#: storage/views/trading/premium_trading.py:27
-#: storage/views/trading/premium_trading.py:39
-#: storage/views/trading/premium_trading.py:89
-#: storage/views/trading/premium_trading.py:100
-#: storage/views/trading/premium_trading.py:112
-#: storage/views/trading/premium_trading.py:120
-#: storage/views/trading/premium_trading.py:188
-#: storage/views/trading/premium_trading.py:195
-msgctxt "mining"
-msgid "Закрыть"
-msgstr "Close"
-
 #: factory/views/produce_good.py:39
 msgctxt "factory"
 msgid "Дождитесь конца полёта"
@@ -2253,20 +2506,6 @@ msgstr "Wait until the end of the flight"
 msgctxt "factory"
 msgid "Ошибка производства"
 msgstr "Production error"
-
-#: factory/views/produce_good.py:41 factory/views/produce_good.py:52
-#: factory/views/produce_good.py:68 factory/views/produce_good.py:82
-#: factory/views/produce_good.py:89 factory/views/produce_good.py:103
-#: factory/views/produce_good.py:112 factory/views/produce_good.py:124
-#: factory/views/produce_good.py:134 factory/views/produce_good.py:145
-#: factory/views/produce_good.py:155 factory/views/produce_good.py:163
-#: factory/views/produce_good.py:172 factory/views/produce_good.py:213
-#: factory/views/produce_good.py:241 factory/views/produce_good.py:265
-#: factory/views/start_auto.py:62 factory/views/start_auto.py:71
-#: factory/views/start_auto.py:92 factory/views/start_auto.py:102
-msgctxt "storage"
-msgid "Закрыть"
-msgstr "Close"
 
 #: factory/views/produce_good.py:50
 msgctxt "factory"
@@ -2471,10 +2710,61 @@ msgctxt "edit_state_color"
 msgid "Некорректный код цвета партии"
 msgstr "Invalid state color code"
 
+#: gov/views/custom_rights/foreign/residency_reject_all.py:23
+#: gov/views/custom_rights/foreign/residency_reject_all.py:38
+msgctxt "mfa"
+msgid "МИД"
+msgstr "MFA"
+
+#: gov/views/custom_rights/foreign/residency_reject_all.py:25
+msgctxt "mfa"
+msgid "Вы не министр в государстве пребывания"
+msgstr "You are not a minister of this state"
+
+#: gov/views/custom_rights/foreign/residency_reject_all.py:40
+msgctxt "mfa"
+msgid "Вы не МИД"
+msgstr "You are not MFA"
+
 #: gov/views/manage_view.py:25
 msgctxt "set_mandate"
 msgid "Управление государством"
 msgstr "State management"
+
+#: gov/views/set_ministers.py:35 gov/views/set_ministers.py:51
+#: gov/views/set_ministers.py:61 gov/views/set_ministers.py:82
+#: gov/views/set_ministers.py:92 gov/views/set_ministers.py:182
+msgctxt "set_ministers"
+msgid "Назначение министров"
+msgstr "Appointment of Ministers"
+
+#: gov/views/set_ministers.py:37
+msgctxt "set_ministers"
+msgid "Вы не президент"
+msgstr "You are not the president"
+
+#: gov/views/set_ministers.py:53
+#, python-format
+msgctxt "set_ministers"
+msgid "Игрока с id %(minister)s не существует"
+msgstr "Player with id %(minister)s does not exist"
+
+#: gov/views/set_ministers.py:63
+#, python-format
+msgctxt "set_ministers"
+msgid "Депутата с id игрока %(minister)s в вашем парламенте нет"
+msgstr "There is no deputy with player id %(minister)s in your parliament"
+
+#: gov/views/set_ministers.py:84
+#, python-format
+msgctxt "set_ministers"
+msgid "Указанного права министров не существует: %(right)s"
+msgstr "The specified ministerial right does not exist: %(right)s"
+
+#: gov/views/set_ministers.py:94
+msgctxt "set_ministers"
+msgid "Сумма очков назначения министров превышает 13"
+msgstr "The sum of minister appointment points exceeds 13"
 
 #: gov/views/switch_description.py:22
 msgctxt "edit_state_descr"
@@ -4829,6 +5119,25 @@ msgstr "Incorrect color code"
 msgid "Ответ на Captcha"
 msgstr ""
 
+#: player/views/answer_captcha.py:51
+#: player/views/bonus_code/activate_code.py:177
+#: player/views/buy_lootboxes.py:151 player/views/change_back_allow.py:57
+#: player/views/change_wiki_hide_allow.py:57
+#: player/views/customization/border/choose_border.py:60
+#: player/views/customization/plane/choose_plane.py:60
+#: player/views/customization/plane/clear_plane_nick.py:61
+#: player/views/customization/plane/set_plane_nick.py:80
+#: player/views/full_auto_allow.py:57 player/views/open_lootboxes.py:132
+#: player/views/set_language.py:54 player/views/set_timezone.py:43
+#: region/views/cancel_auto.py:35 region/views/daily_status.py:94
+#: region/views/daily_status.py:96 region/views/map/save_links.py:62
+#: region/views/retrieve_cash.py:42 region/views/start_auto.py:82
+#: storage/views/vault/avia_box/loot_aviaboxes.py:54
+#: storage/views/vault/avia_box/open_aviaboxes.py:182
+#: war/views/switch_war_visibility.py:90
+msgid "Ошибка метода"
+msgstr "Method error"
+
 #: player/views/bonus_code/activate_code.py:43
 #: player/views/bonus_code/activate_code.py:54
 #: player/views/bonus_code/activate_code.py:63
@@ -5654,6 +5963,109 @@ msgstr "for trading"
 msgctxt "region_view"
 msgid "Рельеф региона"
 msgstr "Relief of the region"
+
+#: region/views/cancel_auto.py:34 region/views/daily_status.py:95
+#: region/views/do_mining.py:42 region/views/do_mining.py:55
+#: region/views/do_mining.py:65 region/views/do_mining.py:78
+#: region/views/do_mining.py:87 region/views/do_mining.py:96
+#: region/views/do_mining.py:115 region/views/do_mining.py:152
+#: region/views/do_mining.py:231 region/views/do_mining.py:339
+#: region/views/do_mining.py:360 region/views/do_mining.py:367
+#: region/views/do_mining.py:382 region/views/do_mining.py:403
+#: region/views/do_mining.py:410 region/views/do_mining.py:442
+#: region/views/map/save_links.py:33 region/views/retrieve_cash.py:41
+#: region/views/start_auto.py:28 region/views/start_auto.py:36
+#: region/views/start_auto.py:46 region/views/start_auto.py:55
+#: region/views/start_auto.py:81 storage/views/assets/assets_destroy.py:137
+#: storage/views/assets/assets_transfer.py:237
+#: storage/views/assets/storage_move.py:37
+#: storage/views/assets/storage_move.py:46
+#: storage/views/assets/storage_move.py:55
+#: storage/views/assets/storage_move.py:65
+#: storage/views/assets/storage_move.py:73
+#: storage/views/assets/storage_move.py:88
+#: storage/views/assets/storage_move.py:107
+#: storage/views/storage/cash_transfer.py:34
+#: storage/views/storage/cash_transfer.py:43
+#: storage/views/storage/cash_transfer.py:56
+#: storage/views/storage/cash_transfer.py:65
+#: storage/views/storage/cash_transfer.py:74
+#: storage/views/storage/cash_transfer.py:106
+#: storage/views/storage/cash_transfer.py:126
+#: storage/views/storage/cash_transfer.py:134
+#: storage/views/storage/cash_transfer.py:146
+#: storage/views/storage/new_storage.py:38
+#: storage/views/storage/new_storage.py:63
+#: storage/views/storage/new_storage.py:83
+#: storage/views/storage/new_storage.py:106
+#: storage/views/storage/upgrade_storage.py:38
+#: storage/views/storage/upgrade_storage.py:48
+#: storage/views/storage/upgrade_storage.py:61
+#: storage/views/storage/upgrade_storage.py:95
+#: storage/views/trading/accept_offer.py:48
+#: storage/views/trading/accept_offer.py:56
+#: storage/views/trading/accept_offer.py:69
+#: storage/views/trading/accept_offer.py:82
+#: storage/views/trading/accept_offer.py:94
+#: storage/views/trading/accept_offer.py:133
+#: storage/views/trading/accept_offer.py:144
+#: storage/views/trading/accept_offer.py:152
+#: storage/views/trading/accept_offer.py:160
+#: storage/views/trading/accept_offer.py:168
+#: storage/views/trading/accept_offer.py:190
+#: storage/views/trading/accept_offer.py:199
+#: storage/views/trading/accept_offer.py:213
+#: storage/views/trading/accept_offer.py:235
+#: storage/views/trading/accept_offer.py:259
+#: storage/views/trading/accept_offer.py:322
+#: storage/views/trading/accept_offer.py:330
+#: storage/views/trading/accept_offer.py:342
+#: storage/views/trading/accept_offer.py:350
+#: storage/views/trading/accept_offer.py:359
+#: storage/views/trading/accept_offer.py:371
+#: storage/views/trading/accept_offer.py:461
+#: storage/views/trading/accept_offer.py:475
+#: storage/views/trading/cancel_offer.py:43
+#: storage/views/trading/cancel_offer.py:56
+#: storage/views/trading/cancel_offer.py:64
+#: storage/views/trading/cancel_offer.py:77
+#: storage/views/trading/cancel_offer.py:90
+#: storage/views/trading/cancel_offer.py:108
+#: storage/views/trading/cancel_offer.py:140
+#: storage/views/trading/cancel_offer.py:164
+#: storage/views/trading/create_offer.py:36
+#: storage/views/trading/create_offer.py:47
+#: storage/views/trading/create_offer.py:62
+#: storage/views/trading/create_offer.py:71
+#: storage/views/trading/create_offer.py:85
+#: storage/views/trading/create_offer.py:92
+#: storage/views/trading/create_offer.py:113
+#: storage/views/trading/create_offer.py:123
+#: storage/views/trading/create_offer.py:131
+#: storage/views/trading/create_offer.py:142
+#: storage/views/trading/create_offer.py:150
+#: storage/views/trading/create_offer.py:166
+#: storage/views/trading/create_offer.py:185
+#: storage/views/trading/create_offer.py:203
+#: storage/views/trading/create_offer.py:212
+#: storage/views/trading/create_offer.py:227
+#: storage/views/trading/create_offer.py:249
+#: storage/views/trading/create_offer.py:284
+#: storage/views/trading/create_offer.py:294
+#: storage/views/trading/get_offers.py:45
+#: storage/views/trading/get_offers.py:67
+#: storage/views/trading/get_offers.py:257
+#: storage/views/trading/premium_trading.py:27
+#: storage/views/trading/premium_trading.py:39
+#: storage/views/trading/premium_trading.py:89
+#: storage/views/trading/premium_trading.py:100
+#: storage/views/trading/premium_trading.py:112
+#: storage/views/trading/premium_trading.py:120
+#: storage/views/trading/premium_trading.py:188
+#: storage/views/trading/premium_trading.py:195
+msgctxt "mining"
+msgid "Закрыть"
+msgstr "Close"
 
 #: region/views/do_mining.py:41 region/views/do_mining.py:54
 #: region/views/do_mining.py:64 region/views/do_mining.py:77
@@ -8339,6 +8751,10 @@ msgctxt "war_page"
 msgid "Войны"
 msgstr "Wars"
 
+#~ msgctxt "storage"
+#~ msgid "Закрыть"
+#~ msgstr "Close"
+
 #~ msgctxt "construction"
 #~ msgid "подписано"
 #~ msgstr "signed"
@@ -8383,10 +8799,6 @@ msgstr "Wars"
 #~ msgctxt "profile"
 #~ msgid "очки тестирования Android"
 #~ msgstr "Android testing points"
-
-#~ msgctxt "profile"
-#~ msgid "(к регламенту)"
-#~ msgstr "(to the regulations)"
 
 #~ msgctxt "trading_new"
 #~ msgid "количество"
@@ -8740,10 +9152,6 @@ msgstr "Wars"
 #~ msgctxt "factory"
 #~ msgid "Отлично!"
 #~ msgstr "Excellent!"
-
-#~ msgctxt "factory"
-#~ msgid "Вы получили "
-#~ msgstr "You received "
 
 #, fuzzy
 #~ msgctxt "goods"

@@ -28,7 +28,7 @@ def edit_article(request, pk):
 
     # отправляем в форму
     return render(request, 'article/edit_article.html', {
-        'page_name': f'Редактировать: { article.title }',
+        'page_name': pgettext('article', "Редактировать: %(title)s") % {"title": article.title},
         # самого игрока
         'player': player,
         # форму статьи

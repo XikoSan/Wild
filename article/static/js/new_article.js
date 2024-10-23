@@ -21,6 +21,6 @@ $('#new_article_form').submit(function(e){
        });
    }
    else{
-        display_modal('notify', 'Новая статья', 'Статья не может быть пустой', null, 'Хорошо');
+        display_modal('notify', header_text, body_text, null, ok_text);
    };
 });

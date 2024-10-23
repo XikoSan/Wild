@@ -6,12 +6,14 @@ from django.contrib.auth.decorators import login_required
 from django.db import connection
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils import timezone
+from django.utils.translation import pgettext
 
+from article.models.article import Article
 from player.decorators.player import check_player
 from player.player import Player
 from player.player_settings import PlayerSettings
 from wild_politics.settings import TIME_ZONE
-from article.models.article import Article
+
 
 @login_required(login_url='/')
 @check_player
@@ -32,12 +34,13 @@ def character_articles(request, pk):
 
     page = 'article/character_articles.html'
 
-    return render(request, page, {'page_name': f'Статьи: { char.nickname }',
-                                  'player': player,
-                                  'char': char,
+    return render(request, page,
+                  {'page_name': pgettext('article', "Статьи: %(nickname)s") % {"nickname": char.nickname},
+                   'player': player,
+                   'char': char,
 
-                                  # список всех статей
-                                  'articles': article_list,
-                                  # словарь рейтинга статей
-                                  'rating_dict': rating_dict,
-                                  })
+                   # список всех статей
+                   'articles': article_list,
+                   # словарь рейтинга статей
+                   'rating_dict': rating_dict,
+                   })

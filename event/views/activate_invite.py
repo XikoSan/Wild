@@ -8,7 +8,7 @@ from django.db import transaction
 from django.utils import timezone
 from django.utils import translation
 from django.utils.translation import ugettext as _
-
+from django.utils.translation import pgettext
 from event.models.inviting_event.cash_event import CashEvent
 from event.models.inviting_event.invite import Invite
 from player.decorators.player import check_player
@@ -28,9 +28,9 @@ def activate_invite(request):
         if not CashEvent.objects.filter(running=True, event_start__lt=timezone.now(),
                                         event_end__gt=timezone.now()).exists():
             data = {
-                'response': 'Событие неактивно',
-                'header': 'Активация приглашения',
-                'grey_btn': 'Закрыть',
+                'response': pgettext('game_event', 'Событие неактивно'),
+                'header': pgettext('game_event', 'Активация приглашения'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
 
@@ -43,9 +43,9 @@ def activate_invite(request):
         # если уже приглашен - то все
         if Invite.objects.filter(invited=player, event=event).exists():
             data = {
-                'response': 'Игрок уже приглашен',
-                'header': 'Активация приглашения',
-                'grey_btn': 'Закрыть',
+                'response': pgettext('game_event', 'Игрок уже приглашен'),
+                'header': pgettext('game_event', 'Активация приглашения'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
 
@@ -59,9 +59,9 @@ def activate_invite(request):
                     activity_txt='daily'
             ).exists():
                 data = {
-                    'response': '3 дня с момента регистрации прошли...',
-                    'header': 'Активация приглашения',
-                    'grey_btn': 'Закрыть',
+                    'response': pgettext('game_event', '3 дня с момента регистрации прошли...'),
+                    'header': pgettext('game_event', 'Активация приглашения'),
+                    'grey_btn': pgettext('core', 'Закрыть'),
                 }
                 return JResponse(data)
 
@@ -73,9 +73,9 @@ def activate_invite(request):
 
         except ValueError:
             data = {
-                'response': 'ID пригласившего указан некорректно',
-                'header': 'Активация приглашения',
-                'grey_btn': 'Закрыть',
+                'response': pgettext('game_event', 'ID пригласившего указан некорректно'),
+                'header': pgettext('game_event', 'Активация приглашения'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
 
@@ -111,8 +111,8 @@ def activate_invite(request):
     # если страницу только грузят
     else:
         data = {
-            'response': _('Ошибка метода'),
-            'header': 'Активация приглашения',
-            'grey_btn': 'Закрыть',
+            'response': pgettext('core', 'Ошибка типа запроса'),
+            'header': pgettext('game_event', 'Активация приглашения'),
+            'grey_btn': pgettext('core', 'Закрыть'),
         }
         return JResponse(data)

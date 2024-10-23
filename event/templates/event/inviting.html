@@ -40,52 +40,52 @@
 {% block content %}
   <section class="articles">
 	    <!-- Заголовок -->
-  		<h1 class="create__title ct__page-title">Пригласи друзей<br>и получай награды!</h1>
+  		<h1 class="create__title ct__page-title">{% trans 'Пригласи друзей' context "game_event" %}<br>{% trans 'и получай награды!' context "game_event" %}</h1>
 	  <div class="articles__inner">
 		  <div class="articles__tabs" {% if invited %} style="grid-template-columns: repeat(2, 1fr)"{% endif %}>
-			<button class="active">Регламент</button>
+			<button class="active">{% trans 'Регламент' context "game_event" %}</button>
 			  {% if not invited %}
-			<button>Активировать</button>
+			<button>{% trans 'Активировать' context "game_event" %}</button>
 			  {% endif %}
-			<button>Приглашённые</button>
+			<button>{% trans 'Приглашённые' context "game_event" %}</button>
 		  </div>
 
 		  <div class="DecorLine"></div>
 
 	  <ul class="articles__list active">
 		<div class="ct__s">
-			<h2 class="ct__s-title">Регламент события:</h2>
+			<h2 class="ct__s-title">{% trans 'Регламент события' context "game_event" %}:</h2>
 			<br>
 			<p class="ct__s-text">
-				Событие пройдёт с 20.05.24 по 31.08.24
+				{% trans 'Событие пройдёт с' context "game_event" %} 20.05.24 {% trans 'по' context "game_event" %} 31.08.24
 			</p>
 			<br>
 			<p class="ct__s-text">
-				Приглашайте новых игроков в проект и возвращайте уже игравших, чтобы получать награды!
+				{% trans 'Приглашайте новых игроков в проект и возвращайте уже игравших, чтобы получать награды!' context "game_event" %}
 			</p>
 			<br>
 			<p class="ct__s-text">
-				Новички должны указать ваш ID на вкладке "активировать", первые трое суток после регистрации.
+				{% trans 'Новички должны указать ваш ID на вкладке "активировать", первые трое суток после регистрации.' context "game_event" %}
 				<br>
-				Игроки, заходившие в проект более 30 дней назад, также имеют доступ к указанной вкладке.
+				{% trans 'Игроки, заходившие в проект более 30 дней назад, также имеют доступ к указанной вкладке.' context "game_event" %}
 			</p>
 			<br>
 			<p class="ct__s-text">
-				ВАЖНО: вернувшимся в проект игрокам необходимо сделать это до получения Финансирования!
+				{% trans 'ВАЖНО: вернувшимся в проект игрокам необходимо сделать это до получения Финансирования!' context "game_event" %}
 			</p>
 			<br>
 			<p class="ct__s-text">
-				Получайте по 2% к Финансированию за каждые десять уровней Характеристик, изученных приглашёнными игроками.
+				{% trans 'Получайте по 2% к Финансированию за каждые десять уровней Характеристик, изученных приглашёнными игроками.' context "game_event" %}
 				<br>
-				Для ранее игравших игроков бонус считается как разница между суммой Характеристик после и до возвращения в игру.
+				{% trans 'Для ранее игравших игроков бонус считается как разница между суммой Характеристик после и до возвращения в игру.' context "game_event" %}
 			</p>
 			<br>
 			<p class="ct__s-text">
-				Войдите в топ-3 игроков, чьи подопечные развились больше всех - и получите денежный приз!
+				{% trans 'Войдите в топ-3 игроков, чьи подопечные развились больше всех - и получите денежный приз!' context "game_event" %}
 			</p>
 			<br>
 			<p class="ct__s-text">
-				Нерезидентам РФ денежный приз будет выдан в виде эквивалента в игровой валюте.
+				{% trans 'Нерезидентам РФ денежный приз будет выдан в виде эквивалента в игровой валюте.' context "game_event" %}
 			</p>
 		</div>
 	  </ul>
@@ -93,27 +93,27 @@
 	  {% if not invited %}
 	  <ul class="articles__list">
 		<div class="ct__s">
-			<h2 class="ct__s-title">Активируйте приглашение от игрока</h2>
+			<h2 class="ct__s-title">{% trans 'Активируйте приглашение от игрока' context "game_event" %}</h2>
 			<br>
 			<p class="ct__s-text">
-				Укажите ID пользователя, пригласившего вас в игру.
+				{% trans 'Укажите ID пользователя, пригласившего вас в игру.' context "game_event" %}
 			</p>
 			<br>
 			<p class="ct__s-text">
-				Вы получите
-				<font style="color: var(--c10two);">7 дней премиум-аккаунта</font>
-				, а пригласивший - бонус к Финансированию.
+				{% trans 'Вы получите' context "game_event" %}
+				<font style="color: var(--c10two);">{% trans '7 дней премиум-аккаунта' context "game_event" %}</font>
+				{% trans ', а пригласивший - бонус к Финансированию.' context "game_event" %}
 			</p>
 			<br>
 			<p class="ct__s-text">
-				Внимание: данная вкладка пропадёт после активации, изменить пригласившего будет нельзя!
+				{% trans 'Внимание: данная вкладка пропадёт после активации, изменить пригласившего будет нельзя!' context "game_event" %}
 			</p>
 		</div>
 
 		<form method="POST" enctype="multipart/form-data" id="post-form" class="create__form" style="margin-top: 25rem;">
 		  {% csrf_token %}
 		  <!--Никнейм-->
-		  <h2>Введите ID пригласившего</h2>
+		  <h2>{% trans 'Введите ID пригласившего' context "game_event" %}</h2>
 		  <input type="text" id="code" name="code" maxlength="4">
 
 			<div style="display: flex; justify-content: center; width: 100%;">
@@ -129,7 +129,7 @@
 							<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"></path>
 						</g>
 					</svg>
-					<span>активировать</span>
+					<span>{% trans 'активировать' context "game_event" %}</span>
 				</button>
 			</div>
 		</form>
@@ -139,20 +139,20 @@
 	  <ul class="articles__list">
 
 		  <div class="articles__tabs invited__tabs" style="grid-template-columns: repeat(2, 1fr)">
-			<button class="active">Приглашённые</button>
-			<button>Рейтинг</button>
+			<button class="active">{% trans 'Приглашённые' context "game_event" %}</button>
+			<button>{% trans 'Рейтинг' context "game_event" %}</button>
 		  </div>
 		  <div class="DecorLine"></div>
 
 		  <ul class="articles__list invited__list active">
 
 		<div class="ct__s" style="display: flex; justify-content: center;">
-			<h2 class="ct__s-title" style="background: linear-gradient(270deg, var(--c30) 0%, transparent 100%);">Бонус к Финансированию:</h2>
+			<h2 class="ct__s-title" style="background: linear-gradient(270deg, var(--c30) 0%, transparent 100%);">{% trans 'Бонус к Финансированию' context "game_event" %}:</h2>
 			<h2 class="ct__s-title">+ {{ total_bonus }}%</h2>
 		</div>
 		{% if cash_reward %}
 		<div class="ct__s" style="display: flex; justify-content: center;">
-			<h2 class="ct__s-title" style="background: linear-gradient(270deg, var(--c30) 0%, transparent 100%);">Возможная награда:</h2>
+			<h2 class="ct__s-title" style="background: linear-gradient(270deg, var(--c30) 0%, transparent 100%);">{% trans 'Возможная награда' context "game_event" %}:</h2>
 			<h2 class="ct__s-title">+ ₽{{ cash_reward }}</h2>
 		</div>
 		{% endif %}
@@ -162,8 +162,8 @@
 				<tr>
 
 					  <td class="j-t-image"></td>
-					  <td class="j-t-nickname">Никнейм</td>
-					  <td class="j-t-bonus">Бонус</td>
+					  <td class="j-t-nickname">{% trans 'Никнейм' context "game_event" %}</td>
+					  <td class="j-t-bonus">{% trans 'Бонус' context "game_event" %}</td>
 
 				</tr>
 
@@ -200,8 +200,8 @@
 				<tr>
 
 					  <td class="j-t-image"></td>
-					  <td class="j-t-nickname">Никнейм</td>
-					  <td class="j-t-bonus">награда</td>
+					  <td class="j-t-nickname">{% trans 'Никнейм' context "game_event" %}</td>
+					  <td class="j-t-bonus">{% trans 'награда' context "game_event" %}</td>
 
 				</tr>
 

@@ -2,7 +2,7 @@ import random
 
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
-
+from django.utils.translation import pgettext
 from chat.models.sticker import Sticker
 from chat.models.sticker_pack import StickerPack
 from chat.models.stickers_ownership import StickersOwnership
@@ -42,7 +42,7 @@ def stickers_shop(request):
 
 
     return render(request, 'chat/sticker-shop.html', {'player': player,
-                                                       'page_name': 'Магазин стикеров',
+                                                       'page_name': pgettext('chat', 'Магазин стикеров'),
 
                                                        'available_packs': available_packs,
                                                        'header_img_dict': header_img_dict,

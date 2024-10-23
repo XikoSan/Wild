@@ -21,7 +21,7 @@
         {% if bill.image %}
         <div class="gover__withImage">
             <img src="{{ bill.image.url }}">
-            <a href='{{ bill.image.url }}' target="_blank">оригинальный размер</a>
+            <a href='{{ bill.image.url }}' target="_blank">{% trans 'оригинальный размер' context "bill" %}</a>
         </div>
         {% else %}
         <span>недоступно</span>

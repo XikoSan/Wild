@@ -38,7 +38,7 @@ def produce_good(request):
                 # 'response': _('wait_flight_end'),
                 'response': pgettext('factory', 'Дождитесь конца полёта'),
                 'header': pgettext('factory', 'Ошибка производства'),
-                'grey_btn': pgettext('storage', 'Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JsonResponse(data)
 
@@ -49,7 +49,7 @@ def produce_good(request):
             data = {
                 'response': pgettext('factory', 'Склад не заполнен'),
                 'header': pgettext('factory', 'Ошибка производства'),
-                'grey_btn': pgettext('storage', 'Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JsonResponse(data)
 
@@ -65,7 +65,7 @@ def produce_good(request):
             data = {
                 'response': pgettext('factory', 'Указанный Склад вам не принадлежит'),
                 'header': pgettext('factory', 'Ошибка производства'),
-                'grey_btn': pgettext('storage', 'Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JsonResponse(data)
 
@@ -79,14 +79,14 @@ def produce_good(request):
             return {
                 'response': pgettext('factory', 'Указанный товар не существует'),
                 'header': pgettext('factory', 'Ошибка производства'),
-                'grey_btn': pgettext('storage', 'Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
 
         if not good or not Good.objects.filter(pk=good).exists():
             data = {
                 'response': pgettext('factory', 'Указанный товар не существует'),
                 'header': pgettext('factory', 'Ошибка производства'),
-                'grey_btn': pgettext('storage', 'Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JsonResponse(data)
 
@@ -100,7 +100,7 @@ def produce_good(request):
             data = {
                 'response': pgettext('factory', 'Вы не можете производить данный товар'),
                 'header': pgettext('factory', 'Ошибка производства'),
-                'grey_btn': pgettext('storage', 'Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JsonResponse(data)
 
@@ -109,7 +109,7 @@ def produce_good(request):
             data = {
                 'response': pgettext('factory', 'Вы не можете производить данный товар'),
                 'header': pgettext('factory', 'Ошибка производства'),
-                'grey_btn': pgettext('storage', 'Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JsonResponse(data)
 
@@ -121,7 +121,7 @@ def produce_good(request):
             data = {
                 'response': pgettext('factory', 'Номер схемы - не число'),
                 'header': pgettext('factory', 'Ошибка производства'),
-                'grey_btn': pgettext('storage', 'Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JsonResponse(data)
 
@@ -131,7 +131,7 @@ def produce_good(request):
             data = {
                 'response': pgettext('factory', 'Указанной схемы не существует'),
                 'header': pgettext('factory', 'Ошибка производства'),
-                'grey_btn': pgettext('storage', 'Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JsonResponse(data)
 
@@ -142,7 +142,7 @@ def produce_good(request):
             data = {
                 'response': pgettext('factory', 'Количество - не число'),
                 'header': pgettext('factory', 'Ошибка производства'),
-                'grey_btn': pgettext('storage', 'Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JsonResponse(data)
 
@@ -152,7 +152,7 @@ def produce_good(request):
             data = {
                 'response': pgettext('factory', 'Количество товара должно быть положительным числом'),
                 'header': pgettext('factory', 'Ошибка производства'),
-                'grey_btn': pgettext('storage', 'Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JsonResponse(data)
 
@@ -160,7 +160,7 @@ def produce_good(request):
             data = {
                 'response': pgettext('factory', 'Количество товара слишком велико'),
                 'header': pgettext('factory', 'Ошибка производства'),
-                'grey_btn': pgettext('storage', 'Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JsonResponse(data)
 
@@ -169,7 +169,7 @@ def produce_good(request):
         if not storage.capacity_check(good.size, count, sizetype_stocks):
             data = {
                 'header': pgettext('factory', 'Ошибка производства'),
-                'grey_btn': pgettext('storage', 'Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
                 'response': pgettext('factory', 'Недостаточно места на складе для товара. В наличии ') + str(intcomma(
                     getattr(storage, good.size + '_cap') - sizetype_stocks)) + pgettext('factory',
                                                                                         ', требуется ') + str(
@@ -210,7 +210,7 @@ def produce_good(request):
                 or energy_cost > 100:
             data = {
                 'header': pgettext('factory', 'Ошибка производства'),
-                'grey_btn': pgettext('storage', 'Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
                 'response': pgettext('factory', 'Недостаточно энергии. В наличии ') + str(player.energy) + pgettext(
                     'factory', ', требуется ') + str(
                     intcomma(energy_cost)),
@@ -238,7 +238,7 @@ def produce_good(request):
             required = schema.cash_cost * count
             data = {
                 'header': pgettext('factory', 'Ошибка производства'),
-                'grey_btn': pgettext('storage', 'Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
                 'response': pgettext('factory', 'Недостаточно ') + str(goods_names['cash']) + pgettext('factory',
                                                                                                          '. В наличии ') + str(
                     intcomma(storage.cash)) + pgettext('factory', ', требуется ') + str(
@@ -262,7 +262,7 @@ def produce_good(request):
 
                 data = {
                     'header': pgettext('factory', 'Ошибка производства'),
-                    'grey_btn': pgettext('storage', 'Закрыть'),
+                    'grey_btn': pgettext('core', 'Закрыть'),
                     'response': pgettext('factory', 'Недостаточно ') + str(goods_names[component.good.pk]) + pgettext('factory',
                                                                                                              '. В наличии ') + str(
                         intcomma(in_stock)) + pgettext('factory', ', требуется ') + str(
