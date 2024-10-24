@@ -65,13 +65,14 @@
         }
     }
   }
+
     var check_edu = true;
 
     {% if not player.educated %}
     check_edu = false;
 
-    document.getElementsByClassName('edu__img')[0].src = "/static/redesign/img/{{ assistant_name.0 }}.png";
-    localStorage.setItem('edu_assistant', "/static/redesign/img/{{ assistant_name.0 }}.png");
+    document.getElementsByClassName('edu__img')[0].src = "/static/redesign/img/{{ assistant_name.0 }}.webp";
+    localStorage.setItem('edu_assistant', "/static/redesign/img/{{ assistant_name.0 }}.webp");
 
     function claim_reward(id){
       var data = "&csrfmiddlewaretoken=" + csrftoken + "&edu_id=" + id;
@@ -1038,7 +1039,7 @@
     const chat_conn_type = "{% if http_use %}ws{% else %}wss{% endif %}";
     </script>
     <script src='{% static "redesign/js/chat.js" %}?{{ csrf_token }}'></script>
-    <audio id="padoru" preload="auto"><source src='{% static "redesign/audio/padoru.mp3" %}?{{ csrf_token }}'></audio>
+<!--    <audio id="padoru" preload="auto"><source src='{% static "redesign/audio/padoru.mp3" %}?{{ csrf_token }}'></audio>-->
     </div>
     <!--конец Враппера двух вкладок-->
 

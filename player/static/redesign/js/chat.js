@@ -34,6 +34,22 @@ function connectWebSocket() {
         // Сообщение
         cloned_line.getElementsByClassName('overview__chat-message-body')[0].getElementsByTagName('p')[0].innerHTML = data.message;
 
+          // Находим все элементы с классом "lazy_loaded"
+          var lazyElements = cloned_line.getElementsByClassName('overview__chat-message-body')[0].getElementsByTagName('p')[0].querySelectorAll('.lazy_loaded');
+
+          lazyElements.forEach(function(element) {
+            var img = element.querySelector('img');  // Находим тег <img> внутри <picture>
+            var source = element.querySelector('source'); // Находим тег <source>
+
+            // Если у <source> есть атрибут data-srcset, загружаем его
+            if (source && source.getAttribute('data-srcset')) {
+              source.srcset = source.getAttribute('data-srcset');
+
+              // Добавляем класс loaded, который скрывает SVG и показывает изображение
+              element.classList.add('loaded');
+            }
+          });
+
         // Вставить сообщение и показать
         document.getElementById('chat-log-' + roomName).appendChild(cloned_line);
         $(cloned_line).show();
