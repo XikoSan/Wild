@@ -97,6 +97,7 @@ INSTALLED_APPS = [
     'django_summernote',
 
     'tabbed_admin',
+    'silk'
 ]
 
 TABBED_ADMIN_USE_JQUERY_UI = True
@@ -151,7 +152,6 @@ SOCIAL_AUTH_VK_OAUTH2_KEY = os.getenv('VK_KEY')
 SOCIAL_AUTH_VK_OAUTH2_SECRET = os.getenv('VK_PASS')
 
 MIDDLEWARE = [
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -162,6 +162,11 @@ MIDDLEWARE = [
     'django.middleware.locale.LocaleMiddleware',
 ]
 
+if DEBUG:
+    MIDDLEWARE += [
+            # 'debug_toolbar.middleware.DebugToolbarMiddleware',
+            #         'silk.middleware.SilkyMiddleware',
+                   ]
 
 def show_toolbar(request):
     return not os.getenv('TOOL')
@@ -363,6 +368,25 @@ SUMMERNOTE_CONFIG = {
     ),
 }
 
+DEBUG_TOOLBAR_PANELS = [
+    'debug_toolbar.panels.versions.VersionsPanel',  # Версии Python и Django
+    'debug_toolbar.panels.timer.TimerPanel',  # Время выполнения запроса
+    'debug_toolbar.panels.settings.SettingsPanel',  # Настройки Django
+    'debug_toolbar.panels.headers.HeadersPanel',  # Заголовки HTTP-запроса и ответа
+    'debug_toolbar.panels.request.RequestPanel',  # Информация о запросе и ответе
+    'debug_toolbar.panels.sql.SQLPanel',  # SQL-запросы, время выполнения, количество
+    'debug_toolbar.panels.staticfiles.StaticFilesPanel',  # Поиск статических файлов
+    'debug_toolbar.panels.templates.TemplatesPanel',  # Рендеринг шаблонов
+    'debug_toolbar.panels.cache.CachePanel',  # Использование кэша
+    'debug_toolbar.panels.signals.SignalsPanel',  # Сигналы Django
+    'debug_toolbar.panels.logging.LoggingPanel',  # Логирование
+    'debug_toolbar.panels.redirects.RedirectsPanel',  # Редиректы
+    'debug_toolbar.panels.profiling.ProfilingPanel',  # Панель профилирования (добавлена)
+]
+
+SILKY_PYTHON_PROFILER = True
+SILKY_PYTHON_PROFILER_BINARY = True
+SILKY_PYTHON_PROFILER_RESULT_PATH = '/tmp/'
 
 class JResponse(JsonResponse):
     def __init__(self, data, encoder=DjangoJSONEncoder, safe=True, **kwargs):

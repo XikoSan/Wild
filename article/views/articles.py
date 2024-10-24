@@ -39,14 +39,18 @@ def articles(request):
     for elem in list_db:
         list_articles_pk.append(elem[0])
 
-    article_noorder = Article.objects.defer('body').filter(pk__in=list_articles_pk).exclude(player__pk=1)
+    article_noorder = list( Article.objects.defer('body').filter(pk__in=list_articles_pk).exclude(player__pk=1) )
 
     top_articles = []
 
-    for elem in list_db:
+    # Преобразуем list_db в set для быстрого поиска по pk
+    list_db_pks = {elem[0] for elem in list_db}
+
+    # Перебираем article_noorder и добавляем в top_articles
+    for article in article_noorder:
         if len(top_articles) < 10:
-            if article_noorder.filter(pk=elem[0]).exists():
-                top_articles.append(article_noorder.get(pk=elem[0]))
+            if article.pk in list_db_pks:
+                top_articles.append(article)
 
     # top_articles = Article.objects.annotate(vote_diff=Count('votes_pro') - Count('votes_con')
     #                                         ).filter(vote_diff__gt=0).order_by('-vote_diff', '-id')[:25]

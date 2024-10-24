@@ -70,3 +70,5 @@ urlpatterns = [
                   # url(r'', include('article.urls')),
               ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) \
               + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+urlpatterns += [path('silk/', include('silk.urls', namespace='silk'))]
