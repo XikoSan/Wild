@@ -200,7 +200,7 @@ class PLayerAdmin(TabbedModelAdmin):
 
     tab_overview = (
         ('Профиль', {
-            'fields': ('nickname', 'account', 'image')
+            'fields': ('nickname', 'account', ('image', 'image_75', 'image_33',))
         }),
         ('Баны', {
             'fields': ('banned', 'reason', 'chat_ban', 'articles_ban')

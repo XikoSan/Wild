@@ -5,6 +5,7 @@ WORKDIR /app
 RUN apk add --no-cache gcc musl-dev libffi-dev postgresql-dev python3-dev jpeg-dev zlib-dev\
     icu-dev \
     gettext \
+    libwebp-dev \
     gettext-dev
 
 COPY requirements.txt ./

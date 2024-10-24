@@ -46,8 +46,14 @@ class Player(models.Model):
 
     # никнейм игрока
     nickname = models.CharField(max_length=30, blank=False, verbose_name='Никнейм')
+
     # фото профиля игрока
     image = models.ImageField(upload_to='img/avatars/', blank=True, null=True, verbose_name='Аватар')
+    # 75*75
+    image_75 = models.ImageField(upload_to='img/avatars/75/', blank=True, null=True, verbose_name='75px')
+    # 33*33
+    image_33 = models.ImageField(upload_to='img/avatars/33/', blank=True, null=True, verbose_name='33px')
+
     # Часовые пояса на выбор игрока
     timeZoneChoices = [(tz, tz) for tz in pytz.common_timezones]
     # Часовой пояс игрока(самое длинное имя часового пояса 32 символа. Берем 50 с запасом)

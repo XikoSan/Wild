@@ -191,7 +191,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
                 image_url = '/static/img/nopic.svg'
                 if self.player.image:
-                    image_url = self.player.image.url
+                    image_url = self.player.image_75.url
 
                 if len(self.player.nickname) > 25:
                     nickname = f'{self.player.nickname[:25]}...'

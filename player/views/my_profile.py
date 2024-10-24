@@ -1,5 +1,7 @@
 import pytz
 from PIL import Image
+from io import BytesIO
+from django.core.files.base import ContentFile
 from allauth.socialaccount.models import SocialAccount
 from django.apps import apps
 from django.contrib.auth.decorators import login_required
@@ -36,7 +38,7 @@ def my_profile(request):
 
         form = ImageForm(request.POST, request.FILES)
         if form.is_valid():
-            # не списывать деньги, если аватара нет
+            # Не списывать деньги, если аватара нет
             if player.image:
                 player.gold -= 100
 
@@ -45,6 +47,7 @@ def my_profile(request):
 
             player.image = form.cleaned_data['image']
 
+            # Сохраняем аватар и вызываем save, чтобы обновить путь
             player.save()
 
             x = form.cleaned_data['x']
@@ -52,10 +55,34 @@ def my_profile(request):
             w = form.cleaned_data['width']
             h = form.cleaned_data['height']
 
+            # Открываем изображение и обрезаем
             image = Image.open(player.image)
             cropped_image = image.crop((x, y, w + x, h + y))
             resized_image = cropped_image.resize((400, 400), Image.ANTIALIAS)
-            resized_image.save(player.image.path, 'PNG')
+
+            # Устанавливаем путь для основного изображения
+            webp_image_path = f'img/avatars/{player.id}.webp'
+            resized_image.save(player.image.storage.path(webp_image_path), 'WEBP', quality=85)
+
+            # Обновляем поле image
+            player.image.name = webp_image_path
+            player.save()
+
+            # Создаем уменьшенные изображения
+            # Сохраняем 75x75 в img/avatars/75/
+            image_75 = resized_image.resize((75, 75), Image.ANTIALIAS)
+            img_io_75 = BytesIO()
+            image_75.save(img_io_75, format='WEBP', quality=85)
+            player.image_75.save(f"{player.id}.webp", ContentFile(img_io_75.getvalue()), save=False)
+
+            # Сохраняем 33x33 в img/avatars/33/
+            image_33 = resized_image.resize((33, 33), Image.ANTIALIAS)
+            img_io_33 = BytesIO()
+            image_33.save(img_io_33, format='WEBP', quality=85)
+            player.image_33.save(f"{player.id}.webp", ContentFile(img_io_33.getvalue()), save=False)
+
+            # Сохраняем изменения в модели игрока
+            player.save()
 
             return redirect('my_profile')
     else:
