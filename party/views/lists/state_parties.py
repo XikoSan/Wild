@@ -9,15 +9,16 @@ from player.player import Player
 from player.views.lists.get_thing_page import get_thing_page
 from region.models.region import Region
 from state.models.state import State
+from .world_parties import create_temporary_party_class
 
 
-def create_temporary_party_class():
-    # класс партии, в котором её размер - это поле
-    class _PartyWithSize(Party):
-        pk = 0
-        size = 0
-
-    return _PartyWithSize
+# def create_temporary_party_class():
+#     # класс партии, в котором её размер - это поле
+#     class _PartyWithSize(Party):
+#         pk = 0
+#         size = 0
+#
+#     return _PartyWithSize
 
 
 # список всех партий госа
