@@ -113,6 +113,13 @@ def assets_transfer(request):
                 if len(storages_values.get(storage_pk)):
                     # идем по списку запасов
                     for stock_pk in storages_values.get(storage_pk):
+                        if not int(storages_values.get(storage_pk)[stock_pk]) > 0:
+                            data = {
+                                'response': pgettext('assets', 'Один или несколько запасов пусты'),
+                                'header': pgettext('assets', 'Перемещение товара'),
+                                'grey_btn': pgettext('assets', 'Закрыть'),
+                            }
+                            return JsonResponse(data)
                         # собираем айдишники запасов
                         stocks_pk_list.append(int(stock_pk))
             # получаем
