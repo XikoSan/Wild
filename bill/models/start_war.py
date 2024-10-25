@@ -130,6 +130,13 @@ class StartWar(Bill):
 
         region_from = Region.objects.get(pk=region_from)
 
+        if region_from.peace_date > timezone.now():
+            return {
+                'header': pgettext('new_bill', 'Новый законопроект'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('new_bill', 'Плацдарм атаки находится в состоянии мирного времени'),
+            }
+
         region_to = Region.objects.get(pk=region_to)
         # гос регионов не один и тот же
         if region_to.state == region_from.state:

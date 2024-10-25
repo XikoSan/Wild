@@ -24,6 +24,8 @@ def get_victims(state):
             neig_list[region] = Neighbours.objects.filter(Q(region_1=region) | Q(region_2=region))
     # т.к. Соседи содержат два региона, отбираем из связей только второй
     for region in neig_list.keys():
+        if region.peace_date > timezone.now():
+            continue
         victims.clear()
         # по каждой связи находим связанный регион
         for neig in neig_list.get(region):
