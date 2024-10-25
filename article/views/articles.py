@@ -28,35 +28,36 @@ def articles(request):
     for article in article_list:
         rating_dict[article.pk] = article.votes_pro.count() - article.votes_con.count()
     # --------------------------------------------------------------------------------
-    # получим лучшие статьи
-
+    # Получим лучшие статьи с положительным рейтингом, отсортированные по разнице голосов
     cursor = connection.cursor()
-    cursor.execute("with dislikes as( select article_id, COUNT(*) from public.article_article_votes_con group by article_id ), likes as ( select article_id, COUNT(*) from public.article_article_votes_pro group by article_id ) SELECT COALESCE(l.article_id, d.article_id) as article, COALESCE(l.count, 0) - COALESCE(d.count, 0) AS difference FROM likes as l full outer join dislikes as d on d.article_id = l.article_id WHERE COALESCE(l.count, 0) - COALESCE(d.count, 0) > 0 order by difference desc, article desc;")
+    cursor.execute("""
+        WITH dislikes AS (
+            SELECT article_id, COUNT(*) as count FROM public.article_article_votes_con GROUP BY article_id
+        ), likes AS (
+            SELECT article_id, COUNT(*) as count FROM public.article_article_votes_pro GROUP BY article_id
+        )
+        SELECT COALESCE(l.article_id, d.article_id) as article, COALESCE(l.count, 0) - COALESCE(d.count, 0) AS difference
+        FROM likes AS l 
+        FULL OUTER JOIN dislikes AS d ON d.article_id = l.article_id
+        WHERE COALESCE(l.count, 0) - COALESCE(d.count, 0) > 0
+        ORDER BY difference DESC, article DESC
+        LIMIT 10;
+    """)
     list_db = cursor.fetchall()
 
-    list_articles_pk = []
+    # Извлекаем только первичные ключи в нужном порядке
+    list_articles_pk = [elem[0] for elem in list_db]
 
-    for elem in list_db:
-        list_articles_pk.append(elem[0])
+    # Получаем статьи по сохраненному порядку list_articles_pk
+    article_noorder = Article.objects.defer('body').filter(pk__in=list_articles_pk).exclude(player__pk=1)
+    articles_dict = {article.pk: article for article in article_noorder}
 
-    article_noorder = list( Article.objects.defer('body').filter(pk__in=list_articles_pk).exclude(player__pk=1) )
+    # Формируем top_articles в порядке, определенном в list_articles_pk
+    top_articles = [articles_dict[pk] for pk in list_articles_pk if pk in articles_dict]
 
-    top_articles = []
-
-    # Преобразуем list_db в set для быстрого поиска по pk
-    list_db_pks = {elem[0] for elem in list_db}
-
-    # Перебираем article_noorder и добавляем в top_articles
-    for article in article_noorder:
-        if len(top_articles) < 10:
-            if article.pk in list_db_pks:
-                top_articles.append(article)
-
-    # top_articles = Article.objects.annotate(vote_diff=Count('votes_pro') - Count('votes_con')
-    #                                         ).filter(vote_diff__gt=0).order_by('-vote_diff', '-id')[:25]
+    # Заполняем словарь рейтингов
     for article in top_articles:
-        if article.pk not in rating_dict.keys():
-            rating_dict[article.pk] = article.votes_pro.count() - article.votes_con.count()
+        rating_dict[article.pk] = rating_dict.get(article.pk, article.votes_pro.count() - article.votes_con.count())
     # --------------------------------------------------------------------------------
     # получим подписки игрока
     subs_articles = None
