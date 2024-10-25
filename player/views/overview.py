@@ -164,7 +164,7 @@ def overview(request):
                 b['author_nickname'] = author.nickname
 
             if author.image:
-                b['image_link'] = author.image.url
+                b['image_link'] = author.image_75.url
             else:
                 b['image_link'] = 'nopic'
 
