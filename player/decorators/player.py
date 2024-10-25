@@ -79,7 +79,8 @@ def check_player(func):
                         Q(pk=491) | Q(pk=498) |
                         Q(pk=85) | Q(pk=1313) |
                         Q(pk=69) | Q(pk=90) |
-                        Q(banned=True)
+                        Q(banned=True)|
+                        Q(account__last_login__lt=timezone.now() - timedelta(weeks=1))
                 ).exists():
 
                     players = Player.objects.filter(user_ip=cur_ip)
