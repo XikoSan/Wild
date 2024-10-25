@@ -85,7 +85,7 @@ def accept_offer(request):
             return JsonResponse(data)
 
         storage_region_pk = None
-        if Storage.actual.filter(pk=storage_id).exists():
+        if Storage.actual.filter(pk=storage_id, owner=player).exists():
             storage_region_pk = Storage.actual.get(pk=storage_id).region.pk
 
         else:
