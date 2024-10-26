@@ -222,14 +222,14 @@
 					<div class="overview__war-wrapper">
 						<div class="overview__war-string">
 							<p class="overview__war-text">
-								<img src="/static/img/regions/{{ war.agr_region.on_map_id }}.png">
+								<img src="/static/img/regions/webp/33/{{ war.agr_region.on_map_id }}.webp">
 								{{ war.agr_region }}
 							</p>
 							<span>{{ war.hq_points }}</span>
 						</div>
 						<div class="overview__war-string">
 							<p class="overview__war-text">
-								<img src="/static/img/regions/{{ war.def_region.on_map_id }}.png">
+								<img src="/static/img/regions/webp/33/{{ war.def_region.on_map_id }}.webp">
 								{{ war.def_region }}
 							</p>
 							<span id="{{ war|get_class_name }}_{% localize off %}{{ war.pk }}{% endlocalize %}" class="war_countdown" data-text="{% localize off %}{{ war_countdowns|dict_key:war }}{% endlocalize %}">00:00:00</span>
@@ -261,14 +261,14 @@
 							<div class="overview__war-wrapper">
 								<div class="overview__war-string">
 									<p class="overview__war-text">
-										<img src="/static/img/regions/{{ war.agr_region.on_map_id }}.png">
+										<img src="/static/img/regions/webp/33/{{ war.agr_region.on_map_id }}.webp">
 										{{ war.agr_region }}
 									</p>
 									<span>{{ war.hq_points }}</span>
 								</div>
 								<div class="overview__war-string">
 									<p class="overview__war-text">
-										<img src="/static/img/regions/{{ war.def_region.on_map_id }}.png">
+										<img src="/static/img/regions/webp/33/{{ war.def_region.on_map_id }}.webp">
 										{{ war.def_region }}
 									</p>
 									<span id="{{ war|get_class_name }}_{% localize off %}{{ war.pk }}{% endlocalize %}-state" class="war_countdown" data-text="{% localize off %}{{ war_countdowns|dict_key:war }}{% endlocalize %}">00:00:00</span>

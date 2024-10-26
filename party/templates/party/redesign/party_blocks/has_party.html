@@ -111,7 +111,7 @@
         </div><!--кнопки конец-->
 
         <div class="party__region" onclick="window.location.href = 'region/{% localize off %}{{ player.party.region.pk }}{% endlocalize %}/'">
-          <img src="static/img/regions/{{ player.party.region.on_map_id }}.png">
+          <img src="static/img/regions/webp/55/{{ player.party.region.on_map_id }}.webp">
           <p>{% trans player.party.region.region_name context "regions_list" %}</p>
         </div>
 

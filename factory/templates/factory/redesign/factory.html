@@ -83,7 +83,7 @@
       <div class="ct__selectWithImage">
           {% with store_1=first_storage %}
           <div class="ct__selectWithImage-selected" id="storage" data-value="{% localize off %}{{ store_1.pk }}{% endlocalize %}">
-              <img src="static/img/regions/{{ store_1.region.on_map_id }}.png">
+              <img src="static/img/regions/webp/55/{{ store_1.region.on_map_id }}.webp">
               <div class="ct__selectWithImage-firstText">
                   {% with region_name=store_1.region.region_name %}
                   <span>{% trans region_name context "regions_list" %}</span>
@@ -96,7 +96,7 @@
           {% endwith %}
           <div class="ct__selectWithImage-content custom-scroll custom-scroll--alt">
               {% for storage in storages %}
-              <div data-value="{% localize off %}{{ storage.pk }}{% endlocalize %}"><img src="static/img/regions/{{ storage.region.on_map_id }}.png">{% with region_name=storage.region.region_name %}{% trans region_name context "regions_list" %}{% endwith %}</div>
+              <div data-value="{% localize off %}{{ storage.pk }}{% endlocalize %}"><img src="static/img/regions/webp/55/{{ storage.region.on_map_id }}.webp">{% with region_name=storage.region.region_name %}{% trans region_name context "regions_list" %}{% endwith %}</div>
               {% endfor %}
           </div>
       </div>

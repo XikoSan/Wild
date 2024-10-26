@@ -11,7 +11,7 @@
         {% for region in regions %}
         {% if forloop.counter0 == 0 %}
         <div class="ct__selectWithImage-selected" id="start_war_default_region" data-value="{% localize off %}{{ region.pk }}{% endlocalize %}">
-            <img id="start_war_default_img" src="/static/img/regions/{{ region.on_map_id }}.png">
+            <img id="start_war_default_img" src="/static/img/regions/webp/55/{{ region.on_map_id }}.webp">
             <div class="ct__selectWithImage-firstText">
                 <span id="start_war_default_reg">{{ region.region_name }}</span>
                 <svg class="ct__selectWithImage-arrow" width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -24,7 +24,7 @@
         <div class="ct__selectWithImage-content custom-scroll custom-scroll--alt">
             {% for region in regions %}
             <div id="start_war_{% localize off %}{{ region.pk }}{% endlocalize %}" data-func="set_victims" data-value="{% localize off %}{{ region.pk }}{% endlocalize %}">
-                <img class="offer_dummy_img" src="/static/img/regions/{{ region.on_map_id }}.png">
+                <img class="offer_dummy_img" src="/static/img/regions/webp/55/{{ region.on_map_id }}.webp">
                 <span class="offer_dummy_region">{{ region.region_name }}</span>
             </div>
             {% endfor %}
@@ -40,7 +40,7 @@
         {% for region in regions|dict_key:first %}
         {% if forloop.counter0 == 0 %}
         <div class="ct__selectWithImage-selected" id="start_war_default_victim" data-value="{% localize off %}{{ region.pk }}{% endlocalize %}">
-            <img id="start_war_vic_default_img" src="/static/img/regions/{{ region.on_map_id }}.png">
+            <img id="start_war_vic_default_img" src="/static/img/regions/webp/55/{{ region.on_map_id }}.webp">
             <div class="ct__selectWithImage-firstText">
                 <span id="start_war_vic_default_reg">{{ region.region_name }}</span>
                 <svg class="ct__selectWithImage-arrow" width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -55,7 +55,7 @@
             {% for agr in data|dict_key:'reg_list' %}
             {% for region in regions|dict_key:agr %}
             <div id="start_war_vic_{% localize off %}{{ region.pk }}{% endlocalize %}" class="victim_line" data-value="{% localize off %}{{ region.pk }}{% endlocalize %}" {% if not agr == first %}style="display: none"{% endif %}>
-                <img class="offer_dummy_img" src="/static/img/regions/{{ region.on_map_id }}.png">
+                <img class="offer_dummy_img" src="/static/img/regions/webp/55/{{ region.on_map_id }}.webp">
                 <span class="offer_dummy_region">{{ region.region_name }}</span>
             </div>
             {% endfor %}

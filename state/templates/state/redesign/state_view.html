@@ -176,7 +176,7 @@
 					{% for region in regions_state %}
 					<tr>
 						<td onclick="window.open('/region/{{ region.pk }}/')">
-							<img src="/static/img/regions/{{ region.on_map_id }}.png">
+							<img src="/static/img/regions/webp/55/{{ region.on_map_id }}.webp">
 						</td>
 						<td onclick="window.open('/region/{{ region.pk }}/')">
 							{{ region }}
@@ -214,7 +214,7 @@
 						</td>
 						<td onclick="window.open('/party/{{ party.pk }}')">{{ party.title }}</td>
 						<td>{% if party_sizes|has_key:party %}{{ party_sizes|dict_key:party }}{% else %}0{% endif %}</td>
-						<td><img src="/static/img/regions/{{ party.region.on_map_id }}.png" onclick="window.open('/region/{{ region.pk }}/')"></td>
+						<td><img src="/static/img/regions/webp/55/{{ party.region.on_map_id }}.webp" onclick="window.open('/region/{{ region.pk }}/')"></td>
 						<td onclick="window.open('/region/{{ region.pk }}/')">{{ party.region.region_name }}</td>
 					</tr>
 					{% endfor %}

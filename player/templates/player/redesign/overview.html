@@ -377,7 +377,7 @@
               </li>
             </ul>
             <!--Картинка слева - герб-->
-            <img class="ct__view-info-image" src="/static/img/regions/{{ player.region.on_map_id }}.png" alt="{{ player.region.region_name }}" onclick="window.location.href = '/region/{{ player.region.pk }}/'" style="cursor: pointer">
+            <img class="ct__view-info-image" src="/static/img/regions/webp/{{ player.region.on_map_id }}.webp" alt="{{ player.region.region_name }}" onclick="window.location.href = '/region/{{ player.region.pk }}/'" style="cursor: pointer">
           </div>
         {% if not has_event and not activity_event %}
           <!--Блок ВОЙНА-->
@@ -391,14 +391,14 @@
             <div class="overview__war-wrapper">
               <div class="overview__war-string">
                 <p class="overview__war-text">
-                  <img src="/static/img/regions/{{ war.agr_region.on_map_id }}.png">
+                  <img src="/static/img/regions/webp/33/{{ war.agr_region.on_map_id }}.webp">
                   {{ war.agr_region.region_name }}
                 </p>
                 <span>{{ war_delta }}</span>
               </div>
               <div class="overview__war-string">
                 <p class="overview__war-text">
-                  <img src="/static/img/regions/{{ war.def_region.on_map_id }}.png">
+                  <img src="/static/img/regions/webp/33/{{ war.def_region.on_map_id }}.webp">
                   {{ war.def_region.region_name }}
                 </p>
                 <span id="closest_war-countdown" data-text="{% localize off %} {{ war_countdown }} {% endlocalize %}">00:00:00</span>

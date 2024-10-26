@@ -125,7 +125,7 @@
         {% for region in regions %}
         {% if forloop.counter0 == 0 %}
         <div class="ct__selectWithImage-selected" id="construction_default_region" data-value="{% localize off %}{{ region.pk }}{% endlocalize %}">
-            <img id="construction_default_img" src="/static/img/regions/{{ region.on_map_id }}.png">
+            <img id="construction_default_img" src="/static/img/regions/webp/55/{{ region.on_map_id }}.webp">
             <div class="ct__selectWithImage-firstText">
                 <span id="construction_default_reg">{% trans region.region_name context "regions_list" %}</span>
                 <svg class="ct__selectWithImage-arrow" width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -138,7 +138,7 @@
         <div class="ct__selectWithImage-content custom-scroll custom-scroll--alt">
             {% for region in regions %}
             <div id="construction_{% localize off %}{{ region.pk }}{% endlocalize %}" {% if forloop.counter0 == 0 %}class="region_storage"{% endif %} data-func="open_building" data-value="{% localize off %}{{ region.pk }}{% endlocalize %}">
-                <img class="offer_dummy_img" src="/static/img/regions/{{ region.on_map_id }}.png">
+                <img class="offer_dummy_img" src="/static/img/regions/webp/55/{{ region.on_map_id }}.webp">
                 <span class="offer_dummy_region">{% trans region.region_name context "regions_list" %}</span>
             </div>
             {% endfor %}
