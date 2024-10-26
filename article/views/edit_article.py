@@ -8,6 +8,7 @@ from player.player import Player
 from article.models.article import Article
 from article.forms import NewArticleForm
 from article.models.article import Article
+from django.utils.translation import pgettext
 
 # открыть статью
 @login_required(login_url='/')
