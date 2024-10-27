@@ -14,7 +14,7 @@
 <script src='{% static "js/article.js" %}?{{ csrf_token }}'></script>
 <script>
     var text_subscribe = '{% trans 'подписаться' context "article" %}';
-    var text_unsubscribe = '{% trans 'отписаться' context "article" %}';
+    var text_unsubscribe = '{% trans 'отписаться' context "article" %}'
 
     var sub_mode = '{% if subscription %}unsub{% else %}sub{% endif %}';
 
@@ -150,7 +150,7 @@
                             fill="var(--c10one)" />
                     </g>
                 </svg>
-                <span>статья</span>
+                <span>{% trans 'статья' context "article" %}</span>
             </button>
             <button class="ct__top-tab ct__top-tab1 ct__mid-btn">
                 <svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
@@ -168,7 +168,7 @@
                             fill="var(--c10one)" />
                     </g>
                 </svg>
-                <span>комментарии</span>
+                <span>{% trans 'комментарии' context "article" %}</span>
             </button>
         </div>
         {% endif %}
