@@ -31,7 +31,7 @@ def cancel_auto(request):
     else:
         data = {
             'header': pgettext('mining', 'Ошибка при отмене'),
-            'grey_btn': pgettext('mining', 'Закрыть'),
+            'grey_btn': pgettext('core', 'Закрыть'),
             'response': ugettext('Ошибка метода'),
         }
         return JResponse(data)

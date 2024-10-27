@@ -37,7 +37,7 @@ def set_language(request):
             data = {
                 'response': _('Такого языка в игре нет'),
                 'header': _('Изменение языка'),
-                'grey_btn': _('Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
 
@@ -53,6 +53,6 @@ def set_language(request):
         data = {
             'response': _('Ошибка метода'),
             'header': _('Изменение языка'),
-            'grey_btn': _('Закрыть'),
+            'grey_btn': pgettext('core', 'Закрыть'),
         }
         return JResponse(data)

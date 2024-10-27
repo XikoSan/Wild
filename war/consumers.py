@@ -29,6 +29,7 @@ from skill.models.scouting import Scouting
 from skill.models.coherence import Coherence
 from datetime import timedelta
 from django.utils.translation import ugettext as _
+from django.utils.translation import pgettext
 from player.player_settings import PlayerSettings
 from django.utils import timezone
 
@@ -118,8 +119,8 @@ def _captcha(player):
 
         data = {
             'payload': 'captcha',
-            'text': f'Выберите верный ответ: {first_number} + {second_number} = ',
-            'header': _('Пройдите Captcha'),
+            'header': pgettext('captcha', 'Пройдите Captcha'),
+            'text': pgettext('captcha', "Выберите верный ответ: %(first_number)s + %(second_number)s = ") % {"first_number": first_number, "second_number": second_number},
             'white_btn': left_answer,
             'grey_btn': right_answer,
         }
@@ -142,9 +143,9 @@ def _check_has_fight(fighter, war_type, war_id, storage_pk, units, side):
     if player.banned:
         data = {
             'payload': 'error',
-            'response': 'Вы заблокированы за нарушения Правил Игры',
-            'header': 'Отправка войск',
-            'grey_btn': 'Закрыть',
+            'response': pgettext('war_consumers', 'Вы заблокированы за нарушения Правил Игры'),
+            'header': pgettext('war_consumers', 'Отправка войск'),
+            'grey_btn': pgettext('core', 'Закрыть'),
         }
         return False, data
 
@@ -161,9 +162,9 @@ def _check_has_fight(fighter, war_type, war_id, storage_pk, units, side):
     except KeyError:
         data = {
             'payload': 'error',
-            'response': 'Такого вида войн нет',
-            'header': 'Отправка войск',
-            'grey_btn': 'Закрыть',
+            'response': pgettext('war_consumers', 'Такого вида войн нет'),
+            'header': pgettext('war_consumers', 'Отправка войск'),
+            'grey_btn': pgettext('core', 'Закрыть'),
         }
         return False, data
 
@@ -171,9 +172,9 @@ def _check_has_fight(fighter, war_type, war_id, storage_pk, units, side):
     if not war_class.objects.filter(pk=war_id, deleted=False, running=True).exists():
         data = {
             'payload': 'error',
-            'response': 'Нет такой войны',
-            'header': 'Отправка войск',
-            'grey_btn': 'Закрыть',
+            'response': pgettext('war_consumers', 'Нет такой войны'),
+            'header': pgettext('war_consumers', 'Отправка войск'),
+            'grey_btn': pgettext('core', 'Закрыть'),
         }
         return False, data
 
@@ -183,9 +184,9 @@ def _check_has_fight(fighter, war_type, war_id, storage_pk, units, side):
     if not side in ['agr', 'def']:
         data = {
             'payload': 'error',
-            'response': 'Нет такой стороны боя',
-            'header': 'Отправка войск',
-            'grey_btn': 'Закрыть',
+            'response': pgettext('war_consumers', 'Нет такой стороны боя'),
+            'header': pgettext('war_consumers', 'Отправка войск'),
+            'grey_btn': pgettext('core', 'Закрыть'),
         }
         return False, data
 
@@ -193,9 +194,9 @@ def _check_has_fight(fighter, war_type, war_id, storage_pk, units, side):
     if not player.region in [war.agr_region, war.def_region]:
         data = {
             'payload': 'error',
-            'response': 'Вы находитесь вне зоны боевых действий',
-            'header': 'Отправка войск',
-            'grey_btn': 'Закрыть',
+            'response': pgettext('war_consumers', 'Вы находитесь вне зоны боевых действий'),
+            'header': pgettext('war_consumers', 'Отправка войск'),
+            'grey_btn': pgettext('core', 'Закрыть'),
         }
         return False, data
 
@@ -206,9 +207,9 @@ def _check_has_fight(fighter, war_type, war_id, storage_pk, units, side):
     except ValueError:
         data = {
             'payload': 'error',
-            'response': 'ID склада должен быть числом',
-            'header': 'Отправка войск',
-            'grey_btn': 'Закрыть',
+            'response': pgettext('war_consumers', 'ID склада должен быть числом'),
+            'header': pgettext('war_consumers', 'Отправка войск'),
+            'grey_btn': pgettext('core', 'Закрыть'),
         }
         return False, data
 
@@ -216,9 +217,9 @@ def _check_has_fight(fighter, war_type, war_id, storage_pk, units, side):
     if not Storage.objects.filter(pk=storage_pk, owner=player, region=player.region).exists():
         data = {
             'payload': 'error',
-            'response': 'У вас нет склада в регионе местонахождения',
-            'header': 'Отправка войск',
-            'grey_btn': 'Закрыть',
+            'response': pgettext('war_consumers', 'У вас нет склада в регионе местонахождения'),
+            'header': pgettext('war_consumers', 'Отправка войск'),
+            'grey_btn': pgettext('core', 'Закрыть'),
         }
         return False, data
 
@@ -228,9 +229,9 @@ def _check_has_fight(fighter, war_type, war_id, storage_pk, units, side):
     if not units:
         data = {
             'payload': 'error',
-            'response': 'Не выбраны войска',
-            'header': 'Отправка войск',
-            'grey_btn': 'Закрыть',
+            'response': pgettext('war_consumers', 'Не выбраны войска'),
+            'header': pgettext('war_consumers', 'Отправка войск'),
+            'grey_btn': pgettext('core', 'Закрыть'),
         }
         return False, data
 
@@ -250,9 +251,9 @@ def _check_has_fight(fighter, war_type, war_id, storage_pk, units, side):
         if not db_units.filter(pk=int(unit)).exists():
             data = {
                 'payload': 'error',
-                'response': f'Нет юнита с ID {unit}',
-                'header': 'Отправка войск',
-                'grey_btn': 'Закрыть',
+                'response': pgettext('war_consumers', "Нет юнита с ID %(unit)s") % { "unit": unit },
+                'header': pgettext('war_consumers', 'Отправка войск'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return False, data
 
@@ -270,18 +271,18 @@ def _check_has_fight(fighter, war_type, war_id, storage_pk, units, side):
         if 0 > units_count:
             data = {
                 'payload': 'error',
-                'response': 'Количество войск должно быть положительным числом',
-                'header': 'Отправка войск',
-                'grey_btn': 'Закрыть',
+                'response': pgettext('war_consumers', 'Количество войск должно быть положительным числом'),
+                'header': pgettext('war_consumers', 'Отправка войск'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return False, data
 
         if not units_count <= 100:
             data = {
                 'payload': 'error',
-                'response': 'Количество войск должно быть не более 100',
-                'header': 'Отправка войск',
-                'grey_btn': 'Закрыть',
+                'response': pgettext('war_consumers', 'Количество войск должно быть не более 100'),
+                'header': pgettext('war_consumers', 'Отправка войск'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return False, data
 
@@ -292,9 +293,9 @@ def _check_has_fight(fighter, war_type, war_id, storage_pk, units, side):
         if not Stock.objects.filter(storage=storage, good=db_unit.good, stock__gte=units_count).exists():
             data = {
                 'payload': 'error',
-                'response': f'Недостаточно на складе: {db_unit.good.name}',
-                'header': 'Отправка войск',
-                'grey_btn': 'Закрыть',
+                'response': pgettext('war_consumers', "Недостаточно на складе: %(name)s") % { "name": db_unit.good.name },
+                'header': pgettext('war_consumers', 'Отправка войск'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return False, data
 
@@ -303,9 +304,9 @@ def _check_has_fight(fighter, war_type, war_id, storage_pk, units, side):
     if not has_unit:
         data = {
             'payload': 'error',
-            'response': 'В бой не отправлен ни один юнит',
-            'header': 'Отправка войск',
-            'grey_btn': 'Закрыть',
+            'response': pgettext('war_consumers', 'В бой не отправлен ни один юнит'),
+            'header': pgettext('war_consumers', 'Отправка войск'),
+            'grey_btn': pgettext('core', 'Закрыть'),
         }
         return False, data
 
@@ -313,9 +314,9 @@ def _check_has_fight(fighter, war_type, war_id, storage_pk, units, side):
     if player.energy < energy_required:
         data = {
             'payload': 'error',
-            'response': 'Недостаточно энергии',
-            'header': 'Отправка войск',
-            'grey_btn': 'Закрыть',
+            'response': pgettext('war_consumers', 'Недостаточно энергии'),
+            'header': pgettext('war_consumers', 'Отправка войск'),
+            'grey_btn': pgettext('core', 'Закрыть'),
         }
         return False, data
 
@@ -570,9 +571,9 @@ class WarConsumer(AsyncWebsocketConsumer):
                 # Сообщить об ошибке
                 await self.send(text_data=json.dumps({
                     'payload': 'error',
-                    'response': 'Не удалось отправить войска, повторите попытку',
-                    'header': 'Отправка войск',
-                    'grey_btn': 'Закрыть',
+                    'response': pgettext('war_consumers', 'Не удалось отправить войска, повторите попытку'),
+                    'header': pgettext('war_consumers', 'Отправка войск'),
+                    'grey_btn': pgettext('core', 'Закрыть'),
                 }))
         else:
             # Сообщить об ошибке

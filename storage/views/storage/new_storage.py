@@ -35,7 +35,7 @@ def new_storage(request):
             data = {
                 'header': pgettext('storage', 'Новый Склад'),
                 'response': pgettext('storage', 'Не найден Склад списания материалов'),
-                'grey_btn': pgettext('mining', 'Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JsonResponse(data)
 
@@ -60,7 +60,7 @@ def new_storage(request):
                 data = {
                     'header': pgettext('storage', 'Новый Склад'),
                     'response': pgettext('storage', 'Недостаточно ресурса: ' + material.name),
-                    'grey_btn': pgettext('mining', 'Закрыть'),
+                    'grey_btn': pgettext('core', 'Закрыть'),
                 }
                 return JsonResponse(data)
 
@@ -80,7 +80,7 @@ def new_storage(request):
             data = {
                 'header': pgettext('storage', 'Новый Склад'),
                 'response': pgettext('storage', 'Недостаточно денег на транспортировку'),
-                'grey_btn': pgettext('mining', 'Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JsonResponse(data)
         # логируем
@@ -103,7 +103,7 @@ def new_storage(request):
     else:
         data = {
             'header': pgettext('storage', 'Передача денег'),
-            'grey_btn': pgettext('mining', 'Закрыть'),
+            'grey_btn': pgettext('core', 'Закрыть'),
             'response': pgettext('core', 'Ошибка метода'),
         }
         return JsonResponse(data)

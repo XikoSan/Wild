@@ -24,7 +24,7 @@ def premium_trading(player, count, offer):
     else:
         data = {
             'header': pgettext('w_trading', 'Торговля Wild Pass'),
-            'grey_btn': pgettext('mining', 'Закрыть'),
+            'grey_btn': pgettext('core', 'Закрыть'),
             'response': pgettext('w_trading', 'Не удалось получить владельца торгового предложения'),
         }
         return JsonResponse(data)
@@ -36,7 +36,7 @@ def premium_trading(player, count, offer):
         if player.cash < fin_sum:
             data = {
                 'header': pgettext('w_trading', 'Торговля Wild Pass'),
-                'grey_btn': pgettext('mining', 'Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
                 'response': pgettext('w_trading', 'Недостаточно средств. Требуется $') + number_format(fin_sum),
             }
             return JsonResponse(data)
@@ -86,7 +86,7 @@ def premium_trading(player, count, offer):
         if getattr(player, 'cards_count') < count:
             data = {
                 'header': pgettext('w_trading', 'Торговля Wild Pass'),
-                'grey_btn': pgettext('mining', 'Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
                 'response': pgettext('w_trading', 'У вас недостаточно Wild Pass'),
             }
             return JsonResponse(data)
@@ -97,7 +97,7 @@ def premium_trading(player, count, offer):
         if offer.cost_count < offer_sum:
             data = {
                 'header': pgettext('w_trading', 'Торговля Wild Pass'),
-                'grey_btn': pgettext('mining', 'Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
                 'response': pgettext('w_trading', 'В торговом предложении недостаточно средств'),
             }
             return JsonResponse(data)
@@ -109,7 +109,7 @@ def premium_trading(player, count, offer):
         else:
             data = {
                 'header': pgettext('w_trading', 'Торговля Wild Pass'),
-                'grey_btn': pgettext('mining', 'Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
                 'response': pgettext('w_trading', 'Не удалось получить блокировку по офферу'),
             }
             return JsonResponse(data)
@@ -117,7 +117,7 @@ def premium_trading(player, count, offer):
         if offer_cash_lock.lock_cash < offer_sum:
             data = {
                 'header': pgettext('w_trading', 'Торговля Wild Pass'),
-                'grey_btn': pgettext('mining', 'Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
                 'response': pgettext('w_trading', 'В связанной блокировке недостаточно средств'),
             }
             return JsonResponse(data)

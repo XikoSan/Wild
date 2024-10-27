@@ -29,7 +29,7 @@ def color_change(request):
             data = {
                 'response': pgettext('profile', 'Некорректный код фона игры'),
                 'header': pgettext('profile', 'Некорректный код цвета'),
-                'grey_btn': _('Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
 
@@ -41,7 +41,7 @@ def color_change(request):
             data = {
                 'response': pgettext('profile', 'Некорректный код блоков игры'),
                 'header': pgettext('profile', 'Некорректный код цвета'),
-                'grey_btn': _('Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
 
@@ -53,7 +53,7 @@ def color_change(request):
             data = {
                 'response': pgettext('profile', 'Некорректный код текста игры'),
                 'header': pgettext('profile', 'Некорректный код цвета'),
-                'grey_btn': _('Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
 
@@ -65,7 +65,7 @@ def color_change(request):
             data = {
                 'response': pgettext('profile', 'Некорректный код акцентов игры'),
                 'header': pgettext('profile', 'Некорректный код цвета'),
-                'grey_btn': _('Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
 
@@ -101,6 +101,6 @@ def color_change(request):
         data = {
             'response': pgettext('core', 'Ошибка метода'),
             'header': pgettext('party_manage', 'Ошибка изменения цветов игры'),
-            'grey_btn': _('Закрыть'),
+            'grey_btn': pgettext('core', 'Закрыть'),
         }
         return JResponse(data)

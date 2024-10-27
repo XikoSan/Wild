@@ -40,7 +40,7 @@ def full_auto_allow(request):
             data = {
                 'response': _('Некорректное значение'),
                 'header': _('Энергетики в авто-добыче'),
-                'grey_btn': _('Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
 
@@ -56,6 +56,6 @@ def full_auto_allow(request):
         data = {
             'response': _('Ошибка метода'),
             'header': _('Энергетики в авто-добыче'),
-            'grey_btn': _('Закрыть'),
+            'grey_btn': pgettext('core', 'Закрыть'),
         }
         return JResponse(data)

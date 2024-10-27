@@ -1,8 +1,9 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
-
+from django.utils.translation import pgettext
 from player.views.lists.get_thing_page import get_thing_page
 from django.utils.translation import ugettext as _
+
 from region.models.region import Region
 from player.player import Player
 from player.decorators.player import check_player
@@ -52,19 +53,19 @@ def region_parties_list(request, region_pk):
 
         'image': {
             'text': '',
-            'select_text': 'Герб',
+            'select_text': pgettext('lists', 'Герб'),
             'visible': 'true'
         },
 
         'title': {
-            'text': 'Партия',
-            'select_text': 'Партия',
+            'text': pgettext('lists', 'Партия'),
+            'select_text': pgettext('lists', 'Партия'),
             'visible': 'true'
         },
 
         'size': {
             'text': 'Размер',
-            'select_text': 'Размер',
+            'select_text': pgettext('lists', 'Размер'),
             'visible': 'true'
         },
 
@@ -72,13 +73,13 @@ def region_parties_list(request, region_pk):
             'on_map_id':
                 {
                     'text': '',
-                    'select_text': 'Герб',
+                    'select_text': pgettext('lists', 'Герб'),
                     'visible': 'true'
                 },
             'region_name':
                 {
-                    'text': 'Регион',
-                    'select_text': 'Регион',
+                    'text': pgettext('lists', 'Регион'),
+                    'select_text': pgettext('lists', 'Регион'),
                     'visible': 'true'
                 }
         },
@@ -86,7 +87,7 @@ def region_parties_list(request, region_pk):
 
     # отправляем в форму
     return render(request, 'player/redesign/lists/universal_list.html', {
-        'page_name': _('Партии региона'),
+        'page_name': pgettext('party_top', 'Партии региона'),
 
         'player': player,
 

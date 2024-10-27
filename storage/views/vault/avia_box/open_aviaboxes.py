@@ -27,7 +27,7 @@ def open_aviaboxes(request):
         data = {
             'response': 'Аэрокейсы отключены',
             'header': 'Открытие Аэрокейсов',
-            'grey_btn': _('Закрыть'),
+            'grey_btn': pgettext('core', 'Закрыть'),
         }
         return JResponse(data)
 
@@ -41,7 +41,7 @@ def open_aviaboxes(request):
                 data = {
                     'response': 'У вас нет неполученных наград',
                     'header': 'Открытие Аэрокейсов',
-                    'grey_btn': _('Закрыть'),
+                    'grey_btn': pgettext('core', 'Закрыть'),
                 }
                 return JResponse(data)
 
@@ -49,7 +49,7 @@ def open_aviaboxes(request):
                 data = {
                     'response': 'Недостаточно золота, необходимо: ' + str(500),
                     'header': 'Открытие Аэрокейсов',
-                    'grey_btn': _('Закрыть'),
+                    'grey_btn': pgettext('core', 'Закрыть'),
                 }
                 return JResponse(data)
 
@@ -76,7 +76,7 @@ def open_aviaboxes(request):
                 data = {
                     'response': 'У вас нет Аэрокейсов',
                     'header': 'Открытие Аэрокейсов',
-                    'grey_btn': _('Закрыть'),
+                    'grey_btn': pgettext('core', 'Закрыть'),
                 }
                 return JResponse(data)
 
@@ -89,7 +89,7 @@ def open_aviaboxes(request):
             data = {
                 'response': 'Некорректное количество Аэрокейсов для открытия',
                 'header': 'Открытие Аэрокейсов',
-                'grey_btn': _('Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
 
@@ -98,7 +98,7 @@ def open_aviaboxes(request):
                 data = {
                     'response': 'Недостаточно Аэрокейсов для открытия',
                     'header': 'Открытие Аэрокейсов',
-                    'grey_btn': _('Закрыть'),
+                    'grey_btn': pgettext('core', 'Закрыть'),
                 }
                 return JResponse(data)
 
@@ -181,6 +181,6 @@ def open_aviaboxes(request):
         data = {
             'response': _('Ошибка метода'),
             'header': _('Открытие Аэрокейсов'),
-            'grey_btn': _('Закрыть'),
+            'grey_btn': pgettext('core', 'Закрыть'),
         }
         return JResponse(data)

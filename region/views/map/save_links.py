@@ -30,7 +30,7 @@ def save_links(request):
             data = {
                 'response': pgettext('mining', 'нет полномочий'),
                 'header': pgettext('mining', 'связи регионов'),
-                'grey_btn': pgettext('mining', 'Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
 

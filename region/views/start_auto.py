@@ -25,7 +25,7 @@ def start_auto(request):
             data = {
                 'response': pgettext('mining', 'Дождитесь конца полёта'),
                 'header': pgettext('mining', 'Ошибка автоматической добычи ресурсов'),
-                'grey_btn': pgettext('mining', 'Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
 
@@ -33,7 +33,7 @@ def start_auto(request):
             data = {
                 'response': pgettext('mining', 'Премиум-аккаунт не активен. Продлите его'),
                 'header': pgettext('mining', 'Ошибка автоматической добычи ресурсов'),
-                'grey_btn': pgettext('mining', 'Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
 
@@ -43,7 +43,7 @@ def start_auto(request):
             data = {
                 'response': pgettext('mining', 'Неизвестный тип ресурса'),
                 'header': pgettext('mining', 'Ошибка автоматической добычи ресурсов'),
-                'grey_btn': pgettext('mining', 'Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
 
@@ -52,7 +52,7 @@ def start_auto(request):
             data = {
                 'response': pgettext('mining', 'У вас нет склада в этом регионе'),
                 'header': pgettext('mining', 'Ошибка автоматической добычи ресурсов'),
-                'grey_btn': pgettext('mining', 'Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
 

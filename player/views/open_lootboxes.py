@@ -24,7 +24,7 @@ def open_lootboxes(request):
         data = {
             'response': 'Открытие Сундуков невозможно сейчас',
             'header': 'Открытие сундуков',
-            'grey_btn': _('Закрыть'),
+            'grey_btn': pgettext('core', 'Закрыть'),
         }
         return JResponse(data)
 
@@ -35,7 +35,7 @@ def open_lootboxes(request):
             data = {
                 'response': 'У вас нет новогодних сундуков',
                 'header': 'Открытие сундуков',
-                'grey_btn': _('Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
 
@@ -46,7 +46,7 @@ def open_lootboxes(request):
             data = {
                 'response': 'Некорректное количество сундуков для открытия',
                 'header': 'Открытие сундуков',
-                'grey_btn': _('Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
 
@@ -56,7 +56,7 @@ def open_lootboxes(request):
             data = {
                 'response': 'Недостаточно сундуков для открытия',
                 'header': 'Открытие сундуков',
-                'grey_btn': _('Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
 
@@ -131,6 +131,6 @@ def open_lootboxes(request):
         data = {
             'response': _('Ошибка метода'),
             'header': _('Открытие сундуков'),
-            'grey_btn': _('Закрыть'),
+            'grey_btn': pgettext('core', 'Закрыть'),
         }
         return JResponse(data)

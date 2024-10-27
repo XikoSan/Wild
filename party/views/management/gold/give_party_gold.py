@@ -31,25 +31,25 @@ def give_party_gold(request):
 
                 except ValueError:
                     data = {
-                        'response': 'Сумма золота - не число',
-                        'header': 'Выдача золота',
-                        'grey_btn': 'Закрыть',
+                        'response': pgettext('party_manage', 'Сумма золота - не число'),
+                        'header': pgettext('party_manage', 'Выдача золота'),
+                        'grey_btn': pgettext('core', 'Закрыть'),
                     }
                     return JResponse(data)
 
                 if gold_sum < 1:
                     data = {
-                        'response': 'Сумма золота должна быть не менее 1 ед.',
-                        'header': 'Выдача золота',
-                        'grey_btn': 'Закрыть',
+                        'response': pgettext('party_manage', 'Сумма золота должна быть не менее 1 ед.'),
+                        'header': pgettext('party_manage', 'Выдача золота'),
+                        'grey_btn': pgettext('core', 'Закрыть'),
                     }
                     return JResponse(data)
 
                 if gold_sum > changing_party.gold:
                     data = {
-                        'response': 'Сумма золота превышает баланс партии',
-                        'header': 'Выдача золота',
-                        'grey_btn': 'Закрыть',
+                        'response': pgettext('party_manage', 'Сумма золота превышает баланс партии'),
+                        'header': pgettext('party_manage', 'Выдача золота'),
+                        'grey_btn': pgettext('core', 'Закрыть'),
                     }
                     return JResponse(data)
 
@@ -58,17 +58,17 @@ def give_party_gold(request):
 
                 except ValueError:
                     data = {
-                        'response': 'ID персонажа должен быть целым числом',
-                        'header': 'Выдача золота',
-                        'grey_btn': 'Закрыть',
+                        'response': pgettext('party_manage', 'ID персонажа должен быть целым числом'),
+                        'header': pgettext('party_manage', 'Выдача золота'),
+                        'grey_btn': pgettext('core', 'Закрыть'),
                     }
                     return JResponse(data)
 
                 if not Player.objects.filter(pk=member_pk, party=changing_party).exists():
                     data = {
-                        'response': 'Указанный игрок в партии не найден',
-                        'header': 'Выдача золота',
-                        'grey_btn': 'Закрыть',
+                        'response': pgettext('party_manage', 'Указанный игрок в партии не найден'),
+                        'header': pgettext('party_manage', 'Выдача золота'),
+                        'grey_btn': pgettext('core', 'Закрыть'),
                     }
                     return JResponse(data)
 
@@ -83,30 +83,30 @@ def give_party_gold(request):
                     'response': 'ok',
                     'gold_val': changing_party.gold,
 
-                    'payload': f'Выдано {gold_sum} золота',
-                    'header': 'Выдача золота',
-                    'grey_btn': 'Закрыть',
+                    'payload': pgettext('party_manage', 'Выдано %(gold_sum)s золота') % {"gold_sum": gold_sum},
+                    'header': pgettext('party_manage', 'Выдача золота'),
+                    'grey_btn': pgettext('core', 'Закрыть'),
                 }
                 return JResponse(data)
 
             else:
                 data = {
                     'response': pgettext('party_manage', 'Вы не являетесь лидером партии'),
-                    'header': 'Выдача золота',
-                    'grey_btn': _('Закрыть'),
+                    'header': pgettext('party_manage', 'Выдача золота'),
+                    'grey_btn': pgettext('core', 'Закрыть'),
                 }
                 return JResponse(data)
         else:
             data = {
                 'response': pgettext('party_manage', 'Вы не состоите в партии'),
-                'header': 'Выдача золота',
-                'grey_btn': _('Закрыть'),
+                'header': pgettext('party_manage', 'Выдача золота'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
     else:
         data = {
             'response': pgettext('core', 'Ошибка метода'),
-            'header': 'Выдача золота',
-            'grey_btn': _('Закрыть'),
+            'header': pgettext('party_manage', 'Выдача золота'),
+            'grey_btn': pgettext('core', 'Закрыть'),
         }
         return JResponse(data)

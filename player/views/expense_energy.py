@@ -27,7 +27,7 @@ def expense_energy(request):
                 # 'response': _('positive_enrg_req'),
                 'response': 'Отсутствует обязательный аргумент запроса',
                 'header': _('Пополнение энергии'),
-                'grey_btn': _('Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
 
@@ -41,7 +41,7 @@ def expense_energy(request):
                 # 'response': _('positive_enrg_req'),
                 'response': _('Десять минут ещё не прошло'),
                 'header': _('Пополнение энергии'),
-                'grey_btn': _('Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
             # return HttpResponse(_('too_early'), content_type='text/html')
@@ -64,7 +64,7 @@ def expense_energy(request):
                         # 'response': _('positive_enrg_req'),
                         'response': _('Пополнение энергии не требуется'),
                         'header': _('Пополнение энергии'),
-                        'grey_btn': _('Закрыть'),
+                        'grey_btn': pgettext('core', 'Закрыть'),
                     }
                     return JResponse(data)
                     # return HttpResponse(_('no_required'), content_type='text/html')
@@ -73,7 +73,7 @@ def expense_energy(request):
                     # 'response': _('positive_enrg_req'),
                     'response': _('Недостаточно Энергетиков. Создайте их в Хранилище Склада'),
                     'header': _('Пополнение энергии'),
-                    'grey_btn': _('Закрыть'),
+                    'grey_btn': pgettext('core', 'Закрыть'),
                 }
                 return JResponse(data)
                 # return HttpResponse(_('no_batteries'), content_type='text/html')
@@ -84,6 +84,6 @@ def expense_energy(request):
             # 'response': _('positive_enrg_req'),
             'response': _('Ошибка типа запроса'),
             'header': _('Пополнение энергии'),
-            'grey_btn': _('Закрыть'),
+            'grey_btn': pgettext('core', 'Закрыть'),
         }
         return JResponse(data)

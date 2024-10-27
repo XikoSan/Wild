@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.db.models import Sum
 from django.shortcuts import render
-from django.utils.translation import ugettext as _
+from django.utils.translation import gettext_lazy, pgettext_lazy
 
 from player.decorators.player import check_player
 from player.player import Player
@@ -22,18 +22,18 @@ def clear_plane_nick(request):
 
         except ValueError:
             data = {
-                'header': 'Очистить позывной',
-                'grey_btn': 'Закрыть',
-                'response': 'ID техники должен быть целым числом',
+                'header': pgettext('clear_plane_nick', 'Очистить позывной'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('clear_plane_nick', 'ID техники должен быть целым числом'),
             }
             return JResponse(data)
 
         # сбросить самолет до дефолтного
         if plane_id == 0:
             data = {
-                'header': 'Очистить позывной',
-                'grey_btn': 'Закрыть',
-                'response': 'Нельзя изменить позывной этому самолёту',
+                'header': pgettext('clear_plane_nick', 'Очистить позывной'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('clear_plane_nick', 'Нельзя изменить позывной этому самолёту'),
             }
             return JResponse(data)
 
@@ -50,16 +50,16 @@ def clear_plane_nick(request):
 
         else:
             return {
-                'header': 'Очистить позывной',
-                'grey_btn': 'Закрыть',
-                'response': 'Указанный самолёт вам не принадлежит',
+                'header': pgettext('clear_plane_nick', 'Очистить позывной'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('clear_plane_nick', 'Указанный самолёт вам не принадлежит'),
             }
 
     # если страницу только грузят
     else:
         data = {
-            'response': _('Ошибка метода'),
-            'header': 'Очистить позывной',
-            'grey_btn': _('Закрыть'),
+            'response': pgettext('core', 'Ошибка метода'),
+            'header': pgettext('clear_plane_nick', 'Очистить позывной'),
+            'grey_btn': pgettext('core', 'Закрыть'),
         }
         return JResponse(data)

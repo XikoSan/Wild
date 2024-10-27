@@ -37,7 +37,7 @@ def switch_war_visibility(request):
             data = {
                 'response': _('Нет такого типа войн'),
                 'header': _('Скрытие войны'),
-                'grey_btn': _('Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
 
@@ -45,7 +45,7 @@ def switch_war_visibility(request):
             data = {
                 'response': _('Нет такой войны'),
                 'header': _('Скрытие войны'),
-                'grey_btn': _('Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
 
@@ -61,7 +61,7 @@ def switch_war_visibility(request):
             data = {
                 'response': _('Нет такой записи об участии в бою'),
                 'header': _('Скрытие войны'),
-                'grey_btn': _('Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
 
@@ -89,6 +89,6 @@ def switch_war_visibility(request):
         data = {
             'response': _('Ошибка метода'),
             'header': _('Скрытие войны'),
-            'grey_btn': _('Закрыть'),
+            'grey_btn': pgettext('core', 'Закрыть'),
         }
         return JResponse(data)

@@ -32,7 +32,7 @@ def answer_captcha(request):
                 data = {
                     'response': _('Неправильный ответ'),
                     'header': _('Ответ на Captcha'),
-                    'grey_btn': _('Закрыть'),
+                    'grey_btn': pgettext('core', 'Закрыть'),
                 }
                 return JResponse(data)
 
@@ -50,6 +50,6 @@ def answer_captcha(request):
         data = {
             'response': _('Ошибка метода'),
             'header': _('Ответ на Captcha'),
-            'grey_btn': _('Закрыть'),
+            'grey_btn': pgettext('core', 'Закрыть'),
         }
         return JResponse(data)

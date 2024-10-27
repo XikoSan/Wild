@@ -82,6 +82,6 @@ def claim_reward(request):
             # 'response': _('positive_enrg_req'),
             'response': _('Ошибка типа запроса'),
             'header': _('Пополнение энергии'),
-            'grey_btn': _('Закрыть'),
+            'grey_btn': pgettext('core', 'Закрыть'),
         }
         return JResponse(data)

@@ -1,8 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.db.models import Sum
 from django.shortcuts import render
-from django.utils.translation import ugettext as _
-
+from django.utils.translation import gettext_lazy, pgettext_lazy
 from player.decorators.player import check_player
 from player.player import Player
 from region.models.plane import Plane
@@ -22,9 +21,9 @@ def choose_plane(request):
 
         except ValueError:
             return {
-                'header': 'Выбор авиации',
-                'grey_btn': 'Закрыть',
-                'response': 'ID техники должен быть целым числом',
+                'header': pgettext('choose_plane', 'Выбор авиации'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('choose_plane', 'ID техники должен быть целым числом'),
             }
 
         # сбросить самолет до дефолтного
@@ -49,16 +48,16 @@ def choose_plane(request):
 
         else:
             return {
-                'header': 'Выбор авиации',
-                'grey_btn': 'Закрыть',
-                'response': 'Указанный самолёт вам не принадлежит',
+                'header': pgettext('choose_plane', 'Выбор авиации'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('choose_plane', 'Указанный самолёт вам не принадлежит'),
             }
 
     # если страницу только грузят
     else:
         data = {
-            'response': _('Ошибка метода'),
-            'header': 'Выбор авиации',
-            'grey_btn': _('Закрыть'),
+            'response': pgettext('core', 'Ошибка метода'),
+            'header': pgettext('choose_plane', 'Выбор авиации'),
+            'grey_btn': pgettext('core', 'Закрыть'),
         }
         return JResponse(data)

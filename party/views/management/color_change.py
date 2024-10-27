@@ -35,7 +35,7 @@ def party_color_change(request):
                     data = {
                         'response': pgettext('party_manage', 'Некорректный код цвета партии'),
                         'header': pgettext('profile', 'Некорректный код цвета'),
-                        'grey_btn': _('Закрыть'),
+                        'grey_btn': pgettext('core', 'Закрыть'),
                     }
                     return JResponse(data)
 
@@ -51,21 +51,21 @@ def party_color_change(request):
                 data = {
                     'response': pgettext('party_manage', 'Вы не являетесь лидером партии'),
                     'header': pgettext('party_manage', 'Ошибка изменения цвета партии'),
-                    'grey_btn': _('Закрыть'),
+                    'grey_btn': pgettext('core', 'Закрыть'),
                 }
                 return JResponse(data)
         else:
             data = {
                 'response': pgettext('party_manage', 'Вы не состоите в партии'),
                 'header': pgettext('party_manage', 'Ошибка изменения цвета партии'),
-                'grey_btn': _('Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
     else:
         data = {
             'response': pgettext('core', 'Ошибка метода'),
             'header': pgettext('party_manage', 'Ошибка изменения цветов игры'),
-            'grey_btn': _('Закрыть'),
+            'grey_btn': pgettext('core', 'Закрыть'),
         }
         return JResponse(data)
 

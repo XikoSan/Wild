@@ -134,7 +134,7 @@ def assets_destroy(request):
     else:
         data = {
             'header': pgettext('assets', 'Операции с товарами'),
-            'grey_btn': pgettext('mining', 'Закрыть'),
+            'grey_btn': pgettext('core', 'Закрыть'),
             'response': pgettext('core', 'Ошибка метода'),
         }
         return JsonResponse(data)

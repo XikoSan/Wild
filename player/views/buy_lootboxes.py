@@ -28,7 +28,7 @@ def buy_lootboxes(request):
         data = {
             'response': 'Аэрокейсы отключены',
             'header': 'Приобретение сундуков',
-            'grey_btn': _('Закрыть'),
+            'grey_btn': pgettext('core', 'Закрыть'),
         }
         return JResponse(data)
 
@@ -48,7 +48,7 @@ def buy_lootboxes(request):
             data = {
                 'response': 'Невозможно приобрести Аэрокейсы после получения всех наград!',
                 'header': 'Приобретение сундуков',
-                'grey_btn': _('Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
 
@@ -59,7 +59,7 @@ def buy_lootboxes(request):
             data = {
                 'response': 'Некорректное количество сундуков для приобретения',
                 'header': 'Приобретение сундуков',
-                'grey_btn': _('Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
 
@@ -70,7 +70,7 @@ def buy_lootboxes(request):
         #     data = {
         #         'response': 'Вы можете приобрести наборы сундуков только раз в день',
         #         'header': 'Приобретение сундуков',
-        #         'grey_btn': _('Закрыть'),
+        #         'grey_btn': pgettext('core', 'Закрыть'),
         #     }
         #     return JResponse(data)
         #
@@ -79,7 +79,7 @@ def buy_lootboxes(request):
         #     data = {
         #         'response': 'Вы можете приобрести большие наборы сундуков только единожды',
         #         'header': 'Приобретение сундуков',
-        #         'grey_btn': _('Закрыть'),
+        #         'grey_btn': pgettext('core', 'Закрыть'),
         #     }
         #     return JResponse(data)
 
@@ -113,7 +113,7 @@ def buy_lootboxes(request):
             data = {
                 'response': 'Недостаточно золота для покупки',
                 'header': 'Приобретение сундуков',
-                'grey_btn': _('Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
 
@@ -150,6 +150,6 @@ def buy_lootboxes(request):
         data = {
             'response': _('Ошибка метода'),
             'header': _('Открытие сундуков'),
-            'grey_btn': _('Закрыть'),
+            'grey_btn': pgettext('core', 'Закрыть'),
         }
         return JResponse(data)

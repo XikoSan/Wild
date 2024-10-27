@@ -33,7 +33,7 @@ def create_offer(request):
         if not (action == 'sell' or action == 'buy'):
             data = {
                 'header': pgettext('w_trading_new', 'Создание оффера'),
-                'grey_btn': pgettext('mining', 'Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
                 'response': pgettext('w_trading_new', 'Некорректное действие'),
             }
             return JsonResponse(data)
@@ -44,7 +44,7 @@ def create_offer(request):
         if not souce_pk.isdigit():
             data = {
                 'header': pgettext('w_trading_new', 'Создание оффера'),
-                'grey_btn': pgettext('mining', 'Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
                 'response': pgettext('w_trading_new', 'Склад не указан'),
             }
             return JsonResponse(data)
@@ -59,7 +59,7 @@ def create_offer(request):
         if not int(souce_pk) in storages_pk:
             data = {
                 'header': pgettext('w_trading_new', 'Создание оффера'),
-                'grey_btn': pgettext('mining', 'Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
                 'response': pgettext('w_trading_new', 'Указанный Склад вам не принадлежит'),
             }
             return JsonResponse(data)
@@ -68,7 +68,7 @@ def create_offer(request):
         if (storages.count() * 5) - TradeOffer.actual.filter(owner_storage__owner__pk=player.pk).count() <= 0:
             data = {
                 'header': pgettext('w_trading_new', 'Создание оффера'),
-                'grey_btn': pgettext('mining', 'Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
                 'response': pgettext('w_trading_new', 'Достигнут лимит торговых предложений'),
             }
             return JsonResponse(data)
@@ -82,14 +82,14 @@ def create_offer(request):
         except ValueError:
             return {
                 'header': pgettext('w_trading_new', 'Создание оффера'),
-                'grey_btn': pgettext('mining', 'Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
                 'response': pgettext('w_trading_new', 'ID товара должен быть целым числом'),
             }
 
         if not Good.objects.filter(pk=good).exists() and not good == -1:
             data = {
                 'header': pgettext('w_trading_new', 'Создание оффера'),
-                'grey_btn': pgettext('mining', 'Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
                 'response': pgettext('w_trading_new', 'Указанный товар не существует'),
             }
             return JsonResponse(data)
@@ -110,7 +110,7 @@ def create_offer(request):
         if not count.isdigit():
             data = {
                 'header': pgettext('w_trading_new', 'Создание оффера'),
-                'grey_btn': pgettext('mining', 'Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
                 'response': pgettext('w_trading_new', 'Количество - не число'),
             }
             return JsonResponse(data)
@@ -120,7 +120,7 @@ def create_offer(request):
         if count <= 0:
             data = {
                 'header': pgettext('w_trading_new', 'Создание оффера'),
-                'grey_btn': pgettext('mining', 'Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
                 'response': pgettext('w_trading_new', 'Количество товара должно быть положительным числом'),
             }
             return JsonResponse(data)
@@ -128,7 +128,7 @@ def create_offer(request):
         if count > 2147483647:
             data = {
                 'header': pgettext('w_trading_new', 'Создание оффера'),
-                'grey_btn': pgettext('mining', 'Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
                 'response': pgettext('w_trading_new', 'Количество товара слишком велико'),
             }
             return JsonResponse(data)
@@ -139,7 +139,7 @@ def create_offer(request):
         if price <= 0:
             data = {
                 'header': pgettext('w_trading_new', 'Создание оффера'),
-                'grey_btn': pgettext('mining', 'Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
                 'response': pgettext('w_trading_new', 'Цена товара должна быть положительным числом'),
             }
             return JsonResponse(data)
@@ -147,7 +147,7 @@ def create_offer(request):
         if price > 9223372036854775807:
             data = {
                 'header': pgettext('w_trading_new', 'Создание оффера'),
-                'grey_btn': pgettext('mining', 'Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
                 'response': pgettext('w_trading_new', 'Цена товара слишком велика'),
             }
             return JsonResponse(data)
@@ -163,7 +163,7 @@ def create_offer(request):
                 if count > getattr(player, 'cards_count'):
                     data = {
                         'header': pgettext('w_trading_new', 'Создание оффера'),
-                        'grey_btn': pgettext('mining', 'Закрыть'),
+                        'grey_btn': pgettext('core', 'Закрыть'),
                         'response': pgettext('w_trading_new', 'Недостаточно Wild Pass для продажи'),
                     }
                     return JsonResponse(data)
@@ -182,7 +182,7 @@ def create_offer(request):
                 if not Stock.objects.filter(storage=s_storage, good=good_obj, stock__gte=count).exists():
                     data = {
                         'header': pgettext('w_trading_new', 'Создание оффера'),
-                        'grey_btn': pgettext('mining', 'Закрыть'),
+                        'grey_btn': pgettext('core', 'Закрыть'),
                         'response': pgettext('w_trading_new', 'Недостаточно ресурса для продажи'),
                     }
                     return JsonResponse(data)
@@ -200,7 +200,7 @@ def create_offer(request):
             if count * price > 9223372036854775807:
                 data = {
                     'header': pgettext('w_trading_new', 'Создание оффера'),
-                    'grey_btn': pgettext('mining', 'Закрыть'),
+                    'grey_btn': pgettext('core', 'Закрыть'),
                     'response': pgettext('w_trading_new', 'Стоимость товара слишком велика'),
                 }
                 return JsonResponse(data)
@@ -209,7 +209,7 @@ def create_offer(request):
             if count * price > player.cash:
                 data = {
                     'header': pgettext('w_trading_new', 'Создание оффера'),
-                    'grey_btn': pgettext('mining', 'Закрыть'),
+                    'grey_btn': pgettext('core', 'Закрыть'),
                     'response': pgettext('w_trading_new', 'Недостаточно средств'),
                 }
                 return JsonResponse(data)
@@ -224,7 +224,7 @@ def create_offer(request):
                 if not s_storage.capacity_check(good_obj.size, count, sizetype_stocks):
                     data = {
                         'header': pgettext('w_trading_new', 'Создание оффера'),
-                        'grey_btn': pgettext('mining', 'Закрыть'),
+                        'grey_btn': pgettext('core', 'Закрыть'),
                         'response': pgettext('w_trading_new', 'Недостаточно места на складе для закупаемого товара'),
                     }
                     return JsonResponse(data)
@@ -246,7 +246,7 @@ def create_offer(request):
                     if not s_storage.capacity_check(good_obj.size, count, sizetype_stocks):
                         data = {
                             'header': pgettext('w_trading_new', 'Создание оффера'),
-                            'grey_btn': pgettext('mining', 'Закрыть'),
+                            'grey_btn': pgettext('core', 'Закрыть'),
                             'response': pgettext('w_trading_new',
                                                  'Недостаточно места на складе, с учётом других закупочных ордеров'),
                         }
@@ -281,7 +281,7 @@ def create_offer(request):
 
         data = {
             'header': pgettext('w_trading_new', 'Создание оффера'),
-            'grey_btn': pgettext('mining', 'Закрыть'),
+            'grey_btn': pgettext('core', 'Закрыть'),
             'response': pgettext('w_trading_new', 'Торговое предложение успешно создано'),
             'success': 'True',
         }
@@ -291,7 +291,7 @@ def create_offer(request):
     else:
         data = {
             'header': pgettext('w_trading_new', 'Создание оффера'),
-            'grey_btn': pgettext('mining', 'Закрыть'),
+            'grey_btn': pgettext('core', 'Закрыть'),
             'response': pgettext('core', 'Ошибка метода'),
         }
         return JsonResponse(data)

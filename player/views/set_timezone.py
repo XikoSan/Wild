@@ -26,7 +26,7 @@ def set_timezone(request):
             data = {
                 'response': _('Такого часового пояса в игре нет'),
                 'header': _('Изменение часового пояса'),
-                'grey_btn': _('Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
 
@@ -42,6 +42,6 @@ def set_timezone(request):
         data = {
             'response': _('Ошибка метода'),
             'header': _('Изменение часового пояса'),
-            'grey_btn': _('Закрыть'),
+            'grey_btn': pgettext('core', 'Закрыть'),
         }
         return JResponse(data)

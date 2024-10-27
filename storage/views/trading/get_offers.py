@@ -42,7 +42,7 @@ def get_offers(request):
         if not (action == 'sell' or action == 'buy'):
             data = {
                 'header': pgettext('w_trading', 'Получение офферов'),
-                'grey_btn': pgettext('mining', 'Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
                 'response': pgettext('w_trading_new', 'Некорректное действие'),
             }
             return JsonResponse(data)
@@ -64,7 +64,7 @@ def get_offers(request):
         if not (owner in ['all', 'mine', 'party']):
             data = {
                 'header': pgettext('w_trading', 'Получение офферов'),
-                'grey_btn': pgettext('mining', 'Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
                 'response': pgettext('w_trading', 'Некорректный владелец'),
             }
             return JsonResponse(data)
@@ -92,7 +92,7 @@ def get_offers(request):
             # if owner != 'mine':
             #     data = {
             #         'header': pgettext('w_trading', 'Получение офферов'),
-            #         'grey_btn': pgettext('mining', 'Закрыть'),
+            #         'grey_btn': pgettext('core', 'Закрыть'),
             #         'response': pgettext('w_trading_new', 'ID товара должен быть целым числом'),
             #     }
             #     return JsonResponse(data)
@@ -108,7 +108,7 @@ def get_offers(request):
             # if owner != 'mine':
             #     data = {
             #         'header': pgettext('w_trading', 'Получение офферов'),
-            #         'grey_btn': pgettext('mining', 'Закрыть'),
+            #         'grey_btn': pgettext('core', 'Закрыть'),
             #         'response': pgettext('w_trading', 'Укажите товар'),
             #     }
             #     return JsonResponse(data)
@@ -254,7 +254,7 @@ def get_offers(request):
     else:
         data = {
             'header': pgettext('w_trading', 'Получение офферов'),
-            'grey_btn': pgettext('mining', 'Закрыть'),
+            'grey_btn': pgettext('core', 'Закрыть'),
             'response': pgettext('core', 'Ошибка метода'),
         }
         return JsonResponse(data)

@@ -53,6 +53,6 @@ def loot_aviaboxes(request):
         data = {
             'response': _('Ошибка метода'),
             'header': _('Открытие Аэрокейсов'),
-            'grey_btn': _('Закрыть'),
+            'grey_btn': pgettext('core', 'Закрыть'),
         }
         return JResponse(data)

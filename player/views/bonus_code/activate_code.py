@@ -7,6 +7,7 @@ from django.utils import timezone
 from django.utils import translation
 from django.db import transaction
 from django.utils.translation import ugettext as _
+from django.utils.translation import gettext_lazy, pgettext_lazy
 from django.contrib.humanize.templatetags.humanize import number_format
 
 from player.bonus_code.bonus_code import BonusCode
@@ -39,9 +40,9 @@ def activate_code(request):
                                         date__gt=timezone.now()
                                         ).exists():
             data = {
-                'response': 'Указанный код не существует или истёк',
-                'header': _('Активация кода'),
-                'grey_btn': _('Закрыть'),
+                'response': pgettext('activate_code', 'Указанный код не существует или истёк'),
+                'header': pgettext('activate_code', 'Активация кода'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
 
@@ -50,27 +51,27 @@ def activate_code(request):
         if code.invite \
                 and request.user.date_joined + timedelta(days=7) < timezone.now():
             data = {
-                'response': 'Инвайт-код можно активировать первые 7 дней игры',
-                'header': _('Активация кода'),
-                'grey_btn': _('Закрыть'),
+                'response': pgettext('activate_code', 'Инвайт-код можно активировать первые 7 дней игры'),
+                'header': pgettext('activate_code', 'Активация кода'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
 
         if code.reusable:
             if CodeUsage.objects.filter(code=code, player=player).exists():
                 data = {
-                    'response': 'Данный код уже был вами активирован',
-                    'header': _('Активация кода'),
-                    'grey_btn': _('Закрыть'),
+                    'response': pgettext('activate_code', 'Данный код уже был вами активирован'),
+                    'header': pgettext('activate_code', 'Активация кода'),
+                    'grey_btn': pgettext('core', 'Закрыть'),
                 }
                 return JResponse(data)
 
         else:
             if CodeUsage.objects.filter(code=code).exists():
                 data = {
-                    'response': 'Данный код уже был активирован',
-                    'header': _('Активация кода'),
-                    'grey_btn': _('Закрыть'),
+                    'response': pgettext('activate_code', 'Данный код уже был активирован'),
+                    'header': pgettext('activate_code', 'Активация кода'),
+                    'grey_btn': pgettext('core', 'Закрыть'),
                 }
                 return JResponse(data)
 
@@ -165,17 +166,17 @@ def activate_code(request):
         data = {
             'response': 'ok',
 
-            'header': _('Активация кода'),
+            'header': pgettext('activate_code', 'Активация кода'),
             'text': text,
-            'grey_btn': _('Закрыть'),
+            'grey_btn': pgettext('core', 'Закрыть'),
         }
         return JResponse(data)
 
     # если страницу только грузят
     else:
         data = {
-            'response': _('Ошибка метода'),
-            'header': _('Активация кода'),
-            'grey_btn': _('Закрыть'),
+            'response': pgettext('core', 'Ошибка метода'),
+            'header': pgettext('activate_code', 'Активация кода'),
+            'grey_btn': pgettext('core', 'Закрыть'),
         }
         return JResponse(data)

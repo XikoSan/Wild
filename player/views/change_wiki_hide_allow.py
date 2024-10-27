@@ -40,7 +40,7 @@ def change_wiki_hide_allow(request):
             data = {
                 'response': _('Некорректное значение'),
                 'header': _('Скрыть кнопку Wiki'),
-                'grey_btn': _('Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
 
@@ -56,6 +56,6 @@ def change_wiki_hide_allow(request):
         data = {
             'response': _('Ошибка метода'),
             'header': _('Скрыть кнопку Wiki'),
-            'grey_btn': _('Закрыть'),
+            'grey_btn': pgettext('core', 'Закрыть'),
         }
         return JResponse(data)

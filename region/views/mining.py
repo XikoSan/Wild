@@ -7,6 +7,7 @@ from django.shortcuts import render
 from django.utils import timezone
 from django.utils.timezone import make_aware
 from django.utils.translation import ugettext as _
+from django.utils.translation import pgettext
 
 from player.decorators.player import check_player
 from player.logs.auto_mining import AutoMining
@@ -182,7 +183,7 @@ def mining(request):
 
     # отправляем в форму
     response = render(request, page, {
-        'page_name': _('Добыча'),
+        'page_name':pgettext('mining', 'Добыча'),
 
         'player': player,
         'premium': premium,

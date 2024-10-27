@@ -34,7 +34,7 @@ def set_role(request):
                         data = {
                             'response': pgettext('has_party', 'В партии может быть только один глава'),
                             'header': pgettext('has_party', 'Смена должности'),
-                            'grey_btn': _('Закрыть'),
+                            'grey_btn': pgettext('core', 'Закрыть'),
                         }
                         return JsonResponse(data)
 
@@ -49,21 +49,21 @@ def set_role(request):
                 data = {
                     'response': pgettext('has_party', 'Недостаточно прав для смены должности'),
                     'header': pgettext('has_party', 'Смена должности'),
-                    'grey_btn': _('Закрыть'),
+                    'grey_btn': pgettext('core', 'Закрыть'),
                 }
                 return JsonResponse(data)
 
             data = {
                 'response': pgettext('has_party', 'Некорректная партия игрока'),
                 'header': pgettext('has_party', 'Смена должности'),
-                'grey_btn': _('Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JsonResponse(data)
 
         data = {
             'response': pgettext('has_party', 'Недостаточно прав для смены должности'),
             'header': pgettext('has_party', 'Смена должности'),
-            'grey_btn': _('Закрыть'),
+            'grey_btn': pgettext('core', 'Закрыть'),
         }
         return JsonResponse(data)
 

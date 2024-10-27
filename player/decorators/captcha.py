@@ -2,17 +2,19 @@
 import os
 import random
 import redis
+from datetime import timedelta
 from django.db.models import Q
 from django.shortcuts import redirect
 from django.utils import timezone
 from django.utils import translation, timezone
 from django.utils.translation import check_for_language
+from django.utils.translation import pgettext
 from django.utils.translation import ugettext as _
 
 from player.player import Player
 from player.player_settings import PlayerSettings
 from wild_politics.settings import JResponse
-from datetime import timedelta
+
 
 # Декоратор, перехватывающий запрашиваемую функцию,
 # и возвращающий вместо неё Captcha,
@@ -97,8 +99,8 @@ def captcha(func):
 
                 data = {
                     'response': 'captcha',
-                    'text': f'Выберите верный ответ: {first_number} + {second_number} = ',
-                    'header': _('Пройдите Captcha'),
+                    'text': pgettext('captcha', "Выберите верный ответ: %(first_number)s + %(second_number)s = ") % {"first_number": first_number, "second_number": second_number},
+                    'header': pgettext('captcha', 'Пройдите Captcha'),
                     'white_btn': left_answer,
                     'grey_btn': right_answer,
                 }

@@ -1,20 +1,21 @@
-from player.player import Player
+import gettext
 import os
 import polib
-from django.shortcuts import render
-from django.http import HttpResponseRedirect
-from wild_politics import settings
-from django.utils.translation import get_language_info
-import gettext
-from django.shortcuts import redirect
-
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
+from django.shortcuts import redirect
+from django.shortcuts import render
+from django.utils.translation import get_language_info
+from django.utils.translation import pgettext
+
 from player.decorators.player import check_player
+from player.player import Player
+from wild_politics import settings
+
 
 @login_required(login_url='/')
 @check_player
 def edit_translations(request, lang, context):
-
     groups = list(request.user.groups.all().values_list('name', flat=True))
 
     if not request.user.is_superuser and 'translator' not in groups:
@@ -74,18 +75,21 @@ def edit_translations(request, lang, context):
                                                                    'locale': get_language_info(lang)['name_local']
                                                                    })
 
-def save_translation_file(file_path, data, context, player):
 
+def save_translation_file(file_path, data, context, player):
     # Загружаем файл с помощью polib и обновляем переводы
     po = polib.pofile(pofile=file_path, wrapwidth=0)
 
     # log(data)
     for entry in po:
         if entry.msgid in data and entry.msgstr != data.get(entry.msgid):
-            if entry.msgctxt == context or (not entry.msgctxt and 'None' == context):  # если контекст совпадает, то обновим msgstr
+            if entry.msgctxt == context or (
+                    not entry.msgctxt and 'None' == context):  # если контекст совпадает, то обновим msgstr
                 entry.fuzzy = False
                 entry.msgstr = data.get(entry.msgid)
                 # добавляем комментарий с именем пользователя
-                entry.comment = gettext.gettext(f'Last modified by {player.nickname}, id {player.pk}')
+                entry.comment = pgettext('translations',
+                                         "Отредактировано %(nickname)s, id %(pk)s") % {
+                                    "nickname": player.nickname, "pk": player.pk},
 
     po.save()

@@ -39,7 +39,7 @@ def do_mining(request):
                 # 'response': pgettext('wait_flight_end'),
                 'response': pgettext('mining', 'Дождитесь конца полёта'),
                 'header': pgettext('mining', 'Ошибка добычи ресурсов'),
-                'grey_btn': pgettext('mining', 'Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             # return JResponse(data)
             return JResponse(data)
@@ -52,7 +52,7 @@ def do_mining(request):
             data = {
                 'response': pgettext('mining', 'У вас нет склада в этом регионе'),
                 'header': pgettext('mining', 'Ошибка добычи ресурсов'),
-                'grey_btn': pgettext('mining', 'Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
 
@@ -62,7 +62,7 @@ def do_mining(request):
         if not count.isdigit():
             data = {
                 'header': pgettext('mining', 'Ошибка добычи ресурсов'),
-                'grey_btn': pgettext('mining', 'Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
                 'response': pgettext('mining', 'Количество энергии - не число'),
             }
             return JResponse(data)
@@ -75,7 +75,7 @@ def do_mining(request):
                 # 'response': pgettext('positive_enrg_req'),
                 'response': pgettext('mining', 'Количество Энергии должно быть положительным'),
                 'header': pgettext('mining', 'Ошибка добычи ресурсов'),
-                'grey_btn': pgettext('mining', 'Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
         # Количество Энергии должно быть кратно десяти
@@ -84,7 +84,7 @@ def do_mining(request):
                 # 'response': pgettext('mul_ten_enrg_req'),
                 'response': pgettext('mining', 'Количество Энергии должно быть кратно десяти'),
                 'header': pgettext('mining', 'Ошибка добычи ресурсов'),
-                'grey_btn': pgettext('mining', 'Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
 
@@ -93,7 +93,7 @@ def do_mining(request):
                 # 'response': pgettext('mul_ten_enrg_req'),
                 'response': pgettext('mining', 'Недостаточно энергии'),
                 'header': pgettext('mining', 'Ошибка добычи ресурсов'),
-                'grey_btn': pgettext('mining', 'Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
 

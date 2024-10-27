@@ -40,7 +40,7 @@ def cancel_offer(request):
         except ValueError:
             data = {
                 'header': pgettext('w_trading', 'Отмена оффера'),
-                'grey_btn': pgettext('mining', 'Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
                 'response': pgettext('w_trading', 'ID оффера должно быть числом'),
             }
             return JsonResponse(data)
@@ -53,7 +53,7 @@ def cancel_offer(request):
             if not offer.owner_storage.owner == player:
                 data = {
                     'header': pgettext('w_trading', 'Отмена оффера'),
-                    'grey_btn': pgettext('mining', 'Закрыть'),
+                    'grey_btn': pgettext('core', 'Закрыть'),
                     'response': pgettext('w_trading', 'Можно отменить только свой собственный оффер'),
                 }
                 return JsonResponse(data)
@@ -61,7 +61,7 @@ def cancel_offer(request):
         else:
             data = {
                 'header': pgettext('w_trading', 'Отмена оффера'),
-                'grey_btn': pgettext('mining', 'Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
                 'response': pgettext('w_trading', 'Оффер не существует или уже принят'),
             }
             return JsonResponse(data)
@@ -74,7 +74,7 @@ def cancel_offer(request):
         except ValueError:
             data = {
                 'header': pgettext('w_trading', 'Отмена оффера'),
-                'grey_btn': pgettext('mining', 'Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
                 'response': pgettext('w_trading', 'ID склада должно быть числом'),
             }
             return JsonResponse(data)
@@ -87,7 +87,7 @@ def cancel_offer(request):
         else:
             data = {
                 'header': pgettext('w_trading', 'Отмена оффера'),
-                'grey_btn': pgettext('mining', 'Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
                 'response': pgettext('w_trading', 'Выбранного склада игрока не существует'),
             }
             return JsonResponse(data)
@@ -105,7 +105,7 @@ def cancel_offer(request):
                 else:
                     data = {
                         'header': pgettext('w_trading', 'Отмена оффера'),
-                        'grey_btn': pgettext('mining', 'Закрыть'),
+                        'grey_btn': pgettext('core', 'Закрыть'),
                         'response': pgettext('w_trading', 'Не удалось получить блокировку по офферу'),
                     }
                     return JsonResponse(data)
@@ -137,7 +137,7 @@ def cancel_offer(request):
             else:
                 data = {
                     'header': pgettext('w_trading', 'Отмена оффера'),
-                    'grey_btn': pgettext('mining', 'Закрыть'),
+                    'grey_btn': pgettext('core', 'Закрыть'),
                     'response': pgettext('w_trading', 'Не удалось получить блокировку по офферу'),
                 }
                 return JsonResponse(data)
@@ -161,7 +161,7 @@ def cancel_offer(request):
     else:
         data = {
             'header': pgettext('w_trading', 'Отмена оффера'),
-            'grey_btn': pgettext('mining', 'Закрыть'),
+            'grey_btn': pgettext('core', 'Закрыть'),
             'response': pgettext('core', 'Ошибка метода'),
         }
         return JsonResponse(data)

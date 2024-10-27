@@ -74,25 +74,25 @@ def factory_top(request, player):
 
         'image': {
             'text': '',
-            'select_text': 'Герб',
+            'select_text': pgettext('lists', 'Герб'),
             'visible': 'true'
         },
 
         'title': {
-            'text': 'Партия',
-            'select_text': 'Партия',
+            'text': pgettext('lists', 'Партия'),
+            'select_text': pgettext('lists', 'Партия'),
             'visible': 'true'
         },
 
         'mined': {
-            'text': 'Произведено',
-            'select_text': 'Произведено',
+            'text': pgettext('lists', 'Произведено'),
+            'select_text': pgettext('lists', 'Произведено'),
             'visible': 'true'
         },
 
         'reward': {
             'text': '',
-            'select_text': 'Награда',
+            'select_text': pgettext('lists', 'Награда'),
             'visible': 'true'
         },
     }

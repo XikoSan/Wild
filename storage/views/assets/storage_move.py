@@ -34,7 +34,7 @@ def storage_move(request):
         if dest_pk == 'null':
             data = {
                 'header': pgettext('assets', 'Перемещение Склада'),
-                'grey_btn': pgettext('mining', 'Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
                 'response': pgettext('assets', 'Склад не заполнен'),
             }
             return JsonResponse(data)
@@ -43,7 +43,7 @@ def storage_move(request):
         if Storage.actual.filter(owner=player).count() > 1:
             data = {
                 'header': pgettext('assets', 'Перемещение Склада'),
-                'grey_btn': pgettext('mining', 'Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
                 'response': pgettext('assets', 'У вас более одного Склада'),
             }
             return JsonResponse(data)
@@ -52,7 +52,7 @@ def storage_move(request):
         if not Storage.actual.filter(owner=player, pk=int(dest_pk)):
             data = {
                 'header': pgettext('assets', 'Перемещение Склада'),
-                'grey_btn': pgettext('mining', 'Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
                 'response': pgettext('assets', 'Указанный Склад вам не принадлежит'),
             }
             return JsonResponse(data)
@@ -62,7 +62,7 @@ def storage_move(request):
         if storage.was_moved:
             data = {
                 'header': pgettext('assets', 'Перемещение Склада'),
-                'grey_btn': pgettext('mining', 'Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
                 'response': pgettext('assets', 'Указанный Склад уже переносился'),
             }
             return JsonResponse(data)
@@ -70,7 +70,7 @@ def storage_move(request):
         if storage.region == player.region:
             data = {
                 'header': pgettext('assets', 'Перемещение Склада'),
-                'grey_btn': pgettext('mining', 'Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
                 'response': pgettext('assets', 'Указанный Склад уже в текущем регионе'),
             }
             return JsonResponse(data)
@@ -85,7 +85,7 @@ def storage_move(request):
             if war_cl.objects.filter(running=True, def_region=storage.region).exists():
                 data = {
                     'header': pgettext('assets', 'Перемещение Склада'),
-                    'grey_btn': pgettext('mining', 'Закрыть'),
+                    'grey_btn': pgettext('core', 'Закрыть'),
                     'response': pgettext('assets', 'Нельзя переместить Склад из атакованного региона'),
                 }
                 return JsonResponse(data)
@@ -104,7 +104,7 @@ def storage_move(request):
     else:
         data = {
             'header': pgettext('assets', 'Перемещение Склада'),
-            'grey_btn': pgettext('mining', 'Закрыть'),
+            'grey_btn': pgettext('core', 'Закрыть'),
             'response': pgettext('core', 'Ошибка метода'),
         }
         return JsonResponse(data)

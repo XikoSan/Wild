@@ -35,7 +35,7 @@ def upgrade_storage(request):
         if not Storage.actual.filter(owner=player, region=player.region).exists():
             data = {
                 'header': pgettext('storage_upgrade', 'Улучшение Склада'),
-                'grey_btn': pgettext('mining', 'Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
                 'response': pgettext('storage', 'В этом регионе нет Склада'),
             }
             return JsonResponse(data)
@@ -45,7 +45,7 @@ def upgrade_storage(request):
         if storage.level >= 5  and ( storage.level - 4 ) * 25 > player.knowledge:
             data = {
                 'header': pgettext('storage_upgrade', 'Улучшение Склада'),
-                'grey_btn': pgettext('mining', 'Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
                 'response': pgettext('storage_upgrade', "Требуется Интеллект: %(int_require)s") % { "int_require": ( storage.level - 4 ) * 25 },
             }
             return JsonResponse(data)
@@ -58,7 +58,7 @@ def upgrade_storage(request):
                 if not Stock.objects.filter(storage=storage, good=mat, stock__gte=500).exists():
                     data = {
                         'header': pgettext('storage_upgrade', 'Улучшение Склада'),
-                        'grey_btn': pgettext('mining', 'Закрыть'),
+                        'grey_btn': pgettext('core', 'Закрыть'),
                         'response': pgettext('storage_upgrade', 'Недостаточно материала: ') + str(mat.name),
                     }
                     return JsonResponse(data)
@@ -92,7 +92,7 @@ def upgrade_storage(request):
     else:
         data = {
             'header': pgettext('storage_upgrade', 'Улучшение Склада'),
-            'grey_btn': pgettext('mining', 'Закрыть'),
+            'grey_btn': pgettext('core', 'Закрыть'),
             'response': pgettext('core', 'Ошибка метода'),
         }
         return JsonResponse(data)

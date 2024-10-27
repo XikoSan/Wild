@@ -1,7 +1,6 @@
 import redis
 from django import template
 from django.utils.translation import pgettext
-from django.utils.translation import ugettext as _
 import datetime
 from player.logs.cash_log import CashLog
 from player.player import Player
@@ -76,25 +75,25 @@ def mining_top(request, player):
 
         'image': {
             'text': '',
-            'select_text': 'Герб',
+            'select_text': pgettext('lists', 'Герб'),
             'visible': 'true'
         },
 
         'title': {
-            'text': 'Партия',
-            'select_text': 'Партия',
+            'text': pgettext('lists', 'Партия'),
+            'select_text': pgettext('lists', 'Партия'),
             'visible': 'true'
         },
 
         'mined': {
-            'text': 'Добыто',
-            'select_text': 'Добыто',
+            'text': pgettext('lists', 'Добыто'),
+            'select_text': pgettext('lists', 'Добыто'),
             'visible': 'true'
         },
 
         'reward': {
             'text': '',
-            'select_text': 'Награда',
+            'select_text': pgettext('lists', 'Награда'),
             'visible': 'true'
         },
     }

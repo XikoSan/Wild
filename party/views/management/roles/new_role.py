@@ -48,14 +48,14 @@ def new_role(request):
                         data = {
                             'response': pgettext('party_manage', 'Должность с таким названием уже есть'),
                             'header': pgettext('party_manage', 'Новая должность'),
-                            'grey_btn': _('Закрыть'),
+                            'grey_btn': pgettext('core', 'Закрыть'),
                         }
                         return JsonResponse(data)
                 else:
                     data = {
                         'response': pgettext('party_manage', 'Название не может быть пустым'),
                         'header': pgettext('party_manage', 'Новая должность'),
-                        'grey_btn': _('Закрыть'),
+                        'grey_btn': pgettext('core', 'Закрыть'),
                     }
                     return JsonResponse(data)
 
@@ -63,14 +63,14 @@ def new_role(request):
                 data = {
                     'response': pgettext('party_manage', 'Достигнуто ограничение на число должностей'),
                     'header': pgettext('party_manage', 'Новая должность'),
-                    'grey_btn': _('Закрыть'),
+                    'grey_btn': pgettext('core', 'Закрыть'),
                 }
                 return JsonResponse(data)
         else:
             data = {
                 'response': pgettext('party_manage', 'Недостаточно прав для создания должности'),
                 'header': pgettext('party_manage', 'Новая должность'),
-                'grey_btn': _('Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JsonResponse(data)
     # если страницу только грузят
@@ -78,6 +78,6 @@ def new_role(request):
         data = {
             'response': pgettext('core', 'Ошибка метода'),
             'header': pgettext('party_manage', 'Новая должность'),
-            'grey_btn': _('Закрыть'),
+            'grey_btn': pgettext('core', 'Закрыть'),
         }
         return JsonResponse(data)

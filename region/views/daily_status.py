@@ -92,7 +92,7 @@ def daily_status(request):
     else:
         data = {
             'header': ugettext('Ошибка метода'),
-            'grey_btn': pgettext('mining', 'Закрыть'),
+            'grey_btn': pgettext('core', 'Закрыть'),
             'response': ugettext('Ошибка метода'),
         }
         return JResponse(data)

@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
-from django.utils.translation import ugettext as _
+from django.utils.translation import pgettext
 
 from party.position import PartyPosition, Party
 from player.decorators.player import check_player
@@ -40,7 +40,7 @@ def party(request):
 
     # отправляем в форму
     response = render(request, page, {
-        'page_name': _('Партия'),
+        'page_name': pgettext('has_party', 'Партия'),
 
         'player': player,
         'positions': positions,

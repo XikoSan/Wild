@@ -5,6 +5,7 @@ from django.apps import apps
 from player.actual_manager import ActualStorageManager
 from player.player import Player
 from region.models.region import Region
+from django.utils.translation import pgettext
 
 
 # Важная информация!
@@ -200,12 +201,12 @@ class Storage(models.Model):
                 unit_cnt = int(request.POST.get(unit, ''))
                 # передано отрицательное число
                 if unit_cnt < 0:
-                    return _('positive_spend_stock_req')
+                    return pgettext_lazy('goods', 'Передано отрицательное значение')
                     # return 'Нельзя списать со Склада отрицательное количество'
                 if unit_cnt == 0:
                     continue
                 if unit_cnt > getattr(self, unit):
-                    return _('not_enough') + ' ' + str(getattr(self, mode).get(unit))
+                    return pgettext_lazy('goods', 'Недостаточно') + ' ' + str(getattr(self, mode).get(unit))
                     # return 'Не хватает на складе: ' + str(getattr(self, mode).get(unit))
                 else:
                     retcode = True

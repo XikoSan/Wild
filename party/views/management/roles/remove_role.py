@@ -23,7 +23,7 @@ def remove_role(request):
                 data = {
                     'response': pgettext('party_manage', 'Должность не найдена'),
                     'header': pgettext('party_manage', 'Удаление должности'),
-                    'grey_btn': _('Закрыть'),
+                    'grey_btn': pgettext('core', 'Закрыть'),
                 }
                 return JsonResponse(data)
             # получаем роль на удаление
@@ -35,7 +35,7 @@ def remove_role(request):
                     data = {
                         'response': pgettext('party_manage', 'Это неудаляемая должность'),
                         'header': pgettext('party_manage', 'Удаление должности'),
-                        'grey_btn': _('Закрыть'),
+                        'grey_btn': pgettext('core', 'Закрыть'),
                     }
                     return JsonResponse(data)
                 else:
@@ -44,7 +44,7 @@ def remove_role(request):
                         data = {
                             'response': pgettext('party_manage', 'Перед удалением должности её необходимо убрать у всех игроков!'),
                             'header': pgettext('party_manage', 'Удаление должности'),
-                            'grey_btn': _('Закрыть'),
+                            'grey_btn': pgettext('core', 'Закрыть'),
                         }
                     else:
                         # удаляем роль
@@ -59,7 +59,7 @@ def remove_role(request):
                     'response': pgettext('party_manage',
                                          'Вы пытаетесь удалить должность другой партии!'),
                     'header': pgettext('party_manage', 'Удаление должности'),
-                    'grey_btn': _('Закрыть'),
+                    'grey_btn': pgettext('core', 'Закрыть'),
                 }
                 return JsonResponse(data)
         else:
@@ -67,7 +67,7 @@ def remove_role(request):
                 'response': pgettext('party_manage',
                                      'Недостаточно прав для удаления должности'),
                 'header': pgettext('party_manage', 'Удаление должности'),
-                'grey_btn': _('Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JsonResponse(data)
 
@@ -76,6 +76,6 @@ def remove_role(request):
         data = {
             'response': pgettext('core', 'Ошибка метода'),
             'header': pgettext('party_manage', 'Удаление должности'),
-            'grey_btn': _('Закрыть'),
+            'grey_btn': pgettext('core', 'Закрыть'),
         }
         return JsonResponse(data)

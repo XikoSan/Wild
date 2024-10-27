@@ -31,7 +31,7 @@ def cash_transfer(request):
             if new_wallet_cnt < 0:
                 data = {
                     'header': pgettext('storage', 'Передача денег'),
-                    'grey_btn': pgettext('mining', 'Закрыть'),
+                    'grey_btn': pgettext('core', 'Закрыть'),
                     'response': pgettext('storage', 'Отрицательное число денег игрока'),
                 }
                 return JsonResponse(data)
@@ -40,7 +40,7 @@ def cash_transfer(request):
         except ValueError:
             data = {
                 'header': pgettext('storage', 'Передача денег'),
-                'grey_btn': pgettext('mining', 'Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
                 'response': pgettext('storage', 'Некорректное число денег игрока'),
             }
             return JsonResponse(data)
@@ -53,7 +53,7 @@ def cash_transfer(request):
             if new_storage_cnt < 0:
                 data = {
                     'header': pgettext('storage', 'Передача денег'),
-                    'grey_btn': pgettext('mining', 'Закрыть'),
+                    'grey_btn': pgettext('core', 'Закрыть'),
                     'response': pgettext('storage', 'Отрицательное число денег Склада'),
                 }
                 return JsonResponse(data)
@@ -62,7 +62,7 @@ def cash_transfer(request):
         except ValueError:
             data = {
                 'header': pgettext('storage', 'Передача денег'),
-                'grey_btn': pgettext('mining', 'Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
                 'response': pgettext('storage', 'Некорректное число денег Склада'),
             }
             return JsonResponse(data)
@@ -71,7 +71,7 @@ def cash_transfer(request):
         if not Storage.actual.filter(owner=player, region=player.region).exists():
             data = {
                 'header': pgettext('storage', 'Передача денег'),
-                'grey_btn': pgettext('mining', 'Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
                 'response': pgettext('storage', 'В этом регионе нет Склада'),
             }
             return JsonResponse(data)
@@ -103,7 +103,7 @@ def cash_transfer(request):
                     if war_there and int(new_storage) < storage.cash:
                         data = {
                             'header': pgettext('storage', 'Передача денег'),
-                            'grey_btn': pgettext('mining', 'Закрыть'),
+                            'grey_btn': pgettext('core', 'Закрыть'),
                             'response': pgettext('storage', 'Нельзя вывести деньги из атакованного региона'),
                         }
                         return JsonResponse(data)
@@ -123,7 +123,7 @@ def cash_transfer(request):
                 else:
                     data = {
                         'header': pgettext('storage', 'Передача денег'),
-                        'grey_btn': pgettext('mining', 'Закрыть'),
+                        'grey_btn': pgettext('core', 'Закрыть'),
                         'response': pgettext('storage', 'Данные кошелька не совпадают с введенными'),
                     }
                     return JsonResponse(data)
@@ -131,7 +131,7 @@ def cash_transfer(request):
             else:
                 data = {
                     'header': pgettext('storage', 'Передача денег'),
-                    'grey_btn': pgettext('mining', 'Закрыть'),
+                    'grey_btn': pgettext('core', 'Закрыть'),
                     'response': pgettext('storage', 'Недопустим ввод отрицательных чисел'),
                 }
                 return JsonResponse(data)
@@ -143,7 +143,7 @@ def cash_transfer(request):
     else:
         data = {
             'header': pgettext('storage', 'Передача денег'),
-            'grey_btn': pgettext('mining', 'Закрыть'),
+            'grey_btn': pgettext('core', 'Закрыть'),
             'response': pgettext('core', 'Ошибка метода'),
         }
         return JsonResponse(data)

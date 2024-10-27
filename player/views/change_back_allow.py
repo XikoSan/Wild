@@ -40,7 +40,7 @@ def change_back_allow(request):
             data = {
                 'response': _('Некорректное значение'),
                 'header': _('Настройка партийного фона'),
-                'grey_btn': _('Закрыть'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
 
@@ -56,6 +56,6 @@ def change_back_allow(request):
         data = {
             'response': _('Ошибка метода'),
             'header': _('Настройка партийного фона'),
-            'grey_btn': _('Закрыть'),
+            'grey_btn': pgettext('core', 'Закрыть'),
         }
         return JResponse(data)

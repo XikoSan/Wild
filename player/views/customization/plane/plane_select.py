@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.db.models import Sum
 from django.shortcuts import render
-from django.utils.translation import ugettext as _
+from django.utils.translation import gettext_lazy
 
 from player.decorators.player import check_player
 from player.player import Player
@@ -53,7 +53,7 @@ def plane_select(request):
                 lists['common_list'].append(plane)
 
     return render(request, 'player/redesign/customization/plane_select.html', {
-                                                            'page_name': _('Выбор авиации'),
+                                                            'page_name': pgettext('plane_select', 'Выбор авиации'),
                                                             'player': player,
 
                                                             'rarity_list': ['epic', 'rare', 'common' ],

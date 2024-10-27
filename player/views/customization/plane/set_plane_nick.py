@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.db.models import Sum
 from django.shortcuts import render
-from django.utils.translation import ugettext as _
+from django.utils.translation import gettext_lazy, pgettext_lazy
 
 from player.decorators.player import check_player
 from player.player import Player
@@ -21,9 +21,9 @@ def set_plane_nick(request):
 
         if nickname == '':
             data = {
-                'response': 'Позывной не может быть пустым',
-                'header': 'Установить позывной',
-                'grey_btn': 'Закрыть',
+                'response': pgettext('set_plane_nick', 'Позывной не может быть пустым'),
+                'header': pgettext('set_plane_nick', 'Установить позывной'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
 
@@ -32,18 +32,18 @@ def set_plane_nick(request):
 
         except ValueError:
             data = {
-                'header': 'Установить позывной',
-                'grey_btn': 'Закрыть',
-                'response': 'ID техники должен быть целым числом',
+                'header': pgettext('set_plane_nick', 'Установить позывной'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('set_plane_nick', 'ID техники должен быть целым числом'),
             }
             return JResponse(data)
 
         # дефолтного
         if plane_id == 0:
             data = {
-                'header': 'Установить позывной',
-                'grey_btn': 'Закрыть',
-                'response': 'Нельзя изменить позывной этому самолёту',
+                'header': pgettext('set_plane_nick', 'Установить позывной'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('set_plane_nick', 'Нельзя изменить позывной этому самолёту'),
             }
             return JResponse(data)
 
@@ -53,9 +53,9 @@ def set_plane_nick(request):
 
             if nickname == plane.nickname:
                 data = {
-                    'response': 'Позывной не изменился',
-                    'header': 'Установить позывной',
-                    'grey_btn': 'Закрыть',
+                    'response': pgettext('set_plane_nick', 'Позывной не изменился'),
+                    'header': pgettext('set_plane_nick', 'Установить позывной'),
+                    'grey_btn': pgettext('core', 'Закрыть'),
                 }
                 return JResponse(data)
 
@@ -69,16 +69,16 @@ def set_plane_nick(request):
 
         else:
             return {
-                'header': 'Установить позывной',
-                'grey_btn': 'Закрыть',
-                'response': 'Указанный самолёт вам не принадлежит',
+                'header': pgettext('set_plane_nick', 'Установить позывной'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('set_plane_nick', 'Указанный самолёт вам не принадлежит'),
             }
 
     # если страницу только грузят
     else:
         data = {
-            'response': _('Ошибка метода'),
-            'header': 'Установить позывной',
-            'grey_btn': _('Закрыть'),
+            'response': pgettext('core', 'Ошибка метода'),
+            'header': pgettext('set_plane_nick', 'Установить позывной'),
+            'grey_btn': pgettext('core', 'Закрыть'),
         }
         return JResponse(data)
