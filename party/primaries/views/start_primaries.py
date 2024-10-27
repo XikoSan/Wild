@@ -68,7 +68,7 @@ def start_primaries(request, party_pk):
         return redirect('party')
 
     # отправляем в форму
-    return render(request, 'primaries/redesign/primaries.html',
+    return render(request, 'party/redesign/primaries.html',
                   {'player': player,
                    'players_list': Player.objects.filter(pk__in=member_pks, party=party),
                    'can_vote': can_vote,
