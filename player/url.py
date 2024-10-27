@@ -167,9 +167,9 @@ urlpatterns = [
     # активация бонус-кода
     url(r'^activate_code/', activate_code, name='activate_code'),
 
-    # магазин очков тестирования андроид
-    url(r'^test_shop/', test_shop, name='test_shop'),
-    # купить тест призы
-    url(r'^buy_test_prizes/$', buy_test_prizes, name='buy_test_prizes'),
+    # # магазин очков тестирования андроид
+    # url(r'^test_shop/', test_shop, name='test_shop'),
+    # # купить тест призы
+    # url(r'^buy_test_prizes/$', buy_test_prizes, name='buy_test_prizes'),
 
 ]

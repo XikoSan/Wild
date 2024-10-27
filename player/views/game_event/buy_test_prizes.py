@@ -4,6 +4,7 @@ from datetime import datetime, timedelta
 from dateutil.relativedelta import relativedelta
 from django.apps import apps
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect
 from django.utils import timezone
 from django.utils import translation
 from django.utils.translation import ugettext as _
@@ -13,11 +14,11 @@ from player.decorators.player import check_player
 from player.logs.cash_log import CashLog
 from player.logs.gold_log import GoldLog
 from player.logs.prem_log import PremLog
+from player.logs.test_log import TestLog
 from player.logs.test_point_usage import TestPointUsage
 from player.player import Player
 from region.models.plane import Plane
 from wild_politics.settings import JResponse
-from player.logs.test_log import TestLog
 
 
 # Купить лутбоксы
@@ -31,7 +32,8 @@ def buy_test_prizes(request):
 
         type = request.POST.get('type')
 
-        if type not in ['7_prem', '7_prem_2', 'plane', 'cash', 'gold', 'gold_100_1', 'gold_100_2', 'wildpass', '30_prem']:
+        if type not in ['7_prem', '7_prem_2', 'plane', 'cash', 'gold', 'gold_100_1', 'gold_100_2', 'wildpass',
+                        '30_prem']:
             data = {
                 'response': 'Некорректно указан товар',
                 'header': 'Покупка за очки тестирования',
