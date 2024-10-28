@@ -34,94 +34,101 @@ class EventPart(models.Model):
     global_paid_points = models.IntegerField(default=0, verbose_name='Глобальный оплаченный этап')
 
     def prize_check(self):
-        Lootbox = apps.get_model('player.Lootbox')
 
-        if self.points >= 12500 > self.paid_points:
-            self.paid_points = 12500
-            if self.boost < 5:
-                self.boost = 5
+        from player.logs.print_log import log
 
-        elif self.points >= 25000 > self.paid_points:
-            self.paid_points = 25000
-            if self.boost < 10:
-                self.boost = 10
-
-        elif self.points >= 37500 > self.paid_points:
-            self.paid_points = 37500
-            if self.boost < 15:
-                self.boost = 15
-
-        elif self.points >= 50000 > self.paid_points:
-            if Lootbox.objects.filter(player=self.player).exists():
-                lbox = Lootbox.objects.get(player=self.player)
-            else:
-                lbox = Lootbox(player=self.player)
-
-            lbox.stock += 1
-            lbox.save()
-
-            self.paid_points = 50000
-
-        elif self.points >= 62500 > self.paid_points:
-            self.paid_points = 62500
-            if self.boost < 20:
-                self.boost = 20
-
-        elif self.points >= 75000 > self.paid_points:
-            self.paid_points = 75000
-            if self.boost < 25:
-                self.boost = 25
-
-        elif self.points >= 87500 > self.paid_points:
-            self.paid_points = 87500
-            if self.boost < 30:
-                self.boost = 30
-
-        elif self.points >= 100000 > self.paid_points:
-            if Lootbox.objects.filter(player=self.player).exists():
-                lbox = Lootbox.objects.get(player=self.player)
-            else:
-                lbox = Lootbox(player=self.player)
-
-            lbox.stock += 1
-            lbox.save()
-
-            self.paid_points = 100000
-
-        elif self.points >= 112500 > self.paid_points:
+        if self.points >= 350 > self.paid_points:
+            self.paid_points = 350
             if self.player.premium < timezone.now():
                 Player.objects.filter(pk=self.player.pk).update(premium=timezone.now() + datetime.timedelta(days=1))
             else:
                 Player.objects.filter(pk=self.player.pk).update(premium=F('premium') + datetime.timedelta(days=1))
 
-            self.paid_points = 112500
-
-        elif self.points >= 125000 > self.paid_points:
+        elif self.points >= 700 > self.paid_points:
+            self.paid_points = 700
             if self.player.premium < timezone.now():
                 Player.objects.filter(pk=self.player.pk).update(premium=timezone.now() + datetime.timedelta(days=1))
             else:
                 Player.objects.filter(pk=self.player.pk).update(premium=F('premium') + datetime.timedelta(days=1))
 
-            self.paid_points = 125000
-
-        elif self.points >= 137500 > self.paid_points:
+        elif self.points >= 1050 > self.paid_points:
+            self.paid_points = 1050
             if self.player.premium < timezone.now():
                 Player.objects.filter(pk=self.player.pk).update(premium=timezone.now() + datetime.timedelta(days=1))
             else:
                 Player.objects.filter(pk=self.player.pk).update(premium=F('premium') + datetime.timedelta(days=1))
 
-            self.paid_points = 137500
-
-        elif self.points >= 150000 > self.paid_points:
-            if Lootbox.objects.filter(player=self.player).exists():
-                lbox = Lootbox.objects.get(player=self.player)
+        elif self.points >= 1400 > self.paid_points:
+            if self.player.premium < timezone.now():
+                Player.objects.filter(pk=self.player.pk).update(premium=timezone.now() + datetime.timedelta(days=1))
             else:
-                lbox = Lootbox(player=self.player)
+                Player.objects.filter(pk=self.player.pk).update(premium=F('premium') + datetime.timedelta(days=1))
 
-            lbox.stock += 1
-            lbox.save()
+            self.paid_points = 1400
 
-            self.paid_points = 150000
+        elif self.points >= 1750 > self.paid_points:
+            log('+1750')
+            self.paid_points = 1750
+            if self.player.premium < timezone.now():
+                log('+1750=2')
+                Player.objects.filter(pk=self.player.pk).update(premium=timezone.now() + datetime.timedelta(days=1))
+            else:
+                log('+1750=3')
+                Player.objects.filter(pk=self.player.pk).update(premium=F('premium') + datetime.timedelta(days=1))
+
+        elif self.points >= 2100 > self.paid_points:
+            self.paid_points = 2100
+            if self.player.premium < timezone.now():
+                Player.objects.filter(pk=self.player.pk).update(premium=timezone.now() + datetime.timedelta(days=1))
+            else:
+                Player.objects.filter(pk=self.player.pk).update(premium=F('premium') + datetime.timedelta(days=1))
+
+        elif self.points >= 2450 > self.paid_points:
+            self.paid_points = 2450
+            if self.player.premium < timezone.now():
+                Player.objects.filter(pk=self.player.pk).update(premium=timezone.now() + datetime.timedelta(days=1))
+            else:
+                Player.objects.filter(pk=self.player.pk).update(premium=F('premium') + datetime.timedelta(days=1))
+
+        elif self.points >= 2800 > self.paid_points:
+            if self.player.premium < timezone.now():
+                Player.objects.filter(pk=self.player.pk).update(premium=timezone.now() + datetime.timedelta(days=1))
+            else:
+                Player.objects.filter(pk=self.player.pk).update(premium=F('premium') + datetime.timedelta(days=1))
+
+            self.paid_points = 2800
+
+        elif self.points >= 3150 > self.paid_points:
+            if self.player.premium < timezone.now():
+                Player.objects.filter(pk=self.player.pk).update(premium=timezone.now() + datetime.timedelta(days=1))
+            else:
+                Player.objects.filter(pk=self.player.pk).update(premium=F('premium') + datetime.timedelta(days=1))
+
+            self.paid_points = 3150
+
+        elif self.points >= 3500 > self.paid_points:
+            if self.player.premium < timezone.now():
+                Player.objects.filter(pk=self.player.pk).update(premium=timezone.now() + datetime.timedelta(days=1))
+            else:
+                Player.objects.filter(pk=self.player.pk).update(premium=F('premium') + datetime.timedelta(days=1))
+
+            self.paid_points = 3500
+
+        elif self.points >= 3850 > self.paid_points:
+            if self.player.premium < timezone.now():
+                Player.objects.filter(pk=self.player.pk).update(premium=timezone.now() + datetime.timedelta(days=1))
+            else:
+                Player.objects.filter(pk=self.player.pk).update(premium=F('premium') + datetime.timedelta(days=1))
+
+            self.paid_points = 3850
+
+        elif self.points >= 4200 > self.paid_points:
+            if self.player.premium < timezone.now():
+                Player.objects.filter(pk=self.player.pk).update(premium=timezone.now() + datetime.timedelta(days=1))
+            else:
+                Player.objects.filter(pk=self.player.pk).update(premium=F('premium') + datetime.timedelta(days=1))
+
+            self.paid_points = 4200
 
     def __str__(self):
         return self.player.nickname

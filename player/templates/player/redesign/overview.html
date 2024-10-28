@@ -424,7 +424,7 @@
         {% else %}
           {% if has_event %}
           <!--Блок ИВЕНТ-->
-          <a href="/summer_festival/" class="overview__event gui_help" data-helpid="overview event block">
+          <a href="/anniversary/" class="overview__event gui_help" data-helpid="overview event block">
             <!--сообщение что войн нет-->
             {% if has_event.type == 'hl' %}
             <p class="overview__war-no event">Тыквенный спас</p>
@@ -625,6 +625,22 @@
                  d="M 17.844301,9.9951714 C 23.374706,8.5914289 27.991833,9.8260454 31.176226,15.26464 29.905368,9.1930323 24.275903,4.6363077 17.844301,9.9951714 Z m 0.864956,1.4496466 c 7.277231,2.882383 9.934918,6.42194 6.552407,13.428568 1.304683,-6.615224 -2.118901,-10.046056 -6.552407,-13.428568 z m -2.720505,1.657431 C 10.356873,13.252046 8.4844116,18.900839 9.9847966,26.35686 6.5442996,19.007146 7.9262966,9.8961114 15.988752,13.102249 Z M 2.7921286,17.523674 C 5.0294176,12.273534 10.458348,9.0673969 15.838956,11.911122 9.8664076,10.074901 6.2906116,13.488821 2.7921286,17.523674 Z M 15.544194,8.9973309 15.512786,10.688586 C 12.214839,6.8542687 6.6578566,7.864189 3.0627306,10.101478 6.7979886,5.938574 11.197669,4.9407339 15.544194,8.9973309 Z"
                  id="path3"
                  style="fill:#3bae39;fill-rule:evenodd;stroke-width:0.241608" />
+            </svg>
+            {% elif has_event.type == 'av' %}
+            <p class="overview__war-no event">{% trans 'Годовщина сервера!' context "overview" %}</p>
+            <!--иконка шарика-->
+            <svg width="34" height="34" viewBox="0 0 34 34" class="overview__war-icon" fill="none" version="1.1" id="svg1" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+              <defs id="defs1"></defs>
+              <circle cx="17" cy="17" r="16.5" stroke="var(--c10two)" id="circle1" style="fill:none;stroke-opacity:1"></circle>
+              <g id="_Group_" data-name="<Group>" transform="matrix(0.62847395,0,0,0.62847395,0.02146112,1.4829787)">
+                <ellipse id="_Ellipse_" data-name="<Ellipse>" class="cls-1" cx="24" cy="45.419998" rx="7.9000001" ry="1.58" style="opacity:0.15;fill: #ffffff;"></ellipse>
+                <path id="_Path_" data-name="<Path>" class="cls-2" d="M 33.31,12.94 C 33.31,7 29.14,2.88 24,2.88 c -5.14,0 -9.31,4.12 -9.31,10.06 0,5.37 5.16,11.23 8.39,12.27 l -0.74,1.7 a 0.65,0.65 0 0 0 0.59,0.91 h 2.14 a 0.65,0.65 0 0 0 0.59,-0.91 l -0.74,-1.7 c 3.23,-1.04 8.39,-6.9 8.39,-12.27 z" style="fill:#ff2a2a"></path>
+                <g id="_Group_2" data-name="<Group>">
+                  <path id="_Path_2" data-name="<Path>" class="cls-3" d="m 24,7.27 c 4.64,0 8.48,2.85 9.18,7.08 a 9.6,9.6 0 0 0 0.13,-1.41 C 33.31,7 29.14,2.88 24,2.88 18.86,2.88 14.69,7 14.69,12.94 a 9.6,9.6 0 0 0 0.13,1.41 C 15.52,10.12 19.36,7.27 24,7.27 Z" style="fill:#ff5555"></path>
+                </g>
+                <path id="_Path_3" data-name="<Path>" class="cls-4" d="M 33.31,12.94 C 33.31,7 29.14,2.88 24,2.88 c -5.14,0 -9.31,4.12 -9.31,10.06 0,5.37 5.16,11.23 8.39,12.27 l -0.74,1.7 a 0.65,0.65 0 0 0 0.59,0.91 h 2.14 a 0.65,0.65 0 0 0 0.59,-0.91 l -0.74,-1.7 c 3.23,-1.04 8.39,-6.9 8.39,-12.27 z" style="fill:none;stroke:#45413c;stroke-linecap:round;stroke-linejoin:round"></path>
+                <path id="_Path_4" data-name="<Path>" class="cls-4" d="m 24,27.82 c 0,6.34 8,7.18 11.78,10.35 3.78,3.17 3.56,6.33 3.56,6.33" style="fill:none;stroke: #ffffff;stroke-linecap:round;stroke-linejoin:round"></path>
+              </g>
             </svg>
             {% endif %}
           </a>

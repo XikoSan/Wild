@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-28 19:49+0300\n"
+"POT-Creation-Date: 2024-10-28 23:30+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -49,7 +49,7 @@ msgstr ""
 
 #: article/templates/article/article.html:344
 #: chat/templates/chat/dialogue.html:160
-#: player/templates/player/redesign/overview.html:1018
+#: player/templates/player/redesign/overview.html:1034
 #, fuzzy
 #| msgid "У вас пока еще нет стикеров"
 msgctxt "overview"
@@ -58,7 +58,7 @@ msgstr "Hələ stikerləriniz yoxdur"
 
 #: article/templates/article/article.html:357
 #: chat/templates/chat/dialogue.html:173
-#: player/templates/player/redesign/overview.html:1031
+#: player/templates/player/redesign/overview.html:1047
 msgctxt "overview"
 msgid "магазин"
 msgstr ""
@@ -244,8 +244,8 @@ msgstr ""
 #: party/views/management/roles/set_role.py:66
 #: party/views/management/roles/set_role.py:74
 #: party/views/management/staff/leave_party.py:38
-#: party/views/management/staff/leave_party.py:210 player/player.py:392
-#: player/player.py:403 player/player.py:424 player/views/answer_captcha.py:35
+#: party/views/management/staff/leave_party.py:210 player/player.py:395
+#: player/player.py:406 player/player.py:427 player/views/answer_captcha.py:35
 #: player/views/answer_captcha.py:53
 #: player/views/bonus_code/activate_code.py:45
 #: player/views/bonus_code/activate_code.py:56
@@ -2357,11 +2357,13 @@ msgctxt "chat"
 msgid "Вы не состоите в этом чате"
 msgstr "partiyadakı mövqe"
 
-#: event/templates/event/festival.html:218
-msgctxt "game_event"
-msgid "Зимний фестиваль"
+#: event/templates/event/anniversary.html:218
+#: player/templates/player/redesign/overview.html:630
+msgctxt "overview"
+msgid "Годовщина сервера!"
 msgstr ""
 
+#: event/templates/event/anniversary.html:221
 #: event/templates/event/festival.html:221
 #: event/templates/event/summer_festival.html:221
 #: player/templates/player/redesign/game_event/halloween2.html:223
@@ -2370,12 +2372,67 @@ msgctxt "game_event"
 msgid "общий"
 msgstr ""
 
+#: event/templates/event/anniversary.html:222
 #: event/templates/event/festival.html:222
 #: event/templates/event/summer_festival.html:222
 #: player/templates/player/redesign/game_event/halloween2.html:224
 #: player/templates/player/redesign/game_event/newyear.html:222
 msgctxt "game_event"
 msgid "личный"
+msgstr ""
+
+#: event/templates/event/anniversary.html:393
+msgctxt "game_event"
+msgid "Годовщина сервера WP:"
+msgstr ""
+
+#: event/templates/event/anniversary.html:394
+#, fuzzy
+#| msgid "У вас пока еще нет стикеров"
+msgctxt "game_event"
+msgid "заработайте премиум и золото!"
+msgstr "Hələ stikerləriniz yoxdur"
+
+#: event/templates/event/anniversary.html:395
+msgctxt "game_event"
+msgid "Событие проходит один день 28.10."
+msgstr ""
+
+#: event/templates/event/anniversary.html:396
+#: event/templates/event/festival.html:395
+#: event/templates/event/summer_festival.html:396
+#: player/templates/player/redesign/game_event/halloween2.html:394
+#: player/templates/player/redesign/game_event/newyear.html:395
+msgctxt "game_event"
+msgid "Личная прогрессия события"
+msgstr ""
+
+#: event/templates/event/anniversary.html:397
+#: event/templates/event/summer_festival.html:397
+msgctxt "game_event"
+msgid ""
+"Заполняется по тем же принципам, что и шкала Финансирования - тратами "
+"энергии игроком."
+msgstr ""
+
+#: event/templates/event/anniversary.html:398
+#: event/templates/event/festival.html:398
+#: event/templates/event/summer_festival.html:398
+#: player/templates/player/redesign/game_event/halloween2.html:397
+#: player/templates/player/redesign/game_event/newyear.html:398
+msgctxt "game_event"
+msgid "Общая прогрессия события"
+msgstr ""
+
+#: event/templates/event/anniversary.html:399
+#: event/templates/event/summer_festival.html:399
+msgctxt "game_event"
+msgid "Заполняется суммой усилий всех игроков сервера."
+msgstr ""
+
+#: event/templates/event/festival.html:218
+msgctxt "game_event"
+msgid "Зимний фестиваль"
 msgstr ""
 
 #: event/templates/event/festival.html:393
@@ -2388,14 +2445,6 @@ msgctxt "game_event"
 msgid "ускорение прокачки, премиум и Ящики в двух прогрессиях!"
 msgstr ""
 
-#: event/templates/event/festival.html:395
-#: event/templates/event/summer_festival.html:396
-#: player/templates/player/redesign/game_event/halloween2.html:394
-#: player/templates/player/redesign/game_event/newyear.html:395
-msgctxt "game_event"
-msgid "Личная прогрессия события"
-msgstr ""
-
 #: event/templates/event/festival.html:396
 msgctxt "game_event"
 msgid ""
@@ -2405,14 +2454,6 @@ msgstr ""
 #: event/templates/event/festival.html:397
 msgctxt "game_event"
 msgid "Если вы пропустите день - то потеряете одно очко прогрессии."
-msgstr ""
-
-#: event/templates/event/festival.html:398
-#: event/templates/event/summer_festival.html:398
-#: player/templates/player/redesign/game_event/halloween2.html:397
-#: player/templates/player/redesign/game_event/newyear.html:398
-msgctxt "game_event"
-msgid "Общая прогрессия события"
 msgstr ""
 
 #: event/templates/event/festival.html:399
@@ -2619,18 +2660,6 @@ msgstr ""
 #: event/templates/event/summer_festival.html:394
 msgctxt "game_event"
 msgid "увеличение Финансирования, премиум и Аэрокейсы в двух прогрессиях!"
-msgstr ""
-
-#: event/templates/event/summer_festival.html:397
-msgctxt "game_event"
-msgid ""
-"Заполняется по тем же принципам, что и шкала Финансирования - тратами "
-"энергии игроком."
-msgstr ""
-
-#: event/templates/event/summer_festival.html:399
-msgctxt "game_event"
-msgid "Заполняется суммой усилий всех игроков сервера."
 msgstr ""
 
 #: event/views/activate_invite.py:31
@@ -3055,7 +3084,7 @@ msgctxt "factory"
 msgid ". В наличии "
 msgstr ""
 
-#: factory/views/start_auto.py:31 player/player.py:390
+#: factory/views/start_auto.py:31 player/player.py:393
 #: region/views/do_mining.py:40 region/views/start_auto.py:26
 msgctxt "mining"
 msgid "Дождитесь конца полёта"
@@ -4135,13 +4164,13 @@ msgctxt "cash_log"
 msgid "Навыки"
 msgstr ""
 
-#: player/player.py:391 player/player.py:402 player/player.py:423
+#: player/player.py:394 player/player.py:405 player/player.py:426
 #: region/views/retrieve_cash.py:40
 msgctxt "mining"
 msgid "Ошибка получения финансирования"
 msgstr ""
 
-#: player/player.py:401 player/player.py:422
+#: player/player.py:404 player/player.py:425
 msgctxt "mining"
 msgid "Нечего забирать"
 msgstr ""
@@ -5001,60 +5030,60 @@ msgctxt "overview"
 msgid "Летний фестиваль"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:636
+#: player/templates/player/redesign/overview.html:652
 msgctxt "overview"
 msgid "Зимний фестиваль"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:669
+#: player/templates/player/redesign/overview.html:685
 msgctxt "overview"
 msgid "сила"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:674
+#: player/templates/player/redesign/overview.html:690
 msgctxt "overview"
 msgid "инт"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:679
+#: player/templates/player/redesign/overview.html:695
 msgctxt "overview"
 msgid "вын"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:695
+#: player/templates/player/redesign/overview.html:711
 msgctxt "overview"
 msgid "Выборы лидера"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:698
+#: player/templates/player/redesign/overview.html:714
 msgctxt "overview"
 msgid "Выборы"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:703
+#: player/templates/player/redesign/overview.html:719
 msgctxt "overview"
 msgid "партии"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:703
+#: player/templates/player/redesign/overview.html:719
 msgctxt "overview"
 msgid "государства"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:703
+#: player/templates/player/redesign/overview.html:719
 msgctxt "overview"
 msgid "региона"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:740
-#: player/templates/player/redesign/overview.html:785
+#: player/templates/player/redesign/overview.html:756
+#: player/templates/player/redesign/overview.html:801
 #, fuzzy
 #| msgid "партий нет"
 msgctxt "overview"
 msgid "партий нет"
 msgstr "Partiya yoxdur"
 
-#: player/templates/player/redesign/overview.html:747
+#: player/templates/player/redesign/overview.html:763
 msgctxt "overview"
 msgid "парламент"
 msgstr ""
@@ -5904,6 +5933,11 @@ msgstr ""
 
 #: player/views/full_auto_allow.py:42 player/views/full_auto_allow.py:58
 msgid "Энергетики в авто-добыче"
+msgstr ""
+
+#: player/views/game_event/anniversary.py:44
+msgctxt "game_event"
+msgid "С годовщиной сервера Wild Politics!"
 msgstr ""
 
 #: player/views/game_event/new_year.py:43

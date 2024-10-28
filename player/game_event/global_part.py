@@ -21,76 +21,53 @@ class GlobalPart(models.Model):
 
     def prize_check(self, char_part):
 
-        Lootbox = apps.get_model('player.Lootbox')
-
-        if self.points >= 6600000 > char_part.global_paid_points:
+        if self.points >= 96000 > char_part.global_paid_points:
 
             # если игрок не прошел соотв. этап личной прогрессии - ничего не положено
-            if char_part.paid_points >= 25000:
-                if Lootbox.objects.filter(player=char_part.player).exists():
-                    lbox = Lootbox.objects.get(player=char_part.player)
-                else:
-                    lbox = Lootbox(player=char_part.player)
+            if char_part.paid_points >= 700:
+                Player.objects.filter(pk=char_part.player.pk).update(gold=F('gold') + 200)
 
-                lbox.stock += 1
-                lbox.save()
+                char_part.global_paid_points = 96000
 
-                char_part.global_paid_points = 6600000
-
-        if self.points >= 13200000 > char_part.global_paid_points:
+        if self.points >= 192000 > char_part.global_paid_points:
 
             # если игрок не прошел соотв. этап личной прогрессии - ничего не положено
-            if char_part.paid_points >= 50000:
-                if Lootbox.objects.filter(player=char_part.player).exists():
-                    lbox = Lootbox.objects.get(player=char_part.player)
-                else:
-                    lbox = Lootbox(player=char_part.player)
+            if char_part.paid_points >= 1400:
+                Player.objects.filter(pk=char_part.player.pk).update(gold=F('gold') + 200)
 
-                lbox.stock += 1
-                lbox.save()
+                char_part.global_paid_points = 192000
 
-                char_part.global_paid_points = 13200000
-
-        if self.points >= 19800000 > char_part.global_paid_points:
+        if self.points >= 288000 > char_part.global_paid_points:
 
             # если игрок не прошел соотв. этап личной прогрессии - ничего не положено
-            if char_part.paid_points >= 75000:
-                if Lootbox.objects.filter(player=char_part.player).exists():
-                    lbox = Lootbox.objects.get(player=char_part.player)
-                else:
-                    lbox = Lootbox(player=char_part.player)
+            if char_part.paid_points >= 2100:
+                Player.objects.filter(pk=char_part.player.pk).update(gold=F('gold') + 200)
 
-                lbox.stock += 1
-                lbox.save()
+                char_part.global_paid_points = 288000
 
-                char_part.global_paid_points = 19800000
-
-        if self.points >= 26400000 > char_part.global_paid_points:
+        if self.points >= 384000 > char_part.global_paid_points:
 
             # если игрок не прошел соотв. этап личной прогрессии - ничего не положено
-            if char_part.paid_points >= 100000:
-                if char_part.boost < 40:
-                    char_part.boost = 40
+            if char_part.paid_points >= 2800:
+                Player.objects.filter(pk=char_part.player.pk).update(gold=F('gold') + 200)
 
-                char_part.global_paid_points = 26400000
+                char_part.global_paid_points = 384000
 
-        if self.points >= 33000000 > char_part.global_paid_points:
-
-            # если игрок не прошел соотв. этап личной прогрессии - ничего не положено
-            if char_part.paid_points >= 125000:
-                if char_part.boost < 45:
-                    char_part.boost = 45
-
-                char_part.global_paid_points = 33000000
-
-        if self.points >= 39600000 > char_part.global_paid_points:
+        if self.points >= 480000 > char_part.global_paid_points:
 
             # если игрок не прошел соотв. этап личной прогрессии - ничего не положено
-            if char_part.paid_points >= 150000:
-                if char_part.boost < 50:
-                    char_part.boost = 50
+            if char_part.paid_points >= 3500:
+                Player.objects.filter(pk=char_part.player.pk).update(gold=F('gold') + 200)
 
-                char_part.global_paid_points = 39600000
+                char_part.global_paid_points = 480000
+
+        if self.points >= 576000 > char_part.global_paid_points:
+
+            # если игрок не прошел соотв. этап личной прогрессии - ничего не положено
+            if char_part.paid_points >= 4200:
+                Player.objects.filter(pk=char_part.player.pk).update(gold=F('gold') + 200)
+
+                char_part.global_paid_points = 576000
 
         return char_part
 

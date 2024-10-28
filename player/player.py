@@ -196,6 +196,9 @@ class Player(models.Model):
         if GameEvent.objects.filter(running=True, event_start__lt=timezone.now(),
                                     event_end__gt=timezone.now()).exists():
 
+            from player.logs.print_log import log
+            log('+')
+
             event_part = None
 
             if EventPart.objects.filter(

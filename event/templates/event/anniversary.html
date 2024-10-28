@@ -1,0 +1,449 @@
+{% extends 'player/redesign/header.html' %}
+{% load static %}
+{% load bootstrap3 %}
+{% load l10n %}{% load i18n %}{% load tz %}
+{% load tz %}
+{% load redesign.overview_blocks.skills %}
+{% block for_scripts_and_css %}
+{% endblock %}
+{% load dict_key %}
+{% load get_sum %}
+{% load get_attr %}
+{% load get_key_list %}
+{% load get_class_name %}
+
+{% block content %}
+<style>
+  .ny {
+    height: calc(100vh - 60rem);
+  }
+  .ny__main-pic {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+	.ny__main-pic-pc {
+		display: none;
+	}
+  .ny__progress {
+    position: relative;
+    height: calc(100vh - 213rem);
+    overflow-y: scroll;
+  }
+	.ny__progress-title-one,
+	.ny__progress-title-two {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 122rem;
+		font-size: 20rem;
+		line-height: 1;
+		margin: 0;
+		font-weight: 400;
+		text-align: center;
+		color: var(--c10two);
+	}
+	.ny__progress-title-two {
+		left: initial;
+		right: 0;
+		color: var(--c10one);
+	}
+  .ny__bar-container {
+		position: absolute;
+    height: 2400rem;
+    width: 5rem;
+    margin: 0 auto;
+  }
+	.ny__bar-container.left {
+		left: 122rem;
+	}
+	.ny__bar-container.right {
+		right: 122rem;
+	}
+  .ny__empty {
+    width: 100%;
+    height: 100%;
+    background-color: var(--c30);
+  }
+  .ny__filled {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--c10two);  
+  }
+  .ny__list {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 100rem 0;
+		padding-bottom: 0;
+    list-style: none;
+  }
+  .ny__item {
+    height: 200rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+	.ny__item-empty {
+    width: 80rem;
+    height: 80rem;
+    margin: 0 8rem;
+	}
+  .ny__border {
+    display: block;
+    width: 80rem;
+    height: 80rem;
+		margin: 0 8rem;
+  }
+  .ny__item-point {
+		flex-shrink: 0;
+    margin: 0 5.5rem;
+    width: 20rem;
+    height: 20rem;
+    transform: rotate(45deg);
+    background-color: var(--c30);
+  }
+  .ny__item-point.active {
+    background-color: var(--c10two);
+  }
+  .ny__item-text {
+    font-size: 16rem;
+    width: 80rem;
+		text-align: center;
+  }
+	.ny__item-text > span {
+		color: var(--c10two);
+	}
+  .ny__info-modal {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: var(--c30);
+    width: 100%;
+    padding: 24rem 16rem;
+    font-size: 16rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10rem 0 rgba(0, 0, 0, 0.8);
+  }
+  .ny__info-modal.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+  .ny__info-modal-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: block;
+    width: 30rem;
+    height: 30rem;
+    padding: 0;
+    background-color: transparent;
+    border: 0;
+  }
+  .ny__info-modal-close svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+	@media (min-width: 1200px) {
+		.ny {
+			height: calc(100vh - 100rem);
+			margin-top: 100rem;
+			width: calc(100vw - 330rem);
+			margin-left: 330rem;
+		}
+		.ny__main-pic {
+			display: none;
+		}
+		.ny__main-pic-pc {
+			display: block;
+			height: 107rem;
+			background-image: url('img/ny.png');
+			background-repeat: repeat-x;
+		}
+		.ny__progress {
+			height: calc(100vh - 253rem);
+			width: 800rem;
+			margin: 0 auto;
+			scrollbar-width: none;
+			overflow-y: auto;
+		} 
+		.ny__progress::-webkit-scrollbar {
+			width: 0;
+		}
+		.ny__border {
+			display: block;
+			width: 120rem;
+			height: 120rem;
+			margin: 0 20rem;
+		}
+		.ny__item-empty {
+			width: 120rem;
+			height: 120rem;
+			margin: 0 20rem;
+		}
+		.ny__bar-container.left {
+    	left: 342rem;
+		}
+		.ny__bar-container.right {
+    	right: 342rem;
+		}
+		.ny__progress-title-one, .ny__progress-title-two {
+			width: 342rem;
+		}
+		.ny__info-modal {
+			position: absolute;
+			top: 50%;
+			left: 465rem;
+			width: calc(100vw - 600rem);
+			padding: 48rem;
+		}
+	}
+</style>
+
+<main>
+
+  <section class="ny">
+    <!--ёлки-->
+    <img src="{% static 'redesign/img/events/boosts/festival.png' %}?{{ csrf_token }}" class="ny__main-pic" alt="">
+    <!--ёлки ПК-->
+    <div class="ny__main-pic-pc"></div>
+    <!--заголовок-->
+		<h1 class="ny__title ct__page-title">{% trans 'Годовщина сервера!' context "overview" %}</h1>
+    <!--прогресс бар-->
+    <div class="ny__progress">
+			<h2 class="ny__progress-title-one">{% trans 'общий' context "game_event" %}</h2>
+			<h2 class="ny__progress-title-two">{% trans 'личный' context "game_event" %}</h2>
+      <!--полоска заполнения общая-->
+      <div class="ny__bar-container left">
+        <div class="ny__empty"></div>
+        <div class="ny__filled left"></div>
+      </div>
+      <!--полоска заполнения личная-->
+      <div class="ny__bar-container right">
+        <div class="ny__empty"></div>
+        <div class="ny__filled right"></div>
+      </div>
+      <!--Награды-->
+      <ul class="ny__list">
+        <li class="ny__item">
+          <div class="ny__item-empty"></div>
+          <div class="ny__item-point left" style="opacity: 0;"></div>
+          <p class="ny__item-text">
+            <br>
+						<br><br>
+						350
+          </p>
+					<div class="ny__item-point right"></div>
+          <img class="ny__border" src="{% static 'redesign/img/events/new_year/prem.png' %}?{{ csrf_token }}" alt="">
+        </li>
+
+        <li class="ny__item">
+          <img class="ny__border" src="{% static 'redesign/img/200_gold.png' %}?{{ csrf_token }}" alt="">
+          <div class="ny__item-point left"></div>
+					<p class="ny__item-text">
+            <span>96 000</span>
+						<br><br>
+						700
+          </p>
+					<div class="ny__item-point right"></div>
+          <img class="ny__border" src="{% static 'redesign/img/events/new_year/prem.png' %}?{{ csrf_token }}" alt="">
+        </li>
+
+        <li class="ny__item">
+          <div class="ny__item-empty"></div>
+          <div class="ny__item-point left" style="opacity: 0;"></div>
+					<p class="ny__item-text">
+            <br>
+						<br><br>
+						1 050
+          </p>
+					<div class="ny__item-point right"></div>
+          <img class="ny__border" src="{% static 'redesign/img/events/new_year/prem.png' %}?{{ csrf_token }}" alt="">
+        </li>
+
+        <li class="ny__item">
+          <img class="ny__border" src="{% static 'redesign/img/200_gold.png' %}?{{ csrf_token }}" alt="">
+          <div class="ny__item-point left"></div>
+					<p class="ny__item-text">
+            <span>192 000</span>
+						<br><br>
+						1 400
+          </p>
+					<div class="ny__item-point right"></div>
+<!--            <img class="ny__border" style="border: 1px dashed tomato;" src="" alt="">-->
+            <img class="ny__border" src="{% static 'redesign/img/events/new_year/prem.png' %}?{{ csrf_token }}" alt="">
+        </li>
+
+        <li class="ny__item">
+          <div class="ny__item-empty"></div>
+          <div class="ny__item-point left" style="opacity: 0;"></div>
+					<p class="ny__item-text">
+            <br>
+						<br><br>
+						1 750
+          </p>
+					<div class="ny__item-point right"></div>
+          <img class="ny__border" src="{% static 'redesign/img/events/new_year/prem.png' %}?{{ csrf_token }}" alt="">
+        </li>
+
+        <li class="ny__item">
+          <img class="ny__border" src="{% static 'redesign/img/200_gold.png' %}?{{ csrf_token }}" alt="">
+          <div class="ny__item-point left"></div>
+					<p class="ny__item-text">
+            <span>288 000</span>
+						<br><br>
+						2 100
+          </p>
+					<div class="ny__item-point right"></div>
+          <img class="ny__border" src="{% static 'redesign/img/events/new_year/prem.png' %}?{{ csrf_token }}" alt="">
+        </li>
+
+        <li class="ny__item">
+          <div class="ny__item-empty"></div>
+          <div class="ny__item-point left" style="opacity: 0;"></div>
+					<p class="ny__item-text">
+            <br>
+						<br><br>
+						2 450
+          </p>
+					<div class="ny__item-point right"></div>
+          <img class="ny__border" src="{% static 'redesign/img/events/new_year/prem.png' %}?{{ csrf_token }}" alt="">
+        </li>
+
+        <li class="ny__item">
+          <img class="ny__border" src="{% static 'redesign/img/200_gold.png' %}?{{ csrf_token }}" alt="">
+          <div class="ny__item-point left"></div>
+					<p class="ny__item-text">
+            <span>384 000</span>
+						<br><br>
+						2 800
+          </p>
+					<div class="ny__item-point right"></div>
+<!--          <img class="ny__border" style="border: 1px dashed tomato;" src="" alt="">-->
+            <img class="ny__border" src="{% static 'redesign/img/events/new_year/prem.png' %}?{{ csrf_token }}" alt="">
+        </li>
+
+        <li class="ny__item">
+          <div class="ny__item-empty"></div>
+          <div class="ny__item-point left" style="opacity: 0;"></div>
+					<p class="ny__item-text">
+            <br>
+						<br><br>
+						3 150
+          </p>
+					<div class="ny__item-point right"></div>
+          <img class="ny__border" src="{% static 'redesign/img/events/new_year/prem.png' %}?{{ csrf_token }}" alt="">
+        </li>
+
+        <li class="ny__item">
+          <img class="ny__border" src="{% static 'redesign/img/200_gold.png' %}?{{ csrf_token }}" alt="">
+          <div class="ny__item-point left"></div>
+					<p class="ny__item-text">
+            <span>480 000</span>
+						<br><br>
+						3 500
+          </p>
+					<div class="ny__item-point right"></div>
+          <img class="ny__border" src="{% static 'redesign/img/events/new_year/prem.png' %}?{{ csrf_token }}" alt="">
+        </li>
+
+        <li class="ny__item">
+          <div class="ny__item-empty"></div>
+          <div class="ny__item-point left" style="opacity: 0;"></div>
+					<p class="ny__item-text">
+            <br>
+						<br><br>
+						3 850
+          </p>
+					<div class="ny__item-point right"></div>
+          <img class="ny__border" src="{% static 'redesign/img/events/new_year/prem.png' %}?{{ csrf_token }}" alt="">
+        </li>
+
+        <li class="ny__item">
+          <img class="ny__border" src="{% static 'redesign/img/200_gold.png' %}?{{ csrf_token }}" alt="">
+          <div class="ny__item-point left"></div>
+					<p class="ny__item-text">
+            <span>576 000</span>
+						<br><br>
+						4 200
+          </p>
+					<div class="ny__item-point right"></div>
+<!--          <img class="ny__border" style="border: 1px dashed tomato;" src="" alt="">-->
+            <img class="ny__border" src="{% static 'redesign/img/events/new_year/prem.png' %}?{{ csrf_token }}" alt="">
+        </li>
+
+      </ul>
+    </div>
+
+    <!--инфо модалка-->
+    <div class="ny__info-modal">
+        <button class="ny__info-modal-close">
+            <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M26 30H0V0H30V26L26 30Z" fill="var(--c10two)"/><path d="M4 4L26 26M4 26L26 4" stroke="var(--c60)" stroke-width="3"/>
+            </svg>
+        </button>
+  
+        <h3>{% trans 'Годовщина сервера WP:' context "game_event" %}</h3>
+            <p>{% trans 'заработайте премиум и золото!' context "game_event" %}</p>
+            <p>{% trans 'Событие проходит один день 28.10.' context "game_event" %}</p>
+        <h3>{% trans 'Личная прогрессия события' context "game_event" %}</h3>
+            <p>{% trans 'Заполняется по тем же принципам, что и шкала Финансирования - тратами энергии игроком.' context "game_event" %}</p>
+        <h3>{% trans 'Общая прогрессия события' context "game_event" %}</h3>
+            <p>{% trans 'Заполняется суммой усилий всех игроков сервера.' context "game_event" %}</p>
+    </div>
+
+  </section>
+
+
+</main>
+
+<script>
+
+  const progressPoints1 = document.querySelectorAll('.ny__item-point.left')
+  const progressBar1 = document.querySelector('.ny__filled.left')
+  const MAX_SCORE1 = 576000;
+	const STEP1 = 48000;
+
+  const progressPoints2 = document.querySelectorAll('.ny__item-point.right')
+  const progressBar2 = document.querySelector('.ny__filled.right')
+  const MAX_SCORE2 = 4200;
+	const STEP2 = 350;
+
+  function fillProgressBar(num, points, bar, maxscore, step) {
+    let userScore = num;
+    if (userScore > maxscore) userScore = maxscore
+    const filledPoints = Math.floor(userScore / step) - 1;
+    points.forEach((point, index) => {
+      if (index <= filledPoints) point.classList.add('active')
+    });
+    const filledPercent = userScore / maxscore;
+    bar.style.height = `${filledPercent * 100}%`;
+  }
+
+  // вызов функции для покраски прогресса ОБЩИЙ
+  fillProgressBar({% localize off %}{{ global_points }}{% endlocalize %}, progressPoints1, progressBar1, MAX_SCORE1, STEP1);
+  // вызов функции для покраски прогресса ЛИЧНЫЙ
+  fillProgressBar({% localize off %}{{ points }}{% endlocalize %}, progressPoints2, progressBar2, MAX_SCORE2, STEP2);
+
+  // инфомодалка
+  const infoModal = document.querySelector('.ny__info-modal')
+  const infoModalClose = document.querySelector('.ny__info-modal-close')
+
+  if (!localStorage.getItem('anniversary_24')) {
+    infoModal.classList.add('active')
+  }
+
+  infoModalClose.addEventListener('click', () => {
+    infoModal.classList.remove('active')
+    localStorage.setItem('anniversary_24', 'checked')
+  })
+
+</script>
+{% endblock %}

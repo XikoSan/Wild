@@ -35,6 +35,7 @@ from .views.expense_energy import expense_energy
 from .views.full_auto_allow import full_auto_allow
 from .views.game_event.new_year import new_year
 from .views.game_event.summer import summer_festival
+from .views.game_event.anniversary import anniversary
 from .views.index import index
 from .views.lists.cash_top import cash_top
 from .views.lists.region_citizens import region_citizens_list
@@ -141,6 +142,8 @@ urlpatterns = [
     url(r'^winter_festival/$', winter_festival, name='winter_festival'),
     # летний фестиваль
     url(r'^summer_festival/$', summer_festival, name='summer_festival'),
+    # годовщина игры
+    url(r'^anniversary/$', anniversary, name='anniversary'),
 
     # контексты переводов
     path('translations/', translations, name='translations'),
