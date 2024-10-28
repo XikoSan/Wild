@@ -70,8 +70,8 @@ def set_role(request):
     # если страницу только грузят
     else:
         data = {
-            'header': 'Смена должности',
-            'grey_btn': 'Закрыть',
-            'response': 'Ты уверен что тебе сюда, путник?',
+            'header': pgettext('has_party', 'Смена должности'),
+            'grey_btn': pgettext('core', 'Закрыть'),
+            'response': pgettext('core', 'Ошибка типа запроса'),
         }
         return JsonResponse(data)

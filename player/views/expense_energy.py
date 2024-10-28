@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.utils import timezone
 from django.utils.translation import ugettext as _
+from django.utils.translation import pgettext
 
 from player.decorators.player import check_player
 from player.player import Player
@@ -24,9 +25,8 @@ def expense_energy(request):
 
         else:
             data = {
-                # 'response': _('positive_enrg_req'),
-                'response': 'Отсутствует обязательный аргумент запроса',
-                'header': _('Пополнение энергии'),
+                'response': pgettext('expense_energy', 'Отсутствует обязательный аргумент запроса'),
+                'header': pgettext('expense_energy', 'Пополнение энергии'),
                 'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
@@ -38,9 +38,8 @@ def expense_energy(request):
         # если время подзарядки ещё не пришло
         if end_time > cur_time:
             data = {
-                # 'response': _('positive_enrg_req'),
-                'response': _('Десять минут ещё не прошло'),
-                'header': _('Пополнение энергии'),
+                'response': pgettext('expense_energy', 'Десять минут ещё не прошло'),
+                'header': pgettext('expense_energy', 'Пополнение энергии'),
                 'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
@@ -61,18 +60,16 @@ def expense_energy(request):
                     return JResponse(data)
                 else:
                     data = {
-                        # 'response': _('positive_enrg_req'),
-                        'response': _('Пополнение энергии не требуется'),
-                        'header': _('Пополнение энергии'),
+                        'response': pgettext('expense_energy', 'Пополнение энергии не требуется'),
+                        'header': pgettext('expense_energy', 'Пополнение энергии'),
                         'grey_btn': pgettext('core', 'Закрыть'),
                     }
                     return JResponse(data)
                     # return HttpResponse(_('no_required'), content_type='text/html')
             else:
                 data = {
-                    # 'response': _('positive_enrg_req'),
-                    'response': _('Недостаточно Энергетиков. Создайте их в Хранилище Склада'),
-                    'header': _('Пополнение энергии'),
+                    'response': pgettext('expense_energy', 'Недостаточно Энергетиков. Создайте их в Хранилище Склада'),
+                    'header': pgettext('expense_energy', 'Пополнение энергии'),
                     'grey_btn': pgettext('core', 'Закрыть'),
                 }
                 return JResponse(data)
@@ -81,9 +78,8 @@ def expense_energy(request):
     # если страницу только грузят
     else:
         data = {
-            # 'response': _('positive_enrg_req'),
-            'response': _('Ошибка типа запроса'),
-            'header': _('Пополнение энергии'),
+            'response': pgettext('core', 'Ошибка типа запроса'),
+            'header': pgettext('expense_energy', 'Пополнение энергии'),
             'grey_btn': pgettext('core', 'Закрыть'),
         }
         return JResponse(data)

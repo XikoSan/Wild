@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-28 16:01+0300\n"
+"POT-Creation-Date: 2024-10-28 17:05+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -169,7 +169,11 @@ msgstr ""
 #: bill/views/bills/speedup_bill.py:127 bill/views/bills/speedup_bill.py:134
 #: bill/views/bills/speedup_bill.py:141 bill/views/bills/speedup_bill.py:148
 #: bill/views/bills/speedup_bill.py:155 bill/views/bills/speedup_bill.py:162
-#: bill/views/bills/speedup_bill.py:170 chat/templates/chat/dialogue.html:212
+#: bill/views/bills/speedup_bill.py:170 bill/views/bills/vote_bill.py:64
+#: bill/views/bills/vote_bill.py:90 bill/views/bills/vote_bill.py:97
+#: bill/views/bills/vote_bill.py:104 bill/views/bills/vote_bill.py:111
+#: bill/views/bills/vote_bill.py:118 bill/views/bills/vote_bill.py:125
+#: bill/views/bills/vote_bill.py:133 chat/templates/chat/dialogue.html:212
 #: chat/views/buy_sticker_pack.py:24 chat/views/buy_sticker_pack.py:36
 #: chat/views/buy_sticker_pack.py:47 chat/views/buy_sticker_pack.py:55
 #: chat/views/buy_sticker_pack.py:90
@@ -201,6 +205,14 @@ msgstr ""
 #: gov/views/set_ministers.py:62 gov/views/set_ministers.py:83
 #: gov/views/set_ministers.py:93 gov/views/set_ministers.py:183
 #: gov/views/switch_description.py:24 gov/views/switch_description.py:42
+#: party/primaries/views/vote_primaries.py:28
+#: party/primaries/views/vote_primaries.py:37
+#: party/primaries/views/vote_primaries.py:46
+#: party/primaries/views/vote_primaries.py:57
+#: party/primaries/views/vote_primaries.py:68
+#: party/primaries/views/vote_primaries.py:77
+#: party/primaries/views/vote_primaries.py:86
+#: party/primaries/views/vote_primaries.py:107
 #: party/views/management/color_change.py:38
 #: party/views/management/color_change.py:54
 #: party/views/management/color_change.py:61
@@ -229,6 +241,7 @@ msgstr ""
 #: party/views/management/roles/set_role.py:52
 #: party/views/management/roles/set_role.py:59
 #: party/views/management/roles/set_role.py:66
+#: party/views/management/roles/set_role.py:74
 #: party/views/management/staff/leave_party.py:38
 #: party/views/management/staff/leave_party.py:210 player/player.py:392
 #: player/player.py:403 player/player.py:424 player/views/answer_captcha.py:35
@@ -266,9 +279,9 @@ msgstr ""
 #: player/views/customization/plane/set_plane_nick.py:58
 #: player/views/customization/plane/set_plane_nick.py:73
 #: player/views/customization/plane/set_plane_nick.py:82
-#: player/views/expense_energy.py:30 player/views/expense_energy.py:44
-#: player/views/expense_energy.py:67 player/views/expense_energy.py:76
-#: player/views/expense_energy.py:87 player/views/full_auto_allow.py:43
+#: player/views/expense_energy.py:30 player/views/expense_energy.py:43
+#: player/views/expense_energy.py:65 player/views/expense_energy.py:73
+#: player/views/expense_energy.py:83 player/views/full_auto_allow.py:43
 #: player/views/full_auto_allow.py:59 player/views/new_player.py:181
 #: player/views/new_player.py:194 player/views/open_lootboxes.py:27
 #: player/views/open_lootboxes.py:38 player/views/open_lootboxes.py:49
@@ -333,6 +346,9 @@ msgstr ""
 #: storage/views/storage/new_storage.py:63
 #: storage/views/storage/new_storage.py:83
 #: storage/views/storage/new_storage.py:106
+#: storage/views/storage/storage_status.py:58
+#: storage/views/storage/storage_status.py:72
+#: storage/views/storage/storage_status.py:98
 #: storage/views/storage/upgrade_storage.py:38
 #: storage/views/storage/upgrade_storage.py:48
 #: storage/views/storage/upgrade_storage.py:61
@@ -523,7 +539,7 @@ msgstr ""
 
 #: article/views/change_article.py:23 article/views/change_article.py:34
 #: article/views/change_article.py:42 article/views/change_article.py:54
-#: article/views/change_article.py:74
+#: article/views/change_article.py:74 bill/views/bills/vote_bill.py:132
 msgctxt "change_article"
 msgid "Редактировать статью"
 msgstr ""
@@ -551,14 +567,16 @@ msgstr ""
 #: article/views/change_article.py:73 article/views/create_article.py:118
 #: article/views/subscription.py:71 article/views/vote_article.py:73
 #: bill/views/bills/cancel_bill.py:113 bill/views/bills/new_bill.py:77
-#: chat/views/buy_sticker_pack.py:88
+#: bill/views/bills/vote_bill.py:131 chat/views/buy_sticker_pack.py:88
 #: chat/views/messages/get_message_block.py:84
 #: event/views/activate_invite.py:114 factory/views/cancel_auto.py:35
-#: factory/views/start_auto.py:142 player/views/change_bio.py:32
-#: player/views/change_nickname.py:63 player/views/skills/boost_skill.py:166
-#: player/views/skills/up_skill.py:190 skill/views/skill_cancel.py:98
-#: state/views/set_mandate.py:78 state/views/state_foundation.py:109
-#: storage/views/auctions/set_bet.py:159 war/views/start_war.py:102
+#: factory/views/start_auto.py:142 party/primaries/views/vote_primaries.py:105
+#: party/views/management/roles/set_role.py:75 player/views/change_bio.py:32
+#: player/views/change_nickname.py:63 player/views/expense_energy.py:81
+#: player/views/skills/boost_skill.py:166 player/views/skills/up_skill.py:190
+#: skill/views/skill_cancel.py:98 state/views/set_mandate.py:78
+#: state/views/state_foundation.py:109 storage/views/auctions/set_bet.py:159
+#: war/views/start_war.py:102
 msgctxt "core"
 msgid "Ошибка типа запроса"
 msgstr ""
@@ -1949,6 +1967,49 @@ msgctxt "core"
 msgid "Ошибка метода"
 msgstr ""
 
+#: bill/views/bills/vote_bill.py:62
+msgctxt "vote_bill"
+msgid "Надо проголосовать!"
+msgstr ""
+
+#: bill/views/bills/vote_bill.py:63 bill/views/bills/vote_bill.py:89
+#: bill/views/bills/vote_bill.py:96 bill/views/bills/vote_bill.py:103
+#: bill/views/bills/vote_bill.py:110 bill/views/bills/vote_bill.py:117
+#: bill/views/bills/vote_bill.py:124
+msgctxt "vote_bill"
+msgid "Голосование"
+msgstr ""
+
+#: bill/views/bills/vote_bill.py:88
+msgctxt "vote_bill"
+msgid "Вы уже проголосовали"
+msgstr ""
+
+#: bill/views/bills/vote_bill.py:95
+msgctxt "vote_bill"
+msgid "Нет такого законопроекта"
+msgstr ""
+
+#: bill/views/bills/vote_bill.py:102
+msgctxt "vote_bill"
+msgid "Нет такого вида законопроекта"
+msgstr ""
+
+#: bill/views/bills/vote_bill.py:109
+msgctxt "vote_bill"
+msgid "Вы - не депутат этого парламента"
+msgstr ""
+
+#: bill/views/bills/vote_bill.py:116
+msgctxt "vote_bill"
+msgid "В этом государстве нет парламента"
+msgstr ""
+
+#: bill/views/bills/vote_bill.py:123
+msgctxt "vote_bill"
+msgid "В этом регионе нет государства"
+msgstr ""
+
 #: chat/comment_consumers.py:24 chat/consumers.py:73
 msgctxt "chat"
 msgid "Успешно заблокирован"
@@ -2961,6 +3022,49 @@ msgctxt "party_view"
 msgid "Частная"
 msgstr ""
 
+#: party/primaries/views/vote_primaries.py:27
+#: party/primaries/views/vote_primaries.py:36
+#: party/primaries/views/vote_primaries.py:45
+#: party/primaries/views/vote_primaries.py:56
+#: party/primaries/views/vote_primaries.py:67
+#: party/primaries/views/vote_primaries.py:76
+#: party/primaries/views/vote_primaries.py:85
+#: party/primaries/views/vote_primaries.py:106
+msgctxt "vote_primaries"
+msgid "Голосование на праймериз"
+msgstr ""
+
+#: party/primaries/views/vote_primaries.py:29
+msgctxt "vote_primaries"
+msgid "ID партии должен быть целым числом"
+msgstr ""
+
+#: party/primaries/views/vote_primaries.py:38
+msgctxt "vote_primaries"
+msgid "Вы не состоите в этой партии"
+msgstr ""
+
+#: party/primaries/views/vote_primaries.py:47
+msgctxt "vote_primaries"
+msgid "Активных праймериз нет"
+msgstr ""
+
+#: party/primaries/views/vote_primaries.py:58
+msgctxt "vote_primaries"
+msgid "Вы уже голосовали"
+msgstr ""
+
+#: party/primaries/views/vote_primaries.py:69
+#: party/primaries/views/vote_primaries.py:78
+msgctxt "vote_primaries"
+msgid "Нельзя голосовать за себя"
+msgstr ""
+
+#: party/primaries/views/vote_primaries.py:87
+msgctxt "vote_primaries"
+msgid "Такого кандидата в партии нет"
+msgstr ""
+
 #: party/templates/party/redesign/lists/party_history_list.html:19
 msgctxt "party_hist"
 msgid "партия"
@@ -3647,6 +3751,7 @@ msgstr ""
 #: party/views/management/roles/set_role.py:51
 #: party/views/management/roles/set_role.py:58
 #: party/views/management/roles/set_role.py:65
+#: party/views/management/roles/set_role.py:73
 msgctxt "has_party"
 msgid "Смена должности"
 msgstr ""
@@ -5262,13 +5367,11 @@ msgstr ""
 msgid "Скрыть кнопку Wiki"
 msgstr ""
 
-#: player/views/claim_reward.py:83 player/views/expense_energy.py:85
+#: player/views/claim_reward.py:83
 msgid "Ошибка типа запроса"
 msgstr ""
 
-#: player/views/claim_reward.py:84 player/views/expense_energy.py:29
-#: player/views/expense_energy.py:43 player/views/expense_energy.py:66
-#: player/views/expense_energy.py:75 player/views/expense_energy.py:86
+#: player/views/claim_reward.py:84
 msgid "Пополнение энергии"
 msgstr ""
 
@@ -5401,15 +5504,30 @@ msgstr ""
 msgid "Выбор авиации"
 msgstr ""
 
-#: player/views/expense_energy.py:42
+#: player/views/expense_energy.py:28
+msgctxt "expense_energy"
+msgid "Отсутствует обязательный аргумент запроса"
+msgstr ""
+
+#: player/views/expense_energy.py:29 player/views/expense_energy.py:42
+#: player/views/expense_energy.py:64 player/views/expense_energy.py:72
+#: player/views/expense_energy.py:82
+msgctxt "expense_energy"
+msgid "Пополнение энергии"
+msgstr ""
+
+#: player/views/expense_energy.py:41
+msgctxt "expense_energy"
 msgid "Десять минут ещё не прошло"
 msgstr ""
 
-#: player/views/expense_energy.py:65
+#: player/views/expense_energy.py:63
+msgctxt "expense_energy"
 msgid "Пополнение энергии не требуется"
 msgstr ""
 
-#: player/views/expense_energy.py:74
+#: player/views/expense_energy.py:71
+msgctxt "expense_energy"
 msgid "Недостаточно Энергетиков. Создайте их в Хранилище Склада"
 msgstr ""
 
@@ -8111,6 +8229,32 @@ msgstr ""
 #: storage/views/storage/new_storage.py:82
 msgctxt "storage"
 msgid "Недостаточно денег на транспортировку"
+msgstr ""
+
+#: storage/views/storage/storage_status.py:56
+msgctxt "storage_status"
+msgid "Склад с указанным ID не существует или не принадлежит вам"
+msgstr ""
+
+#: storage/views/storage/storage_status.py:57
+#: storage/views/storage/storage_status.py:97
+msgctxt "storage_status"
+msgid "Данные склада"
+msgstr ""
+
+#: storage/views/storage/storage_status.py:70
+msgctxt "storage_status"
+msgid "Недостаточно Энергетиков. Создайте их в Хранилище Склада"
+msgstr ""
+
+#: storage/views/storage/storage_status.py:71
+msgctxt "storage_status"
+msgid "Пополнение энергии"
+msgstr ""
+
+#: storage/views/storage/storage_status.py:96
+msgctxt "storage_status"
+msgid "Некорректный параметр"
 msgstr ""
 
 #: storage/views/storage/upgrade_storage.py:37

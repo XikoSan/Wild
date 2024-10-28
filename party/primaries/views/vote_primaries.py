@@ -24,27 +24,27 @@ def vote_primaries(request):
 
         except ValueError:
             data = {
-                'header': 'Голосование на праймериз',
-                'grey_btn': 'Закрыть',
-                'response': 'ID партии должен быть целым числом',
+                'header': pgettext('vote_primaries', 'Голосование на праймериз'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('vote_primaries', 'ID партии должен быть целым числом'),
             }
             return JResponse(data)
 
         # если игрок НЕ состоит в партии, на праймериз которой голосует
         if not player.party == Party.objects.get(pk=party_pk):
             data = {
-                'header': 'Голосование на праймериз',
-                'grey_btn': 'Закрыть',
-                'response': 'Вы не состоите в этой партии',
+                'header': pgettext('vote_primaries', 'Голосование на праймериз'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('vote_primaries', 'Вы не состоите в этой партии'),
             }
             return JResponse(data)
 
         # если нет активных праймериз
         if not Primaries.objects.filter(party=Party.objects.get(pk=party_pk), running=True).exists():
             data = {
-                'header': 'Голосование на праймериз',
-                'grey_btn': 'Закрыть',
-                'response': 'Активных праймериз нет',
+                'header': pgettext('vote_primaries', 'Голосование на праймериз'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('vote_primaries', 'Активных праймериз нет'),
             }
             return JResponse(data)
 
@@ -53,9 +53,9 @@ def vote_primaries(request):
                 primaries=Primaries.objects.get(party=Party.objects.get(pk=party_pk), running=True),
                 player=player).exists():
             data = {
-                'header': 'Голосование на праймериз',
-                'grey_btn': 'Закрыть',
-                'response': 'Вы уже голосовали',
+                'header': pgettext('vote_primaries', 'Голосование на праймериз'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('vote_primaries', 'Вы уже голосовали'),
             }
             return JResponse(data)
 
@@ -64,27 +64,27 @@ def vote_primaries(request):
 
         except ValueError:
             data = {
-                'header': 'Голосование на праймериз',
-                'grey_btn': 'Закрыть',
-                'response': 'ID кандидата должен быть целым числом',
+                'header': pgettext('vote_primaries', 'Голосование на праймериз'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('vote_primaries', 'Нельзя голосовать за себя'),
             }
             return JResponse(data)
 
         # если игрок = кандидат
         if player.pk == player_pk:
             data = {
-                'header': 'Голосование на праймериз',
-                'grey_btn': 'Закрыть',
-                'response': 'Нельзя голосовать за себя',
+                'header': pgettext('vote_primaries', 'Голосование на праймериз'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('vote_primaries', 'Нельзя голосовать за себя'),
             }
             return JResponse(data)
 
         # если такого игрока нет в партии
         if not Player.objects.filter(pk=player_pk, party=party_pk).exists():
             data = {
-                'header': 'Голосование на праймериз',
-                'grey_btn': 'Закрыть',
-                'response': 'Такого кандидата в партии нет',
+                'header': pgettext('vote_primaries', 'Голосование на праймериз'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+                'response': pgettext('vote_primaries', 'Такого кандидата в партии нет'),
             }
             return JResponse(data)
 
@@ -102,8 +102,8 @@ def vote_primaries(request):
 
     else:
         data = {
-            'response': 'Некорректный тип запроса',
-            'header': 'Голосование на праймериз',
-            'grey_btn': 'Закрыть',
+            'response': pgettext('core', 'Ошибка типа запроса'),
+            'header': pgettext('vote_primaries', 'Голосование на праймериз'),
+            'grey_btn': pgettext('core', 'Закрыть'),
         }
         return JResponse(data)

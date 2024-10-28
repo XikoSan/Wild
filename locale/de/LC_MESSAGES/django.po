@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-28 16:01+0300\n"
+"POT-Creation-Date: 2024-10-28 17:05+0300\n"
 "PO-Revision-Date: 2023-06-22 18:43+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -194,7 +194,11 @@ msgstr "Bezeichnung darf nicht leer sein"
 #: bill/views/bills/speedup_bill.py:127 bill/views/bills/speedup_bill.py:134
 #: bill/views/bills/speedup_bill.py:141 bill/views/bills/speedup_bill.py:148
 #: bill/views/bills/speedup_bill.py:155 bill/views/bills/speedup_bill.py:162
-#: bill/views/bills/speedup_bill.py:170 chat/templates/chat/dialogue.html:212
+#: bill/views/bills/speedup_bill.py:170 bill/views/bills/vote_bill.py:64
+#: bill/views/bills/vote_bill.py:90 bill/views/bills/vote_bill.py:97
+#: bill/views/bills/vote_bill.py:104 bill/views/bills/vote_bill.py:111
+#: bill/views/bills/vote_bill.py:118 bill/views/bills/vote_bill.py:125
+#: bill/views/bills/vote_bill.py:133 chat/templates/chat/dialogue.html:212
 #: chat/views/buy_sticker_pack.py:24 chat/views/buy_sticker_pack.py:36
 #: chat/views/buy_sticker_pack.py:47 chat/views/buy_sticker_pack.py:55
 #: chat/views/buy_sticker_pack.py:90
@@ -226,6 +230,14 @@ msgstr "Bezeichnung darf nicht leer sein"
 #: gov/views/set_ministers.py:62 gov/views/set_ministers.py:83
 #: gov/views/set_ministers.py:93 gov/views/set_ministers.py:183
 #: gov/views/switch_description.py:24 gov/views/switch_description.py:42
+#: party/primaries/views/vote_primaries.py:28
+#: party/primaries/views/vote_primaries.py:37
+#: party/primaries/views/vote_primaries.py:46
+#: party/primaries/views/vote_primaries.py:57
+#: party/primaries/views/vote_primaries.py:68
+#: party/primaries/views/vote_primaries.py:77
+#: party/primaries/views/vote_primaries.py:86
+#: party/primaries/views/vote_primaries.py:107
 #: party/views/management/color_change.py:38
 #: party/views/management/color_change.py:54
 #: party/views/management/color_change.py:61
@@ -254,6 +266,7 @@ msgstr "Bezeichnung darf nicht leer sein"
 #: party/views/management/roles/set_role.py:52
 #: party/views/management/roles/set_role.py:59
 #: party/views/management/roles/set_role.py:66
+#: party/views/management/roles/set_role.py:74
 #: party/views/management/staff/leave_party.py:38
 #: party/views/management/staff/leave_party.py:210 player/player.py:392
 #: player/player.py:403 player/player.py:424 player/views/answer_captcha.py:35
@@ -291,9 +304,9 @@ msgstr "Bezeichnung darf nicht leer sein"
 #: player/views/customization/plane/set_plane_nick.py:58
 #: player/views/customization/plane/set_plane_nick.py:73
 #: player/views/customization/plane/set_plane_nick.py:82
-#: player/views/expense_energy.py:30 player/views/expense_energy.py:44
-#: player/views/expense_energy.py:67 player/views/expense_energy.py:76
-#: player/views/expense_energy.py:87 player/views/full_auto_allow.py:43
+#: player/views/expense_energy.py:30 player/views/expense_energy.py:43
+#: player/views/expense_energy.py:65 player/views/expense_energy.py:73
+#: player/views/expense_energy.py:83 player/views/full_auto_allow.py:43
 #: player/views/full_auto_allow.py:59 player/views/new_player.py:181
 #: player/views/new_player.py:194 player/views/open_lootboxes.py:27
 #: player/views/open_lootboxes.py:38 player/views/open_lootboxes.py:49
@@ -358,6 +371,9 @@ msgstr "Bezeichnung darf nicht leer sein"
 #: storage/views/storage/new_storage.py:63
 #: storage/views/storage/new_storage.py:83
 #: storage/views/storage/new_storage.py:106
+#: storage/views/storage/storage_status.py:58
+#: storage/views/storage/storage_status.py:72
+#: storage/views/storage/storage_status.py:98
 #: storage/views/storage/upgrade_storage.py:38
 #: storage/views/storage/upgrade_storage.py:48
 #: storage/views/storage/upgrade_storage.py:61
@@ -567,7 +583,7 @@ msgstr "Partei"
 
 #: article/views/change_article.py:23 article/views/change_article.py:34
 #: article/views/change_article.py:42 article/views/change_article.py:54
-#: article/views/change_article.py:74
+#: article/views/change_article.py:74 bill/views/bills/vote_bill.py:132
 #, fuzzy
 #| msgctxt "storage_assets"
 #| msgid "использовать"
@@ -606,14 +622,16 @@ msgstr "Bezeichnung darf nicht leer sein"
 #: article/views/change_article.py:73 article/views/create_article.py:118
 #: article/views/subscription.py:71 article/views/vote_article.py:73
 #: bill/views/bills/cancel_bill.py:113 bill/views/bills/new_bill.py:77
-#: chat/views/buy_sticker_pack.py:88
+#: bill/views/bills/vote_bill.py:131 chat/views/buy_sticker_pack.py:88
 #: chat/views/messages/get_message_block.py:84
 #: event/views/activate_invite.py:114 factory/views/cancel_auto.py:35
-#: factory/views/start_auto.py:142 player/views/change_bio.py:32
-#: player/views/change_nickname.py:63 player/views/skills/boost_skill.py:166
-#: player/views/skills/up_skill.py:190 skill/views/skill_cancel.py:98
-#: state/views/set_mandate.py:78 state/views/state_foundation.py:109
-#: storage/views/auctions/set_bet.py:159 war/views/start_war.py:102
+#: factory/views/start_auto.py:142 party/primaries/views/vote_primaries.py:105
+#: party/views/management/roles/set_role.py:75 player/views/change_bio.py:32
+#: player/views/change_nickname.py:63 player/views/expense_energy.py:81
+#: player/views/skills/boost_skill.py:166 player/views/skills/up_skill.py:190
+#: skill/views/skill_cancel.py:98 state/views/set_mandate.py:78
+#: state/views/state_foundation.py:109 storage/views/auctions/set_bet.py:159
+#: war/views/start_war.py:102
 #, fuzzy
 #| msgid "Ошибка типа запроса"
 msgctxt "core"
@@ -2570,6 +2588,71 @@ msgctxt "core"
 msgid "Ошибка метода"
 msgstr "Es ist ein Fehler beim Abbrechen der Fähigkeit aufgetreten"
 
+#: bill/views/bills/vote_bill.py:62
+#, fuzzy
+#| msgctxt "storage_assets"
+#| msgid "использовать"
+msgctxt "vote_bill"
+msgid "Надо проголосовать!"
+msgstr "Wild Pass verwenden"
+
+#: bill/views/bills/vote_bill.py:63 bill/views/bills/vote_bill.py:89
+#: bill/views/bills/vote_bill.py:96 bill/views/bills/vote_bill.py:103
+#: bill/views/bills/vote_bill.py:110 bill/views/bills/vote_bill.py:117
+#: bill/views/bills/vote_bill.py:124
+#, fuzzy
+#| msgctxt "goods"
+#| msgid "Оборудование"
+msgctxt "vote_bill"
+msgid "Голосование"
+msgstr "Ausrüstung"
+
+#: bill/views/bills/vote_bill.py:88
+#, fuzzy
+#| msgctxt "storage_assets"
+#| msgid "использовать"
+msgctxt "vote_bill"
+msgid "Вы уже проголосовали"
+msgstr "Wild Pass verwenden"
+
+#: bill/views/bills/vote_bill.py:95
+#, fuzzy
+#| msgid "Нет такого навыка"
+msgctxt "vote_bill"
+msgid "Нет такого законопроекта"
+msgstr "Du hast diese Fähigkeit nicht erlernt"
+
+#: bill/views/bills/vote_bill.py:102
+#, fuzzy
+#| msgid "Нет такого навыка"
+msgctxt "vote_bill"
+msgid "Нет такого вида законопроекта"
+msgstr "Du hast diese Fähigkeit nicht erlernt"
+
+#: bill/views/bills/vote_bill.py:109
+#, fuzzy
+#| msgctxt "overview"
+#| msgid "парламент"
+msgctxt "vote_bill"
+msgid "Вы - не депутат этого парламента"
+msgstr "Parlament"
+
+#: bill/views/bills/vote_bill.py:116
+#, fuzzy
+#| msgctxt "storage"
+#| msgid "В этом регионе нет Склада"
+msgctxt "vote_bill"
+msgid "В этом государстве нет парламента"
+msgstr "Es gibt kein Lagerhaus in dieser Region"
+
+#: bill/views/bills/vote_bill.py:123
+#, fuzzy
+#| msgctxt "storage"
+#| msgid "В этом регионе нет Склада"
+msgctxt "vote_bill"
+msgid "В этом регионе нет государства"
+msgstr "Es gibt kein Lagerhaus in dieser Region"
+
 #: chat/comment_consumers.py:24 chat/consumers.py:73
 #, fuzzy
 #| msgctxt "w_trading_new"
@@ -3763,6 +3846,67 @@ msgctxt "party_view"
 msgid "Частная"
 msgstr ""
 
+#: party/primaries/views/vote_primaries.py:27
+#: party/primaries/views/vote_primaries.py:36
+#: party/primaries/views/vote_primaries.py:45
+#: party/primaries/views/vote_primaries.py:56
+#: party/primaries/views/vote_primaries.py:67
+#: party/primaries/views/vote_primaries.py:76
+#: party/primaries/views/vote_primaries.py:85
+#: party/primaries/views/vote_primaries.py:106
+#, fuzzy
+#| msgid "Пополнение энергии"
+msgctxt "vote_primaries"
+msgid "Голосование на праймериз"
+msgstr "Auffüllen der Energie"
+
+#: party/primaries/views/vote_primaries.py:29
+#, fuzzy
+#| msgid "ID навыка должен быть числом"
+msgctxt "vote_primaries"
+msgid "ID партии должен быть целым числом"
+msgstr "Gebe die Nummer der Perk-ID an"
+
+#: party/primaries/views/vote_primaries.py:38
+#, fuzzy
+#| msgctxt "no_party"
+#| msgid "Вы не состоите в партии"
+msgctxt "vote_primaries"
+msgid "Вы не состоите в этой партии"
+msgstr "Sie sind kein Mitglied der angegebenen Partei"
+
+#: party/primaries/views/vote_primaries.py:47
+#, fuzzy
+#| msgctxt "storage_assets"
+#| msgid "Активация"
+msgctxt "vote_primaries"
+msgid "Активных праймериз нет"
+msgstr "aktivieren"
+
+#: party/primaries/views/vote_primaries.py:58
+#, fuzzy
+#| msgctxt "no_party"
+#| msgid "вы в полете"
+msgctxt "vote_primaries"
+msgid "Вы уже голосовали"
+msgstr "während des Fluges"
+
+#: party/primaries/views/vote_primaries.py:69
+#: party/primaries/views/vote_primaries.py:78
+#, fuzzy
+#| msgctxt "w_trading"
+#| msgid "Нельзя принять собственный оффер"
+msgctxt "vote_primaries"
+msgid "Нельзя голосовать за себя"
+msgstr "Du kannst dein eigenes Angebot nicht annehmen"
+
+#: party/primaries/views/vote_primaries.py:87
+#, fuzzy
+#| msgid "Такого региона нет"
+msgctxt "vote_primaries"
+msgid "Такого кандидата в партии нет"
+msgstr "Es gibt keine solche Region"
+
 #: party/templates/party/redesign/lists/party_history_list.html:19
 #, fuzzy
 #| msgid "партия"
@@ -4544,6 +4688,7 @@ msgstr "Es kann nur einen Anführer pro Partei geben."
 #: party/views/management/roles/set_role.py:51
 #: party/views/management/roles/set_role.py:58
 #: party/views/management/roles/set_role.py:65
+#: party/views/management/roles/set_role.py:73
 msgctxt "has_party"
 msgid "Смена должности"
 msgstr "Positionswechsel"
@@ -6351,13 +6496,11 @@ msgstr "Nicht gefunden"
 msgid "Скрыть кнопку Wiki"
 msgstr ""
 
-#: player/views/claim_reward.py:83 player/views/expense_energy.py:85
+#: player/views/claim_reward.py:83
 msgid "Ошибка типа запроса"
 msgstr "Fehler im Anfragetyp"
 
-#: player/views/claim_reward.py:84 player/views/expense_energy.py:29
-#: player/views/expense_energy.py:43 player/views/expense_energy.py:66
-#: player/views/expense_energy.py:75 player/views/expense_energy.py:86
+#: player/views/claim_reward.py:84
 msgid "Пополнение энергии"
 msgstr "Auffüllen der Energie"
 
@@ -6542,15 +6685,38 @@ msgstr "Das angegebene Lager gehört nicht Ihnen"
 msgid "Выбор авиации"
 msgstr "Kategorie auswählen"
 
-#: player/views/expense_energy.py:42
+#: player/views/expense_energy.py:28
+msgctxt "expense_energy"
+msgid "Отсутствует обязательный аргумент запроса"
+msgstr ""
+
+#: player/views/expense_energy.py:29 player/views/expense_energy.py:42
+#: player/views/expense_energy.py:64 player/views/expense_energy.py:72
+#: player/views/expense_energy.py:82
+#, fuzzy
+#| msgid "Пополнение энергии"
+msgctxt "expense_energy"
+msgid "Пополнение энергии"
+msgstr "Auffüllen der Energie"
+
+#: player/views/expense_energy.py:41
+#, fuzzy
+#| msgid "Десять минут ещё не прошло"
+msgctxt "expense_energy"
 msgid "Десять минут ещё не прошло"
 msgstr "Zehn Minuten sind noch nicht vorbei"
 
-#: player/views/expense_energy.py:65
+#: player/views/expense_energy.py:63
+#, fuzzy
+#| msgid "Пополнение энергии не требуется"
+msgctxt "expense_energy"
 msgid "Пополнение энергии не требуется"
 msgstr "Energie muss noch nicht nachgefüllt werden."
 
-#: player/views/expense_energy.py:74
+#: player/views/expense_energy.py:71
+#, fuzzy
+#| msgid "Недостаточно Энергетиков. Создайте их в Хранилище Склада"
+msgctxt "expense_energy"
 msgid "Недостаточно Энергетиков. Создайте их в Хранилище Склада"
 msgstr "Du hast nicht genug Energie. Im Lagerhaus kannst du sie herstellen."
 
@@ -9830,6 +9996,44 @@ msgstr "nicht genügend Ressourcen"
 msgctxt "storage"
 msgid "Недостаточно денег на транспортировку"
 msgstr "Nicht genug Geld für den Transport"
+
+#: storage/views/storage/storage_status.py:56
+#, fuzzy
+#| msgctxt "factory"
+#| msgid "Указанный Склад вам не принадлежит"
+msgctxt "storage_status"
+msgid "Склад с указанным ID не существует или не принадлежит вам"
+msgstr "Das angegebene Lager gehört nicht Ihnen"
+
+#: storage/views/storage/storage_status.py:57
+#: storage/views/storage/storage_status.py:97
+#, fuzzy
+#| msgctxt "storage_upgrade"
+#| msgid "Улучшение склада"
+msgctxt "storage_status"
+msgid "Данные склада"
+msgstr "Lagerhaus verbessern"
+
+#: storage/views/storage/storage_status.py:70
+#, fuzzy
+#| msgid "Недостаточно Энергетиков. Создайте их в Хранилище Склада"
+msgctxt "storage_status"
+msgid "Недостаточно Энергетиков. Создайте их в Хранилище Склада"
+msgstr "Du hast nicht genug Energie. Im Lagerhaus kannst du sie herstellen."
+
+#: storage/views/storage/storage_status.py:71
+#, fuzzy
+#| msgid "Пополнение энергии"
+msgctxt "storage_status"
+msgid "Пополнение энергии"
+msgstr "Auffüllen der Energie"
+
+#: storage/views/storage/storage_status.py:96
+#, fuzzy
+#| msgid "Некорректный запрос"
+msgctxt "storage_status"
+msgid "Некорректный параметр"
+msgstr "Ungültige Anfrage"
 
 #: storage/views/storage/upgrade_storage.py:37
 #: storage/views/storage/upgrade_storage.py:47

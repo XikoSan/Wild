@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse, HttpResponse
-from django.utils.translation import ugettext as _
+from django.utils.translation import pgettext
 from django.db.models import Sum
 from player.player import Player
 from storage.models.storage import Storage
@@ -53,9 +53,9 @@ def storage_status(request, pk):
                 else:
                     data = {
                         'mode': 'notify',
-                        'response': 'Склад с указанным ID не существует или не принадлежит вам',
-                        'header': 'Данные склада',
-                        'grey_btn': 'Закрыть',
+                        'response': pgettext('storage_status', 'Склад с указанным ID не существует или не принадлежит вам'),
+                        'header': pgettext('storage_status', 'Данные склада'),
+                        'grey_btn': pgettext('core', 'Закрыть'),
                     }
 
         # узнаем, получится ли пополнить запас энергии
@@ -67,9 +67,9 @@ def storage_status(request, pk):
             else:
                 data = {
                     'mode': 'notify',
-                    'response': 'Недостаточно Энергетиков. Создайте их в Хранилище Склада',
-                    'header': 'Пополнение энергии',
-                    'grey_btn': 'Закрыть',
+                    'response': pgettext('storage_status', 'Недостаточно Энергетиков. Создайте их в Хранилище Склада'),
+                    'header': pgettext('storage_status', 'Пополнение энергии'),
+                    'grey_btn': pgettext('core', 'Закрыть'),
                 }
         # получаем всё
         elif pk == 'all':
@@ -93,9 +93,9 @@ def storage_status(request, pk):
         else:
             data = {
                 'mode': 'notify',
-                'response': 'Некорректный параметр',
-                'header': 'Информация со Склада',
-                'grey_btn': 'Закрыть',
+                'response': pgettext('storage_status', 'Некорректный параметр'),
+                'header': pgettext('storage_status', 'Данные склада'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
 
         return JResponse(data)
