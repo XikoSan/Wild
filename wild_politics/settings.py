@@ -249,21 +249,21 @@ AUTH_PASSWORD_VALIDATORS = [
 LANGUAGE_CODE = 'ru'
 
 LANGUAGES = (
-    ('ru', 'Russian'),
-    ('en', 'English'),
-    ('de', 'Deutsch'),
-    ('be', 'Belarusian'),
-    # ('fr', 'French'),
-    # ('it', 'Italian'),
-    ('es', 'Spanish'),
-    ('pl', 'Polish'),
-    ('uk', 'Ukrainian'),
-    ('tr', 'Turkish'),
-    # ('sr', 'Serbian'),
-    ('id', 'Indonesian'),
-    ('lv', 'Latvian'),
-    ('az', 'Azerbaijani'),
-    ('pt-br', 'Portuguese (Brazil)'),
+    ('ru',      'Russian'),
+    ('en',      'English'),
+    ('de',      'Deutsch'),
+    ('be',      'Belarusian'),
+    ('fr',      'French'),
+    ('it',      'Italian'),
+    ('es',      'Spanish'),
+    ('pl',      'Polish'),
+    ('uk',      'Ukrainian'),
+    ('tr',      'Turkish'),
+    ('sr',      'Serbian'),
+    ('id',      'Indonesian'),
+    ('lv',      'Latvian'),
+    ('az',      'Azerbaijani'),
+    ('pt-br',   'Portuguese (Brazil)'),
 )
 
 MODELTRANSLATION_DEFAULT_LANGUAGE = 'ru'
