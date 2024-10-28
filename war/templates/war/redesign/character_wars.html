@@ -32,12 +32,12 @@
 	      <tbody>
           <tr>
 			<!--если это вложенный словарь-->
-			<td>Дата</td>
+			<td>{% trans 'Дата' context "wars_list" %}</td>
 			<!--если это вложенный словарь-->
 			<td></td>
-			<td>Бой</td>
+			<td>{% trans 'Бой' context "wars_list" %}</td>
             <!--если это вложенный словарь-->
-			<td>Урон</td>
+			<td>{% trans 'Урон' context "wars_list" %}</td>
 		</tr>
 		  {% for war_elem in wars_list %}
         <tr>
@@ -73,7 +73,7 @@
                         <p class="overview__war-text">
                             {% if war_elem|dict_key:'war'|get_class_name == 'Revolution' %}
                             {% war_icon player war_elem|dict_key:'war'|get_class_name '' 'position: initial' %}
-                            <span {% if war_elem|dict_key:'side' == 'agr' %}style="color: var(--c10two);"{% endif %}>Силы восстания</span>
+                            <span {% if war_elem|dict_key:'side' == 'agr' %}style="color: var(--c10two);"{% endif %}>{% trans 'Силы восстания' context "wars_list" %}</span>
                             {% else %}
                             <img src="/static/img/regions/webp/55/{{ war_elem|dict_key:'war'|get_attr:'agr_region'|get_attr:'on_map_id' }}.png">
                             <span {% if war_elem|dict_key:'side' == 'agr' %}style="color: var(--c10two);"{% endif %}>{{ war_elem|dict_key:'war'|get_attr:'agr_region'|get_attr:'region_name' }}</span>

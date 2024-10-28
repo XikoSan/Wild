@@ -65,19 +65,19 @@ def state_parties_list(request, state_pk):
 
         'image': {
             'text': '',
-            'select_text': 'Герб',
+            'select_text': pgettext('lists', 'Герб'),
             'visible': 'true'
         },
 
         'title': {
-            'text': 'Партия',
-            'select_text': 'Партия',
+            'text': pgettext('lists', 'Партия'),
+            'select_text': pgettext('lists', 'Партия'),
             'visible': 'true'
         },
 
         'size': {
             'text': 'Размер',
-            'select_text': 'Размер',
+            'select_text': pgettext('lists', 'Размер'),
             'visible': 'true'
         },
 
@@ -85,13 +85,13 @@ def state_parties_list(request, state_pk):
             'on_map_id':
                 {
                     'text': '',
-                    'select_text': 'Герб',
+                    'select_text': pgettext('lists', 'Герб'),
                     'visible': 'true'
                 },
             'region_name':
                 {
-                    'text': 'Регион',
-                    'select_text': 'Регион',
+                    'text': pgettext('lists', 'Регион'),
+                    'select_text': pgettext('lists', 'Регион'),
                     'visible': 'true'
                 }
         },

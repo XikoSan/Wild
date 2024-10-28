@@ -64,7 +64,7 @@ def region_parties_list(request, region_pk):
         },
 
         'size': {
-            'text': 'Размер',
+            'text': pgettext('lists', 'Размер'),
             'select_text': pgettext('lists', 'Размер'),
             'visible': 'true'
         },

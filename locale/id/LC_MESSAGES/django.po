@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-28 19:29+0300\n"
+"POT-Creation-Date: 2024-10-28 19:49+0300\n"
 "PO-Revision-Date: 2022-12-01 16:31+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -542,7 +542,9 @@ msgstr "Nama"
 #: party/templatetags/redesign/tops/mining_top.py:78
 #: party/templatetags/redesign/tops/skill_top.py:77
 #: party/views/lists/region_parties.py:56
-#: party/views/lists/region_parties.py:76 player/views/lists/cash_top.py:96
+#: party/views/lists/region_parties.py:76 party/views/lists/state_parties.py:68
+#: party/views/lists/state_parties.py:88 party/views/lists/world_parties.py:57
+#: party/views/lists/world_parties.py:77 player/views/lists/cash_top.py:96
 #: player/views/lists/damage_top.py:118
 #: player/views/lists/region_citizens.py:50
 #: player/views/lists/region_players.py:50
@@ -561,7 +563,9 @@ msgstr ""
 #: party/templatetags/redesign/tops/skill_top.py:82
 #: party/templatetags/redesign/tops/skill_top.py:83
 #: party/views/lists/region_parties.py:61
-#: party/views/lists/region_parties.py:62 player/views/lists/cash_top.py:101
+#: party/views/lists/region_parties.py:62 party/views/lists/state_parties.py:73
+#: party/views/lists/state_parties.py:74 party/views/lists/world_parties.py:62
+#: party/views/lists/world_parties.py:63 player/views/lists/cash_top.py:101
 #: player/views/lists/cash_top.py:102 player/views/lists/damage_top.py:123
 #: player/views/lists/damage_top.py:124
 #: player/views/lists/region_citizens.py:55
@@ -4543,13 +4547,17 @@ msgctxt "party_top"
 msgid "Топ партий"
 msgstr "partai"
 
-#: party/views/lists/region_parties.py:68
+#: party/views/lists/region_parties.py:67
+#: party/views/lists/region_parties.py:68 party/views/lists/state_parties.py:80
+#: party/views/lists/world_parties.py:68 party/views/lists/world_parties.py:69
 msgctxt "lists"
 msgid "Размер"
 msgstr ""
 
 #: party/views/lists/region_parties.py:81
-#: party/views/lists/region_parties.py:82 player/views/lists/world_online.py:61
+#: party/views/lists/region_parties.py:82 party/views/lists/state_parties.py:93
+#: party/views/lists/state_parties.py:94 party/views/lists/world_parties.py:82
+#: party/views/lists/world_parties.py:83 player/views/lists/world_online.py:61
 #: player/views/lists/world_online.py:62 player/views/lists/world_players.py:49
 #: player/views/lists/world_players.py:50
 #, fuzzy
@@ -10985,6 +10993,31 @@ msgstr "Pada penyimpanan dalam"
 msgctxt "wars_list"
 msgid "Бои"
 msgstr "Obat-obatan"
+
+#: war/templates/war/redesign/character_wars.html:35
+msgctxt "wars_list"
+msgid "Дата"
+msgstr ""
+
+#: war/templates/war/redesign/character_wars.html:38
+#, fuzzy
+#| msgctxt "goods"
+#| msgid "Койки"
+msgctxt "wars_list"
+msgid "Бой"
+msgstr "Obat-obatan"
+
+#: war/templates/war/redesign/character_wars.html:40
+msgctxt "wars_list"
+msgid "Урон"
+msgstr ""
+
+#: war/templates/war/redesign/character_wars.html:76
+#, fuzzy
+#| msgid "должность в партии"
+msgctxt "wars_list"
+msgid "Силы восстания"
+msgstr "posisi dalam partai"
 
 #: war/templates/war/redesign/war_page.html:65
 msgctxt "war_page"

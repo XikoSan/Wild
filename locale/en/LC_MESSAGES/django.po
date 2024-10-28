@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-28 19:29+0300\n"
-"PO-Revision-Date: 2024-10-28 19:28+0300\n"
+"POT-Creation-Date: 2024-10-28 19:49+0300\n"
+"PO-Revision-Date: 2024-10-28 19:53+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -505,7 +505,9 @@ msgstr "Nickname"
 #: party/templatetags/redesign/tops/mining_top.py:78
 #: party/templatetags/redesign/tops/skill_top.py:77
 #: party/views/lists/region_parties.py:56
-#: party/views/lists/region_parties.py:76 player/views/lists/cash_top.py:96
+#: party/views/lists/region_parties.py:76 party/views/lists/state_parties.py:68
+#: party/views/lists/state_parties.py:88 party/views/lists/world_parties.py:57
+#: party/views/lists/world_parties.py:77 player/views/lists/cash_top.py:96
 #: player/views/lists/damage_top.py:118
 #: player/views/lists/region_citizens.py:50
 #: player/views/lists/region_players.py:50
@@ -524,7 +526,9 @@ msgstr "Coat"
 #: party/templatetags/redesign/tops/skill_top.py:82
 #: party/templatetags/redesign/tops/skill_top.py:83
 #: party/views/lists/region_parties.py:61
-#: party/views/lists/region_parties.py:62 player/views/lists/cash_top.py:101
+#: party/views/lists/region_parties.py:62 party/views/lists/state_parties.py:73
+#: party/views/lists/state_parties.py:74 party/views/lists/world_parties.py:62
+#: party/views/lists/world_parties.py:63 player/views/lists/cash_top.py:101
 #: player/views/lists/cash_top.py:102 player/views/lists/damage_top.py:123
 #: player/views/lists/damage_top.py:124
 #: player/views/lists/region_citizens.py:55
@@ -1971,9 +1975,6 @@ msgid "Ошибка метода"
 msgstr "Method error"
 
 #: bill/views/bills/vote_bill.py:62
-#, fuzzy
-#| msgctxt "speedup_bill"
-#| msgid "Надо проголосовать!"
 msgctxt "vote_bill"
 msgid "Надо проголосовать!"
 msgstr "We need to vote!"
@@ -1982,57 +1983,36 @@ msgstr "We need to vote!"
 #: bill/views/bills/vote_bill.py:96 bill/views/bills/vote_bill.py:103
 #: bill/views/bills/vote_bill.py:110 bill/views/bills/vote_bill.py:117
 #: bill/views/bills/vote_bill.py:124
-#, fuzzy
-#| msgctxt "goods"
-#| msgid "Оборудование"
 msgctxt "vote_bill"
 msgid "Голосование"
-msgstr "Equipment"
+msgstr "Vote"
 
 #: bill/views/bills/vote_bill.py:88
-#, fuzzy
-#| msgctxt "speedup_bill"
-#| msgid "Надо проголосовать!"
 msgctxt "vote_bill"
 msgid "Вы уже проголосовали"
-msgstr "We need to vote!"
+msgstr "You have already voted"
 
 #: bill/views/bills/vote_bill.py:95
-#, fuzzy
-#| msgctxt "cancel_bill"
-#| msgid "Нет такого законопроекта"
 msgctxt "vote_bill"
 msgid "Нет такого законопроекта"
 msgstr "There is no such bill"
 
 #: bill/views/bills/vote_bill.py:102
-#, fuzzy
-#| msgctxt "cancel_bill"
-#| msgid "Нет такого вида законопроекта"
 msgctxt "vote_bill"
 msgid "Нет такого вида законопроекта"
 msgstr "There is no such type of bill"
 
 #: bill/views/bills/vote_bill.py:109
-#, fuzzy
-#| msgctxt "cancel_bill"
-#| msgid "Вы - не депутат этого парламента"
 msgctxt "vote_bill"
 msgid "Вы - не депутат этого парламента"
 msgstr "You are not a member of this parliament"
 
 #: bill/views/bills/vote_bill.py:116
-#, fuzzy
-#| msgctxt "cancel_bill"
-#| msgid "В этом государстве нет парламента"
 msgctxt "vote_bill"
 msgid "В этом государстве нет парламента"
 msgstr "There is no parliament in this state"
 
 #: bill/views/bills/vote_bill.py:123
-#, fuzzy
-#| msgctxt "cancel_bill"
-#| msgid "В этом регионе нет государства"
 msgctxt "vote_bill"
 msgid "В этом регионе нет государства"
 msgstr "There is no state in this region"
@@ -3080,59 +3060,40 @@ msgstr "Private"
 #: party/primaries/views/vote_primaries.py:76
 #: party/primaries/views/vote_primaries.py:85
 #: party/primaries/views/vote_primaries.py:106
-#, fuzzy
-#| msgid "Пополнение энергии"
 msgctxt "vote_primaries"
 msgid "Голосование на праймериз"
-msgstr "Energy refill"
+msgstr "Voting in the primaries"
 
 #: party/primaries/views/vote_primaries.py:29
-#, fuzzy
-#| msgctxt "new_bill"
-#| msgid "ID товара должен быть целым числом"
 msgctxt "vote_primaries"
 msgid "ID партии должен быть целым числом"
-msgstr "Good ID must be an integer"
+msgstr "Batch ID must be an integer"
 
 #: party/primaries/views/vote_primaries.py:38
-#, fuzzy
-#| msgctxt "no_party"
-#| msgid "Вы не состоите в партии"
 msgctxt "vote_primaries"
 msgid "Вы не состоите в этой партии"
-msgstr "You are not a member of any party"
+msgstr "You are not a member of this party"
 
 #: party/primaries/views/vote_primaries.py:47
-#, fuzzy
-#| msgctxt "game_event"
-#| msgid "Активация приглашения"
 msgctxt "vote_primaries"
 msgid "Активных праймериз нет"
-msgstr "Activate invitation"
+msgstr "There are no active primaries"
 
 #: party/primaries/views/vote_primaries.py:58
-#, fuzzy
-#| msgctxt "start_fly"
-#| msgid "Вы уже в полёте"
 msgctxt "vote_primaries"
 msgid "Вы уже голосовали"
-msgstr "You are already in flight"
+msgstr "You have already voted"
 
 #: party/primaries/views/vote_primaries.py:69
 #: party/primaries/views/vote_primaries.py:78
-#, fuzzy
-#| msgctxt "new_bill"
-#| msgid "Нельзя напасть на самих себя"
 msgctxt "vote_primaries"
 msgid "Нельзя голосовать за себя"
-msgstr "You can't attack yourself"
+msgstr "You can't vote for yourself"
 
 #: party/primaries/views/vote_primaries.py:87
-#, fuzzy
-#| msgid "Такого склада у вас нет"
 msgctxt "vote_primaries"
 msgid "Такого кандидата в партии нет"
-msgstr "You don't have such a warehouse"
+msgstr "There is no such candidate in the party"
 
 #: party/templates/party/redesign/lists/party_history_list.html:19
 msgctxt "party_hist"
@@ -3644,13 +3605,17 @@ msgctxt "party_top"
 msgid "Топ партий"
 msgstr "Party top"
 
-#: party/views/lists/region_parties.py:68
+#: party/views/lists/region_parties.py:67
+#: party/views/lists/region_parties.py:68 party/views/lists/state_parties.py:80
+#: party/views/lists/world_parties.py:68 party/views/lists/world_parties.py:69
 msgctxt "lists"
 msgid "Размер"
 msgstr "Size"
 
 #: party/views/lists/region_parties.py:81
-#: party/views/lists/region_parties.py:82 player/views/lists/world_online.py:61
+#: party/views/lists/region_parties.py:82 party/views/lists/state_parties.py:93
+#: party/views/lists/state_parties.py:94 party/views/lists/world_parties.py:82
+#: party/views/lists/world_parties.py:83 player/views/lists/world_online.py:61
 #: player/views/lists/world_online.py:62 player/views/lists/world_players.py:49
 #: player/views/lists/world_players.py:50
 msgctxt "lists"
@@ -5702,9 +5667,6 @@ msgid "Выбор авиации"
 msgstr "Aviation select"
 
 #: player/views/expense_energy.py:28
-#, fuzzy
-#| msgctxt "skills"
-#| msgid "Отсутствует обязательный аргумент запроса"
 msgctxt "expense_energy"
 msgid "Отсутствует обязательный аргумент запроса"
 msgstr "A required request argument is missing"
@@ -5712,29 +5674,21 @@ msgstr "A required request argument is missing"
 #: player/views/expense_energy.py:29 player/views/expense_energy.py:42
 #: player/views/expense_energy.py:64 player/views/expense_energy.py:72
 #: player/views/expense_energy.py:82
-#, fuzzy
-#| msgid "Пополнение энергии"
 msgctxt "expense_energy"
 msgid "Пополнение энергии"
 msgstr "Energy refill"
 
 #: player/views/expense_energy.py:41
-#, fuzzy
-#| msgid "Десять минут ещё не прошло"
 msgctxt "expense_energy"
 msgid "Десять минут ещё не прошло"
 msgstr "Ten minutes have not yet passed"
 
 #: player/views/expense_energy.py:63
-#, fuzzy
-#| msgid "Пополнение энергии не требуется"
 msgctxt "expense_energy"
 msgid "Пополнение энергии не требуется"
 msgstr "Energy refill is not required"
 
 #: player/views/expense_energy.py:71
-#, fuzzy
-#| msgid "Недостаточно Энергетиков. Создайте их в Хранилище Склада"
 msgctxt "expense_energy"
 msgid "Недостаточно Энергетиков. Создайте их в Хранилище Склада"
 msgstr "Not enough Energy drinks. Create them at the Storage tab of Warehouse"
@@ -8535,42 +8489,31 @@ msgid "Недостаточно денег на транспортировку"
 msgstr "Not enough money for transportation"
 
 #: storage/views/storage/storage_status.py:56
-#, fuzzy
-#| msgctxt "choose_plane"
-#| msgid "Указанный самолёт вам не принадлежит"
 msgctxt "storage_status"
 msgid "Склад с указанным ID не существует или не принадлежит вам"
-msgstr "The specified aircraft does not belong to you"
+msgstr ""
+"The warehouse with the specified ID does not exist or does not belong to you"
 
 #: storage/views/storage/storage_status.py:57
 #: storage/views/storage/storage_status.py:97
-#, fuzzy
-#| msgctxt "storage_upgrade"
-#| msgid "Улучшение склада"
 msgctxt "storage_status"
 msgid "Данные склада"
-msgstr "Warehouse upgrade"
+msgstr "Warehouse data"
 
 #: storage/views/storage/storage_status.py:70
-#, fuzzy
-#| msgid "Недостаточно Энергетиков. Создайте их в Хранилище Склада"
 msgctxt "storage_status"
 msgid "Недостаточно Энергетиков. Создайте их в Хранилище Склада"
-msgstr "Not enough Energy drinks. Create them at the Storage tab of Warehouse"
+msgstr "Not enough Energy Drinks. Create them in the Warehouse Storage"
 
 #: storage/views/storage/storage_status.py:71
-#, fuzzy
-#| msgid "Пополнение энергии"
 msgctxt "storage_status"
 msgid "Пополнение энергии"
-msgstr "Energy refill"
+msgstr "Replenishment of energy"
 
 #: storage/views/storage/storage_status.py:96
-#, fuzzy
-#| msgid "Некорректный запрос"
 msgctxt "storage_status"
 msgid "Некорректный параметр"
-msgstr "Incorrect request"
+msgstr "Incorrect parameter"
 
 #: storage/views/storage/upgrade_storage.py:37
 #: storage/views/storage/upgrade_storage.py:47
@@ -9146,6 +9089,26 @@ msgstr "Rebellion in region"
 msgctxt "wars_list"
 msgid "Бои"
 msgstr "Wars"
+
+#: war/templates/war/redesign/character_wars.html:35
+msgctxt "wars_list"
+msgid "Дата"
+msgstr "Date"
+
+#: war/templates/war/redesign/character_wars.html:38
+msgctxt "wars_list"
+msgid "Бой"
+msgstr "Wars"
+
+#: war/templates/war/redesign/character_wars.html:40
+msgctxt "wars_list"
+msgid "Урон"
+msgstr "Damage"
+
+#: war/templates/war/redesign/character_wars.html:76
+msgctxt "wars_list"
+msgid "Силы восстания"
+msgstr "Rebellion forces"
 
 #: war/templates/war/redesign/war_page.html:65
 msgctxt "war_page"
