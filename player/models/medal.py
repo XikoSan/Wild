@@ -28,6 +28,7 @@ class Medal(models.Model):
         ('alpha', 'За альфа-тест WP'),
         ('beta', 'За бета-тест WP'),
         ('public', 'За открытый тест WP'),
+        ('translator', 'За перевод игры'),
     )
     type = models.CharField(
         max_length=10,
