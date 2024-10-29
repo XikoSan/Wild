@@ -88,8 +88,6 @@ def save_translation_file(file_path, data, context, player):
                 entry.fuzzy = False
                 entry.msgstr = data.get(entry.msgid)
                 # добавляем комментарий с именем пользователя
-                entry.comment = pgettext('translations',
-                                         "Отредактировано %(nickname)s, id %(pk)s") % {
-                                    "nickname": player.nickname, "pk": player.pk},
+                entry.comment = f"Отредактировано {player.nickname}, id {player.pk}"
 
     po.save()
