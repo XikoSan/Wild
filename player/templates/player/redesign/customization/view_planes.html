@@ -7,7 +7,7 @@
 {% load tz %}
 {% block content %}
 <section class="avabord custom-scroll">
-    <h1 class="avabord__title ct__page-title">Авиация {{ char.nickname }}</h1>
+    <h1 class="avabord__title ct__page-title">{% trans 'Авиация' context "plane_select" %} {{ char.nickname }}</h1>
     <ul class="avabord__gridFly avabord__grid--noborder">
         <li>
             <button class='avabord__flyButton' data-id="0">

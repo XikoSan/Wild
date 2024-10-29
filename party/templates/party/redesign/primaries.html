@@ -10,6 +10,7 @@
 {% load lower %}
 {% load get_class_name %}
 {% load get_key_list %}
+{% load l10n %}{% load i18n %}
 {% load dict_key %}
 
 {% load redesign.template_svg.nopic_party_list %}
@@ -95,7 +96,7 @@
 
 	        <tr>
 			  <td class="j-t-image"></td>
-			  <td class="j-t-title">Партия</td>
+			  <td class="j-t-title">{% trans "Партия" "context "lists" %}</td>
 			  <td class="j-t-action"></td>
 	        </tr>
 
@@ -238,9 +239,9 @@
       const jsTable1 = new JsTable({
         tableContainerId: 'js-ct-table-1',
         columns: [
-			{ name: 'Герб', className: 'j-t-image', isVisible: true },
-			{ name: 'Партия', className: 'j-t-title', isVisible: true },
-			{ name: 'Действие', className: 'j-t-action', isVisible: true },
+			{ name: '{% trans "Герб" "context "lists" %}', className: 'j-t-image', isVisible: true },
+			{ name: '{% trans "Партия" "context "lists" %}', className: 'j-t-title', isVisible: true },
+			{ name: '{% trans "Действие" "context "lists" %}', className: 'j-t-action', isVisible: true },
         ],
       })
 
