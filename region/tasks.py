@@ -25,47 +25,47 @@ def move_to_another_region(id):
     player.save()
     player.increase_calc()
 
-    if player.region.state and not player.region.state == prev_region.state:
-        if President.objects.filter(state=player.region.state).exists():
-            pres_post = President.objects.get(state=player.region.state)
-            # если на посту есть игрок
-            if pres_post.leader:
-
-                if not pres_post.leader == player:
-
-                    common_chats = ChatMembers.objects.filter(
-                        player=player,
-                        chat__state__isnull=False
-                    ).values_list('chat_id', flat=True).intersection(
-                        ChatMembers.objects.filter(
-                            player=pres_post.leader,
-                            chat__state__isnull=False
-                        ).values_list('chat_id', flat=True)
-                    )
-
-                    if not common_chats:
-
-                        pres_chat = Chat.objects.create(state=player.region.state)
-                        pres_chat_id = pres_chat.pk
-
-                        member, created = ChatMembers.objects.get_or_create(
-                            chat=pres_chat,
-                            player=pres_post.leader,
-                        )
-                        member, created = ChatMembers.objects.get_or_create(
-                            chat=pres_chat,
-                            player=player,
-                        )
-
-                    else:
-                        pres_chat_id = common_chats[0]
-
-                    if not player.region.state.message:
-                        pres_text = pgettext('start_messages', "Добро пожаловать в государство %(state_title)s! Это автоматическое сообщение, созданное игрой. Но вы можете связаться со мной напрямую, просто ответив на него") % {"state_title": player.region.state }
-                    else:
-                        pres_text = player.region.state.message
-
-                    _append_message(chat_id=pres_chat_id, author=pres_post.leader, text=pres_text)
+    # if player.region.state and not player.region.state == prev_region.state:
+    #     if President.objects.filter(state=player.region.state).exists():
+    #         pres_post = President.objects.get(state=player.region.state)
+    #         # если на посту есть игрок
+    #         if pres_post.leader:
+    #
+    #             if not pres_post.leader == player:
+    # 
+    #                 common_chats = ChatMembers.objects.filter(
+    #                     player=player,
+    #                     chat__state__isnull=False
+    #                 ).values_list('chat_id', flat=True).intersection(
+    #                     ChatMembers.objects.filter(
+    #                         player=pres_post.leader,
+    #                         chat__state__isnull=False
+    #                     ).values_list('chat_id', flat=True)
+    #                 )
+    #
+    #                 if not common_chats:
+    #
+    #                     pres_chat = Chat.objects.create(state=player.region.state)
+    #                     pres_chat_id = pres_chat.pk
+    #
+    #                     member, created = ChatMembers.objects.get_or_create(
+    #                         chat=pres_chat,
+    #                         player=pres_post.leader,
+    #                     )
+    #                     member, created = ChatMembers.objects.get_or_create(
+    #                         chat=pres_chat,
+    #                         player=player,
+    #                     )
+    #
+    #                 else:
+    #                     pres_chat_id = common_chats[0]
+    #
+    #                 if not player.region.state.message:
+    #                     pres_text = pgettext('start_messages', "Добро пожаловать в государство %(state_title)s! Это автоматическое сообщение, созданное игрой. Но вы можете связаться со мной напрямую, просто ответив на него") % {"state_title": player.region.state }
+    #                 else:
+    #                     pres_text = player.region.state.message
+    #
+    #                 _append_message(chat_id=pres_chat_id, author=pres_post.leader, text=pres_text)
 
 
 # сбор есст. прироста раз в десять минут
