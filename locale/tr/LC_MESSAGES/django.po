@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-28 23:30+0300\n"
+"POT-Creation-Date: 2024-10-29 12:52+0300\n"
 "PO-Revision-Date: 2023-06-22 18:43+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -271,12 +271,12 @@ msgstr "Pozisyon başlığı boş olamaz"
 #: party/views/management/staff/leave_party.py:210 player/player.py:395
 #: player/player.py:406 player/player.py:427 player/views/answer_captcha.py:35
 #: player/views/answer_captcha.py:53
-#: player/views/bonus_code/activate_code.py:45
-#: player/views/bonus_code/activate_code.py:56
-#: player/views/bonus_code/activate_code.py:65
-#: player/views/bonus_code/activate_code.py:74
-#: player/views/bonus_code/activate_code.py:171
-#: player/views/bonus_code/activate_code.py:180
+#: player/views/bonus_code/activate_code.py:46
+#: player/views/bonus_code/activate_code.py:57
+#: player/views/bonus_code/activate_code.py:66
+#: player/views/bonus_code/activate_code.py:75
+#: player/views/bonus_code/activate_code.py:172
+#: player/views/bonus_code/activate_code.py:181
 #: player/views/buy_lootboxes.py:31 player/views/buy_lootboxes.py:51
 #: player/views/buy_lootboxes.py:62 player/views/buy_lootboxes.py:116
 #: player/views/buy_lootboxes.py:153 player/views/change_back_allow.py:43
@@ -288,6 +288,9 @@ msgstr "Pozisyon başlığı boş olamaz"
 #: player/views/color_change.py:32 player/views/color_change.py:44
 #: player/views/color_change.py:56 player/views/color_change.py:68
 #: player/views/color_change.py:104
+#: player/views/customization/avatar_edit.py:109
+#: player/views/customization/avatar_edit.py:121
+#: player/views/customization/avatar_edit.py:130
 #: player/views/customization/border/choose_border.py:25
 #: player/views/customization/border/choose_border.py:52
 #: player/views/customization/border/choose_border.py:61
@@ -630,12 +633,14 @@ msgstr "Pozisyon başlığı boş olamaz"
 #: chat/views/messages/get_message_block.py:84
 #: event/views/activate_invite.py:114 factory/views/cancel_auto.py:35
 #: factory/views/start_auto.py:142 party/primaries/views/vote_primaries.py:105
-#: party/views/management/roles/set_role.py:75 player/views/change_bio.py:32
-#: player/views/change_nickname.py:63 player/views/expense_energy.py:81
-#: player/views/skills/boost_skill.py:166 player/views/skills/up_skill.py:190
-#: skill/views/skill_cancel.py:98 state/views/set_mandate.py:78
-#: state/views/state_foundation.py:109 storage/views/auctions/set_bet.py:159
-#: war/views/start_war.py:102
+#: party/views/management/roles/set_role.py:75
+#: player/views/answer_captcha.py:51 player/views/change_bio.py:32
+#: player/views/change_nickname.py:63
+#: player/views/customization/avatar_edit.py:128
+#: player/views/expense_energy.py:81 player/views/skills/boost_skill.py:166
+#: player/views/skills/up_skill.py:190 skill/views/skill_cancel.py:98
+#: state/views/set_mandate.py:78 state/views/state_foundation.py:109
+#: storage/views/auctions/set_bet.py:159 war/views/start_war.py:102
 #, fuzzy
 #| msgid "Ошибка типа запроса"
 msgctxt "core"
@@ -2566,7 +2571,7 @@ msgstr "Bu bölgede Depo bulunmamaktadır"
 #: party/views/management/gold/give_party_gold.py:108
 #: party/views/management/roles/new_role.py:79
 #: party/views/management/roles/remove_role.py:77
-#: player/views/bonus_code/activate_code.py:178
+#: player/views/bonus_code/activate_code.py:179
 #: player/views/color_change.py:102
 #: player/views/customization/border/choose_border.py:59
 #: player/views/customization/plane/choose_plane.py:59
@@ -6402,15 +6407,58 @@ msgstr "Açıklama"
 #, fuzzy
 #| msgctxt "storage_upgrade"
 #| msgid "Максимальный уровень"
+msgctxt "captcha"
 msgid "Неправильный ответ"
 msgstr "Maksimum seviye"
 
 #: player/views/answer_captcha.py:34 player/views/answer_captcha.py:52
+msgctxt "captcha"
 msgid "Ответ на Captcha"
 msgstr ""
 
-#: player/views/answer_captcha.py:51 player/views/buy_lootboxes.py:151
-#: player/views/change_back_allow.py:57
+#: player/views/bonus_code/activate_code.py:44
+#, fuzzy
+#| msgctxt "factory"
+#| msgid "Указанный товар не существует"
+msgctxt "activate_code"
+msgid "Указанный код не существует или истёк"
+msgstr "Belirtilen ürün mevcut değil"
+
+#: player/views/bonus_code/activate_code.py:45
+#: player/views/bonus_code/activate_code.py:56
+#: player/views/bonus_code/activate_code.py:65
+#: player/views/bonus_code/activate_code.py:74
+#: player/views/bonus_code/activate_code.py:170
+#: player/views/bonus_code/activate_code.py:180
+#, fuzzy
+#| msgctxt "storage_assets"
+#| msgid "Активация"
+msgctxt "activate_code"
+msgid "Активация кода"
+msgstr "Aktivasyon"
+
+#: player/views/bonus_code/activate_code.py:55
+msgctxt "activate_code"
+msgid "Инвайт-код можно активировать первые 7 дней игры"
+msgstr ""
+
+#: player/views/bonus_code/activate_code.py:64
+#, fuzzy
+#| msgctxt "assets"
+#| msgid "Указанный Склад уже в текущем регионе"
+msgctxt "activate_code"
+msgid "Данный код уже был вами активирован"
+msgstr "Belirtilen Depo zaten geçerli bölgede"
+
+#: player/views/bonus_code/activate_code.py:73
+#, fuzzy
+#| msgctxt "assets"
+#| msgid "Указанный Склад уже в текущем регионе"
+msgctxt "activate_code"
+msgid "Данный код уже был активирован"
+msgstr "Belirtilen Depo zaten geçerli bölgede"
+
+#: player/views/buy_lootboxes.py:151 player/views/change_back_allow.py:57
 #: player/views/change_wiki_hide_allow.py:57 player/views/full_auto_allow.py:57
 #: player/views/open_lootboxes.py:132 player/views/set_language.py:54
 #: player/views/set_timezone.py:43 region/views/cancel_auto.py:35
@@ -6422,48 +6470,6 @@ msgstr ""
 #: war/views/switch_war_visibility.py:90
 msgid "Ошибка метода"
 msgstr "Yöntem hatası"
-
-#: player/views/bonus_code/activate_code.py:43
-#, fuzzy
-#| msgctxt "factory"
-#| msgid "Указанный товар не существует"
-msgctxt "activate_code"
-msgid "Указанный код не существует или истёк"
-msgstr "Belirtilen ürün mevcut değil"
-
-#: player/views/bonus_code/activate_code.py:44
-#: player/views/bonus_code/activate_code.py:55
-#: player/views/bonus_code/activate_code.py:64
-#: player/views/bonus_code/activate_code.py:73
-#: player/views/bonus_code/activate_code.py:169
-#: player/views/bonus_code/activate_code.py:179
-#, fuzzy
-#| msgctxt "storage_assets"
-#| msgid "Активация"
-msgctxt "activate_code"
-msgid "Активация кода"
-msgstr "Aktivasyon"
-
-#: player/views/bonus_code/activate_code.py:54
-msgctxt "activate_code"
-msgid "Инвайт-код можно активировать первые 7 дней игры"
-msgstr ""
-
-#: player/views/bonus_code/activate_code.py:63
-#, fuzzy
-#| msgctxt "assets"
-#| msgid "Указанный Склад уже в текущем регионе"
-msgctxt "activate_code"
-msgid "Данный код уже был вами активирован"
-msgstr "Belirtilen Depo zaten geçerli bölgede"
-
-#: player/views/bonus_code/activate_code.py:72
-#, fuzzy
-#| msgctxt "assets"
-#| msgid "Указанный Склад уже в текущем регионе"
-msgctxt "activate_code"
-msgid "Данный код уже был активирован"
-msgstr "Belirtilen Depo zaten geçerli bölgede"
 
 #: player/views/buy_lootboxes.py:152 player/views/open_lootboxes.py:133
 msgid "Открытие сундуков"
@@ -6551,6 +6557,29 @@ msgstr "Yanlış oyun metin kodu"
 msgctxt "profile"
 msgid "Некорректный код акцентов игры"
 msgstr "Yanlış oyun aksan kodu"
+
+#: player/views/customization/avatar_edit.py:107
+#, fuzzy, python-format
+#| msgctxt "mining"
+#| msgid "Ошибка получения финансирования"
+msgctxt "new_article"
+msgid "Ошибка сохранения уменьшенных изображений: %(e)s"
+msgstr "Finansman Hatası"
+
+#: player/views/customization/avatar_edit.py:108
+#: player/views/customization/avatar_edit.py:120
+#: player/views/customization/avatar_edit.py:129
+#, fuzzy
+#| msgctxt "skill_cancel"
+#| msgid "Отмена изучения навыка"
+msgctxt "change_nickname"
+msgid "Смена аватара"
+msgstr "Beceri yükseltme iptal"
+
+#: player/views/customization/avatar_edit.py:119
+msgctxt "change_nickname"
+msgid "Форма смены аватара недействительна"
+msgstr ""
 
 #: player/views/customization/border/border_select.py:29
 #, fuzzy
@@ -6819,7 +6848,7 @@ msgid ""
 "мне это важно. Приятной игры!"
 msgstr ""
 
-#: player/views/new_player.py:118 region/tasks.py:64
+#: player/views/new_player.py:118
 #, python-format
 msgctxt "start_messages"
 msgid ""
@@ -7018,12 +7047,6 @@ msgstr "işlemde..."
 msgctxt "skills"
 msgid "Очередь навыков заполнена"
 msgstr "Depo belirtilmemiş"
-
-#: player/views/translate/translate.py:92
-#, python-format
-msgctxt "translations"
-msgid "Отредактировано %(nickname)s, id %(pk)s"
-msgstr ""
 
 #: player/views/wallet.py:21
 msgid "Финансы"
@@ -7408,7 +7431,7 @@ msgctxt "region_view"
 msgid "регион прописки"
 msgstr "ikamet"
 
-#: region/templates/region/redesign/region_view.html:188
+#: region/templates/region/redesign/region_view.html:189
 #, fuzzy
 #| msgctxt "w_trading_new"
 #| msgid "Новое торговое предложение"
@@ -7416,7 +7439,15 @@ msgctxt "region_view"
 msgid "Военное положение"
 msgstr "Yeni ticaret teklifi"
 
-#: region/templates/region/redesign/region_view.html:195
+#: region/templates/region/redesign/region_view.html:192
+#, fuzzy
+#| msgctxt "w_trading_new"
+#| msgid "Некорректное действие"
+msgctxt "region_view"
+msgid "Мирное время, до"
+msgstr "Yanlış işlem"
+
+#: region/templates/region/redesign/region_view.html:200
 #: state/templates/state/redesign/state_view.html:141
 #, fuzzy
 #| msgid "Жители региона"
@@ -7424,14 +7455,14 @@ msgctxt "state_view"
 msgid "Жителей"
 msgstr "Bölge sakinleri"
 
-#: region/templates/region/redesign/region_view.html:196
+#: region/templates/region/redesign/region_view.html:201
 #, fuzzy
 #| msgid "Граждане региона"
 msgctxt "region_view"
 msgid "Граждан"
 msgstr "Bölge vatandaşları"
 
-#: region/templates/region/redesign/region_view.html:197
+#: region/templates/region/redesign/region_view.html:202
 #: state/templates/state/redesign/state_view.html:142
 #, fuzzy
 #| msgid "Партия"
@@ -7439,35 +7470,35 @@ msgctxt "state_view"
 msgid "Партий"
 msgstr "Parti"
 
-#: region/templates/region/redesign/region_view.html:203
+#: region/templates/region/redesign/region_view.html:208
 #, fuzzy
 #| msgid "Запасы золота"
 msgctxt "region_view"
 msgid "Запасы золота"
 msgstr "Altın rezervleri"
 
-#: region/templates/region/redesign/region_view.html:204
+#: region/templates/region/redesign/region_view.html:209
 #, fuzzy
 #| msgid "Запасы нефти"
 msgctxt "region_view"
 msgid "Запасы нефти"
 msgstr "Petrol rezervleri"
 
-#: region/templates/region/redesign/region_view.html:205
+#: region/templates/region/redesign/region_view.html:210
 #, fuzzy
 #| msgid "Марка нефти"
 msgctxt "region_view"
 msgid "Марка нефти"
 msgstr "Petrol sınıfı"
 
-#: region/templates/region/redesign/region_view.html:206
+#: region/templates/region/redesign/region_view.html:211
 #, fuzzy
 #| msgid "Запасы руд"
 msgctxt "region_view"
 msgid "Запасы руд"
 msgstr "Maden rezervleri"
 
-#: region/templates/region/redesign/region_view.html:207
+#: region/templates/region/redesign/region_view.html:212
 #, fuzzy
 #| msgctxt "mining"
 #| msgid "Качество руды"
@@ -7475,7 +7506,7 @@ msgctxt "region_view"
 msgid "Качество руды"
 msgstr "Madenin kalitesi"
 
-#: region/templates/region/redesign/region_view.html:208
+#: region/templates/region/redesign/region_view.html:213
 #, fuzzy
 #| msgctxt "goods"
 #| msgid "Уголь"
@@ -7483,7 +7514,7 @@ msgctxt "region_view"
 msgid "уголь"
 msgstr "Kömür"
 
-#: region/templates/region/redesign/region_view.html:208
+#: region/templates/region/redesign/region_view.html:213
 #, fuzzy
 #| msgctxt "goods"
 #| msgid "Железо"
@@ -7491,7 +7522,7 @@ msgctxt "region_view"
 msgid "железо"
 msgstr "Demir"
 
-#: region/templates/region/redesign/region_view.html:208
+#: region/templates/region/redesign/region_view.html:213
 #, fuzzy
 #| msgctxt "goods"
 #| msgid "Бокситы"
@@ -7499,33 +7530,33 @@ msgctxt "region_view"
 msgid "бокситы"
 msgstr "Boksitler"
 
-#: region/templates/region/redesign/region_view.html:219
+#: region/templates/region/redesign/region_view.html:224
 #, fuzzy
 #| msgid "Региональные налоги"
 msgctxt "region_view"
 msgid "Региональные налоги"
 msgstr "Bölgesel vergiler"
 
-#: region/templates/region/redesign/region_view.html:220
+#: region/templates/region/redesign/region_view.html:225
 #, fuzzy
 #| msgid "На финансирование"
 msgctxt "region_view"
 msgid "На финансирование"
 msgstr "Finansman için"
 
-#: region/templates/region/redesign/region_view.html:221
+#: region/templates/region/redesign/region_view.html:226
 msgctxt "region_view"
 msgid "На добычу  (нефть / руда)"
 msgstr ""
 
-#: region/templates/region/redesign/region_view.html:222
+#: region/templates/region/redesign/region_view.html:227
 #, fuzzy
 #| msgid "На торговлю"
 msgctxt "region_view"
 msgid "На торговлю"
 msgstr "Ticaret için"
 
-#: region/templates/region/redesign/region_view.html:228
+#: region/templates/region/redesign/region_view.html:233
 #, fuzzy
 #| msgid "Жители региона"
 msgctxt "region_view"

@@ -15,6 +15,7 @@ from region.models.region import Region
 from region.views.distance_counting import distance_counting
 from region.views.time_in_flight import time_in_flight
 from war.models.martial import Martial
+from django.utils import timezone
 
 
 @login_required(login_url='/')
@@ -55,6 +56,10 @@ def open_region(request, pk):
     if Martial.objects.filter(active=True, region=region).exists():
         martial = True
 
+    peace_date = None
+    if region.peace_date > timezone.now():
+        peace_date = region.peace_date
+
     return render(request, 'region/redesign/region_view.html', {
         'page_name': region.region_name,
         'player': player,
@@ -76,6 +81,7 @@ def open_region(request, pk):
         'building_classes': get_subclasses(Building),
 
         'martial': martial,
+        'peace_date': peace_date,
 
         # 'wars_cnt': wars_cnt,
     })

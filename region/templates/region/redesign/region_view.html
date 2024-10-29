@@ -183,9 +183,14 @@
 
     </div><!--конец ТОП блок-->
 		<div class="party__regionInfo">
-            {% if martial %}
+            {% if martial or peace_date %}
 			<div class="party__regionInfo-block">
+                {% if martial %}
                 <p style="display: flex; justify-content: center;">{% trans 'Военное положение' context "region_view" %}</p>
+                {% endif %}
+                {% if peace_date %}
+                <p>{% trans 'Мирное время, до' context "region_view" %}: <span>{{ region.peace_date|timezone:player.time_zone|date:"d.m.Y H:i" }}</span></p>
+                {% endif %}
 			</div>
 
 			<div class="party__mmid-line"></div>
