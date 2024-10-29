@@ -32,61 +32,84 @@ def my_profile(request):
     player = Player.get_instance(account=request.user)
     player_settings = None
 
-    if request.method == 'POST':
-        if player.image and player.gold < 100:
-            return redirect('my_profile')
-
-        form = ImageForm(request.POST, request.FILES)
-        if form.is_valid():
-            # Не списывать деньги, если аватара нет
-            if player.image:
-                player.gold -= 100
-
-                gold_log = GoldLog(player=player, gold=-100, activity_txt='avatar')
-                gold_log.save()
-
-            player.image = form.cleaned_data['image']
-
-            # Сохраняем аватар и вызываем save, чтобы обновить путь
-            player.save()
-
-            x = form.cleaned_data['x']
-            y = form.cleaned_data['y']
-            w = form.cleaned_data['width']
-            h = form.cleaned_data['height']
-
-            # Открываем изображение и обрезаем
-            image = Image.open(player.image)
-            cropped_image = image.crop((x, y, w + x, h + y))
-            resized_image = cropped_image.resize((400, 400), Image.ANTIALIAS)
-
-            # Устанавливаем путь для основного изображения
-            webp_image_path = f'img/avatars/{player.id}.webp'
-            resized_image.save(player.image.storage.path(webp_image_path), 'WEBP', quality=85)
-
-            # Обновляем поле image
-            player.image.name = webp_image_path
-            player.save()
-
-            # Создаем уменьшенные изображения
-            # Сохраняем 75x75 в img/avatars/75/
-            image_75 = resized_image.resize((75, 75), Image.ANTIALIAS)
-            img_io_75 = BytesIO()
-            image_75.save(img_io_75, format='WEBP', quality=85)
-            player.image_75.save(f"{player.id}.webp", ContentFile(img_io_75.getvalue()), save=False)
-
-            # Сохраняем 33x33 в img/avatars/33/
-            image_33 = resized_image.resize((33, 33), Image.ANTIALIAS)
-            img_io_33 = BytesIO()
-            image_33.save(img_io_33, format='WEBP', quality=85)
-            player.image_33.save(f"{player.id}.webp", ContentFile(img_io_33.getvalue()), save=False)
-
-            # Сохраняем изменения в модели игрока
-            player.save()
-
-            return redirect('my_profile')
-    else:
-        form = ImageForm()
+    # from player.logs.print_log import log
+    #
+    # if request.method == 'POST':
+    #     if player.image and player.gold < 100:
+    #         log("Недостаточно золота для изменения аватара.")
+    #         return redirect('my_profile')
+    #
+    #     form = ImageForm(request.POST, request.FILES)
+    #     if form.is_valid():
+    #         try:
+    #             # Не списывать деньги, если аватара нет
+    #             if player.image:
+    #                 player.gold -= 100
+    #                 gold_log = GoldLog(player=player, gold=-100, activity_txt='avatar')
+    #                 gold_log.save()
+    #                 log(f"Списано 100 золота. Остаток золота: {player.gold}")
+    #
+    #             # Загружаем и подготавливаем изображение
+    #             player.image = form.cleaned_data['image']
+    #             player.save()  # Сохраняем игрока с новым изображением, чтобы обновить путь
+    #             log("Аватар успешно сохранен в профиле игрока.")
+    #
+    #             x = form.cleaned_data['x']
+    #             y = form.cleaned_data['y']
+    #             w = form.cleaned_data['width']
+    #             h = form.cleaned_data['height']
+    #
+    #             try:
+    #                 # Открываем загруженное изображение и обрезаем
+    #                 image = Image.open(player.image.path)
+    #                 cropped_image = image.crop((x, y, w + x, h + y))
+    #                 resized_image = cropped_image.resize((400, 400), Image.ANTIALIAS)
+    #                 log("Изображение обрезано и изменено до 400x400.")
+    #             except Exception as e:
+    #                 log(f"Ошибка при обработке изображения: {e}")
+    #                 return redirect('my_profile')
+    #
+    #             try:
+    #                 # Устанавливаем путь для основного изображения и сохраняем
+    #                 webp_image_path = f'img/avatars/{player.id}.webp'
+    #                 resized_image.save(player.image.storage.path(webp_image_path), 'WEBP', quality=85)
+    #                 player.image.name = webp_image_path
+    #                 player.save()
+    #                 log(f"Основное изображение сохранено и путь обновлён: {webp_image_path}.")
+    #             except Exception as e:
+    #                 log(f"Ошибка при сохранении основного изображения: {e}")
+    #                 return redirect('my_profile')
+    #
+    #             try:
+    #                 # Создаем уменьшенные изображения
+    #                 # Сохраняем 75x75 в img/avatars/75/
+    #                 image_75 = resized_image.resize((75, 75), Image.ANTIALIAS)
+    #                 img_io_75 = BytesIO()
+    #                 image_75.save(img_io_75, format='WEBP', quality=85)
+    #                 player.image_75.save(f"{player.id}.webp", ContentFile(img_io_75.getvalue()), save=False)
+    #                 log("Изображение 75x75 сохранено.")
+    #
+    #                 # Сохраняем 33x33 в img/avatars/33/
+    #                 image_33 = resized_image.resize((33, 33), Image.ANTIALIAS)
+    #                 img_io_33 = BytesIO()
+    #                 image_33.save(img_io_33, format='WEBP', quality=85)
+    #                 player.image_33.save(f"{player.id}.webp", ContentFile(img_io_33.getvalue()), save=False)
+    #                 log("Изображение 33x33 сохранено.")
+    #
+    #                 # Сохраняем изменения в модели игрока
+    #                 player.save()
+    #                 log("Изменения в модели игрока успешно сохранены.")
+    #             except Exception as e:
+    #                 log(f"Ошибка при сохранении уменьшенных изображений: {e}")
+    #                 return redirect('my_profile')
+    #
+    #         except Exception as e:
+    #             log(f"Ошибка при обработке запроса POST: {e}")
+    #             return redirect('my_profile')
+    #     else:
+    #         log("Форма недействительна.")
+    # else:
+    form = ImageForm()
 
     user_link = ''
 

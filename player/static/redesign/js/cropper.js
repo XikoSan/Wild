@@ -77,17 +77,28 @@ $(function () {
       $("#id_y").val(cropData["y"]);
       $("#id_height").val(cropData["height"]);
       $("#id_width").val(cropData["width"]);
-//    профиль
-      if (document.querySelector('#formUpload')) {
-        $("#formUpload").submit();
-      }
-//    создание
-      else{
-        document.getElementById('modalCrop').classList.remove('active');
-        cropBoxData = cropper.getCropBoxData();
-        canvasData = cropper.getCanvasData();
-        cropper.destroy();
-      }
-  });
+
+        var formData = new FormData($("#formUpload")[0]);
+
+        $.ajax({
+            url: '/avatar_edit/',  // Адрес представления для редактирования аватара
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            headers: {
+                'X-CSRFToken': $("input[name=csrfmiddlewaretoken]").val()
+            },
+            success: function (data) {
+                if (data.response == 'ok'){
+                    location.reload();
+                }
+                else{
+                    display_modal('notify', data.header, data.response, null, data.grey_btn);
+                }
+            }
+        });
+
+    });
 
   });

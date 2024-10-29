@@ -33,6 +33,7 @@ urlpatterns = [
                   path('summernote/', include('django_summernote.urls')),
 
                   url(r'', include('player.url')),
+                  url(r'', include('player.urls.profile')),
                   url(r'', include('player.urls.skills')),
                   url(r'', include('player.urls.customization')),
                   url(r'', include('region.urls')),
