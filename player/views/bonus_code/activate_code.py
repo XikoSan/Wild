@@ -8,6 +8,7 @@ from django.utils import translation
 from django.db import transaction
 from django.utils.translation import ugettext as _
 from django.utils.translation import gettext_lazy, pgettext_lazy
+from django.utils.translation import pgettext
 from django.contrib.humanize.templatetags.humanize import number_format
 
 from player.bonus_code.bonus_code import BonusCode
