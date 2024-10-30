@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-29 12:52+0300\n"
+"POT-Creation-Date: 2024-10-30 18:02+0300\n"
 "PO-Revision-Date: 2023-06-22 18:43+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -288,9 +288,8 @@ msgstr "Bezeichnung darf nicht leer sein"
 #: player/views/color_change.py:32 player/views/color_change.py:44
 #: player/views/color_change.py:56 player/views/color_change.py:68
 #: player/views/color_change.py:104
-#: player/views/customization/avatar_edit.py:109
-#: player/views/customization/avatar_edit.py:121
-#: player/views/customization/avatar_edit.py:130
+#: player/views/customization/avatar_edit.py:70
+#: player/views/customization/avatar_edit.py:77
 #: player/views/customization/border/choose_border.py:25
 #: player/views/customization/border/choose_border.py:52
 #: player/views/customization/border/choose_border.py:61
@@ -506,6 +505,7 @@ msgid "Дизлайкнувшие статью"
 msgstr ""
 
 #: article/views/article_rated_list.py:57
+#: gov/templates/gov/redesign/elections.html:238
 #: player/templatetags/redesign/skill_top/endurance_top.py:55
 #: player/templatetags/redesign/skill_top/knowledge_top.py:55
 #: player/templatetags/redesign/skill_top/power_top.py:56
@@ -545,6 +545,7 @@ msgid "Никнейм"
 msgstr "Nickname"
 
 #: article/views/article_rated_list.py:71
+#: party/templates/party/redesign/primaries.html:242
 #: party/templatetags/redesign/tops/factory_top.py:77
 #: party/templatetags/redesign/tops/mining_top.py:78
 #: party/templatetags/redesign/tops/skill_top.py:77
@@ -556,6 +557,7 @@ msgstr "Nickname"
 #: player/views/lists/region_citizens.py:50
 #: player/views/lists/region_players.py:50
 #: player/views/lists/world_online.py:56 player/views/lists/world_players.py:44
+#: state/templates/state/redesign/elections.html:239
 #: war/views/open_war_side_list.py:100
 #, fuzzy
 #| msgid "Герб"
@@ -565,6 +567,9 @@ msgstr "Wappen"
 
 #: article/views/article_rated_list.py:76
 #: article/views/article_rated_list.py:77
+#: gov/templates/gov/redesign/elections.html:239
+#: party/templates/party/redesign/primaries.html:99
+#: party/templates/party/redesign/primaries.html:243
 #: party/templatetags/redesign/tops/factory_top.py:82
 #: party/templatetags/redesign/tops/factory_top.py:83
 #: party/templatetags/redesign/tops/mining_top.py:83
@@ -580,8 +585,10 @@ msgstr "Wappen"
 #: player/views/lists/region_citizens.py:55
 #: player/views/lists/region_citizens.py:56
 #: player/views/lists/region_players.py:55
-#: player/views/lists/region_players.py:56 war/views/open_war_side_list.py:105
-#: war/views/open_war_side_list.py:106
+#: player/views/lists/region_players.py:56
+#: state/templates/state/redesign/elections.html:99
+#: state/templates/state/redesign/elections.html:240
+#: war/views/open_war_side_list.py:105 war/views/open_war_side_list.py:106
 #, fuzzy
 #| msgid "Партия"
 msgctxt "lists"
@@ -636,7 +643,7 @@ msgstr "Bezeichnung darf nicht leer sein"
 #: party/views/management/roles/set_role.py:75
 #: player/views/answer_captcha.py:51 player/views/change_bio.py:32
 #: player/views/change_nickname.py:63
-#: player/views/customization/avatar_edit.py:128
+#: player/views/customization/avatar_edit.py:75
 #: player/views/expense_energy.py:81 player/views/skills/boost_skill.py:166
 #: player/views/skills/up_skill.py:190 skill/views/skill_cancel.py:98
 #: state/views/set_mandate.py:78 state/views/state_foundation.py:109
@@ -2055,6 +2062,35 @@ msgctxt "change_coat_reviewed"
 msgid "недоступно"
 msgstr "nicht verfügbar"
 
+#: bill/templates/state/redesign/reviewed/change_coat.html:44
+#: bill/templates/state/redesign/reviewed/change_form.html:37
+#: bill/templates/state/redesign/reviewed/change_residency.html:55
+#, fuzzy
+#| msgctxt "party_requests"
+#| msgid "Принять"
+msgctxt "change_residency_reviewed"
+msgid "принят"
+msgstr "annehmen"
+
+#: bill/templates/state/redesign/reviewed/change_coat.html:46
+#: bill/templates/state/redesign/reviewed/change_form.html:39
+#: bill/templates/state/redesign/reviewed/change_residency.html:57
+#, fuzzy
+#| msgctxt "party_requests"
+#| msgid "Отклонить"
+msgctxt "change_residency_reviewed"
+msgid "отклонён"
+msgstr "ablehnen"
+
+#: bill/templates/state/redesign/reviewed/change_coat.html:48
+#: bill/templates/state/redesign/reviewed/change_form.html:41
+#: bill/templates/state/redesign/reviewed/change_residency.html:59
+#, fuzzy
+#| msgid "Отмена"
+msgctxt "change_residency_reviewed"
+msgid "отменён"
+msgstr "abbrechen"
+
 #: bill/templates/state/redesign/reviewed/change_residency.html:35
 #, fuzzy
 #| msgid "Автоматы"
@@ -2068,29 +2104,6 @@ msgstr "Gewehre"
 msgctxt "change_residency_reviewed"
 msgid "БПЛА"
 msgstr "Drohnen"
-
-#: bill/templates/state/redesign/reviewed/change_residency.html:55
-#, fuzzy
-#| msgctxt "party_requests"
-#| msgid "Принять"
-msgctxt "change_residency_reviewed"
-msgid "принят"
-msgstr "annehmen"
-
-#: bill/templates/state/redesign/reviewed/change_residency.html:57
-#, fuzzy
-#| msgctxt "party_requests"
-#| msgid "Отклонить"
-msgctxt "change_residency_reviewed"
-msgid "отклонён"
-msgstr "ablehnen"
-
-#: bill/templates/state/redesign/reviewed/change_residency.html:59
-#, fuzzy
-#| msgid "Отмена"
-msgctxt "change_residency_reviewed"
-msgid "отменён"
-msgstr "abbrechen"
 
 #: bill/templates/state/redesign/reviewed/change_taxes.html:30
 #, fuzzy
@@ -2821,6 +2834,42 @@ msgstr "Das angegebene Lager gehört nicht Ihnen"
 msgctxt "chat"
 msgid "Вы не состоите в этом чате"
 msgstr "Sie sind kein Mitglied der angegebenen Partei"
+
+#: education/views/edu_overview.py:51 education/views/edu_overview.py:54
+#: player/views/overview.py:372 player/views/overview.py:375
+msgctxt "education"
+msgid "Анна"
+msgstr ""
+
+#: education/views/edu_overview.py:54 player/views/overview.py:375
+#, fuzzy
+#| msgctxt "goods"
+#| msgid "Мины"
+msgctxt "education"
+msgid "Лин"
+msgstr "Minen"
+
+#: education/views/edu_overview.py:54 player/views/overview.py:375
+#, fuzzy
+#| msgctxt "regions_list"
+#| msgid "Бавария"
+msgctxt "education"
+msgid "Мария"
+msgstr "Bayern"
+
+#: education/views/edu_overview.py:54 player/views/overview.py:375
+msgctxt "education"
+msgid "София"
+msgstr ""
+
+#: education/views/edu_overview.py:54 player/views/overview.py:375
+msgctxt "education"
+msgid "Ольга"
+msgstr ""
+
+#: education/views/edu_overview.py:71 player/views/overview.py:381
+msgid "Обзор"
+msgstr "Startseite"
 
 #: event/templates/event/anniversary.html:218
 #: player/templates/player/redesign/overview.html:630
@@ -3701,6 +3750,16 @@ msgstr "Präsidentschaftswahlen"
 msgctxt "pres_elections"
 msgid "Кандидат"
 msgstr ""
+
+#: gov/templates/gov/redesign/elections.html:240
+#: party/templates/party/redesign/primaries.html:244
+#: state/templates/state/redesign/elections.html:241
+#, fuzzy
+#| msgctxt "no_party"
+#| msgid "Действие"
+msgctxt "lists"
+msgid "Действие"
+msgstr "Aktion"
 
 #: gov/templates/state/redesign/forms/foreign_right.html:13
 #, fuzzy
@@ -5010,6 +5069,11 @@ msgctxt "index"
 msgid "и порядка обработки персональных данных"
 msgstr ""
 
+#: player/templates/player/index.html:325
+msgctxt "index"
+msgid "читать"
+msgstr ""
+
 #: player/templates/player/personal_data.html:6
 #: player/templates/player/personal_data.html:10
 msgctxt "personal_data"
@@ -5319,6 +5383,14 @@ msgid ""
 "Выдаётся за выполненный перевод проекта, или активное участие в его "
 "исправлении"
 msgstr ""
+
+#: player/templates/player/redesign/customization/view_planes.html:10
+#, fuzzy
+#| msgctxt "storage_assets"
+#| msgid "Активация"
+msgctxt "plane_select"
+msgid "Авиация"
+msgstr "aktivieren"
 
 #: player/templates/player/redesign/game_event/halloween.html:128
 #: player/views/game_event/halloween.py:57
@@ -6596,28 +6668,19 @@ msgctxt "profile"
 msgid "Некорректный код акцентов игры"
 msgstr "Falscher Besitzer"
 
-#: player/views/customization/avatar_edit.py:107
-#, fuzzy, python-format
-#| msgctxt "mining"
-#| msgid "Ошибка получения финансирования"
-msgctxt "new_article"
-msgid "Ошибка сохранения уменьшенных изображений: %(e)s"
-msgstr "Finanzierungsfehler"
+#: player/views/customization/avatar_edit.py:68
+msgctxt "change_nickname"
+msgid "Форма смены аватара недействительна"
+msgstr ""
 
-#: player/views/customization/avatar_edit.py:108
-#: player/views/customization/avatar_edit.py:120
-#: player/views/customization/avatar_edit.py:129
+#: player/views/customization/avatar_edit.py:69
+#: player/views/customization/avatar_edit.py:76
 #, fuzzy
 #| msgctxt "skill_cancel"
 #| msgid "Отмена изучения навыка"
 msgctxt "change_nickname"
 msgid "Смена аватара"
 msgstr "Du kannst die Fähigkeit abbrechen"
-
-#: player/views/customization/avatar_edit.py:119
-msgctxt "change_nickname"
-msgid "Форма смены аватара недействительна"
-msgstr ""
 
 #: player/views/customization/border/border_select.py:29
 #, fuzzy
@@ -6915,41 +6978,6 @@ msgstr "Neuer Charakter"
 msgctxt "new_player"
 msgid "Ошибка в форме профиля"
 msgstr "Fehler im Profil"
-
-#: player/views/overview.py:372 player/views/overview.py:375
-msgctxt "education"
-msgid "Анна"
-msgstr ""
-
-#: player/views/overview.py:375
-#, fuzzy
-#| msgctxt "goods"
-#| msgid "Мины"
-msgctxt "education"
-msgid "Лин"
-msgstr "Minen"
-
-#: player/views/overview.py:375
-#, fuzzy
-#| msgctxt "regions_list"
-#| msgid "Бавария"
-msgctxt "education"
-msgid "Мария"
-msgstr "Bayern"
-
-#: player/views/overview.py:375
-msgctxt "education"
-msgid "София"
-msgstr ""
-
-#: player/views/overview.py:375
-msgctxt "education"
-msgid "Ольга"
-msgstr ""
-
-#: player/views/overview.py:381
-msgid "Обзор"
-msgstr "Startseite"
 
 #: player/views/set_language.py:38
 msgid "Такого языка в игре нет"
@@ -8027,6 +8055,14 @@ msgstr "frei"
 msgctxt "state_view"
 msgid "Выдаётся министром"
 msgstr " \tHerausgegeben vom Minister"
+
+#: state/templates/state/redesign/elections.html:26
+#, fuzzy
+#| msgctxt "overview"
+#| msgid "Выборы"
+msgctxt "set_mandate"
+msgid "Выборы"
+msgstr "Wahlen"
 
 #: state/templates/state/redesign/gov/executives.html:26
 #: state/templates/state/redesign/gov/executives.html:39
@@ -10931,6 +10967,13 @@ msgstr ""
 msgctxt "war_page"
 msgid "Войны"
 msgstr "Kriege"
+
+#, fuzzy, python-format
+#~| msgctxt "mining"
+#~| msgid "Ошибка получения финансирования"
+#~ msgctxt "new_article"
+#~ msgid "Ошибка сохранения уменьшенных изображений: %(e)s"
+#~ msgstr "Finanzierungsfehler"
 
 #~ msgctxt "storage"
 #~ msgid "Закрыть"
