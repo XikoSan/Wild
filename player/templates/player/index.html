@@ -19,7 +19,6 @@
   --nav: #336380;
 	}
 	</style>
-    <script src="https://vk.com/js/api/openapi.js?169" type="text/javascript"></script>
 </head>
 
 <script type="text/javascript">
@@ -316,9 +315,25 @@
         <div class="login__logoWrapper">
           <h3>{% trans 'Мы в VK' context "index" %}</h3>
         </div>
+        <!-- вк виджет -->
+        <style>
+          #vk_placeholder {
+            position: relative;
+            cursor: pointer;
+            width: 300px;
+            height: 500px;
+            background: url('/static/img/index/group_placeholder.webp') center/cover;
+            filter: blur(3px);
+          }
 
-        <div id="vk_placeholder" style="position: relative;  cursor: pointer; width: 300px;height: 500px;background: url('/static/img/index/group_placeholder.webp') center/cover;filter: blur(3px); margin-top: -18rem">
-        </div>
+          @media (min-width: 1000px) {
+            #vk_placeholder {
+              margin-top: -18rem;
+            }
+          }
+        </style>
+
+        <div id="vk_placeholder"></div>
 
         <div id="vk_button_container" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1;">
           <button onclick="loadVKWidget()" style="padding: 10px 20px; background-color: transparent; color: var(--c10two); border: 2px solid var(--c10two); cursor: pointer;">
@@ -330,24 +345,30 @@
 
         <script type="text/javascript">
           function loadVKWidget() {
-            // Скрываем заглушку и контейнер с кнопкой, показываем контейнер для виджета
-            document.getElementById('vk_placeholder').style.display = 'none';
-            document.getElementById('vk_button_container').style.display = 'none';
-            document.getElementById('vk_groups').style.display = 'block';
+            // Загрузка скрипта ВКонтакте
+            var script = document.createElement('script');
+            script.src = "https://vk.com/js/api/openapi.js?169";
+            script.onload = function() {
+              // Скрываем заглушку и контейнер с кнопкой, показываем контейнер для виджета
+              document.getElementById('vk_placeholder').style.display = 'none';
+              document.getElementById('vk_button_container').style.display = 'none';
+              document.getElementById('vk_groups').style.display = 'block';
 
-            // Вставляем виджет ВК
-            VK.Widgets.Group("vk_groups", {
-              mode: 4,
-              wide: 1,
-              height: 500,
-              width: 300,
-              color1: "28353E",
-              color2: "FFFFFF",
-              color3: "EB9929"
-            }, 164930433);
+              // Вставляем виджет ВК
+              VK.Widgets.Group("vk_groups", {
+                mode: 4,
+                wide: 1,
+                height: 500,
+                width: 300,
+                color1: "28353E",
+                color2: "FFFFFF",
+                color3: "EB9929"
+              }, 164930433);
+            };
+            document.head.appendChild(script);
           }
         </script>
-
+        <!-- вк виджет -->
       </div>
     </div>
 
