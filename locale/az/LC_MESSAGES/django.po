@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-30 18:22+0300\n"
-"PO-Revision-Date: 2024-10-30 18:22+0300\n"
+"POT-Creation-Date: 2024-10-30 23:31+0300\n"
+"PO-Revision-Date: 2024-10-30 23:30+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: az\n"
@@ -1677,17 +1677,14 @@ msgid "предложить"
 msgstr "Təklif etmək"
 
 #: bill/templates/state/redesign/reviewed/change_coat.html:25
-#, fuzzy
-#| msgctxt "goods"
-#| msgid "Орбитальные орудия"
 msgctxt "change_coat_reviewed"
 msgid "оригинальный размер"
-msgstr "Orbital silahlar"
+msgstr "Orijinal ölçü"
 
 #: bill/templates/state/redesign/reviewed/change_coat.html:28
 msgctxt "change_coat_reviewed"
 msgid "недоступно"
-msgstr ""
+msgstr "Mövcud deyil"
 
 #: bill/templates/state/redesign/reviewed/change_coat.html:44
 #: bill/templates/state/redesign/reviewed/change_form.html:37
@@ -2012,12 +2009,12 @@ msgstr ""
 #: bill/views/bills/cancel_bill.py:77
 msgctxt "cancel_bill"
 msgid "Нет такого законопроекта"
-msgstr ""
+msgstr "Belə qanun yoxdur"
 
 #: bill/views/bills/cancel_bill.py:84
 msgctxt "cancel_bill"
 msgid "Нет такого вида законопроекта"
-msgstr ""
+msgstr "Belə növ qanun yoxdur"
 
 #: bill/views/bills/cancel_bill.py:91
 msgctxt "cancel_bill"
@@ -2145,58 +2142,45 @@ msgstr "Metod xətası"
 #: bill/views/bills/vote_bill.py:62
 msgctxt "vote_bill"
 msgid "Надо проголосовать!"
-msgstr ""
+msgstr "Səs ver!"
 
 #: bill/views/bills/vote_bill.py:63 bill/views/bills/vote_bill.py:89
 #: bill/views/bills/vote_bill.py:96 bill/views/bills/vote_bill.py:103
 #: bill/views/bills/vote_bill.py:110 bill/views/bills/vote_bill.py:117
 #: bill/views/bills/vote_bill.py:124
-#, fuzzy
-#| msgctxt "goods"
-#| msgid "Оборудование"
 msgctxt "vote_bill"
 msgid "Голосование"
-msgstr "Təchizat"
+msgstr "Səs vermə"
 
 #: bill/views/bills/vote_bill.py:88
 msgctxt "vote_bill"
 msgid "Вы уже проголосовали"
-msgstr ""
+msgstr "Siz artıq sës vermisiz"
 
 #: bill/views/bills/vote_bill.py:95
-#, fuzzy
-#| msgid "Новый персонаж"
 msgctxt "vote_bill"
 msgid "Нет такого законопроекта"
-msgstr "Yeni oyunçu"
+msgstr "Belə bir qanun yoxdur"
 
 #: bill/views/bills/vote_bill.py:102
-#, fuzzy
-#| msgid "Новый персонаж"
 msgctxt "vote_bill"
 msgid "Нет такого вида законопроекта"
-msgstr "Yeni oyunçu"
+msgstr "Belə bir qanun yoxdur"
 
 #: bill/views/bills/vote_bill.py:109
-#, fuzzy
-#| msgid "должность в партии"
 msgctxt "vote_bill"
 msgid "Вы - не депутат этого парламента"
-msgstr "partiyadakı mövqe"
+msgstr "Siz deputat deyilsiz"
 
 #: bill/views/bills/vote_bill.py:116
-#, fuzzy
-#| msgid "У вас пока еще нет стикеров"
 msgctxt "vote_bill"
 msgid "В этом государстве нет парламента"
-msgstr "Hələ stikerləriniz yoxdur"
+msgstr "Bu dövlətdə parlament yoxdur"
 
 #: bill/views/bills/vote_bill.py:123
-#, fuzzy
-#| msgid "Выносливость"
 msgctxt "vote_bill"
 msgid "В этом регионе нет государства"
-msgstr "Dayanıqlılıq"
+msgstr "Bu bölgədə dövlêt yoxdur"
 
 #: chat/comment_consumers.py:24 chat/consumers.py:73
 msgctxt "chat"
@@ -2982,7 +2966,7 @@ msgstr ""
 #: region/templates/region/redesign/mining.html:145
 msgctxt "mining"
 msgid "авто"
-msgstr ""
+msgstr "Avto"
 
 #: factory/templates/factory/redesign/factory.html:224
 msgctxt "factory"
@@ -2992,7 +2976,7 @@ msgstr ""
 #: factory/views/cancel_auto.py:33 region/views/cancel_auto.py:33
 msgctxt "mining"
 msgid "Ошибка при отмене"
-msgstr ""
+msgstr "İmtina zamanı xəta "
 
 #: factory/views/produce_good.py:39
 msgctxt "factory"
@@ -3089,7 +3073,7 @@ msgstr ""
 #: region/views/do_mining.py:40 region/views/start_auto.py:26
 msgctxt "mining"
 msgid "Дождитесь конца полёта"
-msgstr ""
+msgstr "Uçuşun bitməsini gözləyin"
 
 #: factory/views/start_auto.py:32 factory/views/start_auto.py:40
 #: factory/views/start_auto.py:50 factory/views/start_auto.py:79
@@ -3101,7 +3085,7 @@ msgstr ""
 #: factory/views/start_auto.py:39 region/views/start_auto.py:34
 msgctxt "mining"
 msgid "Премиум-аккаунт не активен. Продлите его"
-msgstr ""
+msgstr "Premium-hesab aktiv deyil. Uzadın"
 
 #: factory/views/start_auto.py:49
 msgctxt "auto_produce"
@@ -4176,7 +4160,7 @@ msgstr ""
 #: region/views/retrieve_cash.py:40
 msgctxt "mining"
 msgid "Ошибка получения финансирования"
-msgstr ""
+msgstr "Maliyyələşmədə xəta baş verdi"
 
 #: player/player.py:404 player/player.py:425
 msgctxt "mining"
@@ -4222,128 +4206,128 @@ msgid ""
 "будет невозможно!"
 msgstr ""
 
-#: player/templates/player/index.html:90 player/templates/player/index.html:255
+#: player/templates/player/index.html:89 player/templates/player/index.html:254
 msgctxt "index"
 msgid "Ссылки"
 msgstr ""
 
-#: player/templates/player/index.html:100
+#: player/templates/player/index.html:99
 msgctxt "index_links"
 msgid "Официальная"
 msgstr ""
 
-#: player/templates/player/index.html:100
+#: player/templates/player/index.html:99
 msgctxt "index_links"
 msgid "Wiki игры"
 msgstr ""
 
-#: player/templates/player/index.html:113
+#: player/templates/player/index.html:112
 msgctxt "index_links"
 msgid "Группа игры"
 msgstr ""
 
-#: player/templates/player/index.html:113
-#: player/templates/player/index.html:126
+#: player/templates/player/index.html:112
+#: player/templates/player/index.html:125
 msgctxt "index_links"
 msgid "Вконтакте"
 msgstr ""
 
-#: player/templates/player/index.html:126
+#: player/templates/player/index.html:125
 msgctxt "index_links"
 msgid "Общий чат игроков"
 msgstr ""
 
-#: player/templates/player/index.html:140
+#: player/templates/player/index.html:139
 msgctxt "index_links"
 msgid "Новостной канал в"
 msgstr ""
 
-#: player/templates/player/index.html:140
-#: player/templates/player/index.html:154
+#: player/templates/player/index.html:139
+#: player/templates/player/index.html:153
 msgctxt "index_links"
 msgid "Telegram"
 msgstr ""
 
-#: player/templates/player/index.html:154
+#: player/templates/player/index.html:153
 msgctxt "index_links"
 msgid "Общий чат игроков в"
 msgstr ""
 
-#: player/templates/player/index.html:165
+#: player/templates/player/index.html:164
 #, fuzzy
 #| msgid "Уровень Укреплений"
 msgctxt "index_links"
 msgid "Приложение"
 msgstr "İstehkam səviyyəsi"
 
-#: player/templates/player/index.html:165
+#: player/templates/player/index.html:164
 msgctxt "index_links"
 msgid "игры"
 msgstr ""
 
-#: player/templates/player/index.html:243
+#: player/templates/player/index.html:242
 msgctxt "index"
 msgid "это экономико-политический симулятор"
 msgstr ""
 
-#: player/templates/player/index.html:246
+#: player/templates/player/index.html:245
 msgctxt "index"
 msgid "Объединяйтесь в партии для контроля государств."
 msgstr ""
 
-#: player/templates/player/index.html:247
+#: player/templates/player/index.html:246
 msgctxt "index"
 msgid "Перекраивайте карту мира."
 msgstr ""
 
-#: player/templates/player/index.html:248
+#: player/templates/player/index.html:247
 msgctxt "index"
 msgid ""
 "Создайте бизнес своей мечты - добыча ископаемых, промышленность, торговля."
 msgstr ""
 
-#: player/templates/player/index.html:249
+#: player/templates/player/index.html:248
 msgctxt "index"
 msgid "Воюйте и заключайте союзы."
 msgstr ""
 
-#: player/templates/player/index.html:250
+#: player/templates/player/index.html:249
 msgctxt "index"
 msgid "Расширяйте влияние своего государства."
 msgstr ""
 
-#: player/templates/player/index.html:251
+#: player/templates/player/index.html:250
 msgctxt "index"
 msgid "Станьте владельцем популярной газеты и заработайте на рекламе."
 msgstr ""
 
-#: player/templates/player/index.html:256
-#: player/templates/player/index.html:317
+#: player/templates/player/index.html:255
+#: player/templates/player/index.html:316
 msgctxt "index"
 msgid "Мы в VK"
 msgstr ""
 
-#: player/templates/player/index.html:259
+#: player/templates/player/index.html:258
 msgctxt "index"
 msgid "Начни игру"
 msgstr ""
 
-#: player/templates/player/index.html:304
+#: player/templates/player/index.html:303
 msgctxt "index"
 msgid "Продолжая использование сайта, вы принимаете условия"
 msgstr ""
 
-#: player/templates/player/index.html:305
+#: player/templates/player/index.html:304
 msgctxt "index"
 msgid "Пользовательского соглашения"
 msgstr ""
 
-#: player/templates/player/index.html:306
+#: player/templates/player/index.html:305
 msgctxt "index"
 msgid "и порядка обработки персональных данных"
 msgstr ""
 
-#: player/templates/player/index.html:325
+#: player/templates/player/index.html:340
 #, fuzzy
 #| msgctxt "article"
 #| msgid "статья"
@@ -5071,7 +5055,7 @@ msgstr "Bilik"
 #: player/templates/player/redesign/overview.html:695
 msgctxt "overview"
 msgid "вын"
-msgstr "Dözümlülük"
+msgstr "Dzm"
 
 #: player/templates/player/redesign/overview.html:711
 msgctxt "overview"
@@ -6243,35 +6227,31 @@ msgstr "Xəstəxana səviyyəsi"
 #: region/templates/region/redesign/map.html:131
 msgctxt "map"
 msgid "Онлайн"
-msgstr ""
+msgstr "Canlı"
 
 #: region/templates/region/redesign/map.html:32
 #: region/templates/region/redesign/map.html:147
 msgctxt "map"
 msgid "Индекс медицины"
-msgstr ""
+msgstr "Tibb indeksi"
 
 #: region/templates/region/redesign/map.html:43
 #: region/templates/region/redesign/map.html:163
-#, fuzzy
-#| msgid "Уровень Госпиталя"
 msgctxt "map"
 msgid "Индекс инфраструктуры"
-msgstr "Xəstəxana səviyyəsi"
+msgstr "Bina indeksi"
 
 #: region/templates/region/redesign/map.html:54
 #: region/templates/region/redesign/map.html:243
-#, fuzzy
-#| msgid "Запасы нефти"
 msgctxt "map"
 msgid "Марки нефти"
-msgstr "Neft ehtiyatı"
+msgstr "Neft növləri"
 
 #: region/templates/region/redesign/map.html:67
 #: region/templates/region/redesign/map.html:258
 msgctxt "map"
 msgid "Залежи руд"
-msgstr ""
+msgstr "Filiz madəni"
 
 #: region/templates/region/redesign/map.html:227
 #, fuzzy
@@ -6283,7 +6263,7 @@ msgstr "Bölgə partiyaları"
 #: region/templates/region/redesign/map.html:274
 msgctxt "map"
 msgid "Без фильтра"
-msgstr ""
+msgstr "Filtrsız"
 
 #: region/templates/region/redesign/map.html:932
 msgctxt "education"
@@ -6369,7 +6349,7 @@ msgstr ""
 #: region/templates/region/redesign/region_info.html:20
 msgctxt "mining"
 msgid "Золото"
-msgstr ""
+msgstr "Qızıl"
 
 #: region/templates/region/redesign/mining.html:61
 #: region/templates/region/redesign/mining.html:97
@@ -6393,13 +6373,13 @@ msgstr ""
 #: region/templates/region/redesign/region_info.html:31
 msgctxt "mining"
 msgid "Нефть"
-msgstr ""
+msgstr "Neft"
 
 #: region/templates/region/redesign/mining.html:126
 #: region/templates/region/redesign/region_info.html:42
 msgctxt "mining"
 msgid "Руда"
-msgstr ""
+msgstr "Filiz"
 
 #: region/templates/region/redesign/mining.html:291
 msgctxt "education"
@@ -6484,14 +6464,14 @@ msgstr ""
 #: region/templates/region/redesign/region_info.html:65
 msgctxt "map"
 msgid "Вы здесь"
-msgstr ""
+msgstr "Burdasız"
 
 #: region/templates/region/redesign/region_info.html:80
 #: region/templates/region/redesign/region_view.html:115
 #: region/templates/region/redesign/region_view.html:152
 msgctxt "map"
 msgid "отправиться"
-msgstr ""
+msgstr "Səyahət etmək"
 
 #: region/templates/region/redesign/region_view.html:69
 #, fuzzy
@@ -6684,7 +6664,7 @@ msgstr ""
 #: region/views/do_mining.py:94
 msgctxt "mining"
 msgid "Недостаточно энергии"
-msgstr ""
+msgstr "Enerji kifayət deyil"
 
 #: region/views/do_mining.py:113
 msgctxt "mining"
@@ -6701,7 +6681,7 @@ msgstr ""
 #: storage/views/trading/premium_trading.py:195
 msgctxt "mining"
 msgid "Закрыть"
-msgstr ""
+msgstr "Bağla"
 
 #: region/views/do_mining.py:150
 msgctxt "mining"
@@ -6822,11 +6802,9 @@ msgid "нет полномочий"
 msgstr ""
 
 #: region/views/map/save_links.py:32
-#, fuzzy
-#| msgid "Партии региона"
 msgctxt "mining"
 msgid "связи регионов"
-msgstr "Bölgə partiyaları"
+msgstr "Bölgələrin əlaqələri"
 
 #: region/views/map/save_links.py:60 region/views/start_auto.py:27
 #: region/views/start_auto.py:35 region/views/start_auto.py:45
@@ -7330,28 +7308,26 @@ msgstr "partiyadakı mövqe"
 #: state/views/state_foundation.py:40
 msgctxt "state_foundation"
 msgid "Государство в этом регионе уже есть"
-msgstr ""
+msgstr "Bu bölgədə dövlət artıq var"
 
 #: state/views/state_foundation.py:41 state/views/state_foundation.py:55
 #: state/views/state_foundation.py:69 state/views/state_foundation.py:110
 #: war/views/start_war.py:103
-#, fuzzy
-#| msgid "Выносливость"
 msgctxt "state_foundation"
 msgid "Основание государства"
-msgstr "Dayanıqlılıq"
+msgstr "Dövlətin yaranması"
 
 #: state/views/state_foundation.py:54
 msgctxt "state_foundation"
 msgid "Невозможно создать государство в первые 12 часов после восстания"
-msgstr ""
+msgstr "Usyandan sonra 12 saat dövlət yaradmaq mümkün deyil"
 
 #: state/views/state_foundation.py:68
 msgctxt "state_foundation"
 msgid ""
 "Невозможно создать государство в первые 12 часов после объявления "
 "независимости"
-msgstr ""
+msgstr "Müstəqillik elanından sonra 12 saat dövlət yaradmaq mümkün deyil"
 
 #: storage/migrations/0067_auto_20230715_1635.py:13 storage/models/good.py:25
 #: storage/models/storage.py:31
