@@ -76,7 +76,7 @@ def state_parties_list(request, state_pk):
         },
 
         'size': {
-            'text': 'Размер',
+            'text': pgettext('lists', 'Размер'),
             'select_text': pgettext('lists', 'Размер'),
             'visible': 'true'
         },
