@@ -24,6 +24,8 @@ def accept_in_party(request, plr_pk):
             # удаляем все его заявки в другие партии
             PartyApply.objects.filter(player=accepted_player, party=player.party, status='op').update(
                 status='ac')
+            PartyApply.objects.filter(player=accepted_player, status='op').update(
+                status='cs')
             # задаем его новую партию
             accepted_player.party = player.party
             # задаем ему должность нового игрока в партии

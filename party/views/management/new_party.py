@@ -52,7 +52,7 @@ def new_party(request):
                     # GoPrims.apply_async((new_party.pk,), countdown=604800, queue='government', task_id=task_id)
 
                     # удаляем все его заявки в другие партии
-                    PartyApply.objects.filter(player=player).delete()
+                    PartyApply.objects.filter(player=player, status='op').update(status='cs')
                     # назначаем игроку его партию
                     player.party = new_party
                     # Даем игроку пост в новой партии

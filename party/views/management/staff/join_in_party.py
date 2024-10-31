@@ -25,7 +25,7 @@ def join_in_party(request, plr_pk, pty_pk):
                 # если партия является открытой
                 if Party.objects.get(pk=pty_pk).type == 'op':
                     # удаляем все его заявки в другие партии
-                    PartyApply.objects.filter(player=logged_player).delete()
+                    PartyApply.objects.filter(player=logged_player, status='op').update(status='cs')
                     # задаем его новую партию
                     logged_player.party = Party.objects.get(pk=pty_pk)
                     # задаем ему должность нового игрока в партии
