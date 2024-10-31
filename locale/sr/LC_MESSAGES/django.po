@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-31 01:22+0300\n"
+"POT-Creation-Date: 2024-10-31 15:38+0300\n"
 "PO-Revision-Date: 2024-10-28 19:30+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -51,14 +51,14 @@ msgstr "коментари"
 
 #: article/templates/article/article.html:344
 #: chat/templates/chat/dialogue.html:160
-#: player/templates/player/redesign/overview.html:1034
+#: player/templates/player/redesign/overview.html:969
 msgctxt "overview"
 msgid "У вас пока еще нет стикеров"
 msgstr "Још увек немате налепнице"
 
 #: article/templates/article/article.html:357
 #: chat/templates/chat/dialogue.html:173
-#: player/templates/player/redesign/overview.html:1047
+#: player/templates/player/redesign/overview.html:982
 msgctxt "overview"
 msgid "магазин"
 msgstr "продавница"
@@ -2150,25 +2150,50 @@ msgctxt "chat"
 msgid "Вы не состоите в этом чате"
 msgstr ""
 
-#: education/templates/education/edu_overview.html:249
-#: player/templates/player/redesign/overview.html:685
+#: education/templates/education/edu_overview.html:95
+#: player/templates/player/redesign/overview.html:222
+msgctxt "overview"
+msgid "мир"
+msgstr ""
+
+#: education/templates/education/edu_overview.html:151
+#, fuzzy
+#| msgctxt "new_bill"
+#| msgid "Президентская республика"
+msgctxt "education"
+msgid "Объединённая Республика"
+msgstr "Председничка република"
+
+#: education/templates/education/edu_overview.html:188
+msgctxt "education"
+msgid "Столичный регион"
+msgstr ""
+
+#: education/templates/education/edu_overview.html:224
+#: player/templates/player/redesign/overview.html:393
+msgctxt "overview"
+msgid "войн нет"
+msgstr ""
+
+#: education/templates/education/edu_overview.html:243
+#: player/templates/player/redesign/overview.html:669
 msgctxt "overview"
 msgid "сила"
 msgstr ""
 
-#: education/templates/education/edu_overview.html:254
-#: player/templates/player/redesign/overview.html:690
+#: education/templates/education/edu_overview.html:248
+#: player/templates/player/redesign/overview.html:674
 msgctxt "overview"
 msgid "инт"
 msgstr ""
 
-#: education/templates/education/edu_overview.html:259
-#: player/templates/player/redesign/overview.html:695
+#: education/templates/education/edu_overview.html:253
+#: player/templates/player/redesign/overview.html:679
 msgctxt "overview"
 msgid "вын"
 msgstr ""
 
-#: education/templates/education/edu_overview.html:289
+#: education/templates/education/edu_overview.html:276
 #: player/templates/player/redesign/lists/skill_top.html:26
 #: player/templates/player/redesign/overview_skills.html:21
 #: skill/models/biochemistry.py:20 skill/models/coherence.py:21
@@ -2178,9 +2203,9 @@ msgctxt "skills"
 msgid "Сила"
 msgstr ""
 
-#: education/templates/education/edu_overview.html:315
-#: education/templates/education/edu_overview.html:351
-#: education/templates/education/edu_overview.html:388
+#: education/templates/education/edu_overview.html:302
+#: education/templates/education/edu_overview.html:338
+#: education/templates/education/edu_overview.html:375
 #: player/templates/player/redesign/overview_skills.html:60
 #: player/templates/player/redesign/overview_skills.html:126
 #: player/templates/player/redesign/overview_skills.html:188
@@ -2189,7 +2214,7 @@ msgctxt "skills"
 msgid "изучить"
 msgstr ""
 
-#: education/templates/education/edu_overview.html:325
+#: education/templates/education/edu_overview.html:312
 #: player/templates/player/redesign/lists/skill_top.html:41
 #: player/templates/player/redesign/overview_skills.html:87
 #: skill/models/biochemistry.py:15 skill/models/coherence.py:26
@@ -2201,7 +2226,7 @@ msgctxt "skills"
 msgid "Интеллект"
 msgstr ""
 
-#: education/templates/education/edu_overview.html:362
+#: education/templates/education/edu_overview.html:349
 #: player/templates/player/redesign/lists/skill_top.html:56
 #: player/templates/player/redesign/overview_skills.html:149
 #: skill/models/biochemistry.py:25 skill/models/excavation.py:25
@@ -2211,10 +2236,144 @@ msgctxt "skills"
 msgid "Выносливость"
 msgstr ""
 
-#: education/templates/education/edu_overview.html:403
+#: education/templates/education/edu_overview.html:390
 #: player/templates/player/redesign/overview_skills.html:225
 msgctxt "skills"
 msgid "дерево навыков"
+msgstr ""
+
+#: education/templates/education/edu_overview.html:452
+#: player/templates/player/redesign/overview.html:698
+msgctxt "overview"
+msgid "Выборы"
+msgstr ""
+
+#: education/templates/education/edu_overview.html:457
+#: player/templates/player/redesign/overview.html:703
+msgctxt "overview"
+msgid "партии"
+msgstr ""
+
+#: education/templates/education/edu_overview.html:457
+#: player/templates/player/redesign/overview.html:703
+msgctxt "overview"
+msgid "государства"
+msgstr ""
+
+#: education/templates/education/edu_overview.html:470
+#: education/templates/education/edu_overview.html:513
+#, fuzzy
+#| msgctxt "new_bill"
+#| msgid "Президентская республика"
+msgctxt "education"
+msgid "Партия Единства Республики"
+msgstr "Председничка република"
+
+#: education/templates/education/edu_overview.html:479
+#, fuzzy
+#| msgctxt "new_bill"
+#| msgid "Президентская республика"
+msgctxt "education"
+msgid "Радикальная партия Республики"
+msgstr "Председничка република"
+
+#: education/templates/education/edu_overview.html:488
+#, fuzzy
+#| msgctxt "new_bill"
+#| msgid "Президентская республика"
+msgctxt "education"
+msgid "Зелёная Альтернатива Республики"
+msgstr "Председничка република"
+
+#: education/templates/education/edu_overview.html:500
+#: player/templates/player/redesign/overview.html:747
+msgctxt "overview"
+msgid "парламент"
+msgstr ""
+
+#: education/templates/education/edu_overview.html:610
+msgctxt "education"
+msgid "Мы против повышения налогов!"
+msgstr ""
+
+#: education/templates/education/edu_overview.html:611
+msgctxt "education"
+msgid "Снижение зарплат — это несправедливо!"
+msgstr ""
+
+#: education/templates/education/edu_overview.html:612
+msgctxt "education"
+msgid "Прекратите сокращения!"
+msgstr ""
+
+#: education/templates/education/edu_overview.html:613
+msgctxt "education"
+msgid "Требуем равные права!"
+msgstr ""
+
+#: education/templates/education/edu_overview.html:614
+msgctxt "education"
+msgid "Хватит обманывать народ!"
+msgstr ""
+
+#: education/templates/education/edu_overview.html:615
+msgctxt "education"
+msgid "Когда нас начнут слушать?"
+msgstr ""
+
+#: education/templates/education/edu_overview.html:616
+msgctxt "education"
+msgid "Слушайте народ, а не только отчеты!"
+msgstr ""
+
+#: education/templates/education/edu_overview.html:617
+msgctxt "education"
+msgid "Обещали перемены — где они теперь?"
+msgstr ""
+
+#: education/templates/education/edu_overview.html:618
+msgctxt "education"
+msgid "Нам нужны действия, а не только слова!"
+msgstr ""
+
+#: education/templates/education/edu_overview.html:619
+msgctxt "education"
+msgid "Мы требуем честности и прозрачности!"
+msgstr ""
+
+#: education/templates/education/edu_overview.html:620
+msgctxt "education"
+msgid "Хватит обещаний, пора выполнять!"
+msgstr ""
+
+#: education/templates/education/edu_overview.html:621
+msgctxt "education"
+msgid "Кто работает для людей — пусть ответит перед людьми!"
+msgstr ""
+
+#: education/templates/education/edu_overview.html:622
+msgctxt "education"
+msgid "Время перемен пришло — от слов к делам!"
+msgstr ""
+
+#: education/templates/education/edu_overview.html:623
+msgctxt "education"
+msgid "Мы требуем справедливости и равных прав!"
+msgstr ""
+
+#: education/templates/education/edu_overview.html:624
+msgctxt "education"
+msgid "Политика для народа, а не для избранных!"
+msgstr ""
+
+#: education/templates/education/edu_overview.html:625
+msgctxt "education"
+msgid "Не прячьтесь за стенами, ответьте на вопросы!"
+msgstr ""
+
+#: education/templates/education/edu_overview.html:632
+msgctxt "education"
+msgid "протестующие"
 msgstr ""
 
 #: education/views/edu_overview.py:51 education/views/edu_overview.py:54
@@ -2248,7 +2407,7 @@ msgid "Обзор"
 msgstr ""
 
 #: event/templates/event/anniversary.html:218
-#: player/templates/player/redesign/overview.html:630
+#: player/templates/player/redesign/overview.html:614
 msgctxt "overview"
 msgid "Годовщина сервера!"
 msgstr ""
@@ -4664,7 +4823,7 @@ msgctxt "new_player"
 msgid "Часовой пояс"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:109
+#: player/templates/player/redesign/overview.html:93
 #, python-format
 msgctxt "education"
 msgid ""
@@ -4672,45 +4831,45 @@ msgid ""
 "мир Wild Politics!"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:112
+#: player/templates/player/redesign/overview.html:96
 msgctxt "education"
 msgid "Wild Politics - это экономико-политический симулятор."
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:115
+#: player/templates/player/redesign/overview.html:99
 msgctxt "education"
 msgid ""
 "Множество игроков, объединённых общими целями, развивают свои государства и "
 "расширяют их влияние."
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:118
+#: player/templates/player/redesign/overview.html:102
 msgctxt "education"
 msgid "Создают крупные партии, чтобы повести их за собой, к вершинам власти."
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:121
+#: player/templates/player/redesign/overview.html:105
 msgctxt "education"
 msgid ""
 "Ведут крупномасштабные войны и заключают союзы, объединяющие целые "
 "континенты."
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:124
+#: player/templates/player/redesign/overview.html:108
 msgctxt "education"
 msgid ""
 "Создают бизнесы и корпорации. Основывают торговые сети. Распространяют своё "
 "влияние при помощи популярных СМИ."
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:127
+#: player/templates/player/redesign/overview.html:111
 msgctxt "education"
 msgid ""
 "Вы обязательно добьётесь всего этого. Но для начала, позвольте познакомить "
 "Вас с текущим положением дел."
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:133
+#: player/templates/player/redesign/overview.html:117
 #, python-format
 msgctxt "education"
 msgid ""
@@ -4719,14 +4878,14 @@ msgid ""
 "местонахождения, а также мире в целом"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:135
+#: player/templates/player/redesign/overview.html:119
 msgctxt "education"
 msgid ""
 "Сейчас Вы находитесь в независимом регионе. Здесь представлена различная "
 "информация о регионе нашего местонахождения, а также мире в целом"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:141
+#: player/templates/player/redesign/overview.html:125
 msgctxt "education"
 msgid ""
 "В любом регионе государства можно основать партию, либо присоединиться к "
@@ -4735,25 +4894,25 @@ msgid ""
 "позже."
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:144
+#: player/templates/player/redesign/overview.html:128
 msgctxt "education"
 msgid ""
 "А сейчас обратите внимание на ваши характеристики. Их рекомендуется "
 "развивать постоянно, при наличии свободных средств."
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:148
+#: player/templates/player/redesign/overview.html:132
 msgctxt "education"
 msgid "Давайте сделаем вклад в ваше будущее прямо сейчас!"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:152
+#: player/templates/player/redesign/overview.html:136
 msgctxt "education"
 msgid ""
 "Отлично! Это маленький шаг для Вас, но гигантский скачок для Вашей карьеры!"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:155
+#: player/templates/player/redesign/overview.html:139
 #: region/templates/region/redesign/map.html:947
 #: region/templates/region/redesign/mining.html:308
 #: region/templates/region/redesign/mining.html:327
@@ -4762,7 +4921,7 @@ msgctxt "education"
 msgid "Награда: 200 золота"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:159
+#: player/templates/player/redesign/overview.html:143
 msgctxt "education"
 msgid ""
 "Общение - важная часть Вашей работы. Вам ещё предстоит множество раз "
@@ -4770,7 +4929,7 @@ msgid ""
 "чужие."
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:164
+#: player/templates/player/redesign/overview.html:148
 msgctxt "education"
 msgid ""
 "При желании, загляните сюда позже, и поздоровайтесь с коллегами. Обратите "
@@ -4778,7 +4937,7 @@ msgid ""
 "оскорблений. Помните, вежливость - лучшее оружие политика."
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:167
+#: player/templates/player/redesign/overview.html:151
 msgctxt "education"
 msgid ""
 "Мне только что поступил звонок от Ваших инвесторов. Они ожидают от Вас "
@@ -4786,80 +4945,50 @@ msgid ""
 "много денег!"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:206
+#: player/templates/player/redesign/overview.html:190
 msgctxt "overview"
 msgid "обзор"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:227
+#: player/templates/player/redesign/overview.html:211
 msgctxt "overview"
 msgid "чат"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:238
-msgctxt "overview"
-msgid "мир"
-msgstr ""
-
-#: player/templates/player/redesign/overview.html:294
+#: player/templates/player/redesign/overview.html:278
 msgctxt "overview"
 msgid "независимый регион"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:409
-msgctxt "overview"
-msgid "войн нет"
-msgstr ""
-
-#: player/templates/player/redesign/overview.html:437
+#: player/templates/player/redesign/overview.html:421
 msgctxt "overview"
 msgid "С новым годом!"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:593
+#: player/templates/player/redesign/overview.html:577
 msgctxt "overview"
 msgid "Летний фестиваль"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:652
+#: player/templates/player/redesign/overview.html:636
 msgctxt "overview"
 msgid "Зимний фестиваль"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:711
+#: player/templates/player/redesign/overview.html:695
 msgctxt "overview"
 msgid "Выборы лидера"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:714
-msgctxt "overview"
-msgid "Выборы"
-msgstr ""
-
-#: player/templates/player/redesign/overview.html:719
-msgctxt "overview"
-msgid "партии"
-msgstr ""
-
-#: player/templates/player/redesign/overview.html:719
-msgctxt "overview"
-msgid "государства"
-msgstr ""
-
-#: player/templates/player/redesign/overview.html:719
+#: player/templates/player/redesign/overview.html:703
 msgctxt "overview"
 msgid "региона"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:756
-#: player/templates/player/redesign/overview.html:801
+#: player/templates/player/redesign/overview.html:740
+#: player/templates/player/redesign/overview.html:785
 msgctxt "overview"
 msgid "партий нет"
-msgstr ""
-
-#: player/templates/player/redesign/overview.html:763
-msgctxt "overview"
-msgid "парламент"
 msgstr ""
 
 #: player/templates/player/redesign/overview_skills.html:24

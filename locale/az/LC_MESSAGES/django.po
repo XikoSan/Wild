@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-31 01:22+0300\n"
-"PO-Revision-Date: 2024-10-30 23:30+0300\n"
+"POT-Creation-Date: 2024-10-31 15:38+0300\n"
+"PO-Revision-Date: 2024-10-31 15:40+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: az\n"
@@ -50,7 +50,7 @@ msgstr "Rəylər"
 
 #: article/templates/article/article.html:344
 #: chat/templates/chat/dialogue.html:160
-#: player/templates/player/redesign/overview.html:1034
+#: player/templates/player/redesign/overview.html:969
 #, fuzzy
 #| msgid "У вас пока еще нет стикеров"
 msgctxt "overview"
@@ -59,7 +59,7 @@ msgstr "Hələ stikerləriniz yoxdur"
 
 #: article/templates/article/article.html:357
 #: chat/templates/chat/dialogue.html:173
-#: player/templates/player/redesign/overview.html:1047
+#: player/templates/player/redesign/overview.html:982
 msgctxt "overview"
 msgid "магазин"
 msgstr "Mağaza"
@@ -1150,17 +1150,17 @@ msgstr ""
 #: bill/models/purchase_auction.py:68
 msgctxt "new_bill"
 msgid "Объём закупки имеет ограничение в интервале от 0 до 1 000 000 000 000"
-msgstr ""
+msgstr "Alış həcminin məhdudiyyəti 0 - 1 000 000 000 000"
 
 #: bill/models/purchase_auction.py:79
 msgctxt "new_bill"
 msgid "Цена закупки должна быть целым числом"
-msgstr ""
+msgstr "Alış qiyməti tam rəqəm olmalıdır"
 
 #: bill/models/purchase_auction.py:87
 msgctxt "new_bill"
 msgid "Цена закупки имеет ограничение в интервале от 0 до 1 000 000 000 000"
-msgstr ""
+msgstr "Alış qiymətinin məhdudiyyəti 0 - 1 000 000 000 000"
 
 #: bill/models/purchase_auction.py:98
 msgctxt "new_bill"
@@ -1180,17 +1180,17 @@ msgstr ""
 #: bill/models/purchase_auction.py:123 bill/models/transfer_resources.py:122
 msgctxt "new_bill"
 msgid "ID товара должен быть целым числом"
-msgstr ""
+msgstr "Məhsulun ID-si tam rəqəm olmalıdır"
 
 #: bill/models/purchase_auction.py:309
 msgctxt "new_bill"
 msgid "Закупка товаров"
-msgstr ""
+msgstr "Məhsul alışı"
 
 #: bill/models/purchase_auction.py:310
 msgctxt "new_bill"
 msgid "Закупки товаров"
-msgstr ""
+msgstr "Məhsul alışı"
 
 #: bill/models/start_war.py:97
 msgctxt "new_bill"
@@ -1227,32 +1227,32 @@ msgstr ""
 #: bill/models/start_war.py:165
 msgctxt "new_bill"
 msgid "Такого вида войн не существует"
-msgstr ""
+msgstr "Belə növ müharibə mövcud deyil"
 
 #: bill/models/start_war.py:177
 msgctxt "new_bill"
 msgid "Такая война уже идёт"
-msgstr ""
+msgstr "Belə müharibə var"
 
 #: bill/models/start_war.py:188
 msgctxt "new_bill"
 msgid "Указанные регионы не граничат между собой"
-msgstr ""
+msgstr "Seçilmiş bölgələr sərhəddə deyillər"
 
 #: bill/models/start_war.py:350
 msgctxt "new_bill"
 msgid "Объявление войны"
-msgstr ""
+msgstr "Müharibə elanı"
 
 #: bill/models/start_war.py:351
 msgctxt "new_bill"
 msgid "Объявления войн"
-msgstr ""
+msgstr "Müharibə elanı"
 
 #: bill/models/transfer_accept.py:87
 msgctxt "new_bill"
 msgid "Указанный регион не передаётся"
-msgstr ""
+msgstr "Seçilmiş bölgə verilə bilməz"
 
 #: bill/models/transfer_accept.py:402
 #, fuzzy
@@ -1271,12 +1271,12 @@ msgstr "Bölgə partiyaları"
 #: bill/models/transfer_region.py:61 bill/models/transfer_resources.py:64
 msgctxt "new_bill"
 msgid "Не указано подходящее государство"
-msgstr ""
+msgstr "Uyğun dövlət seçilməyib"
 
 #: bill/models/transfer_region.py:88
 msgctxt "new_bill"
 msgid "ID государства должен быть целым числом"
-msgstr ""
+msgstr "Dövlətin ID-si tam rəqəm olmalıdır"
 
 #: bill/models/transfer_region.py:115
 #, fuzzy
@@ -2309,25 +2309,56 @@ msgctxt "chat"
 msgid "Вы не состоите в этом чате"
 msgstr "partiyadakı mövqe"
 
-#: education/templates/education/edu_overview.html:249
-#: player/templates/player/redesign/overview.html:685
+#: education/templates/education/edu_overview.html:95
+#: player/templates/player/redesign/overview.html:222
+#, fuzzy
+#| msgid "мир"
+msgctxt "overview"
+msgid "мир"
+msgstr "Dünya"
+
+#: education/templates/education/edu_overview.html:151
+#, fuzzy
+#| msgctxt "new_bill"
+#| msgid "Президентская республика"
+msgctxt "education"
+msgid "Объединённая Республика"
+msgstr "Respublika"
+
+#: education/templates/education/edu_overview.html:188
+#, fuzzy
+#| msgid "независимый регион"
+msgctxt "education"
+msgid "Столичный регион"
+msgstr "müstəqil bölgə"
+
+#: education/templates/education/edu_overview.html:224
+#: player/templates/player/redesign/overview.html:393
+#, fuzzy
+#| msgid "войн нет"
+msgctxt "overview"
+msgid "войн нет"
+msgstr "Döyüş yoxdur"
+
+#: education/templates/education/edu_overview.html:243
+#: player/templates/player/redesign/overview.html:669
 msgctxt "overview"
 msgid "сила"
 msgstr "Güc"
 
-#: education/templates/education/edu_overview.html:254
-#: player/templates/player/redesign/overview.html:690
+#: education/templates/education/edu_overview.html:248
+#: player/templates/player/redesign/overview.html:674
 msgctxt "overview"
 msgid "инт"
 msgstr "Bilik"
 
-#: education/templates/education/edu_overview.html:259
-#: player/templates/player/redesign/overview.html:695
+#: education/templates/education/edu_overview.html:253
+#: player/templates/player/redesign/overview.html:679
 msgctxt "overview"
 msgid "вын"
 msgstr "Dzm"
 
-#: education/templates/education/edu_overview.html:289
+#: education/templates/education/edu_overview.html:276
 #: player/templates/player/redesign/lists/skill_top.html:26
 #: player/templates/player/redesign/overview_skills.html:21
 #: skill/models/biochemistry.py:20 skill/models/coherence.py:21
@@ -2339,9 +2370,9 @@ msgctxt "skills"
 msgid "Сила"
 msgstr "Güc"
 
-#: education/templates/education/edu_overview.html:315
-#: education/templates/education/edu_overview.html:351
-#: education/templates/education/edu_overview.html:388
+#: education/templates/education/edu_overview.html:302
+#: education/templates/education/edu_overview.html:338
+#: education/templates/education/edu_overview.html:375
 #: player/templates/player/redesign/overview_skills.html:60
 #: player/templates/player/redesign/overview_skills.html:126
 #: player/templates/player/redesign/overview_skills.html:188
@@ -2352,7 +2383,7 @@ msgctxt "skills"
 msgid "изучить"
 msgstr "araşdırmaq"
 
-#: education/templates/education/edu_overview.html:325
+#: education/templates/education/edu_overview.html:312
 #: player/templates/player/redesign/lists/skill_top.html:41
 #: player/templates/player/redesign/overview_skills.html:87
 #: skill/models/biochemistry.py:15 skill/models/coherence.py:26
@@ -2366,7 +2397,7 @@ msgctxt "skills"
 msgid "Интеллект"
 msgstr "Zəka"
 
-#: education/templates/education/edu_overview.html:362
+#: education/templates/education/edu_overview.html:349
 #: player/templates/player/redesign/lists/skill_top.html:56
 #: player/templates/player/redesign/overview_skills.html:149
 #: skill/models/biochemistry.py:25 skill/models/excavation.py:25
@@ -2378,10 +2409,150 @@ msgctxt "skills"
 msgid "Выносливость"
 msgstr "Dayanıqlılıq"
 
-#: education/templates/education/edu_overview.html:403
+#: education/templates/education/edu_overview.html:390
 #: player/templates/player/redesign/overview_skills.html:225
 msgctxt "skills"
 msgid "дерево навыков"
+msgstr "Bacarıqlar"
+
+#: education/templates/education/edu_overview.html:452
+#: player/templates/player/redesign/overview.html:698
+msgctxt "overview"
+msgid "Выборы"
+msgstr "Seçkilər"
+
+#: education/templates/education/edu_overview.html:457
+#: player/templates/player/redesign/overview.html:703
+msgctxt "overview"
+msgid "партии"
+msgstr "Dövlətin"
+
+#: education/templates/education/edu_overview.html:457
+#: player/templates/player/redesign/overview.html:703
+msgctxt "overview"
+msgid "государства"
+msgstr "Partiyaları"
+
+#: education/templates/education/edu_overview.html:470
+#: education/templates/education/edu_overview.html:513
+#, fuzzy
+#| msgctxt "new_bill"
+#| msgid "Президентская республика"
+msgctxt "education"
+msgid "Партия Единства Республики"
+msgstr "Respublika"
+
+#: education/templates/education/edu_overview.html:479
+#, fuzzy
+#| msgctxt "new_bill"
+#| msgid "Президентская республика"
+msgctxt "education"
+msgid "Радикальная партия Республики"
+msgstr "Respublika"
+
+#: education/templates/education/edu_overview.html:488
+#, fuzzy
+#| msgctxt "new_bill"
+#| msgid "Президентская республика"
+msgctxt "education"
+msgid "Зелёная Альтернатива Республики"
+msgstr "Respublika"
+
+#: education/templates/education/edu_overview.html:500
+#: player/templates/player/redesign/overview.html:747
+msgctxt "overview"
+msgid "парламент"
+msgstr "Parlament"
+
+#: education/templates/education/edu_overview.html:610
+#, fuzzy
+#| msgctxt "new_bill"
+#| msgid "Изменения налогов"
+msgctxt "education"
+msgid "Мы против повышения налогов!"
+msgstr "Vergilərin dəyişdirilməsi"
+
+#: education/templates/education/edu_overview.html:611
+msgctxt "education"
+msgid "Снижение зарплат — это несправедливо!"
+msgstr ""
+
+#: education/templates/education/edu_overview.html:612
+#, fuzzy
+#| msgctxt "change_form_draft"
+#| msgid "выберите форму правления"
+msgctxt "education"
+msgid "Прекратите сокращения!"
+msgstr "Dövlət idarəetmənin növünu seçin"
+
+#: education/templates/education/edu_overview.html:613
+msgctxt "education"
+msgid "Требуем равные права!"
+msgstr ""
+
+#: education/templates/education/edu_overview.html:614
+msgctxt "education"
+msgid "Хватит обманывать народ!"
+msgstr ""
+
+#: education/templates/education/edu_overview.html:615
+msgctxt "education"
+msgid "Когда нас начнут слушать?"
+msgstr ""
+
+#: education/templates/education/edu_overview.html:616
+msgctxt "education"
+msgid "Слушайте народ, а не только отчеты!"
+msgstr ""
+
+#: education/templates/education/edu_overview.html:617
+msgctxt "education"
+msgid "Обещали перемены — где они теперь?"
+msgstr ""
+
+#: education/templates/education/edu_overview.html:618
+msgctxt "education"
+msgid "Нам нужны действия, а не только слова!"
+msgstr ""
+
+#: education/templates/education/edu_overview.html:619
+msgctxt "education"
+msgid "Мы требуем честности и прозрачности!"
+msgstr ""
+
+#: education/templates/education/edu_overview.html:620
+msgctxt "education"
+msgid "Хватит обещаний, пора выполнять!"
+msgstr ""
+
+#: education/templates/education/edu_overview.html:621
+msgctxt "education"
+msgid "Кто работает для людей — пусть ответит перед людьми!"
+msgstr ""
+
+#: education/templates/education/edu_overview.html:622
+msgctxt "education"
+msgid "Время перемен пришло — от слов к делам!"
+msgstr ""
+
+#: education/templates/education/edu_overview.html:623
+msgctxt "education"
+msgid "Мы требуем справедливости и равных прав!"
+msgstr ""
+
+#: education/templates/education/edu_overview.html:624
+msgctxt "education"
+msgid "Политика для народа, а не для избранных!"
+msgstr ""
+
+#: education/templates/education/edu_overview.html:625
+msgctxt "education"
+msgid "Не прячьтесь за стенами, ответьте на вопросы!"
+msgstr ""
+
+#: education/templates/education/edu_overview.html:632
+msgctxt "education"
+msgid "протестующие"
 msgstr ""
 
 #: education/views/edu_overview.py:51 education/views/edu_overview.py:54
@@ -2415,10 +2586,10 @@ msgstr ""
 
 #: education/views/edu_overview.py:71 player/views/overview.py:381
 msgid "Обзор"
-msgstr ""
+msgstr "Ana səhifə"
 
 #: event/templates/event/anniversary.html:218
-#: player/templates/player/redesign/overview.html:630
+#: player/templates/player/redesign/overview.html:614
 msgctxt "overview"
 msgid "Годовщина сервера!"
 msgstr "Serverin ildönümü!"
@@ -2947,7 +3118,7 @@ msgstr "Hücum təyyarəsi"
 #: storage/models/trade_offer.py:98 storage/models/transport.py:182
 msgctxt "goods"
 msgid "ПЗРК"
-msgstr ""
+msgstr "Raket sistemi"
 
 #: factory/migrations/0023_auto_20230911_0014.py:52
 #: factory/migrations/0023_auto_20230911_0014.py:281
@@ -2986,43 +3157,43 @@ msgstr "Dizel "
 #: factory/models/factory/factory.py:29
 msgctxt "factory"
 msgid "Уровень"
-msgstr ""
+msgstr "Səviyyə"
 
 #: factory/templates/factory/redesign/factory.html:13
 #: factory/views/factory.py:144
 msgctxt "factory"
 msgid "Производство"
-msgstr ""
+msgstr "İstehsal"
 
 #: factory/templates/factory/redesign/factory.html:17
 msgctxt "factory"
 msgid "цена"
-msgstr ""
+msgstr "Qiymət"
 
 #: factory/templates/factory/redesign/factory.html:38
 msgctxt "factory"
 msgid "Энергия"
-msgstr ""
+msgstr "Enerji"
 
 #: factory/templates/factory/redesign/factory.html:106
 msgctxt "factory"
 msgid "выбор группы товаров"
-msgstr ""
+msgstr "Məhsul növlərin seçimi"
 
 #: factory/templates/factory/redesign/factory.html:118
 msgctxt "factory"
 msgid "выбор товара"
-msgstr ""
+msgstr "Məhsulun seçimi"
 
 #: factory/templates/factory/redesign/factory.html:132
 msgctxt "factory"
 msgid "выбор схемы"
-msgstr ""
+msgstr "Sxemin seçimi"
 
 #: factory/templates/factory/redesign/factory.html:134
 msgctxt "factory"
 msgid "авто-производство"
-msgstr ""
+msgstr "Avto-istehsal"
 
 #: factory/templates/factory/redesign/factory.html:167
 #: region/templates/region/redesign/mining.html:34
@@ -3046,7 +3217,7 @@ msgstr "Avto"
 #: factory/templates/factory/redesign/factory.html:224
 msgctxt "factory"
 msgid "создать"
-msgstr ""
+msgstr "Yaradmaq"
 
 #: factory/views/cancel_auto.py:33 region/views/cancel_auto.py:33
 msgctxt "mining"
@@ -3056,7 +3227,7 @@ msgstr "İmtina zamanı xəta "
 #: factory/views/produce_good.py:39
 msgctxt "factory"
 msgid "Дождитесь конца полёта"
-msgstr ""
+msgstr "Uçuşun bitməsini gözləyin"
 
 #: factory/views/produce_good.py:40 factory/views/produce_good.py:51
 #: factory/views/produce_good.py:67 factory/views/produce_good.py:81
@@ -3070,28 +3241,28 @@ msgstr ""
 #: factory/views/start_auto.py:91 factory/views/start_auto.py:101
 msgctxt "factory"
 msgid "Ошибка производства"
-msgstr ""
+msgstr "Istehsal xətası"
 
 #: factory/views/produce_good.py:50
 msgctxt "factory"
 msgid "Склад не заполнен"
-msgstr ""
+msgstr "Depo dolu deyil"
 
 #: factory/views/produce_good.py:66
 msgctxt "factory"
 msgid "Указанный Склад вам не принадлежит"
-msgstr ""
+msgstr "Seçilmiş depo sizin deyil"
 
 #: factory/views/produce_good.py:80 factory/views/produce_good.py:87
 msgctxt "factory"
 msgid "Указанный товар не существует"
-msgstr ""
+msgstr "Seçilmiş məhsul mövcud deyil"
 
 #: factory/views/produce_good.py:101 factory/views/produce_good.py:110
 #: factory/views/start_auto.py:60 factory/views/start_auto.py:69
 msgctxt "factory"
 msgid "Вы не можете производить данный товар"
-msgstr ""
+msgstr "Bu məhsulu istehsal edə bilmirsiz"
 
 #: factory/views/produce_good.py:122 factory/views/start_auto.py:90
 msgctxt "factory"
@@ -3101,7 +3272,7 @@ msgstr ""
 #: factory/views/produce_good.py:132 factory/views/start_auto.py:100
 msgctxt "factory"
 msgid "Указанной схемы не существует"
-msgstr ""
+msgstr "Seçilmiş sxem mövcud deyil"
 
 #: factory/views/produce_good.py:143
 msgctxt "factory"
@@ -3111,38 +3282,38 @@ msgstr ""
 #: factory/views/produce_good.py:153
 msgctxt "factory"
 msgid "Количество товара должно быть положительным числом"
-msgstr ""
+msgstr "Məhsulun miqdarı müsbət rəqəm olmalıdır"
 
 #: factory/views/produce_good.py:161
 msgctxt "factory"
 msgid "Количество товара слишком велико"
-msgstr ""
+msgstr "Məhsulun miqdarı çox böyükdür"
 
 #: factory/views/produce_good.py:173
 msgctxt "factory"
 msgid "Недостаточно места на складе для товара. В наличии "
-msgstr ""
+msgstr "Depoda kifayət qədər yer yoxdur. Stokda var"
 
 #: factory/views/produce_good.py:175 factory/views/produce_good.py:215
 #: factory/views/produce_good.py:244 factory/views/produce_good.py:268
 msgctxt "factory"
 msgid ", требуется "
-msgstr ""
+msgstr ", tələb olunur"
 
 #: factory/views/produce_good.py:214
 msgctxt "factory"
 msgid "Недостаточно энергии. В наличии "
-msgstr ""
+msgstr "Enerji kifayət deyil. Stokda var"
 
 #: factory/views/produce_good.py:242 factory/views/produce_good.py:266
 msgctxt "factory"
 msgid "Недостаточно "
-msgstr ""
+msgstr "Kifayət deyil"
 
 #: factory/views/produce_good.py:243 factory/views/produce_good.py:267
 msgctxt "factory"
 msgid ". В наличии "
-msgstr ""
+msgstr ". Stokda var"
 
 #: factory/views/start_auto.py:31 player/player.py:393
 #: region/views/do_mining.py:40 region/views/start_auto.py:26
@@ -3180,22 +3351,22 @@ msgstr ""
 #: gov/models/custom_rights/foreign_rights.py:99
 msgctxt "minister_right"
 msgid "МИД"
-msgstr ""
+msgstr "XİN"
 
 #: gov/models/custom_rights/foreign_rights.py:100
 msgctxt "minister_right"
 msgid "Министр иностранных дел"
-msgstr ""
+msgstr "Xarici İşlər Naziri"
 
 #: gov/models/custom_rights/mining_stats.py:111
 msgctxt "minister_right"
 msgid "Добыча сырья"
-msgstr ""
+msgstr "Xammalın hasilatı"
 
 #: gov/models/custom_rights/mining_stats.py:112
 msgctxt "minister_right"
 msgid "Статистика добычи"
-msgstr ""
+msgstr "Hasilatın statistikası"
 
 #: gov/models/minister_right.py:22
 msgctxt "new_bill"
@@ -3222,7 +3393,7 @@ msgstr ""
 #: state/templates/state/redesign/elections.html:241
 msgctxt "lists"
 msgid "Действие"
-msgstr ""
+msgstr "Fəaliyyət"
 
 #: gov/templates/state/redesign/forms/foreign_right.html:13
 msgctxt "foreign_right"
@@ -3942,7 +4113,7 @@ msgstr "partiyasız"
 #: party/views/lists/world_parties.py:68 party/views/lists/world_parties.py:69
 msgctxt "lists"
 msgid "Размер"
-msgstr ""
+msgstr "Ölçü"
 
 #: party/views/lists/region_parties.py:81
 #: party/views/lists/region_parties.py:82 party/views/lists/state_parties.py:93
@@ -4240,7 +4411,7 @@ msgstr "Maliyyələşmədə xəta baş verdi"
 #: player/player.py:404 player/player.py:425
 msgctxt "mining"
 msgid "Нечего забирать"
-msgstr ""
+msgstr "Məbləğ 0 - dır"
 
 #: player/templates/player/data_deleting.html:5
 #: player/templates/player/data_deleting.html:8
@@ -4908,7 +5079,7 @@ msgctxt "new_player"
 msgid "Часовой пояс"
 msgstr "Saat qurşağı"
 
-#: player/templates/player/redesign/overview.html:109
+#: player/templates/player/redesign/overview.html:93
 #, python-format
 msgctxt "education"
 msgid ""
@@ -4916,45 +5087,45 @@ msgid ""
 "мир Wild Politics!"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:112
+#: player/templates/player/redesign/overview.html:96
 msgctxt "education"
 msgid "Wild Politics - это экономико-политический симулятор."
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:115
+#: player/templates/player/redesign/overview.html:99
 msgctxt "education"
 msgid ""
 "Множество игроков, объединённых общими целями, развивают свои государства и "
 "расширяют их влияние."
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:118
+#: player/templates/player/redesign/overview.html:102
 msgctxt "education"
 msgid "Создают крупные партии, чтобы повести их за собой, к вершинам власти."
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:121
+#: player/templates/player/redesign/overview.html:105
 msgctxt "education"
 msgid ""
 "Ведут крупномасштабные войны и заключают союзы, объединяющие целые "
 "континенты."
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:124
+#: player/templates/player/redesign/overview.html:108
 msgctxt "education"
 msgid ""
 "Создают бизнесы и корпорации. Основывают торговые сети. Распространяют своё "
 "влияние при помощи популярных СМИ."
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:127
+#: player/templates/player/redesign/overview.html:111
 msgctxt "education"
 msgid ""
 "Вы обязательно добьётесь всего этого. Но для начала, позвольте познакомить "
 "Вас с текущим положением дел."
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:133
+#: player/templates/player/redesign/overview.html:117
 #, python-format
 msgctxt "education"
 msgid ""
@@ -4963,14 +5134,14 @@ msgid ""
 "местонахождения, а также мире в целом"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:135
+#: player/templates/player/redesign/overview.html:119
 msgctxt "education"
 msgid ""
 "Сейчас Вы находитесь в независимом регионе. Здесь представлена различная "
 "информация о регионе нашего местонахождения, а также мире в целом"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:141
+#: player/templates/player/redesign/overview.html:125
 msgctxt "education"
 msgid ""
 "В любом регионе государства можно основать партию, либо присоединиться к "
@@ -4979,25 +5150,25 @@ msgid ""
 "позже."
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:144
+#: player/templates/player/redesign/overview.html:128
 msgctxt "education"
 msgid ""
 "А сейчас обратите внимание на ваши характеристики. Их рекомендуется "
 "развивать постоянно, при наличии свободных средств."
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:148
+#: player/templates/player/redesign/overview.html:132
 msgctxt "education"
 msgid "Давайте сделаем вклад в ваше будущее прямо сейчас!"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:152
+#: player/templates/player/redesign/overview.html:136
 msgctxt "education"
 msgid ""
 "Отлично! Это маленький шаг для Вас, но гигантский скачок для Вашей карьеры!"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:155
+#: player/templates/player/redesign/overview.html:139
 #: region/templates/region/redesign/map.html:947
 #: region/templates/region/redesign/mining.html:308
 #: region/templates/region/redesign/mining.html:327
@@ -5008,7 +5179,7 @@ msgctxt "education"
 msgid "Награда: 200 золота"
 msgstr "Qızıl ehtiyatı"
 
-#: player/templates/player/redesign/overview.html:159
+#: player/templates/player/redesign/overview.html:143
 msgctxt "education"
 msgid ""
 "Общение - важная часть Вашей работы. Вам ещё предстоит множество раз "
@@ -5016,7 +5187,7 @@ msgid ""
 "чужие."
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:164
+#: player/templates/player/redesign/overview.html:148
 msgctxt "education"
 msgid ""
 "При желании, загляните сюда позже, и поздоровайтесь с коллегами. Обратите "
@@ -5024,7 +5195,7 @@ msgid ""
 "оскорблений. Помните, вежливость - лучшее оружие политика."
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:167
+#: player/templates/player/redesign/overview.html:151
 msgctxt "education"
 msgid ""
 "Мне только что поступил звонок от Ваших инвесторов. Они ожидают от Вас "
@@ -5032,93 +5203,59 @@ msgid ""
 "много денег!"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:206
+#: player/templates/player/redesign/overview.html:190
 #, fuzzy
 #| msgid "обзор"
 msgctxt "overview"
 msgid "обзор"
 msgstr "baş səhifə"
 
-#: player/templates/player/redesign/overview.html:227
+#: player/templates/player/redesign/overview.html:211
 #, fuzzy
 #| msgid "чат"
 msgctxt "overview"
 msgid "чат"
 msgstr "söhbət"
 
-#: player/templates/player/redesign/overview.html:238
-#, fuzzy
-#| msgid "мир"
-msgctxt "overview"
-msgid "мир"
-msgstr "Dünya"
-
-#: player/templates/player/redesign/overview.html:294
+#: player/templates/player/redesign/overview.html:278
 #, fuzzy
 #| msgid "независимый регион"
 msgctxt "overview"
 msgid "независимый регион"
 msgstr "müstəqil bölgə"
 
-#: player/templates/player/redesign/overview.html:409
-#, fuzzy
-#| msgid "войн нет"
-msgctxt "overview"
-msgid "войн нет"
-msgstr "Döyüş yoxdur"
-
-#: player/templates/player/redesign/overview.html:437
+#: player/templates/player/redesign/overview.html:421
 msgctxt "overview"
 msgid "С новым годом!"
 msgstr "Yeni iliniz mübarək!"
 
-#: player/templates/player/redesign/overview.html:593
+#: player/templates/player/redesign/overview.html:577
 msgctxt "overview"
 msgid "Летний фестиваль"
 msgstr "Yay festivalı"
 
-#: player/templates/player/redesign/overview.html:652
+#: player/templates/player/redesign/overview.html:636
 msgctxt "overview"
 msgid "Зимний фестиваль"
 msgstr "Qiş festivalı"
 
-#: player/templates/player/redesign/overview.html:711
+#: player/templates/player/redesign/overview.html:695
 msgctxt "overview"
 msgid "Выборы лидера"
 msgstr "Lider seçkiləri"
 
-#: player/templates/player/redesign/overview.html:714
-msgctxt "overview"
-msgid "Выборы"
-msgstr "Seçkilər"
-
-#: player/templates/player/redesign/overview.html:719
-msgctxt "overview"
-msgid "партии"
-msgstr "Dövlətin"
-
-#: player/templates/player/redesign/overview.html:719
-msgctxt "overview"
-msgid "государства"
-msgstr "Partiyaları"
-
-#: player/templates/player/redesign/overview.html:719
+#: player/templates/player/redesign/overview.html:703
 msgctxt "overview"
 msgid "региона"
 msgstr "Bölgənin"
 
-#: player/templates/player/redesign/overview.html:756
-#: player/templates/player/redesign/overview.html:801
+#: player/templates/player/redesign/overview.html:740
+#: player/templates/player/redesign/overview.html:785
 #, fuzzy
 #| msgid "партий нет"
 msgctxt "overview"
 msgid "партий нет"
 msgstr "Partiya yoxdur"
-
-#: player/templates/player/redesign/overview.html:763
-msgctxt "overview"
-msgid "парламент"
-msgstr "Parlament"
 
 #: player/templates/player/redesign/overview_skills.html:24
 #: player/templates/player/redesign/overview_skills.html:90
@@ -5135,29 +5272,27 @@ msgstr "Tamamlama"
 #: player/templates/player/redesign/overview_skills.html:183
 msgctxt "skills"
 msgid "в очередь"
-msgstr ""
+msgstr "Sıraya"
 
 #: player/templates/player/redesign/overview_skills.html:230
 msgctxt "skills"
 msgid "Отмена изучения навыка"
-msgstr ""
+msgstr "Bacarıq oyrənməyini ləğv et"
 
 #: player/templates/player/redesign/overview_skills.html:231
 msgctxt "skills"
 msgid "Изучение навыка будет отменено. Продолжить?"
-msgstr ""
+msgstr "Bacarığın oyrənilməsi ləğv olunacaq. Razısız?"
 
 #: player/templates/player/redesign/overview_skills.html:232
-#, fuzzy
-#| msgid "Продолжить"
 msgctxt "skills"
 msgid "Продолжить"
-msgstr "Davam et"
+msgstr "Bəli"
 
 #: player/templates/player/redesign/overview_skills.html:233
 msgctxt "skills"
 msgid "Назад"
-msgstr ""
+msgstr "Xeyr"
 
 #: player/templates/player/redesign/player_help.html:6
 msgctxt "screen_help"
@@ -5529,19 +5664,19 @@ msgstr "Online idi"
 
 #: player/templates/player/redesign/view_profile.html:139
 msgid "давно"
-msgstr ""
+msgstr "Çoxdan"
 
 #: player/templates/player/redesign/wallet.html:26
 #: player/templatetags/redesign/wallet_operations.py:37
 msgctxt "wallet"
 msgid "Операции"
-msgstr ""
+msgstr "Əməliyyatlar"
 
 #: player/templates/player/redesign/wallet.html:41
 #: player/templatetags/redesign/wallet_locks.py:40
 msgctxt "wallet"
 msgid "Блокировки"
-msgstr ""
+msgstr "Bloklanmalar"
 
 #: player/templates/player/redesign/wallet.html:56
 #: player/templatetags/redesign/wallet_cash.py:27
@@ -5549,7 +5684,7 @@ msgstr ""
 #: player/templatetags/redesign/wallet_cash.py:34
 msgctxt "wallet"
 msgid "Наличные"
-msgstr ""
+msgstr "Nağd pul"
 
 #: player/templates/player/translate/translate.html:17
 msgctxt "translations"
@@ -5599,7 +5734,7 @@ msgstr "Dayanıqlılıq"
 #: player/templatetags/redesign/skill_top/endurance_top.py:74
 msgctxt "lists"
 msgid "Топ по Выносливости"
-msgstr ""
+msgstr "Dözümlülük"
 
 #: player/templatetags/redesign/skill_top/knowledge_top.py:66
 #: player/templatetags/redesign/skill_top/knowledge_top.py:67
@@ -5629,43 +5764,43 @@ msgstr "Güc"
 #: player/templatetags/redesign/wallet_cash.py:21
 msgctxt "wallet"
 msgid "Регион"
-msgstr ""
+msgstr "Bölgə"
 
 #: player/templatetags/redesign/wallet_locks.py:21
 #: player/templatetags/redesign/wallet_locks.py:22
 msgctxt "wallet"
 msgid "Товар"
-msgstr ""
+msgstr "Məhsul"
 
 #: player/templatetags/redesign/wallet_locks.py:26
 #: player/templatetags/redesign/wallet_locks.py:27
 msgctxt "wallet"
 msgid "Количество"
-msgstr ""
+msgstr "Say"
 
 #: player/templatetags/redesign/wallet_locks.py:33
 #: player/templatetags/redesign/wallet_locks.py:34
 msgctxt "wallet"
 msgid "Блокировано"
-msgstr ""
+msgstr "Bloklanıb"
 
 #: player/templatetags/redesign/wallet_operations.py:18
 #: player/templatetags/redesign/wallet_operations.py:19
 msgctxt "wallet"
 msgid "Время"
-msgstr ""
+msgstr "Vaxt"
 
 #: player/templatetags/redesign/wallet_operations.py:24
 #: player/templatetags/redesign/wallet_operations.py:25
 msgctxt "wallet"
 msgid "Изменение"
-msgstr ""
+msgstr "Dəyişiklik"
 
 #: player/templatetags/redesign/wallet_operations.py:30
 #: player/templatetags/redesign/wallet_operations.py:31
 msgctxt "wallet"
 msgid "Описание"
-msgstr ""
+msgstr "Təsvir"
 
 #: player/views/answer_captcha.py:33
 #, fuzzy
@@ -5725,7 +5860,7 @@ msgstr "Metod xətası"
 
 #: player/views/buy_lootboxes.py:152 player/views/open_lootboxes.py:133
 msgid "Открытие сундуков"
-msgstr ""
+msgstr "Sandığın açılması"
 
 #: player/views/change_back_allow.py:41
 #: player/views/change_wiki_hide_allow.py:41 player/views/full_auto_allow.py:41
@@ -5767,7 +5902,7 @@ msgstr ""
 #: player/views/change_wiki_hide_allow.py:42
 #: player/views/change_wiki_hide_allow.py:58
 msgid "Скрыть кнопку Wiki"
-msgstr ""
+msgstr "Wiki düyməsini gizləd"
 
 #: player/views/claim_reward.py:83
 msgid "Ошибка типа запроса"
@@ -5917,7 +6052,7 @@ msgstr ""
 
 #: player/views/customization/plane/view_planes.py:33
 msgid "Выбор авиации"
-msgstr ""
+msgstr "Aviasiyanın seçimi"
 
 #: player/views/expense_energy.py:28
 msgctxt "expense_energy"
@@ -6051,11 +6186,11 @@ msgstr "Metod xətası"
 
 #: player/views/set_language.py:38
 msgid "Такого языка в игре нет"
-msgstr ""
+msgstr "Oyunda belə dil yoxdur"
 
 #: player/views/set_language.py:39 player/views/set_language.py:55
 msgid "Изменение языка"
-msgstr ""
+msgstr "Dilin dəyişilməsi"
 
 #: player/views/set_timezone.py:27
 msgid "Такого часового пояса в игре нет"
@@ -6069,7 +6204,7 @@ msgstr ""
 #: skill/views/skill_cancel.py:74
 msgctxt "skills"
 msgid "Нет такого навыка"
-msgstr ""
+msgstr "Belə bacarıq yoxdur"
 
 #: player/views/skills/boost_skill.py:58 player/views/skills/boost_skill.py:71
 #: player/views/skills/boost_skill.py:79 player/views/skills/boost_skill.py:93
@@ -6079,23 +6214,24 @@ msgstr ""
 #: player/views/skills/boost_skill.py:167
 msgctxt "skills"
 msgid "Ускорение навыка"
-msgstr ""
+msgstr "Bacarığın tezləşdirilməsi"
 
 #: player/views/skills/boost_skill.py:70
 msgctxt "skills"
 msgid "Нельзя ускорить навык"
-msgstr ""
+msgstr "Bacarığı tezləşdirmək olmaz"
 
 #: player/views/skills/boost_skill.py:78
 msgctxt "skills"
 msgid "Нет склада с бустерами в этом регионе"
-msgstr ""
+msgstr "Bu bolgədə depo busterlərlə yoxdu"
 
 #: player/views/skills/boost_skill.py:92
 #, python-format
 msgctxt "skills"
 msgid "Недостаточно бустера %(booster_name)s. Требуется: %(boosters_need)s."
 msgstr ""
+"Kifayət qədər buster yoxdur %(booster_name)s. Tələb olunur %(boosters_need)s."
 
 #: player/views/skills/boost_skill.py:102
 msgctxt "skills"
@@ -6114,7 +6250,7 @@ msgstr ""
 
 #: player/views/skills/skill_queue.py:30 skill/views/skills_list.py:59
 msgid "Навыки"
-msgstr ""
+msgstr "Bacarıqlar"
 
 #: player/views/skills/up_skill.py:33
 msgctxt "skills"
@@ -6143,7 +6279,7 @@ msgstr ""
 #: player/views/skills/up_skill.py:104
 msgctxt "skills"
 msgid "Недостаточно денег, необходимо: "
-msgstr ""
+msgstr "Pul kifayət qədər deyil. Tələb olunur:"
 
 #: player/views/skills/up_skill.py:113
 msgctxt "skills"
@@ -6157,7 +6293,7 @@ msgstr ""
 
 #: player/views/wallet.py:21
 msgid "Финансы"
-msgstr ""
+msgstr "Maliyyə"
 
 #: region/building/hospital.py:155
 msgctxt "new_bill"
@@ -6318,7 +6454,7 @@ msgstr ""
 #: region/templates/region/redesign/mining.html:12 region/views/mining.py:186
 msgctxt "mining"
 msgid "Добыча"
-msgstr ""
+msgstr "Madənçilik"
 
 #: region/templates/region/redesign/mining.html:14
 msgctxt "daily_header"
@@ -6368,7 +6504,7 @@ msgstr "Qızıl"
 #: region/templates/region/redesign/mining.html:182
 msgctxt "mining"
 msgid "Запасы"
-msgstr ""
+msgstr "Ehtiyyatlar"
 
 #: region/templates/region/redesign/mining.html:90
 #: region/templates/region/redesign/mining.html:120
@@ -6377,7 +6513,7 @@ msgstr ""
 #: region/templates/region/redesign/mining.html:195
 msgctxt "mining"
 msgid "добыча"
-msgstr ""
+msgstr "madənçilik"
 
 #: region/templates/region/redesign/mining.html:96
 #: region/templates/region/redesign/region_info.html:31
@@ -6649,12 +6785,12 @@ msgstr "Əhali"
 #: region/views/do_mining.py:230 region/views/do_mining.py:441
 msgctxt "mining"
 msgid "Ошибка добычи ресурсов"
-msgstr ""
+msgstr "Madən xətası"
 
 #: region/views/do_mining.py:53 region/views/start_auto.py:53
 msgctxt "mining"
 msgid "У вас нет склада в этом регионе"
-msgstr ""
+msgstr "Bu bölgədə deponuz yoxdur"
 
 #: region/views/do_mining.py:66
 msgctxt "mining"
@@ -6664,12 +6800,12 @@ msgstr ""
 #: region/views/do_mining.py:76
 msgctxt "mining"
 msgid "Количество Энергии должно быть положительным"
-msgstr ""
+msgstr "Kifayət qədər enerjiniz yoxdur"
 
 #: region/views/do_mining.py:85
 msgctxt "mining"
 msgid "Количество Энергии должно быть кратно десяти"
-msgstr ""
+msgstr "Kifayət qədər enerjiniz yoxdur"
 
 #: region/views/do_mining.py:94
 msgctxt "mining"
@@ -6679,7 +6815,7 @@ msgstr "Enerji kifayət deyil"
 #: region/views/do_mining.py:113
 msgctxt "mining"
 msgid "Запасов золота в регионе недостаточно для добычи"
-msgstr ""
+msgstr "Madənçilik üçün kifayət qədər qızıl yoxdur"
 
 #: region/views/do_mining.py:115 region/views/do_mining.py:152
 #: region/views/do_mining.py:231 region/views/do_mining.py:339
@@ -6696,12 +6832,12 @@ msgstr "Bağla"
 #: region/views/do_mining.py:150
 msgctxt "mining"
 msgid "Запасов нефти в регионе недостаточно для добычи"
-msgstr ""
+msgstr "Madənçilik üçün kifayət qədər neft yoxdur"
 
 #: region/views/do_mining.py:229
 msgctxt "mining"
 msgid "Запасов руды в регионе недостаточно для добычи"
-msgstr ""
+msgstr "Madənçilik üçün kifayət qədər filiz yoxdur"
 
 #: region/views/lists/world_regions.py:90
 msgid "Регионы игры"
@@ -6809,7 +6945,7 @@ msgstr "Bölgə partiyaları"
 #: region/views/map/save_links.py:31
 msgctxt "mining"
 msgid "нет полномочий"
-msgstr ""
+msgstr "Səlahiyyəti yoxdur"
 
 #: region/views/map/save_links.py:32
 msgctxt "mining"
@@ -6821,17 +6957,17 @@ msgstr "Bölgələrin əlaqələri"
 #: region/views/start_auto.py:54 region/views/start_auto.py:80
 msgctxt "mining"
 msgid "Ошибка автоматической добычи ресурсов"
-msgstr ""
+msgstr "Avto madən xətası"
 
 #: region/views/start_auto.py:44
 msgctxt "mining"
 msgid "Неизвестный тип ресурса"
-msgstr ""
+msgstr "Naməlum resurs növü"
 
 #: skill/models/biochemistry.py:9 skill/models/biochemistry.py:34
 msgctxt "skills"
 msgid "Биохимия"
-msgstr ""
+msgstr "Bioximiya"
 
 #: skill/models/biochemistry.py:10
 msgctxt "skills"
@@ -6935,27 +7071,27 @@ msgstr ""
 #: skill/templates/redesign/skill/skill_list.html:52
 msgctxt "skills"
 msgid "уровень"
-msgstr ""
+msgstr "Səviyyə"
 
 #: skill/templates/redesign/skill/skill_list.html:52
 msgctxt "skills"
 msgid "в очереди"
-msgstr ""
+msgstr "Sırada"
 
 #: skill/templates/redesign/skill/skill_list.html:54
 msgctxt "skills"
 msgid "время изучения"
-msgstr ""
+msgstr "Oyrənmə vaxtı"
 
 #: skill/templates/redesign/skill/skill_list.html:62
 msgctxt "skills"
 msgid "недоступно"
-msgstr ""
+msgstr "Mövcud deyil"
 
 #: skill/views/skill_cancel.py:33
 msgctxt "skills"
 msgid "ID навыка должен быть числом"
-msgstr ""
+msgstr "Bacarığın ID-si tam rəqəm olmalıdır"
 
 #: skill/views/skill_cancel.py:34 skill/views/skill_cancel.py:42
 #: skill/views/skill_cancel.py:50 skill/views/skill_cancel.py:60
@@ -6967,16 +7103,14 @@ msgid "Отмена навыка"
 msgstr "Ləğv et"
 
 #: skill/views/skill_cancel.py:41
-#, fuzzy
-#| msgid "У вас пока еще нет стикеров"
 msgctxt "skills"
 msgid "У вас нет активного премиум-аккаунта"
-msgstr "Hələ stikerləriniz yoxdur"
+msgstr "Aktiv premium-hesabınız yoxdur"
 
 #: skill/views/skill_cancel.py:49 skill/views/skill_cancel.py:59
 msgctxt "skills"
 msgid "Нет навыков в очереди"
-msgstr ""
+msgstr "Sırada bacarıq yoxdur"
 
 #: state/models/state.py:31
 msgctxt "state_view"
@@ -7389,12 +7523,12 @@ msgstr "Balaca"
 #: storage/templates/storage/redesign/assets_info.html:11
 msgctxt "storage"
 msgid "Уровень"
-msgstr ""
+msgstr "Səviyyə"
 
 #: storage/models/storage.py:204
 msgctxt "goods"
 msgid "Передано отрицательное значение"
-msgstr ""
+msgstr "Mənfi rəqəm verilib"
 
 #: storage/models/storage.py:209
 msgctxt "goods"
@@ -7494,12 +7628,12 @@ msgstr "Orbitallar - kublar"
 #: storage/models/transport.py:184
 msgctxt "goods"
 msgid "ПЗРК - кубов"
-msgstr ""
+msgstr "Raket sistemi - kubda"
 
 #: storage/models/transport.py:187
 msgctxt "goods"
 msgid "ПТ-пушка"
-msgstr ""
+msgstr "TƏ - kubda"
 
 #: storage/models/transport.py:189
 msgctxt "goods"
@@ -7509,12 +7643,12 @@ msgstr ""
 #: storage/models/transport.py:194
 msgctxt "goods"
 msgid "Мины - кубов"
-msgstr "Minalar - kublar"
+msgstr "Minalar - kubda"
 
 #: storage/models/transport.py:199
 msgctxt "goods"
 msgid "БМП - кубов"
-msgstr ""
+msgstr "PDM - kubda"
 
 #: storage/models/transport.py:204
 msgctxt "goods"
@@ -7764,12 +7898,12 @@ msgstr ""
 #: storage/views/storage/storage.py:88
 msgctxt "storage"
 msgid "Склад"
-msgstr ""
+msgstr "Depo"
 
 #: storage/templates/storage/redesign/storage.html:90
 msgctxt "storage"
 msgid "склад"
-msgstr ""
+msgstr "depo"
 
 #: storage/templates/storage/redesign/storage.html:104
 msgctxt "storage"
@@ -8493,11 +8627,11 @@ msgstr "Məsulla əməliyyatlar"
 
 #: storage/views/assets/assets_info.py:59
 msgid "Такого склада у вас нет"
-msgstr ""
+msgstr "Belə depo sizdə yoxdur"
 
 #: storage/views/assets/assets_info.py:65
 msgid "Некорректный запрос"
-msgstr ""
+msgstr "Sorğu düzgün deyil"
 
 #: storage/views/assets/assets_transfer.py:39
 msgctxt "assets"
@@ -8768,22 +8902,22 @@ msgstr ""
 #: storage/views/storage/new_storage.py:81
 msgctxt "storage"
 msgid "Новый Склад"
-msgstr ""
+msgstr "Yeni depo"
 
 #: storage/views/storage/new_storage.py:37
 msgctxt "storage"
 msgid "Не найден Склад списания материалов"
-msgstr ""
+msgstr "Məhsulun çıxılması üçün depo tapılmayıb"
 
 #: storage/views/storage/new_storage.py:62
 msgctxt "storage"
 msgid "Недостаточно ресурса: "
-msgstr ""
+msgstr "Resurs kifayət deyil:"
 
 #: storage/views/storage/new_storage.py:82
 msgctxt "storage"
 msgid "Недостаточно денег на транспортировку"
-msgstr ""
+msgstr "Nəqliyyat üçün pul kifayət deyil"
 
 #: storage/views/storage/storage_status.py:56
 msgctxt "storage_status"
@@ -9521,7 +9655,7 @@ msgstr "Zərər"
 
 #: war/views/switch_war_visibility.py:38
 msgid "Нет такого типа войн"
-msgstr ""
+msgstr "Belə növ müharibə yoxdur"
 
 #: war/views/switch_war_visibility.py:39 war/views/switch_war_visibility.py:47
 #: war/views/switch_war_visibility.py:63 war/views/switch_war_visibility.py:91
@@ -9530,7 +9664,7 @@ msgstr ""
 
 #: war/views/switch_war_visibility.py:46
 msgid "Нет такой войны"
-msgstr ""
+msgstr "Belə müharibə yoxdur"
 
 #: war/views/switch_war_visibility.py:62
 msgid "Нет такой записи об участии в бою"
