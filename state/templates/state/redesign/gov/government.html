@@ -27,7 +27,7 @@
 {% executives player parliament %}
 
 
-<script src='{% static "js/government.js" %}?{{ csrf_token }}'></script>
+<script src='{% static "js/government.js" %}'></script>
 {% if player.region.state %}
     {% if parliament %}
         {% if is_deputate %}

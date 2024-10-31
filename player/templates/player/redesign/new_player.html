@@ -13,7 +13,7 @@
   integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
   crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="{% static 'redesign/css/style.css' %}?{{ csrf_token }}">
-	<link rel="stylesheet" href="{% static 'redesign/css/cropper.min.css' %}?{{ csrf_token }}">
+	<link rel="stylesheet" href="{% static 'redesign/css/cropper.min.css' %}">
 	<style>
 		:root {
   --c10one: #FFFFFF;
@@ -164,7 +164,7 @@
 	insertUTMParamsToForm();
 </script>
 <script src='{% static "redesign/js/new_char.js" %}'></script>
-<script src="{% static 'redesign/js/header.js' %}?{{ csrf_token }}"></script>
+<script src="{% static 'redesign/js/header.js' %}"></script>
 <!--<script src="{% static 'redesign/js/cropper.js' %}?{{ csrf_token }}"></script>-->
 </body>
 </html>

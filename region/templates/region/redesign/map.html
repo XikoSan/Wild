@@ -10,9 +10,9 @@
 {% load get_key_list %}
 
 {% block content %}
-<script src='{% static "js/map.js" %}?{{ csrf_token }}'></script>
-<script src='{% static "js/leaflet.js" %}?{{ csrf_token }}'></script>
-<link rel="stylesheet" href="{% static 'css/leaflet.css' %}?{{ csrf_token }}"/>
+<script src='{% static "js/map.js" %}'></script>
+<script src='{% static "js/leaflet.js" %}'></script>
+<link rel="stylesheet" href="{% static 'css/leaflet.css' %}"/>
 <section class="map">
     <!--КОНТЕЙНЕР ДЛЯ КАРТЫ-->
     <div class="map__leaflet-container" id="mapid">

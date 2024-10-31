@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-30 23:53+0300\n"
+"POT-Creation-Date: 2024-10-31 01:22+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2812,6 +2812,81 @@ msgctxt "chat"
 msgid "Вы не состоите в этом чате"
 msgstr "Jūs neesat partijas biedrs"
 
+#: education/templates/education/edu_overview.html:249
+#: player/templates/player/redesign/overview.html:685
+msgctxt "overview"
+msgid "сила"
+msgstr "spēks"
+
+#: education/templates/education/edu_overview.html:254
+#: player/templates/player/redesign/overview.html:690
+msgctxt "overview"
+msgid "инт"
+msgstr "intelekts"
+
+#: education/templates/education/edu_overview.html:259
+#: player/templates/player/redesign/overview.html:695
+msgctxt "overview"
+msgid "вын"
+msgstr "izturība"
+
+#: education/templates/education/edu_overview.html:289
+#: player/templates/player/redesign/lists/skill_top.html:26
+#: player/templates/player/redesign/overview_skills.html:21
+#: skill/models/biochemistry.py:20 skill/models/coherence.py:21
+#: skill/models/excavation.py:15 skill/models/finance.py:15
+#: skill/models/scouting.py:21 skill/models/trophy_engineering.py:20
+#, fuzzy
+#| msgid "Сила"
+msgctxt "skills"
+msgid "Сила"
+msgstr "Spēks"
+
+#: education/templates/education/edu_overview.html:315
+#: education/templates/education/edu_overview.html:351
+#: education/templates/education/edu_overview.html:388
+#: player/templates/player/redesign/overview_skills.html:60
+#: player/templates/player/redesign/overview_skills.html:126
+#: player/templates/player/redesign/overview_skills.html:188
+#: skill/templates/redesign/skill/skill_list.html:84
+#, fuzzy
+#| msgid "изучить"
+msgctxt "skills"
+msgid "изучить"
+msgstr "izpētīt"
+
+#: education/templates/education/edu_overview.html:325
+#: player/templates/player/redesign/lists/skill_top.html:41
+#: player/templates/player/redesign/overview_skills.html:87
+#: skill/models/biochemistry.py:15 skill/models/coherence.py:26
+#: skill/models/excavation.py:20 skill/models/finance.py:20
+#: skill/models/fracturing.py:15 skill/models/military_production.py:15
+#: skill/models/scouting.py:26 skill/models/standardization.py:15
+#: skill/models/trophy_engineering.py:15
+#, fuzzy
+#| msgid "Интеллект"
+msgctxt "skills"
+msgid "Интеллект"
+msgstr "Intelekts"
+
+#: education/templates/education/edu_overview.html:362
+#: player/templates/player/redesign/lists/skill_top.html:56
+#: player/templates/player/redesign/overview_skills.html:149
+#: skill/models/biochemistry.py:25 skill/models/excavation.py:25
+#: skill/models/finance.py:25 skill/models/fracturing.py:20
+#: skill/models/scouting.py:31 skill/models/trophy_engineering.py:25
+#, fuzzy
+#| msgid "Выносливость"
+msgctxt "skills"
+msgid "Выносливость"
+msgstr "Izturība"
+
+#: education/templates/education/edu_overview.html:403
+#: player/templates/player/redesign/overview_skills.html:225
+msgctxt "skills"
+msgid "дерево навыков"
+msgstr "prasmju koks"
+
 #: education/views/edu_overview.py:51 education/views/edu_overview.py:54
 #: player/views/overview.py:372 player/views/overview.py:375
 msgctxt "education"
@@ -5497,41 +5572,6 @@ msgctxt "education"
 msgid "Не показывать обучение"
 msgstr "rādīt partijas fonu"
 
-#: player/templates/player/redesign/lists/skill_top.html:26
-#: player/templates/player/redesign/overview_skills.html:21
-#: skill/models/biochemistry.py:20 skill/models/coherence.py:21
-#: skill/models/excavation.py:15 skill/models/finance.py:15
-#: skill/models/scouting.py:21 skill/models/trophy_engineering.py:20
-#, fuzzy
-#| msgid "Сила"
-msgctxt "skills"
-msgid "Сила"
-msgstr "Spēks"
-
-#: player/templates/player/redesign/lists/skill_top.html:41
-#: player/templates/player/redesign/overview_skills.html:87
-#: skill/models/biochemistry.py:15 skill/models/coherence.py:26
-#: skill/models/excavation.py:20 skill/models/finance.py:20
-#: skill/models/fracturing.py:15 skill/models/military_production.py:15
-#: skill/models/scouting.py:26 skill/models/standardization.py:15
-#: skill/models/trophy_engineering.py:15
-#, fuzzy
-#| msgid "Интеллект"
-msgctxt "skills"
-msgid "Интеллект"
-msgstr "Intelekts"
-
-#: player/templates/player/redesign/lists/skill_top.html:56
-#: player/templates/player/redesign/overview_skills.html:149
-#: skill/models/biochemistry.py:25 skill/models/excavation.py:25
-#: skill/models/finance.py:25 skill/models/fracturing.py:20
-#: skill/models/scouting.py:31 skill/models/trophy_engineering.py:25
-#, fuzzy
-#| msgid "Выносливость"
-msgctxt "skills"
-msgid "Выносливость"
-msgstr "Izturība"
-
 #: player/templates/player/redesign/menu.html:7
 msgctxt "menu"
 msgid "обзор"
@@ -5782,21 +5822,6 @@ msgctxt "overview"
 msgid "Зимний фестиваль"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:685
-msgctxt "overview"
-msgid "сила"
-msgstr "spēks"
-
-#: player/templates/player/redesign/overview.html:690
-msgctxt "overview"
-msgid "инт"
-msgstr "intelekts"
-
-#: player/templates/player/redesign/overview.html:695
-msgctxt "overview"
-msgid "вын"
-msgstr "izturība"
-
 #: player/templates/player/redesign/overview.html:711
 msgctxt "overview"
 msgid "Выборы лидера"
@@ -5851,21 +5876,6 @@ msgstr "Pabeigšana"
 msgctxt "skills"
 msgid "в очередь"
 msgstr "rindā"
-
-#: player/templates/player/redesign/overview_skills.html:60
-#: player/templates/player/redesign/overview_skills.html:126
-#: player/templates/player/redesign/overview_skills.html:188
-#: skill/templates/redesign/skill/skill_list.html:84
-#, fuzzy
-#| msgid "изучить"
-msgctxt "skills"
-msgid "изучить"
-msgstr "izpētīt"
-
-#: player/templates/player/redesign/overview_skills.html:225
-msgctxt "skills"
-msgid "дерево навыков"
-msgstr "prasmju koks"
 
 #: player/templates/player/redesign/overview_skills.html:230
 #, fuzzy

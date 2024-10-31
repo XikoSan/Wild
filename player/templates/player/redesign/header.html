@@ -14,13 +14,13 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<link rel="icon" type="image/x-icon" href="{% static 'img/logo.ico' %}">
 	<title>{{ page_name }}</title>
-	<script src="{% static 'redesign/js/timers_fix.js' %}?{{ csrf_token }}"></script>
+	<script src="{% static 'redesign/js/timers_fix.js' %}"></script>
 	<script
 	  src="https://code.jquery.com/jquery-3.6.0.min.js"
 	  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
 	  crossorigin="anonymous"></script>
-	<link rel="stylesheet" href="{% static 'redesign/css/style.css' %}?{{ csrf_token }}">
-	<link rel="stylesheet" href="{% static 'redesign/css/cropper.min.css' %}?{{ csrf_token }}">
+	<link rel="stylesheet" href="{% static 'redesign/css/style.css' %}?31102401">
+	<link rel="stylesheet" href="{% static 'redesign/css/cropper.min.css' %}">
 	<style>
 	{% if player %}
 		{% player_colors player %}
@@ -205,8 +205,8 @@
 
 
 <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>-->
-<script src="{% static 'redesign/js/header.js' %}?{{ csrf_token }}"></script>
-<script src="{% static 'redesign/js/status.js' %}?{{ csrf_token }}"></script>
+<script src="{% static 'redesign/js/header.js' %}"></script>
+<script src="{% static 'redesign/js/status.js' %}"></script>
 
 <script src="/static/redesign/js/gui_help.js"></script>
 {% block for_scripts_and_css %}
