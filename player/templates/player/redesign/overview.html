@@ -12,22 +12,6 @@
 <script src="/static/redesign/js/education_n.js"></script>
 {% endif %}
 
-<style>
-  /* По умолчанию изображение скрыто, виден только SVG */
-  .lazy_loaded img {
-    display: none;
-  }
-
-  /* Когда изображение загружено, SVG скрывается */
-  .loaded img {
-    display: block;
-  }
-
-  .loaded svg {
-    display: none;
-  }
-</style>
-
 <script>
     window.onload = function war_countdown() {
     if (document.getElementById("closest_war-countdown") != undefined){
@@ -830,16 +814,11 @@
             <div class="overview__chat-message" {% localize off %} data-counter='{{  message|dict_key:"counter" }}' data-sender='{{  message|dict_key:"author" }}' {% endlocalize %} >
               <!--аватарка-->
               <a class="overview__chat-ava-link" href='/profile/{% localize off %}{{  message|dict_key:"author" }}{% endlocalize %}'>
-
-                <picture class="lazy_loaded">
-
-                  <source {% if not message|dict_key:'image_link' == 'nopic' %} data-srcset="{{  message|dict_key:'image_link'  }}" {% endif %}>
-
-                  <img class="overview__chat-ava" data-src="">
-
+                {% if message|dict_key:'image_link' == 'nopic' %}
                   {% nopic player 'overview__chat-ava' %}
-
-                </picture>
+                {% else %}
+                  <img src="{{  message|dict_key:'image_link'  }}" class="overview__chat-ava">
+                {% endif %}
               </a>
               <div class="overview__chat-message-wrapper">
                 <!--ник и дата-->
@@ -976,51 +955,7 @@
               {% for sticker in pack %}
             <li>
               <button class="overview__stickers-stick sticker_img" id="{{ pack_id }}_{{ sticker.pk }}">
-                <picture class="lazy_loaded">
-
-                  <source data-srcset="{{ sticker.image.url }}">
-
-                  <img data-src="" alt="{{ sticker.description }}">
-
-                  <svg
-                     viewBox="0 0 100 100"
-                     version="1.1"
-                     id="svg1"
-                     xmlns:xlink="http://www.w3.org/1999/xlink"
-                     xmlns="http://www.w3.org/2000/svg"
-                     xmlns:svg="http://www.w3.org/2000/svg">
-                    <defs
-                       id="defs1">
-                      <linearGradient
-                         id="linearGradient1">
-                        <stop
-                           style="stop-color:#000000;stop-opacity:1;"
-                           offset="0"
-                           id="stop1" />
-                        <stop
-                           style="stop-color:#000000;stop-opacity:0;"
-                           offset="1"
-                           id="stop2" />
-                      </linearGradient>
-                      <linearGradient
-                         xlink:href="#linearGradient1"
-                         id="linearGradient2"
-                         x1="0"
-                         y1="0.48648649"
-                         x2="100.70271"
-                         y2="100.45946"
-                         gradientUnits="userSpaceOnUse" />
-                    </defs>
-                    <rect
-                       style="fill:url(#linearGradient2);stroke-width:0.132;stroke-linejoin:bevel;paint-order:markers fill stroke;fill-opacity:1"
-                       id="rect1"
-                       width="100"
-                       height="100"
-                       x="0"
-                       y="0" />
-                  </svg>
-
-                </picture>
+                <img src="{{ sticker.image.url }}" alt="{{ sticker.description }}">
               </button>
             </li>
               {% endfor %}
@@ -1080,22 +1015,6 @@
       display_modal('notify', 'Твоя награда!', '{{ reward_message }}', null, 'Закрыть');
       {% endif %}
 
-
-      // Находим все элементы с классом "lazy_loaded"
-      var lazyElements = document.querySelectorAll('.lazy_loaded');
-
-      lazyElements.forEach(function(element) {
-        var img = element.querySelector('img');  // Находим тег <img> внутри <picture>
-        var source = element.querySelector('source'); // Находим тег <source>
-
-        // Если у <source> есть атрибут data-srcset, загружаем его
-        if (source && source.getAttribute('data-srcset')) {
-          source.srcset = source.getAttribute('data-srcset');
-
-          // Добавляем класс loaded, который скрывает SVG и показывает изображение
-          element.classList.add('loaded');
-        }
-      });
   }
 
   function audio_play(pk) {
