@@ -250,8 +250,8 @@
 {% endblock %}
 
 {% block for_scripts_and_css %}
-<script src='{% static "redesign/js/factory.js" %}?{{ csrf_token }}'></script>
+<script src='{% static "redesign/js/factory.js" %}'></script>
 {% if premium %}
-<script src='{% static "redesign/js/auto_produce.js" %}?{{ csrf_token }}'></script>
+<script src='{% static "redesign/js/auto_produce.js" %}'></script>
 {% endif %}
 {% endblock %}
