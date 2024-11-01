@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-01 00:19+0300\n"
+"POT-Creation-Date: 2024-11-01 22:23+0300\n"
 "PO-Revision-Date: 2024-11-01 00:19+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -749,7 +749,7 @@ msgstr "Məhdudiyyət: bu növ qanun birdən çox  qoyulmamalıdır"
 #: bill/models/change_coat.py:44
 msgctxt "new_bill"
 msgid "Ошибка формы нового герба"
-msgstr ""
+msgstr "Yeni qerbdə xəta baş verdi"
 
 #: bill/models/change_coat.py:180
 msgctxt "new_bill"
@@ -953,11 +953,9 @@ msgid "Укрепления"
 msgstr "İstehkam səviyyəsi"
 
 #: bill/models/construction.py:60 region/building/infrastructure.py:118
-#, fuzzy
-#| msgid "Уровень Госпиталя"
 msgctxt "new_bill"
 msgid "Инфраструктура"
-msgstr "Xəstəxana səviyyəsi"
+msgstr ""
 
 #: bill/models/construction.py:119 bill/models/explore_resources.py:76
 #: bill/models/transfer_region.py:99
@@ -1083,7 +1081,7 @@ msgstr "Dövlət büdcəsi bölgədə yerləşib"
 #: bill/models/independence.py:97 bill/models/transfer_region.py:108
 msgctxt "new_bill"
 msgid "Регион является плацдармом атаки"
-msgstr ""
+msgstr "Bölgə savaş meydanıdır"
 
 #: bill/models/independence.py:328
 #, fuzzy
@@ -1131,11 +1129,9 @@ msgid ""
 msgstr "Hərbi vəziyyətin imtinasından 2 həftədən az keçib"
 
 #: bill/models/martial_law.py:242
-#, fuzzy
-#| msgid "Уровень Укреплений"
 msgctxt "new_bill"
 msgid "Военное положение"
-msgstr "İstehkam səviyyəsi"
+msgstr "Hərbi vəziyyət"
 
 #: bill/models/martial_law.py:243
 msgctxt "new_bill"
@@ -1145,7 +1141,7 @@ msgstr "Hərbi vəziyyətlər"
 #: bill/models/purchase_auction.py:60
 msgctxt "new_bill"
 msgid "Объём закупки должна быть целым числом"
-msgstr ""
+msgstr "Alış həcmi tam rəqəm olmalıdır"
 
 #: bill/models/purchase_auction.py:68
 msgctxt "new_bill"
@@ -1165,17 +1161,17 @@ msgstr "Alış qiymətinin məhdudiyyəti 0 - 1 000 000 000 000"
 #: bill/models/purchase_auction.py:98
 msgctxt "new_bill"
 msgid "Количество лотов должно быть целым числом"
-msgstr ""
+msgstr "Lotların sayı tam rəqəm olmalıdır"
 
 #: bill/models/purchase_auction.py:105
 msgctxt "new_bill"
 msgid "Количество лотов должно быть числом от 1 до 10"
-msgstr ""
+msgstr "Lotların sayı 1-10 olmalıdır"
 
 #: bill/models/purchase_auction.py:112
 msgctxt "new_bill"
 msgid "Количество лотов не может быть больше объёма закупки"
-msgstr ""
+msgstr "Lotların sayı alış həcmindən çox ola bilməz"
 
 #: bill/models/purchase_auction.py:123 bill/models/transfer_resources.py:122
 msgctxt "new_bill"
@@ -1195,29 +1191,27 @@ msgstr "Məhsul alışı"
 #: bill/models/start_war.py:97
 msgctxt "new_bill"
 msgid "ID плацдарма должен быть целым числом"
-msgstr ""
+msgstr "Meydanın ID-si tam rəqəm olmalıdır"
 
 #: bill/models/start_war.py:104
 msgctxt "new_bill"
 msgid "Неизвестный плацдарм"
-msgstr ""
+msgstr "Naməlum meydan"
 
 #: bill/models/start_war.py:114
 msgctxt "new_bill"
 msgid "ID целевого региона должен быть целым числом"
-msgstr ""
+msgstr "Bölgənin ID-si tam rəqəm olmalıdır"
 
 #: bill/models/start_war.py:121
-#, fuzzy
-#| msgid "Независимый регион"
 msgctxt "new_bill"
 msgid "Неизвестный целевой регион"
-msgstr "Müstəqil bölgə"
+msgstr "Naməlum bölgə"
 
 #: bill/models/start_war.py:128 bill/models/start_war.py:146
 msgctxt "new_bill"
 msgid "Нельзя напасть на самих себя"
-msgstr ""
+msgstr "Gicsən bala? Ozuve nie hücum edirsən"
 
 #: bill/models/start_war.py:137
 msgctxt "new_bill"
@@ -1255,18 +1249,14 @@ msgid "Указанный регион не передаётся"
 msgstr "Seçilmiş bölgə verilə bilməz"
 
 #: bill/models/transfer_accept.py:402
-#, fuzzy
-#| msgid "Партии региона"
 msgctxt "new_bill"
 msgid "Принятие региона"
-msgstr "Bölgə partiyaları"
+msgstr "Bölgənin qəbulu"
 
 #: bill/models/transfer_accept.py:403
-#, fuzzy
-#| msgid "Партии региона"
 msgctxt "new_bill"
 msgid "Принятия регионов"
-msgstr "Bölgə partiyaları"
+msgstr "Bölgələrin qəbulu"
 
 #: bill/models/transfer_region.py:61 bill/models/transfer_resources.py:64
 msgctxt "new_bill"
@@ -1279,25 +1269,19 @@ msgid "ID государства должен быть целым числом"
 msgstr "Dövlətin ID-si tam rəqəm olmalıdır"
 
 #: bill/models/transfer_region.py:115
-#, fuzzy
-#| msgid "Государство"
 msgctxt "new_bill"
 msgid "Нет такого государства"
-msgstr "Dövlət"
+msgstr "Belə dövlət yoxdur"
 
 #: bill/models/transfer_region.py:238
-#, fuzzy
-#| msgid "Граждане региона"
 msgctxt "new_bill"
 msgid "Передача региона"
-msgstr "Qeydiyyatı olanlar"
+msgstr "Bölgənin verilməsi"
 
 #: bill/models/transfer_region.py:239
-#, fuzzy
-#| msgid "Партии региона"
 msgctxt "new_bill"
 msgid "Передачи регионов"
-msgstr "Bölgə partiyaları"
+msgstr "Bölgələrin verilməsi"
 
 #: bill/models/transfer_resources.py:71
 msgctxt "new_bill"
@@ -1615,7 +1599,7 @@ msgstr "Məhsulu seçin"
 #: bill/templates/state/redesign/drafts/purchase_auction.html:36
 msgctxt "purchase_auction_draft"
 msgid "количество лотов"
-msgstr ""
+msgstr "Lotların sayı"
 
 #: bill/templates/state/redesign/drafts/purchase_auction.html:46
 msgctxt "purchase_auction_draft"
@@ -1655,21 +1639,17 @@ msgstr "Mövcud bolgə yoxdur"
 #: bill/templates/state/redesign/drafts/transfer_resources.html:94
 msgctxt "transfer_resources_draft"
 msgid "выберите товар"
-msgstr ""
+msgstr "Məhsulu seç"
 
 #: bill/templates/state/redesign/drafts/transfer_resources.html:164
-#, fuzzy
-#| msgid "Государство"
 msgctxt "transfer_resources_draft"
 msgid "количество"
-msgstr "Dövlət"
+msgstr "Say"
 
 #: bill/templates/state/redesign/drafts/transfer_resources.html:180
-#, fuzzy
-#| msgid "должность в партии"
 msgctxt "transfer_resources_draft"
 msgid "стоимость передачи"
-msgstr "partiyadakı mövqe"
+msgstr "Transfer qiyməti"
 
 #: bill/templates/state/redesign/new_bill.html:82
 msgctxt "new_bill"
@@ -1691,25 +1671,21 @@ msgstr "Mövcud deyil"
 #: bill/templates/state/redesign/reviewed/change_residency.html:55
 msgctxt "change_residency_reviewed"
 msgid "принят"
-msgstr ""
+msgstr "Qəbul edildi"
 
 #: bill/templates/state/redesign/reviewed/change_coat.html:46
 #: bill/templates/state/redesign/reviewed/change_form.html:39
 #: bill/templates/state/redesign/reviewed/change_residency.html:57
-#, fuzzy
-#| msgid "отклонить всё"
 msgctxt "change_residency_reviewed"
 msgid "отклонён"
-msgstr "hamısını ləğv et"
+msgstr "Rədd edildi"
 
 #: bill/templates/state/redesign/reviewed/change_coat.html:48
 #: bill/templates/state/redesign/reviewed/change_form.html:41
 #: bill/templates/state/redesign/reviewed/change_residency.html:59
-#, fuzzy
-#| msgid "Отмена"
 msgctxt "change_residency_reviewed"
 msgid "отменён"
-msgstr "Ləğv et"
+msgstr "Ləğv edildi"
 
 #: bill/templates/state/redesign/reviewed/change_residency.html:35
 #, fuzzy
@@ -1727,68 +1703,54 @@ msgid "БПЛА"
 msgstr "PUA"
 
 #: bill/templates/state/redesign/reviewed/change_taxes.html:30
-#, fuzzy
-#| msgid "Государство"
 msgctxt "change_taxes_reviewed"
 msgid "всё государство"
-msgstr "Dövlət"
+msgstr "Bütöv dövlət"
 
 #: bill/templates/state/redesign/reviewed/change_taxes.html:58
 msgctxt "change_taxes_reviewed"
 msgid "принят"
-msgstr ""
+msgstr "Qəbul edildi"
 
 #: bill/templates/state/redesign/reviewed/change_taxes.html:60
-#, fuzzy
-#| msgid "отклонить всё"
 msgctxt "change_taxes_reviewed"
 msgid "отклонён"
-msgstr "hamısını ləğv et"
+msgstr "Rədd edildi"
 
 #: bill/templates/state/redesign/reviewed/change_taxes.html:62
-#, fuzzy
-#| msgid "Отмена"
 msgctxt "change_taxes_reviewed"
 msgid "отменён"
-msgstr "Ləğv et"
+msgstr "Ləğv edildi"
 
 #: bill/templates/state/redesign/reviewed/change_title.html:37
 msgctxt "change_title_reviewed"
 msgid "принят"
-msgstr ""
+msgstr "Qəbul edildi"
 
 #: bill/templates/state/redesign/reviewed/change_title.html:39
-#, fuzzy
-#| msgid "отклонить всё"
 msgctxt "change_title_reviewed"
 msgid "отклонён"
-msgstr "hamısını ləğv et"
+msgstr "Rədd edildi"
 
 #: bill/templates/state/redesign/reviewed/change_title.html:41
-#, fuzzy
-#| msgid "Отмена"
 msgctxt "change_title_reviewed"
 msgid "отменён"
-msgstr "Ləğv et"
+msgstr "Ləğv edildi"
 
 #: bill/templates/state/redesign/reviewed/construction.html:55
 msgctxt "construction_reviewed"
 msgid "принят"
-msgstr ""
+msgstr "Qəbul edildi"
 
 #: bill/templates/state/redesign/reviewed/construction.html:57
-#, fuzzy
-#| msgid "отклонить всё"
 msgctxt "construction_reviewed"
 msgid "отклонён"
-msgstr "hamısını ləğv et"
+msgstr "Rədd edildi"
 
 #: bill/templates/state/redesign/reviewed/construction.html:59
-#, fuzzy
-#| msgid "Отмена"
 msgctxt "construction_reviewed"
 msgid "отменён"
-msgstr "Ləğv et"
+msgstr "Ləğv edildi"
 
 #: bill/templates/state/redesign/reviewed/explore_resources.html:36
 #, fuzzy
@@ -1801,21 +1763,17 @@ msgstr "Nağd pul"
 #: bill/templates/state/redesign/reviewed/explore_resources.html:49
 msgctxt "explore_resources_reviewed"
 msgid "принят"
-msgstr ""
+msgstr "Qəbul edildi"
 
 #: bill/templates/state/redesign/reviewed/explore_resources.html:51
-#, fuzzy
-#| msgid "отклонить всё"
 msgctxt "explore_resources_reviewed"
 msgid "отклонён"
-msgstr "hamısını ləğv et"
+msgstr "Rədd edildi"
 
 #: bill/templates/state/redesign/reviewed/explore_resources.html:53
-#, fuzzy
-#| msgid "Отмена"
 msgctxt "explore_resources_reviewed"
 msgid "отменён"
-msgstr "Ləğv et"
+msgstr "Ləğv edildi"
 
 #: bill/templates/state/redesign/reviewed/geological_surveys.html:36
 #, fuzzy
@@ -1828,59 +1786,47 @@ msgstr "Qazma qurğuları"
 #: bill/templates/state/redesign/reviewed/geological_surveys.html:49
 msgctxt "geological_surveys_reviewed"
 msgid "принят"
-msgstr ""
+msgstr "Qəbul edildi"
 
 #: bill/templates/state/redesign/reviewed/geological_surveys.html:51
-#, fuzzy
-#| msgid "отклонить всё"
 msgctxt "geological_surveys_reviewed"
 msgid "отклонён"
-msgstr "hamısını ləğv et"
+msgstr "Rədd edildi"
 
 #: bill/templates/state/redesign/reviewed/geological_surveys.html:53
-#, fuzzy
-#| msgid "Отмена"
 msgctxt "geological_surveys_reviewed"
 msgid "отменён"
-msgstr "Ləğv et"
+msgstr "Ləğv edildi"
 
 #: bill/templates/state/redesign/reviewed/independence.html:41
 msgctxt "independence_reviewed"
 msgid "принят"
-msgstr ""
+msgstr "Qəbul edildi"
 
 #: bill/templates/state/redesign/reviewed/independence.html:43
-#, fuzzy
-#| msgid "отклонить всё"
 msgctxt "independence_reviewed"
 msgid "отклонён"
-msgstr "hamısını ləğv et"
+msgstr "Rədd edildi"
 
 #: bill/templates/state/redesign/reviewed/independence.html:45
-#, fuzzy
-#| msgid "Отмена"
 msgctxt "independence_reviewed"
 msgid "отменён"
-msgstr "Ləğv et"
+msgstr "Ləğv edildi"
 
 #: bill/templates/state/redesign/reviewed/martial_law.html:46
 msgctxt "martial_law_reviewed"
 msgid "принят"
-msgstr ""
+msgstr "Qəbul edildi"
 
 #: bill/templates/state/redesign/reviewed/martial_law.html:48
-#, fuzzy
-#| msgid "отклонить всё"
 msgctxt "martial_law_reviewed"
 msgid "отклонён"
-msgstr "hamısını ləğv et"
+msgstr "Rədd edildi"
 
 #: bill/templates/state/redesign/reviewed/martial_law.html:50
-#, fuzzy
-#| msgid "Отмена"
 msgctxt "martial_law_reviewed"
 msgid "отменён"
-msgstr "Ləğv et"
+msgstr "Ləğv edildi"
 
 #: bill/templates/state/redesign/reviewed/purchase_auction.html:32
 #, fuzzy
@@ -1893,78 +1839,62 @@ msgstr "Nağd pul"
 #: bill/templates/state/redesign/reviewed/purchase_auction.html:46
 msgctxt "purchase_auction_reviewed"
 msgid "принят"
-msgstr ""
+msgstr "Qəbul edildi"
 
 #: bill/templates/state/redesign/reviewed/purchase_auction.html:48
-#, fuzzy
-#| msgid "отклонить всё"
 msgctxt "purchase_auction_reviewed"
 msgid "отклонён"
-msgstr "hamısını ləğv et"
+msgstr "Rədd edildi"
 
 #: bill/templates/state/redesign/reviewed/purchase_auction.html:50
-#, fuzzy
-#| msgid "Отмена"
 msgctxt "purchase_auction_reviewed"
 msgid "отменён"
-msgstr "Ləğv et"
+msgstr "Ləğv edildi"
 
 #: bill/templates/state/redesign/reviewed/start_war.html:77
 msgctxt "start_war_reviewed"
 msgid "принят"
-msgstr ""
+msgstr "Qəbul edildi"
 
 #: bill/templates/state/redesign/reviewed/start_war.html:79
-#, fuzzy
-#| msgid "отклонить всё"
 msgctxt "start_war_reviewed"
 msgid "отклонён"
-msgstr "hamısını ləğv et"
+msgstr "Rədd edildi"
 
 #: bill/templates/state/redesign/reviewed/start_war.html:81
-#, fuzzy
-#| msgid "Отмена"
 msgctxt "start_war_reviewed"
 msgid "отменён"
-msgstr "Ləğv et"
+msgstr "Ləğv edildi"
 
 #: bill/templates/state/redesign/reviewed/transfer_accept.html:60
 msgctxt "transfer_accept_reviewed"
 msgid "принят"
-msgstr ""
+msgstr "Qəbul edildi"
 
 #: bill/templates/state/redesign/reviewed/transfer_accept.html:62
-#, fuzzy
-#| msgid "отклонить всё"
 msgctxt "transfer_accept_reviewed"
 msgid "отклонён"
-msgstr "hamısını ləğv et"
+msgstr "Rədd edildi"
 
 #: bill/templates/state/redesign/reviewed/transfer_accept.html:64
-#, fuzzy
-#| msgid "Отмена"
 msgctxt "transfer_accept_reviewed"
 msgid "отменён"
-msgstr "Ləğv et"
+msgstr "Ləğv edildi"
 
 #: bill/templates/state/redesign/reviewed/transfer_region.html:60
 msgctxt "transfer_region_reviewed"
 msgid "принят"
-msgstr ""
+msgstr "Qəbul edildi"
 
 #: bill/templates/state/redesign/reviewed/transfer_region.html:62
-#, fuzzy
-#| msgid "отклонить всё"
 msgctxt "transfer_region_reviewed"
 msgid "отклонён"
-msgstr "hamısını ləğv et"
+msgstr "Rədd edildi"
 
 #: bill/templates/state/redesign/reviewed/transfer_region.html:64
-#, fuzzy
-#| msgid "Отмена"
 msgctxt "transfer_region_reviewed"
 msgid "отменён"
-msgstr "Ləğv et"
+msgstr "Ləğv edildi"
 
 #: bill/templates/state/redesign/reviewed/transfer_resources.html:41
 #, fuzzy
@@ -1977,26 +1907,22 @@ msgstr "Nağd pul"
 #: bill/templates/state/redesign/reviewed/transfer_resources.html:54
 msgctxt "transfer_resources_reviewed"
 msgid "принят"
-msgstr ""
+msgstr "Qəbul edildi"
 
 #: bill/templates/state/redesign/reviewed/transfer_resources.html:56
-#, fuzzy
-#| msgid "отклонить всё"
 msgctxt "transfer_resources_reviewed"
 msgid "отклонён"
-msgstr "hamısını ləğv et"
+msgstr "Rədd edildi"
 
 #: bill/templates/state/redesign/reviewed/transfer_resources.html:58
-#, fuzzy
-#| msgid "Отмена"
 msgctxt "transfer_resources_reviewed"
 msgid "отменён"
-msgstr "Ləğv et"
+msgstr "Ləğv edildi"
 
 #: bill/views/bills/cancel_bill.py:70
 msgctxt "cancel_bill"
 msgid "Вы не автор законопроекта"
-msgstr ""
+msgstr "Qanunun müəllifi deyilsiz"
 
 #: bill/views/bills/cancel_bill.py:71 bill/views/bills/cancel_bill.py:78
 #: bill/views/bills/cancel_bill.py:85 bill/views/bills/cancel_bill.py:92
@@ -2004,7 +1930,7 @@ msgstr ""
 #: bill/views/bills/cancel_bill.py:114
 msgctxt "cancel_bill"
 msgid "Отмена законопроекта"
-msgstr ""
+msgstr "Qanunu ləğv et"
 
 #: bill/views/bills/cancel_bill.py:77
 msgctxt "cancel_bill"
@@ -2019,17 +1945,17 @@ msgstr "Belə növ qanun yoxdur"
 #: bill/views/bills/cancel_bill.py:91
 msgctxt "cancel_bill"
 msgid "Вы - не депутат этого парламента"
-msgstr ""
+msgstr "Siz bu parlamentin deputatı deyilsiz"
 
 #: bill/views/bills/cancel_bill.py:98
 msgctxt "cancel_bill"
 msgid "В этом государстве нет парламента"
-msgstr ""
+msgstr "Bu dövlətdə parlament yoxdur"
 
 #: bill/views/bills/cancel_bill.py:105
 msgctxt "cancel_bill"
 msgid "В этом регионе нет государства"
-msgstr ""
+msgstr "Bu bölgədə dövlət yoxdur"
 
 #: bill/views/bills/new_bill.py:48
 msgctxt "new_bill"
@@ -2049,7 +1975,7 @@ msgstr "Bu bölgədə dövlət mövcud deyil"
 #: bill/views/bills/speedup_bill.py:33
 msgctxt "speedup_bill"
 msgid "Вы - не депутат этого парламента"
-msgstr ""
+msgstr "Siz bu parlamentin deputatı deyilsiz"
 
 #: bill/views/bills/speedup_bill.py:34 bill/views/bills/speedup_bill.py:43
 #: bill/views/bills/speedup_bill.py:69 bill/views/bills/speedup_bill.py:84
@@ -2060,54 +1986,52 @@ msgstr ""
 #: bill/views/bills/speedup_bill.py:169
 msgctxt "speedup_bill"
 msgid "Досрочное принятие"
-msgstr ""
+msgstr "Növbədən kənar qəbul"
 
 #: bill/views/bills/speedup_bill.py:42
 msgctxt "speedup_bill"
 msgid "Вы - не министр этого государства"
-msgstr ""
+msgstr "Siz bu dövlətin naziri deyilsiz"
 
 #: bill/views/bills/speedup_bill.py:68
 msgctxt "speedup_bill"
 msgid "Нет права досрочно принимать этот законопроект"
-msgstr ""
+msgstr "Qanunu növbədən kənar qəbul etməyə hüququnuz yoxdur"
 
 #: bill/views/bills/speedup_bill.py:83
-#, fuzzy
-#| msgid "У вас пока еще нет стикеров"
 msgctxt "speedup_bill"
 msgid "В вашем государстве нет лидера"
-msgstr "Hələ stikerləriniz yoxdur"
+msgstr "Dövlətinizdə lider yoxdur"
 
 #: bill/views/bills/speedup_bill.py:102
 msgctxt "speedup_bill"
 msgid "Лидер государства ещё не подписал этот законопроект"
-msgstr ""
+msgstr "Dövlət lideri qanunu qəbul etməyib"
 
 #: bill/views/bills/speedup_bill.py:125
 msgctxt "speedup_bill"
 msgid "Досрочное принятие запрещено"
-msgstr ""
+msgstr "Növbədən kənar qəbul qadağa olub"
 
 #: bill/views/bills/speedup_bill.py:132
 msgctxt "speedup_bill"
 msgid "Надо проголосовать!"
-msgstr ""
+msgstr "Səs ver!"
 
 #: bill/views/bills/speedup_bill.py:139
 msgctxt "speedup_bill"
 msgid "Нет такого законопроекта"
-msgstr ""
+msgstr "Belə qanun yoxdur"
 
 #: bill/views/bills/speedup_bill.py:146
 msgctxt "speedup_bill"
 msgid "Нет такого вида законопроекта"
-msgstr ""
+msgstr "Belə növ qanun yoxdur"
 
 #: bill/views/bills/speedup_bill.py:153
 msgctxt "speedup_bill"
 msgid "В этом государстве нет парламента"
-msgstr ""
+msgstr "Bu dövlətdə parlament yoxdur"
 
 #: bill/views/bills/speedup_bill.py:168 gov/views/color_change.py:58
 #: gov/views/set_ministers.py:181 gov/views/switch_description.py:43
@@ -2193,21 +2117,19 @@ msgid "Загрузить предыдущие сообщения"
 msgstr "Keçmiş yazışmanı göstər"
 
 #: chat/templates/chat/dialogue.html:210
-#, fuzzy
-#| msgid "Создание персонажа"
 msgctxt "chat"
 msgid "Соединение прервалось"
-msgstr "Oyunçu yarat"
+msgstr "Bağlantı kəsildi"
 
 #: chat/templates/chat/dialogue.html:211
 msgctxt "chat"
 msgid "Перезагрузите страницу, чтобы переподключиться к чату"
-msgstr ""
+msgstr "Səhifəni yenilə"
 
 #: chat/templates/chat/dialogues.html:42 chat/views/messages/dialogues.py:223
 msgctxt "chat"
 msgid "Диалоги"
-msgstr ""
+msgstr "Dialoqlar"
 
 #: chat/templates/chat/dialogues.html:60
 msgctxt "chat"
@@ -2217,12 +2139,12 @@ msgstr "Hamsı"
 #: chat/templates/chat/dialogues.html:61
 msgctxt "chat"
 msgid "государственные"
-msgstr ""
+msgstr "Dövlət mesajı"
 
 #: chat/templates/chat/mass_sending/new_sending.html:18
 msgctxt "chat"
 msgid "Новая рассылка"
-msgstr ""
+msgstr "Yeni xəbər"
 
 #: chat/templates/chat/mass_sending/new_sending.html:44
 msgctxt "chat"
@@ -2230,40 +2152,37 @@ msgid "отправить"
 msgstr "Yollamaq"
 
 #: chat/templates/chat/sticker-shop.html:39 chat/views/stickers_shop.py:45
-#, fuzzy
-#| msgid "У вас пока еще нет стикеров"
 msgctxt "chat"
 msgid "Магазин стикеров"
-msgstr "Hələ stikerləriniz yoxdur"
+msgstr "Stiker mağazası"
 
 #: chat/templates/chat/sticker-shop.html:72
 msgctxt "chat"
 msgid "Купить набор"
-msgstr ""
+msgstr "Dəst al"
 
 #: chat/templates/chat/sticker-shop.html:116
 msgctxt "chat"
 msgid "Похоже, вы скупили все стикерпаки. Ожидайте выхода новых!"
 msgstr ""
+"Siz stiker paketlərin hamsını almısız. Yeni paketlərin çıxmasını gözləyin!"
 
 #: chat/views/buy_sticker_pack.py:23 chat/views/buy_sticker_pack.py:35
 #: chat/views/buy_sticker_pack.py:46 chat/views/buy_sticker_pack.py:54
 #: chat/views/buy_sticker_pack.py:89
-#, fuzzy
-#| msgid "Новый персонаж"
 msgctxt "chat"
 msgid "Новый стикерпак"
-msgstr "Yeni oyunçu"
+msgstr "Yeni stiker paketi"
 
 #: chat/views/buy_sticker_pack.py:25
 msgctxt "chat"
 msgid "ID стикерпака должен быть целым числом"
-msgstr ""
+msgstr "Stiker paketin ID-si tam rəqəm olmalıdır"
 
 #: chat/views/buy_sticker_pack.py:34
 msgctxt "chat"
 msgid "Указанный набор стикеров не найден"
-msgstr ""
+msgstr "Seçilmiş stiker paketi tapılmadı"
 
 #: chat/views/buy_sticker_pack.py:45
 #, python-format
@@ -2274,42 +2193,92 @@ msgstr "Qızıl kifayət qədər deyil: %(price)s lazımdır"
 #: chat/views/buy_sticker_pack.py:53
 msgctxt "chat"
 msgid "У вас уже есть данный набор"
-msgstr ""
+msgstr "Bu dəstə artıq sahibsiz"
 
 #: chat/views/messages/dialogue.py:190
 #, python-format
 msgctxt "chat"
 msgid "Диалог с %(nickname)s"
-msgstr ""
+msgstr "%(nickname)s - la dialoq"
 
 #: chat/views/messages/get_message_block.py:26
 msgctxt "chat"
 msgid "ID комнаты должен быть целым числом"
-msgstr ""
+msgstr "Otağın ID-si tam rəqəm olmalıdır"
 
 #: chat/views/messages/get_message_block.py:27
 #: chat/views/messages/get_message_block.py:37
 #: chat/views/messages/get_message_block.py:50
 #: chat/views/messages/get_message_block.py:85
-#, fuzzy
-#| msgid "Уровень Укреплений"
 msgctxt "chat"
 msgid "Получение сообщений"
-msgstr "İstehkam səviyyəsi"
+msgstr "Mesajların qəbulu"
 
 #: chat/views/messages/get_message_block.py:36
 msgctxt "chat"
 msgid "Указанная комната не найдена"
-msgstr ""
+msgstr "Seçilmiş otaq tapılmadı"
 
 #: chat/views/messages/get_message_block.py:49
-#, fuzzy
-#| msgid "должность в партии"
 msgctxt "chat"
 msgid "Вы не состоите в этом чате"
-msgstr "partiyadakı mövqe"
+msgstr "Bu söhbətin üzvü deyilsiz"
 
-#: education/templates/education/edu_overview.html:95
+#: education/templates/education/edu_lists/list_1.html:41
+#, python-format
+msgctxt "education"
+msgid ""
+"Здравствуйте! Меня зовут %(assistant)s, я ваша помощница и верный союзник на "
+"вашем новом пути. Поздравляю вас с принятием в Партию Единства Республики — "
+"это первый шаг к вершинам политической карьеры!"
+msgstr ""
+
+#: education/templates/education/edu_lists/list_1.html:45
+msgctxt "education"
+msgid ""
+"Вступив в ряды правящей партии, вы оказались в самом центре эпохи перемен и "
+"возможностей. Сейчас настало время амбициозных личностей, которые стремятся "
+"внести вклад в развитие нашего государства и укрепить его влияние на мировой "
+"арене."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_1.html:49
+msgctxt "education"
+msgid ""
+"В мире ведутся масштабные войны, создаются союзы, меняющие континенты. Люди "
+"основывают крупные бизнесы, корпорации и целые сети. СМИ играют роль "
+"невидимых нитей, связывая влиятельные силы. И очень скоро вы займете своё "
+"место среди них. Я же буду рядом, помогая вам разбираться в тонкостях игры."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_1.html:53
+msgctxt "education"
+msgid "Для начала, давайте взглянем на обстановку в стране и мире!"
+msgstr ""
+
+#: education/templates/education/edu_lists/list_1.html:59
+msgctxt "education"
+msgid ""
+"Как вам известно, предыдущая администрация чуть не привела нашу страну к "
+"краху. Теперь нам предстоит удержать республику от этой участи, даже если "
+"это потребует решительных реформ."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_1.html:65
+msgctxt "education"
+msgid ""
+"Сегодня день выборов, и атмосфера в столице накалена до предела. На улицах "
+"шумят радикалы, требующие перемен, но это не помешает нам достичь своей цели!"
+msgstr ""
+
+#: education/templates/education/edu_lists/list_1.html:69
+msgctxt "education"
+msgid ""
+"Что? Вы еще не проголосовали? Это недоразумение нужно срочно исправить. Пора "
+"отправиться на избирательный участок!"
+msgstr ""
+
+#: education/templates/education/edu_overview.html:97
 #: player/templates/player/redesign/overview.html:222
 #, fuzzy
 #| msgid "мир"
@@ -2317,7 +2286,7 @@ msgctxt "overview"
 msgid "мир"
 msgstr "Dünya"
 
-#: education/templates/education/edu_overview.html:151
+#: education/templates/education/edu_overview.html:153
 #, fuzzy
 #| msgctxt "new_bill"
 #| msgid "Президентская республика"
@@ -2325,14 +2294,14 @@ msgctxt "education"
 msgid "Объединённая Республика"
 msgstr "Respublika"
 
-#: education/templates/education/edu_overview.html:188
+#: education/templates/education/edu_overview.html:190
 #, fuzzy
 #| msgid "независимый регион"
 msgctxt "education"
 msgid "Столичный регион"
 msgstr "müstəqil bölgə"
 
-#: education/templates/education/edu_overview.html:224
+#: education/templates/education/edu_overview.html:226
 #: player/templates/player/redesign/overview.html:393
 #, fuzzy
 #| msgid "войн нет"
@@ -2340,25 +2309,25 @@ msgctxt "overview"
 msgid "войн нет"
 msgstr "Döyüş yoxdur"
 
-#: education/templates/education/edu_overview.html:243
+#: education/templates/education/edu_overview.html:245
 #: player/templates/player/redesign/overview.html:669
 msgctxt "overview"
 msgid "сила"
 msgstr "Güc"
 
-#: education/templates/education/edu_overview.html:248
+#: education/templates/education/edu_overview.html:250
 #: player/templates/player/redesign/overview.html:674
 msgctxt "overview"
 msgid "инт"
 msgstr "Bilik"
 
-#: education/templates/education/edu_overview.html:253
+#: education/templates/education/edu_overview.html:255
 #: player/templates/player/redesign/overview.html:679
 msgctxt "overview"
 msgid "вын"
 msgstr "Dzm"
 
-#: education/templates/education/edu_overview.html:276
+#: education/templates/education/edu_overview.html:278
 #: player/templates/player/redesign/lists/skill_top.html:26
 #: player/templates/player/redesign/overview_skills.html:21
 #: skill/models/biochemistry.py:20 skill/models/coherence.py:21
@@ -2370,9 +2339,9 @@ msgctxt "skills"
 msgid "Сила"
 msgstr "Güc"
 
-#: education/templates/education/edu_overview.html:302
-#: education/templates/education/edu_overview.html:338
-#: education/templates/education/edu_overview.html:375
+#: education/templates/education/edu_overview.html:304
+#: education/templates/education/edu_overview.html:340
+#: education/templates/education/edu_overview.html:377
 #: player/templates/player/redesign/overview_skills.html:60
 #: player/templates/player/redesign/overview_skills.html:126
 #: player/templates/player/redesign/overview_skills.html:188
@@ -2383,7 +2352,7 @@ msgctxt "skills"
 msgid "изучить"
 msgstr "araşdırmaq"
 
-#: education/templates/education/edu_overview.html:312
+#: education/templates/education/edu_overview.html:314
 #: player/templates/player/redesign/lists/skill_top.html:41
 #: player/templates/player/redesign/overview_skills.html:87
 #: skill/models/biochemistry.py:15 skill/models/coherence.py:26
@@ -2397,7 +2366,7 @@ msgctxt "skills"
 msgid "Интеллект"
 msgstr "Zəka"
 
-#: education/templates/education/edu_overview.html:349
+#: education/templates/education/edu_overview.html:351
 #: player/templates/player/redesign/lists/skill_top.html:56
 #: player/templates/player/redesign/overview_skills.html:149
 #: skill/models/biochemistry.py:25 skill/models/excavation.py:25
@@ -2409,32 +2378,32 @@ msgctxt "skills"
 msgid "Выносливость"
 msgstr "Dayanıqlılıq"
 
-#: education/templates/education/edu_overview.html:390
+#: education/templates/education/edu_overview.html:392
 #: player/templates/player/redesign/overview_skills.html:225
 msgctxt "skills"
 msgid "дерево навыков"
 msgstr "Bacarıqlar"
 
-#: education/templates/education/edu_overview.html:452
+#: education/templates/education/edu_overview.html:454
 #: player/templates/player/redesign/overview.html:698
 msgctxt "overview"
 msgid "Выборы"
 msgstr "Seçkilər"
 
-#: education/templates/education/edu_overview.html:457
+#: education/templates/education/edu_overview.html:459
 #: player/templates/player/redesign/overview.html:703
 msgctxt "overview"
 msgid "партии"
 msgstr "Dövlətin"
 
-#: education/templates/education/edu_overview.html:457
+#: education/templates/education/edu_overview.html:459
 #: player/templates/player/redesign/overview.html:703
 msgctxt "overview"
 msgid "государства"
 msgstr "Partiyaları"
 
-#: education/templates/education/edu_overview.html:470
-#: education/templates/education/edu_overview.html:513
+#: education/templates/education/edu_overview.html:472
+#: education/templates/education/edu_overview.html:515
 #, fuzzy
 #| msgctxt "new_bill"
 #| msgid "Президентская республика"
@@ -2442,7 +2411,7 @@ msgctxt "education"
 msgid "Партия Единства Республики"
 msgstr "Respublika"
 
-#: education/templates/education/edu_overview.html:479
+#: education/templates/education/edu_overview.html:481
 #, fuzzy
 #| msgctxt "new_bill"
 #| msgid "Президентская республика"
@@ -2450,7 +2419,7 @@ msgctxt "education"
 msgid "Радикальная партия Республики"
 msgstr "Respublika"
 
-#: education/templates/education/edu_overview.html:488
+#: education/templates/education/edu_overview.html:490
 #, fuzzy
 #| msgctxt "new_bill"
 #| msgid "Президентская республика"
@@ -2458,13 +2427,13 @@ msgctxt "education"
 msgid "Зелёная Альтернатива Республики"
 msgstr "Respublika"
 
-#: education/templates/education/edu_overview.html:500
+#: education/templates/education/edu_overview.html:502
 #: player/templates/player/redesign/overview.html:747
 msgctxt "overview"
 msgid "парламент"
 msgstr "Parlament"
 
-#: education/templates/education/edu_overview.html:610
+#: education/templates/education/edu_overview.html:612
 #, fuzzy
 #| msgctxt "new_bill"
 #| msgid "Изменения налогов"
@@ -2472,12 +2441,12 @@ msgctxt "education"
 msgid "Мы против повышения налогов!"
 msgstr "Vergilərin dəyişdirilməsi"
 
-#: education/templates/education/edu_overview.html:611
+#: education/templates/education/edu_overview.html:613
 msgctxt "education"
 msgid "Снижение зарплат — это несправедливо!"
 msgstr ""
 
-#: education/templates/education/edu_overview.html:612
+#: education/templates/education/edu_overview.html:614
 #, fuzzy
 #| msgctxt "change_form_draft"
 #| msgid "выберите форму правления"
@@ -2485,72 +2454,72 @@ msgctxt "education"
 msgid "Прекратите сокращения!"
 msgstr "Dövlət idarəetmənin növünu seçin"
 
-#: education/templates/education/edu_overview.html:613
+#: education/templates/education/edu_overview.html:615
 msgctxt "education"
 msgid "Требуем равные права!"
 msgstr ""
 
-#: education/templates/education/edu_overview.html:614
+#: education/templates/education/edu_overview.html:616
 msgctxt "education"
 msgid "Хватит обманывать народ!"
 msgstr ""
 
-#: education/templates/education/edu_overview.html:615
+#: education/templates/education/edu_overview.html:617
 msgctxt "education"
 msgid "Когда нас начнут слушать?"
 msgstr ""
 
-#: education/templates/education/edu_overview.html:616
+#: education/templates/education/edu_overview.html:618
 msgctxt "education"
 msgid "Слушайте народ, а не только отчеты!"
 msgstr ""
 
-#: education/templates/education/edu_overview.html:617
+#: education/templates/education/edu_overview.html:619
 msgctxt "education"
 msgid "Обещали перемены — где они теперь?"
 msgstr ""
 
-#: education/templates/education/edu_overview.html:618
+#: education/templates/education/edu_overview.html:620
 msgctxt "education"
 msgid "Нам нужны действия, а не только слова!"
 msgstr ""
 
-#: education/templates/education/edu_overview.html:619
+#: education/templates/education/edu_overview.html:621
 msgctxt "education"
 msgid "Мы требуем честности и прозрачности!"
 msgstr ""
 
-#: education/templates/education/edu_overview.html:620
+#: education/templates/education/edu_overview.html:622
 msgctxt "education"
 msgid "Хватит обещаний, пора выполнять!"
 msgstr ""
 
-#: education/templates/education/edu_overview.html:621
+#: education/templates/education/edu_overview.html:623
 msgctxt "education"
 msgid "Кто работает для людей — пусть ответит перед людьми!"
 msgstr ""
 
-#: education/templates/education/edu_overview.html:622
+#: education/templates/education/edu_overview.html:624
 msgctxt "education"
 msgid "Время перемен пришло — от слов к делам!"
 msgstr ""
 
-#: education/templates/education/edu_overview.html:623
+#: education/templates/education/edu_overview.html:625
 msgctxt "education"
 msgid "Мы требуем справедливости и равных прав!"
 msgstr ""
 
-#: education/templates/education/edu_overview.html:624
+#: education/templates/education/edu_overview.html:626
 msgctxt "education"
 msgid "Политика для народа, а не для избранных!"
 msgstr ""
 
-#: education/templates/education/edu_overview.html:625
+#: education/templates/education/edu_overview.html:627
 msgctxt "education"
 msgid "Не прячьтесь за стенами, ответьте на вопросы!"
 msgstr ""
 
-#: education/templates/education/edu_overview.html:632
+#: education/templates/education/edu_overview.html:634
 msgctxt "education"
 msgid "протестующие"
 msgstr ""
@@ -2584,7 +2553,7 @@ msgctxt "education"
 msgid "Ольга"
 msgstr ""
 
-#: education/views/edu_overview.py:71 player/views/overview.py:381
+#: education/views/edu_overview.py:61 player/views/overview.py:381
 msgid "Обзор"
 msgstr "Ana səhifə"
 
@@ -3204,7 +3173,7 @@ msgstr "Avto-istehsal"
 #: region/templates/region/redesign/mining.html:193
 msgctxt "daily_header"
 msgid "в полете"
-msgstr ""
+msgstr "Uçuşda"
 
 #: factory/templates/factory/redesign/factory.html:183
 #: region/templates/region/redesign/mining.html:81
@@ -3267,7 +3236,7 @@ msgstr "Bu məhsulu istehsal edə bilmirsiz"
 #: factory/views/produce_good.py:122 factory/views/start_auto.py:90
 msgctxt "factory"
 msgid "Номер схемы - не число"
-msgstr ""
+msgstr "Sxem nomrəsi rəqəm olmalıdır"
 
 #: factory/views/produce_good.py:132 factory/views/start_auto.py:100
 msgctxt "factory"
@@ -3277,7 +3246,7 @@ msgstr "Seçilmiş sxem mövcud deyil"
 #: factory/views/produce_good.py:143
 msgctxt "factory"
 msgid "Количество - не число"
-msgstr ""
+msgstr "Say rəqəm olmalıdır"
 
 #: factory/views/produce_good.py:153
 msgctxt "factory"
@@ -3326,7 +3295,7 @@ msgstr "Uçuşun bitməsini gözləyin"
 #: factory/views/start_auto.py:112 factory/views/start_auto.py:140
 msgctxt "auto_produce"
 msgid "Ошибка автоматического производства"
-msgstr ""
+msgstr "Avto istehsalda xəta baş verdi"
 
 #: factory/views/start_auto.py:39 region/views/start_auto.py:34
 msgctxt "mining"
@@ -3336,17 +3305,17 @@ msgstr "Premium-hesab aktiv deyil. Uzadın"
 #: factory/views/start_auto.py:49
 msgctxt "auto_produce"
 msgid "Неизвестный тип товара"
-msgstr ""
+msgstr "Tanınmayan növ məhsuldu"
 
 #: factory/views/start_auto.py:78
 msgctxt "auto_produce"
 msgid "Данный товар невозможно произвести"
-msgstr ""
+msgstr "Seçilmiş məhsulu istehsal etmək mümkün deyil"
 
 #: factory/views/start_auto.py:111
 msgctxt "auto_produce"
 msgid "Указанный склад вам не принадлежит"
-msgstr ""
+msgstr "Seçilmiş depo sizin deyil"
 
 #: gov/models/custom_rights/foreign_rights.py:99
 msgctxt "minister_right"
@@ -3381,12 +3350,12 @@ msgstr ""
 #: gov/templates/gov/redesign/elections.html:25
 msgctxt "pres_elections"
 msgid "Выборы президента"
-msgstr ""
+msgstr "Prezident seçkiləri"
 
 #: gov/templates/gov/redesign/elections.html:98
 msgctxt "pres_elections"
 msgid "Кандидат"
-msgstr ""
+msgstr "Namizəd"
 
 #: gov/templates/gov/redesign/elections.html:240
 #: party/templates/party/redesign/primaries.html:244
@@ -3398,14 +3367,12 @@ msgstr "Fəaliyyət"
 #: gov/templates/state/redesign/forms/foreign_right.html:13
 msgctxt "foreign_right"
 msgid "Запросы прописки"
-msgstr ""
+msgstr "Qeydiyyat müraciyəti"
 
 #: gov/templates/state/redesign/forms/foreign_right.html:13
-#, fuzzy
-#| msgid "Создание персонажа"
 msgctxt "foreign_right"
 msgid "Последние прописавшиеся"
-msgstr "Oyunçu yarat"
+msgstr "Son qeydiyyat alanlar"
 
 #: gov/templates/state/redesign/forms/foreign_right.html:20
 #, fuzzy
@@ -3417,7 +3384,7 @@ msgstr "hamısını ləğv et"
 #: gov/templates/state/redesign/forms/foreign_right.html:84
 msgctxt "foreign_right"
 msgid "Запросов прописки нет"
-msgstr ""
+msgstr "Qeydiyyat müraciyəti yoxdur"
 
 #: gov/templates/state/redesign/forms/mining_stats.html:19
 #, fuzzy
@@ -3452,80 +3419,74 @@ msgstr "Qızıl"
 #: gov/views/color_change.py:28
 msgctxt "edit_state_color"
 msgid "Вы не являетесь лидером государства"
-msgstr ""
+msgstr "Siz dövlət lideri deyilsiz"
 
 #: gov/views/color_change.py:29 gov/views/color_change.py:43
 #: gov/views/color_change.py:59
-#, fuzzy
-#| msgid "Государство"
 msgctxt "edit_state_color"
 msgid "Цвет государства"
-msgstr "Dövlət"
+msgstr "Dövlət rəngi"
 
 #: gov/views/color_change.py:42
 msgctxt "edit_state_color"
 msgid "Некорректный код цвета партии"
-msgstr ""
+msgstr "Rəng kodu düzgün deyil"
 
 #: gov/views/custom_rights/foreign/residency_reject_all.py:23
 #: gov/views/custom_rights/foreign/residency_reject_all.py:38
 msgctxt "mfa"
 msgid "МИД"
-msgstr ""
+msgstr "XİN"
 
 #: gov/views/custom_rights/foreign/residency_reject_all.py:25
 msgctxt "mfa"
 msgid "Вы не министр в государстве пребывания"
-msgstr ""
+msgstr "Siz bu dövlətin naziri deyilsiz"
 
 #: gov/views/custom_rights/foreign/residency_reject_all.py:40
 msgctxt "mfa"
 msgid "Вы не МИД"
-msgstr ""
+msgstr "Siz XİN deyilsiz"
 
 #: gov/views/manage_view.py:25
-#, fuzzy
-#| msgid "Государство"
 msgctxt "set_mandate"
 msgid "Управление государством"
-msgstr "Dövlət"
+msgstr "Dövlət idarəetməsi"
 
 #: gov/views/set_ministers.py:35 gov/views/set_ministers.py:51
 #: gov/views/set_ministers.py:61 gov/views/set_ministers.py:82
 #: gov/views/set_ministers.py:92 gov/views/set_ministers.py:182
-#, fuzzy
-#| msgid "Выносливость"
 msgctxt "set_ministers"
 msgid "Назначение министров"
-msgstr "Dayanıqlılıq"
+msgstr "Nazirin təyin edilməsi"
 
 #: gov/views/set_ministers.py:37
 msgctxt "set_ministers"
 msgid "Вы не президент"
-msgstr ""
+msgstr "Siz prezident deyilsiz"
 
 #: gov/views/set_ministers.py:53
 #, python-format
 msgctxt "set_ministers"
 msgid "Игрока с id %(minister)s не существует"
-msgstr ""
+msgstr "%(minister)s id-li oyunçu mövcud deyil"
 
 #: gov/views/set_ministers.py:63
 #, python-format
 msgctxt "set_ministers"
 msgid "Депутата с id игрока %(minister)s в вашем парламенте нет"
-msgstr ""
+msgstr "%(minister)s id-li deputat parlamentdə yoxdur"
 
 #: gov/views/set_ministers.py:84
 #, python-format
 msgctxt "set_ministers"
 msgid "Указанного права министров не существует: %(right)s"
-msgstr ""
+msgstr "Göstərilən nazir hüquqları mövcud deyil: %(right)s"
 
 #: gov/views/set_ministers.py:94
 msgctxt "set_ministers"
 msgid "Сумма очков назначения министров превышает 13"
-msgstr ""
+msgstr "Nazir təyinatının xal toplamı 13 keçir"
 
 #: gov/views/switch_description.py:22
 msgctxt "edit_state_descr"
@@ -3538,16 +3499,14 @@ msgid "Сообщение от государства"
 msgstr ""
 
 #: party/party.py:27
-#, fuzzy
-#| msgid "Закрыть"
 msgctxt "party_view"
 msgid "Открытая"
-msgstr "Bağla"
+msgstr "Açıq"
 
 #: party/party.py:28
 msgctxt "party_view"
 msgid "Частная"
-msgstr ""
+msgstr "Özəl"
 
 #: party/primaries/views/vote_primaries.py:27
 #: party/primaries/views/vote_primaries.py:36
@@ -3632,7 +3591,7 @@ msgstr ""
 #: party/views/management/management.py:40
 msgctxt "party_manage"
 msgid "Управление партией"
-msgstr ""
+msgstr "Partiya idarəsi"
 
 #: party/templates/party/redesign/manage.html:22
 #, fuzzy
@@ -3642,11 +3601,9 @@ msgid "партия"
 msgstr "partiya"
 
 #: party/templates/party/redesign/manage.html:24
-#, fuzzy
-#| msgid "должность в партии"
 msgctxt "party_manage"
 msgid "должности"
-msgstr "partiyadakı mövqe"
+msgstr "Vəzifələr"
 
 #: party/templates/party/redesign/manage.html:26
 #, fuzzy
@@ -3658,104 +3615,100 @@ msgstr "Qızıl"
 #: party/templates/party/redesign/manage.html:95
 msgctxt "party_manage"
 msgid "Тип партии"
-msgstr ""
+msgstr "Partiyanın növü"
 
 #: party/templates/party/redesign/manage.html:97
 msgctxt "party_manage"
 msgid "открытая"
-msgstr ""
+msgstr "Açıq"
 
 #: party/templates/party/redesign/manage.html:97
 msgctxt "party_manage"
 msgid "закрытая"
-msgstr ""
+msgstr "Bağlı"
 
 #: party/templates/party/redesign/manage.html:97
 msgctxt "party_manage"
 msgid "изменить"
-msgstr ""
+msgstr "Dəyişmək"
 
 #: party/templates/party/redesign/manage.html:102
 msgctxt "party_manage"
 msgid "Роспуск партии"
-msgstr ""
+msgstr "Partiyanın ləğvi"
 
 #: party/templates/party/redesign/manage.html:107
 msgctxt "party_manage"
 msgid "подтвердить роспуск"
-msgstr ""
+msgstr "Ləğvi təstiq et"
 
 #: party/templates/party/redesign/manage.html:110
 msgctxt "party_manage"
 msgid "роспуск невозможен"
-msgstr ""
+msgstr "Ləğv etmək mümkün olmadı"
 
 #: party/templates/party/redesign/manage.html:120
 msgctxt "party_manage"
 msgid "Цвет в парламенте"
-msgstr ""
+msgstr "Rəng"
 
 #: party/templates/party/redesign/manage.html:121
 #: party/templates/party/redesign/manage.html:336
 #: party/templates/party/redesign/manage.html:364
 msgctxt "party_manage"
 msgid "сохранить"
-msgstr ""
+msgstr "Yadda saxla"
 
 #: party/templates/party/redesign/manage.html:139
 msgctxt "party_manage"
 msgid "добавить описание партии"
-msgstr ""
+msgstr "Partiya təsviri əlavə et"
 
 #: party/templates/party/redesign/manage.html:154
 msgctxt "party_manage"
 msgid "Добавить должность"
-msgstr ""
+msgstr "Vəsifə əlavə et"
 
 #: party/templates/party/redesign/manage.html:169
 #: party/templates/party/redesign/manage.html:185
 msgctxt "party_manage"
 msgid "секретарь"
-msgstr ""
+msgstr "Katib"
 
 #: party/templates/party/redesign/manage.html:172
 msgctxt "party_manage"
 msgid "добавить"
-msgstr ""
+msgstr "Əlavə et"
 
 #: party/templates/party/redesign/manage.html:184
 msgctxt "party_manage"
 msgid "название должности"
-msgstr ""
+msgstr "Vəzifənin adı"
 
 #: party/templates/party/redesign/manage.html:186
 msgctxt "party_manage"
 msgid "действия"
-msgstr ""
+msgstr "Tədbirlər"
 
 #: party/templates/party/redesign/manage.html:235
-#, fuzzy
-#| msgid "должность в партии"
 msgctxt "party_manage"
 msgid "Выдача золота партии"
-msgstr "partiyadakı mövqe"
+msgstr "Partiya qızılın verilməsi"
 
 #: party/templates/party/redesign/manage.html:238
-#, fuzzy
-#| msgid "должность в партии"
 msgctxt "party_manage"
 msgid "Баланс партии"
-msgstr "partiyadakı mövqe"
+msgstr "Partiya balansı"
 
 #: party/templates/party/redesign/manage.html:246
 msgctxt "party_manage"
 msgid "Выдать"
-msgstr ""
+msgstr "Vermək"
 
 #: party/templates/party/redesign/manage.html:286
 msgctxt "party_manage"
 msgid "выдать"
-msgstr ""
+msgstr "vermək"
 
 #: party/templates/party/redesign/manage.html:304
 msgctxt "party_manage"
@@ -3763,21 +3716,23 @@ msgid ""
 "Золото начисляется на баланс партии за призовые места в еженедельном "
 "рейтинге, а также за особые заслуги."
 msgstr ""
+"Həftəlik reytinqlərdə yer tutaraq, həmçinin xüsusi xidmətlərə görə partiya "
+"balansına qızıl əlavə edilir."
 
 #: party/templates/party/redesign/manage.html:306
 msgctxt "party_manage"
 msgid "Вы можете выдать золото с баланса партии любому однопартийцу."
-msgstr ""
+msgstr "Partiya balansından istənilən partiya üzvünə qızıl verə bilərsiniz."
 
 #: party/templates/party/redesign/manage.html:319
 msgctxt "party_manage"
 msgid "Смена названия партии"
-msgstr ""
+msgstr "Partiya adını dəyiş"
 
 #: party/templates/party/redesign/manage.html:347
 msgctxt "party_manage"
 msgid "Смена описания партии"
-msgstr ""
+msgstr "Partiya təsvirini dəyiş"
 
 #: party/templates/party/redesign/manage.html:419
 #: player/templates/player/redesign/profile.html:524
@@ -4008,17 +3963,17 @@ msgstr ""
 #: party/templates/party/redesign/party_view.html:34
 msgctxt "party_view"
 msgid "информация"
-msgstr ""
+msgstr "İnformasiya"
 
 #: party/templates/party/redesign/party_view.html:49
 msgctxt "party_view"
 msgid "состав"
-msgstr ""
+msgstr "tərkib"
 
 #: party/templates/party/redesign/party_view.html:85
 msgctxt "party_view"
 msgid "Участников"
-msgstr ""
+msgstr "Iştirakçılar"
 
 #: party/templates/party/redesign/party_view.html:90
 #: player/templates/player/redesign/profile.html:341
@@ -4034,27 +3989,27 @@ msgstr "(Reytinqə)"
 #: party/templates/party/redesign/party_view.html:96
 msgctxt "party_view"
 msgid "Тип"
-msgstr ""
+msgstr "Növ"
 
 #: party/templates/party/redesign/party_view.html:104
 msgctxt "party_view"
 msgid "Дата основания"
-msgstr ""
+msgstr "Yaranma tarixi"
 
 #: party/templates/party/redesign/party_view.html:129
 msgctxt "party_view"
 msgid "вступить"
-msgstr ""
+msgstr "Daxil ol"
 
 #: party/templates/party/redesign/party_view.html:146
 msgctxt "party_view"
 msgid "отменить заявку"
-msgstr ""
+msgstr "Müraciyətdən imtina et"
 
 #: party/templates/party/redesign/party_view.html:161
 msgctxt "party_view"
 msgid "подать заявку"
-msgstr ""
+msgstr "Müraciyət et"
 
 #: party/templates/party/redesign/primaries.html:26
 msgctxt "lists"
@@ -4157,7 +4112,7 @@ msgstr "Dünya partiyaları"
 #: party/views/management/color_change.py:36
 msgctxt "party_manage"
 msgid "Некорректный код цвета партии"
-msgstr ""
+msgstr "Yanlış rəng kodu"
 
 #: party/views/management/color_change.py:37 player/views/color_change.py:31
 #: player/views/color_change.py:43 player/views/color_change.py:55
@@ -4170,31 +4125,29 @@ msgstr "Naməlum rəng kodu"
 #: party/views/management/gold/give_party_gold.py:94
 msgctxt "party_manage"
 msgid "Вы не являетесь лидером партии"
-msgstr ""
+msgstr "Siz partiya lideri deyilsiz"
 
 #: party/views/management/color_change.py:53
 #: party/views/management/color_change.py:60
 msgctxt "party_manage"
 msgid "Ошибка изменения цвета партии"
-msgstr ""
+msgstr "Partiya rəngin dəyişməsində xəta baş verdi"
 
 #: party/views/management/color_change.py:59
 #: party/views/management/gold/give_party_gold.py:101
-#, fuzzy
-#| msgid "должность в партии"
 msgctxt "party_manage"
 msgid "Вы не состоите в партии"
-msgstr "partiyadakı mövqe"
+msgstr "Siz partiya üzvü deyilsiz"
 
 #: party/views/management/color_change.py:67 player/views/color_change.py:103
 msgctxt "party_manage"
 msgid "Ошибка изменения цветов игры"
-msgstr ""
+msgstr "Oyun rənginin dəyişməsində xəta baş verdi"
 
 #: party/views/management/gold/give_party_gold.py:34
 msgctxt "party_manage"
 msgid "Сумма золота - не число"
-msgstr ""
+msgstr "Qızıl cəmi - rəqəm deyil"
 
 #: party/views/management/gold/give_party_gold.py:35
 #: party/views/management/gold/give_party_gold.py:43
@@ -4205,52 +4158,50 @@ msgstr ""
 #: party/views/management/gold/give_party_gold.py:95
 #: party/views/management/gold/give_party_gold.py:102
 #: party/views/management/gold/give_party_gold.py:109
-#, fuzzy
-#| msgid "Запасы золота"
 msgctxt "party_manage"
 msgid "Выдача золота"
-msgstr "Qızıl ehtiyatı"
+msgstr "Qızıl verilməsi"
 
 #: party/views/management/gold/give_party_gold.py:42
 msgctxt "party_manage"
 msgid "Сумма золота должна быть не менее 1 ед."
-msgstr ""
+msgstr "Qızılın miqdarı 1 ədəddən çox olmalıdır"
 
 #: party/views/management/gold/give_party_gold.py:50
 msgctxt "party_manage"
 msgid "Сумма золота превышает баланс партии"
-msgstr ""
+msgstr "Qızılın miqdarı partiya balansını üstələyir"
 
 #: party/views/management/gold/give_party_gold.py:61
 msgctxt "party_manage"
 msgid "ID персонажа должен быть целым числом"
-msgstr ""
+msgstr "Oyunçu ID-si tam rəqəm olmalıdır"
 
 #: party/views/management/gold/give_party_gold.py:69
 msgctxt "party_manage"
 msgid "Указанный игрок в партии не найден"
-msgstr ""
+msgstr "Seçilmiş oyuncu partiyada deyil"
 
 #: party/views/management/gold/give_party_gold.py:86
 #, python-format
 msgctxt "party_manage"
 msgid "Выдано %(gold_sum)s золота"
-msgstr ""
+msgstr "%(gold_sum)s qızıl verildi"
 
 #: party/views/management/new_party.py:46
 msgctxt "party_manage"
 msgid "Глава партии"
-msgstr ""
+msgstr "Partiya başçısı"
 
 #: party/views/management/new_party.py:49
 msgctxt "party_manage"
 msgid "Новый игрок партии"
-msgstr ""
+msgstr "Partiyanın yeni üzvü"
 
 #: party/views/management/roles/new_role.py:49
 msgctxt "party_manage"
 msgid "Должность с таким названием уже есть"
-msgstr ""
+msgstr "Belə adlı vəzifə artıq var"
 
 #: party/views/management/roles/new_role.py:50
 #: party/views/management/roles/new_role.py:57
@@ -4259,27 +4210,27 @@ msgstr ""
 #: party/views/management/roles/new_role.py:80
 msgctxt "party_manage"
 msgid "Новая должность"
-msgstr ""
+msgstr "Yeni vəzifə"
 
 #: party/views/management/roles/new_role.py:56
 msgctxt "party_manage"
 msgid "Название не может быть пустым"
-msgstr ""
+msgstr "Ad boş qalmamalıdır"
 
 #: party/views/management/roles/new_role.py:64
 msgctxt "party_manage"
 msgid "Достигнуто ограничение на число должностей"
-msgstr ""
+msgstr "Vəzifə limiti bitdi"
 
 #: party/views/management/roles/new_role.py:71
 msgctxt "party_manage"
 msgid "Недостаточно прав для создания должности"
-msgstr ""
+msgstr "Vəzifəni yaradmaq üçün kifayət qədər hüququnuz yoxdur"
 
 #: party/views/management/roles/remove_role.py:24
 msgctxt "party_manage"
 msgid "Должность не найдена"
-msgstr ""
+msgstr "Vəzifə tapılmadı"
 
 #: party/views/management/roles/remove_role.py:25
 #: party/views/management/roles/remove_role.py:37
@@ -4289,27 +4240,27 @@ msgstr ""
 #: party/views/management/roles/remove_role.py:78
 msgctxt "party_manage"
 msgid "Удаление должности"
-msgstr ""
+msgstr "Vəzifənin silinməsi"
 
 #: party/views/management/roles/remove_role.py:36
 msgctxt "party_manage"
 msgid "Это неудаляемая должность"
-msgstr ""
+msgstr "Silinməyən vəzifə"
 
 #: party/views/management/roles/remove_role.py:45
 msgctxt "party_manage"
 msgid "Перед удалением должности её необходимо убрать у всех игроков!"
-msgstr ""
+msgstr "Vəzifə silməzdən əvvəl bütöv oyunçularda ləğv olunmalıdır "
 
 #: party/views/management/roles/remove_role.py:60
 msgctxt "party_manage"
 msgid "Вы пытаетесь удалить должность другой партии!"
-msgstr ""
+msgstr "Siz digər partiyanın vəzifəsini silməyə çalışırsız"
 
 #: party/views/management/roles/remove_role.py:68
 msgctxt "party_manage"
 msgid "Недостаточно прав для удаления должности"
-msgstr ""
+msgstr "Vəzifəni silmək üçün kifayət qədər hüququnuz yoxdur"
 
 #: party/views/management/roles/set_role.py:35
 msgctxt "has_party"
@@ -4800,7 +4751,7 @@ msgstr ""
 #: player/templates/player/redesign/customization/view_borders.html:10
 msgctxt "view_borders"
 msgid "Рамки аватара"
-msgstr ""
+msgstr "Çərçivələr"
 
 #: player/templates/player/redesign/customization/view_medals.html:11
 msgctxt "medals"
@@ -5875,7 +5826,7 @@ msgstr ""
 
 #: player/views/change_back_allow.py:42 player/views/change_back_allow.py:58
 msgid "Настройка партийного фона"
-msgstr ""
+msgstr "Partiya fonun parametrləri"
 
 #: player/views/change_bio.py:33
 msgctxt "change_bio"
@@ -5912,11 +5863,11 @@ msgstr "Wiki düyməsini gizləd"
 
 #: player/views/claim_reward.py:83
 msgid "Ошибка типа запроса"
-msgstr ""
+msgstr "Sorğu xətası"
 
 #: player/views/claim_reward.py:84
 msgid "Пополнение энергии"
-msgstr ""
+msgstr "Enerjinin doldurulması"
 
 #: player/views/color_change.py:30
 msgctxt "profile"
@@ -5953,7 +5904,7 @@ msgstr "Ləğv et"
 
 #: player/views/customization/border/border_select.py:29
 msgid "Выбор рамки"
-msgstr ""
+msgstr "Çərçivə seçimi"
 
 #: player/views/customization/border/choose_border.py:24
 #: player/views/customization/border/choose_border.py:51
@@ -5974,7 +5925,7 @@ msgstr ""
 
 #: player/views/customization/border/view_borders.py:33
 msgid "Просмотр рамок"
-msgstr ""
+msgstr "Çərçivələrə baxın"
 
 #: player/views/customization/medals/medals.py:55
 msgctxt "medals"
@@ -6200,11 +6151,11 @@ msgstr "Dilin dəyişilməsi"
 
 #: player/views/set_timezone.py:27
 msgid "Такого часового пояса в игре нет"
-msgstr ""
+msgstr "Belə saat qurşağı oyunda yoxdur"
 
 #: player/views/set_timezone.py:28 player/views/set_timezone.py:44
 msgid "Изменение часового пояса"
-msgstr ""
+msgstr "Saat qurşağının dəyişməsi"
 
 #: player/views/skills/boost_skill.py:57 player/views/skills/up_skill.py:59
 #: skill/views/skill_cancel.py:74
@@ -6242,17 +6193,17 @@ msgstr ""
 #: player/views/skills/boost_skill.py:102
 msgctxt "skills"
 msgid "Очередь прокачки Характеристик пуста"
-msgstr ""
+msgstr "Sırada oyrənməyə xüsusiyyət yoxdur"
 
 #: player/views/skills/boost_skill.py:111
 msgctxt "skills"
 msgid "Вы прокачиваете другую Характеристику"
-msgstr ""
+msgstr "Siz artiq digər xüsusiyyəti oyrənirsiz"
 
 #: player/views/skills/boost_skill.py:121
 msgctxt "skills"
 msgid "Нельзя ускорить последние пять минут улучшения"
-msgstr ""
+msgstr "Son 5 dəqiqə qalmış tezləşdirmək olmaz"
 
 #: player/views/skills/skill_queue.py:30 skill/views/skills_list.py:59
 msgid "Навыки"
@@ -6270,12 +6221,12 @@ msgstr ""
 #: storage/views/auctions/set_bet.py:160
 msgctxt "skills"
 msgid "Изучение навыка"
-msgstr ""
+msgstr "Bacarığın oyrənilməsi"
 
 #: player/views/skills/up_skill.py:75
 msgctxt "skills"
 msgid "Ваш уровень характеристик недостаточен"
-msgstr ""
+msgstr "Sizin xüsusiyyət səviyyəniz kifayət deyil"
 
 #: player/views/skills/up_skill.py:95
 msgctxt "skills"
@@ -6290,12 +6241,12 @@ msgstr "Pul kifayət qədər deyil. Tələb olunur:"
 #: player/views/skills/up_skill.py:113
 msgctxt "skills"
 msgid "Навык уже изучается"
-msgstr ""
+msgstr "Bacarığı artıq oyrənirsiz"
 
 #: player/views/skills/up_skill.py:121
 msgctxt "skills"
 msgid "Очередь навыков заполнена"
-msgstr ""
+msgstr "Bacarıq sırası doludur"
 
 #: player/views/wallet.py:21
 msgid "Финансы"
@@ -6465,37 +6416,37 @@ msgstr "Madənçilik"
 #: region/templates/region/redesign/mining.html:14
 msgctxt "daily_header"
 msgid "Потрать энергию и получи"
-msgstr ""
+msgstr "Enerji xərclə və"
 
 #: region/templates/region/redesign/mining.html:15
 msgctxt "daily_header"
 msgid "до"
-msgstr ""
+msgstr "1 günə"
 
 #: region/templates/region/redesign/mining.html:15
 msgctxt "daily_header"
 msgid "за день!"
-msgstr ""
+msgstr "qədər qazan!"
 
 #: region/templates/region/redesign/mining.html:18
 msgctxt "daily_header"
 msgid "энергии потрачено"
-msgstr ""
+msgstr "Enerji istifadə olunub"
 
 #: region/templates/region/redesign/mining.html:36
 msgctxt "daily_header"
 msgid "получаем"
-msgstr ""
+msgstr "Alırıq"
 
 #: region/templates/region/redesign/mining.html:37
 msgctxt "daily_header"
 msgid "получить"
-msgstr ""
+msgstr "Almaq"
 
 #: region/templates/region/redesign/mining.html:56
 msgctxt "daily_header"
 msgid "уже получено"
-msgstr ""
+msgstr "Alınıb"
 
 #: region/templates/region/redesign/mining.html:60
 #: region/templates/region/redesign/region_info.html:20
@@ -6847,7 +6798,7 @@ msgstr "Madənçilik üçün kifayət qədər filiz yoxdur"
 
 #: region/views/lists/world_regions.py:90
 msgid "Регионы игры"
-msgstr ""
+msgstr "Oyunun bölgələri"
 
 #: region/views/map/get_residency.py:30
 msgctxt "get_residency"
@@ -6927,26 +6878,22 @@ msgstr "Xəritə"
 #: region/views/map/plane_info.py:34
 msgctxt "plane_info"
 msgid "Игрок не существует"
-msgstr ""
+msgstr "Oyuncu mövcud deyil"
 
 #: region/views/map/plane_info.py:36 region/views/map/plane_info.py:43
 msgctxt "plane_info"
 msgid "Информация о самолёте"
-msgstr ""
+msgstr "Təyyarə haqqında info"
 
 #: region/views/map/region_info.py:42
-#, fuzzy
-#| msgid "Граждане региона"
 msgctxt "region_info"
 msgid "Такого региона нет"
-msgstr "Qeydiyyatı olanlar"
+msgstr "Belə bölgə mövcud deyil"
 
 #: region/views/map/region_info.py:44 region/views/map/region_info.py:52
-#, fuzzy
-#| msgid "Партии региона"
 msgctxt "region_info"
 msgid "Информация о регионе"
-msgstr "Bölgə partiyaları"
+msgstr "Bölgə haqqında info"
 
 #: region/views/map/save_links.py:31
 msgctxt "mining"
@@ -7291,12 +7238,12 @@ msgstr "Partiyalar yoxdur"
 #: state/views/set_mandate_view.py:35
 msgctxt "set_mandate"
 msgid "Выдача мандата"
-msgstr ""
+msgstr "Mandatın verilməsi"
 
 #: state/templates/state/redesign/set_mandate.html:189
 msgctxt "set_mandate"
 msgid "выдать"
-msgstr ""
+msgstr "ver"
 
 #: state/templates/state/redesign/state_view.html:69
 msgctxt "state_view"
@@ -7431,29 +7378,27 @@ msgstr ""
 #: state/views/set_mandate.py:30
 msgctxt "set_mandate"
 msgid "В партии нет такого кандидата"
-msgstr ""
+msgstr "Partiyada belə bir mandat yoxdur"
 
 #: state/views/set_mandate.py:41
 msgctxt "set_mandate"
 msgid "У кандидата уже есть мандат"
-msgstr ""
+msgstr "Namizədin artıq bir mandatı var"
 
 #: state/views/set_mandate.py:54
 msgctxt "set_mandate"
 msgid "Мандат успешно выдан"
-msgstr ""
+msgstr "Mandat verildi"
 
 #: state/views/set_mandate.py:62
 msgctxt "set_mandate"
 msgid "Нет свободных мандатов"
-msgstr ""
+msgstr "Boş mandat yoxdur"
 
 #: state/views/set_mandate.py:69
-#, fuzzy
-#| msgid "должность в партии"
 msgctxt "set_mandate"
 msgid "Вы - не лидер партии"
-msgstr "partiyadakı mövqe"
+msgstr "Siz partiya lideri deyilsiz"
 
 #: state/views/state_foundation.py:40
 msgctxt "state_foundation"
@@ -9302,7 +9247,7 @@ msgstr ""
 #: storage/views/vault/avia_box/loot_aviaboxes.py:55
 #: storage/views/vault/avia_box/open_aviaboxes.py:183
 msgid "Открытие Аэрокейсов"
-msgstr ""
+msgstr "Ayrokeysin açılması"
 
 #: storage/views/vault/lootbox.py:42
 msgctxt "assets"
@@ -9666,7 +9611,7 @@ msgstr "Belə növ müharibə yoxdur"
 #: war/views/switch_war_visibility.py:39 war/views/switch_war_visibility.py:47
 #: war/views/switch_war_visibility.py:63 war/views/switch_war_visibility.py:91
 msgid "Скрытие войны"
-msgstr ""
+msgstr "Savaşın gizlədilməsi"
 
 #: war/views/switch_war_visibility.py:46
 msgid "Нет такой войны"
@@ -9674,7 +9619,7 @@ msgstr "Belə müharibə yoxdur"
 
 #: war/views/switch_war_visibility.py:62
 msgid "Нет такой записи об участии в бою"
-msgstr ""
+msgstr "Döyuşdə iştirak ilə bağlı qeyd yoxdur"
 
 #: war/views/war_page.py:104
 msgctxt "war_page"
