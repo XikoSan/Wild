@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-01 00:19+0300\n"
-"PO-Revision-Date: 2024-10-30 18:25+0300\n"
+"POT-Creation-Date: 2024-11-01 22:43+0300\n"
+"PO-Revision-Date: 2024-11-01 22:45+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -2152,13 +2152,67 @@ msgctxt "chat"
 msgid "Вы не состоите в этом чате"
 msgstr "You are not a member of this chat"
 
-#: education/templates/education/edu_overview.html:95
+#: education/templates/education/edu_lists/list_1.html:41
+#, python-format
+msgctxt "education"
+msgid ""
+"Здравствуйте! Меня зовут %(assistant)s, я ваша помощница и верный союзник на "
+"вашем новом пути. Поздравляю вас с принятием в Партию Единства Республики — "
+"это первый шаг к вершинам политической карьеры!"
+msgstr ""
+
+#: education/templates/education/edu_lists/list_1.html:45
+msgctxt "education"
+msgid ""
+"Вступив в ряды правящей партии, вы оказались в самом центре эпохи перемен и "
+"возможностей. Сейчас настало время амбициозных личностей, которые стремятся "
+"внести вклад в развитие нашего государства и укрепить его влияние на мировой "
+"арене."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_1.html:49
+msgctxt "education"
+msgid ""
+"В мире ведутся масштабные войны, создаются союзы, меняющие континенты. Люди "
+"основывают крупные бизнесы, корпорации и целые сети. СМИ играют роль "
+"невидимых нитей, связывая влиятельные силы. И очень скоро вы займете своё "
+"место среди них. Я же буду рядом, помогая вам разбираться в тонкостях игры."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_1.html:53
+msgctxt "education"
+msgid "Для начала, давайте взглянем на обстановку в стране и мире!"
+msgstr ""
+
+#: education/templates/education/edu_lists/list_1.html:59
+msgctxt "education"
+msgid ""
+"Как вам известно, предыдущая администрация чуть не привела нашу страну к "
+"краху. Теперь нам предстоит удержать республику от этой участи, даже если "
+"это потребует решительных реформ."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_1.html:65
+msgctxt "education"
+msgid ""
+"Сегодня день выборов, и атмосфера в столице накалена до предела. На улицах "
+"шумят радикалы, требующие перемен, но это не помешает нам достичь своей цели!"
+msgstr ""
+
+#: education/templates/education/edu_lists/list_1.html:69
+msgctxt "education"
+msgid ""
+"Что? Вы еще не проголосовали? Это недоразумение нужно срочно исправить. Пора "
+"отправиться на избирательный участок!"
+msgstr ""
+
+#: education/templates/education/edu_overview.html:97
 #: player/templates/player/redesign/overview.html:222
 msgctxt "overview"
 msgid "мир"
 msgstr "world"
 
-#: education/templates/education/edu_overview.html:151
+#: education/templates/education/edu_overview.html:153
 #, fuzzy
 #| msgctxt "new_bill"
 #| msgid "Президентская республика"
@@ -2166,7 +2220,7 @@ msgctxt "education"
 msgid "Объединённая Республика"
 msgstr "Presidential Republic"
 
-#: education/templates/education/edu_overview.html:188
+#: education/templates/education/edu_overview.html:190
 #, fuzzy
 #| msgctxt "overview"
 #| msgid "независимый регион"
@@ -2174,31 +2228,31 @@ msgctxt "education"
 msgid "Столичный регион"
 msgstr "free region"
 
-#: education/templates/education/edu_overview.html:224
+#: education/templates/education/edu_overview.html:226
 #: player/templates/player/redesign/overview.html:393
 msgctxt "overview"
 msgid "войн нет"
 msgstr "no wars"
 
-#: education/templates/education/edu_overview.html:243
+#: education/templates/education/edu_overview.html:245
 #: player/templates/player/redesign/overview.html:669
 msgctxt "overview"
 msgid "сила"
 msgstr "STR"
 
-#: education/templates/education/edu_overview.html:248
+#: education/templates/education/edu_overview.html:250
 #: player/templates/player/redesign/overview.html:674
 msgctxt "overview"
 msgid "инт"
 msgstr "INT"
 
-#: education/templates/education/edu_overview.html:253
+#: education/templates/education/edu_overview.html:255
 #: player/templates/player/redesign/overview.html:679
 msgctxt "overview"
 msgid "вын"
 msgstr "END"
 
-#: education/templates/education/edu_overview.html:276
+#: education/templates/education/edu_overview.html:278
 #: player/templates/player/redesign/lists/skill_top.html:26
 #: player/templates/player/redesign/overview_skills.html:21
 #: skill/models/biochemistry.py:20 skill/models/coherence.py:21
@@ -2208,9 +2262,9 @@ msgctxt "skills"
 msgid "Сила"
 msgstr "Strength"
 
-#: education/templates/education/edu_overview.html:302
-#: education/templates/education/edu_overview.html:338
-#: education/templates/education/edu_overview.html:375
+#: education/templates/education/edu_overview.html:304
+#: education/templates/education/edu_overview.html:340
+#: education/templates/education/edu_overview.html:377
 #: player/templates/player/redesign/overview_skills.html:60
 #: player/templates/player/redesign/overview_skills.html:126
 #: player/templates/player/redesign/overview_skills.html:188
@@ -2219,7 +2273,7 @@ msgctxt "skills"
 msgid "изучить"
 msgstr "up skill"
 
-#: education/templates/education/edu_overview.html:312
+#: education/templates/education/edu_overview.html:314
 #: player/templates/player/redesign/lists/skill_top.html:41
 #: player/templates/player/redesign/overview_skills.html:87
 #: skill/models/biochemistry.py:15 skill/models/coherence.py:26
@@ -2231,7 +2285,7 @@ msgctxt "skills"
 msgid "Интеллект"
 msgstr "Intelligence"
 
-#: education/templates/education/edu_overview.html:349
+#: education/templates/education/edu_overview.html:351
 #: player/templates/player/redesign/lists/skill_top.html:56
 #: player/templates/player/redesign/overview_skills.html:149
 #: skill/models/biochemistry.py:25 skill/models/excavation.py:25
@@ -2241,32 +2295,32 @@ msgctxt "skills"
 msgid "Выносливость"
 msgstr "Endurance"
 
-#: education/templates/education/edu_overview.html:390
+#: education/templates/education/edu_overview.html:392
 #: player/templates/player/redesign/overview_skills.html:225
 msgctxt "skills"
 msgid "дерево навыков"
 msgstr "skill tree"
 
-#: education/templates/education/edu_overview.html:452
+#: education/templates/education/edu_overview.html:454
 #: player/templates/player/redesign/overview.html:698
 msgctxt "overview"
 msgid "Выборы"
 msgstr "Elections"
 
-#: education/templates/education/edu_overview.html:457
+#: education/templates/education/edu_overview.html:459
 #: player/templates/player/redesign/overview.html:703
 msgctxt "overview"
 msgid "партии"
 msgstr "parties"
 
-#: education/templates/education/edu_overview.html:457
+#: education/templates/education/edu_overview.html:459
 #: player/templates/player/redesign/overview.html:703
 msgctxt "overview"
 msgid "государства"
 msgstr "of state"
 
-#: education/templates/education/edu_overview.html:470
-#: education/templates/education/edu_overview.html:513
+#: education/templates/education/edu_overview.html:472
+#: education/templates/education/edu_overview.html:515
 #, fuzzy
 #| msgctxt "new_bill"
 #| msgid "Президентская республика"
@@ -2274,7 +2328,7 @@ msgctxt "education"
 msgid "Партия Единства Республики"
 msgstr "Presidential Republic"
 
-#: education/templates/education/edu_overview.html:479
+#: education/templates/education/edu_overview.html:481
 #, fuzzy
 #| msgctxt "new_bill"
 #| msgid "Президентская республика"
@@ -2282,7 +2336,7 @@ msgctxt "education"
 msgid "Радикальная партия Республики"
 msgstr "Presidential Republic"
 
-#: education/templates/education/edu_overview.html:488
+#: education/templates/education/edu_overview.html:490
 #, fuzzy
 #| msgctxt "new_bill"
 #| msgid "Президентская республика"
@@ -2290,13 +2344,13 @@ msgctxt "education"
 msgid "Зелёная Альтернатива Республики"
 msgstr "Presidential Republic"
 
-#: education/templates/education/edu_overview.html:500
+#: education/templates/education/edu_overview.html:502
 #: player/templates/player/redesign/overview.html:747
 msgctxt "overview"
 msgid "парламент"
 msgstr "parliament"
 
-#: education/templates/education/edu_overview.html:610
+#: education/templates/education/edu_overview.html:612
 #, fuzzy
 #| msgctxt "new_bill"
 #| msgid "Изменения налогов"
@@ -2304,12 +2358,12 @@ msgctxt "education"
 msgid "Мы против повышения налогов!"
 msgstr "Tax changes"
 
-#: education/templates/education/edu_overview.html:611
+#: education/templates/education/edu_overview.html:613
 msgctxt "education"
 msgid "Снижение зарплат — это несправедливо!"
 msgstr ""
 
-#: education/templates/education/edu_overview.html:612
+#: education/templates/education/edu_overview.html:614
 #, fuzzy
 #| msgctxt "change_form_draft"
 #| msgid "выберите форму правления"
@@ -2317,62 +2371,62 @@ msgctxt "education"
 msgid "Прекратите сокращения!"
 msgstr "select form of government"
 
-#: education/templates/education/edu_overview.html:613
+#: education/templates/education/edu_overview.html:615
 msgctxt "education"
 msgid "Требуем равные права!"
 msgstr ""
 
-#: education/templates/education/edu_overview.html:614
+#: education/templates/education/edu_overview.html:616
 msgctxt "education"
 msgid "Хватит обманывать народ!"
 msgstr ""
 
-#: education/templates/education/edu_overview.html:615
+#: education/templates/education/edu_overview.html:617
 msgctxt "education"
 msgid "Когда нас начнут слушать?"
 msgstr ""
 
-#: education/templates/education/edu_overview.html:616
+#: education/templates/education/edu_overview.html:618
 msgctxt "education"
 msgid "Слушайте народ, а не только отчеты!"
 msgstr ""
 
-#: education/templates/education/edu_overview.html:617
+#: education/templates/education/edu_overview.html:619
 msgctxt "education"
 msgid "Обещали перемены — где они теперь?"
 msgstr ""
 
-#: education/templates/education/edu_overview.html:618
+#: education/templates/education/edu_overview.html:620
 msgctxt "education"
 msgid "Нам нужны действия, а не только слова!"
 msgstr ""
 
-#: education/templates/education/edu_overview.html:619
+#: education/templates/education/edu_overview.html:621
 msgctxt "education"
 msgid "Мы требуем честности и прозрачности!"
 msgstr ""
 
-#: education/templates/education/edu_overview.html:620
+#: education/templates/education/edu_overview.html:622
 msgctxt "education"
 msgid "Хватит обещаний, пора выполнять!"
 msgstr ""
 
-#: education/templates/education/edu_overview.html:621
+#: education/templates/education/edu_overview.html:623
 msgctxt "education"
 msgid "Кто работает для людей — пусть ответит перед людьми!"
 msgstr ""
 
-#: education/templates/education/edu_overview.html:622
+#: education/templates/education/edu_overview.html:624
 msgctxt "education"
 msgid "Время перемен пришло — от слов к делам!"
 msgstr ""
 
-#: education/templates/education/edu_overview.html:623
+#: education/templates/education/edu_overview.html:625
 msgctxt "education"
 msgid "Мы требуем справедливости и равных прав!"
 msgstr ""
 
-#: education/templates/education/edu_overview.html:624
+#: education/templates/education/edu_overview.html:626
 #, fuzzy
 #| msgctxt "assets"
 #| msgid "Товары для передачи не выбраны"
@@ -2380,12 +2434,12 @@ msgctxt "education"
 msgid "Политика для народа, а не для избранных!"
 msgstr "Goods to transfer are not selected"
 
-#: education/templates/education/edu_overview.html:625
+#: education/templates/education/edu_overview.html:627
 msgctxt "education"
 msgid "Не прячьтесь за стенами, ответьте на вопросы!"
 msgstr ""
 
-#: education/templates/education/edu_overview.html:632
+#: education/templates/education/edu_overview.html:634
 msgctxt "education"
 msgid "протестующие"
 msgstr ""
@@ -2416,7 +2470,7 @@ msgctxt "education"
 msgid "Ольга"
 msgstr "Olga"
 
-#: education/views/edu_overview.py:71 player/views/overview.py:381
+#: education/views/edu_overview.py:61 player/views/overview.py:381
 msgid "Обзор"
 msgstr "Overview"
 
@@ -3590,7 +3644,7 @@ msgid "Смена описания партии"
 msgstr "Changing the party's description"
 
 #: party/templates/party/redesign/manage.html:419
-#: player/templates/player/redesign/profile.html:524
+#: player/templates/player/redesign/profile.html:528
 msgctxt "profile"
 msgid "Отмена"
 msgstr "Cancel"
@@ -3840,9 +3894,9 @@ msgid "Участников"
 msgstr "Members"
 
 #: party/templates/party/redesign/party_view.html:90
-#: player/templates/player/redesign/profile.html:341
-#: player/templates/player/redesign/profile.html:364
-#: player/templates/player/redesign/profile.html:378
+#: player/templates/player/redesign/profile.html:345
+#: player/templates/player/redesign/profile.html:368
+#: player/templates/player/redesign/profile.html:382
 #: player/templates/player/redesign/view_profile.html:148
 #: player/templates/player/redesign/view_profile.html:171
 #: player/templates/player/redesign/view_profile.html:185
@@ -5420,123 +5474,124 @@ msgctxt "profile"
 msgid "премиум-аккаунт"
 msgstr "premium account"
 
-#: player/templates/player/redesign/profile.html:332
+#: player/templates/player/redesign/profile.html:333
+#, python-format
 msgctxt "profile"
-msgid "до"
-msgstr "until"
+msgid "до %(premium)s"
+msgstr "until %(premium)s"
 
-#: player/templates/player/redesign/profile.html:332
+#: player/templates/player/redesign/profile.html:335
 msgctxt "profile"
 msgid "не активен"
 msgstr "not active"
 
-#: player/templates/player/redesign/profile.html:337
+#: player/templates/player/redesign/profile.html:341
 #: player/templates/player/redesign/view_profile.html:144
 msgctxt "profile"
 msgid "место в рейтинге"
 msgstr "rating place"
 
-#: player/templates/player/redesign/profile.html:347
+#: player/templates/player/redesign/profile.html:351
 #: player/templates/player/redesign/view_profile.html:154
 msgctxt "profile"
 msgid "известность"
 msgstr "fame"
 
-#: player/templates/player/redesign/profile.html:351
+#: player/templates/player/redesign/profile.html:355
 #: player/templates/player/redesign/view_profile.html:158
 msgctxt "profile"
 msgid "(к статьям)"
 msgstr "(to articles)"
 
-#: player/templates/player/redesign/profile.html:357
+#: player/templates/player/redesign/profile.html:361
 #: player/templates/player/redesign/view_profile.html:164
 msgctxt "profile"
 msgid "суммарный урон"
 msgstr "total damage"
 
-#: player/templates/player/redesign/profile.html:361
+#: player/templates/player/redesign/profile.html:365
 #: player/templates/player/redesign/view_profile.html:168
 msgctxt "profile"
 msgid "(к войнам)"
 msgstr "(to wars)"
 
-#: player/templates/player/redesign/profile.html:370
+#: player/templates/player/redesign/profile.html:374
 #: player/templates/player/redesign/view_profile.html:177
 msgctxt "profile"
 msgid "характеристики"
 msgstr "characteristics"
 
-#: player/templates/player/redesign/profile.html:385
+#: player/templates/player/redesign/profile.html:389
 #: player/templates/player/redesign/view_profile.html:192
 msgctxt "profile"
 msgid "место жительства"
 msgstr "region"
 
-#: player/templates/player/redesign/profile.html:394
+#: player/templates/player/redesign/profile.html:398
 #: player/templates/player/redesign/view_profile.html:201
 msgctxt "profile"
 msgid "прописка"
 msgstr "residency"
 
-#: player/templates/player/redesign/profile.html:397
+#: player/templates/player/redesign/profile.html:401
 #: player/templates/player/redesign/view_profile.html:204
 msgctxt "profile"
 msgid "с"
 msgstr "since"
 
-#: player/templates/player/redesign/profile.html:403
+#: player/templates/player/redesign/profile.html:407
 #: player/templates/player/redesign/view_profile.html:210
 msgid "партия"
 msgstr "party"
 
-#: player/templates/player/redesign/profile.html:409
-#: player/templates/player/redesign/profile.html:427
+#: player/templates/player/redesign/profile.html:413
+#: player/templates/player/redesign/profile.html:431
 #: player/templates/player/redesign/view_profile.html:216
 #: player/templates/player/redesign/view_profile.html:234
 msgid "беспартийный"
 msgstr "unaffiliated"
 
-#: player/templates/player/redesign/profile.html:412
+#: player/templates/player/redesign/profile.html:416
 #: player/templates/player/redesign/view_profile.html:219
 msgctxt "profile"
 msgid "история"
 msgstr "history"
 
-#: player/templates/player/redesign/profile.html:419
+#: player/templates/player/redesign/profile.html:423
 #: player/templates/player/redesign/view_profile.html:226
 msgid "должность в партии"
 msgstr "position in the party"
 
-#: player/templates/player/redesign/profile.html:454
+#: player/templates/player/redesign/profile.html:458
 #: player/templates/player/redesign/view_profile.html:240
 msgid "о себе"
 msgstr "bio"
 
-#: player/templates/player/redesign/profile.html:525
+#: player/templates/player/redesign/profile.html:529
 msgid "Загрузить"
 msgstr "Upload"
 
-#: player/templates/player/redesign/profile.html:578
+#: player/templates/player/redesign/profile.html:582
 msgctxt "profile"
 msgid "показывать партийный фон"
 msgstr "show party background"
 
-#: player/templates/player/redesign/profile.html:594
+#: player/templates/player/redesign/profile.html:598
 msgctxt "profile"
 msgid "Энергетики в авто-добыче"
 msgstr "Energy drinks in auto-mining"
 
-#: player/templates/player/redesign/profile.html:610
+#: player/templates/player/redesign/profile.html:614
 msgctxt "profile"
 msgid "Скрыть кнопку Wiki"
 msgstr "Hide Wiki button"
 
-#: player/templates/player/redesign/profile.html:641
+#: player/templates/player/redesign/profile.html:645
 msgctxt "profile"
 msgid "стандарт"
 msgstr "standard"
 
-#: player/templates/player/redesign/profile.html:655
+#: player/templates/player/redesign/profile.html:659
 msgctxt "profile"
 msgid "сохранить"
 msgstr "save"
@@ -9464,6 +9519,10 @@ msgstr "There is no such record of participation in the battle"
 msgctxt "war_page"
 msgid "Войны"
 msgstr "Wars"
+
+#~ msgctxt "profile"
+#~ msgid "до"
+#~ msgstr "until"
 
 #, fuzzy, python-format
 #~| msgctxt "mining"

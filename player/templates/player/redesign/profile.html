@@ -329,7 +329,11 @@
 				<div class="ct__s">
 					<h2 class="ct__s-title">{% trans 'премиум-аккаунт' context "profile" %}</h2>
 					<p class="ct__s-text">
-						{% if premium %}{% trans 'до' context "profile" %} {{ premium|timezone:player.time_zone|date:"d.m.Y H:i" }}{% else %}{% trans 'не активен' context "profile" %}{% endif %}
+						{% if premium %}
+						{% blocktrans with premium=premium|timezone:player.time_zone|date:"d.m.Y H:i" context "profile" %}до {{ premium }}{% endblocktrans %}
+						{% else %}
+						{% trans 'не активен' context "profile" %}
+						{% endif %}
 					</p>
 				</div>
 
