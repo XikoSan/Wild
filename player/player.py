@@ -196,9 +196,6 @@ class Player(models.Model):
         if GameEvent.objects.filter(running=True, event_start__lt=timezone.now(),
                                     event_end__gt=timezone.now()).exists():
 
-            from player.logs.print_log import log
-            log('+')
-
             event_part = None
 
             if EventPart.objects.filter(
@@ -317,26 +314,30 @@ class Player(models.Model):
 
         return player
 
+    @staticmethod
+    def calculate_earnings(level):
+        base_earn = 100
+        multiplier = 1
+        total_earn = 0
+
+        while level > 0:
+            # Определяем количество уровней в текущем диапазоне (не больше 100)
+            current_levels = min(level, 100)
+            # Добавляем заработок за текущие уровни
+            total_earn += current_levels * base_earn * multiplier
+            # Уменьшаем уровень на обработанные 100
+            level -= current_levels
+            # Увеличиваем множитель на следующую ступень
+            multiplier += 1
+
+        return total_earn
+
     # сбор денег из дейлика
     def daily_claim(self):
 
-        power = self.power
-        if power > 100:
-            pwr_earn = ( (power - 100) * 200 ) + 10000
-        else:
-            pwr_earn = power * 100
-
-        knowledge = self.knowledge
-        if knowledge > 100:
-            int_earn = ( (knowledge - 100) * 200 ) + 10000
-        else:
-            int_earn = knowledge * 100
-
-        endurance = self.endurance
-        if endurance > 100:
-            end_earn = ( (endurance - 100) * 200 ) + 10000
-        else:
-            end_earn = endurance * 100
+        pwr_earn = self.calculate_earnings(self.power)
+        int_earn = self.calculate_earnings(self.knowledge)
+        end_earn = self.calculate_earnings(self.endurance)
 
         daily_limit = 20000 + pwr_earn + int_earn + end_earn
 

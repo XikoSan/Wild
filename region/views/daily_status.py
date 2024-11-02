@@ -24,20 +24,11 @@ def daily_status(request):
 
         player = Player.get_instance(account=request.user)
 
-        # лимит денег, доступный игроку
-        power = player.power
-        if power > 100:
-            power = 100
+        pwr_earn = player.calculate_earnings(player.power)
+        int_earn = player.calculate_earnings(player.knowledge)
+        end_earn = player.calculate_earnings(player.endurance)
 
-        knowledge = player.knowledge
-        if knowledge > 100:
-            knowledge = 100
-
-        endurance = player.endurance
-        if endurance > 100:
-            endurance = 100
-
-        daily_limit = 20000 + (power * 100) + (knowledge * 100) + (endurance * 100)
+        daily_limit = 20000 + pwr_earn + int_earn + end_earn
 
         # ------------------
 
