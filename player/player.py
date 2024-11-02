@@ -316,6 +316,13 @@ class Player(models.Model):
 
     @staticmethod
     def calculate_earnings(level):
+
+        moscow_tz = pytz.timezone('Europe/Moscow')
+        start_date = moscow_tz.localize(datetime.datetime(2024, 11, 4, 0, 0))
+        # Определяем количество недель с начала
+        today = timezone.now()
+        weeks_passed = (today - start_date).days // 7 + 1 # Полные недели с начальной даты
+
         base_earn = 100
         multiplier = 1
         total_earn = 0
@@ -329,6 +336,11 @@ class Player(models.Model):
             level -= current_levels
             # Увеличиваем множитель на следующую ступень
             multiplier += 1
+
+        # Рассчитываем добавку
+        if today >= start_date:
+            bonus_percentage = min(weeks_passed * 125, 1000)  # Ограничиваем до 1000%
+            total_earn *= (1 + bonus_percentage / 100)  # Применяем добавку
 
         return total_earn
 
