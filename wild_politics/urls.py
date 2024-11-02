@@ -40,6 +40,8 @@ urlpatterns = [
 
                   url(r'', include('article.urls.article')),
 
+                  url(r'', include('education.urls.education')),
+
                   url(r'', include('storage.urls.storage')),
                   url(r'', include('storage.urls.assets')),
                   url(r'', include('storage.urls.trading')),

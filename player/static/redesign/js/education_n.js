@@ -110,7 +110,14 @@ class Educator {
       glowDiv.addEventListener('click', () => {
         this.showPage(this.currentPage + 1);
         this.clearGlowDivs();
-        el.click();
+        if (el) {
+            const event = new MouseEvent('click', {
+                view: window,
+                bubbles: true,
+                cancelable: true
+            });
+            el.dispatchEvent(event);
+        }
       })
     }
 
@@ -147,7 +154,7 @@ class Educator {
         this.hideBtns();
         setTimeout(() => {
           this.showPage(this.currentPage + 1);
-        }, 3500);
+        }, 1500);
       }
 
       else { //если ждём клика по элементам

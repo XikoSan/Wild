@@ -90,6 +90,7 @@ INSTALLED_APPS = [
     'skill',
     'metrics',
     'event',
+    'education',
 
     'django_cleanup',
     'fixture_magic',

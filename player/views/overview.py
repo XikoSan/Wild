@@ -378,7 +378,7 @@ def overview(request):
 
     # отправляем в форму
     response = render(request, page, {
-        'page_name': _('Обзор'),
+        'page_name': pgettext('overview', 'Обзор'),
 
         'player': player,
         'wiki_hide': wiki_hide,

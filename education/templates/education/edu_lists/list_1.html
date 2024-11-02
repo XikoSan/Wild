@@ -1,0 +1,73 @@
+{% load l10n %}{% load i18n %}{% load tz %}
+
+<script>
+    check_edu = false;
+
+    document.getElementsByClassName('edu__img')[0].src = "/static/redesign/img/{{ assistant_name.0 }}.webp";
+    localStorage.setItem('edu_assistant', "/static/redesign/img/{{ assistant_name.0 }}.webp");
+
+    function claim_reward(id){
+      var data = "&csrfmiddlewaretoken=" + csrftoken + "&edu_id=" + id;
+      $.ajax({
+          beforeSend: function() {},
+          type: "POST",
+          url: "/claim_reward/",
+          data: data,
+          cache: false,
+          success: function(result){
+              if (result.response == 'ok'){
+                  actualize();
+              }
+          }
+      });
+    }
+
+    function edu_pragma(page) {
+        if (page == 3){
+            claim_reward('edu_01');
+        }
+        if (page == 16){
+            window.location.href = "/edu_2";
+        }
+    }
+
+    const edu = new Educator({
+    onEduStart: () => { console.log('[EDU]: Started') },
+    onEduEnd: () => { console.log('[EDU]: Ended'); edu_pragma(16) },
+    onEduPageChange: (num) => { console.log(`[EDU]: Current page is ${num}`); edu_pragma(num) },
+    onCloseEdu: () => { console.log(`[EDU]: Education closed`); claim_reward('edu_00'); },
+    pages: [
+      {
+        text: "{% blocktrans with assistant=assistant_name.1 context "education" %}Здравствуйте! Меня зовут {{ assistant }}, я ваша помощница и верный союзник на вашем новом пути. Поздравляю вас с принятием в Партию Единства Республики — это первый шаг к вершинам политической карьеры!{% endblocktrans %}",
+      },
+
+      {
+        text: "{% trans 'Вступив в ряды правящей партии, вы оказались в самом центре эпохи перемен и возможностей. Сейчас настало время амбициозных личностей, которые стремятся внести вклад в развитие нашего государства и укрепить его влияние на мировой арене.' context 'education' %}",
+      },
+
+      {
+        text: "{% trans 'В мире ведутся масштабные войны, создаются союзы, меняющие континенты. Люди основывают крупные бизнесы, корпорации и целые сети. СМИ играют роль невидимых нитей, связывая влиятельные силы. И очень скоро вы займете своё место среди них. Я же буду рядом, помогая вам разбираться в тонкостях игры.' context 'education' %}",
+      },
+
+      {
+        text: "{% trans 'Для начала, давайте взглянем на обстановку в стране и мире!' context 'education' %}",
+        awaitedDomElemClass: 'eduBlock1',
+        onlyGlowing: true,
+      },
+
+      {
+        text: "{% trans 'Как вам известно, предыдущая администрация чуть не привела нашу страну к краху. Теперь нам предстоит удержать республику от этой участи, даже если это потребует решительных реформ.' context 'education' %}",
+        awaitedDomElemClass: 'eduBlock2',
+        onlyGlowing: true,
+      },
+
+      {
+        text: "{% trans 'Сегодня день выборов, и атмосфера в столице накалена до предела. На улицах шумят радикалы, требующие перемен, но это не помешает нам достичь своей цели!' context 'education' %}",
+      },
+
+      {
+        text: "{% trans 'Что? Вы еще не проголосовали? Это недоразумение нужно срочно исправить. Пора отправиться на избирательный участок!' context 'education' %}",
+      },
+    ]
+  })
+</script>
