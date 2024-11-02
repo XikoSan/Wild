@@ -265,6 +265,7 @@ LANGUAGES = (
     ('lv',      'Latvian'),
     ('az',      'Azerbaijani'),
     ('pt-br',   'Portuguese (Brazil)'),
+    ('hy',      'Armenian'),
 )
 
 MODELTRANSLATION_DEFAULT_LANGUAGE = 'ru'

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-01 22:43+0300\n"
+"POT-Creation-Date: 2024-11-02 22:15+0300\n"
 "PO-Revision-Date: 2024-11-01 22:24+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -245,8 +245,8 @@ msgstr "Məqalə boş ola bilməz"
 #: party/views/management/roles/set_role.py:66
 #: party/views/management/roles/set_role.py:74
 #: party/views/management/staff/leave_party.py:38
-#: party/views/management/staff/leave_party.py:210 player/player.py:395
-#: player/player.py:406 player/player.py:427 player/views/answer_captcha.py:35
+#: party/views/management/staff/leave_party.py:210 player/player.py:408
+#: player/player.py:419 player/player.py:440 player/views/answer_captcha.py:35
 #: player/views/answer_captcha.py:53
 #: player/views/bonus_code/activate_code.py:46
 #: player/views/bonus_code/activate_code.py:57
@@ -302,7 +302,7 @@ msgstr "Məqalə boş ola bilməz"
 #: player/views/skills/up_skill.py:97 player/views/skills/up_skill.py:107
 #: player/views/skills/up_skill.py:115 player/views/skills/up_skill.py:123
 #: player/views/skills/up_skill.py:192 region/views/cancel_auto.py:34
-#: region/views/daily_status.py:95 region/views/do_mining.py:42
+#: region/views/daily_status.py:86 region/views/do_mining.py:42
 #: region/views/do_mining.py:55 region/views/do_mining.py:65
 #: region/views/do_mining.py:78 region/views/do_mining.py:87
 #: region/views/do_mining.py:96 region/views/map/get_residency.py:32
@@ -513,6 +513,8 @@ msgid "Никнейм"
 msgstr "Ad"
 
 #: article/views/article_rated_list.py:71
+#: education/templates/education/edu_election.html:106
+#: education/templates/education/edu_election.html:298
 #: party/templates/party/redesign/primaries.html:242
 #: party/templatetags/redesign/tops/factory_top.py:77
 #: party/templatetags/redesign/tops/mining_top.py:78
@@ -535,6 +537,8 @@ msgstr "Gerb"
 
 #: article/views/article_rated_list.py:76
 #: article/views/article_rated_list.py:77
+#: education/templates/education/edu_election.html:107
+#: education/templates/education/edu_election.html:299
 #: gov/templates/gov/redesign/elections.html:239
 #: party/templates/party/redesign/primaries.html:99
 #: party/templates/party/redesign/primaries.html:243
@@ -2224,6 +2228,61 @@ msgctxt "chat"
 msgid "Вы не состоите в этом чате"
 msgstr "Bu söhbətin üzvü deyilsiz"
 
+#: education/templates/education/edu_election.html:37
+#: state/templates/state/redesign/elections.html:26
+#, fuzzy
+#| msgctxt "overview"
+#| msgid "Выборы"
+msgctxt "set_mandate"
+msgid "Выборы"
+msgstr "Seçkilər"
+
+#: education/templates/education/edu_election.html:37
+#: education/templates/education/edu_overview.html:153
+#, fuzzy
+#| msgctxt "new_bill"
+#| msgid "Президентская республика"
+msgctxt "education"
+msgid "Объединённая Республика"
+msgstr "Respublika"
+
+#: education/templates/education/edu_election.html:108
+#: education/templates/education/edu_election.html:300
+#: gov/templates/gov/redesign/elections.html:240
+#: party/templates/party/redesign/primaries.html:244
+#: state/templates/state/redesign/elections.html:241
+msgctxt "lists"
+msgid "Действие"
+msgstr "Fəaliyyət"
+
+#: education/templates/education/edu_election.html:119
+#: education/templates/education/edu_overview.html:472
+#: education/templates/education/edu_overview.html:515
+#, fuzzy
+#| msgctxt "new_bill"
+#| msgid "Президентская республика"
+msgctxt "education"
+msgid "Партия Единства Республики"
+msgstr "Respublika"
+
+#: education/templates/education/edu_election.html:162
+#: education/templates/education/edu_overview.html:481
+#, fuzzy
+#| msgctxt "new_bill"
+#| msgid "Президентская республика"
+msgctxt "education"
+msgid "Радикальная партия Республики"
+msgstr "Respublika"
+
+#: education/templates/education/edu_election.html:184
+#: education/templates/education/edu_overview.html:490
+#, fuzzy
+#| msgctxt "new_bill"
+#| msgid "Президентская республика"
+msgctxt "education"
+msgid "Зелёная Альтернатива Республики"
+msgstr "Respublika"
+
 #: education/templates/education/edu_lists/list_1.html:41
 #, python-format
 msgctxt "education"
@@ -2278,6 +2337,97 @@ msgid ""
 "отправиться на избирательный участок!"
 msgstr ""
 
+#: education/templates/education/edu_lists/list_2.html:72
+msgctxt "education"
+msgid "Добро пожаловать на избирательный участок!"
+msgstr ""
+
+#: education/templates/education/edu_lists/list_2.html:76
+msgctxt "education"
+msgid ""
+"Этот момент — не просто формальность, а важный шаг для любого политика. Ваш "
+"голос и ваша активность сейчас заложат основу для будущих побед."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_2.html:80
+msgctxt "education"
+msgid ""
+"Как только вы проголосуете, ваш голос пойдет в копилку нашей партии. Чем "
+"больше людей поддержат нас, тем больше у нас шансов получить места в "
+"парламенте."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_2.html:84
+msgctxt "education"
+msgid ""
+"Каждое кресло в парламенте открывает новые возможности для решения "
+"государственных вопросов: от налоговой реформы до влияния на внешнюю "
+"политику."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_2.html:88
+msgctxt "education"
+msgid ""
+"Помните, каждый голос важен! Чем выше результат партии на этих выборах, тем "
+"выше шанс, что вы займете место среди избранных, сможете продвигать законы, "
+"инициировать реформы и даже влиять на оборонную стратегию страны."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_2.html:92
+msgctxt "education"
+msgid "Выбор за вами, но от него зависит ваше будущее как политика."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_2.html:97
+msgctxt "education"
+msgid ""
+"Дело сделано! А теперь давайте вернёмся в офис партии. Там спокойнее и не "
+"слышно всех этих радикалов."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_2.html:101
+msgctxt "education"
+msgid "Хватит подкручивать результаты в свою пользу!"
+msgstr ""
+
+#: education/templates/education/edu_lists/list_2.html:105
+msgctxt "education"
+msgid "Нам нужны честные выборы, а не очередной фарс!"
+msgstr ""
+
+#: education/templates/education/edu_lists/list_2.html:109
+msgctxt "education"
+msgid "Они всё равно всё уже купили!"
+msgstr ""
+
+#: education/templates/education/edu_lists/list_2.html:113
+msgctxt "education"
+msgid "Не обращайте внимания, это всего лишь часть нашей работы."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_2.html:117
+msgctxt "education"
+msgid ""
+"На пути к вершинам всегда будет недовольные, но мы справимся. Главное — ваш "
+"выбор и ваша решимость."
+msgstr ""
+
+#: education/templates/education/edu_overview.html:65
+#: player/templates/player/redesign/overview.html:190
+#, fuzzy
+#| msgid "обзор"
+msgctxt "overview"
+msgid "обзор"
+msgstr "baş səhifə"
+
+#: education/templates/education/edu_overview.html:86
+#: player/templates/player/redesign/overview.html:211
+#, fuzzy
+#| msgid "чат"
+msgctxt "overview"
+msgid "чат"
+msgstr "söhbət"
+
 #: education/templates/education/edu_overview.html:97
 #: player/templates/player/redesign/overview.html:222
 #, fuzzy
@@ -2285,14 +2435,6 @@ msgstr ""
 msgctxt "overview"
 msgid "мир"
 msgstr "Dünya"
-
-#: education/templates/education/edu_overview.html:153
-#, fuzzy
-#| msgctxt "new_bill"
-#| msgid "Президентская республика"
-msgctxt "education"
-msgid "Объединённая Республика"
-msgstr "Respublika"
 
 #: education/templates/education/edu_overview.html:190
 #, fuzzy
@@ -2402,31 +2544,6 @@ msgctxt "overview"
 msgid "государства"
 msgstr "Partiyaları"
 
-#: education/templates/education/edu_overview.html:472
-#: education/templates/education/edu_overview.html:515
-#, fuzzy
-#| msgctxt "new_bill"
-#| msgid "Президентская республика"
-msgctxt "education"
-msgid "Партия Единства Республики"
-msgstr "Respublika"
-
-#: education/templates/education/edu_overview.html:481
-#, fuzzy
-#| msgctxt "new_bill"
-#| msgid "Президентская республика"
-msgctxt "education"
-msgid "Радикальная партия Республики"
-msgstr "Respublika"
-
-#: education/templates/education/edu_overview.html:490
-#, fuzzy
-#| msgctxt "new_bill"
-#| msgid "Президентская республика"
-msgctxt "education"
-msgid "Зелёная Альтернатива Республики"
-msgstr "Respublika"
-
 #: education/templates/education/edu_overview.html:502
 #: player/templates/player/redesign/overview.html:747
 msgctxt "overview"
@@ -2524,6 +2641,14 @@ msgctxt "education"
 msgid "протестующие"
 msgstr ""
 
+#: education/views/edu_election.py:55
+#, fuzzy
+#| msgctxt "overview"
+#| msgid "Выборы"
+msgctxt "education"
+msgid "Выборы"
+msgstr "Seçkilər"
+
 #: education/views/edu_overview.py:51 education/views/edu_overview.py:54
 #: player/views/overview.py:372 player/views/overview.py:375
 msgctxt "education"
@@ -2554,6 +2679,9 @@ msgid "Ольга"
 msgstr ""
 
 #: education/views/edu_overview.py:61 player/views/overview.py:381
+#, fuzzy
+#| msgid "Обзор"
+msgctxt "overview"
 msgid "Обзор"
 msgstr "Ana səhifə"
 
@@ -3284,7 +3412,7 @@ msgctxt "factory"
 msgid ". В наличии "
 msgstr ". Stokda var"
 
-#: factory/views/start_auto.py:31 player/player.py:393
+#: factory/views/start_auto.py:31 player/player.py:406
 #: region/views/do_mining.py:40 region/views/start_auto.py:26
 msgctxt "mining"
 msgid "Дождитесь конца полёта"
@@ -3356,13 +3484,6 @@ msgstr "Prezident seçkiləri"
 msgctxt "pres_elections"
 msgid "Кандидат"
 msgstr "Namizəd"
-
-#: gov/templates/gov/redesign/elections.html:240
-#: party/templates/party/redesign/primaries.html:244
-#: state/templates/state/redesign/elections.html:241
-msgctxt "lists"
-msgid "Действие"
-msgstr "Fəaliyyət"
 
 #: gov/templates/state/redesign/forms/foreign_right.html:13
 msgctxt "foreign_right"
@@ -4359,13 +4480,13 @@ msgctxt "cash_log"
 msgid "Навыки"
 msgstr ""
 
-#: player/player.py:394 player/player.py:405 player/player.py:426
+#: player/player.py:407 player/player.py:418 player/player.py:439
 #: region/views/retrieve_cash.py:40
 msgctxt "mining"
 msgid "Ошибка получения финансирования"
 msgstr "Maliyyələşmədə xəta baş verdi"
 
-#: player/player.py:404 player/player.py:425
+#: player/player.py:417 player/player.py:438
 msgctxt "mining"
 msgid "Нечего забирать"
 msgstr "Məbləğ 0 - dır"
@@ -5160,20 +5281,6 @@ msgid ""
 "много денег!"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:190
-#, fuzzy
-#| msgid "обзор"
-msgctxt "overview"
-msgid "обзор"
-msgstr "baş səhifə"
-
-#: player/templates/player/redesign/overview.html:211
-#, fuzzy
-#| msgid "чат"
-msgctxt "overview"
-msgid "чат"
-msgstr "söhbət"
-
 #: player/templates/player/redesign/overview.html:278
 #, fuzzy
 #| msgid "независимый регион"
@@ -5807,7 +5914,7 @@ msgstr ""
 #: player/views/change_wiki_hide_allow.py:57 player/views/full_auto_allow.py:57
 #: player/views/open_lootboxes.py:132 player/views/set_language.py:54
 #: player/views/set_timezone.py:43 region/views/cancel_auto.py:35
-#: region/views/daily_status.py:94 region/views/daily_status.py:96
+#: region/views/daily_status.py:85 region/views/daily_status.py:87
 #: region/views/map/save_links.py:62 region/views/retrieve_cash.py:42
 #: region/views/start_auto.py:82
 #: storage/views/vault/avia_box/loot_aviaboxes.py:54
@@ -6409,7 +6516,7 @@ msgid ""
 "союзники. Позвольте помочь выбрать Вам партию, хотя бы на первое время."
 msgstr ""
 
-#: region/templates/region/redesign/mining.html:12 region/views/mining.py:186
+#: region/templates/region/redesign/mining.html:12 region/views/mining.py:171
 msgctxt "mining"
 msgid "Добыча"
 msgstr "Madənçilik"
@@ -7085,14 +7192,6 @@ msgstr ""
 msgctxt "state_view"
 msgid "Выдаётся министром"
 msgstr ""
-
-#: state/templates/state/redesign/elections.html:26
-#, fuzzy
-#| msgctxt "overview"
-#| msgid "Выборы"
-msgctxt "set_mandate"
-msgid "Выборы"
-msgstr "Seçkilər"
 
 #: state/templates/state/redesign/gov/executives.html:26
 #: state/templates/state/redesign/gov/executives.html:39
