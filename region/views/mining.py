@@ -45,7 +45,7 @@ def mining(request):
     int_earn = player.calculate_earnings(player.knowledge)
     end_earn = player.calculate_earnings(player.endurance)
 
-    daily_limit = multiple_sum(20000) + pwr_earn + int_earn + end_earn
+    daily_limit = int(multiple_sum(20000) + pwr_earn + int_earn + end_earn)
 
     # ------------------
 
