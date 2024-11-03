@@ -27,7 +27,7 @@ from region.models.fossils import Fossils
 from region.building.infrastructure import Infrastructure
 from state.models.capital import Capital
 from region.models.plane import Plane
-
+from player.views.multiple_sum import multiple_sum
 
 # главная страница
 @login_required(login_url='/')
@@ -63,7 +63,7 @@ def map(request):
             }
             return JResponse(data)
 
-        cost = round(distance_counting(player.region, destination))
+        cost = multiple_sum(round(distance_counting(player.region, destination)))
 
         if player.cash >= cost:
             if not player.destination:

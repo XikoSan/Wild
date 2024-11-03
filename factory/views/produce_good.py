@@ -21,6 +21,7 @@ from storage.views.storage.locks.get_storage import get_stocks
 from storage.views.storage.locks.get_storage import get_storage
 from skill.models.biochemistry import Biochemistry
 from skill.models.trophy_engineering import TrophyEngineering
+from player.views.multiple_sum import multiple_sum
 
 
 @login_required(login_url='/')
@@ -234,8 +235,8 @@ def produce_good(request):
             goods.append(component.good)
 
         # отдельная проверка на достаточность денег
-        if schema.cash_cost * count > storage.cash:
-            required = schema.cash_cost * count
+        if multiple_sum(schema.cash_cost) * count > storage.cash:
+            required = multiple_sum(schema.cash_cost) * count
             data = {
                 'header': pgettext('factory', 'Ошибка производства'),
                 'grey_btn': pgettext('core', 'Закрыть'),
@@ -296,13 +297,13 @@ def produce_good(request):
                                      )
 
         # списываем деньги отдельно
-        storage.cash -= schema.cash_cost * count
+        storage.cash -= multiple_sum(schema.cash_cost) * count
         # создаём лог производства
         ProductionLog.objects.create(player=player,
                                      prod_storage=storage,
                                      good_move='outcm',
                                      cash=True,
-                                     prod_value=schema.cash_cost * count,
+                                     prod_value=multiple_sum(schema.cash_cost) * count,
                                      )
 
         # для каждого сырья в схеме

@@ -5,6 +5,7 @@ import redis
 from dateutil.relativedelta import relativedelta
 from django.apps import apps
 from django.core.validators import MaxValueValidator, MinValueValidator
+from django.db import connection
 from django.db import models
 from django.db import transaction
 from django.db.models.signals import pre_save
@@ -17,13 +18,12 @@ from django_celery_beat.models import PeriodicTask
 from party.party import Party
 from party.position import PartyPosition
 from player.decorators.player import activity_event_reward
+from player.views.multiple_sum import multiple_sum
 from player.views.set_cah_log import set_cash_log
 from region.building.hospital import Hospital
 from region.models.region import Region
 from state.models.state import State
 from wild_politics.settings import JResponse
-from django.db import connection
-
 
 
 class Player(models.Model):
@@ -321,7 +321,7 @@ class Player(models.Model):
         start_date = moscow_tz.localize(datetime.datetime(2024, 11, 4, 0, 0))
         # Определяем количество недель с начала
         today = timezone.now()
-        weeks_passed = (today - start_date).days // 7 + 1 # Полные недели с начальной даты
+        weeks_passed = (today - start_date).days // 7 + 1  # Полные недели с начальной даты
 
         base_earn = 100
         multiplier = 1
@@ -340,7 +340,7 @@ class Player(models.Model):
         # Рассчитываем добавку
         if today >= start_date:
             bonus_percentage = min(weeks_passed * 125, 1000)  # Ограничиваем до 1000%
-            total_earn *= (1 + bonus_percentage / 100)  # Применяем добавку
+            total_earn *= bonus_percentage / 100  # Применяем добавку
 
         return total_earn
 
@@ -351,7 +351,7 @@ class Player(models.Model):
         int_earn = self.calculate_earnings(self.knowledge)
         end_earn = self.calculate_earnings(self.endurance)
 
-        daily_limit = 20000 + pwr_earn + int_earn + end_earn
+        daily_limit = multiple_sum(20000) + pwr_earn + int_earn + end_earn
 
         # ------------------
 
@@ -359,7 +359,7 @@ class Player(models.Model):
         bonus = 0
 
         if CashEvent.objects.filter(running=True, event_start__lt=timezone.now(),
-                                        event_end__gt=timezone.now()).exists():
+                                    event_end__gt=timezone.now()).exists():
 
             event = CashEvent.objects.get(running=True, event_start__lt=timezone.now(),
                                           event_end__gt=timezone.now())
@@ -375,7 +375,7 @@ class Player(models.Model):
                 bonus = raw_top[0][1] // 10
 
         if bonus > 0:
-            daily_limit = int(daily_limit * ( 1 + (bonus/100)))
+            daily_limit = int(daily_limit * (1 + (bonus / 100)))
 
         # ------------------
 
@@ -384,14 +384,14 @@ class Player(models.Model):
         bonus = 0
 
         if GameEvent.objects.filter(running=True, event_start__lt=timezone.now(),
-                                        event_end__gt=timezone.now()).exists():
+                                    event_end__gt=timezone.now()).exists():
             event = GameEvent.objects.get(running=True, event_start__lt=timezone.now(), event_end__gt=timezone.now())
 
             if EventPart.objects.filter(player=self, event=event).exists():
                 bonus = EventPart.objects.get(player=self, event=event).boost
 
         if bonus > 0:
-            daily_limit = int(daily_limit * ( 1 + (bonus/100)))
+            daily_limit = int(daily_limit * (1 + (bonus / 100)))
 
         # ------------------
 

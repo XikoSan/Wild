@@ -12,6 +12,7 @@ from player.player import Player
 from region.models.region import Region
 from region.views.distance_counting import distance_counting
 from region.views.time_in_flight import time_in_flight
+from player.views.multiple_sum import multiple_sum
 
 
 @check_player
@@ -22,7 +23,7 @@ def region_info(request, id):
 
         if Region.objects.filter(on_map_id=id).exists():
 
-            cost = round(distance_counting(player.region, Region.objects.get(on_map_id=id)))
+            cost = multiple_sum(round(distance_counting(player.region, Region.objects.get(on_map_id=id))))
 
             groups = list(player.account.groups.all().values_list('name', flat=True))
             page = 'region/region_info.html'

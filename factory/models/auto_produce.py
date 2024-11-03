@@ -2,38 +2,39 @@
 import datetime
 import json
 import redis
-from django.apps import apps
 from decimal import Decimal
+from django.apps import apps
+from django.apps import apps
+from django.apps import apps
 from django.db import models
 from django.db import transaction
 from django.db.models.signals import post_delete, post_save
 from django.dispatch import receiver
 from django.utils import timezone
 from django_celery_beat.models import IntervalSchedule, PeriodicTask, CrontabSchedule
-from django.apps import apps
+from math import ceil
+
+from factory.models.blueprint import Blueprint
+from factory.models.component import Component
+from factory.models.production_log import ProductionLog
 from player.logs.gold_log import GoldLog
 from player.logs.log import Log
 from player.player import Player
 from player.player_settings import PlayerSettings
-from django.apps import apps
-from factory.models.production_log import ProductionLog
-from .project import Project
-from storage.models.storage import Storage
-from storage.views.storage.locks.get_storage import get_storage
-from math import ceil
-
+from player.views.multiple_sum import multiple_sum
 from storage.models.good import Good
-from factory.models.blueprint import Blueprint
-from factory.models.component import Component
-from storage.views.storage.locks.get_storage import get_stocks
 from storage.models.stock import Stock
+from storage.models.storage import Storage
+from storage.views.storage.locks.get_storage import get_stocks
+from storage.views.storage.locks.get_storage import get_storage
+from .project import Project
 
 
 # автоматическое производство
 class AutoProduce(Log):
     # склад производства
     storage = models.ForeignKey(Storage, default=None, on_delete=models.CASCADE,
-                                     verbose_name='Склад', related_name="produce_storage")
+                                verbose_name='Склад', related_name="produce_storage")
 
     # товар для производства
     old_good = models.CharField(
@@ -95,7 +96,7 @@ class AutoProduce(Log):
             )
 
         self.task = PeriodicTask.objects.create(
-            enabled = True,
+            enabled=True,
             name=self.player.nickname + ' производит ' + self.good.name,
             task='good_produce',
             # interval=schedule,
@@ -155,7 +156,7 @@ class AutoProduce(Log):
         # получаем число юнитов, которое может быть произведено по этой схеме
         price = schema.energy_cost
         # лимит производства на единицу энергии
-        consignment = ( player.knowledge // 25 ) + 1
+        consignment = (player.knowledge // 25) + 1
 
         count = int(player.energy // price) * consignment
 
@@ -188,7 +189,7 @@ class AutoProduce(Log):
         ret_stocks, ret_st_stocks = get_stocks(self.storage, goods)
 
         # список с сырьём и продукцией
-        goods = [good,]
+        goods = [good, ]
 
         components = Component.objects.filter(blueprint=schema)
 
@@ -202,8 +203,8 @@ class AutoProduce(Log):
         min_count = count
 
         # узнаем на сколько хватит денег на складе
-        if schema.cash_cost * min_count > self.storage.cash:
-            min_count = self.storage.cash // schema.cash_cost
+        if multiple_sum(schema.cash_cost) * min_count > self.storage.cash:
+            min_count = self.storage.cash // multiple_sum(schema.cash_cost)
 
         # для каждого сырья в схеме производства
         for component in components:
@@ -240,7 +241,7 @@ class AutoProduce(Log):
                                      )
 
         # списываем деньги отдельно
-        self.storage.cash -= schema.cash_cost * count
+        self.storage.cash -= multiple_sum(schema.cash_cost) * count
 
         # для каждого сырья в схеме
         for component in components:
@@ -284,7 +285,6 @@ class AutoProduce(Log):
             r.set("all_factory", int(float(r.get("all_factory"))) + count)
         else:
             r.set("all_factory", count)
-
 
     def __str__(self):
         return self.player.nickname + ' производит ' + str(self.good.name)

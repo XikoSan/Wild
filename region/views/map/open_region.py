@@ -16,6 +16,7 @@ from region.views.distance_counting import distance_counting
 from region.views.time_in_flight import time_in_flight
 from war.models.martial import Martial
 from django.utils import timezone
+from player.views.multiple_sum import multiple_sum
 
 
 @login_required(login_url='/')
@@ -46,7 +47,7 @@ def open_region(request, pk):
 
     parties_count = Party.objects.filter(region=region, deleted=False).count()
 
-    cost = round(distance_counting(player.region, region))
+    cost = multiple_sum(round(distance_counting(player.region, region)))
 
     fossils = Fossils.objects.filter(region=region).order_by('-good__name_ru')
 

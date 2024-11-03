@@ -13,7 +13,7 @@ from skill.models.excavation import Excavation
 from skill.models.skill import Skill
 from wild_politics.settings import JResponse
 from django.utils.translation import pgettext
-
+from player.views.multiple_sum import multiple_sum
 
 
 # изучить навык
@@ -99,7 +99,7 @@ def up_skill(request):
                 return JResponse(data)
 
         if skill in ['power', 'knowledge', 'endurance']:
-            if player.cash < ((getattr(player, skill) + skill_cnt + 1) ** 2) * 10:
+            if player.cash < multiple_sum(((getattr(player, skill) + skill_cnt + 1) ** 2) * 10):
                 data = {
                     'response': pgettext('skills', 'Недостаточно денег, необходимо: ') + str(
                         ((getattr(player, skill) + skill_cnt + 1) ** 2) * 10),
@@ -125,9 +125,9 @@ def up_skill(request):
             return JResponse(data)
 
         if skill in ['power', 'knowledge', 'endurance']:
-            player.cash -= ((getattr(player, skill) + skill_cnt + 1) ** 2) * 10
+            player.cash -= multiple_sum(((getattr(player, skill) + skill_cnt + 1) ** 2) * 10)
 
-            CashLog.create(player=player, cash=0 - ((getattr(player, skill) + skill_cnt + 1) ** 2) * 10,
+            CashLog.create(player=player, cash=0 - multiple_sum(((getattr(player, skill) + skill_cnt + 1) ** 2) * 10),
                            activity_txt='skill')
 
         if skill in ['power', 'knowledge', 'endurance']:

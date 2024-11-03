@@ -18,6 +18,7 @@ from factory.models.blueprint import Blueprint
 from factory.models.component import Component
 from skill.models.biochemistry import Biochemistry
 from skill.models.trophy_engineering import TrophyEngineering
+from player.views.multiple_sum import multiple_sum
 
 
 @login_required(login_url='/')
@@ -114,7 +115,7 @@ def factory(request):
         schemas[blueprint.good.pk][blueprint.pk] = {}
 
         schemas[blueprint.good.pk][blueprint.pk]['energy'] = blueprint.energy_cost
-        schemas[blueprint.good.pk][blueprint.pk]['Наличные'] = blueprint.cash_cost
+        schemas[blueprint.good.pk][blueprint.pk]['Наличные'] = multiple_sum(blueprint.cash_cost)
 
         for component in components.filter(blueprint=blueprint):
             schemas[blueprint.good.pk][blueprint.pk][component.good.pk] = component.count

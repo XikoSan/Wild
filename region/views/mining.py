@@ -6,18 +6,20 @@ from django.db import connection
 from django.shortcuts import render
 from django.utils import timezone
 from django.utils.timezone import make_aware
-from django.utils.translation import ugettext as _
 from django.utils.translation import pgettext
+from django.utils.translation import ugettext as _
 
 from player.decorators.player import check_player
 from player.logs.auto_mining import AutoMining
 from player.player import Player
+from player.views.multiple_sum import multiple_sum
+from region.building.defences import Defences
+from region.building.hospital import Hospital
 from region.models.fossils import Fossils
 from skill.models.excavation import Excavation
 from skill.models.fracturing import Fracturing
 from state.models.state import State
-from region.building.defences import Defences
-from region.building.hospital import Hospital
+
 
 # главная страница
 @login_required(login_url='/')
@@ -43,7 +45,7 @@ def mining(request):
     int_earn = player.calculate_earnings(player.knowledge)
     end_earn = player.calculate_earnings(player.endurance)
 
-    daily_limit = 20000 + pwr_earn + int_earn + end_earn
+    daily_limit = multiple_sum(20000) + pwr_earn + int_earn + end_earn
 
     # ------------------
 
@@ -161,7 +163,6 @@ def mining(request):
         if Hospital.objects.filter(region=player.region, level__gt=0).exists():
             hospital_level = Hospital.objects.get(region=player.region).level
 
-
     groups = list(player.account.groups.all().values_list('name', flat=True))
     page = 'region/mining.html'
     if 'redesign' not in groups:
@@ -169,7 +170,7 @@ def mining(request):
 
     # отправляем в форму
     response = render(request, page, {
-        'page_name':pgettext('mining', 'Добыча'),
+        'page_name': pgettext('mining', 'Добыча'),
 
         'player': player,
         'premium': premium,
