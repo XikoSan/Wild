@@ -27,6 +27,7 @@ from storage.models.stock import Stock, Good
 from storage.models.storage import Storage
 # from django.db.models import F
 from wild_politics.settings import JResponse
+from player.views.multiple_sum import multiple_sum
 
 
 # Функция создания нового персонажа
@@ -47,6 +48,8 @@ def player_create(request, form):
     character.region = start_pk
     character.residency = start_pk
     character.premium = timezone.now() + datetime.timedelta(days=7)
+
+    character.cash = multiple_sum(character.cash)
 
     med_top = 1
     if Hospital.objects.filter(region=character.region).exists():
