@@ -16,6 +16,7 @@ from storage.models.stock import Stock
 from storage.models.good import Good
 from django.db.models import F
 from region.views.find_route import find_route
+from player.views.multiple_sum import multiple_sum
 
 
 # переименование партии
@@ -42,7 +43,7 @@ def new_storage(request):
         paid_storage = Storage.actual.get(pk=int(request.POST.get('storage')))
         price_dict[paid_storage.pk] = {}
         trans_mul[f'reg_{player.region.pk}'] = {}
-        trans_mul[f'reg_{player.region.pk}'][paid_storage.pk] = math.ceil(distance_counting(player.region, paid_storage.region) / 100)
+        trans_mul[f'reg_{player.region.pk}'][paid_storage.pk] = multiple_sum(math.ceil(distance_counting(player.region, paid_storage.region) / 100))
 
         # path, total_price = find_route(player.region, paid_storage.region)
         # trans_mul[f'reg_{player.region.pk}'][paid_storage.pk] = total_price

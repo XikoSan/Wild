@@ -14,6 +14,7 @@ from storage.models.good import Good
 from storage.models.stock import Stock
 from region.building.infrastructure import Infrastructure
 from region.views.find_route import find_route
+from player.views.multiple_sum import multiple_sum
 
 
 # главная страница
@@ -66,7 +67,7 @@ def assets(request):
         trans_mul[storage.pk] = {}
         for dest in storages:
             if not dest == storage:
-                trans_mul[storage.pk][dest.pk] = math.ceil(distance_counting(storage.region, dest.region) / 100)
+                trans_mul[storage.pk][dest.pk] = multiple_sum(math.ceil(distance_counting(storage.region, dest.region) / 100))
                 # path, trans_mul[storage.pk][dest.pk] = find_route(storage.region, dest.region)
 
         # узнаем множитель Инфраструктуры для этого региона

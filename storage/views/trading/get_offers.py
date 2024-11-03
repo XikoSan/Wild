@@ -194,12 +194,7 @@ def get_offers(request):
 
                 trans_mul = {storage.pk: {}}
 
-                from player.logs.print_log import log
-                log(f'до умножения {math.ceil(distance_counting(storage.region, offer.owner_storage.region) / 100)}')
-                log(f'после умножения {multiple_sum(math.ceil(distance_counting(storage.region, offer.owner_storage.region) / 100))}')
-
-                # trans_mul[storage.pk][offer.owner_storage.pk] = multiple_sum(math.ceil(distance_counting(storage.region, offer.owner_storage.region) / 100))
-                trans_mul[storage.pk][offer.owner_storage.pk] = math.ceil(distance_counting(storage.region, offer.owner_storage.region) / 100)
+                trans_mul[storage.pk][offer.owner_storage.pk] = multiple_sum(math.ceil(distance_counting(storage.region, offer.owner_storage.region) / 100))
 
                 # if not offer.owner_storage.region in distance_dict[storage.region].keys():
                 #     path, total_price = find_route(storage.region, offer.owner_storage.region)

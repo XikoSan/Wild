@@ -20,6 +20,7 @@ from storage.views.storage.get_transfer_price import get_transfer_price
 from storage.views.storage.transfer_values import transfer_values
 from war.models.wars.war import War
 from region.views.find_route import find_route
+from player.views.multiple_sum import multiple_sum
 
 
 # передача товаров между Складами
@@ -64,7 +65,7 @@ def assets_transfer(request):
             trans_mul[storage.pk] = {}
             for dest in storages:
                 if not dest == storage:
-                    trans_mul[storage.pk][dest.pk] = math.ceil(distance_counting(storage.region, dest.region) / 100)
+                    trans_mul[storage.pk][dest.pk] = multiple_sum(math.ceil(distance_counting(storage.region, dest.region) / 100))
                     # path, trans_mul[storage.pk][dest.pk] = find_route(storage.region, dest.region)
 
         if dest_pk_int in storages_pk:
