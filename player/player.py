@@ -395,11 +395,15 @@ class Player(models.Model):
 
         # ------------------
 
+        paid_sum = self.paid_sum
+
         # бонус по выходным
         is_weekend = False
         if timezone.now().date().weekday() == 5 or timezone.now().date().weekday() == 6:
             is_weekend = True
             daily_limit = daily_limit * 2
+            paid_sum = paid_sum * 2
+
 
         if self.destination:
             data = {
@@ -430,10 +434,10 @@ class Player(models.Model):
         if daily_procent > 100:
             daily_procent = 100
 
-        if self.paid_sum > daily_limit:
+        if paid_sum > daily_limit:
             daily_procent = 0
 
-        if daily_procent == 0 or (self.paid_consumption >= self.energy_limit and daily_limit - self.paid_sum == 0):
+        if daily_procent == 0 or (self.paid_consumption >= self.energy_limit and daily_limit - paid_sum == 0):
             data = {
                 'response': pgettext('mining', 'Нечего забирать'),
                 'header': pgettext('mining', 'Ошибка получения финансирования'),
@@ -443,7 +447,7 @@ class Player(models.Model):
             return JResponse(data), 0
 
         # сумма, которую уже можно забрать
-        count = int((daily_limit - self.paid_sum) / 100 * daily_procent)
+        count = int((daily_limit - paid_sum) / 100 * daily_procent)
 
         if count < 0:
             count = 0
