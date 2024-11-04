@@ -10,13 +10,9 @@ def multiple_sum(sum):
     today = timezone.now()
     weeks_passed = (today - start_date).days // 7 + 1  # Полные недели с начальной даты
 
-    from player.logs.print_log import log
-    log(f'weeks_passed: {weeks_passed}')
-
     # Рассчитываем добавку
     if today >= start_date:
         bonus_percentage = min(weeks_passed * 125, 1000)  # Ограничиваем до 1000%
-        log(f'bonus_percentage: {bonus_percentage}')
         sum *= bonus_percentage / 100  # Применяем добавку
 
     return ceil(sum)
