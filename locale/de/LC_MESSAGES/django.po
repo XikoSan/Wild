@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-03 19:16+0300\n"
+"POT-Creation-Date: 2024-11-06 01:13+0300\n"
 "PO-Revision-Date: 2023-06-22 18:43+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -339,14 +339,15 @@ msgstr "Bezeichnung darf nicht leer sein"
 #: region/views/map/save_links.py:61 region/views/retrieve_cash.py:41
 #: region/views/start_auto.py:28 region/views/start_auto.py:36
 #: region/views/start_auto.py:46 region/views/start_auto.py:55
-#: skill/views/skill_cancel.py:35 skill/views/skill_cancel.py:43
-#: skill/views/skill_cancel.py:51 skill/views/skill_cancel.py:61
-#: skill/views/skill_cancel.py:76 skill/views/skill_cancel.py:100
-#: state/views/set_mandate.py:32 state/views/set_mandate.py:43
-#: state/views/set_mandate.py:56 state/views/set_mandate.py:64
-#: state/views/set_mandate.py:71 state/views/set_mandate.py:80
-#: state/views/state_foundation.py:42 state/views/state_foundation.py:56
-#: state/views/state_foundation.py:70 state/views/state_foundation.py:111
+#: skill/views/skill_cancel.py:28 skill/views/skill_cancel.py:45
+#: skill/views/skill_cancel.py:53 skill/views/skill_cancel.py:61
+#: skill/views/skill_cancel.py:71 skill/views/skill_cancel.py:86
+#: skill/views/skill_cancel.py:110 state/views/set_mandate.py:32
+#: state/views/set_mandate.py:43 state/views/set_mandate.py:56
+#: state/views/set_mandate.py:64 state/views/set_mandate.py:71
+#: state/views/set_mandate.py:80 state/views/state_foundation.py:42
+#: state/views/state_foundation.py:56 state/views/state_foundation.py:70
+#: state/views/state_foundation.py:111
 #: storage/views/assets/assets_destroy.py:137
 #: storage/views/assets/storage_move.py:37
 #: storage/views/assets/storage_move.py:46
@@ -369,10 +370,10 @@ msgstr "Bezeichnung darf nicht leer sein"
 #: storage/views/storage/cash_transfer.py:126
 #: storage/views/storage/cash_transfer.py:134
 #: storage/views/storage/cash_transfer.py:146
-#: storage/views/storage/new_storage.py:38
-#: storage/views/storage/new_storage.py:63
-#: storage/views/storage/new_storage.py:83
-#: storage/views/storage/new_storage.py:106
+#: storage/views/storage/new_storage.py:39
+#: storage/views/storage/new_storage.py:64
+#: storage/views/storage/new_storage.py:84
+#: storage/views/storage/new_storage.py:107
 #: storage/views/storage/storage_status.py:58
 #: storage/views/storage/storage_status.py:72
 #: storage/views/storage/storage_status.py:98
@@ -432,7 +433,7 @@ msgstr "Bezeichnung darf nicht leer sein"
 #: storage/views/trading/create_offer.py:294
 #: storage/views/trading/get_offers.py:46
 #: storage/views/trading/get_offers.py:68
-#: storage/views/trading/get_offers.py:263
+#: storage/views/trading/get_offers.py:258
 #: storage/views/trading/premium_trading.py:27
 #: storage/views/trading/premium_trading.py:39
 #: storage/views/trading/premium_trading.py:89
@@ -446,12 +447,12 @@ msgstr "Bezeichnung darf nicht leer sein"
 #: storage/views/vault/avia_box/open_aviaboxes.py:79
 #: storage/views/vault/avia_box/open_aviaboxes.py:92
 #: storage/views/vault/avia_box/open_aviaboxes.py:101
-#: storage/views/vault/avia_box/open_aviaboxes.py:184 war/consumers.py:148
-#: war/consumers.py:167 war/consumers.py:177 war/consumers.py:189
-#: war/consumers.py:199 war/consumers.py:212 war/consumers.py:222
-#: war/consumers.py:234 war/consumers.py:256 war/consumers.py:276
-#: war/consumers.py:285 war/consumers.py:298 war/consumers.py:309
-#: war/consumers.py:319 war/consumers.py:576 war/views/join_revolution.py:31
+#: storage/views/vault/avia_box/open_aviaboxes.py:184 war/consumers.py:163
+#: war/consumers.py:182 war/consumers.py:192 war/consumers.py:204
+#: war/consumers.py:214 war/consumers.py:227 war/consumers.py:237
+#: war/consumers.py:249 war/consumers.py:271 war/consumers.py:291
+#: war/consumers.py:300 war/consumers.py:313 war/consumers.py:324
+#: war/consumers.py:334 war/consumers.py:598 war/views/join_revolution.py:31
 #: war/views/join_revolution.py:54 war/views/join_revolution.py:67
 #: war/views/join_revolution.py:79 war/views/join_revolution.py:91
 #: war/views/join_revolution.py:103 war/views/join_revolution.py:140
@@ -649,7 +650,7 @@ msgstr "Bezeichnung darf nicht leer sein"
 #: player/views/change_nickname.py:63
 #: player/views/customization/avatar_edit.py:75
 #: player/views/expense_energy.py:81 player/views/skills/boost_skill.py:166
-#: player/views/skills/up_skill.py:190 skill/views/skill_cancel.py:98
+#: player/views/skills/up_skill.py:190 skill/views/skill_cancel.py:108
 #: state/views/set_mandate.py:78 state/views/state_foundation.py:109
 #: storage/views/auctions/set_bet.py:159 war/views/start_war.py:102
 #, fuzzy
@@ -1746,7 +1747,7 @@ msgid "Отмена"
 msgstr "abbrechen"
 
 #: bill/templates/state/redesign/drafts/change_coat.html:94
-#: party/templates/party/redesign/manage.html:420
+#: party/templates/party/redesign/manage.html:424
 #, fuzzy
 #| msgid "Загрузить"
 msgctxt "change_coat_draft"
@@ -2599,15 +2600,15 @@ msgstr "Es gibt kein Lagerhaus in dieser Region"
 #: region/views/do_mining.py:443 region/views/map/get_residency.py:155
 #: region/views/map/plane_info.py:41 region/views/map/region_info.py:51
 #: storage/views/assets/assets_destroy.py:138
-#: storage/views/assets/assets_transfer.py:245
+#: storage/views/assets/assets_transfer.py:246
 #: storage/views/assets/storage_move.py:108
 #: storage/views/storage/cash_transfer.py:147
-#: storage/views/storage/new_storage.py:107
+#: storage/views/storage/new_storage.py:108
 #: storage/views/storage/upgrade_storage.py:96
 #: storage/views/trading/accept_offer.py:477
 #: storage/views/trading/cancel_offer.py:165
 #: storage/views/trading/create_offer.py:295
-#: storage/views/trading/get_offers.py:264 war/views/join_revolution.py:141
+#: storage/views/trading/get_offers.py:259 war/views/join_revolution.py:141
 #, fuzzy
 #| msgid "Ошибка метода"
 msgctxt "core"
@@ -4540,8 +4541,8 @@ msgid "Цвет в парламенте"
 msgstr "Parlament"
 
 #: party/templates/party/redesign/manage.html:121
-#: party/templates/party/redesign/manage.html:336
-#: party/templates/party/redesign/manage.html:364
+#: party/templates/party/redesign/manage.html:340
+#: party/templates/party/redesign/manage.html:368
 msgctxt "party_manage"
 msgid "сохранить"
 msgstr "speichern"
@@ -4594,6 +4595,11 @@ msgid "Баланс партии"
 msgstr "Parteivorsitzender"
 
 #: party/templates/party/redesign/manage.html:246
+msgctxt "party_manage"
+msgid "Ни один из игроков партии не подходит для выдачи золота"
+msgstr ""
+
+#: party/templates/party/redesign/manage.html:250
 #, fuzzy
 #| msgctxt "trading"
 #| msgid "продать"
@@ -4601,7 +4607,7 @@ msgctxt "party_manage"
 msgid "Выдать"
 msgstr "Verkaufen"
 
-#: party/templates/party/redesign/manage.html:286
+#: party/templates/party/redesign/manage.html:290
 #, fuzzy
 #| msgctxt "trading"
 #| msgid "продать"
@@ -4609,29 +4615,31 @@ msgctxt "party_manage"
 msgid "выдать"
 msgstr "Verkaufen"
 
-#: party/templates/party/redesign/manage.html:304
+#: party/templates/party/redesign/manage.html:308
 msgctxt "party_manage"
 msgid ""
 "Золото начисляется на баланс партии за призовые места в еженедельном "
 "рейтинге, а также за особые заслуги."
 msgstr ""
 
-#: party/templates/party/redesign/manage.html:306
+#: party/templates/party/redesign/manage.html:310
 msgctxt "party_manage"
-msgid "Вы можете выдать золото с баланса партии любому однопартийцу."
+msgid ""
+"Вы можете выдать золото с баланса партии любому однопартийцу, состоящему в "
+"партии более 7 дней."
 msgstr ""
 
-#: party/templates/party/redesign/manage.html:319
+#: party/templates/party/redesign/manage.html:323
 msgctxt "party_manage"
 msgid "Смена названия партии"
 msgstr "Änderung des Parteititels"
 
-#: party/templates/party/redesign/manage.html:347
+#: party/templates/party/redesign/manage.html:351
 msgctxt "party_manage"
 msgid "Смена описания партии"
 msgstr "Parteibeschreibung ändern"
 
-#: party/templates/party/redesign/manage.html:419
+#: party/templates/party/redesign/manage.html:423
 #: player/templates/player/redesign/profile.html:528
 #, fuzzy
 #| msgid "Отмена"
@@ -5251,13 +5259,13 @@ msgctxt "party"
 msgid "Вы не состоите в указанной партии"
 msgstr "Sie sind kein Mitglied der angegebenen Partei"
 
-#: player/decorators/captcha.py:102 war/consumers.py:123
+#: player/decorators/captcha.py:102 war/consumers.py:138
 #, python-format
 msgctxt "captcha"
 msgid "Выберите верный ответ: %(first_number)s + %(second_number)s = "
 msgstr ""
 
-#: player/decorators/captcha.py:103 war/consumers.py:122
+#: player/decorators/captcha.py:103 war/consumers.py:137
 msgctxt "captcha"
 msgid "Пройдите Captcha"
 msgstr ""
@@ -5946,17 +5954,17 @@ msgctxt "game_event"
 msgid "С новым годом!"
 msgstr "Ein frohes neues Jahr!"
 
-#: player/templates/player/redesign/header.html:199
+#: player/templates/player/redesign/header.html:200
 msgctxt "education"
 msgid "Назад"
 msgstr ""
 
-#: player/templates/player/redesign/header.html:200
+#: player/templates/player/redesign/header.html:201
 msgctxt "education"
 msgid "Дальше"
 msgstr ""
 
-#: player/templates/player/redesign/header.html:202
+#: player/templates/player/redesign/header.html:203
 #, fuzzy
 #| msgctxt "profile"
 #| msgid "показывать партийный фон"
@@ -7310,7 +7318,7 @@ msgid "Изменение часового пояса"
 msgstr "Änderung der Zeitzone"
 
 #: player/views/skills/boost_skill.py:57 player/views/skills/up_skill.py:59
-#: skill/views/skill_cancel.py:74
+#: skill/views/skill_cancel.py:84
 #, fuzzy
 #| msgid "Нет такого навыка"
 msgctxt "skills"
@@ -7375,7 +7383,7 @@ msgstr ""
 msgid "Навыки"
 msgstr "Fahigkeiten"
 
-#: player/views/skills/up_skill.py:33
+#: player/views/skills/up_skill.py:33 skill/views/skill_cancel.py:26
 msgctxt "skills"
 msgid "Отсутствует обязательный аргумент запроса"
 msgstr ""
@@ -7384,7 +7392,7 @@ msgstr ""
 #: player/views/skills/up_skill.py:76 player/views/skills/up_skill.py:96
 #: player/views/skills/up_skill.py:106 player/views/skills/up_skill.py:114
 #: player/views/skills/up_skill.py:122 player/views/skills/up_skill.py:191
-#: storage/views/auctions/set_bet.py:160
+#: skill/views/skill_cancel.py:27 storage/views/auctions/set_bet.py:160
 #, fuzzy
 #| msgctxt "skill_cancel"
 #| msgid "Отмена изучения навыка"
@@ -7984,7 +7992,7 @@ msgstr "In der Region gibt es nicht genügend Goldreserven, um sie abzubauen."
 #: region/views/do_mining.py:360 region/views/do_mining.py:367
 #: region/views/do_mining.py:382 region/views/do_mining.py:403
 #: region/views/do_mining.py:410 region/views/do_mining.py:442
-#: region/views/start_auto.py:81 storage/views/assets/assets_transfer.py:244
+#: region/views/start_auto.py:81 storage/views/assets/assets_transfer.py:245
 #: storage/views/trading/premium_trading.py:188
 #: storage/views/trading/premium_trading.py:195
 msgctxt "mining"
@@ -8312,16 +8320,16 @@ msgctxt "skills"
 msgid "недоступно"
 msgstr "nicht verfügbar"
 
-#: skill/views/skill_cancel.py:33
+#: skill/views/skill_cancel.py:43
 #, fuzzy
 #| msgid "ID навыка должен быть числом"
 msgctxt "skills"
 msgid "ID навыка должен быть числом"
 msgstr "Gebe die Nummer der Perk-ID an"
 
-#: skill/views/skill_cancel.py:34 skill/views/skill_cancel.py:42
-#: skill/views/skill_cancel.py:50 skill/views/skill_cancel.py:60
-#: skill/views/skill_cancel.py:75 skill/views/skill_cancel.py:99
+#: skill/views/skill_cancel.py:44 skill/views/skill_cancel.py:52
+#: skill/views/skill_cancel.py:60 skill/views/skill_cancel.py:70
+#: skill/views/skill_cancel.py:85 skill/views/skill_cancel.py:109
 #, fuzzy
 #| msgctxt "skill_cancel"
 #| msgid "Отмена изучения навыка"
@@ -8329,14 +8337,14 @@ msgctxt "skills"
 msgid "Отмена навыка"
 msgstr "Du kannst die Fähigkeit abbrechen"
 
-#: skill/views/skill_cancel.py:41
+#: skill/views/skill_cancel.py:51
 #, fuzzy
 #| msgid "У вас нет активного премиум-аккаунта"
 msgctxt "skills"
 msgid "У вас нет активного премиум-аккаунта"
 msgstr "Du hast kein Premium aktiviert"
 
-#: skill/views/skill_cancel.py:49 skill/views/skill_cancel.py:59
+#: skill/views/skill_cancel.py:59 skill/views/skill_cancel.py:69
 #, fuzzy
 #| msgid "Нет навыков в очереди"
 msgctxt "skills"
@@ -8953,7 +8961,7 @@ msgid "Дроны - кубов"
 msgstr "Drohnen - Menge"
 
 #: storage/templates/storage/redesign/assets.html:53
-#: storage/views/assets/assets.py:83
+#: storage/views/assets/assets.py:84
 msgctxt "assets"
 msgid "Активы"
 msgstr "Lagerbestand"
@@ -9966,13 +9974,13 @@ msgid "Отмена"
 msgstr "abbrechen"
 
 #: storage/views/assets/assets_destroy.py:49
-#: storage/views/assets/assets_transfer.py:81
+#: storage/views/assets/assets_transfer.py:82
 msgctxt "assets"
 msgid "Склад"
 msgstr "Lagerhaus"
 
 #: storage/views/assets/assets_destroy.py:50
-#: storage/views/assets/assets_transfer.py:82
+#: storage/views/assets/assets_transfer.py:83
 msgctxt "assets"
 msgid "вам не принадлежит"
 msgstr "Sie gehören nicht dazu"
@@ -9991,25 +9999,25 @@ msgstr "Vernichtung der Waren"
 #: storage/views/assets/assets_destroy.py:86
 #: storage/views/assets/assets_destroy.py:117
 #: storage/views/assets/assets_destroy.py:124
-#: storage/views/assets/assets_transfer.py:41
-#: storage/views/assets/assets_transfer.py:51
-#: storage/views/assets/assets_transfer.py:84
-#: storage/views/assets/assets_transfer.py:104
-#: storage/views/assets/assets_transfer.py:120
-#: storage/views/assets/assets_transfer.py:135
-#: storage/views/assets/assets_transfer.py:145
-#: storage/views/assets/assets_transfer.py:187
-#: storage/views/assets/assets_transfer.py:199
-#: storage/views/assets/assets_transfer.py:210
-#: storage/views/assets/assets_transfer.py:217
-#: storage/views/assets/assets_transfer.py:224
-#: storage/views/assets/assets_transfer.py:231
+#: storage/views/assets/assets_transfer.py:42
+#: storage/views/assets/assets_transfer.py:52
+#: storage/views/assets/assets_transfer.py:85
+#: storage/views/assets/assets_transfer.py:105
+#: storage/views/assets/assets_transfer.py:121
+#: storage/views/assets/assets_transfer.py:136
+#: storage/views/assets/assets_transfer.py:146
+#: storage/views/assets/assets_transfer.py:188
+#: storage/views/assets/assets_transfer.py:200
+#: storage/views/assets/assets_transfer.py:211
+#: storage/views/assets/assets_transfer.py:218
+#: storage/views/assets/assets_transfer.py:225
+#: storage/views/assets/assets_transfer.py:232
 msgctxt "assets"
 msgid "Закрыть"
 msgstr "Schließen"
 
 #: storage/views/assets/assets_destroy.py:74
-#: storage/views/assets/assets_transfer.py:133
+#: storage/views/assets/assets_transfer.py:134
 #, fuzzy
 #| msgctxt "w_trading"
 #| msgid "Выберите один или несколько критериев в настройках поиска"
@@ -10018,7 +10026,7 @@ msgid "Один или несколько запасов не принадлеж
 msgstr "Wähle in den Sucheinstellungen ein oder mehrere Kriterien aus"
 
 #: storage/views/assets/assets_destroy.py:84
-#: storage/views/assets/assets_transfer.py:143
+#: storage/views/assets/assets_transfer.py:144
 #, fuzzy
 #| msgctxt "w_trading"
 #| msgid "Выбранного склада игрока не существует"
@@ -10027,27 +10035,27 @@ msgid "Один или несколько запасов не существую
 msgstr "Das Lager des ausgewählten Spielers existiert nicht"
 
 #: storage/views/assets/assets_destroy.py:111
-#: storage/views/assets/assets_transfer.py:204
+#: storage/views/assets/assets_transfer.py:205
 msgctxt "assets"
 msgid "На складе в регионе "
 msgstr "In der Region vorrätig"
 
 #: storage/views/assets/assets_destroy.py:112
-#: storage/views/assets/assets_transfer.py:205
+#: storage/views/assets/assets_transfer.py:206
 msgctxt "assets"
 msgid " недостаточно товара "
 msgstr "nicht genügend Waren"
 
 #: storage/views/assets/assets_destroy.py:113
-#: storage/views/assets/assets_transfer.py:196
-#: storage/views/assets/assets_transfer.py:206
+#: storage/views/assets/assets_transfer.py:197
+#: storage/views/assets/assets_transfer.py:207
 msgctxt "assets"
 msgid "Требуется: "
 msgstr "Erforderlich:"
 
 #: storage/views/assets/assets_destroy.py:114
-#: storage/views/assets/assets_transfer.py:196
-#: storage/views/assets/assets_transfer.py:207
+#: storage/views/assets/assets_transfer.py:197
+#: storage/views/assets/assets_transfer.py:208
 msgctxt "assets"
 msgid ", в наличии: "
 msgstr "verfügbar:"
@@ -10061,7 +10069,7 @@ msgid "Товары не выбраны"
 msgstr "Nicht für die Übertragung ausgewählte Waren"
 
 #: storage/views/assets/assets_destroy.py:136
-#: storage/views/assets/assets_transfer.py:243
+#: storage/views/assets/assets_transfer.py:244
 msgctxt "assets"
 msgid "Операции с товарами"
 msgstr "Transaktionen mit Waren"
@@ -10076,18 +10084,18 @@ msgstr "Es gibt keine solche Region"
 msgid "Некорректный запрос"
 msgstr "Ungültige Anfrage"
 
-#: storage/views/assets/assets_transfer.py:39
+#: storage/views/assets/assets_transfer.py:40
 msgctxt "assets"
 msgid "Целевой Склад не заполнен"
 msgstr "Ziellager nicht befüllt"
 
-#: storage/views/assets/assets_transfer.py:40
-#: storage/views/assets/assets_transfer.py:50
+#: storage/views/assets/assets_transfer.py:41
+#: storage/views/assets/assets_transfer.py:51
 msgctxt "assets"
 msgid "Перемещение товаров"
 msgstr "Verlagerung der Ware"
 
-#: storage/views/assets/assets_transfer.py:52
+#: storage/views/assets/assets_transfer.py:53
 #, fuzzy
 #| msgctxt "w_trading_new"
 #| msgid "Цена товара должна быть положительным числом"
@@ -10095,27 +10103,27 @@ msgctxt "assets"
 msgid "Целевой Склад должен быть целым числом"
 msgstr "Der Preis eines Artikels muss eine positive Zahl sein"
 
-#: storage/views/assets/assets_transfer.py:83
-#: storage/views/assets/assets_transfer.py:103
-#: storage/views/assets/assets_transfer.py:119
-#: storage/views/assets/assets_transfer.py:134
-#: storage/views/assets/assets_transfer.py:144
-#: storage/views/assets/assets_transfer.py:186
-#: storage/views/assets/assets_transfer.py:198
-#: storage/views/assets/assets_transfer.py:209
-#: storage/views/assets/assets_transfer.py:216
-#: storage/views/assets/assets_transfer.py:223
-#: storage/views/assets/assets_transfer.py:230
+#: storage/views/assets/assets_transfer.py:84
+#: storage/views/assets/assets_transfer.py:104
+#: storage/views/assets/assets_transfer.py:120
+#: storage/views/assets/assets_transfer.py:135
+#: storage/views/assets/assets_transfer.py:145
+#: storage/views/assets/assets_transfer.py:187
+#: storage/views/assets/assets_transfer.py:199
+#: storage/views/assets/assets_transfer.py:210
+#: storage/views/assets/assets_transfer.py:217
+#: storage/views/assets/assets_transfer.py:224
+#: storage/views/assets/assets_transfer.py:231
 msgctxt "assets"
 msgid "Перемещение товара"
 msgstr "Verlagerung der Ware"
 
-#: storage/views/assets/assets_transfer.py:102
+#: storage/views/assets/assets_transfer.py:103
 msgctxt "assets"
 msgid "Запрещено вывозить товары из атакованных регионов"
 msgstr "Verbot der Ausfuhr von Waren aus angegriffenen Regionen"
 
-#: storage/views/assets/assets_transfer.py:118
+#: storage/views/assets/assets_transfer.py:119
 #, fuzzy
 #| msgctxt "w_trading"
 #| msgid "Выбранного склада игрока не существует"
@@ -10123,17 +10131,17 @@ msgctxt "assets"
 msgid "Один или несколько запасов пусты"
 msgstr "Das Lager des ausgewählten Spielers existiert nicht"
 
-#: storage/views/assets/assets_transfer.py:185
+#: storage/views/assets/assets_transfer.py:186
 msgctxt "assets"
 msgid "Недостаточно средств для оплаты доставки"
 msgstr "Unzureichende Mittel für die Bezahlung der Lieferung"
 
-#: storage/views/assets/assets_transfer.py:193
+#: storage/views/assets/assets_transfer.py:194
 msgctxt "assets"
 msgid "типоразмер:"
 msgstr ""
 
-#: storage/views/assets/assets_transfer.py:195
+#: storage/views/assets/assets_transfer.py:196
 #, fuzzy
 #| msgctxt "assets"
 #| msgid " недостаточно места для товара "
@@ -10141,22 +10149,22 @@ msgctxt "assets"
 msgid "недостаточно места для товара."
 msgstr "unzureichender Platz für die Ware"
 
-#: storage/views/assets/assets_transfer.py:205
+#: storage/views/assets/assets_transfer.py:206
 msgctxt "assets"
 msgid " для передачи."
 msgstr " für die Übertragung"
 
-#: storage/views/assets/assets_transfer.py:215
+#: storage/views/assets/assets_transfer.py:216
 msgctxt "assets"
 msgid "Товары для передачи не выбраны"
 msgstr "Nicht für die Übertragung ausgewählte Waren"
 
-#: storage/views/assets/assets_transfer.py:222
+#: storage/views/assets/assets_transfer.py:223
 msgctxt "assets"
 msgid "В целевом Складе заполнены значения"
 msgstr "Der Zielbestand wird mit Werten aufgefüllt"
 
-#: storage/views/assets/assets_transfer.py:229
+#: storage/views/assets/assets_transfer.py:230
 msgctxt "assets"
 msgid "Целевой Склад вам не принадлежит"
 msgstr "Gezieltes Lager, das Sie nicht besitzen"
@@ -10359,7 +10367,7 @@ msgstr "Gebe die Nummer der Perk-ID an"
 #: storage/views/storage/cash_transfer.py:125
 #: storage/views/storage/cash_transfer.py:133
 #: storage/views/storage/cash_transfer.py:145
-#: storage/views/storage/new_storage.py:105
+#: storage/views/storage/new_storage.py:106
 msgctxt "storage"
 msgid "Передача денег"
 msgstr "Geld übertragen"
@@ -10405,19 +10413,19 @@ msgctxt "storage"
 msgid "Недопустим ввод отрицательных чисел"
 msgstr "Minusbeträge können nicht eingegeben werden"
 
-#: storage/views/storage/new_storage.py:36
-#: storage/views/storage/new_storage.py:61
-#: storage/views/storage/new_storage.py:81
+#: storage/views/storage/new_storage.py:37
+#: storage/views/storage/new_storage.py:62
+#: storage/views/storage/new_storage.py:82
 msgctxt "storage"
 msgid "Новый Склад"
 msgstr "Neues Lagerhaus"
 
-#: storage/views/storage/new_storage.py:37
+#: storage/views/storage/new_storage.py:38
 msgctxt "storage"
 msgid "Не найден Склад списания материалов"
 msgstr "ein Depot für die Materialien auswählen"
 
-#: storage/views/storage/new_storage.py:62
+#: storage/views/storage/new_storage.py:63
 #, fuzzy
 #| msgctxt "storage"
 #| msgid "Недостаточно ресурсов"
@@ -10425,7 +10433,7 @@ msgctxt "storage"
 msgid "Недостаточно ресурса: "
 msgstr "nicht genügend Ressourcen"
 
-#: storage/views/storage/new_storage.py:82
+#: storage/views/storage/new_storage.py:83
 msgctxt "storage"
 msgid "Недостаточно денег на транспортировку"
 msgstr "Nicht genug Geld für den Transport"
@@ -10763,7 +10771,7 @@ msgstr "Handelsangebot wurde erfolgreich erstellt"
 
 #: storage/views/trading/get_offers.py:45
 #: storage/views/trading/get_offers.py:67
-#: storage/views/trading/get_offers.py:262
+#: storage/views/trading/get_offers.py:257
 msgctxt "w_trading"
 msgid "Получение офферов"
 msgstr "Angebote erhalten"
@@ -10773,17 +10781,17 @@ msgctxt "w_trading"
 msgid "Некорректный владелец"
 msgstr "Falscher Besitzer"
 
-#: storage/views/trading/get_offers.py:243
+#: storage/views/trading/get_offers.py:238
 msgctxt "w_trading"
 msgid "Отменить"
 msgstr "abbrechen"
 
-#: storage/views/trading/get_offers.py:247
+#: storage/views/trading/get_offers.py:242
 msgctxt "w_trading"
 msgid "Купить"
 msgstr "Kaufen"
 
-#: storage/views/trading/get_offers.py:249
+#: storage/views/trading/get_offers.py:244
 msgctxt "w_trading"
 msgid "Продать"
 msgstr "Verkaufen"
@@ -10830,16 +10838,16 @@ msgctxt "assets"
 msgid "Сундуки"
 msgstr ""
 
-#: war/consumers.py:146
+#: war/consumers.py:161
 msgctxt "war_consumers"
 msgid "Вы заблокированы за нарушения Правил Игры"
 msgstr ""
 
-#: war/consumers.py:147 war/consumers.py:166 war/consumers.py:176
-#: war/consumers.py:188 war/consumers.py:198 war/consumers.py:211
-#: war/consumers.py:221 war/consumers.py:233 war/consumers.py:255
-#: war/consumers.py:275 war/consumers.py:284 war/consumers.py:297
-#: war/consumers.py:308 war/consumers.py:318 war/consumers.py:575
+#: war/consumers.py:162 war/consumers.py:181 war/consumers.py:191
+#: war/consumers.py:203 war/consumers.py:213 war/consumers.py:226
+#: war/consumers.py:236 war/consumers.py:248 war/consumers.py:270
+#: war/consumers.py:290 war/consumers.py:299 war/consumers.py:312
+#: war/consumers.py:323 war/consumers.py:333 war/consumers.py:597
 #, fuzzy
 #| msgctxt "w_trading"
 #| msgid "Ставка (макс)"
@@ -10847,28 +10855,28 @@ msgctxt "war_consumers"
 msgid "Отправка войск"
 msgstr "Rate (max)"
 
-#: war/consumers.py:165
+#: war/consumers.py:180
 #, fuzzy
 #| msgid "Такого региона нет"
 msgctxt "war_consumers"
 msgid "Такого вида войн нет"
 msgstr "Es gibt keine solche Region"
 
-#: war/consumers.py:175
+#: war/consumers.py:190
 #, fuzzy
 #| msgid "Нет такого навыка"
 msgctxt "war_consumers"
 msgid "Нет такой войны"
 msgstr "Du hast diese Fähigkeit nicht erlernt"
 
-#: war/consumers.py:187
+#: war/consumers.py:202
 #, fuzzy
 #| msgid "Нет такого навыка"
 msgctxt "war_consumers"
 msgid "Нет такой стороны боя"
 msgstr "Du hast diese Fähigkeit nicht erlernt"
 
-#: war/consumers.py:197
+#: war/consumers.py:212
 #, fuzzy
 #| msgctxt "assets"
 #| msgid "Нельзя переместить Склад из атакованного региона"
@@ -10876,7 +10884,7 @@ msgctxt "war_consumers"
 msgid "Вы находитесь вне зоны боевых действий"
 msgstr "Sie können das Lagerhaus nicht in einer angegriffenen Region verlegen."
 
-#: war/consumers.py:210
+#: war/consumers.py:225
 #, fuzzy
 #| msgctxt "w_trading"
 #| msgid "ID склада должно быть числом"
@@ -10884,7 +10892,7 @@ msgctxt "war_consumers"
 msgid "ID склада должен быть числом"
 msgstr "Die Lager-ID muss eine Zahl sein"
 
-#: war/consumers.py:220
+#: war/consumers.py:235
 #, fuzzy
 #| msgctxt "storage_transfer"
 #| msgid "Склад будет перемещен в регион вашего местонахождения"
@@ -10892,7 +10900,7 @@ msgctxt "war_consumers"
 msgid "У вас нет склада в регионе местонахождения"
 msgstr "Das Lager wird in die Region verlegt, in der Sie sich befinden"
 
-#: war/consumers.py:232
+#: war/consumers.py:247
 #, fuzzy
 #| msgctxt "trading"
 #| msgid "Выбранный товар"
@@ -10900,13 +10908,13 @@ msgctxt "war_consumers"
 msgid "Не выбраны войска"
 msgstr "Produkt auswählen"
 
-#: war/consumers.py:254
+#: war/consumers.py:269
 #, python-format
 msgctxt "war_consumers"
 msgid "Нет юнита с ID %(unit)s"
 msgstr ""
 
-#: war/consumers.py:274
+#: war/consumers.py:289
 #, fuzzy
 #| msgctxt "factory"
 #| msgid "Количество товара должно быть положительным числом"
@@ -10914,7 +10922,7 @@ msgctxt "war_consumers"
 msgid "Количество войск должно быть положительным числом"
 msgstr "Die Warenmenge muss eine positive Zahl sein"
 
-#: war/consumers.py:283
+#: war/consumers.py:298
 #, fuzzy
 #| msgctxt "mining"
 #| msgid "Количество Энергии должно быть кратно десяти"
@@ -10922,7 +10930,7 @@ msgctxt "war_consumers"
 msgid "Количество войск должно быть не более 100"
 msgstr "Der Betrag der Energie muss ein Vielfaches von zehn sein."
 
-#: war/consumers.py:296
+#: war/consumers.py:311
 #, fuzzy, python-format
 #| msgctxt "storage_upgrade"
 #| msgid "Недостаточно материала: "
@@ -10930,12 +10938,12 @@ msgctxt "war_consumers"
 msgid "Недостаточно на складе: %(name)s"
 msgstr "Es ist nicht genug Material vorhanden:"
 
-#: war/consumers.py:307
+#: war/consumers.py:322
 msgctxt "war_consumers"
 msgid "В бой не отправлен ни один юнит"
 msgstr ""
 
-#: war/consumers.py:317
+#: war/consumers.py:332
 #, fuzzy
 #| msgctxt "mining"
 #| msgid "Недостаточно энергии"
@@ -10943,7 +10951,7 @@ msgctxt "war_consumers"
 msgid "Недостаточно энергии"
 msgstr "Nicht genug Energie"
 
-#: war/consumers.py:574
+#: war/consumers.py:596
 #, fuzzy
 #| msgctxt "w_trading"
 #| msgid "Не удалось получить блокировку по офферу"

@@ -241,7 +241,11 @@
 						</h2>
 					</div>
 				</div>
-
+				{% if not members %}
+				<div class="ct__s" style="margin-bottom: 30rem;">
+					<p class="ct__s-text" style="text-align: center;">{% trans 'Ни один из игроков партии не подходит для выдачи золота' context "party_manage" %}</p>
+				</div>
+				{% else %}
 				<div class="ct__s" style="display: flex;justify-content: space-evenly; margin-bottom: 12rem;">
 					<h2 class="ct__s-title" style="background: initial;">{% trans 'Выдать' context "party_manage" %}:</h2>
 					<input class="store__num-right" type="number" max="{% localize off %}{{ player.party.gold }}{% endlocalize %}" min="0" value="0" name="gold_sum" id="gold_sum" style="margin: initial;">
@@ -299,11 +303,11 @@
 						</g>
 					</svg>
 				</button>
-
+				{% endif %}
 				<div class="ct__s">
 					<p class="ct__s-text">{% trans 'Золото начисляется на баланс партии за призовые места в еженедельном рейтинге, а также за особые заслуги.' context "party_manage" %}</p>
 					<br>
-					<p class="ct__s-text">{% trans 'Вы можете выдать золото с баланса партии любому однопартийцу.' context "party_manage" %}</p>
+					<p class="ct__s-text">{% trans 'Вы можете выдать золото с баланса партии любому однопартийцу, состоящему в партии более 7 дней.' context "party_manage" %}</p>
 				</div>
 
 			</div>
