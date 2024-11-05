@@ -1,0 +1,505 @@
+{% extends 'player/redesign/header.html' %}
+{% load static %}
+{% load bootstrap3 %}
+{% load l10n %}{% load i18n %}{% load tz %}
+{% load redesign.overview_blocks.skills %}
+{% load redesign.gui_help.player_help %}
+{% load redesign.template_svg.nopic %}
+{% load template_svg.war_icon %}
+
+{% block for_scripts_and_css %}
+<!--универсальная модалка таблиц-->
+<div class="tableMobileModal">
+	<button class="tableMobileModal__close ct__square-mid-btn" id="closeDop">
+		<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<path d="M1 1L31 31M31 1L1.53571 30.4643" stroke="white"/>
+		</svg>
+	</button>
+	<div class="tableMobileModal__content"></div>
+</div>
+
+<script>
+
+var current_bill = 'ChangeCoat';
+
+class GoverTabs {
+	constructor() {
+		this.tabs = [...document.querySelectorAll('.gover__tab')];
+		this.blocks = [...document.querySelectorAll('.gover__block')];
+		this.setEventListeners();
+	}
+
+	setActiveTab(target, name) {
+		this.tabs.forEach((tab) => tab.classList.remove('active'));
+		target.classList.add('active');
+		this.blocks.forEach((block) => block.classList.remove('active'));
+		const currentBlock = this.blocks.find((block) => block.classList.contains(`gover__${name}`));
+		currentBlock.classList.add('active');
+	}
+
+	setEventListeners() {
+		this.tabs.forEach((tab) => tab.addEventListener('click', (evt) => {
+			const name = tab.getAttribute('data-block');
+			this.setActiveTab(evt.currentTarget, name);
+		}));
+	}
+}
+
+const goverTabs = new GoverTabs();
+
+class GoverInfoModal {
+	constructor() {
+		this.modal = document.querySelector('.tableMobileModal');
+		this.closeModalBtn = this.modal.querySelector('.tableMobileModal__close');
+		this.modalContent = this.modal.querySelector('.tableMobileModal__content');
+	}
+
+	getInnerContent(HTMLElement) {
+		const parentNode = HTMLElement.parentNode.parentNode;
+		const dopInfo = parentNode.querySelector('.gover__tableDopInfo');
+		const cancel = parentNode.querySelector('.gover__tableCancel');
+		const vote = parentNode.querySelector('.gover__tableVote');
+		const title = parentNode.querySelector('td:first-of-type > p') || parentNode.querySelector('.gover__withImage');
+
+		this.modalContent.innerHTML = '';
+
+		this.modalContent.insertAdjacentHTML('beforeend',
+		`
+			<h2>${title.innerHTML}</h2>
+			${!dopInfo?.classList.contains('empty') ? `<div class="tableMobileModal__decorLine"></div>` : ''}
+			${!dopInfo?.classList.contains('empty') ? `<div class="tableMobileModal__dopInfo">${dopInfo.innerHTML}</div>`: ''}
+			${cancel && !cancel?.classList.contains('empty') ? `<div class="tableMobileModal__decorLine"></div>` : ''}
+			${cancel && !cancel?.classList.contains('empty') ? `<div class="tableMobileModal__cancel">${cancel.innerHTML}</div>` : ''}
+			${vote ? `<div class="tableMobileModal__decorLine"></div>` : ''}
+			${vote ? `<div class="tableMobileModal__vote">${vote.innerHTML}</div>` : ''}
+		`
+		);
+
+		this.modal.classList.add('active');
+	}
+
+	setEventListeners() {
+		this.closeModalBtn.addEventListener('click', () => this.modal.classList.remove('active'));
+	}
+}
+
+const goverInfoModal = new GoverInfoModal();
+goverInfoModal.setEventListeners();
+
+class BlockSelect {
+	constructor(data) {
+		this.select = document.querySelector(data.selectClass);
+		this.blocks = document.querySelectorAll(data.blocksClass);
+	}
+
+	setEventListeners() {
+		if (this.select !== null){
+			this.select.addEventListener('change', (evt) => {
+				const currentValue = evt.target.value;
+
+				if( this.select.id == 'bill_select' ){
+					current_bill = evt.target.value;
+				}
+				else if( this.select.id == 'change_taxes_destination' ){
+					if($('#change_taxes_tax_mod').val() != null){
+						if($('#change_taxes_destination').val() == 'destination_state'){
+							$('#change_taxes_tax_lvl').html(window[$('#change_taxes_tax_mod').val()]);
+							$('#change_taxes_value').attr('value', window[$('#change_taxes_tax_mod').val()]);
+						}
+						else if($('#change_taxes_destination').val() == 'destination_region' && document.getElementById('change_taxes_default_region').dataset.value != null){
+							$('#change_taxes_tax_lvl').html(regions_taxes[document.getElementById('change_taxes_default_region').dataset.value][$('#change_taxes_tax_mod').val()]);
+							$('#change_taxes_value').attr('value', regions_taxes[document.getElementById('change_taxes_default_region').dataset.value][$('#change_taxes_tax_mod').val()]);
+						}
+					}
+
+				}
+
+				this.blocks.forEach((block) => block.classList.remove('active'));
+				this.blocks.forEach((block) => {
+					const classes = block.getAttribute('class');
+					const targetClass = classes.split(' ')[1];
+					if (currentValue === targetClass) block.classList.add('active');
+				})
+			})
+		}
+	}
+}
+
+const newRule = new BlockSelect({
+	selectClass: '.gover__newSelect',
+	blocksClass: '.gover__newInner',
+});
+newRule.setEventListeners();
+
+const newNalog = new BlockSelect({
+	selectClass: '.new-nalog-select',
+	blocksClass: '.new-nalog-block',
+});
+newNalog.setEventListeners();
+
+// Проверка, что все элементы, которые ищутся по ID, существуют
+const mainElement = document.getElementById('gover__modal');
+const openModalBtnElement = document.getElementById('gover__modal-open');
+const closeModalBtnElement = document.getElementById('gover__modal-close');
+
+if (mainElement && openModalBtnElement && closeModalBtnElement) {
+  // Goverment modal
+  const goverModal = new ModalOpenClose({
+    main: mainElement,
+    openModalBtn: openModalBtnElement,
+    closeModalBtn: closeModalBtnElement,
+  });
+}
+
+</script>
+
+
+<script src="/static/redesign/js/education_n.js"></script>
+
+<style>
+  /* По умолчанию изображение скрыто, виден только SVG */
+  .lazy_loaded img {
+    display: none;
+  }
+
+  /* Когда изображение загружено, SVG скрывается */
+  .loaded img {
+    display: block;
+  }
+
+  .loaded svg {
+    display: none;
+  }
+</style>
+
+{% load get_edu_list %}
+{% get_edu_list '3' %}
+
+{% endblock %}
+
+{% load dict_key %}
+{% load get_sum %}
+{% load get_attr %}
+{% load get_key_list %}
+{% load get_class_name %}
+
+<!--	</svg>-->
+{% block gui_help %}
+  {% player_help player %}
+{% endblock %}
+
+{% block content %}
+  {% with LANGUAGE_CODE='ru' %}
+<main>
+
+<section class="gover custom-scroll">
+    <!-- Заголовок -->
+    <h1 class="gover__title ct__page-title">{% trans 'Парламент' context "government" %}</h1>
+
+
+    <!--ТОП БЛОК-->
+    <div class="party__top">
+
+      <img class="party__top-ava" src="/static/img/state_150.webp">
+
+      <div class="party__top-content">
+
+		<h2 class="party__top-name">{% trans 'Объединённая Республика' context "education" %}</h2>
+
+        <div class="party__region" style="display: flex; align-items: center;">
+          <img src="/static/img/region.webp">
+          <p>{% trans 'Столичный регион' context "education" %}</p>
+        </div>
+
+      </div>
+    </div><!--конец ТОП блок-->
+
+
+		<!--КНОПКИ-ТАБЫ-->
+		<div class="gover__tabsContainer">
+			<div class="gover__tabs">
+
+				<button class="gover__tab ct__mid-btn active" data-block="gover">
+					<svg width="144" height="30" viewBox="0 0 144 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<mask id="mask0_259_304" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+							<path class="gover__svgBg" d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"></path>
+						</mask>
+						<g mask="url(#mask0_259_304)">
+							<path class="gover__svgBg" d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" fill="var(--c10two)"></path>
+							<path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"></path>
+							<path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"></path>
+							<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"></path>
+						</g>
+					</svg>
+					<span>{% trans 'парламент' context "government" %}</span>
+				</button>
+
+				<button class="gover__tab ct__mid-btn eduBlock1" data-block="all">
+					<svg width="144" height="30" viewBox="0 0 144 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<mask id="mask0_259_300" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+							<path class="gover__svgBg" d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"></path>
+						</mask>
+						<g mask="url(#mask0_259_300)">
+							<path class="gover__svgBg" d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" fill="var(--c10two)"></path>
+							<path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"></path>
+							<path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"></path>
+							<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"></path>
+						</g>
+					</svg>
+					<span>{% trans 'законопроекты' context "government" %}</span>
+				</button>
+
+				<button class="gover__tab ct__mid-btn" data-block="new">
+					<svg width="144" height="30" viewBox="0 0 144 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<mask id="mask0_259_301" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+							<path class="gover__svgBg" d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"></path>
+						</mask>
+						<g mask="url(#mask0_259_301)">
+							<path class="gover__svgBg" d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" fill="var(--c10two)"></path>
+							<path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"></path>
+							<path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"></path>
+							<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"></path>
+						</g>
+					</svg>
+					<span>{% trans 'новый' context "government" %}</span>
+				</button>
+
+				<button class="gover__tab ct__mid-btn" data-block="hist">
+					<svg width="144" height="30" viewBox="0 0 144 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<mask id="mask0_259_302" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+							<path class="gover__svgBg" d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"></path>
+						</mask>
+						<g mask="url(#mask0_259_302)">
+							<path class="gover__svgBg" d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" fill="var(--c10two)"></path>
+							<path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"></path>
+							<path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"></path>
+							<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"></path>
+						</g>
+					</svg>
+					<span>{% trans 'история' context "government" %}</span>
+				</button>
+
+				<button class="gover__tab ct__mid-btn" data-block="coffers">
+					<svg width="144" height="30" viewBox="0 0 144 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<mask id="mask0_259_304" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+							<path class="gover__svgBg" d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"></path>
+						</mask>
+						<g mask="url(#mask0_259_304)">
+							<path class="gover__svgBg" d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" fill="var(--c10two)"></path>
+							<path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"></path>
+							<path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"></path>
+							<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"></path>
+						</g>
+					</svg>
+					<span>{% trans 'казна' context "government" %}</span>
+				</button>
+			</div>
+		</div><!--конец КНОПКИ-ТАБЫ-->
+
+
+		<div class="gover__decorLine"></div>
+
+
+		<div class="gover__content custom-scroll" style="min-height: 90rem;">
+
+			<!--закнопроекты-->
+            <div class="gover__block gover__all">
+                <table class="gover__table">
+                    <tbody>
+                        <tr>
+
+                            <td>
+                                <p>{% trans 'Изменение налогов' context "new_bill" %}</p>
+                                <p style="font-weight: 700;" id="date">04.11.2024 01:21</p>
+                            </td>
+                            <script>
+                                const date = new Date(Date.now() - 60 * 60 * 1000);
+                                document.getElementById('date').textContent =
+                                    `${date.toLocaleDateString('ru-RU', { day: '2-digit', month: '2-digit', year: 'numeric' })} ` +
+                                    `${date.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' })}`;
+                            </script>
+
+                            <td>
+                                <div class="gover__withImage">
+                                    <img src="/static/img/state.webp">
+                                    <span>{% trans 'всё государство' context "bill" %}</span>
+                                </div>
+                            </td>
+
+                            <!--видно на только пк-->
+                            <td class="gover__tableDopInfo">
+                                <span>
+
+                                        {% trans 'Подоходный налог' context "education" %}: 5.00% ➔ 25.00%
+
+                                </span>
+                            </td>
+
+                            <!--видно на только пк-->
+                            <td class="gover__tableCancel">
+                                <a>{% trans 'Партия Единства Республики' context "education" %}</a>
+                            </td>
+
+                            <!--видно на только пк-->
+                            <td class="gover__tableVote">
+                                <div id="vote_buttons">
+                                    <button id="vote_btn" class="eduBlock2">👍</button>
+                                    <button>👎</button>
+                                </div>
+                                <svg id="edu_voted2" style="display: none; width: 20rem;height: 20rem;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="var(--c10two)" version="1.1" width="800px" height="800px" viewBox="0 0 45.701 45.7" xml:space="preserve">
+                                    <g>
+                                        <g>
+                                            <path d="M20.687,38.332c-2.072,2.072-5.434,2.072-7.505,0L1.554,26.704c-2.072-2.071-2.072-5.433,0-7.504    c2.071-2.072,5.433-2.072,7.505,0l6.928,6.927c0.523,0.522,1.372,0.522,1.896,0L36.642,7.368c2.071-2.072,5.433-2.072,7.505,0    c0.995,0.995,1.554,2.345,1.554,3.752c0,1.407-0.559,2.757-1.554,3.752L20.687,38.332z"></path>
+                                        </g>
+                                    </g>
+                                </svg>
+                            </td>
+
+                            <td class="gover__tableInfoTd">
+                                <button class="gover__tableInfo" onclick="goverInfoModal.getInnerContent(this)" id="dopInfo">ℹ</button>
+                                <svg id="edu_voted" style="display: none; width: 20rem;height: 20rem;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="var(--c10two)" version="1.1" width="800px" height="800px" viewBox="0 0 45.701 45.7" xml:space="preserve">
+                                    <g>
+                                        <g>
+                                            <path d="M20.687,38.332c-2.072,2.072-5.434,2.072-7.505,0L1.554,26.704c-2.072-2.071-2.072-5.433,0-7.504    c2.071-2.072,5.433-2.072,7.505,0l6.928,6.927c0.523,0.522,1.372,0.522,1.896,0L36.642,7.368c2.071-2.072,5.433-2.072,7.505,0    c0.995,0.995,1.554,2.345,1.554,3.752c0,1.407-0.559,2.757-1.554,3.752L20.687,38.332z"></path>
+                                        </g>
+                                    </g>
+                                </svg>
+                                <script>
+                                    window.onload = function() {
+                                        const eduVote = document.getElementById('vote_btn');
+                                        const vote_buttons = document.getElementById('vote_buttons');
+
+                                        const eduVoted = document.getElementById('edu_voted');
+                                        const eduVoted2 = document.getElementById('edu_voted2');
+
+                                        if (eduVote && eduVoted) { // Проверка, что элементы существуют
+                                            eduVote.addEventListener('click', function() {
+                                                console.log('btn1');
+                                                eduVote.style.display = 'none'; // Скрывает элемент с id='dopInfo'
+                                                vote_buttons.style.display = 'none'; // Скрывает элемент с id='dopInfo'
+
+                                                eduVoted.style.display = 'block'; // Показывает элемент с id='edu_voted'
+                                                eduVoted2.style.display = 'block'; // Показывает элемент с id='edu_voted'
+                                            });
+
+                                            vote_buttons.addEventListener('click', function() {
+                                                console.log('btn2');
+                                                eduVote.style.display = 'none'; // Скрывает элемент с id='dopInfo'
+                                                vote_buttons.style.display = 'none'; // Скрывает элемент с id='dopInfo'
+
+                                                eduVoted.style.display = 'block'; // Показывает элемент с id='edu_voted'
+                                                eduVoted2.style.display = 'block'; // Показывает элемент с id='edu_voted'
+                                            });
+                                        }
+                                    };
+                                </script>
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!--новый-->
+            <div id="new_bill" class="gover__block gover__new">
+            </div>
+            <!--история-->
+            <div class="gover__block gover__hist">
+            </div>
+            <!--парламент-->
+            <script>
+                var party_seats = {};
+            </script>
+            <div class="gover__block gover__gover active">
+
+                <svg class="gover__goverSvg" width="270" height="119" viewBox="0 0 270 119" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="1.15898" y="110.503" width="24.1371" height="24.1371" rx="3.5" transform="rotate(-73.3182 1.15898 110.503)" stroke="white" fill="#001BB7"></rect>
+                    <rect x="13.9819" y="74.5362" width="24.1371" height="24.1371" rx="3.5" transform="rotate(-57.1123 13.9819 74.5362)" stroke="white" fill="#001BB7"></rect>
+                    <rect x="36.8392" y="42.9889" width="24.1371" height="24.1371" rx="3.5" transform="rotate(-40.835 36.8392 42.9889)" stroke="white" fill="#001BB7"></rect>
+                    <rect x="67.186" y="19.3711" width="24.1371" height="24.1371" rx="3.5" transform="rotate(-24.6354 67.186 19.3711)" stroke="white" fill="#001BB7"></rect>
+                    <rect x="102.659" y="5.21178" width="24.1371" height="24.1371" rx="3.5" transform="rotate(-8.38529 102.659 5.21178)" stroke="white" fill="#001BB7"></rect>
+                    <rect x="141.638" y="1.5233" width="24.1371" height="24.1371" rx="3.5" transform="rotate(7.94561 141.638 1.5233)" stroke="white" fill="#001BB7"></rect>
+                    <rect x="180.146" y="9.02722" width="24.1371" height="24.1371" rx="3.5" transform="rotate(24.4221 180.146 9.02722)" stroke="white" fill="#001BB7"></rect>
+                    <rect x="214.323" y="26.7685" width="24.1371" height="24.1371" rx="3.5" transform="rotate(40.6266 214.323 26.7685)" stroke="white" fill="#001BB7"></rect>
+                    <rect x="242.068" y="53.1348" width="24.1371" height="24.1371" rx="3.5" transform="rotate(56.6922 242.068 53.1348)" stroke="white" fill="#7F0000"></rect>
+                    <rect x="261.695" y="86.821" width="24.1371" height="24.1371" rx="3.5" transform="rotate(73.1015 261.695 86.821)" stroke="white" fill="#007F0E"></rect>
+
+                    <a id="gover__modal-open">
+                        <path d="M135.18 68.7865C138.146 68.7865 140.573 66.3596 140.573 63.3933C140.573 60.427 138.146 58 135.18 58C132.213 58 129.786 60.427 129.786 63.3933C129.786 66.3596 132.213 68.7865 135.18 68.7865Z" fill="var(--c10one)"></path>
+                        <path d="M148.663 89.0108L151.36 80.9209H119L121.697 89.0108H125.742L128.438 115.303H124.393V118H145.966V115.303H141.921L144.618 89.0108H148.663Z" fill="var(--c10one)"></path>
+                        <path d="M146.101 75.1226C145.966 74.5832 145.697 74.0439 145.292 73.6394C143.674 72.2911 141.787 71.3473 139.629 70.6731C138.146 70.4035 136.663 70.1338 135.18 70.1338C133.697 70.1338 132.214 70.4035 130.73 70.8079C128.573 71.3473 126.685 72.4259 125.067 73.7742C124.663 74.1787 124.393 74.7181 124.259 75.2574L123.584 78.2237H146.843L146.101 75.1226Z" fill="var(--c10one)"></path>
+                    </a>
+
+                </svg>
+                <div class="gover__decorLine"></div>
+
+                <div class="gover__goverParty" style="background-color: #001BB7; margin-bottom: 8rem">
+                    <div class="gover__goverParty-imgBlock">
+
+                        <img src="/static/img/party_1.webp">
+
+                        <span>{% trans 'Партия Единства' context "education" %}</span>
+                    </div>
+                    <span>80% {% trans 'мест' context "parliament" %}</span>
+                </div>
+                <div class="gover__goverParty" style="background-color: #7F0000; margin-bottom: 8rem">
+                    <div class="gover__goverParty-imgBlock">
+
+                        <img src="/static/img/party_2.webp">
+
+                        <span>{% trans 'Радикальная партия' context "education" %}</span>
+                    </div>
+                    <span>10% {% trans 'мест' context "parliament" %}</span>
+                </div>
+                <div class="gover__goverParty" style="background-color: #007F0E;">
+                    <div class="gover__goverParty-imgBlock">
+
+                        <img src="/static/img/party_3.webp">
+
+                        <span>{% trans 'Зелёная Альтернатива' context "education" %}</span>
+                    </div>
+                    <span>10% {% trans 'мест' context "parliament" %}</span>
+                </div>
+
+
+            </div>
+
+            <script>
+                // Goverment SVG
+                class GoverSvg {
+                    constructor() {
+                        this.svg = document.querySelector('.gover__goverSvg');
+                        this.slots = this.svg.querySelectorAll('rect');
+                    }
+
+                    colorSlots(startIndex, numOfSlots, color) {
+                        this.slots.forEach((slot, index) => {
+                            if (startIndex <= index && index < startIndex + numOfSlots) {
+                                slot.setAttribute('fill', color);
+                            }
+                        })
+                    }
+                }
+
+                const goverSvg = new GoverSvg();
+                var start_pos = 0;
+
+
+                if ('30' in party_seats) {
+                    goverSvg.colorSlots(start_pos, party_seats['30'], '#003efa');
+
+                    start_pos = start_pos + party_seats['30'];
+                }
+
+            </script>
+            <!--казна-->
+            <div class="gover__block gover__coffers"></div>
+
+		</div>
+
+
+	</section>
+
+</main>
+
+{% endwith %}
+{% endblock %}

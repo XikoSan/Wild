@@ -1,0 +1,142 @@
+{% load l10n %}{% load i18n %}{% load tz %}
+
+<script>
+    check_edu = false;
+
+     function getFromLS(){
+        return localStorage.getItem('edu_assistant');
+      }
+
+    var assist_img = this.getFromLS() ?? "/static/redesign/img/Ann.png";
+
+    function claim_reward(id){
+      var data = "&csrfmiddlewaretoken=" + csrftoken + "&edu_id=" + id;
+      $.ajax({
+          beforeSend: function() {},
+          type: "POST",
+          url: "/claim_reward/",
+          data: data,
+          cache: false,
+          success: function(result){
+              if (result.response == 'ok'){
+                  actualize();
+              }
+          }
+      });
+    }
+
+    function edu_pragma(page) {
+        if (page == 6){
+            if (window.innerWidth < 1000) {
+                document.getElementById("dopInfo").click();
+            }
+        }
+        if (page == 7){
+            if (window.innerWidth < 1000) {
+                document.getElementById("closeDop").click();
+            }
+
+            document.getElementById('eduPrevBtn').style.opacity = 0;
+            document.getElementById('eduPrevBtn').disabled = true;
+
+            const eduVote = document.getElementById('vote_btn');
+            const dopInfo = document.getElementById('dopInfo');
+            const vote_buttons = document.getElementById('vote_buttons');
+
+            const eduVoted = document.getElementById('edu_voted');
+            const eduVoted2 = document.getElementById('edu_voted2');
+
+            if (window.innerWidth < 1000) {
+                console.log('btn1');
+                dopInfo.style.display = 'none'; // Скрывает элемент с id='dopInfo'
+                vote_buttons.style.display = 'none'; // Скрывает элемент с id='dopInfo'
+
+                eduVoted.style.display = 'block'; // Показывает элемент с id='edu_voted'
+                eduVoted2.style.display = 'block'; // Показывает элемент с id='edu_voted'
+            }
+            else{
+                console.log('btn2');
+                eduVote.style.display = 'none'; // Скрывает элемент с id='dopInfo'
+                vote_buttons.style.display = 'none'; // Скрывает элемент с id='dopInfo'
+
+                eduVoted.style.display = 'block'; // Показывает элемент с id='edu_voted'
+                eduVoted2.style.display = 'block'; // Показывает элемент с id='edu_voted'
+            }
+
+            const imgElement = document.querySelector('.edu__img');
+            if (imgElement) {
+                imgElement.src = "/static/img/deputate_1.webp";
+            }
+        }
+        if (page == 8){
+            const imgElement = document.querySelector('.edu__img');
+            if (imgElement) {
+                imgElement.src = "/static/img/deputate_2.webp";
+            }
+        }
+        if (page == 9){
+            const imgElement = document.querySelector('.edu__img');
+            if (imgElement) {
+                imgElement.src = "/static/img/security.webp";
+            }
+        }
+        if (page == 16){
+            window.location.href = "/edu_4";
+        }
+    }
+
+    const edu = new Educator({
+    onEduStart: () => { console.log('[EDU]: Started') },
+    onEduEnd: () => { console.log('[EDU]: Ended'); edu_pragma(16) },
+    onEduPageChange: (num) => { console.log(`[EDU]: Current page is ${num}`); edu_pragma(num) },
+    onCloseEdu: () => { console.log(`[EDU]: Education closed`); claim_reward('edu_00'); },
+    pages: [
+
+      {
+        text: "{% trans 'Поздравляю! Ваша партия получила 8 из 10 мест в парламенте.' context 'education' %}",
+      },
+
+      {
+        text: "{% trans 'Теперь, когда у нас большинство, вы можете занять своё место в зале и приступать к работе над ключевыми решениями.' context 'education' %}",
+        awaitedDomElemClass: 'eduBlock1',
+      },
+
+      {
+        text: "{% trans 'Сейчас вам предстоит сделать первый серьёзный выбор.' context 'education' %}",
+      },
+
+      {
+        text: "{% trans 'Голосование проходит просто — выберите, поддержать ли предложенный законопроект. Но помните, каждое ваше решение повлияет на ситуацию в стране.' context 'education' %}",
+      },
+
+      {
+        text: "{% trans 'Из-за ошибок прежнего правительства мы оказались на грани экономического кризиса.' context 'education' %}",
+      },
+
+      {
+        text: "{% trans 'Сегодня на повестке — законопроект о повышении налогов. Партия поддерживает это решение, чтобы помочь стабилизировать экономику.' context 'education' %}",
+      },
+
+      {
+        text: "{% trans 'Нажмите на кнопку, чтобы проголосовать.' context 'education' %}",
+        awaitedDomElemClass: 'eduBlock2',
+      },
+
+      {
+        text: "{% trans 'Мы сделали важный шаг. Тяжелое решение, но оно поможет спасти страну.' context 'education' %}",
+      },
+
+      {
+        text: "{% trans 'Верно. Это только начало, но мы готовы к борьбе!' context 'education' %}",
+      },
+
+      {
+        text: "{% trans 'Прошу всех сохранять спокойствие!' context 'education' %}",
+      },
+
+      {
+        text: "{% trans 'Митинги и беспорядки на улицах переросли в революцию. Мы организуем срочную эвакуацию парламентариев.' context 'education' %}",
+      },
+    ]
+  })
+</script>
