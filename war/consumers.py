@@ -62,6 +62,21 @@ def _check_has_war(war_type, war_id):
 
     return True
 
+
+# проверить, существует ли такая война
+def _player_status(pk):
+    player = Player.get_instance(pk=pk)
+
+    data = {
+        'payload': 'status',
+        'gold': player.gold,
+        'cash': player.cash,
+        'energy': player.energy
+    }
+
+    return data
+
+
 # проверить, существует ли такая война
 def _captcha(player):
     # язык из настроек
@@ -566,6 +581,13 @@ class WarConsumer(AsyncWebsocketConsumer):
                         'def_dmg': def_dmg,
                     }
                 )
+
+                # Актуализировать информацию
+                await self.send(text_data=json.dumps(
+                        await sync_to_async(_player_status, thread_sensitive=True)(
+                        # игрок
+                        pk=self.player.pk)
+                    ))
 
             else:
                 # Сообщить об ошибке

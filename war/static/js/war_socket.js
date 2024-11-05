@@ -20,6 +20,12 @@ function connectWebSocket() {
             display_modal('notify', data.header, data.response, null, data.grey_btn);
 
         }
+        else if (data.payload == 'status'){
+            $('#cash').html(numberWithSpaces(data.cash));
+
+            $('#gold').html(numberWithSpaces(data.gold));
+            $('#energy').html(data.energy);
+        }
         else if (data.payload == 'captcha'){
             captcha_action = function() {
                 sendEvent();
@@ -27,7 +33,7 @@ function connectWebSocket() {
             captcha_checking(data);
         }
         else{
-            actualize();
+//            actualize();
             createDamageMessage(data.image_url, data.damage, data.agr_side);
 
             document.getElementById('agr_dmg').innerHTML = numberWithSpaces(data.agr_dmg);
