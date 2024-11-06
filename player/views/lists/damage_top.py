@@ -16,6 +16,9 @@ def create_temporary_player_class():
         top = 0
         dmg = 0
 
+        class Meta:
+            proxy = True
+
     return PlayerWithDmg
 
 

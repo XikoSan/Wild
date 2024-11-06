@@ -15,6 +15,9 @@ def create_temporary_player_class():
         pk = 0
         top = 0
 
+        class Meta:
+            proxy = True
+
     return PlayerWithCash
 
 
