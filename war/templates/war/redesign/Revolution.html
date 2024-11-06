@@ -21,7 +21,7 @@
 
 <script src='{% static "js/EventWar.js" %}?{{ csrf_token }}'></script>
 {% if war.running %}
-<script src='{% static "js/war_socket.js" %}?{{ csrf_token }}'></script>
+<script src='{% static "js/war_socket.js" %}'></script>
 {% endif %}
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 {% endblock %}

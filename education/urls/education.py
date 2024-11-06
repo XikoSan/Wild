@@ -4,6 +4,7 @@ from django.conf.urls import url
 from education.views.edu_election import edu_election
 from education.views.edu_gov import edu_gov
 from education.views.edu_overview import edu_overview
+from education.views.edu_war import edu_war
 
 urlpatterns = [
 
@@ -13,7 +14,10 @@ urlpatterns = [
     # учебная страница голосования
     url(r'^edu_2$', edu_election, name='edu_election'),
 
-    # учебная страница голосования
+    # учебная страница парламента
     url(r'^edu_3$', edu_gov, name='edu_gov'),
+
+    # учебная страница восстания
+    url(r'^edu_4$', edu_war, name='edu_war'),
 
 ]
