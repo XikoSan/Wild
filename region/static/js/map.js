@@ -23,11 +23,11 @@ function to_fly(){
 
 
 function animateFlight(planeMarker, startCoords, endCoords, duration) {
-
   const latStep = (endCoords[0] - startCoords[0]) / duration;
   const lonStep = (endCoords[1] - startCoords[1]) / duration;
 
   let currentTime = 0;
+  const fadeDuration = 3; // последние 2 секунды для плавного исчезновения
 
   const flightInterval = setInterval(() => {
     currentTime += 0.01;
@@ -36,8 +36,16 @@ function animateFlight(planeMarker, startCoords, endCoords, duration) {
 
     planeMarker.setLatLng([newLat, newLon]);
 
-    if (currentTime + 0.01 >= duration) {
+    // Если осталось менее fadeDuration времени, начинаем уменьшать opacity
+    if (currentTime >= duration - fadeDuration) {
+      const opacity = (duration - currentTime) / fadeDuration; // от 1 до 0
+      planeMarker.setOpacity(opacity);
+    }
+
+    // Завершаем анимацию и удаляем маркер
+    if (currentTime >= duration) {
       clearInterval(flightInterval);
+      planeMarker.remove();
     }
   }, 10);
 }

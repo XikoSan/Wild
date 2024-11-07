@@ -60,11 +60,14 @@
 
     {% else %}
 
-        {% if region == player.region %}
+        {% if not player.educated %}
+        <span class="map__info-btn-cost">
+            {% trans 'В полёте' context 'education' %}
+        </span>
+        {% elif region == player.region %}
         <span class="map__info-btn-cost">
             {% trans 'Вы здесь' context "map" %}
         </span>
-
         {% else %}
 
             {% if not player.account.is_superuser and region.limit_id and player.pk < region.limit_id %}

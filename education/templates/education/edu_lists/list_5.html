@@ -1,0 +1,91 @@
+{% load l10n %}{% load i18n %}{% load tz %}
+
+<script>
+    let launched = false;
+    let button = document.getElementById("refill-countdown");
+
+    // Создаем новый элемент button
+    let newButton = document.createElement("button");
+
+    // Копируем классы
+    newButton.className = button.className;
+
+    // Копируем внутренние элементы и текст
+    newButton.innerHTML = button.innerHTML;
+
+    // Заменяем старую кнопку на новую
+    button.parentNode.replaceChild(newButton, button);
+
+    check_edu = false;
+
+    sending_dmg = 1823;
+
+     function getFromLS(){
+        return localStorage.getItem('edu_assistant');
+      }
+
+    var assist_img = this.getFromLS() ?? "/static/redesign/img/Ann.png";
+
+    function claim_reward(id){
+      var data = "&csrfmiddlewaretoken=" + csrftoken + "&edu_id=" + id;
+      $.ajax({
+          beforeSend: function() {},
+          type: "POST",
+          url: "/claim_reward/",
+          data: data,
+          cache: false,
+          success: function(result){
+              if (result.response == 'ok'){
+                  actualize();
+              }
+          }
+      });
+    }
+
+    function edu_pragma(page) {
+        if (page == 1){
+            if (launched != true){
+                animateFlight(planeMarker, startCoords, endCoords, 20);
+                launched = true;
+            }
+        }
+        if (page == 16){
+            window.location.href = "/edu_6";
+        }
+    }
+
+    const edu = new Educator({
+    onEduStart: () => { console.log('[EDU]: Started') },
+    onEduEnd: () => { console.log('[EDU]: Ended'); edu_pragma(16) },
+    onEduPageChange: (num) => { console.log(`[EDU]: Current page is ${num}`); edu_pragma(num) },
+    onCloseEdu: () => { console.log(`[EDU]: Education closed`); claim_reward('edu_00'); },
+    pages: [
+
+      {
+        text: "{% trans 'К сожалению, несмотря на доблестное сопротивление армии, мятежники прорвали оборону. Столица пала.' context 'education' %}",
+      },
+
+      {
+        text: "{% trans 'Это был последний самолёт, успевший покинуть город. Мы в безопасности, но впереди – неизвестность.' context 'education' %}",
+      },
+
+      {
+        text: "{% trans 'Мы уже подлетаем к месту назначения. Давайте взглянем на карту, чтобы получить общее представление.' context 'education' %}",
+        awaitedDomElemClass: 'eduBlock1',
+      },
+
+      {
+        text:"{% blocktrans with region=player.region.region_name context "education" %}Наш борт направляется в регион {{ region }}. {% endblocktrans %}{% if player.region.state %}{% blocktrans with state=player.region.state.title context "education" %}Он принадлежит государству {{ state }}.{% endblocktrans %}{% else %}{% trans 'Это независимая территория' context 'education' %}{% endif %}",
+      },
+
+      {
+        text: "{% trans 'К сожалению, у нас здесь нет ни денег, ни имущества, ни связей.' context 'education' %}",
+      },
+
+      {
+        text: "{% trans 'Придется начинать всё с нуля. У вас есть решимость и опыт, а всё остальное мы сумеем добыть вместе.' context 'education' %}",
+      },
+
+    ]
+  })
+</script>
