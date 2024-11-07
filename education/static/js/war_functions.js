@@ -36,6 +36,10 @@ function send_edu_troops() {
         }
     }
 
+    document.getElementById('tanks_limit').innerHTML  = numberWithSpaces(parseInt(document.getElementById('tanks_limit').innerHTML, 10) - document.getElementById('edu_tanks').value);
+    document.getElementById('rifles_limit').innerHTML = numberWithSpaces(parseInt(document.getElementById('rifles_limit').innerHTML, 10) - document.getElementById('edu_rifles').value);
+    document.getElementById('ifv_limit').innerHTML    = numberWithSpaces(parseInt(document.getElementById('ifv_limit').innerHTML, 10) - document.getElementById('edu_ifv').value);
+
     createDamageMessage(imgSrc, sending_dmg, false);
 }
 
