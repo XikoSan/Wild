@@ -1,0 +1,153 @@
+{% extends 'player/redesign/header.html' %}
+{% load static %}
+{% load bootstrap3 %}
+{% load l10n %}{% load i18n %}{% load tz %}
+{% load redesign.overview_blocks.skills %}
+{% load redesign.gui_help.player_help %}
+{% load redesign.template_svg.nopic %}
+{% load template_svg.war_icon %}
+
+{% block for_scripts_and_css %}
+<script src="/static/redesign/js/education_n.js"></script>
+<script src='{% static "js/mining_functions.js" %}'></script>
+{% load get_edu_list %}
+{% get_edu_list '6' %}
+
+{% endblock %}
+
+{% load dict_key %}
+{% load get_sum %}
+{% load get_attr %}
+{% load get_key_list %}
+{% load get_class_name %}
+
+<!--	</svg>-->
+
+{% block content %}
+  {% with LANGUAGE_CODE='ru' %}
+<main>
+<section class="earn" id="mining_main">
+    <h1 class="earn__title ct__page-title">Добыча</h1>
+    <p class="earn__info">
+        Потрать энергию и получи <br>
+        до $ 25&nbsp;375<span class="info__gold"> + G 100</span> за день!
+    </p>
+    <div class="earn__energy-wrapper ct__widebar">
+        <span>энергии потрачено:</span>
+        <div class="ct__widebar-bar">
+
+            <span id="energy_consumption">0</span>
+            <span> / </span>
+            <span id="daily_energy_limit">3&nbsp;000</span>
+            <div style="width: 0.0%;" class="ct__widebar-fill" id="energy_progressbar"></div>
+        </div>
+    </div>
+
+    <button class="earn__long-btn ct__long-btn btn eduBlock2"  onclick="mine_edu_financing()">
+
+        <span style="display: inline-block;">получить: $</span>
+        <span style="display: inline-block;" id="daily_current_sum">0</span>
+
+        <svg width="176" height="31" viewBox="0 0 176 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <mask id="mask0_36_212" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="-1" width="176" height="32">
+            <path d="M0 5.78935L5.78947 -0.00012207H176V23.1578L169.053 30.1051H0V5.78935Z" fill="var(--c10two)"></path>
+            </mask>
+            <g mask="url(#mask0_36_212)">
+                <path d="M0 5.78935L5.78947 -0.00012207H176V23.1578L169.053 30.1051H0V5.78935Z" fill="var(--c10two)"></path>
+
+                <path class="treg1" opacity="0.2" d="M38.1333 -14.0492L68.5505 38.635H7.71606L38.1333 -14.0492Z" fill="var(--c10one)"></path>
+                <path class="treg2" opacity="0.2" d="M110.911 -13.8387L99.6371 22.9836L73.385 -5.19097L110.911 -13.8387Z" fill="var(--c10one)"></path>
+                <path class="treg3" opacity="0.2" d="M169.098 6.14752L158.04 25.3L146.983 6.14752L169.098 6.14752Z" fill="var(--c10one)"></path>
+
+            </g>
+        </svg>
+    </button>
+
+    <p class="earn__after-btn">
+        уже получено:
+        $0
+    </p>
+    <div class="earn__card ct__card">
+        <h3>Золото</h3>
+        <span>Запасы: 20.00 / 20.00</span>
+        <p>
+            <span style="display: inline-block;color: #eb9929;">
+                + G <span style="display: inline-block;" class="be_mined" data-modifier="0.1">10</span>
+            </span>
+
+        </p>
+        <form class="mining_form" role="form">
+            <input type="hidden" name="csrfmiddlewaretoken" value="XaHrtgiE1ly1eZT95iOAaBsclG0oXISr6xD5NkbTuh81f67FUdcCWoMu1AT1df3k">
+            <input type="hidden" name="resource" value="gold">
+            <input type="number" min="0" max="100" value="100" step="10" name="energy">
+
+
+            <button class="btn-mining">добыча</button>
+
+        </form>
+        <svg width="314" height="100" viewBox="0 0 314 100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.46447 11.5355L11.5355 2.46447C12.4732 1.52678 13.745 1 15.0711 1H308C310.761 1 313 3.23857 313 6V94C313 96.7614 310.761 99 308 99H6C3.23858 99 1 96.7614 1 94V15.0711C1 13.745 1.52678 12.4732 2.46447 11.5355Z" fill="var(--c30)" stroke="var(--c30)"></path></svg>
+    </div>
+    <div class="earn__card ct__card">
+        <h3>Нефть</h3>
+        <span>Запасы: 24.32 / 25.00</span>
+        <p>
+            <span style="display: inline-block;">
+                + Brent: <span style="display: inline-block;" class="be_mined" data-modifier="2.02">202</span>
+            </span>
+        </p>
+        <div style="
+            display: flex;
+            justify-content: space-between;
+            grid-column: 1 / 3;
+            width: 100%;
+            border: none;
+            background-color: transparent;
+        ">
+        <input type="number" min="0" max="100" value="100" step="10" name="energy">
+
+
+        <button class="btn-mining eduBlock1" onclick="mine_edu_crude()">добыча</button>
+
+        </div>
+        <svg width="314" height="100" viewBox="0 0 314 100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.46447 11.5355L11.5355 2.46447C12.4732 1.52678 13.745 1 15.0711 1H308C310.761 1 313 3.23857 313 6V94C313 96.7614 310.761 99 308 99H6C3.23858 99 1 96.7614 1 94V15.0711C1 13.745 1.52678 12.4732 2.46447 11.5355Z" fill="var(--c30)" stroke="var(--c30)"></path></svg>
+    </div>
+    <div class="earn__card ct__card">
+        <h3>Руда</h3>
+        <span>Запасы: 54.80 / 55.00</span>
+        <p>
+            <span style="display: inline-block;">
+                +
+
+                    У: <span style="display: inline-block;" class="be_mined" data-modifier="1.7169999999999999">171</span>
+                     /
+
+                    Ж: <span style="display: inline-block;" class="be_mined" data-modifier="0.202">20</span>
+                     /
+
+                    Б: <span style="display: inline-block;" class="be_mined" data-modifier="0.101">10</span>
+
+
+            </span>
+        </p>
+        <div style="
+            display: flex;
+            justify-content: space-between;
+            grid-column: 1 / 3;
+            width: 100%;
+            border: none;
+            background-color: transparent;
+        ">
+            <input type="number" min="0" max="100" value="100" step="10" name="energy">
+
+
+            <button class="btn-mining eduBlock1" onclick="mine_edu_crude()">добыча</button>
+
+        </div>
+        <svg width="314" height="100" viewBox="0 0 314 100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.46447 11.5355L11.5355 2.46447C12.4732 1.52678 13.745 1 15.0711 1H308C310.761 1 313 3.23857 313 6V94C313 96.7614 310.761 99 308 99H6C3.23858 99 1 96.7614 1 94V15.0711C1 13.745 1.52678 12.4732 2.46447 11.5355Z" fill="var(--c30)" stroke="var(--c30)"></path></svg>
+    </div>
+
+</section>
+</main>
+
+{% endwith %}
+{% endblock %}

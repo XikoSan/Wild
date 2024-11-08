@@ -14,13 +14,15 @@
       $.ajax({
           beforeSend: function() {},
           type: "POST",
-          url: "/claim_reward/",
+          url: "/edu_reward/",
           data: data,
           cache: false,
           success: function(result){
-              if (result.response == 'ok'){
-                  actualize();
-              }
+            if (id == 'edu_all'){
+                  if (result.response == 'ok'){
+                      actualize();
+                  }
+            }
           }
       });
     }
@@ -65,7 +67,7 @@
     onEduStart: () => { console.log('[EDU]: Started') },
     onEduEnd: () => { console.log('[EDU]: Ended'); edu_pragma(16) },
     onEduPageChange: (num) => { console.log(`[EDU]: Current page is ${num}`); edu_pragma(num) },
-    onCloseEdu: () => { console.log(`[EDU]: Education closed`); claim_reward('edu_00'); },
+    onCloseEdu: () => { console.log(`[EDU]: Education closed`); claim_reward('edu_all'); },
     pages: [
 
       {

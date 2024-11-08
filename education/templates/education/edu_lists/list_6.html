@@ -1,0 +1,105 @@
+{% load l10n %}{% load i18n %}{% load tz %}
+
+<script>
+    let launched = false;
+    let button = document.getElementById("refill-countdown");
+
+    // Создаем новый элемент button
+    let newButton = document.createElement("button");
+
+    // Копируем классы
+    newButton.className = button.className;
+
+    // Копируем внутренние элементы и текст
+    newButton.innerHTML = button.innerHTML;
+
+    // Заменяем старую кнопку на новую
+    button.parentNode.replaceChild(newButton, button);
+
+    check_edu = false;
+
+     function getFromLS(){
+        return localStorage.getItem('edu_assistant');
+      }
+
+    var assist_img = this.getFromLS() ?? "/static/redesign/img/Ann.png";
+
+    function claim_reward(id){
+      var data = "&csrfmiddlewaretoken=" + csrftoken + "&edu_id=" + id;
+      $.ajax({
+          beforeSend: function() {},
+          type: "POST",
+          url: "/edu_reward/",
+          data: data,
+          cache: false,
+          success: function(result){
+            if (id == 'edu_all'){
+                  if (result.response == 'ok'){
+                      actualize();
+                  }
+            }
+          }
+      });
+    }
+
+    function edu_pragma(page) {
+        if (page == 8){
+            claim_reward('financing');
+        }
+        if (page == 16){
+            window.location.href = "/edu_7";
+        }
+    }
+
+    const edu = new Educator({
+    onEduStart: () => { console.log('[EDU]: Started') },
+    onEduEnd: () => { console.log('[EDU]: Ended'); edu_pragma(16) },
+    onEduPageChange: (num) => { console.log(`[EDU]: Current page is ${num}`); edu_pragma(num) },
+    onCloseEdu: () => { console.log(`[EDU]: Education closed`); claim_reward('edu_all'); },
+    pages: [
+
+      {
+        text: "{% trans 'Начинаем с основ: в новом государстве для усиления позиций вам потребуется налаживать добычу ресурсов и привлекать инвесторов.' context 'education' %}",
+      },
+
+      {
+        text: "{% trans 'Наша первая задача — организовать работы на месторождениях нефти и руды. Эти ресурсы станут опорой вашей политической и экономической силы.' context 'education' %}",
+      },
+
+      {
+        text: "{% trans 'Обратите внимание: добычу нефти и руды инвесторы профинансируют с готовностью, но если решите добывать золото для личных целей, это придётся делать за свой счёт.' context 'education' %}",
+      },
+
+      {
+        text: "{% trans 'Добыча полезных ископаемых — ваш первый шаг к укреплению позиций. Как только мы сможем обеспечить стабильный приток сырья и средств, перед нами откроются возможности для дальнейшего развития.' context 'education' %}",
+      },
+
+      {
+        text: "{% trans 'Давайте организуем нашу первую добычу сырья.' context 'education' %}",
+        awaitedDomElemClass: 'eduBlock1',
+      },
+
+      {
+        text: "{% trans 'Отличная работа! Теперь вы можете претендовать на финансирование.' context 'education' %}",
+      },
+
+      {
+        text: "{% trans 'Средства будут аккумулироваться на временном счёте. Вы сможете снять их целиком или частично — как будет удобнее для управления вашими проектами.' context 'education' %}",
+      },
+
+      {
+        text: "{% trans 'Предлагаю забрать часть средств прямо сейчас, чтобы выгодно их инвестировать.' context 'education' %}",
+        awaitedDomElemClass: 'eduBlock2',
+      },
+
+      {
+        text: "{% trans 'Эти средства понадобятся уже скоро. Следите за количеством добытого сырья и привлечённых инвестиций — это ключ к нашему будущему успеху.' context 'education' %}",
+      },
+
+      {
+        text: "{% trans 'Я рекомендую вложить часть капитала в производство товаров, чтобы укрепить экономическую базу и поддержать ваши политические инициативы.' context 'education' %}",
+      },
+
+    ]
+  })
+</script>

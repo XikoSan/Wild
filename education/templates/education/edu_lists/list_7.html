@@ -1,0 +1,134 @@
+{% load l10n %}{% load i18n %}{% load tz %}
+
+<script>
+    let launched = false;
+
+    document.getElementById('energy').innerHTML = '0';
+    let button = document.getElementById("refill-countdown");
+
+    // Создаем новый элемент button
+    let newButton = document.createElement("button");
+
+    // Копируем классы
+    newButton.className = button.className;
+
+    // Копируем внутренние элементы и текст
+    newButton.innerHTML = button.innerHTML;
+
+    // Заменяем старую кнопку на новую
+    button.parentNode.replaceChild(newButton, button);
+
+    check_edu = false;
+
+     function getFromLS(){
+        return localStorage.getItem('edu_assistant');
+      }
+
+    var assist_img = this.getFromLS() ?? "/static/redesign/img/Ann.png";
+
+    function claim_reward(id){
+      var data = "&csrfmiddlewaretoken=" + csrftoken + "&edu_id=" + id;
+      $.ajax({
+          beforeSend: function() {},
+          type: "POST",
+          url: "/edu_reward/",
+          data: data,
+          cache: false,
+          success: function(result){
+            if (id == 'edu_all'){
+                  if (result.response == 'ok'){
+                      actualize();
+                  }
+            }
+          }
+      });
+    }
+
+    function edu_pragma(page) {
+        if (page == 4){
+            <!--категория-->
+            document.getElementById("group").value = "materials";
+            document.getElementById("group").dispatchEvent(new Event("change"));
+            <!--сталь-->
+            document.getElementById("good").value = "10";
+            document.getElementById("good").disabled = false;
+            document.getElementById("good").dispatchEvent(new Event("change"));
+        }
+        if (page == 8){
+            document.getElementById('energy').innerHTML = '100';
+            <!--схема-->
+            document.getElementById("schema").value = "10";
+            document.getElementById("schema").disabled = false;
+            document.getElementById("schema").dispatchEvent(new Event("change"));
+            <!--количество-->
+            for (let i = 1; i <= 100; i++) {
+              setTimeout(() => {
+                setInputValue(i);
+              }, i * 10); // 10 миллисекунд = 0.01 секунда
+            }
+        }
+        if (page == 16){
+            window.location.href = "/edu_8";
+        }
+    }
+
+    const edu = new Educator({
+    onEduStart: () => { console.log('[EDU]: Started') },
+    onEduEnd: () => { console.log('[EDU]: Ended'); edu_pragma(16) },
+    onEduPageChange: (num) => { console.log(`[EDU]: Current page is ${num}`); edu_pragma(num) },
+    onCloseEdu: () => { console.log(`[EDU]: Education closed`); claim_reward('edu_all'); },
+    pages: [
+
+      {
+        text: "{% trans 'Теперь, когда у нас есть ресурсы и капитал, мы можем переходить к следующему этапу — производству.' context 'education' %}",
+      },
+
+      {
+        text: "{% trans 'Все добытые ресурсы отправляются на ваш личный Склад. Обычно в новом регионе склад нужно строить с нуля, но в этот раз я всё подготовила заранее.' context 'education' %}",
+      },
+
+      {
+        text: "{% trans 'На складе, кроме недавно добытого сырья, есть небольшие запасы.' context 'education' %}",
+      },
+
+      {
+        text: "{% trans 'Но продавать сырьё прямо сейчас невыгодно — лучше превратить его в Материалы. Так оно принесет больше прибыли.' context 'education' %}",
+      },
+
+      {
+        text: "{% trans 'Для производства Стали нам понадобятся Наличные и ресурсы со склада.' context 'education' %}",
+      },
+
+      {
+        text: "{% trans 'Наличные тоже готовы и находятся на складе, откуда будут браться остальные ресурсы для запуска.' context 'education' %}",
+      },
+
+      {
+        text: "{% trans 'Перед началом стоит помнить, что любое производство требует энергии. Мы израсходовали её на добычу, поэтому сейчас пополним её вручную.' context 'education' %}",
+      },
+
+      {
+        text: "{% trans 'Энергия со временем восстанавливается сама, но иногда нужно ускорить процесс.' context 'education' %}",
+        awaitedDomElemClass: 'eduBlockMining4',
+      },
+
+      {
+        text: "{% trans 'Энергия восстановлена, а это значит, что всё готово для запуска производства. Нажмите кнопку «Произвести», чтобы превратить сырьё в материалы.' context 'education' %}",
+        awaitedDomElemClass: 'eduBlock1',
+      },
+
+      {
+        text: "{% trans 'Отлично! Под вашим руководством ресурсы превращаются в Материалы. Такие производственные цепочки — ключ к стабильному доходу и экономической независимости.' context 'education' %}",
+      },
+
+      {
+        text: "{% trans 'Самый эффективный подход — разделить обязанности: кто-то добывает сырьё, кто-то производит материалы и товары, а кто-то продает их и распределяет прибыль.' context 'education' %}",
+      },
+
+      {
+        text: "{% trans 'Теперь давайте заглянем на Склад и лично проверим, какие запасы доступны в этом регионе.' context 'education' %}",
+      },
+
+    ]
+  })
+</script>

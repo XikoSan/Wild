@@ -28,9 +28,12 @@ class CashLog(Log):
         ('bonus', 'Бонус-код'),
         ('auct', pgettext_lazy('cash_log', 'Гос. закупки')),
         ('skill', pgettext_lazy('cash_log', 'Навыки')),
+
+        # обучение
+        ('financing', 'Награда за получение Финансирования'),
     )
     activity_txt = models.CharField(
-        max_length=5,
+        max_length=10,
         choices=activityChoices,
         blank=True,
         null=True
