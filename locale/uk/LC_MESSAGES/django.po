@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-10 04:40+0300\n"
+"POT-Creation-Date: 2024-11-11 00:56+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -61,7 +61,7 @@ msgstr ""
 
 #: article/templates/article/article.html:344
 #: chat/templates/chat/dialogue.html:160
-#: player/templates/player/redesign/overview.html:969
+#: player/templates/player/redesign/overview.html:874
 #, fuzzy
 #| msgid "У вас пока еще нет стикеров"
 msgctxt "overview"
@@ -70,7 +70,7 @@ msgstr "У вас поки що нема стікерів"
 
 #: article/templates/article/article.html:357
 #: chat/templates/chat/dialogue.html:173
-#: player/templates/player/redesign/overview.html:982
+#: player/templates/player/redesign/overview.html:887
 msgctxt "overview"
 msgid "магазин"
 msgstr "магазин"
@@ -208,9 +208,10 @@ msgstr "Назва не може бути порожньою"
 #: chat/views/messages/get_message_block.py:28
 #: chat/views/messages/get_message_block.py:38
 #: chat/views/messages/get_message_block.py:51
-#: chat/views/messages/get_message_block.py:86 education/views/edu_reward.py:79
-#: education/views/edu_reward.py:90 education/views/edu_reward.py:99
-#: education/views/edu_reward.py:128 event/views/activate_invite.py:33
+#: chat/views/messages/get_message_block.py:86
+#: education/views/edu_reward.py:103 education/views/edu_reward.py:114
+#: education/views/edu_reward.py:127 education/views/edu_reward.py:136
+#: education/views/edu_reward.py:174 event/views/activate_invite.py:33
 #: event/views/activate_invite.py:48 event/views/activate_invite.py:64
 #: event/views/activate_invite.py:78 event/views/activate_invite.py:116
 #: factory/views/cancel_auto.py:34 factory/views/produce_good.py:42
@@ -313,8 +314,8 @@ msgstr "Назва не може бути порожньою"
 #: player/views/expense_energy.py:30 player/views/expense_energy.py:43
 #: player/views/expense_energy.py:65 player/views/expense_energy.py:73
 #: player/views/expense_energy.py:83 player/views/full_auto_allow.py:43
-#: player/views/full_auto_allow.py:59 player/views/new_player.py:184
-#: player/views/new_player.py:197 player/views/open_lootboxes.py:27
+#: player/views/full_auto_allow.py:59 player/views/new_player.py:185
+#: player/views/new_player.py:198 player/views/open_lootboxes.py:27
 #: player/views/open_lootboxes.py:38 player/views/open_lootboxes.py:49
 #: player/views/open_lootboxes.py:59 player/views/open_lootboxes.py:134
 #: player/views/set_language.py:40 player/views/set_language.py:56
@@ -2580,7 +2581,7 @@ msgctxt "speedup_bill"
 msgid "В этом государстве нет парламента"
 msgstr "В цьому регіоні нема Складу"
 
-#: bill/views/bills/speedup_bill.py:168 education/views/edu_reward.py:126
+#: bill/views/bills/speedup_bill.py:168 education/views/edu_reward.py:172
 #: gov/views/color_change.py:58 gov/views/set_ministers.py:181
 #: gov/views/switch_description.py:43 party/views/management/color_change.py:66
 #: party/views/management/gold/give_party_gold.py:108
@@ -2886,172 +2887,6 @@ msgctxt "education"
 msgid "Зелёная Альтернатива Республики"
 msgstr ""
 
-#: education/templates/education/edu_final.html:61
-#: education/templates/education/edu_overview.html:61
-#: player/templates/player/redesign/overview.html:190
-#, fuzzy
-#| msgid "обзор"
-msgctxt "overview"
-msgid "обзор"
-msgstr "огляд"
-
-#: education/templates/education/edu_final.html:82
-#: education/templates/education/edu_overview.html:82
-#: player/templates/player/redesign/overview.html:211
-#, fuzzy
-#| msgid "чат"
-msgctxt "overview"
-msgid "чат"
-msgstr "чат"
-
-#: education/templates/education/edu_final.html:93
-#: education/templates/education/edu_overview.html:93
-#: player/templates/player/redesign/overview.html:222
-#, fuzzy
-#| msgid "мир"
-msgctxt "overview"
-msgid "мир"
-msgstr "світ"
-
-#: education/templates/education/edu_final.html:149
-#: player/templates/player/redesign/overview.html:278
-#, fuzzy
-#| msgid "независимый регион"
-msgctxt "overview"
-msgid "независимый регион"
-msgstr "незалежний регіон"
-
-#: education/templates/education/edu_final.html:242
-#: education/templates/education/edu_overview.html:222
-#: player/templates/player/redesign/overview.html:393
-#, fuzzy
-#| msgid "войн нет"
-msgctxt "overview"
-msgid "войн нет"
-msgstr "війн нема"
-
-#: education/templates/education/edu_final.html:261
-#: education/templates/education/edu_overview.html:241
-#: player/templates/player/redesign/overview.html:669
-msgctxt "overview"
-msgid "сила"
-msgstr "сила"
-
-#: education/templates/education/edu_final.html:266
-#: education/templates/education/edu_overview.html:246
-#: player/templates/player/redesign/overview.html:674
-msgctxt "overview"
-msgid "инт"
-msgstr "інт"
-
-#: education/templates/education/edu_final.html:271
-#: education/templates/education/edu_overview.html:251
-#: player/templates/player/redesign/overview.html:679
-msgctxt "overview"
-msgid "вын"
-msgstr "витр"
-
-#: education/templates/education/edu_final.html:294
-#: education/templates/education/edu_overview.html:274
-#: player/templates/player/redesign/lists/skill_top.html:26
-#: player/templates/player/redesign/overview_skills.html:22
-#: skill/models/biochemistry.py:20 skill/models/coherence.py:21
-#: skill/models/excavation.py:15 skill/models/finance.py:15
-#: skill/models/scouting.py:21 skill/models/trophy_engineering.py:20
-#, fuzzy
-#| msgid "Сила"
-msgctxt "skills"
-msgid "Сила"
-msgstr "Сила"
-
-#: education/templates/education/edu_final.html:320
-#: education/templates/education/edu_final.html:356
-#: education/templates/education/edu_final.html:393
-#: education/templates/education/edu_overview.html:300
-#: education/templates/education/edu_overview.html:336
-#: education/templates/education/edu_overview.html:373
-#: player/templates/player/redesign/overview_skills.html:61
-#: player/templates/player/redesign/overview_skills.html:127
-#: player/templates/player/redesign/overview_skills.html:189
-#: skill/templates/redesign/skill/skill_list.html:84
-#, fuzzy
-#| msgid "изучить"
-msgctxt "skills"
-msgid "изучить"
-msgstr "вивчити"
-
-#: education/templates/education/edu_final.html:330
-#: education/templates/education/edu_overview.html:310
-#: player/templates/player/redesign/lists/skill_top.html:41
-#: player/templates/player/redesign/overview_skills.html:88
-#: skill/models/biochemistry.py:15 skill/models/coherence.py:26
-#: skill/models/excavation.py:20 skill/models/finance.py:20
-#: skill/models/fracturing.py:15 skill/models/military_production.py:15
-#: skill/models/scouting.py:26 skill/models/standardization.py:15
-#: skill/models/trophy_engineering.py:15
-#, fuzzy
-#| msgid "Интеллект"
-msgctxt "skills"
-msgid "Интеллект"
-msgstr "Інтелект"
-
-#: education/templates/education/edu_final.html:367
-#: education/templates/education/edu_overview.html:347
-#: player/templates/player/redesign/lists/skill_top.html:56
-#: player/templates/player/redesign/overview_skills.html:150
-#: skill/models/biochemistry.py:25 skill/models/excavation.py:25
-#: skill/models/finance.py:25 skill/models/fracturing.py:20
-#: skill/models/scouting.py:31 skill/models/trophy_engineering.py:25
-#, fuzzy
-#| msgid "Выносливость"
-msgctxt "skills"
-msgid "Выносливость"
-msgstr "Витривалість"
-
-#: education/templates/education/edu_final.html:408
-#: education/templates/education/edu_overview.html:388
-#: player/templates/player/redesign/overview_skills.html:226
-msgctxt "skills"
-msgid "дерево навыков"
-msgstr "дерево навичок"
-
-#: education/templates/education/edu_final.html:472
-#: education/templates/education/edu_overview.html:455
-#: player/templates/player/redesign/overview.html:703
-msgctxt "overview"
-msgid "партии"
-msgstr "партії"
-
-#: education/templates/education/edu_final.html:472
-#: education/templates/education/edu_overview.html:455
-#: player/templates/player/redesign/overview.html:703
-msgctxt "overview"
-msgid "государства"
-msgstr "держави"
-
-#: education/templates/education/edu_final.html:472
-#: player/templates/player/redesign/overview.html:703
-msgctxt "overview"
-msgid "региона"
-msgstr "регіона"
-
-#: education/templates/education/edu_final.html:509
-#: education/templates/education/edu_final.html:554
-#: player/templates/player/redesign/overview.html:740
-#: player/templates/player/redesign/overview.html:785
-#, fuzzy
-#| msgid "партий нет"
-msgctxt "overview"
-msgid "партий нет"
-msgstr "партій нема"
-
-#: education/templates/education/edu_final.html:516
-#: education/templates/education/edu_overview.html:498
-#: player/templates/player/redesign/overview.html:747
-msgctxt "overview"
-msgid "парламент"
-msgstr "парламент"
-
 #: education/templates/education/edu_gov.html:194
 #: state/templates/state/redesign/gov/government.html:179
 #, fuzzy
@@ -3198,7 +3033,7 @@ msgid ""
 "отправиться на избирательный участок!"
 msgstr ""
 
-#: education/templates/education/edu_lists/list_2.html:74
+#: education/templates/education/edu_lists/list_2.html:75
 #, fuzzy
 #| msgctxt "w_trading_new"
 #| msgid "Цена товара должна быть положительным числом"
@@ -3206,14 +3041,14 @@ msgctxt "education"
 msgid "Добро пожаловать на избирательный участок!"
 msgstr "Ціна товару має бути додатнім числом"
 
-#: education/templates/education/edu_lists/list_2.html:78
+#: education/templates/education/edu_lists/list_2.html:79
 msgctxt "education"
 msgid ""
 "Этот момент — не просто формальность, а важный шаг для любого политика. Ваш "
 "голос и ваша активность сейчас заложат основу для будущих побед."
 msgstr ""
 
-#: education/templates/education/edu_lists/list_2.html:82
+#: education/templates/education/edu_lists/list_2.html:83
 msgctxt "education"
 msgid ""
 "Как только вы проголосуете, ваш голос пойдет в копилку нашей партии. Чем "
@@ -3221,7 +3056,7 @@ msgid ""
 "парламенте."
 msgstr ""
 
-#: education/templates/education/edu_lists/list_2.html:86
+#: education/templates/education/edu_lists/list_2.html:87
 msgctxt "education"
 msgid ""
 "Каждое кресло в парламенте открывает новые возможности для решения "
@@ -3229,7 +3064,7 @@ msgid ""
 "политику."
 msgstr ""
 
-#: education/templates/education/edu_lists/list_2.html:90
+#: education/templates/education/edu_lists/list_2.html:91
 msgctxt "education"
 msgid ""
 "Помните, каждый голос важен! Чем выше результат партии на этих выборах, тем "
@@ -3237,84 +3072,84 @@ msgid ""
 "инициировать реформы и даже влиять на оборонную стратегию страны."
 msgstr ""
 
-#: education/templates/education/edu_lists/list_2.html:94
+#: education/templates/education/edu_lists/list_2.html:95
 msgctxt "education"
 msgid "Выбор за вами, но от него зависит ваше будущее как политика."
 msgstr ""
 
-#: education/templates/education/edu_lists/list_2.html:99
+#: education/templates/education/edu_lists/list_2.html:100
 msgctxt "education"
 msgid ""
 "Дело сделано! А теперь давайте вернёмся в офис партии. Там спокойнее и не "
 "слышно всех этих радикалов."
 msgstr ""
 
-#: education/templates/education/edu_lists/list_2.html:103
+#: education/templates/education/edu_lists/list_2.html:104
 msgctxt "education"
 msgid "Хватит подкручивать результаты в свою пользу!"
 msgstr ""
 
-#: education/templates/education/edu_lists/list_2.html:107
+#: education/templates/education/edu_lists/list_2.html:108
 msgctxt "education"
 msgid "Нам нужны честные выборы, а не очередной фарс!"
 msgstr ""
 
-#: education/templates/education/edu_lists/list_2.html:111
+#: education/templates/education/edu_lists/list_2.html:112
 msgctxt "education"
 msgid "Они всё равно всё уже купили!"
 msgstr ""
 
-#: education/templates/education/edu_lists/list_2.html:115
+#: education/templates/education/edu_lists/list_2.html:116
 msgctxt "education"
 msgid "Не обращайте внимания, это всего лишь часть нашей работы."
 msgstr ""
 
-#: education/templates/education/edu_lists/list_2.html:119
+#: education/templates/education/edu_lists/list_2.html:120
 msgctxt "education"
 msgid ""
 "На пути к вершинам всегда будет недовольные, но мы справимся. Главное — ваш "
 "выбор и ваша решимость."
 msgstr ""
 
-#: education/templates/education/edu_lists/list_3.html:98
+#: education/templates/education/edu_lists/list_3.html:99
 msgctxt "education"
 msgid "Поздравляю! Ваша партия получила 8 из 10 мест в парламенте."
 msgstr ""
 
-#: education/templates/education/edu_lists/list_3.html:102
+#: education/templates/education/edu_lists/list_3.html:103
 msgctxt "education"
 msgid ""
 "Теперь, когда у нас большинство, вы можете занять своё место в зале и "
 "приступать к работе над ключевыми решениями."
 msgstr ""
 
-#: education/templates/education/edu_lists/list_3.html:107
+#: education/templates/education/edu_lists/list_3.html:108
 msgctxt "education"
 msgid "Сейчас вам предстоит сделать первый серьёзный выбор."
 msgstr ""
 
-#: education/templates/education/edu_lists/list_3.html:111
+#: education/templates/education/edu_lists/list_3.html:112
 msgctxt "education"
 msgid ""
 "Голосование проходит просто — выберите, поддержать ли предложенный "
 "законопроект. Но помните, каждое ваше решение повлияет на ситуацию в стране."
 msgstr ""
 
-#: education/templates/education/edu_lists/list_3.html:115
+#: education/templates/education/edu_lists/list_3.html:116
 msgctxt "education"
 msgid ""
 "Из-за ошибок прежнего правительства мы оказались на грани экономического "
 "кризиса."
 msgstr ""
 
-#: education/templates/education/edu_lists/list_3.html:119
+#: education/templates/education/edu_lists/list_3.html:120
 msgctxt "education"
 msgid ""
 "Сегодня на повестке — законопроект о повышении налогов. Партия поддерживает "
 "это решение, чтобы помочь стабилизировать экономику."
 msgstr ""
 
-#: education/templates/education/edu_lists/list_3.html:123
+#: education/templates/education/edu_lists/list_3.html:124
 #, fuzzy
 #| msgctxt "storage_assets"
 #| msgid "использовать"
@@ -3322,41 +3157,41 @@ msgctxt "education"
 msgid "Нажмите на кнопку, чтобы проголосовать."
 msgstr "використати"
 
-#: education/templates/education/edu_lists/list_3.html:128
+#: education/templates/education/edu_lists/list_3.html:129
 msgctxt "education"
 msgid "Мы сделали важный шаг. Тяжелое решение, но оно поможет спасти страну."
 msgstr ""
 
-#: education/templates/education/edu_lists/list_3.html:132
+#: education/templates/education/edu_lists/list_3.html:133
 msgctxt "education"
 msgid "Верно. Это только начало, но мы готовы к борьбе!"
 msgstr ""
 
-#: education/templates/education/edu_lists/list_3.html:136
+#: education/templates/education/edu_lists/list_3.html:137
 msgctxt "education"
 msgid "Прошу всех сохранять спокойствие!"
 msgstr ""
 
-#: education/templates/education/edu_lists/list_3.html:140
+#: education/templates/education/edu_lists/list_3.html:141
 msgctxt "education"
 msgid ""
 "Митинги и беспорядки на улицах переросли в революцию. Мы организуем срочную "
 "эвакуацию парламентариев."
 msgstr ""
 
-#: education/templates/education/edu_lists/list_4.html:100
+#: education/templates/education/edu_lists/list_4.html:107
 msgctxt "education"
 msgid "Ваша решимость отправиться на передовую вызывает восхищение."
 msgstr ""
 
-#: education/templates/education/edu_lists/list_4.html:104
+#: education/templates/education/edu_lists/list_4.html:111
 msgctxt "education"
 msgid ""
 "Помощь правительственным силам сейчас как никогда необходима. Вы будете "
 "командовать отдельным подразделением самообороны столицы."
 msgstr ""
 
-#: education/templates/education/edu_lists/list_4.html:108
+#: education/templates/education/edu_lists/list_4.html:115
 #, fuzzy
 #| msgctxt "w_trading_new"
 #| msgid "Цена товара должна быть положительным числом"
@@ -3364,88 +3199,88 @@ msgctxt "education"
 msgid "Добро пожаловать, командир. Ваше присутствие вдохновляет бойцов!"
 msgstr "Ціна товару має бути додатнім числом"
 
-#: education/templates/education/edu_lists/list_4.html:112
+#: education/templates/education/edu_lists/list_4.html:119
 msgctxt "education"
 msgid ""
 "В вашем распоряжении 100 единиц энергии для управления действиями войск. Мы "
 "готовы действовать по вашему приказу, чтобы отбить натиск противника."
 msgstr ""
 
-#: education/templates/education/edu_lists/list_4.html:116
+#: education/templates/education/edu_lists/list_4.html:123
 msgctxt "education"
 msgid ""
 "В вашем распоряжении находятся различные подразделения, и для вашего "
 "удобства мной уже собран оперативный отряд для первой атаки."
 msgstr ""
 
-#: education/templates/education/edu_lists/list_4.html:120
+#: education/templates/education/edu_lists/list_4.html:127
 msgctxt "education"
 msgid ""
 "Нажмите кнопку «в бой», чтобы начать операцию и потратить первые 100 единиц "
 "энергии."
 msgstr ""
 
-#: education/templates/education/edu_lists/list_4.html:125
+#: education/templates/education/edu_lists/list_4.html:132
 msgctxt "education"
 msgid ""
 "Я вижу, что вы на посту уже вторые сутки… Вот, принесла вам кофе, чтобы "
 "восстановить силы."
 msgstr ""
 
-#: education/templates/education/edu_lists/list_4.html:129
+#: education/templates/education/edu_lists/list_4.html:136
 msgctxt "education"
 msgid ""
 "Не забывайте заботиться о себе! Кнопка «пополнить энергию» поможет вам "
 "получить еще 100 единиц энергии."
 msgstr ""
 
-#: education/templates/education/edu_lists/list_4.html:134
+#: education/templates/education/edu_lists/list_4.html:141
 msgctxt "education"
 msgid ""
 "Левый фланг начинает ослабевать. Предлагаю направить туда дополнительные "
 "силы для поддержки."
 msgstr ""
 
-#: education/templates/education/edu_lists/list_4.html:139
+#: education/templates/education/edu_lists/list_4.html:146
 msgctxt "education"
 msgid "Командир, ситуация выходит из-под контроля. Враг прорывается."
 msgstr ""
 
-#: education/templates/education/edu_lists/list_4.html:143
+#: education/templates/education/edu_lists/list_4.html:150
 msgctxt "education"
 msgid ""
 "Вам нужно немедленно покинуть штаб — здесь скоро будет жарко. Мы будем "
 "прикрывать ваш отход до последнего."
 msgstr ""
 
-#: education/templates/education/edu_lists/list_5.html:67
+#: education/templates/education/edu_lists/list_5.html:68
 msgctxt "education"
 msgid ""
 "К сожалению, несмотря на доблестное сопротивление армии, мятежники прорвали "
 "оборону. Столица пала."
 msgstr ""
 
-#: education/templates/education/edu_lists/list_5.html:71
+#: education/templates/education/edu_lists/list_5.html:72
 msgctxt "education"
 msgid ""
 "Это был последний самолёт, успевший покинуть город. Мы в безопасности, но "
 "впереди – неизвестность."
 msgstr ""
 
-#: education/templates/education/edu_lists/list_5.html:75
+#: education/templates/education/edu_lists/list_5.html:76
 msgctxt "education"
 msgid ""
 "Мы уже подлетаем к месту назначения. Давайте взглянем на карту, чтобы "
 "получить общее представление."
 msgstr ""
 
-#: education/templates/education/edu_lists/list_5.html:80
+#: education/templates/education/edu_lists/list_5.html:81
 #, python-format
 msgctxt "education"
 msgid "Наш борт направляется в регион %(region)s. "
 msgstr ""
 
-#: education/templates/education/edu_lists/list_5.html:80
+#: education/templates/education/edu_lists/list_5.html:81
 #, fuzzy, python-format
 #| msgctxt "party_manage"
 #| msgid "Управление партией"
@@ -3453,40 +3288,40 @@ msgctxt "education"
 msgid "Он принадлежит государству %(state)s."
 msgstr "Керування партією"
 
-#: education/templates/education/edu_lists/list_5.html:80
+#: education/templates/education/edu_lists/list_5.html:81
 #, fuzzy
 #| msgid "независимый регион"
 msgctxt "education"
 msgid "Это независимая территория"
 msgstr "незалежний регіон"
 
-#: education/templates/education/edu_lists/list_5.html:84
+#: education/templates/education/edu_lists/list_5.html:85
 msgctxt "education"
 msgid "К сожалению, у нас здесь нет ни денег, ни имущества, ни связей."
 msgstr ""
 
-#: education/templates/education/edu_lists/list_5.html:88
+#: education/templates/education/edu_lists/list_5.html:89
 msgctxt "education"
 msgid ""
 "Придется начинать всё с нуля. У вас есть решимость и опыт, а всё остальное "
 "мы сумеем добыть вместе."
 msgstr ""
 
-#: education/templates/education/edu_lists/list_6.html:62
+#: education/templates/education/edu_lists/list_6.html:63
 msgctxt "education"
 msgid ""
 "Начинаем с основ: в новом государстве для усиления позиций вам потребуется "
 "налаживать добычу ресурсов и привлекать инвесторов."
 msgstr ""
 
-#: education/templates/education/edu_lists/list_6.html:66
+#: education/templates/education/edu_lists/list_6.html:67
 msgctxt "education"
 msgid ""
 "Наша первая задача — организовать работы на месторождениях нефти и руды. Эти "
 "ресурсы станут опорой вашей политической и экономической силы."
 msgstr ""
 
-#: education/templates/education/edu_lists/list_6.html:70
+#: education/templates/education/edu_lists/list_6.html:71
 msgctxt "education"
 msgid ""
 "Обратите внимание: добычу нефти и руды инвесторы профинансируют с "
@@ -3494,7 +3329,7 @@ msgid ""
 "делать за свой счёт."
 msgstr ""
 
-#: education/templates/education/edu_lists/list_6.html:74
+#: education/templates/education/edu_lists/list_6.html:75
 msgctxt "education"
 msgid ""
 "Добыча полезных ископаемых — ваш первый шаг к укреплению позиций. Как только "
@@ -3502,95 +3337,95 @@ msgid ""
 "возможности для дальнейшего развития."
 msgstr ""
 
-#: education/templates/education/edu_lists/list_6.html:78
+#: education/templates/education/edu_lists/list_6.html:79
 msgctxt "education"
 msgid "Давайте организуем нашу первую добычу сырья."
 msgstr ""
 
-#: education/templates/education/edu_lists/list_6.html:83
+#: education/templates/education/edu_lists/list_6.html:84
 msgctxt "education"
 msgid "Отличная работа! Теперь вы можете претендовать на финансирование."
 msgstr ""
 
-#: education/templates/education/edu_lists/list_6.html:87
+#: education/templates/education/edu_lists/list_6.html:88
 msgctxt "education"
 msgid ""
 "Средства будут аккумулироваться на временном счёте. Вы сможете снять их "
 "целиком или частично — как будет удобнее для управления вашими проектами."
 msgstr ""
 
-#: education/templates/education/edu_lists/list_6.html:91
+#: education/templates/education/edu_lists/list_6.html:92
 msgctxt "education"
 msgid ""
 "Предлагаю забрать часть средств прямо сейчас, чтобы выгодно их инвестировать."
 msgstr ""
 
-#: education/templates/education/edu_lists/list_6.html:96
+#: education/templates/education/edu_lists/list_6.html:97
 msgctxt "education"
 msgid ""
 "Эти средства понадобятся уже скоро. Следите за количеством добытого сырья и "
 "привлечённых инвестиций — это ключ к нашему будущему успеху."
 msgstr ""
 
-#: education/templates/education/edu_lists/list_6.html:100
+#: education/templates/education/edu_lists/list_6.html:101
 msgctxt "education"
 msgid ""
 "Я рекомендую вложить часть капитала в производство товаров, чтобы укрепить "
 "экономическую базу и поддержать ваши политические инициативы."
 msgstr ""
 
-#: education/templates/education/edu_lists/list_7.html:83
+#: education/templates/education/edu_lists/list_7.html:84
 msgctxt "education"
 msgid ""
 "Теперь, когда у нас есть ресурсы и капитал, мы можем переходить к следующему "
 "этапу — производству."
 msgstr ""
 
-#: education/templates/education/edu_lists/list_7.html:87
+#: education/templates/education/edu_lists/list_7.html:88
 msgctxt "education"
 msgid ""
 "Все добытые ресурсы отправляются на ваш личный Склад. Обычно в новом регионе "
 "склад нужно строить с нуля, но в этот раз я всё подготовила заранее."
 msgstr ""
 
-#: education/templates/education/edu_lists/list_7.html:91
+#: education/templates/education/edu_lists/list_7.html:92
 msgctxt "education"
 msgid "На складе, кроме недавно добытого сырья, есть небольшие запасы."
 msgstr ""
 
-#: education/templates/education/edu_lists/list_7.html:95
+#: education/templates/education/edu_lists/list_7.html:96
 msgctxt "education"
 msgid ""
 "Но продавать сырьё прямо сейчас невыгодно — лучше превратить его в "
 "Материалы. Так оно принесет больше прибыли."
 msgstr ""
 
-#: education/templates/education/edu_lists/list_7.html:99
+#: education/templates/education/edu_lists/list_7.html:100
 msgctxt "education"
 msgid "Для производства Стали нам понадобятся Наличные и ресурсы со склада."
 msgstr ""
 
-#: education/templates/education/edu_lists/list_7.html:103
+#: education/templates/education/edu_lists/list_7.html:104
 msgctxt "education"
 msgid ""
 "Наличные тоже готовы и находятся на складе, откуда будут браться остальные "
 "ресурсы для запуска."
 msgstr ""
 
-#: education/templates/education/edu_lists/list_7.html:107
+#: education/templates/education/edu_lists/list_7.html:108
 msgctxt "education"
 msgid ""
 "Перед началом стоит помнить, что любое производство требует энергии. Мы "
 "израсходовали её на добычу, поэтому сейчас пополним её вручную."
 msgstr ""
 
-#: education/templates/education/edu_lists/list_7.html:111
+#: education/templates/education/edu_lists/list_7.html:112
 msgctxt "education"
 msgid ""
 "Энергия со временем восстанавливается сама, но иногда нужно ускорить процесс."
 msgstr ""
 
-#: education/templates/education/edu_lists/list_7.html:116
+#: education/templates/education/edu_lists/list_7.html:117
 msgctxt "education"
 msgid ""
 "Энергия восстановлена, а это значит, что всё готово для запуска "
@@ -3598,7 +3433,7 @@ msgid ""
 "материалы."
 msgstr ""
 
-#: education/templates/education/edu_lists/list_7.html:121
+#: education/templates/education/edu_lists/list_7.html:122
 msgctxt "education"
 msgid ""
 "Отлично! Под вашим руководством ресурсы превращаются в Материалы. Такие "
@@ -3606,60 +3441,54 @@ msgid ""
 "независимости."
 msgstr ""
 
-#: education/templates/education/edu_lists/list_7.html:125
+#: education/templates/education/edu_lists/list_7.html:126
 msgctxt "education"
 msgid ""
 "Самый эффективный подход — разделить обязанности: кто-то добывает сырьё, кто-"
 "то производит материалы и товары, а кто-то продает их и распределяет прибыль."
 msgstr ""
 
-#: education/templates/education/edu_lists/list_7.html:129
+#: education/templates/education/edu_lists/list_7.html:130
 msgctxt "education"
 msgid ""
 "Теперь давайте заглянем на Склад и лично проверим, какие запасы доступны в "
 "этом регионе."
 msgstr ""
 
-#: education/templates/education/edu_lists/list_8.html:71
-#: education/templates/education/edu_lists/list_9.html:71
+#: education/templates/education/edu_lists/list_8.html:72
 msgctxt "education"
 msgid ""
 "Добро пожаловать на ваш склад! Я приобрела его недавно, поэтому пока не "
 "успела полностью ознакомиться с его запасами."
 msgstr ""
 
-#: education/templates/education/edu_lists/list_8.html:75
-#: education/templates/education/edu_lists/list_9.html:75
+#: education/templates/education/edu_lists/list_8.html:76
 msgctxt "education"
 msgid ""
 "Но перед началом производства я оставила $1000 для работы со сталью. Вы уже "
 "потратили $200, так что оставшуюся сумму можно забрать себе на баланс."
 msgstr ""
 
-#: education/templates/education/edu_lists/list_8.html:79
-#: education/templates/education/edu_lists/list_9.html:79
+#: education/templates/education/edu_lists/list_8.html:80
 msgctxt "education"
 msgid ""
 "Просто выберите нужную сумму и переведите её на баланс. Эти средства "
 "пригодятся вам для новых проектов и сделок."
 msgstr ""
 
-#: education/templates/education/edu_lists/list_8.html:84
-#: education/templates/education/edu_lists/list_9.html:84
+#: education/templates/education/edu_lists/list_8.html:85
 msgctxt "education"
 msgid "Теперь давайте взглянем на особое Хранилище."
 msgstr ""
 
-#: education/templates/education/edu_lists/list_8.html:88
-#: education/templates/education/edu_lists/list_9.html:88
+#: education/templates/education/edu_lists/list_8.html:89
 msgctxt "education"
 msgid ""
 "Оно доступно всегда, даже если у вас нет собственного склада в регионе. "
 "Здесь хранятся два вида ресурсов высокой ценности — Энергетики и Wild Pass."
 msgstr ""
 
-#: education/templates/education/edu_lists/list_8.html:92
-#: education/templates/education/edu_lists/list_9.html:92
+#: education/templates/education/edu_lists/list_8.html:93
 #, fuzzy
 #| msgctxt "repost"
 #| msgid "поддержи проект репостом и получай золото!"
@@ -3667,8 +3496,7 @@ msgctxt "education"
 msgid "Энергетики можно приобрести за золото."
 msgstr "підтримай проект репостом і отримай золото!"
 
-#: education/templates/education/edu_lists/list_8.html:98
-#: education/templates/education/edu_lists/list_9.html:98
+#: education/templates/education/edu_lists/list_8.html:99
 msgctxt "education"
 msgid ""
 "Это ценный ресурс: именно благодаря ему вы восстанавливали энергию во время "
@@ -3676,22 +3504,19 @@ msgid ""
 "стабильному развитию."
 msgstr ""
 
-#: education/templates/education/edu_lists/list_8.html:102
-#: education/templates/education/edu_lists/list_9.html:102
+#: education/templates/education/edu_lists/list_8.html:103
 msgctxt "education"
 msgid "А вот Wild Pass — особый товар, который высоко ценится среди политиков."
 msgstr ""
 
-#: education/templates/education/edu_lists/list_8.html:108
-#: education/templates/education/edu_lists/list_9.html:108
+#: education/templates/education/edu_lists/list_8.html:109
 msgctxt "education"
 msgid ""
 "Его можно обменивать на золото или использовать для доступа к различным "
 "премиум-возможностям, которые делают управление более удобным и эффективным."
 msgstr ""
 
-#: education/templates/education/edu_lists/list_8.html:112
-#: education/templates/education/edu_lists/list_9.html:112
+#: education/templates/education/edu_lists/list_8.html:113
 msgctxt "education"
 msgid ""
 "Несмотря на их ценность, эти ресурсы можно добывать, как и обычные. "
@@ -3699,11 +3524,258 @@ msgid ""
 "предпринимателями, и получите всё необходимое для дальнейшего роста."
 msgstr ""
 
+#: education/templates/education/edu_lists/list_9.html:61
+msgctxt "education"
+msgid ""
+"Теперь, когда основы политической и экономической игры вам знакомы, можно "
+"двигаться дальше. Развитие — это ключ к успеху в мире постоянного "
+"противостояния."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_9.html:65
+msgctxt "education"
+msgid ""
+"Чтобы не отставать, вам предстоит совершенствовать свои навыки. Давайте "
+"посмотрим на раздел харатеристик."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_9.html:69
+msgctxt "education"
+msgid ""
+"В вашем распоряжении три основных характеристики — Сила, Интеллект и "
+"Выносливость. Каждая из них определяет, как вы сможете влиять на мир."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_9.html:73
+msgctxt "education"
+msgid ""
+"Начнём с Силы. Она определяет вашу эффективность в бою, усиливая вас с "
+"каждым уровнем."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_9.html:79
+#, python-format
+msgctxt "education"
+msgid ""
+"Так, с ростом уровня сила в бою увеличивается на 1%%. Представьте, на 100 "
+"уровне вы будете вдвое мощнее новичка!"
+msgstr ""
+
+#: education/templates/education/edu_lists/list_9.html:83
+msgctxt "education"
+msgid "Интеллект — выбор для тех, кто ставит во главу успех в экономике."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_9.html:89
+msgctxt "education"
+msgid ""
+"Эта характеристика увеличивает доход от производства товаров и позволяет "
+"успешнее развивать торговлю и логистику. Это путь к крупному капиталу и "
+"управлению целыми промышленными гигантами."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_9.html:93
+msgctxt "education"
+msgid "Выносливость — основа для тех, кто делает ставку на добычу ресурсов."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_9.html:99
+#, python-format
+msgctxt "education"
+msgid ""
+"Каждый её уровень увеличивает объёмы добычи нефти и руды на 1%%. С высокой "
+"выносливостью ваша добыча принесёт немалый доход."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_9.html:103
+msgctxt "education"
+msgid ""
+"Каждая из трёх Характеристик повышает ваше финансирование. И чем выше "
+"уровень Характеристики - тем больше."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_9.html:107
+msgctxt "education"
+msgid ""
+"Есть ещё и особые Навыки, которые откроются по мере развития. Они дают "
+"уникальные преимущества и могут серьёзно расширить ваши возможности."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_9.html:111
+msgctxt "education"
+msgid ""
+"Их стоит прокачивать, как только у вас появится шанс. А теперь выберите, "
+"какую характеристику хотите развить в первую очередь."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_9.html:116
+msgctxt "education"
+msgid "Давайте сделаем вклад в ваше будущее прямо сейчас!"
+msgstr ""
+
+#: education/templates/education/edu_lists/list_9.html:121
+msgctxt "education"
+msgid ""
+"Ну вот, я передала вам все ключевые знания для старта с чистого листа. Мы "
+"проделали отличную работу, и я благодарю вас за плодотворное сотрудничество!"
+msgstr ""
+
+#: education/templates/education/edu_lists/list_9.html:125
+msgctxt "education"
+msgid "Советую заглянуть в общий чат и статьи."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_9.html:129
+msgctxt "education"
+msgid ""
+"Там можно обозначить себя — присоединиться к сильным политическим группам "
+"региона или заявить о создании собственной партии. Как поступить — решать "
+"вам."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_9.html:133
+msgctxt "education"
+msgid ""
+"Удачи вам, я уверена, что у вас всё получится! Мы обязательно ещё встретимся."
+msgstr ""
+
+#: education/templates/education/edu_overview.html:61
+#: player/templates/player/redesign/overview.html:91
+#, fuzzy
+#| msgid "обзор"
+msgctxt "overview"
+msgid "обзор"
+msgstr "огляд"
+
+#: education/templates/education/edu_overview.html:82
+#: player/templates/player/redesign/overview.html:112
+#, fuzzy
+#| msgid "чат"
+msgctxt "overview"
+msgid "чат"
+msgstr "чат"
+
+#: education/templates/education/edu_overview.html:93
+#: player/templates/player/redesign/overview.html:123
+#, fuzzy
+#| msgid "мир"
+msgctxt "overview"
+msgid "мир"
+msgstr "світ"
+
+#: education/templates/education/edu_overview.html:222
+#: player/templates/player/redesign/overview.html:294
+#, fuzzy
+#| msgid "войн нет"
+msgctxt "overview"
+msgid "войн нет"
+msgstr "війн нема"
+
+#: education/templates/education/edu_overview.html:241
+#: player/templates/player/redesign/overview.html:570
+msgctxt "overview"
+msgid "сила"
+msgstr "сила"
+
+#: education/templates/education/edu_overview.html:246
+#: player/templates/player/redesign/overview.html:575
+msgctxt "overview"
+msgid "инт"
+msgstr "інт"
+
+#: education/templates/education/edu_overview.html:251
+#: player/templates/player/redesign/overview.html:580
+msgctxt "overview"
+msgid "вын"
+msgstr "витр"
+
+#: education/templates/education/edu_overview.html:274
+#: education/templates/education/edu_skills.html:22
+#: player/templates/player/redesign/lists/skill_top.html:26
+#: player/templates/player/redesign/overview_skills.html:22
+#: skill/models/biochemistry.py:20 skill/models/coherence.py:21
+#: skill/models/excavation.py:15 skill/models/finance.py:15
+#: skill/models/scouting.py:21 skill/models/trophy_engineering.py:20
+#, fuzzy
+#| msgid "Сила"
+msgctxt "skills"
+msgid "Сила"
+msgstr "Сила"
+
+#: education/templates/education/edu_overview.html:300
+#: education/templates/education/edu_overview.html:336
+#: education/templates/education/edu_overview.html:373
+#: education/templates/education/edu_skills.html:51
+#: education/templates/education/edu_skills.html:91
+#: education/templates/education/edu_skills.html:133
+#: player/templates/player/redesign/overview_skills.html:61
+#: player/templates/player/redesign/overview_skills.html:127
+#: player/templates/player/redesign/overview_skills.html:189
+#: skill/templates/redesign/skill/skill_list.html:84
+#, fuzzy
+#| msgid "изучить"
+msgctxt "skills"
+msgid "изучить"
+msgstr "вивчити"
+
+#: education/templates/education/edu_overview.html:310
+#: education/templates/education/edu_skills.html:62
+#: player/templates/player/redesign/lists/skill_top.html:41
+#: player/templates/player/redesign/overview_skills.html:88
+#: skill/models/biochemistry.py:15 skill/models/coherence.py:26
+#: skill/models/excavation.py:20 skill/models/finance.py:20
+#: skill/models/fracturing.py:15 skill/models/military_production.py:15
+#: skill/models/scouting.py:26 skill/models/standardization.py:15
+#: skill/models/trophy_engineering.py:15
+#, fuzzy
+#| msgid "Интеллект"
+msgctxt "skills"
+msgid "Интеллект"
+msgstr "Інтелект"
+
+#: education/templates/education/edu_overview.html:347
+#: education/templates/education/edu_skills.html:102
+#: player/templates/player/redesign/lists/skill_top.html:56
+#: player/templates/player/redesign/overview_skills.html:150
+#: skill/models/biochemistry.py:25 skill/models/excavation.py:25
+#: skill/models/finance.py:25 skill/models/fracturing.py:20
+#: skill/models/scouting.py:31 skill/models/trophy_engineering.py:25
+#, fuzzy
+#| msgid "Выносливость"
+msgctxt "skills"
+msgid "Выносливость"
+msgstr "Витривалість"
+
+#: education/templates/education/edu_overview.html:388
+#: education/templates/education/edu_skills.html:149
+#: player/templates/player/redesign/overview_skills.html:226
+msgctxt "skills"
+msgid "дерево навыков"
+msgstr "дерево навичок"
+
 #: education/templates/education/edu_overview.html:450
-#: player/templates/player/redesign/overview.html:698
+#: player/templates/player/redesign/overview.html:603
 msgctxt "overview"
 msgid "Выборы"
 msgstr "Вибори"
+
+#: education/templates/education/edu_overview.html:455
+#: player/templates/player/redesign/overview.html:608
+msgctxt "overview"
+msgid "партии"
+msgstr "партії"
+
+#: education/templates/education/edu_overview.html:455
+#: player/templates/player/redesign/overview.html:608
+msgctxt "overview"
+msgid "государства"
+msgstr "держави"
+
+#: education/templates/education/edu_overview.html:498
+#: player/templates/player/redesign/overview.html:652
+msgctxt "overview"
+msgid "парламент"
+msgstr "парламент"
 
 #: education/templates/education/edu_overview.html:605
 #, fuzzy
@@ -3798,6 +3870,51 @@ msgctxt "education"
 msgid "протестующие"
 msgstr ""
 
+#: education/templates/education/edu_skills.html:105
+#: education/templates/education/edu_skills.html:163
+#: player/templates/player/redesign/overview_skills.html:25
+#: player/templates/player/redesign/overview_skills.html:91
+#: player/templates/player/redesign/overview_skills.html:153
+#: player/templates/player/redesign/overview_skills.html:240
+#, fuzzy
+#| msgid "Завершение"
+msgctxt "skills"
+msgid "Завершение"
+msgstr "Завершення"
+
+#: education/templates/education/edu_skills.html:154
+#: player/templates/player/redesign/overview_skills.html:231
+#, fuzzy
+#| msgctxt "skill_cancel"
+#| msgid "Отмена изучения навыка"
+msgctxt "skills"
+msgid "Отмена изучения навыка"
+msgstr "Скасування вивчення навички"
+
+#: education/templates/education/edu_skills.html:155
+#: player/templates/player/redesign/overview_skills.html:232
+#, fuzzy
+#| msgctxt "skill_cancel"
+#| msgid "Изучение навыка будет отменено. Продолжить?"
+msgctxt "skills"
+msgid "Изучение навыка будет отменено. Продолжить?"
+msgstr "Вивчення навички буде скасовано. Продовжити?"
+
+#: education/templates/education/edu_skills.html:156
+#: player/templates/player/redesign/overview_skills.html:233
+#, fuzzy
+#| msgctxt "has_party"
+#| msgid "Продолжить"
+msgctxt "skills"
+msgid "Продолжить"
+msgstr "Продовжити"
+
+#: education/templates/education/edu_skills.html:157
+#: player/templates/player/redesign/overview_skills.html:234
+msgctxt "skills"
+msgid "Назад"
+msgstr ""
+
 #: education/templates/education/edu_war.html:30
 #, fuzzy
 #| msgctxt "assets"
@@ -3855,7 +3972,7 @@ msgctxt "education"
 msgid "БМП"
 msgstr "БМП"
 
-#: education/views/edu_election.py:19
+#: education/views/edu_election.py:23
 #, fuzzy
 #| msgctxt "overview"
 #| msgid "Выборы"
@@ -3863,15 +3980,7 @@ msgctxt "education"
 msgid "Выборы"
 msgstr "Вибори"
 
-#: education/views/edu_final.py:91 education/views/edu_overview.py:31
-#: player/views/overview.py:387
-#, fuzzy
-#| msgid "Обзор"
-msgctxt "overview"
-msgid "Обзор"
-msgstr "Огляд"
-
-#: education/views/edu_gov.py:55
+#: education/views/edu_gov.py:59
 #, fuzzy
 #| msgctxt "overview"
 #| msgid "парламент"
@@ -3879,27 +3988,27 @@ msgctxt "education"
 msgid "Парламент"
 msgstr "парламент"
 
-#: education/views/edu_map.py:64
+#: education/views/edu_map.py:68
 #, fuzzy
 #| msgid "Карта"
 msgctxt "education"
 msgid "Карта"
 msgstr "Мапа"
 
-#: education/views/edu_mining.py:20
+#: education/views/edu_mining.py:24
 #, fuzzy
 #| msgid "Добыча"
 msgctxt "education"
 msgid "Добыча"
 msgstr "Видобуток"
 
-#: education/views/edu_overview.py:16 education/views/edu_overview.py:20
+#: education/views/edu_overview.py:40 education/views/edu_overview.py:44
 #: player/views/overview.py:378 player/views/overview.py:381
 msgctxt "education"
 msgid "Анна"
 msgstr ""
 
-#: education/views/edu_overview.py:21 player/views/overview.py:381
+#: education/views/edu_overview.py:45 player/views/overview.py:381
 #, fuzzy
 #| msgctxt "goods"
 #| msgid "Мины"
@@ -3907,7 +4016,7 @@ msgctxt "education"
 msgid "Лин"
 msgstr "Міни"
 
-#: education/views/edu_overview.py:22 player/views/overview.py:381
+#: education/views/edu_overview.py:46 player/views/overview.py:381
 #, fuzzy
 #| msgctxt "regions_list"
 #| msgid "Бавария"
@@ -3915,17 +4024,24 @@ msgctxt "education"
 msgid "Мария"
 msgstr "Баварія"
 
-#: education/views/edu_overview.py:23 player/views/overview.py:381
+#: education/views/edu_overview.py:47 player/views/overview.py:381
 msgctxt "education"
 msgid "София"
 msgstr ""
 
-#: education/views/edu_overview.py:24 player/views/overview.py:381
+#: education/views/edu_overview.py:48 player/views/overview.py:381
 msgctxt "education"
 msgid "Ольга"
 msgstr ""
 
-#: education/views/edu_produce.py:20
+#: education/views/edu_overview.py:55 player/views/overview.py:387
+#, fuzzy
+#| msgid "Обзор"
+msgctxt "overview"
+msgid "Обзор"
+msgstr "Огляд"
+
+#: education/views/edu_produce.py:24
 #, fuzzy
 #| msgctxt "factory"
 #| msgid "Производство"
@@ -3933,7 +4049,7 @@ msgctxt "education"
 msgid "Производство"
 msgstr "Виробництво"
 
-#: education/views/edu_reward.py:77
+#: education/views/edu_reward.py:101
 #, fuzzy
 #| msgctxt "mining"
 #| msgid "Неизвестный тип ресурса"
@@ -3941,8 +4057,9 @@ msgctxt "education"
 msgid "Неизвестный ключ награды"
 msgstr "Невідомий тип ресурсу"
 
-#: education/views/edu_reward.py:78 education/views/edu_reward.py:89
-#: education/views/edu_reward.py:98 education/views/edu_reward.py:127
+#: education/views/edu_reward.py:102 education/views/edu_reward.py:113
+#: education/views/edu_reward.py:126 education/views/edu_reward.py:135
+#: education/views/edu_reward.py:173
 #, fuzzy
 #| msgctxt "mining"
 #| msgid "Ошибка получения финансирования"
@@ -3950,7 +4067,8 @@ msgctxt "education"
 msgid "Ошибка получения награды"
 msgstr "Помилка отримання фінансування"
 
-#: education/views/edu_reward.py:88 education/views/edu_reward.py:97
+#: education/views/edu_reward.py:112 education/views/edu_reward.py:125
+#: education/views/edu_reward.py:134
 #, fuzzy
 #| msgctxt "factory"
 #| msgid "Указанный Склад вам не принадлежит"
@@ -3958,7 +4076,7 @@ msgctxt "education"
 msgid "Данная награда уже забрана"
 msgstr "Вказаний Склад вам не належить"
 
-#: education/views/edu_storage.py:57
+#: education/views/edu_storage.py:61
 #, fuzzy
 #| msgctxt "storage"
 #| msgid "Склад"
@@ -3966,7 +4084,7 @@ msgctxt "education"
 msgid "Склад"
 msgstr "Склад"
 
-#: education/views/edu_war.py:55
+#: education/views/edu_war.py:59
 #, fuzzy
 #| msgctxt "wallet"
 #| msgid "Описание"
@@ -3975,7 +4093,7 @@ msgid "Восстание"
 msgstr "Опис"
 
 #: event/templates/event/anniversary.html:218
-#: player/templates/player/redesign/overview.html:614
+#: player/templates/player/redesign/overview.html:515
 msgctxt "overview"
 msgid "Годовщина сервера!"
 msgstr ""
@@ -6712,159 +6830,45 @@ msgctxt "new_player"
 msgid "Часовой пояс"
 msgstr "Часовий пояс"
 
-#: player/templates/player/redesign/overview.html:93
-#, python-format
-msgctxt "education"
-msgid ""
-"Здравствуйте! Меня зовут %(assistant)s, я ваш ассистент. Добро пожаловать в "
-"мир Wild Politics!"
-msgstr ""
-
-#: player/templates/player/redesign/overview.html:96
-msgctxt "education"
-msgid "Wild Politics - это экономико-политический симулятор."
-msgstr ""
-
-#: player/templates/player/redesign/overview.html:99
-msgctxt "education"
-msgid ""
-"Множество игроков, объединённых общими целями, развивают свои государства и "
-"расширяют их влияние."
-msgstr ""
-
-#: player/templates/player/redesign/overview.html:102
-msgctxt "education"
-msgid "Создают крупные партии, чтобы повести их за собой, к вершинам власти."
-msgstr ""
-
-#: player/templates/player/redesign/overview.html:105
-msgctxt "education"
-msgid ""
-"Ведут крупномасштабные войны и заключают союзы, объединяющие целые "
-"континенты."
-msgstr ""
-
-#: player/templates/player/redesign/overview.html:108
-msgctxt "education"
-msgid ""
-"Создают бизнесы и корпорации. Основывают торговые сети. Распространяют своё "
-"влияние при помощи популярных СМИ."
-msgstr ""
-
-#: player/templates/player/redesign/overview.html:111
-msgctxt "education"
-msgid ""
-"Вы обязательно добьётесь всего этого. Но для начала, позвольте познакомить "
-"Вас с текущим положением дел."
-msgstr ""
-
-#: player/templates/player/redesign/overview.html:117
-#, python-format
-msgctxt "education"
-msgid ""
-"Сейчас Вы находитесь в государстве %(state)s, которому принадлежит регион "
-"%(region)s. Здесь представлена различная информация о регионе нашего "
-"местонахождения, а также мире в целом"
-msgstr ""
-
-#: player/templates/player/redesign/overview.html:119
-msgctxt "education"
-msgid ""
-"Сейчас Вы находитесь в независимом регионе. Здесь представлена различная "
-"информация о регионе нашего местонахождения, а также мире в целом"
-msgstr ""
-
-#: player/templates/player/redesign/overview.html:125
-msgctxt "education"
-msgid ""
-"В любом регионе государства можно основать партию, либо присоединиться к "
-"одной из уже существующих. Некоторые из них, по итогам выборов, проходят в "
-"Парламенты своих стран. Вы обязательно подберёте партию по душе - но чуть "
-"позже."
-msgstr ""
-
-#: player/templates/player/redesign/overview.html:128
-msgctxt "education"
-msgid ""
-"А сейчас обратите внимание на ваши характеристики. Их рекомендуется "
-"развивать постоянно, при наличии свободных средств."
-msgstr ""
-
-#: player/templates/player/redesign/overview.html:132
-msgctxt "education"
-msgid "Давайте сделаем вклад в ваше будущее прямо сейчас!"
-msgstr ""
-
-#: player/templates/player/redesign/overview.html:136
-msgctxt "education"
-msgid ""
-"Отлично! Это маленький шаг для Вас, но гигантский скачок для Вашей карьеры!"
-msgstr ""
-
-#: player/templates/player/redesign/overview.html:139
-#: region/templates/region/redesign/map.html:947
-#: region/templates/region/redesign/mining.html:308
-#: region/templates/region/redesign/mining.html:327
-#: storage/templates/storage/redesign/storage.html:513
+#: player/templates/player/redesign/overview.html:179
 #, fuzzy
-#| msgid "Запасы золота"
-msgctxt "education"
-msgid "Награда: 200 золота"
-msgstr "Запаси золота"
+#| msgid "независимый регион"
+msgctxt "overview"
+msgid "независимый регион"
+msgstr "незалежний регіон"
 
-#: player/templates/player/redesign/overview.html:143
-msgctxt "education"
-msgid ""
-"Общение - важная часть Вашей работы. Вам ещё предстоит множество раз "
-"договариваться и строить совместные планы, а также плести заговоры и рушить "
-"чужие."
-msgstr ""
-
-#: player/templates/player/redesign/overview.html:148
-msgctxt "education"
-msgid ""
-"При желании, загляните сюда позже, и поздоровайтесь с коллегами. Обратите "
-"внимание, что люди вашего социального уровня не приемлют грубостей и "
-"оскорблений. Помните, вежливость - лучшее оружие политика."
-msgstr ""
-
-#: player/templates/player/redesign/overview.html:151
-msgctxt "education"
-msgid ""
-"Мне только что поступил звонок от Ваших инвесторов. Они ожидают от Вас "
-"конкретных действий, и готовы за них платить. Давайте заработаем сегодня "
-"много денег!"
-msgstr ""
-
-#: player/templates/player/redesign/overview.html:421
+#: player/templates/player/redesign/overview.html:322
 msgctxt "overview"
 msgid "С новым годом!"
 msgstr "З новим роком!"
 
-#: player/templates/player/redesign/overview.html:577
+#: player/templates/player/redesign/overview.html:478
 msgctxt "overview"
 msgid "Летний фестиваль"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:636
+#: player/templates/player/redesign/overview.html:537
 msgctxt "overview"
 msgid "Зимний фестиваль"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:695
+#: player/templates/player/redesign/overview.html:600
 msgctxt "overview"
 msgid "Выборы лидера"
 msgstr "Вибори лідера"
 
-#: player/templates/player/redesign/overview_skills.html:25
-#: player/templates/player/redesign/overview_skills.html:91
-#: player/templates/player/redesign/overview_skills.html:153
-#: player/templates/player/redesign/overview_skills.html:240
+#: player/templates/player/redesign/overview.html:608
+msgctxt "overview"
+msgid "региона"
+msgstr "регіона"
+
+#: player/templates/player/redesign/overview.html:645
+#: player/templates/player/redesign/overview.html:690
 #, fuzzy
-#| msgid "Завершение"
-msgctxt "skills"
-msgid "Завершение"
-msgstr "Завершення"
+#| msgid "партий нет"
+msgctxt "overview"
+msgid "партий нет"
+msgstr "партій нема"
 
 #: player/templates/player/redesign/overview_skills.html:56
 #: player/templates/player/redesign/overview_skills.html:122
@@ -6872,35 +6876,6 @@ msgstr "Завершення"
 msgctxt "skills"
 msgid "в очередь"
 msgstr "в чергу"
-
-#: player/templates/player/redesign/overview_skills.html:231
-#, fuzzy
-#| msgctxt "skill_cancel"
-#| msgid "Отмена изучения навыка"
-msgctxt "skills"
-msgid "Отмена изучения навыка"
-msgstr "Скасування вивчення навички"
-
-#: player/templates/player/redesign/overview_skills.html:232
-#, fuzzy
-#| msgctxt "skill_cancel"
-#| msgid "Изучение навыка будет отменено. Продолжить?"
-msgctxt "skills"
-msgid "Изучение навыка будет отменено. Продолжить?"
-msgstr "Вивчення навички буде скасовано. Продовжити?"
-
-#: player/templates/player/redesign/overview_skills.html:233
-#, fuzzy
-#| msgctxt "has_party"
-#| msgid "Продолжить"
-msgctxt "skills"
-msgid "Продолжить"
-msgstr "Продовжити"
-
-#: player/templates/player/redesign/overview_skills.html:234
-msgctxt "skills"
-msgid "Назад"
-msgstr ""
 
 #: player/templates/player/redesign/player_help.html:6
 msgctxt "screen_help"
@@ -7874,7 +7849,7 @@ msgctxt "lists"
 msgid "Мировое население"
 msgstr "Світове населення"
 
-#: player/views/new_player.py:97
+#: player/views/new_player.py:98
 msgctxt "start_messages"
 msgid ""
 "Добро пожаловать в Wild Politics! Вы всегда можете обратиться ко мне прямо в "
@@ -7882,14 +7857,14 @@ msgid ""
 "Я открыт к любым вопросам и пожеланиям."
 msgstr ""
 
-#: player/views/new_player.py:99
+#: player/views/new_player.py:100
 msgctxt "start_messages"
 msgid ""
 "Если найдётся время, расскажите, пожалуйста, о своих впечатлениях от игры - "
 "мне это важно. Приятной игры!"
 msgstr ""
 
-#: player/views/new_player.py:121
+#: player/views/new_player.py:122
 #, python-format
 msgctxt "start_messages"
 msgid ""
@@ -7898,21 +7873,21 @@ msgid ""
 "ответив на него"
 msgstr ""
 
-#: player/views/new_player.py:181
+#: player/views/new_player.py:182
 #, fuzzy
 #| msgid ": попробуйте создать персонажа, не загружая изображение"
 msgctxt "new_player"
 msgid "попробуйте создать персонажа, не загружая изображение"
 msgstr ": спробуйте створити персонажа, не завантажуючи зображення"
 
-#: player/views/new_player.py:183 player/views/new_player.py:196
+#: player/views/new_player.py:184 player/views/new_player.py:197
 #, fuzzy
 #| msgid "Новый персонаж"
 msgctxt "new_player"
 msgid "Новый персонаж"
 msgstr "Новый персонаж"
 
-#: player/views/new_player.py:195
+#: player/views/new_player.py:196
 #, fuzzy
 #| msgid "Ошибка в форме профиля"
 msgctxt "new_player"
@@ -8216,6 +8191,16 @@ msgid ""
 "потребуется лишь оплатить затраты на топливо, подождать совсем немного - и "
 "вот вы уже на другом конце мира!"
 msgstr ""
+
+#: region/templates/region/redesign/map.html:947
+#: region/templates/region/redesign/mining.html:308
+#: region/templates/region/redesign/mining.html:327
+#: storage/templates/storage/redesign/storage.html:513
+#, fuzzy
+#| msgid "Запасы золота"
+msgctxt "education"
+msgid "Награда: 200 золота"
+msgstr "Запаси золота"
 
 #: region/templates/region/redesign/map.html:951
 msgctxt "education"
