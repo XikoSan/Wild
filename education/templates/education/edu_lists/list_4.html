@@ -24,6 +24,7 @@
       }
 
     var assist_img = this.getFromLS() ?? "/static/redesign/img/Ann.png";
+    document.getElementsByClassName('edu__img')[0].src = assist_img;
 
     function claim_reward(id){
       var data = "&csrfmiddlewaretoken=" + csrftoken + "&edu_id=" + id;
@@ -36,7 +37,7 @@
           success: function(result){
             if (id == 'edu_all'){
                   if (result.response == 'ok'){
-                      actualize();
+                      location.reload();
                   }
             }
           }
@@ -44,6 +45,12 @@
     }
 
     function edu_pragma(page) {
+        if (page == 1){
+            const imgElement = document.querySelector('.edu__img');
+            if (imgElement) {
+                imgElement.src = this.getFromLS() ?? "/static/redesign/img/Ann.png";
+            }
+        }
         if (page == 2){
             const imgElement = document.querySelector('.edu__img');
             if (imgElement) {
@@ -85,7 +92,7 @@
             send_edu_enemies_2();
         }
         if (page == 16){
-            window.location.href = "/edu_4";
+            window.location.href = "/edu_5";
         }
     }
 

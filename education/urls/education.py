@@ -5,13 +5,16 @@ from education.views.edu_election import edu_election
 from education.views.edu_gov import edu_gov
 from education.views.edu_map import edu_map
 from education.views.edu_mining import edu_mining
-from education.views.edu_overview import edu_overview
+from education.views.edu_overview import edu_overview, check_and_redirect, reset_education
 from education.views.edu_produce import edu_produce
 from education.views.edu_reward import edu_reward
-from education.views.edu_war import edu_war
 from education.views.edu_storage import edu_storage
+from education.views.edu_war import edu_war
 
 urlpatterns = [
+
+    # получение наград за обучение
+    url(r'^reset_education/$', reset_education, name='reset_education'),
 
     # получение наград за обучение
     url(r'^edu_reward/$', edu_reward, name='edu_reward'),
@@ -39,5 +42,8 @@ urlpatterns = [
 
     # учебная страница добычи
     url(r'^edu_8$', edu_storage, name='edu_storage'),
+
+    # настоящая страница Обзора - финал
+    url(r'^edu_9$', check_and_redirect, name='edu_final'),
 
 ]

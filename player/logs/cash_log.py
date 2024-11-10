@@ -31,6 +31,8 @@ class CashLog(Log):
 
         # обучение
         ('financing', 'Награда за получение Финансирования'),
+        # обучение
+        ('edu_skill', 'обучение: Изучение характеристики'),
     )
     activity_txt = models.CharField(
         max_length=10,

@@ -51,6 +51,10 @@ def edu_map(request):
     player = Player.get_instance(account=request.user)
     shapes_dict = {}
 
+    if player.educated:  # Замените `условие` на вашу проверку
+        from django.shortcuts import redirect
+        return redirect('overview')  # Перенаправляет на другую страницу при невыполнении условия
+
     regions = Region.with_off.all()
     shapes = MapShape.objects.all()
 

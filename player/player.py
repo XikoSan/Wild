@@ -141,7 +141,7 @@ class Player(models.Model):
     # запасы денег
     cash = models.BigIntegerField(default=10000, verbose_name='Наличные')
     # запасы золота
-    gold = models.BigIntegerField(default=100, verbose_name='Золото')
+    gold = models.BigIntegerField(default=1000, verbose_name='Золото')
     # запасы золота, которые будут выданы после релиза
     prize_gold = models.BigIntegerField(default=0, verbose_name='Релизное золото')
     # энергетик

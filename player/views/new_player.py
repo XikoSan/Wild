@@ -82,21 +82,22 @@ def player_create(request, form):
     chat = Chat.objects.create()
     chat_id = chat.pk
 
-    admin = Player.objects.only('id').get(pk=1)
+    if Player.objects.filter(pk=1).exists():
+        admin = Player.objects.only('id').get(pk=1)
 
-    member, created = ChatMembers.objects.get_or_create(
-        chat=chat,
-        player=admin,
-    )
-    member, created = ChatMembers.objects.get_or_create(
-        chat=chat,
-        player=character,
-    )
+        member, created = ChatMembers.objects.get_or_create(
+            chat=chat,
+            player=admin,
+        )
+        member, created = ChatMembers.objects.get_or_create(
+            chat=chat,
+            player=character,
+        )
 
-    _append_message(chat_id=chat_id, author=admin, text=pgettext('start_messages',
-                                                                 'Добро пожаловать в Wild Politics! Вы всегда можете обратиться ко мне прямо в этом чате - либо связаться со мной через группу игры ВК или чат в Телеграмм. Я открыт к любым вопросам и пожеланиям.'))
-    _append_message(chat_id=chat_id, author=admin, text=pgettext('start_messages',
-                                                                 'Если найдётся время, расскажите, пожалуйста, о своих впечатлениях от игры - мне это важно. Приятной игры!'))
+        _append_message(chat_id=chat_id, author=admin, text=pgettext('start_messages',
+                                                                     'Добро пожаловать в Wild Politics! Вы всегда можете обратиться ко мне прямо в этом чате - либо связаться со мной через группу игры ВК или чат в Телеграмм. Я открыт к любым вопросам и пожеланиям.'))
+        _append_message(chat_id=chat_id, author=admin, text=pgettext('start_messages',
+                                                                     'Если найдётся время, расскажите, пожалуйста, о своих впечатлениях от игры - мне это важно. Приятной игры!'))
 
     if character.region.state:
         if President.objects.filter(state=character.region.state).exists():
@@ -147,7 +148,7 @@ def new_player(request):
     # если у игрока есть хоть один персонаж:
     if Player.objects.filter(account=request.user).exists():
         # возврат в главное меню
-        return redirect('overview')
+        return redirect('edu_overview')
 
     else:
         # Если форма нового персонажа возвращена заполненной

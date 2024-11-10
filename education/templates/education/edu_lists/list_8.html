@@ -25,6 +25,7 @@
       }
 
     var assist_img = this.getFromLS() ?? "/static/redesign/img/Ann.png";
+    document.getElementsByClassName('edu__img')[0].src = assist_img;
 
     function claim_reward(id){
       var data = "&csrfmiddlewaretoken=" + csrftoken + "&edu_id=" + id;
@@ -37,7 +38,7 @@
           success: function(result){
             if (id == 'edu_all'){
                   if (result.response == 'ok'){
-                      actualize();
+                      location.reload();
                   }
             }
           }
@@ -56,7 +57,7 @@
             }
         }
         if (page == 16){
-            window.location.href = "/edu_8";
+            window.location.href = "/edu_9";
         }
     }
 

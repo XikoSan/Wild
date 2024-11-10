@@ -48,6 +48,10 @@ from django.utils.translation import pgettext
 def edu_war(request):
     player = Player.get_instance(account=request.user)
 
+    if player.educated:  # Замените `условие` на вашу проверку
+        from django.shortcuts import redirect
+        return redirect('overview')  # Перенаправляет на другую страницу при невыполнении условия
+
     page = 'education/edu_war.html'
 
     # отправляем в форму

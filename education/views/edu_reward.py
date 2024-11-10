@@ -22,6 +22,10 @@ def edu_skip(player, reward_dict):
             if CashLog.objects.filter(player=player, activity_txt=edu_id).exists():
                 continue
 
+        if reward_line['type'] == 'skill':
+            if CashLog.objects.filter(player=player, activity_txt='edu_skill').exists():
+                continue
+
         if reward_line['type'] == 'gold':
             if GoldLog.objects.filter(player=player, activity_txt=edu_id).exists():
                 continue
@@ -38,6 +42,13 @@ def edu_skip(player, reward_dict):
 
             gold_log = GoldLog(player=player, gold=reward_sum, activity_txt=edu_id)
             gold_log.save()
+
+        if reward_line['type'] == 'skill':
+
+            if getattr(player, edu_id) == 1:
+                setattr(player, edu_id, getattr(player, edu_id)+1)
+
+            CashLog.create(player=player, cash=-1, activity_txt='edu_skill')
 
     player.educated = True
     player.save()
@@ -63,6 +74,19 @@ def edu_reward(request):
             },
             'cash': {
                 'type': 'cash',
+                'value': 800,
+            },
+
+            'power': {
+                'type': 'skill',
+                'value': 800,
+            },
+            'knowledge': {
+                'type': 'skill',
+                'value': 800,
+            },
+            'endurance': {
+                'type': 'skill',
                 'value': 800,
             },
         }
@@ -91,6 +115,19 @@ def edu_reward(request):
                 }
                 return JResponse(data)
 
+        if reward_line['type'] == 'skill':
+            if CashLog.objects.filter(player=player, activity_txt='edu_skill').exists():
+
+                player.educated = True
+                player.save()
+
+                data = {
+                    'response': pgettext('education', 'Данная награда уже забрана'),
+                    'header': pgettext('education', 'Ошибка получения награды'),
+                    'grey_btn': pgettext('core', 'Закрыть'),
+                }
+                return JResponse(data)
+
         if reward_line['type'] == 'gold':
             if GoldLog.objects.filter(player=player, activity_txt=edu_id).exists():
                 data = {
@@ -112,6 +149,15 @@ def edu_reward(request):
 
             gold_log = GoldLog(player=player, gold=reward_sum, activity_txt=edu_id)
             gold_log.save()
+
+        if reward_line['type'] == 'skill':
+
+            if getattr(player, edu_id) == 1:
+                setattr(player, edu_id, getattr(player, edu_id)+1)
+
+            player.educated = True
+
+            CashLog.create(player=player, cash=-1, activity_txt='edu_skill')
 
         player.save()
 

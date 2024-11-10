@@ -50,6 +50,10 @@ from wild_politics.settings import TIME_ZONE
 def edu_storage(request):
     player = Player.get_instance(account=request.user)
 
+    if player.educated:  # Замените `условие` на вашу проверку
+        from django.shortcuts import redirect
+        return redirect('overview')  # Перенаправляет на другую страницу при невыполнении условия
+
     page = 'education/edu_storage.html'
 
     # отправляем в форму

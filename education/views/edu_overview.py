@@ -1,10 +1,31 @@
 import random
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect
 from django.shortcuts import render
 from django.utils.translation import pgettext
 
 from player.decorators.player import check_player
 from player.player import Player
+from player.views.overview import overview
+
+
+def reset_education(request):
+    player = Player.get_instance(account=request.user)
+    # Ваша проверка условия
+    player.educated = False
+    player.save()
+
+    return redirect('edu_overview')
+
+
+def check_and_redirect(request):
+    player = Player.get_instance(account=request.user)
+    # Ваша проверка условия
+    if player.educated:  # Замените `условие` на вашу проверку
+        return redirect('overview')  # Перенаправляет на другую страницу при невыполнении условия
+
+    # Если условие выполнено, вызываем 'overview'
+    return overview(request)
 
 
 # главная страница
@@ -12,6 +33,9 @@ from player.player import Player
 @check_player
 def edu_overview(request):
     player = Player.get_instance(account=request.user)
+
+    if player.educated:  # Замените `условие` на вашу проверку
+        return redirect('overview')  # Перенаправляет на другую страницу при невыполнении условия
 
     assistant_name = ('Ann', pgettext('education', 'Анна'))
 

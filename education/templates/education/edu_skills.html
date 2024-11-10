@@ -1,0 +1,205 @@
+{% load get_sum %}
+{% load get_sub %}
+{% load get_mul %}
+{% load get_mul_cash %}
+{% load get_int_mul %}
+{% load get_pow %}
+{% load l10n %}{% load i18n %}
+{% load tz %}
+{% load static %}
+{% load get_hh_mm_ss %}
+<script src='{% static "js/edu_skills.js" %}'></script>
+<!--верхняя часть стат-->
+<div class="overview__love-stat-top">
+<!--Кнопка закрытия вкладки-->
+<button class="overview__love-stat-close" onclick="openPartiesTab()">
+  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M1 1L31 31M31 1L1.53571 30.4643" stroke="white"/>
+  </svg>
+</button>
+<!--сила-->
+<div class="overview__love-stat-content active">
+  <h2 class="gui_help" data-helpid="overview power_skill block">{% trans 'Сила' context "skills" %}</h2>
+  <div style="background-color: tomato;"></div>
+
+  <div class="overview__love-stat-price-time">
+    <p class="overview__love-p-with-svg">
+      <svg width="59" height="61" viewBox="0 0 59 61" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M55 4.5H32L1 35.5L25 59.5L55 29.5V4.5ZM55 4.5L58.5 1M55 4.5L44.5 15" stroke="var(--c10two)"/>
+        <circle cx="45.5" cy="14" r="4.5" stroke="var(--c10two)"/>
+        <path d="M37.65 31.2018C38.4671 30.1652 38.7414 29.0006 38.4732 27.708C38.2049 26.4154 37.5037 25.202 36.3696 24.0679C35.5404 23.2387 34.6806 22.6473 33.7904 22.2936C32.9063 21.9461 32.0557 21.8333 31.2387 21.9552C30.4278 22.0833 29.7235 22.446 29.126 23.0436C28.626 23.5436 28.3151 24.0923 28.1931 24.6899C28.0834 25.2874 28.0986 25.8941 28.2388 26.5099C28.3852 27.1196 28.5894 27.708 28.8516 28.2751C29.1199 28.836 29.3821 29.336 29.6382 29.775L31.0284 32.1895C31.3881 32.8054 31.7539 33.5248 32.1259 34.348C32.5039 35.1772 32.7722 36.0613 32.9307 37.0003C33.1014 37.9393 33.0649 38.8905 32.821 39.8539C32.5771 40.8172 32.0161 41.7379 31.1381 42.6159C30.126 43.6281 28.9461 44.2774 27.5986 44.564C26.2572 44.8567 24.8396 44.7378 23.3457 44.2073C21.858 43.683 20.3947 42.7013 18.9557 41.2623C17.6143 39.9209 16.6692 38.5429 16.1204 37.1284C15.5778 35.7199 15.4132 34.348 15.6266 33.0127C15.8461 31.6835 16.4314 30.4701 17.3826 29.3726L19.7239 31.7139C19.0776 32.4822 18.7301 33.3053 18.6813 34.1834C18.6447 35.0614 18.8337 35.9333 19.2484 36.7991C19.6752 37.6649 20.2605 38.4698 21.0044 39.2136C21.8702 40.0795 22.7878 40.7166 23.7573 41.1251C24.7329 41.5276 25.6749 41.6769 26.5834 41.5733C27.498 41.4635 28.2968 41.0672 28.9797 40.3843C29.6016 39.7624 29.9339 39.0825 29.9766 38.3448C30.0192 37.607 29.879 36.8326 29.5559 36.0217C29.2327 35.2108 28.8333 34.3846 28.3577 33.5431L26.7115 30.5799C25.6688 28.6958 25.1109 26.9367 25.0377 25.3026C24.9646 23.6686 25.5591 22.2204 26.8212 20.9583C27.8699 19.9096 29.0681 19.2785 30.4156 19.0651C31.7753 18.8517 33.1533 19.0102 34.5495 19.5407C35.958 20.0711 37.2598 20.9339 38.4549 22.129C39.6621 23.3363 40.5188 24.6258 41.0249 25.9977C41.5371 27.3635 41.6956 28.6927 41.5005 29.9854C41.3115 31.2841 40.7597 32.4212 39.8451 33.3968L37.65 31.2018Z" fill="var(--c10two)"/>
+        <path d="M39.438 20.1931L17.438 42.1931" stroke="var(--c10two)"/>
+      </svg>
+      ${{ 2|get_pow:2|get_mul:10|get_mul_cash }}
+    </p>
+    <p class="overview__love-p-with-svg">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="7" cy="7" r="6.5" stroke="var(--c10two)"/>
+        <path d="M7 2.24V7.07L10.71 10.78" stroke="var(--c10two)"/>
+      </svg>
+        {% if premium %}
+            {{ 2|get_mul:2400|get_int_mul:boost|get_hh_mm_ss }}
+        {% else %}
+            {{ 2|get_mul:3600|get_int_mul:boost|get_hh_mm_ss }}
+        {% endif %}
+    </p>
+  </div>
+
+    <div style="display: flex; justify-content: center; margin-bottom: 20rem;">
+
+      <button class="overview__love-stat-learn eduBlock4" {% if not train or premium and has_slot  %} onclick="up_skill(this, 'power')" style="cursor: pointer" {% else %} disabled style="opacity: 0" {% endif %}>
+        {% trans 'изучить' context "skills" %}
+      </button>
+
+        <p id="skill_power" style="display: none;font-size: 14rem; justify-content: center;  flex-direction: column;">
+            изучается...
+        </p>
+
+    </div>
+</div>
+<!--интеллект-->
+<div class="overview__love-stat-content">
+  <h2 class="gui_help" data-helpid="overview knowledge_skill block">{% trans 'Интеллект' context "skills" %}</h2>
+  <div style="background-color: #4791FF;"></div>
+
+  <div class="overview__love-stat-price-time">
+    <p class="overview__love-p-with-svg">
+      <svg width="59" height="61" viewBox="0 0 59 61" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M55 4.5H32L1 35.5L25 59.5L55 29.5V4.5ZM55 4.5L58.5 1M55 4.5L44.5 15" stroke="var(--c10two)"/>
+        <circle cx="45.5" cy="14" r="4.5" stroke="var(--c10two)"/>
+        <path d="M37.65 31.2018C38.4671 30.1652 38.7414 29.0006 38.4732 27.708C38.2049 26.4154 37.5037 25.202 36.3696 24.0679C35.5404 23.2387 34.6806 22.6473 33.7904 22.2936C32.9063 21.9461 32.0557 21.8333 31.2387 21.9552C30.4278 22.0833 29.7235 22.446 29.126 23.0436C28.626 23.5436 28.3151 24.0923 28.1931 24.6899C28.0834 25.2874 28.0986 25.8941 28.2388 26.5099C28.3852 27.1196 28.5894 27.708 28.8516 28.2751C29.1199 28.836 29.3821 29.336 29.6382 29.775L31.0284 32.1895C31.3881 32.8054 31.7539 33.5248 32.1259 34.348C32.5039 35.1772 32.7722 36.0613 32.9307 37.0003C33.1014 37.9393 33.0649 38.8905 32.821 39.8539C32.5771 40.8172 32.0161 41.7379 31.1381 42.6159C30.126 43.6281 28.9461 44.2774 27.5986 44.564C26.2572 44.8567 24.8396 44.7378 23.3457 44.2073C21.858 43.683 20.3947 42.7013 18.9557 41.2623C17.6143 39.9209 16.6692 38.5429 16.1204 37.1284C15.5778 35.7199 15.4132 34.348 15.6266 33.0127C15.8461 31.6835 16.4314 30.4701 17.3826 29.3726L19.7239 31.7139C19.0776 32.4822 18.7301 33.3053 18.6813 34.1834C18.6447 35.0614 18.8337 35.9333 19.2484 36.7991C19.6752 37.6649 20.2605 38.4698 21.0044 39.2136C21.8702 40.0795 22.7878 40.7166 23.7573 41.1251C24.7329 41.5276 25.6749 41.6769 26.5834 41.5733C27.498 41.4635 28.2968 41.0672 28.9797 40.3843C29.6016 39.7624 29.9339 39.0825 29.9766 38.3448C30.0192 37.607 29.879 36.8326 29.5559 36.0217C29.2327 35.2108 28.8333 34.3846 28.3577 33.5431L26.7115 30.5799C25.6688 28.6958 25.1109 26.9367 25.0377 25.3026C24.9646 23.6686 25.5591 22.2204 26.8212 20.9583C27.8699 19.9096 29.0681 19.2785 30.4156 19.0651C31.7753 18.8517 33.1533 19.0102 34.5495 19.5407C35.958 20.0711 37.2598 20.9339 38.4549 22.129C39.6621 23.3363 40.5188 24.6258 41.0249 25.9977C41.5371 27.3635 41.6956 28.6927 41.5005 29.9854C41.3115 31.2841 40.7597 32.4212 39.8451 33.3968L37.65 31.2018Z" fill="var(--c10two)"/>
+        <path d="M39.438 20.1931L17.438 42.1931" stroke="var(--c10two)"/>
+      </svg>
+      ${{ 2|get_pow:2|get_mul:10|get_mul_cash }}
+    </p>
+    <p class="overview__love-p-with-svg">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="7" cy="7" r="6.5" stroke="var(--c10two)"/>
+        <path d="M7 2.24V7.07L10.71 10.78" stroke="var(--c10two)"/>
+      </svg>
+        {% if premium %}
+            {{ 2|get_mul:2400|get_int_mul:boost|get_hh_mm_ss }}
+        {% else %}
+            {{ 2|get_mul:3600|get_int_mul:boost|get_hh_mm_ss }}
+        {% endif %}
+    </p>
+  </div>
+
+    <div style="display: flex; justify-content: center; margin-bottom: 20rem;">
+
+      <button class="overview__love-stat-learn eduBlock4" {% if not train or premium and has_slot  %} onclick="up_skill(this, 'knowledge')" style="cursor: pointer" {% else %} disabled style="opacity: 0" {% endif %}>
+            {% trans 'изучить' context "skills" %}
+      </button>
+
+    <p id="skill_knowledge" style="display: none;font-size: 14rem; justify-content: center;  flex-direction: column;">
+        изучается...
+    </p>
+
+    </div>
+</div>
+<!--выносливость-->
+<div class="overview__love-stat-content">
+  <h2 class="gui_help" data-helpid="overview endurance_skill block">{% trans 'Выносливость' context "skills" %}</h2>
+  <div style="background-color: #8DFF47;"></div>
+  {% if train and train.skill == 'endurance' %}
+  <p class="overview__love-stat-timer gui_help" data-helpid="overview current_skill block">{% trans 'Завершение' context "skills" %}: {{ train.end_dtime|timezone:player.time_zone|date:"d.m.Y H:i" }}</p>
+  {% endif %}
+  <div class="overview__love-stat-price-time">
+    <p class="overview__love-p-with-svg">
+      <svg width="59" height="61" viewBox="0 0 59 61" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M55 4.5H32L1 35.5L25 59.5L55 29.5V4.5ZM55 4.5L58.5 1M55 4.5L44.5 15" stroke="var(--c10two)"/>
+        <circle cx="45.5" cy="14" r="4.5" stroke="var(--c10two)"/>
+        <path d="M37.65 31.2018C38.4671 30.1652 38.7414 29.0006 38.4732 27.708C38.2049 26.4154 37.5037 25.202 36.3696 24.0679C35.5404 23.2387 34.6806 22.6473 33.7904 22.2936C32.9063 21.9461 32.0557 21.8333 31.2387 21.9552C30.4278 22.0833 29.7235 22.446 29.126 23.0436C28.626 23.5436 28.3151 24.0923 28.1931 24.6899C28.0834 25.2874 28.0986 25.8941 28.2388 26.5099C28.3852 27.1196 28.5894 27.708 28.8516 28.2751C29.1199 28.836 29.3821 29.336 29.6382 29.775L31.0284 32.1895C31.3881 32.8054 31.7539 33.5248 32.1259 34.348C32.5039 35.1772 32.7722 36.0613 32.9307 37.0003C33.1014 37.9393 33.0649 38.8905 32.821 39.8539C32.5771 40.8172 32.0161 41.7379 31.1381 42.6159C30.126 43.6281 28.9461 44.2774 27.5986 44.564C26.2572 44.8567 24.8396 44.7378 23.3457 44.2073C21.858 43.683 20.3947 42.7013 18.9557 41.2623C17.6143 39.9209 16.6692 38.5429 16.1204 37.1284C15.5778 35.7199 15.4132 34.348 15.6266 33.0127C15.8461 31.6835 16.4314 30.4701 17.3826 29.3726L19.7239 31.7139C19.0776 32.4822 18.7301 33.3053 18.6813 34.1834C18.6447 35.0614 18.8337 35.9333 19.2484 36.7991C19.6752 37.6649 20.2605 38.4698 21.0044 39.2136C21.8702 40.0795 22.7878 40.7166 23.7573 41.1251C24.7329 41.5276 25.6749 41.6769 26.5834 41.5733C27.498 41.4635 28.2968 41.0672 28.9797 40.3843C29.6016 39.7624 29.9339 39.0825 29.9766 38.3448C30.0192 37.607 29.879 36.8326 29.5559 36.0217C29.2327 35.2108 28.8333 34.3846 28.3577 33.5431L26.7115 30.5799C25.6688 28.6958 25.1109 26.9367 25.0377 25.3026C24.9646 23.6686 25.5591 22.2204 26.8212 20.9583C27.8699 19.9096 29.0681 19.2785 30.4156 19.0651C31.7753 18.8517 33.1533 19.0102 34.5495 19.5407C35.958 20.0711 37.2598 20.9339 38.4549 22.129C39.6621 23.3363 40.5188 24.6258 41.0249 25.9977C41.5371 27.3635 41.6956 28.6927 41.5005 29.9854C41.3115 31.2841 40.7597 32.4212 39.8451 33.3968L37.65 31.2018Z" fill="var(--c10two)"/>
+        <path d="M39.438 20.1931L17.438 42.1931" stroke="var(--c10two)"/>
+      </svg>
+      ${{ 2|get_pow:2|get_mul:10|get_mul_cash }}
+    </p>
+    <p class="overview__love-p-with-svg">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="7" cy="7" r="6.5" stroke="var(--c10two)"/>
+        <path d="M7 2.24V7.07L10.71 10.78" stroke="var(--c10two)"/>
+      </svg>
+        {% if premium %}
+            {{ 2|get_mul:2400|get_int_mul:boost|get_hh_mm_ss }}
+        {% else %}
+            {{ 2|get_mul:3600|get_int_mul:boost|get_hh_mm_ss }}
+        {% endif %}
+    </p>
+  </div>
+
+    <div style="display: flex; justify-content: center; margin-bottom: 20rem;">
+
+      <button class="overview__love-stat-learn eduBlock4" {% if not train or premium and has_slot  %} onclick="up_skill(this, 'endurance')" style="cursor: pointer" {% else %} disabled style="opacity: 0" {% endif %}>
+            {% trans 'изучить' context "skills" %}
+      </button>
+
+
+    <p id="skill_endurance" style="display: none;font-size: 14rem; justify-content: center;  flex-direction: column;">
+        изучается...
+    </p>
+
+    </div>
+</div>
+
+<!--кнопка древа навыков-->
+<button class="overview__love-stat-three" onclick="window.location.href = '{% url 'skills_list' %}'" style="cursor: pointer">
+  <svg width="176" height="31" viewBox="0 0 176 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 6.26923L7.05128 0.5H176V23.5769L167.538 30.5H0V6.26923Z" fill="var(--c10one)"/>
+  </svg>
+  <span>{% trans 'дерево навыков' context "skills" %}</span>
+</button>
+{% if premium %}
+<script>
+    var cancel_skill_pk = null;
+    var cnl_header = '{% trans 'Отмена изучения навыка' context "skills" %}';
+    var cnl_text = '{% trans 'Изучение навыка будет отменено. Продолжить?' context "skills" %}';
+    var cnl_yes = '{% trans 'Продолжить' context "skills" %}';
+    var cnl_cancel = '{% trans 'Назад' context "skills" %}';
+</script>
+<!--прем блок-->
+<div class="overview__love-prem">
+    {% if queue %}
+    <!--таймер прем очереди-->
+    <p class="overview__love-prem-timer">{% trans 'Завершение' context "skills" %}: {{ last_skill.end_dtime|timezone:player.time_zone|date:"d.m.Y H:i" }}</p>
+    {% endif %}
+    <!--премиум очередь навыков-->
+    <ul class="overview__love-prem-list gui_help" data-helpid="overview skills_queue block">
+    {% for perk in queue %}
+    <li {% if perk == last_skill %}onclick="skill_cancel(event, {% localize off %}{{ perk.pk }}{% endlocalize %})" style="cursor: pointer"{% endif %} class="overview__love-prem-item
+    {% if perk.skill == 'power' %}
+        str
+    {% elif perk.skill == 'knowledge' %}
+    int
+    {% elif perk.skill == 'endurance' %}
+    sta
+    {% else %}
+    skill
+    {% endif %}
+    ">
+      <svg width="37" height="37" viewBox="0 0 37 37" xmlns="http://www.w3.org/2000/svg">
+        <path class="pth" d="M0.5 35.9V6.27176L6.19269 0.5H35.9V30.696L30.7673 35.9H0.5Z"/>
+        <path class="pth" d="M18 11V25"/>
+        <path class="pth" d="M11 18L25 18"/>
+      </svg>
+    </li>
+    {% endfor %}
+
+    {% if has_slot %}
+    {% with 5|get_sub:skills_count as free_slots %}
+        {% with ''|center:free_slots as range %}
+            {% for _ in range %}
+    <li class="overview__love-prem-item">
+      <svg width="37" height="37" viewBox="0 0 37 37" xmlns="http://www.w3.org/2000/svg">
+        <path class="pth" d="M0.5 35.9V6.27176L6.19269 0.5H35.9V30.696L30.7673 35.9H0.5Z"/>
+        <path class="pth" d="M18 11V25"/>
+        <path class="pth" d="M11 18L25 18"/>
+      </svg>
+    </li>
+            {% endfor %}
+        {% endwith %}
+    {% endwith %}
+    {% endif %}
+    </ul>
+</div>
+{% endif %}
+</div>

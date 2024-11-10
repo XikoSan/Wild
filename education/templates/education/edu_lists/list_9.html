@@ -1,0 +1,138 @@
+{% load l10n %}{% load i18n %}{% load tz %}
+
+<script>
+
+    document.getElementById('energy').innerHTML = '0';
+    let button = document.getElementById("refill-countdown");
+
+    // Создаем новый элемент button
+    let newButton = document.createElement("button");
+
+    // Копируем классы
+    newButton.className = button.className;
+
+    // Копируем внутренние элементы и текст
+    newButton.innerHTML = button.innerHTML;
+
+    // Заменяем старую кнопку на новую
+    button.parentNode.replaceChild(newButton, button);
+
+    check_edu = false;
+
+     function getFromLS(){
+        return localStorage.getItem('edu_assistant');
+      }
+
+    var assist_img = this.getFromLS() ?? "/static/redesign/img/Ann.png";
+    document.getElementsByClassName('edu__img')[0].src = assist_img;
+
+    function claim_reward(id){
+      var data = "&csrfmiddlewaretoken=" + csrftoken + "&edu_id=" + id;
+      $.ajax({
+          beforeSend: function() {},
+          type: "POST",
+          url: "/edu_reward/",
+          data: data,
+          cache: false,
+          success: function(result){
+            if (id == 'edu_all'){
+                  if (result.response == 'ok'){
+                      location.reload();
+                  }
+            }
+          }
+      });
+    }
+
+    function edu_pragma(page) {
+        if (page == 16){
+            window.location.href = "/overview";
+        }
+    }
+
+    const edu = new Educator({
+    onEduStart: () => { console.log('[EDU]: Started') },
+    onEduEnd: () => { console.log('[EDU]: Ended'); edu_pragma(16) },
+    onEduPageChange: (num) => { console.log(`[EDU]: Current page is ${num}`); edu_pragma(num) },
+    onCloseEdu: () => { console.log(`[EDU]: Education closed`); claim_reward('edu_all'); },
+    pages: [
+
+      {
+        text: "{% trans 'Теперь, когда основы политической и экономической игры вам знакомы, можно двигаться дальше. Развитие — это ключ к успеху в мире постоянного противостояния.' context 'education' %}",
+      },
+
+      {
+        text: "{% trans 'Чтобы не отставать, вам предстоит совершенствовать свои навыки. Давайте посмотрим на раздел харатеристик.' context 'education' %}",
+      },
+
+      {
+        text: "{% trans 'В вашем распоряжении три основных характеристики — Сила, Интеллект и Выносливость. Каждая из них определяет, как вы сможете влиять на мир.' context 'education' %}",
+      },
+
+      {
+        text: "{% trans 'Начнём с Силы. Она определяет вашу эффективность в бою, усиливая вас с каждым уровнем.' context 'education' %}",
+        awaitedDomElemClass: 'eduBlock30',
+        onlyGlowing: true,
+      },
+
+      {
+        text: "{% trans 'Так, с ростом уровня сила в бою увеличивается на 1%. Представьте, на 100 уровне вы будете вдвое мощнее новичка!' context 'education' %}",
+      },
+
+      {
+        text: "{% trans 'Интеллект — выбор для тех, кто ставит во главу успех в экономике.' context 'education' %}",
+        awaitedDomElemClass: 'eduBlock31',
+        onlyGlowing: true,
+      },
+
+      {
+        text: "{% trans 'Эта характеристика увеличивает доход от производства товаров и позволяет успешнее развивать торговлю и логистику. Это путь к крупному капиталу и управлению целыми промышленными гигантами.' context 'education' %}",
+      },
+
+      {
+        text: "{% trans 'Выносливость — основа для тех, кто делает ставку на добычу ресурсов.' context 'education' %}",
+        awaitedDomElemClass: 'eduBlock32',
+        onlyGlowing: true,
+      },
+
+      {
+        text: "{% trans 'Каждый её уровень увеличивает объёмы добычи нефти и руды на 1%. С высокой выносливостью ваша добыча принесёт немалый доход.' context 'education' %}",
+      },
+
+      {
+        text: "{% trans 'Каждая из трёх Характеристик повышает ваше финансирование. И чем выше уровень Характеристики - тем больше.' context 'education' %}",
+      },
+
+      {
+        text: "{% trans 'Есть ещё и особые Навыки, которые откроются по мере развития. Они дают уникальные преимущества и могут серьёзно расширить ваши возможности.' context 'education' %}",
+      },
+
+      {
+        text: "{% trans 'Их стоит прокачивать, как только у вас появится шанс. А теперь выберите, какую характеристику хотите развить в первую очередь.' context 'education' %}",
+        awaitedDomElemClass: 'eduBlock3',
+      },
+
+      {
+        text: "{% trans 'Давайте сделаем вклад в ваше будущее прямо сейчас!' context 'education' %}",
+        awaitedDomElemClass: 'eduBlock4',
+      },
+
+      {
+        text: "{% trans 'Ну вот, я передала вам все ключевые знания для старта с чистого листа. Мы проделали отличную работу, и я благодарю вас за плодотворное сотрудничество!' context 'education' %}",
+      },
+
+      {
+        text: "{% trans 'Советую заглянуть в общий чат и статьи.' context 'education' %}",
+      },
+
+      {
+        text: "{% trans 'Там можно обозначить себя — присоединиться к сильным политическим группам региона или заявить о создании собственной партии. Как поступить — решать вам.' context 'education' %}",
+      },
+
+      {
+        text: "{% trans 'Удачи вам, я уверена, что у вас всё получится! Мы обязательно ещё встретимся.' context 'education' %}",
+      },
+
+    ]
+  })
+</script>

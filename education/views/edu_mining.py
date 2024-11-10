@@ -13,6 +13,10 @@ from player.player import Player
 def edu_mining(request):
     player = Player.get_instance(account=request.user)
 
+    if player.educated:  # Замените `условие` на вашу проверку
+        from django.shortcuts import redirect
+        return redirect('overview')  # Перенаправляет на другую страницу при невыполнении условия
+
     page = 'education/edu_mining.html'
 
     # отправляем в форму
