@@ -9,6 +9,7 @@ from education.views.edu_overview import edu_overview
 from education.views.edu_produce import edu_produce
 from education.views.edu_reward import edu_reward
 from education.views.edu_war import edu_war
+from education.views.edu_storage import edu_storage
 
 urlpatterns = [
 
@@ -35,5 +36,8 @@ urlpatterns = [
 
     # учебная страница добычи
     url(r'^edu_7$', edu_produce, name='edu_produce'),
+
+    # учебная страница добычи
+    url(r'^edu_8$', edu_storage, name='edu_storage'),
 
 ]

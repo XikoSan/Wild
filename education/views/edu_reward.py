@@ -61,6 +61,10 @@ def edu_reward(request):
                 'type': 'cash',
                 'value': 845,
             },
+            'cash': {
+                'type': 'cash',
+                'value': 800,
+            },
         }
 
         edu_id = request.POST.get('edu_id')

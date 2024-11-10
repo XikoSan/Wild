@@ -1,0 +1,255 @@
+{% extends 'player/redesign/header.html' %}
+{% load static %}
+{% load bootstrap3 %}
+{% load l10n %}{% load i18n %}{% load tz %}
+{% load redesign.overview_blocks.skills %}
+{% load redesign.gui_help.player_help %}
+{% load redesign.template_svg.nopic %}
+{% load template_svg.war_icon %}
+
+{% block for_scripts_and_css %}
+<script src="/static/redesign/js/education_n.js"></script>
+<script src='{% static "js/storage_functions.js" %}'></script>
+{% load get_edu_list %}
+{% get_edu_list '8' %}
+
+{% endblock %}
+
+{% load dict_key %}
+{% load get_sum %}
+{% load get_attr %}
+{% load get_key_list %}
+{% load get_class_name %}
+
+<!--	</svg>-->
+
+{% block content %}
+  {% with LANGUAGE_CODE='ru' %}
+<main>
+    <section class="store custom-scroll">
+    <h1 class="store__title ct__page-title">Склад</h1>
+    <div class="store__tabs ct__top-tabs">
+        <button class="ct__top-tab ct__top-tab1 active ct__mid-btn" id="store_tab">
+            <svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
+                <mask id="mask0_259_317" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+                    <path class="geometry1" d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"></path>
+                </mask>
+                <g mask="url(#mask0_259_317)">
+                    <path class="geometry2" d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z"></path>
+                    <path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"></path>
+                    <path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"></path>
+                    <path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"></path>
+                </g>
+            </svg>
+            <span>склад</span>
+        </button>
+        <button class="ct__top-tab ct__top-tab2 ct__mid-btn" id="vault_tab">
+            <svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
+                <mask id="mask0_259_318" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+                <path class="geometry1" d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"></path>
+                </mask>
+                <g mask="url(#mask0_259_318)">
+                    <path class="geometry2" d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z"></path>
+                    <path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"></path>
+                    <path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"></path>
+                    <path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"></path>
+                </g>
+            </svg>
+            <span>хранилище</span>
+        </button>
+    </div>
+    <div class="store__wrapper-overflow">
+    	<div class="store__wrapper">
+	      <!-- ВКЛАДКА СКЛАД -->
+<svg style="display: none;">
+    <symbol viewBox="0 0 14 14" id="minus">
+            <rect width="14" height="14" fill="var(--c10two)"></rect>
+            <rect x="2" y="6" width="10" height="2" fill="var(--c30)"></rect>
+    </symbol>
+    <symbol viewBox="0 0 14 14" id="plus">
+        <rect width="14" height="14" fill="var(--c10two)"></rect>
+        <rect x="2" y="6" width="10" height="2" fill="var(--c30)"></rect>
+        <rect x="6" y="12" width="10" height="2" transform="rotate(-90 6 12)" fill="var(--c30)"></rect>
+    </symbol>
+</svg>
+<div class="store__left">
+    <div id="trade_tab">
+        <form id="money_transfer_frm" role="form" class="store__exch-wrapper">
+            <input type="hidden" name="csrfmiddlewaretoken" value="gv8AXVPdXrA3d4Mq3DCX6jUe2xhLBz8R0Ij1URYifZU0LuO5wEP7ypD5IaunSvSw">
+            <span class="store__exch-left-text">счёт</span>
+            <button type="submit" id="do_transfer" class="eduBlock1"> <!--кнопка перевода средств на склад-->
+                <svg width="41" height="60" viewBox="0 0 41 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M41 0L-3.8147e-06 -1.79217e-06L-5.53219e-06 39.2917L20.5 59.7917L41 39.2917L41 0Z" fill="var(--c10two)"></path>
+                    <path d="M35.5 23L6.65384 23L5.5 23M35.5 23L27.4231 15M35.5 23L27.4231 31M5.5 23L13.5 15M5.5 23L13.5 31" stroke="var(--c60)" stroke-width="3"></path>
+                </svg>
+            </button> <!--конец кнопки перевода средств на склад-->
+            <span class="store__exch-right-text">наличные</span>
+            <input class="store__num-left" type="number" min="0" value="{% localize off %}{{ player.cash }}{% endlocalize %}" name="cash_at_player" id="cash_at_player"> <!--инпут наличных-->
+            <input class="store__num-right" type="number" min="0" value="800" name="cash_at_storage" id="cash_at_storage"> <!--инпут на складе-->
+            <div id="storage_cash" data-text="800" style="display: none"></div>
+            <p>
+                <span>всего денег:</span>
+                </p><p>
+                {{ player.cash|get_sum:800 }}
+                </p> <!--значение "всего денег"-->
+            <p></p>
+            <svg class="eduBlock3" width="314" height="100" viewBox="0 0 314 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2.46447 11.5355L11.5355 2.46447C12.4732 1.52678 13.745 1 15.0711 1H308C310.761 1 313 3.23857 313 6V94C313 96.7614 310.761 99 308 99H6C3.23858 99 1 96.7614 1 94V15.0711C1 13.745 1.52678 12.4732 2.46447 11.5355Z" fill="var(--c30)" stroke="var(--c30)"></path>
+            </svg>
+        </form>
+    </div>
+    <ul class="store__list">
+        <li class="store__item" style="justify-content: center">
+            <p>Уровень: 1</p>
+        </li>
+        <!-- ['small', 'medium', 'large'] -->
+
+
+        <li class="store__item eduBlock2" style="margin-top: 2vh"><!--шапка типоразмера-->
+
+            <p>Большой объём</p>
+            <span>
+                0 /
+
+                120&nbsp;000
+            </span> <!--значение товара-->
+            <div class="store__bar">
+
+
+                <div class="store__bar-fill" style="width: 0.05%;"></div> <!--width: 45% - процент заполнения шкалы-->
+
+
+
+            </div>
+
+        </li><!--шапка типоразмера-->
+
+
+        <li class="store__item eduBlock2" style="margin-top: 2vh"><!--шапка типоразмера-->
+
+            <p>Средний объём</p>
+            <span>
+                3 /
+
+                20&nbsp;000
+            </span> <!--значение товара-->
+            <div class="store__bar">
+                <div class="store__bar-fill" style="width: 0.015%;"></div> <!--width: 45% - процент заполнения шкалы-->
+            </div>
+
+        </li><!--шапка типоразмера-->
+                    <li class="store__item"><!--начало товара-->
+
+                        <p>Глицин</p>
+                        <span>
+                            1
+                        </span> <!--значение товара-->
+                    </li><!--конец товара-->
+
+                    <li class="store__item"><!--начало товара-->
+
+                        <p>Мельдоний</p>
+                        <span>
+                            1
+                        </span> <!--значение товара-->
+                    </li><!--конец товара-->
+
+
+
+
+
+                    <li class="store__item"><!--начало товара-->
+
+                        <p>BCAA</p>
+                        <span>
+                            1
+                        </span> <!--значение товара-->
+                    </li><!--конец товара-->
+
+        <li class="store__item eduBlock2" style="margin-top: 2vh"><!--шапка типоразмера-->
+
+            <p>Малый объём</p>
+            <span>
+                0 /
+
+                2&nbsp;000
+            </span> <!--значение товара-->
+            <div class="store__bar">
+
+                <div class="store__bar-fill" style="width: 0.0%;"></div> <!--width: 45% - процент заполнения шкалы-->
+
+            </div>
+
+        </li><!--шапка типоразмера-->
+    </ul>
+</div>
+	      <!-- КОНЕЦ ВКЛАДКИ СКЛАД -->
+
+	      <!-- ВКЛАДКА ХРАНИЛИЩЕ -->
+	      <div class="store__right">
+					<h2 class="store__right-title">
+						энергетики:
+						<label id="bottles">
+						1&nbsp;000 <!--значение количества энергетиков-->
+						</label>
+					</h2>
+					<div id="produce_energy_form" class="store__right-block eduBlock5">
+						<input type="hidden" name="csrfmiddlewaretoken" value="gv8AXVPdXrA3d4Mq3DCX6jUe2xhLBz8R0Ij1URYifZU0LuO5wEP7ypD5IaunSvSw">
+						<span>создать:</span>
+						<label>
+						<input type="number" min="10" max="12000" step="10" value="6010" name="energy_field" id="energy_field">
+						</label>
+						<span>стоимость:
+							<i>G</i> <i id="gold_cost">601</i> <!--значение стоимость-->
+						</span>
+						<input type="range" id="energy_range" min="10" max="12000" step="10" value="6010">
+						<button class="store__create-btn ct__mid-btn">
+							<svg width="144" height="30" viewBox="0 0 144 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<mask id="mask0_259_319" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+									<path d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z" fill="var(--c10two)"></path>
+								</mask>
+								<g mask="url(#mask0_259_319)">
+									<path d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" fill="var(--c10two)"></path>
+									<path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"></path>
+									<path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"></path>
+									<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"></path>
+								</g>
+							</svg>
+							<span>создать</span>
+						</button>
+						<svg width="312" height="98" viewBox="0 0 314 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M2.46447 11.5355L11.5355 2.46447C12.4732 1.52678 13.745 1 15.0711 1H308C310.761 1 313 3.23857 313 6V94C313 96.7614 310.761 99 308 99H6C3.23858 99 1 96.7614 1 94V15.0711C1 13.745 1.52678 12.4732 2.46447 11.5355Z" fill="var(--c30)" stroke="var(--c30)"></path>
+						</svg>
+					</div>
+					<div class="store__wp-wrapper">
+						<h2>WILD PASS</h2>
+						<picture>
+							<img src="/static/img/wild_pass.svg" alt="wild_pass" class="eduBlock6">
+						</picture>
+						<div class="store__wp-wrapper-r" id="wildpass_main">
+							<span>Количество: <label id="wp_count">0</label></span>
+							<button disabled="" class="ct__mid-btn">
+								<svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
+									<mask id="mask0_259_320" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+										<path d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"></path>
+									</mask>
+									<g mask="url(#mask0_259_320)">
+										<path d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" fill="var(--c10two)"></path>
+										<path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"></path>
+										<path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"></path>
+										<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"></path>
+									</g>
+								</svg>
+								<span>использовать</span>
+							</button>
+						</div>
+					</div>
+				</div>
+	      <!-- КОНЕЦ ВКЛАДКИ ХРАНИЛИЩЕ -->
+	    </div>
+    </div>
+</section>
+</main>
+
+{% endwith %}
+{% endblock %}

@@ -1,0 +1,117 @@
+{% load l10n %}{% load i18n %}{% load tz %}
+
+<script>
+    let launched = false;
+
+    document.getElementById('energy').innerHTML = '0';
+    let button = document.getElementById("refill-countdown");
+
+    // Создаем новый элемент button
+    let newButton = document.createElement("button");
+
+    // Копируем классы
+    newButton.className = button.className;
+
+    // Копируем внутренние элементы и текст
+    newButton.innerHTML = button.innerHTML;
+
+    // Заменяем старую кнопку на новую
+    button.parentNode.replaceChild(newButton, button);
+
+    check_edu = false;
+
+     function getFromLS(){
+        return localStorage.getItem('edu_assistant');
+      }
+
+    var assist_img = this.getFromLS() ?? "/static/redesign/img/Ann.png";
+
+    function claim_reward(id){
+      var data = "&csrfmiddlewaretoken=" + csrftoken + "&edu_id=" + id;
+      $.ajax({
+          beforeSend: function() {},
+          type: "POST",
+          url: "/edu_reward/",
+          data: data,
+          cache: false,
+          success: function(result){
+            if (id == 'edu_all'){
+                  if (result.response == 'ok'){
+                      actualize();
+                  }
+            }
+          }
+      });
+    }
+
+    function edu_pragma(page) {
+        if (page == 3){
+            if (window.innerWidth < 1000) {
+                document.getElementById("store_tab").click();
+            }
+        }
+        if (page == 4){
+            if (window.innerWidth < 1000) {
+                document.getElementById("vault_tab").click();
+            }
+        }
+        if (page == 16){
+            window.location.href = "/edu_8";
+        }
+    }
+
+    const edu = new Educator({
+    onEduStart: () => { console.log('[EDU]: Started') },
+    onEduEnd: () => { console.log('[EDU]: Ended'); edu_pragma(16) },
+    onEduPageChange: (num) => { console.log(`[EDU]: Current page is ${num}`); edu_pragma(num) },
+    onCloseEdu: () => { console.log(`[EDU]: Education closed`); claim_reward('edu_all'); },
+    pages: [
+
+      {
+        text: "{% trans 'Добро пожаловать на ваш склад! Я приобрела его недавно, поэтому пока не успела полностью ознакомиться с его запасами.' context 'education' %}",
+      },
+
+      {
+        text: "{% trans 'Но перед началом производства я оставила $1000 для работы со сталью. Вы уже потратили $200, так что оставшуюся сумму можно забрать себе на баланс.' context 'education' %}",
+      },
+
+      {
+        text: "{% trans 'Просто выберите нужную сумму и переведите её на баланс. Эти средства пригодятся вам для новых проектов и сделок.' context 'education' %}",
+        awaitedDomElemClass: 'eduBlock1',
+      },
+
+      {
+        text: "{% trans 'Теперь давайте взглянем на особое Хранилище.' context 'education' %}",
+      },
+
+      {
+        text: "{% trans 'Оно доступно всегда, даже если у вас нет собственного склада в регионе. Здесь хранятся два вида ресурсов высокой ценности — Энергетики и Wild Pass.' context 'education' %}",
+      },
+
+      {
+        text: "{% trans 'Энергетики можно приобрести за золото.' context 'education' %}",
+        awaitedDomElemClass: 'eduBlock5',
+        onlyGlowing: true,
+      },
+
+      {
+        text: "{% trans 'Это ценный ресурс: именно благодаря ему вы восстанавливали энергию во время прошлой битвы и при производстве товаров. Резервы энергии — ключ к стабильному развитию.' context 'education' %}",
+      },
+
+      {
+        text: "{% trans 'А вот Wild Pass — особый товар, который высоко ценится среди политиков.' context 'education' %}",
+        awaitedDomElemClass: 'eduBlock6',
+        onlyGlowing: true,
+      },
+
+      {
+        text: "{% trans 'Его можно обменивать на золото или использовать для доступа к различным премиум-возможностям, которые делают управление более удобным и эффективным.' context 'education' %}",
+      },
+
+      {
+        text: "{% trans 'Несмотря на их ценность, эти ресурсы можно добывать, как и обычные. Занимайтесь добычей, развивайте торговые связи с политиками и предпринимателями, и получите всё необходимое для дальнейшего роста.' context 'education' %}",
+      },
+
+    ]
+  })
+</script>
