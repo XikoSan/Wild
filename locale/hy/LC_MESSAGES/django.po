@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-06 15:30+0300\n"
+"POT-Creation-Date: 2024-11-10 04:40+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -179,25 +179,26 @@ msgstr ""
 #: chat/views/messages/get_message_block.py:28
 #: chat/views/messages/get_message_block.py:38
 #: chat/views/messages/get_message_block.py:51
-#: chat/views/messages/get_message_block.py:86
-#: event/views/activate_invite.py:33 event/views/activate_invite.py:48
-#: event/views/activate_invite.py:64 event/views/activate_invite.py:78
-#: event/views/activate_invite.py:116 factory/views/cancel_auto.py:34
-#: factory/views/produce_good.py:42 factory/views/produce_good.py:53
-#: factory/views/produce_good.py:69 factory/views/produce_good.py:83
-#: factory/views/produce_good.py:90 factory/views/produce_good.py:104
-#: factory/views/produce_good.py:113 factory/views/produce_good.py:125
-#: factory/views/produce_good.py:135 factory/views/produce_good.py:146
-#: factory/views/produce_good.py:156 factory/views/produce_good.py:164
-#: factory/views/produce_good.py:173 factory/views/produce_good.py:214
-#: factory/views/produce_good.py:242 factory/views/produce_good.py:266
-#: factory/views/start_auto.py:33 factory/views/start_auto.py:41
-#: factory/views/start_auto.py:51 factory/views/start_auto.py:62
-#: factory/views/start_auto.py:71 factory/views/start_auto.py:80
-#: factory/views/start_auto.py:92 factory/views/start_auto.py:102
-#: factory/views/start_auto.py:113 factory/views/start_auto.py:141
-#: gov/views/color_change.py:30 gov/views/color_change.py:44
-#: gov/views/color_change.py:60
+#: chat/views/messages/get_message_block.py:86 education/views/edu_reward.py:79
+#: education/views/edu_reward.py:90 education/views/edu_reward.py:99
+#: education/views/edu_reward.py:128 event/views/activate_invite.py:33
+#: event/views/activate_invite.py:48 event/views/activate_invite.py:64
+#: event/views/activate_invite.py:78 event/views/activate_invite.py:116
+#: factory/views/cancel_auto.py:34 factory/views/produce_good.py:42
+#: factory/views/produce_good.py:53 factory/views/produce_good.py:69
+#: factory/views/produce_good.py:83 factory/views/produce_good.py:90
+#: factory/views/produce_good.py:104 factory/views/produce_good.py:113
+#: factory/views/produce_good.py:125 factory/views/produce_good.py:135
+#: factory/views/produce_good.py:146 factory/views/produce_good.py:156
+#: factory/views/produce_good.py:164 factory/views/produce_good.py:173
+#: factory/views/produce_good.py:214 factory/views/produce_good.py:242
+#: factory/views/produce_good.py:266 factory/views/start_auto.py:33
+#: factory/views/start_auto.py:41 factory/views/start_auto.py:51
+#: factory/views/start_auto.py:62 factory/views/start_auto.py:71
+#: factory/views/start_auto.py:80 factory/views/start_auto.py:92
+#: factory/views/start_auto.py:102 factory/views/start_auto.py:113
+#: factory/views/start_auto.py:141 gov/views/color_change.py:30
+#: gov/views/color_change.py:44 gov/views/color_change.py:60
 #: gov/views/custom_rights/foreign/residency_reject_all.py:24
 #: gov/views/custom_rights/foreign/residency_reject_all.py:39
 #: gov/views/set_ministers.py:36 gov/views/set_ministers.py:52
@@ -505,8 +506,8 @@ msgid "Никнейм"
 msgstr ""
 
 #: article/views/article_rated_list.py:71
-#: education/templates/education/edu_election.html:106
-#: education/templates/education/edu_election.html:298
+#: education/templates/education/edu_election.html:103
+#: education/templates/education/edu_election.html:295
 #: party/templates/party/redesign/primaries.html:242
 #: party/templatetags/redesign/tops/factory_top.py:77
 #: party/templatetags/redesign/tops/mining_top.py:78
@@ -527,8 +528,8 @@ msgstr ""
 
 #: article/views/article_rated_list.py:76
 #: article/views/article_rated_list.py:77
-#: education/templates/education/edu_election.html:107
-#: education/templates/education/edu_election.html:299
+#: education/templates/education/edu_election.html:104
+#: education/templates/education/edu_election.html:296
 #: gov/templates/gov/redesign/elections.html:239
 #: party/templates/party/redesign/primaries.html:99
 #: party/templates/party/redesign/primaries.html:243
@@ -886,7 +887,7 @@ msgid "Новая величина налога должна быть целым
 msgstr ""
 
 #: bill/models/change_taxes.py:286
-#: education/templates/education/edu_gov.html:312
+#: education/templates/education/edu_gov.html:309
 msgctxt "new_bill"
 msgid "Изменение налогов"
 msgstr ""
@@ -1357,7 +1358,7 @@ msgid "Бесплатно"
 msgstr ""
 
 #: bill/templates/state/redesign/bills/change_taxes.html:29
-#: education/templates/education/edu_gov.html:325
+#: education/templates/education/edu_gov.html:322
 msgctxt "bill"
 msgid "всё государство"
 msgstr ""
@@ -1967,9 +1968,9 @@ msgctxt "speedup_bill"
 msgid "В этом государстве нет парламента"
 msgstr ""
 
-#: bill/views/bills/speedup_bill.py:168 gov/views/color_change.py:58
-#: gov/views/set_ministers.py:181 gov/views/switch_description.py:43
-#: party/views/management/color_change.py:66
+#: bill/views/bills/speedup_bill.py:168 education/views/edu_reward.py:126
+#: gov/views/color_change.py:58 gov/views/set_ministers.py:181
+#: gov/views/switch_description.py:43 party/views/management/color_change.py:66
 #: party/views/management/gold/give_party_gold.py:108
 #: party/views/management/roles/new_role.py:79
 #: party/views/management/roles/remove_role.py:77
@@ -2155,21 +2156,21 @@ msgctxt "chat"
 msgid "Вы не состоите в этом чате"
 msgstr ""
 
-#: education/templates/education/edu_election.html:37
+#: education/templates/education/edu_election.html:34
 #: state/templates/state/redesign/elections.html:26
 msgctxt "set_mandate"
 msgid "Выборы"
 msgstr ""
 
-#: education/templates/education/edu_election.html:37
-#: education/templates/education/edu_gov.html:207
-#: education/templates/education/edu_overview.html:153
+#: education/templates/education/edu_election.html:34
+#: education/templates/education/edu_gov.html:204
+#: education/templates/education/edu_overview.html:149
 msgctxt "education"
 msgid "Объединённая Республика"
 msgstr ""
 
-#: education/templates/education/edu_election.html:108
-#: education/templates/education/edu_election.html:300
+#: education/templates/education/edu_election.html:105
+#: education/templates/education/edu_election.html:297
 #: gov/templates/gov/redesign/elections.html:240
 #: party/templates/party/redesign/primaries.html:244
 #: state/templates/state/redesign/elections.html:241
@@ -2177,333 +2178,83 @@ msgctxt "lists"
 msgid "Действие"
 msgstr ""
 
-#: education/templates/education/edu_election.html:119
-#: education/templates/education/edu_gov.html:340
-#: education/templates/education/edu_overview.html:472
-#: education/templates/education/edu_overview.html:515
+#: education/templates/education/edu_election.html:116
+#: education/templates/education/edu_gov.html:337
+#: education/templates/education/edu_overview.html:468
+#: education/templates/education/edu_overview.html:511
 msgctxt "education"
 msgid "Партия Единства Республики"
 msgstr ""
 
-#: education/templates/education/edu_election.html:162
-#: education/templates/education/edu_overview.html:481
+#: education/templates/education/edu_election.html:159
+#: education/templates/education/edu_overview.html:477
 msgctxt "education"
 msgid "Радикальная партия Республики"
 msgstr ""
 
-#: education/templates/education/edu_election.html:184
-#: education/templates/education/edu_overview.html:490
+#: education/templates/education/edu_election.html:181
+#: education/templates/education/edu_overview.html:486
 msgctxt "education"
 msgid "Зелёная Альтернатива Республики"
 msgstr ""
 
-#: education/templates/education/edu_gov.html:197
-#: state/templates/state/redesign/gov/government.html:179
-msgctxt "government"
-msgid "Парламент"
-msgstr ""
-
-#: education/templates/education/edu_gov.html:211
-#: education/templates/education/edu_overview.html:190
-msgctxt "education"
-msgid "Столичный регион"
-msgstr ""
-
-#: education/templates/education/edu_gov.html:234
-#: state/templates/state/redesign/gov/government.html:352
-msgctxt "government"
-msgid "парламент"
-msgstr ""
-
-#: education/templates/education/edu_gov.html:249
-#: state/templates/state/redesign/gov/government.html:287
-msgctxt "government"
-msgid "законопроекты"
-msgstr ""
-
-#: education/templates/education/edu_gov.html:264
-#: state/templates/state/redesign/gov/government.html:303
-msgctxt "government"
-msgid "новый"
-msgstr ""
-
-#: education/templates/education/edu_gov.html:279
-#: state/templates/state/redesign/gov/government.html:337
-msgctxt "government"
-msgid "история"
-msgstr ""
-
-#: education/templates/education/edu_gov.html:294
-#: state/templates/state/redesign/gov/government.html:367
-msgctxt "government"
-msgid "казна"
-msgstr ""
-
-#: education/templates/education/edu_gov.html:333
-msgctxt "education"
-msgid "Подоходный налог"
-msgstr ""
-
-#: education/templates/education/edu_gov.html:440
-msgctxt "education"
-msgid "Партия Единства"
-msgstr ""
-
-#: education/templates/education/edu_gov.html:442
-#: education/templates/education/edu_gov.html:451
-#: education/templates/education/edu_gov.html:460
-#: state/templates/state/redesign/gov/parliament.html:46
-msgctxt "parliament"
-msgid "мест"
-msgstr ""
-
-#: education/templates/education/edu_gov.html:449
-msgctxt "education"
-msgid "Радикальная партия"
-msgstr ""
-
-#: education/templates/education/edu_gov.html:458
-msgctxt "education"
-msgid "Зелёная Альтернатива"
-msgstr ""
-
-#: education/templates/education/edu_lists/list_1.html:41
-#, python-format
-msgctxt "education"
-msgid ""
-"Здравствуйте! Меня зовут %(assistant)s, я ваша помощница и верный союзник на "
-"вашем новом пути. Поздравляю вас с принятием в Партию Единства Республики — "
-"это первый шаг к вершинам политической карьеры!"
-msgstr ""
-
-#: education/templates/education/edu_lists/list_1.html:45
-msgctxt "education"
-msgid ""
-"Вступив в ряды правящей партии, вы оказались в самом центре эпохи перемен и "
-"возможностей. Сейчас настало время амбициозных личностей, которые стремятся "
-"внести вклад в развитие нашего государства и укрепить его влияние на мировой "
-"арене."
-msgstr ""
-
-#: education/templates/education/edu_lists/list_1.html:49
-msgctxt "education"
-msgid ""
-"В мире ведутся масштабные войны, создаются союзы, меняющие континенты. Люди "
-"основывают крупные бизнесы, корпорации и целые сети. СМИ играют роль "
-"невидимых нитей, связывая влиятельные силы. И очень скоро вы займете своё "
-"место среди них. Я же буду рядом, помогая вам разбираться в тонкостях игры."
-msgstr ""
-
-#: education/templates/education/edu_lists/list_1.html:53
-msgctxt "education"
-msgid "Для начала, давайте взглянем на обстановку в стране и мире!"
-msgstr ""
-
-#: education/templates/education/edu_lists/list_1.html:59
-msgctxt "education"
-msgid ""
-"Как вам известно, предыдущая администрация чуть не привела нашу страну к "
-"краху. Теперь нам предстоит удержать республику от этой участи, даже если "
-"это потребует решительных реформ."
-msgstr ""
-
-#: education/templates/education/edu_lists/list_1.html:65
-msgctxt "education"
-msgid ""
-"Сегодня день выборов, и атмосфера в столице накалена до предела. На улицах "
-"шумят радикалы, требующие перемен, но это не помешает нам достичь своей цели!"
-msgstr ""
-
-#: education/templates/education/edu_lists/list_1.html:69
-msgctxt "education"
-msgid ""
-"Что? Вы еще не проголосовали? Это недоразумение нужно срочно исправить. Пора "
-"отправиться на избирательный участок!"
-msgstr ""
-
-#: education/templates/education/edu_lists/list_2.html:72
-msgctxt "education"
-msgid "Добро пожаловать на избирательный участок!"
-msgstr ""
-
-#: education/templates/education/edu_lists/list_2.html:76
-msgctxt "education"
-msgid ""
-"Этот момент — не просто формальность, а важный шаг для любого политика. Ваш "
-"голос и ваша активность сейчас заложат основу для будущих побед."
-msgstr ""
-
-#: education/templates/education/edu_lists/list_2.html:80
-msgctxt "education"
-msgid ""
-"Как только вы проголосуете, ваш голос пойдет в копилку нашей партии. Чем "
-"больше людей поддержат нас, тем больше у нас шансов получить места в "
-"парламенте."
-msgstr ""
-
-#: education/templates/education/edu_lists/list_2.html:84
-msgctxt "education"
-msgid ""
-"Каждое кресло в парламенте открывает новые возможности для решения "
-"государственных вопросов: от налоговой реформы до влияния на внешнюю "
-"политику."
-msgstr ""
-
-#: education/templates/education/edu_lists/list_2.html:88
-msgctxt "education"
-msgid ""
-"Помните, каждый голос важен! Чем выше результат партии на этих выборах, тем "
-"выше шанс, что вы займете место среди избранных, сможете продвигать законы, "
-"инициировать реформы и даже влиять на оборонную стратегию страны."
-msgstr ""
-
-#: education/templates/education/edu_lists/list_2.html:92
-msgctxt "education"
-msgid "Выбор за вами, но от него зависит ваше будущее как политика."
-msgstr ""
-
-#: education/templates/education/edu_lists/list_2.html:97
-msgctxt "education"
-msgid ""
-"Дело сделано! А теперь давайте вернёмся в офис партии. Там спокойнее и не "
-"слышно всех этих радикалов."
-msgstr ""
-
-#: education/templates/education/edu_lists/list_2.html:101
-msgctxt "education"
-msgid "Хватит подкручивать результаты в свою пользу!"
-msgstr ""
-
-#: education/templates/education/edu_lists/list_2.html:105
-msgctxt "education"
-msgid "Нам нужны честные выборы, а не очередной фарс!"
-msgstr ""
-
-#: education/templates/education/edu_lists/list_2.html:109
-msgctxt "education"
-msgid "Они всё равно всё уже купили!"
-msgstr ""
-
-#: education/templates/education/edu_lists/list_2.html:113
-msgctxt "education"
-msgid "Не обращайте внимания, это всего лишь часть нашей работы."
-msgstr ""
-
-#: education/templates/education/edu_lists/list_2.html:117
-msgctxt "education"
-msgid ""
-"На пути к вершинам всегда будет недовольные, но мы справимся. Главное — ваш "
-"выбор и ваша решимость."
-msgstr ""
-
-#: education/templates/education/edu_lists/list_3.html:96
-msgctxt "education"
-msgid "Поздравляю! Ваша партия получила 8 из 10 мест в парламенте."
-msgstr ""
-
-#: education/templates/education/edu_lists/list_3.html:100
-msgctxt "education"
-msgid ""
-"Теперь, когда у нас большинство, вы можете занять своё место в зале и "
-"приступать к работе над ключевыми решениями."
-msgstr ""
-
-#: education/templates/education/edu_lists/list_3.html:105
-msgctxt "education"
-msgid "Сейчас вам предстоит сделать первый серьёзный выбор."
-msgstr ""
-
-#: education/templates/education/edu_lists/list_3.html:109
-msgctxt "education"
-msgid ""
-"Голосование проходит просто — выберите, поддержать ли предложенный "
-"законопроект. Но помните, каждое ваше решение повлияет на ситуацию в стране."
-msgstr ""
-
-#: education/templates/education/edu_lists/list_3.html:113
-msgctxt "education"
-msgid ""
-"Из-за ошибок прежнего правительства мы оказались на грани экономического "
-"кризиса."
-msgstr ""
-
-#: education/templates/education/edu_lists/list_3.html:117
-msgctxt "education"
-msgid ""
-"Сегодня на повестке — законопроект о повышении налогов. Партия поддерживает "
-"это решение, чтобы помочь стабилизировать экономику."
-msgstr ""
-
-#: education/templates/education/edu_lists/list_3.html:121
-msgctxt "education"
-msgid "Нажмите на кнопку, чтобы проголосовать."
-msgstr ""
-
-#: education/templates/education/edu_lists/list_3.html:126
-msgctxt "education"
-msgid "Мы сделали важный шаг. Тяжелое решение, но оно поможет спасти страну."
-msgstr ""
-
-#: education/templates/education/edu_lists/list_3.html:130
-msgctxt "education"
-msgid "Верно. Это только начало, но мы готовы к борьбе!"
-msgstr ""
-
-#: education/templates/education/edu_lists/list_3.html:134
-msgctxt "education"
-msgid "Прошу всех сохранять спокойствие!"
-msgstr ""
-
-#: education/templates/education/edu_lists/list_3.html:138
-msgctxt "education"
-msgid ""
-"Митинги и беспорядки на улицах переросли в революцию. Мы организуем срочную "
-"эвакуацию парламентариев."
-msgstr ""
-
-#: education/templates/education/edu_overview.html:65
+#: education/templates/education/edu_final.html:61
+#: education/templates/education/edu_overview.html:61
 #: player/templates/player/redesign/overview.html:190
 msgctxt "overview"
 msgid "обзор"
 msgstr ""
 
-#: education/templates/education/edu_overview.html:86
+#: education/templates/education/edu_final.html:82
+#: education/templates/education/edu_overview.html:82
 #: player/templates/player/redesign/overview.html:211
 msgctxt "overview"
 msgid "чат"
 msgstr ""
 
-#: education/templates/education/edu_overview.html:97
+#: education/templates/education/edu_final.html:93
+#: education/templates/education/edu_overview.html:93
 #: player/templates/player/redesign/overview.html:222
 msgctxt "overview"
 msgid "мир"
 msgstr ""
 
-#: education/templates/education/edu_overview.html:226
+#: education/templates/education/edu_final.html:149
+#: player/templates/player/redesign/overview.html:278
+msgctxt "overview"
+msgid "независимый регион"
+msgstr ""
+
+#: education/templates/education/edu_final.html:242
+#: education/templates/education/edu_overview.html:222
 #: player/templates/player/redesign/overview.html:393
 msgctxt "overview"
 msgid "войн нет"
 msgstr ""
 
-#: education/templates/education/edu_overview.html:245
+#: education/templates/education/edu_final.html:261
+#: education/templates/education/edu_overview.html:241
 #: player/templates/player/redesign/overview.html:669
 msgctxt "overview"
 msgid "сила"
 msgstr ""
 
-#: education/templates/education/edu_overview.html:250
+#: education/templates/education/edu_final.html:266
+#: education/templates/education/edu_overview.html:246
 #: player/templates/player/redesign/overview.html:674
 msgctxt "overview"
 msgid "инт"
 msgstr ""
 
-#: education/templates/education/edu_overview.html:255
+#: education/templates/education/edu_final.html:271
+#: education/templates/education/edu_overview.html:251
 #: player/templates/player/redesign/overview.html:679
 msgctxt "overview"
 msgid "вын"
 msgstr ""
 
-#: education/templates/education/edu_overview.html:278
+#: education/templates/education/edu_final.html:294
+#: education/templates/education/edu_overview.html:274
 #: player/templates/player/redesign/lists/skill_top.html:26
 #: player/templates/player/redesign/overview_skills.html:22
 #: skill/models/biochemistry.py:20 skill/models/coherence.py:21
@@ -2513,9 +2264,12 @@ msgctxt "skills"
 msgid "Сила"
 msgstr ""
 
-#: education/templates/education/edu_overview.html:304
-#: education/templates/education/edu_overview.html:340
-#: education/templates/education/edu_overview.html:377
+#: education/templates/education/edu_final.html:320
+#: education/templates/education/edu_final.html:356
+#: education/templates/education/edu_final.html:393
+#: education/templates/education/edu_overview.html:300
+#: education/templates/education/edu_overview.html:336
+#: education/templates/education/edu_overview.html:373
 #: player/templates/player/redesign/overview_skills.html:61
 #: player/templates/player/redesign/overview_skills.html:127
 #: player/templates/player/redesign/overview_skills.html:189
@@ -2524,7 +2278,8 @@ msgctxt "skills"
 msgid "изучить"
 msgstr ""
 
-#: education/templates/education/edu_overview.html:314
+#: education/templates/education/edu_final.html:330
+#: education/templates/education/edu_overview.html:310
 #: player/templates/player/redesign/lists/skill_top.html:41
 #: player/templates/player/redesign/overview_skills.html:88
 #: skill/models/biochemistry.py:15 skill/models/coherence.py:26
@@ -2536,7 +2291,8 @@ msgctxt "skills"
 msgid "Интеллект"
 msgstr ""
 
-#: education/templates/education/edu_overview.html:351
+#: education/templates/education/edu_final.html:367
+#: education/templates/education/edu_overview.html:347
 #: player/templates/player/redesign/lists/skill_top.html:56
 #: player/templates/player/redesign/overview_skills.html:150
 #: skill/models/biochemistry.py:25 skill/models/excavation.py:25
@@ -2546,119 +2302,792 @@ msgctxt "skills"
 msgid "Выносливость"
 msgstr ""
 
-#: education/templates/education/edu_overview.html:392
+#: education/templates/education/edu_final.html:408
+#: education/templates/education/edu_overview.html:388
 #: player/templates/player/redesign/overview_skills.html:226
 msgctxt "skills"
 msgid "дерево навыков"
 msgstr ""
 
-#: education/templates/education/edu_overview.html:454
-#: player/templates/player/redesign/overview.html:698
-msgctxt "overview"
-msgid "Выборы"
-msgstr ""
-
-#: education/templates/education/edu_overview.html:459
+#: education/templates/education/edu_final.html:472
+#: education/templates/education/edu_overview.html:455
 #: player/templates/player/redesign/overview.html:703
 msgctxt "overview"
 msgid "партии"
 msgstr ""
 
-#: education/templates/education/edu_overview.html:459
+#: education/templates/education/edu_final.html:472
+#: education/templates/education/edu_overview.html:455
 #: player/templates/player/redesign/overview.html:703
 msgctxt "overview"
 msgid "государства"
 msgstr ""
 
-#: education/templates/education/edu_overview.html:502
+#: education/templates/education/edu_final.html:472
+#: player/templates/player/redesign/overview.html:703
+msgctxt "overview"
+msgid "региона"
+msgstr ""
+
+#: education/templates/education/edu_final.html:509
+#: education/templates/education/edu_final.html:554
+#: player/templates/player/redesign/overview.html:740
+#: player/templates/player/redesign/overview.html:785
+msgctxt "overview"
+msgid "партий нет"
+msgstr ""
+
+#: education/templates/education/edu_final.html:516
+#: education/templates/education/edu_overview.html:498
 #: player/templates/player/redesign/overview.html:747
 msgctxt "overview"
 msgid "парламент"
 msgstr ""
 
-#: education/templates/education/edu_overview.html:609
+#: education/templates/education/edu_gov.html:194
+#: state/templates/state/redesign/gov/government.html:179
+msgctxt "government"
+msgid "Парламент"
+msgstr ""
+
+#: education/templates/education/edu_gov.html:208
+#: education/templates/education/edu_overview.html:186
+#: education/templates/education/edu_war.html:146
+#: education/templates/education/edu_war.html:157
+msgctxt "education"
+msgid "Столичный регион"
+msgstr ""
+
+#: education/templates/education/edu_gov.html:231
+#: state/templates/state/redesign/gov/government.html:352
+msgctxt "government"
+msgid "парламент"
+msgstr ""
+
+#: education/templates/education/edu_gov.html:246
+#: state/templates/state/redesign/gov/government.html:287
+msgctxt "government"
+msgid "законопроекты"
+msgstr ""
+
+#: education/templates/education/edu_gov.html:261
+#: state/templates/state/redesign/gov/government.html:303
+msgctxt "government"
+msgid "новый"
+msgstr ""
+
+#: education/templates/education/edu_gov.html:276
+#: state/templates/state/redesign/gov/government.html:337
+msgctxt "government"
+msgid "история"
+msgstr ""
+
+#: education/templates/education/edu_gov.html:291
+#: state/templates/state/redesign/gov/government.html:367
+msgctxt "government"
+msgid "казна"
+msgstr ""
+
+#: education/templates/education/edu_gov.html:330
+msgctxt "education"
+msgid "Подоходный налог"
+msgstr ""
+
+#: education/templates/education/edu_gov.html:437
+msgctxt "education"
+msgid "Партия Единства"
+msgstr ""
+
+#: education/templates/education/edu_gov.html:439
+#: education/templates/education/edu_gov.html:448
+#: education/templates/education/edu_gov.html:457
+#: state/templates/state/redesign/gov/parliament.html:46
+msgctxt "parliament"
+msgid "мест"
+msgstr ""
+
+#: education/templates/education/edu_gov.html:446
+msgctxt "education"
+msgid "Радикальная партия"
+msgstr ""
+
+#: education/templates/education/edu_gov.html:455
+msgctxt "education"
+msgid "Зелёная Альтернатива"
+msgstr ""
+
+#: education/templates/education/edu_lists/list_1.html:43
+#, python-format
+msgctxt "education"
+msgid ""
+"Здравствуйте! Меня зовут %(assistant)s, я ваша помощница и верный союзник на "
+"вашем новом пути. Поздравляю вас с принятием в Партию Единства Республики — "
+"это первый шаг к вершинам политической карьеры!"
+msgstr ""
+
+#: education/templates/education/edu_lists/list_1.html:47
+msgctxt "education"
+msgid ""
+"Вступив в ряды правящей партии, вы оказались в самом центре эпохи перемен и "
+"возможностей. Сейчас настало время амбициозных личностей, которые стремятся "
+"внести вклад в развитие нашего государства и укрепить его влияние на мировой "
+"арене."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_1.html:51
+msgctxt "education"
+msgid ""
+"В мире ведутся масштабные войны, создаются союзы, меняющие континенты. Люди "
+"основывают крупные бизнесы, корпорации и целые сети. СМИ играют роль "
+"невидимых нитей, связывая влиятельные силы. И очень скоро вы займете своё "
+"место среди них. Я же буду рядом, помогая вам разбираться в тонкостях игры."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_1.html:55
+msgctxt "education"
+msgid "Для начала, давайте взглянем на обстановку в стране и мире!"
+msgstr ""
+
+#: education/templates/education/edu_lists/list_1.html:61
+msgctxt "education"
+msgid ""
+"Как вам известно, предыдущая администрация чуть не привела нашу страну к "
+"краху. Теперь нам предстоит удержать республику от этой участи, даже если "
+"это потребует решительных реформ."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_1.html:67
+msgctxt "education"
+msgid ""
+"Сегодня день выборов, и атмосфера в столице накалена до предела. На улицах "
+"шумят радикалы, требующие перемен, но это не помешает нам достичь своей цели!"
+msgstr ""
+
+#: education/templates/education/edu_lists/list_1.html:71
+msgctxt "education"
+msgid ""
+"Что? Вы еще не проголосовали? Это недоразумение нужно срочно исправить. Пора "
+"отправиться на избирательный участок!"
+msgstr ""
+
+#: education/templates/education/edu_lists/list_2.html:74
+msgctxt "education"
+msgid "Добро пожаловать на избирательный участок!"
+msgstr ""
+
+#: education/templates/education/edu_lists/list_2.html:78
+msgctxt "education"
+msgid ""
+"Этот момент — не просто формальность, а важный шаг для любого политика. Ваш "
+"голос и ваша активность сейчас заложат основу для будущих побед."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_2.html:82
+msgctxt "education"
+msgid ""
+"Как только вы проголосуете, ваш голос пойдет в копилку нашей партии. Чем "
+"больше людей поддержат нас, тем больше у нас шансов получить места в "
+"парламенте."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_2.html:86
+msgctxt "education"
+msgid ""
+"Каждое кресло в парламенте открывает новые возможности для решения "
+"государственных вопросов: от налоговой реформы до влияния на внешнюю "
+"политику."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_2.html:90
+msgctxt "education"
+msgid ""
+"Помните, каждый голос важен! Чем выше результат партии на этих выборах, тем "
+"выше шанс, что вы займете место среди избранных, сможете продвигать законы, "
+"инициировать реформы и даже влиять на оборонную стратегию страны."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_2.html:94
+msgctxt "education"
+msgid "Выбор за вами, но от него зависит ваше будущее как политика."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_2.html:99
+msgctxt "education"
+msgid ""
+"Дело сделано! А теперь давайте вернёмся в офис партии. Там спокойнее и не "
+"слышно всех этих радикалов."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_2.html:103
+msgctxt "education"
+msgid "Хватит подкручивать результаты в свою пользу!"
+msgstr ""
+
+#: education/templates/education/edu_lists/list_2.html:107
+msgctxt "education"
+msgid "Нам нужны честные выборы, а не очередной фарс!"
+msgstr ""
+
+#: education/templates/education/edu_lists/list_2.html:111
+msgctxt "education"
+msgid "Они всё равно всё уже купили!"
+msgstr ""
+
+#: education/templates/education/edu_lists/list_2.html:115
+msgctxt "education"
+msgid "Не обращайте внимания, это всего лишь часть нашей работы."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_2.html:119
+msgctxt "education"
+msgid ""
+"На пути к вершинам всегда будет недовольные, но мы справимся. Главное — ваш "
+"выбор и ваша решимость."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_3.html:98
+msgctxt "education"
+msgid "Поздравляю! Ваша партия получила 8 из 10 мест в парламенте."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_3.html:102
+msgctxt "education"
+msgid ""
+"Теперь, когда у нас большинство, вы можете занять своё место в зале и "
+"приступать к работе над ключевыми решениями."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_3.html:107
+msgctxt "education"
+msgid "Сейчас вам предстоит сделать первый серьёзный выбор."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_3.html:111
+msgctxt "education"
+msgid ""
+"Голосование проходит просто — выберите, поддержать ли предложенный "
+"законопроект. Но помните, каждое ваше решение повлияет на ситуацию в стране."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_3.html:115
+msgctxt "education"
+msgid ""
+"Из-за ошибок прежнего правительства мы оказались на грани экономического "
+"кризиса."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_3.html:119
+msgctxt "education"
+msgid ""
+"Сегодня на повестке — законопроект о повышении налогов. Партия поддерживает "
+"это решение, чтобы помочь стабилизировать экономику."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_3.html:123
+msgctxt "education"
+msgid "Нажмите на кнопку, чтобы проголосовать."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_3.html:128
+msgctxt "education"
+msgid "Мы сделали важный шаг. Тяжелое решение, но оно поможет спасти страну."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_3.html:132
+msgctxt "education"
+msgid "Верно. Это только начало, но мы готовы к борьбе!"
+msgstr ""
+
+#: education/templates/education/edu_lists/list_3.html:136
+msgctxt "education"
+msgid "Прошу всех сохранять спокойствие!"
+msgstr ""
+
+#: education/templates/education/edu_lists/list_3.html:140
+msgctxt "education"
+msgid ""
+"Митинги и беспорядки на улицах переросли в революцию. Мы организуем срочную "
+"эвакуацию парламентариев."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_4.html:100
+msgctxt "education"
+msgid "Ваша решимость отправиться на передовую вызывает восхищение."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_4.html:104
+msgctxt "education"
+msgid ""
+"Помощь правительственным силам сейчас как никогда необходима. Вы будете "
+"командовать отдельным подразделением самообороны столицы."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_4.html:108
+msgctxt "education"
+msgid "Добро пожаловать, командир. Ваше присутствие вдохновляет бойцов!"
+msgstr ""
+
+#: education/templates/education/edu_lists/list_4.html:112
+msgctxt "education"
+msgid ""
+"В вашем распоряжении 100 единиц энергии для управления действиями войск. Мы "
+"готовы действовать по вашему приказу, чтобы отбить натиск противника."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_4.html:116
+msgctxt "education"
+msgid ""
+"В вашем распоряжении находятся различные подразделения, и для вашего "
+"удобства мной уже собран оперативный отряд для первой атаки."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_4.html:120
+msgctxt "education"
+msgid ""
+"Нажмите кнопку «в бой», чтобы начать операцию и потратить первые 100 единиц "
+"энергии."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_4.html:125
+msgctxt "education"
+msgid ""
+"Я вижу, что вы на посту уже вторые сутки… Вот, принесла вам кофе, чтобы "
+"восстановить силы."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_4.html:129
+msgctxt "education"
+msgid ""
+"Не забывайте заботиться о себе! Кнопка «пополнить энергию» поможет вам "
+"получить еще 100 единиц энергии."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_4.html:134
+msgctxt "education"
+msgid ""
+"Левый фланг начинает ослабевать. Предлагаю направить туда дополнительные "
+"силы для поддержки."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_4.html:139
+msgctxt "education"
+msgid "Командир, ситуация выходит из-под контроля. Враг прорывается."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_4.html:143
+msgctxt "education"
+msgid ""
+"Вам нужно немедленно покинуть штаб — здесь скоро будет жарко. Мы будем "
+"прикрывать ваш отход до последнего."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_5.html:67
+msgctxt "education"
+msgid ""
+"К сожалению, несмотря на доблестное сопротивление армии, мятежники прорвали "
+"оборону. Столица пала."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_5.html:71
+msgctxt "education"
+msgid ""
+"Это был последний самолёт, успевший покинуть город. Мы в безопасности, но "
+"впереди – неизвестность."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_5.html:75
+msgctxt "education"
+msgid ""
+"Мы уже подлетаем к месту назначения. Давайте взглянем на карту, чтобы "
+"получить общее представление."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_5.html:80
+#, python-format
+msgctxt "education"
+msgid "Наш борт направляется в регион %(region)s. "
+msgstr ""
+
+#: education/templates/education/edu_lists/list_5.html:80
+#, python-format
+msgctxt "education"
+msgid "Он принадлежит государству %(state)s."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_5.html:80
+msgctxt "education"
+msgid "Это независимая территория"
+msgstr ""
+
+#: education/templates/education/edu_lists/list_5.html:84
+msgctxt "education"
+msgid "К сожалению, у нас здесь нет ни денег, ни имущества, ни связей."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_5.html:88
+msgctxt "education"
+msgid ""
+"Придется начинать всё с нуля. У вас есть решимость и опыт, а всё остальное "
+"мы сумеем добыть вместе."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_6.html:62
+msgctxt "education"
+msgid ""
+"Начинаем с основ: в новом государстве для усиления позиций вам потребуется "
+"налаживать добычу ресурсов и привлекать инвесторов."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_6.html:66
+msgctxt "education"
+msgid ""
+"Наша первая задача — организовать работы на месторождениях нефти и руды. Эти "
+"ресурсы станут опорой вашей политической и экономической силы."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_6.html:70
+msgctxt "education"
+msgid ""
+"Обратите внимание: добычу нефти и руды инвесторы профинансируют с "
+"готовностью, но если решите добывать золото для личных целей, это придётся "
+"делать за свой счёт."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_6.html:74
+msgctxt "education"
+msgid ""
+"Добыча полезных ископаемых — ваш первый шаг к укреплению позиций. Как только "
+"мы сможем обеспечить стабильный приток сырья и средств, перед нами откроются "
+"возможности для дальнейшего развития."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_6.html:78
+msgctxt "education"
+msgid "Давайте организуем нашу первую добычу сырья."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_6.html:83
+msgctxt "education"
+msgid "Отличная работа! Теперь вы можете претендовать на финансирование."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_6.html:87
+msgctxt "education"
+msgid ""
+"Средства будут аккумулироваться на временном счёте. Вы сможете снять их "
+"целиком или частично — как будет удобнее для управления вашими проектами."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_6.html:91
+msgctxt "education"
+msgid ""
+"Предлагаю забрать часть средств прямо сейчас, чтобы выгодно их инвестировать."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_6.html:96
+msgctxt "education"
+msgid ""
+"Эти средства понадобятся уже скоро. Следите за количеством добытого сырья и "
+"привлечённых инвестиций — это ключ к нашему будущему успеху."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_6.html:100
+msgctxt "education"
+msgid ""
+"Я рекомендую вложить часть капитала в производство товаров, чтобы укрепить "
+"экономическую базу и поддержать ваши политические инициативы."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_7.html:83
+msgctxt "education"
+msgid ""
+"Теперь, когда у нас есть ресурсы и капитал, мы можем переходить к следующему "
+"этапу — производству."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_7.html:87
+msgctxt "education"
+msgid ""
+"Все добытые ресурсы отправляются на ваш личный Склад. Обычно в новом регионе "
+"склад нужно строить с нуля, но в этот раз я всё подготовила заранее."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_7.html:91
+msgctxt "education"
+msgid "На складе, кроме недавно добытого сырья, есть небольшие запасы."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_7.html:95
+msgctxt "education"
+msgid ""
+"Но продавать сырьё прямо сейчас невыгодно — лучше превратить его в "
+"Материалы. Так оно принесет больше прибыли."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_7.html:99
+msgctxt "education"
+msgid "Для производства Стали нам понадобятся Наличные и ресурсы со склада."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_7.html:103
+msgctxt "education"
+msgid ""
+"Наличные тоже готовы и находятся на складе, откуда будут браться остальные "
+"ресурсы для запуска."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_7.html:107
+msgctxt "education"
+msgid ""
+"Перед началом стоит помнить, что любое производство требует энергии. Мы "
+"израсходовали её на добычу, поэтому сейчас пополним её вручную."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_7.html:111
+msgctxt "education"
+msgid ""
+"Энергия со временем восстанавливается сама, но иногда нужно ускорить процесс."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_7.html:116
+msgctxt "education"
+msgid ""
+"Энергия восстановлена, а это значит, что всё готово для запуска "
+"производства. Нажмите кнопку «Произвести», чтобы превратить сырьё в "
+"материалы."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_7.html:121
+msgctxt "education"
+msgid ""
+"Отлично! Под вашим руководством ресурсы превращаются в Материалы. Такие "
+"производственные цепочки — ключ к стабильному доходу и экономической "
+"независимости."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_7.html:125
+msgctxt "education"
+msgid ""
+"Самый эффективный подход — разделить обязанности: кто-то добывает сырьё, кто-"
+"то производит материалы и товары, а кто-то продает их и распределяет прибыль."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_7.html:129
+msgctxt "education"
+msgid ""
+"Теперь давайте заглянем на Склад и лично проверим, какие запасы доступны в "
+"этом регионе."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_8.html:71
+#: education/templates/education/edu_lists/list_9.html:71
+msgctxt "education"
+msgid ""
+"Добро пожаловать на ваш склад! Я приобрела его недавно, поэтому пока не "
+"успела полностью ознакомиться с его запасами."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_8.html:75
+#: education/templates/education/edu_lists/list_9.html:75
+msgctxt "education"
+msgid ""
+"Но перед началом производства я оставила $1000 для работы со сталью. Вы уже "
+"потратили $200, так что оставшуюся сумму можно забрать себе на баланс."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_8.html:79
+#: education/templates/education/edu_lists/list_9.html:79
+msgctxt "education"
+msgid ""
+"Просто выберите нужную сумму и переведите её на баланс. Эти средства "
+"пригодятся вам для новых проектов и сделок."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_8.html:84
+#: education/templates/education/edu_lists/list_9.html:84
+msgctxt "education"
+msgid "Теперь давайте взглянем на особое Хранилище."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_8.html:88
+#: education/templates/education/edu_lists/list_9.html:88
+msgctxt "education"
+msgid ""
+"Оно доступно всегда, даже если у вас нет собственного склада в регионе. "
+"Здесь хранятся два вида ресурсов высокой ценности — Энергетики и Wild Pass."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_8.html:92
+#: education/templates/education/edu_lists/list_9.html:92
+msgctxt "education"
+msgid "Энергетики можно приобрести за золото."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_8.html:98
+#: education/templates/education/edu_lists/list_9.html:98
+msgctxt "education"
+msgid ""
+"Это ценный ресурс: именно благодаря ему вы восстанавливали энергию во время "
+"прошлой битвы и при производстве товаров. Резервы энергии — ключ к "
+"стабильному развитию."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_8.html:102
+#: education/templates/education/edu_lists/list_9.html:102
+msgctxt "education"
+msgid "А вот Wild Pass — особый товар, который высоко ценится среди политиков."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_8.html:108
+#: education/templates/education/edu_lists/list_9.html:108
+msgctxt "education"
+msgid ""
+"Его можно обменивать на золото или использовать для доступа к различным "
+"премиум-возможностям, которые делают управление более удобным и эффективным."
+msgstr ""
+
+#: education/templates/education/edu_lists/list_8.html:112
+#: education/templates/education/edu_lists/list_9.html:112
+msgctxt "education"
+msgid ""
+"Несмотря на их ценность, эти ресурсы можно добывать, как и обычные. "
+"Занимайтесь добычей, развивайте торговые связи с политиками и "
+"предпринимателями, и получите всё необходимое для дальнейшего роста."
+msgstr ""
+
+#: education/templates/education/edu_overview.html:450
+#: player/templates/player/redesign/overview.html:698
+msgctxt "overview"
+msgid "Выборы"
+msgstr ""
+
+#: education/templates/education/edu_overview.html:605
 msgctxt "education"
 msgid "Мы против повышения налогов!"
 msgstr ""
 
-#: education/templates/education/edu_overview.html:610
+#: education/templates/education/edu_overview.html:606
 msgctxt "education"
 msgid "Снижение зарплат — это несправедливо!"
 msgstr ""
 
-#: education/templates/education/edu_overview.html:611
+#: education/templates/education/edu_overview.html:607
 msgctxt "education"
 msgid "Прекратите сокращения!"
 msgstr ""
 
-#: education/templates/education/edu_overview.html:612
+#: education/templates/education/edu_overview.html:608
 msgctxt "education"
 msgid "Требуем равные права!"
 msgstr ""
 
-#: education/templates/education/edu_overview.html:613
+#: education/templates/education/edu_overview.html:609
 msgctxt "education"
 msgid "Хватит обманывать народ!"
 msgstr ""
 
-#: education/templates/education/edu_overview.html:614
+#: education/templates/education/edu_overview.html:610
 msgctxt "education"
 msgid "Когда нас начнут слушать?"
 msgstr ""
 
-#: education/templates/education/edu_overview.html:615
+#: education/templates/education/edu_overview.html:611
 msgctxt "education"
 msgid "Слушайте народ, а не только отчеты!"
 msgstr ""
 
-#: education/templates/education/edu_overview.html:616
+#: education/templates/education/edu_overview.html:612
 msgctxt "education"
 msgid "Обещали перемены — где они теперь?"
 msgstr ""
 
-#: education/templates/education/edu_overview.html:617
+#: education/templates/education/edu_overview.html:613
 msgctxt "education"
 msgid "Нам нужны действия, а не только слова!"
 msgstr ""
 
-#: education/templates/education/edu_overview.html:618
+#: education/templates/education/edu_overview.html:614
 msgctxt "education"
 msgid "Мы требуем честности и прозрачности!"
 msgstr ""
 
-#: education/templates/education/edu_overview.html:619
+#: education/templates/education/edu_overview.html:615
 msgctxt "education"
 msgid "Хватит обещаний, пора выполнять!"
 msgstr ""
 
-#: education/templates/education/edu_overview.html:620
+#: education/templates/education/edu_overview.html:616
 msgctxt "education"
 msgid "Кто работает для людей — пусть ответит перед людьми!"
 msgstr ""
 
-#: education/templates/education/edu_overview.html:621
+#: education/templates/education/edu_overview.html:617
 msgctxt "education"
 msgid "Время перемен пришло — от слов к делам!"
 msgstr ""
 
-#: education/templates/education/edu_overview.html:622
+#: education/templates/education/edu_overview.html:618
 msgctxt "education"
 msgid "Мы требуем справедливости и равных прав!"
 msgstr ""
 
-#: education/templates/education/edu_overview.html:623
+#: education/templates/education/edu_overview.html:619
 msgctxt "education"
 msgid "Политика для народа, а не для избранных!"
 msgstr ""
 
-#: education/templates/education/edu_overview.html:624
+#: education/templates/education/edu_overview.html:620
 msgctxt "education"
 msgid "Не прячьтесь за стенами, ответьте на вопросы!"
 msgstr ""
 
-#: education/templates/education/edu_overview.html:631
+#: education/templates/education/edu_overview.html:627
 msgctxt "education"
 msgid "протестующие"
+msgstr ""
+
+#: education/templates/education/edu_war.html:30
+msgctxt "education"
+msgid "Восстание в Столичном регионе"
+msgstr ""
+
+#: education/templates/education/edu_war.html:46
+#: war/templates/war/redesign/EventWar.html:143
+#: war/templates/war/redesign/GroundWar.html:144
+#: war/templates/war/redesign/Revolution.html:143
+msgctxt "war_page"
+msgid "Атака"
+msgstr ""
+
+#: education/templates/education/edu_war.html:60
+#: war/templates/war/redesign/EventWar.html:152
+#: war/templates/war/redesign/GroundWar.html:153
+#: war/templates/war/redesign/Revolution.html:152
+msgctxt "war_page"
+msgid "До конца боя"
+msgstr ""
+
+#: education/templates/education/edu_war.html:66
+#: war/templates/war/redesign/EventWar.html:158
+#: war/templates/war/redesign/GroundWar.html:159
+#: war/templates/war/redesign/Revolution.html:158
+msgctxt "war_page"
+msgid "Защита"
+msgstr ""
+
+#: education/templates/education/edu_war.html:164
+msgctxt "education"
+msgid "Танки"
+msgstr ""
+
+#: education/templates/education/edu_war.html:173
+msgctxt "education"
+msgid "Автоматы"
+msgstr ""
+
+#: education/templates/education/edu_war.html:182
+msgctxt "education"
+msgid "БМП"
 msgstr ""
 
 #: education/views/edu_election.py:19
@@ -2666,40 +3095,82 @@ msgctxt "education"
 msgid "Выборы"
 msgstr ""
 
+#: education/views/edu_final.py:91 education/views/edu_overview.py:31
+#: player/views/overview.py:387
+msgctxt "overview"
+msgid "Обзор"
+msgstr ""
+
 #: education/views/edu_gov.py:55
 msgctxt "education"
 msgid "Парламент"
 msgstr ""
 
-#: education/views/edu_overview.py:51 education/views/edu_overview.py:54
-#: player/views/overview.py:372 player/views/overview.py:375
+#: education/views/edu_map.py:64
+msgctxt "education"
+msgid "Карта"
+msgstr ""
+
+#: education/views/edu_mining.py:20
+msgctxt "education"
+msgid "Добыча"
+msgstr ""
+
+#: education/views/edu_overview.py:16 education/views/edu_overview.py:20
+#: player/views/overview.py:378 player/views/overview.py:381
 msgctxt "education"
 msgid "Анна"
 msgstr ""
 
-#: education/views/edu_overview.py:54 player/views/overview.py:375
+#: education/views/edu_overview.py:21 player/views/overview.py:381
 msgctxt "education"
 msgid "Лин"
 msgstr ""
 
-#: education/views/edu_overview.py:54 player/views/overview.py:375
+#: education/views/edu_overview.py:22 player/views/overview.py:381
 msgctxt "education"
 msgid "Мария"
 msgstr ""
 
-#: education/views/edu_overview.py:54 player/views/overview.py:375
+#: education/views/edu_overview.py:23 player/views/overview.py:381
 msgctxt "education"
 msgid "София"
 msgstr ""
 
-#: education/views/edu_overview.py:54 player/views/overview.py:375
+#: education/views/edu_overview.py:24 player/views/overview.py:381
 msgctxt "education"
 msgid "Ольга"
 msgstr ""
 
-#: education/views/edu_overview.py:61 player/views/overview.py:381
-msgctxt "overview"
-msgid "Обзор"
+#: education/views/edu_produce.py:20
+msgctxt "education"
+msgid "Производство"
+msgstr ""
+
+#: education/views/edu_reward.py:77
+msgctxt "education"
+msgid "Неизвестный ключ награды"
+msgstr ""
+
+#: education/views/edu_reward.py:78 education/views/edu_reward.py:89
+#: education/views/edu_reward.py:98 education/views/edu_reward.py:127
+msgctxt "education"
+msgid "Ошибка получения награды"
+msgstr ""
+
+#: education/views/edu_reward.py:88 education/views/edu_reward.py:97
+msgctxt "education"
+msgid "Данная награда уже забрана"
+msgstr ""
+
+#: education/views/edu_storage.py:57
+msgctxt "education"
+msgid "Склад"
+msgstr ""
+
+#: education/views/edu_war.py:55
+msgctxt "education"
+msgid "Восстание"
 msgstr ""
 
 #: event/templates/event/anniversary.html:218
@@ -5244,11 +5715,6 @@ msgid ""
 "много денег!"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:278
-msgctxt "overview"
-msgid "независимый регион"
-msgstr ""
-
 #: player/templates/player/redesign/overview.html:421
 msgctxt "overview"
 msgid "С новым годом!"
@@ -5267,17 +5733,6 @@ msgstr ""
 #: player/templates/player/redesign/overview.html:695
 msgctxt "overview"
 msgid "Выборы лидера"
-msgstr ""
-
-#: player/templates/player/redesign/overview.html:703
-msgctxt "overview"
-msgid "региона"
-msgstr ""
-
-#: player/templates/player/redesign/overview.html:740
-#: player/templates/player/redesign/overview.html:785
-msgctxt "overview"
-msgid "партий нет"
 msgstr ""
 
 #: player/templates/player/redesign/overview_skills.html:25
@@ -6588,11 +7043,16 @@ msgid ""
 msgstr ""
 
 #: region/templates/region/redesign/region_info.html:65
+msgctxt "education"
+msgid "В полёте"
+msgstr ""
+
+#: region/templates/region/redesign/region_info.html:69
 msgctxt "map"
 msgid "Вы здесь"
 msgstr ""
 
-#: region/templates/region/redesign/region_info.html:80
+#: region/templates/region/redesign/region_info.html:83
 #: region/templates/region/redesign/region_view.html:115
 #: region/templates/region/redesign/region_view.html:152
 msgctxt "map"
@@ -9196,32 +9656,11 @@ msgctxt "war_page"
 msgid "Тестовая война"
 msgstr ""
 
-#: war/templates/war/redesign/EventWar.html:143
-#: war/templates/war/redesign/GroundWar.html:144
-#: war/templates/war/redesign/Revolution.html:143
-msgctxt "war_page"
-msgid "Атака"
-msgstr ""
-
 #: war/templates/war/redesign/EventWar.html:149
 #: war/templates/war/redesign/GroundWar.html:150
 #: war/templates/war/redesign/Revolution.html:149
 msgctxt "war_page"
 msgid "Война завершилась"
-msgstr ""
-
-#: war/templates/war/redesign/EventWar.html:152
-#: war/templates/war/redesign/GroundWar.html:153
-#: war/templates/war/redesign/Revolution.html:152
-msgctxt "war_page"
-msgid "До конца боя"
-msgstr ""
-
-#: war/templates/war/redesign/EventWar.html:158
-#: war/templates/war/redesign/GroundWar.html:159
-#: war/templates/war/redesign/Revolution.html:158
-msgctxt "war_page"
-msgid "Защита"
 msgstr ""
 
 #: war/templates/war/redesign/EventWar.html:177
