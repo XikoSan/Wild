@@ -27,11 +27,11 @@
   {% with LANGUAGE_CODE='ru' %}
 <main>
     <section class="factory custom-scroll">
-    <h1 class="factory__title ct__page-title">Production</h1>
+    <h1 class="factory__title ct__page-title">{% trans 'Производство' context "factory" %}</h1>
 
     <script>
 
-          var price_text = 'price';
+          var price_text = "{% trans 'цена' context 'factory' %}";
 
           var count = 0;
 
@@ -112,15 +112,15 @@
 
 
             var goods_names = {};
-            goods_names['energy'] = 'Energy';
+            goods_names['energy'] = "{% trans 'Энергия' context 'education' %}";
 
-                goods_names['Наличные'] = 'Cash';
+                goods_names['Наличные'] = '{% trans 'Наличные' context 'education' %}';
 
-                goods_names['4'] = 'Coal';
+                goods_names['4'] = '{% trans 'Уголь' context 'education' %}';
 
-                goods_names['5'] = 'Iron';
+                goods_names['5'] = '{% trans 'Железо' context 'education' %}';
 
-                goods_names['10'] = 'Steel';
+                goods_names['10'] = '{% trans 'Сталь' context 'education' %}';
 
 
           var total_stocks = {};
@@ -267,10 +267,10 @@
       <div class="ct__selectWithImage">
 
           <div class="ct__selectWithImage-selected" id="storage" data-value="1">
-              <img src="static/img/regions/webp/55/GE-GE.webp">
+              <img src="static/img/regions/webp/55/{{ player.region.on_map_id }}.webp">
               <div class="ct__selectWithImage-firstText">
 
-                  <span>Грузия</span>
+                  <span>{{ player.region.region_name }}</span>
 
                   <svg class="ct__selectWithImage-arrow" width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"></path>
@@ -280,16 +280,16 @@
 
           <div class="ct__selectWithImage-content custom-scroll custom-scroll--alt">
 
-              <div data-value="1"><img src="static/img/regions/webp/55/GE-GE.webp">Грузия</div>
+              <div data-value="1"><img src="static/img/regions/webp/55/{{ player.region.on_map_id }}.webp">{{ player.region.region_name }}</div>
 
           </div>
       </div>
 
       <label class="factory__topLabel ct__wide-modal-label-select ct__wide-modal-label-select--min">
         <select id="group">
-          <option id="group_default" value="default" disabled="" selected="">product group selection</option>
+          <option id="group_default" value="default" disabled="" selected="">{% trans 'выбор группы товаров' context "factory" %}</option>
 
-          <option value="materials">Materials</option>
+          <option value="materials">{% trans 'Материалы' context "goods" %}</option>
 
         </select>
         <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -299,9 +299,9 @@
 
       <label class="factory__topLabel ct__wide-modal-label-select ct__wide-modal-label-select--min">
         <select disabled="" name="good" id="good">
-          <option id="good_default" value="default" disabled="" selected="">product selection</option>
+          <option id="good_default" value="default" disabled="" selected="">{% trans 'выбор товара' context "factory" %}</option>
 
-          <option id="good_10" value="10" style="display: none">Steel</option>
+          <option id="good_10" value="10" style="display: none">{% trans 'Сталь' context 'education' %}</option>
 
         </select>
         <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -311,7 +311,7 @@
 
       <label class="factory__topLabel ct__wide-modal-label-select ct__wide-modal-label-select--min">
         <select disabled="" name="schema" id="schema">
-            <option id="schema_default" value="default" disabled="" selected="">schema selection</option>
+            <option id="schema_default" value="default" disabled="" selected="">{% trans 'выбор схемы' context "factory" %}</option>
 <!--            <option value="10">Coal, Iron</option>-->
         </select>
         <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -344,7 +344,7 @@
                 <path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"></path>
               </g>
             </svg>
-            <span>produce</span>
+            <span>{% trans 'создать' context "factory" %}</span>
           </button>
 
       </div>

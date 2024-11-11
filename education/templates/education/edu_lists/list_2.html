@@ -30,6 +30,9 @@
 
     function edu_pragma(page) {
         if (page == 6){
+            document.getElementById('eduPrevBtn').style.opacity = 0;
+            document.getElementById('eduPrevBtn').disabled = true;
+
             const imgElement = document.querySelector('.edu__img');
             if (imgElement) {
                 imgElement.src = this.getFromLS() ?? "/static/redesign/img/Ann.png";

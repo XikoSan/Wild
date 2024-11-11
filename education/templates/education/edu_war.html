@@ -83,14 +83,14 @@
       <div class="war__damage">
         <div class="war__playerDamage"></div>
         <p>
-          <span>Урон:</span>
+          <span>{% trans 'Урон' context "war_page" %}:</span>
           <span id="agr_dmg" data-dmg="1823">1 823</span>
         </p>
         <p id="delta_dmg">
           -1 823
         </p>
         <p>
-          <span>Урон:</span>
+          <span>{% trans 'Урон' context "war_page" %}:</span>
           <span id="def_dmg">0</span>
         </p>
       </div>
@@ -103,7 +103,7 @@
             <div class="war__enter-left">
                 <label class="ct__wide-modal-label-select ct__wide-modal-label-select--100">
                     <select id="war_side">
-                      <option selected value="def">защита</option>
+                      <option selected value="def">{% trans 'защита' context "war_page" %}</option>
                     </select>
                     <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"></path>
@@ -111,7 +111,7 @@
                 </label>
 
                 <div class="war__enter-str">
-                    <span>Урон:</span>
+                    <span>{% trans 'Урон' context "war_page" %}:</span>
                     <span id="damage_count">0</span>
                 </div>
             </div>
@@ -130,7 +130,7 @@
                         <path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"></path>
                     </g>
                 </svg>
-                <span>в бой</span>
+                <span>{% trans 'в бой' context "war_page" %}</span>
             </button>
         </div>
     </div>
