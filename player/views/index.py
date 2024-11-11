@@ -20,16 +20,11 @@ def index(request):
         if datetime.now() > open_date:
             is_open = True
 
-        from player.logs.print_log import log
-        log(request.LANGUAGE_CODE)
-
         lang = None
         language = request.LANGUAGE_CODE
         if language != 'ru':
             lang = 'en'
             translation.activate(lang)
-
-        log(lang)
 
         # Формируем ответ с рендерингом шаблона
         response = render(request, 'player/index.html', {
