@@ -162,7 +162,7 @@ class AutoMining(Log):
             if player.energy_consumption + player.paid_consumption < 3000:
                 # время, когда можно перезаряжаться
                 if player.last_refill <= timezone.now():
-                    if player.bottles >= 100 - player.energy:
+                    if player.bottles >= 100 - player.energy and player.energy < 100:
                         refill_value = 100 - player.energy
 
                         player.bottles -= refill_value

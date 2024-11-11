@@ -15,8 +15,17 @@ function start_auto(e, resource){
 
                 for (var i = 0; i < elements.length; i++) {
                     var child = elements[i];
-                    child.getElementsByClassName('start_auto')[0].style.display = 'flex';
-                    child.getElementsByClassName('cancel_auto')[0].style.display = 'none';
+
+                    var startAuto = child.getElementsByClassName('start_auto')[0];
+                    var cancelAuto = child.getElementsByClassName('cancel_auto')[0];
+
+                    if (startAuto) {
+                        startAuto.style.display = 'flex';
+                    }
+
+                    if (cancelAuto) {
+                        cancelAuto.style.display = 'none';
+                    }
                 }
 
                 e.target.closest(".mining_form").getElementsByClassName("start_auto")[0].style.display = 'none';
