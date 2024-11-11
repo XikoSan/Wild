@@ -14,7 +14,7 @@ function actualize_daily(){
 
             document.getElementById('energy_progressbar').style.width = result.daily_procent;
 
-            document.getElementById('daily_current_sum').innerHTML = result.daily_current_sum;
+            document.getElementById('daily_current_sum').innerHTML = numberWithSpaces(result.daily_current_sum);
         }
     });
 };
