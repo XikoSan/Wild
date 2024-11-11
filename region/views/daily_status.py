@@ -11,6 +11,7 @@ from player.player import Player
 from wild_politics.settings import JResponse
 from django.utils.translation import ugettext
 from django.utils.translation import pgettext
+from player.views.multiple_sum import multiple_sum
 from django.apps import apps
 from django.utils import timezone
 from django.db import connection
@@ -28,7 +29,7 @@ def daily_status(request):
         int_earn = player.calculate_earnings(player.knowledge)
         end_earn = player.calculate_earnings(player.endurance)
 
-        daily_limit = 20000 + pwr_earn + int_earn + end_earn
+        daily_limit = multiple_sum(20000) + pwr_earn + int_earn + end_earn
 
         # ------------------
 
