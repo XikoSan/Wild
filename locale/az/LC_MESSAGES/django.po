@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-11 19:29+0300\n"
+"POT-Creation-Date: 2024-11-11 22:12+0300\n"
 "PO-Revision-Date: 2024-11-10 04:40+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -286,7 +286,10 @@ msgstr "Məqalə boş ola bilməz"
 #: player/views/expense_energy.py:30 player/views/expense_energy.py:43
 #: player/views/expense_energy.py:65 player/views/expense_energy.py:73
 #: player/views/expense_energy.py:83 player/views/full_auto_allow.py:43
-#: player/views/full_auto_allow.py:59 player/views/new_player.py:185
+#: player/views/full_auto_allow.py:59
+#: player/views/game_event/buy_test_prizes.py:39
+#: player/views/game_event/buy_test_prizes.py:47
+#: player/views/game_event/buy_test_prizes.py:76 player/views/new_player.py:185
 #: player/views/new_player.py:198 player/views/open_lootboxes.py:27
 #: player/views/open_lootboxes.py:38 player/views/open_lootboxes.py:49
 #: player/views/open_lootboxes.py:59 player/views/open_lootboxes.py:134
@@ -1982,8 +1985,9 @@ msgstr "Bu dövlətdə parlament yoxdur"
 #: player/views/customization/plane/choose_plane.py:59
 #: player/views/customization/plane/clear_plane_nick.py:61
 #: player/views/customization/plane/set_plane_nick.py:80
-#: region/views/do_mining.py:443 region/views/map/get_residency.py:155
-#: region/views/map/plane_info.py:41 region/views/map/region_info.py:51
+#: player/views/game_event/buy_test_prizes.py:74 region/views/do_mining.py:443
+#: region/views/map/get_residency.py:155 region/views/map/plane_info.py:41
+#: region/views/map/region_info.py:51
 #: storage/views/assets/assets_destroy.py:138
 #: storage/views/assets/assets_transfer.py:246
 #: storage/views/assets/storage_move.py:108
@@ -6281,6 +6285,68 @@ msgctxt "status"
 msgid "пополнить"
 msgstr "doldurmaq"
 
+#: player/templates/player/redesign/premium_shop.html:22
+msgctxt "shop"
+msgid "Временный порядок оплаты наборов Премиум-магазина"
+msgstr ""
+
+#: player/templates/player/redesign/premium_shop.html:25
+#, fuzzy
+#| msgctxt "index"
+#| msgid "Продолжая использование сайта, вы принимаете условия"
+msgctxt "shop"
+msgid "В данный момент все пожертвования на развитие игры принимаются лично"
+msgstr "Saytdan istifadə etməyə davam etməklə, siz şərtləri qəbul edirsiniz"
+
+#: player/templates/player/redesign/premium_shop.html:26
+#, fuzzy
+#| msgctxt "change_residency_draft"
+#| msgid "Выдаётся министром"
+msgctxt "shop"
+msgid "Администратором"
+msgstr "Nazir tərəfindən verilir"
+
+#: player/templates/player/redesign/premium_shop.html:33
+msgctxt "shop"
+msgid "30 дней"
+msgstr ""
+
+#: player/templates/player/redesign/premium_shop.html:86
+#, fuzzy
+#| msgctxt "party_manage"
+#| msgid "золото"
+msgctxt "shop"
+msgid "золото"
+msgstr "qızıl"
+
+#: player/templates/player/redesign/premium_shop.html:93
+#, fuzzy
+#| msgctxt "daily_header"
+#| msgid "за день!"
+msgctxt "shop"
+msgid "деньги"
+msgstr "qədər qazan!"
+
+#: player/templates/player/redesign/premium_shop.html:95
+#, fuzzy
+#| msgctxt "bill_draft"
+#| msgid "Бесплатно"
+msgctxt "shop"
+msgid "бесплатно"
+msgstr "Pulsuz"
+
+#: player/templates/player/redesign/premium_shop.html:104
+msgctxt "shop"
+msgid "Курсовая разница стоимости товаров"
+msgstr ""
+
+#: player/templates/player/redesign/premium_shop.html:107
+msgctxt "shop"
+msgid ""
+"Обращаем ваше внимание, что конечная стоимость наборов зависит от валюты и "
+"методов оплаты, и может включать в себя дополнительные комиссии и сборы."
+msgstr ""
+
 #: player/templates/player/redesign/profile.html:99
 #: player/templates/player/redesign/view_profile.html:72
 msgctxt "profile"
@@ -6874,6 +6940,28 @@ msgctxt "game_event"
 msgid "С годовщиной сервера Wild Politics!"
 msgstr "Serverin ildönümü ilə!"
 
+#: player/views/game_event/buy_test_prizes.py:37
+#, fuzzy
+#| msgid "Некорректный запрос"
+msgctxt "shop"
+msgid "Некорректно указан товар"
+msgstr "Sorğu düzgün deyil"
+
+#: player/views/game_event/buy_test_prizes.py:38
+#: player/views/game_event/buy_test_prizes.py:46
+#: player/views/game_event/buy_test_prizes.py:75
+#, fuzzy
+#| msgctxt "get_residency"
+#| msgid "Получение прописки"
+msgctxt "shop"
+msgid "Получение бонуса"
+msgstr "Qeydiyyatın alınması"
+
+#: player/views/game_event/buy_test_prizes.py:45
+msgctxt "shop"
+msgid "Этот товар уже куплен вами"
+msgstr ""
+
 #: player/views/game_event/new_year.py:43
 msgctxt "game_event_ny"
 msgid "С новым годом!"
@@ -6957,6 +7045,14 @@ msgstr "Yeni oyunçu"
 msgctxt "new_player"
 msgid "Ошибка в форме профиля"
 msgstr "Metod xətası"
+
+#: player/views/premium_shop.py:30
+#, fuzzy
+#| msgctxt "profile"
+#| msgid "премиум-аккаунт"
+msgctxt "shop"
+msgid "Премиум-магазин"
+msgstr "Premium-hesab"
 
 #: player/views/set_language.py:38
 msgid "Такого языка в игре нет"

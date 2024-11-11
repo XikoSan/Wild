@@ -49,15 +49,15 @@ def overview(request):
     player = Player.get_instance(account=request.user)
     wiki_hide = False
 
-    user_agent = request.META.get('HTTP_USER_AGENT', '')
-
-    if "WildPoliticsApp" in user_agent:
-        import re
-        from player.logs.print_log import log
-        match = re.search(r"WildPoliticsApp_(\d+\.\d+\.\d+)", user_agent)
-        if match:
-            version = match.group(1)
-            log(version)
+    # user_agent = request.META.get('HTTP_USER_AGENT', '')
+    #
+    # if "WildPoliticsApp" in user_agent:
+    #     import re
+    #     from player.logs.print_log import log
+    #     match = re.search(r"WildPoliticsApp_(\d+\.\d+\.\d+)", user_agent)
+    #     if match:
+    #         version = match.group(1)
+    #         log(version)
 
         # if TestLog.objects.filter(player=player).exists():
         #     tst_log = TestLog.objects.filter(player=player).order_by('-dtime').first()

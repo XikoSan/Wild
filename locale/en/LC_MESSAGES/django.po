@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-11 19:29+0300\n"
-"PO-Revision-Date: 2024-11-11 18:42+0300\n"
+"POT-Creation-Date: 2024-11-11 22:12+0300\n"
+"PO-Revision-Date: 2024-11-11 22:28+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -285,7 +285,10 @@ msgstr "Article cannot be empty"
 #: player/views/expense_energy.py:30 player/views/expense_energy.py:43
 #: player/views/expense_energy.py:65 player/views/expense_energy.py:73
 #: player/views/expense_energy.py:83 player/views/full_auto_allow.py:43
-#: player/views/full_auto_allow.py:59 player/views/new_player.py:185
+#: player/views/full_auto_allow.py:59
+#: player/views/game_event/buy_test_prizes.py:39
+#: player/views/game_event/buy_test_prizes.py:47
+#: player/views/game_event/buy_test_prizes.py:76 player/views/new_player.py:185
 #: player/views/new_player.py:198 player/views/open_lootboxes.py:27
 #: player/views/open_lootboxes.py:38 player/views/open_lootboxes.py:49
 #: player/views/open_lootboxes.py:59 player/views/open_lootboxes.py:134
@@ -1985,8 +1988,9 @@ msgstr "There is no parliament in this state"
 #: player/views/customization/plane/choose_plane.py:59
 #: player/views/customization/plane/clear_plane_nick.py:61
 #: player/views/customization/plane/set_plane_nick.py:80
-#: region/views/do_mining.py:443 region/views/map/get_residency.py:155
-#: region/views/map/plane_info.py:41 region/views/map/region_info.py:51
+#: player/views/game_event/buy_test_prizes.py:74 region/views/do_mining.py:443
+#: region/views/map/get_residency.py:155 region/views/map/plane_info.py:41
+#: region/views/map/region_info.py:51
 #: storage/views/assets/assets_destroy.py:138
 #: storage/views/assets/assets_transfer.py:246
 #: storage/views/assets/storage_move.py:108
@@ -6431,6 +6435,57 @@ msgctxt "status"
 msgid "пополнить"
 msgstr "refill"
 
+#: player/templates/player/redesign/premium_shop.html:22
+msgctxt "shop"
+msgid "Временный порядок оплаты наборов Премиум-магазина"
+msgstr "Temporary procedure of Premium Shop sets payment"
+
+#: player/templates/player/redesign/premium_shop.html:25
+msgctxt "shop"
+msgid "В данный момент все пожертвования на развитие игры принимаются лично"
+msgstr ""
+"At the moment, all donations for the development of the game are accepted "
+"personally by the"
+
+#: player/templates/player/redesign/premium_shop.html:26
+msgctxt "shop"
+msgid "Администратором"
+msgstr "Administrator"
+
+#: player/templates/player/redesign/premium_shop.html:33
+msgctxt "shop"
+msgid "30 дней"
+msgstr "30 days"
+
+#: player/templates/player/redesign/premium_shop.html:86
+msgctxt "shop"
+msgid "золото"
+msgstr "gold"
+
+#: player/templates/player/redesign/premium_shop.html:93
+msgctxt "shop"
+msgid "деньги"
+msgstr "cash"
+
+#: player/templates/player/redesign/premium_shop.html:95
+msgctxt "shop"
+msgid "бесплатно"
+msgstr "Free"
+
+#: player/templates/player/redesign/premium_shop.html:104
+msgctxt "shop"
+msgid "Курсовая разница стоимости товаров"
+msgstr "Exchange rate difference in the cost of goods"
+
+#: player/templates/player/redesign/premium_shop.html:107
+msgctxt "shop"
+msgid ""
+"Обращаем ваше внимание, что конечная стоимость наборов зависит от валюты и "
+"методов оплаты, и может включать в себя дополнительные комиссии и сборы."
+msgstr ""
+"Please note that the final cost of the kits depends on the currency and "
+"payment methods, and may include additional fees and charges."
+
 #: player/templates/player/redesign/profile.html:99
 #: player/templates/player/redesign/view_profile.html:72
 msgctxt "profile"
@@ -7024,6 +7079,23 @@ msgctxt "game_event"
 msgid "С годовщиной сервера Wild Politics!"
 msgstr "Happy anniversary of the WP server!"
 
+#: player/views/game_event/buy_test_prizes.py:37
+msgctxt "shop"
+msgid "Некорректно указан товар"
+msgstr "The product is incorrectly specified"
+
+#: player/views/game_event/buy_test_prizes.py:38
+#: player/views/game_event/buy_test_prizes.py:46
+#: player/views/game_event/buy_test_prizes.py:75
+msgctxt "shop"
+msgid "Получение бонуса"
+msgstr "Receiving a bonus"
+
+#: player/views/game_event/buy_test_prizes.py:45
+msgctxt "shop"
+msgid "Этот товар уже куплен вами"
+msgstr "This item has already been purchased by you"
+
 #: player/views/game_event/new_year.py:43
 msgctxt "game_event_ny"
 msgid "С новым годом!"
@@ -7114,6 +7186,11 @@ msgstr "New character"
 msgctxt "new_player"
 msgid "Ошибка в форме профиля"
 msgstr "Profile form error"
+
+#: player/views/premium_shop.py:30
+msgctxt "shop"
+msgid "Премиум-магазин"
+msgstr "Premium Shop"
 
 #: player/views/set_language.py:38
 msgid "Такого языка в игре нет"

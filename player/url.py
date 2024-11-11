@@ -9,13 +9,14 @@ from player.views.bonus_code.activate_code import activate_code
 from player.views.bonus_code.bonus_code import bonus_code
 from player.views.data_deleting import data_deleting
 from player.views.eula import eula
-from player.views.game_event.buy_test_prizes import buy_test_prizes
+from player.views.game_event.buy_test_prizes import get_freebie
 from player.views.game_event.halloween import halloween
 from player.views.game_event.test_shop import test_shop
 from player.views.lists.damage_top import damage_top
 from player.views.lists.region_players import region_players_list
 from player.views.lists.world_online import world_online_list
 from player.views.lists.world_players import world_players_list
+from player.views.premium_shop import premium_shop
 from player.views.repost_reward import repost_reward
 from player.views.skills.up_skill import up_skill
 from player.views.translate.translate import edit_translations
@@ -33,9 +34,9 @@ from .views.comma_list import comma_list
 from .views.dmg_tbl import dmg_tbl
 from .views.expense_energy import expense_energy
 from .views.full_auto_allow import full_auto_allow
+from .views.game_event.anniversary import anniversary
 from .views.game_event.new_year import new_year
 from .views.game_event.summer import summer_festival
-from .views.game_event.anniversary import anniversary
 from .views.index import index
 from .views.lists.cash_top import cash_top
 from .views.lists.region_citizens import region_citizens_list
@@ -152,8 +153,8 @@ urlpatterns = [
     # подпись приложения на сайте
     path('.well-known/assetlinks.json', assetlinks_view, name='assetlinks'),
 
-    # получение наград за обучение
-    url(r'^claim_reward/$', claim_reward, name='claim_reward'),
+    # # получение наград за обучение
+    # url(r'^claim_reward/$', claim_reward, name='claim_reward'),
 
     # открыть лутбоксы
     url(r'^open_lootboxes/$', open_lootboxes, name='open_lootboxes'),
@@ -170,9 +171,10 @@ urlpatterns = [
     # активация бонус-кода
     url(r'^activate_code/', activate_code, name='activate_code'),
 
-    # # магазин очков тестирования андроид
-    # url(r'^test_shop/', test_shop, name='test_shop'),
-    # # купить тест призы
-    # url(r'^buy_test_prizes/$', buy_test_prizes, name='buy_test_prizes'),
+    # магазин очков тестирования андроид
+    url(r'^shop/', premium_shop, name='premium_shop'),
+
+    # купить тест призы
+    url(r'^get_freebie/$', get_freebie, name='get_freebie'),
 
 ]

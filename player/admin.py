@@ -17,17 +17,18 @@ from player.game_event.global_part import GlobalPart
 from player.logs.auto_mining import AutoMining
 from player.logs.cash_log import CashLog
 from player.logs.donut_log import DonutLog
+from player.logs.freebie_usage import FreebieUsage
 from player.logs.gold_log import GoldLog
 from player.logs.prem_log import PremLog
 from player.logs.skill_training import SkillTraining
+from player.logs.test_log import TestLog
+from player.logs.test_point_usage import TestPointUsage
 from player.logs.wildpass_log import WildpassLog
 from player.lootbox.lootbox import Lootbox
+from player.models.medal import Medal
 from player.player_regional_expence import PlayerRegionalExpense
 from .player import Player
 from .player_settings import PlayerSettings
-from player.logs.test_log import TestLog
-from player.models.medal import Medal
-from player.logs.test_point_usage import TestPointUsage
 
 
 @transaction.atomic
@@ -196,7 +197,7 @@ class PLayerAdmin(TabbedModelAdmin):
 
     search_fields = ['nickname', 'user_ip', 'fingerprint', 'party__title']
     raw_id_fields = ('account', 'party', 'region', 'residency',)
-    list_filter = ('utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', )
+    list_filter = ('utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term',)
 
     tab_overview = (
         ('Профиль', {
@@ -220,7 +221,7 @@ class PLayerAdmin(TabbedModelAdmin):
             'fields': ('cash', 'gold', 'bottles',)
         }),
         ('Изменение баланса золота', {
-            'fields': ('add_value', 'subtract_value', )
+            'fields': ('add_value', 'subtract_value',)
         }),
         ('Премиум-аккаунт', {
             'fields': ('premium', 'cards_count',)
@@ -351,19 +352,25 @@ class CodeUsageAdmin(admin.ModelAdmin):
 class TestLogAdmin(admin.ModelAdmin):
     search_fields = ['player__nickname', ]
     list_display = ('player', 'dtime')
-    raw_id_fields = ('player', )
+    raw_id_fields = ('player',)
 
 
 class TestPointUsageAdmin(admin.ModelAdmin):
     search_fields = ['player__nickname', ]
     list_display = ('player', 'count', 'dtime')
-    raw_id_fields = ('player', )
+    raw_id_fields = ('player',)
+
+
+class FreebieUsageAdmin(admin.ModelAdmin):
+    search_fields = ['player__nickname', ]
+    list_display = ('player', 'dtime')
+    raw_id_fields = ('player',)
 
 
 class MedalAdmin(admin.ModelAdmin):
     search_fields = ['player__nickname', ]
     list_display = ('player', 'type', 'count')
-    raw_id_fields = ('player', )
+    raw_id_fields = ('player',)
 
 
 # Register your models here.
@@ -391,5 +398,7 @@ admin.site.register(CodeUsage, CodeUsageAdmin)
 
 admin.site.register(TestLog, TestLogAdmin)
 admin.site.register(TestPointUsage, TestPointUsageAdmin)
+
+admin.site.register(FreebieUsage, FreebieUsageAdmin)
 
 admin.site.register(Medal, MedalAdmin)
