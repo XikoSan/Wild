@@ -36,7 +36,6 @@ def activate_invite(request):
 
         event = CashEvent.objects.get(running=True, event_start__lt=timezone.now(),
                                       event_end__gt=timezone.now())
-
         # получаем персонажа игрока
         player = Player.get_instance(account=request.user)
 
@@ -48,6 +47,17 @@ def activate_invite(request):
                 'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
+
+        if CashEvent.objects.filter(pk=2).exists():
+            prev_event = CashEvent.objects.get(pk=2)
+            # если приглашался в прошлом сезоне - то все
+            if Invite.objects.filter(invited=player, event=prev_event).exists():
+                data = {
+                    'response': pgettext('game_event', 'Вы участвовали в прошлом сезоне события'),
+                    'header': pgettext('game_event', 'Активация приглашения'),
+                    'grey_btn': pgettext('core', 'Закрыть'),
+                }
+                return JResponse(data)
 
         returned = False
 
