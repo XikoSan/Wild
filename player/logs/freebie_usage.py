@@ -10,6 +10,7 @@ class FreebieUsage(Log):
 
     # на что потратили
     buyTypeChoices = (
+        ('gold_500', 'Золото 500'),
         ('cash_500k', 'Деньги 500k'),
     )
     type = models.CharField(

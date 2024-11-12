@@ -31,6 +31,7 @@ def get_freebie(request):
         player = Player.get_instance(account=request.user)
 
         type = request.POST.get('type')
+        used = None
 
         if type not in ['cash_500k',]:
             data = {
@@ -66,16 +67,45 @@ def get_freebie(request):
                         }
                         return JResponse(data)
 
-            player.cash += 500000
-            player.save()
+                    else:
+                        player.cash += 500000
+                        player.save()
 
-            CashLog.create(player=player, cash=500000, activity_txt='bonus')
+                        CashLog.create(player=player, cash=500000, activity_txt='bonus')
+                        used = type
 
-        usage = FreebieUsage(
-            player=player,
-            type=type,
-        )
-        usage.save()
+        # --------------------------------------
+
+        if type == 'gold_500':
+
+            user_agent = request.META.get('HTTP_USER_AGENT', '')
+
+            if "WildPoliticsApp" in user_agent:
+                import re
+                match = re.search(r"WildPoliticsApp_(\d+\.\d+\.\d+)", user_agent)
+                if match:
+                    if match.group(1) != '1.5.3':
+                        data = {
+                            'response': pgettext('shop', 'Ошибка версии приложения'),
+                            'header': pgettext('shop', 'Получение бонуса'),
+                            'grey_btn': pgettext('core', 'Закрыть'),
+                        }
+                        return JResponse(data)
+
+                    else:
+                        player.gold += 500
+                        player.save()
+
+                        goldlog = GoldLog(player=player, gold=500, activity_txt='bonus')
+                        goldlog.save()
+                        used = type
+
+        if used:
+            usage = FreebieUsage(
+                player=player,
+                type=used,
+            )
+            usage.save()
 
         data = {
             'response': 'ok',

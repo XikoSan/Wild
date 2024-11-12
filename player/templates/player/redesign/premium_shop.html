@@ -89,11 +89,15 @@
 						<span style="font-size: 10rem;">50 RUB / 1.2 EUR</span>
 					</a>
 					{% if version %}
+						{% if not 'gold_500' in usages_list %}
+						<a onclick="get_freebie('gold_500')" class="profile__gridBtn" style="animation: morgmorg ease 2s infinite;">
+							<span>{% trans 'золото' context "shop" %}</span>
+							<span style="color: #eb9929;font-size: 25rem;">G 500</span>
+							<span style="font-size: 10rem;">{% trans 'бесплатно' context "shop" %}</span>
+						</a>
+						{% endif %}
+
 						{% if not 'cash_500k' in usages_list %}
-						<a class="profile__gridBtn" style="
-							opacity: 0;
-							cursor: initial;
-						"></a>
 						<a onclick="get_freebie('cash_500k')" class="profile__gridBtn" style="animation: morgmorg ease 2s infinite;">
 							<span>{% trans 'деньги' context "shop" %}</span>
 							<span style="color: white; font-size: 25rem;">$ 500k</span>
