@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-12 00:25+0300\n"
+"POT-Creation-Date: 2024-11-12 20:35+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -314,18 +314,19 @@ msgstr "Virsraksta lauks nedrīkst būt tukšs"
 #: player/views/expense_energy.py:65 player/views/expense_energy.py:73
 #: player/views/expense_energy.py:83 player/views/full_auto_allow.py:43
 #: player/views/full_auto_allow.py:59
-#: player/views/game_event/buy_test_prizes.py:39
-#: player/views/game_event/buy_test_prizes.py:47
-#: player/views/game_event/buy_test_prizes.py:65
-#: player/views/game_event/buy_test_prizes.py:90 player/views/new_player.py:185
-#: player/views/new_player.py:198 player/views/open_lootboxes.py:27
-#: player/views/open_lootboxes.py:38 player/views/open_lootboxes.py:49
-#: player/views/open_lootboxes.py:59 player/views/open_lootboxes.py:134
-#: player/views/set_language.py:40 player/views/set_language.py:56
-#: player/views/set_timezone.py:29 player/views/set_timezone.py:45
-#: player/views/skills/boost_skill.py:59 player/views/skills/boost_skill.py:72
-#: player/views/skills/boost_skill.py:80 player/views/skills/boost_skill.py:94
-#: player/views/skills/boost_skill.py:104
+#: player/views/game_event/buy_test_prizes.py:40
+#: player/views/game_event/buy_test_prizes.py:48
+#: player/views/game_event/buy_test_prizes.py:66
+#: player/views/game_event/buy_test_prizes.py:91
+#: player/views/game_event/buy_test_prizes.py:120
+#: player/views/new_player.py:185 player/views/new_player.py:198
+#: player/views/open_lootboxes.py:27 player/views/open_lootboxes.py:38
+#: player/views/open_lootboxes.py:49 player/views/open_lootboxes.py:59
+#: player/views/open_lootboxes.py:134 player/views/set_language.py:40
+#: player/views/set_language.py:56 player/views/set_timezone.py:29
+#: player/views/set_timezone.py:45 player/views/skills/boost_skill.py:59
+#: player/views/skills/boost_skill.py:72 player/views/skills/boost_skill.py:80
+#: player/views/skills/boost_skill.py:94 player/views/skills/boost_skill.py:104
 #: player/views/skills/boost_skill.py:113
 #: player/views/skills/boost_skill.py:123
 #: player/views/skills/boost_skill.py:168 player/views/skills/up_skill.py:35
@@ -2583,7 +2584,7 @@ msgstr "Šajā reģionā nav Noliktavas"
 #: player/views/customization/plane/choose_plane.py:59
 #: player/views/customization/plane/clear_plane_nick.py:61
 #: player/views/customization/plane/set_plane_nick.py:80
-#: player/views/game_event/buy_test_prizes.py:88 region/views/do_mining.py:443
+#: player/views/game_event/buy_test_prizes.py:118 region/views/do_mining.py:443
 #: region/views/map/get_residency.py:155 region/views/map/plane_info.py:41
 #: region/views/map/region_info.py:51
 #: storage/views/assets/assets_destroy.py:138
@@ -4034,6 +4035,15 @@ msgstr "shēmas izvēle"
 msgctxt "factory"
 msgid "создать"
 msgstr "ražot"
+
+#: education/templates/education/edu_skills.html:55
+#: education/templates/education/edu_skills.html:95
+#: education/templates/education/edu_skills.html:138
+#, fuzzy
+#| msgid "изучить"
+msgctxt "education"
+msgid "изучается..."
+msgstr "izpētīt"
 
 #: education/templates/education/edu_skills.html:105
 #: education/templates/education/edu_skills.html:163
@@ -7335,13 +7345,22 @@ msgid "30 дней"
 msgstr ""
 
 #: player/templates/player/redesign/premium_shop.html:86
+#: player/templates/player/redesign/premium_shop.html:94
 #, fuzzy
 #| msgid "Золото"
 msgctxt "shop"
 msgid "золото"
 msgstr "Zelts"
 
-#: player/templates/player/redesign/premium_shop.html:98
+#: player/templates/player/redesign/premium_shop.html:96
+#: player/templates/player/redesign/premium_shop.html:104
+#, fuzzy
+#| msgid "беспартийный"
+msgctxt "shop"
+msgid "бесплатно"
+msgstr "bezpartijisks"
+
+#: player/templates/player/redesign/premium_shop.html:102
 #, fuzzy
 #| msgctxt "daily_header"
 #| msgid "за день!"
@@ -7349,19 +7368,12 @@ msgctxt "shop"
 msgid "деньги"
 msgstr "dienā!"
 
-#: player/templates/player/redesign/premium_shop.html:100
-#, fuzzy
-#| msgid "беспартийный"
-msgctxt "shop"
-msgid "бесплатно"
-msgstr "bezpartijisks"
-
-#: player/templates/player/redesign/premium_shop.html:110
+#: player/templates/player/redesign/premium_shop.html:114
 msgctxt "shop"
 msgid "Курсовая разница стоимости товаров"
 msgstr ""
 
-#: player/templates/player/redesign/premium_shop.html:113
+#: player/templates/player/redesign/premium_shop.html:117
 msgctxt "shop"
 msgid ""
 "Обращаем ваше внимание, что конечная стоимость наборов зависит от валюты и "
@@ -7395,32 +7407,32 @@ msgctxt "profile"
 msgid "самолёты"
 msgstr "Lidojuma laiks"
 
-#: player/templates/player/redesign/profile.html:221
-msgctxt "profile"
-msgid "пригласи друга"
-msgstr ""
-
-#: player/templates/player/redesign/profile.html:275
-#, fuzzy
-#| msgctxt "storage_assets"
-#| msgid "Активация"
-msgctxt "profile"
-msgid "ввести бонус-код"
-msgstr "Aktivācija"
-
-#: player/templates/player/redesign/profile.html:303
+#: player/templates/player/redesign/profile.html:205
 #: player/templates/player/redesign/view_profile.html:124
 msgctxt "profile"
 msgid "награды"
 msgstr ""
 
-#: player/templates/player/redesign/profile.html:317
+#: player/templates/player/redesign/profile.html:219
 #, fuzzy
 #| msgctxt "overview"
 #| msgid "магазин"
 msgctxt "profile"
 msgid "магазин"
 msgstr "veikals"
+
+#: player/templates/player/redesign/profile.html:249
+msgctxt "profile"
+msgid "пригласи друга"
+msgstr ""
+
+#: player/templates/player/redesign/profile.html:303
+#, fuzzy
+#| msgctxt "storage_assets"
+#| msgid "Активация"
+msgctxt "profile"
+msgid "ввести бонус-код"
+msgstr "Aktivācija"
 
 #: player/templates/player/redesign/profile.html:330
 msgctxt "profile"
@@ -8079,7 +8091,7 @@ msgctxt "game_event"
 msgid "С годовщиной сервера Wild Politics!"
 msgstr ""
 
-#: player/views/game_event/buy_test_prizes.py:37
+#: player/views/game_event/buy_test_prizes.py:38
 #, fuzzy
 #| msgctxt "profile"
 #| msgid "Некорректный код акцентов игры"
@@ -8087,10 +8099,11 @@ msgctxt "shop"
 msgid "Некорректно указан товар"
 msgstr "Nekorekts spēles akcentu kods"
 
-#: player/views/game_event/buy_test_prizes.py:38
-#: player/views/game_event/buy_test_prizes.py:46
-#: player/views/game_event/buy_test_prizes.py:64
-#: player/views/game_event/buy_test_prizes.py:89
+#: player/views/game_event/buy_test_prizes.py:39
+#: player/views/game_event/buy_test_prizes.py:47
+#: player/views/game_event/buy_test_prizes.py:65
+#: player/views/game_event/buy_test_prizes.py:90
+#: player/views/game_event/buy_test_prizes.py:119
 #, fuzzy
 #| msgctxt "storage_upgrade"
 #| msgid "Улучшение склада"
@@ -8098,7 +8111,7 @@ msgctxt "shop"
 msgid "Получение бонуса"
 msgstr "Noliktavas uzlabošana"
 
-#: player/views/game_event/buy_test_prizes.py:45
+#: player/views/game_event/buy_test_prizes.py:46
 #, fuzzy
 #| msgctxt "w_trading_new"
 #| msgid "Стоимость товара слишком велика"
@@ -8106,7 +8119,8 @@ msgctxt "shop"
 msgid "Этот товар уже куплен вами"
 msgstr "Produkta cena ir pārāk augsta"
 
-#: player/views/game_event/buy_test_prizes.py:63
+#: player/views/game_event/buy_test_prizes.py:64
+#: player/views/game_event/buy_test_prizes.py:89
 #, fuzzy
 #| msgid "Ошибка в форме профиля"
 msgctxt "shop"

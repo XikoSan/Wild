@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-12 00:25+0300\n"
-"PO-Revision-Date: 2024-11-12 00:29+0300\n"
+"POT-Creation-Date: 2024-11-12 20:35+0300\n"
+"PO-Revision-Date: 2024-11-12 20:37+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -287,18 +287,19 @@ msgstr "Article cannot be empty"
 #: player/views/expense_energy.py:65 player/views/expense_energy.py:73
 #: player/views/expense_energy.py:83 player/views/full_auto_allow.py:43
 #: player/views/full_auto_allow.py:59
-#: player/views/game_event/buy_test_prizes.py:39
-#: player/views/game_event/buy_test_prizes.py:47
-#: player/views/game_event/buy_test_prizes.py:65
-#: player/views/game_event/buy_test_prizes.py:90 player/views/new_player.py:185
-#: player/views/new_player.py:198 player/views/open_lootboxes.py:27
-#: player/views/open_lootboxes.py:38 player/views/open_lootboxes.py:49
-#: player/views/open_lootboxes.py:59 player/views/open_lootboxes.py:134
-#: player/views/set_language.py:40 player/views/set_language.py:56
-#: player/views/set_timezone.py:29 player/views/set_timezone.py:45
-#: player/views/skills/boost_skill.py:59 player/views/skills/boost_skill.py:72
-#: player/views/skills/boost_skill.py:80 player/views/skills/boost_skill.py:94
-#: player/views/skills/boost_skill.py:104
+#: player/views/game_event/buy_test_prizes.py:40
+#: player/views/game_event/buy_test_prizes.py:48
+#: player/views/game_event/buy_test_prizes.py:66
+#: player/views/game_event/buy_test_prizes.py:91
+#: player/views/game_event/buy_test_prizes.py:120
+#: player/views/new_player.py:185 player/views/new_player.py:198
+#: player/views/open_lootboxes.py:27 player/views/open_lootboxes.py:38
+#: player/views/open_lootboxes.py:49 player/views/open_lootboxes.py:59
+#: player/views/open_lootboxes.py:134 player/views/set_language.py:40
+#: player/views/set_language.py:56 player/views/set_timezone.py:29
+#: player/views/set_timezone.py:45 player/views/skills/boost_skill.py:59
+#: player/views/skills/boost_skill.py:72 player/views/skills/boost_skill.py:80
+#: player/views/skills/boost_skill.py:94 player/views/skills/boost_skill.py:104
 #: player/views/skills/boost_skill.py:113
 #: player/views/skills/boost_skill.py:123
 #: player/views/skills/boost_skill.py:168 player/views/skills/up_skill.py:35
@@ -1990,7 +1991,7 @@ msgstr "There is no parliament in this state"
 #: player/views/customization/plane/choose_plane.py:59
 #: player/views/customization/plane/clear_plane_nick.py:61
 #: player/views/customization/plane/set_plane_nick.py:80
-#: player/views/game_event/buy_test_prizes.py:88 region/views/do_mining.py:443
+#: player/views/game_event/buy_test_prizes.py:118 region/views/do_mining.py:443
 #: region/views/map/get_residency.py:155 region/views/map/plane_info.py:41
 #: region/views/map/region_info.py:51
 #: storage/views/assets/assets_destroy.py:138
@@ -2290,8 +2291,8 @@ msgid ""
 "это первый шаг к вершинам политической карьеры!"
 msgstr ""
 "Hello! My name is %(assistant)s, I am your assistant and loyal ally on your "
-"new path. Congratulations on your acceptance into the Unity Party of the "
-"Republic - this is the first step to the heights of a political career!"
+"new path. Congratulations on your acceptance into the Republic Party of the "
+"Unity - this is the first step to the heights of a political career!"
 
 #: education/templates/education/edu_lists/list_1.html:47
 msgctxt "education"
@@ -2571,7 +2572,7 @@ msgid ""
 "Нажмите кнопку «в бой», чтобы начать операцию и потратить первые 100 единиц "
 "энергии."
 msgstr ""
-"Click the 'Attack' button to begin the operation and spend the first 100 "
+"Click the 'Fight' button to begin the operation and spend the first 100 "
 "units of energy."
 
 #: education/templates/education/edu_lists/list_4.html:132
@@ -2981,7 +2982,7 @@ msgid ""
 "Выносливость. Каждая из них определяет, как вы сможете влиять на мир."
 msgstr ""
 "You have three main characteristics at your disposal — Strength, "
-"Intelligence, and Stamina. Each one determines how you can influence the "
+"Intelligence, and Endurance. Each one determines how you can influence the "
 "world."
 
 #: education/templates/education/edu_lists/list_9.html:73
@@ -3023,7 +3024,8 @@ msgstr ""
 #: education/templates/education/edu_lists/list_9.html:93
 msgctxt "education"
 msgid "Выносливость — основа для тех, кто делает ставку на добычу ресурсов."
-msgstr "Stamina is the foundation for those who focus on resource extraction."
+msgstr ""
+"Endurance is the foundation for those who focus on resource extraction."
 
 #: education/templates/education/edu_lists/list_9.html:99
 #, python-format
@@ -3032,7 +3034,7 @@ msgid ""
 "Каждый её уровень увеличивает объёмы добычи нефти и руды на 1%%. С высокой "
 "выносливостью ваша добыча принесёт немалый доход."
 msgstr ""
-"Each level of Stamina increases oil and ore extraction by 1%%. With high "
+"Each level of Endurance increases oil and ore extraction by 1%%. With high "
 "stamina, your mining will bring in significant profits."
 
 #: education/templates/education/edu_lists/list_9.html:103
@@ -3463,6 +3465,13 @@ msgstr "schema selection"
 msgctxt "factory"
 msgid "создать"
 msgstr "produce"
+
+#: education/templates/education/edu_skills.html:55
+#: education/templates/education/edu_skills.html:95
+#: education/templates/education/edu_skills.html:138
+msgctxt "education"
+msgid "изучается..."
+msgstr "learning..."
 
 #: education/templates/education/edu_skills.html:105
 #: education/templates/education/edu_skills.html:163
@@ -6474,26 +6483,28 @@ msgid "30 дней"
 msgstr "30 days"
 
 #: player/templates/player/redesign/premium_shop.html:86
+#: player/templates/player/redesign/premium_shop.html:94
 msgctxt "shop"
 msgid "золото"
 msgstr "Gold"
 
-#: player/templates/player/redesign/premium_shop.html:98
-msgctxt "shop"
-msgid "деньги"
-msgstr "Cash"
-
-#: player/templates/player/redesign/premium_shop.html:100
+#: player/templates/player/redesign/premium_shop.html:96
+#: player/templates/player/redesign/premium_shop.html:104
 msgctxt "shop"
 msgid "бесплатно"
 msgstr "Free"
 
-#: player/templates/player/redesign/premium_shop.html:110
+#: player/templates/player/redesign/premium_shop.html:102
+msgctxt "shop"
+msgid "деньги"
+msgstr "Cash"
+
+#: player/templates/player/redesign/premium_shop.html:114
 msgctxt "shop"
 msgid "Курсовая разница стоимости товаров"
 msgstr "Exchange rate difference in the cost of goods"
 
-#: player/templates/player/redesign/premium_shop.html:113
+#: player/templates/player/redesign/premium_shop.html:117
 msgctxt "shop"
 msgid ""
 "Обращаем ваше внимание, что конечная стоимость наборов зависит от валюты и "
@@ -6525,26 +6536,26 @@ msgctxt "profile"
 msgid "самолёты"
 msgstr "aircrafts"
 
-#: player/templates/player/redesign/profile.html:221
-msgctxt "profile"
-msgid "пригласи друга"
-msgstr "invite a friend"
-
-#: player/templates/player/redesign/profile.html:275
-msgctxt "profile"
-msgid "ввести бонус-код"
-msgstr "enter bonus code"
-
-#: player/templates/player/redesign/profile.html:303
+#: player/templates/player/redesign/profile.html:205
 #: player/templates/player/redesign/view_profile.html:124
 msgctxt "profile"
 msgid "награды"
 msgstr "medals"
 
-#: player/templates/player/redesign/profile.html:317
+#: player/templates/player/redesign/profile.html:219
 msgctxt "profile"
 msgid "магазин"
 msgstr "shop"
+
+#: player/templates/player/redesign/profile.html:249
+msgctxt "profile"
+msgid "пригласи друга"
+msgstr "invite a friend"
+
+#: player/templates/player/redesign/profile.html:303
+msgctxt "profile"
+msgid "ввести бонус-код"
+msgstr "enter bonus code"
 
 #: player/templates/player/redesign/profile.html:330
 msgctxt "profile"
@@ -7095,25 +7106,27 @@ msgctxt "game_event"
 msgid "С годовщиной сервера Wild Politics!"
 msgstr "Happy anniversary of the WP server!"
 
-#: player/views/game_event/buy_test_prizes.py:37
+#: player/views/game_event/buy_test_prizes.py:38
 msgctxt "shop"
 msgid "Некорректно указан товар"
 msgstr "The product is incorrectly specified"
 
-#: player/views/game_event/buy_test_prizes.py:38
-#: player/views/game_event/buy_test_prizes.py:46
-#: player/views/game_event/buy_test_prizes.py:64
-#: player/views/game_event/buy_test_prizes.py:89
+#: player/views/game_event/buy_test_prizes.py:39
+#: player/views/game_event/buy_test_prizes.py:47
+#: player/views/game_event/buy_test_prizes.py:65
+#: player/views/game_event/buy_test_prizes.py:90
+#: player/views/game_event/buy_test_prizes.py:119
 msgctxt "shop"
 msgid "Получение бонуса"
 msgstr "Receiving a bonus"
 
-#: player/views/game_event/buy_test_prizes.py:45
+#: player/views/game_event/buy_test_prizes.py:46
 msgctxt "shop"
 msgid "Этот товар уже куплен вами"
 msgstr "This item has already been purchased by you"
 
-#: player/views/game_event/buy_test_prizes.py:63
+#: player/views/game_event/buy_test_prizes.py:64
+#: player/views/game_event/buy_test_prizes.py:89
 msgctxt "shop"
 msgid "Ошибка версии приложения"
 msgstr "Application version error"
