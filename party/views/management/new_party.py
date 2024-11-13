@@ -4,18 +4,20 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 from django.utils import timezone
+from django.utils.translation import pgettext
 
 from party.forms import NewPartyForm
 from party.logs.membership_log import MembershipLog
 from party.logs.party_apply import PartyApply
 from party.position import PartyPosition
+from player.decorators.player import check_player
 from player.logs.gold_log import GoldLog
 from player.player import Player
-from django.utils.translation import pgettext
 
 
 # вкладка "Партия" главной страницы
 @login_required(login_url='/')
+@check_player
 def new_party(request):
     # получаем персонажа
     player = Player.get_instance(account=request.user)
@@ -43,10 +45,12 @@ def new_party(request):
                     # new_party.task_id = task_id.__str__()
                     new_party.save()
                     # Создаём должность лидера партии
-                    leader_post = PartyPosition(title=pgettext('party_manage', 'Глава партии'), party=new_party, based=True, party_lead=True)
+                    leader_post = PartyPosition(title=pgettext('party_manage', 'Глава партии'), party=new_party,
+                                                based=True, party_lead=True)
                     leader_post.save()
                     # Создаём должность новичка в партии
-                    noob_post = PartyPosition(title=pgettext('party_manage', 'Новый игрок партии'), party=new_party, based=True)
+                    noob_post = PartyPosition(title=pgettext('party_manage', 'Новый игрок партии'), party=new_party,
+                                              based=True)
                     noob_post.save()
                     # вызываем фоновый процесс старта праймериз на 7 дней
                     # GoPrims.apply_async((new_party.pk,), countdown=604800, queue='government', task_id=task_id)
