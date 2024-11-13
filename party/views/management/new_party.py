@@ -75,10 +75,7 @@ def new_party(request):
         else:
             new_pty_frm = NewPartyForm()
 
-            groups = list(player.account.groups.all().values_list('name', flat=True))
-            page = 'party/new_party.html'
-            if 'redesign' not in groups:
-                page = 'party/redesign/new_party.html'
+            page = 'party/redesign/new_party.html'
             # отправляем в форму
             return render(request, page,
                           {'player': player,
