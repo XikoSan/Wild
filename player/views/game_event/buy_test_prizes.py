@@ -59,7 +59,7 @@ def get_freebie(request):
                 import re
                 match = re.search(r"WildPoliticsApp_(\d+\.\d+\.\d+)", user_agent)
                 if match:
-                    if match.group(1) != '1.5.3':
+                    if match.group(1) != '1.5.3' and match.group(1) != '1.5.4':
                         data = {
                             'response': pgettext('shop', 'Ошибка версии приложения'),
                             'header': pgettext('shop', 'Получение бонуса'),
@@ -84,7 +84,7 @@ def get_freebie(request):
                 import re
                 match = re.search(r"WildPoliticsApp_(\d+\.\d+\.\d+)", user_agent)
                 if match:
-                    if match.group(1) != '1.5.3':
+                    if match.group(1) != '1.5.3' and match.group(1) != '1.5.4':
                         data = {
                             'response': pgettext('shop', 'Ошибка версии приложения'),
                             'header': pgettext('shop', 'Получение бонуса'),

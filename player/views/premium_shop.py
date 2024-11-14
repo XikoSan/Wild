@@ -31,7 +31,7 @@ def premium_shop(request):
         from player.logs.print_log import log
         match = re.search(r"WildPoliticsApp_(\d+\.\d+\.\d+)", user_agent)
         if match:
-            if match.group(1) == '1.5.3':
+            if match.group(1) == '1.5.3' or match.group(1) == '1.5.4':
                 version = True
 
     # ---------------------
