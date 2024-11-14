@@ -51,6 +51,7 @@ from .views.set_timezone import set_timezone
 from .views.skill_tbl import skill_tbl
 from .views.view_profile import view_profile
 from .views.wallet import wallet
+from player.views.game_event.play_market_event import play_market_event
 
 urlpatterns = [
 
@@ -176,5 +177,7 @@ urlpatterns = [
 
     # купить тест призы
     url(r'^get_freebie/$', get_freebie, name='get_freebie'),
+
+    url(r'^play_market_event/$', play_market_event, name='play_market_event'),
 
 ]

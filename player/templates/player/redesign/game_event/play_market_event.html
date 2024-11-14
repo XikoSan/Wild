@@ -1,0 +1,242 @@
+{% extends 'player/redesign/header.html' %}
+{% load l10n %}{% load i18n %}
+{% load static %}
+{% load tz %}
+{% load capitalize %}
+{% block content %}
+<section class="articles custom-scroll">
+    <!-- Заголовок -->
+    <h1 class="articles__title ct__page-title">
+      <span class="ct__page-title-elipsis">{% trans 'Наступление на Google Play' context "event" %}</span>
+    </h1>
+
+    <div class="articles__inner articleShowBlock active">
+        <div class="articles__textContent">
+
+	<p style="text-align: center;">
+				<img src="https://clip2net.com/clip/m491909/40880-clip-380kb.jpg" style="width: 919px;">
+			</p>
+
+			<p style="text-align: center;">
+				<font color="#eb9928">
+					<span style="font-size: 36px;">{% trans 'Уважаемые игроки!' context "event" %}</span>
+				</font>
+			</p>
+
+			<p style="text-align: justify;">
+				<span style="font-size: 18px;">
+					{% trans 'Вы - самая важная часть проекта.' context "event" %}
+				</span><br>
+				<span style="font-size: 18px;">
+					{% trans 'Каждый раз, когда вас становится больше, для меня это - большой праздник!' context "event" %}<br><br>
+				</span>
+			</p>
+
+			<p style="text-align: justify;">
+				<span style="font-size: 18px;">
+					{% trans 'Наша игра преодолела очередной важный рубеж -' context "event" %}
+				</span>
+				<span style="font-size: 18px; background-color: var(--c60); ">
+					{% trans 'мы стали доступны для миллиардов пользователей Google Play.' context "event" %}
+				</span>
+			</p>
+
+			<p style="text-align: justify;">
+				<span style="font-size: 18px; background-color: var(--c60);">
+					{% trans 'Я надеюсь, что это событие станет мощным импульсом для роста онлайна, а вы поддержите игру в такой важный день!' context "event" %}
+				</span>
+			</p>
+
+			<p style="text-align: center;">
+				<font color="#eb9928">
+					<span onclick="window.location.href = 'https://t.me/wp_reviews'" style="font-size: 36px;  cursor: pointer;">{% trans 'Начинаем наступление на Google Play!' context "event" %}</span>
+				</font>
+			</p>
+
+			<p style="text-align: justify;">
+				<span style="font-size: 18px;">
+					{% trans 'В наступление не ходят без припасов. Я подготовил их для вас в разеделе «Магазин» вашего профиля.' context "event" %}
+				</span>
+			</p>
+
+			<p>
+				<span style="color: rgb(235, 153, 40); font-size: 18px; background-color: var(--c60);">500</span>
+				<font style="font-size: 18px; color: var(--c10one); background-color: var(--c60);">&nbsp;</font>
+				<font color="#eb9928">
+					<font style="font-size: 18px; background-color: var(--c60);">{% trans 'золота' context "event" %}</font>
+				</font>
+				<font style="font-size: 18px; color: var(--c10one); background-color: var(--c60);">
+					{% trans 'и $500 000 доступны для получения в актуальной версии мобильного приложения WP.' context "event" %}
+				</font>
+			</p>
+
+			<p style="text-align: justify;">
+				<span style="font-size: 18px;">
+					{% trans 'Чтобы занять первый плацдарм, а именно - вообще появиться в поисковой выдаче магазина приложений, нам нужно заявить о себе.' context "event" %}
+					{% trans 'В этом нам помогут' context "event" %}
+				</span>
+				<span style="color: rgb(235, 153, 40); font-size: 18px; background-color: var(--c60);">
+					 {% trans 'загрузки' context "event" %} 
+				</span>
+				<span style="font-size: 18px;">
+					{% trans 'приложения, его' context "event" %}
+				</span>
+				<span style="color: rgb(235, 153, 40); font-size: 18px; background-color: var(--c60);">
+					 {% trans 'оценки' context "event" %}
+				</span>
+				<span style="font-size: 18px;">
+					{% trans ', а самое главное - ' context "event" %}
+				</span>
+				<span style="color: rgb(235, 153, 40); font-size: 18px; background-color: var(--c60);">
+					 {% trans 'отзывы' context "event" %}
+				</span>
+				<span style="font-size: 18px;">
+					{% trans ', живые и содержательные.' context "event" %}
+				</span>
+			</p>
+
+			<p style="text-align: justify;">
+				<span style="font-size: 18px;">
+					{% trans 'Вспомните себя - стали бы вы скачивать неизвестное приложение, если о нём ничего нельзя узнать заранее от тех, кто уже его скачивал?' context "event" %}
+					{% trans 'Нам нужно показать, что игра растёт и развивается, и с каждым новым игроком, с каждой созданной партией становится только интереснее!' context "event" %}
+				</span>
+			</p>
+
+			<p style="text-align: justify;">
+				<span style="font-size: 18px;">
+					{% trans 'Поэтому, отложите односложные и бессвязные комментарии на другой раз.' context "event" %}
+				</span><br>
+				<font color="#eb9928">
+					<span style="font-size: 18px;">{% trans 'Наша задача - привлечь максимум новичков!' context "event" %}</span>
+				</font>
+			</p>
+
+			<p style="text-align: center;">
+			  <font color="#eb9928" style="">
+				<span style="font-size: 36px;">{% trans 'К слову, о новичках' context "event" %}</span>
+			  </font>
+			  <span style="background-color: var(--c60); color: var(--c10one); font-size: 18px;">&nbsp;</span>
+			</p>
+
+			<div style="text-align: justify;">
+			  <font color="#eb9928" style="">
+				<span style="color: rgb(255, 255, 255); font-size: 18px;">
+				  <div style="text-align: left;">
+					<div style="text-align: justify;">
+					  <span style="color: var(--c10one); background-color: var(--c60); font-size: 24px;">&#xFEFF;</span>
+					  <span style="color: var(--c10one); text-align: center; background-color: var(--c60);">&#xFEFF;{% trans 'На момент перед публикацией приложения предварительную регистрацию в WP оформили более 600 человек.' context "event" %}</span>
+					</div>
+					<span style="color: var(--c10one); text-align: center; background-color: var(--c60);">
+					  <div style="text-align: justify;">
+						<span style="background-color: var(--c60); color: var(--c10one);">
+						  {% trans 'Да, некоторая часть из них - это вы, опытные игроки. Но всё же, поддержите тех, кто зайдёт в игру впервые. Пригласите в партию, поделитесь игровой валютой и гайдом, позовите в чаты.' context "event" %}
+						  <br><br>
+						</span>
+					  </div>
+					</span>
+				  </div>
+				  <div style="text-align: justify;">
+					<span style="color: var(--c10one); text-align: center; background-color: var(--c60);">
+					  {% trans 'Сейчас в игре активен новый сезон программы "Пригласи друга" - и это отличный шанс начать игру для них, и попасть в топ - для вас!' context "event" %}
+					  <br>
+					  {% trans 'Тем более что в игру планируется ввести' context "event" %}&nbsp;
+					</span>
+					<span style="text-align: center; color: var(--c10one); background-color: var(--c60);">{% trans 'медаль' context "event" %}</span>
+					<span style="text-align: center; color: var(--c10one); background-color: var(--c60);">&nbsp;</span>
+					<span style="background-color: var(--c60); color: var(--c10one); text-align: center;">
+					  {% trans '"наставника", которая станет отличным украшением вашего профиля :)' context "event" %}
+					</span>
+				  </div>
+				</span>
+			  </font>
+			</div>
+
+			<p></p>
+			<p></p>
+			<p style="text-align: justify;"></p>
+
+			<div style="text-align: center;">
+			  <span style="font-size: 18px;">
+				<br>
+			  </span>
+			</div>
+			<font style="font-size: 18px; background-color: var(--c60);" color="#eb9928">
+			  <div style="text-align: center;">
+				<span style="background-color: var(--c60); font-size: 36px;">{% trans 'Нужно больше золота?' context "event" %}</span>
+			  </div>
+			</font>
+			<p></p>
+			<p style="text-align: justify;"></p>
+			<div style="text-align: justify;">
+			  <span style="font-size: 18px;">
+				  {% trans 'Можем устроить!' context "event" %}
+				  <br>{% trans 'В Telegram создан' context "event" %}
+					<span onclick="window.location.href = 'https://t.me/wp_reviews'" style="color: rgb(235, 153, 40); font-size: 18px; background-color: var(--c60); cursor: pointer;">
+						{% trans 'отдельный чат' context "event" %}
+					</span>
+				  {% trans 'где вы можете опубликовать скриншоты своих отзывов с Play Market, сопроводив их своим игровым ID.' context "event" %}
+				  <br>{% trans 'Раз в неделю я буду выбирать случайный скриншот, проверять его реальность, и награждать игрока!' context "event" %}
+			  </span>
+
+			</div>
+			<div style="text-align: justify;">
+			  <span style="font-size: 18px;">
+				<br>
+			  </span>
+			</div>
+			<div style="text-align: justify;">
+			  <div style="text-align: center;">
+				<span style="font-size: 18px; background-color: var(--c60);">{% trans 'Награда будет состоять из&nbsp;' context "event" %} <u>
+				  <font color="#eb9928">G 1000 </font>* {% trans 'на среднюю оценку в Play Market' context "event" %}
+				</u>. </span>
+			  </div>
+			  <span style="font-size: 18px;">
+				<br>
+			  </span>
+			</div>
+			<div style="text-align: justify;">
+			  <span style="font-size: 18px;">{% trans 'И да, это тот случай, когда чем больше разных отзывов - тем лучше! Но не забывайте, что несколько персонажей в игре запрещены :)' context "event" %}</span>
+			</div>
+			<div style="text-align: justify;">
+			  <span style="font-size: 18px;">{% trans 'Дополнительно, я отмечу призовым золотом самые содержательные и интересные отзывы в Play Market - как обычно.' context "event" %}</span>
+			</div>
+			<div style="text-align: center;">
+			  <br>
+			</div>
+			<div style="text-align: center;">
+			  <font color="#eb9928">
+				<span style="font-size: 36px;">{% trans 'Награды для всех' context "event" %}</span>
+			  </font>
+			</div>
+			<div style="text-align: justify;">
+			  <span style="font-size: 18px;">{% trans 'Как и во всех событиях нашей игры, помимо личной прогрессии будет общесерверная.' context "event" %}</span>
+			</div>
+			<div style="text-align: justify;">
+			  <span style="font-size: 18px;">{% trans 'Каждое значительное число скачиваний за время Наступления будет отмечено призами и бонус-кодами.' context "event" %}</span>
+			</div>
+			<div style="text-align: justify;">
+			  <span style="font-size: 18px;">
+				<br>
+			  </span>
+			</div>
+			<div style="text-align: justify;">
+			  <span style="font-size: 18px;">{% trans 'Также, приглашаем вас в наши социальные сети - Вконтакте и Telegram, где будут проводиться различные конкурсы и активности!' context "event" %}</span>
+			  <br>
+			  <br>
+			  <div style="text-align: center;">
+				<span style="color: rgb(235, 153, 40); font-size: 24px; background-color: var(--c60);">{% trans 'Спасибо за внимание!' context "event" %}</span>
+			  </div>
+			</div>
+			<p></p>
+			<div style="text-align: justify;">
+			  <br>
+			</div>
+			<p>
+			  <br>
+			</p>
+        </div>
+
+
+    </div>
+</section>
+{% endblock %}
