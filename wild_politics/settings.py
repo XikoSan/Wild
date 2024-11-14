@@ -30,7 +30,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = not os.getenv('PROD')
 
-ALLOWED_HOSTS = ['mysite.com', 'localhost', '127.0.0.1', '192.168.0.150', '192.168.0.181',
+ALLOWED_HOSTS = ['mysite.com', 'localhost', '127.0.0.1', '192.168.0.150', '192.168.0.181', '45.128.206.209',
                  '307f41365796.vps.myjino.ru', '42c06259eed1.vps.myjino.ru', '3207f773a74c.vps.myjino.ru',
                  'rebels.wildpolitics.ru', 'test.wildpolitics.ru', 'wildpolitics.ru']
 
