@@ -33,7 +33,7 @@ def get_freebie(request):
         type = request.POST.get('type')
         used = None
 
-        if type not in ['cash_500k',]:
+        if type not in ['cash_500k', 'gold_500',]:
             data = {
                 'response': pgettext('shop', 'Некорректно указан товар'),
                 'header': pgettext('shop', 'Получение бонуса'),
