@@ -8,7 +8,7 @@ from django.db.models import Sum
 from django.shortcuts import redirect
 from django.shortcuts import render
 from django.utils import timezone
-
+from packaging import version
 from player.decorators.player import check_player
 from player.logs.test_log import TestLog
 from player.player import Player
@@ -23,7 +23,7 @@ def premium_shop(request):
     player = Player.get_instance(account=request.user)
 
     # ---------------------
-    version = False
+    suit_version = False
     user_agent = request.META.get('HTTP_USER_AGENT', '')
 
     if "WildPoliticsApp" in user_agent:
@@ -31,8 +31,8 @@ def premium_shop(request):
         from player.logs.print_log import log
         match = re.search(r"WildPoliticsApp_(\d+\.\d+\.\d+)", user_agent)
         if match:
-            if match.group(1) == '1.5.3' or match.group(1) == '1.5.4':
-                version = True
+            if version.parse(match.group(1)) >= version.parse("1.5.3"):
+                suit_version = True
 
     # ---------------------
 
@@ -50,7 +50,7 @@ def premium_shop(request):
         'usages_list': usages_list,
         'player': player,
 
-        'version': version,
+        'version': suit_version,
     })
 
     return response

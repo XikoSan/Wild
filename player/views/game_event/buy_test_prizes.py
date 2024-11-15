@@ -9,7 +9,7 @@ from django.utils import timezone
 from django.utils import translation
 from django.utils.translation import ugettext as _
 from math import ceil
-
+from packaging import version
 from player.decorators.player import check_player
 from player.logs.cash_log import CashLog
 from player.logs.gold_log import GoldLog
@@ -59,7 +59,7 @@ def get_freebie(request):
                 import re
                 match = re.search(r"WildPoliticsApp_(\d+\.\d+\.\d+)", user_agent)
                 if match:
-                    if match.group(1) != '1.5.3' and match.group(1) != '1.5.4':
+                    if not version.parse(match.group(1)) >= version.parse("1.5.3"):
                         data = {
                             'response': pgettext('shop', 'Ошибка версии приложения'),
                             'header': pgettext('shop', 'Получение бонуса'),
@@ -84,7 +84,7 @@ def get_freebie(request):
                 import re
                 match = re.search(r"WildPoliticsApp_(\d+\.\d+\.\d+)", user_agent)
                 if match:
-                    if match.group(1) != '1.5.3' and match.group(1) != '1.5.4':
+                    if not version.parse(match.group(1)) >= version.parse("1.5.3"):
                         data = {
                             'response': pgettext('shop', 'Ошибка версии приложения'),
                             'header': pgettext('shop', 'Получение бонуса'),
