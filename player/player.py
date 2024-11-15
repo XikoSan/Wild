@@ -321,7 +321,7 @@ class Player(models.Model):
         start_date = moscow_tz.localize(datetime.datetime(2024, 11, 4, 0, 0))
         # Определяем количество недель с начала
         today = timezone.now()
-        weeks_passed = (today - start_date).days // 7 + 1  # Полные недели с начальной даты
+        weeks_passed = (today - start_date).days // 7 + 2  # Полные недели с начальной даты
 
         base_earn = 100
         multiplier = 1
@@ -351,7 +351,7 @@ class Player(models.Model):
         int_earn = self.calculate_earnings(self.knowledge)
         end_earn = self.calculate_earnings(self.endurance)
 
-        daily_limit = multiple_sum(20000) + pwr_earn + int_earn + end_earn
+        daily_limit = multiple_sum(20000, lag=1) + pwr_earn + int_earn + end_earn
 
         # ------------------
 
