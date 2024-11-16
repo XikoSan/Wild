@@ -1,0 +1,85 @@
+{% extends 'player/redesign/header.html' %}
+{% load l10n %}{% load i18n %}
+{% load static %}
+{% load tz %}
+{% load capitalize %}
+{% load redesign.profile_blocks.repost_tab %}
+{% load redesign.template_svg.nopic %}
+{% block content %}
+  <section class="profile">
+  <!-- Заголовок -->
+  <h1 class="create__title ct__page-title">{% trans 'Оцените нас в Play Market!' context "event" %}</h1>
+	<div class="create__form">
+      <!--Никнейм-->
+      <h2>{% trans 'Укажите имя автора отзыва' context "event" %}</h2>
+      <input type="text" id="nick" name="nick" maxlength="50">
+
+		<div style="display: flex; justify-content: center; width: 100%; margin-top: 24rem;">
+			<button class="ct__top-tab ct__top-tab1 active ct__mid-btn"  onclick="check_review()" >
+				<svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
+					<mask id="mask0_259_317" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+						<path class="geometry1" d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"></path>
+					</mask>
+					<g mask="url(#mask0_259_317)">
+						<path class="geometry2" d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z"></path>
+						<path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"></path>
+						<path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"></path>
+						<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"></path>
+					</g>
+				</svg>
+				<span>{% trans 'проверить' context "bonus_code" %}</span>
+			</button>
+		</div>
+    </div>
+
+    <div class="profile__info-tab" style="margin-top: 48rem;">
+		<div class="ct__s">
+			<h2 class="ct__s-title">{% trans 'Оцените нас в Play Market и получите золото!' context "event" %}</h2>
+			<br>
+			<p class="ct__s-text">
+					{% trans 'Откройте страничку игры в ' context "event" %}
+					<font onclick="window.open('https://play.google.com/store/apps/details?id=com.fogonrog.wildpolitics', '_blank')" style="color: var(--c10two); cursor: pointer;">Play Market</font>
+					, {% trans 'оцените нас и оставьте отзыв.' context "event" %}
+			</p>
+			<br>
+			<p class="ct__s-text">
+				{% trans 'После этого напишите здесь имя аккаунта так, как он написан над вашим отзывом.' context "event" %}
+			</p>
+			<br>
+			<p class="ct__s-text">
+					{% trans 'Вы получите' context "event" %}
+					<font style="color: var(--c10two);"> 100 </font>
+					{% trans 'золота за каждую звезду, на которую оценили игру.' context "event" %}
+			</p>
+			<br>
+			<p class="ct__s-text">
+					{% trans 'За использование чужого отзыва для получения награды к вам может быть применено дисциплинарное взыскание.' context "event" %}
+			</p>
+		</div>
+	</div>
+
+  </section>
+
+	<script>
+
+        // получение бонуса
+        function check_review(){
+            var sending_data = "&csrfmiddlewaretoken=" + csrftoken + "&nick=" + document.getElementById('nick').value;
+            $.ajax({
+                type: "POST",
+                url: "/check_review/",
+                data:  sending_data,
+                cache: false,
+                success: function(data){
+                    if (data.response == 'ok'){
+                        location.reload();
+                    }
+                    else{
+                        display_modal('notify', data.header, data.response, null, data.grey_btn);
+                    }
+                }
+            });
+        };
+
+	</script>
+{% endblock %}

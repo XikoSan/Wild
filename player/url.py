@@ -52,6 +52,8 @@ from .views.skill_tbl import skill_tbl
 from .views.view_profile import view_profile
 from .views.wallet import wallet
 from player.views.game_event.play_market_event import play_market_event
+from player.views.game_event.rate_us import rate_us
+from player.views.game_event.check_review import check_review
 
 urlpatterns = [
 
@@ -179,5 +181,8 @@ urlpatterns = [
     url(r'^get_freebie/$', get_freebie, name='get_freebie'),
 
     url(r'^play_market_event/$', play_market_event, name='play_market_event'),
+
+    url(r'^rate_us/$', rate_us, name='rate_us'),
+    url(r'^check_review/$', check_review, name='check_review'),
 
 ]

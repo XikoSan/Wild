@@ -29,6 +29,7 @@ from player.models.medal import Medal
 from player.player_regional_expence import PlayerRegionalExpense
 from .player import Player
 from .player_settings import PlayerSettings
+from player.models.rate_reward import RateReward
 
 
 @transaction.atomic
@@ -367,6 +368,12 @@ class FreebieUsageAdmin(admin.ModelAdmin):
     raw_id_fields = ('player',)
 
 
+class RateRewardAdmin(admin.ModelAdmin):
+    search_fields = ['player__nickname', 'nickname', ]
+    list_display = ('player', 'nickname', 'dtime')
+    raw_id_fields = ('player',)
+
+
 class MedalAdmin(admin.ModelAdmin):
     search_fields = ['player__nickname', ]
     list_display = ('player', 'type', 'count')
@@ -400,5 +407,6 @@ admin.site.register(TestLog, TestLogAdmin)
 admin.site.register(TestPointUsage, TestPointUsageAdmin)
 
 admin.site.register(FreebieUsage, FreebieUsageAdmin)
+admin.site.register(RateReward, RateRewardAdmin)
 
 admin.site.register(Medal, MedalAdmin)

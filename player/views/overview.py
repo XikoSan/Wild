@@ -375,6 +375,25 @@ def overview(request):
     # else:
     #     log("Path not found")
 
+    from google_play_scraper import app, reviews_all
+    from player.logs.print_log import log
+
+
+    # Укажите пакет вашего приложения
+    package_name = 'com.fogonrog.wildpolitics'
+
+    # Получение отзывов
+    review_data = reviews_all(package_name, lang='ru', country='ru')
+
+    # Вывод отзывов
+    for review in review_data:
+        log(f"Автор: {review['userName']}")
+        log(f"Оценка: {review['score']}")
+        log(f"Отзыв: {review['content']}")
+        log('-' * 80)
+
+
+
     assistant_name = ('Ann', pgettext('education', 'Анна'))
 
     if not player.educated:
