@@ -535,102 +535,134 @@
 	<!-- КОНЕЦ ОБРЕЗКИ ИЗОБРАЖЕНИЙ МОДАЛКА -->
 
 	<!-- МОДАЛЬНОЕ ОКНО НАСТРОЕК -->
-	<div class="m-sett">
+	<div class="m-sett custom-scroll">
 		<button class="m-sett__close ct__square-mid-btn">
 			<svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
 				<path d="M26 30H0V0H30V26L26 30Z" fill="var(--c10two)"/><path d="M4 4L26 26M4 26L26 4" stroke="var(--c60)" stroke-width="3"/>
 			</svg>
 		</button>
-		<!--выбор языка-->
-		<label class="m-sett__form-label ct__wide-modal-label-select">
-			<select id="lang_change">
-				{% get_current_language as LANGUAGE_CODE %}
-				{% get_available_languages as LANGUAGES %}
-				{% get_language_info_list for LANGUAGES as languages %}
-				{% for lang in languages %}
-				<option value='{{ lang.code }}' {% if lang.code == LANGUAGE_CODE %}selected{% endif %}>{{ lang.name_local|capitalize }}</option>
-				{% endfor %}
-			</select>
-			<svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-				<path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
-			</svg>
-		</label>
-		<!--выбор часового пояса-->
-		<label class="m-sett__form-label ct__wide-modal-label-select">
-			<select id="tz_change">
-				{% for tz in timezones %}
-				<option value="{{ tz }}" {% if tz == player.time_zone %}selected{% endif %}>{{ tz }}</option>
-				{% endfor %}
-			</select>
-			<svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-				<path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
-			</svg>
-		</label>
-		<!--чекбокс-->
-		<div class="m-sett__form-check ct__check-box30">
-			<label for="ava_back_change">
-				<input id="ava_back_change" type="checkbox" class="visually-hidden" {% if party_back %}checked{% endif %}>
-				<svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(--c10two)"/>
+		<div style="position: fixed;top: 10vh;display: flex; flex-direction: column;padding: 0 24rem;" class="custom-scroll">
+			<!--выбор языка-->
+			<label class="m-sett__form-label ct__wide-modal-label-select">
+				<select id="lang_change">
+					{% get_current_language as LANGUAGE_CODE %}
+					{% get_available_languages as LANGUAGES %}
+					{% get_language_info_list for LANGUAGES as languages %}
+					{% for lang in languages %}
+					<option value='{{ lang.code }}' {% if lang.code == LANGUAGE_CODE %}selected{% endif %}>{{ lang.name_local|capitalize }}</option>
+					{% endfor %}
+				</select>
+				<svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
 				</svg>
-				<span>
-					<svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(--c10two)"/>
-						<path d="M6.5 4.5L4.5 6.5V20.5H18.5L20.5 18.5V4.5H6.5Z" fill="var(--c10two)" stroke="var(--c10two)"/>
-					</svg>
-				</span>
-				{% trans 'показывать партийный фон' context "profile" %}
 			</label>
-		</div>
-		<!--чекбокс-->
-		<div class="m-sett__form-check ct__check-box30">
-			<label for="full_auto">
-				<input id="full_auto" type="checkbox" class="visually-hidden" {% if full_auto %}checked{% endif %}>
-				<svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(--c10two)"/>
+			<!--выбор часового пояса-->
+			<label class="m-sett__form-label ct__wide-modal-label-select">
+				<select id="tz_change">
+					{% for tz in timezones %}
+					<option value="{{ tz }}" {% if tz == player.time_zone %}selected{% endif %}>{{ tz }}</option>
+					{% endfor %}
+				</select>
+				<svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"/>
 				</svg>
-				<span>
-					<svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(--c10two)"/>
-						<path d="M6.5 4.5L4.5 6.5V20.5H18.5L20.5 18.5V4.5H6.5Z" fill="var(--c10two)" stroke="var(--c10two)"/>
-					</svg>
-				</span>
-				{% trans 'Энергетики в авто-добыче' context "profile" %}
 			</label>
-		</div>
-		<!--чекбокс-->
-		<div class="m-sett__form-check ct__check-box30">
-			<label for="wiki_hide">
-				<input id="wiki_hide" type="checkbox" class="visually-hidden" {% if wiki_hide %}checked{% endif %}>
-				<svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(--c10two)"/>
-				</svg>
-				<span>
-					<svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(--c10two)"/>
-						<path d="M6.5 4.5L4.5 6.5V20.5H18.5L20.5 18.5V4.5H6.5Z" fill="var(--c10two)" stroke="var(--c10two)"/>
-					</svg>
-				</span>
-				{% trans 'Скрыть кнопку Wiki' context "profile" %}
-			</label>
-		</div>
-		<form id="color_set" role="form" method="post" class="m-sett__form">
-			{% csrf_token %}
-			<div class="m-sett__colors">
-				<label class="m-sett__l-color">
-					<input type="color" value="#{{ color_back }}" name="color_back" id="color_back">
-				</label>
-				<label class="m-sett__l-color">
-					<input type="color" value="#{{ color_block }}" name="color_block" id="color_block">
-				</label>
-				<label class="m-sett__l-color">
-					<input type="color" value="#{{ color_text }}" name="color_text" id="color_text">
-				</label>
-				<label class="m-sett__l-color">
-					<input type="color" value="#{{ color_acct }}" name="color_acct" id="color_acct">
-				</label>
+			<div style="display: flex;flex-direction: column;align-items: flex-start;">
+				<!--чекбокс-->
+				<div class="m-sett__form-check ct__check-box30">
+					<label for="ava_back_change">
+						<input id="ava_back_change" type="checkbox" class="visually-hidden" {% if party_back %}checked{% endif %}>
+						<svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(--c10two)"/>
+						</svg>
+						<span>
+							<svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(--c10two)"/>
+								<path d="M6.5 4.5L4.5 6.5V20.5H18.5L20.5 18.5V4.5H6.5Z" fill="var(--c10two)" stroke="var(--c10two)"/>
+							</svg>
+						</span>
+						{% trans 'показывать партийный фон' context "profile" %}
+					</label>
+				</div>
+				<!--чекбокс-->
+				<div class="m-sett__form-check ct__check-box30">
+					<label for="full_auto">
+						<input id="full_auto" type="checkbox" class="visually-hidden" {% if full_auto %}checked{% endif %}>
+						<svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(--c10two)"/>
+						</svg>
+						<span>
+							<svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(--c10two)"/>
+								<path d="M6.5 4.5L4.5 6.5V20.5H18.5L20.5 18.5V4.5H6.5Z" fill="var(--c10two)" stroke="var(--c10two)"/>
+							</svg>
+						</span>
+						{% trans 'Энергетики в авто-добыче' context "profile" %}
+					</label>
+				</div>
+				<!--чекбокс-->
+				<div class="m-sett__form-check ct__check-box30">
+					<label for="wiki_hide">
+						<input id="wiki_hide" type="checkbox" class="visually-hidden" {% if wiki_hide %}checked{% endif %}>
+						<svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(--c10two)"/>
+						</svg>
+						<span>
+							<svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M24.3536 19.3536L24.5 19.2071V19V1V0.5H24H6H5.79289L5.64645 0.646447L0.646447 5.64645L0.5 5.79289V6V24V24.5H1H19H19.2071L19.3536 24.3536L24.3536 19.3536Z" stroke="var(--c10two)"/>
+								<path d="M6.5 4.5L4.5 6.5V20.5H18.5L20.5 18.5V4.5H6.5Z" fill="var(--c10two)" stroke="var(--c10two)"/>
+							</svg>
+						</span>
+						{% trans 'Скрыть кнопку Wiki' context "profile" %}
+					</label>
+				</div>
 			</div>
-			<button class="m-sett__save ct__mid-btn" style="margin-top: 20rem" onclick="color_default(event)">
+			<form id="color_set" role="form" method="post" class="m-sett__form">
+				{% csrf_token %}
+				<div class="m-sett__colors">
+					<label class="m-sett__l-color">
+						<input type="color" value="#{{ color_back }}" name="color_back" id="color_back">
+					</label>
+					<label class="m-sett__l-color">
+						<input type="color" value="#{{ color_block }}" name="color_block" id="color_block">
+					</label>
+					<label class="m-sett__l-color">
+						<input type="color" value="#{{ color_text }}" name="color_text" id="color_text">
+					</label>
+					<label class="m-sett__l-color">
+						<input type="color" value="#{{ color_acct }}" name="color_acct" id="color_acct">
+					</label>
+				</div>
+				<button class="m-sett__save ct__mid-btn" style="margin-top: 20rem" onclick="color_default(event)">
+					<svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
+						<mask id="mask0_259_320" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+							<path d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"></path>
+						</mask>
+						<g mask="url(#mask0_259_320)">
+							<path d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" fill="var(--c10two)"></path>
+							<path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"></path>
+							<path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"></path>
+							<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"></path>
+						</g>
+					</svg>
+					<span>{% trans 'стандарт' context "profile" %}</span>
+				</button>
+				<button type="submit" class="m-sett__save ct__mid-btn">
+					<svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
+						<mask id="mask0_259_320" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+							<path d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"/>
+						</mask>
+						<g mask="url(#mask0_259_320)">
+							<path d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" fill="var(--c10two)"/>
+							<path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"/>
+							<path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"/>
+							<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
+						</g>
+					</svg>
+					<span>{% trans 'сохранить' context "profile" %}</span>
+				</button>
+			</form>
+			<button style="margin-bottom: 40rem;" onclick="window.location.href = '/reset_education/'" class="m-sett__save ct__mid-btn">
 				<svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
 					<mask id="mask0_259_320" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
 						<path d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"></path>
@@ -642,23 +674,9 @@
 						<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"></path>
 					</g>
 				</svg>
-				<span>{% trans 'стандарт' context "profile" %}</span>
+				<span>{% trans 'обучение' context "profile" %}</span>
 			</button>
-			<button type="submit" class="m-sett__save ct__mid-btn">
-				<svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
-					<mask id="mask0_259_320" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
-						<path d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"/>
-					</mask>
-					<g mask="url(#mask0_259_320)">
-						<path d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" fill="var(--c10two)"/>
-						<path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"/>
-						<path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"/>
-						<path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"/>
-					</g>
-				</svg>
-				<span>{% trans 'сохранить' context "profile" %}</span>
-			</button>
-		</form>
+		</div>
 	</div>
 	<!-- КОНЕЦ МОДАЛЬНОГО ОКНА НАСТРОЕК -->
 	<script src="{% static 'redesign/js/copy_to_clip.js' %}?{{ csrf_token }}"></script>
