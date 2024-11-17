@@ -241,13 +241,12 @@ def my_profile(request):
                                               event_end__gt=timezone.now()).exists()
 
     # ---------------------
-
-    user_agent = request.META.get('HTTP_USER_AGENT', '')
-    test_points = None
-
-    if "WildPoliticsApp" in user_agent:
-        test_points = TestLog.objects.filter(player=player).count()
-
+    review = False
+    if request.LANGUAGE_CODE == 'ru':
+        review = True
+    elif setts and setts.language:
+        if setts.language == 'ru':
+            review = True
     # ---------------------
 
     groups = list(player.account.groups.all().values_list('name', flat=True))
@@ -287,7 +286,7 @@ def my_profile(request):
 
         'inviting_event': inviting_event,
 
-        'test_points': test_points,
+        'review': review,
 
     })
 

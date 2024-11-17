@@ -302,7 +302,7 @@
 						</svg>
 						<span style="text-align: center;">{% trans 'ввести бонус-код' context "profile" %}</span>
 					</a>
-
+					{% if review %}
 					<a href='/rate_us' class="profile__gridBtn">
 						<svg width="200mm" height="200mm" viewBox="0 0 200 200" version="1.1" id="svg1" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
   <defs id="defs1"></defs>
@@ -316,6 +316,7 @@
 						</svg>
 						<span style="text-align: center;">{% trans 'оценить нас' context "profile" %}</span>
 					</a>
+					{% endif %}
 
 <!--					<a href='/test_shop' class="profile__gridBtn">-->
 <!--						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">-->

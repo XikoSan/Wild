@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-16 15:54+0300\n"
+"POT-Creation-Date: 2024-11-17 02:58+0300\n"
 "PO-Revision-Date: 2023-06-22 18:43+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -318,14 +318,18 @@ msgstr "Pozisyon başlığı boş olamaz"
 #: player/views/game_event/buy_test_prizes.py:66
 #: player/views/game_event/buy_test_prizes.py:91
 #: player/views/game_event/buy_test_prizes.py:120
-#: player/views/new_player.py:185 player/views/new_player.py:198
-#: player/views/open_lootboxes.py:27 player/views/open_lootboxes.py:38
-#: player/views/open_lootboxes.py:49 player/views/open_lootboxes.py:59
-#: player/views/open_lootboxes.py:134 player/views/set_language.py:40
-#: player/views/set_language.py:56 player/views/set_timezone.py:29
-#: player/views/set_timezone.py:45 player/views/skills/boost_skill.py:59
-#: player/views/skills/boost_skill.py:72 player/views/skills/boost_skill.py:80
-#: player/views/skills/boost_skill.py:94 player/views/skills/boost_skill.py:104
+#: player/views/game_event/check_review.py:41
+#: player/views/game_event/check_review.py:52
+#: player/views/game_event/check_review.py:94
+#: player/views/game_event/check_review.py:104 player/views/new_player.py:185
+#: player/views/new_player.py:198 player/views/open_lootboxes.py:27
+#: player/views/open_lootboxes.py:38 player/views/open_lootboxes.py:49
+#: player/views/open_lootboxes.py:59 player/views/open_lootboxes.py:134
+#: player/views/set_language.py:40 player/views/set_language.py:56
+#: player/views/set_timezone.py:29 player/views/set_timezone.py:45
+#: player/views/skills/boost_skill.py:59 player/views/skills/boost_skill.py:72
+#: player/views/skills/boost_skill.py:80 player/views/skills/boost_skill.py:94
+#: player/views/skills/boost_skill.py:104
 #: player/views/skills/boost_skill.py:113
 #: player/views/skills/boost_skill.py:123
 #: player/views/skills/boost_skill.py:168 player/views/skills/up_skill.py:35
@@ -2605,7 +2609,8 @@ msgstr "Bu bölgede Depo bulunmamaktadır"
 #: player/views/customization/plane/choose_plane.py:59
 #: player/views/customization/plane/clear_plane_nick.py:61
 #: player/views/customization/plane/set_plane_nick.py:80
-#: player/views/game_event/buy_test_prizes.py:118 region/views/do_mining.py:443
+#: player/views/game_event/buy_test_prizes.py:118
+#: player/views/game_event/check_review.py:102 region/views/do_mining.py:443
 #: region/views/map/get_residency.py:155 region/views/map/plane_info.py:41
 #: region/views/map/region_info.py:51
 #: storage/views/assets/assets_destroy.py:138
@@ -4347,12 +4352,12 @@ msgid "Добыча"
 msgstr "Üretme"
 
 #: education/views/edu_overview.py:40 education/views/edu_overview.py:44
-#: player/views/overview.py:378 player/views/overview.py:381
+#: player/views/overview.py:397 player/views/overview.py:400
 msgctxt "education"
 msgid "Анна"
 msgstr ""
 
-#: education/views/edu_overview.py:45 player/views/overview.py:381
+#: education/views/edu_overview.py:45 player/views/overview.py:400
 #, fuzzy
 #| msgctxt "goods"
 #| msgid "Мины"
@@ -4360,7 +4365,7 @@ msgctxt "education"
 msgid "Лин"
 msgstr "Mayınlar"
 
-#: education/views/edu_overview.py:46 player/views/overview.py:381
+#: education/views/edu_overview.py:46 player/views/overview.py:400
 #, fuzzy
 #| msgctxt "regions_list"
 #| msgid "Бавария"
@@ -4368,17 +4373,17 @@ msgctxt "education"
 msgid "Мария"
 msgstr "Bavyera"
 
-#: education/views/edu_overview.py:47 player/views/overview.py:381
+#: education/views/edu_overview.py:47 player/views/overview.py:400
 msgctxt "education"
 msgid "София"
 msgstr ""
 
-#: education/views/edu_overview.py:48 player/views/overview.py:381
+#: education/views/edu_overview.py:48 player/views/overview.py:400
 msgctxt "education"
 msgid "Ольга"
 msgstr ""
 
-#: education/views/edu_overview.py:55 player/views/overview.py:387
+#: education/views/edu_overview.py:55 player/views/overview.py:406
 #, fuzzy
 #| msgid "Обзор"
 msgctxt "overview"
@@ -5750,7 +5755,7 @@ msgid "Смена описания партии"
 msgstr "Partinin açıklamasını değiştir"
 
 #: party/templates/party/redesign/manage.html:423
-#: player/templates/player/redesign/profile.html:528
+#: player/templates/player/redesign/profile.html:542
 #, fuzzy
 #| msgid "Отмена"
 msgctxt "profile"
@@ -5939,9 +5944,9 @@ msgid "Участников"
 msgstr "Üyeler"
 
 #: party/templates/party/redesign/party_view.html:90
-#: player/templates/player/redesign/profile.html:345
-#: player/templates/player/redesign/profile.html:368
+#: player/templates/player/redesign/profile.html:359
 #: player/templates/player/redesign/profile.html:382
+#: player/templates/player/redesign/profile.html:396
 #: player/templates/player/redesign/view_profile.html:148
 #: player/templates/player/redesign/view_profile.html:171
 #: player/templates/player/redesign/view_profile.html:185
@@ -7756,29 +7761,37 @@ msgctxt "profile"
 msgid "ввести бонус-код"
 msgstr "Aktivasyon"
 
-#: player/templates/player/redesign/profile.html:330
+#: player/templates/player/redesign/profile.html:317
+#, fuzzy
+#| msgctxt "party_view"
+#| msgid "отменить заявку"
+msgctxt "profile"
+msgid "оценить нас"
+msgstr "başvuruyu iptal et"
+
+#: player/templates/player/redesign/profile.html:344
 msgctxt "profile"
 msgid "премиум-аккаунт"
 msgstr "premium hesap"
 
-#: player/templates/player/redesign/profile.html:333
+#: player/templates/player/redesign/profile.html:347
 #, python-format
 msgctxt "profile"
 msgid "до %(premium)s"
 msgstr ""
 
-#: player/templates/player/redesign/profile.html:335
+#: player/templates/player/redesign/profile.html:349
 msgctxt "profile"
 msgid "не активен"
 msgstr "aktif değil"
 
-#: player/templates/player/redesign/profile.html:341
+#: player/templates/player/redesign/profile.html:355
 #: player/templates/player/redesign/view_profile.html:144
 msgctxt "profile"
 msgid "место в рейтинге"
 msgstr "değerlendirme yeri"
 
-#: player/templates/player/redesign/profile.html:351
+#: player/templates/player/redesign/profile.html:365
 #: player/templates/player/redesign/view_profile.html:154
 #, fuzzy
 #| msgctxt "has_party"
@@ -7787,13 +7800,13 @@ msgctxt "profile"
 msgid "известность"
 msgstr "Konum"
 
-#: player/templates/player/redesign/profile.html:355
+#: player/templates/player/redesign/profile.html:369
 #: player/templates/player/redesign/view_profile.html:158
 msgctxt "profile"
 msgid "(к статьям)"
 msgstr ""
 
-#: player/templates/player/redesign/profile.html:361
+#: player/templates/player/redesign/profile.html:375
 #: player/templates/player/redesign/view_profile.html:164
 #, fuzzy
 #| msgctxt "storage_upgrade"
@@ -7802,7 +7815,7 @@ msgctxt "profile"
 msgid "суммарный урон"
 msgstr "Maksimum seviye"
 
-#: player/templates/player/redesign/profile.html:365
+#: player/templates/player/redesign/profile.html:379
 #: player/templates/player/redesign/view_profile.html:168
 #, fuzzy
 #| msgid "войн нет"
@@ -7810,95 +7823,161 @@ msgctxt "profile"
 msgid "(к войнам)"
 msgstr "savaş yok"
 
-#: player/templates/player/redesign/profile.html:374
+#: player/templates/player/redesign/profile.html:388
 #: player/templates/player/redesign/view_profile.html:177
 msgctxt "profile"
 msgid "характеристики"
 msgstr "özellikler"
 
-#: player/templates/player/redesign/profile.html:389
+#: player/templates/player/redesign/profile.html:403
 #: player/templates/player/redesign/view_profile.html:192
 msgctxt "profile"
 msgid "место жительства"
 msgstr "bölge"
 
-#: player/templates/player/redesign/profile.html:398
+#: player/templates/player/redesign/profile.html:412
 #: player/templates/player/redesign/view_profile.html:201
 msgctxt "profile"
 msgid "прописка"
 msgstr "ikamet"
 
-#: player/templates/player/redesign/profile.html:401
+#: player/templates/player/redesign/profile.html:415
 #: player/templates/player/redesign/view_profile.html:204
 msgctxt "profile"
 msgid "с"
 msgstr "şu zamandan beri"
 
-#: player/templates/player/redesign/profile.html:407
+#: player/templates/player/redesign/profile.html:421
 #: player/templates/player/redesign/view_profile.html:210
 msgid "партия"
 msgstr "parti"
 
-#: player/templates/player/redesign/profile.html:413
-#: player/templates/player/redesign/profile.html:431
+#: player/templates/player/redesign/profile.html:427
+#: player/templates/player/redesign/profile.html:445
 #: player/templates/player/redesign/view_profile.html:216
 #: player/templates/player/redesign/view_profile.html:234
 msgid "беспартийный"
 msgstr "partisi yok"
 
-#: player/templates/player/redesign/profile.html:416
+#: player/templates/player/redesign/profile.html:430
 #: player/templates/player/redesign/view_profile.html:219
 msgctxt "profile"
 msgid "история"
 msgstr "geçmiş"
 
-#: player/templates/player/redesign/profile.html:423
+#: player/templates/player/redesign/profile.html:437
 #: player/templates/player/redesign/view_profile.html:226
 msgid "должность в партии"
 msgstr "partideki pozisyon"
 
-#: player/templates/player/redesign/profile.html:458
+#: player/templates/player/redesign/profile.html:472
 #: player/templates/player/redesign/view_profile.html:240
 msgid "о себе"
 msgstr "biyografi"
 
-#: player/templates/player/redesign/profile.html:529
+#: player/templates/player/redesign/profile.html:543
 msgid "Загрузить"
 msgstr "Yüklemek"
 
-#: player/templates/player/redesign/profile.html:584
+#: player/templates/player/redesign/profile.html:598
 msgctxt "profile"
 msgid "показывать партийный фон"
 msgstr "parti arka planını göster"
 
-#: player/templates/player/redesign/profile.html:600
+#: player/templates/player/redesign/profile.html:614
 msgctxt "profile"
 msgid "Энергетики в авто-добыче"
 msgstr "Otomatik madencilikte enerji üretimi"
 
-#: player/templates/player/redesign/profile.html:616
+#: player/templates/player/redesign/profile.html:630
 msgctxt "profile"
 msgid "Скрыть кнопку Wiki"
 msgstr "Wiki düğmesini gizle"
 
-#: player/templates/player/redesign/profile.html:648
+#: player/templates/player/redesign/profile.html:662
 msgctxt "profile"
 msgid "стандарт"
 msgstr "standart"
 
-#: player/templates/player/redesign/profile.html:662
+#: player/templates/player/redesign/profile.html:676
 #, fuzzy
 #| msgid "сохранить"
 msgctxt "profile"
 msgid "сохранить"
 msgstr "kaydet"
 
-#: player/templates/player/redesign/profile.html:677
+#: player/templates/player/redesign/profile.html:691
 #, fuzzy
 #| msgid "Завершение"
 msgctxt "profile"
 msgid "обучение"
 msgstr "Tamamlama"
+
+#: player/templates/player/redesign/rate_us.html:11
+msgctxt "event"
+msgid "Оцените нас в Play Market!"
+msgstr ""
+
+#: player/templates/player/redesign/rate_us.html:14
+#, fuzzy
+#| msgctxt "w_trading"
+#| msgid "Укажите товар"
+msgctxt "event"
+msgid "Укажите имя автора отзыва"
+msgstr "Ürün belirtin"
+
+#: player/templates/player/redesign/rate_us.html:30
+#, fuzzy
+#| msgctxt "factory"
+#| msgid "Уровень"
+msgctxt "bonus_code"
+msgid "проверить"
+msgstr "Level"
+
+#: player/templates/player/redesign/rate_us.html:37
+#, fuzzy
+#| msgctxt "repost"
+#| msgid "поддержи проект репостом и получай золото!"
+msgctxt "event"
+msgid "Оцените нас в Play Market и получите золото!"
+msgstr "projeyi repost ile destekle ve altın kazan!"
+
+#: player/templates/player/redesign/rate_us.html:40
+msgctxt "event"
+msgid "Откройте страничку игры в "
+msgstr ""
+
+#: player/templates/player/redesign/rate_us.html:42
+msgctxt "event"
+msgid "оцените нас и оставьте отзыв."
+msgstr ""
+
+#: player/templates/player/redesign/rate_us.html:46
+msgctxt "event"
+msgid ""
+"После этого напишите здесь имя аккаунта так, как он написан над вашим "
+"отзывом."
+msgstr ""
+
+#: player/templates/player/redesign/rate_us.html:50
+#, fuzzy
+#| msgctxt "daily_header"
+#| msgid "получить"
+msgctxt "event"
+msgid "Вы получите"
+msgstr "almak"
+
+#: player/templates/player/redesign/rate_us.html:52
+msgctxt "event"
+msgid "золота за каждую звезду, на которую оценили игру."
+msgstr ""
+
+#: player/templates/player/redesign/rate_us.html:56
+msgctxt "event"
+msgid ""
+"За использование чужого отзыва для получения награды к вам может быть "
+"применено дисциплинарное взыскание."
+msgstr ""
 
 #: player/templates/player/redesign/view_profile.html:137
 msgctxt "profile"
@@ -8436,6 +8515,10 @@ msgstr "Yanlış oyun aksan kodu"
 #: player/views/game_event/buy_test_prizes.py:65
 #: player/views/game_event/buy_test_prizes.py:90
 #: player/views/game_event/buy_test_prizes.py:119
+#: player/views/game_event/check_review.py:40
+#: player/views/game_event/check_review.py:51
+#: player/views/game_event/check_review.py:93
+#: player/views/game_event/check_review.py:103
 #, fuzzy
 #| msgctxt "w_trading"
 #| msgid "Получение офферов"
@@ -8459,10 +8542,42 @@ msgctxt "shop"
 msgid "Ошибка версии приложения"
 msgstr "Profil formu hatası"
 
+#: player/views/game_event/check_review.py:39
+#, fuzzy
+#| msgctxt "mining"
+#| msgid "Ошибка получения финансирования"
+msgctxt "event"
+msgid "Вы уже получили награду"
+msgstr "Finansman Hatası"
+
+#: player/views/game_event/check_review.py:50
+#, fuzzy
+#| msgctxt "game_event"
+#| msgid "играй как обычно - и получай награды!"
+msgctxt "event"
+msgid "За данный отзыв уже получена награда"
+msgstr "her zamanki gibi oynayın - ve ödüller kazanın!"
+
+#: player/views/game_event/check_review.py:92
+#, fuzzy
+#| msgctxt "w_trading"
+#| msgid "Ничего не найдено"
+msgctxt "event"
+msgid "Отзыв не найден"
+msgstr "Hiçbirşey bulunamadı"
+
 #: player/views/game_event/new_year.py:43
 msgctxt "game_event_ny"
 msgid "С новым годом!"
 msgstr "Mutlu yıllar!"
+
+#: player/views/game_event/rate_us.py:30 player/views/premium_shop.py:49
+#, fuzzy
+#| msgctxt "profile"
+#| msgid "премиум-аккаунт"
+msgctxt "shop"
+msgid "Премиум-магазин"
+msgstr "premium hesap"
 
 #: player/views/lists/cash_top.py:114
 #, fuzzy
@@ -8561,14 +8676,6 @@ msgstr "Yeni karakter"
 msgctxt "new_player"
 msgid "Ошибка в форме профиля"
 msgstr "Profil formu hatası"
-
-#: player/views/premium_shop.py:49
-#, fuzzy
-#| msgctxt "profile"
-#| msgid "премиум-аккаунт"
-msgctxt "shop"
-msgid "Премиум-магазин"
-msgstr "premium hesap"
 
 #: player/views/set_language.py:38
 msgid "Такого языка в игре нет"
@@ -12481,10 +12588,6 @@ msgstr "savaşlar"
 #~ msgctxt "storage_upgrade"
 #~ msgid "Превышение числа позиций для улучшения"
 #~ msgstr "İyileştirme için pozisyon sayısının aşılması"
-
-#~ msgctxt "w_trading"
-#~ msgid "Укажите товар"
-#~ msgstr "Ürün belirtin"
 
 #~ msgid "ПТ-орудия"
 #~ msgstr "AT-silahları"
