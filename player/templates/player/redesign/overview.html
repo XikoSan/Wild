@@ -1034,5 +1034,46 @@
   })
 
 </script>
+<script>
+  {% if need_update %}
+
+  // Функция для установки флага
+  function setHideUpdateFlag() {
+    const currentTime = new Date().getTime();
+    localStorage.setItem('hide_update', currentTime.toString());
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    // Проверка наличия флага и его срока действия
+    const hideUpdate = localStorage.getItem('hide_update');
+    const currentTime = new Date().getTime();
+
+    if (hideUpdate) {
+      const hideUpdateTime = parseInt(hideUpdate, 10);
+
+      // Если флаг был установлен менее 24 часов назад, модальное окно не показывать
+      const oneDay = 24 * 60 * 60 * 1000;
+      if (currentTime - hideUpdateTime < oneDay) {
+        return;
+      }
+    }
+
+    // Обработчик для кнопки "Обновить"
+    $(".modal__ok").on("click", function() {
+      window.location.href = "https://play.google.com/store/apps/details?id=com.fogonrog.wildpolitics";
+    });
+
+    // Обработчик для кнопки "Закрыть"
+    $(".modal__cancel").on("click", function() {
+      setHideUpdateFlag();
+      clear_modal();
+    });
+
+    // Если флаг отсутствует или истёк, показываем модальное окно
+    display_modal('ask', 'Обновите приложение!', 'Ваше приложение устарело. Обновите его', 'Загрузить', 'Скрыть');
+  });
+
+  {% endif %}
+</script>
 {% endwith %}
 {% endblock %}

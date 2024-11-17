@@ -40,7 +40,8 @@ from wild_politics.settings import TIME_ZONE
 from player.views.old_server_reward import old_server_rewards
 from player.logs.test_log import TestLog
 from django.utils.translation import pgettext
-
+from packaging import version
+from google_play_scraper import app
 
 # главная страница
 @login_required(login_url='/')
@@ -375,23 +376,27 @@ def overview(request):
     # else:
     #     log("Path not found")
 
-    from google_play_scraper import app, reviews_all
-    from player.logs.print_log import log
-
+    # =----------------------
+    # проверка версии приложения
 
     # Укажите пакет вашего приложения
     package_name = 'com.fogonrog.wildpolitics'
+    # инфо о приложении
+    app_info = app(package_name)
 
-    # Получение отзывов
-    review_data = reviews_all(package_name, lang='ru', country='ru')
+    user_agent = request.META.get('HTTP_USER_AGENT', '')
+    need_update = False
 
-    # Вывод отзывов
-    for review in review_data:
-        log(f"Автор: {review['userName']}")
-        log(f"Оценка: {review['score']}")
-        log(f"Отзыв: {review['content']}")
-        log('-' * 80)
+    if "WildPoliticsApp" in user_agent:
+        import re
+        match = re.search(r"WildPoliticsApp_(\d+\.\d+\.\d+)", user_agent)
+        if match:
+            # if version.parse(match.group(1)) != version.parse('1.9.9'):
+            if version.parse(match.group(1)) != version.parse(app_info['version']):
+                need_update = True
 
+    # проверка версии приложения
+    # =----------------------
 
 
     assistant_name = ('Ann', pgettext('education', 'Анна'))
@@ -454,6 +459,8 @@ def overview(request):
         'activity_event': activity_event,
 
         'assistant_name': assistant_name,
+
+        'need_update': need_update,
     })
 
     # r.flushdb()
