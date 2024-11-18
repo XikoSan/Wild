@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-17 02:58+0300\n"
+"POT-Creation-Date: 2024-11-18 03:09+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -75,12 +75,12 @@ msgctxt "overview"
 msgid "магазин"
 msgstr "магазин"
 
-#: article/templates/article/articles.html:29 article/views/articles.py:123
+#: article/templates/article/articles.html:30 article/views/articles.py:123
 msgctxt "article"
 msgid "Статьи"
 msgstr ""
 
-#: article/templates/article/articles.html:42
+#: article/templates/article/articles.html:43
 #, fuzzy
 #| msgctxt "w_trading"
 #| msgid "Все"
@@ -88,7 +88,7 @@ msgctxt "article"
 msgid "все"
 msgstr "Все"
 
-#: article/templates/article/articles.html:43
+#: article/templates/article/articles.html:44
 #, fuzzy
 #| msgctxt "storage_upgrade"
 #| msgid "улучшить"
@@ -96,7 +96,7 @@ msgctxt "article"
 msgid "лучшие"
 msgstr "поліпшити"
 
-#: article/templates/article/articles.html:44
+#: article/templates/article/articles.html:45
 #, fuzzy
 #| msgctxt "profile"
 #| msgid "прописка"
@@ -4346,12 +4346,12 @@ msgid "Добыча"
 msgstr "Видобуток"
 
 #: education/views/edu_overview.py:40 education/views/edu_overview.py:44
-#: player/views/overview.py:397 player/views/overview.py:400
+#: player/views/overview.py:402 player/views/overview.py:405
 msgctxt "education"
 msgid "Анна"
 msgstr ""
 
-#: education/views/edu_overview.py:45 player/views/overview.py:400
+#: education/views/edu_overview.py:45 player/views/overview.py:405
 #, fuzzy
 #| msgctxt "goods"
 #| msgid "Мины"
@@ -4359,7 +4359,7 @@ msgctxt "education"
 msgid "Лин"
 msgstr "Міни"
 
-#: education/views/edu_overview.py:46 player/views/overview.py:400
+#: education/views/edu_overview.py:46 player/views/overview.py:405
 #, fuzzy
 #| msgctxt "regions_list"
 #| msgid "Бавария"
@@ -4367,17 +4367,17 @@ msgctxt "education"
 msgid "Мария"
 msgstr "Баварія"
 
-#: education/views/edu_overview.py:47 player/views/overview.py:400
+#: education/views/edu_overview.py:47 player/views/overview.py:405
 msgctxt "education"
 msgid "София"
 msgstr ""
 
-#: education/views/edu_overview.py:48 player/views/overview.py:400
+#: education/views/edu_overview.py:48 player/views/overview.py:405
 msgctxt "education"
 msgid "Ольга"
 msgstr ""
 
-#: education/views/edu_overview.py:55 player/views/overview.py:406
+#: education/views/edu_overview.py:55 player/views/overview.py:411
 #, fuzzy
 #| msgid "Обзор"
 msgctxt "overview"
@@ -5758,7 +5758,7 @@ msgid "Смена описания партии"
 msgstr "Зміна опису партії"
 
 #: party/templates/party/redesign/manage.html:423
-#: player/templates/player/redesign/profile.html:542
+#: player/templates/player/redesign/profile.html:543
 #, fuzzy
 #| msgid "Отмена"
 msgctxt "profile"
@@ -5947,9 +5947,9 @@ msgid "Участников"
 msgstr "Учасників"
 
 #: party/templates/party/redesign/party_view.html:90
-#: player/templates/player/redesign/profile.html:359
-#: player/templates/player/redesign/profile.html:382
-#: player/templates/player/redesign/profile.html:396
+#: player/templates/player/redesign/profile.html:360
+#: player/templates/player/redesign/profile.html:383
+#: player/templates/player/redesign/profile.html:397
 #: player/templates/player/redesign/view_profile.html:148
 #: player/templates/player/redesign/view_profile.html:171
 #: player/templates/player/redesign/view_profile.html:185
@@ -7441,6 +7441,36 @@ msgctxt "overview"
 msgid "партий нет"
 msgstr "партій нема"
 
+#: player/templates/player/redesign/overview.html:1073
+#, fuzzy
+#| msgctxt "w_trading_new"
+#| msgid "Новое торговое предложение"
+msgctxt "overview"
+msgid "Обновите приложение"
+msgstr "Нова торгова пропозиція"
+
+#: player/templates/player/redesign/overview.html:1073
+#, fuzzy
+#| msgctxt "w_trading"
+#| msgid "Торговое предложение успешно принято"
+msgctxt "overview"
+msgid "Ваше приложение устарело. Обновите его"
+msgstr "Торгова пропозиція успішно прийнята"
+
+#: player/templates/player/redesign/overview.html:1073
+#, fuzzy
+#| msgid "Загрузить"
+msgctxt "overview"
+msgid "Загрузить"
+msgstr "Завантажити"
+
+#: player/templates/player/redesign/overview.html:1073
+#, fuzzy
+#| msgid "Закрыть"
+msgctxt "overview"
+msgid "Скрыть"
+msgstr "Замкнути"
+
 #: player/templates/player/redesign/overview_skills.html:56
 #: player/templates/player/redesign/overview_skills.html:122
 #: player/templates/player/redesign/overview_skills.html:184
@@ -7768,29 +7798,29 @@ msgctxt "profile"
 msgid "оценить нас"
 msgstr "відхилити заявку"
 
-#: player/templates/player/redesign/profile.html:344
+#: player/templates/player/redesign/profile.html:345
 msgctxt "profile"
 msgid "премиум-аккаунт"
 msgstr "преміум-акаунт"
 
-#: player/templates/player/redesign/profile.html:347
+#: player/templates/player/redesign/profile.html:348
 #, python-format
 msgctxt "profile"
 msgid "до %(premium)s"
 msgstr ""
 
-#: player/templates/player/redesign/profile.html:349
+#: player/templates/player/redesign/profile.html:350
 msgctxt "profile"
 msgid "не активен"
 msgstr "не активний"
 
-#: player/templates/player/redesign/profile.html:355
+#: player/templates/player/redesign/profile.html:356
 #: player/templates/player/redesign/view_profile.html:144
 msgctxt "profile"
 msgid "место в рейтинге"
 msgstr "місце в рейтингу"
 
-#: player/templates/player/redesign/profile.html:365
+#: player/templates/player/redesign/profile.html:366
 #: player/templates/player/redesign/view_profile.html:154
 #, fuzzy
 #| msgctxt "has_party"
@@ -7799,13 +7829,13 @@ msgctxt "profile"
 msgid "известность"
 msgstr "Посада"
 
-#: player/templates/player/redesign/profile.html:369
+#: player/templates/player/redesign/profile.html:370
 #: player/templates/player/redesign/view_profile.html:158
 msgctxt "profile"
 msgid "(к статьям)"
 msgstr ""
 
-#: player/templates/player/redesign/profile.html:375
+#: player/templates/player/redesign/profile.html:376
 #: player/templates/player/redesign/view_profile.html:164
 #, fuzzy
 #| msgctxt "storage_upgrade"
@@ -7814,7 +7844,7 @@ msgctxt "profile"
 msgid "суммарный урон"
 msgstr "Максимальний рівень"
 
-#: player/templates/player/redesign/profile.html:379
+#: player/templates/player/redesign/profile.html:380
 #: player/templates/player/redesign/view_profile.html:168
 #, fuzzy
 #| msgid "войн нет"
@@ -7822,90 +7852,90 @@ msgctxt "profile"
 msgid "(к войнам)"
 msgstr "війн нема"
 
-#: player/templates/player/redesign/profile.html:388
+#: player/templates/player/redesign/profile.html:389
 #: player/templates/player/redesign/view_profile.html:177
 msgctxt "profile"
 msgid "характеристики"
 msgstr "характеристики"
 
-#: player/templates/player/redesign/profile.html:403
+#: player/templates/player/redesign/profile.html:404
 #: player/templates/player/redesign/view_profile.html:192
 msgctxt "profile"
 msgid "место жительства"
 msgstr "місце проживання"
 
-#: player/templates/player/redesign/profile.html:412
+#: player/templates/player/redesign/profile.html:413
 #: player/templates/player/redesign/view_profile.html:201
 msgctxt "profile"
 msgid "прописка"
 msgstr "прописка"
 
-#: player/templates/player/redesign/profile.html:415
+#: player/templates/player/redesign/profile.html:416
 #: player/templates/player/redesign/view_profile.html:204
 msgctxt "profile"
 msgid "с"
 msgstr "з"
 
-#: player/templates/player/redesign/profile.html:421
+#: player/templates/player/redesign/profile.html:422
 #: player/templates/player/redesign/view_profile.html:210
 msgid "партия"
 msgstr "партія"
 
-#: player/templates/player/redesign/profile.html:427
-#: player/templates/player/redesign/profile.html:445
+#: player/templates/player/redesign/profile.html:428
+#: player/templates/player/redesign/profile.html:446
 #: player/templates/player/redesign/view_profile.html:216
 #: player/templates/player/redesign/view_profile.html:234
 msgid "беспартийный"
 msgstr "безпартійний"
 
-#: player/templates/player/redesign/profile.html:430
+#: player/templates/player/redesign/profile.html:431
 #: player/templates/player/redesign/view_profile.html:219
 msgctxt "profile"
 msgid "история"
 msgstr "історія"
 
-#: player/templates/player/redesign/profile.html:437
+#: player/templates/player/redesign/profile.html:438
 #: player/templates/player/redesign/view_profile.html:226
 msgid "должность в партии"
 msgstr "посада в партії "
 
-#: player/templates/player/redesign/profile.html:472
+#: player/templates/player/redesign/profile.html:473
 #: player/templates/player/redesign/view_profile.html:240
 msgid "о себе"
 msgstr "про себе"
 
-#: player/templates/player/redesign/profile.html:543
+#: player/templates/player/redesign/profile.html:544
 msgid "Загрузить"
 msgstr "Завантажити"
 
-#: player/templates/player/redesign/profile.html:598
+#: player/templates/player/redesign/profile.html:599
 msgctxt "profile"
 msgid "показывать партийный фон"
 msgstr "показувати партійний фон"
 
-#: player/templates/player/redesign/profile.html:614
+#: player/templates/player/redesign/profile.html:615
 msgctxt "profile"
 msgid "Энергетики в авто-добыче"
 msgstr "Енергетики в авто-видобуванні"
 
-#: player/templates/player/redesign/profile.html:630
+#: player/templates/player/redesign/profile.html:631
 msgctxt "profile"
 msgid "Скрыть кнопку Wiki"
 msgstr "Приховати кнопку Wiki"
 
-#: player/templates/player/redesign/profile.html:662
+#: player/templates/player/redesign/profile.html:663
 msgctxt "profile"
 msgid "стандарт"
 msgstr "стандарт"
 
-#: player/templates/player/redesign/profile.html:676
+#: player/templates/player/redesign/profile.html:677
 #, fuzzy
 #| msgid "сохранить"
 msgctxt "profile"
 msgid "сохранить"
 msgstr "зберегти"
 
-#: player/templates/player/redesign/profile.html:691
+#: player/templates/player/redesign/profile.html:692
 #, fuzzy
 #| msgid "Завершение"
 msgctxt "profile"

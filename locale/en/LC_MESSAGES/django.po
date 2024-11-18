@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-17 02:58+0300\n"
-"PO-Revision-Date: 2024-11-17 03:21+0300\n"
+"POT-Creation-Date: 2024-11-18 03:09+0300\n"
+"PO-Revision-Date: 2024-11-18 03:11+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -61,22 +61,22 @@ msgctxt "overview"
 msgid "магазин"
 msgstr "shop"
 
-#: article/templates/article/articles.html:29 article/views/articles.py:123
+#: article/templates/article/articles.html:30 article/views/articles.py:123
 msgctxt "article"
 msgid "Статьи"
 msgstr "Articles"
 
-#: article/templates/article/articles.html:42
+#: article/templates/article/articles.html:43
 msgctxt "article"
 msgid "все"
 msgstr "all"
 
-#: article/templates/article/articles.html:43
+#: article/templates/article/articles.html:44
 msgctxt "article"
 msgid "лучшие"
 msgstr "top"
 
-#: article/templates/article/articles.html:44
+#: article/templates/article/articles.html:45
 msgctxt "article"
 msgid "подписки"
 msgstr "subscriptions"
@@ -3719,32 +3719,32 @@ msgid "Добыча"
 msgstr "Mining"
 
 #: education/views/edu_overview.py:40 education/views/edu_overview.py:44
-#: player/views/overview.py:397 player/views/overview.py:400
+#: player/views/overview.py:402 player/views/overview.py:405
 msgctxt "education"
 msgid "Анна"
 msgstr "Ann"
 
-#: education/views/edu_overview.py:45 player/views/overview.py:400
+#: education/views/edu_overview.py:45 player/views/overview.py:405
 msgctxt "education"
 msgid "Лин"
 msgstr "Lin"
 
-#: education/views/edu_overview.py:46 player/views/overview.py:400
+#: education/views/edu_overview.py:46 player/views/overview.py:405
 msgctxt "education"
 msgid "Мария"
 msgstr "Maria"
 
-#: education/views/edu_overview.py:47 player/views/overview.py:400
+#: education/views/edu_overview.py:47 player/views/overview.py:405
 msgctxt "education"
 msgid "София"
 msgstr "Sofia"
 
-#: education/views/edu_overview.py:48 player/views/overview.py:400
+#: education/views/edu_overview.py:48 player/views/overview.py:405
 msgctxt "education"
 msgid "Ольга"
 msgstr "Olga"
 
-#: education/views/edu_overview.py:55 player/views/overview.py:406
+#: education/views/edu_overview.py:55 player/views/overview.py:411
 msgctxt "overview"
 msgid "Обзор"
 msgstr "Overview"
@@ -4936,7 +4936,7 @@ msgid "Смена описания партии"
 msgstr "Changing the party's description"
 
 #: party/templates/party/redesign/manage.html:423
-#: player/templates/player/redesign/profile.html:542
+#: player/templates/player/redesign/profile.html:543
 msgctxt "profile"
 msgid "Отмена"
 msgstr "Cancel"
@@ -5123,9 +5123,9 @@ msgid "Участников"
 msgstr "Members"
 
 #: party/templates/party/redesign/party_view.html:90
-#: player/templates/player/redesign/profile.html:359
-#: player/templates/player/redesign/profile.html:382
-#: player/templates/player/redesign/profile.html:396
+#: player/templates/player/redesign/profile.html:360
+#: player/templates/player/redesign/profile.html:383
+#: player/templates/player/redesign/profile.html:397
 #: player/templates/player/redesign/view_profile.html:148
 #: player/templates/player/redesign/view_profile.html:171
 #: player/templates/player/redesign/view_profile.html:185
@@ -6543,6 +6543,26 @@ msgctxt "overview"
 msgid "партий нет"
 msgstr "no parties"
 
+#: player/templates/player/redesign/overview.html:1073
+msgctxt "overview"
+msgid "Обновите приложение"
+msgstr "Application update"
+
+#: player/templates/player/redesign/overview.html:1073
+msgctxt "overview"
+msgid "Ваше приложение устарело. Обновите его"
+msgstr "Your app is out of date. Please update it"
+
+#: player/templates/player/redesign/overview.html:1073
+msgctxt "overview"
+msgid "Загрузить"
+msgstr "Upload"
+
+#: player/templates/player/redesign/overview.html:1073
+msgctxt "overview"
+msgid "Скрыть"
+msgstr "Hide"
+
 #: player/templates/player/redesign/overview_skills.html:56
 #: player/templates/player/redesign/overview_skills.html:122
 #: player/templates/player/redesign/overview_skills.html:184
@@ -6863,141 +6883,138 @@ msgid "ввести бонус-код"
 msgstr "enter bonus code"
 
 #: player/templates/player/redesign/profile.html:317
-#, fuzzy
-#| msgctxt "party_view"
-#| msgid "отменить заявку"
 msgctxt "profile"
 msgid "оценить нас"
-msgstr "cancel application"
+msgstr "rate us"
 
-#: player/templates/player/redesign/profile.html:344
+#: player/templates/player/redesign/profile.html:345
 msgctxt "profile"
 msgid "премиум-аккаунт"
 msgstr "premium account"
 
-#: player/templates/player/redesign/profile.html:347
+#: player/templates/player/redesign/profile.html:348
 #, python-format
 msgctxt "profile"
 msgid "до %(premium)s"
 msgstr "up to %(premium)s"
 
-#: player/templates/player/redesign/profile.html:349
+#: player/templates/player/redesign/profile.html:350
 msgctxt "profile"
 msgid "не активен"
 msgstr "not active"
 
-#: player/templates/player/redesign/profile.html:355
+#: player/templates/player/redesign/profile.html:356
 #: player/templates/player/redesign/view_profile.html:144
 msgctxt "profile"
 msgid "место в рейтинге"
 msgstr "rating place"
 
-#: player/templates/player/redesign/profile.html:365
+#: player/templates/player/redesign/profile.html:366
 #: player/templates/player/redesign/view_profile.html:154
 msgctxt "profile"
 msgid "известность"
 msgstr "fame"
 
-#: player/templates/player/redesign/profile.html:369
+#: player/templates/player/redesign/profile.html:370
 #: player/templates/player/redesign/view_profile.html:158
 msgctxt "profile"
 msgid "(к статьям)"
 msgstr "(to articles)"
 
-#: player/templates/player/redesign/profile.html:375
+#: player/templates/player/redesign/profile.html:376
 #: player/templates/player/redesign/view_profile.html:164
 msgctxt "profile"
 msgid "суммарный урон"
 msgstr "total damage"
 
-#: player/templates/player/redesign/profile.html:379
+#: player/templates/player/redesign/profile.html:380
 #: player/templates/player/redesign/view_profile.html:168
 msgctxt "profile"
 msgid "(к войнам)"
 msgstr "(to wars)"
 
-#: player/templates/player/redesign/profile.html:388
+#: player/templates/player/redesign/profile.html:389
 #: player/templates/player/redesign/view_profile.html:177
 msgctxt "profile"
 msgid "характеристики"
 msgstr "characteristics"
 
-#: player/templates/player/redesign/profile.html:403
+#: player/templates/player/redesign/profile.html:404
 #: player/templates/player/redesign/view_profile.html:192
 msgctxt "profile"
 msgid "место жительства"
 msgstr "region"
 
-#: player/templates/player/redesign/profile.html:412
+#: player/templates/player/redesign/profile.html:413
 #: player/templates/player/redesign/view_profile.html:201
 msgctxt "profile"
 msgid "прописка"
 msgstr "residency"
 
-#: player/templates/player/redesign/profile.html:415
+#: player/templates/player/redesign/profile.html:416
 #: player/templates/player/redesign/view_profile.html:204
 msgctxt "profile"
 msgid "с"
 msgstr "since"
 
-#: player/templates/player/redesign/profile.html:421
+#: player/templates/player/redesign/profile.html:422
 #: player/templates/player/redesign/view_profile.html:210
 msgid "партия"
 msgstr "party"
 
-#: player/templates/player/redesign/profile.html:427
-#: player/templates/player/redesign/profile.html:445
+#: player/templates/player/redesign/profile.html:428
+#: player/templates/player/redesign/profile.html:446
 #: player/templates/player/redesign/view_profile.html:216
 #: player/templates/player/redesign/view_profile.html:234
 msgid "беспартийный"
 msgstr "unaffiliated"
 
-#: player/templates/player/redesign/profile.html:430
+#: player/templates/player/redesign/profile.html:431
 #: player/templates/player/redesign/view_profile.html:219
 msgctxt "profile"
 msgid "история"
 msgstr "history"
 
-#: player/templates/player/redesign/profile.html:437
+#: player/templates/player/redesign/profile.html:438
 #: player/templates/player/redesign/view_profile.html:226
 msgid "должность в партии"
 msgstr "position in the party"
 
-#: player/templates/player/redesign/profile.html:472
+#: player/templates/player/redesign/profile.html:473
 #: player/templates/player/redesign/view_profile.html:240
 msgid "о себе"
 msgstr "bio"
 
-#: player/templates/player/redesign/profile.html:543
+#: player/templates/player/redesign/profile.html:544
 msgid "Загрузить"
 msgstr "Upload"
 
-#: player/templates/player/redesign/profile.html:598
+#: player/templates/player/redesign/profile.html:599
 msgctxt "profile"
 msgid "показывать партийный фон"
 msgstr "show party background"
 
-#: player/templates/player/redesign/profile.html:614
+#: player/templates/player/redesign/profile.html:615
 msgctxt "profile"
 msgid "Энергетики в авто-добыче"
 msgstr "Energy drinks in auto-mining"
 
-#: player/templates/player/redesign/profile.html:630
+#: player/templates/player/redesign/profile.html:631
 msgctxt "profile"
 msgid "Скрыть кнопку Wiki"
 msgstr "Hide Wiki button"
 
-#: player/templates/player/redesign/profile.html:662
+#: player/templates/player/redesign/profile.html:663
 msgctxt "profile"
 msgid "стандарт"
 msgstr "standard"
 
-#: player/templates/player/redesign/profile.html:676
+#: player/templates/player/redesign/profile.html:677
 msgctxt "profile"
 msgid "сохранить"
 msgstr "save"
 
-#: player/templates/player/redesign/profile.html:691
+#: player/templates/player/redesign/profile.html:692
 msgctxt "profile"
 msgid "обучение"
 msgstr "tutorial"
@@ -7013,12 +7030,9 @@ msgid "Укажите имя автора отзыва"
 msgstr "Please provide the name of the review author"
 
 #: player/templates/player/redesign/rate_us.html:30
-#, fuzzy
-#| msgctxt "construction_draft"
-#| msgid "Уровень"
 msgctxt "bonus_code"
 msgid "проверить"
-msgstr "Level"
+msgstr "check"
 
 #: player/templates/player/redesign/rate_us.html:37
 msgctxt "event"
@@ -10987,9 +11001,6 @@ msgstr "Wars"
 
 #~ msgid "Партия"
 #~ msgstr "Party"
-
-#~ msgid "Закрыть"
-#~ msgstr "Close"
 
 #~ msgid "Отмена"
 #~ msgstr "Cancel"
