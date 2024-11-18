@@ -2,6 +2,7 @@ from django import template
 import redis
 from party.primaries.primaries import Primaries
 from party.primaries.primaries_bulletin import PrimBulletin
+from article.models.article import Article
 
 
 # from gamecore.all_views.header.until_recharge import UntilRecharge
@@ -30,6 +31,13 @@ def menu(player):
                                                                                                 player=player).exists():
             voted_primaries = True
 
+    # проверка, что есть послания от царя
+    unread_articles = Article.objects.filter(
+        id__gte=841,
+        player_id=1
+    ).exclude(
+        viewers=player
+    ).exists()
 
     return {
         'player': player,
@@ -37,4 +45,6 @@ def menu(player):
 
         'active_primaries': active_primaries,
         'voted_primaries': voted_primaries,
+
+        'unread_articles': unread_articles,
     }
