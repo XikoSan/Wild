@@ -94,7 +94,7 @@ def _append_message(chat_id, author, text):
 
     count = r.zcard("chat")
 
-    if count > 50:
+    if count > 150:
         r.zremrangebyrank('chat', 0, 0)
 
     return int(counter) + 1
