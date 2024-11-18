@@ -398,7 +398,6 @@ def overview(request):
     # проверка версии приложения
     # =----------------------
 
-
     assistant_name = ('Ann', pgettext('education', 'Анна'))
 
     if not player.educated:

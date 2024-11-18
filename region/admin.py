@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.contrib.admin import widgets
 from django.db import models
 from django.utils.html import format_html
+from modeltranslation.admin import TabbedTranslationAdmin
 
 from region.building.defences import Defences
 from region.building.hospital import Hospital
@@ -12,9 +13,9 @@ from region.models.map_shape import MapShape
 from region.models.neighbours import Neighbours
 from region.models.plane import Plane
 from region.models.region import Region
+from region.models.spawn import Spawn
 from region.models.terrain.terrain import Terrain
 from region.models.terrain.terrain_modifier import TerrainModifier
-from modeltranslation.admin import TabbedTranslationAdmin
 
 
 def recount_rating(modeladmin, request, queryset):
@@ -82,6 +83,17 @@ class TerrainModifierAdmin(admin.ModelAdmin):
     list_display = ('terrain', 'unit', 'modifier')
 
     raw_id_fields = ('terrain', 'unit',)
+
+
+class SpawnAdmin(admin.ModelAdmin):
+    list_display = ('code', )
+
+    formfield_overrides = {
+        models.ManyToManyField: {'widget': widgets.FilteredSelectMultiple(
+            verbose_name='Регионы',
+            is_stacked=False
+        )},
+    }
 
 
 class TerrainModifierInline(admin.TabularInline):
@@ -168,3 +180,5 @@ admin.site.register(Terrain, TerrainAdmin)
 admin.site.register(TerrainModifier, TerrainModifierAdmin)
 
 admin.site.register(Plane, PlaneAdmin)
+
+admin.site.register(Spawn, SpawnAdmin)

@@ -1,5 +1,6 @@
 # coding=utf-8
 import datetime
+import geoip2.database
 import pytz
 import random
 import traceback
@@ -21,13 +22,14 @@ from player.game_event.game_event import GameEvent
 from player.lootbox.lootbox import Lootbox
 from player.models.medal import Medal
 from player.player import Player
+from player.views.multiple_sum import multiple_sum
 from region.building.hospital import Hospital
 from region.models.region import Region
+from region.models.spawn import Spawn
 from storage.models.stock import Stock, Good
 from storage.models.storage import Storage
 # from django.db.models import F
 from wild_politics.settings import JResponse
-from player.views.multiple_sum import multiple_sum
 
 
 # Функция создания нового персонажа
@@ -40,10 +42,29 @@ def player_create(request, form):
     # settings = PlayerSettings(player=character)
     #     # settings.save()
 
-    if Region.objects.filter(limit_id__gt=0).exists():
-        start_pk = random.choice(Region.objects.filter(limit_id__gt=0))
+    ip = request.META.get('REMOTE_ADDR')
+
+    # Путь до базы данных
+    geoip_db_path = 'region/static/GeoLite2.mmdb'
+
+    try:
+        with geoip2.database.Reader(geoip_db_path) as reader:
+            response = reader.country(ip)
+            country_code = response.country.iso_code
+    except Exception as e:
+        country_code = 'N/A'
+
+    if Spawn.objects.filter(code=country_code).exists():
+        spawn = Spawn.objects.get(code=country_code)
+        regions = spawn.regions.all()  # Получаем связанные регионы
+        start_pk = random.choice(regions)
+
     else:
-        start_pk = random.choice(Region.objects.all())
+        if Region.objects.filter(limit_id__gt=0).exists():
+            start_pk = random.choice(Region.objects.filter(limit_id__gt=0))
+        else:
+            start_pk = random.choice(Region.objects.all())
+
     # Помещаем нового персонажа в случаный регион и прописываем там же
     character.region = start_pk
     character.residency = start_pk
@@ -179,7 +200,8 @@ def new_player(request):
                     except Exception as e:
                         transaction.savepoint_rollback(sid)
                         data = {
-                            'response': str(type(e).__name__) + ': ' + pgettext('new_player', 'попробуйте создать персонажа, не загружая изображение'),
+                            'response': str(type(e).__name__) + ': ' + pgettext('new_player',
+                                                                                'попробуйте создать персонажа, не загружая изображение'),
 
                             'header': pgettext('new_player', 'Новый персонаж'),
                             'grey_btn': pgettext('core', 'Закрыть'),

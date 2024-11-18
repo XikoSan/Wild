@@ -390,6 +390,8 @@ SILKY_PYTHON_PROFILER = True
 SILKY_PYTHON_PROFILER_BINARY = True
 SILKY_PYTHON_PROFILER_RESULT_PATH = '/tmp/'
 
+GEOIP_PATH = os.path.join(BASE_DIR, 'geoip')
+
 class JResponse(JsonResponse):
     def __init__(self, data, encoder=DjangoJSONEncoder, safe=True, **kwargs):
         json_dumps_params = dict(ensure_ascii=False)
