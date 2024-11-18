@@ -22,6 +22,11 @@ class Article(models.Model):
     # приоритет закрепления ( 0 - самый большой )
     pin_order = models.IntegerField(default=0, verbose_name='Приоритет закрепления')
 
+    # прочитавшие
+    viewers = models.ManyToManyField(Player, blank=True,
+                                       related_name='%(class)s_viewers',
+                                       verbose_name='Прочитавшие')
+
     # голоса "за"
     votes_pro = models.ManyToManyField(Player, blank=True,
                                        related_name='%(class)s_votes_pro',

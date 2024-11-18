@@ -75,6 +75,9 @@ def view_article(request, pk):
         elif player in article.votes_con.all():
             voted = 'con'
 
+        if not player in article.viewers.all():
+            article.viewers.add(player)
+
         if Subscription.objects.filter(
                 author=article.player,
                 player=player

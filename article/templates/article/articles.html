@@ -5,6 +5,7 @@
 {% load get_class_name %}
 {% load get_sum %}
 {% load get_str %}
+{% load in_m2m %}
 {% load redesign.template_svg.nopic %}
 
 {% block for_scripts_and_css %}
@@ -57,7 +58,11 @@
 
       <ul class="articles__list active">
 		  {% for article in articles %}
-        <li class="articles__item" onclick="window.location.href = '/article/{% localize off %}{{ article.pk }}{% endlocalize %}/'" style="cursor: pointer">
+        <li class="articles__item" onclick="window.location.href = '/article/{% localize off %}{{ article.pk }}{% endlocalize %}/'" style="cursor: pointer;
+        {% if article.player.id == 1 and article.id >= 841 %}
+            {% if not player|in_m2m:article.viewers.all %} outline: 2px var(--c10two) solid;{% endif %}
+        {% endif %}
+">
 			{% if article.player.image %}
 				<img src="{{ article.player.image.url }}">
 			{% else %}
@@ -96,7 +101,11 @@
 
       <ul class="articles__list">
         {% for article in top_articles %}
-        <li class="articles__item" onclick="window.location.href = '/article/{% localize off %}{{ article.pk }}{% endlocalize %}/'" style="cursor: pointer">
+        <li class="articles__item" onclick="window.location.href = '/article/{% localize off %}{{ article.pk }}{% endlocalize %}/'" style="cursor: pointer;
+        {% if article.player.id == 1 and article.id >= 841 %}
+            {% if not player|in_m2m:article.viewers.all %} outline: 2px var(--c10two) solid;{% endif %}
+        {% endif %}
+">
 			{% if article.player.image %}
 				<img src="{{ article.player.image.url }}">
 			{% else %}
@@ -135,7 +144,10 @@
 
       <ul class="articles__list">
         {% for article in subs_articles %}
-        <li class="articles__item" onclick="window.location.href = '/article/{% localize off %}{{ article.pk }}{% endlocalize %}/'" style="cursor: pointer">
+        <li class="articles__item" onclick="window.location.href = '/article/{% localize off %}{{ article.pk }}{% endlocalize %}/'" style="cursor: pointer;
+        {% if article.player.id == 1 and article.id >= 841 %}
+            {% if not player|in_m2m:article.viewers.all %} outline: 2px var(--c10two) solid;{% endif %}
+        {% endif %}">
 			{% if article.player.image %}
 				<img src="{{ article.player.image.url }}">
 			{% else %}
