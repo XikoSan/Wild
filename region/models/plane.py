@@ -34,7 +34,7 @@ class Plane(models.Model):
                       'red', 'yellow', 'orange',
                       'green', 'dark_blue', 'light_blue',
                       'pink', 'violet', 'black',
-                      'wood', 'gold'
+                      'wood', 'gold', 'friday'
                       ],
 
         'trickster': ['base',
@@ -164,6 +164,8 @@ class Plane(models.Model):
 
         ('gold', 'золотой'),
         ('black_gold', 'чёрно-золотой'),
+        ('black_gold', 'чёрно-золотой'),
+        ('friday', 'чёрная пятница'),
         ('wood', 'дерево'),
 
         ('dreamflight', 'Dreamflight'),  # сходка МСК 2024
@@ -199,7 +201,7 @@ class Plane(models.Model):
         'corny', 'redline', 'standard', 'hexagon', 'white_cam', 'android',
     ]
 
-    gold_colors = ['gold', 'black_gold', 'wood']
+    gold_colors = ['gold', 'black_gold', 'wood', 'friday']
 
     color = models.CharField(
         max_length=20,

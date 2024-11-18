@@ -1,7 +1,7 @@
 КАК СОЗДАТЬ:
 
 через Putty выполнить в корне:
-docker-compose exec db pg_dump -U postgres -E UTF8 wild_politics > db.dump
+docker compose exec db pg_dump -U postgres -E UTF8 wild_politics > wp.sql
 
 
 
