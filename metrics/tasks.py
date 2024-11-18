@@ -14,6 +14,7 @@ from metrics.models.daily_ore import DailyOre
 from party.party import Party
 from region.models.region import Region
 from storage.models.storage import Storage
+from metrics.models.daily_gold_by_state import DailyGoldByState
 
 
 @shared_task(name="save_daily")
@@ -29,10 +30,36 @@ def save_daily():
     DailyGold.objects.create(
         gold=gold
     )
-    # очищаем информацию по регионам
+
+    daily_gold_by_state = {}
+
+    # Очищаем информацию по регионам
     for region in Region.objects.all():
-        if r.exists("daily_gold_" + str(region.pk)):
-            r.delete("daily_gold_" + str(region.pk))
+        cache_key = "daily_gold_" + str(region.pk)
+        if r.exists(cache_key):
+            gold = int(r.get(cache_key))
+
+            # Если у региона есть связанное state, накапливаем gold
+            if region.state:
+                state_id = region.state.pk
+                if state_id in daily_gold_by_state:
+                    daily_gold_by_state[state_id] += gold
+                else:
+                    daily_gold_by_state[state_id] = gold
+
+            # Удаляем запись из кеша
+            r.delete(cache_key)
+
+    # Создаём объекты DailyGoldByState с накопленными значениями
+    daily_u = [
+        DailyGoldByState(state_id=state_id, gold=gold)
+        for state_id, gold in daily_gold_by_state.items()
+    ]
+
+    DailyGoldByState.objects.bulk_create(
+        daily_u,
+        batch_size=len(daily_u)
+    )
 
     # ----------- деньги -----------
     cash = 0
