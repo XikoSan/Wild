@@ -33,7 +33,7 @@ class Player(models.Model):
     # Показатель того, что игрок забанен
     banned = models.BooleanField(default=False, null=False, verbose_name='Бан')
     # причина бана
-    reason = models.TextField(max_length=25, default='', null=True, blank=True, verbose_name='Причина')
+    reason = models.TextField(max_length=500, default='', null=True, blank=True, verbose_name='Причина')
     # последний использовавшийся ip
     user_ip = models.CharField(max_length=50, blank=True, verbose_name='IP пользователя')
     # отпечаток браузера
