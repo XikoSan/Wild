@@ -176,21 +176,25 @@ def dialogues(request):
 
                 else:
                     tuple_to_messages(player, messages, redis_list, r)
-                    dialogs_data[dialog[0]]['dtime'] = messages[-1]['dtime']
-                    dialogs_data[dialog[0]]['content'] = messages[-1]['content']
-                    # если последнее сообщение принадлежит собсеседнику
-                    if messages[-1]['author'] != player.pk:
-                        if from_state:
-                            dialogs_data[dialog[0]]['author'] = messages[-1]['author']
-                            dialogs_data[dialog[0]]['author_nickname'] = from_state.title
-                            if from_state.image:
-                                dialogs_data[dialog[0]]['image_link'] = from_state.image.url
+                    if messages:
+                        dialogs_data[dialog[0]]['dtime'] = messages[-1]['dtime']
+                        dialogs_data[dialog[0]]['content'] = messages[-1]['content']
+                        # если последнее сообщение принадлежит собсеседнику
+                        if messages[-1]['author'] != player.pk:
+                            if from_state:
+                                dialogs_data[dialog[0]]['author'] = messages[-1]['author']
+                                dialogs_data[dialog[0]]['author_nickname'] = from_state.title
+                                if from_state.image:
+                                    dialogs_data[dialog[0]]['image_link'] = from_state.image.url
+                                else:
+                                    dialogs_data[dialog[0]]['image_link'] = 'nostate'
                             else:
-                                dialogs_data[dialog[0]]['image_link'] = 'nostate'
-                        else:
-                            dialogs_data[dialog[0]]['author'] = messages[-1]['author']
-                            dialogs_data[dialog[0]]['author_nickname'] = messages[-1]['author_nickname']
-                            dialogs_data[dialog[0]]['image_link'] = messages[-1]['image_link']
+                                dialogs_data[dialog[0]]['author'] = messages[-1]['author']
+                                dialogs_data[dialog[0]]['author_nickname'] = messages[-1]['author_nickname']
+                                dialogs_data[dialog[0]]['image_link'] = messages[-1]['image_link']
+                    else:
+                        dialogs_data[dialog[0]]['dtime'] = None
+                        dialogs_data[dialog[0]]['content'] = None
 
                 # если последнее сообщение принадлежало не собсеседнику - ищем аву, ник, ID
                 if companions.filter(chat__pk=dialog[0]).exists():
