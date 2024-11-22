@@ -77,7 +77,7 @@ class Plane(models.Model):
                     'green', 'dark_blue', 'light_blue',
                     'pink', 'violet', 'black',
                     'gold',
-                    'pobeda', ],
+                    'pobeda', 'friday' ],
 
         'striker': ['base',
                     'red', 'yellow', 'orange',
@@ -101,7 +101,7 @@ class Plane(models.Model):
                        'green', 'dark_blue', 'light_blue',
                        'pink', 'violet', 'black',
                        'standard', 'hexagon', 'white_cam',
-                       'gold'
+                       'gold', 'friday'
                        ],
 
         'observer': ['base',
