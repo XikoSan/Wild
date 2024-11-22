@@ -28,7 +28,7 @@ class Plane(models.Model):
 
         'nagger': ['base', 'black_gold', 'dreamflight'],
 
-        'beluzzo': ['base'],
+        'beluzzo': ['base', 'friday'],
 
         'pretender': ['base',
                       'red', 'yellow', 'orange',
