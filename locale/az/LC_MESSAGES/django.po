@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-11-18 03:09+0300\n"
-"PO-Revision-Date: 2024-11-21 01:10+0300\n"
+"PO-Revision-Date: 2024-11-22 15:14+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: az\n"
@@ -25,11 +25,12 @@ msgctxt "article"
 msgid "подписаться"
 msgstr "Abunə ol"
 
+#. Отредактировано B♤SS, id 2344
 #: article/templates/article/article.html:17
 #: article/templates/article/article.html:110
 msgctxt "article"
 msgid "отписаться"
-msgstr "Abunəyi ləğv et"
+msgstr "Ləğv et"
 
 #: article/templates/article/article.html:107
 msgctxt "article"
@@ -1268,20 +1269,22 @@ msgctxt "new_bill"
 msgid "Не указано количество товара"
 msgstr "Məhsulun sayı qeyd olunmayıb"
 
+#. Отредактировано B♤SS, id 2344
 #: bill/models/transfer_resources.py:99
 msgctxt "new_bill"
 msgid "Количество товара должно быть целым числом"
-msgstr ""
+msgstr "Məhsulun miqdarı tam rəqəm olmalıdır"
 
 #: bill/models/transfer_resources.py:108
 msgctxt "new_bill"
 msgid "Не найдена казна государства"
 msgstr "Dövlət büdcəsi tapılmayıb"
 
+#. Отредактировано B♤SS, id 2344
 #: bill/models/transfer_resources.py:129
 msgctxt "new_bill"
 msgid "Не найден товар с переданным ID"
-msgstr ""
+msgstr "Bu id ilə məhsul tapılmadı"
 
 #: bill/models/transfer_resources.py:138
 msgctxt "new_bill"
@@ -1308,11 +1311,13 @@ msgctxt "new_bill"
 msgid "Передачи товаров"
 msgstr "Malların köçürülməsi"
 
+#. Отредактировано B♤SS, id 2344
 #: bill/templates/state/redesign/bills/change_coat.html:24
 msgctxt "bill"
 msgid "оригинальный размер"
-msgstr "Orginal ölçü"
+msgstr "orginal ölçü"
 
+#. Отредактировано B♤SS, id 2344
 #: bill/templates/state/redesign/bills/change_coat.html:60
 #: bill/templates/state/redesign/bills/change_residency.html:71
 #: bill/templates/state/redesign/bills/change_taxes.html:74
@@ -1323,7 +1328,7 @@ msgstr "Orginal ölçü"
 #: bill/templates/state/redesign/bills/purchase_auction.html:62
 msgctxt "bill"
 msgid "подписано"
-msgstr "İmzalanıb"
+msgstr "imzalanıb"
 
 #: bill/templates/state/redesign/bills/change_residency.html:23
 #: bill/templates/state/redesign/drafts/change_residency.html:12
@@ -1332,12 +1337,13 @@ msgctxt "change_residency_draft"
 msgid "выдается министром"
 msgstr "Nazir tərəfindən verilir"
 
+#. Отредактировано B♤SS, id 2344
 #: bill/templates/state/redesign/bills/change_residency.html:25
 #: bill/templates/state/redesign/drafts/change_residency.html:13
 #: bill/templates/state/redesign/reviewed/change_residency.html:26
 msgctxt "change_residency_draft"
 msgid "свободная"
-msgstr "Azad"
+msgstr "azad"
 
 #: bill/templates/state/redesign/bills/change_residency.html:34
 #: factory/migrations/0023_auto_20230911_0014.py:43
@@ -1368,11 +1374,12 @@ msgctxt "bill_draft"
 msgid "Бесплатно"
 msgstr "Pulsuz"
 
+#. Отредактировано B♤SS, id 2344
 #: bill/templates/state/redesign/bills/change_taxes.html:29
 #: education/templates/education/edu_gov.html:322
 msgctxt "bill"
 msgid "всё государство"
-msgstr "Bütöv dövlət"
+msgstr "bütöv dövlət"
 
 #: bill/templates/state/redesign/bills/martial_law.html:32
 msgctxt "martial_law"
@@ -1444,10 +1451,11 @@ msgctxt "change_residency_draft"
 msgid "Способ выдачи прописки"
 msgstr "Qeydiyyat verilmənin üsulu"
 
+#. Отредактировано B♤SS, id 2344
 #: bill/templates/state/redesign/drafts/change_residency.html:21
 msgctxt "change_residency_draft"
 msgid "стоимость"
-msgstr "Qiymət"
+msgstr "qiymət"
 
 #: bill/templates/state/redesign/drafts/change_residency.html:23
 msgctxt "change_residency_draft"
@@ -1519,10 +1527,11 @@ msgctxt "construction_draft"
 msgid "Нет доступных регионов"
 msgstr "Movcud bölgə yoxdur"
 
+#. Отредактировано B♤SS, id 2344
 #: bill/templates/state/redesign/drafts/explore_resources.html:158
 msgctxt "explore_resources_draft"
 msgid "выберите ресурс"
-msgstr "Resursu seçin"
+msgstr "resursu seçin"
 
 #: bill/templates/state/redesign/drafts/explore_resources.html:169
 msgctxt "explore_resources_draft"
@@ -1539,10 +1548,11 @@ msgctxt "explore_resources_draft"
 msgid "Множитель"
 msgstr "Vuran"
 
+#. Отредактировано B♤SS, id 2344
 #: bill/templates/state/redesign/drafts/explore_resources.html:174
 msgctxt "explore_resources_draft"
 msgid "стоимость разведки"
-msgstr "Kəşfiyyatın qiyməti"
+msgstr "kəşfiyyatın qiyməti"
 
 #: bill/templates/state/redesign/drafts/explore_resources.html:191
 msgctxt "explore_resources_draft"
@@ -2175,15 +2185,15 @@ msgctxt "set_mandate"
 msgid "Выборы"
 msgstr "Seçkilər"
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_election.html:34
 #: education/templates/education/edu_gov.html:204
 #: education/templates/education/edu_overview.html:149
-#, fuzzy
 #| msgctxt "new_bill"
 #| msgid "Президентская республика"
 msgctxt "education"
 msgid "Объединённая Республика"
-msgstr "Respublika"
+msgstr "Birləşmiş Respublika"
 
 #: education/templates/education/edu_election.html:105
 #: education/templates/education/edu_election.html:297
@@ -2194,34 +2204,34 @@ msgctxt "lists"
 msgid "Действие"
 msgstr "Fəaliyyət"
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_election.html:116
 #: education/templates/education/edu_gov.html:337
 #: education/templates/education/edu_overview.html:468
 #: education/templates/education/edu_overview.html:511
-#, fuzzy
 #| msgctxt "new_bill"
 #| msgid "Президентская республика"
 msgctxt "education"
 msgid "Партия Единства Республики"
-msgstr "Respublika"
+msgstr "Respublikanın birlik partiyası"
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_election.html:159
 #: education/templates/education/edu_overview.html:477
-#, fuzzy
 #| msgctxt "new_bill"
 #| msgid "Президентская республика"
 msgctxt "education"
 msgid "Радикальная партия Республики"
-msgstr "Respublika"
+msgstr "Respublikanın radikal partiyası"
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_election.html:181
 #: education/templates/education/edu_overview.html:486
-#, fuzzy
 #| msgctxt "new_bill"
 #| msgid "Президентская республика"
 msgctxt "education"
 msgid "Зелёная Альтернатива Республики"
-msgstr "Respublika"
+msgstr "Respublikaya yaşıl alternativası"
 
 #: education/templates/education/edu_gov.html:194
 #: state/templates/state/redesign/gov/government.html:179
@@ -2232,15 +2242,15 @@ msgctxt "government"
 msgid "Парламент"
 msgstr "Tibbi ləvazimatlar "
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_gov.html:208
 #: education/templates/education/edu_overview.html:186
 #: education/templates/education/edu_war.html:146
 #: education/templates/education/edu_war.html:157
-#, fuzzy
 #| msgid "независимый регион"
 msgctxt "education"
 msgid "Столичный регион"
-msgstr "müstəqil bölgə"
+msgstr "Paytaxt bölgə"
 
 #: education/templates/education/edu_gov.html:231
 #: state/templates/state/redesign/gov/government.html:352
@@ -2275,21 +2285,21 @@ msgctxt "government"
 msgid "казна"
 msgstr ""
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_gov.html:330
-#, fuzzy
 #| msgctxt "change_taxes_draft"
 #| msgid "Новый налог"
 msgctxt "education"
 msgid "Подоходный налог"
-msgstr "Yeni vergi"
+msgstr "Gəlir vergisi"
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_gov.html:437
-#, fuzzy
 #| msgctxt "new_bill"
 #| msgid "Президентская республика"
 msgctxt "education"
 msgid "Партия Единства"
-msgstr "Respublika"
+msgstr "Birlik partiyası"
 
 #: education/templates/education/edu_gov.html:439
 #: education/templates/education/edu_gov.html:448
@@ -2299,524 +2309,620 @@ msgctxt "parliament"
 msgid "мест"
 msgstr "Yerlər"
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_gov.html:446
-#, fuzzy
 #| msgctxt "new_bill"
 #| msgid "Президентская республика"
 msgctxt "education"
 msgid "Радикальная партия"
-msgstr "Respublika"
+msgstr "Radikal partiya"
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_gov.html:455
-#, fuzzy
 #| msgctxt "new_bill"
 #| msgid "Президентская республика"
 msgctxt "education"
 msgid "Зелёная Альтернатива"
-msgstr "Respublika"
+msgstr "Yaşıl alternativ"
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_1.html:43
 #, python-format
 msgctxt "education"
 msgid "Здравствуйте! Меня зовут %(assistant)s, я ваша помощница и верный союзник на вашем новом пути. Поздравляю вас с принятием в Партию Единства Республики — это первый шаг к вершинам политической карьеры!"
-msgstr ""
+msgstr "Salam! Mənim adım %(assistant)s, mən sizin köməkçiniz və yeni yolunuzda sadiq müttəfiqinizəm. Respublika Birlik Partiyasına qəbul olunmağınız münasibətilə sizi təbrik edirik - bu, siyasi karyeranızın zirvəsinə ilk addımdır!"
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_1.html:47
 msgctxt "education"
 msgid "Вступив в ряды правящей партии, вы оказались в самом центре эпохи перемен и возможностей. Сейчас настало время амбициозных личностей, которые стремятся внести вклад в развитие нашего государства и укрепить его влияние на мировой арене."
-msgstr ""
+msgstr "Hakim partiyanın sıralarına qoşulmaqla siz özünüzü dəyişiklik və imkanlar dövrünün tam mərkəzində tapırsınız. İndi dövlətimizin inkişafına töhfə vermək, dünya arenasında nüfuzunu gücləndirmək istəyən iddialı şəxsiyyətlərin vaxtıdır."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_1.html:51
 msgctxt "education"
 msgid "В мире ведутся масштабные войны, создаются союзы, меняющие континенты. Люди основывают крупные бизнесы, корпорации и целые сети. СМИ играют роль невидимых нитей, связывая влиятельные силы. И очень скоро вы займете своё место среди них. Я же буду рядом, помогая вам разбираться в тонкостях игры."
-msgstr ""
+msgstr "Dünyada irimiqyaslı müharibələr aparılır, qitələri dəyişən ittifaqlar yaradılır. İnsanlar böyük bizneslər, korporasiyalar və bütün şəbəkələr yaradırlar. Media təsirli qüvvələri birləşdirən görünməz tel rolunu oynayır. Və çox tezliklə onların arasında yerinizi alacaqsınız. Mən orada olacağam, oyunun incəliklərini başa düşməyinizə kömək edəcəm."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_1.html:55
 msgctxt "education"
 msgid "Для начала, давайте взглянем на обстановку в стране и мире!"
-msgstr ""
+msgstr "Əvvəlcə ölkədə və dünyada olan vəziyyətə baxaq!"
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_1.html:61
 msgctxt "education"
 msgid "Как вам известно, предыдущая администрация чуть не привела нашу страну к краху. Теперь нам предстоит удержать республику от этой участи, даже если это потребует решительных реформ."
-msgstr ""
+msgstr "Bildiyiniz kimi, əvvəlki hakimiyyət az qala ölkəmizi bərbad vəziyyətə salacaqdı. İndi biz respublikanı bu aqibətdən saxlamalıyıq, hətta bu, köklü islahatlar tələb etsə də."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_1.html:67
 msgctxt "education"
 msgid "Сегодня день выборов, и атмосфера в столице накалена до предела. На улицах шумят радикалы, требующие перемен, но это не помешает нам достичь своей цели!"
-msgstr ""
+msgstr "Bu gün seçki günüdür və paytaxtda ab-hava son həddə qədər gərgindir. Küçələrdə dəyişiklik tələb edən radikallar var, lakin bu, bizim məqsədimizə çatmağa mane olmayacaqlar!"
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_1.html:71
 msgctxt "education"
 msgid "Что? Вы еще не проголосовали? Это недоразумение нужно срочно исправить. Пора отправиться на избирательный участок!"
-msgstr ""
+msgstr "Nə? Hələ səs verməmisiniz?Bu anlaşılmazlığı təcili düzəltmək lazımdır. Seçki məntəqəsinə getməyin vaxtıdır!"
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_2.html:78
 msgctxt "education"
 msgid "Добро пожаловать на избирательный участок!"
-msgstr ""
+msgstr "Seçki məntəqəsinə xoş gəlmisiniz!"
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_2.html:82
 msgctxt "education"
 msgid "Этот момент — не просто формальность, а важный шаг для любого политика. Ваш голос и ваша активность сейчас заложат основу для будущих побед."
-msgstr ""
+msgstr "Bu məqam sadəcə formallıq deyil, hər bir siyasətçi üçün vacib addımdır. Səsiniz və indiki fəallığınız gələcək qələbələrin əsasını qoyacaq."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_2.html:86
 msgctxt "education"
 msgid "Как только вы проголосуете, ваш голос пойдет в копилку нашей партии. Чем больше людей поддержат нас, тем больше у нас шансов получить места в парламенте."
-msgstr ""
+msgstr "Səs verən kimi səsiniz bizim partiyaya gedəcək. Nə qədər çox insan bizi dəstəkləsə, parlamentdə yer almaq şansımız bir o qədər çox olar."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_2.html:90
 msgctxt "education"
 msgid "Каждое кресло в парламенте открывает новые возможности для решения государственных вопросов: от налоговой реформы до влияния на внешнюю политику."
-msgstr ""
+msgstr "Parlamentdəki hər bir yer hökumət məsələlərinin həlli üçün yeni imkanlar açır: vergi islahatlarından tutmuş xarici siyasətə təsir etməyə qədər."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_2.html:94
 msgctxt "education"
 msgid "Помните, каждый голос важен! Чем выше результат партии на этих выборах, тем выше шанс, что вы займете место среди избранных, сможете продвигать законы, инициировать реформы и даже влиять на оборонную стратегию страны."
-msgstr ""
+msgstr "Unutmayın, hər bir səs vacibdir! Partiyanın bu seçkilərdə çıxışı nə qədər yaxşı olarsa, seçilmişlər arasında olmaq, qanunları irəli sürmək, islahatlara başlamaq və hətta ölkənin müdafiə strategiyasına təsir etmək şansınız bir o qədər yüksəkdir."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_2.html:98
 msgctxt "education"
 msgid "Выбор за вами, но от него зависит ваше будущее как политика."
-msgstr ""
+msgstr "Seçim sənindir, amma siyasətçi kimi gələcəyin bundan asılıdır."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_2.html:103
 msgctxt "education"
 msgid "Дело сделано! А теперь давайте вернёмся в офис партии. Там спокойнее и не слышно всех этих радикалов."
-msgstr ""
+msgstr "Bitdi! İndi qayıdaq partiya ofisinə. Orada daha sakitdir və siz bütün bu radikalları eşidə bilməzsiniz."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_2.html:107
 msgctxt "education"
 msgid "Хватит подкручивать результаты в свою пользу!"
-msgstr ""
+msgstr "Nəticələri öz xeyrinizə çevirməyi dayandırın!"
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_2.html:111
 msgctxt "education"
 msgid "Нам нужны честные выборы, а не очередной фарс!"
-msgstr ""
+msgstr "Bizə ədalətli seçki lazımdır, növbəti fars yox!"
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_2.html:115
 msgctxt "education"
 msgid "Они всё равно всё уже купили!"
-msgstr ""
+msgstr "Onsuz da hər şeyi alıblar!"
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_2.html:119
 msgctxt "education"
 msgid "Не обращайте внимания, это всего лишь часть нашей работы."
-msgstr ""
+msgstr "Narahat olmayın, bu, sadəcə işimizin bir hissəsidir."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_2.html:123
 msgctxt "education"
 msgid "На пути к вершинам всегда будет недовольные, но мы справимся. Главное — ваш выбор и ваша решимость."
-msgstr ""
+msgstr "Zirvəyə gedən yolda həmişə narazı insanlar olacaq, amma öhdəsindən gələcəyik. Əsas - seçiminiz və qətiyyətinizdir."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_3.html:99
 msgctxt "education"
 msgid "Поздравляю! Ваша партия получила 8 из 10 мест в парламенте."
-msgstr ""
+msgstr "Təbrik edirik! Partiyanız parlamentdəki 10 yerdən 8-ni qazandı."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_3.html:103
 msgctxt "education"
 msgid "Теперь, когда у нас большинство, вы можете занять своё место в зале и приступать к работе над ключевыми решениями."
-msgstr ""
+msgstr "Artıq bizdə çoxluq var, siz otaqda öz yerinizi tutub əsas qərarlar üzərində işə başlaya bilərsiniz."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_3.html:108
 msgctxt "education"
 msgid "Сейчас вам предстоит сделать первый серьёзный выбор."
-msgstr ""
+msgstr "İndi ilk ciddi seçiminizi etməlisiniz."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_3.html:112
 msgctxt "education"
 msgid "Голосование проходит просто — выберите, поддержать ли предложенный законопроект. Но помните, каждое ваше решение повлияет на ситуацию в стране."
-msgstr ""
+msgstr "Səsvermə, sadəcə olaraq, təklif olunan qanun layihəsinin dəstəklənməsinə qərar verməklə keçirilir. Ancaq unutmayın ki, verdiyiniz hər bir qərar ölkədəki vəziyyətə təsir edəcək."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_3.html:116
 msgctxt "education"
 msgid "Из-за ошибок прежнего правительства мы оказались на грани экономического кризиса."
-msgstr ""
+msgstr "Əvvəlki hakimiyyətin səhvləri ucbatından biz iqtisadi böhranın astanasında qaldıq."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_3.html:120
 msgctxt "education"
 msgid "Сегодня на повестке — законопроект о повышении налогов. Партия поддерживает это решение, чтобы помочь стабилизировать экономику."
-msgstr ""
+msgstr "Bu gün gündəmdə vergilərin artırılması ilə bağlı qanun layihəsi var. Partiya iqtisadiyyatın sabitləşməsinə kömək etmək üçün bu qərarı dəstəkləyir."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_3.html:124
-#, fuzzy
 #| msgctxt "speedup_bill"
 #| msgid "Надо проголосовать!"
 msgctxt "education"
 msgid "Нажмите на кнопку, чтобы проголосовать."
-msgstr "Səs ver!"
+msgstr "Səs vermək üçün düyməni basın."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_3.html:129
 msgctxt "education"
 msgid "Мы сделали важный шаг. Тяжелое решение, но оно поможет спасти страну."
-msgstr ""
+msgstr "Biz mühüm addım atmışıq.Çətin bir qərar, amma ölkəni xilas etməyə kömək edəcək."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_3.html:133
 msgctxt "education"
 msgid "Верно. Это только начало, но мы готовы к борьбе!"
-msgstr ""
+msgstr "Bəli. Bu hələ başlanğıcdır, amma biz döyüşməyə hazırıq!"
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_3.html:137
 msgctxt "education"
 msgid "Прошу всех сохранять спокойствие!"
-msgstr ""
+msgstr "Hər kəsdən sakit olmağı xahiş edirəm!"
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_3.html:141
 msgctxt "education"
 msgid "Митинги и беспорядки на улицах переросли в революцию. Мы организуем срочную эвакуацию парламентариев."
-msgstr ""
+msgstr "Küçələrdə mitinqlər və iğtişaşlar böyüyərək inqilaba çevrildi. Biz deputatların təcili təxliyyəsini təşkil edəcəyik."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_4.html:110
 msgctxt "education"
 msgid "Ваша решимость отправиться на передовую вызывает восхищение."
-msgstr ""
+msgstr "Cəbhə xəttinə getmək əzminiz təqdirəlayiqdir."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_4.html:114
 msgctxt "education"
 msgid "Помощь правительственным силам сейчас как никогда необходима. Вы будете командовать отдельным подразделением самообороны столицы."
-msgstr ""
+msgstr "Hökumət qüvvələrinə indi həmişəkindən daha çox ehtiyac var. Siz paytaxtın ayrıca özünümüdafiə dəstəsinə komandanlıq edəcəksiniz."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_4.html:118
 msgctxt "education"
 msgid "Добро пожаловать, командир. Ваше присутствие вдохновляет бойцов!"
-msgstr ""
+msgstr "Xoş gəldiniz, komandir.Sizin varlığınız döyüşçüləri ruhlandırır!"
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_4.html:122
 msgctxt "education"
 msgid "В вашем распоряжении 100 единиц энергии для управления действиями войск. Мы готовы действовать по вашему приказу, чтобы отбить натиск противника."
-msgstr ""
+msgstr "Qoşunlarınızın hərəkətlərinə nəzarət etmək üçün ixtiyarınızda 100 enerji vahidi var. Düşmənin hücumunu dəf etmək üçün biz sizin əmrinizə uyğun hərəkət etməyə hazırıq."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_4.html:126
 msgctxt "education"
 msgid "В вашем распоряжении находятся различные подразделения, и для вашего удобства мной уже собран оперативный отряд для первой атаки."
-msgstr ""
+msgstr "Sizin ixtiyarınızda müxtəlif bölmələr var və sizin rahatlığınız üçün mən artıq ilk hücum üçün əməliyyat qrupu yığmışam."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_4.html:130
 msgctxt "education"
 msgid "Нажмите кнопку «в бой», чтобы начать операцию и потратить первые 100 единиц энергии."
-msgstr ""
+msgstr "Əməliyyata başlamaq və ilk 100 enerji vahidini sərf etmək üçün \"döyüş\" düyməsini basın"
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_4.html:135
 msgctxt "education"
 msgid "Я вижу, что вы на посту уже вторые сутки… Вот, принесла вам кофе, чтобы восстановить силы."
-msgstr ""
+msgstr "Görürəm ki, ikinci gündür növbətçisiniz... Budur, gücünü bərpa etmək üçün sizə kofe gətirmişəm."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_4.html:139
 msgctxt "education"
 msgid "Не забывайте заботиться о себе! Кнопка «пополнить энергию» поможет вам получить еще 100 единиц энергии."
-msgstr ""
+msgstr "Özünüzə qulluq etməyi unutmayın! “Enerji doldur” düyməsi sizə daha 100 vahid enerji əldə etməyə kömək edəcək."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_4.html:144
 msgctxt "education"
 msgid "Левый фланг начинает ослабевать. Предлагаю направить туда дополнительные силы для поддержки."
-msgstr ""
+msgstr "Sol cinah zəifləməyə başlayır. Dəstək üçün ora əlavə qüvvələrin göndərilməsini təklif edirəm."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_4.html:149
 msgctxt "education"
 msgid "Командир, ситуация выходит из-под контроля. Враг прорывается."
-msgstr ""
+msgstr "Komandir, vəziyyət nəzarətdən çıxır. Düşmən keçib gedir."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_4.html:153
 msgctxt "education"
 msgid "Вам нужно немедленно покинуть штаб — здесь скоро будет жарко. Мы будем прикрывать ваш отход до последнего."
-msgstr ""
+msgstr "Qərargahı dərhal tərk etməlisiniz - tezliklə burada vəziyyət gərgin olacaq. Geri çəkilmənizi son ana qədər əhatə edəcəyik."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_5.html:68
 msgctxt "education"
 msgid "К сожалению, несмотря на доблестное сопротивление армии, мятежники прорвали оборону. Столица пала."
-msgstr ""
+msgstr "Təəssüf ki, ordunun mərd müqavimətinə baxmayaraq, üsyançılar müdafiəni yarıblar. Paytaxt düşdü."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_5.html:72
 msgctxt "education"
 msgid "Это был последний самолёт, успевший покинуть город. Мы в безопасности, но впереди – неизвестность."
-msgstr ""
+msgstr "Bu, şəhəri tərk edən sonuncu təyyarə idi. Biz təhlükəsizik, amma naməlum qarşıdadır."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_5.html:76
 msgctxt "education"
 msgid "Мы уже подлетаем к месту назначения. Давайте взглянем на карту, чтобы получить общее представление."
-msgstr ""
+msgstr "Artıq hədəfimizə yaxınlaşırıq. Fikir əldə etmək üçün xəritəyə nəzər salaq."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_5.html:81
 #, python-format
 msgctxt "education"
 msgid "Наш борт направляется в регион %(region)s. "
-msgstr ""
+msgstr "İdarə heyətimiz %(region)s bölgəsinə gedir."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_5.html:81
-#, fuzzy, python-format
+#, python-format
 #| msgctxt "set_mandate"
 #| msgid "Управление государством"
 msgctxt "education"
 msgid "Он принадлежит государству %(state)s."
-msgstr "Dövlət idarəetməsi"
+msgstr "%(state)s dövlətinə aiddir."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_5.html:81
-#, fuzzy
 #| msgctxt "overview"
 #| msgid "независимый регион"
 msgctxt "education"
 msgid "Это независимая территория"
-msgstr "müstəqil bölgə"
+msgstr "Bura müstəqil bölgədir"
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_5.html:85
 msgctxt "education"
 msgid "К сожалению, у нас здесь нет ни денег, ни имущества, ни связей."
-msgstr ""
+msgstr "Təəssüf ki, burada nə pulumuz, nə mülkümüz, nə də əlaqəmiz var."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_5.html:89
 msgctxt "education"
 msgid "Придется начинать всё с нуля. У вас есть решимость и опыт, а всё остальное мы сумеем добыть вместе."
-msgstr ""
+msgstr "Biz hər şeyə yenidən başlamalıyıq. Sizin qətiyyətiniz və təcrübəniz var və biz hər şeyi birlikdə əldə edə bilərik."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_6.html:63
 msgctxt "education"
 msgid "Начинаем с основ: в новом государстве для усиления позиций вам потребуется налаживать добычу ресурсов и привлекать инвесторов."
-msgstr ""
+msgstr "Əsaslardan başlayaq: yeni bir dövlətdə öz mövqeyinizi gücləndirmək üçün resursların çıxarılmasını təşkil etməli və investorları cəlb etməlisiniz."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_6.html:67
 msgctxt "education"
 msgid "Наша первая задача — организовать работы на месторождениях нефти и руды. Эти ресурсы станут опорой вашей политической и экономической силы."
-msgstr ""
+msgstr "Bizim birinci vəzifəmiz neft və filiz yataqlarında işi təşkil etməkdir. Bu resurslar sizin siyasi və iqtisadi gücünüzün dayağı olacaq."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_6.html:71
 msgctxt "education"
 msgid "Обратите внимание: добычу нефти и руды инвесторы профинансируют с готовностью, но если решите добывать золото для личных целей, это придётся делать за свой счёт."
-msgstr ""
+msgstr "Nəzərə alın: investorlar neft və filiz hasilatını asanlıqla maliyyələşdirəcəklər, lakin siz şəxsi məqsədlər üçün qızıl hasil etmək qərarına gəlsəniz, bunu öz hesabınıza etməli olacaqsınız."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_6.html:75
 msgctxt "education"
 msgid "Добыча полезных ископаемых — ваш первый шаг к укреплению позиций. Как только мы сможем обеспечить стабильный приток сырья и средств, перед нами откроются возможности для дальнейшего развития."
-msgstr ""
+msgstr "Mədənçilik, mövqenizi gücləndirmək üçün ilk addımınızdır. Biz sabit xammal və vəsait axınını təmin edə bildikcə, bizim qarşımızda gələcək inkişaf imkanları açılacaqdır."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_6.html:79
 msgctxt "education"
 msgid "Давайте организуем нашу первую добычу сырья."
-msgstr ""
+msgstr "Gəlin ilk xammalın çıxarılmasını təşkil edək."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_6.html:84
 msgctxt "education"
 msgid "Отличная работа! Теперь вы можете претендовать на финансирование."
-msgstr ""
+msgstr "Əla iş! İndi maliyyələşdirmə üçün uyğun ola bilərsiniz."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_6.html:88
 msgctxt "education"
 msgid "Средства будут аккумулироваться на временном счёте. Вы сможете снять их целиком или частично — как будет удобнее для управления вашими проектами."
-msgstr ""
+msgstr "Vəsaitlər müvəqqəti hesabda toplanacaq. Layihələrinizi idarə etmək üçün hansı daha əlverişlidirsə, onları tamamilə və ya qismən götürə bilərsiniz."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_6.html:92
 msgctxt "education"
 msgid "Предлагаю забрать часть средств прямо сейчас, чтобы выгодно их инвестировать."
-msgstr ""
+msgstr "Mən təklif edirəm ki, vəsaitlərin bir hissəsini elə indidən götürək ki, onları sərfəli şəkildə yatırım."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_6.html:97
 msgctxt "education"
 msgid "Эти средства понадобятся уже скоро. Следите за количеством добытого сырья и привлечённых инвестиций — это ключ к нашему будущему успеху."
-msgstr ""
+msgstr "Tezliklə bu vəsaitə ehtiyac olacaq. Çıxarılan xammalın və cəlb edilən investisiyaların miqdarını izləyin - bu, gələcək uğurumuzun açarıdır."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_6.html:101
 msgctxt "education"
 msgid "Я рекомендую вложить часть капитала в производство товаров, чтобы укрепить экономическую базу и поддержать ваши политические инициативы."
-msgstr ""
+msgstr "İqtisadi bazanızı gücləndirmək və siyasi təşəbbüslərinizi dəstəkləmək üçün kapitalınızın bir hissəsini mal istehsalına yatırmağı tövsiyə edirəm."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_7.html:84
 msgctxt "education"
 msgid "Теперь, когда у нас есть ресурсы и капитал, мы можем переходить к следующему этапу — производству."
-msgstr ""
+msgstr "İndi resurslarımız və kapitalımız var, biz növbəti mərhələyə - istehsalata keçə bilərik"
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_7.html:88
 msgctxt "education"
 msgid "Все добытые ресурсы отправляются на ваш личный Склад. Обычно в новом регионе склад нужно строить с нуля, но в этот раз я всё подготовила заранее."
-msgstr ""
+msgstr "Bütün çıxarılan resurslar şəxsi Anbarınıza göndərilir. Adətən yeni bir bölgədə sıfırdan anbar tikmək lazımdır, amma bu dəfə hər şeyi əvvəlcədən hazırladım."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_7.html:92
 msgctxt "education"
 msgid "На складе, кроме недавно добытого сырья, есть небольшие запасы."
-msgstr ""
+msgstr "Bu yaxınlarda hasil edilmiş xammaldan əlavə, anbarda kiçik ehtiyatlar var."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_7.html:96
 msgctxt "education"
 msgid "Но продавать сырьё прямо сейчас невыгодно — лучше превратить его в Материалы. Так оно принесет больше прибыли."
-msgstr ""
+msgstr "Ancaq indi xammalı satmaq sərfəli deyil, onları Materiala çevirmək daha yaxşıdır. Bu yolla daha çox qazanc gətirəcək."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_7.html:100
 msgctxt "education"
 msgid "Для производства Стали нам понадобятся Наличные и ресурсы со склада."
-msgstr ""
+msgstr "Polad istehsal etmək üçün bizə anbardan pul və resurslar lazımdır."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_7.html:104
 msgctxt "education"
 msgid "Наличные тоже готовы и находятся на складе, откуда будут браться остальные ресурсы для запуска."
-msgstr ""
+msgstr "Nağd pul da hazırdır və anbardadır, buraxılış üçün qalan resurslar buradan götürüləcək."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_7.html:108
 msgctxt "education"
 msgid "Перед началом стоит помнить, что любое производство требует энергии. Мы израсходовали её на добычу, поэтому сейчас пополним её вручную."
-msgstr ""
+msgstr "Başlamazdan əvvəl, hər hansı bir istehsalın enerji tələb etdiyini xatırlamağa dəyər. Biz onu mədən üçün istifadə etdik, indi onu əl ilə dolduracağıq."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_7.html:112
 msgctxt "education"
 msgid "Энергия со временем восстанавливается сама, но иногда нужно ускорить процесс."
-msgstr ""
+msgstr "Enerji zamanla özünü bərpa edir, lakin bəzən prosesi sürətləndirmək lazımdır."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_7.html:117
 msgctxt "education"
 msgid "Энергия восстановлена, а это значит, что всё готово для запуска производства. Нажмите кнопку «Произвести», чтобы превратить сырьё в материалы."
-msgstr ""
+msgstr "Enerji bərpa olunub, bu o deməkdir ki, hər şey hasilata başlamaq üçün hazırdır. Xammalı materiala çevirmək üçün İstehsal et düyməsini klikləyin."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_7.html:122
 msgctxt "education"
 msgid "Отлично! Под вашим руководством ресурсы превращаются в Материалы. Такие производственные цепочки — ключ к стабильному доходу и экономической независимости."
-msgstr ""
+msgstr "Əla! Sizin rəhbərliyiniz altında resurslar Materiallara çevrilir. Belə istehsal zəncirləri sabit gəlirin və iqtisadi müstəqilliyin açarıdır."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_7.html:126
 msgctxt "education"
 msgid "Самый эффективный подход — разделить обязанности: кто-то добывает сырьё, кто-то производит материалы и товары, а кто-то продает их и распределяет прибыль."
-msgstr ""
+msgstr "Ən təsirli yanaşma vəzifələrin bölünməsidir: kimsə xammal çıxarır, kimsə material və mal istehsal edir, kimsə onları satır və gəliri bölüşdürür."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_7.html:130
 msgctxt "education"
 msgid "Теперь давайте заглянем на Склад и лично проверим, какие запасы доступны в этом регионе."
-msgstr ""
+msgstr "İndi Anbara nəzər salaq və bu bölgədə hansı ehtiyatların mövcud olduğunu özümüz yoxlayaq."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_8.html:72
 msgctxt "education"
 msgid "Добро пожаловать на ваш склад! Я приобрела его недавно, поэтому пока не успела полностью ознакомиться с его запасами."
-msgstr ""
+msgstr "Anbarınıza xoş gəlmisiniz! Mən onu bu yaxınlarda almışam, ona görə də onun ehtiyatları ilə tam tanış olmağa hələ vaxtım olmayıb."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_8.html:76
 msgctxt "education"
 msgid "Но перед началом производства я оставила $1000 для работы со сталью. Вы уже потратили $200, так что оставшуюся сумму можно забрать себе на баланс."
-msgstr ""
+msgstr "Lakin istehsal başlamazdan əvvəl poladla işləmək üçün 1000 dollar buraxdım. Siz artıq 200 dollar xərcləmisiniz, ona görə də qalan məbləği balansınıza götürə bilərsiniz."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_8.html:80
 msgctxt "education"
 msgid "Просто выберите нужную сумму и переведите её на баланс. Эти средства пригодятся вам для новых проектов и сделок."
-msgstr ""
+msgstr "Sadəcə istədiyiniz məbləği seçin və balansınıza köçürün. Bu vəsaitlər sizin üçün yeni layihələr və əməliyyatlar üçün faydalı olacaq."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_8.html:85
 msgctxt "education"
 msgid "Теперь давайте взглянем на особое Хранилище."
-msgstr ""
+msgstr "İndi xüsusi Depoya nəzər salaq."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_8.html:89
 msgctxt "education"
 msgid "Оно доступно всегда, даже если у вас нет собственного склада в регионе. Здесь хранятся два вида ресурсов высокой ценности — Энергетики и Wild Pass."
-msgstr ""
+msgstr "Bölgədə öz anbarınız olmasa belə, həmişə mövcuddur. Burada iki növ yüksək dəyərli Pass resursları saxlanılır. Enerji və Wild Pass"
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_8.html:93
 msgctxt "education"
 msgid "Энергетики можно приобрести за золото."
-msgstr ""
+msgstr "Enerji içkilərini qızıla almaq olar."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_8.html:99
 msgctxt "education"
 msgid "Это ценный ресурс: именно благодаря ему вы восстанавливали энергию во время прошлой битвы и при производстве товаров. Резервы энергии — ключ к стабильному развитию."
-msgstr ""
+msgstr "Bu qiymətli mənbədir: onun sayəsində son döyüş zamanı və məhsul istehsalı zamanı enerjini bərpa etdiniz. Enerji ehtiyatları davamlı inkişafın açarıdır."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_8.html:103
 msgctxt "education"
 msgid "А вот Wild Pass — особый товар, который высоко ценится среди политиков."
-msgstr ""
+msgstr "Ancaq Wild Pass siyasətçilər arasında yüksək qiymətləndirilən xüsusi bir məhsuldur."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_8.html:109
 msgctxt "education"
 msgid "Его можно обменивать на золото или использовать для доступа к различным премиум-возможностям, которые делают управление более удобным и эффективным."
-msgstr ""
+msgstr "O, qızıla dəyişdirilə və ya idarəetməni daha rahat və səmərəli edən müxtəlif premium funksiyalara daxil olmaq üçün istifadə edilə bilər."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_8.html:113
 msgctxt "education"
 msgid "Несмотря на их ценность, эти ресурсы можно добывать, как и обычные. Занимайтесь добычей, развивайте торговые связи с политиками и предпринимателями, и получите всё необходимое для дальнейшего роста."
-msgstr ""
+msgstr "Dəyərlərinə baxmayaraq, bu ehtiyatlar adi olanlar kimi çıxarıla bilər. Mədənlə məşğul olun, siyasətçilər və sahibkarlarla ticarət əlaqələrini inkişaf etdirin və gələcək inkişaf üçün lazım olan hər şeyi əldə edin."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_9.html:61
 msgctxt "education"
 msgid "Теперь, когда основы политической и экономической игры вам знакомы, можно двигаться дальше. Развитие — это ключ к успеху в мире постоянного противостояния."
-msgstr ""
+msgstr "İndi siyasi və iqtisadi oyunun əsaslarını bildiyiniz üçün davam edə bilərsiniz. Davamlı qarşıdurma dünyasında uğurun açarı inkişafdır."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_9.html:65
 msgctxt "education"
 msgid "Чтобы не отставать, вам предстоит совершенствовать свои навыки. Давайте посмотрим на раздел харатеристик."
-msgstr ""
+msgstr "Davam etmək üçün bacarıqlarınızı təkmilləşdirməlisiniz. Xüsusiyyətlər bölməsinə baxaq."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_9.html:69
 msgctxt "education"
 msgid "В вашем распоряжении три основных характеристики — Сила, Интеллект и Выносливость. Каждая из них определяет, как вы сможете влиять на мир."
-msgstr ""
+msgstr "Sizin ixtiyarınızda olan üç əsas xüsusiyyətiniz var: Güc, Zəka və Dözümlülük.Onların hər biri dünyaya necə təsir edə biləcəyinizi müəyyənləşdirir."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_9.html:73
 msgctxt "education"
 msgid "Начнём с Силы. Она определяет вашу эффективность в бою, усиливая вас с каждым уровнем."
-msgstr ""
+msgstr "Gücdən başlayaq. Döyüşdəki effektivliyinizi müəyyənləşdirir, hər səviyyədə sizi gücləndirir."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_9.html:79
 #, python-format
 msgctxt "education"
 msgid "Так, с ростом уровня сила в бою увеличивается на 1%%. Представьте, на 100 уровне вы будете вдвое мощнее новичка!"
-msgstr ""
+msgstr "Beləliklə, səviyyə artdıqca döyüşdəki güc 1%% artır. Təsəvvür edin, 100-cü səviyyədə siz yeni oyunçudan iki dəfə güclü olacaqsınız!"
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_9.html:83
 msgctxt "education"
 msgid "Интеллект — выбор для тех, кто ставит во главу успех в экономике."
-msgstr ""
+msgstr "Bilik iqtisadi uğura üstünlük verənlər üçün əla seçimdir."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_9.html:89
 msgctxt "education"
 msgid "Эта характеристика увеличивает доход от производства товаров и позволяет успешнее развивать торговлю и логистику. Это путь к крупному капиталу и управлению целыми промышленными гигантами."
-msgstr ""
+msgstr "Bu xüsusiyyət məhsul istehsalından əldə edilən gəliri artırır və ticarətin və logistikanın daha uğurlu inkişafına imkan verir. Bu, böyük kapitala və bütün sənaye nəhənglərinin idarə olunmasına aparan yoldur."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_9.html:93
 msgctxt "education"
 msgid "Выносливость — основа для тех, кто делает ставку на добычу ресурсов."
-msgstr ""
+msgstr "Dözümlülük resurs çıxarılmasına arxalananlar üçün əsasdır."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_9.html:99
 #, python-format
 msgctxt "education"
 msgid "Каждый её уровень увеличивает объёмы добычи нефти и руды на 1%%. С высокой выносливостью ваша добыча принесёт немалый доход."
-msgstr ""
+msgstr "Hər səviyyə neft və filiz hasilatının həcmini 1%% artırır. Yüksək dözümlülüklə qazancınız çox yüksək olacaq."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_9.html:103
 msgctxt "education"
 msgid "Каждая из трёх Характеристик повышает ваше финансирование. И чем выше уровень Характеристики - тем больше."
-msgstr ""
+msgstr "Üç Xüsusiyyətin hər biri maliyyələşdirmənizi artırır. Xarakteristikanın səviyyəsi nə qədər yüksəkdirsə, bir o qədər çox olur."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_9.html:107
 msgctxt "education"
 msgid "Есть ещё и особые Навыки, которые откроются по мере развития. Они дают уникальные преимущества и могут серьёзно расширить ваши возможности."
-msgstr ""
+msgstr "Siz inkişaf etdikcə açılacaq xüsusi Bacarıqlar da var. Onlar unikal üstünlüklər təmin edir və imkanlarınızı ciddi şəkildə genişləndirə bilər."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_9.html:111
 msgctxt "education"
 msgid "Их стоит прокачивать, как только у вас появится шанс. А теперь выберите, какую характеристику хотите развить в первую очередь."
-msgstr ""
+msgstr "Fürsət əldə etdikdən sonra səviyyəni yüksəltməyə dəyər. İndi ilk olaraq hansı xüsusiyyəti inkişaf etdirmək istədiyinizi seçin."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_9.html:116
 msgctxt "education"
 msgid "Давайте сделаем вклад в ваше будущее прямо сейчас!"
-msgstr ""
+msgstr "Gəlin indidən gələcəyinizə investisiya edək!"
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_9.html:121
 msgctxt "education"
 msgid "Ну вот, я передала вам все ключевые знания для старта с чистого листа. Мы проделали отличную работу, и я благодарю вас за плодотворное сотрудничество!"
-msgstr ""
+msgstr "Yaxşı, mən sizə təmiz vərəqlə başlamaq üçün bütün əsas bilikləri verdim. Biz əla iş gördük və səmərəli əməkdaşlığınıza görə sizə təşəkkür edirəm!"
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_9.html:125
 msgctxt "education"
 msgid "Советую заглянуть в общий чат и статьи."
-msgstr ""
+msgstr "Ümumi söhbətə və məqalələrə baxmağı məsləhət görürəm."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_9.html:129
 msgctxt "education"
 msgid "Там можно обозначить себя — присоединиться к сильным политическим группам региона или заявить о создании собственной партии. Как поступить — решать вам."
-msgstr ""
+msgstr "Orada bölgədəki güclü siyasi qruplara qoşulmaq üçün özünüzü tanıya və ya öz partiyanızın yaradılmasını elan edə bilərsiniz. Nə edəcəyinizə qərar vermək sizin ixtiyarınızdadır."
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_lists/list_9.html:133
 msgctxt "education"
 msgid "Удачи вам, я уверена, что у вас всё получится! Мы обязательно ещё встретимся."
-msgstr ""
+msgstr "Sizə uğurlar, əminəm ki, uğur qazanacaqsınız! Biz mütləq yenidən görüşəcəyik."
 
 #: education/templates/education/edu_mining.html:30
 #: region/templates/region/redesign/mining.html:12 region/views/mining.py:173
@@ -3027,98 +3133,113 @@ msgctxt "overview"
 msgid "парламент"
 msgstr "Parlament"
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_overview.html:544
 #: education/templates/education/edu_overview.html:627
 msgctxt "education"
 msgid "протестующие"
-msgstr ""
+msgstr "etirazçılar"
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_overview.html:549
 #: education/templates/education/edu_overview.html:620
 msgctxt "education"
 msgid "Не прячьтесь за стенами, ответьте на вопросы!"
-msgstr ""
+msgstr "Divarların arxasında gizlənməyin, suallara cavab verin!"
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_overview.html:605
-#, fuzzy
 #| msgctxt "new_bill"
 #| msgid "Изменения налогов"
 msgctxt "education"
 msgid "Мы против повышения налогов!"
-msgstr "Vergilərin dəyişdirilməsi"
+msgstr "Biz vergi artımının əleyhinəyik!"
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_overview.html:606
 msgctxt "education"
 msgid "Снижение зарплат — это несправедливо!"
-msgstr ""
+msgstr "Maaşların kəsilməsi ədalətsizdir!"
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_overview.html:607
-#, fuzzy
 #| msgctxt "change_form_draft"
 #| msgid "выберите форму правления"
 msgctxt "education"
 msgid "Прекратите сокращения!"
-msgstr "Dövlət idarəetmənin növünu seçin"
+msgstr "Kəsikləri dayandırın!"
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_overview.html:608
 msgctxt "education"
 msgid "Требуем равные права!"
-msgstr ""
+msgstr "Biz bərabər hüquqlar tələb edirik!"
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_overview.html:609
 msgctxt "education"
 msgid "Хватит обманывать народ!"
-msgstr ""
+msgstr "İnsanları aldatmağı dayandırın!"
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_overview.html:610
 msgctxt "education"
 msgid "Когда нас начнут слушать?"
-msgstr ""
+msgstr "Nə vaxt bizi dinləməyə başlayacaqlar?"
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_overview.html:611
 msgctxt "education"
 msgid "Слушайте народ, а не только отчеты!"
-msgstr ""
+msgstr "Təkcə hesabatlara deyil, xalqa qulaq asın!"
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_overview.html:612
 msgctxt "education"
 msgid "Обещали перемены — где они теперь?"
-msgstr ""
+msgstr "Dəyişiklik vəd etdiniz. Onlar haradadır!?"
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_overview.html:613
 msgctxt "education"
 msgid "Нам нужны действия, а не только слова!"
-msgstr ""
+msgstr "Bizə söz yox, əməl lazımdır!"
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_overview.html:614
 msgctxt "education"
 msgid "Мы требуем честности и прозрачности!"
-msgstr ""
+msgstr "Biz dürüstlük və şəffaflıq tələb edirik!"
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_overview.html:615
 msgctxt "education"
 msgid "Хватит обещаний, пора выполнять!"
-msgstr ""
+msgstr "Vədlərlə kifayətdir, yerinə yetirmək vaxtıdır!"
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_overview.html:616
 msgctxt "education"
 msgid "Кто работает для людей — пусть ответит перед людьми!"
-msgstr ""
+msgstr "Kim xalq üçün çalışırsa, xalq qarşısında cavab verəcək!"
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_overview.html:617
 msgctxt "education"
 msgid "Время перемен пришло — от слов к делам!"
-msgstr ""
+msgstr "Dəyişiklik zamanı gəldi!"
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_overview.html:618
 msgctxt "education"
 msgid "Мы требуем справедливости и равных прав!"
-msgstr ""
+msgstr "Biz ədalət və bərabər hüquq tələb edirik!"
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_overview.html:619
 msgctxt "education"
 msgid "Политика для народа, а не для избранных!"
-msgstr ""
+msgstr "Siyasət xalq üçündür, seçilmiş bir neçə nəfər üçün deyil!"
 
 #: education/templates/education/edu_produce.html:30
 #: factory/templates/factory/redesign/factory.html:13
@@ -3133,41 +3254,41 @@ msgctxt "factory"
 msgid "цена"
 msgstr "Qiymət"
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_produce.html:115
-#, fuzzy
 #| msgctxt "factory"
 #| msgid "Энергия"
 msgctxt "education"
 msgid "Энергия"
 msgstr "Enerji"
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_produce.html:117
-#, fuzzy
 #| msgctxt "goods"
 #| msgid "Наличные"
 msgctxt "education"
 msgid "Наличные"
 msgstr "Nağd pul"
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_produce.html:119
-#, fuzzy
 #| msgctxt "goods"
 #| msgid "Уголь"
 msgctxt "education"
 msgid "Уголь"
 msgstr "Kömür"
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_produce.html:121
-#, fuzzy
 #| msgctxt "goods"
 #| msgid "Железо"
 msgctxt "education"
 msgid "Железо"
 msgstr "Dəmir"
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_produce.html:123
 #: education/templates/education/edu_produce.html:304
-#, fuzzy
 #| msgctxt "goods"
 #| msgid "Сталь"
 msgctxt "education"
@@ -3205,15 +3326,15 @@ msgctxt "factory"
 msgid "создать"
 msgstr "Yaradmaq"
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_skills.html:55
 #: education/templates/education/edu_skills.html:95
 #: education/templates/education/edu_skills.html:138
-#, fuzzy
 #| msgctxt "skills"
 #| msgid "изучить"
 msgctxt "education"
 msgid "изучается..."
-msgstr "Araşdırmaq"
+msgstr "araşdırılır..."
 
 #: education/templates/education/edu_skills.html:105
 #: education/templates/education/edu_skills.html:163
@@ -3293,8 +3414,8 @@ msgctxt "has_storage"
 msgid "Уровень:"
 msgstr ""
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_storage.html:110
-#, fuzzy
 #| msgctxt "goods"
 #| msgid "Большой"
 msgctxt "education"
@@ -3309,26 +3430,28 @@ msgctxt "has_storage"
 msgid "объём"
 msgstr ""
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_storage.html:130
-#, fuzzy
 #| msgctxt "goods"
 #| msgid "Средний"
 msgctxt "education"
 msgid "Средний"
 msgstr "Orta"
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_storage.html:143
 msgctxt "education"
 msgid "Глицин"
-msgstr ""
+msgstr "Glisin"
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_storage.html:151
 msgctxt "education"
 msgid "Мельдоний"
-msgstr ""
+msgstr "Meldoniya"
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_storage.html:167
-#, fuzzy
 #| msgctxt "goods"
 #| msgid "Малый"
 msgctxt "education"
@@ -3368,12 +3491,12 @@ msgctxt "storage_assets"
 msgid "использовать"
 msgstr ""
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_war.html:30
-#, fuzzy
 #| msgid "независимый регион"
 msgctxt "education"
 msgid "Восстание в Столичном регионе"
-msgstr "müstəqil bölgə"
+msgstr "Paytaxt bölgəsində üsyan"
 
 #: education/templates/education/edu_war.html:46
 #: war/templates/war/redesign/EventWar.html:143
@@ -3431,145 +3554,149 @@ msgctxt "war_page"
 msgid "в бой"
 msgstr "döyüşə"
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_war.html:164
-#, fuzzy
 #| msgid "Танки"
 msgctxt "education"
 msgid "Танки"
-msgstr "Tank"
+msgstr "Tanklar"
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_war.html:173
-#, fuzzy
 #| msgctxt "goods"
 #| msgid "Автоматы"
 msgctxt "education"
 msgid "Автоматы"
 msgstr "Avtomatlar"
 
+#. Отредактировано B♤SS, id 2344
 #: education/templates/education/edu_war.html:182
-#, fuzzy
 #| msgctxt "goods"
 #| msgid "БМП"
 msgctxt "education"
 msgid "БМП"
-msgstr "Piyada döyüş maşını"
+msgstr "PDM"
 
+#. Отредактировано B♤SS, id 2344
 #: education/views/edu_election.py:23
-#, fuzzy
 #| msgctxt "overview"
 #| msgid "Выборы"
 msgctxt "education"
 msgid "Выборы"
 msgstr "Seçkilər"
 
+#. Отредактировано B♤SS, id 2344
 #: education/views/edu_gov.py:59
-#, fuzzy
 #| msgctxt "goods"
 #| msgid "Медикаменты"
 msgctxt "education"
 msgid "Парламент"
-msgstr "Tibbi ləvazimatlar "
+msgstr "Parlament"
 
+#. Отредактировано B♤SS, id 2344
 #: education/views/edu_map.py:68
-#, fuzzy
 #| msgctxt "map"
 #| msgid "Карта"
 msgctxt "education"
 msgid "Карта"
 msgstr "Xəritə"
 
+#. Отредактировано B♤SS, id 2344
 #: education/views/edu_mining.py:24
-#, fuzzy
 #| msgctxt "party_top"
 #| msgid "Добыча"
 msgctxt "education"
 msgid "Добыча"
 msgstr "Madənçilik"
 
+#. Отредактировано B♤SS, id 2344
 #: education/views/edu_overview.py:40 education/views/edu_overview.py:44
 #: player/views/overview.py:402 player/views/overview.py:405
 msgctxt "education"
 msgid "Анна"
-msgstr ""
+msgstr "Anna"
 
+#. Отредактировано B♤SS, id 2344
 #: education/views/edu_overview.py:45 player/views/overview.py:405
-#, fuzzy
 #| msgctxt "goods"
 #| msgid "Мины"
 msgctxt "education"
 msgid "Лин"
-msgstr "Minalar"
+msgstr "Lin"
 
+#. Отредактировано B♤SS, id 2344
 #: education/views/edu_overview.py:46 player/views/overview.py:405
 msgctxt "education"
 msgid "Мария"
-msgstr ""
+msgstr "Mariya"
 
+#. Отредактировано B♤SS, id 2344
 #: education/views/edu_overview.py:47 player/views/overview.py:405
 msgctxt "education"
 msgid "София"
-msgstr ""
+msgstr "Sofiya"
 
+#. Отредактировано B♤SS, id 2344
 #: education/views/edu_overview.py:48 player/views/overview.py:405
 msgctxt "education"
 msgid "Ольга"
-msgstr ""
+msgstr "Olqa"
 
 #: education/views/edu_overview.py:55 player/views/overview.py:411
 msgctxt "overview"
 msgid "Обзор"
 msgstr "Ana səhifə"
 
+#. Отредактировано B♤SS, id 2344
 #: education/views/edu_produce.py:24
-#, fuzzy
 #| msgctxt "factory"
 #| msgid "Производство"
 msgctxt "education"
 msgid "Производство"
-msgstr "İstehsal"
+msgstr "İstehsa"
 
+#. Отредактировано B♤SS, id 2344
 #: education/views/edu_reward.py:101
-#, fuzzy
 #| msgctxt "new_bill"
 #| msgid "Неизвестный плацдарм"
 msgctxt "education"
 msgid "Неизвестный ключ награды"
-msgstr "Naməlum meydan"
+msgstr "Naməlum mükafat açarı"
 
+#. Отредактировано B♤SS, id 2344
 #: education/views/edu_reward.py:102 education/views/edu_reward.py:113
 #: education/views/edu_reward.py:126 education/views/edu_reward.py:135
 #: education/views/edu_reward.py:173
-#, fuzzy
 #| msgctxt "mining"
 #| msgid "Ошибка получения финансирования"
 msgctxt "education"
 msgid "Ошибка получения награды"
-msgstr "Maliyyələşmədə xəta baş verdi"
+msgstr "Mükafatın alınmasında xəta baş verdi"
 
+#. Отредактировано B♤SS, id 2344
 #: education/views/edu_reward.py:112 education/views/edu_reward.py:125
 #: education/views/edu_reward.py:134
-#, fuzzy
 #| msgctxt "chat"
 #| msgid "Указанная комната не найдена"
 msgctxt "education"
 msgid "Данная награда уже забрана"
-msgstr "Seçilmiş otaq tapılmadı"
+msgstr "Bu mükafatı artıq qazandınız"
 
+#. Отредактировано B♤SS, id 2344
 #: education/views/edu_storage.py:61
-#, fuzzy
 #| msgctxt "storage"
 #| msgid "Склад"
 msgctxt "education"
 msgid "Склад"
 msgstr "Depo"
 
+#. Отредактировано B♤SS, id 2344
 #: education/views/edu_war.py:59
-#, fuzzy
 #| msgctxt "wallet"
 #| msgid "Описание"
 msgctxt "education"
 msgid "Восстание"
-msgstr "Təsvir"
+msgstr "Üsyan"
 
 #: event/templates/event/anniversary.html:218
 #: player/templates/player/redesign/overview.html:534
@@ -4303,10 +4430,11 @@ msgctxt "new_bill"
 msgid "Министр иностранных дел"
 msgstr "Xarici işlər naziri"
 
+#. Отредактировано B♤SS, id 2344
 #: gov/models/minister_right.py:23
 msgctxt "new_bill"
 msgid "Статистика добычи"
-msgstr ""
+msgstr "Madənçilik statistikası"
 
 #: gov/templates/gov/redesign/elections.html:25
 msgctxt "pres_elections"
@@ -6021,20 +6149,23 @@ msgctxt "event"
 msgid "Спасибо за внимание!"
 msgstr "Maliyyələşdirmə"
 
+#. Отредактировано B♤SS, id 2344
 #: player/templates/player/redesign/header.html:200
 msgctxt "education"
 msgid "Назад"
-msgstr ""
+msgstr "Geriyə"
 
+#. Отредактировано B♤SS, id 2344
 #: player/templates/player/redesign/header.html:201
 msgctxt "education"
 msgid "Дальше"
-msgstr ""
+msgstr "Sonra"
 
+#. Отредактировано B♤SS, id 2344
 #: player/templates/player/redesign/header.html:203
 msgctxt "education"
 msgid "Не показывать обучение"
-msgstr ""
+msgstr "Təlimi göstərmə"
 
 #: player/templates/player/redesign/menu.html:7
 msgctxt "menu"
@@ -7436,13 +7567,13 @@ msgctxt "daily_header"
 msgid "получаем"
 msgstr "Alırıq"
 
+#. Отредактировано B♤SS, id 2344
 #: region/templates/region/redesign/region_info.html:65
-#, fuzzy
 #| msgctxt "region_view"
 #| msgid "в полёте"
 msgctxt "education"
 msgid "В полёте"
-msgstr "uçuşda"
+msgstr "Uçuşda"
 
 #: region/templates/region/redesign/region_info.html:69
 msgctxt "map"
@@ -10294,10 +10425,9 @@ msgctxt "war_page"
 msgid "Войны"
 msgstr "Savaşlar"
 
-#, fuzzy
 #~ msgctxt "education"
 #~ msgid "Награда: 200 золота"
-#~ msgstr "Qızıl ehtiyatı"
+#~ msgstr "Mükafat: 200 qızıl"
 
 #~ msgctxt "profile"
 #~ msgid "до"
