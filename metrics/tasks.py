@@ -52,7 +52,7 @@ def save_daily():
 
     # Создаём объекты DailyGoldByState с накопленными значениями
     daily_u = [
-        DailyGoldByState(state_id=state_id, gold=gold)
+        DailyGoldByState(state_id=state_id, gold=gold, date=timezone.now())
         for state_id, gold in daily_gold_by_state.items()
     ]
 
