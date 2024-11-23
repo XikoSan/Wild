@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-18 03:09+0300\n"
+"POT-Creation-Date: 2024-11-23 03:50+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -59,7 +59,7 @@ msgstr ""
 
 #: article/templates/article/article.html:344
 #: chat/templates/chat/dialogue.html:160
-#: player/templates/player/redesign/overview.html:893
+#: player/templates/player/redesign/overview.html:902
 #, fuzzy
 #| msgid "У вас пока еще нет стикеров"
 msgctxt "overview"
@@ -68,7 +68,7 @@ msgstr "Jūms pašlaik nav izlīmju"
 
 #: article/templates/article/article.html:357
 #: chat/templates/chat/dialogue.html:173
-#: player/templates/player/redesign/overview.html:906
+#: player/templates/player/redesign/overview.html:915
 msgctxt "overview"
 msgid "магазин"
 msgstr "veikals"
@@ -322,8 +322,8 @@ msgstr "Virsraksta lauks nedrīkst būt tukšs"
 #: player/views/game_event/check_review.py:41
 #: player/views/game_event/check_review.py:52
 #: player/views/game_event/check_review.py:94
-#: player/views/game_event/check_review.py:104 player/views/new_player.py:185
-#: player/views/new_player.py:198 player/views/open_lootboxes.py:27
+#: player/views/game_event/check_review.py:104 player/views/new_player.py:207
+#: player/views/new_player.py:220 player/views/open_lootboxes.py:27
 #: player/views/open_lootboxes.py:38 player/views/open_lootboxes.py:49
 #: player/views/open_lootboxes.py:59 player/views/open_lootboxes.py:134
 #: player/views/set_language.py:40 player/views/set_language.py:56
@@ -2698,7 +2698,7 @@ msgctxt "chat"
 msgid "Перезагрузите страницу, чтобы переподключиться к чату"
 msgstr ""
 
-#: chat/templates/chat/dialogues.html:42 chat/views/messages/dialogues.py:223
+#: chat/templates/chat/dialogues.html:42 chat/views/messages/dialogues.py:231
 msgctxt "chat"
 msgid "Диалоги"
 msgstr ""
@@ -3756,19 +3756,19 @@ msgid "войн нет"
 msgstr "karu nav"
 
 #: education/templates/education/edu_overview.html:241
-#: player/templates/player/redesign/overview.html:589
+#: player/templates/player/redesign/overview.html:598
 msgctxt "overview"
 msgid "сила"
 msgstr "spēks"
 
 #: education/templates/education/edu_overview.html:246
-#: player/templates/player/redesign/overview.html:594
+#: player/templates/player/redesign/overview.html:603
 msgctxt "overview"
 msgid "инт"
 msgstr "intelekts"
 
 #: education/templates/education/edu_overview.html:251
-#: player/templates/player/redesign/overview.html:599
+#: player/templates/player/redesign/overview.html:608
 msgctxt "overview"
 msgid "вын"
 msgstr "izturība"
@@ -3838,25 +3838,25 @@ msgid "дерево навыков"
 msgstr "prasmju koks"
 
 #: education/templates/education/edu_overview.html:450
-#: player/templates/player/redesign/overview.html:622
+#: player/templates/player/redesign/overview.html:631
 msgctxt "overview"
 msgid "Выборы"
 msgstr "Vēlēšanas"
 
 #: education/templates/education/edu_overview.html:455
-#: player/templates/player/redesign/overview.html:627
+#: player/templates/player/redesign/overview.html:636
 msgctxt "overview"
 msgid "партии"
 msgstr "Partijas"
 
 #: education/templates/education/edu_overview.html:455
-#: player/templates/player/redesign/overview.html:627
+#: player/templates/player/redesign/overview.html:636
 msgctxt "overview"
 msgid "государства"
 msgstr "valstis"
 
 #: education/templates/education/edu_overview.html:498
-#: player/templates/player/redesign/overview.html:671
+#: player/templates/player/redesign/overview.html:680
 msgctxt "overview"
 msgid "парламент"
 msgstr "parlaments"
@@ -4332,12 +4332,12 @@ msgid "Добыча"
 msgstr "Ieguve"
 
 #: education/views/edu_overview.py:40 education/views/edu_overview.py:44
-#: player/views/overview.py:402 player/views/overview.py:405
+#: player/views/overview.py:401 player/views/overview.py:404
 msgctxt "education"
 msgid "Анна"
 msgstr ""
 
-#: education/views/edu_overview.py:45 player/views/overview.py:405
+#: education/views/edu_overview.py:45 player/views/overview.py:404
 #, fuzzy
 #| msgctxt "goods"
 #| msgid "Мины"
@@ -4345,7 +4345,7 @@ msgctxt "education"
 msgid "Лин"
 msgstr "Mīnas"
 
-#: education/views/edu_overview.py:46 player/views/overview.py:405
+#: education/views/edu_overview.py:46 player/views/overview.py:404
 #, fuzzy
 #| msgctxt "regions_list"
 #| msgid "Бавария"
@@ -4353,17 +4353,17 @@ msgctxt "education"
 msgid "Мария"
 msgstr "Bavārija"
 
-#: education/views/edu_overview.py:47 player/views/overview.py:405
+#: education/views/edu_overview.py:47 player/views/overview.py:404
 msgctxt "education"
 msgid "София"
 msgstr ""
 
-#: education/views/edu_overview.py:48 player/views/overview.py:405
+#: education/views/edu_overview.py:48 player/views/overview.py:404
 msgctxt "education"
 msgid "Ольга"
 msgstr ""
 
-#: education/views/edu_overview.py:55 player/views/overview.py:411
+#: education/views/edu_overview.py:55 player/views/overview.py:410
 #, fuzzy
 #| msgid "Обзор"
 msgctxt "overview"
@@ -4428,6 +4428,7 @@ msgid "Годовщина сервера!"
 msgstr ""
 
 #: event/templates/event/anniversary.html:221
+#: event/templates/event/black_friday.html:222
 #: event/templates/event/festival.html:221
 #: event/templates/event/summer_festival.html:221
 #: player/templates/player/redesign/game_event/halloween2.html:223
@@ -4437,6 +4438,7 @@ msgid "общий"
 msgstr "kopējais "
 
 #: event/templates/event/anniversary.html:222
+#: event/templates/event/black_friday.html:223
 #: event/templates/event/festival.html:222
 #: event/templates/event/summer_festival.html:222
 #: player/templates/player/redesign/game_event/halloween2.html:224
@@ -4467,6 +4469,7 @@ msgid "Событие проходит один день 28.10."
 msgstr ""
 
 #: event/templates/event/anniversary.html:396
+#: event/templates/event/black_friday.html:394
 #: event/templates/event/festival.html:395
 #: event/templates/event/summer_festival.html:396
 #: player/templates/player/redesign/game_event/halloween2.html:394
@@ -4476,6 +4479,7 @@ msgid "Личная прогрессия события"
 msgstr "Tavs personīgais progress"
 
 #: event/templates/event/anniversary.html:397
+#: event/templates/event/black_friday.html:395
 #: event/templates/event/summer_festival.html:397
 msgctxt "game_event"
 msgid ""
@@ -4484,6 +4488,7 @@ msgid ""
 msgstr ""
 
 #: event/templates/event/anniversary.html:398
+#: event/templates/event/black_friday.html:396
 #: event/templates/event/festival.html:398
 #: event/templates/event/summer_festival.html:398
 #: player/templates/player/redesign/game_event/halloween2.html:397
@@ -4493,6 +4498,7 @@ msgid "Общая прогрессия события"
 msgstr "Kopējā notikumu attīstība"
 
 #: event/templates/event/anniversary.html:399
+#: event/templates/event/black_friday.html:397
 #: event/templates/event/summer_festival.html:399
 #, fuzzy
 #| msgctxt "game_event"
@@ -4500,6 +4506,31 @@ msgstr "Kopējā notikumu attīstība"
 msgctxt "game_event"
 msgid "Заполняется суммой усилий всех игроков сервера."
 msgstr "Piepildīts ar visiem servera spēlētājiem"
+
+#: event/templates/event/black_friday.html:218
+#: player/templates/player/redesign/overview.html:550
+#: player/views/game_event/black_friday.py:44
+msgctxt "game_event"
+msgid "Неделя чёрной пятницы!"
+msgstr ""
+
+#: event/templates/event/black_friday.html:391
+msgctxt "game_event"
+msgid "Чёрная пятница 2024:"
+msgstr ""
+
+#: event/templates/event/black_friday.html:392
+#, fuzzy
+#| msgctxt "game_event"
+#| msgid "- до семи дней премиум аккаунта"
+msgctxt "game_event"
+msgid "заработайте премиум, золото и особый самолёт!"
+msgstr "- prēmiju konts līdz septiņām dienām"
+
+#: event/templates/event/black_friday.html:393
+msgctxt "game_event"
+msgid "Событие проходит с 25.11 по 1.12 включительно."
+msgstr ""
 
 #: event/templates/event/festival.html:218
 msgctxt "game_event"
@@ -7394,30 +7425,30 @@ msgctxt "overview"
 msgid "Летний фестиваль"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:556
+#: player/templates/player/redesign/overview.html:565
 msgctxt "overview"
 msgid "Зимний фестиваль"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:619
+#: player/templates/player/redesign/overview.html:628
 msgctxt "overview"
 msgid "Выборы лидера"
 msgstr "Līdera vēlēšanas"
 
-#: player/templates/player/redesign/overview.html:627
+#: player/templates/player/redesign/overview.html:636
 msgctxt "overview"
 msgid "региона"
 msgstr "novadi"
 
-#: player/templates/player/redesign/overview.html:664
-#: player/templates/player/redesign/overview.html:709
+#: player/templates/player/redesign/overview.html:673
+#: player/templates/player/redesign/overview.html:718
 #, fuzzy
 #| msgid "партий нет"
 msgctxt "overview"
 msgid "партий нет"
 msgstr "partiju nav"
 
-#: player/templates/player/redesign/overview.html:1073
+#: player/templates/player/redesign/overview.html:1082
 #, fuzzy
 #| msgctxt "w_trading_new"
 #| msgid "Новое торговое предложение"
@@ -7425,7 +7456,7 @@ msgctxt "overview"
 msgid "Обновите приложение"
 msgstr "Jauns tirdzniecības piedāvājums"
 
-#: player/templates/player/redesign/overview.html:1073
+#: player/templates/player/redesign/overview.html:1082
 #, fuzzy
 #| msgctxt "w_trading_new"
 #| msgid "Торговое предложение успешно создано"
@@ -7433,14 +7464,14 @@ msgctxt "overview"
 msgid "Ваше приложение устарело. Обновите его"
 msgstr "Tirdzniecības piedāvājums veiksmīgi izveidots"
 
-#: player/templates/player/redesign/overview.html:1073
+#: player/templates/player/redesign/overview.html:1082
 #, fuzzy
 #| msgid "Загрузить"
 msgctxt "overview"
 msgid "Загрузить"
 msgstr "Ielādēt"
 
-#: player/templates/player/redesign/overview.html:1073
+#: player/templates/player/redesign/overview.html:1082
 #, fuzzy
 #| msgid "Закрыть"
 msgctxt "overview"
@@ -8633,7 +8664,7 @@ msgctxt "lists"
 msgid "Мировое население"
 msgstr "Pasaules iedzīvotāji"
 
-#: player/views/new_player.py:98
+#: player/views/new_player.py:119
 msgctxt "start_messages"
 msgid ""
 "Добро пожаловать в Wild Politics! Вы всегда можете обратиться ко мне прямо в "
@@ -8641,14 +8672,14 @@ msgid ""
 "Я открыт к любым вопросам и пожеланиям."
 msgstr ""
 
-#: player/views/new_player.py:100
+#: player/views/new_player.py:121
 msgctxt "start_messages"
 msgid ""
 "Если найдётся время, расскажите, пожалуйста, о своих впечатлениях от игры - "
 "мне это важно. Приятной игры!"
 msgstr ""
 
-#: player/views/new_player.py:122
+#: player/views/new_player.py:143
 #, python-format
 msgctxt "start_messages"
 msgid ""
@@ -8657,21 +8688,21 @@ msgid ""
 "ответив на него"
 msgstr ""
 
-#: player/views/new_player.py:182
+#: player/views/new_player.py:204
 #, fuzzy
 #| msgid ": попробуйте создать персонажа, не загружая изображение"
 msgctxt "new_player"
 msgid "попробуйте создать персонажа, не загружая изображение"
 msgstr ": pamēģiniet izveidot varoni, neielādējot bildi"
 
-#: player/views/new_player.py:184 player/views/new_player.py:197
+#: player/views/new_player.py:206 player/views/new_player.py:219
 #, fuzzy
 #| msgid "Новый персонаж"
 msgctxt "new_player"
 msgid "Новый персонаж"
 msgstr "Jauns varonis"
 
-#: player/views/new_player.py:196
+#: player/views/new_player.py:218
 #, fuzzy
 #| msgid "Ошибка в форме профиля"
 msgctxt "new_player"
