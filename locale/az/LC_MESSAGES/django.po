@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-23 14:21+0300\n"
+"POT-Creation-Date: 2024-11-23 14:28+0300\n"
 "PO-Revision-Date: 2024-11-23 14:20+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -50,14 +50,14 @@ msgstr "Rəylər"
 
 #: article/templates/article/article.html:344
 #: chat/templates/chat/dialogue.html:160
-#: player/templates/player/redesign/overview.html:893
+#: player/templates/player/redesign/overview.html:902
 msgctxt "overview"
 msgid "У вас пока еще нет стикеров"
 msgstr "Hələ stikerləriniz yoxdur"
 
 #: article/templates/article/article.html:357
 #: chat/templates/chat/dialogue.html:173
-#: player/templates/player/redesign/overview.html:906
+#: player/templates/player/redesign/overview.html:915
 msgctxt "overview"
 msgid "магазин"
 msgstr "mağaza"
@@ -3198,19 +3198,19 @@ msgid "войн нет"
 msgstr "döyüş yoxdur"
 
 #: education/templates/education/edu_overview.html:241
-#: player/templates/player/redesign/overview.html:589
+#: player/templates/player/redesign/overview.html:598
 msgctxt "overview"
 msgid "сила"
 msgstr "Güc"
 
 #: education/templates/education/edu_overview.html:246
-#: player/templates/player/redesign/overview.html:594
+#: player/templates/player/redesign/overview.html:603
 msgctxt "overview"
 msgid "инт"
 msgstr "Bilik"
 
 #: education/templates/education/edu_overview.html:251
-#: player/templates/player/redesign/overview.html:599
+#: player/templates/player/redesign/overview.html:608
 msgctxt "overview"
 msgid "вын"
 msgstr "Dzm"
@@ -3272,25 +3272,25 @@ msgid "дерево навыков"
 msgstr "Bacarıqlar"
 
 #: education/templates/education/edu_overview.html:450
-#: player/templates/player/redesign/overview.html:622
+#: player/templates/player/redesign/overview.html:631
 msgctxt "overview"
 msgid "Выборы"
 msgstr "Seçkilər"
 
 #: education/templates/education/edu_overview.html:455
-#: player/templates/player/redesign/overview.html:627
+#: player/templates/player/redesign/overview.html:636
 msgctxt "overview"
 msgid "партии"
 msgstr "Dövlətin"
 
 #: education/templates/education/edu_overview.html:455
-#: player/templates/player/redesign/overview.html:627
+#: player/templates/player/redesign/overview.html:636
 msgctxt "overview"
 msgid "государства"
 msgstr "partiyaları"
 
 #: education/templates/education/edu_overview.html:498
-#: player/templates/player/redesign/overview.html:671
+#: player/templates/player/redesign/overview.html:680
 msgctxt "overview"
 msgid "парламент"
 msgstr "Parlament"
@@ -3770,6 +3770,7 @@ msgid "Годовщина сервера!"
 msgstr "Serverin ildönümü!"
 
 #: event/templates/event/anniversary.html:221
+#: event/templates/event/black_friday.html:222
 #: event/templates/event/festival.html:221
 #: event/templates/event/summer_festival.html:221
 #: player/templates/player/redesign/game_event/halloween2.html:223
@@ -3779,6 +3780,7 @@ msgid "общий"
 msgstr "Ümumi"
 
 #: event/templates/event/anniversary.html:222
+#: event/templates/event/black_friday.html:223
 #: event/templates/event/festival.html:222
 #: event/templates/event/summer_festival.html:222
 #: player/templates/player/redesign/game_event/halloween2.html:224
@@ -3803,6 +3805,7 @@ msgid "Событие проходит один день 28.10."
 msgstr "Hadisə 1 gün keçirilir 28.10"
 
 #: event/templates/event/anniversary.html:396
+#: event/templates/event/black_friday.html:394
 #: event/templates/event/festival.html:395
 #: event/templates/event/summer_festival.html:396
 #: player/templates/player/redesign/game_event/halloween2.html:394
@@ -3812,6 +3815,7 @@ msgid "Личная прогрессия события"
 msgstr "Şəxsi irəliləyiş"
 
 #: event/templates/event/anniversary.html:397
+#: event/templates/event/black_friday.html:395
 #: event/templates/event/summer_festival.html:397
 msgctxt "game_event"
 msgid ""
@@ -3822,6 +3826,7 @@ msgstr ""
 "prinsiplərə uyğun olaraq doldurulur."
 
 #: event/templates/event/anniversary.html:398
+#: event/templates/event/black_friday.html:396
 #: event/templates/event/festival.html:398
 #: event/templates/event/summer_festival.html:398
 #: player/templates/player/redesign/game_event/halloween2.html:397
@@ -3831,10 +3836,39 @@ msgid "Общая прогрессия события"
 msgstr "Ümumi irəliləyiş"
 
 #: event/templates/event/anniversary.html:399
+#: event/templates/event/black_friday.html:397
 #: event/templates/event/summer_festival.html:399
 msgctxt "game_event"
 msgid "Заполняется суммой усилий всех игроков сервера."
 msgstr "Bütün server oyunçularının səylərinin cəmi ilə doludur."
+
+#: event/templates/event/black_friday.html:218
+#: player/templates/player/redesign/overview.html:550
+#: player/views/game_event/black_friday.py:44
+msgctxt "game_event"
+msgid "Неделя чёрной пятницы!"
+msgstr ""
+
+#: event/templates/event/black_friday.html:391
+msgctxt "game_event"
+msgid "Чёрная пятница 2024:"
+msgstr ""
+
+#: event/templates/event/black_friday.html:392
+#, fuzzy
+#| msgctxt "game_event"
+#| msgid "заработайте премиум и золото!"
+msgctxt "game_event"
+msgid "заработайте премиум, золото и особый самолёт!"
+msgstr "Premium və qızıl qazanın!"
+
+#: event/templates/event/black_friday.html:393
+#, fuzzy
+#| msgctxt "game_event"
+#| msgid "Событие проходит один день 28.10."
+msgctxt "game_event"
+msgid "Событие проходит с 25.11 по 1.12 включительно."
+msgstr "Hadisə 1 gün keçirilir 28.10"
 
 #: event/templates/event/festival.html:218
 msgctxt "game_event"
@@ -6469,43 +6503,43 @@ msgctxt "overview"
 msgid "Летний фестиваль"
 msgstr "Yay festivalı"
 
-#: player/templates/player/redesign/overview.html:556
+#: player/templates/player/redesign/overview.html:565
 msgctxt "overview"
 msgid "Зимний фестиваль"
 msgstr "Qiş festivalı"
 
-#: player/templates/player/redesign/overview.html:619
+#: player/templates/player/redesign/overview.html:628
 msgctxt "overview"
 msgid "Выборы лидера"
 msgstr "Lider seçkiləri"
 
-#: player/templates/player/redesign/overview.html:627
+#: player/templates/player/redesign/overview.html:636
 msgctxt "overview"
 msgid "региона"
 msgstr "Bölgənin"
 
-#: player/templates/player/redesign/overview.html:664
-#: player/templates/player/redesign/overview.html:709
+#: player/templates/player/redesign/overview.html:673
+#: player/templates/player/redesign/overview.html:718
 msgctxt "overview"
 msgid "партий нет"
 msgstr "Partiya yoxdur"
 
-#: player/templates/player/redesign/overview.html:1073
+#: player/templates/player/redesign/overview.html:1082
 msgctxt "overview"
 msgid "Обновите приложение"
 msgstr "Tətbiqi yenilə"
 
-#: player/templates/player/redesign/overview.html:1073
+#: player/templates/player/redesign/overview.html:1082
 msgctxt "overview"
 msgid "Ваше приложение устарело. Обновите его"
 msgstr "Sizim tətbiqiniz artıq köhnədir. Yeniləyin."
 
-#: player/templates/player/redesign/overview.html:1073
+#: player/templates/player/redesign/overview.html:1082
 msgctxt "overview"
 msgid "Загрузить"
 msgstr "Yüklə"
 
-#: player/templates/player/redesign/overview.html:1073
+#: player/templates/player/redesign/overview.html:1082
 msgctxt "overview"
 msgid "Скрыть"
 msgstr "Gizləd"
