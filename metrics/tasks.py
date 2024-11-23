@@ -56,10 +56,11 @@ def save_daily():
         for state_id, gold in daily_gold_by_state.items()
     ]
 
-    DailyGoldByState.objects.bulk_create(
-        daily_u,
-        batch_size=len(daily_u)
-    )
+    if len(daily_u) > 0:
+        DailyGoldByState.objects.bulk_create(
+            daily_u,
+            batch_size=len(daily_u)
+        )
 
     # ----------- деньги -----------
     cash = 0
