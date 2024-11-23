@@ -16,7 +16,7 @@ class DailyGoldByState(models.Model):
     date = models.DateField(default=timezone.now)
 
     # государство принадлежности
-    state = models.OneToOneField(State, on_delete=models.CASCADE, verbose_name='Государство',
+    state = models.ForeignKey(State, on_delete=models.CASCADE, verbose_name='Государство',
                                  related_name="%(class)s_state")
 
     # добытое золото
