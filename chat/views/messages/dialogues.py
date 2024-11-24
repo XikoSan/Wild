@@ -34,6 +34,8 @@ def dialogues(request):
 
     # список айди личных диалогов от свежего к старому
     dialogs = []
+    # список айди непрочитанных диалогов от свежего к старому
+    unread_dialogs = []
     # список айди гос диалогов от свежего к старому
     state_dialogs = []
 
@@ -67,19 +69,30 @@ def dialogues(request):
 
         tuples_list = []
         personal = []
+        unread = []
         gov = []
 
-        cycles = 2
+        cycles = 3
 
         if not state_leader:
             sorted_tuples = sorted_tuples[:50]
             tuples_list.append(sorted_tuples)
-            cycles = 1
+
+            unread_tuples = []
+            for elem in sorted_tuples:
+                unread_redis = r.hget(f'chats_{player.pk}_unread', elem[0])
+
+                if unread_redis and int(unread_redis) > 0:
+                    unread_tuples.append(elem)
+
+            tuples_list.append(unread_tuples)
+
+            cycles = 2
 
         # если чел - глава государства
         else:
             for elem in sorted_tuples:
-                if len(personal) >= 50 and len(gov) >= 50:
+                if len(personal) >= 50 and len(gov) >= 50 and len(unread) >= 50:
                     break
                 # узнаем государство принадлежности сообщения
                 for member in member_at:
@@ -95,9 +108,17 @@ def dialogues(request):
                             # не более 50
                             if len(personal) < 50:
                                 personal.append(elem)
+
+                            # относится ли этот чат не непрочитанным
+                            unread_redis = r.hget(f'chats_{player.pk}_unread', elem[0])
+                            if unread_redis and int(unread_redis) > 0:
+                                # не более 50
+                                if len(unread) < 50:
+                                    unread.append(elem)
                         break
 
             tuples_list.append(personal)
+            tuples_list.append(unread)
             tuples_list.append(gov)
 
         # получим собеседников
@@ -131,10 +152,15 @@ def dialogues(request):
                 dialogs_data[dialog[0]] = {}
                 # число непрочитанных собщений в этом диалоге
                 read = True
+                unread_redis = None
                 unread_redis = r.hget(f'chats_{player.pk}_unread', dialog[0])
 
                 if unread_redis and int(unread_redis) > 0:
                     read = False
+                    # если идем по списку непрочитанных (чтобы не задваивать сообщения в списке нечитанных)
+                    if x == 1:
+                        unread_dialogs.append(dialog[0])
+
                 dialogs_data[dialog[0]]['read'] = read
 
                 # гос-отправитель (если есть)
@@ -234,6 +260,7 @@ def dialogues(request):
         'state_leader': state_leader,
 
         'dialogs': dialogs,
+        'unread_dialogs': unread_dialogs,
         'state_dialogs': state_dialogs,
 
         'dialogs_data': dialogs_data,
