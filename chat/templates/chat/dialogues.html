@@ -81,7 +81,11 @@
 				/* Стили для экранов шире 1000px */
 				@media (min-width: 1000px) {
 					.articles__tabs {
+						{% if state_leader %}
 						grid-template-columns: repeat(3, 1fr); /* Все кнопки в одну строку, одинаковая ширина */
+						{% else %}
+						grid-template-columns: repeat(2, 1fr); /* Все кнопки в одну строку, одинаковая ширина */
+						{% endif %}
 						grid-template-rows: auto; /* Одна строка */
 					}
 
