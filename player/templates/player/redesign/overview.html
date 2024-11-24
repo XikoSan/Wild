@@ -4,6 +4,7 @@
 {% load l10n %}{% load i18n %}{% load tz %}
 {% load redesign.overview_blocks.skills %}
 {% load edu_skills %}
+{% load get_custom_language_code %}
 {% load redesign.gui_help.player_help %}
 {% load redesign.template_svg.nopic %}
 {% load template_svg.war_icon %}
@@ -69,7 +70,7 @@
 {% endblock %}
 
 {% block content %}
-  {% with LANGUAGE_CODE='ru' %}
+
 <main>
 
   <section class="overview custom-scroll">
@@ -725,8 +726,9 @@
           <!--Сообщения-->
 
             <!--в будущем использовать это (LANGUAGE_CODE) как ИД чата-->
-            {% get_current_language as LANGUAGE_CODE_T %}
-            <!--а пока что переменная объявляется выше-->
+            {% get_current_language as LANGUAGE_CODE %}
+            <!--а пока что переменная объявляется ниже, специальным тегом-->
+            {% get_custom_language_code as LANGUAGE_CODE %}
 
           {% get_language_info for LANGUAGE_CODE as lang %}
           {{ LANGUAGE_CODE|json_script:"room-name" }}
@@ -1075,5 +1077,5 @@
 
   {% endif %}
 </script>
-{% endwith %}
+
 {% endblock %}

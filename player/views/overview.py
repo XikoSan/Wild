@@ -42,6 +42,7 @@ from player.logs.test_log import TestLog
 from django.utils.translation import pgettext
 from packaging import version
 from google_play_scraper import app
+from django.utils.translation import get_language
 
 # главная страница
 @login_required(login_url='/')
@@ -144,18 +145,25 @@ def overview(request):
     if not player.chat_ban:
         r = redis.StrictRedis(host='redis', port=6379, db=0)
 
+        appendix = ''
+        chat_id = get_language()
+
+        if chat_id != 'ru':
+            # appendix = f'_{chat_id}'
+            appendix = f'_en'
+
         counter = 0
 
-        if r.hlen('counter') > 0:
-            counter = r.hget('counter', 'counter')
+        if r.hlen('counter' + appendix) > 0:
+            counter = r.hget('counter' + appendix, 'counter')
 
-        redis_list = r.zrangebyscore("chat", 0, counter, withscores=True)
+        redis_list = r.zrangebyscore("chat" + appendix, 0, counter, withscores=True)
 
         for scan in redis_list:
             b = json.loads(scan[0])
 
             if not Player.objects.filter(pk=int(b['author'])).exists():
-                r.zremrangebyscore('chat', int(scan[1]), int(scan[1]))
+                r.zremrangebyscore('chat' + appendix, int(scan[1]), int(scan[1]))
                 continue
 
             author = Player.objects.filter(pk=int(b['author'])).only('id', 'nickname', 'image', 'time_zone').get()

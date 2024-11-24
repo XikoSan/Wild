@@ -48,10 +48,16 @@ def _check_has_pack(message, packs):
         return False, None
 
 
-def _delete_message(counter):
+def _delete_message(chat_id, counter):
     r = redis.StrictRedis(host='redis', port=6379, db=0)
 
-    r.zremrangebyscore('chat', counter, counter)
+    appendix = ''
+
+    if chat_id != 'ru':
+        # appendix = f'_{chat_id}'
+        appendix = f'_en'
+
+    r.zremrangebyscore('chat' + appendix, counter, counter)
 
 
 # def _get_last_10_messages(chat_id):
@@ -82,20 +88,25 @@ def _append_message(chat_id, author, text):
     r = redis.StrictRedis(host='redis', port=6379, db=0)
 
     counter = 0
+    appendix = ''
 
-    if r.hlen('counter') > 0:
-        counter = r.hget('counter', 'counter')
+    if chat_id != 'ru':
+        # appendix = f'_{chat_id}'
+        appendix = f'_en'
 
-    r.hset('counter', 'counter', int(counter) + 1)
+    if r.hlen('counter' + appendix) > 0:
+        counter = r.hget('counter' + appendix, 'counter')
+
+    r.hset('counter' + appendix, 'counter', int(counter) + 1)
 
     o_json = json.dumps(message, indent=2, default=str)
 
-    r.zadd('chat', {o_json: int(counter) + 1})
+    r.zadd('chat' + appendix, {o_json: int(counter) + 1})
 
-    count = r.zcard("chat")
+    count = r.zcard("chat" + appendix)
 
     if count > 150:
-        r.zremrangebyrank('chat', 0, 0)
+        r.zremrangebyrank('chat' + appendix, 0, 0)
 
     return int(counter) + 1
 
@@ -182,7 +193,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
             if message == 'delete_message' \
                     and text_data_json['counter']:
                 counter = int(text_data_json['counter'])
-                await sync_to_async(_delete_message, thread_sensitive=True)(counter=counter)
+                await sync_to_async(_delete_message, thread_sensitive=True)(chat_id=self.room_name, counter=counter)
 
             else:
                 if message == 'ban_chat' \
