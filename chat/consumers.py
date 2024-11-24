@@ -56,8 +56,6 @@ def _delete_message(chat_id, counter):
     if chat_id not in ['ru', 'be', 'uk', 'hy']:
         # appendix = f'_{chat_id}'
         appendix = f'_en'
-    else:
-        appendix = f'_ru'
 
     r.zremrangebyscore('chat' + appendix, counter, counter)
 
@@ -95,8 +93,6 @@ def _append_message(chat_id, author, text):
     if chat_id not in ['ru', 'be', 'uk', 'hy']:
         # appendix = f'_{chat_id}'
         appendix = f'_en'
-    else:
-        appendix = f'_ru'
 
     if r.hlen('counter' + appendix) > 0:
         counter = r.hget('counter' + appendix, 'counter')

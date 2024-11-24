@@ -151,8 +151,6 @@ def overview(request):
         if chat_id not in ['ru', 'be', 'uk', 'hy']:
             # appendix = f'_{chat_id}'
             appendix = f'_en'
-        else:
-            appendix = f'_ru'
 
         counter = 0
 
