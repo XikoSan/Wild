@@ -1,4 +1,4 @@
-const roomName = JSON.parse(document.getElementById('room-name').textContent);
+let roomName = JSON.parse(document.getElementById('room-name').textContent);
 const playerId = JSON.parse(document.getElementById('player_id').textContent);
 
 let attempts = 0;

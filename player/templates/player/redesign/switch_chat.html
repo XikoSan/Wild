@@ -1,0 +1,89 @@
+{% load l10n %}{% load i18n %}{% load tz %}
+{% load dict_key %}
+{% load redesign.template_svg.nopic %}
+
+{% for message in messages %}
+    {% if message|dict_key:'content' != 'ban_chat' and message|dict_key:'content' != 'delete_message' %}
+<!--сообщение-->
+<div class="overview__chat-message" {% localize off %} data-counter='{{  message|dict_key:"counter" }}' data-sender='{{  message|dict_key:"author" }}' {% endlocalize %} >
+  <!--аватарка-->
+  <a class="overview__chat-ava-link" href='/profile/{% localize off %}{{  message|dict_key:"author" }}{% endlocalize %}'>
+    {% if message|dict_key:'image_link' == 'nopic' %}
+      {% nopic player 'overview__chat-ava' %}
+    {% else %}
+      <img src="{{  message|dict_key:'image_link'  }}" class="overview__chat-ava">
+    {% endif %}
+  </a>
+  <div class="overview__chat-message-wrapper">
+    <!--ник и дата-->
+    <div class="overview__chat-message-header">
+      <h3>{{  message|dict_key:"author_nickname" }}</h3>
+      <span>{{ message|dict_key:'dtime' }}</span>
+    </div>
+    <div class="overview__chat-message-body">
+      <!--текст сообщения-->
+      {% if '/stickers/' in message|dict_key:'content' or message|dict_key:'user_pic' %}
+          {% autoescape off %}
+      <p {% if player.account.groups.all.0.name == "chat_moderator" %}class="moder"{% endif %}>{{ message|dict_key:'content' }}</p>
+          {% endautoescape %}
+      {% else %}
+      <p {% if player.account.groups.all.0.name == "chat_moderator" %}class="moder"{% endif %}>{{ message|dict_key:'content' }}</p>
+      {% endif %}
+      {% if player.account.groups.all.0.name == "chat_moderator" %}
+      <!--кнопки для модераторов-->
+      <div class="overview__chat-message-btns">
+        <button class="overview__chat-message-btn message__ban" aria-label="mute">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="0.5" y="0.5" width="19" height="19" stroke="var(--c10two)"/>
+            <path d="M6 8H4V10V12H6M6 8V12M6 8L11 3V17L6 12M13 8L17 12M17 8L13 12" stroke="var(--c10two)" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <button class="overview__chat-message-btn message__delete" aria-label="delete message">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="0.5" y="0.5" width="19" height="19" stroke="var(--c10two)"/>
+            <path d="M3.5 3.5L16.5 16.5M16.5 3.5L3.5 16.5" stroke="var(--c10two)"/>
+          </svg>
+        </button>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+    {% endif %}
+{% endfor %}
+
+  <!--сообщение-шаблон-->
+  <div id="message_blank" class="overview__chat-message" data-counter='' data-sender='' style="display:none">
+    <!--аватарка-->
+    <a class="overview__chat-ava-link" href=''>
+      <img src="" class="overview__chat-ava">
+    </a>
+    <div class="overview__chat-message-wrapper">
+      <!--ник и дата-->
+      <div class="overview__chat-message-header">
+        <h3></h3>
+        <span></span>
+      </div>
+      <div class="overview__chat-message-body">
+        <!--текст сообщения-->
+        <p {% if player.account.groups.all.0.name == "chat_moderator" %}class="moder"{% endif %}></p>
+        {% if player.account.groups.all.0.name == "chat_moderator" %}
+        <!--кнопки для модераторов-->
+        <div class="overview__chat-message-btns">
+          <button class="overview__chat-message-btn message__ban" aria-label="mute">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="0.5" y="0.5" width="19" height="19" stroke="var(--c10two)"/>
+              <path d="M6 8H4V10V12H6M6 8V12M6 8L11 3V17L6 12M13 8L17 12M17 8L13 12" stroke="var(--c10two)" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <button class="overview__chat-message-btn message__delete" aria-label="delete message">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="0.5" y="0.5" width="19" height="19" stroke="var(--c10two)"/>
+              <path d="M3.5 3.5L16.5 16.5M16.5 3.5L3.5 16.5" stroke="var(--c10two)"/>
+            </svg>
+          </button>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>

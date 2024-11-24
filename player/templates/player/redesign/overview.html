@@ -731,13 +731,36 @@
       <!--Правая вкладка - ЧАТ-->
       <div class="overview__chat" id="overview__chat">
         {% if not player.chat_ban %}
-        <div class="overview__chat-wrapper gui_help" data-helpid="overview chat block">
-          <!--Сообщения-->
-
+        <div class="overview__chat-wrapper gui_help" data-helpid="overview chat block" style="position: relative;">
             <!--в будущем использовать это (LANGUAGE_CODE) как ИД чата-->
             {% get_current_language as LANGUAGE_CODE %}
             <!--а пока что переменная объявляется ниже, специальным тегом-->
             {% get_custom_language_code as LANGUAGE_CODE %}
+
+          {% if player.account.groups.all.0.name == "chat_moderator" %}
+          <div style="
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    ">
+			<!--выбор языка-->
+			<label class="m-sett__form-label ct__wide-modal-label-select">
+				<select id="lang_change">
+					<option value="ru" {% if LANGUAGE_CODE == 'ru'%}selected{% endif %}>Русский</option>
+					<option value="en" {% if LANGUAGE_CODE != 'ru'%}selected{% endif %}>English</option>
+				</select>
+				<svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M1 1L7.5 7L14 1" stroke="var(--c10one)"></path>
+				</svg>
+			</label>
+		  </div>
+          {% endif %}
+
+          <!--Сообщения-->
 
           {% get_language_info for LANGUAGE_CODE as lang %}
           {{ LANGUAGE_CODE|json_script:"room-name" }}
@@ -934,6 +957,78 @@
   </section>
 
 </main>
+
+{% if player.account.groups.all.0.name == "chat_moderator" %}
+<script>
+document.getElementById('lang_change').addEventListener('change', async function () {
+    // Получаем старый и новый язык
+    const oldLang = this.querySelector('option[selected]').value;
+    const newLang = this.value;
+
+    // Удаляем старый блок
+    const oldChatLog = document.getElementById(`chat-log-${oldLang}`);
+    if (oldChatLog) {
+        oldChatLog.remove();
+    }
+
+    // Обновляем атрибут selected
+    this.querySelector('option[selected]').removeAttribute('selected');
+    this.querySelector(`option[value="${newLang}"]`).setAttribute('selected', '');
+
+    // Создаем новый элемент
+    const newChatLog = document.createElement('div');
+    newChatLog.id = `chat-log-${newLang}`;
+    newChatLog.className = 'overview__chat-messages';
+
+    // Определяем элемент с классом "overview__chat-controls"
+    const chatControls = document.querySelector('.overview__chat-controls');
+    if (chatControls) {
+        chatControls.parentNode.insertBefore(newChatLog, chatControls);
+    } else {
+        console.error('Element with class "overview__chat-controls" not found!');
+        return;
+    }
+
+    try {
+        // Делаем GET-запрос и добавляем содержимое в новый блок
+        const response = await fetch(`/switch_chat/${newLang}/`);
+        if (response.ok) {
+            const chatContent = await response.text();
+            newChatLog.innerHTML = chatContent;
+        } else {
+            console.error(`Failed to load chat content: ${response.status}`);
+        }
+    } catch (error) {
+        console.error('Error fetching chat content:', error);
+    }
+
+    // Пересоздание элементов с id '#chat-message-input-<roomName>' и '#chat-message-submit-<roomName>'
+    roomName = newLang;  // Используем новый язык как roomName
+    let messageInput = document.querySelector(`#chat-message-input-${oldLang}`);
+    let messageSubmit = document.querySelector(`#chat-message-submit-${oldLang}`);
+
+    if (messageInput && messageSubmit) {
+        // Клонируем элементы
+        const newMessageInput = messageInput.cloneNode(true); // true — копирует все дочерние узлы
+        const newMessageSubmit = messageSubmit.cloneNode(true); // true — копирует все дочерние узлы
+
+        // Меняем id у клонированных элементов
+        newMessageInput.id = `chat-message-input-${roomName}`;
+        newMessageSubmit.id = `chat-message-submit-${roomName}`;
+
+        // Заменяем старые элементы на новые
+        messageInput.parentNode.replaceChild(newMessageInput, messageInput);
+        messageSubmit.parentNode.replaceChild(newMessageSubmit, messageSubmit);
+    }
+
+
+    // Выполняем дополнительные действия
+    connectWebSocket();
+    newChatLog.scrollTop = newChatLog.scrollHeight;
+});
+
+</script>
+{% endif %}
 
 <script>
   var audio;

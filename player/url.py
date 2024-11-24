@@ -53,6 +53,7 @@ from .views.overview import overview
 from .views.set_language import set_language
 from .views.set_timezone import set_timezone
 from .views.skill_tbl import skill_tbl
+from .views.switch_chat import switch_chat
 from .views.view_profile import view_profile
 from .views.wallet import wallet
 
@@ -187,5 +188,7 @@ urlpatterns = [
 
     url(r'^rate_us/$', rate_us, name='rate_us'),
     url(r'^check_review/$', check_review, name='check_review'),
+
+    path('switch_chat/<str:chat_id>/', switch_chat, name='switch_chat'),
 
 ]
