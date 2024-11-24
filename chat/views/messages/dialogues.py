@@ -75,15 +75,15 @@ def dialogues(request):
         cycles = 3
 
         if not state_leader:
-            sorted_tuples = sorted_tuples[:50]
-            tuples_list.append(sorted_tuples)
-
             unread_tuples = []
             for elem in sorted_tuples:
                 unread_redis = r.hget(f'chats_{player.pk}_unread', elem[0])
 
                 if unread_redis and int(unread_redis) > 0:
                     unread_tuples.append(elem)
+
+            sorted_tuples = sorted_tuples[:50]
+            tuples_list.append(sorted_tuples)
 
             tuples_list.append(unread_tuples)
 
