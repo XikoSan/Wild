@@ -9,8 +9,12 @@ from player.views.bonus_code.activate_code import activate_code
 from player.views.bonus_code.bonus_code import bonus_code
 from player.views.data_deleting import data_deleting
 from player.views.eula import eula
+from player.views.game_event.black_friday import black_friday
 from player.views.game_event.buy_test_prizes import get_freebie
+from player.views.game_event.check_review import check_review
 from player.views.game_event.halloween import halloween
+from player.views.game_event.play_market_event import play_market_event
+from player.views.game_event.rate_us import rate_us
 from player.views.game_event.test_shop import test_shop
 from player.views.lists.damage_top import damage_top
 from player.views.lists.region_players import region_players_list
@@ -51,9 +55,6 @@ from .views.set_timezone import set_timezone
 from .views.skill_tbl import skill_tbl
 from .views.view_profile import view_profile
 from .views.wallet import wallet
-from player.views.game_event.play_market_event import play_market_event
-from player.views.game_event.rate_us import rate_us
-from player.views.game_event.check_review import check_review
 
 urlpatterns = [
 
@@ -148,6 +149,8 @@ urlpatterns = [
     url(r'^summer_festival/$', summer_festival, name='summer_festival'),
     # годовщина игры
     url(r'^anniversary/$', anniversary, name='anniversary'),
+    # черная пятница
+    url(r'^black_friday/$', black_friday, name='black_friday'),
 
     # контексты переводов
     path('translations/', translations, name='translations'),

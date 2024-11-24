@@ -25,6 +25,7 @@ class GameEvent(models.Model):
         ('ny', 'Новый год'),
         ('su', 'Лето'),
         ('av', 'Годовщина'),
+        ('fd', 'Чёрная пятница'),
     )
     type = models.CharField(
         max_length=2,

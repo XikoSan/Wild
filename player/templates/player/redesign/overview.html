@@ -329,7 +329,7 @@
         {% else %}
           {% if has_event %}
           <!--Блок ИВЕНТ-->
-          <a href="/anniversary/" class="overview__event gui_help" data-helpid="overview event block">
+          <a href="/black_friday/" class="overview__event gui_help" data-helpid="overview event block">
             <!--сообщение что войн нет-->
             {% if has_event.type == 'hl' %}
             <p class="overview__war-no event">Тыквенный спас</p>
@@ -546,6 +546,15 @@
                 <path id="_Path_3" data-name="<Path>" class="cls-4" d="M 33.31,12.94 C 33.31,7 29.14,2.88 24,2.88 c -5.14,0 -9.31,4.12 -9.31,10.06 0,5.37 5.16,11.23 8.39,12.27 l -0.74,1.7 a 0.65,0.65 0 0 0 0.59,0.91 h 2.14 a 0.65,0.65 0 0 0 0.59,-0.91 l -0.74,-1.7 c 3.23,-1.04 8.39,-6.9 8.39,-12.27 z" style="fill:none;stroke:#45413c;stroke-linecap:round;stroke-linejoin:round"></path>
                 <path id="_Path_4" data-name="<Path>" class="cls-4" d="m 24,27.82 c 0,6.34 8,7.18 11.78,10.35 3.78,3.17 3.56,6.33 3.56,6.33" style="fill:none;stroke: #ffffff;stroke-linecap:round;stroke-linejoin:round"></path>
               </g>
+            </svg>
+            {% elif has_event.type == 'fd' %}
+            <p class="overview__war-no event">{% trans 'Неделя чёрной пятницы!' context "game_event" %}</p>
+            <!--иконка скидки-->
+            <svg width="34" height="34" viewBox="0 0 34 34" class="overview__war-icon" fill="none" version="1.1" id="svg1" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+              <defs id="defs1"></defs>
+              <text xml:space="preserve" style="font-size:33.2658px;font-family:'AC Boucle';-inkscape-font-specification:'AC Boucle';fill: var(--c10one);fill-opacity:0.685039;stroke-width:0.561065;stroke-linejoin:bevel;paint-order:markers fill stroke" x="7.1987743" y="28.199776" id="text1"><tspan id="tspan1" x="7.1987743" y="28.199776" style="font-size:33.2658px;fill: var(--c10one););stroke-width:0.561065">%</tspan></text>
+              <circle cx="17" cy="17" r="16.5" stroke="var(--c10two)" id="circle1" style="fill:none;stroke: var(--c10two);stroke-opacity:1"></circle>
+              <ellipse style="fill:#999999;fill-opacity:0.685039;stroke-width:0.467294;stroke-linejoin:bevel;paint-order:markers fill stroke" id="path1" cx="17.87715" cy="28.430794" rx="9.0778046" ry="1.4758395"></ellipse>
             </svg>
             {% endif %}
           </a>
