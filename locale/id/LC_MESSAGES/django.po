@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-23 03:50+0300\n"
+"POT-Creation-Date: 2024-11-24 11:53+0300\n"
 "PO-Revision-Date: 2022-12-01 16:31+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -58,7 +58,7 @@ msgstr ""
 
 #: article/templates/article/article.html:344
 #: chat/templates/chat/dialogue.html:160
-#: player/templates/player/redesign/overview.html:902
+#: player/templates/player/redesign/overview.html:904
 #, fuzzy
 #| msgid "У вас пока еще нет стикеров"
 msgctxt "overview"
@@ -67,7 +67,7 @@ msgstr "Kamu belum memiliki stiker"
 
 #: article/templates/article/article.html:357
 #: chat/templates/chat/dialogue.html:173
-#: player/templates/player/redesign/overview.html:915
+#: player/templates/player/redesign/overview.html:917
 msgctxt "overview"
 msgid "магазин"
 msgstr "toko"
@@ -2597,7 +2597,7 @@ msgctxt "vote_bill"
 msgid "В этом регионе нет государства"
 msgstr "Tidak terdapat penyimpanan di wilayah ini"
 
-#: chat/comment_consumers.py:24 chat/consumers.py:73
+#: chat/comment_consumers.py:24 chat/consumers.py:79
 #, fuzzy
 #| msgid "Финансирование"
 msgctxt "chat"
@@ -2621,12 +2621,12 @@ msgctxt "chat"
 msgid "Перезагрузите страницу, чтобы переподключиться к чату"
 msgstr ""
 
-#: chat/templates/chat/dialogues.html:42 chat/views/messages/dialogues.py:231
+#: chat/templates/chat/dialogues.html:42 chat/views/messages/dialogues.py:257
 msgctxt "chat"
 msgid "Диалоги"
 msgstr ""
 
-#: chat/templates/chat/dialogues.html:60
+#: chat/templates/chat/dialogues.html:101
 #, fuzzy
 #| msgctxt "overview"
 #| msgid "вын"
@@ -2634,7 +2634,15 @@ msgctxt "chat"
 msgid "все"
 msgstr "end"
 
-#: chat/templates/chat/dialogues.html:61
+#: chat/templates/chat/dialogues.html:102
+#, fuzzy
+#| msgctxt "overview"
+#| msgid "государства"
+msgctxt "chat"
+msgid "непрочитанные"
+msgstr "negara bagian"
+
+#: chat/templates/chat/dialogues.html:104
 #, fuzzy
 #| msgctxt "overview"
 #| msgid "государства"
@@ -3647,7 +3655,7 @@ msgid "Руда"
 msgstr "Mineral"
 
 #: education/templates/education/edu_overview.html:61
-#: player/templates/player/redesign/overview.html:91
+#: player/templates/player/redesign/overview.html:92
 #, fuzzy
 #| msgid "обзор"
 msgctxt "overview"
@@ -3655,7 +3663,7 @@ msgid "обзор"
 msgstr "beranda"
 
 #: education/templates/education/edu_overview.html:82
-#: player/templates/player/redesign/overview.html:112
+#: player/templates/player/redesign/overview.html:113
 #, fuzzy
 #| msgid "чат"
 msgctxt "overview"
@@ -3663,7 +3671,7 @@ msgid "чат"
 msgstr "obrolan"
 
 #: education/templates/education/edu_overview.html:93
-#: player/templates/player/redesign/overview.html:123
+#: player/templates/player/redesign/overview.html:124
 #, fuzzy
 #| msgid "мир"
 msgctxt "overview"
@@ -3671,7 +3679,7 @@ msgid "мир"
 msgstr "dunia"
 
 #: education/templates/education/edu_overview.html:222
-#: player/templates/player/redesign/overview.html:313
+#: player/templates/player/redesign/overview.html:314
 #, fuzzy
 #| msgid "войн нет"
 msgctxt "overview"
@@ -3679,19 +3687,19 @@ msgid "войн нет"
 msgstr "tidak ada perang"
 
 #: education/templates/education/edu_overview.html:241
-#: player/templates/player/redesign/overview.html:598
+#: player/templates/player/redesign/overview.html:599
 msgctxt "overview"
 msgid "сила"
 msgstr "str"
 
 #: education/templates/education/edu_overview.html:246
-#: player/templates/player/redesign/overview.html:603
+#: player/templates/player/redesign/overview.html:604
 msgctxt "overview"
 msgid "инт"
 msgstr "int"
 
 #: education/templates/education/edu_overview.html:251
-#: player/templates/player/redesign/overview.html:608
+#: player/templates/player/redesign/overview.html:609
 msgctxt "overview"
 msgid "вын"
 msgstr "end"
@@ -3761,25 +3769,25 @@ msgid "дерево навыков"
 msgstr "bagan kemampuan"
 
 #: education/templates/education/edu_overview.html:450
-#: player/templates/player/redesign/overview.html:631
+#: player/templates/player/redesign/overview.html:632
 msgctxt "overview"
 msgid "Выборы"
 msgstr "Pemilihan"
 
 #: education/templates/education/edu_overview.html:455
-#: player/templates/player/redesign/overview.html:636
+#: player/templates/player/redesign/overview.html:637
 msgctxt "overview"
 msgid "партии"
 msgstr "partai"
 
 #: education/templates/education/edu_overview.html:455
-#: player/templates/player/redesign/overview.html:636
+#: player/templates/player/redesign/overview.html:637
 msgctxt "overview"
 msgid "государства"
 msgstr "negara bagian"
 
 #: education/templates/education/edu_overview.html:498
-#: player/templates/player/redesign/overview.html:680
+#: player/templates/player/redesign/overview.html:681
 msgctxt "overview"
 msgid "парламент"
 msgstr "parlemen"
@@ -4267,12 +4275,12 @@ msgid "Добыча"
 msgstr "Kerja"
 
 #: education/views/edu_overview.py:40 education/views/edu_overview.py:44
-#: player/views/overview.py:401 player/views/overview.py:404
+#: player/views/overview.py:409 player/views/overview.py:412
 msgctxt "education"
 msgid "Анна"
 msgstr ""
 
-#: education/views/edu_overview.py:45 player/views/overview.py:404
+#: education/views/edu_overview.py:45 player/views/overview.py:412
 #, fuzzy
 #| msgctxt "overview"
 #| msgid "инт"
@@ -4280,22 +4288,22 @@ msgctxt "education"
 msgid "Лин"
 msgstr "int"
 
-#: education/views/edu_overview.py:46 player/views/overview.py:404
+#: education/views/edu_overview.py:46 player/views/overview.py:412
 msgctxt "education"
 msgid "Мария"
 msgstr ""
 
-#: education/views/edu_overview.py:47 player/views/overview.py:404
+#: education/views/edu_overview.py:47 player/views/overview.py:412
 msgctxt "education"
 msgid "София"
 msgstr ""
 
-#: education/views/edu_overview.py:48 player/views/overview.py:404
+#: education/views/edu_overview.py:48 player/views/overview.py:412
 msgctxt "education"
 msgid "Ольга"
 msgstr ""
 
-#: education/views/edu_overview.py:55 player/views/overview.py:410
+#: education/views/edu_overview.py:55 player/views/overview.py:418
 #, fuzzy
 #| msgid "Обзор"
 msgctxt "overview"
@@ -4353,7 +4361,7 @@ msgid "Восстание"
 msgstr "Perlengkapan"
 
 #: event/templates/event/anniversary.html:218
-#: player/templates/player/redesign/overview.html:534
+#: player/templates/player/redesign/overview.html:535
 msgctxt "overview"
 msgid "Годовщина сервера!"
 msgstr ""
@@ -4445,7 +4453,7 @@ msgid "Заполняется суммой усилий всех игроков 
 msgstr ""
 
 #: event/templates/event/black_friday.html:218
-#: player/templates/player/redesign/overview.html:550
+#: player/templates/player/redesign/overview.html:551
 #: player/views/game_event/black_friday.py:44
 msgctxt "game_event"
 msgid "Неделя чёрной пятницы!"
@@ -7565,75 +7573,75 @@ msgctxt "new_player"
 msgid "Часовой пояс"
 msgstr "Zona Waktu"
 
-#: player/templates/player/redesign/overview.html:179
+#: player/templates/player/redesign/overview.html:180
 #, fuzzy
 #| msgid "независимый регион"
 msgctxt "overview"
 msgid "независимый регион"
 msgstr "wilayah merdeka"
 
-#: player/templates/player/redesign/overview.html:270
+#: player/templates/player/redesign/overview.html:271
 #, fuzzy
 #| msgid "Население региона"
 msgctxt "event"
 msgid "Публикация в Google Play!"
 msgstr "Populasi wilayah"
 
-#: player/templates/player/redesign/overview.html:341
+#: player/templates/player/redesign/overview.html:342
 msgctxt "overview"
 msgid "С новым годом!"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:497
+#: player/templates/player/redesign/overview.html:498
 msgctxt "overview"
 msgid "Летний фестиваль"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:565
+#: player/templates/player/redesign/overview.html:566
 msgctxt "overview"
 msgid "Зимний фестиваль"
 msgstr ""
 
-#: player/templates/player/redesign/overview.html:628
+#: player/templates/player/redesign/overview.html:629
 msgctxt "overview"
 msgid "Выборы лидера"
 msgstr "Pemilihan presiden"
 
-#: player/templates/player/redesign/overview.html:636
+#: player/templates/player/redesign/overview.html:637
 msgctxt "overview"
 msgid "региона"
 msgstr "wilayah"
 
-#: player/templates/player/redesign/overview.html:673
-#: player/templates/player/redesign/overview.html:718
+#: player/templates/player/redesign/overview.html:674
+#: player/templates/player/redesign/overview.html:719
 #, fuzzy
 #| msgid "партий нет"
 msgctxt "overview"
 msgid "партий нет"
 msgstr "tidak ada partai"
 
-#: player/templates/player/redesign/overview.html:1082
+#: player/templates/player/redesign/overview.html:1084
 #, fuzzy
 #| msgid "Некорректное значение"
 msgctxt "overview"
 msgid "Обновите приложение"
 msgstr "Nominal salah"
 
-#: player/templates/player/redesign/overview.html:1082
+#: player/templates/player/redesign/overview.html:1084
 #, fuzzy
 #| msgid "Некорректное значение"
 msgctxt "overview"
 msgid "Ваше приложение устарело. Обновите его"
 msgstr "Nominal salah"
 
-#: player/templates/player/redesign/overview.html:1082
+#: player/templates/player/redesign/overview.html:1084
 #, fuzzy
 #| msgid "Загрузить"
 msgctxt "overview"
 msgid "Загрузить"
 msgstr "Unggah"
 
-#: player/templates/player/redesign/overview.html:1082
+#: player/templates/player/redesign/overview.html:1084
 #, fuzzy
 #| msgid "Закрыть"
 msgctxt "overview"
