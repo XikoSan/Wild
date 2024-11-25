@@ -43,7 +43,7 @@ def expense_energy(request):
                 'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
-            # return HttpResponse(_('too_early'), content_type='text/html')
+
         else:
             # если у игрока достаточно энергетиков
             if player.bottles >= 100 - player.energy:
@@ -65,7 +65,6 @@ def expense_energy(request):
                         'grey_btn': pgettext('core', 'Закрыть'),
                     }
                     return JResponse(data)
-                    # return HttpResponse(_('no_required'), content_type='text/html')
             else:
                 data = {
                     'response': pgettext('expense_energy', 'Недостаточно Энергетиков. Создайте их в Хранилище Склада'),
@@ -73,7 +72,6 @@ def expense_energy(request):
                     'grey_btn': pgettext('core', 'Закрыть'),
                 }
                 return JResponse(data)
-                # return HttpResponse(_('no_batteries'), content_type='text/html')
 
     # если страницу только грузят
     else:

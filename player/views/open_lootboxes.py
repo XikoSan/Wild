@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from django.utils import translation
 from django.utils.translation import ugettext as _
-
+from django.utils.translation import pgettext
 from player.decorators.player import check_player
 from player.lootbox.lootbox import Lootbox
 from player.player import Player
@@ -22,8 +22,8 @@ def open_lootboxes(request):
     if request.method == "POST":
 
         data = {
-            'response': 'Открытие Сундуков невозможно сейчас',
-            'header': 'Открытие сундуков',
+            'response': pgettext('open_box', 'Кейсы отключены'),
+            'header': pgettext('open_box', 'Открытие кейсов'),
             'grey_btn': pgettext('core', 'Закрыть'),
         }
         return JResponse(data)
@@ -33,8 +33,8 @@ def open_lootboxes(request):
 
         if not Lootbox.objects.filter(player=player, stock__gt=0).exists():
             data = {
-                'response': 'У вас нет новогодних сундуков',
-                'header': 'Открытие сундуков',
+                'response': pgettext('open_box', 'У вас нет кейсов'),
+                'header': pgettext('open_box', 'Открытие кейсов'),
                 'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
@@ -44,8 +44,8 @@ def open_lootboxes(request):
 
         except ValueError:
             data = {
-                'response': 'Некорректное количество сундуков для открытия',
-                'header': 'Открытие сундуков',
+                'response': pgettext('open_box', 'Некорректное количество кейсов для открытия'),
+                'header': pgettext('open_box', 'Открытие кейсов'),
                 'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
@@ -54,8 +54,8 @@ def open_lootboxes(request):
 
         if open_count > lootboxes.stock:
             data = {
-                'response': 'Недостаточно сундуков для открытия',
-                'header': 'Открытие сундуков',
+                'response': pgettext('open_box', 'Недостаточно кейсов для открытия'),
+                'header': pgettext('open_box', 'Открытие кейсов'),
                 'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
@@ -129,8 +129,8 @@ def open_lootboxes(request):
     # если страницу только грузят
     else:
         data = {
-            'response': _('Ошибка метода'),
-            'header': _('Открытие сундуков'),
+            'response': pgettext('core', 'Ошибка типа запроса'),
+            'header': pgettext('open_box', 'Открытие кейсов'),
             'grey_btn': pgettext('core', 'Закрыть'),
         }
         return JResponse(data)

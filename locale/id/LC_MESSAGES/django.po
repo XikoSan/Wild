@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-24 11:53+0300\n"
+"POT-Creation-Date: 2024-11-26 02:36+0300\n"
 "PO-Revision-Date: 2022-12-01 16:31+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -58,7 +58,7 @@ msgstr ""
 
 #: article/templates/article/article.html:344
 #: chat/templates/chat/dialogue.html:160
-#: player/templates/player/redesign/overview.html:904
+#: player/templates/player/redesign/overview.html:927
 #, fuzzy
 #| msgid "У вас пока еще нет стикеров"
 msgctxt "overview"
@@ -67,7 +67,7 @@ msgstr "Kamu belum memiliki stiker"
 
 #: article/templates/article/article.html:357
 #: chat/templates/chat/dialogue.html:173
-#: player/templates/player/redesign/overview.html:917
+#: player/templates/player/redesign/overview.html:940
 msgctxt "overview"
 msgid "магазин"
 msgstr "toko"
@@ -125,7 +125,7 @@ msgstr "Kemampuan ID harus berbentuk angka"
 #: article/views/change_article.py:43 article/views/change_article.py:55
 #: article/views/change_article.py:75 article/views/create_article.py:68
 #: article/views/create_article.py:77 article/views/create_article.py:87
-#: article/views/create_article.py:120 article/views/subscription.py:30
+#: article/views/create_article.py:119 article/views/subscription.py:30
 #: article/views/subscription.py:64 article/views/subscription.py:73
 #: article/views/vote_article.py:48 article/views/vote_article.py:66
 #: article/views/vote_article.py:75 bill/models/change_coat.py:34
@@ -208,14 +208,14 @@ msgstr "Kemampuan ID harus berbentuk angka"
 #: event/views/activate_invite.py:47 event/views/activate_invite.py:58
 #: event/views/activate_invite.py:74 event/views/activate_invite.py:88
 #: event/views/activate_invite.py:126 factory/views/cancel_auto.py:34
-#: factory/views/produce_good.py:42 factory/views/produce_good.py:53
-#: factory/views/produce_good.py:69 factory/views/produce_good.py:83
-#: factory/views/produce_good.py:90 factory/views/produce_good.py:104
-#: factory/views/produce_good.py:113 factory/views/produce_good.py:125
-#: factory/views/produce_good.py:135 factory/views/produce_good.py:146
-#: factory/views/produce_good.py:156 factory/views/produce_good.py:164
-#: factory/views/produce_good.py:173 factory/views/produce_good.py:214
-#: factory/views/produce_good.py:242 factory/views/produce_good.py:266
+#: factory/views/produce_good.py:41 factory/views/produce_good.py:52
+#: factory/views/produce_good.py:68 factory/views/produce_good.py:82
+#: factory/views/produce_good.py:89 factory/views/produce_good.py:103
+#: factory/views/produce_good.py:112 factory/views/produce_good.py:124
+#: factory/views/produce_good.py:134 factory/views/produce_good.py:145
+#: factory/views/produce_good.py:155 factory/views/produce_good.py:163
+#: factory/views/produce_good.py:172 factory/views/produce_good.py:213
+#: factory/views/produce_good.py:241 factory/views/produce_good.py:265
 #: factory/views/start_auto.py:33 factory/views/start_auto.py:41
 #: factory/views/start_auto.py:51 factory/views/start_auto.py:62
 #: factory/views/start_auto.py:71 factory/views/start_auto.py:80
@@ -306,9 +306,9 @@ msgstr "Kemampuan ID harus berbentuk angka"
 #: player/views/customization/plane/set_plane_nick.py:73
 #: player/views/customization/plane/set_plane_nick.py:82
 #: player/views/expense_energy.py:30 player/views/expense_energy.py:43
-#: player/views/expense_energy.py:65 player/views/expense_energy.py:73
-#: player/views/expense_energy.py:83 player/views/full_auto_allow.py:43
-#: player/views/full_auto_allow.py:59
+#: player/views/expense_energy.py:65 player/views/expense_energy.py:72
+#: player/views/expense_energy.py:81 player/views/full_auto_allow.py:41
+#: player/views/full_auto_allow.py:57
 #: player/views/game_event/buy_test_prizes.py:40
 #: player/views/game_event/buy_test_prizes.py:48
 #: player/views/game_event/buy_test_prizes.py:66
@@ -321,7 +321,7 @@ msgstr "Kemampuan ID harus berbentuk angka"
 #: player/views/new_player.py:220 player/views/open_lootboxes.py:27
 #: player/views/open_lootboxes.py:38 player/views/open_lootboxes.py:49
 #: player/views/open_lootboxes.py:59 player/views/open_lootboxes.py:134
-#: player/views/set_language.py:40 player/views/set_language.py:56
+#: player/views/set_language.py:38 player/views/set_language.py:54
 #: player/views/set_timezone.py:29 player/views/set_timezone.py:45
 #: player/views/skills/boost_skill.py:59 player/views/skills/boost_skill.py:72
 #: player/views/skills/boost_skill.py:80 player/views/skills/boost_skill.py:94
@@ -332,31 +332,33 @@ msgstr "Kemampuan ID harus berbentuk angka"
 #: player/views/skills/up_skill.py:61 player/views/skills/up_skill.py:77
 #: player/views/skills/up_skill.py:97 player/views/skills/up_skill.py:107
 #: player/views/skills/up_skill.py:115 player/views/skills/up_skill.py:123
-#: player/views/skills/up_skill.py:192 region/views/cancel_auto.py:34
-#: region/views/daily_status.py:87 region/views/do_mining.py:42
-#: region/views/do_mining.py:55 region/views/do_mining.py:65
-#: region/views/do_mining.py:78 region/views/do_mining.py:87
-#: region/views/do_mining.py:96 region/views/map/get_residency.py:32
-#: region/views/map/get_residency.py:43 region/views/map/get_residency.py:51
-#: region/views/map/get_residency.py:62 region/views/map/get_residency.py:89
-#: region/views/map/get_residency.py:154 region/views/map/map.py:52
-#: region/views/map/map.py:61 region/views/map/map.py:108
-#: region/views/map/map.py:116 region/views/map/plane_info.py:35
-#: region/views/map/plane_info.py:42 region/views/map/region_info.py:44
-#: region/views/map/region_info.py:52 region/views/map/save_links.py:33
-#: region/views/map/save_links.py:61 region/views/retrieve_cash.py:41
-#: region/views/start_auto.py:28 region/views/start_auto.py:36
-#: region/views/start_auto.py:46 region/views/start_auto.py:55
-#: skill/views/skill_cancel.py:28 skill/views/skill_cancel.py:45
-#: skill/views/skill_cancel.py:53 skill/views/skill_cancel.py:61
-#: skill/views/skill_cancel.py:71 skill/views/skill_cancel.py:86
-#: skill/views/skill_cancel.py:110 state/views/set_mandate.py:32
-#: state/views/set_mandate.py:43 state/views/set_mandate.py:56
-#: state/views/set_mandate.py:64 state/views/set_mandate.py:71
-#: state/views/set_mandate.py:80 state/views/state_foundation.py:42
-#: state/views/state_foundation.py:56 state/views/state_foundation.py:70
-#: state/views/state_foundation.py:111
+#: player/views/skills/up_skill.py:192 player/views/switch_chat.py:87
+#: region/views/cancel_auto.py:34 region/views/daily_status.py:87
+#: region/views/do_mining.py:42 region/views/do_mining.py:55
+#: region/views/do_mining.py:65 region/views/do_mining.py:78
+#: region/views/do_mining.py:87 region/views/do_mining.py:96
+#: region/views/map/get_residency.py:32 region/views/map/get_residency.py:43
+#: region/views/map/get_residency.py:51 region/views/map/get_residency.py:62
+#: region/views/map/get_residency.py:89 region/views/map/get_residency.py:154
+#: region/views/map/map.py:52 region/views/map/map.py:61
+#: region/views/map/map.py:108 region/views/map/map.py:116
+#: region/views/map/plane_info.py:35 region/views/map/plane_info.py:42
+#: region/views/map/region_info.py:44 region/views/map/region_info.py:52
+#: region/views/map/save_links.py:33 region/views/map/save_links.py:61
+#: region/views/retrieve_cash.py:41 region/views/start_auto.py:28
+#: region/views/start_auto.py:36 region/views/start_auto.py:46
+#: region/views/start_auto.py:55 skill/views/skill_cancel.py:28
+#: skill/views/skill_cancel.py:45 skill/views/skill_cancel.py:53
+#: skill/views/skill_cancel.py:61 skill/views/skill_cancel.py:71
+#: skill/views/skill_cancel.py:86 skill/views/skill_cancel.py:110
+#: state/views/set_mandate.py:32 state/views/set_mandate.py:43
+#: state/views/set_mandate.py:56 state/views/set_mandate.py:64
+#: state/views/set_mandate.py:71 state/views/set_mandate.py:80
+#: state/views/state_foundation.py:42 state/views/state_foundation.py:56
+#: state/views/state_foundation.py:70 state/views/state_foundation.py:111
 #: storage/views/assets/assets_destroy.py:137
+#: storage/views/assets/assets_info.py:63
+#: storage/views/assets/assets_info.py:71
 #: storage/views/assets/storage_move.py:37
 #: storage/views/assets/storage_move.py:46
 #: storage/views/assets/storage_move.py:55
@@ -455,18 +457,19 @@ msgstr "Kemampuan ID harus berbentuk angka"
 #: storage/views/vault/avia_box/open_aviaboxes.py:79
 #: storage/views/vault/avia_box/open_aviaboxes.py:92
 #: storage/views/vault/avia_box/open_aviaboxes.py:101
-#: storage/views/vault/avia_box/open_aviaboxes.py:184 war/consumers.py:163
-#: war/consumers.py:182 war/consumers.py:192 war/consumers.py:204
-#: war/consumers.py:214 war/consumers.py:227 war/consumers.py:237
-#: war/consumers.py:249 war/consumers.py:271 war/consumers.py:291
-#: war/consumers.py:300 war/consumers.py:313 war/consumers.py:324
-#: war/consumers.py:334 war/consumers.py:598 war/views/join_revolution.py:31
-#: war/views/join_revolution.py:54 war/views/join_revolution.py:67
-#: war/views/join_revolution.py:79 war/views/join_revolution.py:91
-#: war/views/join_revolution.py:103 war/views/join_revolution.py:140
-#: war/views/start_war.py:104 war/views/switch_war_visibility.py:40
-#: war/views/switch_war_visibility.py:48 war/views/switch_war_visibility.py:64
-#: war/views/switch_war_visibility.py:92
+#: storage/views/vault/avia_box/open_aviaboxes.py:184
+#: storage/views/vault/use_card.py:27 storage/views/vault/use_card.py:71
+#: war/consumers.py:163 war/consumers.py:182 war/consumers.py:192
+#: war/consumers.py:204 war/consumers.py:214 war/consumers.py:227
+#: war/consumers.py:237 war/consumers.py:249 war/consumers.py:271
+#: war/consumers.py:291 war/consumers.py:300 war/consumers.py:313
+#: war/consumers.py:324 war/consumers.py:334 war/consumers.py:598
+#: war/views/join_revolution.py:31 war/views/join_revolution.py:54
+#: war/views/join_revolution.py:67 war/views/join_revolution.py:79
+#: war/views/join_revolution.py:91 war/views/join_revolution.py:103
+#: war/views/join_revolution.py:140 war/views/start_war.py:104
+#: war/views/switch_war_visibility.py:40 war/views/switch_war_visibility.py:48
+#: war/views/switch_war_visibility.py:64 war/views/switch_war_visibility.py:92
 #, fuzzy
 #| msgid "Закрыть"
 msgctxt "core"
@@ -568,6 +571,7 @@ msgstr "Nama"
 #: player/views/lists/region_citizens.py:50
 #: player/views/lists/region_players.py:50
 #: player/views/lists/world_online.py:56 player/views/lists/world_players.py:44
+#: region/views/lists/world_regions.py:65
 #: state/templates/state/redesign/elections.html:239
 #: war/views/open_war_side_list.py:103
 msgctxt "lists"
@@ -643,7 +647,7 @@ msgctxt "change_article"
 msgid "Текст статьи не должен быть пустым"
 msgstr "Kemampuan ID harus berbentuk angka"
 
-#: article/views/change_article.py:73 article/views/create_article.py:118
+#: article/views/change_article.py:73 article/views/create_article.py:117
 #: article/views/subscription.py:71 article/views/vote_article.py:73
 #: bill/views/bills/cancel_bill.py:113 bill/views/bills/new_bill.py:77
 #: bill/views/bills/vote_bill.py:131 chat/views/buy_sticker_pack.py:88
@@ -654,10 +658,17 @@ msgstr "Kemampuan ID harus berbentuk angka"
 #: player/views/answer_captcha.py:51 player/views/change_bio.py:32
 #: player/views/change_nickname.py:63
 #: player/views/customization/avatar_edit.py:75
-#: player/views/expense_energy.py:81 player/views/skills/boost_skill.py:166
-#: player/views/skills/up_skill.py:190 skill/views/skill_cancel.py:108
-#: state/views/set_mandate.py:78 state/views/state_foundation.py:109
-#: storage/views/auctions/set_bet.py:159 war/views/start_war.py:102
+#: player/views/expense_energy.py:79 player/views/full_auto_allow.py:55
+#: player/views/open_lootboxes.py:132 player/views/set_language.py:52
+#: player/views/set_timezone.py:43 player/views/skills/boost_skill.py:166
+#: player/views/skills/up_skill.py:190 player/views/switch_chat.py:85
+#: skill/views/skill_cancel.py:108 state/views/set_mandate.py:78
+#: state/views/state_foundation.py:109 storage/views/assets/assets_info.py:69
+#: storage/views/auctions/set_bet.py:159
+#: storage/views/vault/avia_box/loot_aviaboxes.py:54
+#: storage/views/vault/avia_box/open_aviaboxes.py:182
+#: storage/views/vault/use_card.py:69 war/views/start_war.py:102
+#: war/views/switch_war_visibility.py:90
 #, fuzzy
 #| msgid "Ошибка типа запроса"
 msgctxt "core"
@@ -671,7 +682,7 @@ msgid "Статьи: %(nickname)s"
 msgstr ""
 
 #: article/views/create_article.py:67 article/views/create_article.py:76
-#: article/views/create_article.py:86 article/views/create_article.py:119
+#: article/views/create_article.py:86 article/views/create_article.py:118
 #: article/views/new_article.py:27
 #, fuzzy
 #| msgctxt "overview"
@@ -1123,7 +1134,7 @@ msgstr "Tidak ada skill terkait"
 #: bill/templates/state/redesign/bills/transfer_resources.html:41
 #: bill/templates/state/redesign/drafts/construction.html:79
 #: factory/models/production_log.py:30 factory/models/production_log.py:55
-#: factory/views/factory.py:64 factory/views/produce_good.py:223
+#: factory/views/factory.py:64 factory/views/produce_good.py:222
 #: state/models/treasury.py:38
 #: state/templates/state/redesign/gov/treasury.html:15
 #: storage/migrations/0075_auto_20230914_2245.py:13
@@ -2688,7 +2699,7 @@ msgstr ""
 
 #: chat/views/buy_sticker_pack.py:23 chat/views/buy_sticker_pack.py:35
 #: chat/views/buy_sticker_pack.py:46 chat/views/buy_sticker_pack.py:54
-#: chat/views/buy_sticker_pack.py:89
+#: chat/views/buy_sticker_pack.py:89 player/views/switch_chat.py:86
 #, fuzzy
 #| msgctxt "storage"
 #| msgid "Новый Склад"
@@ -5071,19 +5082,19 @@ msgctxt "mining"
 msgid "Ошибка при отмене"
 msgstr "Pembatalan gagal"
 
-#: factory/views/produce_good.py:40
+#: factory/views/produce_good.py:39
 msgctxt "factory"
 msgid "Дождитесь конца полёта"
 msgstr ""
 
-#: factory/views/produce_good.py:41 factory/views/produce_good.py:52
-#: factory/views/produce_good.py:68 factory/views/produce_good.py:82
-#: factory/views/produce_good.py:89 factory/views/produce_good.py:103
-#: factory/views/produce_good.py:112 factory/views/produce_good.py:124
-#: factory/views/produce_good.py:134 factory/views/produce_good.py:145
-#: factory/views/produce_good.py:155 factory/views/produce_good.py:163
-#: factory/views/produce_good.py:172 factory/views/produce_good.py:213
-#: factory/views/produce_good.py:241 factory/views/produce_good.py:265
+#: factory/views/produce_good.py:40 factory/views/produce_good.py:51
+#: factory/views/produce_good.py:67 factory/views/produce_good.py:81
+#: factory/views/produce_good.py:88 factory/views/produce_good.py:102
+#: factory/views/produce_good.py:111 factory/views/produce_good.py:123
+#: factory/views/produce_good.py:133 factory/views/produce_good.py:144
+#: factory/views/produce_good.py:154 factory/views/produce_good.py:162
+#: factory/views/produce_good.py:171 factory/views/produce_good.py:212
+#: factory/views/produce_good.py:240 factory/views/produce_good.py:264
 #: factory/views/start_auto.py:61 factory/views/start_auto.py:70
 #: factory/views/start_auto.py:91 factory/views/start_auto.py:101
 #, fuzzy
@@ -5093,7 +5104,7 @@ msgctxt "factory"
 msgid "Ошибка производства"
 msgstr "produksi"
 
-#: factory/views/produce_good.py:51
+#: factory/views/produce_good.py:50
 #, fuzzy
 #| msgctxt "assets"
 #| msgid "Склад не заполнен"
@@ -5101,7 +5112,7 @@ msgctxt "factory"
 msgid "Склад не заполнен"
 msgstr "Penyimpanan tidak spesifik"
 
-#: factory/views/produce_good.py:67
+#: factory/views/produce_good.py:66
 #, fuzzy
 #| msgctxt "assets"
 #| msgid "Указанный Склад вам не принадлежит"
@@ -5109,7 +5120,7 @@ msgctxt "factory"
 msgid "Указанный Склад вам не принадлежит"
 msgstr "Penyimpanan bukan milikmu"
 
-#: factory/views/produce_good.py:81 factory/views/produce_good.py:88
+#: factory/views/produce_good.py:80 factory/views/produce_good.py:87
 #, fuzzy
 #| msgctxt "assets"
 #| msgid "Указанный Склад уже в текущем регионе"
@@ -5117,13 +5128,13 @@ msgctxt "factory"
 msgid "Указанный товар не существует"
 msgstr "Penyimpanan telah berada di wilayah saat ini"
 
-#: factory/views/produce_good.py:102 factory/views/produce_good.py:111
+#: factory/views/produce_good.py:101 factory/views/produce_good.py:110
 #: factory/views/start_auto.py:60 factory/views/start_auto.py:69
 msgctxt "factory"
 msgid "Вы не можете производить данный товар"
 msgstr ""
 
-#: factory/views/produce_good.py:123 factory/views/start_auto.py:90
+#: factory/views/produce_good.py:122 factory/views/start_auto.py:90
 #, fuzzy
 #| msgctxt "mining"
 #| msgid "Количество энергии - не число"
@@ -5131,7 +5142,7 @@ msgctxt "factory"
 msgid "Номер схемы - не число"
 msgstr "Jumlah energi bukanlah angka"
 
-#: factory/views/produce_good.py:133 factory/views/start_auto.py:100
+#: factory/views/produce_good.py:132 factory/views/start_auto.py:100
 #, fuzzy
 #| msgctxt "assets"
 #| msgid "Указанный Склад уже в текущем регионе"
@@ -5139,7 +5150,7 @@ msgctxt "factory"
 msgid "Указанной схемы не существует"
 msgstr "Penyimpanan telah berada di wilayah saat ini"
 
-#: factory/views/produce_good.py:144
+#: factory/views/produce_good.py:143
 #, fuzzy
 #| msgctxt "mining"
 #| msgid "Количество энергии - не число"
@@ -5147,7 +5158,7 @@ msgctxt "factory"
 msgid "Количество - не число"
 msgstr "Jumlah energi bukanlah angka"
 
-#: factory/views/produce_good.py:154
+#: factory/views/produce_good.py:153
 #, fuzzy
 #| msgctxt "mining"
 #| msgid "Количество Энергии должно быть положительным"
@@ -5155,7 +5166,7 @@ msgctxt "factory"
 msgid "Количество товара должно быть положительным числом"
 msgstr "Jumlah energi tidak boleh minus"
 
-#: factory/views/produce_good.py:162
+#: factory/views/produce_good.py:161
 #, fuzzy
 #| msgctxt "mining"
 #| msgid "Количество энергии - не число"
@@ -5163,7 +5174,7 @@ msgctxt "factory"
 msgid "Количество товара слишком велико"
 msgstr "Jumlah energi bukanlah angka"
 
-#: factory/views/produce_good.py:174
+#: factory/views/produce_good.py:173
 #, fuzzy
 #| msgctxt "assets"
 #| msgid " недостаточно места для товара "
@@ -5171,8 +5182,8 @@ msgctxt "factory"
 msgid "Недостаточно места на складе для товара. В наличии "
 msgstr " tidak cukup ruang untuk barang "
 
-#: factory/views/produce_good.py:176 factory/views/produce_good.py:216
-#: factory/views/produce_good.py:245 factory/views/produce_good.py:269
+#: factory/views/produce_good.py:175 factory/views/produce_good.py:215
+#: factory/views/produce_good.py:244 factory/views/produce_good.py:268
 #, fuzzy
 #| msgctxt "assets"
 #| msgid "Требуется: "
@@ -5180,7 +5191,7 @@ msgctxt "factory"
 msgid ", требуется "
 msgstr "Yang dibutuhkan : "
 
-#: factory/views/produce_good.py:215
+#: factory/views/produce_good.py:214
 #, fuzzy
 #| msgctxt "mining"
 #| msgid "Недостаточно энергии"
@@ -5188,7 +5199,7 @@ msgctxt "factory"
 msgid "Недостаточно энергии. В наличии "
 msgstr "Energi tidak cukup"
 
-#: factory/views/produce_good.py:243 factory/views/produce_good.py:267
+#: factory/views/produce_good.py:242 factory/views/produce_good.py:266
 #, fuzzy
 #| msgctxt "mining"
 #| msgid "Недостаточно энергии"
@@ -5196,7 +5207,7 @@ msgctxt "factory"
 msgid "Недостаточно "
 msgstr "Energi tidak cukup"
 
-#: factory/views/produce_good.py:244 factory/views/produce_good.py:268
+#: factory/views/produce_good.py:243 factory/views/produce_good.py:267
 #, fuzzy
 #| msgctxt "assets"
 #| msgid ", в наличии: "
@@ -6198,6 +6209,8 @@ msgstr ""
 #: party/views/lists/world_parties.py:83 player/views/lists/world_online.py:61
 #: player/views/lists/world_online.py:62 player/views/lists/world_players.py:49
 #: player/views/lists/world_players.py:50
+#: region/views/lists/world_regions.py:70
+#: region/views/lists/world_regions.py:71
 #, fuzzy
 #| msgid "Регион"
 msgctxt "lists"
@@ -6553,7 +6566,8 @@ msgctxt "cash_log"
 msgid "Гос. закупки"
 msgstr "Negara"
 
-#: player/logs/cash_log.py:30
+#: player/logs/cash_log.py:30 player/views/skills/skill_queue.py:30
+#: skill/views/skills_list.py:59
 #, fuzzy
 #| msgid "Навыки"
 msgctxt "cash_log"
@@ -7538,6 +7552,8 @@ msgid "карта"
 msgstr "peta"
 
 #: player/templates/player/redesign/menu.html:119
+#: player/templates/player/redesign/profile.html:422
+#: player/templates/player/redesign/view_profile.html:210
 msgctxt "menu"
 msgid "партия"
 msgstr "partai"
@@ -7620,28 +7636,28 @@ msgctxt "overview"
 msgid "партий нет"
 msgstr "tidak ada partai"
 
-#: player/templates/player/redesign/overview.html:1084
+#: player/templates/player/redesign/overview.html:1179
 #, fuzzy
 #| msgid "Некорректное значение"
 msgctxt "overview"
 msgid "Обновите приложение"
 msgstr "Nominal salah"
 
-#: player/templates/player/redesign/overview.html:1084
+#: player/templates/player/redesign/overview.html:1179
 #, fuzzy
 #| msgid "Некорректное значение"
 msgctxt "overview"
 msgid "Ваше приложение устарело. Обновите его"
 msgstr "Nominal salah"
 
-#: player/templates/player/redesign/overview.html:1084
+#: player/templates/player/redesign/overview.html:1179
 #, fuzzy
 #| msgid "Загрузить"
 msgctxt "overview"
 msgid "Загрузить"
 msgstr "Unggah"
 
-#: player/templates/player/redesign/overview.html:1084
+#: player/templates/player/redesign/overview.html:1179
 #, fuzzy
 #| msgid "Закрыть"
 msgctxt "overview"
@@ -8044,15 +8060,13 @@ msgctxt "profile"
 msgid "с"
 msgstr ""
 
-#: player/templates/player/redesign/profile.html:422
-#: player/templates/player/redesign/view_profile.html:210
-msgid "партия"
-msgstr "partai"
-
 #: player/templates/player/redesign/profile.html:428
 #: player/templates/player/redesign/profile.html:446
 #: player/templates/player/redesign/view_profile.html:216
 #: player/templates/player/redesign/view_profile.html:234
+#, fuzzy
+#| msgid "беспартийный"
+msgctxt "profile"
 msgid "беспартийный"
 msgstr "tidak terafiliasi"
 
@@ -8067,15 +8081,24 @@ msgstr "(sejarah)"
 
 #: player/templates/player/redesign/profile.html:438
 #: player/templates/player/redesign/view_profile.html:226
+#, fuzzy
+#| msgid "должность в партии"
+msgctxt "profile"
 msgid "должность в партии"
 msgstr "posisi dalam partai"
 
 #: player/templates/player/redesign/profile.html:473
 #: player/templates/player/redesign/view_profile.html:240
+#, fuzzy
+#| msgid "о себе"
+msgctxt "profile"
 msgid "о себе"
 msgstr "bio"
 
 #: player/templates/player/redesign/profile.html:544
+#, fuzzy
+#| msgid "Загрузить"
+msgctxt "profile"
 msgid "Загрузить"
 msgstr "Unggah"
 
@@ -8184,6 +8207,9 @@ msgid "был в сети"
 msgstr "telah aktif"
 
 #: player/templates/player/redesign/view_profile.html:139
+#, fuzzy
+#| msgid "давно"
+msgctxt "profile"
 msgid "давно"
 msgstr "yang lalu"
 
@@ -8413,24 +8439,19 @@ msgid "Данный код уже был активирован"
 msgstr "Penyimpanan telah berada di wilayah saat ini"
 
 #: player/views/buy_lootboxes.py:151 player/views/change_back_allow.py:57
-#: player/views/change_wiki_hide_allow.py:57 player/views/full_auto_allow.py:57
-#: player/views/open_lootboxes.py:132 player/views/set_language.py:54
-#: player/views/set_timezone.py:43 region/views/cancel_auto.py:35
+#: player/views/change_wiki_hide_allow.py:57 region/views/cancel_auto.py:35
 #: region/views/daily_status.py:86 region/views/daily_status.py:88
 #: region/views/map/save_links.py:62 region/views/retrieve_cash.py:42
 #: region/views/start_auto.py:82
-#: storage/views/vault/avia_box/loot_aviaboxes.py:54
-#: storage/views/vault/avia_box/open_aviaboxes.py:182
-#: war/views/switch_war_visibility.py:90
 msgid "Ошибка метода"
 msgstr "Metode error"
 
-#: player/views/buy_lootboxes.py:152 player/views/open_lootboxes.py:133
+#: player/views/buy_lootboxes.py:152
 msgid "Открытие сундуков"
 msgstr ""
 
 #: player/views/change_back_allow.py:41
-#: player/views/change_wiki_hide_allow.py:41 player/views/full_auto_allow.py:41
+#: player/views/change_wiki_hide_allow.py:41
 msgid "Некорректное значение"
 msgstr "Nominal salah"
 
@@ -8536,6 +8557,7 @@ msgstr "Membatalkan peningkatan kemampuan"
 #, fuzzy
 #| msgctxt "assets"
 #| msgid "выберите склад"
+msgctxt "border_select"
 msgid "Выбор рамки"
 msgstr "pilih penyimpanan"
 
@@ -8564,9 +8586,13 @@ msgctxt "choose_border"
 msgid "Указанная рамка вам не принадлежит"
 msgstr "Penyimpanan bukan milikmu"
 
-#: player/views/customization/border/view_borders.py:33
+#: player/views/customization/border/view_borders.py:34
+#, fuzzy
+#| msgctxt "assets"
+#| msgid "выберите склад"
+msgctxt "view_borders"
 msgid "Просмотр рамок"
-msgstr ""
+msgstr "pilih penyimpanan"
 
 #: player/views/customization/medals/medals.py:55
 #, fuzzy
@@ -8672,12 +8698,13 @@ msgctxt "set_plane_nick"
 msgid "Указанный самолёт вам не принадлежит"
 msgstr "Penyimpanan bukan milikmu"
 
-#: player/views/customization/plane/view_planes.py:33
+#: player/views/customization/plane/view_planes.py:34
 #, fuzzy
-#| msgctxt "goods"
-#| msgid "Орбитальные орудия"
-msgid "Выбор авиации"
-msgstr "Meriam orbit"
+#| msgctxt "storage_assets"
+#| msgid "Активация"
+msgctxt "view_planes"
+msgid "Авиация"
+msgstr "Aktivasi"
 
 #: player/views/expense_energy.py:28
 msgctxt "expense_energy"
@@ -8685,8 +8712,8 @@ msgid "Отсутствует обязательный аргумент запр
 msgstr ""
 
 #: player/views/expense_energy.py:29 player/views/expense_energy.py:42
-#: player/views/expense_energy.py:64 player/views/expense_energy.py:72
-#: player/views/expense_energy.py:82
+#: player/views/expense_energy.py:64 player/views/expense_energy.py:71
+#: player/views/expense_energy.py:80
 #, fuzzy
 #| msgid "Пополнение энергии"
 msgctxt "expense_energy"
@@ -8707,14 +8734,24 @@ msgctxt "expense_energy"
 msgid "Пополнение энергии не требуется"
 msgstr "Pengisian ulang energi tidak dibutuhkan"
 
-#: player/views/expense_energy.py:71
+#: player/views/expense_energy.py:70
 #, fuzzy
 #| msgid "Недостаточно Энергетиков. Создайте их в Хранилище Склада"
 msgctxt "expense_energy"
 msgid "Недостаточно Энергетиков. Создайте их в Хранилище Склада"
 msgstr "Batrai tidak mencukupi. Produksi batrai pada tab penyimpanan di gudang"
 
-#: player/views/full_auto_allow.py:42 player/views/full_auto_allow.py:58
+#: player/views/full_auto_allow.py:39
+#, fuzzy
+#| msgid "Некорректное значение"
+msgctxt "full_auto"
+msgid "Некорректное значение"
+msgstr "Nominal salah"
+
+#: player/views/full_auto_allow.py:40 player/views/full_auto_allow.py:56
+#, fuzzy
+#| msgid "Энергетики в авто-добыче"
+msgctxt "full_auto"
 msgid "Энергетики в авто-добыче"
 msgstr "Gunakan batrai dalam penambangan otomatis"
 
@@ -8834,10 +8871,11 @@ msgctxt "lists"
 msgid "Жители региона"
 msgstr "Partai di wilayah"
 
-#: player/views/lists/skill_top.py:21
+#: player/views/lists/skill_top.py:22
 #, fuzzy
 #| msgctxt "profile"
 #| msgid "характеристики"
+msgctxt "skill_top"
 msgid "Топ по характеристикам"
 msgstr "karakteristik"
 
@@ -8898,19 +8936,80 @@ msgctxt "new_player"
 msgid "Ошибка в форме профиля"
 msgstr "Pembuatan profil gagal"
 
-#: player/views/set_language.py:38
+#: player/views/open_lootboxes.py:25
+#: storage/views/vault/avia_box/open_aviaboxes.py:28
+msgctxt "open_box"
+msgid "Кейсы отключены"
+msgstr ""
+
+#: player/views/open_lootboxes.py:26 player/views/open_lootboxes.py:37
+#: player/views/open_lootboxes.py:48 player/views/open_lootboxes.py:58
+#: player/views/open_lootboxes.py:133
+#: storage/views/vault/avia_box/loot_aviaboxes.py:55
+#: storage/views/vault/avia_box/open_aviaboxes.py:29
+#: storage/views/vault/avia_box/open_aviaboxes.py:43
+#: storage/views/vault/avia_box/open_aviaboxes.py:51
+#: storage/views/vault/avia_box/open_aviaboxes.py:78
+#: storage/views/vault/avia_box/open_aviaboxes.py:91
+#: storage/views/vault/avia_box/open_aviaboxes.py:100
+#: storage/views/vault/avia_box/open_aviaboxes.py:183
+#, fuzzy
+#| msgid "Закрыть"
+msgctxt "open_box"
+msgid "Открытие кейсов"
+msgstr "Tutup"
+
+#: player/views/open_lootboxes.py:36
+#: storage/views/vault/avia_box/open_aviaboxes.py:77
+#, fuzzy
+#| msgid "У вас пока еще нет стикеров"
+msgctxt "open_box"
+msgid "У вас нет кейсов"
+msgstr "Kamu belum memiliki stiker"
+
+#: player/views/open_lootboxes.py:47
+#: storage/views/vault/avia_box/open_aviaboxes.py:90
+#, fuzzy
+#| msgctxt "storage"
+#| msgid "Некорректное число денег игрока"
+msgctxt "open_box"
+msgid "Некорректное количество кейсов для открытия"
+msgstr "Jumlah uang salah"
+
+#: player/views/open_lootboxes.py:57
+#: storage/views/vault/avia_box/open_aviaboxes.py:99
+#, fuzzy
+#| msgctxt "assets"
+#| msgid " недостаточно места для товара "
+msgctxt "open_box"
+msgid "Недостаточно кейсов для открытия"
+msgstr " tidak cukup ruang untuk barang "
+
+#: player/views/set_language.py:36
+#, fuzzy
+#| msgid "Такого языка в игре нет"
+msgctxt "set_language"
 msgid "Такого языка в игре нет"
 msgstr "Tidak dapat menemukan bahasa"
 
-#: player/views/set_language.py:39 player/views/set_language.py:55
+#: player/views/set_language.py:37 player/views/set_language.py:53
+#, fuzzy
+#| msgid "Изменение языка"
+msgctxt "set_language"
 msgid "Изменение языка"
 msgstr "Perubahan bahasa"
 
 #: player/views/set_timezone.py:27
+#, fuzzy
+#| msgid "Такого часового пояса в игре нет"
+msgctxt "set_timezone"
 msgid "Такого часового пояса в игре нет"
 msgstr "Tidak dapat menemukan zona waktu"
 
 #: player/views/set_timezone.py:28 player/views/set_timezone.py:44
+#, fuzzy
+#| msgid "Изменение часового пояса"
+msgctxt "set_timezone"
 msgid "Изменение часового пояса"
 msgstr "Perubahan zona waktu"
 
@@ -8978,10 +9077,6 @@ msgctxt "skills"
 msgid "Нельзя ускорить последние пять минут улучшения"
 msgstr ""
 
-#: player/views/skills/skill_queue.py:30 skill/views/skills_list.py:59
-msgid "Навыки"
-msgstr "Kemampuan"
-
 #: player/views/skills/up_skill.py:33 skill/views/skill_cancel.py:26
 msgctxt "skills"
 msgid "Отсутствует обязательный аргумент запроса"
@@ -9036,9 +9131,10 @@ msgctxt "skills"
 msgid "Очередь навыков заполнена"
 msgstr "Penyimpanan tidak spesifik"
 
-#: player/views/wallet.py:21
+#: player/views/wallet.py:22
 #, fuzzy
 #| msgid "Финансирование"
+msgctxt "wallet"
 msgid "Финансы"
 msgstr "Keuangan"
 
@@ -9121,6 +9217,8 @@ msgstr "Level Pembangkit Listrik"
 
 #: region/templates/region/redesign/map.html:24
 #: region/templates/region/redesign/map.html:131
+#: region/views/lists/world_regions.py:76
+#: region/views/lists/world_regions.py:77
 msgctxt "map"
 msgid "Онлайн"
 msgstr ""
@@ -9444,8 +9542,11 @@ msgstr ""
 "Sumber daya mineral di wilayah ini tidak cukup untuk melakukan penambangan"
 
 #: region/views/lists/world_regions.py:90
+#, fuzzy
+#| msgid "Регион"
+msgctxt "world_regions"
 msgid "Регионы игры"
-msgstr ""
+msgstr "Wilayah"
 
 #: region/views/map/get_residency.py:30
 msgctxt "get_residency"
@@ -11329,15 +11430,21 @@ msgctxt "assets"
 msgid "Операции с товарами"
 msgstr "Pengoperasian barang"
 
-#: storage/views/assets/assets_info.py:59
+#: storage/views/assets/assets_info.py:61
 #, fuzzy
 #| msgid "Такого языка в игре нет"
+msgctxt "assets_info"
 msgid "Такого склада у вас нет"
 msgstr "Tidak dapat menemukan bahasa"
 
-#: storage/views/assets/assets_info.py:65
-msgid "Некорректный запрос"
-msgstr ""
+#: storage/views/assets/assets_info.py:62
+#: storage/views/assets/assets_info.py:70
+#, fuzzy
+#| msgctxt "storage_transfer"
+#| msgid "Перемещение Склада"
+msgctxt "assets_info"
+msgid "Получение склада"
+msgstr "Pindahkan penyimpanan"
 
 #: storage/views/assets/assets_transfer.py:40
 msgctxt "assets"
@@ -12173,15 +12280,42 @@ msgctxt "assets"
 msgid "Аэрокейсы"
 msgstr ""
 
-#: storage/views/vault/avia_box/loot_aviaboxes.py:55
-#: storage/views/vault/avia_box/open_aviaboxes.py:183
-msgid "Открытие Аэрокейсов"
-msgstr ""
+#: storage/views/vault/avia_box/open_aviaboxes.py:42
+#, fuzzy
+#| msgctxt "mining"
+#| msgid "Ошибка получения финансирования"
+msgctxt "open_box"
+msgid "У вас нет неполученных наград"
+msgstr "Pendanaan Harian Gagal"
+
+#: storage/views/vault/avia_box/open_aviaboxes.py:50
+#, fuzzy, python-format
+#| msgctxt "mining"
+#| msgid "Недостаточно энергии"
+msgctxt "open_box"
+msgid "Недостаточно золота, необходимо: %(value)s"
+msgstr "Energi tidak cukup"
 
 #: storage/views/vault/lootbox.py:42
 msgctxt "assets"
 msgid "Сундуки"
 msgstr ""
+
+#: storage/views/vault/use_card.py:25
+#, fuzzy
+#| msgctxt "mining"
+#| msgid "Недостаточно энергии"
+msgctxt "use_card"
+msgid "Недостаточно Wild Pass"
+msgstr "Energi tidak cukup"
+
+#: storage/views/vault/use_card.py:26 storage/views/vault/use_card.py:70
+#, fuzzy
+#| msgctxt "storage_assets"
+#| msgid "Активация"
+msgctxt "use_card"
+msgid "Активация Wild Pass"
+msgstr "Aktivasi"
 
 #: war/consumers.py:161
 msgctxt "war_consumers"
@@ -12542,23 +12676,32 @@ msgstr ""
 #: war/views/switch_war_visibility.py:38
 #, fuzzy
 #| msgid "Нет такого навыка"
+msgctxt "war_visibility"
 msgid "Нет такого типа войн"
 msgstr "Tidak ada skill terkait"
 
 #: war/views/switch_war_visibility.py:39 war/views/switch_war_visibility.py:47
 #: war/views/switch_war_visibility.py:63 war/views/switch_war_visibility.py:91
+#, fuzzy
+#| msgctxt "menu"
+#| msgid "войны"
+msgctxt "war_visibility"
 msgid "Скрытие войны"
-msgstr ""
+msgstr "perang"
 
 #: war/views/switch_war_visibility.py:46
 #, fuzzy
 #| msgid "Нет такого навыка"
+msgctxt "war_visibility"
 msgid "Нет такой войны"
 msgstr "Tidak ada skill terkait"
 
 #: war/views/switch_war_visibility.py:62
+#, fuzzy
+#| msgid "Нет такого навыка"
+msgctxt "war_visibility"
 msgid "Нет такой записи об участии в бою"
-msgstr ""
+msgstr "Tidak ada skill terkait"
 
 #: war/views/war_page.py:104
 #, fuzzy
@@ -12567,6 +12710,18 @@ msgstr ""
 msgctxt "war_page"
 msgid "Войны"
 msgstr "perang"
+
+#~ msgid "партия"
+#~ msgstr "partai"
+
+#, fuzzy
+#~| msgctxt "goods"
+#~| msgid "Орбитальные орудия"
+#~ msgid "Выбор авиации"
+#~ msgstr "Meriam orbit"
+
+#~ msgid "Навыки"
+#~ msgstr "Kemampuan"
 
 #, fuzzy
 #~| msgctxt "game_event"

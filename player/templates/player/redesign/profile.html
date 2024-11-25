@@ -419,13 +419,13 @@
 				</div>
 
 				<div class="ct__s">
-					<h2 class="ct__s-title">{% trans 'партия' %}</h2>
+					<h2 class="ct__s-title">{% trans 'партия' context "menu" %}</h2>
 					<p class="ct__s-text">
 						{% if player.party %}
 						<a href='/party/{% localize off %}{{ player.party.pk }}{% endlocalize %}'>
 							{{ player.party.title }}
 						</a>
-						{% else %}{% trans 'беспартийный' %}{% endif %}
+						{% else %}{% trans 'беспартийный' context "profile" %}{% endif %}
 						(
 						<a href="/party_history/{% localize off %}{{ player.pk }}{% endlocalize %}/">
 							{% trans 'история' context "profile" %}
@@ -435,7 +435,7 @@
 				</div>
 
 				<div class="ct__s">
-					<h2 class="ct__s-title">{% trans 'должность в партии' %}</h2>
+					<h2 class="ct__s-title">{% trans 'должность в партии' context "profile" %}</h2>
 					<p class="ct__s-text">
 						{% if player.party_post %}
 							{% if player.party_post.based %}
@@ -443,7 +443,7 @@
 							{% else %}
 								{{ player.party_post.title }}
 							{% endif %}
-						{% else %}{% trans 'беспартийный' %}{% endif %}
+						{% else %}{% trans 'беспартийный' context "profile" %}{% endif %}
 					</p>
 				</div>
 
@@ -470,7 +470,7 @@
 								<path d="M2 10.8L8.8 17.6L22.4 4" stroke="var(--c60)" stroke-width="3"/>
 							</svg>
 						</button>
-						<span>{% trans 'о себе' %}:</span>
+						<span>{% trans 'о себе' context "profile" %}:</span>
 					</h2>
 					<p id="player_bio_view" class="ct__s-text" >{% if not player.bio %}{{ user_link }}{% else %}{{ player.bio }}{% endif %}</p>
 					<textarea id="player_bio" class="profile__s-textarea" cols="30" rows="10" onfocus="hideProfileTop()" onblur="showProfileTop()" style="display: none">
@@ -541,7 +541,7 @@
 				</div>
 				<div class="btn-r-wrapper">
 					<button type="button" class="btn btn-default back-crop-js" data-dismiss="modal">{% trans 'Отмена' context "profile" %}</button>
-					<button type="button" class="btn btn-primary js-crop-and-upload">{% trans 'Загрузить' %}{% if player.image %}, -100 G{% endif %}</button>
+					<button type="button" class="btn btn-primary js-crop-and-upload">{% trans 'Загрузить' context "profile" %}{% if player.image %}, -100 G{% endif %}</button>
 				</div>
 			</div>
 		</div>

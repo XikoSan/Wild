@@ -51,8 +51,8 @@ def loot_aviaboxes(request):
     # если страницу только грузят
     else:
         data = {
-            'response': _('Ошибка метода'),
-            'header': _('Открытие Аэрокейсов'),
+            'response': pgettext('core', 'Ошибка типа запроса'),
+            'header': pgettext('open_box', 'Открытие кейсов'),
             'grey_btn': pgettext('core', 'Закрыть'),
         }
         return JResponse(data)

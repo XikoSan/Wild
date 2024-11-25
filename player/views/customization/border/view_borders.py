@@ -1,11 +1,12 @@
 from django.contrib.auth.decorators import login_required
 from django.db.models import Sum
 from django.shortcuts import get_object_or_404, redirect, render
+from django.utils.translation import pgettext
 from django.utils.translation import ugettext as _
 
+from ava_border.models.ava_border_ownership import AvaBorderOwnership
 from player.decorators.player import check_player
 from player.player import Player
-from ava_border.models.ava_border_ownership import AvaBorderOwnership
 from storage.models.lootbox_prize import LootboxPrize
 
 
@@ -30,7 +31,7 @@ def view_borders(request, pk):
         borders = AvaBorderOwnership.objects.filter(owner=char)
 
     return render(request, 'player/redesign/customization/view_borders.html', {
-        'page_name': _('Просмотр рамок'),
+        'page_name': pgettext('view_borders', 'Просмотр рамок'),
         'player': player,
         'char': char,
         'borders': borders,

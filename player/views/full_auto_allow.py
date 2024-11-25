@@ -1,22 +1,20 @@
+import re
 from datetime import datetime, timedelta
-
-
 from django.contrib.auth.decorators import login_required
+from django.utils import translation
+from django.utils.translation import pgettext
+from django.utils.translation import ugettext as _
 
-from wild_politics.settings import JResponse
 from player.decorators.player import check_player
 from player.player import Player
 from player.player_settings import PlayerSettings
-from django.utils import translation
-from django.utils.translation import ugettext as _
-import re
+from wild_politics.settings import JResponse
+
 
 # Использовать Энергетики в авто-добыче
 @login_required(login_url='/')
 @check_player
 def full_auto_allow(request):
-
-
     if request.method == "POST":
         # получаем персонажа игрока
         player = Player.get_instance(account=request.user)
@@ -38,8 +36,8 @@ def full_auto_allow(request):
 
         else:
             data = {
-                'response': _('Некорректное значение'),
-                'header': _('Энергетики в авто-добыче'),
+                'response': pgettext('full_auto', 'Некорректное значение'),
+                'header': pgettext('full_auto', 'Энергетики в авто-добыче'),
                 'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
@@ -54,8 +52,8 @@ def full_auto_allow(request):
     # если страницу только грузят
     else:
         data = {
-            'response': _('Ошибка метода'),
-            'header': _('Энергетики в авто-добыче'),
+            'response': pgettext('core', 'Ошибка типа запроса'),
+            'header': pgettext('full_auto', 'Энергетики в авто-добыче'),
             'grey_btn': pgettext('core', 'Закрыть'),
         }
         return JResponse(data)

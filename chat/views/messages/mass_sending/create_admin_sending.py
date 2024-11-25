@@ -105,7 +105,6 @@ def create_admin_sending(request):
 
         if not request.user.is_superuser:
             data = {
-                # 'response': _('positive_enrg_req'),
                 'response': 'Недостаточно прав',
                 'header': 'Новая рассылка',
                 'grey_btn': 'Закрыть',
@@ -122,7 +121,6 @@ def create_admin_sending(request):
     # если страницу только грузят
     else:
         data = {
-            # 'response': _('positive_enrg_req'),
             'response': 'Ошибка типа запроса',
             'header': 'Новая рассылка',
             'grey_btn': 'Закрыть',

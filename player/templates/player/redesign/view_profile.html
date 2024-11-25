@@ -136,7 +136,7 @@
 				<div class="ct__s">
 					<h2 class="ct__s-title">{% trans 'был в сети' context "profile" %}</h2>
 					<p class="ct__s-text">
-						{% if dtime %}{{ dtime }}{% else %}{% trans 'давно' %}{% endif %}
+						{% if dtime %}{{ dtime }}{% else %}{% trans 'давно' context "profile" %}{% endif %}
 					</p>
 				</div>
 
@@ -207,13 +207,13 @@
 				</div>
 
 				<div class="ct__s">
-					<h2 class="ct__s-title">{% trans 'партия' %}</h2>
+					<h2 class="ct__s-title">{% trans 'партия' context "menu" %}</h2>
 					<p class="ct__s-text">
 						{% if char.party %}
 						<a href='/party/{% localize off %}{{ char.party.pk }}{% endlocalize %}'>
 							{{ char.party.title }}
 						</a>
-						{% else %}{% trans 'беспартийный' %}{% endif %}
+						{% else %}{% trans 'беспартийный' context "profile" %}{% endif %}
 						(
 						<a href="/party_history/{% localize off %}{{ char.pk }}{% endlocalize %}/">
 							{% trans 'история' context "profile" %}
@@ -223,7 +223,7 @@
 				</div>
 
 				<div class="ct__s">
-					<h2 class="ct__s-title">{% trans 'должность в партии' %}</h2>
+					<h2 class="ct__s-title">{% trans 'должность в партии' context "profile" %}</h2>
 					<p class="ct__s-text">
 						{% if char.party_post %}
 							{% if char.party_post.based %}
@@ -231,13 +231,13 @@
 							{% else %}
 								{{ char.party_post.title }}
 							{% endif %}
-						{% else %}{% trans 'беспартийный' %}{% endif %}
+						{% else %}{% trans 'беспартийный' context "profile" %}{% endif %}
 					</p>
 				</div>
 
 				<div class="ct__s">
 					<h2 class="ct__s-title">
-						<span>{% trans 'о себе' %}:</span>
+						<span>{% trans 'о себе' context "profile" %}:</span>
 					</h2>
 					<p id="player_bio_view" class="ct__s-text" >{% if not char.bio %}{{ user_link }}{% else %}{{ char.bio }}{% endif %}</p>
 				</div>

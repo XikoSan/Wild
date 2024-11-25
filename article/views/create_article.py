@@ -114,7 +114,6 @@ def create_article(request):
     # если страницу только грузят
     else:
         data = {
-            # 'response': _('positive_enrg_req'),
             'response': pgettext('core', 'Ошибка типа запроса'),
             'header': pgettext('new_article', 'Новая статья'),
             'grey_btn': pgettext('core', 'Закрыть'),

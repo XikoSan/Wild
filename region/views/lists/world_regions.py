@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.utils import timezone
 from django.utils.translation import ugettext as _
-
+from django.utils.translation import pgettext
 from player.decorators.player import check_player
 from player.player import Player
 from player.views.lists.get_thing_page import get_thing_page
@@ -62,19 +62,19 @@ def world_regions_list(request):
 
         'on_map_id': {
             'text': '',
-            'select_text': 'Герб',
+            'select_text': pgettext('lists', 'Герб'),
             'visible': 'true'
         },
 
         'region_name': {
-            'text': 'Регион',
-            'select_text': 'Регион',
+            'text': pgettext('lists', 'Регион'),
+            'select_text': pgettext('lists', 'Регион'),
             'visible': 'true'
         },
 
         'online': {
-            'text': 'Онлайн',
-            'select_text': 'Онлайн',
+            'text': pgettext('map', 'Онлайн'),
+            'select_text': pgettext('map', 'Онлайн'),
             'visible': 'true'
         },
 
@@ -87,7 +87,7 @@ def world_regions_list(request):
 
     # отправляем в форму
     return render(request, 'player/redesign/lists/universal_list.html', {
-        'page_name': _('Регионы игры'),
+        'page_name': pgettext('world_regions', 'Регионы игры'),
 
         'player': player,
 

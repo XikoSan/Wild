@@ -1,11 +1,11 @@
 import json
-from datetime import datetime
-
 import pytz
 import redis
+from datetime import datetime
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.templatetags.static import static
+from django.utils.translation import pgettext
 from django.utils.translation import ugettext as _
 
 from chat.models.stickers_ownership import StickersOwnership
@@ -27,7 +27,7 @@ def skill_queue(request):
 
     # отправляем в форму
     return render(request, 'player/skills/skill_queue.html', {
-        'page_name': _('Навыки'),
+        'page_name': pgettext('cash_log', 'Навыки'),
 
         'player': player,
 

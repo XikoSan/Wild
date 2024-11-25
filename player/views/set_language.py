@@ -1,22 +1,20 @@
+import re
 from datetime import datetime, timedelta
-
-
 from django.contrib.auth.decorators import login_required
+from django.utils import translation
+from django.utils.translation import pgettext
+from django.utils.translation import ugettext as _
 
-from wild_politics.settings import JResponse
 from player.decorators.player import check_player
 from player.player import Player
 from player.player_settings import PlayerSettings
-from django.utils import translation
-from django.utils.translation import ugettext as _
-import re
+from wild_politics.settings import JResponse
+
 
 # Начать учет активности
 @login_required(login_url='/')
 @check_player
 def set_language(request):
-
-
     if request.method == "POST":
         # получаем персонажа игрока
         player = Player.get_instance(account=request.user)
@@ -35,8 +33,8 @@ def set_language(request):
 
         else:
             data = {
-                'response': _('Такого языка в игре нет'),
-                'header': _('Изменение языка'),
+                'response': pgettext('set_language', 'Такого языка в игре нет'),
+                'header': pgettext('set_language', 'Изменение языка'),
                 'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
@@ -51,8 +49,8 @@ def set_language(request):
     # если страницу только грузят
     else:
         data = {
-            'response': _('Ошибка метода'),
-            'header': _('Изменение языка'),
+            'response': pgettext('core', 'Ошибка типа запроса'),
+            'header': pgettext('set_language', 'Изменение языка'),
             'grey_btn': pgettext('core', 'Закрыть'),
         }
         return JResponse(data)

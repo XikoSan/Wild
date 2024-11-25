@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 from django.contrib.auth.decorators import login_required
 from django.utils import translation
 from django.utils.translation import ugettext as _
-
+from django.utils.translation import pgettext
 from player.decorators.player import check_player
 from player.player import Player
 from player.player_settings import PlayerSettings
@@ -24,8 +24,8 @@ def set_timezone(request):
 
         else:
             data = {
-                'response': _('Такого часового пояса в игре нет'),
-                'header': _('Изменение часового пояса'),
+                'response': pgettext('set_timezone', 'Такого часового пояса в игре нет'),
+                'header': pgettext('set_timezone', 'Изменение часового пояса'),
                 'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
@@ -40,8 +40,8 @@ def set_timezone(request):
     # если страницу только грузят
     else:
         data = {
-            'response': _('Ошибка метода'),
-            'header': _('Изменение часового пояса'),
+            'response': pgettext('core', 'Ошибка типа запроса'),
+            'header': pgettext('set_timezone', 'Изменение часового пояса'),
             'grey_btn': pgettext('core', 'Закрыть'),
         }
         return JResponse(data)

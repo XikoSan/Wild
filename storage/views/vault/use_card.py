@@ -7,6 +7,7 @@ from player.decorators.player import check_player
 from player.player import Player
 from wild_politics.settings import JResponse
 import datetime
+from django.utils.translation import pgettext
 from django.apps import apps
 
 
@@ -19,16 +20,11 @@ def use_card(request):
         # получаем персонажа
         player = Player.get_instance(account=request.user)
 
-        header = 'Активация премиум-аккаунта'
-        if player.premium > timezone.now():
-            header = 'Продление премиум-аккаунта'
-
         if not player.cards_count > 0:
             data = {
-                # 'response': _('positive_enrg_req'),
-                'response': 'Недостаточно карт Wild Pass. Приобретите их у Администрации',
-                'header': header,
-                'grey_btn': 'Закрыть',
+                'response': pgettext('use_card', 'Недостаточно Wild Pass'),
+                'header': pgettext('use_card', 'Активация Wild Pass'),
+                'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
 
@@ -70,9 +66,8 @@ def use_card(request):
     # если страницу только грузят
     else:
         data = {
-            # 'response': _('positive_enrg_req'),
-            'response': 'Ошибка типа запроса',
-            'header': 'Изучение навыка',
-            'grey_btn': 'Закрыть',
+            'response': pgettext('core', 'Ошибка типа запроса'),
+            'header': pgettext('use_card', 'Активация Wild Pass'),
+            'grey_btn': pgettext('core', 'Закрыть'),
         }
         return JResponse(data)

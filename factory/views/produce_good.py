@@ -36,7 +36,6 @@ def produce_good(request):
 
         if player.destination:
             data = {
-                # 'response': _('wait_flight_end'),
                 'response': pgettext('factory', 'Дождитесь конца полёта'),
                 'header': pgettext('factory', 'Ошибка производства'),
                 'grey_btn': pgettext('core', 'Закрыть'),

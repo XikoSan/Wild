@@ -82,6 +82,8 @@ def switch_chat(request, chat_id):
 
     else:
         data = {
-            'response': _('Некорректный запрос'),
+            'response': pgettext('core', 'Ошибка типа запроса'),
+            'header': pgettext('chat', 'Новый стикерпак'),
+            'grey_btn': pgettext('core', 'Закрыть'),
         }
         return JsonResponse(data)

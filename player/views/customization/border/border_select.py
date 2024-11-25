@@ -1,11 +1,12 @@
 from django.contrib.auth.decorators import login_required
 from django.db.models import Sum
 from django.shortcuts import render
+from django.utils.translation import pgettext
 from django.utils.translation import ugettext as _
 
+from ava_border.models.ava_border_ownership import AvaBorderOwnership
 from player.decorators.player import check_player
 from player.player import Player
-from ava_border.models.ava_border_ownership import AvaBorderOwnership
 
 
 @login_required(login_url='/')
@@ -24,10 +25,9 @@ def border_select(request):
         if borders.filter(in_use=True).exists():
             used = borders.get(in_use=True)
 
-
     return render(request, 'player/redesign/customization/border_select.html', {
-                                                            'page_name': _('Выбор рамки'),
-                                                            'player': player,
-                                                            'borders': borders,
-                                                            'used': used,
-                                                           })
+        'page_name': pgettext('border_select', 'Выбор рамки'),
+        'player': player,
+        'borders': borders,
+        'used': used,
+    })

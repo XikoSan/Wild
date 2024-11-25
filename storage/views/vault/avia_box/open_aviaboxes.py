@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from django.utils import translation
 from django.utils.translation import ugettext as _
-
+from django.utils.translation import pgettext
 from player.decorators.player import check_player
 from player.lootbox.lootbox import Lootbox
 from player.player import Player
@@ -25,8 +25,8 @@ def open_aviaboxes(request):
     if request.method == "POST":
 
         data = {
-            'response': 'Аэрокейсы отключены',
-            'header': 'Открытие Аэрокейсов',
+            'response': pgettext('open_box', 'Кейсы отключены'),
+            'header': pgettext('open_box', 'Открытие кейсов'),
             'grey_btn': pgettext('core', 'Закрыть'),
         }
         return JResponse(data)
@@ -39,16 +39,16 @@ def open_aviaboxes(request):
         if mode == 'rerun':
             if not LootboxPrize.objects.filter(player=player, deleted=False).exists():
                 data = {
-                    'response': 'У вас нет неполученных наград',
-                    'header': 'Открытие Аэрокейсов',
+                    'response': pgettext('open_box', 'У вас нет неполученных наград'),
+                    'header': pgettext('open_box', 'Открытие кейсов'),
                     'grey_btn': pgettext('core', 'Закрыть'),
                 }
                 return JResponse(data)
 
             if player.gold < 500:
                 data = {
-                    'response': 'Недостаточно золота, необходимо: ' + str(500),
-                    'header': 'Открытие Аэрокейсов',
+                    'response': pgettext('open_box', 'Недостаточно золота, необходимо: %(value)s') % {"value": str(500)},
+                    'header': pgettext('open_box', 'Открытие кейсов'),
                     'grey_btn': pgettext('core', 'Закрыть'),
                 }
                 return JResponse(data)
@@ -74,8 +74,8 @@ def open_aviaboxes(request):
         if not mode == 'rerun':
             if not Lootbox.objects.filter(player=player, stock__gt=0).exists():
                 data = {
-                    'response': 'У вас нет Аэрокейсов',
-                    'header': 'Открытие Аэрокейсов',
+                    'response': pgettext('open_box', 'У вас нет кейсов'),
+                    'header': pgettext('open_box', 'Открытие кейсов'),
                     'grey_btn': pgettext('core', 'Закрыть'),
                 }
                 return JResponse(data)
@@ -87,8 +87,8 @@ def open_aviaboxes(request):
 
         except ValueError:
             data = {
-                'response': 'Некорректное количество Аэрокейсов для открытия',
-                'header': 'Открытие Аэрокейсов',
+                'response': pgettext('open_box', 'Некорректное количество кейсов для открытия'),
+                'header': pgettext('open_box', 'Открытие кейсов'),
                 'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
@@ -96,8 +96,8 @@ def open_aviaboxes(request):
         if not mode == 'rerun':
             if open_count > lootboxes.stock:
                 data = {
-                    'response': 'Недостаточно Аэрокейсов для открытия',
-                    'header': 'Открытие Аэрокейсов',
+                    'response': pgettext('open_box', 'Недостаточно кейсов для открытия'),
+                    'header': pgettext('open_box', 'Открытие кейсов'),
                     'grey_btn': pgettext('core', 'Закрыть'),
                 }
                 return JResponse(data)
@@ -179,8 +179,8 @@ def open_aviaboxes(request):
     # если страницу только грузят
     else:
         data = {
-            'response': _('Ошибка метода'),
-            'header': _('Открытие Аэрокейсов'),
+            'response': pgettext('core', 'Ошибка типа запроса'),
+            'header': pgettext('open_box', 'Открытие кейсов'),
             'grey_btn': pgettext('core', 'Закрыть'),
         }
         return JResponse(data)

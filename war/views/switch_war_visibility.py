@@ -3,7 +3,7 @@ from datetime import datetime, timedelta
 from django.contrib.auth.decorators import login_required
 from django.utils import translation
 from django.utils.translation import ugettext as _
-
+from django.utils.translation import pgettext
 from player.decorators.player import check_player
 from player.player import Player
 from player.player_settings import PlayerSettings
@@ -35,16 +35,16 @@ def switch_war_visibility(request):
 
         if not class_founded:
             data = {
-                'response': _('Нет такого типа войн'),
-                'header': _('Скрытие войны'),
+                'response': pgettext('war_visibility', 'Нет такого типа войн'),
+                'header': pgettext('war_visibility', 'Скрытие войны'),
                 'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
 
         if not war_class.objects.filter(pk=int(request.POST.get('pk'))).exists():
             data = {
-                'response': _('Нет такой войны'),
-                'header': _('Скрытие войны'),
+                'response': pgettext('war_visibility', 'Нет такой войны'),
+                'header': pgettext('war_visibility', 'Скрытие войны'),
                 'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
@@ -59,8 +59,8 @@ def switch_war_visibility(request):
                                            player=player,
                                            side=request.POST.get('side')).exists():
             data = {
-                'response': _('Нет такой записи об участии в бою'),
-                'header': _('Скрытие войны'),
+                'response': pgettext('war_visibility', 'Нет такой записи об участии в бою'),
+                'header': pgettext('war_visibility', 'Скрытие войны'),
                 'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
@@ -87,8 +87,8 @@ def switch_war_visibility(request):
     # если страницу только грузят
     else:
         data = {
-            'response': _('Ошибка метода'),
-            'header': _('Скрытие войны'),
+            'response': pgettext('core', 'Ошибка типа запроса'),
+            'header': pgettext('war_visibility', 'Скрытие войны'),
             'grey_btn': pgettext('core', 'Закрыть'),
         }
         return JResponse(data)

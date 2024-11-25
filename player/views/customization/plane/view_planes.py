@@ -7,6 +7,7 @@ from player.decorators.player import check_player
 from player.player import Player
 from region.models.plane import Plane
 from storage.models.lootbox_prize import LootboxPrize
+from django.utils.translation import pgettext
 
 
 @login_required(login_url='/')
@@ -30,7 +31,7 @@ def view_planes(request, pk):
         planes = Plane.objects.filter(player=char).order_by('plane')
 
     return render(request, 'player/redesign/customization/view_planes.html', {
-        'page_name': _('Выбор авиации'),
+        'page_name': pgettext('view_planes', 'Авиация'),
         'player': player,
         'char': char,
         'planes': planes,

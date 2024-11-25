@@ -8,7 +8,7 @@ from player.logs.skill_training import SkillTraining
 from player.player import Player
 from player.views.get_subclasses import get_subclasses
 from skill.models.skill import Skill
-
+from django.utils.translation import pgettext
 
 @login_required(login_url='/')
 @check_player
@@ -56,7 +56,7 @@ def skills_list(request):
 
     # отправляем в форму
     return render(request, 'redesign/skill/skill_list.html', {
-        'page_name': _('Навыки'),
+        'page_name': pgettext('cash_log', 'Навыки'),
 
         'player': player,
 

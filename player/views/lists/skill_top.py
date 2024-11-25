@@ -7,6 +7,7 @@ from region.models.region import Region
 from player.player import Player
 from player.decorators.player import check_player
 from django.db import connection
+from django.utils.translation import pgettext
 
 # список людей с самыми прокаченными навыками
 # page - открываемая страница
@@ -18,7 +19,7 @@ def skill_top(request):
 
     # отправляем в форму
     return render(request, 'player/redesign/lists/skill_top.html', {
-        'page_name': _('Топ по характеристикам'),
+        'page_name': pgettext('skill_top', 'Топ по характеристикам'),
 
         'player': player,
     })
