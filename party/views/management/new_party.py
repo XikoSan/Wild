@@ -1,6 +1,7 @@
 # from celery import uuid
 # from celery.task.control import revoke
 
+import redis
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 from django.utils import timezone
@@ -77,12 +78,56 @@ def new_party(request):
                 return redirect('party')
         # если страницу только грузят
         else:
-            new_pty_frm = NewPartyForm()
+            skill_sum = 10
+            new_pty_frm = None
+            sorted_chars = None
+            party_sizes = {}
+
+            if player.power + player.knowledge + player.endurance < 10:
+                skill_sum = player.power + player.knowledge + player.endurance
+
+                # -----------------
+
+                # Получаем всех игроков, которые являются главами партий
+                party_leads = Player.objects.filter(party_post__party_lead=True)
+
+                # Создаем подключение к Redis
+                r = redis.StrictRedis(host='redis', port=6379, db=0)
+
+                # Составляем список кортежей (игрок, время последнего онлайна)
+                chars_with_online_time = []
+
+                for char in party_leads:
+                    # Получаем timestamp последнего онлайна игрока из Redis
+                    last_online_timestamp = r.hget('online', str(char.pk))
+
+                    if last_online_timestamp:
+                        # Преобразуем в целое число, если timestamp найден
+                        last_online_timestamp = int(last_online_timestamp)
+                        chars_with_online_time.append((char, last_online_timestamp))
+
+                # Сортируем список по времени последнего онлайна (от самого свежего)
+                chars_with_online_time.sort(key=lambda x: x[1], reverse=True)
+
+                # Получаем отсортированный список игроков
+                sorted_chars = [char for char, _ in chars_with_online_time]
+
+                # -----------------
+
+                for sorted_char in sorted_chars:
+                    party_sizes[sorted_char.party] = Player.objects.filter(party=sorted_char.party).count()
+
+            else:
+                new_pty_frm = NewPartyForm()
 
             page = 'party/redesign/new_party.html'
             # отправляем в форму
             return render(request, page,
                           {'player': player,
                            'page_name': pgettext('new_party', 'Новая партия'),
-                           'new_party_form': new_pty_frm
+                           'new_party_form': new_pty_frm,
+
+                           'skill_sum': skill_sum,
+                           'sorted_chars': sorted_chars,
+                           'sizes': party_sizes
                            })

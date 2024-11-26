@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-26 02:36+0300\n"
-"PO-Revision-Date: 2024-11-26 02:37+0300\n"
+"POT-Creation-Date: 2024-11-27 00:51+0300\n"
+"PO-Revision-Date: 2024-11-27 00:52+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -546,6 +546,7 @@ msgstr "Coat"
 #: education/templates/education/edu_election.html:104
 #: education/templates/education/edu_election.html:296
 #: gov/templates/gov/redesign/elections.html:239
+#: party/templates/party/redesign/new_party.html:66
 #: party/templates/party/redesign/primaries.html:99
 #: party/templates/party/redesign/primaries.html:243
 #: party/templatetags/redesign/tops/factory_top.py:82
@@ -4985,27 +4986,69 @@ msgctxt "profile"
 msgid "Отмена"
 msgstr "Cancel"
 
-#: party/templates/party/redesign/new_party.html:15
-#: party/views/management/new_party.py:86
+#: party/templates/party/redesign/new_party.html:16
+#: party/views/management/new_party.py:127
 msgctxt "new_party"
 msgid "Новая партия"
 msgstr "New party"
 
-#: party/templates/party/redesign/new_party.html:19
+#: party/templates/party/redesign/new_party.html:20
 msgctxt "new_party"
 msgid "Стоимость создания партии"
 msgstr "Party creation cost"
 
-#: party/templates/party/redesign/new_party.html:25
+#: party/templates/party/redesign/new_party.html:26
 msgctxt "new_party"
 msgid "Название партии"
 msgstr "Party name"
 
-#: party/templates/party/redesign/new_party.html:41
+#: party/templates/party/redesign/new_party.html:42
 #: party/templates/party/redesign/party_blocks/no_party.html:21
 msgctxt "no_party"
 msgid "создать партию"
 msgstr "create a party"
+
+#: party/templates/party/redesign/new_party.html:51
+msgctxt "new_party"
+msgid "Требуется сумма уровней Характеристик"
+msgstr "Requires sum of Characteristics levels"
+
+#: party/templates/party/redesign/new_party.html:53
+msgctxt "new_party"
+msgid "Ваш суммарный уровень"
+msgstr "Your total level"
+
+#: party/templates/party/redesign/new_party.html:55
+msgctxt "new_party"
+msgid ""
+"Рекомендуем присоединиться к одной из существующих партий, и изучить игру, "
+"прежде чем начинать собственную карьеру партийного лидера"
+msgstr ""
+"We recommend joining one of the existing parties and learning the game "
+"before starting your own career as a party leader"
+
+#: party/templates/party/redesign/new_party.html:58
+msgctxt "new_party"
+msgid ""
+"Ниже представлены партии в порядке давности убывания онлайна их лидеров. "
+"Они, вероятнее всего, будут рады принять вас к себе"
+msgstr ""
+"Below are the parties listed in descending order of how long their leaders "
+"have been online. They will most likely be happy to host you"
+
+#: party/templates/party/redesign/new_party.html:67
+#: party/views/lists/region_parties.py:67
+#: party/views/lists/region_parties.py:68 party/views/lists/state_parties.py:79
+#: party/views/lists/state_parties.py:80 party/views/lists/world_parties.py:68
+#: party/views/lists/world_parties.py:69
+msgctxt "lists"
+msgid "Размер"
+msgstr "Size"
+
+#: party/templates/party/redesign/new_party.html:69
+msgctxt "new_party"
+msgid "Глава партии"
+msgstr "Party leader"
 
 #: party/templates/party/redesign/party.html:63
 msgctxt "has_party"
@@ -5257,14 +5300,6 @@ msgctxt "party_top"
 msgid "Топ партий"
 msgstr "Party top"
 
-#: party/views/lists/region_parties.py:67
-#: party/views/lists/region_parties.py:68 party/views/lists/state_parties.py:79
-#: party/views/lists/state_parties.py:80 party/views/lists/world_parties.py:68
-#: party/views/lists/world_parties.py:69
-msgctxt "lists"
-msgid "Размер"
-msgstr "Size"
-
 #: party/views/lists/region_parties.py:81
 #: party/views/lists/region_parties.py:82 party/views/lists/state_parties.py:93
 #: party/views/lists/state_parties.py:94 party/views/lists/world_parties.py:82
@@ -5371,12 +5406,12 @@ msgctxt "party_manage"
 msgid "Выдано %(gold_sum)s золота"
 msgstr "%(gold_sum)s gold issued"
 
-#: party/views/management/new_party.py:48
+#: party/views/management/new_party.py:49
 msgctxt "party_manage"
 msgid "Глава партии"
 msgstr "Party leader"
 
-#: party/views/management/new_party.py:52
+#: party/views/management/new_party.py:53
 msgctxt "party_manage"
 msgid "Новый игрок партии"
 msgstr "New party member"

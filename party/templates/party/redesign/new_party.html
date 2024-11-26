@@ -7,13 +7,14 @@
 {% load get_attr %}
 {% load get_key_list %}
 {% load get_class_name %}
+{% load redesign.template_svg.nopic_list %}
 
 {% block content %}
   <section class="party custom-scroll">
 
     <!-- Заголовок -->
     <h1 class="party__title ct__page-title">{% trans 'Новая партия' context "new_party" %}</h1>
-
+    {% if not skill_sum < 10 %}
     <div class="party__new-top">
 
       <h2 class="party__new-title">{% trans 'Стоимость создания партии' context "new_party" %}: <span style="font-weight: inherit;">10 G</span></h2>
@@ -44,7 +45,70 @@
       </form>
 
     </div>
+    {% else %}
+    <div class="party__new-top">
 
+      <h2 class="party__new-title">{% trans 'Требуется сумма уровней Характеристик' context "new_party" %}: 10</h2>
+
+      <h2 class="party__new-title">{% trans 'Ваш суммарный уровень' context "new_party" %}: {{ skill_sum }}</h2>
+
+      <span>{% trans 'Рекомендуем присоединиться к одной из существующих партий, и изучить игру, прежде чем начинать собственную карьеру партийного лидера' context "new_party" %}</span>
+      <br>
+      <br>
+      <span>{% trans 'Ниже представлены партии в порядке давности убывания онлайна их лидеров. Они, вероятнее всего, будут рады принять вас к себе' context "new_party" %}:</span>
+    </div>
+
+    <table class="ct__js-table" style="margin-top: 3vh;">
+      <tbody>
+
+        <tr>
+          <td class="j-t-image"></td>
+          <td class="j-t-title">{% trans 'Партия' context "lists" %}</td>
+          <td class="j-t-size">{% trans 'Размер' context "lists" %}</td>
+          <td class="j-t-leader_avatar"></td>
+          <td class="j-t-leader_nickname">{% trans 'Глава партии' context "new_party" %}</td>
+        </tr>
+        {% for char in sorted_chars %}
+        <tr>
+		  <td class="j-t-image" style="cursor: pointer" onclick="{% localize off %}window.open('/party/{{ char.party.pk }}/'){% endlocalize %}">
+            {% if char.party.image %}
+                <img src="{{ char.party.image.url }}">
+            {% else %}
+              <svg style="display: block; width: 30rem; height: 30rem;" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9.4311 4C9.4311 4.78951 8.72121 5.5 7.75486 5.5C6.7885 5.5 6.07861 4.78951 6.07861 4C6.07861 3.21049 6.7885 2.5 7.75486 2.5C8.72121 2.5 9.4311 3.21049 9.4311 4Z" stroke="var(--c10one)"/>
+                <path d="M5.07882 4.5C5.07882 5.01337 4.61252 5.5 3.94664 5.5C3.28076 5.5 2.81445 5.01337 2.81445 4.5C2.81445 3.98663 3.28076 3.5 3.94664 3.5C4.61252 3.5 5.07882 3.98663 5.07882 4.5Z" stroke="var(--c10one)"/>
+                <path d="M12.695 4.5C12.695 5.01337 12.2287 5.5 11.5628 5.5C10.897 5.5 10.4307 5.01337 10.4307 4.5C10.4307 3.98663 10.897 3.5 11.5628 3.5C12.2287 3.5 12.695 3.98663 12.695 4.5Z" stroke="var(--c10one)"/>
+                <path d="M4.49023 12C4.49023 7.2 6.30377 6 7.7546 6C11.2366 6 11.019 10 11.019 12H4.49023Z" stroke="var(--c10one)"/>
+                <path d="M1.22607 11C1.22607 7 2.73673 6 3.94526 6C4.87949 6 5.17473 6.47545 5.57856 7C4.52823 8.0963 4.52193 10.0802 4.49044 11H1.22607Z" stroke="var(--c10one)"/>
+                <path d="M14.4468 11C14.4468 7 12.9361 6 11.7276 6C10.7934 6 10.4981 6.47545 10.0943 7C11.1446 8.0963 11.1509 10.0802 11.1824 11H14.4468Z" stroke="var(--c10one)"/>
+              </svg>
+            {% endif %}
+          </td>
+
+          <td class="j-t-title" style="cursor: pointer" onclick="{% localize off %}window.open('/party/{{ char.party.pk }}/'){% endlocalize %}">
+            {{ char.party.title }}
+          </td>
+
+          <td class="j-t-size" style="cursor: pointer" onclick="{% localize off %}window.open('/party/{{ char.party.pk }}/'){% endlocalize %}">
+            {{ sizes|dict_key:char.party }}
+          </td>
+
+          <td class="j-t-leader_avatar" style="cursor: pointer" onclick="{% localize off %}window.open('/profile/{{ char.pk }}/'){% endlocalize %}">
+            {% if not char.image_75 %}
+              {% nopic_list player '' %}
+            {% else %}
+              <img src="{{ char.image_75.url }}">
+            {% endif %}
+          </td>
+
+          <td class="j-t-leader_nickname" style="cursor: pointer" onclick="window.open('/profile/{{ char.pk }}/')">
+            {{ char.nickname }}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% endif %}
 	</section>
 {% endblock %}
 
