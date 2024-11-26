@@ -101,7 +101,7 @@
             {% endif %}
           </td>
 
-          <td class="j-t-leader_nickname" style="cursor: pointer" onclick="window.open('/profile/{{ char.pk }}/')">
+          <td class="j-t-leader_nickname" style="cursor: pointer" onclick="{% localize off %}window.open('/profile/{{ char.pk }}/'){% endlocalize %}">
             {{ char.nickname }}
           </td>
         </tr>
