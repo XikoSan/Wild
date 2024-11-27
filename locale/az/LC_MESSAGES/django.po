@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-27 00:51+0300\n"
-"PO-Revision-Date: 2024-11-24 11:55+0300\n"
+"POT-Creation-Date: 2024-11-27 18:05+0300\n"
+"PO-Revision-Date: 2024-11-27 18:05+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: az\n"
@@ -4967,7 +4967,7 @@ msgid "Отмена"
 msgstr "Ləğv et"
 
 #: party/templates/party/redesign/new_party.html:16
-#: party/views/management/new_party.py:127
+#: party/views/management/new_party.py:146
 msgctxt "new_party"
 msgid "Новая партия"
 msgstr "Yeni partiya"
@@ -5273,7 +5273,7 @@ msgstr "Artım"
 #: party/templatetags/redesign/tops/skill_top.py:101
 msgctxt "skill_top"
 msgid "Топ прироста Характеристик"
-msgstr "Xüsusiyyət"
+msgstr "Xüsusiyyət artımı"
 
 #: party/views/lists/party_history.py:36
 msgctxt "party_hist"
@@ -5391,12 +5391,12 @@ msgctxt "party_manage"
 msgid "Выдано %(gold_sum)s золота"
 msgstr "%(gold_sum)s qızıl verildi"
 
-#: party/views/management/new_party.py:49
+#: party/views/management/new_party.py:51
 msgctxt "party_manage"
 msgid "Глава партии"
 msgstr "Partiya başçısı"
 
-#: party/views/management/new_party.py:53
+#: party/views/management/new_party.py:55
 msgctxt "party_manage"
 msgid "Новый игрок партии"
 msgstr "Partiyanın yeni üzvü"
@@ -7021,8 +7021,6 @@ msgstr "tarix"
 #: player/templates/player/redesign/profile.html:446
 #: player/templates/player/redesign/view_profile.html:216
 #: player/templates/player/redesign/view_profile.html:234
-#, fuzzy
-#| msgid "беспартийный"
 msgctxt "profile"
 msgid "беспартийный"
 msgstr "partiyasız"
@@ -7035,26 +7033,20 @@ msgstr "tarix"
 
 #: player/templates/player/redesign/profile.html:438
 #: player/templates/player/redesign/view_profile.html:226
-#, fuzzy
-#| msgid "должность в партии"
 msgctxt "profile"
 msgid "должность в партии"
 msgstr "partiyadakı mövqe"
 
 #: player/templates/player/redesign/profile.html:473
 #: player/templates/player/redesign/view_profile.html:240
-#, fuzzy
-#| msgid "о себе"
 msgctxt "profile"
 msgid "о себе"
 msgstr "haqqında"
 
 #: player/templates/player/redesign/profile.html:544
-#, fuzzy
-#| msgid "Загрузить"
 msgctxt "profile"
 msgid "Загрузить"
-msgstr "yüklə"
+msgstr "Yüklə"
 
 #: player/templates/player/redesign/profile.html:599
 msgctxt "profile"
@@ -7148,11 +7140,9 @@ msgid "был в сети"
 msgstr "online idi"
 
 #: player/templates/player/redesign/view_profile.html:139
-#, fuzzy
-#| msgid "давно"
 msgctxt "profile"
 msgid "давно"
-msgstr "Çoxdan"
+msgstr "çoxdan"
 
 #: player/templates/player/redesign/wallet.html:26
 #: player/templatetags/redesign/wallet_operations.py:37
@@ -7418,8 +7408,6 @@ msgid "Смена аватара"
 msgstr "Avatarın dəyişdirilməsi"
 
 #: player/views/customization/border/border_select.py:29
-#, fuzzy
-#| msgid "Выбор рамки"
 msgctxt "border_select"
 msgid "Выбор рамки"
 msgstr "Çərçivə seçimi"
@@ -7442,8 +7430,6 @@ msgid "Указанная рамка вам не принадлежит"
 msgstr "Seçilmiş çərçivə sizin deyil"
 
 #: player/views/customization/border/view_borders.py:34
-#, fuzzy
-#| msgid "Просмотр рамок"
 msgctxt "view_borders"
 msgid "Просмотр рамок"
 msgstr "Çərçivələrə baxın"
@@ -7564,15 +7550,11 @@ msgid "Недостаточно Энергетиков. Создайте их в
 msgstr "Kifayət qədər enerji yoxdur. Onları depoda yaradın"
 
 #: player/views/full_auto_allow.py:39
-#, fuzzy
-#| msgid "Некорректное значение"
 msgctxt "full_auto"
 msgid "Некорректное значение"
 msgstr "Yanlış rəqəm"
 
 #: player/views/full_auto_allow.py:40 player/views/full_auto_allow.py:56
-#, fuzzy
-#| msgid "Энергетики в авто-добыче"
 msgctxt "full_auto"
 msgid "Энергетики в авто-добыче"
 msgstr "Enerjilər avto-qazıntıda"
@@ -7663,11 +7645,9 @@ msgid "Жители региона"
 msgstr "Bölgənin əhalisi"
 
 #: player/views/lists/skill_top.py:22
-#, fuzzy
-#| msgid "Топ по характеристикам"
 msgctxt "skill_top"
 msgid "Топ по характеристикам"
-msgstr "Xüsusiyyət"
+msgstr "Xüsusiyyət sayı"
 
 #: player/views/lists/world_online.py:70
 msgctxt "lists"
@@ -7896,8 +7876,6 @@ msgid "Очередь навыков заполнена"
 msgstr "Bacarıq sırası doludur"
 
 #: player/views/wallet.py:22
-#, fuzzy
-#| msgid "Финансы"
 msgctxt "wallet"
 msgid "Финансы"
 msgstr "Maliyyə"
@@ -9675,20 +9653,15 @@ msgid "Операции с товарами"
 msgstr "Məsulla əməliyyatlar"
 
 #: storage/views/assets/assets_info.py:61
-#, fuzzy
-#| msgid "Такого склада у вас нет"
 msgctxt "assets_info"
 msgid "Такого склада у вас нет"
 msgstr "Belə depo sizdə yoxdur"
 
 #: storage/views/assets/assets_info.py:62
 #: storage/views/assets/assets_info.py:70
-#, fuzzy
-#| msgctxt "storage_upgrade"
-#| msgid "Улучшение склада"
 msgctxt "assets_info"
 msgid "Получение склада"
-msgstr "Deponun təkmilləşdirilməsi"
+msgstr "Depo alınması"
 
 #: storage/views/assets/assets_transfer.py:40
 msgctxt "assets"

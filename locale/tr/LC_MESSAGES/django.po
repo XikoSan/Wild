@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-27 00:51+0300\n"
+"POT-Creation-Date: 2024-11-27 18:05+0300\n"
 "PO-Revision-Date: 2024-11-24 00:58+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -780,12 +780,9 @@ msgstr "Yok böyle bir yetenek"
 #: bill/models/transfer_resources.py:175 bill/views/bills/new_bill.py:49
 #: bill/views/bills/new_bill.py:56 bill/views/bills/new_bill.py:63
 #: bill/views/bills/new_bill.py:70 bill/views/bills/new_bill.py:78
-#, fuzzy
-#| msgctxt "party_manage"
-#| msgid "Новый игрок партии"
 msgctxt "new_bill"
 msgid "Новый законопроект"
-msgstr "Yeni parti üyesi"
+msgstr "Yeni kanun"
 
 #: bill/models/change_coat.py:35 bill/models/change_form.py:48
 #: bill/models/change_residency.py:56 bill/models/change_taxes.py:66
@@ -797,75 +794,52 @@ msgstr "Yeni parti üyesi"
 #: bill/models/transfer_resources.py:87
 msgctxt "new_bill"
 msgid "Ограничение: не более одного законопроекта данного типа"
-msgstr ""
+msgstr "Limit: Bu türde birden fazla kanun yok"
 
 #: bill/models/change_coat.py:44
-#, fuzzy
-#| msgid "Ошибка отмены навыка"
 msgctxt "new_bill"
 msgid "Ошибка формы нового герба"
-msgstr "Beceri iptal hatası"
+msgstr "Devlet bayrağı hatası"
 
 #: bill/models/change_coat.py:180
-#, fuzzy
-#| msgctxt "overview"
-#| msgid "государства"
 msgctxt "new_bill"
 msgid "Новый герб государства"
-msgstr "devletin"
+msgstr "Devletin yeni bayrağı"
 
 #: bill/models/change_coat.py:181
-#, fuzzy
-#| msgctxt "party_manage"
-#| msgid "Смена названия партии"
 msgctxt "new_bill"
 msgid "Смена гербов государств"
-msgstr "Parti adı değişikliği"
+msgstr "Devlet bayrağının değişikliği"
 
 #: bill/models/change_form.py:25
-#, fuzzy
-#| msgctxt "menu"
-#| msgid "правительство"
 msgctxt "new_bill"
 msgid "Временное правительство"
-msgstr "devlet"
+msgstr "Geçici hükümet"
 
 #: bill/models/change_form.py:26
 msgctxt "new_bill"
 msgid "Президентская республика"
-msgstr ""
+msgstr "Cumhurbaşkanlığı cumhuriyeti"
 
 #: bill/models/change_form.py:62
-#, fuzzy
-#| msgctxt "w_trading"
-#| msgid "В поле количество должно быть число"
 msgctxt "new_bill"
 msgid "Новая форма государства должна быть указана"
-msgstr "Miktar alanında bir sayı olmalıdır"
+msgstr "Yeni devlet biçimi belirtilmeli"
 
 #: bill/models/change_form.py:69
-#, fuzzy
-#| msgctxt "factory"
-#| msgid "Указанный товар не существует"
 msgctxt "new_bill"
 msgid "Такой формы государства не существует"
-msgstr "Belirtilen ürün mevcut değil"
+msgstr "Bu devlet biçimi mevcut değil"
 
 #: bill/models/change_form.py:208
-#, fuzzy
-#| msgctxt "index"
-#| msgid "Расширяйте влияние своего государства."
 msgctxt "new_bill"
 msgid "Новая форма правления государства"
-msgstr "Devletinizin etkisini genişletin."
+msgstr "Yeni hükümet biçimi"
 
 #: bill/models/change_form.py:209
-#, fuzzy
-#| msgctxt "index"
-#| msgid "Расширяйте влияние своего государства."
 msgctxt "new_bill"
 msgid "Новые формы правления государств"
-msgstr "Devletinizin etkisini genişletin."
+msgstr "Yeni hükümet biçimi"
 
 #: bill/models/change_residency.py:32
 #, fuzzy
@@ -882,41 +856,29 @@ msgid "Выдаётся министром"
 msgstr "Bakan tarafından verilir"
 
 #: bill/models/change_residency.py:70
-#, fuzzy
-#| msgctxt "w_trading"
-#| msgid "В поле количество должно быть число"
 msgctxt "new_bill"
 msgid "Тип получения прописки должен быть указан"
-msgstr "Miktar alanında bir sayı olmalıdır"
+msgstr "İkamet kaydının türü belirtilmelidir"
 
 #: bill/models/change_residency.py:77
-#, fuzzy
-#| msgctxt "w_trading"
-#| msgid "Выбранного склада игрока не существует"
 msgctxt "new_bill"
 msgid "Такого типа получения прописки не существует"
-msgstr "Seçilen oyuncunun deposu mevcut değil"
+msgstr "Bu kayıt türü mevcut değil"
 
 #: bill/models/change_residency.py:84
-#, fuzzy
-#| msgctxt "mining"
-#| msgid "Ошибка получения финансирования"
 msgctxt "new_bill"
 msgid "Этот тип получения прописки уже выбран"
-msgstr "Finansman Hatası"
+msgstr "Bu kayıt türü zaten seçilmiş"
 
 #: bill/models/change_residency.py:273
-#, fuzzy
-#| msgctxt "party_manage"
-#| msgid "Новый игрок партии"
 msgctxt "new_bill"
 msgid "Новый способ выдачи прописки"
-msgstr "Yeni parti üyesi"
+msgstr "Kayıt vermenin yeni yolu"
 
 #: bill/models/change_residency.py:274
 msgctxt "new_bill"
 msgid "Новые способы выдачи прописки"
-msgstr ""
+msgstr "Kayıt vermenin yeni yolları"
 
 #: bill/models/change_taxes.py:22
 #, fuzzy
@@ -967,145 +929,105 @@ msgstr "Ticaret"
 #: bill/models/independence.py:61 bill/models/martial_law.py:80
 #: bill/models/transfer_accept.py:70 bill/models/transfer_region.py:78
 #: bill/models/transfer_resources.py:150
-#, fuzzy
-#| msgid "ID навыка должен быть числом"
 msgctxt "new_bill"
 msgid "ID региона должен быть целым числом"
-msgstr "Beceri Kimliği bir sayı olmalıdır"
+msgstr "Bölge ID-si bir tamsayı olmalıdır"
 
 #: bill/models/change_taxes.py:93 bill/models/construction.py:172
 #: bill/models/explore_resources.py:118 bill/models/geological_surveys.py:110
 #: bill/models/independence.py:119 bill/models/martial_law.py:130
 #: bill/models/transfer_accept.py:116 bill/models/transfer_region.py:140
-#, fuzzy
-#| msgid "Нет такого навыка"
 msgctxt "new_bill"
 msgid "Нет такого региона"
-msgstr "Yok böyle bir yetenek"
+msgstr "Böyle bölge yok"
 
 #: bill/models/change_taxes.py:103
-#, fuzzy
-#| msgid "Региональные налоги"
 msgctxt "new_bill"
 msgid "Не указана цель смены налога"
-msgstr "Bölgesel vergiler"
+msgstr "Vergi değişikliğinin amacı belirtilmedi"
 
 #: bill/models/change_taxes.py:113
-#, fuzzy
-#| msgid "Независимый регион"
 msgctxt "new_bill"
 msgid "Не указан изменяемый налог"
-msgstr "Bağımsız bölge"
+msgstr "Mevcut vergi belirtilmemiş"
 
 #: bill/models/change_taxes.py:126
-#, fuzzy
-#| msgctxt "w_trading_new"
-#| msgid "Цена товара должна быть положительным числом"
 msgctxt "new_bill"
 msgid "Новая величина налога должна быть целым числом"
-msgstr "Ürünlerin fiyatı pozitif bir sayı olmalıdır"
+msgstr "Yeni vergi tutarı tam sayı olmalıdır"
 
 #: bill/models/change_taxes.py:134
-#, fuzzy
-#| msgctxt "w_trading_new"
-#| msgid "Цена товара должна быть положительным числом"
 msgctxt "new_bill"
 msgid "Новая величина налога должна быть целым числом в интервале 0..90"
-msgstr "Ürünlerin fiyatı pozitif bir sayı olmalıdır"
+msgstr "Yeni vergi değeri 0-90 aralığında bir tam sayı olmalıdır"
 
 #: bill/models/change_taxes.py:286
 #: education/templates/education/edu_gov.html:309
-#, fuzzy
-#| msgid "Изменение часового пояса"
 msgctxt "new_bill"
 msgid "Изменение налогов"
-msgstr "Saat dilimini değiştirme"
+msgstr "Vergi değişiklikleri"
 
 #: bill/models/change_taxes.py:287
-#, fuzzy
-#| msgid "Изменение часового пояса"
 msgctxt "new_bill"
 msgid "Изменения налогов"
-msgstr "Saat dilimini değiştirme"
+msgstr "Vergi değişiklikleri"
 
 #: bill/models/change_title.py:37
-#, fuzzy
-#| msgctxt "party_manage"
-#| msgid "Название не может быть пустым"
 msgctxt "new_bill"
 msgid "Новое название не должно быть пустым"
-msgstr "Pozisyon başlığı boş olamaz"
+msgstr "Yeni ad boş olamaz"
 
 #: bill/models/change_title.py:154
-#, fuzzy
-#| msgctxt "assets"
-#| msgid "Перемещение товара"
 msgctxt "new_bill"
 msgid "Переименование государства"
-msgstr "Ürünlerin taşınması"
+msgstr "Devlet adın değiştirilmesi"
 
 #: bill/models/change_title.py:155
-#, fuzzy
-#| msgctxt "party_manage"
-#| msgid "Смена названия партии"
 msgctxt "new_bill"
 msgid "Переименования государств"
-msgstr "Parti adı değişikliği"
+msgstr "Devlet adın değiştirilmesi"
 
 #: bill/models/construction.py:29 region/building/hospital.py:154
 msgctxt "new_bill"
 msgid "Больница"
-msgstr ""
+msgstr "Hastane"
 
 #: bill/models/construction.py:39 region/building/power_plant.py:195
-#, fuzzy
-#| msgctxt "party_view"
-#| msgid "Тип"
 msgctxt "new_bill"
 msgid "ТЭЦ"
-msgstr "Tür"
+msgstr "Santral"
 
 #: bill/models/construction.py:50 region/building/defences.py:62
 #: region/building/defences.py:63
-#, fuzzy
-#| msgctxt "trading"
-#| msgid "тип предложения"
 msgctxt "new_bill"
 msgid "Укрепления"
-msgstr "teklif türü"
+msgstr "Tahkimatlar"
 
 #: bill/models/construction.py:60 region/building/infrastructure.py:118
-#, fuzzy
-#| msgid "Уровень Госпиталя"
 msgctxt "new_bill"
 msgid "Инфраструктура"
-msgstr "Hastane Seviyesi"
+msgstr "Altyapı"
 
 #: bill/models/construction.py:119 bill/models/explore_resources.py:76
 #: bill/models/transfer_region.py:99
 msgctxt "new_bill"
 msgid "В данном регионе введено военное положение"
-msgstr ""
+msgstr "Bu bölgede sıkıyönetim getirildi"
 
 #: bill/models/construction.py:137
-#, fuzzy
-#| msgctxt "w_trading_new"
-#| msgid "Цена товара должна быть положительным числом"
 msgctxt "new_bill"
 msgid "Уровни здания должны быть целым числом"
-msgstr "Ürünlerin fiyatı pozitif bir sayı olmalıdır"
+msgstr "Bina seviyeleri tam sayı olmalıdır"
 
 #: bill/models/construction.py:144
 msgctxt "new_bill"
 msgid "Уровни здания должны быть числом в интервале 1-1000"
-msgstr ""
+msgstr "Bina seviyeleri 1-1000 aralığında bir sayı olmalıdır"
 
 #: bill/models/construction.py:166
-#, fuzzy
-#| msgid "Нет такого навыка"
 msgctxt "new_bill"
 msgid "Нет такого здания"
-msgstr "Yok böyle bir yetenek"
+msgstr "Böyle bir bina yok"
 
 #: bill/models/construction.py:335 bill/models/construction.py:407
 #: bill/models/construction.py:428 bill/models/construction.py:462
@@ -1126,20 +1048,14 @@ msgid "Наличные"
 msgstr "Peşin para"
 
 #: bill/models/construction.py:535
-#, fuzzy
-#| msgctxt "menu"
-#| msgid "правительство"
 msgctxt "new_bill"
 msgid "Строительство"
-msgstr "devlet"
+msgstr "İnşaat"
 
 #: bill/models/construction.py:536
-#, fuzzy
-#| msgctxt "menu"
-#| msgid "правительство"
 msgctxt "new_bill"
 msgid "Строительства"
-msgstr "devlet"
+msgstr "İnşaat"
 
 #: bill/models/explore_resources.py:31 bill/models/geological_surveys.py:28
 #, fuzzy
@@ -1163,44 +1079,30 @@ msgid "Руда"
 msgstr "Maden"
 
 #: bill/models/explore_resources.py:91
-#, fuzzy
-#| msgctxt "storage"
-#| msgid "Недопустим ввод отрицательных чисел"
 msgctxt "new_bill"
 msgid "Недопустима разведка в минус"
 msgstr "Negatif sayıların girilmesine izin verilmez"
 
 #: bill/models/explore_resources.py:112 bill/models/geological_surveys.py:104
 #: bill/models/purchase_auction.py:148
-#, fuzzy
-#| msgctxt "storage"
-#| msgid "Недостаточно ресурсов"
 msgctxt "new_bill"
 msgid "Нет такого ресурса"
-msgstr "Yeterli kaynak yok"
+msgstr "Böyle kaynak yok"
 
 #: bill/models/explore_resources.py:353
-#, fuzzy
-#| msgctxt "mining"
-#| msgid "Ошибка добычи ресурсов"
 msgctxt "new_bill"
 msgid "Разведка ресурсов"
-msgstr "Madencilik hatası"
+msgstr "Kaynak araşdırması"
 
 #: bill/models/explore_resources.py:354
-#, fuzzy
-#| msgctxt "mining"
-#| msgid "Ошибка добычи ресурсов"
 msgctxt "new_bill"
 msgid "Разведки ресурсов"
-msgstr "Madencilik hatası"
+msgstr "Kaynak araşdırması"
 
 #: bill/models/geological_surveys.py:83
-#, fuzzy
-#| msgid "Такого региона нет"
 msgctxt "new_bill"
 msgid "Истощения в регионе нет"
-msgstr "Böyle bir bölge yok"
+msgstr "Bölgede tükenme yok"
 
 #: bill/models/geological_surveys.py:226 bill/models/geological_surveys.py:227
 msgctxt "new_bill"
@@ -5750,7 +5652,7 @@ msgid "Отмена"
 msgstr "İptal etme"
 
 #: party/templates/party/redesign/new_party.html:16
-#: party/views/management/new_party.py:127
+#: party/views/management/new_party.py:146
 msgctxt "new_party"
 msgid "Новая партия"
 msgstr "Yeni parti"
@@ -6221,12 +6123,12 @@ msgctxt "party_manage"
 msgid "Выдано %(gold_sum)s золота"
 msgstr ""
 
-#: party/views/management/new_party.py:49
+#: party/views/management/new_party.py:51
 msgctxt "party_manage"
 msgid "Глава партии"
 msgstr "Parti lideri"
 
-#: party/views/management/new_party.py:53
+#: party/views/management/new_party.py:55
 msgctxt "party_manage"
 msgid "Новый игрок партии"
 msgstr "Yeni parti üyesi"
@@ -12302,8 +12204,6 @@ msgstr "savaşlar"
 #~ msgstr "parti"
 
 #, fuzzy
-#~| msgctxt "trading"
-#~| msgid "выбор категории"
 #~ msgid "Выбор авиации"
 #~ msgstr "kategori seçimi"
 
