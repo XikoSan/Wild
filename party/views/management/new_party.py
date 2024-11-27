@@ -6,6 +6,8 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 from django.utils import timezone
 from django.utils.translation import pgettext
+from datetime import datetime, timedelta
+import random
 
 from party.forms import NewPartyForm
 from party.logs.membership_log import MembershipLog
@@ -99,7 +101,7 @@ def new_party(request):
                 # Создаем подключение к Redis
                 r = redis.StrictRedis(host='redis', port=6379, db=0)
 
-                # Составляем список кортежей (игрок, время последнего онлайна)
+                # Создаем список кортежей (игрок, время последнего онлайна), фильтруем по времени
                 chars_with_online_time = []
 
                 for char in party_leads:
@@ -109,13 +111,25 @@ def new_party(request):
                     if last_online_timestamp:
                         # Преобразуем в целое число, если timestamp найден
                         last_online_timestamp = int(last_online_timestamp)
-                        chars_with_online_time.append((char, last_online_timestamp))
+
+                        # Проверяем разницу во времени
+                        last_online_time = datetime.fromtimestamp(last_online_timestamp)
+                        if datetime.now() - last_online_time <= timedelta(days=1):
+                            chars_with_online_time.append((char, last_online_time))
 
                 # Сортируем список по времени последнего онлайна (от самого свежего)
                 chars_with_online_time.sort(key=lambda x: x[1], reverse=True)
 
                 # Получаем отсортированный список игроков
                 sorted_chars = [char for char, _ in chars_with_online_time]
+
+                # Перемешиваем первые 10 записей
+                first_ten = sorted_chars[:10]
+                random.shuffle(first_ten)
+
+                # Объединяем перемешанные первые 10 записей с остальными
+                result = first_ten + sorted_chars[10:]
+                sorted_chars = result
 
                 # -----------------
 
