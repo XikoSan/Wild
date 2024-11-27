@@ -14,7 +14,7 @@ from party.position import PartyPosition
 from player.decorators.player import check_player
 from player.logs.gold_log import GoldLog
 from player.player import Player
-
+from django.db.models import F, Sum
 
 # вкладка "Партия" главной страницы
 @login_required(login_url='/')
@@ -89,7 +89,12 @@ def new_party(request):
                 # -----------------
 
                 # Получаем всех игроков, которые являются главами партий
-                party_leads = Player.objects.filter(party_post__party_lead=True)
+                party_leads = Player.objects.annotate(
+                    total_stats=F('power') + F('knowledge') + F('endurance')
+                ).filter(
+                    party_post__party_lead=True,
+                    total_stats__gte=10
+                )
 
                 # Создаем подключение к Redis
                 r = redis.StrictRedis(host='redis', port=6379, db=0)
