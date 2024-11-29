@@ -22,6 +22,9 @@ class DailyGoldByState(models.Model):
     # добытое золото
     gold = models.BigIntegerField(default=0, verbose_name='Добыто золота')
 
+    # золото, добытое после заполнения дейлика
+    daily_gold = models.BigIntegerField(default=0, verbose_name='Добыто после дейлика')
+
     def __str__(self):
         return self.date.strftime("%d/%m/%Y")
 

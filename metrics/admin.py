@@ -17,7 +17,7 @@ class DailyGoldAdmin(admin.ModelAdmin):
 
 
 class DailyGoldByStateAdmin(admin.ModelAdmin):
-    list_display = ('date', 'state', 'gold',)
+    list_display = ('date', 'state', 'gold', 'daily_gold',)
     raw_id_fields = ('state',)
     list_filter = ('date',)
     search_fields = ('date', 'state',)

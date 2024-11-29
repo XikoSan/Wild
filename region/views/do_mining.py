@@ -132,6 +132,14 @@ def do_mining(request):
             else:
                 r.set("daily_gold_" + str(player.region.pk), int(count / 10))
 
+            # после завершения дейлика - региональная статистика
+            if player.energy_consumption + player.paid_consumption >= player.energy_limit:
+                if r.exists("daily_fin_gold_" + str(player.region.pk)):
+                    r.set("daily_fin_gold_" + str(player.region.pk),
+                          int(r.get("daily_fin_gold_" + str(player.region.pk))) + int(count / 10))
+                else:
+                    r.set("daily_fin_gold_" + str(player.region.pk), int(count / 10))
+
             # общая статистика
             if r.exists("daily_gold"):
                 r.set("daily_gold", int(r.get("daily_gold")) + int(count / 10))

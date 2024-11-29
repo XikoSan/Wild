@@ -32,10 +32,12 @@ def save_daily():
     )
 
     daily_gold_by_state = {}
+    daily_fin_gold_by_state = {}
 
     # Очищаем информацию по регионам
     for region in Region.objects.all():
         cache_key = "daily_gold_" + str(region.pk)
+        gold = 0
         if r.exists(cache_key):
             gold = int(r.get(cache_key))
 
@@ -50,9 +52,32 @@ def save_daily():
             # Удаляем запись из кеша
             r.delete(cache_key)
 
+        # информация о добытом после выкапывания дейлика
+        cache_key = "daily_fin_gold_" + str(region.pk)
+        gold = 0
+        if r.exists(cache_key):
+            gold = int(r.get(cache_key))
+
+            # Если у региона есть связанное state, накапливаем gold
+            if region.state:
+                state_id = region.state.pk
+                if state_id in daily_fin_gold_by_state:
+                    daily_fin_gold_by_state[state_id] += gold
+                else:
+                    daily_fin_gold_by_state[state_id] = gold
+
+            # Удаляем запись из кеша
+            r.delete(cache_key)
+
     # Создаём объекты DailyGoldByState с накопленными значениями
     daily_u = [
-        DailyGoldByState(state_id=state_id, gold=gold, date=timezone.now())
+        DailyGoldByState(
+            state_id=state_id,
+            gold=gold,
+            daily_gold=daily_fin_gold_by_state.get(state_id, 0),
+            # Заполняем daily_gold из daily_fin_gold_by_state или 0
+            date=timezone.now()
+        )
         for state_id, gold in daily_gold_by_state.items()
     ]
 
@@ -61,7 +86,6 @@ def save_daily():
             daily_u,
             batch_size=len(daily_u)
         )
-
     # ----------- деньги -----------
     cash = 0
     if r.exists("daily_cash"):
