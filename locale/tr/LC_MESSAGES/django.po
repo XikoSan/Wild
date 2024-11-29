@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-27 18:05+0300\n"
-"PO-Revision-Date: 2024-11-24 00:58+0300\n"
+"POT-Creation-Date: 2024-11-29 23:56+0300\n"
+"PO-Revision-Date: 2024-11-29 23:56+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: tr\n"
@@ -842,15 +842,11 @@ msgid "Новые формы правления государств"
 msgstr "Yeni hükümet biçimi"
 
 #: bill/models/change_residency.py:32
-#, fuzzy
-#| msgid "Свободная"
 msgctxt "change_residency_draft"
 msgid "Свободная"
 msgstr "Ücretsiz"
 
 #: bill/models/change_residency.py:33
-#, fuzzy
-#| msgid "Выдаётся министром"
 msgctxt "change_residency_draft"
 msgid "Выдаётся министром"
 msgstr "Bakan tarafından verilir"
@@ -881,45 +877,33 @@ msgid "Новые способы выдачи прописки"
 msgstr "Kayıt vermenin yeni yolları"
 
 #: bill/models/change_taxes.py:22
-#, fuzzy
-#| msgid "Регион"
 msgctxt "change_taxes_draft"
 msgid "Регион"
 msgstr "Bölge"
 
 #: bill/models/change_taxes.py:23
-#, fuzzy
-#| msgid "Государство"
 msgctxt "change_taxes_draft"
 msgid "Государство"
 msgstr "Devlet"
 
 #: bill/models/change_taxes.py:39
 #: bill/templates/state/redesign/drafts/change_taxes.html:62
-#, fuzzy
-#| msgid "Финансирование"
 msgctxt "change_taxes_draft"
 msgid "Финансирование"
 msgstr "Finansman"
 
 #: bill/models/change_taxes.py:40
-#, fuzzy
-#| msgid "Нефть"
 msgctxt "change_taxes_draft"
 msgid "Нефть"
 msgstr "Petrol"
 
 #: bill/models/change_taxes.py:41
-#, fuzzy
-#| msgid "Руда"
 msgctxt "change_taxes_draft"
 msgid "Руда"
 msgstr "Maden"
 
 #: bill/models/change_taxes.py:42
 #: bill/templates/state/redesign/drafts/change_taxes.html:65
-#, fuzzy
-#| msgid "Торговля"
 msgctxt "change_taxes_draft"
 msgid "Торговля"
 msgstr "Ticaret"
@@ -1058,22 +1042,16 @@ msgid "Строительства"
 msgstr "İnşaat"
 
 #: bill/models/explore_resources.py:31 bill/models/geological_surveys.py:28
-#, fuzzy
-#| msgid "Золото"
 msgctxt "explore_resources_draft"
 msgid "Золото"
 msgstr "Altın"
 
 #: bill/models/explore_resources.py:32 bill/models/geological_surveys.py:29
-#, fuzzy
-#| msgid "Нефть"
 msgctxt "explore_resources_draft"
 msgid "Нефть"
 msgstr "Petrol"
 
 #: bill/models/explore_resources.py:33 bill/models/geological_surveys.py:30
-#, fuzzy
-#| msgid "Руда"
 msgctxt "explore_resources_draft"
 msgid "Руда"
 msgstr "Maden"
@@ -1107,407 +1085,282 @@ msgstr "Bölgede tükenme yok"
 #: bill/models/geological_surveys.py:226 bill/models/geological_surveys.py:227
 msgctxt "new_bill"
 msgid "Геологические изыскания"
-msgstr ""
+msgstr "Jeolojik araştırmalar"
 
 #: bill/models/independence.py:44 bill/models/transfer_accept.py:53
 #: bill/models/transfer_region.py:54
-#, fuzzy
-#| msgid "Независимый регион"
 msgctxt "new_bill"
 msgid "Не указан подходящий регион"
-msgstr "Bağımsız bölge"
+msgstr "Uygun bölge belirtilmedi"
 
 #: bill/models/independence.py:78
-#, fuzzy
-#| msgid "Региональные налоги"
 msgctxt "new_bill"
 msgid "Регион является столицей"
-msgstr "Bölgesel vergiler"
+msgstr "Bölge başkenttir"
 
 #: bill/models/independence.py:86
-#, fuzzy
-#| msgctxt "index"
-#| msgid "Расширяйте влияние своего государства."
 msgctxt "new_bill"
 msgid "В регионе размещена казна государства"
-msgstr "Devletinizin etkisini genişletin."
+msgstr "Bölge devlet hazinesine ev sahipliği yapıyor"
 
 #: bill/models/independence.py:97 bill/models/transfer_region.py:108
-#, fuzzy
-#| msgctxt "no_party"
-#| msgid "Вы не состоите в партии"
 msgctxt "new_bill"
 msgid "Регион является плацдармом атаки"
-msgstr "Bir parti üyesi değilsin"
+msgstr "Bölge saldırı için sıçrama tahtasıdır"
 
 #: bill/models/independence.py:328
-#, fuzzy
-#| msgctxt "party_manage"
-#| msgid "Удаление должности"
 msgctxt "new_bill"
 msgid "Объявление независимости"
-msgstr "Pozisyonu silme"
+msgstr "Bağımsızlık bildirgesi"
 
 #: bill/models/independence.py:329
-#, fuzzy
-#| msgctxt "party_manage"
-#| msgid "Удаление должности"
 msgctxt "new_bill"
 msgid "Объявления независимости"
-msgstr "Pozisyonu silme"
+msgstr "Bağımsızlık bildirgesi"
 
 #: bill/models/martial_law.py:32
 #: bill/templates/state/redesign/drafts/martial_law.html:38
-#, fuzzy
-#| msgid "Уровень Укреплений"
 msgctxt "martial_law_draft"
 msgid "Снятие ограничений"
-msgstr "Takviye Seviyesi"
+msgstr "Kısıtlamaların kaldırılması"
 
 #: bill/models/martial_law.py:33
 #: bill/templates/state/redesign/drafts/martial_law.html:37
-#, fuzzy
-#| msgctxt "w_trading_new"
-#| msgid "Новое торговое предложение"
 msgctxt "martial_law_draft"
 msgid "Военное положение"
-msgstr "Yeni ticaret teklifi"
+msgstr "Sıkıyönetim"
 
 #: bill/models/martial_law.py:63
-#, fuzzy
-#| msgctxt "w_trading_new"
-#| msgid "Цена товара должна быть положительным числом"
 msgctxt "new_bill"
 msgid "Режим военного положения должен быть указан"
-msgstr "Ürünlerin fiyatı pozitif bir sayı olmalıdır"
+msgstr "Sıkıyönetim belirtilmeli"
 
 #: bill/models/martial_law.py:70
-#, fuzzy
-#| msgctxt "w_trading"
-#| msgid "Выбранного склада игрока не существует"
 msgctxt "new_bill"
 msgid "Такого режима военного положения не существует"
-msgstr "Seçilen oyuncunun deposu mevcut değil"
+msgstr "Böyle sıkıyönetim rejimi yok"
 
 #: bill/models/martial_law.py:91 bill/models/martial_law.py:99
 msgctxt "new_bill"
 msgid "Этот режим военного положения уже выбран"
-msgstr ""
+msgstr "Bu sıkıyönetim rejimi çoktan seçilmiştir"
 
 #: bill/models/martial_law.py:109
 msgctxt "new_bill"
 msgid ""
 "Прошло менее двух недель с момента отмены предыдущего военного положения"
 msgstr ""
+"Önceki sıkıyönetim kaldırılmasının üzerinden iki haftadanaz zaman geçti"
 
 #: bill/models/martial_law.py:242
-#, fuzzy
-#| msgctxt "w_trading_new"
-#| msgid "Новое торговое предложение"
 msgctxt "new_bill"
 msgid "Военное положение"
-msgstr "Yeni ticaret teklifi"
+msgstr "Sıkıyönetim"
 
 #: bill/models/martial_law.py:243
-#, fuzzy
-#| msgctxt "trading"
-#| msgid "тип предложения"
 msgctxt "new_bill"
 msgid "Военные положения"
-msgstr "teklif türü"
+msgstr "Sıkıyönetim"
 
 #: bill/models/purchase_auction.py:60
-#, fuzzy
-#| msgid "ID навыка должен быть числом"
 msgctxt "new_bill"
 msgid "Объём закупки должна быть целым числом"
-msgstr "Beceri Kimliği bir sayı olmalıdır"
+msgstr "Satın alma hacmi bir tam sayı olmalıdır"
 
 #: bill/models/purchase_auction.py:68
 msgctxt "new_bill"
 msgid "Объём закупки имеет ограничение в интервале от 0 до 1 000 000 000 000"
-msgstr ""
+msgstr "Satın alma hacmi 0 - 1 000 000 000 000 aralığında olmalı"
 
 #: bill/models/purchase_auction.py:79
-#, fuzzy
-#| msgctxt "w_trading_new"
-#| msgid "Цена товара должна быть положительным числом"
 msgctxt "new_bill"
 msgid "Цена закупки должна быть целым числом"
-msgstr "Ürünlerin fiyatı pozitif bir sayı olmalıdır"
+msgstr "Satın alma fiyatı pozitif bir sayı olmalıdır"
 
 #: bill/models/purchase_auction.py:87
 msgctxt "new_bill"
 msgid "Цена закупки имеет ограничение в интервале от 0 до 1 000 000 000 000"
-msgstr ""
+msgstr "Satın alma fiyatı 0 - 1 000 000 000 000 aralığında olmalı"
 
 #: bill/models/purchase_auction.py:98
-#, fuzzy
-#| msgctxt "factory"
-#| msgid "Количество товара должно быть положительным числом"
 msgctxt "new_bill"
 msgid "Количество лотов должно быть целым числом"
-msgstr "Öğe miktarı pozitif bir sayı olmalıdır"
+msgstr "Lot sayısı bir tamsayı olmalıdır"
 
 #: bill/models/purchase_auction.py:105
-#, fuzzy
-#| msgctxt "mining"
-#| msgid "Количество Энергии должно быть кратно десяти"
 msgctxt "new_bill"
 msgid "Количество лотов должно быть числом от 1 до 10"
-msgstr "Enerji miktarı onun katı olmalıdır"
+msgstr "Lot sayısı 1-10 olmalıdır"
 
 #: bill/models/purchase_auction.py:112
-#, fuzzy
-#| msgctxt "factory"
-#| msgid "Количество товара должно быть положительным числом"
 msgctxt "new_bill"
 msgid "Количество лотов не может быть больше объёма закупки"
-msgstr "Öğe miktarı pozitif bir sayı olmalıdır"
+msgstr "Lot sayısı satın alma hacminden daha fazla olmamalıdır"
 
 #: bill/models/purchase_auction.py:123 bill/models/transfer_resources.py:122
-#, fuzzy
-#| msgid "ID навыка должен быть числом"
 msgctxt "new_bill"
 msgid "ID товара должен быть целым числом"
-msgstr "Beceri Kimliği bir sayı olmalıdır"
+msgstr "İD bir sayı olmalıdır"
 
 #: bill/models/purchase_auction.py:309
-#, fuzzy
-#| msgctxt "w_trading_new"
-#| msgid "Группа товаров"
 msgctxt "new_bill"
 msgid "Закупка товаров"
-msgstr "Ürün grubu"
+msgstr "Mal alımı"
 
 #: bill/models/purchase_auction.py:310
-#, fuzzy
-#| msgctxt "w_trading_new"
-#| msgid "Группа товаров"
 msgctxt "new_bill"
 msgid "Закупки товаров"
-msgstr "Ürün grubu"
+msgstr "Mal alımı"
 
 #: bill/models/start_war.py:97
-#, fuzzy
-#| msgid "ID навыка должен быть числом"
 msgctxt "new_bill"
 msgid "ID плацдарма должен быть целым числом"
-msgstr "Beceri Kimliği bir sayı olmalıdır"
+msgstr "Hazırlama alanı id-si bir tamsayı olmalıdır"
 
 #: bill/models/start_war.py:104
-#, fuzzy
-#| msgctxt "auto_produce"
-#| msgid "Неизвестный тип товара"
 msgctxt "new_bill"
 msgid "Неизвестный плацдарм"
-msgstr "Bilinmeyen ürün tipi"
+msgstr "Bilinmeyen hazırlama alanı"
 
 #: bill/models/start_war.py:114
-#, fuzzy
-#| msgctxt "w_trading_new"
-#| msgid "Цена товара должна быть положительным числом"
 msgctxt "new_bill"
 msgid "ID целевого региона должен быть целым числом"
-msgstr "Ürünlerin fiyatı pozitif bir sayı olmalıdır"
+msgstr "Bölgenin id-si tam sayı olmalıdır"
 
 #: bill/models/start_war.py:121
-#, fuzzy
-#| msgctxt "auto_produce"
-#| msgid "Неизвестный тип товара"
 msgctxt "new_bill"
 msgid "Неизвестный целевой регион"
-msgstr "Bilinmeyen ürün tipi"
+msgstr "Bilinmeyen bölge"
 
 #: bill/models/start_war.py:128 bill/models/start_war.py:146
-#, fuzzy
-#| msgctxt "w_trading"
-#| msgid "Нельзя принять собственный оффер"
 msgctxt "new_bill"
 msgid "Нельзя напасть на самих себя"
-msgstr "Kendi teklifini kabul edemiyorum"
+msgstr "Kendine saldıramazsın"
 
 #: bill/models/start_war.py:137
 msgctxt "new_bill"
 msgid "Плацдарм атаки находится в состоянии мирного времени"
-msgstr ""
+msgstr "Saldırı alanı barış zamanı durumunda"
 
 #: bill/models/start_war.py:165
-#, fuzzy
-#| msgctxt "w_trading"
-#| msgid "Выбранного склада игрока не существует"
 msgctxt "new_bill"
 msgid "Такого вида войн не существует"
-msgstr "Seçilen oyuncunun deposu mevcut değil"
+msgstr "Bu tür savaş yok"
 
 #: bill/models/start_war.py:177
 msgctxt "new_bill"
 msgid "Такая война уже идёт"
-msgstr ""
+msgstr "Bu savaş zaten sürüyor"
 
 #: bill/models/start_war.py:188
-#, fuzzy
-#| msgctxt "auto_produce"
-#| msgid "Указанный склад вам не принадлежит"
 msgctxt "new_bill"
 msgid "Указанные регионы не граничат между собой"
-msgstr "Belirtilen depo size ait değil"
+msgstr "Bu bölgeler birbirine sınır değil"
 
 #: bill/models/start_war.py:350
-#, fuzzy
-#| msgctxt "party_manage"
-#| msgid "Удаление должности"
 msgctxt "new_bill"
 msgid "Объявление войны"
-msgstr "Pozisyonu silme"
+msgstr "Savaş ilanı"
 
 #: bill/models/start_war.py:351
 msgctxt "new_bill"
 msgid "Объявления войн"
-msgstr ""
+msgstr "Savaş ilanı"
 
 #: bill/models/transfer_accept.py:87
-#, fuzzy
-#| msgctxt "assets"
-#| msgid "Указанный Склад уже в текущем регионе"
 msgctxt "new_bill"
 msgid "Указанный регион не передаётся"
-msgstr "Belirtilen Depo zaten geçerli bölgede"
+msgstr "Belirtilen bölge aktarılmıyor"
 
 #: bill/models/transfer_accept.py:402
-#, fuzzy
-#| msgid "Партии региона"
 msgctxt "new_bill"
 msgid "Принятие региона"
-msgstr "Bölge partileri"
+msgstr "Bölge kabulu"
 
 #: bill/models/transfer_accept.py:403
-#, fuzzy
-#| msgctxt "no_party"
-#| msgid "в регионе"
 msgctxt "new_bill"
 msgid "Принятия регионов"
-msgstr "bölgede"
+msgstr "Bölge kabulu"
 
 #: bill/models/transfer_region.py:61 bill/models/transfer_resources.py:64
-#, fuzzy
-#| msgctxt "factory"
-#| msgid "Указанной схемы не существует"
 msgctxt "new_bill"
 msgid "Не указано подходящее государство"
-msgstr "Belirtilen şema mevcut değil"
+msgstr "Uygun eyalet belirtilmedi"
 
 #: bill/models/transfer_region.py:88
-#, fuzzy
-#| msgid "ID навыка должен быть числом"
 msgctxt "new_bill"
 msgid "ID государства должен быть целым числом"
-msgstr "Beceri Kimliği bir sayı olmalıdır"
+msgstr "Devlet id-si bir tam sayı olmalıdır"
 
 #: bill/models/transfer_region.py:115
-#, fuzzy
-#| msgid "Нет такого навыка"
 msgctxt "new_bill"
 msgid "Нет такого государства"
-msgstr "Yok böyle bir yetenek"
+msgstr "Böyle bir devlet yok"
 
 #: bill/models/transfer_region.py:238
-#, fuzzy
-#| msgctxt "cash_log"
-#| msgid "Передача товаров"
 msgctxt "new_bill"
 msgid "Передача региона"
-msgstr "Malların transferi"
+msgstr "Bölgenin transferi"
 
 #: bill/models/transfer_region.py:239
-#, fuzzy
-#| msgctxt "cash_log"
-#| msgid "Передача товаров"
 msgctxt "new_bill"
 msgid "Передачи регионов"
-msgstr "Malların transferi"
+msgstr "Bölgenin transferi"
 
 #: bill/models/transfer_resources.py:71
 msgctxt "new_bill"
 msgid "Не указан подходящий товар"
-msgstr ""
+msgstr "Uygun ürün belirtilmedi"
 
 #: bill/models/transfer_resources.py:78
-#, fuzzy
-#| msgctxt "w_trading"
-#| msgid "На выбранном складе недостаточно товара"
 msgctxt "new_bill"
 msgid "Не указано количество товара"
-msgstr "Seçilen depoda yeterli ürün bulunmamaktadır"
+msgstr "Mal miktarı belirtilmemiş"
 
 #: bill/models/transfer_resources.py:99
-#, fuzzy
-#| msgctxt "factory"
-#| msgid "Количество товара должно быть положительным числом"
 msgctxt "new_bill"
 msgid "Количество товара должно быть целым числом"
-msgstr "Öğe miktarı pozitif bir sayı olmalıdır"
+msgstr "Ürün miktarı tam sayı olmalıdır"
 
 #: bill/models/transfer_resources.py:108
-#, fuzzy
-#| msgctxt "index"
-#| msgid "Расширяйте влияние своего государства."
 msgctxt "new_bill"
 msgid "Не найдена казна государства"
-msgstr "Devletinizin etkisini genişletin."
+msgstr "Devlet hazinesi bulunamadı"
 
 #: bill/models/transfer_resources.py:129
-#, fuzzy
-#| msgctxt "storage"
-#| msgid "Не найден Склад списания материалов"
 msgctxt "new_bill"
 msgid "Не найден товар с переданным ID"
-msgstr "Malzeme tahsilat deposu bulunamadı"
+msgstr "Gönderilen id-ye sahip ürün bulunamadı"
 
 #: bill/models/transfer_resources.py:138
 msgctxt "new_bill"
 msgid "В казне нет требуемого количества товара"
-msgstr ""
+msgstr "Hazinenin gerekli miktarda malı yok"
 
 #: bill/models/transfer_resources.py:157
-#, fuzzy
-#| msgctxt "factory"
-#| msgid "Указанный Склад вам не принадлежит"
 msgctxt "new_bill"
 msgid "Указанное государство не найдено"
-msgstr "Belirtilen Depo size ait değil"
+msgstr "Belirtilen devlet bulunamadı"
 
 #: bill/models/transfer_resources.py:174
-#, fuzzy
-#| msgctxt "assets"
-#| msgid "Запрещено вывозить товары из атакованных регионов"
 msgctxt "new_bill"
 msgid "Запрещено вывозить товары из атакованных регионов"
-msgstr "Saldırıya uğrayan bölgelerden ürün ihraç etmek yasak"
+msgstr "Saldırıya uğrayan bölgelerden mal ihracatı yasaktır"
 
 #: bill/models/transfer_resources.py:345
-#, fuzzy
-#| msgctxt "cash_log"
-#| msgid "Передача товаров"
 msgctxt "new_bill"
 msgid "Передача товаров"
-msgstr "Malların transferi"
+msgstr "Malların transfer"
 
 #: bill/models/transfer_resources.py:346
-#, fuzzy
-#| msgctxt "cash_log"
-#| msgid "Передача товаров"
 msgctxt "new_bill"
 msgid "Передачи товаров"
-msgstr "Malların transferi"
+msgstr "Malların transfer"
 
 #: bill/templates/state/redesign/bills/change_coat.html:24
-#, fuzzy
-#| msgctxt "no_party"
-#| msgid "региональные"
 msgctxt "bill"
 msgid "оригинальный размер"
-msgstr "bölgesel partiler"
+msgstr "orijinal boyut"
 
 #: bill/templates/state/redesign/bills/change_coat.html:60
 #: bill/templates/state/redesign/bills/change_residency.html:71
@@ -1517,30 +1370,23 @@ msgstr "bölgesel partiler"
 #: bill/templates/state/redesign/bills/explore_resources.html:75
 #: bill/templates/state/redesign/bills/martial_law.html:64
 #: bill/templates/state/redesign/bills/purchase_auction.html:62
-#, fuzzy
-#| msgctxt "profile"
-#| msgid "прописка"
 msgctxt "bill"
 msgid "подписано"
-msgstr "ikamet"
+msgstr "imzalanmış"
 
 #: bill/templates/state/redesign/bills/change_residency.html:23
 #: bill/templates/state/redesign/drafts/change_residency.html:12
 #: bill/templates/state/redesign/reviewed/change_residency.html:24
-#, fuzzy
-#| msgid "Выдаётся министром"
 msgctxt "change_residency_draft"
 msgid "выдается министром"
-msgstr "Bakan tarafından verilir"
+msgstr "bakan tarafından verilir"
 
 #: bill/templates/state/redesign/bills/change_residency.html:25
 #: bill/templates/state/redesign/drafts/change_residency.html:13
 #: bill/templates/state/redesign/reviewed/change_residency.html:26
-#, fuzzy
-#| msgid "Свободная"
 msgctxt "change_residency_draft"
 msgid "свободная"
-msgstr "Ücretsiz"
+msgstr "ücretsiz"
 
 #: bill/templates/state/redesign/bills/change_residency.html:34
 #: factory/migrations/0023_auto_20230911_0014.py:43
@@ -1569,30 +1415,23 @@ msgstr "İHA"
 #: bill/templates/state/redesign/reviewed/change_residency.html:42
 msgctxt "bill_draft"
 msgid "Бесплатно"
-msgstr ""
+msgstr "Ücretsiz"
 
 #: bill/templates/state/redesign/bills/change_taxes.html:29
 #: education/templates/education/edu_gov.html:322
-#, fuzzy
-#| msgid "Государство"
 msgctxt "bill"
 msgid "всё государство"
-msgstr "Devlet"
+msgstr "bütün devlet"
 
 #: bill/templates/state/redesign/bills/martial_law.html:32
-#, fuzzy
-#| msgctxt "w_trading_new"
-#| msgid "Новое торговое предложение"
 msgctxt "martial_law"
 msgid "Военное положение"
-msgstr "Yeni ticaret teklifi"
+msgstr "Sıkıyönetim"
 
 #: bill/templates/state/redesign/bills/martial_law.html:34
-#, fuzzy
-#| msgid "Уровень Укреплений"
 msgctxt "martial_law"
 msgid "Снятие ограничений"
-msgstr "Takviye Seviyesi"
+msgstr "Kısıtlamaların kaldırılması"
 
 #: bill/templates/state/redesign/bills/purchase_auction.html:28
 #: bill/templates/state/redesign/reviewed/purchase_auction.html:29
@@ -1606,30 +1445,23 @@ msgstr "Çok sayıda"
 #: bill/templates/state/redesign/bills/start_war.html:41
 msgctxt "start_war"
 msgid "Наземная война"
-msgstr ""
+msgstr "Kara savaşı"
 
 #: bill/templates/state/redesign/drafts/change_coat.html:13
-#, fuzzy
-#| msgctxt "overview"
-#| msgid "государства"
 msgctxt "change_coat_draft"
 msgid "Новый герб государства"
-msgstr "devletin"
+msgstr "Devletin yeni bayrağı"
 
 #: bill/templates/state/redesign/drafts/change_coat.html:93
-#, fuzzy
-#| msgid "Отмена"
 msgctxt "change_coat_draft"
 msgid "Отмена"
-msgstr "İptal etme"
+msgstr "İptal et"
 
 #: bill/templates/state/redesign/drafts/change_coat.html:94
 #: party/templates/party/redesign/manage.html:424
-#, fuzzy
-#| msgid "Загрузить"
 msgctxt "change_coat_draft"
 msgid "Загрузить"
-msgstr "Yüklemek"
+msgstr "Yükle"
 
 #: bill/templates/state/redesign/drafts/change_coat.html:111
 #: bill/templates/state/redesign/drafts/change_form.html:34
@@ -1645,231 +1477,156 @@ msgstr "Yüklemek"
 #: bill/templates/state/redesign/drafts/transfer_accept.html:48
 #: bill/templates/state/redesign/drafts/transfer_region.html:107
 #: bill/templates/state/redesign/drafts/transfer_resources.html:194
-#, fuzzy
-#| msgctxt "has_party"
-#| msgid "Продолжить"
 msgctxt "bill_draft"
 msgid "предложить"
-msgstr "Devam et"
+msgstr "teklif et"
 
 #: bill/templates/state/redesign/drafts/change_form.html:8
-#, fuzzy
-#| msgctxt "index"
-#| msgid "Расширяйте влияние своего государства."
 msgctxt "change_form_draft"
 msgid "Новая форма правления государства"
-msgstr "Devletinizin etkisini genişletin."
+msgstr "Yeni hükümet biçimi "
 
 #: bill/templates/state/redesign/drafts/change_form.html:12
-#, fuzzy
-#| msgctxt "w_trading_new"
-#| msgid "Выберите группу"
 msgctxt "change_form_draft"
 msgid "выберите форму правления"
-msgstr "Bir grup seçin"
+msgstr "hükümet biçiminin seçimi"
 
 #: bill/templates/state/redesign/drafts/change_residency.html:8
 msgctxt "change_residency_draft"
 msgid "Способ выдачи прописки"
-msgstr ""
+msgstr "Kayıt verme yöntemi"
 
 #: bill/templates/state/redesign/drafts/change_residency.html:21
-#, fuzzy
-#| msgctxt "assets"
-#| msgid "стоимость"
 msgctxt "change_residency_draft"
 msgid "стоимость"
 msgstr "maliyet"
 
 #: bill/templates/state/redesign/drafts/change_residency.html:23
-#, fuzzy
-#| msgid "Автоматы"
 msgctxt "change_residency_draft"
 msgid "Автоматы"
 msgstr "Tüfekler"
 
 #: bill/templates/state/redesign/drafts/change_residency.html:26
-#, fuzzy
-#| msgid "БПЛА"
 msgctxt "change_residency_draft"
 msgid "БПЛА"
 msgstr "İHA"
 
 #: bill/templates/state/redesign/drafts/change_taxes.html:52
-#, fuzzy
-#| msgid "Государство"
 msgctxt "change_taxes_draft"
 msgid "государство"
 msgstr "Devlet"
 
 #: bill/templates/state/redesign/drafts/change_taxes.html:53
-#, fuzzy
-#| msgctxt "trading"
-#| msgid "регион"
 msgctxt "change_taxes_draft"
 msgid "регион"
 msgstr "bölge"
 
 #: bill/templates/state/redesign/drafts/change_taxes.html:61
-#, fuzzy
-#| msgctxt "assets"
-#| msgid "выберите склад"
 msgctxt "change_taxes_draft"
 msgid "Выберите налог"
-msgstr "depo seç"
+msgstr "Vergi seç"
 
 #: bill/templates/state/redesign/drafts/change_taxes.html:63
-#, fuzzy
-#| msgid "Марка нефти"
 msgctxt "change_taxes_draft"
 msgid "Добыча нефти"
-msgstr "Petrol sınıfı"
+msgstr "Petrol üretimi"
 
 #: bill/templates/state/redesign/drafts/change_taxes.html:64
-#, fuzzy
-#| msgid "Добыча"
 msgctxt "change_taxes_draft"
 msgid "Добыча руд"
-msgstr "Üretme"
+msgstr "Maden üretimi"
 
 #: bill/templates/state/redesign/drafts/change_taxes.html:105
 msgctxt "change_taxes_draft"
 msgid "Текущий налог"
-msgstr ""
+msgstr "Cari vergi"
 
 #: bill/templates/state/redesign/drafts/change_taxes.html:107
-#, fuzzy
-#| msgctxt "cash_log"
-#| msgid "Новый Склад"
 msgctxt "change_taxes_draft"
 msgid "Новый налог"
-msgstr "Yeni Depo"
+msgstr "Yeni vergi"
 
 #: bill/templates/state/redesign/drafts/change_title.html:8
-#, fuzzy
-#| msgctxt "party_manage"
-#| msgid "Смена названия партии"
 msgctxt "change_title_draft"
 msgid "Новое название государства"
-msgstr "Parti adı değişikliği"
+msgstr "Devletin yeni adı"
 
 #: bill/templates/state/redesign/drafts/construction.html:152
-#, fuzzy
-#| msgctxt "assets"
-#| msgid "выберите склад"
 msgctxt "construction_draft"
 msgid "выберите строение"
-msgstr "depo seç"
+msgstr "bina seç"
 
 #: bill/templates/state/redesign/drafts/construction.html:163
-#, fuzzy
-#| msgctxt "factory"
-#| msgid "Уровень"
 msgctxt "construction_draft"
 msgid "Уровень"
-msgstr "Level"
+msgstr "Seviye"
 
 #: bill/templates/state/redesign/drafts/construction.html:165
 msgctxt "construction_draft"
 msgid "Затраты"
-msgstr ""
+msgstr "Maliyet"
 
 #: bill/templates/state/redesign/drafts/construction.html:191
-#, fuzzy
-#| msgid "Независимый регион"
 msgctxt "construction_draft"
 msgid "Нет доступных регионов"
-msgstr "Bağımsız bölge"
+msgstr "Mevcut bölge yok"
 
 #: bill/templates/state/redesign/drafts/explore_resources.html:158
-#, fuzzy
-#| msgctxt "trading"
-#| msgid "выберите товар"
 msgctxt "explore_resources_draft"
 msgid "выберите ресурс"
 msgstr "bir ürün seç"
 
 #: bill/templates/state/redesign/drafts/explore_resources.html:169
-#, fuzzy
-#| msgctxt "mining"
-#| msgid "Запасы"
 msgctxt "explore_resources_draft"
 msgid "Запасы"
 msgstr "Stoklar"
 
 #: bill/templates/state/redesign/drafts/explore_resources.html:171
-#, fuzzy
-#| msgid "Пополнение энергии"
 msgctxt "explore_resources_draft"
 msgid "За последние сутки"
-msgstr "Enerji dolumu"
+msgstr "Son 24 saat içinde"
 
 #: bill/templates/state/redesign/drafts/explore_resources.html:172
-#, fuzzy
-#| msgctxt "trading"
-#| msgid "создатель"
 msgctxt "explore_resources_draft"
 msgid "Множитель"
-msgstr "yaratıcı"
+msgstr "Faktör"
 
 #: bill/templates/state/redesign/drafts/explore_resources.html:174
-#, fuzzy
-#| msgctxt "no_storage"
-#| msgid "Стоимость создания"
 msgctxt "explore_resources_draft"
 msgid "стоимость разведки"
-msgstr "Yaratma maliyeti"
+msgstr "keşif maliyeti"
 
 #: bill/templates/state/redesign/drafts/explore_resources.html:191
-#, fuzzy
-#| msgid "Независимый регион"
 msgctxt "explore_resources_draft"
 msgid "Нет доступных регионов"
-msgstr "Bağımsız bölge"
+msgstr "Bölge yok"
 
 #: bill/templates/state/redesign/drafts/independence.html:51
-#, fuzzy
-#| msgid "Независимый регион"
 msgctxt "independence_draft"
 msgid "Нет доступных регионов"
-msgstr "Bağımsız bölge"
+msgstr "Mevcut bölge yok"
 
 #: bill/templates/state/redesign/drafts/purchase_auction.html:24
-#, fuzzy
-#| msgctxt "trading"
-#| msgid "выберите товар"
 msgctxt "purchase_auction_draft"
 msgid "выберите товар"
 msgstr "bir ürün seç"
 
 #: bill/templates/state/redesign/drafts/purchase_auction.html:36
-#, fuzzy
-#| msgctxt "trading"
-#| msgid "количество"
 msgctxt "purchase_auction_draft"
 msgid "количество лотов"
-msgstr "miktar"
+msgstr ""
 
 #: bill/templates/state/redesign/drafts/purchase_auction.html:46
-#, fuzzy
-#| msgctxt "trading"
-#| msgid "количество"
 msgctxt "purchase_auction_draft"
 msgid "количество"
 msgstr "miktar"
 
 #: bill/templates/state/redesign/drafts/purchase_auction.html:55
-#, fuzzy
-#| msgctxt "factory"
-#| msgid "цена"
 msgctxt "purchase_auction_draft"
 msgid "цена"
 msgstr "fiyat"
 
 #: bill/templates/state/redesign/drafts/purchase_auction.html:63
-#, fuzzy
-#| msgctxt "assets"
-#| msgid "стоимость"
 msgctxt "purchase_auction_draft"
 msgid "стоимость"
 msgstr "maliyet"
@@ -1877,56 +1634,42 @@ msgstr "maliyet"
 #: bill/templates/state/redesign/drafts/start_war.html:8
 msgctxt "start_war_draft"
 msgid "Плацдарм"
-msgstr ""
+msgstr "Meydan"
 
 #: bill/templates/state/redesign/drafts/start_war.html:35
 msgctxt "start_war_draft"
 msgid "Цель"
-msgstr ""
+msgstr "Hedef"
 
 #: bill/templates/state/redesign/drafts/start_war.html:112
 msgctxt "start_war_draft"
 msgid "нет общих границ"
-msgstr ""
+msgstr "ortak sınırlar yok"
 
 #: bill/templates/state/redesign/drafts/transfer_region.html:110
-#, fuzzy
-#| msgid "Независимый регион"
 msgctxt "transfer_region_draft"
 msgid "Нет доступных регионов"
-msgstr "Bağımsız bölge"
+msgstr "Mevcut bölge yok"
 
 #: bill/templates/state/redesign/drafts/transfer_resources.html:94
-#, fuzzy
-#| msgctxt "trading"
-#| msgid "выберите товар"
 msgctxt "transfer_resources_draft"
 msgid "выберите товар"
 msgstr "bir ürün seç"
 
 #: bill/templates/state/redesign/drafts/transfer_resources.html:164
-#, fuzzy
-#| msgctxt "trading"
-#| msgid "количество"
 msgctxt "transfer_resources_draft"
 msgid "количество"
 msgstr "miktar"
 
 #: bill/templates/state/redesign/drafts/transfer_resources.html:180
-#, fuzzy
-#| msgctxt "no_storage"
-#| msgid "Стоимость создания"
 msgctxt "transfer_resources_draft"
 msgid "стоимость передачи"
-msgstr "Yaratma maliyeti"
+msgstr "transfer maliyeti"
 
 #: bill/templates/state/redesign/new_bill.html:82
-#, fuzzy
-#| msgctxt "has_party"
-#| msgid "Продолжить"
 msgctxt "new_bill"
 msgid "предложить"
-msgstr "Devam et"
+msgstr "teklif et"
 
 #: bill/templates/state/redesign/reviewed/change_coat.html:25
 #, fuzzy
@@ -2357,27 +2100,19 @@ msgid "В этом регионе нет государства"
 msgstr "Bu bölgede Depo bulunmamaktadır"
 
 #: bill/views/bills/new_bill.py:48
-#, fuzzy
-#| msgid "Нет такого навыка"
 msgctxt "new_bill"
 msgid "Нет такого вида законопроекта"
-msgstr "Yok böyle bir yetenek"
+msgstr "Yok böyle bir kanun"
 
 #: bill/views/bills/new_bill.py:62
-#, fuzzy
-#| msgctxt "storage"
-#| msgid "В этом регионе нет Склада"
 msgctxt "new_bill"
 msgid "В этом государстве нет парламента"
-msgstr "Bu bölgede Depo bulunmamaktadır"
+msgstr "Bu devletde parlamento yok"
 
 #: bill/views/bills/new_bill.py:69
-#, fuzzy
-#| msgctxt "storage"
-#| msgid "В этом регионе нет Склада"
 msgctxt "new_bill"
 msgid "В этом регионе нет государства"
-msgstr "Bu bölgede Depo bulunmamaktadır"
+msgstr "Bu bölgede devlet yok"
 
 #: bill/views/bills/speedup_bill.py:33
 #, fuzzy
@@ -2475,7 +2210,7 @@ msgstr "Bu bölgede Depo bulunmamaktadır"
 #: player/views/customization/plane/clear_plane_nick.py:61
 #: player/views/customization/plane/set_plane_nick.py:80
 #: player/views/game_event/buy_test_prizes.py:118
-#: player/views/game_event/check_review.py:102 region/views/do_mining.py:443
+#: player/views/game_event/check_review.py:102 region/views/do_mining.py:451
 #: region/views/map/get_residency.py:155 region/views/map/plane_info.py:41
 #: region/views/map/region_info.py:51
 #: storage/views/assets/assets_destroy.py:138
@@ -5163,14 +4898,12 @@ msgstr "Madencilik"
 #: gov/models/minister_right.py:22
 msgctxt "new_bill"
 msgid "Министр иностранных дел"
-msgstr ""
+msgstr "Dışişleri bakanı"
 
 #: gov/models/minister_right.py:23
-#, fuzzy
-#| msgid "На добычу"
 msgctxt "new_bill"
 msgid "Статистика добычи"
-msgstr "Madencilik"
+msgstr "Üretim istatistikleri"
 
 #: gov/templates/gov/redesign/elections.html:25
 #, fuzzy
@@ -8818,22 +8551,17 @@ msgstr "Para kaynağı"
 #: region/building/hospital.py:155
 msgctxt "new_bill"
 msgid "Больницы"
-msgstr ""
+msgstr "Hastane"
 
 #: region/building/infrastructure.py:119
-#, fuzzy
-#| msgid "Уровень Госпиталя"
 msgctxt "new_bill"
 msgid "Инфраструктуры"
-msgstr "Hastane Seviyesi"
+msgstr "Altyapı"
 
 #: region/building/power_plant.py:196
-#, fuzzy
-#| msgctxt "factory"
-#| msgid "Недостаточно "
 msgctxt "new_bill"
 msgid "Электростанции"
-msgstr "Yeterli değil "
+msgstr "Enerji santralleri"
 
 #: region/models/region.py:115
 msgctxt "goods"
@@ -9148,8 +8876,8 @@ msgstr "Bölge sakinleri"
 #: region/views/do_mining.py:41 region/views/do_mining.py:54
 #: region/views/do_mining.py:64 region/views/do_mining.py:77
 #: region/views/do_mining.py:86 region/views/do_mining.py:95
-#: region/views/do_mining.py:114 region/views/do_mining.py:151
-#: region/views/do_mining.py:230 region/views/do_mining.py:441
+#: region/views/do_mining.py:114 region/views/do_mining.py:159
+#: region/views/do_mining.py:238 region/views/do_mining.py:449
 msgctxt "mining"
 msgid "Ошибка добычи ресурсов"
 msgstr "Madencilik hatası"
@@ -9184,11 +8912,11 @@ msgctxt "mining"
 msgid "Запасов золота в регионе недостаточно для добычи"
 msgstr "Bölgedeki altın rezervleri madencilik için yeterli değil"
 
-#: region/views/do_mining.py:115 region/views/do_mining.py:152
-#: region/views/do_mining.py:231 region/views/do_mining.py:339
-#: region/views/do_mining.py:360 region/views/do_mining.py:367
-#: region/views/do_mining.py:382 region/views/do_mining.py:403
-#: region/views/do_mining.py:410 region/views/do_mining.py:442
+#: region/views/do_mining.py:115 region/views/do_mining.py:160
+#: region/views/do_mining.py:239 region/views/do_mining.py:347
+#: region/views/do_mining.py:368 region/views/do_mining.py:375
+#: region/views/do_mining.py:390 region/views/do_mining.py:411
+#: region/views/do_mining.py:418 region/views/do_mining.py:450
 #: region/views/start_auto.py:81 storage/views/assets/assets_transfer.py:245
 #: storage/views/trading/premium_trading.py:188
 #: storage/views/trading/premium_trading.py:195
@@ -9196,12 +8924,12 @@ msgctxt "mining"
 msgid "Закрыть"
 msgstr "Kapat"
 
-#: region/views/do_mining.py:150
+#: region/views/do_mining.py:158
 msgctxt "mining"
 msgid "Запасов нефти в регионе недостаточно для добычи"
 msgstr "Bölgedeki petrol rezervleri madencilik için yeterli değil"
 
-#: region/views/do_mining.py:229
+#: region/views/do_mining.py:237
 msgctxt "mining"
 msgid "Запасов руды в регионе недостаточно для добычи"
 msgstr "Bölgedeki maden rezervleri madencilik için yeterli değil"
@@ -9956,17 +9684,17 @@ msgstr "Silah"
 #: storage/models/good.py:39
 msgctxt "goods"
 msgid "Большой"
-msgstr ""
+msgstr "Büyük"
 
 #: storage/models/good.py:40
 msgctxt "goods"
 msgid "Средний"
-msgstr ""
+msgstr "Orta"
 
 #: storage/models/good.py:41
 msgctxt "goods"
 msgid "Малый"
-msgstr ""
+msgstr "Küçük"
 
 #: storage/models/storage.py:110
 #: storage/templates/storage/redesign/assets.html:143
@@ -9976,19 +9704,14 @@ msgid "Уровень"
 msgstr "Level"
 
 #: storage/models/storage.py:204
-#, fuzzy
-#| msgid "Некорректное значение"
 msgctxt "goods"
 msgid "Передано отрицательное значение"
 msgstr "Yanlış değer"
 
 #: storage/models/storage.py:209
-#, fuzzy
-#| msgctxt "factory"
-#| msgid "Недостаточно "
 msgctxt "goods"
 msgid "Недостаточно"
-msgstr "Yeterli değil "
+msgstr "Yeterli değil"
 
 #: storage/models/transport.py:93
 msgctxt "goods"

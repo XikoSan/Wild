@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-26 02:36+0300\n"
+"POT-Creation-Date: 2024-11-29 23:56+0300\n"
 "PO-Revision-Date: 2024-11-29 23:41+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -547,6 +547,7 @@ msgstr "Герб"
 #: education/templates/education/edu_election.html:104
 #: education/templates/education/edu_election.html:296
 #: gov/templates/gov/redesign/elections.html:239
+#: party/templates/party/redesign/new_party.html:66
 #: party/templates/party/redesign/primaries.html:99
 #: party/templates/party/redesign/primaries.html:243
 #: party/templatetags/redesign/tops/factory_top.py:82
@@ -2004,7 +2005,7 @@ msgstr "У гэтай дзяржаве няма парламента"
 #: player/views/customization/plane/clear_plane_nick.py:61
 #: player/views/customization/plane/set_plane_nick.py:80
 #: player/views/game_event/buy_test_prizes.py:118
-#: player/views/game_event/check_review.py:102 region/views/do_mining.py:443
+#: player/views/game_event/check_review.py:102 region/views/do_mining.py:451
 #: region/views/map/get_residency.py:155 region/views/map/plane_info.py:41
 #: region/views/map/region_info.py:51
 #: storage/views/assets/assets_destroy.py:138
@@ -4961,27 +4962,74 @@ msgctxt "profile"
 msgid "Отмена"
 msgstr "Адмена"
 
-#: party/templates/party/redesign/new_party.html:15
-#: party/views/management/new_party.py:86
+#: party/templates/party/redesign/new_party.html:16
+#: party/views/management/new_party.py:146
 msgctxt "new_party"
 msgid "Новая партия"
 msgstr "Новая партыя"
 
-#: party/templates/party/redesign/new_party.html:19
+#: party/templates/party/redesign/new_party.html:20
 msgctxt "new_party"
 msgid "Стоимость создания партии"
 msgstr "Кошт стварэння партыі"
 
-#: party/templates/party/redesign/new_party.html:25
+#: party/templates/party/redesign/new_party.html:26
 msgctxt "new_party"
 msgid "Название партии"
 msgstr "Назва партыі"
 
-#: party/templates/party/redesign/new_party.html:41
+#: party/templates/party/redesign/new_party.html:42
 #: party/templates/party/redesign/party_blocks/no_party.html:21
 msgctxt "no_party"
 msgid "создать партию"
 msgstr "стварыць партыю"
+
+#: party/templates/party/redesign/new_party.html:51
+#, fuzzy
+#| msgctxt "skill_top"
+#| msgid "Топ прироста Характеристик"
+msgctxt "new_party"
+msgid "Требуется сумма уровней Характеристик"
+msgstr "Топ прыросту Характарыстык"
+
+#: party/templates/party/redesign/new_party.html:53
+#, fuzzy
+#| msgctxt "profile"
+#| msgid "суммарный урон"
+msgctxt "new_party"
+msgid "Ваш суммарный уровень"
+msgstr "сумарны ўрон"
+
+#: party/templates/party/redesign/new_party.html:55
+msgctxt "new_party"
+msgid ""
+"Рекомендуем присоединиться к одной из существующих партий, и изучить игру, "
+"прежде чем начинать собственную карьеру партийного лидера"
+msgstr ""
+
+#: party/templates/party/redesign/new_party.html:58
+msgctxt "new_party"
+msgid ""
+"Ниже представлены партии в порядке давности убывания онлайна их лидеров. "
+"Они, вероятнее всего, будут рады принять вас к себе"
+msgstr ""
+
+#: party/templates/party/redesign/new_party.html:67
+#: party/views/lists/region_parties.py:67
+#: party/views/lists/region_parties.py:68 party/views/lists/state_parties.py:79
+#: party/views/lists/state_parties.py:80 party/views/lists/world_parties.py:68
+#: party/views/lists/world_parties.py:69
+msgctxt "lists"
+msgid "Размер"
+msgstr "Памер"
+
+#: party/templates/party/redesign/new_party.html:69
+#, fuzzy
+#| msgctxt "party_manage"
+#| msgid "Глава партии"
+msgctxt "new_party"
+msgid "Глава партии"
+msgstr "Глава партыі"
 
 #: party/templates/party/redesign/party.html:63
 msgctxt "has_party"
@@ -5233,14 +5281,6 @@ msgctxt "party_top"
 msgid "Топ партий"
 msgstr "Топ партый"
 
-#: party/views/lists/region_parties.py:67
-#: party/views/lists/region_parties.py:68 party/views/lists/state_parties.py:79
-#: party/views/lists/state_parties.py:80 party/views/lists/world_parties.py:68
-#: party/views/lists/world_parties.py:69
-msgctxt "lists"
-msgid "Размер"
-msgstr "Памер"
-
 #: party/views/lists/region_parties.py:81
 #: party/views/lists/region_parties.py:82 party/views/lists/state_parties.py:93
 #: party/views/lists/state_parties.py:94 party/views/lists/world_parties.py:82
@@ -5347,12 +5387,12 @@ msgctxt "party_manage"
 msgid "Выдано %(gold_sum)s золота"
 msgstr "Выдана %(gold_sum)s золота"
 
-#: party/views/management/new_party.py:48
+#: party/views/management/new_party.py:51
 msgctxt "party_manage"
 msgid "Глава партии"
 msgstr "Глава партыі"
 
-#: party/views/management/new_party.py:52
+#: party/views/management/new_party.py:55
 msgctxt "party_manage"
 msgid "Новый игрок партии"
 msgstr "Новы гулец партыі"
@@ -8054,8 +8094,8 @@ msgstr "Рэльеф рэгіёну"
 #: region/views/do_mining.py:41 region/views/do_mining.py:54
 #: region/views/do_mining.py:64 region/views/do_mining.py:77
 #: region/views/do_mining.py:86 region/views/do_mining.py:95
-#: region/views/do_mining.py:114 region/views/do_mining.py:151
-#: region/views/do_mining.py:230 region/views/do_mining.py:441
+#: region/views/do_mining.py:114 region/views/do_mining.py:159
+#: region/views/do_mining.py:238 region/views/do_mining.py:449
 msgctxt "mining"
 msgid "Ошибка добычи ресурсов"
 msgstr "Памылка здабычы рэсурсаў"
@@ -8090,11 +8130,11 @@ msgctxt "mining"
 msgid "Запасов золота в регионе недостаточно для добычи"
 msgstr "Прыпасаў золата ў рэгіёне недастаткова для здабычы"
 
-#: region/views/do_mining.py:115 region/views/do_mining.py:152
-#: region/views/do_mining.py:231 region/views/do_mining.py:339
-#: region/views/do_mining.py:360 region/views/do_mining.py:367
-#: region/views/do_mining.py:382 region/views/do_mining.py:403
-#: region/views/do_mining.py:410 region/views/do_mining.py:442
+#: region/views/do_mining.py:115 region/views/do_mining.py:160
+#: region/views/do_mining.py:239 region/views/do_mining.py:347
+#: region/views/do_mining.py:368 region/views/do_mining.py:375
+#: region/views/do_mining.py:390 region/views/do_mining.py:411
+#: region/views/do_mining.py:418 region/views/do_mining.py:450
 #: region/views/start_auto.py:81 storage/views/assets/assets_transfer.py:245
 #: storage/views/trading/premium_trading.py:188
 #: storage/views/trading/premium_trading.py:195
@@ -8102,12 +8142,12 @@ msgctxt "mining"
 msgid "Закрыть"
 msgstr "Зачыніць"
 
-#: region/views/do_mining.py:150
+#: region/views/do_mining.py:158
 msgctxt "mining"
 msgid "Запасов нефти в регионе недостаточно для добычи"
 msgstr "Прыпасаў нафты ў рэгіёне недастаткова для здабычы"
 
-#: region/views/do_mining.py:229
+#: region/views/do_mining.py:237
 msgctxt "mining"
 msgid "Запасов руды в регионе недостаточно для добычи"
 msgstr "Прыпасаў руды ў рэгіёне недастаткова для здабычы"
