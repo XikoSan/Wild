@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-27 18:05+0300\n"
-"PO-Revision-Date: 2024-11-16 03:26+0300\n"
+"POT-Creation-Date: 2024-11-26 02:36+0300\n"
+"PO-Revision-Date: 2024-11-29 23:41+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: be\n"
@@ -547,7 +547,6 @@ msgstr "Герб"
 #: education/templates/education/edu_election.html:104
 #: education/templates/education/edu_election.html:296
 #: gov/templates/gov/redesign/elections.html:239
-#: party/templates/party/redesign/new_party.html:66
 #: party/templates/party/redesign/primaries.html:99
 #: party/templates/party/redesign/primaries.html:243
 #: party/templatetags/redesign/tops/factory_top.py:82
@@ -2096,12 +2095,9 @@ msgid "все"
 msgstr "усе"
 
 #: chat/templates/chat/dialogues.html:102
-#, fuzzy
-#| msgctxt "chat"
-#| msgid "государственные"
 msgctxt "chat"
 msgid "непрочитанные"
-msgstr "дзяржаўныя"
+msgstr "непрачытаныя"
 
 #: chat/templates/chat/dialogues.html:104
 msgctxt "chat"
@@ -3470,12 +3466,9 @@ msgstr "стварыць"
 #: education/templates/education/edu_skills.html:55
 #: education/templates/education/edu_skills.html:95
 #: education/templates/education/edu_skills.html:138
-#, fuzzy
-#| msgctxt "skills"
-#| msgid "изучить"
 msgctxt "education"
 msgid "изучается..."
-msgstr "вывучыць"
+msgstr "вывучаецца..."
 
 #: education/templates/education/edu_skills.html:105
 #: education/templates/education/edu_skills.html:163
@@ -3865,28 +3858,22 @@ msgstr "Запаўняецца сумай намаганняў усіх гуль
 #: player/views/game_event/black_friday.py:44
 msgctxt "game_event"
 msgid "Неделя чёрной пятницы!"
-msgstr ""
+msgstr "Тыдзень чорнай пятніцы!"
 
 #: event/templates/event/black_friday.html:391
 msgctxt "game_event"
 msgid "Чёрная пятница 2024:"
-msgstr ""
+msgstr "Чорная пятніца 2024:"
 
 #: event/templates/event/black_friday.html:392
-#, fuzzy
-#| msgctxt "game_event"
-#| msgid "заработайте премиум и золото!"
 msgctxt "game_event"
 msgid "заработайте премиум, золото и особый самолёт!"
-msgstr "зарабіце прэміюм і золата!"
+msgstr "зарабіце прэміюм, золата і асаблівы самалёт!"
 
 #: event/templates/event/black_friday.html:393
-#, fuzzy
-#| msgctxt "game_event"
-#| msgid "Событие проходит один день 28.10."
 msgctxt "game_event"
 msgid "Событие проходит с 25.11 по 1.12 включительно."
-msgstr "Падзея праходзіць адзін дзень 28.10"
+msgstr "Падзея праходзіць з 25/11 па 1/12 уключна."
 
 #: event/templates/event/festival.html:218
 msgctxt "game_event"
@@ -4011,6 +3998,8 @@ msgid ""
 "В данном сезоне игрового события не получится пригласить игроков, которые "
 "уже принимали приглашение в прошлом сезоне!"
 msgstr ""
+"У дадзеным сезоне гульнявой падзеі не атрымаецца запрасіць гульцоў, якія ўжо "
+"прымалі запрашэнне ў мінулым сезоне!"
 
 #: event/templates/event/inviting.html:76
 msgctxt "game_event"
@@ -4156,12 +4145,9 @@ msgid "Игрок уже приглашен"
 msgstr "Гулец ужо запрошаны"
 
 #: event/views/activate_invite.py:56
-#, fuzzy
-#| msgctxt "state_foundation"
-#| msgid "Государство в этом регионе уже есть"
 msgctxt "game_event"
 msgid "Вы участвовали в прошлом сезоне события"
-msgstr "У гэтым рэгіёне ужо ёсць дзяржава"
+msgstr "Вы ўдзельнічалі ў мінулым сезоне падзеі"
 
 #: event/views/activate_invite.py:72
 msgctxt "game_event"
@@ -4975,74 +4961,27 @@ msgctxt "profile"
 msgid "Отмена"
 msgstr "Адмена"
 
-#: party/templates/party/redesign/new_party.html:16
-#: party/views/management/new_party.py:146
+#: party/templates/party/redesign/new_party.html:15
+#: party/views/management/new_party.py:86
 msgctxt "new_party"
 msgid "Новая партия"
 msgstr "Новая партыя"
 
-#: party/templates/party/redesign/new_party.html:20
+#: party/templates/party/redesign/new_party.html:19
 msgctxt "new_party"
 msgid "Стоимость создания партии"
 msgstr "Кошт стварэння партыі"
 
-#: party/templates/party/redesign/new_party.html:26
+#: party/templates/party/redesign/new_party.html:25
 msgctxt "new_party"
 msgid "Название партии"
 msgstr "Назва партыі"
 
-#: party/templates/party/redesign/new_party.html:42
+#: party/templates/party/redesign/new_party.html:41
 #: party/templates/party/redesign/party_blocks/no_party.html:21
 msgctxt "no_party"
 msgid "создать партию"
 msgstr "стварыць партыю"
-
-#: party/templates/party/redesign/new_party.html:51
-#, fuzzy
-#| msgctxt "skill_top"
-#| msgid "Топ прироста Характеристик"
-msgctxt "new_party"
-msgid "Требуется сумма уровней Характеристик"
-msgstr "Топ прыросту Характарыстык"
-
-#: party/templates/party/redesign/new_party.html:53
-#, fuzzy
-#| msgctxt "profile"
-#| msgid "суммарный урон"
-msgctxt "new_party"
-msgid "Ваш суммарный уровень"
-msgstr "сумарны ўрон"
-
-#: party/templates/party/redesign/new_party.html:55
-msgctxt "new_party"
-msgid ""
-"Рекомендуем присоединиться к одной из существующих партий, и изучить игру, "
-"прежде чем начинать собственную карьеру партийного лидера"
-msgstr ""
-
-#: party/templates/party/redesign/new_party.html:58
-msgctxt "new_party"
-msgid ""
-"Ниже представлены партии в порядке давности убывания онлайна их лидеров. "
-"Они, вероятнее всего, будут рады принять вас к себе"
-msgstr ""
-
-#: party/templates/party/redesign/new_party.html:67
-#: party/views/lists/region_parties.py:67
-#: party/views/lists/region_parties.py:68 party/views/lists/state_parties.py:79
-#: party/views/lists/state_parties.py:80 party/views/lists/world_parties.py:68
-#: party/views/lists/world_parties.py:69
-msgctxt "lists"
-msgid "Размер"
-msgstr "Памер"
-
-#: party/templates/party/redesign/new_party.html:69
-#, fuzzy
-#| msgctxt "party_manage"
-#| msgid "Глава партии"
-msgctxt "new_party"
-msgid "Глава партии"
-msgstr "Глава партыі"
 
 #: party/templates/party/redesign/party.html:63
 msgctxt "has_party"
@@ -5294,6 +5233,14 @@ msgctxt "party_top"
 msgid "Топ партий"
 msgstr "Топ партый"
 
+#: party/views/lists/region_parties.py:67
+#: party/views/lists/region_parties.py:68 party/views/lists/state_parties.py:79
+#: party/views/lists/state_parties.py:80 party/views/lists/world_parties.py:68
+#: party/views/lists/world_parties.py:69
+msgctxt "lists"
+msgid "Размер"
+msgstr "Памер"
+
 #: party/views/lists/region_parties.py:81
 #: party/views/lists/region_parties.py:82 party/views/lists/state_parties.py:93
 #: party/views/lists/state_parties.py:94 party/views/lists/world_parties.py:82
@@ -5400,12 +5347,12 @@ msgctxt "party_manage"
 msgid "Выдано %(gold_sum)s золота"
 msgstr "Выдана %(gold_sum)s золота"
 
-#: party/views/management/new_party.py:51
+#: party/views/management/new_party.py:48
 msgctxt "party_manage"
 msgid "Глава партии"
 msgstr "Глава партыі"
 
-#: party/views/management/new_party.py:55
+#: party/views/management/new_party.py:52
 msgctxt "party_manage"
 msgid "Новый игрок партии"
 msgstr "Новы гулец партыі"
@@ -6037,7 +5984,7 @@ msgstr "За адчынены тэст Wild Politics"
 #: player/templates/player/redesign/customization/view_medals.html:154
 msgctxt "medals"
 msgid "Выдаётся игрокам, игравшим в WP с 9.09.2021"
-msgstr "Выдаецца гульцам, гуляўшым в WP з 9.09.2021"
+msgstr "Выдаецца гульцам, гуляўшым у WP з 9.09.2021"
 
 #: player/templates/player/redesign/customization/view_medals.html:203
 msgctxt "medals"
@@ -6195,43 +6142,35 @@ msgstr "З новым годам!"
 
 #: player/templates/player/redesign/game_event/play_market_event.html:10
 #: player/views/game_event/play_market_event.py:44
-#, fuzzy
-#| msgid "Население региона"
 msgctxt "event"
 msgid "Наступление на Google Play"
-msgstr "Насельніцтва рэгіёну"
+msgstr "Наступ на Google Play"
 
 #: player/templates/player/redesign/game_event/play_market_event.html:22
-#, fuzzy
-#| msgctxt "medals"
-#| msgid "Награды игрока"
 msgctxt "event"
 msgid "Уважаемые игроки!"
-msgstr "Узнагароды гульца"
+msgstr "Паважаныя гульцы!"
 
 #: player/templates/player/redesign/game_event/play_market_event.html:28
-#, fuzzy
-#| msgctxt "cancel_bill"
-#| msgid "Вы не автор законопроекта"
 msgctxt "event"
 msgid "Вы - самая важная часть проекта."
-msgstr "Вы не аўтар законапраекта"
+msgstr "Вы - самая галоўная частка праекта."
 
 #: player/templates/player/redesign/game_event/play_market_event.html:31
 msgctxt "event"
 msgid ""
 "Каждый раз, когда вас становится больше, для меня это - большой праздник!"
-msgstr ""
+msgstr "Кожны раз, калі вас становіцца больш, для мяне гэта - вялікае свята!"
 
 #: player/templates/player/redesign/game_event/play_market_event.html:37
 msgctxt "event"
 msgid "Наша игра преодолела очередной важный рубеж -"
-msgstr ""
+msgstr "Наша гульня пераадолела чарговую важную мяжу "
 
 #: player/templates/player/redesign/game_event/play_market_event.html:40
 msgctxt "event"
 msgid "мы стали доступны для миллиардов пользователей Google Play."
-msgstr ""
+msgstr "мы сталі даступнымі для мільярдаў карыстальнікаў Google Play."
 
 #: player/templates/player/redesign/game_event/play_market_event.html:46
 msgctxt "event"
@@ -6239,11 +6178,13 @@ msgid ""
 "Я надеюсь, что это событие станет мощным импульсом для роста онлайна, а вы "
 "поддержите игру в такой важный день!"
 msgstr ""
+"Я спадзяюся, што гэтая падзея стане магутным імпульсам для росту анлайну, а "
+"вы падтрымаеце гульню ў такі важны дзень!"
 
 #: player/templates/player/redesign/game_event/play_market_event.html:52
 msgctxt "event"
 msgid "Начинаем наступление на Google Play!"
-msgstr ""
+msgstr "Пачынаем наступ на Google Play!"
 
 #: player/templates/player/redesign/game_event/play_market_event.html:58
 msgctxt "event"
@@ -6251,12 +6192,13 @@ msgid ""
 "В наступление не ходят без припасов. Я подготовил их для вас в разеделе "
 "«Магазин» вашего профиля."
 msgstr ""
+"У наступленне не ходзяць без прыпасаў. Я падрыхтаваў іх для вас у раздзеле "
+"«Крама» вашага профілю."
 
 #: player/templates/player/redesign/game_event/play_market_event.html:66
-#, fuzzy
 msgctxt "event"
 msgid "золота"
-msgstr "Золата"
+msgstr "золата"
 
 #: player/templates/player/redesign/game_event/play_market_event.html:69
 msgctxt "event"
@@ -6264,6 +6206,7 @@ msgid ""
 "и $500 000 доступны для получения в актуальной версии мобильного приложения "
 "WP."
 msgstr ""
+"і $500 000 даступны для атрымання ў актуальнай версіі мабільнай праграмы WP."
 
 #: player/templates/player/redesign/game_event/play_market_event.html:75
 msgctxt "event"
@@ -6271,46 +6214,43 @@ msgid ""
 "Чтобы занять первый плацдарм, а именно - вообще появиться в поисковой выдаче "
 "магазина приложений, нам нужно заявить о себе."
 msgstr ""
+"Каб заняць першы плацдарм, а менавіта - наогул з'явіцца ў пошукавай выдачы "
+"крамы прыкладанняў, нам трэба заявіць аб сабе."
 
 #: player/templates/player/redesign/game_event/play_market_event.html:76
 msgctxt "event"
 msgid "В этом нам помогут"
-msgstr ""
+msgstr "У гэтым нам дапамогуць"
 
 #: player/templates/player/redesign/game_event/play_market_event.html:79
-#, fuzzy
-#| msgid "Загрузить"
 msgctxt "event"
 msgid "загрузки"
-msgstr "Загрузіць"
+msgstr "запампоўкі"
 
 #: player/templates/player/redesign/game_event/play_market_event.html:82
-#, fuzzy
-#| msgctxt "index_links"
-#| msgid "Приложение"
 msgctxt "event"
 msgid "приложения, его"
-msgstr "Праграма"
+msgstr "прыкладання, яго"
 
 #: player/templates/player/redesign/game_event/play_market_event.html:85
 msgctxt "event"
 msgid "оценки"
-msgstr ""
+msgstr "адзнакі"
 
 #: player/templates/player/redesign/game_event/play_market_event.html:88
 msgctxt "event"
 msgid ", а самое главное - "
-msgstr ""
+msgstr ", а самае галоўнае -"
 
 #: player/templates/player/redesign/game_event/play_market_event.html:91
 msgctxt "event"
 msgid "отзывы"
-msgstr ""
+msgstr "водклікі"
 
 #: player/templates/player/redesign/game_event/play_market_event.html:94
 msgctxt "event"
 msgid ", живые и содержательные."
-msgstr ""
+msgstr ", жывыя і "
 
 #: player/templates/player/redesign/game_event/play_market_event.html:100
 msgctxt "event"
@@ -6318,6 +6258,8 @@ msgid ""
 "Вспомните себя - стали бы вы скачивать неизвестное приложение, если о нём "
 "ничего нельзя узнать заранее от тех, кто уже его скачивал?"
 msgstr ""
+"Асвяжыце ўспаміны - ці запампавлі бы вы раней невядомы прыдатак, калі аб ім "
+"немагчыма даведацца ад тых, хто спампаваў яго раней?"
 
 #: player/templates/player/redesign/game_event/play_market_event.html:101
 msgctxt "event"
@@ -6325,21 +6267,23 @@ msgid ""
 "Нам нужно показать, что игра растёт и развивается, и с каждым новым игроком, "
 "с каждой созданной партией становится только интереснее!"
 msgstr ""
+"Нам трэба паказаць, што гульня расце і развіваецца, і з кожным новым "
+"гульцом, з кожнай створанай партыей становіцца толькі цікавей!"
 
 #: player/templates/player/redesign/game_event/play_market_event.html:107
 msgctxt "event"
 msgid "Поэтому, отложите односложные и бессвязные комментарии на другой раз."
-msgstr ""
+msgstr "Таму, пакіньце сціслыя і безсувязныя каментарыі да іншага выпадку."
 
 #: player/templates/player/redesign/game_event/play_market_event.html:110
 msgctxt "event"
 msgid "Наша задача - привлечь максимум новичков!"
-msgstr ""
+msgstr "Наша мэта - прыцягнуць максімум навічкоў!"
 
 #: player/templates/player/redesign/game_event/play_market_event.html:116
 msgctxt "event"
 msgid "К слову, о новичках"
-msgstr ""
+msgstr "Дарэчы, аб навічках"
 
 #: player/templates/player/redesign/game_event/play_market_event.html:127
 msgctxt "event"
@@ -6347,6 +6291,8 @@ msgid ""
 "На момент перед публикацией приложения предварительную регистрацию в WP "
 "оформили более 600 человек."
 msgstr ""
+"На момант перад публікацыяй прыдатка, папярэднюю рэгістрацію ў WP аформілі "
+"больш за 600 чалавек."
 
 #: player/templates/player/redesign/game_event/play_market_event.html:132
 msgctxt "event"
@@ -6355,6 +6301,9 @@ msgid ""
 "тех, кто зайдёт в игру впервые. Пригласите в партию, поделитесь игровой "
 "валютой и гайдом, позовите в чаты."
 msgstr ""
+"Некаторая частка з іх - гэта вы, вопытныя гульцы. Але усё ж, падтрымайце "
+"тых, хто зайдзе ў гульню ўпершыню. Запрасіце ў партыю, падзяліцеся гульнёвай "
+"валютай і гайдам, запрасіце ў чаты."
 
 #: player/templates/player/redesign/game_event/play_market_event.html:140
 msgctxt "event"
@@ -6362,50 +6311,43 @@ msgid ""
 "Сейчас в игре активен новый сезон программы \"Пригласи друга\" - и это "
 "отличный шанс начать игру для них, и попасть в топ - для вас!"
 msgstr ""
+"У гэты момант у гульні актывен новы сезон праграммы \"Запрасі сябра\" - і "
+"гэта добры шанс пачаць гульню для іх, і апынуцца ў топе - для вас!"
 
 #: player/templates/player/redesign/game_event/play_market_event.html:142
 msgctxt "event"
 msgid "Тем более что в игру планируется ввести"
-msgstr ""
+msgstr "Тым больш што ў гульню плануецца ўвесці"
 
 #: player/templates/player/redesign/game_event/play_market_event.html:144
 msgctxt "event"
 msgid "медаль"
-msgstr ""
+msgstr "медаль"
 
 #: player/templates/player/redesign/game_event/play_market_event.html:147
 msgctxt "event"
 msgid "\"наставника\", которая станет отличным украшением вашего профиля :)"
-msgstr ""
+msgstr "\"настаўніка\", які стане добрым упрыгожваннем вашага профілю :)"
 
 #: player/templates/player/redesign/game_event/play_market_event.html:165
-#, fuzzy
-#| msgctxt "join_revolution"
-#| msgid "Недостаточно золота"
 msgctxt "event"
 msgid "Нужно больше золота?"
-msgstr "Недастаткова золата"
+msgstr "Неабходна больш золата?"
 
 #: player/templates/player/redesign/game_event/play_market_event.html:172
 msgctxt "event"
 msgid "Можем устроить!"
-msgstr ""
+msgstr "Можам зрабіць!"
 
 #: player/templates/player/redesign/game_event/play_market_event.html:173
-#, fuzzy
-#| msgctxt "auctions"
-#| msgid "создано"
 msgctxt "event"
 msgid "В Telegram создан"
-msgstr "створана"
+msgstr "У Telegram створан"
 
 #: player/templates/player/redesign/game_event/play_market_event.html:175
-#, fuzzy
-#| msgctxt "bill"
-#| msgid "оригинальный размер"
 msgctxt "event"
 msgid "отдельный чат"
-msgstr "арыгінальны памер"
+msgstr "асабовы чат"
 
 #: player/templates/player/redesign/game_event/play_market_event.html:177
 msgctxt "event"
@@ -6413,6 +6355,8 @@ msgid ""
 "где вы можете опубликовать скриншоты своих отзывов с Play Market, сопроводив "
 "их своим игровым ID."
 msgstr ""
+"дзе вы можаце змясціць скрыншоты сваіх водклікаў з Play Market разам з "
+"сваімі гульнёвымі ID."
 
 #: player/templates/player/redesign/game_event/play_market_event.html:178
 msgctxt "event"
@@ -6420,16 +6364,18 @@ msgid ""
 "Раз в неделю я буду выбирать случайный скриншот, проверять его реальность, и "
 "награждать игрока!"
 msgstr ""
+"Раз у тыдзень я буду выбіраць выпадковы скрыншот, правяраць яго рэальнасць і "
+"ўзнагароджваць гульца!"
 
 #: player/templates/player/redesign/game_event/play_market_event.html:189
 msgctxt "event"
 msgid "Награда будет состоять из&nbsp;"
-msgstr ""
+msgstr "Узнагарода будзе складацца з&nbsp;"
 
 #: player/templates/player/redesign/game_event/play_market_event.html:190
 msgctxt "event"
 msgid "на среднюю оценку в Play Market"
-msgstr ""
+msgstr "на сярэднюю адзнаку ў Play Market"
 
 #: player/templates/player/redesign/game_event/play_market_event.html:198
 msgctxt "event"
@@ -6437,6 +6383,8 @@ msgid ""
 "И да, это тот случай, когда чем больше разных отзывов - тем лучше! Но не "
 "забывайте, что несколько персонажей в игре запрещены :)"
 msgstr ""
+"І да, гэта той выпадак, калі чым больш розных водклік - тым лепш! Але "
+"памятайце, што некалькі персанажаў у гульні забаронены :)"
 
 #: player/templates/player/redesign/game_event/play_market_event.html:201
 msgctxt "event"
@@ -6444,14 +6392,13 @@ msgid ""
 "Дополнительно, я отмечу призовым золотом самые содержательные и интересные "
 "отзывы в Play Market - как обычно."
 msgstr ""
+"Дадаткова я адзначу прызавым золатам самыя цікавыя водклікі ў Play Market як "
+"і заўсёды"
 
 #: player/templates/player/redesign/game_event/play_market_event.html:208
-#, fuzzy
-#| msgctxt "medals"
-#| msgid "Награды игрока"
 msgctxt "event"
 msgid "Награды для всех"
-msgstr "Узнагароды гульца"
+msgstr "Узнагароды для ўсіх"
 
 #: player/templates/player/redesign/game_event/play_market_event.html:212
 msgctxt "event"
@@ -6459,6 +6406,8 @@ msgid ""
 "Как и во всех событиях нашей игры, помимо личной прогрессии будет "
 "общесерверная."
 msgstr ""
+"Як і ва ўсіх падзеях нашай гульні акрамя асабістай прагрэссіі будзе і "
+"агульнасерверная"
 
 #: player/templates/player/redesign/game_event/play_market_event.html:215
 msgctxt "event"
@@ -6466,6 +6415,8 @@ msgid ""
 "Каждое значительное число скачиваний за время Наступления будет отмечено "
 "призами и бонус-кодами."
 msgstr ""
+"Кожная значная лічба пампаванняў за час Наступу будзе адзначана прызамі і "
+"бонус-кодамі."
 
 #: player/templates/player/redesign/game_event/play_market_event.html:223
 msgctxt "event"
@@ -6473,14 +6424,13 @@ msgid ""
 "Также, приглашаем вас в наши социальные сети - Вконтакте и Telegram, где "
 "будут проводиться различные конкурсы и активности!"
 msgstr ""
+"Таксама запрашаем вас у нашы сацыяльныя сеткі - Вконтакте и Telegram, дзе "
+"будуць праводзіцца разнастайныя конкурсы і актыўнасці."
 
 #: player/templates/player/redesign/game_event/play_market_event.html:227
-#, fuzzy
-#| msgctxt "region_view"
-#| msgid "На финансирование"
 msgctxt "event"
 msgid "Спасибо за внимание!"
-msgstr "На фінансаванне"
+msgstr "Дзякую за ўвагу!"
 
 #: player/templates/player/redesign/header.html:200
 msgctxt "education"
@@ -6577,7 +6527,7 @@ msgstr "незалежны рэгіён"
 #: player/templates/player/redesign/overview.html:271
 msgctxt "event"
 msgid "Публикация в Google Play!"
-msgstr ""
+msgstr "Публікацыя ў Google Play!"
 
 #: player/templates/player/redesign/overview.html:342
 msgctxt "overview"
@@ -6611,35 +6561,24 @@ msgid "партий нет"
 msgstr "партый няма"
 
 #: player/templates/player/redesign/overview.html:1179
-#, fuzzy
-#| msgctxt "martial_law_draft"
-#| msgid "Военное положение"
 msgctxt "overview"
 msgid "Обновите приложение"
-msgstr "Ваеннае становішча"
+msgstr "Абнавіце праграмму"
 
 #: player/templates/player/redesign/overview.html:1179
-#, fuzzy
-#| msgctxt "w_trading"
-#| msgid "Торговое предложение успешно принято"
 msgctxt "overview"
 msgid "Ваше приложение устарело. Обновите его"
-msgstr "Гандлёвая прапанова паспяхова прынята"
+msgstr "Вашая праграмма устарэла. Абнавіце яе"
 
 #: player/templates/player/redesign/overview.html:1179
-#, fuzzy
-#| msgid "Загрузить"
 msgctxt "overview"
 msgid "Загрузить"
-msgstr "Загрузіць"
+msgstr "Запампаваць"
 
 #: player/templates/player/redesign/overview.html:1179
-#, fuzzy
-#| msgctxt "core"
-#| msgid "Закрыть"
 msgctxt "overview"
 msgid "Скрыть"
-msgstr "Зачыніць"
+msgstr "Схаваць"
 
 #: player/templates/player/redesign/overview_skills.html:56
 #: player/templates/player/redesign/overview_skills.html:122
@@ -6860,59 +6799,44 @@ msgstr "папоўніць"
 #: player/templates/player/redesign/premium_shop.html:22
 msgctxt "shop"
 msgid "Временный порядок оплаты наборов Премиум-магазина"
-msgstr ""
+msgstr "Часовы парадак аплаты набораў Прэміюм-крамы"
 
 #: player/templates/player/redesign/premium_shop.html:25
-#, fuzzy
-#| msgctxt "index"
-#| msgid "Продолжая использование сайта, вы принимаете условия"
 msgctxt "shop"
 msgid "В данный момент все пожертвования на развитие игры принимаются лично"
-msgstr "Працягвая выкарыстанне сайта вы прымайце умовы"
+msgstr "У гэты момант усе ахвяраванні на развіццё гульні прымаюца асабіста"
 
 #: player/templates/player/redesign/premium_shop.html:26
-#, fuzzy
-#| msgctxt "change_residency_draft"
-#| msgid "Выдаётся министром"
 msgctxt "shop"
 msgid "Администратором"
-msgstr "Выдаецца міністрам"
+msgstr "Адміністратарам"
 
 #: player/templates/player/redesign/premium_shop.html:33
 msgctxt "shop"
 msgid "30 дней"
-msgstr ""
+msgstr "30 дзён"
 
 #: player/templates/player/redesign/premium_shop.html:86
 #: player/templates/player/redesign/premium_shop.html:94
-#, fuzzy
-#| msgctxt "party_manage"
-#| msgid "золото"
 msgctxt "shop"
 msgid "золото"
 msgstr "золата"
 
 #: player/templates/player/redesign/premium_shop.html:96
 #: player/templates/player/redesign/premium_shop.html:104
-#, fuzzy
-#| msgctxt "bill_draft"
-#| msgid "Бесплатно"
 msgctxt "shop"
 msgid "бесплатно"
-msgstr "Бясплатна"
+msgstr "бясплатна"
 
 #: player/templates/player/redesign/premium_shop.html:102
-#, fuzzy
-#| msgctxt "daily_header"
-#| msgid "за день!"
 msgctxt "shop"
 msgid "деньги"
-msgstr "за дзень!"
+msgstr "грошы"
 
 #: player/templates/player/redesign/premium_shop.html:114
 msgctxt "shop"
 msgid "Курсовая разница стоимости товаров"
-msgstr ""
+msgstr "Курсавая розніца кошту тавару"
 
 #: player/templates/player/redesign/premium_shop.html:117
 msgctxt "shop"
@@ -6920,6 +6844,8 @@ msgid ""
 "Обращаем ваше внимание, что конечная стоимость наборов зависит от валюты и "
 "методов оплаты, и может включать в себя дополнительные комиссии и сборы."
 msgstr ""
+"Звяртаем вашу увагу на тое, што канчатковы кошт набораў залежыць ад валюты і "
+"метадаў аплаты і можа мець дадатковыя камісіі і зборы."
 
 #: player/templates/player/redesign/profile.html:99
 #: player/templates/player/redesign/view_profile.html:72
@@ -6966,12 +6892,9 @@ msgid "ввести бонус-код"
 msgstr "увесці бонус-код"
 
 #: player/templates/player/redesign/profile.html:317
-#, fuzzy
-#| msgctxt "party_view"
-#| msgid "отменить заявку"
 msgctxt "profile"
 msgid "оценить нас"
-msgstr "скасаваць заяўку"
+msgstr "адзначце нас"
 
 #: player/templates/player/redesign/profile.html:345
 msgctxt "profile"
@@ -7047,8 +6970,6 @@ msgstr "з"
 #: player/templates/player/redesign/profile.html:446
 #: player/templates/player/redesign/view_profile.html:216
 #: player/templates/player/redesign/view_profile.html:234
-#, fuzzy
-#| msgid "беспартийный"
 msgctxt "profile"
 msgid "беспартийный"
 msgstr "беспартыйны"
@@ -7061,26 +6982,20 @@ msgstr "гісторыя"
 
 #: player/templates/player/redesign/profile.html:438
 #: player/templates/player/redesign/view_profile.html:226
-#, fuzzy
-#| msgid "должность в партии"
 msgctxt "profile"
 msgid "должность в партии"
 msgstr "пасада ў партыі"
 
 #: player/templates/player/redesign/profile.html:473
 #: player/templates/player/redesign/view_profile.html:240
-#, fuzzy
-#| msgid "о себе"
 msgctxt "profile"
 msgid "о себе"
 msgstr "пра сябе"
 
 #: player/templates/player/redesign/profile.html:544
-#, fuzzy
-#| msgid "Загрузить"
 msgctxt "profile"
 msgid "Загрузить"
-msgstr "Загрузіць"
+msgstr "Запампаваць"
 
 #: player/templates/player/redesign/profile.html:599
 msgctxt "profile"
@@ -7115,42 +7030,32 @@ msgstr "навучанне"
 #: player/templates/player/redesign/rate_us.html:11
 msgctxt "event"
 msgid "Оцените нас в Play Market!"
-msgstr ""
+msgstr "Адзначце нас у Play Market!"
 
 #: player/templates/player/redesign/rate_us.html:14
-#, fuzzy
-#| msgid "Вы летите в"
 msgctxt "event"
 msgid "Укажите имя автора отзыва"
-msgstr "Вы ляціце да"
+msgstr "Зазначце імя аўтара водкліку"
 
 #: player/templates/player/redesign/rate_us.html:30
-#, fuzzy
-#| msgctxt "construction_draft"
-#| msgid "Уровень"
 msgctxt "bonus_code"
 msgid "проверить"
-msgstr "Узровень"
+msgstr "праверыць"
 
 #: player/templates/player/redesign/rate_us.html:37
-#, fuzzy
-#| msgctxt "repost"
-#| msgid "поддержи проект репостом и получай золото!"
 msgctxt "event"
 msgid "Оцените нас в Play Market и получите золото!"
-msgstr "падтрымай праект рэпостам і атрымлівай золата!"
+msgstr "Адзначце нас у Play Market і атрымайце золата!"
 
 #: player/templates/player/redesign/rate_us.html:40
-#, fuzzy
-#| msgid "Открытие сундуков"
 msgctxt "event"
 msgid "Откройте страничку игры в "
-msgstr "Адчыненне куфараў"
+msgstr "Адчыніце старонку гульні ў"
 
 #: player/templates/player/redesign/rate_us.html:42
 msgctxt "event"
 msgid "оцените нас и оставьте отзыв."
-msgstr ""
+msgstr "адзначце нас і пакіньце водклік."
 
 #: player/templates/player/redesign/rate_us.html:46
 msgctxt "event"
@@ -7158,11 +7063,10 @@ msgid ""
 "После этого напишите здесь имя аккаунта так, как он написан над вашим "
 "отзывом."
 msgstr ""
+"Пасля гэтага надрукуйце здесь імя вашага акаунта так, каб ён быў надрукаваны "
+"пад вашым водгукам."
 
 #: player/templates/player/redesign/rate_us.html:50
-#, fuzzy
-#| msgctxt "game_event"
-#| msgid "Вы получите"
 msgctxt "event"
 msgid "Вы получите"
 msgstr "Вы атрымаеце"
@@ -7170,7 +7074,7 @@ msgstr "Вы атрымаеце"
 #: player/templates/player/redesign/rate_us.html:52
 msgctxt "event"
 msgid "золота за каждую звезду, на которую оценили игру."
-msgstr ""
+msgstr "золата за кожную зорку, на якую вы адзначылі гульню."
 
 #: player/templates/player/redesign/rate_us.html:56
 msgctxt "event"
@@ -7178,6 +7082,8 @@ msgid ""
 "За использование чужого отзыва для получения награды к вам может быть "
 "применено дисциплинарное взыскание."
 msgstr ""
+"За выкарыстоўванне чужога водкліка для атрымання ўзнагароды да вас можа быць "
+"прыменена дысцыплінарнае спагадненне."
 
 #: player/templates/player/redesign/view_profile.html:137
 msgctxt "profile"
@@ -7185,8 +7091,6 @@ msgid "был в сети"
 msgstr "апошні анлайн"
 
 #: player/templates/player/redesign/view_profile.html:139
-#, fuzzy
-#| msgid "давно"
 msgctxt "profile"
 msgid "давно"
 msgstr "даўно"
@@ -7455,8 +7359,6 @@ msgid "Смена аватара"
 msgstr "Змена аватара"
 
 #: player/views/customization/border/border_select.py:29
-#, fuzzy
-#| msgid "Выбор рамки"
 msgctxt "border_select"
 msgid "Выбор рамки"
 msgstr "Выбар рамкі"
@@ -7479,8 +7381,6 @@ msgid "Указанная рамка вам не принадлежит"
 msgstr "Зазначаная рамка вам не належыць"
 
 #: player/views/customization/border/view_borders.py:34
-#, fuzzy
-#| msgid "Просмотр рамок"
 msgctxt "view_borders"
 msgid "Просмотр рамок"
 msgstr "Прагляд рамак"
@@ -7566,9 +7466,6 @@ msgid "Указанный самолёт вам не принадлежит"
 msgstr "Зазначаны самалёт вам не належыць"
 
 #: player/views/customization/plane/view_planes.py:34
-#, fuzzy
-#| msgctxt "plane_select"
-#| msgid "Авиация"
 msgctxt "view_planes"
 msgid "Авиация"
 msgstr "Авіяцыя"
@@ -7601,18 +7498,14 @@ msgid "Недостаточно Энергетиков. Создайте их в
 msgstr "Недастаткова Энэргетыкаў. Стварыце іх у Сховішчы Кладоўні"
 
 #: player/views/full_auto_allow.py:39
-#, fuzzy
-#| msgid "Некорректное значение"
 msgctxt "full_auto"
 msgid "Некорректное значение"
 msgstr "Некарэктнае значэнне"
 
 #: player/views/full_auto_allow.py:40 player/views/full_auto_allow.py:56
-#, fuzzy
-#| msgid "Энергетики в авто-добыче"
 msgctxt "full_auto"
 msgid "Энергетики в авто-добыче"
-msgstr "Энергетыкі ў аўта-здабычы"
+msgstr "Энергетыкі ў аўто-здабычы"
 
 #: player/views/game_event/anniversary.py:44
 msgctxt "game_event"
@@ -7620,12 +7513,9 @@ msgid "С годовщиной сервера Wild Politics!"
 msgstr "З гадавінай сервера Wild Politics!"
 
 #: player/views/game_event/buy_test_prizes.py:38
-#, fuzzy
-#| msgctxt "profile"
-#| msgid "Некорректный код акцентов игры"
 msgctxt "shop"
 msgid "Некорректно указан товар"
-msgstr "Некарэктны код акцэнтаў гульні"
+msgstr "Некарэктна зазначаны тавар"
 
 #: player/views/game_event/buy_test_prizes.py:39
 #: player/views/game_event/buy_test_prizes.py:47
@@ -7636,53 +7526,35 @@ msgstr "Некарэктны код акцэнтаў гульні"
 #: player/views/game_event/check_review.py:51
 #: player/views/game_event/check_review.py:93
 #: player/views/game_event/check_review.py:103
-#, fuzzy
-#| msgctxt "get_residency"
-#| msgid "Получение прописки"
 msgctxt "shop"
 msgid "Получение бонуса"
-msgstr "Атрыманне прапіскі"
+msgstr "Атрыманне бонусу"
 
 #: player/views/game_event/buy_test_prizes.py:46
-#, fuzzy
-#| msgctxt "w_trading_new"
-#| msgid "Стоимость товара слишком велика"
 msgctxt "shop"
 msgid "Этот товар уже куплен вами"
-msgstr "Кошт тавару вельмі вялікі"
+msgstr "Гэты тавар ужо куплены вамі"
 
 #: player/views/game_event/buy_test_prizes.py:64
 #: player/views/game_event/buy_test_prizes.py:89
-#, fuzzy
-#| msgctxt "new_player"
-#| msgid "Ошибка в форме профиля"
 msgctxt "shop"
 msgid "Ошибка версии приложения"
-msgstr "Памылка ў форме профілю"
+msgstr "Памылка версіі гульні"
 
 #: player/views/game_event/check_review.py:39
-#, fuzzy
-#| msgctxt "education"
-#| msgid "Ошибка получения награды"
 msgctxt "event"
 msgid "Вы уже получили награду"
-msgstr "Памылка атрымання узнагароды"
+msgstr "Вы ўжо атрымалі ўзнагароду"
 
 #: player/views/game_event/check_review.py:50
-#, fuzzy
-#| msgctxt "game_event"
-#| msgid "играй как обычно - и получай награды!"
 msgctxt "event"
 msgid "За данный отзыв уже получена награда"
-msgstr "гуляй як заўсёды - і атрымлівай узнагароды!"
+msgstr "За гэты водзыў узнагарода ўжо атрымана"
 
 #: player/views/game_event/check_review.py:92
-#, fuzzy
-#| msgctxt "auctions"
-#| msgid "Ничего не найдено"
 msgctxt "event"
 msgid "Отзыв не найден"
-msgstr "Нічога не знойдзена"
+msgstr "Водзыў не знойдзена"
 
 #: player/views/game_event/new_year.py:43
 msgctxt "game_event_ny"
@@ -7690,9 +7562,6 @@ msgid "С новым годом!"
 msgstr "З новым годам!"
 
 #: player/views/game_event/rate_us.py:30 player/views/premium_shop.py:49
-#, fuzzy
-#| msgctxt "profile"
-#| msgid "премиум-аккаунт"
 msgctxt "shop"
 msgid "Премиум-магазин"
 msgstr "прэміюм-акаўнт"
@@ -7724,8 +7593,6 @@ msgid "Жители региона"
 msgstr "Жыхары рэгіёна"
 
 #: player/views/lists/skill_top.py:22
-#, fuzzy
-#| msgid "Топ по характеристикам"
 msgctxt "skill_top"
 msgid "Топ по характеристикам"
 msgstr "Топ па характарыстыкам"
@@ -7791,7 +7658,7 @@ msgstr "Памылка ў форме профілю"
 #: storage/views/vault/avia_box/open_aviaboxes.py:28
 msgctxt "open_box"
 msgid "Кейсы отключены"
-msgstr ""
+msgstr "Кейсы адключаны"
 
 #: player/views/open_lootboxes.py:26 player/views/open_lootboxes.py:37
 #: player/views/open_lootboxes.py:48 player/views/open_lootboxes.py:58
@@ -7804,66 +7671,47 @@ msgstr ""
 #: storage/views/vault/avia_box/open_aviaboxes.py:91
 #: storage/views/vault/avia_box/open_aviaboxes.py:100
 #: storage/views/vault/avia_box/open_aviaboxes.py:183
-#, fuzzy
-#| msgid "Открытие Аэрокейсов"
 msgctxt "open_box"
 msgid "Открытие кейсов"
-msgstr "Адчыненне Аэракейсаў"
+msgstr "Адчыненне кейсаў"
 
 #: player/views/open_lootboxes.py:36
 #: storage/views/vault/avia_box/open_aviaboxes.py:77
-#, fuzzy
-#| msgctxt "overview"
-#| msgid "У вас пока еще нет стикеров"
 msgctxt "open_box"
 msgid "У вас нет кейсов"
-msgstr "У вас пакуль што няма стыкераў"
+msgstr "У вас няма кейсаў"
 
 #: player/views/open_lootboxes.py:47
 #: storage/views/vault/avia_box/open_aviaboxes.py:90
-#, fuzzy
-#| msgctxt "storage"
-#| msgid "Некорректное число денег игрока"
 msgctxt "open_box"
 msgid "Некорректное количество кейсов для открытия"
-msgstr "Некарэктная лічба грошай у гульца"
+msgstr "Некарэктная лічба кейсаў для адкрыцця"
 
 #: player/views/open_lootboxes.py:57
 #: storage/views/vault/avia_box/open_aviaboxes.py:99
-#, fuzzy
-#| msgctxt "assets"
-#| msgid "недостаточно места для товара."
 msgctxt "open_box"
 msgid "Недостаточно кейсов для открытия"
-msgstr "недастаткова месца для тавара."
+msgstr "Недастаткова кейсаў для адкрыцця"
 
 #: player/views/set_language.py:36
-#, fuzzy
-#| msgid "Такого языка в игре нет"
 msgctxt "set_language"
 msgid "Такого языка в игре нет"
 msgstr "Такой мовы ў гульні няма"
 
 #: player/views/set_language.py:37 player/views/set_language.py:53
-#, fuzzy
-#| msgid "Изменение языка"
 msgctxt "set_language"
 msgid "Изменение языка"
-msgstr "Змяніць мову"
+msgstr "Змяненне мовы"
 
 #: player/views/set_timezone.py:27
-#, fuzzy
-#| msgid "Такого часового пояса в игре нет"
 msgctxt "set_timezone"
 msgid "Такого часового пояса в игре нет"
-msgstr "Такога часавога паса ў гульні няма"
+msgstr "Такога часавога поясу ў гульні няма"
 
 #: player/views/set_timezone.py:28 player/views/set_timezone.py:44
-#, fuzzy
-#| msgid "Изменение часового пояса"
 msgctxt "set_timezone"
 msgid "Изменение часового пояса"
-msgstr "Змяніць часавы пас"
+msgstr "Змяненне часавога поясу"
 
 #: player/views/skills/boost_skill.py:57 player/views/skills/up_skill.py:59
 #: skill/views/skill_cancel.py:84
@@ -7952,8 +7800,6 @@ msgid "Очередь навыков заполнена"
 msgstr "Чарга навыкаў запоўнена"
 
 #: player/views/wallet.py:22
-#, fuzzy
-#| msgid "Финансы"
 msgctxt "wallet"
 msgid "Финансы"
 msgstr "Фінансы"
@@ -8267,8 +8113,6 @@ msgid "Запасов руды в регионе недостаточно для
 msgstr "Прыпасаў руды ў рэгіёне недастаткова для здабычы"
 
 #: region/views/lists/world_regions.py:90
-#, fuzzy
-#| msgid "Регионы игры"
 msgctxt "world_regions"
 msgid "Регионы игры"
 msgstr "Рэгіёны гульні"
@@ -9733,17 +9577,12 @@ msgid "Операции с товарами"
 msgstr "Аперацыі з таварамі"
 
 #: storage/views/assets/assets_info.py:61
-#, fuzzy
-#| msgid "Такого склада у вас нет"
 msgctxt "assets_info"
 msgid "Такого склада у вас нет"
 msgstr "Такой кладоўні у вас няма"
 
 #: storage/views/assets/assets_info.py:62
 #: storage/views/assets/assets_info.py:70
-#, fuzzy
-#| msgctxt "storage_upgrade"
-#| msgid "Улучшение склада"
 msgctxt "assets_info"
 msgid "Получение склада"
 msgstr "Паляпшэнне кладоўні"
@@ -10400,20 +10239,15 @@ msgid "Аэрокейсы"
 msgstr "Аэракейсы"
 
 #: storage/views/vault/avia_box/open_aviaboxes.py:42
-#, fuzzy
-#| msgctxt "education"
-#| msgid "Ошибка получения награды"
 msgctxt "open_box"
 msgid "У вас нет неполученных наград"
-msgstr "Памылка атрымання узнагароды"
+msgstr "У вас няма неатрыманых узнагарод"
 
 #: storage/views/vault/avia_box/open_aviaboxes.py:50
-#, fuzzy, python-format
-#| msgctxt "new_article"
-#| msgid "Недостаточно золота, необходимо: %(price)s"
+#, python-format
 msgctxt "open_box"
 msgid "Недостаточно золота, необходимо: %(value)s"
-msgstr "Недастаткова золата, неабходна: %(price)s"
+msgstr "Недастаткова золата, неабходна: %(value)s"
 
 #: storage/views/vault/lootbox.py:42
 msgctxt "assets"
@@ -10421,20 +10255,14 @@ msgid "Сундуки"
 msgstr "Куфары"
 
 #: storage/views/vault/use_card.py:25
-#, fuzzy
-#| msgctxt "factory"
-#| msgid "Недостаточно "
 msgctxt "use_card"
 msgid "Недостаточно Wild Pass"
-msgstr "Недастаткова "
+msgstr "Недастаткова Wild Pass"
 
 #: storage/views/vault/use_card.py:26 storage/views/vault/use_card.py:70
-#, fuzzy
-#| msgctxt "storage_assets"
-#| msgid "Активация"
 msgctxt "use_card"
 msgid "Активация Wild Pass"
-msgstr "Актывацыя"
+msgstr "Актывацыя Wild Pass"
 
 #: war/consumers.py:161
 msgctxt "war_consumers"
@@ -10723,30 +10551,22 @@ msgid "Урон за сторону:"
 msgstr "Страты за бок:"
 
 #: war/views/switch_war_visibility.py:38
-#, fuzzy
-#| msgid "Нет такого типа войн"
 msgctxt "war_visibility"
 msgid "Нет такого типа войн"
 msgstr "Няма такога тыпу войн"
 
 #: war/views/switch_war_visibility.py:39 war/views/switch_war_visibility.py:47
 #: war/views/switch_war_visibility.py:63 war/views/switch_war_visibility.py:91
-#, fuzzy
-#| msgid "Скрытие войны"
 msgctxt "war_visibility"
 msgid "Скрытие войны"
 msgstr "Схаванне вайны"
 
 #: war/views/switch_war_visibility.py:46
-#, fuzzy
-#| msgid "Нет такой войны"
 msgctxt "war_visibility"
 msgid "Нет такой войны"
 msgstr "Няма такой вайны"
 
 #: war/views/switch_war_visibility.py:62
-#, fuzzy
-#| msgid "Нет такой записи об участии в бою"
 msgctxt "war_visibility"
 msgid "Нет такой записи об участии в бою"
 msgstr "Няма такога запісу аб удзеле ў баі"
