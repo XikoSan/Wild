@@ -9,6 +9,8 @@ from party.party import Party
 from player.decorators.player import check_player
 from player.player import Player
 from wild_politics.settings import JResponse
+from party.logs.party_gold_log import PartyGoldLog
+from player.logs.gold_log import GoldLog
 
 
 # изменить цвет партии в парламенте
@@ -76,8 +78,12 @@ def give_party_gold(request):
                 player.gold += gold_sum
                 player.save()
 
+                GoldLog(player=player, gold=gold_sum, activity_txt='partzp').save()
+
                 changing_party.gold -= gold_sum
                 changing_party.save()
+
+                PartyGoldLog(party=changing_party, gold=0-gold_sum, activity_txt='salary').save()
 
                 data = {
                     'response': 'ok',
