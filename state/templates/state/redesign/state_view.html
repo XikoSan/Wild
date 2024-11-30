@@ -123,15 +123,26 @@
 		<div class="party__regionInfo stateBlock active">
 			<div class="party__regionInfo-block">
 				<p>{% trans 'Форма правления' context "state_view" %}: <span style="text-align: right;">{{ state.get_type_display }}</span></p>
+
 				{% if president %}
+
 					{% if president.leader %}
 				<p>{% trans 'Президент' context "state_view" %}: <span style="color: var(--c10two); cursor: pointer" onclick="window.location.href = '/profile/{% localize off %}{{ president.leader.pk }}{% endlocalize %}'">{{ president.leader.nickname }}</span></p>
 					{% else %}
 				<p>{% trans 'Президент' context "state_view" %}: <span>{% trans 'не избран' context "state_view" %}</span></p>
 					{% endif %}
+
+				<p>
+					{% trans 'Зарплата лидера' context "state_view" %}:
+					<span>
+						<span style="color: var(--c10two);">G {{ salary }}</span>
+					</span>
+				</p>
+
 					{% if last_voting %}
 				<p>{% trans 'Начало срока' context "state_view" %}: <span>{{ last_voting.voting_end|timezone:player.time_zone|date:"d.m.Y H:i" }}</span></p>
 					{% endif %}
+
 				{% endif %}
 			</div>
 
