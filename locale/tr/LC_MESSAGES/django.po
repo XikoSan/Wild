@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-29 23:56+0300\n"
-"PO-Revision-Date: 2024-11-29 23:56+0300\n"
+"POT-Creation-Date: 2024-11-30 23:57+0300\n"
+"PO-Revision-Date: 2024-11-30 23:59+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: tr\n"
@@ -219,15 +219,15 @@ msgstr "Makale boş olamaz"
 #: party/views/management/color_change.py:54
 #: party/views/management/color_change.py:61
 #: party/views/management/color_change.py:68
-#: party/views/management/gold/give_party_gold.py:36
-#: party/views/management/gold/give_party_gold.py:44
-#: party/views/management/gold/give_party_gold.py:52
-#: party/views/management/gold/give_party_gold.py:63
-#: party/views/management/gold/give_party_gold.py:71
-#: party/views/management/gold/give_party_gold.py:88
-#: party/views/management/gold/give_party_gold.py:96
-#: party/views/management/gold/give_party_gold.py:103
-#: party/views/management/gold/give_party_gold.py:110
+#: party/views/management/gold/give_party_gold.py:38
+#: party/views/management/gold/give_party_gold.py:46
+#: party/views/management/gold/give_party_gold.py:54
+#: party/views/management/gold/give_party_gold.py:65
+#: party/views/management/gold/give_party_gold.py:73
+#: party/views/management/gold/give_party_gold.py:94
+#: party/views/management/gold/give_party_gold.py:102
+#: party/views/management/gold/give_party_gold.py:109
+#: party/views/management/gold/give_party_gold.py:116
 #: party/views/management/roles/new_role.py:51
 #: party/views/management/roles/new_role.py:58
 #: party/views/management/roles/new_role.py:66
@@ -2200,7 +2200,7 @@ msgstr "Bu bölgede Depo bulunmamaktadır"
 #: bill/views/bills/speedup_bill.py:168 education/views/edu_reward.py:172
 #: gov/views/color_change.py:58 gov/views/set_ministers.py:181
 #: gov/views/switch_description.py:43 party/views/management/color_change.py:66
-#: party/views/management/gold/give_party_gold.py:108
+#: party/views/management/gold/give_party_gold.py:114
 #: party/views/management/roles/new_role.py:79
 #: party/views/management/roles/remove_role.py:77
 #: player/views/bonus_code/activate_code.py:179
@@ -3947,12 +3947,12 @@ msgid "Добыча"
 msgstr "Üretme"
 
 #: education/views/edu_overview.py:40 education/views/edu_overview.py:44
-#: player/views/overview.py:409 player/views/overview.py:412
+#: player/views/overview.py:495 player/views/overview.py:498
 msgctxt "education"
 msgid "Анна"
 msgstr ""
 
-#: education/views/edu_overview.py:45 player/views/overview.py:412
+#: education/views/edu_overview.py:45 player/views/overview.py:498
 #, fuzzy
 #| msgctxt "goods"
 #| msgid "Мины"
@@ -3960,7 +3960,7 @@ msgctxt "education"
 msgid "Лин"
 msgstr "Mayınlar"
 
-#: education/views/edu_overview.py:46 player/views/overview.py:412
+#: education/views/edu_overview.py:46 player/views/overview.py:498
 #, fuzzy
 #| msgctxt "regions_list"
 #| msgid "Бавария"
@@ -3968,17 +3968,17 @@ msgctxt "education"
 msgid "Мария"
 msgstr "Bavyera"
 
-#: education/views/edu_overview.py:47 player/views/overview.py:412
+#: education/views/edu_overview.py:47 player/views/overview.py:498
 msgctxt "education"
 msgid "София"
 msgstr ""
 
-#: education/views/edu_overview.py:48 player/views/overview.py:412
+#: education/views/edu_overview.py:48 player/views/overview.py:498
 msgctxt "education"
 msgid "Ольга"
 msgstr ""
 
-#: education/views/edu_overview.py:55 player/views/overview.py:418
+#: education/views/edu_overview.py:55 player/views/overview.py:504
 msgctxt "overview"
 msgid "Обзор"
 msgstr "Gene bakış"
@@ -5765,7 +5765,7 @@ msgid "Некорректный код цвета"
 msgstr "Yanlış renk kodu"
 
 #: party/views/management/color_change.py:52
-#: party/views/management/gold/give_party_gold.py:94
+#: party/views/management/gold/give_party_gold.py:100
 #, fuzzy
 #| msgctxt "no_party"
 #| msgid "Вы не состоите в партии"
@@ -5783,7 +5783,7 @@ msgid "Ошибка изменения цвета партии"
 msgstr "Oyun renkleri değiştirilirken hata oluştu"
 
 #: party/views/management/color_change.py:59
-#: party/views/management/gold/give_party_gold.py:101
+#: party/views/management/gold/give_party_gold.py:107
 #, fuzzy
 #| msgctxt "no_party"
 #| msgid "Вы не состоите в партии"
@@ -5796,7 +5796,7 @@ msgctxt "party_manage"
 msgid "Ошибка изменения цветов игры"
 msgstr "Oyun renkleri değiştirilirken hata oluştu"
 
-#: party/views/management/gold/give_party_gold.py:34
+#: party/views/management/gold/give_party_gold.py:36
 #, fuzzy
 #| msgctxt "factory"
 #| msgid "Количество - не число"
@@ -5804,22 +5804,22 @@ msgctxt "party_manage"
 msgid "Сумма золота - не число"
 msgstr "Miktar bir sayı değildir"
 
-#: party/views/management/gold/give_party_gold.py:35
-#: party/views/management/gold/give_party_gold.py:43
-#: party/views/management/gold/give_party_gold.py:51
-#: party/views/management/gold/give_party_gold.py:62
-#: party/views/management/gold/give_party_gold.py:70
-#: party/views/management/gold/give_party_gold.py:87
-#: party/views/management/gold/give_party_gold.py:95
-#: party/views/management/gold/give_party_gold.py:102
-#: party/views/management/gold/give_party_gold.py:109
+#: party/views/management/gold/give_party_gold.py:37
+#: party/views/management/gold/give_party_gold.py:45
+#: party/views/management/gold/give_party_gold.py:53
+#: party/views/management/gold/give_party_gold.py:64
+#: party/views/management/gold/give_party_gold.py:72
+#: party/views/management/gold/give_party_gold.py:93
+#: party/views/management/gold/give_party_gold.py:101
+#: party/views/management/gold/give_party_gold.py:108
+#: party/views/management/gold/give_party_gold.py:115
 #, fuzzy
 #| msgid "Запасы золота"
 msgctxt "party_manage"
 msgid "Выдача золота"
 msgstr "Altın rezervleri"
 
-#: party/views/management/gold/give_party_gold.py:42
+#: party/views/management/gold/give_party_gold.py:44
 #, fuzzy
 #| msgctxt "w_trading_new"
 #| msgid "Цена товара должна быть положительным числом"
@@ -5827,7 +5827,7 @@ msgctxt "party_manage"
 msgid "Сумма золота должна быть не менее 1 ед."
 msgstr "Ürünlerin fiyatı pozitif bir sayı olmalıdır"
 
-#: party/views/management/gold/give_party_gold.py:50
+#: party/views/management/gold/give_party_gold.py:52
 #, fuzzy
 #| msgctxt "party_manage"
 #| msgid "Ошибка изменения цветов игры"
@@ -5835,14 +5835,14 @@ msgctxt "party_manage"
 msgid "Сумма золота превышает баланс партии"
 msgstr "Oyun renkleri değiştirilirken hata oluştu"
 
-#: party/views/management/gold/give_party_gold.py:61
+#: party/views/management/gold/give_party_gold.py:63
 #, fuzzy
 #| msgid "ID навыка должен быть числом"
 msgctxt "party_manage"
 msgid "ID персонажа должен быть целым числом"
 msgstr "Beceri Kimliği bir sayı olmalıdır"
 
-#: party/views/management/gold/give_party_gold.py:69
+#: party/views/management/gold/give_party_gold.py:71
 #, fuzzy
 #| msgctxt "factory"
 #| msgid "Указанный Склад вам не принадлежит"
@@ -5850,7 +5850,7 @@ msgctxt "party_manage"
 msgid "Указанный игрок в партии не найден"
 msgstr "Belirtilen Depo size ait değil"
 
-#: party/views/management/gold/give_party_gold.py:86
+#: party/views/management/gold/give_party_gold.py:92
 #, python-format
 msgctxt "party_manage"
 msgid "Выдано %(gold_sum)s золота"
@@ -8758,7 +8758,7 @@ msgid "Мирное время, до"
 msgstr "Yanlış işlem"
 
 #: region/templates/region/redesign/region_view.html:200
-#: state/templates/state/redesign/state_view.html:141
+#: state/templates/state/redesign/state_view.html:152
 #, fuzzy
 #| msgid "Жители региона"
 msgctxt "state_view"
@@ -8773,7 +8773,7 @@ msgid "Граждан"
 msgstr "Bölge vatandaşları"
 
 #: region/templates/region/redesign/region_view.html:202
-#: state/templates/state/redesign/state_view.html:142
+#: state/templates/state/redesign/state_view.html:153
 #, fuzzy
 #| msgid "Партия"
 msgctxt "state_view"
@@ -9486,18 +9486,26 @@ msgctxt "state_view"
 msgid "Форма правления"
 msgstr "teklif türü"
 
-#: state/templates/state/redesign/state_view.html:128
 #: state/templates/state/redesign/state_view.html:130
+#: state/templates/state/redesign/state_view.html:132
 msgctxt "state_view"
 msgid "Президент"
 msgstr ""
 
-#: state/templates/state/redesign/state_view.html:130
+#: state/templates/state/redesign/state_view.html:132
 msgctxt "state_view"
 msgid "не избран"
 msgstr ""
 
-#: state/templates/state/redesign/state_view.html:133
+#: state/templates/state/redesign/state_view.html:136
+#, fuzzy
+#| msgctxt "overview"
+#| msgid "Выборы лидера"
+msgctxt "state_view"
+msgid "Зарплата лидера"
+msgstr "Başkanlık seçimleri"
+
+#: state/templates/state/redesign/state_view.html:143
 #, fuzzy
 #| msgctxt "w_auctions"
 #| msgid "начальная"
@@ -9505,21 +9513,21 @@ msgctxt "state_view"
 msgid "Начало срока"
 msgstr "başlangıç ​​teklifi"
 
-#: state/templates/state/redesign/state_view.html:143
+#: state/templates/state/redesign/state_view.html:154
 #, fuzzy
 #| msgid "Столица"
 msgctxt "state_view"
 msgid "Столица"
 msgstr "Başkent"
 
-#: state/templates/state/redesign/state_view.html:144
+#: state/templates/state/redesign/state_view.html:155
 #, fuzzy
 #| msgid "Прописка"
 msgctxt "state_view"
 msgid "Прописка"
 msgstr "İkamet"
 
-#: state/templates/state/redesign/state_view.html:145
+#: state/templates/state/redesign/state_view.html:156
 #, fuzzy
 #| msgctxt "party_view"
 #| msgid "Дата основания"
@@ -9527,55 +9535,55 @@ msgctxt "state_view"
 msgid "Дата основания"
 msgstr "Kuruluş tarihi"
 
-#: state/templates/state/redesign/state_view.html:151
+#: state/templates/state/redesign/state_view.html:162
 msgctxt "state_view"
 msgid "Баланс электросети"
 msgstr ""
 
-#: state/templates/state/redesign/state_view.html:157
+#: state/templates/state/redesign/state_view.html:168
 #, fuzzy
 #| msgid "Государственные налоги"
 msgctxt "state_view"
 msgid "Государственные налоги"
 msgstr "Devlet vergileri"
 
-#: state/templates/state/redesign/state_view.html:158
+#: state/templates/state/redesign/state_view.html:169
 #, fuzzy
 #| msgid "На финансирование"
 msgctxt "state_view"
 msgid "На финансирование"
 msgstr "Finansman için"
 
-#: state/templates/state/redesign/state_view.html:159
+#: state/templates/state/redesign/state_view.html:170
 #, fuzzy
 #| msgid "На добычу"
 msgctxt "state_view"
 msgid "На добычу"
 msgstr "Madencilik"
 
-#: state/templates/state/redesign/state_view.html:160
+#: state/templates/state/redesign/state_view.html:171
 #, fuzzy
 #| msgid "На торговлю"
 msgctxt "state_view"
 msgid "На торговлю"
 msgstr "Ticaret için"
 
-#: state/templates/state/redesign/state_view.html:172
-#: state/templates/state/redesign/state_view.html:204
+#: state/templates/state/redesign/state_view.html:183
+#: state/templates/state/redesign/state_view.html:215
 #, fuzzy
 #| msgid "Регион"
 msgctxt "state_view"
 msgid "Регион"
 msgstr "Bölge"
 
-#: state/templates/state/redesign/state_view.html:173
+#: state/templates/state/redesign/state_view.html:184
 #, fuzzy
 #| msgid "Жители региона"
 msgctxt "state_view"
 msgid "Жители"
 msgstr "Bölge sakinleri"
 
-#: state/templates/state/redesign/state_view.html:174
+#: state/templates/state/redesign/state_view.html:185
 #, fuzzy
 #| msgctxt "mining"
 #| msgid "Запасы"
@@ -9583,7 +9591,7 @@ msgctxt "state_view"
 msgid "Запасы"
 msgstr "Stoklar"
 
-#: state/templates/state/redesign/state_view.html:201
+#: state/templates/state/redesign/state_view.html:212
 #, fuzzy
 #| msgctxt "new_party"
 #| msgid "Название партии"
@@ -9591,7 +9599,7 @@ msgctxt "state_view"
 msgid "Название"
 msgstr "Parti ismi"
 
-#: state/templates/state/redesign/state_view.html:202
+#: state/templates/state/redesign/state_view.html:213
 msgctxt "state_view"
 msgid "Размер"
 msgstr ""
