@@ -406,6 +406,92 @@ def overview(request):
     # проверка версии приложения
     # =----------------------
 
+    from datetime import timedelta
+    from django.db.models import Sum, F, FloatField, Case, When
+    from django.utils.timezone import now
+    from metrics.models.daily_gold_by_state import DailyGoldByState
+    from math import ceil
+    from gov.models.minister import Minister
+
+    # 1. Определяем дату 7 дней назад
+    seven_days_ago = now().date() - timedelta(days=7)
+
+    # 2. Суммируем общее золото за последние 7 дней для всех стран
+    total_gold_last_7_days = DailyGoldByState.objects.filter(
+        date__gte=seven_days_ago,
+        state__type='Presidential'  # Учитываем только президентские страны
+    ).aggregate(total_gold=Sum('daily_gold'))['total_gold'] or 0
+
+    # 3. Получаем данные по президентским странам и их процент от общей добычи
+    states_with_percentages = DailyGoldByState.objects.filter(
+        date__gte=seven_days_ago,
+        state__type='Presidential'  # Учитываем только президентские страны
+    ).values('state__pk').annotate(
+        state_total=Sum('daily_gold'),
+        percentage=Case(
+            When(state_total=0, then=0.0),  # Если заработок нулевой
+            default=F('state_total') / total_gold_last_7_days,  # Иначе вычисляем процент
+            output_field=FloatField(),
+        )
+    )
+
+    from player.logs.print_log import log
+
+    # 4. Распределяем золото лидерам президентских государств
+    for state_data in states_with_percentages:
+        state_pk = state_data['state__pk']
+        percentage = state_data['percentage'] or 0.0
+
+        # Вычисляем бонус
+        gold_bonus = ceil(15000 * percentage * 0.33)
+
+        # Находим президента
+        try:
+            president = President.objects.get(state__pk=state_pk)
+            leader = president.leader
+
+            if leader:
+                # Добавляем золото лидеру
+                leader.gold = F('gold') + gold_bonus
+                leader.save(update_fields=['gold'])
+                log(f"Лидеру {leader} добавлено {gold_bonus} золота")
+
+            else:
+                log(f"У государства с pk={state_pk} нет лидера")
+
+        except President.DoesNotExist:
+            log(f"Президент для государства с pk={state_pk} не найден")
+
+        # если есть министры
+        if Minister.objects.filter(state__pk=state_pk).exists():
+            # их треть золота делим на число министров
+            minister_bonus = ceil(gold_bonus / Minister.objects.filter(state__pk=state_pk).count())
+
+            # для каждого министра
+            for minister in Minister.objects.filter(state__pk=state_pk):
+                # если есть
+                if minister.player:
+                    # Добавляем золото министру
+                    minister.player.gold = F('gold') + minister_bonus
+                    minister.player.save(update_fields=['gold'])
+                    log(f"Министру {minister.player} добавлено {minister_bonus} золота")
+
+        if ParliamentParty.objects.filter(parliament__state__id=state_pk).exists():
+            # для каждой парламентской партии
+            for pparty in ParliamentParty.objects.filter(parliament__state__id=state_pk):
+                # каждая партия получает пропорционально числу мест в парламенте
+                pparty_bonus = ceil(gold_bonus * (pparty.seats/100))
+
+                # Добавляем золото партии
+                pparty.party.gold = F('gold') + pparty_bonus
+                pparty.party.save(update_fields=['gold'])
+                log(f"Партии {pparty.party} добавлено {pparty_bonus} золота")
+
+    log(f"Общее золото за последние 7 дней: {total_gold_last_7_days}")
+    log(states_with_percentages)
+
+    # =----------------------
+
     assistant_name = ('Ann', pgettext('education', 'Анна'))
 
     if not player.educated:

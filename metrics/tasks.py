@@ -6,7 +6,7 @@ from django.db.models import Q
 from django.db.models import Sum
 from django.utils import timezone
 from django_celery_beat.models import PeriodicTask
-
+from gov.models.minister import Minister
 from metrics.models.daily_cash import DailyCash
 from metrics.models.daily_gold import DailyGold
 from metrics.models.daily_oil import DailyOil
@@ -14,7 +14,15 @@ from metrics.models.daily_ore import DailyOre
 from party.party import Party
 from region.models.region import Region
 from storage.models.storage import Storage
+from player.logs.gold_log import GoldLog
 from metrics.models.daily_gold_by_state import DailyGoldByState
+from datetime import timedelta
+from django.db.models import Sum, F, FloatField, Case, When
+from django.utils.timezone import now
+from gov.models.president import President
+from state.models.parliament.parliament_party import ParliamentParty
+from math import ceil
+from party.logs.party_gold_log import PartyGoldLog
 
 
 @shared_task(name="save_daily")
@@ -139,6 +147,84 @@ def save_daily():
     # ----------- топ партий -----------
     # подбиваем недельные итоги
     if datetime.datetime.now().weekday() == 0:
+
+        # ------------------------------------------------------------------------------------------
+
+        # 1. Определяем дату 7 дней назад
+        seven_days_ago = now().date() - timedelta(days=7)
+
+        # 2. Суммируем заработанное всеми государствами за последние 7 дней
+        total_gold_last_7_days = DailyGoldByState.objects.filter(
+            date__gte=seven_days_ago
+        ).aggregate(total_gold=Sum('daily_gold'))['total_gold'] or 0
+
+        # 3. Получаем данные по каждому государству: сколько они заработали и какой это процент
+        states_with_percentages = DailyGoldByState.objects.filter(
+            date__gte=seven_days_ago
+        ).values('state__pk').annotate(
+            state_total=Sum('daily_gold'),
+            percentage=Case(
+                When(state_total=0, then=0.0),  # Если заработок нулевой
+                default=F('state_total') / total_gold_last_7_days,  # Иначе вычисляем процент
+                output_field=FloatField(),
+            )
+        )
+
+        # 4. Распределяем золото лидерам президентских государств
+        for state_data in states_with_percentages:
+            state_pk = state_data['state__pk']
+            percentage = state_data['percentage'] or 0.0
+
+            # Вычисляем бонус
+            gold_bonus = ceil(15000 * percentage * 0.33)
+
+            # Находим президента
+            try:
+                president = President.objects.get(state__pk=state_pk)
+                leader = president.leader
+
+                if leader:
+                    # Добавляем золото лидеру
+                    leader.gold = F('gold') + gold_bonus
+                    leader.save(update_fields=['gold'])
+
+                    GoldLog(player=leader, gold=gold_bonus, activity_txt='leadzp').save()
+
+                else:
+                    continue
+
+            except President.DoesNotExist:
+                continue
+
+            # если есть министры
+            if Minister.objects.filter(state__pk=state_pk).exists():
+                # их треть золота делим на число министров
+                minister_bonus = ceil(gold_bonus / Minister.objects.filter(state__pk=state_pk).count())
+
+                # для каждого министра
+                for minister in Minister.objects.filter(state__pk=state_pk):
+                    # если есть
+                    if minister.player:
+                        # Добавляем золото министру
+                        minister.player.gold = F('gold') + minister_bonus
+                        minister.player.save(update_fields=['gold'])
+
+                        GoldLog(player=minister.player, gold=minister_bonus, activity_txt='min_zp').save()
+
+            if ParliamentParty.objects.filter(parliament__state__id=state_pk).exists():
+                # для каждой парламентской партии
+                for pparty in ParliamentParty.objects.filter(parliament__state__id=state_pk):
+                    # каждая партия получает пропорционально числу мест в парламенте
+                    pparty_bonus = ceil(gold_bonus * (pparty.seats / 100))
+
+                    # Добавляем золото партии
+                    pparty.party.gold = F('gold') + pparty_bonus
+                    pparty.party.save(update_fields=['gold'])
+
+                    PartyGoldLog(party=pparty.party, gold=pparty_bonus, activity_txt='parl_zp').save()
+
+        # ------------------------------------------------------------------------------------------
+
         # берем сумму всех руд за прошедшую неделю
         date_now = datetime.datetime.now()
         date_7d = datetime.datetime.now() - timedelta(days=7)
@@ -167,6 +253,8 @@ def save_daily():
                 # начисляем золото в процентном соотношении
                 party_tuple[0].gold += int(15000 * (party_tuple[1] / (week_ore + week_oil)))
                 party_tuple[0].save()
+
+                PartyGoldLog(party=party_tuple[0], gold=int(15000 * (party_tuple[1] / (week_ore + week_oil))), activity_txt='rating').save()
 
         all_skills = 0
 
@@ -200,6 +288,9 @@ def save_daily():
                     party_tuple[0].gold += 15000 * (party_tuple[1] / all_skills)
                     party_tuple[0].save()
 
+                    PartyGoldLog(party=party_tuple[0], gold=int(15000 * (party_tuple[1] / all_skills)),
+                                 activity_txt='rating').save()
+
         # производство
         all_produced = 0
 
@@ -229,3 +320,6 @@ def save_daily():
                 if party_tuple[1] > 0:
                     party_tuple[0].gold += 15000 * (party_tuple[1] / all_produced)
                     party_tuple[0].save()
+
+                    PartyGoldLog(party=party_tuple[0], gold=int(15000 * (party_tuple[1] / all_produced)),
+                                 activity_txt='rating').save()
