@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-29 23:56+0300\n"
+"POT-Creation-Date: 2024-12-01 00:02+0300\n"
 "PO-Revision-Date: 2022-12-01 16:31+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -241,15 +241,15 @@ msgstr "Kemampuan ID harus berbentuk angka"
 #: party/views/management/color_change.py:54
 #: party/views/management/color_change.py:61
 #: party/views/management/color_change.py:68
-#: party/views/management/gold/give_party_gold.py:36
-#: party/views/management/gold/give_party_gold.py:44
-#: party/views/management/gold/give_party_gold.py:52
-#: party/views/management/gold/give_party_gold.py:63
-#: party/views/management/gold/give_party_gold.py:71
-#: party/views/management/gold/give_party_gold.py:88
-#: party/views/management/gold/give_party_gold.py:96
-#: party/views/management/gold/give_party_gold.py:103
-#: party/views/management/gold/give_party_gold.py:110
+#: party/views/management/gold/give_party_gold.py:38
+#: party/views/management/gold/give_party_gold.py:46
+#: party/views/management/gold/give_party_gold.py:54
+#: party/views/management/gold/give_party_gold.py:65
+#: party/views/management/gold/give_party_gold.py:73
+#: party/views/management/gold/give_party_gold.py:94
+#: party/views/management/gold/give_party_gold.py:102
+#: party/views/management/gold/give_party_gold.py:109
+#: party/views/management/gold/give_party_gold.py:116
 #: party/views/management/roles/new_role.py:51
 #: party/views/management/roles/new_role.py:58
 #: party/views/management/roles/new_role.py:66
@@ -582,7 +582,6 @@ msgstr ""
 #: article/views/article_rated_list.py:77
 #: education/templates/education/edu_election.html:104
 #: education/templates/education/edu_election.html:296
-#: gov/templates/gov/redesign/elections.html:239
 #: party/templates/party/redesign/new_party.html:66
 #: party/templates/party/redesign/primaries.html:99
 #: party/templates/party/redesign/primaries.html:243
@@ -2515,7 +2514,7 @@ msgstr "Tidak terdapat penyimpanan di wilayah ini"
 #: bill/views/bills/speedup_bill.py:168 education/views/edu_reward.py:172
 #: gov/views/color_change.py:58 gov/views/set_ministers.py:181
 #: gov/views/switch_description.py:43 party/views/management/color_change.py:66
-#: party/views/management/gold/give_party_gold.py:108
+#: party/views/management/gold/give_party_gold.py:114
 #: party/views/management/roles/new_role.py:79
 #: party/views/management/roles/remove_role.py:77
 #: player/views/bonus_code/activate_code.py:179
@@ -4287,12 +4286,12 @@ msgid "Добыча"
 msgstr "Kerja"
 
 #: education/views/edu_overview.py:40 education/views/edu_overview.py:44
-#: player/views/overview.py:409 player/views/overview.py:412
+#: player/views/overview.py:495 player/views/overview.py:498
 msgctxt "education"
 msgid "Анна"
 msgstr ""
 
-#: education/views/edu_overview.py:45 player/views/overview.py:412
+#: education/views/edu_overview.py:45 player/views/overview.py:498
 #, fuzzy
 #| msgctxt "overview"
 #| msgid "инт"
@@ -4300,22 +4299,22 @@ msgctxt "education"
 msgid "Лин"
 msgstr "int"
 
-#: education/views/edu_overview.py:46 player/views/overview.py:412
+#: education/views/edu_overview.py:46 player/views/overview.py:498
 msgctxt "education"
 msgid "Мария"
 msgstr ""
 
-#: education/views/edu_overview.py:47 player/views/overview.py:412
+#: education/views/edu_overview.py:47 player/views/overview.py:498
 msgctxt "education"
 msgid "София"
 msgstr ""
 
-#: education/views/edu_overview.py:48 player/views/overview.py:412
+#: education/views/edu_overview.py:48 player/views/overview.py:498
 msgctxt "education"
 msgid "Ольга"
 msgstr ""
 
-#: education/views/edu_overview.py:55 player/views/overview.py:418
+#: education/views/edu_overview.py:55 player/views/overview.py:504
 #, fuzzy
 #| msgid "Обзор"
 msgctxt "overview"
@@ -5309,6 +5308,7 @@ msgid "Выборы президента"
 msgstr "Pemilihan presiden"
 
 #: gov/templates/gov/redesign/elections.html:98
+#: gov/templates/gov/redesign/elections.html:239
 msgctxt "pres_elections"
 msgid "Кандидат"
 msgstr ""
@@ -6293,7 +6293,7 @@ msgid "Некорректный код цвета"
 msgstr "Nominal salah"
 
 #: party/views/management/color_change.py:52
-#: party/views/management/gold/give_party_gold.py:94
+#: party/views/management/gold/give_party_gold.py:100
 #, fuzzy
 #| msgctxt "repost"
 #| msgid "Выйти из игры"
@@ -6311,7 +6311,7 @@ msgid "Ошибка изменения цвета партии"
 msgstr "Pendanaan Harian Gagal"
 
 #: party/views/management/color_change.py:59
-#: party/views/management/gold/give_party_gold.py:101
+#: party/views/management/gold/give_party_gold.py:107
 #, fuzzy
 #| msgctxt "repost"
 #| msgid "Выйти из игры"
@@ -6327,7 +6327,7 @@ msgctxt "party_manage"
 msgid "Ошибка изменения цветов игры"
 msgstr "Pendanaan Harian Gagal"
 
-#: party/views/management/gold/give_party_gold.py:34
+#: party/views/management/gold/give_party_gold.py:36
 #, fuzzy
 #| msgctxt "mining"
 #| msgid "Количество энергии - не число"
@@ -6335,22 +6335,22 @@ msgctxt "party_manage"
 msgid "Сумма золота - не число"
 msgstr "Jumlah energi bukanlah angka"
 
-#: party/views/management/gold/give_party_gold.py:35
-#: party/views/management/gold/give_party_gold.py:43
-#: party/views/management/gold/give_party_gold.py:51
-#: party/views/management/gold/give_party_gold.py:62
-#: party/views/management/gold/give_party_gold.py:70
-#: party/views/management/gold/give_party_gold.py:87
-#: party/views/management/gold/give_party_gold.py:95
-#: party/views/management/gold/give_party_gold.py:102
-#: party/views/management/gold/give_party_gold.py:109
+#: party/views/management/gold/give_party_gold.py:37
+#: party/views/management/gold/give_party_gold.py:45
+#: party/views/management/gold/give_party_gold.py:53
+#: party/views/management/gold/give_party_gold.py:64
+#: party/views/management/gold/give_party_gold.py:72
+#: party/views/management/gold/give_party_gold.py:93
+#: party/views/management/gold/give_party_gold.py:101
+#: party/views/management/gold/give_party_gold.py:108
+#: party/views/management/gold/give_party_gold.py:115
 #, fuzzy
 #| msgid "Золото"
 msgctxt "party_manage"
 msgid "Выдача золота"
 msgstr "Emas"
 
-#: party/views/management/gold/give_party_gold.py:42
+#: party/views/management/gold/give_party_gold.py:44
 #, fuzzy
 #| msgctxt "mining"
 #| msgid "Количество Энергии должно быть положительным"
@@ -6358,7 +6358,7 @@ msgctxt "party_manage"
 msgid "Сумма золота должна быть не менее 1 ед."
 msgstr "Jumlah energi tidak boleh minus"
 
-#: party/views/management/gold/give_party_gold.py:50
+#: party/views/management/gold/give_party_gold.py:52
 #, fuzzy
 #| msgctxt "mining"
 #| msgid "Ошибка получения финансирования"
@@ -6366,14 +6366,14 @@ msgctxt "party_manage"
 msgid "Сумма золота превышает баланс партии"
 msgstr "Pendanaan Harian Gagal"
 
-#: party/views/management/gold/give_party_gold.py:61
+#: party/views/management/gold/give_party_gold.py:63
 #, fuzzy
 #| msgid "ID навыка должен быть числом"
 msgctxt "party_manage"
 msgid "ID персонажа должен быть целым числом"
 msgstr "Kemampuan ID harus berbentuk angka"
 
-#: party/views/management/gold/give_party_gold.py:69
+#: party/views/management/gold/give_party_gold.py:71
 #, fuzzy
 #| msgctxt "assets"
 #| msgid "Указанный Склад вам не принадлежит"
@@ -6381,7 +6381,7 @@ msgctxt "party_manage"
 msgid "Указанный игрок в партии не найден"
 msgstr "Penyimpanan bukan milikmu"
 
-#: party/views/management/gold/give_party_gold.py:86
+#: party/views/management/gold/give_party_gold.py:92
 #, python-format
 msgctxt "party_manage"
 msgid "Выдано %(gold_sum)s золота"
@@ -9394,7 +9394,7 @@ msgid "Мирное время, до"
 msgstr "Tindakan salah"
 
 #: region/templates/region/redesign/region_view.html:200
-#: state/templates/state/redesign/state_view.html:141
+#: state/templates/state/redesign/state_view.html:152
 #, fuzzy
 #| msgid "Партии региона"
 msgctxt "state_view"
@@ -9409,7 +9409,7 @@ msgid "Граждан"
 msgstr "Warga negara wilayah"
 
 #: region/templates/region/redesign/region_view.html:202
-#: state/templates/state/redesign/state_view.html:142
+#: state/templates/state/redesign/state_view.html:153
 #, fuzzy
 #| msgid "Партия"
 msgctxt "state_view"
@@ -10118,28 +10118,36 @@ msgctxt "state_view"
 msgid "Форма правления"
 msgstr "Nominal salah"
 
-#: state/templates/state/redesign/state_view.html:128
 #: state/templates/state/redesign/state_view.html:130
+#: state/templates/state/redesign/state_view.html:132
 msgctxt "state_view"
 msgid "Президент"
 msgstr ""
 
-#: state/templates/state/redesign/state_view.html:130
+#: state/templates/state/redesign/state_view.html:132
 msgctxt "state_view"
 msgid "не избран"
 msgstr ""
 
-#: state/templates/state/redesign/state_view.html:133
+#: state/templates/state/redesign/state_view.html:136
+#, fuzzy
+#| msgctxt "overview"
+#| msgid "Выборы лидера"
+msgctxt "state_view"
+msgid "Зарплата лидера"
+msgstr "Pemilihan presiden"
+
+#: state/templates/state/redesign/state_view.html:143
 msgctxt "state_view"
 msgid "Начало срока"
 msgstr ""
 
-#: state/templates/state/redesign/state_view.html:143
+#: state/templates/state/redesign/state_view.html:154
 msgctxt "state_view"
 msgid "Столица"
 msgstr ""
 
-#: state/templates/state/redesign/state_view.html:144
+#: state/templates/state/redesign/state_view.html:155
 #, fuzzy
 #| msgctxt "profile"
 #| msgid "прописка"
@@ -10147,7 +10155,7 @@ msgctxt "state_view"
 msgid "Прописка"
 msgstr "kependudukan"
 
-#: state/templates/state/redesign/state_view.html:145
+#: state/templates/state/redesign/state_view.html:156
 #, fuzzy
 #| msgctxt "no_storage"
 #| msgid "Стоимость создания"
@@ -10155,26 +10163,26 @@ msgctxt "state_view"
 msgid "Дата основания"
 msgstr "Biaya produksi"
 
-#: state/templates/state/redesign/state_view.html:151
+#: state/templates/state/redesign/state_view.html:162
 msgctxt "state_view"
 msgid "Баланс электросети"
 msgstr ""
 
-#: state/templates/state/redesign/state_view.html:157
+#: state/templates/state/redesign/state_view.html:168
 #, fuzzy
 #| msgid "Государство"
 msgctxt "state_view"
 msgid "Государственные налоги"
 msgstr "Negara"
 
-#: state/templates/state/redesign/state_view.html:158
+#: state/templates/state/redesign/state_view.html:169
 #, fuzzy
 #| msgid "Финансирование"
 msgctxt "state_view"
 msgid "На финансирование"
 msgstr "Keuangan"
 
-#: state/templates/state/redesign/state_view.html:159
+#: state/templates/state/redesign/state_view.html:170
 #, fuzzy
 #| msgctxt "menu"
 #| msgid "добыча"
@@ -10182,7 +10190,7 @@ msgctxt "state_view"
 msgid "На добычу"
 msgstr "kerja"
 
-#: state/templates/state/redesign/state_view.html:160
+#: state/templates/state/redesign/state_view.html:171
 #, fuzzy
 #| msgctxt "menu"
 #| msgid "торговля"
@@ -10190,22 +10198,22 @@ msgctxt "state_view"
 msgid "На торговлю"
 msgstr "perdagangan"
 
-#: state/templates/state/redesign/state_view.html:172
-#: state/templates/state/redesign/state_view.html:204
+#: state/templates/state/redesign/state_view.html:183
+#: state/templates/state/redesign/state_view.html:215
 #, fuzzy
 #| msgid "Регион"
 msgctxt "state_view"
 msgid "Регион"
 msgstr "Wilayah"
 
-#: state/templates/state/redesign/state_view.html:173
+#: state/templates/state/redesign/state_view.html:184
 #, fuzzy
 #| msgid "Партии региона"
 msgctxt "state_view"
 msgid "Жители"
 msgstr "Partai di wilayah"
 
-#: state/templates/state/redesign/state_view.html:174
+#: state/templates/state/redesign/state_view.html:185
 #, fuzzy
 #| msgctxt "mining"
 #| msgid "Запасы"
@@ -10213,7 +10221,7 @@ msgctxt "state_view"
 msgid "Запасы"
 msgstr "Saham"
 
-#: state/templates/state/redesign/state_view.html:201
+#: state/templates/state/redesign/state_view.html:212
 #, fuzzy
 #| msgctxt "overview"
 #| msgid "партии"
@@ -10221,7 +10229,7 @@ msgctxt "state_view"
 msgid "Название"
 msgstr "partai"
 
-#: state/templates/state/redesign/state_view.html:202
+#: state/templates/state/redesign/state_view.html:213
 msgctxt "state_view"
 msgid "Размер"
 msgstr ""
