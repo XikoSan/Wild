@@ -242,6 +242,11 @@ class GroundWar(War):
         self.end_time = timezone.now()
         self.save()
 
+        r = redis.StrictRedis(host='redis', port=6379, db=0)
+        r.delete(f'{self.__class__.__name__}_{self.pk}_dmg')
+        for side in ['agr', 'def']:
+            r.delete(f'{self.__class__.__name__}_{self.pk}_{side}')
+
         PeriodicTask.objects.filter(pk=pk).delete()
         PeriodicTask.objects.filter(pk=end_pk).delete()
 

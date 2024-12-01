@@ -403,6 +403,16 @@ def overview(request):
             if version.parse(match.group(1)) != version.parse(app_info['version']):
                 need_update = True
 
+
+    if not r:
+        r = redis.StrictRedis(host='redis', port=6379, db=0)
+    for side in ['agr', 'def']:
+        if r.exists(f'EventWar_15_{side}'):
+            print("Ключ существует")
+        else:
+            print("Ключ не существует")
+
+
     assistant_name = ('Ann', pgettext('education', 'Анна'))
 
     if not player.educated:

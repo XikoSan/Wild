@@ -239,6 +239,11 @@ class Revolution(War):
         self.end_time = timezone.now()
         self.save()
 
+        r = redis.StrictRedis(host='redis', port=6379, db=0)
+        r.delete(f'{self.__class__.__name__}_{self.pk}_dmg')
+        for side in ['agr', 'def']:
+            r.delete(f'{self.__class__.__name__}_{self.pk}_{side}')
+
         PeriodicTask.objects.filter(pk=pk).delete()
         PeriodicTask.objects.filter(pk=end_pk).delete()
 
@@ -408,22 +413,24 @@ class Revolution(War):
         if player.premium > timezone.now():
             premium = True
 
-        # agr_side = self.war_side.get(side='agr', object_id=self.pk)
-        # def_side = self.war_side.get(side='def', object_id=self.pk)
+        if not self.running:
+            agr_damage = self.war_side.get(side='agr', object_id=self.pk).count
+            def_damage = self.war_side.get(side='def', object_id=self.pk).count
 
-        r = redis.StrictRedis(host='redis', port=6379, db=0)
-
-        agr_damage = r.hget(f'{self.__class__.__name__}_{self.pk}_dmg', 'agr')
-        if not agr_damage:
-            agr_damage = 0
         else:
-            agr_damage = int(float(agr_damage))
+            r = redis.StrictRedis(host='redis', port=6379, db=0)
 
-        def_damage = r.hget(f'{self.__class__.__name__}_{self.pk}_dmg', 'def')
-        if not def_damage:
-            def_damage = 0
-        else:
-            def_damage = int(float(def_damage))
+            agr_damage = r.hget(f'{self.__class__.__name__}_{self.pk}_dmg', 'agr')
+            if not agr_damage:
+                agr_damage = 0
+            else:
+                agr_damage = int(float(agr_damage))
+
+            def_damage = r.hget(f'{self.__class__.__name__}_{self.pk}_dmg', 'def')
+            if not def_damage:
+                def_damage = 0
+            else:
+                def_damage = int(float(def_damage))
 
         war_countdown = interval_in_seconds(
             object=self,
