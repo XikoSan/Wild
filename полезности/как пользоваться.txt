@@ -10,7 +10,7 @@ docker compose exec db pg_dump -U postgres -E UTF8 wild_politics > wp.sql
 удалить БД через pgadmin, создать заново
 
 положить файл в корень проекта:
-docker compose cp wp.sql db:./
+docker exec -i wild_politics-db-1 psql -U postgres -d wild_politics -1 -f wp.sql
 
 на проде копирование сработало вот так:
 docker cp wp.sql wild-politics_db_1:/wp.sql
