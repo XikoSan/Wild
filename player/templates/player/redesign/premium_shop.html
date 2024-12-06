@@ -5,9 +5,10 @@
 {% load capitalize %}
 {% load redesign.profile_blocks.repost_tab %}
 {% load redesign.template_svg.nopic %}
+{% load get_custom_language_code %}
 {% block content %}
 <section class="profile">
-
+		{% get_custom_language_code as LANGUAGE_CODE %}
 		<!-- НИКНЕЙМ -->
 		<h1 class="ct__nickname">
 			<span id="player_nickname_view">
@@ -74,19 +75,19 @@
 						  </g>
 						</svg>
 
-					<span style="font-size: 10rem;">40 RUB / 1 EUR</span></button>
+					<span style="font-size: 10rem;">{% if LANGUAGE_CODE == 'ru'%}40 RUB{% else %}1 EUR{% endif %}</span></button>
 
 					<button class="profile__gridBtn">
 						<span>Wild Pass</span><img src="/static/img/wild_pass.svg" alt="wild_pass" class="eduBlock6">
 
-					<span style="font-size: 10rem;">50 RUB / 1.2 EUR</span></button>
+					<span style="font-size: 10rem;">{% if LANGUAGE_CODE == 'ru'%}50 RUB{% else %}1.2 EUR{% endif %}</span></button>
 
 					<a class="profile__gridBtn">
 
 						<span>{% trans 'золото' context "shop" %}</span>
 
 						<span style="color: #eb9929;font-size: 25rem;">G 1000</span>
-						<span style="font-size: 10rem;">50 RUB / 1.2 EUR</span>
+						<span style="font-size: 10rem;">{% if LANGUAGE_CODE == 'ru'%}50 RUB{% else %}1.2 EUR{% endif %}</span>
 					</a>
 					{% if version %}
 						{% if not 'gold_500' in usages_list %}
