@@ -95,11 +95,11 @@ def open_state(request, pk):
         ).annotate(
             state_total=Sum('daily_gold'),
             percentage=Case(
-                When(state_total=0, then=0.0),  # Если заработок нулевой
-                default=F('state_total') / total_gold_last_7_days,  # Иначе вычисляем процент
+                When(state_total=0, then=0.0),
+                default=F('state_total') / total_gold_last_7_days,
                 output_field=FloatField(),
             )
-        ).values_list('percentage', flat=True).first()
+        ).aggregate(total_percentage=Sum('percentage'))['total_percentage']
 
         if not percentage:
             percentage = 0
