@@ -30,6 +30,7 @@ from player.views.timers import interval_in_seconds, format_time
 from region.building.building import Building
 from region.building.defences import Defences
 from region.building.hospital import Hospital
+from player.player_settings import PlayerSettings
 from region.building.rate_building import RateBuilding
 from region.models.region import Region
 from region.models.terrain.terrain_modifier import TerrainModifier
@@ -756,6 +757,20 @@ class GroundWar(War):
             coherence_perk = True
 
         # --------------------------------------------------------------------------------------------
+        # цвет из настроек
+        main_color = '#28353E'
+        sub_color = '#284E64'
+        text_color = '#FFFFFF'
+        button_color = '#EB9929'
+
+        if PlayerSettings.objects.filter(player=player).exists():
+            setts = PlayerSettings.objects.get(player=player)
+
+            main_color = '#' + str(setts.color_back)
+            sub_color = '#' + str(setts.color_block)
+            text_color = '#' + str(setts.color_text)
+            button_color = '#' + str(setts.color_acct)
+
         data = []
         graph_html = None
         if self.graph:
@@ -769,30 +784,16 @@ class GroundWar(War):
             timestamps = [datetime.datetime.fromtimestamp(int(timestamp)).astimezone(tz=pytz.timezone(player.time_zone))
                           for timestamp in timestamps]
 
-            # Создайте два отдельных списка для положительных и отрицательных значений
-            positive_scores = [score if score >= 0 else None for score in scores]  # Для значений >= 0
-            negative_scores = [score if score < 0 else None for score in scores]  # Для значений < 0
-
-            # Создайте объект Scatter для положительных значений
+            # Создайте объект Scatter для значений
             fig = go.Figure()
 
+            # Добавьте единственный объект Scatter для всех значений
             fig.add_trace(go.Scatter(
                 x=timestamps,
-                y=positive_scores,
+                y=scores,
                 mode='lines+markers',
-                line=dict(color='white'),  # Цвет линии графика для значений >= 0
-                marker=dict(color='white'),  # Цвет маркеров для значений >= 0
-                showlegend=False,  # Отключает отображение в легенде
-                hoverinfo='x+y'  # Отображает только время и значение во всплывающем элементе
-            ))
-
-            # Добавьте объект Scatter для отрицательных значений
-            fig.add_trace(go.Scatter(
-                x=timestamps,
-                y=negative_scores,
-                mode='lines+markers',
-                line=dict(color='#eb9929'),  # Цвет линии графика для значений < 0
-                marker=dict(color='#eb9929'),  # Цвет маркеров для значений < 0
+                line=dict(color=text_color),  # Цвет линии графика
+                marker=dict(color=text_color),  # Цвет маркеров
                 showlegend=False,  # Отключает отображение в легенде
                 hoverinfo='x+y'  # Отображает только время и значение во всплывающем элементе
             ))
@@ -801,27 +802,27 @@ class GroundWar(War):
             fig.update_layout(
                 title=dict(
                     text=pgettext('war_page', 'График урона в бою'),
-                    font=dict(color='white')  # Цвет текста заголовка
+                    font=dict(color=text_color)  # Цвет текста заголовка
                 ),
                 xaxis=dict(
                     title=dict(text=pgettext('war_page', 'дата/время'), font=dict(color='white')),
                     # Цвет заголовка оси X
-                    tickfont=dict(color='white'),  # Цвет меток оси X
-                    gridcolor='#ffff66'  # Цвет сетки оси X
+                    tickfont=dict(color=text_color),  # Цвет меток оси X
+                    gridcolor=sub_color  # Цвет сетки оси X
                 ),
                 yaxis=dict(
                     title=dict(text=pgettext('war_page', 'очки урона'), font=dict(color='white')),
                     # Цвет заголовка оси Y
-                    tickfont=dict(color='white'),  # Цвет меток оси Y
-                    gridcolor='#ffff66'  # Цвет сетки оси Y
+                    tickfont=dict(color=text_color),  # Цвет меток оси Y
+                    gridcolor=sub_color  # Цвет сетки оси Y
                 ),
-                plot_bgcolor='#28353e',  # Цвет области построения
-                paper_bgcolor='#28353e',  # Цвет фона бумаги
-                font=dict(color='white'),  # Цвет текста по умолчанию (например, легенды)
+                plot_bgcolor=main_color,  # Цвет области построения
+                paper_bgcolor=main_color,  # Цвет фона бумаги
+                font=dict(color=text_color),  # Цвет текста по умолчанию (например, легенды)
                 hoverlabel=dict(  # Настройка стиля всплывающего элемента
-                    bgcolor='#284e64',  # Цвет фона
-                    bordercolor='#336380',  # Цвет рамки
-                    font=dict(color='white')  # Цвет текста
+                    bgcolor=sub_color,  # Цвет фона
+                    bordercolor=text_color,  # Цвет рамки
+                    font=dict(color=text_color)  # Цвет текста
                 ),
                 autosize=True,  # Позволяет графику адаптироваться к контейнеру
                 margin=dict(l=10, r=10, t=30, b=10),  # Минимальные отступы

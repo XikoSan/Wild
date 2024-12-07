@@ -16,6 +16,7 @@ from django.db.models.signals import post_delete, post_save
 from django.dispatch import receiver
 from django.shortcuts import redirect, render
 from django.utils import timezone
+from django.utils.translation import pgettext
 from django_celery_beat.models import IntervalSchedule, PeriodicTask, CrontabSchedule, ClockedSchedule
 
 from bill.models.bill import Bill
@@ -24,6 +25,7 @@ from gov.models.presidential_voting import PresidentialVoting
 from gov.models.vote import Vote
 from party.party import Party
 from player.player import Player
+from player.player_settings import PlayerSettings
 from player.views.get_subclasses import get_subclasses
 from player.views.timers import interval_in_seconds, format_time
 from region.building.building import Building
@@ -31,6 +33,9 @@ from region.building.defences import Defences
 from region.building.hospital import Hospital
 from region.building.rate_building import RateBuilding
 from region.models.region import Region
+from region.models.terrain.terrain_modifier import TerrainModifier
+from skill.models.coherence import Coherence
+from skill.models.scouting import Scouting
 from skill.models.scouting import Scouting
 from state.models.capital import Capital
 from state.models.parliament.bulletin import Bulletin
@@ -50,9 +55,6 @@ from war.models.wars.player_damage import PlayerDamage
 from war.models.wars.unit import Unit
 from war.models.wars.war import War
 from war.models.wars.war_side import WarSide
-from region.models.terrain.terrain_modifier import TerrainModifier
-from skill.models.scouting import Scouting
-from skill.models.coherence import Coherence
 
 
 # восстание в регионе
@@ -348,7 +350,6 @@ class Revolution(War):
                         # пересчитаем рейтинг
                         building_sub_cl.recount_rating()
 
-
         war_classes = get_subclasses(War)
         # 4. Если идут другие войны за этот же рег - завершить
         # for other_war_cl in war_classes:
@@ -387,7 +388,6 @@ class Revolution(War):
 
                     PeriodicTask.objects.filter(pk=pk).delete()
                     PeriodicTask.objects.filter(pk=end_pk).delete()
-                    
 
         # 1.1.6 заменяем у захваченного региона государство
         Region.objects.filter(pk=self.def_region.pk).update(
@@ -502,6 +502,20 @@ class Revolution(War):
             coherence_perk = True
 
         # --------------------------------------------------------------------------------------------
+        # цвет из настроек
+        main_color = '#28353E'
+        sub_color = '#284E64'
+        text_color = '#FFFFFF'
+        button_color = '#EB9929'
+
+        if PlayerSettings.objects.filter(player=player).exists():
+            setts = PlayerSettings.objects.get(player=player)
+
+            main_color = '#' + str(setts.color_back)
+            sub_color = '#' + str(setts.color_block)
+            text_color = '#' + str(setts.color_text)
+            button_color = '#' + str(setts.color_acct)
+
         data = []
         graph_html = None
         if self.graph:
@@ -515,18 +529,52 @@ class Revolution(War):
             timestamps = [datetime.datetime.fromtimestamp(int(timestamp)).astimezone(tz=pytz.timezone(player.time_zone))
                           for timestamp in timestamps]
 
-            # Создайте объект Scatter для построения графика
-            fig = go.Figure(data=go.Scatter(x=timestamps, y=scores, mode='lines+markers'))
+            # Создайте объект Scatter для значений
+            fig = go.Figure()
+
+            # Добавьте единственный объект Scatter для всех значений
+            fig.add_trace(go.Scatter(
+                x=timestamps,
+                y=scores,
+                mode='lines+markers',
+                line=dict(color=text_color),  # Цвет линии графика
+                marker=dict(color=text_color),  # Цвет маркеров
+                showlegend=False,  # Отключает отображение в легенде
+                hoverinfo='x+y'  # Отображает только время и значение во всплывающем элементе
+            ))
 
             # Настройте макет графика
             fig.update_layout(
-                title='Score Changes Over Time',
-                xaxis_title='Timestamp',
-                yaxis_title='Score'
+                title=dict(
+                    text=pgettext('war_page', 'График урона в бою'),
+                    font=dict(color=text_color)  # Цвет текста заголовка
+                ),
+                xaxis=dict(
+                    title=dict(text=pgettext('war_page', 'дата/время'), font=dict(color='white')),
+                    # Цвет заголовка оси X
+                    tickfont=dict(color=text_color),  # Цвет меток оси X
+                    gridcolor=sub_color  # Цвет сетки оси X
+                ),
+                yaxis=dict(
+                    title=dict(text=pgettext('war_page', 'очки урона'), font=dict(color='white')),
+                    # Цвет заголовка оси Y
+                    tickfont=dict(color=text_color),  # Цвет меток оси Y
+                    gridcolor=sub_color  # Цвет сетки оси Y
+                ),
+                plot_bgcolor=main_color,  # Цвет области построения
+                paper_bgcolor=main_color,  # Цвет фона бумаги
+                font=dict(color=text_color),  # Цвет текста по умолчанию (например, легенды)
+                hoverlabel=dict(  # Настройка стиля всплывающего элемента
+                    bgcolor=sub_color,  # Цвет фона
+                    bordercolor=text_color,  # Цвет рамки
+                    font=dict(color=text_color)  # Цвет текста
+                ),
+                autosize=True,  # Позволяет графику адаптироваться к контейнеру
+                margin=dict(l=10, r=10, t=30, b=10),  # Минимальные отступы
             )
 
             # Преобразуйте график в HTML и сохраните его в переменную
-            graph_html = fig.to_html(full_html=False)
+            graph_html = fig.to_html(full_html=False, config={'responsive': True})  # Адаптивность графика
         # --------------------------------------------------------------------------------------------
 
         http_use = False

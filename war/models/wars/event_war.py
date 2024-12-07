@@ -11,9 +11,11 @@ from django.db.models.signals import post_delete
 from django.dispatch import receiver
 from django.shortcuts import redirect, render
 from django.utils import timezone
+from django.utils.translation import pgettext
 from django_celery_beat.models import PeriodicTask
 
 from player.player import Player
+from player.player_settings import PlayerSettings
 from player.views.timers import interval_in_seconds, format_time
 from region.models.terrain.terrain_modifier import TerrainModifier
 from skill.models.coherence import Coherence
@@ -231,6 +233,20 @@ class EventWar(War):
             coherence_perk = True
 
         # --------------------------------------------------------------------------------------------
+        # цвет из настроек
+        main_color = '#28353E'
+        sub_color = '#284E64'
+        text_color = '#FFFFFF'
+        button_color = '#EB9929'
+
+        if PlayerSettings.objects.filter(player=player).exists():
+            setts = PlayerSettings.objects.get(player=player)
+
+            main_color = '#' + str(setts.color_back)
+            sub_color = '#' + str(setts.color_block)
+            text_color = '#' + str(setts.color_text)
+            button_color = '#' + str(setts.color_acct)
+
         data = []
         graph_html = None
         if self.graph:
@@ -244,18 +260,52 @@ class EventWar(War):
             timestamps = [datetime.datetime.fromtimestamp(int(timestamp)).astimezone(tz=pytz.timezone(player.time_zone))
                           for timestamp in timestamps]
 
-            # Создайте объект Scatter для построения графика
-            fig = go.Figure(data=go.Scatter(x=timestamps, y=scores, mode='lines+markers'))
+            # Создайте объект Scatter для значений
+            fig = go.Figure()
+
+            # Добавьте единственный объект Scatter для всех значений
+            fig.add_trace(go.Scatter(
+                x=timestamps,
+                y=scores,
+                mode='lines+markers',
+                line=dict(color=text_color),  # Цвет линии графика
+                marker=dict(color=text_color),  # Цвет маркеров
+                showlegend=False,  # Отключает отображение в легенде
+                hoverinfo='x+y'  # Отображает только время и значение во всплывающем элементе
+            ))
 
             # Настройте макет графика
             fig.update_layout(
-                title='Score Changes Over Time',
-                xaxis_title='Timestamp',
-                yaxis_title='Score'
+                title=dict(
+                    text=pgettext('war_page', 'График урона в бою'),
+                    font=dict(color=text_color)  # Цвет текста заголовка
+                ),
+                xaxis=dict(
+                    title=dict(text=pgettext('war_page', 'дата/время'), font=dict(color='white')),
+                    # Цвет заголовка оси X
+                    tickfont=dict(color=text_color),  # Цвет меток оси X
+                    gridcolor=sub_color  # Цвет сетки оси X
+                ),
+                yaxis=dict(
+                    title=dict(text=pgettext('war_page', 'очки урона'), font=dict(color='white')),
+                    # Цвет заголовка оси Y
+                    tickfont=dict(color=text_color),  # Цвет меток оси Y
+                    gridcolor=sub_color  # Цвет сетки оси Y
+                ),
+                plot_bgcolor=main_color,  # Цвет области построения
+                paper_bgcolor=main_color,  # Цвет фона бумаги
+                font=dict(color=text_color),  # Цвет текста по умолчанию (например, легенды)
+                hoverlabel=dict(  # Настройка стиля всплывающего элемента
+                    bgcolor=sub_color,  # Цвет фона
+                    bordercolor=text_color,  # Цвет рамки
+                    font=dict(color=text_color)  # Цвет текста
+                ),
+                autosize=True,  # Позволяет графику адаптироваться к контейнеру
+                margin=dict(l=10, r=10, t=30, b=10),  # Минимальные отступы
             )
 
             # Преобразуйте график в HTML и сохраните его в переменную
-            graph_html = fig.to_html(full_html=False)
+            graph_html = fig.to_html(full_html=False, config={'responsive': True})  # Адаптивность графика
         # --------------------------------------------------------------------------------------------
 
         http_use = False
