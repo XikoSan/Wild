@@ -156,7 +156,7 @@
       <div class="war__sides">
         <div class="war__gerbs">
           <p>{% trans 'Атака' context "war_page" %}:</p>
-          <img src="/static/img/regions/webp/{{ war.agr_region.on_map_id }}.webp">
+          <img src="/static/img/regions/webp/{{ war.agr_region.on_map_id }}.webp" onclick="window.location.href = '/region/{% localize off %}{{ war.agr_region.pk }}{% endlocalize %}/'" style="cursor: pointer">
         </div>
 
         <p>
@@ -171,7 +171,7 @@
 
         <div class="war__gerbs">
           <p>{% trans 'Защита' context "war_page" %}:</p>
-          <img src="/static/img/regions/webp/{{ war.def_region.on_map_id }}.webp">
+          <img src="/static/img/regions/webp/{{ war.def_region.on_map_id }}.webp" onclick="window.location.href = '/region/{% localize off %}{{ war.def_region.pk }}{% endlocalize %}/'" style="cursor: pointer">
         </div>
       </div>
 
