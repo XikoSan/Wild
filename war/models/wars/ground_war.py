@@ -18,7 +18,7 @@ from django.dispatch import receiver
 from django.shortcuts import redirect, render
 from django.utils import timezone
 from django_celery_beat.models import IntervalSchedule, PeriodicTask, CrontabSchedule, ClockedSchedule
-
+from django.utils.translation import pgettext
 from bill.models.bill import Bill
 from gov.models.president import President
 from gov.models.presidential_voting import PresidentialVoting
@@ -769,18 +769,66 @@ class GroundWar(War):
             timestamps = [datetime.datetime.fromtimestamp(int(timestamp)).astimezone(tz=pytz.timezone(player.time_zone))
                           for timestamp in timestamps]
 
-            # Создайте объект Scatter для построения графика
-            fig = go.Figure(data=go.Scatter(x=timestamps, y=scores, mode='lines+markers'))
+            # Создайте два отдельных списка для положительных и отрицательных значений
+            positive_scores = [score if score >= 0 else None for score in scores]  # Для значений >= 0
+            negative_scores = [score if score < 0 else None for score in scores]  # Для значений < 0
+
+            # Создайте объект Scatter для положительных значений
+            fig = go.Figure()
+
+            fig.add_trace(go.Scatter(
+                x=timestamps,
+                y=positive_scores,
+                mode='lines+markers',
+                line=dict(color='white'),  # Цвет линии графика для значений >= 0
+                marker=dict(color='white'),  # Цвет маркеров для значений >= 0
+                showlegend=False,  # Отключает отображение в легенде
+                hoverinfo='x+y'  # Отображает только время и значение во всплывающем элементе
+            ))
+
+            # Добавьте объект Scatter для отрицательных значений
+            fig.add_trace(go.Scatter(
+                x=timestamps,
+                y=negative_scores,
+                mode='lines+markers',
+                line=dict(color='#eb9929'),  # Цвет линии графика для значений < 0
+                marker=dict(color='#eb9929'),  # Цвет маркеров для значений < 0
+                showlegend=False,  # Отключает отображение в легенде
+                hoverinfo='x+y'  # Отображает только время и значение во всплывающем элементе
+            ))
 
             # Настройте макет графика
             fig.update_layout(
-                title='Score Changes Over Time',
-                xaxis_title='Timestamp',
-                yaxis_title='Score'
+                title=dict(
+                    text=pgettext('war_page', 'График урона в бою'),
+                    font=dict(color='white')  # Цвет текста заголовка
+                ),
+                xaxis=dict(
+                    title=dict(text=pgettext('war_page', 'дата/время'), font=dict(color='white')),
+                    # Цвет заголовка оси X
+                    tickfont=dict(color='white'),  # Цвет меток оси X
+                    gridcolor='#ffff66'  # Цвет сетки оси X
+                ),
+                yaxis=dict(
+                    title=dict(text=pgettext('war_page', 'очки урона'), font=dict(color='white')),
+                    # Цвет заголовка оси Y
+                    tickfont=dict(color='white'),  # Цвет меток оси Y
+                    gridcolor='#ffff66'  # Цвет сетки оси Y
+                ),
+                plot_bgcolor='#28353e',  # Цвет области построения
+                paper_bgcolor='#28353e',  # Цвет фона бумаги
+                font=dict(color='white'),  # Цвет текста по умолчанию (например, легенды)
+                hoverlabel=dict(  # Настройка стиля всплывающего элемента
+                    bgcolor='#284e64',  # Цвет фона
+                    bordercolor='#336380',  # Цвет рамки
+                    font=dict(color='white')  # Цвет текста
+                ),
+                autosize=True,  # Позволяет графику адаптироваться к контейнеру
+                margin=dict(l=10, r=10, t=30, b=10),  # Минимальные отступы
             )
 
             # Преобразуйте график в HTML и сохраните его в переменную
-            graph_html = fig.to_html(full_html=False)
+            graph_html = fig.to_html(full_html=False, config={'responsive': True})  # Адаптивность графика
         # --------------------------------------------------------------------------------------------
 
         http_use = False

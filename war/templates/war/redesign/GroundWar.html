@@ -46,6 +46,20 @@
 
     {% endfor %}
 </script>
+
+
+<div class="goverGuysModal custom-scroll" id="gover__modal">
+	<button class="goverGuysModal__close ct__square-mid-btn" id="gover__modal-close">
+		<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<path d="M1 1L31 31M31 1L1.53571 30.4643" stroke="white"/>
+		</svg>
+	</button>
+
+    {% if graph_html %}
+    <div id="graph-container">{{ graph_html|safe }}</div>
+    {% endif %}
+</div>
+
 <section class="war">
 		<!-- Заголовок -->
 		<h1 class="war__title ct__page-title">{% trans 'Наземная война' context "war_page" %}</h1>
@@ -174,7 +188,7 @@
           <span>{% trans 'Урон' context "war_page" %}:</span>
           <span id="agr_dmg" onclick="window.open('/war/{{ war|get_class_name }}/{{ war.pk }}/agr/')" style="cursor: pointer">{{ agr_dmg }}</span>
         </p>
-        <p id="delta_dmg">
+        <p id="delta_dmg" style="cursor: pointer">
           {{ delta }}
         </p>
         <p>
@@ -322,13 +336,7 @@
 	</div>
     {% endif %}
     {% endif %}
-
-    {% if graph_html %}
-    <div id="graph-container" style="display: none">{{ graph_html|safe }}</div>
-    {% endif %}
 </section>
-
-
 
 <script>
   function toggleActiveClass(element) {
@@ -392,6 +400,21 @@
                     }
                 }
             }
+        }
+
+
+        // Проверка, что все элементы, которые ищутся по ID, существуют
+        const mainElement = document.getElementById('gover__modal');
+        const openModalBtnElement = document.getElementById('delta_dmg');
+        const closeModalBtnElement = document.getElementById('gover__modal-close');
+
+        if (mainElement && openModalBtnElement && closeModalBtnElement) {
+          // Goverment modal
+          const goverModal = new ModalOpenClose({
+            main: mainElement,
+            openModalBtn: openModalBtnElement,
+            closeModalBtn: closeModalBtnElement,
+          });
         }
    });
 </script>
