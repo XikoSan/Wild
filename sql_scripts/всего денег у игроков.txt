@@ -1,0 +1,24 @@
+
+WITH store_sum AS (
+    SELECT store.owner_id, SUM(store.cash) AS cash
+    FROM storage_storage AS store
+    WHERE store.deleted = false
+    GROUP BY store.owner_id
+),
+
+sum_cash AS (
+    SELECT
+        store.owner_id,
+        SUM(player.cash) + SUM(store.cash) AS total_cash
+    FROM player_player AS player
+    JOIN store_sum AS store
+        ON store.owner_id = player.id
+    WHERE player.cash <> 10000
+	and not player.cash < 0
+	and not store.cash < 0
+    AND player.natural_refill >= '2024-12-01'  -- Обратите внимание на формат даты
+    GROUP BY store.owner_id
+)
+
+SELECT SUM(total_cash) AS total_money
+FROM sum_cash;
