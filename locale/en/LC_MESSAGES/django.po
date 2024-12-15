@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-07 15:55+0300\n"
-"PO-Revision-Date: 2024-12-07 15:57+0300\n"
+"POT-Creation-Date: 2024-12-16 00:15+0300\n"
+"PO-Revision-Date: 2024-12-16 00:15+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -928,12 +928,12 @@ msgstr "The new name must not be empty"
 #: bill/models/change_title.py:154
 msgctxt "new_bill"
 msgid "Переименование государства"
-msgstr "Renaming of the state"
+msgstr "Rename your starte"
 
 #: bill/models/change_title.py:155
 msgctxt "new_bill"
 msgid "Переименования государств"
-msgstr "Renamings of the state"
+msgstr "Renaming of the state"
 
 #: bill/models/construction.py:29 region/building/hospital.py:154
 msgctxt "new_bill"
@@ -949,7 +949,7 @@ msgstr "Power plant"
 #: region/building/defences.py:63
 msgctxt "new_bill"
 msgid "Укрепления"
-msgstr "Defences"
+msgstr "Fortifications"
 
 #: bill/models/construction.py:60 region/building/infrastructure.py:118
 msgctxt "new_bill"
@@ -1060,7 +1060,7 @@ msgstr "No suitable region specified"
 #: bill/models/independence.py:78
 msgctxt "new_bill"
 msgid "Регион является столицей"
-msgstr "The region is the capital"
+msgstr "This region is the capital"
 
 #: bill/models/independence.py:86
 msgctxt "new_bill"
@@ -1311,7 +1311,7 @@ msgstr "The specified state was not found"
 #: bill/models/transfer_resources.py:174
 msgctxt "new_bill"
 msgid "Запрещено вывозить товары из атакованных регионов"
-msgstr "It is forbidden to export goods from the attacked regions"
+msgstr "It is forbidden to export goods from regions currently under attack"
 
 #: bill/models/transfer_resources.py:345
 msgctxt "new_bill"
@@ -1345,14 +1345,14 @@ msgstr "signed"
 #: bill/templates/state/redesign/reviewed/change_residency.html:24
 msgctxt "change_residency_draft"
 msgid "выдается министром"
-msgstr "Issued by minister"
+msgstr "issued by the minister"
 
 #: bill/templates/state/redesign/bills/change_residency.html:25
 #: bill/templates/state/redesign/drafts/change_residency.html:13
 #: bill/templates/state/redesign/reviewed/change_residency.html:26
 msgctxt "change_residency_draft"
 msgid "свободная"
-msgstr "Free"
+msgstr "free"
 
 #: bill/templates/state/redesign/bills/change_residency.html:34
 #: factory/migrations/0023_auto_20230911_0014.py:43
@@ -1457,7 +1457,7 @@ msgstr "select form of government"
 #: bill/templates/state/redesign/drafts/change_residency.html:8
 msgctxt "change_residency_draft"
 msgid "Способ выдачи прописки"
-msgstr "Method of issuing registration"
+msgstr "Method of issuing residency"
 
 #: bill/templates/state/redesign/drafts/change_residency.html:21
 msgctxt "change_residency_draft"
@@ -1552,12 +1552,12 @@ msgstr "Last 24h"
 #: bill/templates/state/redesign/drafts/explore_resources.html:172
 msgctxt "explore_resources_draft"
 msgid "Множитель"
-msgstr "Mltiplier"
+msgstr "Multiplier"
 
 #: bill/templates/state/redesign/drafts/explore_resources.html:174
 msgctxt "explore_resources_draft"
 msgid "стоимость разведки"
-msgstr "Exploration cost"
+msgstr "exploration cost"
 
 #: bill/templates/state/redesign/drafts/explore_resources.html:191
 msgctxt "explore_resources_draft"
@@ -1597,7 +1597,7 @@ msgstr "cost"
 #: bill/templates/state/redesign/drafts/start_war.html:8
 msgctxt "start_war_draft"
 msgid "Плацдарм"
-msgstr "Bridgehead"
+msgstr "Beachhead"
 
 #: bill/templates/state/redesign/drafts/start_war.html:35
 msgctxt "start_war_draft"
@@ -1678,7 +1678,7 @@ msgstr "UAV"
 #: bill/templates/state/redesign/reviewed/change_taxes.html:30
 msgctxt "change_taxes_reviewed"
 msgid "всё государство"
-msgstr "all state"
+msgstr "the whole state"
 
 #: bill/templates/state/redesign/reviewed/change_taxes.html:58
 msgctxt "change_taxes_reviewed"
@@ -1748,7 +1748,7 @@ msgstr "cancelled"
 #: bill/templates/state/redesign/reviewed/geological_surveys.html:36
 msgctxt "geological_surveys_reviewed"
 msgid "Буровые установки"
-msgstr "Drills"
+msgstr "Mining Drills"
 
 #: bill/templates/state/redesign/reviewed/geological_surveys.html:49
 msgctxt "geological_surveys_reviewed"
@@ -1891,7 +1891,7 @@ msgstr "You are not the author of the bill"
 #: bill/views/bills/cancel_bill.py:114
 msgctxt "cancel_bill"
 msgid "Отмена законопроекта"
-msgstr "Bill cancellation"
+msgstr "Cancellation of the bill"
 
 #: bill/views/bills/cancel_bill.py:77
 msgctxt "cancel_bill"
@@ -1936,7 +1936,7 @@ msgstr "There is no state in this region"
 #: bill/views/bills/speedup_bill.py:33
 msgctxt "speedup_bill"
 msgid "Вы - не депутат этого парламента"
-msgstr "You are not a member of this parliament"
+msgstr "you have no seat in this parliament "
 
 #: bill/views/bills/speedup_bill.py:34 bill/views/bills/speedup_bill.py:43
 #: bill/views/bills/speedup_bill.py:69 bill/views/bills/speedup_bill.py:84
@@ -1947,7 +1947,7 @@ msgstr "You are not a member of this parliament"
 #: bill/views/bills/speedup_bill.py:169
 msgctxt "speedup_bill"
 msgid "Досрочное принятие"
-msgstr "Early acceptance"
+msgstr "Early adoption of law"
 
 #: bill/views/bills/speedup_bill.py:42
 msgctxt "speedup_bill"
@@ -2055,7 +2055,7 @@ msgstr "There is no such type of bill"
 #: bill/views/bills/vote_bill.py:109
 msgctxt "vote_bill"
 msgid "Вы - не депутат этого парламента"
-msgstr "You are not a member of this parliament"
+msgstr "You are no seat in this parliament"
 
 #: bill/views/bills/vote_bill.py:116
 msgctxt "vote_bill"
@@ -2177,7 +2177,7 @@ msgstr "The room ID must be an integer"
 #: chat/views/messages/get_message_block.py:85
 msgctxt "chat"
 msgid "Получение сообщений"
-msgstr "Receive of messages"
+msgstr "List of received messages"
 
 #: chat/views/messages/get_message_block.py:36
 msgctxt "chat"
@@ -2217,7 +2217,7 @@ msgstr "Action"
 #: education/templates/education/edu_overview.html:511
 msgctxt "education"
 msgid "Партия Единства Республики"
-msgstr "Republic Party of Unity"
+msgstr "Republic Democratic Party"
 
 #: education/templates/education/edu_election.html:159
 #: education/templates/education/edu_overview.html:477
@@ -2347,7 +2347,7 @@ msgstr ""
 msgctxt "education"
 msgid "Для начала, давайте взглянем на обстановку в стране и мире!"
 msgstr ""
-"To begin, let’s take a look at the state of affairs in the country and the "
+"To begin, let’s take a look at the state of affairs in your country and the "
 "world!"
 
 #: education/templates/education/edu_lists/list_1.html:61
@@ -2468,8 +2468,8 @@ msgid ""
 "На пути к вершинам всегда будет недовольные, но мы справимся. Главное — ваш "
 "выбор и ваша решимость."
 msgstr ""
-"There will always be those who are dissatisfied on the way to the top, but "
-"we will manage. The most important thing is your choice and your "
+"There will always be those who are dissatisfied of those who rule at the "
+"top, but we will manage. The most important thing is your choice and your "
 "determination."
 
 #: education/templates/education/edu_lists/list_3.html:99
@@ -2484,8 +2484,8 @@ msgid ""
 "Теперь, когда у нас большинство, вы можете занять своё место в зале и "
 "приступать к работе над ключевыми решениями."
 msgstr ""
-"Now that we have the majority, you can take your seat in the hall and start "
-"working on key decisions."
+"Now that we have the majority, you can take your seat in the parliament and "
+"start working on key decisions."
 
 #: education/templates/education/edu_lists/list_3.html:108
 msgctxt "education"
@@ -2562,12 +2562,12 @@ msgid ""
 "командовать отдельным подразделением самообороны столицы."
 msgstr ""
 "Support for the government forces is more crucial than ever. You will "
-"command a special self-defense unit for the capital."
+"command a special self-defense unit in the capital."
 
 #: education/templates/education/edu_lists/list_4.html:118
 msgctxt "education"
 msgid "Добро пожаловать, командир. Ваше присутствие вдохновляет бойцов!"
-msgstr "Welcome, commander. Your presence inspires the fighters!"
+msgstr "Welcome, commander. Your presence inspires the soldiers!"
 
 #: education/templates/education/edu_lists/list_4.html:122
 msgctxt "education"
@@ -2603,7 +2603,7 @@ msgid ""
 "восстановить силы."
 msgstr ""
 "I see you’ve been on duty for two days straight... Here, I brought you some "
-"coffee to help recharge your energy."
+"energy drinks to help recharge your energy."
 
 #: education/templates/education/edu_lists/list_4.html:139
 msgctxt "education"
@@ -2670,7 +2670,7 @@ msgstr ""
 #, python-format
 msgctxt "education"
 msgid "Наш борт направляется в регион %(region)s. "
-msgstr "Our flight is heading to the %(region)s region."
+msgstr "our flight is heading to the %(region)s region."
 
 #: education/templates/education/edu_lists/list_5.html:81
 #, python-format
@@ -2681,7 +2681,7 @@ msgstr "It belongs to the state of %(state)s."
 #: education/templates/education/edu_lists/list_5.html:81
 msgctxt "education"
 msgid "Это независимая территория"
-msgstr "It is an independent territory."
+msgstr "it is an independent territory."
 
 #: education/templates/education/edu_lists/list_5.html:85
 msgctxt "education"
@@ -2705,7 +2705,7 @@ msgid ""
 "налаживать добычу ресурсов и привлекать инвесторов."
 msgstr ""
 "Let’s start with the basics: in the new state, to strengthen your position, "
-"you will need to establish resource extraction and attract investors."
+"you will need to establish mining operations and attract investors."
 
 #: education/templates/education/edu_lists/list_6.html:67
 msgctxt "education"
@@ -2741,7 +2741,7 @@ msgstr ""
 #: education/templates/education/edu_lists/list_6.html:79
 msgctxt "education"
 msgid "Давайте организуем нашу первую добычу сырья."
-msgstr "Let’s organize our first resource extraction."
+msgstr "Let’s organize our first mining operation."
 
 #: education/templates/education/edu_lists/list_6.html:84
 msgctxt "education"
@@ -3644,25 +3644,25 @@ msgid "Восстание в Столичном регионе"
 msgstr "Revolution in the Capital Region"
 
 #: education/templates/education/edu_war.html:46
-#: war/templates/war/redesign/EventWar.html:143
+#: war/templates/war/redesign/EventWar.html:156
 #: war/templates/war/redesign/GroundWar.html:158
-#: war/templates/war/redesign/Revolution.html:143
+#: war/templates/war/redesign/Revolution.html:156
 msgctxt "war_page"
 msgid "Атака"
 msgstr "Attack side"
 
 #: education/templates/education/edu_war.html:60
-#: war/templates/war/redesign/EventWar.html:152
+#: war/templates/war/redesign/EventWar.html:165
 #: war/templates/war/redesign/GroundWar.html:167
-#: war/templates/war/redesign/Revolution.html:152
+#: war/templates/war/redesign/Revolution.html:165
 msgctxt "war_page"
 msgid "До конца боя"
 msgstr "Until the end of the war"
 
 #: education/templates/education/edu_war.html:66
-#: war/templates/war/redesign/EventWar.html:158
+#: war/templates/war/redesign/EventWar.html:171
 #: war/templates/war/redesign/GroundWar.html:173
-#: war/templates/war/redesign/Revolution.html:158
+#: war/templates/war/redesign/Revolution.html:171
 msgctxt "war_page"
 msgid "Защита"
 msgstr "Defence side"
@@ -3670,31 +3670,31 @@ msgstr "Defence side"
 #: education/templates/education/edu_war.html:86
 #: education/templates/education/edu_war.html:93
 #: education/templates/education/edu_war.html:114
-#: war/templates/war/redesign/EventWar.html:177
-#: war/templates/war/redesign/EventWar.html:184
-#: war/templates/war/redesign/EventWar.html:255
+#: war/templates/war/redesign/EventWar.html:190
+#: war/templates/war/redesign/EventWar.html:197
+#: war/templates/war/redesign/EventWar.html:268
 #: war/templates/war/redesign/GroundWar.html:188
 #: war/templates/war/redesign/GroundWar.html:195
 #: war/templates/war/redesign/GroundWar.html:266
-#: war/templates/war/redesign/Revolution.html:178
-#: war/templates/war/redesign/Revolution.html:185
-#: war/templates/war/redesign/Revolution.html:256
+#: war/templates/war/redesign/Revolution.html:191
+#: war/templates/war/redesign/Revolution.html:198
+#: war/templates/war/redesign/Revolution.html:269
 msgctxt "war_page"
 msgid "Урон"
 msgstr "Damage"
 
 #: education/templates/education/edu_war.html:106
-#: war/templates/war/redesign/EventWar.html:247
+#: war/templates/war/redesign/EventWar.html:260
 #: war/templates/war/redesign/GroundWar.html:258
-#: war/templates/war/redesign/Revolution.html:248
+#: war/templates/war/redesign/Revolution.html:261
 msgctxt "war_page"
 msgid "защита"
 msgstr "defence side"
 
 #: education/templates/education/edu_war.html:133
-#: war/templates/war/redesign/EventWar.html:274
+#: war/templates/war/redesign/EventWar.html:287
 #: war/templates/war/redesign/GroundWar.html:285
-#: war/templates/war/redesign/Revolution.html:275
+#: war/templates/war/redesign/Revolution.html:288
 msgctxt "war_page"
 msgid "в бой"
 msgstr "fight"
@@ -3832,7 +3832,7 @@ msgstr "WP Server Anniversary:"
 #: event/templates/event/anniversary.html:394
 msgctxt "game_event"
 msgid "заработайте премиум и золото!"
-msgstr "Earn premium and gold!"
+msgstr "earn premium and gold!"
 
 #: event/templates/event/anniversary.html:395
 msgctxt "game_event"
@@ -3892,7 +3892,7 @@ msgstr "Black Friday 2024:"
 #: event/templates/event/black_friday.html:392
 msgctxt "game_event"
 msgid "заработайте премиум, золото и особый самолёт!"
-msgstr "Earn premium, gold and special plane skin!"
+msgstr "earn premium, gold and special plane skin!"
 
 #: event/templates/event/black_friday.html:393
 msgctxt "game_event"
@@ -3912,7 +3912,7 @@ msgstr "Winter festival in WP:"
 #: event/templates/event/festival.html:394
 msgctxt "game_event"
 msgid "ускорение прокачки, премиум и Ящики в двух прогрессиях!"
-msgstr "Boost your leveling, premium and Crates in two progressions!"
+msgstr "boost your leveling, premium and Crates in two progressions!"
 
 #: event/templates/event/festival.html:396
 msgctxt "game_event"
@@ -4149,7 +4149,7 @@ msgstr "Summer Festival in WP:"
 #: event/templates/event/summer_festival.html:394
 msgctxt "game_event"
 msgid "увеличение Финансирования, премиум и Аэрокейсы в двух прогрессиях!"
-msgstr "Increase in Financing, Premium and Aerocases in two progressions!"
+msgstr "increase in Financing, Premium and Aerocases in two progressions!"
 
 #: event/views/activate_invite.py:31
 msgctxt "game_event"
@@ -4621,22 +4621,22 @@ msgctxt "pres_elections"
 msgid "Кандидат"
 msgstr "Candidate"
 
-#: gov/templates/state/redesign/forms/foreign_right.html:13
+#: gov/templates/state/redesign/forms/foreign_right.html:15
 msgctxt "foreign_right"
 msgid "Запросы прописки"
 msgstr "Request for residence permit"
 
-#: gov/templates/state/redesign/forms/foreign_right.html:13
+#: gov/templates/state/redesign/forms/foreign_right.html:15
 msgctxt "foreign_right"
 msgid "Последние прописавшиеся"
 msgstr "The latest new residents"
 
-#: gov/templates/state/redesign/forms/foreign_right.html:20
+#: gov/templates/state/redesign/forms/foreign_right.html:19
 msgctxt "foreign_right"
 msgid "отклонить всё"
 msgstr "reject everything"
 
-#: gov/templates/state/redesign/forms/foreign_right.html:84
+#: gov/templates/state/redesign/forms/foreign_right.html:83
 msgctxt "foreign_right"
 msgid "Запросов прописки нет"
 msgstr "No registration requests"
@@ -6060,7 +6060,7 @@ msgstr "Awarded for every million damage dealt by the player"
 #: player/templates/player/redesign/customization/view_medals.html:254
 msgctxt "medals"
 msgid "За перевод игры"
-msgstr "For the game translating "
+msgstr "For help translating the game."
 
 #: player/templates/player/redesign/customization/view_medals.html:255
 msgctxt "medals"
@@ -6305,7 +6305,7 @@ msgstr "ratings"
 #: player/templates/player/redesign/game_event/play_market_event.html:88
 msgctxt "event"
 msgid ", а самое главное - "
-msgstr ", and most importantly—"
+msgstr ", and most importantly— "
 
 #: player/templates/player/redesign/game_event/play_market_event.html:91
 msgctxt "event"
@@ -6349,7 +6349,7 @@ msgstr "Our goal is to attract as many newcomers as possible!"
 #: player/templates/player/redesign/game_event/play_market_event.html:116
 msgctxt "event"
 msgid "К слову, о новичках"
-msgstr "By the way, about the newcomers."
+msgstr "By the way, about the newcomers"
 
 #: player/templates/player/redesign/game_event/play_market_event.html:127
 msgctxt "event"
@@ -6384,7 +6384,7 @@ msgstr ""
 #: player/templates/player/redesign/game_event/play_market_event.html:142
 msgctxt "event"
 msgid "Тем более что в игру планируется ввести"
-msgstr "Moreover, the game plans to introduce a "
+msgstr "Moreover, the game plans to introduce a"
 
 #: player/templates/player/redesign/game_event/play_market_event.html:144
 msgctxt "event"
@@ -6442,7 +6442,7 @@ msgstr "The reward will consist of&nbsp;"
 #: player/templates/player/redesign/game_event/play_market_event.html:190
 msgctxt "event"
 msgid "на среднюю оценку в Play Market"
-msgstr "the average rating on the Play Market."
+msgstr "the average rating on the Play Market"
 
 #: player/templates/player/redesign/game_event/play_market_event.html:198
 msgctxt "event"
@@ -6688,7 +6688,7 @@ msgid ""
 "в целом"
 msgstr ""
 "This displays the war closest to you, either in the country or in the world "
-"as a whole."
+"as a whole"
 
 #: player/templates/player/redesign/player_help.html:14
 msgctxt "screen_help"
@@ -6706,7 +6706,7 @@ msgid ""
 "Характеристик повышает выплаты Финансирования"
 msgstr ""
 "Your character's strength affects the final damage in wars. Also, each of "
-"the Attributes increases the Funding payouts."
+"the Attributes increases the Funding payouts"
 
 #: player/templates/player/redesign/player_help.html:20
 msgctxt "screen_help"
@@ -7643,7 +7643,7 @@ msgstr "Premium Shop"
 #: player/views/lists/cash_top.py:114
 msgctxt "lists"
 msgid "Топ богатейших"
-msgstr "Richest top"
+msgstr "Top Richest"
 
 #: player/views/lists/damage_top.py:112 player/views/lists/damage_top.py:113
 #: war/views/open_war_side_list.py:94 war/views/open_war_side_list.py:95
@@ -7659,12 +7659,12 @@ msgstr "Damage top"
 #: player/views/lists/region_citizens.py:64
 msgctxt "lists"
 msgid "Граждане региона"
-msgstr "Region citizens"
+msgstr "Region Residents"
 
 #: player/views/lists/region_players.py:64
 msgctxt "lists"
 msgid "Жители региона"
-msgstr "Region residents"
+msgstr "Region Visitors"
 
 #: player/views/lists/skill_top.py:22
 msgctxt "skill_top"
@@ -8309,7 +8309,7 @@ msgstr "Biochemistry"
 #: skill/models/biochemistry.py:10
 msgctxt "skills"
 msgid "Открывает возможность производства бустеров Характеристик"
-msgstr "Gives the ability to produce boosters of Characteristics"
+msgstr "Gives the ability to produce statistic boosters"
 
 #: skill/models/coherence.py:15 skill/models/coherence.py:62
 msgctxt "skills"
@@ -9173,7 +9173,7 @@ msgstr "Warehouse upgrade"
 #: storage/templates/storage/redesign/storage.html:270
 msgctxt "storage_upgrade"
 msgid "Вы можете улучшить Склад, расширив его хранилища"
-msgstr "You can improve the Warehouse by increasing its volumes"
+msgstr "You can improve the Warehouse by increasing its level"
 
 #: storage/templates/storage/redesign/storage.html:271
 msgctxt "storage_upgrade"
@@ -10434,92 +10434,95 @@ msgctxt "war_consumers"
 msgid "Не удалось отправить войска, повторите попытку"
 msgstr "Failed to send troops, please try again"
 
-#: war/models/wars/ground_war.py:803
+#: war/models/wars/event_war.py:280 war/models/wars/ground_war.py:804
+#: war/models/wars/revolution/revolution.py:549
 msgctxt "war_page"
 msgid "График урона в бою"
 msgstr "Damage graph of the war"
 
-#: war/models/wars/ground_war.py:807
+#: war/models/wars/event_war.py:284 war/models/wars/ground_war.py:808
+#: war/models/wars/revolution/revolution.py:553
 msgctxt "war_page"
 msgid "дата/время"
 msgstr "date/time"
 
-#: war/models/wars/ground_war.py:813
+#: war/models/wars/event_war.py:290 war/models/wars/ground_war.py:814
+#: war/models/wars/revolution/revolution.py:559
 msgctxt "war_page"
 msgid "очки урона"
 msgstr "damage points"
 
-#: war/templates/war/redesign/EventWar.html:50
+#: war/templates/war/redesign/EventWar.html:63
 msgctxt "war_page"
 msgid "Тестовая война"
 msgstr "Test war"
 
-#: war/templates/war/redesign/EventWar.html:149
+#: war/templates/war/redesign/EventWar.html:162
 #: war/templates/war/redesign/GroundWar.html:164
-#: war/templates/war/redesign/Revolution.html:149
+#: war/templates/war/redesign/Revolution.html:162
 msgctxt "war_page"
 msgid "Война завершилась"
 msgstr "War ended at"
 
-#: war/templates/war/redesign/EventWar.html:198
+#: war/templates/war/redesign/EventWar.html:211
 #: war/templates/war/redesign/GroundWar.html:209
-#: war/templates/war/redesign/Revolution.html:199
+#: war/templates/war/redesign/Revolution.html:212
 msgctxt "war_page"
 msgid "Баланс сил"
 msgstr "Balance of power"
 
-#: war/templates/war/redesign/EventWar.html:201
+#: war/templates/war/redesign/EventWar.html:214
 #: war/templates/war/redesign/GroundWar.html:212
-#: war/templates/war/redesign/Revolution.html:202
+#: war/templates/war/redesign/Revolution.html:215
 msgctxt "war_page"
 msgid "условие"
 msgstr "condition"
 
-#: war/templates/war/redesign/EventWar.html:202
+#: war/templates/war/redesign/EventWar.html:215
 #: war/templates/war/redesign/GroundWar.html:213
-#: war/templates/war/redesign/Revolution.html:203
+#: war/templates/war/redesign/Revolution.html:216
 msgctxt "war_page"
 msgid "больше"
 msgstr "more"
 
-#: war/templates/war/redesign/EventWar.html:203
+#: war/templates/war/redesign/EventWar.html:216
 #: war/templates/war/redesign/GroundWar.html:214
-#: war/templates/war/redesign/Revolution.html:204
+#: war/templates/war/redesign/Revolution.html:217
 msgctxt "war_page"
 msgid "меньше"
 msgstr "less"
 
-#: war/templates/war/redesign/EventWar.html:204
+#: war/templates/war/redesign/EventWar.html:217
 #: war/templates/war/redesign/GroundWar.html:215
-#: war/templates/war/redesign/Revolution.html:205
+#: war/templates/war/redesign/Revolution.html:218
 msgctxt "war_page"
 msgid "не важно"
 msgstr "no matter"
 
-#: war/templates/war/redesign/EventWar.html:229
+#: war/templates/war/redesign/EventWar.html:242
 #: war/templates/war/redesign/GroundWar.html:240
-#: war/templates/war/redesign/Revolution.html:230
+#: war/templates/war/redesign/Revolution.html:243
 msgctxt "war_page"
 msgid "очки"
 msgstr "points"
 
-#: war/templates/war/redesign/EventWar.html:245
+#: war/templates/war/redesign/EventWar.html:258
 #: war/templates/war/redesign/GroundWar.html:256
-#: war/templates/war/redesign/Revolution.html:246
+#: war/templates/war/redesign/Revolution.html:259
 msgctxt "war_page"
 msgid "сторона боя"
 msgstr "war side"
 
-#: war/templates/war/redesign/EventWar.html:246
+#: war/templates/war/redesign/EventWar.html:259
 #: war/templates/war/redesign/GroundWar.html:257
-#: war/templates/war/redesign/Revolution.html:247
+#: war/templates/war/redesign/Revolution.html:260
 msgctxt "war_page"
 msgid "атака"
 msgstr "attack side"
 
-#: war/templates/war/redesign/EventWar.html:323
+#: war/templates/war/redesign/EventWar.html:336
 #: war/templates/war/redesign/GroundWar.html:334
-#: war/templates/war/redesign/Revolution.html:324
+#: war/templates/war/redesign/Revolution.html:337
 msgctxt "war_page"
 msgid "нет войск"
 msgstr "no troops"
@@ -10529,7 +10532,7 @@ msgctxt "war_page"
 msgid "Наземная война"
 msgstr "Ground war"
 
-#: war/templates/war/redesign/Revolution.html:50
+#: war/templates/war/redesign/Revolution.html:63
 msgctxt "war_page"
 msgid "Восстание в регионе"
 msgstr "Rebellion in region"
@@ -10624,7 +10627,7 @@ msgstr "It has not been 7 days since the end of the last revolution"
 #: war/views/join_revolution.py:77
 msgctxt "join_revolution"
 msgid "Для участия в восстании требуется прописка"
-msgstr "Для участия в революции необходима регистрация"
+msgstr "Residency is required to participate in the uprising"
 
 #: war/views/join_revolution.py:89
 msgctxt "join_revolution"
