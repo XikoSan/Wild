@@ -14,6 +14,7 @@ from django.utils import timezone
 from django.utils.timezone import make_aware
 from django.utils.translation import pgettext
 from django_celery_beat.models import PeriodicTask
+from math import ceil
 
 from party.party import Party
 from party.position import PartyPosition
@@ -404,7 +405,6 @@ class Player(models.Model):
             daily_limit = daily_limit * 2
             paid_sum = paid_sum * 2
 
-
         if self.destination:
             data = {
                 'response': pgettext('mining', 'Дождитесь конца полёта'),
@@ -538,7 +538,10 @@ class Player(models.Model):
             # если энергии меньше ста
             if self.energy < 100:
                 # пополняем
-                self.energy += Hospital.indexes[med_top]
+                if self.region.state == self.residency.state:
+                    self.energy += Hospital.indexes[med_top]
+                else:
+                    self.energy += Hospital.indexes[med_top] // 2
 
                 # запоминаем дату восстановления
                 self.natural_refill = timezone.now()
@@ -553,10 +556,17 @@ class Player(models.Model):
             modulo = (timezone.now() - self.natural_refill).total_seconds() % 600
 
             if self.last_top == 0:
-                energy_sum = Hospital.indexes[Hospital.get_stat(self.region)[0]['top']] * counts
+                # пополняем
+                if self.region.state == self.residency.state:
+                    energy_sum = Hospital.indexes[Hospital.get_stat(self.region)[0]['top']] * counts
+                else:
+                    energy_sum = (Hospital.indexes[Hospital.get_stat(self.region)[0]['top']] * counts) // 2
             else:
                 # считаем, сколько энергии станет при последнем индексе
-                energy_sum = Hospital.indexes[self.last_top] * counts
+                if self.region.state == self.residency.state:
+                    energy_sum = Hospital.indexes[self.last_top] * counts
+                else:
+                    energy_sum = (Hospital.indexes[self.last_top] * counts) // 2
 
             # если энергии заведомо больше ста
             if energy_sum > 100:

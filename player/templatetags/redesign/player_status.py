@@ -29,9 +29,15 @@ def player_status(player):
 
     # величина ближайшнего прироста
     if player.last_top == 0:
-        increase_value = Hospital.indexes[Hospital.get_stat(player.region)[0]['top']]
+        if player.region.state == player.residency.state:
+            increase_value = Hospital.indexes[Hospital.get_stat(player.region)[0]['top']]
+        else:
+            increase_value = (Hospital.indexes[Hospital.get_stat(player.region)[0]['top']]) // 2
     else:
-        increase_value = Hospital.indexes[player.last_top]
+        if player.region.state == player.residency.state:
+            increase_value = Hospital.indexes[player.last_top]
+        else:
+            increase_value = (Hospital.indexes[player.last_top]) // 2
 
     # узнаем, имеет ли игрок доступ к переводам
     translator = False
