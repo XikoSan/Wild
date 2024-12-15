@@ -414,7 +414,7 @@ class GroundWar(War):
                             FROM public.storage_storage AS st
                             WHERE sk.storage_id = st.id
                               AND st.deleted = false
-                              AND st.region_id = 4
+                              AND st.region_id = {self.def_region.pk}
                               AND sk.stock != 0
                             RETURNING sk.id, sk.good_id, sk.stock, st.id AS storage_id
                         ),
