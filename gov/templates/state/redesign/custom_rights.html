@@ -51,6 +51,6 @@
     {% for class_name in custom_rights %}
         <div class="{% if forloop.counter0 == 0 %}active{% endif %} {{ class_name }}_block">
         {% get_custom_right %}
-    </div>
+        </div>
     {% endfor %}
 </div>
