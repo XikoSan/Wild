@@ -104,7 +104,7 @@ def open_state(request, pk):
         if not percentage:
             percentage = 0
 
-        salary = ceil(15000 * percentage * 0.33)
+        salary = ceil(10000 * percentage * 0.33)
     # ----------
 
     return render(request, 'state/redesign/state_view.html', {

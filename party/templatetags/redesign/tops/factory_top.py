@@ -64,7 +64,7 @@ def factory_top(request, player):
 
         size_party.mined = party_tuple[1]
         if all_produced > 0:
-            size_party.reward = int(15000 * (party_tuple[1] / all_produced))
+            size_party.reward = int(10000 * (party_tuple[1] / all_produced))
 
         parties_with_size.append(size_party)
 

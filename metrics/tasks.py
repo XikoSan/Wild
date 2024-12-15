@@ -176,7 +176,7 @@ def save_daily():
             percentage = state_data['percentage'] or 0.0
 
             # Вычисляем бонус
-            gold_bonus = ceil(15000 * percentage * 0.33)
+            gold_bonus = ceil(10000 * percentage * 0.33)
 
             # Находим президента
             try:
@@ -251,10 +251,10 @@ def save_daily():
         for party_tuple in sorted_items:
             if party_tuple[1] > 0:
                 # начисляем золото в процентном соотношении
-                party_tuple[0].gold += int(15000 * (party_tuple[1] / (week_ore + week_oil)))
+                party_tuple[0].gold += int(10000 * (party_tuple[1] / (week_ore + week_oil)))
                 party_tuple[0].save()
 
-                PartyGoldLog(party=party_tuple[0], gold=int(15000 * (party_tuple[1] / (week_ore + week_oil))), activity_txt='rating').save()
+                PartyGoldLog(party=party_tuple[0], gold=int(10000 * (party_tuple[1] / (week_ore + week_oil))), activity_txt='rating').save()
 
         all_skills = 0
 
@@ -285,10 +285,10 @@ def save_daily():
             for party_tuple in sorted_items:
                 # начисляем золото в процентном соотношении
                 if party_tuple[1] > 0:
-                    party_tuple[0].gold += 15000 * (party_tuple[1] / all_skills)
+                    party_tuple[0].gold += 10000 * (party_tuple[1] / all_skills)
                     party_tuple[0].save()
 
-                    PartyGoldLog(party=party_tuple[0], gold=int(15000 * (party_tuple[1] / all_skills)),
+                    PartyGoldLog(party=party_tuple[0], gold=int(10000 * (party_tuple[1] / all_skills)),
                                  activity_txt='rating').save()
 
         # производство
@@ -318,8 +318,8 @@ def save_daily():
             for party_tuple in sorted_items:
                 # начисляем золото в процентном соотношении
                 if party_tuple[1] > 0:
-                    party_tuple[0].gold += 15000 * (party_tuple[1] / all_produced)
+                    party_tuple[0].gold += 10000 * (party_tuple[1] / all_produced)
                     party_tuple[0].save()
 
-                    PartyGoldLog(party=party_tuple[0], gold=int(15000 * (party_tuple[1] / all_produced)),
+                    PartyGoldLog(party=party_tuple[0], gold=int(10000 * (party_tuple[1] / all_produced)),
                                  activity_txt='rating').save()
