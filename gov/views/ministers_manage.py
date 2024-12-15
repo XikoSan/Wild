@@ -60,7 +60,7 @@ def ministers_manage(request):
                 points += i * 2
 
         # сколько очков осталось
-        points = 13 - points
+        points = 15 - points
 
         # законопроекты, на которые они имеют право
         bills_classes = get_subclasses(Bill)

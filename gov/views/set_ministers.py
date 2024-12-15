@@ -87,11 +87,11 @@ def set_ministers(request):
                 right_iter += 1
 
         # сумма очков не больше десяти
-        if points > 13:
+        if points > 15:
             data = {
                 'header': pgettext('set_ministers', 'Назначение министров'),
                 'grey_btn': pgettext('core', 'Закрыть'),
-                'response': pgettext('set_ministers', 'Сумма очков назначения министров превышает 13'),
+                'response': pgettext('set_ministers', 'Сумма очков назначения министров превышает 15'),
             }
             return JsonResponse(data)
 

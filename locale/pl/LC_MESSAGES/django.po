@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-07 15:55+0300\n"
+"POT-Creation-Date: 2024-12-16 00:19+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -3468,25 +3468,25 @@ msgid "Восстание в Столичном регионе"
 msgstr ""
 
 #: education/templates/education/edu_war.html:46
-#: war/templates/war/redesign/EventWar.html:143
+#: war/templates/war/redesign/EventWar.html:156
 #: war/templates/war/redesign/GroundWar.html:158
-#: war/templates/war/redesign/Revolution.html:143
+#: war/templates/war/redesign/Revolution.html:156
 msgctxt "war_page"
 msgid "Атака"
 msgstr ""
 
 #: education/templates/education/edu_war.html:60
-#: war/templates/war/redesign/EventWar.html:152
+#: war/templates/war/redesign/EventWar.html:165
 #: war/templates/war/redesign/GroundWar.html:167
-#: war/templates/war/redesign/Revolution.html:152
+#: war/templates/war/redesign/Revolution.html:165
 msgctxt "war_page"
 msgid "До конца боя"
 msgstr ""
 
 #: education/templates/education/edu_war.html:66
-#: war/templates/war/redesign/EventWar.html:158
+#: war/templates/war/redesign/EventWar.html:171
 #: war/templates/war/redesign/GroundWar.html:173
-#: war/templates/war/redesign/Revolution.html:158
+#: war/templates/war/redesign/Revolution.html:171
 msgctxt "war_page"
 msgid "Защита"
 msgstr ""
@@ -3494,31 +3494,31 @@ msgstr ""
 #: education/templates/education/edu_war.html:86
 #: education/templates/education/edu_war.html:93
 #: education/templates/education/edu_war.html:114
-#: war/templates/war/redesign/EventWar.html:177
-#: war/templates/war/redesign/EventWar.html:184
-#: war/templates/war/redesign/EventWar.html:255
+#: war/templates/war/redesign/EventWar.html:190
+#: war/templates/war/redesign/EventWar.html:197
+#: war/templates/war/redesign/EventWar.html:268
 #: war/templates/war/redesign/GroundWar.html:188
 #: war/templates/war/redesign/GroundWar.html:195
 #: war/templates/war/redesign/GroundWar.html:266
-#: war/templates/war/redesign/Revolution.html:178
-#: war/templates/war/redesign/Revolution.html:185
-#: war/templates/war/redesign/Revolution.html:256
+#: war/templates/war/redesign/Revolution.html:191
+#: war/templates/war/redesign/Revolution.html:198
+#: war/templates/war/redesign/Revolution.html:269
 msgctxt "war_page"
 msgid "Урон"
 msgstr ""
 
 #: education/templates/education/edu_war.html:106
-#: war/templates/war/redesign/EventWar.html:247
+#: war/templates/war/redesign/EventWar.html:260
 #: war/templates/war/redesign/GroundWar.html:258
-#: war/templates/war/redesign/Revolution.html:248
+#: war/templates/war/redesign/Revolution.html:261
 msgctxt "war_page"
 msgid "защита"
 msgstr ""
 
 #: education/templates/education/edu_war.html:133
-#: war/templates/war/redesign/EventWar.html:274
+#: war/templates/war/redesign/EventWar.html:287
 #: war/templates/war/redesign/GroundWar.html:285
-#: war/templates/war/redesign/Revolution.html:275
+#: war/templates/war/redesign/Revolution.html:288
 msgctxt "war_page"
 msgid "в бой"
 msgstr ""
@@ -4420,22 +4420,22 @@ msgctxt "pres_elections"
 msgid "Кандидат"
 msgstr ""
 
-#: gov/templates/state/redesign/forms/foreign_right.html:13
+#: gov/templates/state/redesign/forms/foreign_right.html:15
 msgctxt "foreign_right"
 msgid "Запросы прописки"
 msgstr ""
 
-#: gov/templates/state/redesign/forms/foreign_right.html:13
+#: gov/templates/state/redesign/forms/foreign_right.html:15
 msgctxt "foreign_right"
 msgid "Последние прописавшиеся"
 msgstr ""
 
-#: gov/templates/state/redesign/forms/foreign_right.html:20
+#: gov/templates/state/redesign/forms/foreign_right.html:19
 msgctxt "foreign_right"
 msgid "отклонить всё"
 msgstr ""
 
-#: gov/templates/state/redesign/forms/foreign_right.html:84
+#: gov/templates/state/redesign/forms/foreign_right.html:83
 msgctxt "foreign_right"
 msgid "Запросов прописки нет"
 msgstr ""
@@ -4531,7 +4531,7 @@ msgstr ""
 
 #: gov/views/set_ministers.py:94
 msgctxt "set_ministers"
-msgid "Сумма очков назначения министров превышает 13"
+msgid "Сумма очков назначения министров превышает 15"
 msgstr ""
 
 #: gov/views/switch_description.py:22
@@ -10081,92 +10081,95 @@ msgctxt "war_consumers"
 msgid "Не удалось отправить войска, повторите попытку"
 msgstr ""
 
-#: war/models/wars/ground_war.py:803
+#: war/models/wars/event_war.py:280 war/models/wars/ground_war.py:804
+#: war/models/wars/revolution/revolution.py:549
 msgctxt "war_page"
 msgid "График урона в бою"
 msgstr ""
 
-#: war/models/wars/ground_war.py:807
+#: war/models/wars/event_war.py:284 war/models/wars/ground_war.py:808
+#: war/models/wars/revolution/revolution.py:553
 msgctxt "war_page"
 msgid "дата/время"
 msgstr ""
 
-#: war/models/wars/ground_war.py:813
+#: war/models/wars/event_war.py:290 war/models/wars/ground_war.py:814
+#: war/models/wars/revolution/revolution.py:559
 msgctxt "war_page"
 msgid "очки урона"
 msgstr ""
 
-#: war/templates/war/redesign/EventWar.html:50
+#: war/templates/war/redesign/EventWar.html:63
 msgctxt "war_page"
 msgid "Тестовая война"
 msgstr ""
 
-#: war/templates/war/redesign/EventWar.html:149
+#: war/templates/war/redesign/EventWar.html:162
 #: war/templates/war/redesign/GroundWar.html:164
-#: war/templates/war/redesign/Revolution.html:149
+#: war/templates/war/redesign/Revolution.html:162
 msgctxt "war_page"
 msgid "Война завершилась"
 msgstr ""
 
-#: war/templates/war/redesign/EventWar.html:198
+#: war/templates/war/redesign/EventWar.html:211
 #: war/templates/war/redesign/GroundWar.html:209
-#: war/templates/war/redesign/Revolution.html:199
+#: war/templates/war/redesign/Revolution.html:212
 msgctxt "war_page"
 msgid "Баланс сил"
 msgstr ""
 
-#: war/templates/war/redesign/EventWar.html:201
+#: war/templates/war/redesign/EventWar.html:214
 #: war/templates/war/redesign/GroundWar.html:212
-#: war/templates/war/redesign/Revolution.html:202
+#: war/templates/war/redesign/Revolution.html:215
 msgctxt "war_page"
 msgid "условие"
 msgstr ""
 
-#: war/templates/war/redesign/EventWar.html:202
+#: war/templates/war/redesign/EventWar.html:215
 #: war/templates/war/redesign/GroundWar.html:213
-#: war/templates/war/redesign/Revolution.html:203
+#: war/templates/war/redesign/Revolution.html:216
 msgctxt "war_page"
 msgid "больше"
 msgstr ""
 
-#: war/templates/war/redesign/EventWar.html:203
+#: war/templates/war/redesign/EventWar.html:216
 #: war/templates/war/redesign/GroundWar.html:214
-#: war/templates/war/redesign/Revolution.html:204
+#: war/templates/war/redesign/Revolution.html:217
 msgctxt "war_page"
 msgid "меньше"
 msgstr ""
 
-#: war/templates/war/redesign/EventWar.html:204
+#: war/templates/war/redesign/EventWar.html:217
 #: war/templates/war/redesign/GroundWar.html:215
-#: war/templates/war/redesign/Revolution.html:205
+#: war/templates/war/redesign/Revolution.html:218
 msgctxt "war_page"
 msgid "не важно"
 msgstr ""
 
-#: war/templates/war/redesign/EventWar.html:229
+#: war/templates/war/redesign/EventWar.html:242
 #: war/templates/war/redesign/GroundWar.html:240
-#: war/templates/war/redesign/Revolution.html:230
+#: war/templates/war/redesign/Revolution.html:243
 msgctxt "war_page"
 msgid "очки"
 msgstr ""
 
-#: war/templates/war/redesign/EventWar.html:245
+#: war/templates/war/redesign/EventWar.html:258
 #: war/templates/war/redesign/GroundWar.html:256
-#: war/templates/war/redesign/Revolution.html:246
+#: war/templates/war/redesign/Revolution.html:259
 msgctxt "war_page"
 msgid "сторона боя"
 msgstr ""
 
-#: war/templates/war/redesign/EventWar.html:246
+#: war/templates/war/redesign/EventWar.html:259
 #: war/templates/war/redesign/GroundWar.html:257
-#: war/templates/war/redesign/Revolution.html:247
+#: war/templates/war/redesign/Revolution.html:260
 msgctxt "war_page"
 msgid "атака"
 msgstr ""
 
-#: war/templates/war/redesign/EventWar.html:323
+#: war/templates/war/redesign/EventWar.html:336
 #: war/templates/war/redesign/GroundWar.html:334
-#: war/templates/war/redesign/Revolution.html:324
+#: war/templates/war/redesign/Revolution.html:337
 msgctxt "war_page"
 msgid "нет войск"
 msgstr ""
@@ -10176,7 +10179,7 @@ msgctxt "war_page"
 msgid "Наземная война"
 msgstr ""
 
-#: war/templates/war/redesign/Revolution.html:50
+#: war/templates/war/redesign/Revolution.html:63
 msgctxt "war_page"
 msgid "Восстание в регионе"
 msgstr ""
