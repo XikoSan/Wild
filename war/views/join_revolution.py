@@ -104,6 +104,15 @@ def join_revolution(request):
             }
             return JResponse(data)
 
+        # если в регионе идёт мирное время
+        if player.region.peace_date > timezone.now():
+            data = {
+                'response': pgettext('join_revolution', 'В данном регионе объявлено мирное время'),
+                'header': pgettext('join_revolution', 'Участие в восстании'),
+                'grey_btn': pgettext('core', 'Закрыть'),
+            }
+            return JResponse(data)
+
         rebel = Rebel(
             region=player.region,
             player=player,
