@@ -20,7 +20,7 @@ import copy
 from django.db.models import F
 from war.models.martial import Martial
 from django.utils.translation import pgettext_lazy
-
+from player.views.multiple_sum import multiple_sum
 
 # Построить здание
 class Construction(Bill):
@@ -30,7 +30,7 @@ class Construction(Bill):
 
         'resources':
             {
-                'Наличные': 800,
+                'Наличные': multiple_sum(800),
                 'Медикаменты': 15,
             },
     }
@@ -40,7 +40,7 @@ class Construction(Bill):
 
         'resources':
             {
-                'Наличные': 100,
+                'Наличные': multiple_sum(100),
                 'Сталь': 50,
                 'Уголь': 100,
             },
@@ -51,7 +51,7 @@ class Construction(Bill):
 
         'resources':
             {
-                'Наличные': 500,
+                'Наличные': multiple_sum(500),
                 'Сталь': 90,
             },
     }
@@ -61,7 +61,7 @@ class Construction(Bill):
 
         'resources':
             {
-                'Наличные': 500,
+                'Наличные': multiple_sum(500),
                 'Алюминий': 50,
             },
     }

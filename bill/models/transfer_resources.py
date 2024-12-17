@@ -30,6 +30,7 @@ from storage.models.good_lock import GoodLock
 from war.models.martial import Martial
 from war.models.wars.war import War
 from django.utils.translation import pgettext_lazy
+from player.views.multiple_sum import multiple_sum
 
 
 # Передать ресурсы указанному государству
@@ -222,7 +223,7 @@ class TransferResources(Bill):
         send_infr_mul = Infrastructure.indexes[Infrastructure.get_stat(self.send_treasury.region)[0]['top']]
         dest_infr_mul = Infrastructure.indexes[Infrastructure.get_stat(self.take_treasury.region)[0]['top']]
 
-        transfer_price = ceil( ceil(self.send_count * self.send_good.volume) * trans_mul * ( ( 100 - send_infr_mul - dest_infr_mul ) / 100 ) )
+        transfer_price = multiple_sum(ceil( ceil(self.send_count * self.send_good.volume) * trans_mul * ( ( 100 - send_infr_mul - dest_infr_mul ) / 100 ) ))
 
         if transfer_price > self.send_treasury.cash:
             b_type = 'rj'
@@ -316,7 +317,7 @@ class TransferResources(Bill):
         send_infr_mul = Infrastructure.indexes[Infrastructure.get_stat(self.send_treasury.region)[0]['top']]
         dest_infr_mul = Infrastructure.indexes[Infrastructure.get_stat(self.take_treasury.region)[0]['top']]
 
-        transfer_price = ceil( ceil(self.send_count * self.send_good.volume) * trans_mul * ( ( 100 - send_infr_mul - dest_infr_mul ) / 100 ) )
+        transfer_price = multiple_sum(ceil( ceil(self.send_count * self.send_good.volume) * trans_mul * ( ( 100 - send_infr_mul - dest_infr_mul ) / 100 ) ))
 
         data = {
             'bill': self,

@@ -7,11 +7,12 @@ from django.db.models.functions import Coalesce
 from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 from django.utils import timezone
-from django.utils.translation import pgettext_lazy
 from django.utils.translation import pgettext
+from django.utils.translation import pgettext_lazy
 from math import ceil
 
 from bill.models.bill import Bill
+from player.views.multiple_sum import multiple_sum
 from region.models.region import Region
 from state.models.parliament.deputy_mandate import DeputyMandate
 from state.models.parliament.parliament import Parliament
@@ -43,7 +44,7 @@ class ExploreResources(Bill):
     # объем разведки
     exp_value = models.DecimalField(default=00.00, max_digits=5, decimal_places=2, verbose_name='Объем разведки')
     # стоимость разведки за один пункт
-    exp_price = 1000
+    exp_price = multiple_sum(1000)
 
     @staticmethod
     def new_bill(request, player, parliament):

@@ -1,6 +1,7 @@
 # coding=utf-8
 import datetime
 from decimal import Decimal
+from decimal import Decimal
 from django.apps import apps
 from django.db import models
 from django.db.models import Sum
@@ -11,9 +12,10 @@ from django.utils import timezone
 from django.utils.translation import pgettext
 from django.utils.translation import pgettext_lazy
 from math import ceil
-from decimal import Decimal
+
 from bill.models.bill import Bill
 from bill.models.explore_resources import ExploreResources
+from player.views.multiple_sum import multiple_sum
 from region.models.region import Region
 from state.models.parliament.deputy_mandate import DeputyMandate
 from state.models.parliament.parliament import Parliament
@@ -43,7 +45,7 @@ class ExploreAll(Bill):
     # объем разведки
     exp_value = models.DecimalField(default=00.00, max_digits=5, decimal_places=2, verbose_name='Общий объем разведки')
     # стоимость разведки за один пункт
-    exp_price = 1000
+    exp_price = multiple_sum(1000)
 
     @staticmethod
     def new_bill(request, player, parliament):
@@ -158,7 +160,7 @@ class ExploreAll(Bill):
 
                 cash_cost += float(
                     getattr(state_region, self.resource + '_cap') - getattr(state_region,
-                                                                      self.resource + '_has')) * self.exp_price * exp_mul
+                                                                            self.resource + '_has')) * self.exp_price * exp_mul
 
             state_regions_u = []
             exp_all_regions_c = []
@@ -319,7 +321,8 @@ class ExploreAll(Bill):
                     break
 
         #  получаем список регионов страны, в которых введено военное положение
-        martials__pk = Martial.objects.filter(active=True, state=self.parliament.state).values_list('region__pk', flat=True).distinct()
+        martials__pk = Martial.objects.filter(active=True, state=self.parliament.state).values_list('region__pk',
+                                                                                                    flat=True).distinct()
 
         state_regions = Region.objects.filter(state=self.parliament.state).exclude(pk__in=martials__pk)
 
@@ -388,7 +391,7 @@ class ExploreAll(Bill):
             total_var += getattr(state_region, self.resource + '_cap') - getattr(state_region, self.resource + '_has')
 
             total_sum += float(getattr(state_region, self.resource + '_cap') - getattr(state_region,
-                                                                      self.resource + '_has')) * ExploreAll.exp_price * exp_mul
+                                                                                       self.resource + '_has')) * ExploreAll.exp_price * exp_mul
 
         data = {
             'total_var': total_var,
