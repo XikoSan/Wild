@@ -84,7 +84,7 @@ class MartialLaw(Bill):
 
             region = Region.objects.get(pk=martial_region, state=parliament.state)
 
-            if law_mode == 'free' and not Martial.objects.filter(active=False, region=region).exists():
+            if law_mode == 'free' and not Martial.objects.filter(active=True, region=region).exists():
                 return {
                     'header': pgettext('new_bill', 'Новый законопроект'),
                     'grey_btn': pgettext('core', 'Закрыть'),
