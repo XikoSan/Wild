@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-16 00:19+0300\n"
+"POT-Creation-Date: 2024-12-17 03:06+0300\n"
 "PO-Revision-Date: 2024-12-03 16:18+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -120,6 +120,7 @@ msgstr "Артыкул не можа быць пустым"
 #: bill/models/construction.py:107 bill/models/construction.py:118
 #: bill/models/construction.py:136 bill/models/construction.py:143
 #: bill/models/construction.py:168 bill/models/construction.py:174
+#: bill/models/explore_all.py:54 bill/models/explore_all.py:85
 #: bill/models/explore_resources.py:54 bill/models/explore_resources.py:64
 #: bill/models/explore_resources.py:75 bill/models/explore_resources.py:90
 #: bill/models/explore_resources.py:114 bill/models/explore_resources.py:120
@@ -446,9 +447,10 @@ msgstr "Артыкул не можа быць пустым"
 #: war/views/join_revolution.py:31 war/views/join_revolution.py:54
 #: war/views/join_revolution.py:67 war/views/join_revolution.py:79
 #: war/views/join_revolution.py:91 war/views/join_revolution.py:103
-#: war/views/join_revolution.py:140 war/views/start_war.py:104
-#: war/views/switch_war_visibility.py:40 war/views/switch_war_visibility.py:48
-#: war/views/switch_war_visibility.py:64 war/views/switch_war_visibility.py:92
+#: war/views/join_revolution.py:112 war/views/join_revolution.py:149
+#: war/views/start_war.py:104 war/views/switch_war_visibility.py:40
+#: war/views/switch_war_visibility.py:48 war/views/switch_war_visibility.py:64
+#: war/views/switch_war_visibility.py:92
 msgctxt "core"
 msgid "Закрыть"
 msgstr "Зачыніць"
@@ -704,7 +706,8 @@ msgstr "Няма такога артыкула"
 #: bill/models/construction.py:96 bill/models/construction.py:106
 #: bill/models/construction.py:117 bill/models/construction.py:135
 #: bill/models/construction.py:142 bill/models/construction.py:167
-#: bill/models/construction.py:173 bill/models/explore_resources.py:53
+#: bill/models/construction.py:173 bill/models/explore_all.py:53
+#: bill/models/explore_all.py:84 bill/models/explore_resources.py:53
 #: bill/models/explore_resources.py:63 bill/models/explore_resources.py:74
 #: bill/models/explore_resources.py:89 bill/models/explore_resources.py:113
 #: bill/models/explore_resources.py:119 bill/models/geological_surveys.py:52
@@ -751,11 +754,11 @@ msgstr "Новы законапраект"
 #: bill/models/change_coat.py:35 bill/models/change_form.py:48
 #: bill/models/change_residency.py:56 bill/models/change_taxes.py:66
 #: bill/models/change_title.py:28 bill/models/construction.py:98
-#: bill/models/explore_resources.py:55 bill/models/geological_surveys.py:54
-#: bill/models/independence.py:51 bill/models/martial_law.py:49
-#: bill/models/purchase_auction.py:49 bill/models/start_war.py:87
-#: bill/models/transfer_accept.py:60 bill/models/transfer_region.py:68
-#: bill/models/transfer_resources.py:87
+#: bill/models/explore_all.py:55 bill/models/explore_resources.py:55
+#: bill/models/geological_surveys.py:54 bill/models/independence.py:51
+#: bill/models/martial_law.py:49 bill/models/purchase_auction.py:49
+#: bill/models/start_war.py:87 bill/models/transfer_accept.py:60
+#: bill/models/transfer_region.py:68 bill/models/transfer_resources.py:87
 msgctxt "new_bill"
 msgid "Ограничение: не более одного законопроекта данного типа"
 msgstr "Абмежаванне: не болей аднаго законапраекта дадзенага тыпу"
@@ -980,6 +983,7 @@ msgstr "Няма такога будынка"
 #: bill/models/construction.py:335 bill/models/construction.py:407
 #: bill/models/construction.py:428 bill/models/construction.py:462
 #: bill/models/construction.py:497 bill/models/construction.py:518
+#: bill/templates/state/redesign/bills/explore_all.html:34
 #: bill/templates/state/redesign/bills/explore_resources.html:40
 #: bill/templates/state/redesign/bills/purchase_auction.html:31
 #: bill/templates/state/redesign/bills/transfer_resources.html:41
@@ -1005,31 +1009,66 @@ msgctxt "new_bill"
 msgid "Строительства"
 msgstr "Будаўніцтва"
 
-#: bill/models/explore_resources.py:31 bill/models/geological_surveys.py:28
+#: bill/models/explore_all.py:31 bill/models/explore_resources.py:31
+#: bill/models/geological_surveys.py:28
 msgctxt "explore_resources_draft"
 msgid "Золото"
 msgstr "Золата"
 
-#: bill/models/explore_resources.py:32 bill/models/geological_surveys.py:29
+#: bill/models/explore_all.py:32 bill/models/explore_resources.py:32
+#: bill/models/geological_surveys.py:29
 msgctxt "explore_resources_draft"
 msgid "Нефть"
 msgstr "Нафта"
 
-#: bill/models/explore_resources.py:33 bill/models/geological_surveys.py:30
+#: bill/models/explore_all.py:33 bill/models/explore_resources.py:33
+#: bill/models/geological_surveys.py:30
 msgctxt "explore_resources_draft"
 msgid "Руда"
 msgstr "Руда"
+
+#: bill/models/explore_all.py:83 bill/models/explore_resources.py:112
+#: bill/models/geological_surveys.py:104 bill/models/purchase_auction.py:148
+msgctxt "new_bill"
+msgid "Нет такого ресурса"
+msgstr "Такога рэсурсу няма"
+
+#: bill/models/explore_all.py:424
+#, fuzzy
+#| msgctxt "new_bill"
+#| msgid "Разведка ресурсов"
+msgctxt "new_bill"
+msgid "Разведка всех регионов"
+msgstr "Выведка рэсурсаў"
+
+#: bill/models/explore_all.py:425
+#, fuzzy
+#| msgctxt "new_bill"
+#| msgid "Разведки ресурсов"
+msgctxt "new_bill"
+msgid "Разведки всех регионов"
+msgstr "Выведкі рэсурсаў"
+
+#: bill/models/explore_all_region.py:25
+#, fuzzy
+#| msgctxt "explore_resources_draft"
+#| msgid "стоимость разведки"
+msgctxt "new_bill"
+msgid "Часть общей разведки"
+msgstr "кошт выведкі"
+
+#: bill/models/explore_all_region.py:26
+#, fuzzy
+#| msgctxt "explore_resources_draft"
+#| msgid "стоимость разведки"
+msgctxt "new_bill"
+msgid "Части общей разведки"
+msgstr "кошт выведкі"
 
 #: bill/models/explore_resources.py:91
 msgctxt "new_bill"
 msgid "Недопустима разведка в минус"
 msgstr "Выведка ў мінус недапушчальна"
-
-#: bill/models/explore_resources.py:112 bill/models/geological_surveys.py:104
-#: bill/models/purchase_auction.py:148
-msgctxt "new_bill"
-msgid "Нет такого ресурса"
-msgstr "Такога рэсурсу няма"
 
 #: bill/models/explore_resources.py:353
 msgctxt "new_bill"
@@ -1330,6 +1369,7 @@ msgstr "арыгінальны памер"
 #: bill/templates/state/redesign/bills/change_taxes.html:74
 #: bill/templates/state/redesign/bills/change_title.html:53
 #: bill/templates/state/redesign/bills/construction.html:71
+#: bill/templates/state/redesign/bills/explore_all.html:66
 #: bill/templates/state/redesign/bills/explore_resources.html:75
 #: bill/templates/state/redesign/bills/martial_law.html:64
 #: bill/templates/state/redesign/bills/purchase_auction.html:62
@@ -1429,6 +1469,7 @@ msgstr "Загрузіць"
 #: bill/templates/state/redesign/drafts/change_taxes.html:124
 #: bill/templates/state/redesign/drafts/change_title.html:24
 #: bill/templates/state/redesign/drafts/construction.html:188
+#: bill/templates/state/redesign/drafts/explore_all.html:61
 #: bill/templates/state/redesign/drafts/explore_resources.html:188
 #: bill/templates/state/redesign/drafts/independence.html:48
 #: bill/templates/state/redesign/drafts/martial_law.html:57
@@ -1530,6 +1571,22 @@ msgstr "Выдаткі"
 msgctxt "construction_draft"
 msgid "Нет доступных регионов"
 msgstr "Няма дастнупных рэгіёнаў"
+
+#: bill/templates/state/redesign/drafts/explore_all.html:36
+#, fuzzy
+#| msgctxt "explore_resources_draft"
+#| msgid "выберите ресурс"
+msgctxt "explore_all_resources_draft"
+msgid "выберите ресурс"
+msgstr "выбераце рэсурс"
+
+#: bill/templates/state/redesign/drafts/explore_all.html:47
+#, fuzzy
+#| msgctxt "explore_resources_draft"
+#| msgid "стоимость разведки"
+msgctxt "explore_all_resources_draft"
+msgid "стоимость разведки"
+msgstr "кошт выведкі"
 
 #: bill/templates/state/redesign/drafts/explore_resources.html:158
 msgctxt "explore_resources_draft"
@@ -1722,21 +1779,25 @@ msgctxt "construction_reviewed"
 msgid "отменён"
 msgstr "адменены"
 
+#: bill/templates/state/redesign/reviewed/explore_all.html:32
 #: bill/templates/state/redesign/reviewed/explore_resources.html:36
 msgctxt "explore_resources_reviewed"
 msgid "Наличные"
 msgstr "Наяўныя"
 
+#: bill/templates/state/redesign/reviewed/explore_all.html:45
 #: bill/templates/state/redesign/reviewed/explore_resources.html:49
 msgctxt "explore_resources_reviewed"
 msgid "принят"
 msgstr "прыняты"
 
+#: bill/templates/state/redesign/reviewed/explore_all.html:47
 #: bill/templates/state/redesign/reviewed/explore_resources.html:51
 msgctxt "explore_resources_reviewed"
 msgid "отклонён"
 msgstr "адхілены"
 
+#: bill/templates/state/redesign/reviewed/explore_all.html:49
 #: bill/templates/state/redesign/reviewed/explore_resources.html:53
 msgctxt "explore_resources_reviewed"
 msgid "отменён"
@@ -2016,7 +2077,7 @@ msgstr "У гэтай дзяржаве няма парламента"
 #: storage/views/trading/accept_offer.py:477
 #: storage/views/trading/cancel_offer.py:165
 #: storage/views/trading/create_offer.py:295
-#: storage/views/trading/get_offers.py:259 war/views/join_revolution.py:141
+#: storage/views/trading/get_offers.py:259 war/views/join_revolution.py:150
 msgctxt "core"
 msgid "Ошибка метода"
 msgstr "Памылка метаду"
@@ -10578,7 +10639,7 @@ msgstr "Уздыманне паўстання даступна пачыная з
 #: war/views/join_revolution.py:30 war/views/join_revolution.py:53
 #: war/views/join_revolution.py:66 war/views/join_revolution.py:78
 #: war/views/join_revolution.py:90 war/views/join_revolution.py:102
-#: war/views/join_revolution.py:142
+#: war/views/join_revolution.py:111 war/views/join_revolution.py:151
 msgctxt "join_revolution"
 msgid "Участие в восстании"
 msgstr "Удзел у паўстанні"
@@ -10607,6 +10668,14 @@ msgstr "Вы ужо з'яўляйцеся удзельнікам паўстан�
 msgctxt "join_revolution"
 msgid "Вы принимали участие в восстании последние 10 дней"
 msgstr "Вы прымалі ўдзел у паўстанні ў апошнія 10 дзён"
+
+#: war/views/join_revolution.py:110
+#, fuzzy
+#| msgctxt "new_bill"
+#| msgid "В данном регионе введено военное положение"
+msgctxt "join_revolution"
+msgid "В данном регионе объявлено мирное время"
+msgstr "У гэтым рэгыёне ўведзена ваеннае становішча"
 
 #: war/views/open_war_side_list.py:115
 msgctxt "lists"

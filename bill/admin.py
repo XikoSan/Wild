@@ -9,6 +9,8 @@ from bill.models.change_residency import ChangeResidency
 from bill.models.change_taxes import ChangeTaxes
 from bill.models.change_title import ChangeTitle
 from bill.models.construction import Construction
+from bill.models.explore_all import ExploreAll
+from bill.models.explore_all_region import ExploreAllRegion
 from bill.models.explore_resources import ExploreResources
 from bill.models.geological_surveys import GeologicalSurveys
 from bill.models.independence import Independence
@@ -54,8 +56,24 @@ class BillAdmin(admin.ModelAdmin):
     }
 
 
-class TransferResourcesAdmin(BillAdmin):
+class ExploreAllRegionInline(admin.TabularInline):
+    model = ExploreAllRegion
 
+
+class ExploreAllAdmin(BillAdmin):
+    search_fields = ['parliament__state__title', ]
+    raw_id_fields = ('parliament', 'task',)
+    list_display = ['parliament', 'running', 'resource', 'exp_value', ]
+    inlines = [ExploreAllRegionInline]
+
+
+class ExploreAllRegionAdmin(admin.ModelAdmin):
+    search_fields = ['exp_bill__parliament__state__title', 'region__region_name', ]
+    raw_id_fields = ('exp_bill', 'region',)
+    list_display = ['exp_bill', 'region', 'exp_value', ]
+
+
+class TransferResourcesAdmin(BillAdmin):
     raw_id_fields = ('send_good', 'send_treasury', 'take_treasury',)
 
 
@@ -65,6 +83,8 @@ class AuctionAdmin(BillAdmin):
 
 # Register your models here.
 admin.site.register(ExploreResources, BillAdmin)
+admin.site.register(ExploreAll, ExploreAllAdmin)
+admin.site.register(ExploreAllRegion, ExploreAllRegionAdmin)
 # admin.site.register(GeologicalSurveys, BillAdmin) # этот тип ЗП выключен
 admin.site.register(Construction, BillAdmin)
 admin.site.register(ChangeTitle, BillAdmin)
