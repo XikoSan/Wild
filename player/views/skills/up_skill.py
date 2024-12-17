@@ -102,7 +102,7 @@ def up_skill(request):
             if player.cash < multiple_sum(((getattr(player, skill) + skill_cnt + 1) ** 2) * 10):
                 data = {
                     'response': pgettext('skills', 'Недостаточно денег, необходимо: ') + str(
-                        ((getattr(player, skill) + skill_cnt + 1) ** 2) * 10),
+                        multiple_sum(((getattr(player, skill) + skill_cnt + 1) ** 2) * 10)),
                     'header': pgettext('skills', 'Изучение навыка'),
                     'grey_btn': pgettext('core', 'Закрыть'),
                 }
