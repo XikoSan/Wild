@@ -1,7 +1,6 @@
 # coding=utf-8
 import datetime
 from decimal import Decimal
-from decimal import Decimal
 from django.apps import apps
 from django.db import models
 from django.db.models import Sum
@@ -11,7 +10,7 @@ from django.dispatch import receiver
 from django.utils import timezone
 from django.utils.translation import pgettext
 from django.utils.translation import pgettext_lazy
-from math import ceil
+from math import ceil, floor
 
 from bill.models.bill import Bill
 from bill.models.explore_resources import ExploreResources
@@ -296,10 +295,10 @@ class ExploreAll(Bill):
                 if not resource[0] in exp_cost:
                     exp_cost[resource[0]] = 0
 
-                exp_cost[resource[0]] += float(
+                exp_cost[resource[0]] += int(floor(Decimal(
                     getattr(state_region, resource[0] + '_cap') - getattr(state_region,
                                                                           resource[
-                                                                              0] + '_has')) * ExploreAll.exp_price * exp_mul
+                                                                              0] + '_has')) * ExploreAll.exp_price * exp_mul))
 
         data = {
             'resources': resources_dict,
@@ -387,11 +386,10 @@ class ExploreAll(Bill):
             else:
                 exp_mul = 1
 
-            print(getattr(state_region, self.resource + '_cap') - getattr(state_region, self.resource + '_has'))
             total_var += getattr(state_region, self.resource + '_cap') - getattr(state_region, self.resource + '_has')
 
-            total_sum += float(getattr(state_region, self.resource + '_cap') - getattr(state_region,
-                                                                                       self.resource + '_has')) * ExploreAll.exp_price * exp_mul
+            total_sum += int(floor(float(getattr(state_region, self.resource + '_cap') - getattr(state_region,
+                                                                                       self.resource + '_has')) * ExploreAll.exp_price * exp_mul))
 
         data = {
             'total_var': total_var,
