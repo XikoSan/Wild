@@ -3,6 +3,7 @@
 {% load get_diff %}
 {% load get_sum %}
 {% load get_mul %}
+{% load get_mul_cash %}
 {% load get_key_list %}
 {% load tz %}
 {% load l10n %}{% load i18n %}
@@ -37,7 +38,7 @@
     <!--видно на только пк-->
     <td class="gover__tableDopInfo">
         <span>
-            {% trans 'Наличные' context "goods" %}: {{ res_cap_val|get_diff:res_hap_val|get_mul:1000|get_mul:exp_mul }}
+            {% trans 'Наличные' context "goods" %}: {{ res_cap_val|get_diff:res_hap_val|get_mul:1000|get_mul_cash|get_mul:exp_mul }}
         </span>
     </td>
                     {% endwith %}
