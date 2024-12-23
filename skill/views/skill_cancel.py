@@ -22,13 +22,6 @@ from player.views.multiple_sum import multiple_sum
 def skill_cancel(request):
     if request.method == "POST":
 
-        data = {
-            'response': pgettext('skills', 'Отсутствует обязательный аргумент запроса'),
-            'header': pgettext('skills', 'Изучение навыка'),
-            'grey_btn': pgettext('core', 'Закрыть'),
-        }
-        return JResponse(data)
-
         # получаем персонажа
         player = Player.get_instance(account=request.user)
 
