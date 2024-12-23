@@ -215,6 +215,9 @@ class StartWar(Bill):
             if self.region_to.peace_date > timezone.now():
                 b_type = 'rj'
 
+            if self.region.state ==  self.region_to.state:
+                 b_type = 'rj'
+
             else:
                 # получим классы всех войн
                 war_classes = get_subclasses(War)
