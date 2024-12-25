@@ -1,6 +1,7 @@
-from datetime import datetime, timedelta
+import math
 import pytz
 import random
+from datetime import datetime, timedelta
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.utils import timezone
@@ -8,6 +9,7 @@ from django.utils.translation import pgettext
 
 from player.decorators.player import check_player
 from player.logs.gold_log import GoldLog
+from player.lootbox.jackpot import Jackpot
 from player.lootbox.lootbox import Lootbox
 from player.player import Player
 from storage.views.vault.avia_box.generate_rewards import prepare_plane_lists
@@ -17,9 +19,6 @@ from storage.views.vault.avia_box.generate_rewards import prepare_plane_lists
 @login_required(login_url='/')
 @check_player
 def avia_lootbox(request):
-
-    return redirect('storage')
-
     player = Player.get_instance(account=request.user)
 
     lootbox_count = 0
@@ -30,86 +29,21 @@ def avia_lootbox(request):
         lootbox_count = box.stock
         lootbox_garant = box.garant_in
 
+    if not Jackpot.objects.filter(amount__gt=200000).exists():
+        jp = Jackpot(amount=10000000)
+        jp.save()
+
+    budget = math.ceil(Jackpot.objects.all().first().amount / 2)
+
     page = 'storage/redesign/storage_blocks/avia_box.html'
-
-    common_list = prepare_plane_lists(player, 'common')
-    rare_list = prepare_plane_lists(player, 'rare')
-    epic_list = prepare_plane_lists(player, 'epic')
-
-    # -----------------------------------
-
-    # флаг наличия у игрока всех самолетов. Если есть все - закрываем ловочку для него
-    planes_count = 0
-
-    for item in common_list:
-        if item[2]:
-            planes_count += 1
-
-    for item in rare_list:
-        if item[2]:
-            planes_count += 1
-
-    for item in epic_list:
-        if item[2]:
-            planes_count += 1
-
-    import redis
-    r = redis.StrictRedis(host='redis', port=6379, db=0)
-    r.set(f"{player.pk}_planes_count", planes_count)
-
-    all_planes = False
-    if planes_count == 166:
-        all_planes = True
-
-    # -----------------------------------
-
-    cleared_common = []
-    for elem in common_list:
-        if not elem[0] == 'beluzzo':
-            cleared_common.append(elem)
-    randint = random.randint(1, len(cleared_common) - 2)
-    common_slice = cleared_common[randint - 1: randint + 2]
-
-    randint = random.randint(1, len(rare_list) - 2)
-    rare_slice = rare_list[randint - 1: randint + 2]
-
-    randint = random.randint(1, len(epic_list) - 2)
-    epic_slice = epic_list[randint - 1: randint + 2]
-
-    # -----------------------------------
-    sold_packs = []
-    date_msk = datetime(2024, 6, 2, 22, 0, 0)
-    timezone_msk = pytz.timezone('Europe/Moscow')
-    date_msk = timezone_msk.localize(date_msk)
-
-    for box_price in [4500, 8500, 45000, 85000]:
-        # проверем покупали ли большие ящики
-        if GoldLog.objects.filter(player=player, activity_txt='boxes', gold=0-box_price,
-                                  dtime__gt=date_msk).exists():
-            sold_packs.append(box_price)
-
-    # -----------------------------------
 
     # отправляем в форму
     response = render(request, page, {
-        'page_name': pgettext('assets', 'Аэрокейсы'),
+        'page_name': pgettext('assets', 'Ледяные сундуки'),
 
         'player': player,
 
-        'common_list': common_list,
-        'rare_list': rare_list,
-        'epic_list': epic_list,
-
-        'common_slice': common_slice,
-        'rare_slice': rare_slice,
-        'epic_slice': epic_slice,
-
         'lootbox_count': lootbox_count,
-        'garant_count': lootbox_garant,
-
-        'variants': len(common_list) + len(rare_list) + len(epic_list) + 5,
-        'sold_packs': sold_packs,
-
-        'all_planes': all_planes,
+        'budget': budget,
     })
     return response

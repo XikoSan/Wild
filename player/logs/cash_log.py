@@ -28,6 +28,8 @@ class CashLog(Log):
         ('bonus', 'Бонус-код'),
         ('auct', pgettext_lazy('cash_log', 'Гос. закупки')),
         ('skill', pgettext_lazy('cash_log', 'Навыки')),
+        ('box', pgettext_lazy('cash_log', 'Лутбокс')),
+        ('buy_box', pgettext_lazy('cash_log', 'Покупка лутбокса')),
 
         # обучение
         ('financing', 'Награда за получение Финансирования'),

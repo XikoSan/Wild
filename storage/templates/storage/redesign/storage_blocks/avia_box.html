@@ -78,26 +78,6 @@
                     Количество кейсов: <span class="box__picChestCount--count">0</span>
                 </p>
 
-                <button class="box__picOpen ct__mid-btn">
-                    <svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
-                        <mask id="mask0_258_218" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144"
-                            height="30">
-                            <path class="geometry1" d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z" />
-                        </mask>
-                        <g mask="url(#mask0_258_218)">
-                            <path class="geometry2" fill="var(--c10two)"
-                                d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" />
-                            <path class="treg1" opacity="0.15"
-                                d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)" />
-                            <path class="treg2" opacity="0.15"
-                                d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)" />
-                            <path class="treg3" opacity="0.15"
-                                d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)" />
-                        </g>
-                    </svg>
-                    <span>Открыть</span>
-                </button>
-
                 <button class="box__picOpen10 ct__mid-btn">
                     <svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
                         <mask id="mask0_258_219" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144"
@@ -115,12 +95,9 @@
                                 d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)" />
                         </g>
                     </svg>
-                    <span>Открыть х3</span>
+                    <span>Открыть</span>
                 </button>
 
-                <p class="box__picChestCount box__garantCount">
-                    До гаранта: <span class="box__picChestCount--count box__garantCount--count">10</span>
-                </p>
             </div>
         </div>
 
@@ -128,91 +105,115 @@
             В этом кейсе вы можете найти:
         </p>
 
+        <li class="box__altItem" style="max-width: 300rem; margin: 0 auto;  margin-bottom: 30rem;">
+            <div style="display: flex;flex-direction: row;gap: 6rem;flex-grow: 1;justify-content: space-around; align-items: center">
+
+                <div class="box__altItemLeft">
+                    <span>шанс</span>
+                    <span>0.001%</span>
+                </div>
+
+                <div class="box__altItemGrid">
+                    <h3>$<span id="jackpot_sum">{{ budget }}</span></h3>
+                </div>
+
+                <div style="display: flex; align-items: center;">
+                    3 X 
+                    <img src="/static/img/planes/beluzzo/beluzzo_base.svg" alt="disk" style="width: 40rem; height: 40rem; line-height: 40rem; text-align: center; object-fit: contain; object-position: center;">
+                </div>
+            </div>
+        </li>
+
         <ul class="box__altList">
             <li class="box__altItem">
-                <div class="box__altItemLeft">
-                    <span>шанс</span>
-                    <span>1%</span>
-                </div>
-                <div class="box__altItemRight">
-                    <h3>Уникальные самолёты</h3>
+                    <div class="box__altItemLeft">
+                        <span>шанс</span>
+                        <span>1%</span>
+                    </div>
+                    <div class="box__altItemRight">
+                    <h3>$300 000</h3>
                     <div class="box__altItemGrid">
-                        {% for plane in epic_slice %}
-                        <img src="/static/img/planes/{{ plane.0 }}/{{ plane.0 }}_{{ plane.1 }}.svg" alt="{{ plane.0 }}_{{ plane.1 }}">
-                        {% endfor %}
-                        <button id='flyModalOpen1'>
-                            <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2"
-                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="m3.3 15.4c.717 0 1.3.583 1.3 1.3s-.583 1.3-1.3 1.3-1.3-.583-1.3-1.3.583-1.3 1.3-1.3zm2.7 1.85c0-.414.336-.75.75-.75h14.5c.414 0 .75.336.75.75s-.336.75-.75.75h-14.5c-.414 0-.75-.336-.75-.75zm-2.7-6.55c.717 0 1.3.583 1.3 1.3s-.583 1.3-1.3 1.3-1.3-.583-1.3-1.3.583-1.3 1.3-1.3zm2.7 1.3c0-.414.336-.75.75-.75h14.5c.414 0 .75.336.75.75s-.336.75-.75.75h-14.5c-.414 0-.75-.336-.75-.75zm-2.7-6c.717 0 1.3.583 1.3 1.3s-.583 1.3-1.3 1.3-1.3-.583-1.3-1.3.583-1.3 1.3-1.3zm2.7.75c0-.414.336-.75.75-.75h14.5c.414 0 .75.336.75.75s-.336.75-.75.75h-14.5c-.414 0-.75-.336-.75-.75z"
-                                    fill-rule="nonzero" />
-                            </svg>
-                        </button>
+
+                        <img src="/static/img/planes/trickster/trickster_friday.svg" alt="gold">
+
                     </div>
                 </div>
             </li>
 
             <li class="box__altItem">
-                <div class="box__altItemLeft">
-                    <span>шанс</span>
-                    <span>11%</span>
-                </div>
-                <div class="box__altItemRight">
-                    <h3>Особые самолёты</h3>
+                    <div class="box__altItemLeft">
+                        <span>шанс</span>
+                        <span>3%</span>
+                    </div>
+                    <div class="box__altItemRight">
+                    <h3>$100 000</h3>
                     <div class="box__altItemGrid">
-                        {% for plane in rare_slice %}
-                        <img src="/static/img/planes/{{ plane.0 }}/{{ plane.0 }}_{{ plane.1 }}.svg" alt="{{ plane.0 }}_{{ plane.1 }}">
-                        {% endfor %}
-                        <button id='flyModalOpen2'>
-                            <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2"
-                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="m3.3 15.4c.717 0 1.3.583 1.3 1.3s-.583 1.3-1.3 1.3-1.3-.583-1.3-1.3.583-1.3 1.3-1.3zm2.7 1.85c0-.414.336-.75.75-.75h14.5c.414 0 .75.336.75.75s-.336.75-.75.75h-14.5c-.414 0-.75-.336-.75-.75zm-2.7-6.55c.717 0 1.3.583 1.3 1.3s-.583 1.3-1.3 1.3-1.3-.583-1.3-1.3.583-1.3 1.3-1.3zm2.7 1.3c0-.414.336-.75.75-.75h14.5c.414 0 .75.336.75.75s-.336.75-.75.75h-14.5c-.414 0-.75-.336-.75-.75zm-2.7-6c.717 0 1.3.583 1.3 1.3s-.583 1.3-1.3 1.3-1.3-.583-1.3-1.3.583-1.3 1.3-1.3zm2.7.75c0-.414.336-.75.75-.75h14.5c.414 0 .75.336.75.75s-.336.75-.75.75h-14.5c-.414 0-.75-.336-.75-.75z"
-                                    fill-rule="nonzero" />
-                            </svg>
-                        </button>
+
+                        <img src="/static/img/planes/demolisher/demolisher_violet.svg" alt="violet">
+
                     </div>
                 </div>
             </li>
 
             <li class="box__altItem">
-                <div class="box__altItemLeft">
-                    <span>шанс</span>
-                    <span>55%</span>
-                </div>
-                <div class="box__altItemRight">
-                    <h3>Обычные самолёты</h3>
+                    <div class="box__altItemLeft">
+                        <span>шанс</span>
+                        <span>10%</span>
+                    </div>
+                    <div class="box__altItemRight">
+                    <h3>$60 000</h3>
                     <div class="box__altItemGrid">
-                        {% for plane in common_slice %}
-                        <img src="/static/img/planes/{{ plane.0 }}/{{ plane.0 }}_{{ plane.1 }}.svg" alt="{{ plane.0 }}_{{ plane.1 }}">
-                        {% endfor %}
-                        <button id='flyModalOpen3'>
-                            <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2"
-                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="m3.3 15.4c.717 0 1.3.583 1.3 1.3s-.583 1.3-1.3 1.3-1.3-.583-1.3-1.3.583-1.3 1.3-1.3zm2.7 1.85c0-.414.336-.75.75-.75h14.5c.414 0 .75.336.75.75s-.336.75-.75.75h-14.5c-.414 0-.75-.336-.75-.75zm-2.7-6.55c.717 0 1.3.583 1.3 1.3s-.583 1.3-1.3 1.3-1.3-.583-1.3-1.3.583-1.3 1.3-1.3zm2.7 1.3c0-.414.336-.75.75-.75h14.5c.414 0 .75.336.75.75s-.336.75-.75.75h-14.5c-.414 0-.75-.336-.75-.75zm-2.7-6c.717 0 1.3.583 1.3 1.3s-.583 1.3-1.3 1.3-1.3-.583-1.3-1.3.583-1.3 1.3-1.3zm2.7.75c0-.414.336-.75.75-.75h14.5c.414 0 .75.336.75.75s-.336.75-.75.75h-14.5c-.414 0-.75-.336-.75-.75z"
-                                    fill-rule="nonzero" />
-                            </svg>
-                        </button>
+
+                        <img src="/static/img/planes/harrier/harrier_dark_blue.svg" alt="blue">
                     </div>
                 </div>
             </li>
 
             <li class="box__altItem">
-                <div class="box__altItemLeft">
-                    <span>шанс</span>
-                    <span>33%</span>
-                </div>
-                <div class="box__altItemRight">
-                    <h3>Игровое золото</h3>
+                    <div class="box__altItemLeft">
+                        <span>шанс</span>
+                        <span>31%</span>
+                    </div>
+                    <div class="box__altItemRight">
+                    <h3>$40 000</h3>
                     <div class="box__altItemGrid">
-                        <img class="carImg" src="/static/redesign/img/events/gold.svg" alt="gold">
-                        <span>1k</span>
-                        <span>3k</span>
-                        <span>100k</span>
+
+                        <img src="/static/img/planes/pretender/pretender_green.svg" alt="green">
+
                     </div>
                 </div>
             </li>
+
+            <li class="box__altItem">
+                    <div class="box__altItemLeft">
+                        <span>шанс</span>
+                        <span>55%</span>
+                    </div>
+                    <div class="box__altItemRight">
+                    <h3>$20 000</h3>
+                    <div class="box__altItemGrid">
+
+                        <img src="/static/img/planes/nagger/nagger_base.svg" alt="green">
+
+                    </div>
+                </div>
+            </li>
+
+            <li class="box__altItem">
+                    <div class="box__altItemLeft">
+                        <span>шанс</span>
+                        <span>0.1%</span>
+                    </div>
+                    <div class="box__altItemRight">
+                    <h3>$10 000</h3>
+                    <div class="box__altItemGrid">
+
+                        <img src="/static/img/planes/beluzzo/beluzzo_base.svg" alt="disk">
+
+                    </div>
+                </div>
+            </li>
+
         </ul>
     </div>
     <!-- КОНЕЦ: Блок "Мои сундуки" -->
@@ -229,13 +230,71 @@
         </p>
         {% else %}
         <p class="box__desc">
-            Приобретите наборы Аэрокейсов с приятной выгодой!
+            Наборы Ледяных сундуков за игровые средства:
+        </p>
+
+        <ul class="box__buyList">
+            <li class="box__buyItem">
+                <img src="/static/img/avia_chest.png" alt="">
+
+                <span>x&nbsp;
+                    <input id="count" name="count" type="number" class="search-modal__withInput-input" min="1" value="1">
+                </span>
+
+                <div>
+                    <span style="font-size: 14rem;">$</span>
+                    <span style="font-size: 14rem;" id="amount">
+                        100 000
+                    </span>
+                </div>
+
+                <div class="box__buyBtnBlock">
+                    <button class="ct__mid-btn" id="buy_bye" onclick="cash_lootbox(1)">
+                        <svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
+                            <mask id="mask0_59_315" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+                                <path class="geometry1" d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"></path>
+                            </mask>
+                            <g mask="url(#mask0_59_315)">
+                                <path class="geometry2" fill="var(--c10two)" d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z"></path>
+                                <path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"></path>
+                                <path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"></path>
+                                <path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"></path>
+                            </g>
+                        </svg>
+                        <span style="display: flex;align-items: center;gap: 5rem;">купить
+                        </span>
+                    </button>
+                </div>
+
+                <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                        const countInput = document.getElementById('count');
+                        const amountElement = document.getElementById('amount');
+                        const buyButton = document.getElementById('buy_bye');
+
+                        countInput.addEventListener('input', function () {
+                            // Получаем текущее значение count
+                            const countValue = parseInt(countInput.value, 10) || 1;
+
+                            // Обновляем значение в элементе amount
+                            amountElement.textContent = (countValue * 100000).toLocaleString();
+
+                            // Обновляем аргумент функции buy_lootbox в кнопке
+                            buyButton.setAttribute('onclick', `cash_lootbox(${countValue})`);
+                        });
+                    });
+                </script>
+            </li>
+        </ul>
+
+        <p class="box__desc" style="margin-top: 50rem;">
+            Наборы Ледяных сундуков за Wild Pass:
         </p>
 
         <ul class="box__buyList">
             <li class="box__buyItem">
                 <img src="{% static 'img/avia_chest.png' %}" alt="">
-                <span>x1</span>
+                <span>x10</span>
                 <div class="box__buyBtnBlock">
                     <button class="ct__mid-btn" onclick="buy_lootbox(1)">
                         <svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
@@ -254,116 +313,11 @@
                                     d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)" />
                             </g>
                         </svg>
-                        <span>1000 G</span>
+                        <span style="display: flex;align-items: center;gap: 5rem;">
+                            1
+                            <img src="/static/img/wild_pass.svg" alt="wild_pass" style="width: 25rem;">
+                        </span>
                     </button>
-                </div>
-            </li>
-
-            <li class="box__buyItem">
-                <img src="{% static 'img/avia_chest.png' %}" alt="">
-                <span>x5</span>
-                <div class="box__buyBtnBlock">
-                    <button class="ct__mid-btn" onclick="buy_lootbox(5)">
-                        <svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
-                            <mask id="mask0_59_316" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144"
-                                height="30">
-                                <path class="geometry1" d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z" />
-                            </mask>
-                            <g mask="url(#mask0_59_316)">
-                                <path class="geometry2" fill="var(--c10two)"
-                                    d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" />
-                                <path class="treg1" opacity="0.15"
-                                    d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)" />
-                                <path class="treg2" opacity="0.15"
-                                    d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)" />
-                                <path class="treg3" opacity="0.15"
-                                    d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)" />
-                            </g>
-                        </svg>
-                        <span>{% if 4500 in sold_packs %}5 000{% else %}4 500{% endif %} G</span>
-                    </button>
-                    {% if not 4500 in sold_packs %}<p class="box__sale">скидка: <span>G 500</span></p>{% endif %}
-                </div>
-            </li>
-
-            <li class="box__buyItem">
-                <img src="{% static 'img/avia_chest.png' %}" alt="">
-                <span>x10</span>
-                <div class="box__buyBtnBlock">
-                    <button class="ct__mid-btn" onclick="buy_lootbox(10)">
-                        <svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
-                            <mask id="mask0_59_317" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144"
-                                height="30">
-                                <path class="geometry1" d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z" />
-                            </mask>
-                            <g mask="url(#mask0_59_317)">
-                                <path class="geometry2" fill="var(--c10two)"
-                                    d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" />
-                                <path class="treg1" opacity="0.15"
-                                    d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)" />
-                                <path class="treg2" opacity="0.15"
-                                    d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)" />
-                                <path class="treg3" opacity="0.15"
-                                    d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)" />
-                            </g>
-                        </svg>
-                        <span>{% if 8500 in sold_packs %}10 000{% else %}8 500{% endif %} G</span>
-                    </button>
-                    {% if not 8500 in sold_packs %}<p class="box__sale">скидка: <span>G 1500</span></p>{% endif %}
-                </div>
-            </li>
-
-            <li class="box__buyItem">
-                <img src="{% static 'img/avia_chest.png' %}" alt="">
-                <span>x50</span>
-                <div class="box__buyBtnBlock">
-                    <button class="ct__mid-btn" onclick="buy_lootbox(50)">
-                        <svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
-                            <mask id="mask0_59_318" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144"
-                                height="30">
-                                <path class="geometry1" d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z" />
-                            </mask>
-                            <g mask="url(#mask0_59_318)">
-                                <path class="geometry2" fill="var(--c10two)"
-                                    d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" />
-                                <path class="treg1" opacity="0.15"
-                                    d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)" />
-                                <path class="treg2" opacity="0.15"
-                                    d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)" />
-                                <path class="treg3" opacity="0.15"
-                                    d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)" />
-                            </g>
-                        </svg>
-                        <span>{% if 45000 in sold_packs %}50 000{% else %}45 000{% endif %} G</span>
-                    </button>
-                    {% if not 45000 in sold_packs %}<p class="box__sale">скидка: <span>G 5 000</span></p>{% endif %}
-                </div>
-            </li>
-
-            <li class="box__buyItem">
-                <img src="{% static 'img/avia_chest.png' %}" alt="">
-                <span>x100</span>
-                <div class="box__buyBtnBlock">
-                    <button class="ct__mid-btn" onclick="buy_lootbox(100)">
-                        <svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
-                            <mask id="mask0_59_319" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144"
-                                height="30">
-                                <path class="geometry1" d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z" />
-                            </mask>
-                            <g mask="url(#mask0_59_319)">
-                                <path class="geometry2" fill="var(--c10two)"
-                                    d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" />
-                                <path class="treg1" opacity="0.15"
-                                    d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)" />
-                                <path class="treg2" opacity="0.15"
-                                    d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)" />
-                                <path class="treg3" opacity="0.15"
-                                    d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)" />
-                            </g>
-                        </svg>
-                        <span>{% if 85000 in sold_packs %}100 000{% else %}85 000{% endif %} G</span>
-                    </button>
-                    {% if not 85000 in sold_packs %}<p class="box__sale">скидка: <span>G 15 000</span></p>{% endif %}
                 </div>
             </li>
         </ul>
@@ -374,7 +328,7 @@
 
     <!-- Модалка с лутом 1на рулетка-->
     <div class="box__modal custom-scroll box__modal1">
-        <button class="box__close box__close1" onclick="loot_aviaboxes()">
+        <button class="box__close box__close1">
             <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M1 1L31 31M31 1L1.53571 30.4643" stroke-width="1" stroke="var(--c10one)" />
             </svg>
@@ -384,93 +338,39 @@
             Открываем кейс...
         </h3>
 
-        <div id='carousel1'>
+        <div id='carousel1' style="display: none">
             <div class='carListContainerDiv'>
                 <div class=' carListContainer'>
                     <ul class='carList'>
-                        {% for plane in common_list %}
                         <li class='carItem'>
-                            <img class="carImg" src="/static/img/planes/{{ plane.0 }}/{{ plane.0 }}_{{ plane.1 }}.svg" alt="{{ plane.0 }}_{{ plane.1 }}">
-                        </li>
-                        {% endfor %}
-                        {% for plane in rare_list %}
-                        <li class='carItem'>
-                            <img class="carImg" src="/static/img/planes/{{ plane.0 }}/{{ plane.0 }}_{{ plane.1 }}.svg" alt="{{ plane.0 }}_{{ plane.1 }}">
-                        </li>
-                        {% endfor %}
-                        {% for plane in epic_list %}
-                        <li class='carItem'>
-                            <img class="carImg" src="/static/img/planes/{{ plane.0 }}/{{ plane.0 }}_{{ plane.1 }}.svg" alt="{{ plane.0 }}_{{ plane.1 }}">
-                        </li>
-                        {% endfor %}
-                        <li class='carItem'>
-                            <img class="carImg" src="/static/redesign/img/events/gold_500.svg" alt="gold_500">
-                        </li>
-                        <li class='carItem'>
-                            <img class="carImg" src="/static/redesign/img/events/gold_1000.svg" alt="gold_1000">
-                        </li>
-                        <li class='carItem'>
-                            <img class="carImg" src="/static/redesign/img/events/gold_3000.svg" alt="gold_3000">
-                        </li>
-                        <li class='carItem'>
-                            <img class="carImg" src="/static/redesign/img/events/gold_5000.svg" alt="gold_5000">
-                        </li>
-                        <li class='carItem'>
-                            <img class="carImg" src="/static/redesign/img/events/gold_100000.svg" alt="gold_100000">
+                            <img class="carImg" src="/static/img/planes/beluzzo/beluzzo_base.svg" alt="disk">
                         </li>
 
-                        {% if variants|get_mod:2 == 1  %}
                         <li class='carItem'>
-                            <img class="carImg" src="/static/redesign/img/events/gold_100000.svg" alt="gold_100000">
+                            <img class="carImg" src="/static/img/planes/trickster/trickster_friday.svg" alt="gold">
                         </li>
-                        {% endif %}
+
+                        <li class='carItem'>
+                            <img class="carImg" src="/static/img/planes/demolisher/demolisher_violet.svg" alt="violet">
+                        </li>
+
+                        <li class='carItem'>
+                            <img class="carImg" src="/static/img/planes/harrier/harrier_dark_blue.svg" alt="blue">
+                        </li>
+
+                        <li class='carItem'>
+                            <img class="carImg" src="/static/img/planes/pretender/pretender_green.svg" alt="green">
+                        </li>
+
+                        <li class='carItem'>
+                            <img class="carImg" src="/static/img/planes/nagger/nagger_base.svg" alt="white">
+                        </li>
                     </ul>
                 </div>
             </div>
 
             <div class="box__modal1info box__modalInfo">
-                <p class='box__modalDesc'><span id="prize_name"></span><span id="prize_rarity"></span></p>
-
                 <div class="box__modalBtns">
-                    <button class="box__picOpen ct__mid-btn" id='modal__restart1'>
-                        <svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
-                            <mask id="mask0_258_233" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144"
-                                height="30">
-                                <path class="geometry1" d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z" />
-                            </mask>
-                            <g mask="url(#mask0_258_233)">
-                                <path class="geometry2" fill="var(--c10two)"
-                                    d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" />
-                                <path class="treg1" opacity="0.15"
-                                    d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)" />
-                                <path class="treg2" opacity="0.15"
-                                    d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)" />
-                                <path class="treg3" opacity="0.15"
-                                    d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)" />
-                            </g>
-                        </svg>
-                        <span>Рестарт: 500 G</span>
-                    </button>
-
-                    <button class="box__picOpen ct__mid-btn" id='modal__continue1' onclick="loot_aviaboxes()">
-                        <svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
-                            <mask id="mask0_258_234" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144"
-                                height="30">
-                                <path class="geometry1" d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z" />
-                            </mask>
-                            <g mask="url(#mask0_258_234)">
-                                <path class="geometry2" fill="var(--c10two)"
-                                    d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" />
-                                <path class="treg1" opacity="0.15"
-                                    d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)" />
-                                <path class="treg2" opacity="0.15"
-                                    d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)" />
-                                <path class="treg3" opacity="0.15"
-                                    d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)" />
-                            </g>
-                        </svg>
-                        <span>Продолжить</span>
-                    </button>
                 </div>
             </div>
         </div>
@@ -481,7 +381,7 @@
 
     <!-- Модалка с лутом 3 рулетки-->
     <div class="box__modal box__modal--3 custom-scroll box__modal3">
-        <button class="box__close box__close3"  onclick="loot_aviaboxes()">
+        <button class="box__close box__close3">
             <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M1 1L31 31M31 1L1.53571 30.4643" stroke-width="1" stroke="var(--c10one)" />
             </svg>
@@ -496,42 +396,29 @@
                 <div class='carListContainerDiv'>
                     <div class=' carListContainer'>
                         <ul class='carList'>
-                            {% for plane in common_list %}
                             <li class='carItem'>
-                                <img class="carImg" src="/static/img/planes/{{ plane.0 }}/{{ plane.0 }}_{{ plane.1 }}.svg" alt="{{ plane.0 }}_{{ plane.1 }}">
-                            </li>
-                            {% endfor %}
-                            {% for plane in rare_list %}
-                            <li class='carItem'>
-                                <img class="carImg" src="/static/img/planes/{{ plane.0 }}/{{ plane.0 }}_{{ plane.1 }}.svg" alt="{{ plane.0 }}_{{ plane.1 }}">
-                            </li>
-                            {% endfor %}
-                            {% for plane in epic_list %}
-                            <li class='carItem'>
-                                <img class="carImg" src="/static/img/planes/{{ plane.0 }}/{{ plane.0 }}_{{ plane.1 }}.svg" alt="{{ plane.0 }}_{{ plane.1 }}">
-                            </li>
-                            {% endfor %}
-                            <li class='carItem'>
-                                <img class="carImg" src="/static/redesign/img/events/gold_500.svg" alt="gold_500">
-                            </li>
-                            <li class='carItem'>
-                                <img class="carImg" src="/static/redesign/img/events/gold_1000.svg" alt="gold_1000">
-                            </li>
-                            <li class='carItem'>
-                                <img class="carImg" src="/static/redesign/img/events/gold_3000.svg" alt="gold_3000">
-                            </li>
-                            <li class='carItem'>
-                                <img class="carImg" src="/static/redesign/img/events/gold_5000.svg" alt="gold_5000">
-                            </li>
-                            <li class='carItem'>
-                                <img class="carImg" src="/static/redesign/img/events/gold_100000.svg" alt="gold_100000">
+                                <img class="carImg" src="/static/img/planes/beluzzo/beluzzo_base.svg" alt="disk">
                             </li>
 
-                            {% if variants|get_mod:2 == 1  %}
                             <li class='carItem'>
-                                <img class="carImg" src="/static/redesign/img/events/gold_100000.svg" alt="gold_100000">
+                                <img class="carImg" src="/static/img/planes/trickster/trickster_friday.svg" alt="gold">
                             </li>
-                            {% endif %}
+
+                            <li class='carItem'>
+                                <img class="carImg" src="/static/img/planes/demolisher/demolisher_violet.svg" alt="violet">
+                            </li>
+
+                            <li class='carItem'>
+                                <img class="carImg" src="/static/img/planes/harrier/harrier_dark_blue.svg" alt="blue">
+                            </li>
+
+                            <li class='carItem'>
+                                <img class="carImg" src="/static/img/planes/pretender/pretender_green.svg" alt="green">
+                            </li>
+
+                            <li class='carItem'>
+                                <img class="carImg" src="/static/img/planes/nagger/nagger_base.svg" alt="white">
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -541,42 +428,29 @@
                 <div class='carListContainerDiv'>
                     <div class=' carListContainer'>
                         <ul class='carList'>
-                            {% for plane in common_list %}
                             <li class='carItem'>
-                                <img class="carImg" src="/static/img/planes/{{ plane.0 }}/{{ plane.0 }}_{{ plane.1 }}.svg" alt="{{ plane.0 }}_{{ plane.1 }}">
-                            </li>
-                            {% endfor %}
-                            {% for plane in rare_list %}
-                            <li class='carItem'>
-                                <img class="carImg" src="/static/img/planes/{{ plane.0 }}/{{ plane.0 }}_{{ plane.1 }}.svg" alt="{{ plane.0 }}_{{ plane.1 }}">
-                            </li>
-                            {% endfor %}
-                            {% for plane in epic_list %}
-                            <li class='carItem'>
-                                <img class="carImg" src="/static/img/planes/{{ plane.0 }}/{{ plane.0 }}_{{ plane.1 }}.svg" alt="{{ plane.0 }}_{{ plane.1 }}">
-                            </li>
-                            {% endfor %}
-                            <li class='carItem'>
-                                <img class="carImg" src="/static/redesign/img/events/gold_500.svg" alt="gold_500">
-                            </li>
-                            <li class='carItem'>
-                                <img class="carImg" src="/static/redesign/img/events/gold_1000.svg" alt="gold_1000">
-                            </li>
-                            <li class='carItem'>
-                                <img class="carImg" src="/static/redesign/img/events/gold_3000.svg" alt="gold_3000">
-                            </li>
-                            <li class='carItem'>
-                                <img class="carImg" src="/static/redesign/img/events/gold_5000.svg" alt="gold_5000">
-                            </li>
-                            <li class='carItem'>
-                                <img class="carImg" src="/static/redesign/img/events/gold_100000.svg" alt="gold_100000">
+                                <img class="carImg" src="/static/img/planes/beluzzo/beluzzo_base.svg" alt="disk">
                             </li>
 
-                            {% if variants|get_mod:2 == 1  %}
                             <li class='carItem'>
-                                <img class="carImg" src="/static/redesign/img/events/gold_100000.svg" alt="gold_100000">
+                                <img class="carImg" src="/static/img/planes/trickster/trickster_friday.svg" alt="gold">
                             </li>
-                            {% endif %}
+
+                            <li class='carItem'>
+                                <img class="carImg" src="/static/img/planes/demolisher/demolisher_violet.svg" alt="violet">
+                            </li>
+
+                            <li class='carItem'>
+                                <img class="carImg" src="/static/img/planes/harrier/harrier_dark_blue.svg" alt="blue">
+                            </li>
+
+                            <li class='carItem'>
+                                <img class="carImg" src="/static/img/planes/pretender/pretender_green.svg" alt="green">
+                            </li>
+
+                            <li class='carItem'>
+                                <img class="carImg" src="/static/img/planes/nagger/nagger_base.svg" alt="white">
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -586,69 +460,38 @@
                 <div class='carListContainerDiv'>
                     <div class=' carListContainer'>
                         <ul class='carList'>
-                            {% for plane in common_list %}
                             <li class='carItem'>
-                                <img class="carImg" src="/static/img/planes/{{ plane.0 }}/{{ plane.0 }}_{{ plane.1 }}.svg" alt="{{ plane.0 }}_{{ plane.1 }}">
-                            </li>
-                            {% endfor %}
-                            {% for plane in rare_list %}
-                            <li class='carItem'>
-                                <img class="carImg" src="/static/img/planes/{{ plane.0 }}/{{ plane.0 }}_{{ plane.1 }}.svg" alt="{{ plane.0 }}_{{ plane.1 }}">
-                            </li>
-                            {% endfor %}
-                            {% for plane in epic_list %}
-                            <li class='carItem'>
-                                <img class="carImg" src="/static/img/planes/{{ plane.0 }}/{{ plane.0 }}_{{ plane.1 }}.svg" alt="{{ plane.0 }}_{{ plane.1 }}">
-                            </li>
-                            {% endfor %}
-                            <li class='carItem'>
-                                <img class="carImg" src="/static/redesign/img/events/gold_500.svg" alt="gold_500">
-                            </li>
-                            <li class='carItem'>
-                                <img class="carImg" src="/static/redesign/img/events/gold_1000.svg" alt="gold_1000">
-                            </li>
-                            <li class='carItem'>
-                                <img class="carImg" src="/static/redesign/img/events/gold_3000.svg" alt="gold_3000">
-                            </li>
-                            <li class='carItem'>
-                                <img class="carImg" src="/static/redesign/img/events/gold_5000.svg" alt="gold_5000">
-                            </li>
-                            <li class='carItem'>
-                                <img class="carImg" src="/static/redesign/img/events/gold_100000.svg" alt="gold_100000">
+                                <img class="carImg" src="/static/img/planes/beluzzo/beluzzo_base.svg" alt="disk">
                             </li>
 
-                            {% if variants|get_mod:2 == 1  %}
                             <li class='carItem'>
-                                <img class="carImg" src="/static/redesign/img/events/gold_100000.svg" alt="gold_100000">
+                                <img class="carImg" src="/static/img/planes/trickster/trickster_friday.svg" alt="gold">
                             </li>
-                            {% endif %}
+
+                            <li class='carItem'>
+                                <img class="carImg" src="/static/img/planes/demolisher/demolisher_violet.svg" alt="violet">
+                            </li>
+
+                            <li class='carItem'>
+                                <img class="carImg" src="/static/img/planes/harrier/harrier_dark_blue.svg" alt="blue">
+                            </li>
+
+                            <li class='carItem'>
+                                <img class="carImg" src="/static/img/planes/pretender/pretender_green.svg" alt="green">
+                            </li>
+
+                            <li class='carItem'>
+                                <img class="carImg" src="/static/img/planes/nagger/nagger_base.svg" alt="white">
+                            </li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="box__modal3info box__modalInfo">
-                    <div class="box__modalBtns">
-<!--                        <button class="box__picOpen ct__mid-btn" id='modal__restart3'>-->
-<!--                            <svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">-->
-<!--                                <mask id="mask0_258_2331" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144"-->
-<!--                                    height="30">-->
-<!--                                    <path class="geometry1" d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z" />-->
-<!--                                </mask>-->
-<!--                                <g mask="url(#mask0_258_2331)">-->
-<!--                                    <path class="geometry2" fill="var(&#45;&#45;c10two)"-->
-<!--                                        d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" />-->
-<!--                                    <path class="treg1" opacity="0.15"-->
-<!--                                        d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(&#45;&#45;c10one)" />-->
-<!--                                    <path class="treg2" opacity="0.15"-->
-<!--                                        d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(&#45;&#45;c10one)" />-->
-<!--                                    <path class="treg3" opacity="0.15"-->
-<!--                                        d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(&#45;&#45;c10one)" />-->
-<!--                                </g>-->
-<!--                            </svg>-->
-<!--                            <span>Рестарт: 1500 G</span>-->
-<!--                        </button>-->
+                    <p class='box__modalDesc'><span id="prize_name"></span></p>
 
-                        <button class="box__picOpen ct__mid-btn" id='modal__continue3' onclick="loot_aviaboxes()">
+                    <div class="box__modalBtns">
+                        <button class="box__picOpen ct__mid-btn" id='modal__continue3'>
                             <svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
                                 <mask id="mask0_258_2341" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144"
                                     height="30">
@@ -682,66 +525,21 @@
         </button>
 
         <h1 class="box__title ct__page-title">Уникальные самолёты</h1>
-
-        <div class="box__modalGrid">
-            {% for plane in epic_list %}
-            {% if plane.2 %}
-            <div class="profile__top-left">
-                <img src="/static/redesign/img/events/gold_5000.svg" class="profile__ava-border">
-                <img src="/static/img/planes/{{ plane.0 }}/{{ plane.0 }}_{{ plane.1 }}.svg" alt="{{ plane.0 }}_{{ plane.1 }}" style="opacity: 0.5;">
-            </div>
-            {% else %}
-            <img src="/static/img/planes/{{ plane.0 }}/{{ plane.0 }}_{{ plane.1 }}.svg" alt="{{ plane.0 }}_{{ plane.1 }}">
-            {% endif %}
-            {% endfor %}
-        </div>
-    </div>
-
-    <div class="box__modal box__modal--noCenter custom-scroll" id='flyModal2'>
-        <button class="box__close">
-            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M1 1L31 31M31 1L1.53571 30.4643" stroke-width="1" stroke="var(--c10one)" />
-            </svg>
-        </button>
-
-        <h1 class="box__title ct__page-title">Особые самолёты</h1>
-
-        <div class="box__modalGrid">
-            {% for plane in rare_list %}
-            {% if plane.2 %}
-            <div class="profile__top-left">
-                <img src="/static/redesign/img/events/gold_1000.svg" class="profile__ava-border">
-                <img src="/static/img/planes/{{ plane.0 }}/{{ plane.0 }}_{{ plane.1 }}.svg" alt="{{ plane.0 }}_{{ plane.1 }}" style="opacity: 0.5;">
-            </div>
-            {% else %}
-            <img src="/static/img/planes/{{ plane.0 }}/{{ plane.0 }}_{{ plane.1 }}.svg" alt="{{ plane.0 }}_{{ plane.1 }}">
-            {% endif %}
-            {% endfor %}
-        </div>
-    </div>
-
-    <div class="box__modal box__modal--noCenter custom-scroll" id='flyModal3'>
-        <button class="box__close">
-            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M1 1L31 31M31 1L1.53571 30.4643" stroke-width="1" stroke="var(--c10one)" />
-            </svg>
-        </button>
-
-        <h1 class="box__title ct__page-title">Обычные самолёты</h1>
-
-        <div class="box__modalGrid">
-            {% for plane in common_list %}
-                {% if not plane.0 == 'beluzzo' %}
-            {% if plane.2 %}
-            <div class="profile__top-left">
-                <img src="/static/redesign/img/events/gold_500.svg" class="profile__ava-border">
-                <img src="/static/img/planes/{{ plane.0 }}/{{ plane.0 }}_{{ plane.1 }}.svg" alt="{{ plane.0 }}_{{ plane.1 }}" style="opacity: 0.5;">
-            </div>
-            {% else %}
-            <img src="/static/img/planes/{{ plane.0 }}/{{ plane.0 }}_{{ plane.1 }}.svg" alt="{{ plane.0 }}_{{ plane.1 }}">
-            {% endif %}
-                {% endif %}
-            {% endfor %}
+        <style>
+          .box__DropCombinations {
+                gap: 6rem;
+                display: flex;
+                flex-direction: row;
+          }
+          .box__DropCombinations img {
+                object-fit: contain;
+                object-position: center;
+                width: 100%;
+                height: 100%;
+          }
+        </style>
+        <div class="box__DropCombinations">
+            <img src="/static/img/planes/nagger/nagger_base.svg" alt="nagger">
         </div>
     </div>
 
@@ -756,16 +554,17 @@
 
 
 <script>
-        // сундуки - лут
-        function loot_aviaboxes(){
-            var sending_data = "&csrfmiddlewaretoken=" + csrftoken;
+        // сундуки - использование
+        function buy_lootbox(count){
+            var sending_data = "&csrfmiddlewaretoken=" + csrftoken + "&count=" + count;
             $.ajax({
                 type: "POST",
-                url: "/loot_aviaboxes/",
+                url: "/buy_lootboxes/",
                 data:  sending_data,
                 cache: false,
                 success: function(data){
                     if (data.response == 'ok'){
+                        location.reload();
                     }
                     else{
                         display_modal('notify', data.header, data.response, null, data.grey_btn);
@@ -775,11 +574,11 @@
         };
 
         // сундуки - использование
-        function buy_lootbox(count){
+        function cash_lootbox(count){
             var sending_data = "&csrfmiddlewaretoken=" + csrftoken + "&count=" + count;
             $.ajax({
                 type: "POST",
-                url: "/buy_lootboxes/",
+                url: "/cash_lootboxes/",
                 data:  sending_data,
                 cache: false,
                 success: function(data){
@@ -838,8 +637,11 @@
 				}
 				this.shuffleItems();
 
-				const imgInLastArrIndex = this.itemsArr2.findIndex((item) => item.querySelector('img').src.match(new RegExp(targetImageName + `(?=[.])`)));
-				const middleIndex = this.itemsArr2.length / 2 - 1;
+				const imgInLastArrIndex = this.itemsArr2.findIndex((item) => {
+                    const img = item.querySelector('img');
+                    return img && img.alt === targetImageName;
+                });
+                const middleIndex = this.itemsArr2.length / 2 - 1;
 
 				if (imgInLastArrIndex && imgInLastArrIndex !== middleIndex) {
 					[this.itemsArr2[imgInLastArrIndex], this.itemsArr2[middleIndex]] = [this.itemsArr2[middleIndex], this.itemsArr2[imgInLastArrIndex]];
@@ -855,7 +657,7 @@
                     const cancelTransition = () => {
 						this.list.style.transition = 'none';
 						if (boxPage.state.isPopup1Opened) { this.modalInfo1.classList.add('active'); }
-						if (boxPage.state.isPopup3Opened) { this.modalInfo3.classList.add('active'); };
+						if (boxPage.state.isPopup3Opened) { if (this.modalInfo3) {this.modalInfo3.classList.add('active');} };
 					};
 					this.list.addEventListener('click', cancelTransition);
 					this.cancelTransitionRemove = () => { this.list.removeEventListener('click', cancelTransition); };
@@ -885,8 +687,8 @@
 
 	<script>
         // кейсы - запустить открытие
-        function open_aviaboxes(count, mode){
-            var sending_data = "&csrfmiddlewaretoken=" + csrftoken + "&count=" + count + "&mode=" + mode;
+        function open_aviaboxes(){
+            var sending_data = "&csrfmiddlewaretoken=" + csrftoken;
 
             return fetch("/open_aviaboxes/", {
               "headers": {
@@ -923,9 +725,8 @@
 				this.popupClose1 = document.querySelector('.box__close1');
 				this.popup3 = document.querySelector('.box__modal3');
 				this.popupClose3 = document.querySelector('.box__close3');
-				this.popup1continue = document.getElementById('modal__continue1');
+
 				this.popup3continue = document.getElementById('modal__continue3');
-				this.popup1restart = document.getElementById('modal__restart1');
 <!--				this.popup3restart = document.getElementById('modal__restart3');-->
 
 				this.goldContent = document.querySelector('.box__itemCount--gold');
@@ -935,15 +736,11 @@
 				this.chestCountContainer = document.querySelector('.box__picChestCount');
 				this.chestCount = document.querySelector('.box__picChestCount--count');
 
-                this.chestGarantContainer = document.querySelector('.box__garantCount');
-				this.garantCount = document.querySelector('.box__garantCount--count');
-
 				this.loader = document.querySelector('.wp-loader-wrapper');
 
 				this.stateData = {
 					currentBlock: 0, //какой текущий блок показывается 0 или 1
 					chestCount: {% localize off %}{{ lootbox_count }}{% endlocalize %}, //сколько у чувака сундуков
-					garantCount: {% localize off %}{{ garant_count }}{% endlocalize %}, //сколько у чувака сундуков
 					isPopup1Opened: false, //открыт ли попап с 1 наградами
 					isPopup3Opened: false, //открыт ли попап с 3 наградами
 					goldReward: '', //сколько золота в награде
@@ -966,13 +763,8 @@
 								value === 0 ? this.goToBuyBtn.style.display = '' : this.goToBuyBtn.style.display = 'none';
 								value === 0 ? this.chestImg.style.filter = 'grayscale(1)' : this.chestImg.style.filter = 'grayscale(0)';
 								value === 0 ? this.openChestBtns.style.display = 'none' : this.openChestBtns.style.display = '';
-								value >= 3 ? this.openChest10Btn.style.display = '' : this.openChest10Btn.style.display = 'none';
 								value > 0 ? this.chestCountContainer.style.display = '' : this.chestCountContainer.style.display = 'none';
 								if (value > 0) this.chestCount.textContent = value;
-								obj[prop] = value; return true;
-
-                            case "garantCount":
-								this.garantCount.textContent = value;
 								obj[prop] = value; return true;
 
 							case "isPopup1Opened":
@@ -1010,7 +802,6 @@
 				this.setEventListeners();
 				this.state.isLoading = false;
 				this.state.chestCount = {% localize off %}{{ lootbox_count }}{% endlocalize %};
-				this.state.garantCount = {% localize off %}{{ garant_count }}{% endlocalize %};
 			}
 
 			setEventListeners() {
@@ -1022,7 +813,7 @@
 					carousel1.modalInfo1.classList.remove('active');
 					carousel1.cancelTransitionRemove();
 				});
-				this.popup1continue.addEventListener('click', () => this.state.isPopup1Opened = false);
+
 				this.popupClose3.addEventListener('click', () => {
 					this.state.isPopup3Opened = false;
 					carousel4.modalInfo3.classList.remove('active');
@@ -1030,82 +821,10 @@
 				});
 				this.popup3continue.addEventListener('click', () => this.state.isPopup3Opened = false);
 
-				this.popup1restart.addEventListener('click', async () => {
-
-				    var response = await open_aviaboxes(1, 'rerun');
-
-				    var data = await response.json();
-
-                    if(data !== null){
-                        if (data.response == 'ok'){
-                            actualize();
-
-                            $('#modal__restart1').show();
-                            if (data.prizes[0][0][0] == 'gold'){
-                                $('#modal__restart1').hide();
-                            }
-
-                            this.state.isPopup1Opened = true;
-
-                            document.getElementById("prize_name").innerHTML = numberWithSpaces(data.prizes[0][1]);
-                            document.getElementById("prize_rarity").innerHTML = numberWithSpaces(data.prizes[0][2]);
-
-                            carousel1.startCarousel(
-                                    data.prizes[0][0][0].concat("_", data.prizes[0][0][1])
-                                                );
-
-
-                            this.state.chestCount = data.boxes_count;
-                            this.state.garantCount = data.garant_count;
-                        }
-                        else{
-                            display_modal('notify', data.header, data.response, null, data.grey_btn);
-                        }
-                    };
-				});
-
-<!--				this.popup3restart.addEventListener('click', () => {-->
-<!--					carousel2.startCarousel('tyan3');-->
-<!--					carousel3.startCarousel('tyan2');-->
-<!--					carousel4.startCarousel('tyan1');-->
-<!--				});-->
-
-				this.openChestBtn.addEventListener('click', async () => {
-
-				    var response = await open_aviaboxes(1, 'open');
-
-				    var data = await response.json();
-
-                    if(data !== null){
-                        if (data.response == 'ok'){
-                            actualize();
-
-                            $('#modal__restart1').show();
-                            if (data.prizes[0][0][0] == 'gold'){
-                                $('#modal__restart1').hide();
-                            }
-
-                            this.state.isPopup1Opened = true;
-
-                            document.getElementById("prize_name").innerHTML = numberWithSpaces(data.prizes[0][1]);
-                            document.getElementById("prize_rarity").innerHTML = numberWithSpaces(data.prizes[0][2]);
-
-                            carousel1.startCarousel(
-                                    data.prizes[0][0][0].concat("_", data.prizes[0][0][1])
-                                                );
-
-                            this.state.chestCount = data.boxes_count;
-                            this.state.garantCount = data.garant_count;
-                        }
-                        else{
-                            display_modal('notify', data.header, data.response, null, data.grey_btn);
-                        }
-                    };
-				});
 
 				this.openChest10Btn.addEventListener('click', async () => {
 
-                    var response = await open_aviaboxes(3, 'open');
+                    var response = await open_aviaboxes();
 
 				    var data = await response.json();
 
@@ -1116,21 +835,21 @@
                             this.state.isPopup3Opened = true;
 
                             carousel1.startCarousel(
-                                    data.prizes[0][0][0].concat("_", data.prizes[0][0][1])
+                                    data.prizes[0]
                                                 );
 
                             carousel2.startCarousel(
-                                    data.prizes[0][0][0].concat("_", data.prizes[0][0][1])
+                                    data.prizes[0]
                                                 );
                             carousel3.startCarousel(
-                                    data.prizes[1][0][0].concat("_", data.prizes[1][0][1])
+                                    data.prizes[1]
                                                 );
                             carousel4.startCarousel(
-                                    data.prizes[2][0][0].concat("_", data.prizes[2][0][1])
+                                    data.prizes[2]
                                                 );
 
+                            document.getElementById("prize_name").innerHTML = numberWithSpaces(data.reward);
                             this.state.chestCount = data.boxes_count;
-                            this.state.garantCount = data.garant_count;
                         }
                         else{
                             display_modal('notify', data.header, data.response, null, data.grey_btn);
@@ -1145,24 +864,9 @@
 
 		/* модалки с самолётами */
 		const flyModal1 = document.getElementById('flyModal1');
-		const flyModal2 = document.getElementById('flyModal2');
-		const flyModal3 = document.getElementById('flyModal3');
-		const flyModal1Open = document.getElementById('flyModalOpen1');
-		const flyModal2Open = document.getElementById('flyModalOpen2');
-		const flyModal3Open = document.getElementById('flyModalOpen3');
-		const flyModal1Close = flyModal1.querySelector('.box__close');
-		const flyModal2Close = flyModal2.querySelector('.box__close');
-		const flyModal3Close = flyModal3.querySelector('.box__close');
 
-		flyModal1Open.addEventListener('click', () => { flyModal1.classList.add('active'); });
-		flyModal2Open.addEventListener('click', () => { flyModal2.classList.add('active'); });
-		flyModal3Open.addEventListener('click', () => { flyModal3.classList.add('active'); });
-		flyModal3Open.addEventListener('click', () => { flyModal3.classList.add('active'); });
+		const flyModal1Close = flyModal1.querySelector('.box__close');
 
 		flyModal1Close.addEventListener('click', () => { flyModal1.classList.remove('active'); });
-		flyModal2Close.addEventListener('click', () => { flyModal2.classList.remove('active'); });
-		flyModal3Close.addEventListener('click', () => { flyModal3.classList.remove('active'); });
-
-		console.log('вариантов всего: ' + {{ variants }})
 </script>
 {% endblock %}

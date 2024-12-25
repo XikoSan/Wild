@@ -28,6 +28,7 @@ from player.views.translate.translations import translations
 from .views.answer_captcha import answer_captcha
 from .views.assetlinks_view import assetlinks_view
 from .views.buy_lootboxes import buy_lootboxes
+from .views.cash_lootboxes import cash_lootboxes
 from .views.change_back_allow import change_back_allow
 from .views.change_bio import change_bio
 from .views.change_nickname import change_nickname
@@ -168,6 +169,9 @@ urlpatterns = [
 
     # купить лутбоксы
     url(r'^buy_lootboxes/$', buy_lootboxes, name='buy_lootboxes'),
+
+    # купить лутбоксы
+    url(r'^cash_lootboxes/$', cash_lootboxes, name='cash_lootboxes'),
 
     # ответ на капчу
     url(r'^answer_captcha', answer_captcha, name='answer_captcha'),

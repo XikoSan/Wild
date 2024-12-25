@@ -1,17 +1,21 @@
 import math
+import pytz
 import random
+from collections import Counter
 from datetime import datetime, timedelta
 from django.apps import apps
-import pytz
+from django.db.models import F
 from django.db.models import Q
 from django.db.models import Sum
+
+from player.logs.gold_log import GoldLog
+from player.lootbox.jackpot import Jackpot
 from player.lootbox.lootbox import Lootbox
 from player.player import Player
 from region.models.plane import Plane
-from player.logs.gold_log import GoldLog
+
 
 def prepare_plane_lists(player, quality='common'):
-
     planes = Plane.objects.filter(player=player)
 
     common_colors = Plane.common_colors
@@ -34,56 +38,56 @@ def prepare_plane_lists(player, quality='common'):
     return ret_list
 
 
-# генератор открытия
-def generate_rewards(player, garant=False):
+# генератор одного символа
+def rotate_spinner():
+    weights = [
+        0.1,  # джекпот
+        1,    # 300к
+        3,    # 100к
+        10,   # 60к
+        25,     # 40к
+        65.9,   # 20к
+    ]
+    choices = ['disk', 'gold', 'violet', 'blue', 'green', 'white']
 
-    # определяем, что будет дропаться
-    # определяем какая награда попадет в список
-    if Lootbox.objects.filter(player=player, stock__gt=100).exists():
-        reward = random.choices(['gold', 'common', 'rare', 'epic'], weights=[11, 55, 5, 1])
-        nagrada = reward[0]
-    else:
-        reward = random.choices(['gold', 'common', 'rare', 'epic'], weights=[33, 55, 11, 1])
-        nagrada = reward[0]
+    return random.choices(choices, weights=weights)[0]
 
-    if garant:
-        nagrada = 'epic'
 
-    if nagrada == 'gold':
-        date_msk = datetime(2024, 6, 2, 22, 0, 0)
-        timezone_msk = pytz.timezone('Europe/Moscow')
-        date_msk = timezone_msk.localize(date_msk)
+# генератор приза
+def generate_rewards():
+    rewards = {
+        'disk': 10000,
+        'gold': 300000,
+        'violet': 100000,
+        'blue': 60000,
+        'green': 40000,
+        'white': 20000,
+    }
 
-        if GoldLog.objects.filter(player=player, activity_txt='bx_gld', gold=100000, dtime__gt=date_msk).exists():
-            weights = [50, 3, ]
-            reward_val = random.choices([1000, 3000, ], weights=weights)[0]
-        else:
-            weights = [50, 3, 0.1, ]
-            reward_val = random.choices([1000, 3000, 100000, ], weights=weights)[0]
+    # выдаем суперприз
+    if not Jackpot.objects.filter(amount__gt=200000).exists():
+        jp = Jackpot(amount=10000000)
+        jp.save()
 
-    else:
-        weights = []
-        reward_list = prepare_plane_lists(player, nagrada)
+    spins = {1: rotate_spinner(), 2: rotate_spinner(), 3: rotate_spinner()}
 
-        for reward_plane in reward_list:
-            if reward_plane[0] == 'beluzzo':
-                weights.append(0.1)
-            else:
-                weights.append(1)
+    results = list(spins.values())
 
-        reward_val = random.choices(reward_list, weights=weights)[0]
+    reward = 0
 
-        if Plane.objects.filter(player=player, plane=reward_val[0], color=reward_val[1]).exists():
+    # Проверяем, совпадают ли все значения
+    if len(results) > 0 and len(set(results)) == 1:
 
-            if nagrada == 'epic':
-                reward_val = 5000
+        if list(set(results))[0] == 'disk':
+            budget = Jackpot.objects.filter(amount__gt=200000).first()
+            budget.amount = math.ceil(budget.amount / 2)
+            budget.save()
 
-            if nagrada == 'rare':
-                reward_val = 1000
+            return list(spins.values()), math.ceil(budget.amount / 4)
 
-            if nagrada == 'common':
-                reward_val = 500
+    for result in results:
+        reward += rewards[result]
 
-            nagrada = 'gold'
+    return results, reward
 
-    return reward_val, nagrada
+

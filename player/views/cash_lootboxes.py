@@ -12,7 +12,7 @@ from math import ceil
 
 from player.decorators.player import check_player
 from player.logs.gold_log import GoldLog
-from player.logs.wildpass_log import WildpassLog
+from player.logs.cash_log import CashLog
 from player.lootbox.lootbox import Lootbox
 from player.player import Player
 from player.player_settings import PlayerSettings
@@ -25,7 +25,7 @@ from wild_politics.settings import JResponse
 # Купить лутбоксы
 @login_required(login_url='/')
 @check_player
-def buy_lootboxes(request):
+def cash_lootboxes(request):
     if request.method == "POST":
 
         # получаем персонажа игрока
@@ -50,9 +50,9 @@ def buy_lootboxes(request):
             }
             return JResponse(data)
 
-        buy_cost = buy_count
+        buy_cost = buy_count * 100000
 
-        if player.cards_count < buy_cost:
+        if player.cash < buy_cost:
             data = {
                 'response': 'Недостаточно Wild Pass для покупки',
                 'header': 'Приобретение сундуков',
@@ -62,18 +62,18 @@ def buy_lootboxes(request):
 
         if Lootbox.objects.filter(player=player).exists():
             lboxes = Lootbox.objects.get(player=player)
-            lboxes.stock += buy_count * 10
+            lboxes.stock += buy_count
 
         else:
             lboxes = Lootbox(player=player)
-            lboxes.stock += buy_count * 10
+            lboxes.stock += buy_count
 
         lboxes.save()
 
-        player.cards_count -= buy_cost
+        player.cash -= buy_cost
         player.save()
 
-        WildpassLog(player=player, count=0 - buy_cost, activity_txt='box').save()
+        CashLog(player=player, cash=0 - buy_cost, activity_txt='buy_box').save()
 
         data = {
             'response': 'ok',

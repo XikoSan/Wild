@@ -30,6 +30,7 @@ from player.player_regional_expence import PlayerRegionalExpense
 from .player import Player
 from .player_settings import PlayerSettings
 from player.models.rate_reward import RateReward
+from player.lootbox.jackpot import Jackpot
 
 
 @transaction.atomic
@@ -410,3 +411,5 @@ admin.site.register(FreebieUsage, FreebieUsageAdmin)
 admin.site.register(RateReward, RateRewardAdmin)
 
 admin.site.register(Medal, MedalAdmin)
+
+admin.site.register(Jackpot)

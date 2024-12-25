@@ -23,156 +23,46 @@ from storage.models.lootbox_prize import LootboxPrize
 @check_player
 def open_aviaboxes(request):
     if request.method == "POST":
-
-        data = {
-            'response': pgettext('open_box', 'Кейсы отключены'),
-            'header': pgettext('open_box', 'Открытие кейсов'),
-            'grey_btn': pgettext('core', 'Закрыть'),
-        }
-        return JResponse(data)
-
         # получаем персонажа игрока
         player = Player.get_instance(account=request.user)
 
-        mode = request.POST.get('mode')
-
-        if mode == 'rerun':
-            if not LootboxPrize.objects.filter(player=player, deleted=False).exists():
-                data = {
-                    'response': pgettext('open_box', 'У вас нет неполученных наград'),
-                    'header': pgettext('open_box', 'Открытие кейсов'),
-                    'grey_btn': pgettext('core', 'Закрыть'),
-                }
-                return JResponse(data)
-
-            if player.gold < 500:
-                data = {
-                    'response': pgettext('open_box', 'Недостаточно золота, необходимо: %(value)s') % {"value": str(500)},
-                    'header': pgettext('open_box', 'Открытие кейсов'),
-                    'grey_btn': pgettext('core', 'Закрыть'),
-                }
-                return JResponse(data)
-
-            player.gold -= 500
-            player.save()
-
-            # находим последний выбитый приз, удаляем его. Отмечаем,что его заменили
-            prize = LootboxPrize.objects.filter(player=player, deleted=False).order_by('-pk').first()
-            prize.replaced = True
-            prize.deleted = True
-            prize.save()
-
-
-        if LootboxPrize.objects.filter(player=player, deleted=False).exists():
-            for prize in LootboxPrize.objects.filter(player=player, deleted=False):
-                if not Plane.objects.filter(player=player, plane=prize.plane, color=prize.color).exists():
-                    plane = Plane(player=player, plane=prize.plane, color=prize.color)
-                    plane.save()
-
-            LootboxPrize.objects.filter(player=player, deleted=False).update(deleted=True)
-
-        if not mode == 'rerun':
-            if not Lootbox.objects.filter(player=player, stock__gt=0).exists():
-                data = {
-                    'response': pgettext('open_box', 'У вас нет кейсов'),
-                    'header': pgettext('open_box', 'Открытие кейсов'),
-                    'grey_btn': pgettext('core', 'Закрыть'),
-                }
-                return JResponse(data)
-
-        lootboxes = Lootbox.objects.get(player=player)
-
-        try:
-            open_count = int(request.POST.get('count'))
-
-        except ValueError:
+        if not Lootbox.objects.filter(player=player, stock__gt=0).exists():
             data = {
-                'response': pgettext('open_box', 'Некорректное количество кейсов для открытия'),
+                'response': pgettext('open_box', 'У вас нет кейсов'),
                 'header': pgettext('open_box', 'Открытие кейсов'),
                 'grey_btn': pgettext('core', 'Закрыть'),
             }
             return JResponse(data)
 
-        if not mode == 'rerun':
-            if open_count > lootboxes.stock:
-                data = {
-                    'response': pgettext('open_box', 'Недостаточно кейсов для открытия'),
-                    'header': pgettext('open_box', 'Открытие кейсов'),
-                    'grey_btn': pgettext('core', 'Закрыть'),
-                }
-                return JResponse(data)
+        lootboxes = Lootbox.objects.get(player=player)
 
-        prizes = []
+        CashLog = apps.get_model('player.CashLog')
 
-        GoldLog = apps.get_model('player.GoldLog')
+        spins, reward = generate_rewards()
 
-        loop = 0
-        for box in range(open_count):
+        if reward > 0:
+            player.cash += reward
 
-            if lootboxes.garant_in == 0:
-                reward, type = generate_rewards(player, True)
-                lootboxes.garant_in = 100
+            cash_log = CashLog(player=player, cash=reward, activity_txt='box')
+            cash_log.save()
 
-            else:
-                reward, type = generate_rewards(player)
+            player.save()
 
-            if type == 'epic':
-                lootboxes.garant_in = 100
+            reward = f'${number_format(reward)}'
 
-            else:
-                lootboxes.garant_in -= 1
+        else:
+            reward = 'ничего'
 
-            if lootboxes.garant_in < 0:
-                lootboxes.garant_in = 0
-
-            if type == 'gold':
-                player.gold += reward
-
-                prizes.append([[type, reward], f'{number_format(reward)} золота' ,'валюта'])
-
-                gold_log = GoldLog(player=player, gold=reward, activity_txt='bx_gld')
-                gold_log.save()
-
-                player.save()
-
-            else:
-                reward_color = 'базовый'
-                for tuple in Plane.colorChoices:
-                    if reward[1] == tuple[0]:
-                        reward_color = tuple[1]
-                        break
-
-                plane_name = 'самолёт'
-                for tuple in Plane.planesChoices:
-                    if reward[0] == tuple[0]:
-                        if tuple[0] == 'beluzzo':
-                            plane_name = f'{tuple[1]}'
-                        else:
-                            plane_name = f'{tuple[1]} {reward_color}'
-                        break
-
-                rarity = 'обычный'
-
-                if type == 'epic':
-                    rarity = 'уникальный'
-                if type == 'rare':
-                    rarity = 'особый'
-
-                prize = LootboxPrize(player=player, plane=reward[0], color=reward[1])
-                prize.save()
-
-                prizes.append([reward, plane_name, rarity])
-
-        if not mode == 'rerun':
-            lootboxes.stock -= open_count
+        lootboxes.stock -= 1
+        lootboxes.opened += 1
         lootboxes.save()
 
         data = {
             'response': 'ok',
-            'prizes': prizes,
+            'prizes': spins,
+            'reward': reward,
 
             'boxes_count': lootboxes.stock,
-            'garant_count': lootboxes.garant_in,
         }
         return JResponse(data)
 

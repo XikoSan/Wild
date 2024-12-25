@@ -16,6 +16,7 @@ class WildpassLog(Log):
     activityChoices = (
         ('buying',  'Покупка за реал'),
         ('lootbox', 'Награда из лутбокса'),
+        ('box', 'Покупка лутбокса'),
         ('bonus', 'Бонус-код'),
         ('trading', 'Торговля в игре'),
         ('using', 'Активация'),

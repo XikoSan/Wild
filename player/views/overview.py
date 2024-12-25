@@ -339,32 +339,29 @@ def overview(request):
 
 
 
-    # from storage.views.vault.avia_box.generate_rewards import generate_rewards
-    #
-    # from player.logs.print_log import log
-    #
-    # for attmpt in range(10):
-    #     for loop in range(10):
-    #         reward_sum = 0
-    #         total_reward_sum = 0
-    #         for iter in range(100):
-    #             reward, rarity = generate_rewards(player)
-    #
-    #             if rarity == 'gold':
-    #                 reward_sum += reward
-    #                 total_reward_sum += reward
-    #
-    #             elif rarity == 'epic':
-    #                 total_reward_sum += 5000
-    #
-    #             elif rarity == 'rare':
-    #                 total_reward_sum += 1000
-    #
-    #             elif rarity == 'common':
-    #                 total_reward_sum += 500
-    #
-    #         log(f'цикл {loop+1}, выпало золота: {reward_sum}, всего: {total_reward_sum}')
-    #     log(f'-----------------------------')
+    from storage.views.vault.avia_box.generate_rewards import generate_rewards
+
+    from player.logs.print_log import log
+
+    total = 0
+
+    for attmpt in range(1000):
+        spins, reward = generate_rewards()
+        total += reward
+        #
+        # log(f'{spins}')
+        # log(f'-----------------------------')
+        # log(f'{reward} денег')
+        # log(f'==================================================')
+
+    log(f'==================================================')
+    total = total / 1000
+    formatted_number = f"{total:_}"
+    log(f'в среденем выпадало {formatted_number}')
+    log(f'==================================================')
+
+
+
 
     # from region.views.map.gold_index import form_development_top
     # form_development_top()
@@ -402,16 +399,6 @@ def overview(request):
             # if version.parse(match.group(1)) != version.parse('1.9.9'):
             if version.parse(match.group(1)) != version.parse(app_info['version']):
                 need_update = True
-
-
-    if not r:
-        r = redis.StrictRedis(host='redis', port=6379, db=0)
-    for side in ['agr', 'def']:
-        if r.exists(f'EventWar_15_{side}'):
-            print("Ключ существует")
-        else:
-            print("Ключ не существует")
-
 
     assistant_name = ('Ann', pgettext('education', 'Анна'))
 
