@@ -10,7 +10,7 @@ from django.utils import timezone
 from django.utils.translation import pgettext
 from django.utils.translation import pgettext_lazy
 from math import ceil
-
+from django.apps import apps
 from bill.models.bill import Bill
 from player.views.multiple_sum import multiple_sum
 from region.models.region import Region
@@ -254,6 +254,29 @@ class ExploreResources(Bill):
             else:
                 exploration_dict[line['region']][line['resource']] += float(line['exp_value'])
 
+        # Дополнение exploration_dict данными из ExploreAllRegion
+        # Получение модели через apps.get_model
+        ExploreAllRegion = apps.get_model("bill", "ExploreAllRegion")
+        # Получаем данные для текущего парламента и дополняем словарь
+        extra_bills = ExploreAllRegion.objects.filter(
+            exp_bill__parliament=parliament
+        ).values('region', 'exp_bill__resource').order_by('region').annotate(
+            exp_value=Coalesce(Sum('exp_value'), 0, output_field=models.DecimalField())  # Суммируем значения exp_value
+        )
+
+        # Заполнение словаря exploration_dict из extra_bills
+        for line in extra_bills:
+            # Если региона еще нет в словаре, добавляем его
+            if line['region'] not in exploration_dict:
+                exploration_dict[line['region']] = {}
+
+            # Если ресурса еще нет в данном регионе, добавляем его с текущим значением
+            if line['exp_bill__resource'] not in exploration_dict[line['region']]:
+                exploration_dict[line['region']][line['exp_bill__resource']] = float(line['exp_value'])
+            else:
+                # Если ресурс уже есть, добавляем к нему текущее значение
+                exploration_dict[line['region']][line['exp_bill__resource']] += float(line['exp_value'])
+
         # регионы с военным положением
         martial_regions = Martial.objects.filter(active=True, state=state).values_list('region__pk')
         mar_pk_list = []
@@ -302,17 +325,40 @@ class ExploreResources(Bill):
                     has_right = True
                     break
 
+        # Выборка данных из ExploreResources
         prev_bills = ExploreResources.objects.filter(
             parliament=self.parliament,
             region=self.region,
             resource=self.resource,
-            voting_end__gt=timezone.now() - datetime.timedelta(seconds=86400)
+            voting_end__gt=timezone.now() - datetime.timedelta(seconds=86400)  # За последние 24 часа
         ).values('region', 'resource').order_by('region').annotate(
-            exp_value=Coalesce(Sum('exp_value'), 0, output_field=models.DecimalField()))
+            exp_value=Coalesce(Sum('exp_value'), 0, output_field=models.DecimalField())  # Суммируем exp_value
+        )
+
+        ExploreAllRegion = apps.get_model("bill", "ExploreAllRegion")
+
+        # Выборка данных из ExploreAllRegion
+        extra_bills = ExploreAllRegion.objects.filter(
+            exp_bill__parliament=self.parliament,
+            region=self.region,
+            exp_bill__resource=self.resource  # С учетом текущего ресурса
+        ).values('region', 'exp_bill__resource').order_by('region').annotate(
+            exp_value=Coalesce(Sum('exp_value'), 0, output_field=models.DecimalField())  # Суммируем exp_value
+        )
+
+        # Объединение данных из обеих выборок
+        total_exp_value = 0  # Общая сумма exp_value
 
         if prev_bills:
-            exp_mul = int(ceil(prev_bills[0]['exp_value'] / getattr(self.region, self.resource + '_cap')))
-            remainder = prev_bills[0]['exp_value'] % getattr(self.region, self.resource + '_cap')
+            total_exp_value += float(prev_bills[0]['exp_value'])
+
+        if extra_bills:
+            total_exp_value += float(extra_bills[0]['exp_value'])
+
+        # Вычисление exp_mul и remainder с учетом объединенной суммы
+        if total_exp_value > 0:
+            exp_mul = int(ceil(total_exp_value / float(getattr(self.region, self.resource + '_cap'))))
+            remainder = total_exp_value % float(getattr(self.region, self.resource + '_cap'))
 
             if remainder == 0:
                 exp_mul += 1
