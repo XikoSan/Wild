@@ -346,7 +346,17 @@
         <ul class="box__buyList" style="flex-direction: row; justify-content: space-around; gap: 15rem; margin-top: 20rem;">
             <li class="box__buyItem" style="gap: 30rem;">
                     {% for spin in drop %}
-                        {% if forloop.counter0 != 3 %}
+                        {% if forloop.counter0 == 0 %}
+                             <img class="carImg" src="/static/img/planes/{% if spin == 'disk' %}beluzzo/beluzzo_base{% elif spin == 'gold' %}trickster/trickster_friday{% elif spin == 'violet' %}demolisher/demolisher_violet{% elif spin == 'blue' %}harrier/harrier_dark_blue{% elif spin == 'green' %}pretender/pretender_green{% elif spin == 'white' %}nagger/nagger_base{% endif %}.svg" alt="disk">
+                        {% endif %}
+                    {% endfor %}
+                    {% for spin in drop %}
+                        {% if forloop.counter0 == 2 %}
+                             <img class="carImg" src="/static/img/planes/{% if spin == 'disk' %}beluzzo/beluzzo_base{% elif spin == 'gold' %}trickster/trickster_friday{% elif spin == 'violet' %}demolisher/demolisher_violet{% elif spin == 'blue' %}harrier/harrier_dark_blue{% elif spin == 'green' %}pretender/pretender_green{% elif spin == 'white' %}nagger/nagger_base{% endif %}.svg" alt="disk">
+                        {% endif %}
+                    {% endfor %}
+                    {% for spin in drop %}
+                        {% if forloop.counter0 == 1 %}
                              <img class="carImg" src="/static/img/planes/{% if spin == 'disk' %}beluzzo/beluzzo_base{% elif spin == 'gold' %}trickster/trickster_friday{% elif spin == 'violet' %}demolisher/demolisher_violet{% elif spin == 'blue' %}harrier/harrier_dark_blue{% elif spin == 'green' %}pretender/pretender_green{% elif spin == 'white' %}nagger/nagger_base{% endif %}.svg" alt="disk">
                         {% endif %}
                     {% endfor %}
@@ -727,10 +737,12 @@
 				if (this.modalInfo3) this.modalInfo3.classList.remove('active');
 				this.list.style.transition = 'none';
 				this.list.style.transform = 'translateX(0)';
-				if (this.list.children.length > this.itemsArr1.length) {
-					this.list.innerHTML = '';
-					this.itemsArr1.forEach((item) => this.list.appendChild(item.cloneNode(true)));
-				}
+                if (this.list.children.length > this.itemsArr1.length) {
+                    while (this.list.firstChild) {
+                        this.list.removeChild(this.list.firstChild); // Удаляет первый дочерний элемент
+                    }
+                    this.itemsArr1.forEach((item) => this.list.appendChild(item.cloneNode(true)));
+                }
 				this.shuffleItems();
 
 				const imgInLastArrIndex = this.itemsArr2.findIndex((item) => {
@@ -954,7 +966,7 @@
                             document.getElementById("prize_name").innerHTML = numberWithSpaces(data.reward);
                             this.state.chestCount = data.boxes_count;
 
-                            cloneAndFillDummyLine([data.prizes[0], data.prizes[1], data.prizes[2]], numberWithSpaces(data.reward.replace(/\$/g, "")));
+                            cloneAndFillDummyLine([data.prizes[0], data.prizes[2], data.prizes[1]], numberWithSpaces(data.reward.replace(/\$/g, "")));
                         }
                         else{
                             display_modal('notify', data.header, data.response, null, data.grey_btn);
