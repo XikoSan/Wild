@@ -12,10 +12,8 @@ function connectWebSocket() {
     warSocket.onmessage = function(e) {
         const data = JSON.parse(e.data);
 
-        console.log(data);
-
         if(data.type == 'win'){
-            createDamageMessage('/static/img/nopic.svg', data.reward, false);
+            createDamageMessage('/static/img/nopic.svg', data.reward, Math.random() < 0.5);
 
         }
         else if (data.type == 'purchase'){
