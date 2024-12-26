@@ -104,9 +104,6 @@ def generate_rewards():
         }
     )
 
-    from player.logs.print_log import log
-    log(math.ceil(budget.amount / 2))
-
     async_to_sync(channel_layer.group_send)(
         "lootboxes_channel",  # Группа, к которой подключены клиенты
         {
