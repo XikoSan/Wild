@@ -1,4 +1,5 @@
 import math
+import os
 import pytz
 import random
 from datetime import datetime, timedelta
@@ -37,11 +38,16 @@ def avia_lootbox(request):
 
     page = 'storage/redesign/storage_blocks/avia_box.html'
 
+    http_use = False
+    if os.getenv('HTTP_USE'):
+        http_use = True
+
     # отправляем в форму
     response = render(request, page, {
         'page_name': pgettext('assets', 'Ледяные сундуки'),
 
         'player': player,
+        'http_use': http_use,
 
         'lootbox_count': lootbox_count,
         'budget': budget,

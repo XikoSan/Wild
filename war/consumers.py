@@ -492,8 +492,8 @@ class WarConsumer(AsyncWebsocketConsumer):
     async def connect(self):
         self.player = await sync_to_async(_get_player, thread_sensitive=True)(account=self.scope["user"])
 
-        # logger = logging.getLogger(__name__)
-        # logger.debug(self.scope['url_route']['kwargs']['room_name'])
+        # from player.logs.print_log import log
+        # log('кря')
 
         self.war_type = self.scope['url_route']['kwargs']['war_type']
         self.war_id = self.scope['url_route']['kwargs']['war_id']

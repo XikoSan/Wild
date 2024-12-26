@@ -339,28 +339,26 @@ def overview(request):
 
 
 
-    from storage.views.vault.avia_box.generate_rewards import generate_rewards
-
-    from player.logs.print_log import log
-
-    total = 0
-
-    for attmpt in range(1000):
-        spins, reward = generate_rewards()
-        total += reward
-        #
-        # log(f'{spins}')
-        # log(f'-----------------------------')
-        # log(f'{reward} денег')
-        # log(f'==================================================')
-
-    log(f'==================================================')
-    total = total / 1000
-    formatted_number = f"{total:_}"
-    log(f'в среденем выпадало {formatted_number}')
-    log(f'==================================================')
-
-
+    # from storage.views.vault.avia_box.generate_rewards import generate_rewards
+    #
+    # from player.logs.print_log import log
+    #
+    # total = 0
+    #
+    # for attmpt in range(1000):
+    #     spins, reward = generate_rewards()
+    #     total += reward
+    #     #
+    #     # log(f'{spins}')
+    #     # log(f'-----------------------------')
+    #     # log(f'{reward} денег')
+    #     # log(f'==================================================')
+    #
+    # log(f'==================================================')
+    # total = total / 1000
+    # formatted_number = f"{total:_}"
+    # log(f'в среденем выпадало {formatted_number}')
+    # log(f'==================================================')
 
 
     # from region.views.map.gold_index import form_development_top

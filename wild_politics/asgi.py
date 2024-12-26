@@ -18,13 +18,15 @@ from channels.routing import ProtocolTypeRouter, URLRouter
 
 import chat.routing
 import war.routing
+import storage.routing
 
 application = ProtocolTypeRouter({
     "http": django_asgi_app,
     "websocket": AuthMiddlewareStack(
         URLRouter(
             chat.routing.websocket_urlpatterns +
-            war.routing.websocket_urlpatterns
+            war.routing.websocket_urlpatterns +
+            storage.routing.websocket_urlpatterns
         )
     ),
 })

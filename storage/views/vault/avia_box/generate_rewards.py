@@ -1,6 +1,8 @@
 import math
 import pytz
 import random
+from asgiref.sync import async_to_sync
+from channels.layers import get_channel_layer
 from collections import Counter
 from datetime import datetime, timedelta
 from django.apps import apps
@@ -42,11 +44,11 @@ def prepare_plane_lists(player, quality='common'):
 def rotate_spinner():
     weights = [
         0.1,  # джекпот
-        1,    # 300к
-        3,    # 100к
-        10,   # 60к
-        25,     # 40к
-        65.9,   # 20к
+        1,  # 300к
+        3,  # 100к
+        10,  # 60к
+        25,  # 40к
+        65.9,  # 20к
     ]
     choices = ['disk', 'gold', 'violet', 'blue', 'green', 'white']
 
@@ -69,6 +71,8 @@ def generate_rewards():
         jp = Jackpot(amount=10000000)
         jp.save()
 
+    budget = Jackpot.objects.filter(amount__gt=200000).first()
+
     spins = {1: rotate_spinner(), 2: rotate_spinner(), 3: rotate_spinner()}
 
     results = list(spins.values())
@@ -79,7 +83,6 @@ def generate_rewards():
     if len(results) > 0 and len(set(results)) == 1:
 
         if list(set(results))[0] == 'disk':
-            budget = Jackpot.objects.filter(amount__gt=200000).first()
             budget.amount = math.ceil(budget.amount / 2)
             budget.save()
 
@@ -88,6 +91,28 @@ def generate_rewards():
     for result in results:
         reward += rewards[result]
 
+        budget.amount -= rewards[result]
+        budget.save()
+
+    channel_layer = get_channel_layer()
+
+    async_to_sync(channel_layer.group_send)(
+        "lootboxes_channel",  # Группа, к которой подключены клиенты
+        {
+            "type": "broadcast_win",
+            "reward": reward,
+        }
+    )
+
+    from player.logs.print_log import log
+    log(math.ceil(budget.amount / 2))
+
+    async_to_sync(channel_layer.group_send)(
+        "lootboxes_channel",  # Группа, к которой подключены клиенты
+        {
+            "type": "broadcast_purchase",
+            "value": math.ceil(budget.amount / 2),
+        }
+    )
+
     return results, reward
-
-

@@ -7,9 +7,13 @@
 {% load l10n %}{% load i18n %}
 
 {% block content %}
+<script>
+    const chat_conn_type = "{% if http_use %}ws{% else %}wss{% endif %}";
+</script>
+<script src='{% static "js/redesign/lootbox_socket.js" %}'></script>
 <section class="box custom-scroll">
     <!-- Заголовок -->
-    <h1 class="box__title ct__page-title">Аэрокейсы</h1>
+    <h1 class="box__title ct__page-title">Ледяные сундуки</h1>
 
 
     <!-- Табы -->
@@ -30,7 +34,7 @@
                         fill="var(--c10one)" />
                 </g>
             </svg>
-            <span>мои кейсы</span>
+            <span>мои сундуки</span>
         </button>
 
         <button class="ct__top-tab ct__top-tab2 ct__mid-btn">
@@ -56,14 +60,14 @@
     <!-- Блок "Мои сундуки" -->
     <div class="box__block active">
         <p class="box__desc">
-            Открывайте Аэрокейсы и получайте окраски самолётов и золото!
+            Открывайте Ледяные сундуки и богатейте!
         </p>
 
         <div class="box__pic">
-            <img class="box__picImg" src="{% static 'img/avia_chest.png' %}" alt="">
+            <img class="box__picImg" src="{% static 'img/ice_chest.png' %}" alt="" style="object-fit: contain">
 
             <button class="box__picBtn">
-                <span>У вас нет Аэрокейсов</span>
+                <span>У вас нет сундуков</span>
                 <svg width="90" height="90" viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
                         d="M45 0C33.0653 3.35549e-05 21.6194 4.7411 13.1802 13.1802C4.7411 21.6194 3.35549e-05 33.0653 0 45C3.34951e-05 56.9347 4.7411 68.3806 13.1802 76.8198C21.6194 85.2589 33.0653 90 45 90C56.9347 90 68.3806 85.2589 76.8198 76.8198C85.2589 68.3806 90 56.9347 90 45C90 33.0653 85.2589 21.6194 76.8198 13.1802C68.3806 4.7411 56.9347 3.34951e-05 45 0ZM45 8.01812C54.8082 8.01815 64.2147 11.9145 71.1501 18.8499C78.0855 25.7853 81.9818 35.1918 81.9819 45C81.9818 54.8082 78.0855 64.2147 71.1501 71.1501C64.2147 78.0855 54.8082 81.9818 45 81.9819C35.1918 81.9818 25.7853 78.0855 18.8499 71.1501C11.9145 64.2147 8.01815 54.8082 8.01812 45C8.01815 35.1918 11.9145 25.7853 18.8499 18.8499C25.7853 11.9145 35.1918 8.01815 45 8.01812ZM44.5345 24.7951C42.5323 24.7951 40.9205 26.4069 40.9205 28.4091V40.9205H28.4091C26.4069 40.9205 24.7951 42.5323 24.7951 44.5345V45.4655C24.7951 47.4677 26.4069 49.0795 28.4091 49.0795H40.9205V61.5909C40.9205 63.5931 42.5323 65.2049 44.5345 65.2049H45.4655C47.4677 65.2049 49.0795 63.5931 49.0795 61.5909V49.0795H61.5909C63.5931 49.0795 65.2049 47.4677 65.2049 45.4655V44.5345C65.2049 42.5323 63.5931 40.9205 61.5909 40.9205H49.0795V28.4091C49.0795 26.4069 47.4677 24.7951 45.4655 24.7951H44.5345Z"
@@ -75,7 +79,7 @@
             <div class="box__picBtns">
 
                 <p class="box__picChestCount">
-                    Количество кейсов: <span class="box__picChestCount--count">0</span>
+                    Количество сундуков: <span class="box__picChestCount--count">0</span>
                 </p>
 
                 <button class="box__picOpen10 ct__mid-btn">
@@ -99,10 +103,11 @@
                 </button>
 
             </div>
+            <div class="war__playerDamage"></div>
         </div>
 
         <p class="box__desc">
-            В этом кейсе вы можете найти:
+            В этом сундуке вы можете найти:
         </p>
 
         <li class="box__altItem" style="max-width: 300rem; margin: 0 auto;  margin-bottom: 30rem;">
@@ -221,21 +226,13 @@
 
     <!-- Блок "Приобрести" -->
     <div class="box__block">
-        {% if all_planes %}
-        <p class="box__desc">
-            Поздравляем, вы получили все награды из Аэрокейсов.
-        </p>
-        <p class="box__desc">
-            До встречи на следующем игровом событии!
-        </p>
-        {% else %}
         <p class="box__desc">
             Наборы Ледяных сундуков за игровые средства:
         </p>
 
         <ul class="box__buyList">
-            <li class="box__buyItem">
-                <img src="/static/img/avia_chest.png" alt="">
+            <li class="box__buyItem" style="justify-content: space-evenly;">
+                <img src="/static/img/ice_chest.png" alt="">
 
                 <span>x&nbsp;
                     <input id="count" name="count" type="number" class="search-modal__withInput-input" min="1" value="1">
@@ -247,44 +244,43 @@
                         100 000
                     </span>
                 </div>
-
-                <div class="box__buyBtnBlock">
-                    <button class="ct__mid-btn" id="buy_bye" onclick="cash_lootbox(1)">
-                        <svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
-                            <mask id="mask0_59_315" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
-                                <path class="geometry1" d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"></path>
-                            </mask>
-                            <g mask="url(#mask0_59_315)">
-                                <path class="geometry2" fill="var(--c10two)" d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z"></path>
-                                <path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"></path>
-                                <path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"></path>
-                                <path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"></path>
-                            </g>
-                        </svg>
-                        <span style="display: flex;align-items: center;gap: 5rem;">купить
-                        </span>
-                    </button>
-                </div>
-
-                <script>
-                    document.addEventListener('DOMContentLoaded', function () {
-                        const countInput = document.getElementById('count');
-                        const amountElement = document.getElementById('amount');
-                        const buyButton = document.getElementById('buy_bye');
-
-                        countInput.addEventListener('input', function () {
-                            // Получаем текущее значение count
-                            const countValue = parseInt(countInput.value, 10) || 1;
-
-                            // Обновляем значение в элементе amount
-                            amountElement.textContent = (countValue * 100000).toLocaleString();
-
-                            // Обновляем аргумент функции buy_lootbox в кнопке
-                            buyButton.setAttribute('onclick', `cash_lootbox(${countValue})`);
-                        });
-                    });
-                </script>
             </li>
+            <div class="box__buyBtnBlock">
+                <button class="ct__mid-btn" id="buy_bye" onclick="cash_lootbox(1)">
+                    <svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
+                        <mask id="mask0_59_315" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
+                            <path class="geometry1" d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"></path>
+                        </mask>
+                        <g mask="url(#mask0_59_315)">
+                            <path class="geometry2" fill="var(--c10two)" d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z"></path>
+                            <path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"></path>
+                            <path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"></path>
+                            <path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"></path>
+                        </g>
+                    </svg>
+                    <span style="display: flex;align-items: center;gap: 5rem;">купить
+                    </span>
+                </button>
+            </div>
+
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    const countInput = document.getElementById('count');
+                    const amountElement = document.getElementById('amount');
+                    const buyButton = document.getElementById('buy_bye');
+
+                    countInput.addEventListener('input', function () {
+                        // Получаем текущее значение count
+                        const countValue = parseInt(countInput.value, 10) || 1;
+
+                        // Обновляем значение в элементе amount
+                        amountElement.textContent = (countValue * 100000).toLocaleString();
+
+                        // Обновляем аргумент функции buy_lootbox в кнопке
+                        buyButton.setAttribute('onclick', `cash_lootbox(${countValue})`);
+                    });
+                });
+            </script>
         </ul>
 
         <p class="box__desc" style="margin-top: 50rem;">
@@ -293,7 +289,7 @@
 
         <ul class="box__buyList">
             <li class="box__buyItem">
-                <img src="{% static 'img/avia_chest.png' %}" alt="">
+                <img src="/static/img/ice_chest.png" alt="">
                 <span>x10</span>
                 <div class="box__buyBtnBlock">
                     <button class="ct__mid-btn" onclick="buy_lootbox(1)">
@@ -321,7 +317,6 @@
                 </div>
             </li>
         </ul>
-        {% endif %}
     </div>
     <!-- КОНЕЦ: Блок "Приобрести" -->
 
@@ -335,7 +330,7 @@
         </button>
 
         <h3 class="box__subTitle">
-            Открываем кейс...
+            Открываем сундук...
         </h3>
 
         <div id='carousel1' style="display: none">
@@ -388,7 +383,7 @@
         </button>
 
         <h3 class="box__subTitle">
-            Открываем кейсы...
+            Открываем сундук...
         </h3>
 
         <div class="box__3carouselWrapper">
@@ -686,7 +681,7 @@
 	</script>
 
 	<script>
-        // кейсы - запустить открытие
+        // сундук - запустить открытие
         function open_aviaboxes(){
             var sending_data = "&csrfmiddlewaretoken=" + csrftoken;
 
@@ -868,5 +863,20 @@
 		const flyModal1Close = flyModal1.querySelector('.box__close');
 
 		flyModal1Close.addEventListener('click', () => { flyModal1.classList.remove('active'); });
+</script>
+
+<script>
+	/* создание выскакивающего сообщения */
+	const messagesContainer = document.querySelector('.war__playerDamage');
+	function createDamageMessage(src, points, isLeft) {
+		const newMessage = document.createElement('div');
+		isLeft ? newMessage.classList.add('left') : newMessage.classList.add('right');
+		isLeft ?
+			newMessage.insertAdjacentHTML('beforeend', `<img src="${src}"><span>+${points.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")}</span>`)
+			:
+			newMessage.insertAdjacentHTML('beforeend', `<span>+${points.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")}</span><img src="${src}">`);
+		messagesContainer.appendChild(newMessage);
+		setTimeout(() => newMessage.remove(), 5000);
+	}
 </script>
 {% endblock %}

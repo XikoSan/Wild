@@ -9,10 +9,12 @@ from django.utils import translation
 from django.utils.translation import pgettext
 from django.utils.translation import ugettext as _
 from math import ceil
-
+from asgiref.sync import async_to_sync
+from channels.layers import get_channel_layer
 from player.decorators.player import check_player
 from player.logs.gold_log import GoldLog
 from player.logs.wildpass_log import WildpassLog
+from player.lootbox.jackpot import Jackpot
 from player.lootbox.lootbox import Lootbox
 from player.player import Player
 from player.player_settings import PlayerSettings
@@ -74,6 +76,24 @@ def buy_lootboxes(request):
         player.save()
 
         WildpassLog(player=player, count=0 - buy_cost, activity_txt='box').save()
+
+        if not Jackpot.objects.filter(amount__gt=200000).exists():
+            jp = Jackpot(amount=10000000)
+
+        else:
+            jp = Jackpot.objects.filter(amount__gt=200000).first()
+
+        jp.amount += buy_cost * 1000000
+        jp.save()
+
+        channel_layer = get_channel_layer()
+        async_to_sync(channel_layer.group_send)(
+            "lootboxes_channel",  # Группа, к которой подключены клиенты
+            {
+                "type": "broadcast_purchase",
+                "value": ceil(jp.amount / 2),
+            }
+        )
 
         data = {
             'response': 'ok',
