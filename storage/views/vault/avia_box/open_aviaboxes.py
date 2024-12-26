@@ -2,6 +2,8 @@ import re
 from datetime import datetime, timedelta
 from dateutil.relativedelta import relativedelta
 from django.apps import apps
+import json
+import redis
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from django.utils import translation
@@ -39,6 +41,56 @@ def open_aviaboxes(request):
         CashLog = apps.get_model('player.CashLog')
 
         spins, reward = generate_rewards()
+
+        # ----------------------------------------
+
+        redis_client = redis.StrictRedis(host='redis', port=6379, db=0)
+
+        key = f'boxes_{player.pk}'
+
+        # Получение текущих данных игрока
+        data = redis_client.get(key)
+        if data:
+            player_data = json.loads(data)
+        else:
+            player_data = {"expense": 0, "income": 0}
+
+        # Обновление данных
+        # player_data["expense"] += expense
+        player_data["income"] += reward
+
+        # Сохранение обратно в Redis
+        redis_client.set(key, json.dumps(player_data))
+
+        # ----------------------------------------
+
+        key = f'drops_{player.pk}'
+
+        # Получаем текущий список спинов для пользователя
+        current_data = redis_client.lrange(key, 0, -1)
+
+        # Преобразуем данные из строки в словарь
+        current_data = [eval(item) for item in current_data]
+
+        # Формируем новую запись
+        spin_data = spins
+        spin_data.append(reward)
+
+        # Добавляем новую запись в локальный список
+        current_data.append(spin_data)
+
+        # Ограничиваем количество записей до 10
+        if len(current_data) > 10:
+            current_data.pop(0)
+
+        # Преобразуем данные обратно в строки
+        stringified_data = [str(item) for item in current_data]
+
+        # Полностью заменяем содержимое списка в Redis
+        redis_client.delete(key)  # Удаляем старый ключ
+        redis_client.rpush(key, *stringified_data)  # Записываем обновлённые данные
+
+        # ----------------------------------------
 
         if reward > 0:
             player.cash += reward

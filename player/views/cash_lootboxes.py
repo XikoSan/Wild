@@ -11,7 +11,8 @@ from django.utils import translation
 from django.utils.translation import pgettext
 from django.utils.translation import ugettext as _
 from math import ceil
-
+import json
+import redis
 from player.decorators.player import check_player
 from player.logs.cash_log import CashLog
 from player.logs.gold_log import GoldLog
@@ -86,6 +87,27 @@ def cash_lootboxes(request):
 
         jp.amount += buy_cost
         jp.save()
+
+        # ----------------------------------------
+
+        redis_client = redis.StrictRedis(host='redis', port=6379, db=0)
+
+        key = f'boxes_{player.pk}'
+
+        # Получение текущих данных игрока
+        data = redis_client.get(key)
+        if data:
+            player_data = json.loads(data)
+        else:
+            player_data = {"expense": 0, "income": 0}
+
+        # Обновление данных
+        player_data["expense"] += buy_cost
+
+        # Сохранение обратно в Redis
+        redis_client.set(key, json.dumps(player_data))
+
+        # ----------------------------------------
 
         channel_layer = get_channel_layer()
         async_to_sync(channel_layer.group_send)(

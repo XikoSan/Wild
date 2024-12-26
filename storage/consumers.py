@@ -42,9 +42,6 @@ class LootboxConsumer(AsyncWebsocketConsumer):
 
     async def connect(self):
 
-
-        log('кря2')
-
         self.room_name = "lootboxes_channel"
         self.room_group_name = "lootboxes_channel"
 

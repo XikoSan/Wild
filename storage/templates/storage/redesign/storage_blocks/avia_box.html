@@ -15,47 +15,13 @@
     <!-- Заголовок -->
     <h1 class="box__title ct__page-title">Ледяные сундуки</h1>
 
-
-    <!-- Табы -->
-    <div class="box__tabs ct__top-tabs">
-        <button class="ct__top-tab ct__top-tab1 active ct__mid-btn">
-            <svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
-                <mask id="mask0_259_317" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144"
-                    height="30">
-                    <path class="geometry1" d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z" />
-                </mask>
-                <g mask="url(#mask0_259_317)">
-                    <path class="geometry2" d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" />
-                    <path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z"
-                        fill="var(--c10one)" />
-                    <path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z"
-                        fill="var(--c10one)" />
-                    <path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z"
-                        fill="var(--c10one)" />
-                </g>
-            </svg>
-            <span>мои сундуки</span>
-        </button>
-
-        <button class="ct__top-tab ct__top-tab2 ct__mid-btn">
-            <svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
-                <mask id="mask0_259_318" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144"
-                    height="30">
-                    <path class="geometry1" d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z" />
-                </mask>
-                <g mask="url(#mask0_259_318)">
-                    <path class="geometry2" d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" />
-                    <path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z"
-                        fill="var(--c10one)" />
-                    <path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z"
-                        fill="var(--c10one)" />
-                    <path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z"
-                        fill="var(--c10one)" />
-                </g>
-            </svg>
-            <span>приобрести</span>
-        </button>
+    <div class="articles__tabs" style="max-width: 600rem; margin: 0 auto; padding: 0 12rem;">
+        <button class="ct__top-tab ct__top-tab1 active">сундуки</button>
+        <button class="ct__top-tab ct__top-tab2">купить</button>
+        <button class="ct__top-tab ct__top-tab3">история</button>
     </div>
+
+    <div class="DecorLine"></div>
 
     <!-- Блок "Мои сундуки" -->
     <div class="box__block active">
@@ -177,7 +143,7 @@
             <li class="box__altItem">
                     <div class="box__altItemLeft">
                         <span>шанс</span>
-                        <span>25%</span>
+                        <span>24%</span>
                     </div>
                     <div class="box__altItemRight">
                     <h3>$40 000</h3>
@@ -192,7 +158,7 @@
             <li class="box__altItem">
                     <div class="box__altItemLeft">
                         <span>шанс</span>
-                        <span>66%</span>
+                        <span>62%</span>
                     </div>
                     <div class="box__altItemRight">
                     <h3>$20 000</h3>
@@ -320,6 +286,82 @@
     </div>
     <!-- КОНЕЦ: Блок "Приобрести" -->
 
+   <!-- Блок "история" -->
+    <div class="box__block">
+        <p class="box__desc">Статистика за всё время:</p>
+        <li class="box__buyItem" style="justify-content: center;max-width: 800rem;margin: auto;gap: 50rem;">
+
+            <div style="display: flex; flex-direction: column;align-items: center; ">
+                <span style="font-size: 14rem;">потрачено</span>
+                    <div style="margin-top: 10rem;">
+                    <span style="font-size: 14rem;color: tomato;">$</span>
+                    <span style="font-size: 14rem;color: tomato;">
+                        {{ player_data|dict_key:'expense' }}
+                    </span>
+                </div>
+            </div>
+
+            <div style="display: flex; flex-direction: column; align-items: center;">
+
+                <span style="font-size: 14rem;">открыто</span>
+
+                <div style="margin-top: 10rem;">
+                    <span style="font-size: 14rem;">
+                        {{ lootbox_opened }}
+                    </span>
+                </div>
+
+            </div>
+
+            <div style="display: flex; flex-direction: column; align-items: center;">
+                <span style="font-size: 14rem;">получено</span>
+
+                <div style="margin-top: 10rem;">
+                    <span style="font-size: 14rem;color: #8DFF47;">$</span>
+                    <span style="font-size: 14rem;color: #8DFF47;">
+                        {{ player_data|dict_key:'income' }}
+                    </span>
+
+                </div>
+            </div>
+        </li>
+
+        <p class="box__desc" style="margin-top: 24rem;margin-bottom: auto;">
+            Последние открытия сундуков:
+        </p>
+
+        <ul class="box__buyList" id="dummyLine" style="display: none; flex-direction: row; justify-content: space-around; gap: 15rem; margin-top: 20rem;">
+            <li class="box__buyItem" style="gap: 30rem;">
+                 <img class="carImg" src="">
+            </li>
+            <li class="box__buyItem" style="min-width: 100rem; justify-content: flex-end;">
+                <span style="font-size: 14rem;">$ </span>
+                <span class="drop" style="font-size: 14rem;">
+
+                </span>
+            </li>
+        </ul>
+
+        {% for drop in drop_data %}
+        <ul class="box__buyList" style="flex-direction: row; justify-content: space-around; gap: 15rem; margin-top: 20rem;">
+            <li class="box__buyItem" style="gap: 30rem;">
+                    {% for spin in drop %}
+                        {% if forloop.counter0 != 3 %}
+                             <img class="carImg" src="/static/img/planes/{% if spin == 'disk' %}beluzzo/beluzzo_base{% elif spin == 'gold' %}trickster/trickster_friday{% elif spin == 'violet' %}demolisher/demolisher_violet{% elif spin == 'blue' %}harrier/harrier_dark_blue{% elif spin == 'green' %}pretender/pretender_green{% elif spin == 'white' %}nagger/nagger_base{% endif %}.svg" alt="disk">
+                        {% endif %}
+                    {% endfor %}
+            </li>
+            <li class="box__buyItem" style="min-width: 100rem; justify-content: flex-end;">
+                <span style="font-size: 14rem;">$ </span>
+                <span style="font-size: 14rem;">
+                    {% for spin in drop %}
+                        {% if forloop.counter0 == 3 %}{{ spin }}{% endif %}
+                    {% endfor %}
+                </span>
+            </li>
+        </ul>
+        {% endfor %}
+    </div>
 
     <!-- Модалка с лутом 1на рулетка-->
     <div class="box__modal custom-scroll box__modal1">
@@ -549,6 +591,65 @@
 
 
 <script>
+        // Функция для клонирования элемента и заполнения данными
+        function cloneAndFillDummyLine(imagesToAdd, dropText) {
+            // Найти элемент dummyLine
+            const dummyLine = document.getElementById("dummyLine");
+            if (!dummyLine) {
+                console.error("Элемент с id 'dummyLine' не найден.");
+                return;
+            }
+
+            // Клонировать dummyLine
+            const newLine = dummyLine.cloneNode(true);
+
+            // Удалить атрибут display: none;
+            newLine.style.display = "flex";
+
+            // Найти целевой элемент для добавления img
+            const carListItem = newLine.querySelector('li[style*="gap: 30rem;"]');
+            if (!carListItem) {
+                console.error("Не найден целевой элемент для добавления img.");
+                return;
+            }
+
+            // Очищаем существующие элементы img в li
+            carListItem.innerHTML = "";
+
+            // Источник данных для картинок
+            const carItems = [
+                { src: "/static/img/planes/beluzzo/beluzzo_base.svg", alt: "disk" },
+                { src: "/static/img/planes/trickster/trickster_friday.svg", alt: "gold" },
+                { src: "/static/img/planes/demolisher/demolisher_violet.svg", alt: "violet" },
+                { src: "/static/img/planes/harrier/harrier_dark_blue.svg", alt: "blue" },
+                { src: "/static/img/planes/pretender/pretender_green.svg", alt: "green" },
+                { src: "/static/img/planes/nagger/nagger_base.svg", alt: "white" }
+            ];
+
+            // Добавить новые изображения из списка
+            imagesToAdd.forEach((alt) => {
+                const carItem = carItems.find((item) => item.alt === alt);
+                if (carItem) {
+                    const img = document.createElement("img");
+                    img.className = "carImg";
+                    img.src = carItem.src;
+                    img.alt = carItem.alt;
+                    carListItem.appendChild(img);
+                }
+            });
+
+            // Найти элемент drop и заполнить его текстом
+            const dropElement = newLine.querySelector(".drop");
+            if (dropElement) {
+                dropElement.textContent = dropText;
+            } else {
+                console.error("Элемент с классом 'drop' не найден.");
+            }
+
+            // Вставить новый элемент после dummyLine
+            dummyLine.parentNode.insertBefore(newLine, dummyLine.nextSibling);
+        }
+
         // сундуки - использование
         function buy_lootbox(count){
             var sending_data = "&csrfmiddlewaretoken=" + csrftoken + "&count=" + count;
@@ -748,11 +849,17 @@
 					set: (obj, prop, value) => {
 						switch (prop) {
 							case "currentBlock":
-								value === 0 ? this.tabs[0].classList.add('active') : this.tabs[0].classList.remove('active');
-								value === 1 ? this.tabs[1].classList.add('active') : this.tabs[1].classList.remove('active');
-								value === 0 ? this.blocks[0].classList.add('active') : this.blocks[0].classList.remove('active');
-								value === 1 ? this.blocks[1].classList.add('active') : this.blocks[1].classList.remove('active');
-								obj[prop] = value; return true;
+                                for (let i = 0; i < 3; i++) {
+                                    if (value === i) {
+                                        this.tabs[i].classList.add('active');
+                                        this.blocks[i].classList.add('active');
+                                    } else {
+                                        this.tabs[i].classList.remove('active');
+                                        this.blocks[i].classList.remove('active');
+                                    }
+                                }
+                                obj[prop] = value;
+                                return true;
 
 							case "chestCount":
 								value === 0 ? this.goToBuyBtn.style.display = '' : this.goToBuyBtn.style.display = 'none';
@@ -803,6 +910,7 @@
 				this.goToBuyBtn.addEventListener('click', () => this.state.currentBlock = 1);
 				this.tabs[0].addEventListener('click', () => this.state.currentBlock = 0);
 				this.tabs[1].addEventListener('click', () => this.state.currentBlock = 1);
+				this.tabs[2].addEventListener('click', () => this.state.currentBlock = 2);
 				this.popupClose1.addEventListener('click', () => {
 					this.state.isPopup1Opened = false;
 					carousel1.modalInfo1.classList.remove('active');
@@ -845,6 +953,8 @@
 
                             document.getElementById("prize_name").innerHTML = numberWithSpaces(data.reward);
                             this.state.chestCount = data.boxes_count;
+
+                            cloneAndFillDummyLine([data.prizes[0], data.prizes[1], data.prizes[2]], numberWithSpaces(data.reward.replace(/\$/g, "")));
                         }
                         else{
                             display_modal('notify', data.header, data.response, null, data.grey_btn);
