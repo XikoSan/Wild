@@ -57,7 +57,12 @@ def avia_lootbox(request):
     if total_cash is None:
         total_cash = 0
 
-    if total_cash < -10000000:
+    from player.logs.print_log import log
+    log(total_cash)
+
+    limit = int((10000000 + total_cash)/100000)
+
+    if limit == 0:
         blocked = True
 
     # ----------------------------------------
@@ -103,5 +108,7 @@ def avia_lootbox(request):
 
         'player_data': player_data,
         'drop_data': drop_data,
+
+        'limit': limit,
     })
     return response

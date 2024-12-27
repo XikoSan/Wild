@@ -1,20 +1,21 @@
+import json
 import pytz
 import re
+import redis
 from asgiref.sync import async_to_sync
 from channels.layers import get_channel_layer
 from datetime import datetime, timedelta
 from dateutil.relativedelta import relativedelta
 from django.apps import apps
 from django.contrib.auth.decorators import login_required
+from django.db.models import Sum
 from django.utils import timezone
-from django.utils.timezone import now, timedelta
 from django.utils import translation
+from django.utils.timezone import now, timedelta
 from django.utils.translation import pgettext
 from django.utils.translation import ugettext as _
 from math import ceil
-import json
-from django.db.models import Sum
-import redis
+
 from player.decorators.player import check_player
 from player.logs.cash_log import CashLog
 from player.logs.gold_log import GoldLog
@@ -51,7 +52,7 @@ def cash_lootboxes(request):
         if total_cash is None:
             total_cash = 0
 
-        if total_cash < -10000000:
+        if total_cash <= -10000000:
             data = {
                 'response': 'Исчерпаны покупки лутбоксов за деньги. Подождите немного',
                 'header': 'Приобретение сундуков',
@@ -83,6 +84,18 @@ def cash_lootboxes(request):
         if player.cash < buy_cost:
             data = {
                 'response': 'Недостаточно средств для покупки',
+                'header': 'Приобретение сундуков',
+                'grey_btn': pgettext('core', 'Закрыть'),
+            }
+            return JResponse(data)
+
+        from player.logs.print_log import log
+        log(total_cash)
+        log(buy_cost)
+
+        if total_cash - buy_cost < -10000000:
+            data = {
+                'response': f'На данный момент, вам доступно для покупки только {int((10000000 + total_cash) / 100000)} сундуков',
                 'header': 'Приобретение сундуков',
                 'grey_btn': pgettext('core', 'Закрыть'),
             }
