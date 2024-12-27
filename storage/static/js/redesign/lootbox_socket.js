@@ -32,7 +32,7 @@ function connectWebSocket() {
                     globWebSocket = connectWebSocket();
                 }, reconnectInterval);
             } else {
-                display_modal('notify', 'Соединение прервалось', 'Перезагрузите страницу, чтобы переподключиться', null, "Понятно");
+                display_modal('notify', conn_header, conn_body, null, conn_ok;
             }
         }
     };

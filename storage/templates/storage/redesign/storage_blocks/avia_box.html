@@ -9,16 +9,20 @@
 {% block content %}
 <script>
     const chat_conn_type = "{% if http_use %}ws{% else %}wss{% endif %}";
+
+    const conn_header = '{% trans 'Соединение прервалось' context "lootbox" %}';
+    const conn_body = '{% trans 'Перезагрузите страницу, чтобы переподключиться' context "lootbox" %}';
+    const conn_ok = "{% trans 'Понятно' context "lootbox" %}";
 </script>
 <script src='{% static "js/redesign/lootbox_socket.js" %}'></script>
 <section class="box custom-scroll">
     <!-- Заголовок -->
-    <h1 class="box__title ct__page-title">Ледяные сундуки</h1>
+    <h1 class="box__title ct__page-title">{% trans 'Ледяные сундуки' context "lootbox" %}</h1>
 
     <div class="articles__tabs" style="max-width: 600rem; margin: 0 auto; padding: 0 12rem;">
-        <button class="ct__top-tab ct__top-tab1 active">сундуки</button>
-        <button class="ct__top-tab ct__top-tab2">купить</button>
-        <button class="ct__top-tab ct__top-tab3">история</button>
+        <button class="ct__top-tab ct__top-tab1 active">{% trans 'сундуки' context "lootbox" %}</button>
+        <button class="ct__top-tab ct__top-tab2">{% trans 'купить' context "lootbox" %}</button>
+        <button class="ct__top-tab ct__top-tab3">{% trans 'история' context "lootbox" %}</button>
     </div>
 
     <div class="DecorLine"></div>
@@ -26,7 +30,7 @@
     <!-- Блок "Мои сундуки" -->
     <div class="box__block active">
         <p class="box__desc">
-            Открывайте Ледяные сундуки и богатейте!
+            {% trans 'Открывайте Ледяные сундуки и богатейте!' context "lootbox" %}
         </p>
 
         <div class="box__pic">
@@ -39,13 +43,13 @@
                         d="M45 0C33.0653 3.35549e-05 21.6194 4.7411 13.1802 13.1802C4.7411 21.6194 3.35549e-05 33.0653 0 45C3.34951e-05 56.9347 4.7411 68.3806 13.1802 76.8198C21.6194 85.2589 33.0653 90 45 90C56.9347 90 68.3806 85.2589 76.8198 76.8198C85.2589 68.3806 90 56.9347 90 45C90 33.0653 85.2589 21.6194 76.8198 13.1802C68.3806 4.7411 56.9347 3.34951e-05 45 0ZM45 8.01812C54.8082 8.01815 64.2147 11.9145 71.1501 18.8499C78.0855 25.7853 81.9818 35.1918 81.9819 45C81.9818 54.8082 78.0855 64.2147 71.1501 71.1501C64.2147 78.0855 54.8082 81.9818 45 81.9819C35.1918 81.9818 25.7853 78.0855 18.8499 71.1501C11.9145 64.2147 8.01815 54.8082 8.01812 45C8.01815 35.1918 11.9145 25.7853 18.8499 18.8499C25.7853 11.9145 35.1918 8.01815 45 8.01812ZM44.5345 24.7951C42.5323 24.7951 40.9205 26.4069 40.9205 28.4091V40.9205H28.4091C26.4069 40.9205 24.7951 42.5323 24.7951 44.5345V45.4655C24.7951 47.4677 26.4069 49.0795 28.4091 49.0795H40.9205V61.5909C40.9205 63.5931 42.5323 65.2049 44.5345 65.2049H45.4655C47.4677 65.2049 49.0795 63.5931 49.0795 61.5909V49.0795H61.5909C63.5931 49.0795 65.2049 47.4677 65.2049 45.4655V44.5345C65.2049 42.5323 63.5931 40.9205 61.5909 40.9205H49.0795V28.4091C49.0795 26.4069 47.4677 24.7951 45.4655 24.7951H44.5345Z"
                         fill="white" />
                 </svg>
-                <span>приобрести</span>
+                <span>{% trans 'приобрести' context "lootbox" %}</span>
             </button>
 
             <div class="box__picBtns">
 
                 <p class="box__picChestCount">
-                    Количество сундуков: <span class="box__picChestCount--count">0</span>
+                    {% trans 'Количество сундуков:' context "lootbox" %} <span class="box__picChestCount--count">0</span>
                 </p>
 
                 <button class="box__picOpen10 ct__mid-btn">
@@ -65,7 +69,7 @@
                                 d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)" />
                         </g>
                     </svg>
-                    <span>Открыть</span>
+                    <span>{% trans 'Открыть' context "lootbox" %}</span>
                 </button>
 
             </div>
@@ -73,14 +77,14 @@
         </div>
 
         <p class="box__desc">
-            В этом сундуке вы можете найти:
+            {% trans 'В этом сундуке вы можете найти:' context "lootbox" %}
         </p>
 
         <li class="box__altItem" style="max-width: 300rem; margin: 0 auto;  margin-bottom: 30rem;">
             <div style="display: flex;flex-direction: row;gap: 6rem;flex-grow: 1;justify-content: space-around; align-items: center">
 
                 <div class="box__altItemLeft">
-                    <span>шанс</span>
+                    <span>{% trans 'шанс' context "lootbox" %}</span>
                     <span>0.001%</span>
                 </div>
 
@@ -98,7 +102,7 @@
         <ul class="box__altList">
             <li class="box__altItem">
                     <div class="box__altItemLeft">
-                        <span>шанс</span>
+                        <span>{% trans 'шанс' context "lootbox" %}</span>
                         <span>1%</span>
                     </div>
                     <div class="box__altItemRight">
@@ -113,7 +117,7 @@
 
             <li class="box__altItem">
                     <div class="box__altItemLeft">
-                        <span>шанс</span>
+                        <span>{% trans 'шанс' context "lootbox" %}</span>
                         <span>3%</span>
                     </div>
                     <div class="box__altItemRight">
@@ -128,7 +132,7 @@
 
             <li class="box__altItem">
                     <div class="box__altItemLeft">
-                        <span>шанс</span>
+                        <span>{% trans 'шанс' context "lootbox" %}</span>
                         <span>10%</span>
                     </div>
                     <div class="box__altItemRight">
@@ -142,7 +146,7 @@
 
             <li class="box__altItem">
                     <div class="box__altItemLeft">
-                        <span>шанс</span>
+                        <span>{% trans 'шанс' context "lootbox" %}</span>
                         <span>24%</span>
                     </div>
                     <div class="box__altItemRight">
@@ -157,7 +161,7 @@
 
             <li class="box__altItem">
                     <div class="box__altItemLeft">
-                        <span>шанс</span>
+                        <span>{% trans 'шанс' context "lootbox" %}</span>
                         <span>62%</span>
                     </div>
                     <div class="box__altItemRight">
@@ -172,7 +176,7 @@
 
             <li class="box__altItem">
                     <div class="box__altItemLeft">
-                        <span>шанс</span>
+                        <span>{% trans 'шанс' context "lootbox" %}</span>
                         <span>0.1%</span>
                     </div>
                     <div class="box__altItemRight">
@@ -193,7 +197,7 @@
     <!-- Блок "Приобрести" -->
     <div class="box__block">
         <p class="box__desc">
-            Наборы Ледяных сундуков за игровые средства:
+            {% trans 'Наборы Ледяных сундуков за игровые средства:' context "lootbox" %}
         </p>
 
         <ul class="box__buyList">
@@ -224,7 +228,7 @@
                             <path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"></path>
                         </g>
                     </svg>
-                    <span style="display: flex;align-items: center;gap: 5rem;">купить
+                    <span style="display: flex;align-items: center;gap: 5rem;">{% trans 'купить' context "lootbox" %}
                     </span>
                 </button>
             </div>
@@ -250,7 +254,7 @@
         </ul>
 
         <p class="box__desc" style="margin-top: 50rem;">
-            Наборы Ледяных сундуков за Wild Pass:
+            {% trans 'Наборы Ледяных сундуков за Wild Pass:' context "lootbox" %}
         </p>
 
         <ul class="box__buyList">
@@ -288,11 +292,11 @@
 
    <!-- Блок "история" -->
     <div class="box__block">
-        <p class="box__desc">Статистика за всё время:</p>
+        <p class="box__desc">{% trans 'Статистика за всё время:' context "lootbox" %}</p>
         <li class="box__buyItem" style="justify-content: center;max-width: 800rem;margin: auto;gap: 50rem;">
 
             <div style="display: flex; flex-direction: column;align-items: center; ">
-                <span style="font-size: 14rem;">потрачено</span>
+                <span style="font-size: 14rem;">{% trans 'потрачено' context "lootbox" %}</span>
                     <div style="margin-top: 10rem;">
                     <span style="font-size: 14rem;color: tomato;">$</span>
                     <span style="font-size: 14rem;color: tomato;">
@@ -303,7 +307,7 @@
 
             <div style="display: flex; flex-direction: column; align-items: center;">
 
-                <span style="font-size: 14rem;">открыто</span>
+                <span style="font-size: 14rem;">{% trans 'открыто' context "lootbox" %}</span>
 
                 <div style="margin-top: 10rem;">
                     <span id="lootbox_opened" style="font-size: 14rem;">
@@ -314,7 +318,7 @@
             </div>
 
             <div style="display: flex; flex-direction: column; align-items: center;">
-                <span style="font-size: 14rem;">получено</span>
+                <span style="font-size: 14rem;">{% trans 'получено' context "lootbox" %}</span>
 
                 <div style="margin-top: 10rem;">
                     <span style="font-size: 14rem;color: #8DFF47;">$</span>
@@ -327,7 +331,7 @@
         </li>
 
         <p class="box__desc" style="margin-top: 24rem;margin-bottom: auto;">
-            Последние открытия сундуков:
+            {% trans 'Последние открытия сундуков:' context "lootbox" %}
         </p>
 
         <ul class="box__buyList" id="dummyLine" style="display: none; flex-direction: row; justify-content: space-around; gap: 15rem; margin-top: 20rem;">
@@ -382,7 +386,7 @@
         </button>
 
         <h3 class="box__subTitle">
-            Открываем сундук...
+            {% trans 'Открываем сундук...' context "lootbox" %}
         </h3>
 
         <div id='carousel1' style="display: none">
@@ -435,7 +439,7 @@
         </button>
 
         <h3 class="box__subTitle">
-            Открываем сундук...
+            {% trans 'Открываем сундук...' context "lootbox" %}
         </h3>
 
         <div class="box__3carouselWrapper">
@@ -555,7 +559,7 @@
                                         d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)" />
                                 </g>
                             </svg>
-                            <span>Продолжить</span>
+                            <span>{% trans 'Продолжить' context "lootbox" %}</span>
                         </button>
                     </div>
                 </div>
@@ -571,7 +575,6 @@
             </svg>
         </button>
 
-        <h1 class="box__title ct__page-title">Уникальные самолёты</h1>
         <style>
           .box__DropCombinations {
                 gap: 6rem;
