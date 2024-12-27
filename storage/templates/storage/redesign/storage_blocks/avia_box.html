@@ -306,7 +306,7 @@
                 <span style="font-size: 14rem;">открыто</span>
 
                 <div style="margin-top: 10rem;">
-                    <span style="font-size: 14rem;">
+                    <span id="lootbox_opened" style="font-size: 14rem;">
                         {{ lootbox_opened }}
                     </span>
                 </div>
@@ -318,7 +318,7 @@
 
                 <div style="margin-top: 10rem;">
                     <span style="font-size: 14rem;color: #8DFF47;">$</span>
-                    <span style="font-size: 14rem;color: #8DFF47;">
+                    <span id="lootbox_income" data-income="{% localize off %}{{ player_data|dict_key:'income' }}{% endlocalize %}" style="font-size: 14rem;color: #8DFF47;">
                         {{ player_data|dict_key:'income' }}
                     </span>
 
@@ -967,6 +967,21 @@
                             this.state.chestCount = data.boxes_count;
 
                             cloneAndFillDummyLine([data.prizes[0], data.prizes[2], data.prizes[1]], numberWithSpaces(data.reward.replace(/\$/g, "")));
+
+                            const lootboxOpened = document.getElementById("lootbox_opened");
+                            if (lootboxOpened) {
+                                const currentValue = parseInt(lootboxOpened.textContent, 10) || 0;
+                                lootboxOpened.textContent = numberWithSpaces(currentValue + 1);
+                            }
+
+                            const lootboxIncome = document.getElementById("lootbox_income");
+                            if (lootboxIncome) {
+                                const currentIncome = parseInt(lootboxIncome.getAttribute("data-income"), 10) || 0;
+
+                                const newIncome = currentIncome + parseInt(data.reward.replace(/\$/g, "").replace(/\D/g, ""));
+                                lootboxIncome.setAttribute("data-income", newIncome);
+                                lootboxIncome.textContent = numberWithSpaces(newIncome);
+                            }
                         }
                         else{
                             display_modal('notify', data.header, data.response, null, data.grey_btn);
