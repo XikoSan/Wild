@@ -8,11 +8,14 @@ from django.shortcuts import render, redirect
 from django.utils import timezone
 from django.utils.translation import pgettext
 import json
+from django.utils.timezone import now, timedelta
 import redis
 from player.decorators.player import check_player
 from player.logs.gold_log import GoldLog
 from player.lootbox.jackpot import Jackpot
 from player.lootbox.lootbox import Lootbox
+from player.logs.cash_log import CashLog
+from django.db.models import Sum
 from player.player import Player
 from storage.views.vault.avia_box.generate_rewards import prepare_plane_lists
 
@@ -36,6 +39,26 @@ def avia_lootbox(request):
         jp.save()
 
     budget = math.ceil(Jackpot.objects.all().first().amount / 2)
+
+    # ----------------------------------------
+    # Определяем временной диапазон за последние сутки
+    last_24_hours = now() - timedelta(days=1)
+
+    # Суммируем значение поля 'cash' для указанных условий
+    total_cash = CashLog.objects.filter(
+        player=player,
+        activity_txt='buy_box',
+        dtime__gte=last_24_hours
+    ).aggregate(Sum('cash'))['cash__sum']
+
+    blocked = False
+
+    # Если сумма отсутствует, она равна 0
+    if total_cash is None:
+        total_cash = 0
+
+    if total_cash < -10000000:
+        blocked = True
 
     # ----------------------------------------
 
@@ -75,6 +98,8 @@ def avia_lootbox(request):
         'lootbox_count': lootbox_count,
         'lootbox_opened': lootbox_opened,
         'budget': budget,
+
+        'blocked': blocked,
 
         'player_data': player_data,
         'drop_data': drop_data,

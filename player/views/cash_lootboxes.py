@@ -7,11 +7,13 @@ from dateutil.relativedelta import relativedelta
 from django.apps import apps
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
+from django.utils.timezone import now, timedelta
 from django.utils import translation
 from django.utils.translation import pgettext
 from django.utils.translation import ugettext as _
 from math import ceil
 import json
+from django.db.models import Sum
 import redis
 from player.decorators.player import check_player
 from player.logs.cash_log import CashLog
@@ -34,6 +36,28 @@ def cash_lootboxes(request):
 
         # получаем персонажа игрока
         player = Player.get_instance(account=request.user)
+
+        # Определяем временной диапазон за последние сутки
+        last_24_hours = now() - timedelta(days=1)
+
+        # Суммируем значение поля 'cash' для указанных условий
+        total_cash = CashLog.objects.filter(
+            player=player,
+            activity_txt='buy_box',
+            dtime__gte=last_24_hours
+        ).aggregate(Sum('cash'))['cash__sum']
+
+        # Если сумма отсутствует, она равна 0
+        if total_cash is None:
+            total_cash = 0
+
+        if total_cash < -10000000:
+            data = {
+                'response': 'Исчерпаны покупки лутбоксов за деньги. Подождите немного',
+                'header': 'Приобретение сундуков',
+                'grey_btn': pgettext('core', 'Закрыть'),
+            }
+            return JResponse(data)
 
         try:
             buy_count = int(request.POST.get('count'))

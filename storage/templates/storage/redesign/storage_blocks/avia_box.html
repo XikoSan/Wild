@@ -196,6 +196,7 @@
 
     <!-- Блок "Приобрести" -->
     <div class="box__block">
+        {% if not blocked %}
         <p class="box__desc">
             {% trans 'Наборы Ледяных сундуков за игровые средства:' context "lootbox" %}
         </p>
@@ -252,6 +253,8 @@
                 });
             </script>
         </ul>
+
+        {% endif %}
 
         <p class="box__desc" style="margin-top: 50rem;">
             {% trans 'Наборы Ледяных сундуков за Wild Pass:' context "lootbox" %}

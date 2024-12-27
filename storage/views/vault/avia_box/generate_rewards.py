@@ -47,8 +47,8 @@ def rotate_spinner():
         1,  # 300к
         3,  # 100к
         10,  # 60к
-        25,  # 40к
-        65.9,  # 20к
+        20,  # 40к
+        70.9,  # 20к
     ]
     choices = ['disk', 'gold', 'violet', 'blue', 'green', 'white']
 
