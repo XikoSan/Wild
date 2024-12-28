@@ -15,4 +15,4 @@ RUN ln -s /usr/share/zoneinfo/Europe/Moscow /etc/localtime
 
 COPY . .
 
-CMD sh -c "python manage.py migrate --no-input && python manage.py collectstatic --no-input && uvicorn wild_politics.asgi:application --host 0.0.0.0 --port 80 --workers 8"
+CMD sh -c "python manage.py migrate --no-input && python manage.py collectstatic --no-input && uvicorn wild_politics.asgi:application --host 0.0.0.0 --port 80 --workers 4"
