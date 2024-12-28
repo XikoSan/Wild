@@ -62,7 +62,7 @@ def avia_lootbox(request):
 
     limit = int((10000000 + total_cash)/100000)
 
-    if limit == 0:
+    if limit <= 0:
         blocked = True
 
     # ----------------------------------------

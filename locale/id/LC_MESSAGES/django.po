@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-27 22:05+0300\n"
+"POT-Creation-Date: 2024-12-28 03:11+0300\n"
 "PO-Revision-Date: 2022-12-01 16:31+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -279,8 +279,9 @@ msgstr "Kemampuan ID harus berbentuk angka"
 #: player/views/bonus_code/activate_code.py:181
 #: player/views/buy_lootboxes.py:45 player/views/buy_lootboxes.py:53
 #: player/views/buy_lootboxes.py:63 player/views/buy_lootboxes.py:131
-#: player/views/cash_lootboxes.py:45 player/views/cash_lootboxes.py:53
-#: player/views/cash_lootboxes.py:63 player/views/cash_lootboxes.py:131
+#: player/views/cash_lootboxes.py:59 player/views/cash_lootboxes.py:70
+#: player/views/cash_lootboxes.py:78 player/views/cash_lootboxes.py:88
+#: player/views/cash_lootboxes.py:100 player/views/cash_lootboxes.py:168
 #: player/views/change_back_allow.py:43 player/views/change_back_allow.py:59
 #: player/views/change_bio.py:34 player/views/change_nickname.py:24
 #: player/views/change_nickname.py:34 player/views/change_nickname.py:42
@@ -8545,7 +8546,7 @@ msgctxt "activate_code"
 msgid "Данный код уже был активирован"
 msgstr "Penyimpanan telah berada di wilayah saat ini"
 
-#: player/views/buy_lootboxes.py:129 player/views/cash_lootboxes.py:129
+#: player/views/buy_lootboxes.py:129 player/views/cash_lootboxes.py:166
 #: player/views/change_back_allow.py:57
 #: player/views/change_wiki_hide_allow.py:57 region/views/cancel_auto.py:35
 #: region/views/daily_status.py:86 region/views/daily_status.py:88
@@ -8554,7 +8555,7 @@ msgstr "Penyimpanan telah berada di wilayah saat ini"
 msgid "Ошибка метода"
 msgstr "Metode error"
 
-#: player/views/buy_lootboxes.py:130 player/views/cash_lootboxes.py:130
+#: player/views/buy_lootboxes.py:130 player/views/cash_lootboxes.py:167
 msgid "Открытие сундуков"
 msgstr ""
 
@@ -11111,7 +11112,7 @@ msgid "сундуки"
 msgstr ""
 
 #: storage/templates/storage/redesign/storage_blocks/avia_box.html:24
-#: storage/templates/storage/redesign/storage_blocks/avia_box.html:231
+#: storage/templates/storage/redesign/storage_blocks/avia_box.html:248
 #, fuzzy
 #| msgctxt "skills"
 #| msgid "недоступно"
@@ -11131,6 +11132,13 @@ msgstr "(sejarah)"
 msgctxt "lootbox"
 msgid "Открывайте Ледяные сундуки и богатейте!"
 msgstr ""
+
+#: storage/templates/storage/redesign/storage_blocks/avia_box.html:40
+#, fuzzy
+#| msgid "У вас пока еще нет стикеров"
+msgctxt "lootbox"
+msgid "У вас нет сундуков"
+msgstr "Kamu belum memiliki stiker"
 
 #: storage/templates/storage/redesign/storage_blocks/avia_box.html:46
 #, fuzzy
@@ -11174,17 +11182,24 @@ msgctxt "lootbox"
 msgid "шанс"
 msgstr ""
 
-#: storage/templates/storage/redesign/storage_blocks/avia_box.html:200
+#: storage/templates/storage/redesign/storage_blocks/avia_box.html:201
 msgctxt "lootbox"
 msgid "Наборы Ледяных сундуков за игровые средства:"
 msgstr ""
 
-#: storage/templates/storage/redesign/storage_blocks/avia_box.html:257
+#: storage/templates/storage/redesign/storage_blocks/avia_box.html:274
+msgctxt "lootbox"
+msgid ""
+"Вы скупили все сундуки за игровые средства. Новые предложения появятся через "
+"сутки"
+msgstr ""
+
+#: storage/templates/storage/redesign/storage_blocks/avia_box.html:279
 msgctxt "lootbox"
 msgid "Наборы Ледяных сундуков за Wild Pass:"
 msgstr ""
 
-#: storage/templates/storage/redesign/storage_blocks/avia_box.html:295
+#: storage/templates/storage/redesign/storage_blocks/avia_box.html:317
 #, fuzzy
 #| msgctxt "menu"
 #| msgid "добыча"
@@ -11192,7 +11207,7 @@ msgctxt "lootbox"
 msgid "Статистика за всё время:"
 msgstr "kerja"
 
-#: storage/templates/storage/redesign/storage_blocks/avia_box.html:299
+#: storage/templates/storage/redesign/storage_blocks/avia_box.html:321
 #, fuzzy
 #| msgctxt "daily_header"
 #| msgid "энергии потрачено"
@@ -11200,14 +11215,14 @@ msgctxt "lootbox"
 msgid "потрачено"
 msgstr "penggunaan energi"
 
-#: storage/templates/storage/redesign/storage_blocks/avia_box.html:310
+#: storage/templates/storage/redesign/storage_blocks/avia_box.html:332
 #, fuzzy
 #| msgid "Закрыть"
 msgctxt "lootbox"
 msgid "открыто"
 msgstr "Tutup"
 
-#: storage/templates/storage/redesign/storage_blocks/avia_box.html:321
+#: storage/templates/storage/redesign/storage_blocks/avia_box.html:343
 #, fuzzy
 #| msgctxt "daily_header"
 #| msgid "уже получено"
@@ -11215,7 +11230,7 @@ msgctxt "lootbox"
 msgid "получено"
 msgstr "sudah didapatkan"
 
-#: storage/templates/storage/redesign/storage_blocks/avia_box.html:334
+#: storage/templates/storage/redesign/storage_blocks/avia_box.html:356
 #, fuzzy
 #| msgctxt "menu"
 #| msgid "производство"
@@ -11223,15 +11238,15 @@ msgctxt "lootbox"
 msgid "Последние открытия сундуков:"
 msgstr "produksi"
 
-#: storage/templates/storage/redesign/storage_blocks/avia_box.html:389
-#: storage/templates/storage/redesign/storage_blocks/avia_box.html:442
+#: storage/templates/storage/redesign/storage_blocks/avia_box.html:411
+#: storage/templates/storage/redesign/storage_blocks/avia_box.html:464
 #, fuzzy
 #| msgid "Закрыть"
 msgctxt "lootbox"
 msgid "Открываем сундук..."
 msgstr "Tutup"
 
-#: storage/templates/storage/redesign/storage_blocks/avia_box.html:562
+#: storage/templates/storage/redesign/storage_blocks/avia_box.html:584
 #, fuzzy
 #| msgid "Продолжить"
 msgctxt "lootbox"
@@ -12540,7 +12555,7 @@ msgctxt "w_trading"
 msgid "Торговое предложение успешно принято"
 msgstr "Nominal salah"
 
-#: storage/views/vault/avia_box/avia_lootbox.py:70
+#: storage/views/vault/avia_box/avia_lootbox.py:98
 #, fuzzy
 #| msgid "Пополнение энергии"
 msgctxt "assets"
