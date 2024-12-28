@@ -19,10 +19,10 @@
     <!-- Заголовок -->
     <h1 class="box__title ct__page-title">{% trans 'Ледяные сундуки' context "lootbox" %}</h1>
 
-    <div class="articles__tabs" style="max-width: 600rem; margin: 0 auto; padding: 0 12rem;">
+    <div class="articles__tabs" style="max-width: 600rem;margin: 0 auto;padding: 0 12rem;grid-template-columns: repeat(2, 1fr);">
         <button class="ct__top-tab ct__top-tab1 active">{% trans 'сундуки' context "lootbox" %}</button>
         <button class="ct__top-tab ct__top-tab2">{% trans 'купить' context "lootbox" %}</button>
-        <button class="ct__top-tab ct__top-tab3">{% trans 'история' context "lootbox" %}</button>
+<!--        <button class="ct__top-tab ct__top-tab3">{% trans 'история' context "lootbox" %}</button>-->
     </div>
 
     <div class="DecorLine"></div>
@@ -313,91 +313,91 @@
     <!-- КОНЕЦ: Блок "Приобрести" -->
 
    <!-- Блок "история" -->
-    <div class="box__block">
-        <p class="box__desc">{% trans 'Статистика за всё время:' context "lootbox" %}</p>
-        <li class="box__buyItem" style="justify-content: center;max-width: 800rem;margin: auto;gap: 50rem;">
+<!--    <div class="box__block">-->
+<!--        <p class="box__desc">{% trans 'Статистика за всё время:' context "lootbox" %}</p>-->
+<!--        <li class="box__buyItem" style="justify-content: center;max-width: 800rem;margin: auto;gap: 50rem;">-->
 
-            <div style="display: flex; flex-direction: column;align-items: center; ">
-                <span style="font-size: 14rem;">{% trans 'потрачено' context "lootbox" %}</span>
-                    <div style="margin-top: 10rem;">
-                    <span style="font-size: 14rem;color: tomato;">$</span>
-                    <span style="font-size: 14rem;color: tomato;">
-                        {{ player_data|dict_key:'expense' }}
-                    </span>
-                </div>
-            </div>
+<!--            <div style="display: flex; flex-direction: column;align-items: center; ">-->
+<!--                <span style="font-size: 14rem;">{% trans 'потрачено' context "lootbox" %}</span>-->
+<!--                    <div style="margin-top: 10rem;">-->
+<!--                    <span style="font-size: 14rem;color: tomato;">$</span>-->
+<!--                    <span style="font-size: 14rem;color: tomato;">-->
+<!--                        -->
+<!--                    </span>-->
+<!--                </div>-->
+<!--            </div>-->
 
-            <div style="display: flex; flex-direction: column; align-items: center;">
+<!--            <div style="display: flex; flex-direction: column; align-items: center;">-->
 
-                <span style="font-size: 14rem;">{% trans 'открыто' context "lootbox" %}</span>
+<!--                <span style="font-size: 14rem;">{% trans 'открыто' context "lootbox" %}</span>-->
 
-                <div style="margin-top: 10rem;">
-                    <span id="lootbox_opened" style="font-size: 14rem;">
-                        {{ lootbox_opened }}
-                    </span>
-                </div>
+<!--                <div style="margin-top: 10rem;">-->
+<!--                    <span id="lootbox_opened" style="font-size: 14rem;">-->
+<!--                        {{ lootbox_opened }}-->
+<!--                    </span>-->
+<!--                </div>-->
 
-            </div>
+<!--            </div>-->
 
-            <div style="display: flex; flex-direction: column; align-items: center;">
-                <span style="font-size: 14rem;">{% trans 'получено' context "lootbox" %}</span>
+<!--            <div style="display: flex; flex-direction: column; align-items: center;">-->
+<!--                <span style="font-size: 14rem;">{% trans 'получено' context "lootbox" %}</span>-->
 
-                <div style="margin-top: 10rem;">
-                    <span style="font-size: 14rem;color: #8DFF47;">$</span>
-                    <span id="lootbox_income" data-income="{% localize off %}{{ player_data|dict_key:'income' }}{% endlocalize %}" style="font-size: 14rem;color: #8DFF47;">
-                        {{ player_data|dict_key:'income' }}
-                    </span>
+<!--                <div style="margin-top: 10rem;">-->
+<!--                    <span style="font-size: 14rem;color: #8DFF47;">$</span>-->
+<!--                    <span id="lootbox_income" data-income="{% localize off %}{% endlocalize %}" style="font-size: 14rem;color: #8DFF47;">-->
+<!--                        -->
+<!--                    </span>-->
 
-                </div>
-            </div>
-        </li>
+<!--                </div>-->
+<!--            </div>-->
+<!--        </li>-->
 
-        <p class="box__desc" style="margin-top: 24rem;margin-bottom: auto;">
-            {% trans 'Последние открытия сундуков:' context "lootbox" %}
-        </p>
+<!--        <p class="box__desc" style="margin-top: 24rem;margin-bottom: auto;">-->
+<!--            {% trans 'Последние открытия сундуков:' context "lootbox" %}-->
+<!--        </p>-->
 
-        <ul class="box__buyList" id="dummyLine" style="display: none; flex-direction: row; justify-content: space-around; gap: 15rem; margin-top: 20rem;">
-            <li class="box__buyItem" style="gap: 30rem;">
-                 <img class="carImg" src="">
-            </li>
-            <li class="box__buyItem" style="min-width: 100rem; justify-content: flex-end;">
-                <span style="font-size: 14rem;">$ </span>
-                <span class="drop" style="font-size: 14rem;">
+<!--        <ul class="box__buyList" id="dummyLine" style="display: none; flex-direction: row; justify-content: space-around; gap: 15rem; margin-top: 20rem;">-->
+<!--            <li class="box__buyItem" style="gap: 30rem;">-->
+<!--                 <img class="carImg" src="">-->
+<!--            </li>-->
+<!--            <li class="box__buyItem" style="min-width: 100rem; justify-content: flex-end;">-->
+<!--                <span style="font-size: 14rem;">$ </span>-->
+<!--                <span class="drop" style="font-size: 14rem;">-->
 
-                </span>
-            </li>
-        </ul>
+<!--                </span>-->
+<!--            </li>-->
+<!--        </ul>-->
 
-        {% for drop in drop_data %}
-        <ul class="box__buyList" style="flex-direction: row; justify-content: space-around; gap: 15rem; margin-top: 20rem;">
-            <li class="box__buyItem" style="gap: 30rem;">
-                    {% for spin in drop %}
-                        {% if forloop.counter0 == 0 %}
-                             <img class="carImg" src="/static/img/planes/{% if spin == 'disk' %}beluzzo/beluzzo_base{% elif spin == 'gold' %}trickster/trickster_friday{% elif spin == 'violet' %}demolisher/demolisher_violet{% elif spin == 'blue' %}harrier/harrier_dark_blue{% elif spin == 'green' %}pretender/pretender_green{% elif spin == 'white' %}nagger/nagger_base{% endif %}.svg" alt="disk">
-                        {% endif %}
-                    {% endfor %}
-                    {% for spin in drop %}
-                        {% if forloop.counter0 == 2 %}
-                             <img class="carImg" src="/static/img/planes/{% if spin == 'disk' %}beluzzo/beluzzo_base{% elif spin == 'gold' %}trickster/trickster_friday{% elif spin == 'violet' %}demolisher/demolisher_violet{% elif spin == 'blue' %}harrier/harrier_dark_blue{% elif spin == 'green' %}pretender/pretender_green{% elif spin == 'white' %}nagger/nagger_base{% endif %}.svg" alt="disk">
-                        {% endif %}
-                    {% endfor %}
-                    {% for spin in drop %}
-                        {% if forloop.counter0 == 1 %}
-                             <img class="carImg" src="/static/img/planes/{% if spin == 'disk' %}beluzzo/beluzzo_base{% elif spin == 'gold' %}trickster/trickster_friday{% elif spin == 'violet' %}demolisher/demolisher_violet{% elif spin == 'blue' %}harrier/harrier_dark_blue{% elif spin == 'green' %}pretender/pretender_green{% elif spin == 'white' %}nagger/nagger_base{% endif %}.svg" alt="disk">
-                        {% endif %}
-                    {% endfor %}
-            </li>
-            <li class="box__buyItem" style="min-width: 100rem; justify-content: flex-end;">
-                <span style="font-size: 14rem;">$ </span>
-                <span style="font-size: 14rem;">
-                    {% for spin in drop %}
-                        {% if forloop.counter0 == 3 %}{{ spin }}{% endif %}
-                    {% endfor %}
-                </span>
-            </li>
-        </ul>
-        {% endfor %}
-    </div>
+<!--        {% for drop in drop_data %}-->
+<!--        <ul class="box__buyList" style="flex-direction: row; justify-content: space-around; gap: 15rem; margin-top: 20rem;">-->
+<!--            <li class="box__buyItem" style="gap: 30rem;">-->
+<!--                    {% for spin in drop %}-->
+<!--                        {% if forloop.counter0 == 0 %}-->
+<!--                             <img class="carImg" src="/static/img/planes/{% if spin == 'disk' %}beluzzo/beluzzo_base{% elif spin == 'gold' %}trickster/trickster_friday{% elif spin == 'violet' %}demolisher/demolisher_violet{% elif spin == 'blue' %}harrier/harrier_dark_blue{% elif spin == 'green' %}pretender/pretender_green{% elif spin == 'white' %}nagger/nagger_base{% endif %}.svg" alt="disk">-->
+<!--                        {% endif %}-->
+<!--                    {% endfor %}-->
+<!--                    {% for spin in drop %}-->
+<!--                        {% if forloop.counter0 == 2 %}-->
+<!--                             <img class="carImg" src="/static/img/planes/{% if spin == 'disk' %}beluzzo/beluzzo_base{% elif spin == 'gold' %}trickster/trickster_friday{% elif spin == 'violet' %}demolisher/demolisher_violet{% elif spin == 'blue' %}harrier/harrier_dark_blue{% elif spin == 'green' %}pretender/pretender_green{% elif spin == 'white' %}nagger/nagger_base{% endif %}.svg" alt="disk">-->
+<!--                        {% endif %}-->
+<!--                    {% endfor %}-->
+<!--                    {% for spin in drop %}-->
+<!--                        {% if forloop.counter0 == 1 %}-->
+<!--                             <img class="carImg" src="/static/img/planes/{% if spin == 'disk' %}beluzzo/beluzzo_base{% elif spin == 'gold' %}trickster/trickster_friday{% elif spin == 'violet' %}demolisher/demolisher_violet{% elif spin == 'blue' %}harrier/harrier_dark_blue{% elif spin == 'green' %}pretender/pretender_green{% elif spin == 'white' %}nagger/nagger_base{% endif %}.svg" alt="disk">-->
+<!--                        {% endif %}-->
+<!--                    {% endfor %}-->
+<!--            </li>-->
+<!--            <li class="box__buyItem" style="min-width: 100rem; justify-content: flex-end;">-->
+<!--                <span style="font-size: 14rem;">$ </span>-->
+<!--                <span style="font-size: 14rem;">-->
+<!--                    {% for spin in drop %}-->
+<!--                        {% if forloop.counter0 == 3 %}{{ spin }}{% endif %}-->
+<!--                    {% endfor %}-->
+<!--                </span>-->
+<!--            </li>-->
+<!--        </ul>-->
+<!--        {% endfor %}-->
+<!--    </div>-->
 
     <!-- Модалка с лутом 1на рулетка-->
     <div class="box__modal custom-scroll box__modal1">
@@ -886,7 +886,7 @@
 					set: (obj, prop, value) => {
 						switch (prop) {
 							case "currentBlock":
-                                for (let i = 0; i < 3; i++) {
+                                for (let i = 0; i < 2; i++) {
                                     if (value === i) {
                                         this.tabs[i].classList.add('active');
                                         this.blocks[i].classList.add('active');
@@ -947,7 +947,7 @@
 				this.goToBuyBtn.addEventListener('click', () => this.state.currentBlock = 1);
 				this.tabs[0].addEventListener('click', () => this.state.currentBlock = 0);
 				this.tabs[1].addEventListener('click', () => this.state.currentBlock = 1);
-				this.tabs[2].addEventListener('click', () => this.state.currentBlock = 2);
+<!--				this.tabs[2].addEventListener('click', () => this.state.currentBlock = 2);-->
 				this.popupClose1.addEventListener('click', () => {
 					this.state.isPopup1Opened = false;
 					carousel1.modalInfo1.classList.remove('active');

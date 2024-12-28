@@ -89,23 +89,23 @@ def buy_lootboxes(request):
         jp.save()
 
         # ----------------------------------------
-
-        redis_client = redis.StrictRedis(host='redis', port=6379, db=0)
-
-        key = f'boxes_{player.pk}'
-
-        # Получение текущих данных игрока
-        data = redis_client.get(key)
-        if data:
-            player_data = json.loads(data)
-        else:
-            player_data = {"expense": 0, "income": 0}
-
-        # Обновление данных
-        player_data["expense"] += buy_cost * 1000000
-
-        # Сохранение обратно в Redis
-        redis_client.set(key, json.dumps(player_data))
+        #
+        # redis_client = redis.StrictRedis(host='redis', port=6379, db=0)
+        #
+        # key = f'boxes_{player.pk}'
+        #
+        # # Получение текущих данных игрока
+        # data = redis_client.get(key)
+        # if data:
+        #     player_data = json.loads(data)
+        # else:
+        #     player_data = {"expense": 0, "income": 0}
+        #
+        # # Обновление данных
+        # player_data["expense"] += buy_cost * 1000000
+        #
+        # # Сохранение обратно в Redis
+        # redis_client.set(key, json.dumps(player_data))
 
         # ----------------------------------------
 

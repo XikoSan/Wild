@@ -67,24 +67,24 @@ def avia_lootbox(request):
 
     # ----------------------------------------
 
-    redis_client = redis.StrictRedis(host='redis', port=6379, db=0)
-
-    key = f'boxes_{player.pk}'
-
-    # Получение текущих данных игрока
-    data = redis_client.get(key)
-    if data:
-        player_data = json.loads(data)
-    else:
-        player_data = {"expense": 0, "income": 0}
+    # redis_client = redis.StrictRedis(host='redis', port=6379, db=0)
+    #
+    # key = f'boxes_{player.pk}'
+    #
+    # # Получение текущих данных игрока
+    # data = redis_client.get(key)
+    # if data:
+    #     player_data = json.loads(data)
+    # else:
+    #     player_data = {"expense": 0, "income": 0}
 
     # ----------------------------------------
 
-    current_data = redis_client.lrange(f'drops_{player.pk}', 0, -1)
-    drop_data = [eval(item) for item in current_data]
-
-    # Перезаписать список в обратном порядке
-    drop_data = drop_data[::-1]
+    # current_data = redis_client.lrange(f'drops_{player.pk}', 0, -1)
+    # drop_data = [eval(item) for item in current_data]
+    #
+    # # Перезаписать список в обратном порядке
+    # drop_data = drop_data[::-1]
     # ----------------------------------------
 
     page = 'storage/redesign/storage_blocks/avia_box.html'
@@ -106,8 +106,8 @@ def avia_lootbox(request):
 
         'blocked': blocked,
 
-        'player_data': player_data,
-        'drop_data': drop_data,
+        # 'player_data': player_data,
+        # 'drop_data': drop_data,
 
         'limit': limit,
     })
