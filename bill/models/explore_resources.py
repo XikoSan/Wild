@@ -146,9 +146,31 @@ class ExploreResources(Bill):
                     ).values('region', 'resource').order_by('region').annotate(
                         exp_value=Coalesce(Sum('exp_value'), 0, output_field=models.DecimalField()))
 
+                    ExploreAllRegion = apps.get_model("bill", "ExploreAllRegion")
+
+                    # Выборка данных из ExploreAllRegion
+                    extra_bills = ExploreAllRegion.objects.filter(
+                        exp_bill__parliament=self.parliament,
+                        region=self.region,
+                        exp_bill__resource=self.resource,  # С учетом текущего ресурса
+                        exp_bill__voting_end__gt=timezone.now() - datetime.timedelta(seconds=86400)
+                    ).values('region', 'exp_bill__resource').order_by('region').annotate(
+                        exp_value=Coalesce(Sum('exp_value'), 0, output_field=models.DecimalField())
+                        # Суммируем exp_value
+                    )
+
+                    # Объединение данных из обеих выборок
+                    total_exp_value = 0  # Общая сумма exp_value
+
                     if prev_bills:
-                        exp_mul = int(ceil(prev_bills[0]['exp_value'] / getattr(self.region, self.resource + '_cap')))
-                        remainder = prev_bills[0]['exp_value'] % getattr(self.region, self.resource + '_cap')
+                        total_exp_value += float(prev_bills[0]['exp_value'])
+
+                    if extra_bills:
+                        total_exp_value += float(extra_bills[0]['exp_value'])
+
+                    if total_exp_value > 0:
+                        exp_mul = int(ceil(total_exp_value / getattr(self.region, self.resource + '_cap')))
+                        remainder = total_exp_value % getattr(self.region, self.resource + '_cap')
 
                         if remainder == 0:
                             exp_mul += 1

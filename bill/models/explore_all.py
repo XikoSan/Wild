@@ -347,7 +347,8 @@ class ExploreAll(Bill):
             explore_all_data = ExploreAllRegion.objects.filter(
                 exp_bill__parliament=self.parliament,
                 region=state_region,
-                exp_bill__resource=self.resource
+                exp_bill__resource=self.resource,
+                exp_bill__voting_end__gt=timezone.now() - datetime.timedelta(seconds=86400)
             ).values('region', 'exp_bill__resource').order_by('region').annotate(
                 exp_value=Coalesce(Sum('exp_value'), 0, output_field=models.DecimalField())
             )
