@@ -254,9 +254,6 @@ class ExploreResources(Bill):
             else:
                 exploration_dict[line['region']][line['resource']] += float(line['exp_value'])
 
-        from player.logs.print_log import log
-        log(exploration_dict)
-
         # Дополнение exploration_dict данными из ExploreAllRegion
         # Получение модели через apps.get_model
         ExploreAllRegion = apps.get_model("bill", "ExploreAllRegion")
@@ -267,8 +264,6 @@ class ExploreResources(Bill):
         ).values('region', 'exp_bill__resource').order_by('region').annotate(
             exp_value=Coalesce(Sum('exp_value'), 0, output_field=models.DecimalField())  # Суммируем значения exp_value
         )
-
-        log(extra_bills)
 
         # Заполнение словаря exploration_dict из extra_bills
         for line in extra_bills:
