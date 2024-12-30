@@ -11,10 +11,12 @@ from django.utils import translation
 from django.utils.translation import pgettext
 from django.utils.translation import ugettext as _
 from math import ceil
+from django.db.models import Sum
 from asgiref.sync import async_to_sync
 from channels.layers import get_channel_layer
 from player.decorators.player import check_player
 from player.logs.gold_log import GoldLog
+from django.utils.timezone import now, timedelta
 from player.logs.wildpass_log import WildpassLog
 from player.lootbox.jackpot import Jackpot
 from player.lootbox.lootbox import Lootbox
@@ -34,6 +36,28 @@ def buy_lootboxes(request):
 
         # получаем персонажа игрока
         player = Player.get_instance(account=request.user)
+
+        # Определяем временной диапазон за последние сутки
+        last_24_hours = now() - timedelta(days=1)
+
+        # Суммируем значение поля 'cash' для указанных условий
+        total_wp = WildpassLog.objects.filter(
+            player=player,
+            activity_txt='box',
+            dtime__gte=last_24_hours
+        ).aggregate(Sum('count'))['count__sum']
+
+        # Если сумма отсутствует, она равна 0
+        if total_wp is None:
+            total_wp = 0
+
+        if total_wp <= -10:
+            data = {
+                'response': 'Исчерпаны покупки лутбоксов за Wild Pass. Подождите немного',
+                'header': 'Приобретение сундуков',
+                'grey_btn': pgettext('core', 'Закрыть'),
+            }
+            return JResponse(data)
 
         try:
             buy_count = int(request.POST.get('count'))
@@ -59,6 +83,14 @@ def buy_lootboxes(request):
         if player.cards_count < buy_cost:
             data = {
                 'response': 'Недостаточно Wild Pass для покупки',
+                'header': 'Приобретение сундуков',
+                'grey_btn': pgettext('core', 'Закрыть'),
+            }
+            return JResponse(data)
+
+        if total_wp - buy_cost < -10:
+            data = {
+                'response': f'На данный момент, вам доступно для покупки только {10 + total_wp} сундуков',
                 'header': 'Приобретение сундуков',
                 'grey_btn': pgettext('core', 'Закрыть'),
             }

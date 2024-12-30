@@ -89,9 +89,9 @@ def cash_lootboxes(request):
             }
             return JResponse(data)
 
-        from player.logs.print_log import log
-        log(total_cash)
-        log(buy_cost)
+        # from player.logs.print_log import log
+        # log(total_cash)
+        # log(buy_cost)
 
         if total_cash - buy_cost < -10000000:
             data = {

@@ -15,6 +15,7 @@ from player.logs.gold_log import GoldLog
 from player.lootbox.jackpot import Jackpot
 from player.lootbox.lootbox import Lootbox
 from player.logs.cash_log import CashLog
+from player.logs.wildpass_log import WildpassLog
 from django.db.models import Sum
 from player.player import Player
 from storage.views.vault.avia_box.generate_rewards import prepare_plane_lists
@@ -57,13 +58,38 @@ def avia_lootbox(request):
     if total_cash is None:
         total_cash = 0
 
-    from player.logs.print_log import log
-    log(total_cash)
+    # from player.logs.print_log import log
+    # log(total_cash)
 
     limit = int((10000000 + total_cash)/100000)
 
     if limit <= 0:
         blocked = True
+
+    # ----------------------------------------
+    # Определяем временной диапазон за последние сутки
+    last_24_hours = now() - timedelta(days=1)
+
+    # Суммируем значение поля 'cash' для указанных условий
+    total_wp = WildpassLog.objects.filter(
+        player=player,
+        activity_txt='box',
+        dtime__gte=last_24_hours
+    ).aggregate(Sum('count'))['count__sum']
+
+    wp_blocked = False
+
+    # Если сумма отсутствует, она равна 0
+    if total_wp is None:
+        total_wp = 0
+
+    # from player.logs.print_log import log
+    # log(total_wp)
+
+    wp_limit = 10 + total_wp
+
+    if total_wp <= -10:
+        wp_blocked = True
 
     # ----------------------------------------
 
@@ -105,10 +131,12 @@ def avia_lootbox(request):
         'budget': budget,
 
         'blocked': blocked,
+        'wp_blocked': wp_blocked,
 
         # 'player_data': player_data,
         # 'drop_data': drop_data,
 
         'limit': limit,
+        'wp_limit': wp_limit,
     })
     return response
