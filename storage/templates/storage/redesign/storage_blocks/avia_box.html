@@ -21,7 +21,7 @@
 
     <div class="articles__tabs" style="max-width: 600rem;margin: 0 auto;padding: 0 12rem;grid-template-columns: repeat(2, 1fr);">
         <button class="ct__top-tab ct__top-tab1 active">{% trans 'сундуки' context "lootbox" %}</button>
-        <button class="ct__top-tab ct__top-tab2">{% trans 'купить' context "lootbox" %}</button>
+        <button class="ct__top-tab ct__top-tab2">{% trans 'получить' context "lootbox" %}</button>
 <!--        <button class="ct__top-tab ct__top-tab3">{% trans 'история' context "lootbox" %}</button>-->
     </div>
 
@@ -681,63 +681,63 @@
 
 <script>
         // Функция для клонирования элемента и заполнения данными
-        function cloneAndFillDummyLine(imagesToAdd, dropText) {
-            // Найти элемент dummyLine
-            const dummyLine = document.getElementById("dummyLine");
-            if (!dummyLine) {
-                console.error("Элемент с id 'dummyLine' не найден.");
-                return;
-            }
+<!--        function cloneAndFillDummyLine(imagesToAdd, dropText) {-->
+<!--            // Найти элемент dummyLine-->
+<!--            const dummyLine = document.getElementById("dummyLine");-->
+<!--            if (!dummyLine) {-->
+<!--                console.error("Элемент с id 'dummyLine' не найден.");-->
+<!--                return;-->
+<!--            }-->
 
-            // Клонировать dummyLine
-            const newLine = dummyLine.cloneNode(true);
+<!--            // Клонировать dummyLine-->
+<!--            const newLine = dummyLine.cloneNode(true);-->
 
-            // Удалить атрибут display: none;
-            newLine.style.display = "flex";
+<!--            // Удалить атрибут display: none;-->
+<!--            newLine.style.display = "flex";-->
 
-            // Найти целевой элемент для добавления img
-            const carListItem = newLine.querySelector('li[style*="gap: 30rem;"]');
-            if (!carListItem) {
-                console.error("Не найден целевой элемент для добавления img.");
-                return;
-            }
+<!--            // Найти целевой элемент для добавления img-->
+<!--            const carListItem = newLine.querySelector('li[style*="gap: 30rem;"]');-->
+<!--            if (!carListItem) {-->
+<!--                console.error("Не найден целевой элемент для добавления img.");-->
+<!--                return;-->
+<!--            }-->
 
-            // Очищаем существующие элементы img в li
-            carListItem.innerHTML = "";
+<!--            // Очищаем существующие элементы img в li-->
+<!--            carListItem.innerHTML = "";-->
 
-            // Источник данных для картинок
-            const carItems = [
-                { src: "/static/img/planes/beluzzo/beluzzo_base.svg", alt: "disk" },
-                { src: "/static/img/planes/trickster/trickster_friday.svg", alt: "gold" },
-                { src: "/static/img/planes/demolisher/demolisher_violet.svg", alt: "violet" },
-                { src: "/static/img/planes/harrier/harrier_dark_blue.svg", alt: "blue" },
-                { src: "/static/img/planes/pretender/pretender_green.svg", alt: "green" },
-                { src: "/static/img/planes/nagger/nagger_base.svg", alt: "white" }
-            ];
+<!--            // Источник данных для картинок-->
+<!--            const carItems = [-->
+<!--                { src: "/static/img/planes/beluzzo/beluzzo_base.svg", alt: "disk" },-->
+<!--                { src: "/static/img/planes/trickster/trickster_friday.svg", alt: "gold" },-->
+<!--                { src: "/static/img/planes/demolisher/demolisher_violet.svg", alt: "violet" },-->
+<!--                { src: "/static/img/planes/harrier/harrier_dark_blue.svg", alt: "blue" },-->
+<!--                { src: "/static/img/planes/pretender/pretender_green.svg", alt: "green" },-->
+<!--                { src: "/static/img/planes/nagger/nagger_base.svg", alt: "white" }-->
+<!--            ];-->
 
-            // Добавить новые изображения из списка
-            imagesToAdd.forEach((alt) => {
-                const carItem = carItems.find((item) => item.alt === alt);
-                if (carItem) {
-                    const img = document.createElement("img");
-                    img.className = "carImg";
-                    img.src = carItem.src;
-                    img.alt = carItem.alt;
-                    carListItem.appendChild(img);
-                }
-            });
+<!--            // Добавить новые изображения из списка-->
+<!--            imagesToAdd.forEach((alt) => {-->
+<!--                const carItem = carItems.find((item) => item.alt === alt);-->
+<!--                if (carItem) {-->
+<!--                    const img = document.createElement("img");-->
+<!--                    img.className = "carImg";-->
+<!--                    img.src = carItem.src;-->
+<!--                    img.alt = carItem.alt;-->
+<!--                    carListItem.appendChild(img);-->
+<!--                }-->
+<!--            });-->
 
-            // Найти элемент drop и заполнить его текстом
-            const dropElement = newLine.querySelector(".drop");
-            if (dropElement) {
-                dropElement.textContent = dropText;
-            } else {
-                console.error("Элемент с классом 'drop' не найден.");
-            }
+<!--            // Найти элемент drop и заполнить его текстом-->
+<!--            const dropElement = newLine.querySelector(".drop");-->
+<!--            if (dropElement) {-->
+<!--                dropElement.textContent = dropText;-->
+<!--            } else {-->
+<!--                console.error("Элемент с классом 'drop' не найден.");-->
+<!--            }-->
 
-            // Вставить новый элемент после dummyLine
-            dummyLine.parentNode.insertBefore(newLine, dummyLine.nextSibling);
-        }
+<!--            // Вставить новый элемент после dummyLine-->
+<!--            dummyLine.parentNode.insertBefore(newLine, dummyLine.nextSibling);-->
+<!--        }-->
 
         // сундуки - использование
         function buy_lootbox(count){
@@ -811,58 +811,49 @@
 				this.itemsArr3.forEach((item) => this.list.appendChild(item.cloneNode(true)));
             }
 
-			startCarousel(targetImageName) {
-				if (this.modalInfo1) this.modalInfo1.classList.remove('active');
-				if (this.modalInfo3) this.modalInfo3.classList.remove('active');
-				this.list.style.transition = 'none';
-				this.list.style.transform = 'translateX(0)';
-                if (this.list.children.length > this.itemsArr1.length) {
-                    while (this.list.firstChild) {
-                        this.list.removeChild(this.list.firstChild); // Удаляет первый дочерний элемент
+            startCarousel(targetImageName) {
+                // Hide all images initially
+                this.itemsArr1.forEach(item => {
+                    const img = item.querySelector('img');
+                    if (img) {
+                        img.style.display = 'none';
                     }
-                    this.itemsArr1.forEach((item) => this.list.appendChild(item.cloneNode(true)));
-                }
-				this.shuffleItems();
+                });
 
-				const imgInLastArrIndex = this.itemsArr2.findIndex((item) => {
+                // Find and show the target image
+                const targetIndex = this.itemsArr1.findIndex(item => {
                     const img = item.querySelector('img');
                     return img && img.alt === targetImageName;
                 });
-                const middleIndex = this.itemsArr2.length / 2 - 1;
 
-				if (imgInLastArrIndex && imgInLastArrIndex !== middleIndex) {
-					[this.itemsArr2[imgInLastArrIndex], this.itemsArr2[middleIndex]] = [this.itemsArr2[middleIndex], this.itemsArr2[imgInLastArrIndex]];
-				}
+                if (targetIndex !== -1) {
+                    const targetImg = this.itemsArr1[targetIndex].querySelector('img');
+                    if (targetImg) {
+                        targetImg.style.display = '';
+                    }
 
-				this.appendItems();
+                    // Center the target image
+                    const itemsLendth = this.itemsArr1.length;
+                    const offset = 60;
+                    this.list.style.transform = `translateX(${offset}px)`;
+                    this.list.style.transition = 'none';
+                }
 
-				const itemsLendth = this.itemsArr1.length;
-				setTimeout(() => {
-					this.list.style.transition = '';
-					this.list.style.transform = `translateX(-${((itemsLendth * 1) + (itemsLendth / 2) - 1) * 200 - 60}px)`;
+                // Update list content to match itemsArr1
+                while (this.list.firstChild) {
+                    this.list.removeChild(this.list.firstChild);
+                }
+                this.itemsArr1.forEach(item => this.list.appendChild(item.cloneNode(true)));
 
-                    const cancelTransition = () => {
-						this.list.style.transition = 'none';
-						if (boxPage.state.isPopup1Opened) { this.modalInfo1.classList.add('active'); }
-						if (boxPage.state.isPopup3Opened) { if (this.modalInfo3) {this.modalInfo3.classList.add('active');} };
-					};
-					this.list.addEventListener('click', cancelTransition);
-					this.cancelTransitionRemove = () => { this.list.removeEventListener('click', cancelTransition); };
+                // Optionally activate modals if necessary
+                if (boxPage.state.isPopup1Opened && this.modalInfo1) {
+                    this.modalInfo1.classList.add('active');
+                }
+                if (boxPage.state.isPopup3Opened && this.modalInfo3) {
+                    this.modalInfo3.classList.add('active');
+                }
+            }
 
-					if (this.modalInfo1) {
-						setTimeout(() => {
-							if (boxPage.state.isPopup1Opened) { this.modalInfo1.classList.add('active'); };
-							this.list.removeEventListener('click', cancelTransition);
-						}, 7500);
-					}
-					if (this.modalInfo3) {
-						setTimeout(() => {
-							if (boxPage.state.isPopup3Opened) { this.modalInfo3.classList.add('active'); };
-							this.list.removeEventListener('click', cancelTransition);
-						}, 7500);
-					}
-				}, 0);
-			}
 		}
 
 		const carousel1 = new Carousel('carousel1');
@@ -1045,7 +1036,7 @@
                             document.getElementById("prize_name").innerHTML = numberWithSpaces(data.reward);
                             this.state.chestCount = data.boxes_count;
 
-                            cloneAndFillDummyLine([data.prizes[0], data.prizes[2], data.prizes[1]], numberWithSpaces(data.reward.replace(/\$/g, "")));
+<!--                            cloneAndFillDummyLine([data.prizes[0], data.prizes[2], data.prizes[1]], numberWithSpaces(data.reward.replace(/\$/g, "")));-->
 
                             const lootboxOpened = document.getElementById("lootbox_opened");
                             if (lootboxOpened) {
