@@ -331,7 +331,7 @@
                     </svg>
                     <span style="display: flex;align-items: center;gap: 5rem;">
                         <span style="font-size: 18rem;" id="wp_amount">
-                            10
+                            1
                         </span>
                         <img src="/static/img/wild_pass.svg" alt="wild_pass" style="width: 25rem;">
                     </span>
@@ -356,7 +356,7 @@
 
                     // Обновляем значение в элементе amount
                     wp_amountElement.textContent = (countValue).toLocaleString();
-                    wp_totalElement.textContent = (countValue).toLocaleString();
+                    wp_totalElement.textContent = (countValue * 10).toLocaleString();
 
                     // Обновляем аргумент функции buy_lootbox в кнопке
                     wp_buyButton.setAttribute('onclick', `buy_lootbox(${countValue})`);
