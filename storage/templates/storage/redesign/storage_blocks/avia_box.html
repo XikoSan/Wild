@@ -209,7 +209,7 @@
 
                 <input id="count" name="count" type="number" class="search-modal__withInput-input" min="1" value="1" max="{{ limit }}">
                 <span class="search-modal__withInput-text" id="stocks_value" style="font-size: 16rem;color: var(--c10two); border-bottom: 1px dashed var(--c10two); CURSOR: pointer;text-align: right;">
-                    макс: {{ limit }}
+                    {% trans 'макс' context "lootbox" %}: {{ limit }}
                 </span>
                     <script>
                         document.getElementById("stocks_value").addEventListener("click", function() {
@@ -288,7 +288,7 @@
 
                 <input id="wp_count" name="wp_count" type="number" class="search-modal__withInput-input" min="1" value="1" max="{{ wp_limit }}">
                 <span class="search-modal__withInput-text" id="wp_stocks_value" style="font-size: 16rem;color: var(--c10two); border-bottom: 1px dashed var(--c10two); CURSOR: pointer;text-align: right;">
-                    макс: {{ wp_limit }}
+                    {% trans 'макс' context "lootbox" %}: {{ wp_limit }}
                 </span>
                     <script>
                         document.getElementById("wp_stocks_value").addEventListener("click", function() {

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-28 03:11+0300\n"
-"PO-Revision-Date: 2024-12-28 03:26+0300\n"
+"POT-Creation-Date: 2025-01-01 22:25+0300\n"
+"PO-Revision-Date: 2025-01-01 22:27+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -255,8 +255,9 @@ msgstr "Article cannot be empty"
 #: player/views/bonus_code/activate_code.py:75
 #: player/views/bonus_code/activate_code.py:172
 #: player/views/bonus_code/activate_code.py:181
-#: player/views/buy_lootboxes.py:45 player/views/buy_lootboxes.py:53
-#: player/views/buy_lootboxes.py:63 player/views/buy_lootboxes.py:131
+#: player/views/buy_lootboxes.py:58 player/views/buy_lootboxes.py:69
+#: player/views/buy_lootboxes.py:77 player/views/buy_lootboxes.py:87
+#: player/views/buy_lootboxes.py:95 player/views/buy_lootboxes.py:163
 #: player/views/cash_lootboxes.py:59 player/views/cash_lootboxes.py:70
 #: player/views/cash_lootboxes.py:78 player/views/cash_lootboxes.py:88
 #: player/views/cash_lootboxes.py:100 player/views/cash_lootboxes.py:168
@@ -1030,12 +1031,12 @@ msgctxt "new_bill"
 msgid "Нет такого ресурса"
 msgstr "There is no such resource"
 
-#: bill/models/explore_all.py:425
+#: bill/models/explore_all.py:428
 msgctxt "new_bill"
 msgid "Разведка всех регионов"
 msgstr "Resource exploration in all regions"
 
-#: bill/models/explore_all.py:426
+#: bill/models/explore_all.py:429
 msgctxt "new_bill"
 msgid "Разведки всех регионов"
 msgstr "All region resource explorations"
@@ -1055,12 +1056,12 @@ msgctxt "new_bill"
 msgid "Недопустима разведка в минус"
 msgstr "Minus exploration is not allowed"
 
-#: bill/models/explore_resources.py:400
+#: bill/models/explore_resources.py:424
 msgctxt "new_bill"
 msgid "Разведка ресурсов"
 msgstr "Resource exploration"
 
-#: bill/models/explore_resources.py:401
+#: bill/models/explore_resources.py:425
 msgctxt "new_bill"
 msgid "Разведки ресурсов"
 msgstr "Resource explorations"
@@ -7391,7 +7392,7 @@ msgctxt "activate_code"
 msgid "Данный код уже был активирован"
 msgstr "This code has already been activated"
 
-#: player/views/buy_lootboxes.py:129 player/views/cash_lootboxes.py:166
+#: player/views/buy_lootboxes.py:161 player/views/cash_lootboxes.py:166
 #: player/views/change_back_allow.py:57
 #: player/views/change_wiki_hide_allow.py:57 region/views/cancel_auto.py:35
 #: region/views/daily_status.py:86 region/views/daily_status.py:88
@@ -7400,7 +7401,7 @@ msgstr "This code has already been activated"
 msgid "Ошибка метода"
 msgstr "Method error"
 
-#: player/views/buy_lootboxes.py:130 player/views/cash_lootboxes.py:167
+#: player/views/buy_lootboxes.py:162 player/views/cash_lootboxes.py:167
 msgid "Открытие сундуков"
 msgstr "Chests opening "
 
@@ -9184,6 +9185,12 @@ msgctxt "storage_vault"
 msgid "+ премиум"
 msgstr "+ premium"
 
+#: storage/templates/storage/redesign/storage.html:207
+#: storage/templates/storage/redesign/storage_blocks/avia_box.html:20
+msgctxt "lootbox"
+msgid "Ледяные сундуки"
+msgstr "Ice chests"
+
 #: storage/templates/storage/redesign/storage.html:244
 #: storage/templates/storage/redesign/storage.html:395
 msgctxt "storage_transfer"
@@ -9358,21 +9365,15 @@ msgctxt "lootbox"
 msgid "Понятно"
 msgstr "Sure"
 
-#: storage/templates/storage/redesign/storage_blocks/avia_box.html:20
-msgctxt "lootbox"
-msgid "Ледяные сундуки"
-msgstr "Ice chests"
-
 #: storage/templates/storage/redesign/storage_blocks/avia_box.html:23
 msgctxt "lootbox"
 msgid "сундуки"
 msgstr "chests"
 
 #: storage/templates/storage/redesign/storage_blocks/avia_box.html:24
-#: storage/templates/storage/redesign/storage_blocks/avia_box.html:248
 msgctxt "lootbox"
-msgid "купить"
-msgstr "buy"
+msgid "получить"
+msgstr "get chests"
 
 #: storage/templates/storage/redesign/storage_blocks/avia_box.html:25
 msgctxt "lootbox"
@@ -9425,6 +9426,17 @@ msgctxt "lootbox"
 msgid "Наборы Ледяных сундуков за игровые средства:"
 msgstr "Ice chest Sets for in-game funds:"
 
+#: storage/templates/storage/redesign/storage_blocks/avia_box.html:212
+#: storage/templates/storage/redesign/storage_blocks/avia_box.html:291
+msgctxt "lootbox"
+msgid "макс"
+msgstr "max"
+
+#: storage/templates/storage/redesign/storage_blocks/avia_box.html:248
+msgctxt "lootbox"
+msgid "купить"
+msgstr "buy"
+
 #: storage/templates/storage/redesign/storage_blocks/avia_box.html:274
 msgctxt "lootbox"
 msgid ""
@@ -9434,43 +9446,51 @@ msgstr ""
 "You have bought all the chests for game funds. New offers will appear in 24 "
 "hours"
 
-#: storage/templates/storage/redesign/storage_blocks/avia_box.html:279
+#: storage/templates/storage/redesign/storage_blocks/avia_box.html:280
 msgctxt "lootbox"
 msgid "Наборы Ледяных сундуков за Wild Pass:"
 msgstr "Wild Pass Ice chest packs:"
 
-#: storage/templates/storage/redesign/storage_blocks/avia_box.html:317
+#: storage/templates/storage/redesign/storage_blocks/avia_box.html:343
+msgctxt "lootbox"
+msgid ""
+"Вы скупили все сундуки за Wild Pass. Новые предложения появятся через сутки"
+msgstr ""
+"You have bought all the chests for Wild Pass. New offers will appear in 24 "
+"hours"
+
+#: storage/templates/storage/redesign/storage_blocks/avia_box.html:371
 msgctxt "lootbox"
 msgid "Статистика за всё время:"
 msgstr "All time stats:"
 
-#: storage/templates/storage/redesign/storage_blocks/avia_box.html:321
+#: storage/templates/storage/redesign/storage_blocks/avia_box.html:375
 msgctxt "lootbox"
 msgid "потрачено"
 msgstr "spent"
 
-#: storage/templates/storage/redesign/storage_blocks/avia_box.html:332
+#: storage/templates/storage/redesign/storage_blocks/avia_box.html:386
 msgctxt "lootbox"
 msgid "открыто"
 msgstr "opened"
 
-#: storage/templates/storage/redesign/storage_blocks/avia_box.html:343
+#: storage/templates/storage/redesign/storage_blocks/avia_box.html:397
 msgctxt "lootbox"
 msgid "получено"
 msgstr "received"
 
-#: storage/templates/storage/redesign/storage_blocks/avia_box.html:356
+#: storage/templates/storage/redesign/storage_blocks/avia_box.html:410
 msgctxt "lootbox"
 msgid "Последние открытия сундуков:"
 msgstr "Last chests opening"
 
-#: storage/templates/storage/redesign/storage_blocks/avia_box.html:411
-#: storage/templates/storage/redesign/storage_blocks/avia_box.html:464
+#: storage/templates/storage/redesign/storage_blocks/avia_box.html:465
+#: storage/templates/storage/redesign/storage_blocks/avia_box.html:518
 msgctxt "lootbox"
 msgid "Открываем сундук..."
 msgstr "Chest opening..."
 
-#: storage/templates/storage/redesign/storage_blocks/avia_box.html:584
+#: storage/templates/storage/redesign/storage_blocks/avia_box.html:638
 msgctxt "lootbox"
 msgid "Продолжить"
 msgstr "Continue"
@@ -10492,7 +10512,7 @@ msgctxt "w_trading"
 msgid "Торговое предложение успешно принято"
 msgstr "Trade offer successfully accepted"
 
-#: storage/views/vault/avia_box/avia_lootbox.py:98
+#: storage/views/vault/avia_box/avia_lootbox.py:124
 msgctxt "assets"
 msgid "Ледяные сундуки"
 msgstr "Ice chests"
