@@ -356,7 +356,7 @@
 
                     // Обновляем значение в элементе amount
                     wp_amountElement.textContent = (countValue).toLocaleString();
-                    wp_totalElement.textContent = (countValue * 10).toLocaleString();
+                    wp_totalElement.textContent = (countValue).toLocaleString();
 
                     // Обновляем аргумент функции buy_lootbox в кнопке
                     wp_buyButton.setAttribute('onclick', `buy_lootbox(${countValue})`);
