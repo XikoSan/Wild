@@ -170,7 +170,7 @@ class ExploreResources(Bill):
 
                     if total_exp_value > 0:
                         exp_mul = int(ceil(total_exp_value / float(getattr(self.region, self.resource + '_cap'))))
-                        remainder = total_exp_value % getattr(self.region, self.resource + '_cap')
+                        remainder = total_exp_value % float(getattr(self.region, self.resource + '_cap'))
 
                         if remainder == 0:
                             exp_mul += 1
