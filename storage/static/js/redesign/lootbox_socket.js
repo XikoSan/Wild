@@ -16,9 +16,9 @@ function connectWebSocket() {
             createDamageMessage('/static/img/nopic.svg', data.reward, Math.random() < 0.5);
 
         }
-        else if (data.type == 'purchase'){
-            document.getElementById('jackpot_sum').innerHTML = numberWithSpaces(data.value);
-        }
+//        else if (data.type == 'purchase'){
+//            document.getElementById('jackpot_sum').innerHTML = numberWithSpaces(data.value);
+//        }
     };
 
     warSocket.onclose = function(e) {

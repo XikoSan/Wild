@@ -66,12 +66,12 @@ def generate_rewards():
         'white': 20000,
     }
 
-    # выдаем суперприз
-    if not Jackpot.objects.filter(amount__gt=200000).exists():
-        jp = Jackpot(amount=10000000)
-        jp.save()
-
-    budget = Jackpot.objects.filter(amount__gt=200000).first()
+    # # выдаем суперприз
+    # if not Jackpot.objects.filter(amount__gt=200000).exists():
+    #     jp = Jackpot(amount=10000000)
+    #     jp.save()
+    #
+    # budget = Jackpot.objects.filter(amount__gt=200000).first()
 
     spins = {1: rotate_spinner(), 2: rotate_spinner(), 3: rotate_spinner()}
 
@@ -83,16 +83,16 @@ def generate_rewards():
     if len(results) > 0 and len(set(results)) == 1:
 
         if list(set(results))[0] == 'disk':
-            budget.amount = math.ceil(budget.amount / 2)
-            budget.save()
+            # budget.amount = math.ceil(budget.amount / 2)
+            # budget.save()
 
-            return list(spins.values()), math.ceil(budget.amount / 4)
+            return list(spins.values()), 100000000
 
     for result in results:
         reward += rewards[result]
 
-        budget.amount -= rewards[result]
-        budget.save()
+        # budget.amount -= rewards[result]
+        # budget.save()
 
     channel_layer = get_channel_layer()
 
@@ -108,7 +108,7 @@ def generate_rewards():
         "lootboxes_channel",  # Группа, к которой подключены клиенты
         {
             "type": "broadcast_purchase",
-            "value": math.ceil(budget.amount / 2),
+            # "value": math.ceil(budget.amount / 2),
         }
     )
 

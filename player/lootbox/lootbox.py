@@ -3,6 +3,7 @@ import datetime
 from django.db import models
 from django.utils.translation import gettext_lazy
 from django.utils.translation import ugettext as _
+from django.utils import timezone
 
 from player.player import Player
 
@@ -16,6 +17,10 @@ class Lootbox(models.Model):
     stock = models.IntegerField(default=0, verbose_name='Число сундуков')
     # количество до гаранта
     garant_in = models.IntegerField(default=100, verbose_name='До гаранта')
+
+    # дата получения предыдущего бонуса
+    dtime = models.DateTimeField(default=timezone.now, blank=True,
+                                 verbose_name='Время создания записи')
 
     # количество
     opened = models.IntegerField(default=0, verbose_name='Открыто сундуков')

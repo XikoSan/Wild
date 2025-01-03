@@ -146,14 +146,14 @@ def cash_lootboxes(request):
 
         # ----------------------------------------
 
-        channel_layer = get_channel_layer()
-        async_to_sync(channel_layer.group_send)(
-            "lootboxes_channel",  # Группа, к которой подключены клиенты
-            {
-                "type": "broadcast_purchase",
-                "value": ceil(jp.amount / 2),
-            }
-        )
+        # channel_layer = get_channel_layer()
+        # async_to_sync(channel_layer.group_send)(
+        #     "lootboxes_channel",  # Группа, к которой подключены клиенты
+        #     {
+        #         "type": "broadcast_purchase",
+        #         "value": ceil(jp.amount / 2),
+        #     }
+        # )
 
         data = {
             'response': 'ok',

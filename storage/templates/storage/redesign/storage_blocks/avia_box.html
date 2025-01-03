@@ -3,6 +3,7 @@
 {% load dict_key %}
 {% load static %}
 {% load get_sum %}
+{% load tz %}
 {% load get_mod %}
 {% load l10n %}{% load i18n %}
 
@@ -89,7 +90,7 @@
                 </div>
 
                 <div class="box__altItemGrid">
-                    <h3>$<span id="jackpot_sum">{{ budget }}</span></h3>
+                    <h3>$<span id="jackpot_sum">100 000 000</span></h3>
                 </div>
 
                 <div style="display: flex; align-items: center;">
@@ -196,173 +197,189 @@
 
     <!-- Блок "Приобрести" -->
     <div class="box__block">
-        {% if not blocked %}
-        <p class="box__desc">
-            {% trans 'Наборы Ледяных сундуков за игровые средства:' context "lootbox" %}
-        </p>
+        <li class="box__buyItem" style="max-width: 400rem;margin: auto;gap: 50rem;">
+            <img src="/static/img/ice_chest.png" alt="">
 
-        <ul class="box__buyList">
-            <li class="box__buyItem" style="justify-content: space-evenly;">
-                <img src="/static/img/ice_chest.png" alt="">
-
-                <div style=" display: flex; flex-direction: column;">
-
-                <input id="count" name="count" type="number" class="search-modal__withInput-input" min="1" value="1" max="{{ limit }}">
-                <span class="search-modal__withInput-text" id="stocks_value" style="font-size: 16rem;color: var(--c10two); border-bottom: 1px dashed var(--c10two); CURSOR: pointer;text-align: right;">
-                    {% trans 'макс' context "lootbox" %}: {{ limit }}
+            <div style="display: flex; flex-direction: column; align-items: center;">
+                <span style="font-size: 14rem;">новый сундук будет получен:</span>
+                <span style="font-size: 14rem;" id="amount">
+                    {{ claim_time|timezone:player.time_zone|date:"d.m.Y H:i" }}
                 </span>
-                    <script>
-                        document.getElementById("stocks_value").addEventListener("click", function() {
-                            const inputElement = document.getElementById("count");
-                            const maxValue = inputElement.getAttribute("max"); // Получаем значение атрибута max
-
-                            if (maxValue) {
-                                inputElement.value = maxValue; // Устанавливаем значение
-                                const event = new Event("input", { bubbles: true }); // Создаем событие "input"
-                                inputElement.dispatchEvent(event); // Вызываем событие
-                            }
-                        });
-                    </script>
-                </div>
-
-                <div>
-                    <span style="font-size: 14rem;">$</span>
-                    <span style="font-size: 14rem;" id="amount">
-                        100 000
-                    </span>
-                </div>
-            </li>
-            <div class="box__buyBtnBlock">
-                <button class="ct__mid-btn" id="buy_bye" onclick="cash_lootbox(1)">
-                    <svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
-                        <mask id="mask0_59_315" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">
-                            <path class="geometry1" d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"></path>
-                        </mask>
-                        <g mask="url(#mask0_59_315)">
-                            <path class="geometry2" fill="var(--c10two)" d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z"></path>
-                            <path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)"></path>
-                            <path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)"></path>
-                            <path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)"></path>
-                        </g>
-                    </svg>
-                    <span style="display: flex;align-items: center;gap: 5rem;">{% trans 'купить' context "lootbox" %}
-                    </span>
-                </button>
             </div>
+        </li>
 
-            <script>
-                document.addEventListener('DOMContentLoaded', function () {
-                    const countInput = document.getElementById('count');
-                    const amountElement = document.getElementById('amount');
-                    const buyButton = document.getElementById('buy_bye');
 
-                    countInput.addEventListener('input', function () {
-                        // Получаем текущее значение count
-                        const countValue = parseInt(countInput.value, 10) || 1;
+        {% if False %}
 
-                        // Обновляем значение в элементе amount
-                        amountElement.textContent = (countValue * 100000).toLocaleString();
+<!--        {% if not blocked %}-->
+<!--        <p class="box__desc">-->
+<!--            {% trans 'Наборы Ледяных сундуков за игровые средства:' context "lootbox" %}-->
+<!--        </p>-->
 
-                        // Обновляем аргумент функции buy_lootbox в кнопке
-                        buyButton.setAttribute('onclick', `cash_lootbox(${countValue})`);
-                    });
-                });
-            </script>
-        </ul>
-        {% else %}
-        <p class="box__desc">
-            {% trans 'Вы скупили все сундуки за игровые средства. Новые предложения появятся через сутки' context "lootbox" %}
-        </p>
+<!--        <ul class="box__buyList">-->
+<!--            <li class="box__buyItem" style="justify-content: space-evenly;">-->
+<!--                <img src="/static/img/ice_chest.png" alt="">-->
+
+<!--                <div style=" display: flex; flex-direction: column;">-->
+
+<!--                <input id="count" name="count" type="number" class="search-modal__withInput-input" min="1" value="1" max="{{ limit }}">-->
+<!--                <span class="search-modal__withInput-text" id="stocks_value" style="font-size: 16rem;color: var(&#45;&#45;c10two); border-bottom: 1px dashed var(&#45;&#45;c10two); CURSOR: pointer;text-align: right;">-->
+<!--                    {% trans 'макс' context "lootbox" %}: {{ limit }}-->
+<!--                </span>-->
+<!--                    <script>-->
+<!--                        document.getElementById("stocks_value").addEventListener("click", function() {-->
+<!--                            const inputElement = document.getElementById("count");-->
+<!--                            const maxValue = inputElement.getAttribute("max"); // Получаем значение атрибута max-->
+
+<!--                            if (maxValue) {-->
+<!--                                inputElement.value = maxValue; // Устанавливаем значение-->
+<!--                                const event = new Event("input", { bubbles: true }); // Создаем событие "input"-->
+<!--                                inputElement.dispatchEvent(event); // Вызываем событие-->
+<!--                            }-->
+<!--                        });-->
+<!--                    </script>-->
+<!--                </div>-->
+
+<!--                <div>-->
+<!--                    <span style="font-size: 14rem;">$</span>-->
+<!--                    <span style="font-size: 14rem;" id="amount">-->
+<!--                        100 000-->
+<!--                    </span>-->
+<!--                </div>-->
+<!--            </li>-->
+<!--            <div class="box__buyBtnBlock">-->
+<!--                <button class="ct__mid-btn" id="buy_bye" onclick="cash_lootbox(1)">-->
+<!--                    <svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">-->
+<!--                        <mask id="mask0_59_315" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="30">-->
+<!--                            <path class="geometry1" d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z"></path>-->
+<!--                        </mask>-->
+<!--                        <g mask="url(#mask0_59_315)">-->
+<!--                            <path class="geometry2" fill="var(&#45;&#45;c10two)" d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z"></path>-->
+<!--                            <path class="treg1" opacity="0.15" d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(&#45;&#45;c10one)"></path>-->
+<!--                            <path class="treg2" opacity="0.15" d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(&#45;&#45;c10one)"></path>-->
+<!--                            <path class="treg3" opacity="0.15" d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(&#45;&#45;c10one)"></path>-->
+<!--                        </g>-->
+<!--                    </svg>-->
+<!--                    <span style="display: flex;align-items: center;gap: 5rem;">{% trans 'купить' context "lootbox" %}-->
+<!--                    </span>-->
+<!--                </button>-->
+<!--            </div>-->
+
+<!--            <script>-->
+<!--                document.addEventListener('DOMContentLoaded', function () {-->
+<!--                    const countInput = document.getElementById('count');-->
+<!--                    const amountElement = document.getElementById('amount');-->
+<!--                    const buyButton = document.getElementById('buy_bye');-->
+
+<!--                    countInput.addEventListener('input', function () {-->
+<!--                        // Получаем текущее значение count-->
+<!--                        const countValue = parseInt(countInput.value, 10) || 1;-->
+
+<!--                        // Обновляем значение в элементе amount-->
+<!--                        amountElement.textContent = (countValue * 100000).toLocaleString();-->
+
+<!--                        // Обновляем аргумент функции buy_lootbox в кнопке-->
+<!--                        buyButton.setAttribute('onclick', `cash_lootbox(${countValue})`);-->
+<!--                    });-->
+<!--                });-->
+<!--            </script>-->
+<!--        </ul>-->
+<!--        {% else %}-->
+<!--        <p class="box__desc">-->
+<!--            {% trans 'Вы скупили все сундуки за игровые средства. Новые предложения появятся через сутки' context "lootbox" %}-->
+<!--        </p>-->
+<!--        {% endif %}-->
+
+<!--        {% if not wp_blocked %}-->
+<!--        <p class="box__desc" style="margin-top: 50rem;">-->
+<!--            {% trans 'Наборы Ледяных сундуков за Wild Pass:' context "lootbox" %}-->
+<!--        </p>-->
+
+<!--        <ul class="box__buyList">-->
+<!--            <li class="box__buyItem" style="justify-content: space-evenly;">-->
+<!--                <img src="/static/img/ice_chest.png" alt="">-->
+
+<!--                <div style=" display: flex; flex-direction: column;">-->
+
+<!--                <input id="wp_count" name="wp_count" type="number" class="search-modal__withInput-input" min="1" value="1" max="{{ wp_limit }}">-->
+<!--                <span class="search-modal__withInput-text" id="wp_stocks_value" style="font-size: 16rem;color: var(&#45;&#45;c10two); border-bottom: 1px dashed var(&#45;&#45;c10two); CURSOR: pointer;text-align: right;">-->
+<!--                    {% trans 'макс' context "lootbox" %}: {{ wp_limit }}-->
+<!--                </span>-->
+<!--                    <script>-->
+<!--                        document.getElementById("wp_stocks_value").addEventListener("click", function() {-->
+<!--                            const wp_inputElement = document.getElementById("wp_count");-->
+<!--                            const wp_maxValue = wp_inputElement.getAttribute("max"); // Получаем значение атрибута max-->
+
+<!--                            if (wp_maxValue) {-->
+<!--                                wp_inputElement.value = wp_maxValue; // Устанавливаем значение-->
+<!--                                const wp_event = new Event("input", { bubbles: true }); // Создаем событие "input"-->
+<!--                                wp_inputElement.dispatchEvent(wp_event); // Вызываем событие-->
+<!--                            }-->
+<!--                        });-->
+<!--                    </script>-->
+<!--                </div>-->
+
+<!--                <div>-->
+<!--                    <span style="font-size: 14rem;">X</span>-->
+<!--                    <span style="font-size: 14rem;" id="wp_bx_total">-->
+<!--                        1-->
+<!--                    </span>-->
+<!--                </div>-->
+<!--            </li>-->
+<!--            <div class="box__buyBtnBlock">-->
+<!--                <button class="ct__mid-btn" id="wp_buy_bye" onclick="buy_lootbox(1)">-->
+<!--                    <svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">-->
+<!--                        <mask id="mask0_59_315" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144"-->
+<!--                            height="30">-->
+<!--                            <path class="geometry1" d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z" />-->
+<!--                        </mask>-->
+<!--                        <g mask="url(#mask0_59_315)">-->
+<!--                            <path class="geometry2" fill="var(&#45;&#45;c10two)"-->
+<!--                                d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" />-->
+<!--                            <path class="treg1" opacity="0.15"-->
+<!--                                d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(&#45;&#45;c10one)" />-->
+<!--                            <path class="treg2" opacity="0.15"-->
+<!--                                d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(&#45;&#45;c10one)" />-->
+<!--                            <path class="treg3" opacity="0.15"-->
+<!--                                d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(&#45;&#45;c10one)" />-->
+<!--                        </g>-->
+<!--                    </svg>-->
+<!--                    <span style="display: flex;align-items: center;gap: 5rem;">-->
+<!--                        <span style="font-size: 18rem;" id="wp_amount">-->
+<!--                            1-->
+<!--                        </span>-->
+<!--                        <img src="/static/img/wild_pass.svg" alt="wild_pass" style="width: 25rem;">-->
+<!--                    </span>-->
+<!--                </button>-->
+<!--            </div>-->
+<!--        </ul>-->
+<!--        {% else %}-->
+<!--        <p class="box__desc" style="margin-top: 25rem;">-->
+<!--            {% trans 'Вы скупили все сундуки за Wild Pass. Новые предложения появятся через сутки' context "lootbox" %}-->
+<!--        </p>-->
+<!--        {% endif %}-->
+<!--        <script>-->
+<!--            document.addEventListener('DOMContentLoaded', function () {-->
+<!--                const wp_countInput = document.getElementById('wp_count');-->
+<!--                const wp_amountElement = document.getElementById('wp_amount');-->
+<!--                const wp_totalElement = document.getElementById('wp_bx_total');-->
+<!--                const wp_buyButton = document.getElementById('wp_buy_bye');-->
+
+<!--                wp_countInput.addEventListener('input', function () {-->
+<!--                    // Получаем текущее значение count-->
+<!--                    const countValue = parseInt(wp_countInput.value, 10) || 1;-->
+
+<!--                    // Обновляем значение в элементе amount-->
+<!--                    wp_amountElement.textContent = (countValue).toLocaleString();-->
+<!--                    wp_totalElement.textContent = (countValue * 10).toLocaleString();-->
+
+<!--                    // Обновляем аргумент функции buy_lootbox в кнопке-->
+<!--                    wp_buyButton.setAttribute('onclick', `buy_lootbox(${countValue})`);-->
+<!--                });-->
+<!--            });-->
+<!--        </script>-->
+
         {% endif %}
-
-        {% if not wp_blocked %}
-        <p class="box__desc" style="margin-top: 50rem;">
-            {% trans 'Наборы Ледяных сундуков за Wild Pass:' context "lootbox" %}
-        </p>
-
-        <ul class="box__buyList">
-            <li class="box__buyItem" style="justify-content: space-evenly;">
-                <img src="/static/img/ice_chest.png" alt="">
-
-                <div style=" display: flex; flex-direction: column;">
-
-                <input id="wp_count" name="wp_count" type="number" class="search-modal__withInput-input" min="1" value="1" max="{{ wp_limit }}">
-                <span class="search-modal__withInput-text" id="wp_stocks_value" style="font-size: 16rem;color: var(--c10two); border-bottom: 1px dashed var(--c10two); CURSOR: pointer;text-align: right;">
-                    {% trans 'макс' context "lootbox" %}: {{ wp_limit }}
-                </span>
-                    <script>
-                        document.getElementById("wp_stocks_value").addEventListener("click", function() {
-                            const wp_inputElement = document.getElementById("wp_count");
-                            const wp_maxValue = wp_inputElement.getAttribute("max"); // Получаем значение атрибута max
-
-                            if (wp_maxValue) {
-                                wp_inputElement.value = wp_maxValue; // Устанавливаем значение
-                                const wp_event = new Event("input", { bubbles: true }); // Создаем событие "input"
-                                wp_inputElement.dispatchEvent(wp_event); // Вызываем событие
-                            }
-                        });
-                    </script>
-                </div>
-
-                <div>
-                    <span style="font-size: 14rem;">X</span>
-                    <span style="font-size: 14rem;" id="wp_bx_total">
-                        1
-                    </span>
-                </div>
-            </li>
-            <div class="box__buyBtnBlock">
-                <button class="ct__mid-btn" id="wp_buy_bye" onclick="buy_lootbox(1)">
-                    <svg width="144" height="30" viewBox="0 0 144 30" xmlns="http://www.w3.org/2000/svg">
-                        <mask id="mask0_59_315" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="144"
-                            height="30">
-                            <path class="geometry1" d="M0 5.76923L5.76923 0H144V23.0769L137.077 30H0V5.76923Z" />
-                        </mask>
-                        <g mask="url(#mask0_59_315)">
-                            <path class="geometry2" fill="var(--c10two)"
-                                d="M0 5.76917L5.76923 -6.10352e-05H144V23.0769L137.077 29.9999H0V5.76917Z" />
-                            <path class="treg1" opacity="0.15"
-                                d="M109.266 13.4468L125.407 3.59524L125.868 22.4997L109.266 13.4468Z" fill="var(--c10one)" />
-                            <path class="treg2" opacity="0.15"
-                                d="M95.6185 -3.53072L103.36 25.3596L74.4694 17.6185L95.6185 -3.53072Z" fill="var(--c10one)" />
-                            <path class="treg3" opacity="0.15"
-                                d="M22.6079 -8.73057L72.591 7.62749L33.433 42.7351L22.6079 -8.73057Z" fill="var(--c10one)" />
-                        </g>
-                    </svg>
-                    <span style="display: flex;align-items: center;gap: 5rem;">
-                        <span style="font-size: 18rem;" id="wp_amount">
-                            1
-                        </span>
-                        <img src="/static/img/wild_pass.svg" alt="wild_pass" style="width: 25rem;">
-                    </span>
-                </button>
-            </div>
-        </ul>
-        {% else %}
-        <p class="box__desc" style="margin-top: 25rem;">
-            {% trans 'Вы скупили все сундуки за Wild Pass. Новые предложения появятся через сутки' context "lootbox" %}
-        </p>
-        {% endif %}
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                const wp_countInput = document.getElementById('wp_count');
-                const wp_amountElement = document.getElementById('wp_amount');
-                const wp_totalElement = document.getElementById('wp_bx_total');
-                const wp_buyButton = document.getElementById('wp_buy_bye');
-
-                wp_countInput.addEventListener('input', function () {
-                    // Получаем текущее значение count
-                    const countValue = parseInt(wp_countInput.value, 10) || 1;
-
-                    // Обновляем значение в элементе amount
-                    wp_amountElement.textContent = (countValue).toLocaleString();
-                    wp_totalElement.textContent = (countValue * 10).toLocaleString();
-
-                    // Обновляем аргумент функции buy_lootbox в кнопке
-                    wp_buyButton.setAttribute('onclick', `buy_lootbox(${countValue})`);
-                });
-            });
-        </script>
     </div>
     <!-- КОНЕЦ: Блок "Приобрести" -->
 

@@ -66,20 +66,20 @@ class LootboxConsumer(AsyncWebsocketConsumer):
         data = json.loads(text_data)
         action = data.get("action")
 
-        if action == "purchase":
-            # Покупка лутбоксов
-            lootbox_count = int(data.get("count", 0))
-            total_value = lootbox_count * 100000
-
-            # Отправляем другим клиентам
-            await self.channel_layer.group_send(
-                self.room_group_name,
-                {
-                    "type": "broadcast_purchase",
-                    "player": self.player["name"],
-                    "value": total_value,
-                }
-            )
+        # if action == "purchase":
+        #     # Покупка лутбоксов
+        #     lootbox_count = int(data.get("count", 0))
+        #     total_value = lootbox_count * 100000
+        #
+        #     # Отправляем другим клиентам
+        #     await self.channel_layer.group_send(
+        #         self.room_group_name,
+        #         {
+        #             "type": "broadcast_purchase",
+        #             "player": self.player["name"],
+        #             "value": total_value,
+        #         }
+        #     )
 
     async def broadcast_purchase(self, event):
         # Отправка данных всем подключённым клиентам
