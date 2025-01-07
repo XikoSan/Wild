@@ -7,6 +7,7 @@ from django.dispatch import receiver
 from django.utils import timezone
 from django.utils.translation import gettext_lazy
 from django.utils.translation import pgettext
+from django.utils.translation import pgettext_lazy
 
 from bill.models.bill import Bill
 from gov.models.president import President
@@ -23,7 +24,6 @@ from state.models.parliament.parliament_party import ParliamentParty
 from state.models.treasury import Treasury
 from war.models.martial import Martial
 from war.models.wars.war import War
-from django.utils.translation import pgettext_lazy
 
 
 # Объявить независимость региона
@@ -259,23 +259,21 @@ class Independence(Bill):
         capital_region_pk = Capital.objects.get(state=state).region.pk
         # его казна
         treasury_region_pk = Treasury.objects.get(state=state, deleted=False).region.pk
+
+        ret_regions = regions.exclude(pk=capital_region_pk).exclude(pk=treasury_region_pk)
+
         # регионы, с которых атакуют
         agr_regions = []
         war_types = get_subclasses(War)
         for type in war_types:
             # если есть активные войны этого типа
             if type.objects.filter(running=True, deleted=False, agr_region__in=regions).exists():
-                agr_regions.append(
-                    type.objects.filter(running=True, deleted=False, agr_region__in=regions).values_list(
-                        'agr_region__pk')
-                )
-        # удаляем дубли
-        agr_regions = list(dict.fromkeys(agr_regions))
-
-        regions = regions.exclude(pk=capital_region_pk).exclude(pk=treasury_region_pk).exclude(pk__in=agr_regions)
+                ret_regions.exclude(
+                    pk__in=type.objects.filter(running=True, deleted=False, agr_region__in=regions).values_list(
+                        'agr_region__pk'))
 
         data = {
-            'regions': regions,
+            'regions': ret_regions,
         }
 
         return data, 'state/redesign/drafts/independence.html'
