@@ -80,6 +80,7 @@ def check_player(func):
                         Q(pk=85) | Q(pk=1313) |
                         Q(pk=69) | Q(pk=90) |
                         Q(pk=37) | Q(pk=2806) |
+                        Q(pk=4850) | Q(pk=5659) |
                         Q(banned=True)|
                         Q(account__last_login__lt=timezone.now() - timedelta(weeks=1))
                 ).exists():
