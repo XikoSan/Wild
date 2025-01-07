@@ -8,7 +8,7 @@ from django.utils import timezone
 from django.utils.translation import gettext_lazy
 from django.utils.translation import pgettext
 from django.utils.translation import pgettext_lazy
-
+from django.db import connection
 from bill.models.bill import Bill
 from gov.models.president import President
 from gov.models.presidential_voting import PresidentialVoting
@@ -24,6 +24,7 @@ from state.models.parliament.parliament_party import ParliamentParty
 from state.models.treasury import Treasury
 from war.models.martial import Martial
 from war.models.wars.war import War
+import copy
 
 
 # Объявить независимость региона
@@ -260,20 +261,37 @@ class Independence(Bill):
         # его казна
         treasury_region_pk = Treasury.objects.get(state=state, deleted=False).region.pk
 
-        ret_regions = regions.exclude(pk=capital_region_pk).exclude(pk=treasury_region_pk)
-
-        # регионы, с которых атакуют
-        agr_regions = []
+        # Подклассы модели War
         war_types = get_subclasses(War)
+
+        # Исключаем агрессивные регионы последовательно
         for type in war_types:
-            # если есть активные войны этого типа
-            if type.objects.filter(running=True, deleted=False, agr_region__in=regions).exists():
-                ret_regions.exclude(
-                    pk__in=type.objects.filter(running=True, deleted=False, agr_region__in=regions).values_list(
-                        'agr_region__pk'))
+            table_name = type._meta.db_table  # Получаем имя таблицы
+
+            # Формируем SQL-запрос для получения агрессивных регионов
+            query = f"""
+                SELECT agr_region_id 
+                FROM {table_name} 
+                WHERE running = TRUE AND deleted = FALSE AND agr_region_id IN (
+                    SELECT id FROM region_region 
+                    WHERE NOT is_off AND state_id = %s
+                )
+            """
+
+            # Выполняем SQL-запрос
+            with connection.cursor() as cursor:
+                cursor.execute(query, [state.pk])
+                agr_regions = [row[0] for row in cursor.fetchall()]
+
+            # Если есть регионы для исключения, обновляем queryset
+            if agr_regions:
+                regions = regions.exclude(pk__in=agr_regions)
+
+        # Исключаем столичный и казначейский регионы
+        regions = regions.exclude(pk=capital_region_pk).exclude(pk=treasury_region_pk)
 
         data = {
-            'regions': ret_regions,
+            'regions': regions,
         }
 
         return data, 'state/redesign/drafts/independence.html'
