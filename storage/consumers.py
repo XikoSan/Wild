@@ -81,11 +81,11 @@ class LootboxConsumer(AsyncWebsocketConsumer):
         #         }
         #     )
 
-    async def broadcast_purchase(self, event):
+    async def broadcast_purchase(self):
         # Отправка данных всем подключённым клиентам
         await self.send(text_data=json.dumps({
             "type": "purchase",
-            "value": event["value"],
+            # "value": event["value"],
         }))
 
     async def broadcast_win(self, event):
