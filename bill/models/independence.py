@@ -256,9 +256,9 @@ class Independence(Bill):
         regions = Region.objects.filter(state=state).exclude(pk__in=mar_pk_list)
 
         # столица этого госа
-        capital_region_pk = Capital.objects.only("region").get(state=state).region.pk
+        capital_region_pk = Capital.objects.get(state=state).region.pk
         # его казна
-        treasury_region_pk = Treasury.objects.only("region").get(state=state, deleted=False).region.pk
+        treasury_region_pk = Treasury.objects.get(state=state, deleted=False).region.pk
         # регионы, с которых атакуют
         agr_regions = []
         war_types = get_subclasses(War)
