@@ -135,9 +135,9 @@
 
     <!-- Таблица Активов -->
     {% for storage in storages %}
-    <div id="table_{% localize off %}{{ storage.pk }}{% endlocalize %}" class="actives__table" {% if forloop.counter0 != 0 %}style="display: none"{% endif %}>
+    <div id="table_{% localize off %}{{ storage.pk }}{% endlocalize %}" class="actives__table" {% if storage != first_storage %}style="display: none"{% endif %}>
 
-        {% if forloop.counter0 == 0 %}
+        {% if storage == first_storage %}
               <!--Наличные-->
               <div class="ct__s">
                 <h2 class="ct__s-title">{% trans 'Уровень' context "storage" %}:</h2>
