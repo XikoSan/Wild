@@ -17,6 +17,9 @@ def create_temporary_player_class():
         mined = 0
         reward = 0
 
+        class Meta:
+            proxy = True
+
     return PartyWithSkill
 
 

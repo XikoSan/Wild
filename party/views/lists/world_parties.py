@@ -15,6 +15,9 @@ def create_temporary_party_class():
         pk = 0
         size = 0
 
+        class Meta:
+            proxy = True
+
     return _PartyWithSize
 
 

@@ -22,7 +22,7 @@ def create_temporary_player_class():
 
         class Meta:
             proxy = True
-            
+
     return PartyWithMined
 
 
