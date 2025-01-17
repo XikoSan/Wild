@@ -89,7 +89,7 @@ def articles(request):
     subs_articles = Article.objects.defer('body').filter(
                                                             Q(player__in=authors)
                                                             | Q(player__pk=1)
-                                                        ).order_by('-id')
+                                                        ).order_by('-pinned', 'pin_order', '-id')
     for article in subs_articles:
         if article.pk not in rating_dict.keys():
             rating_dict[article.pk] = article.votes_pro.count() - article.votes_con.count()
