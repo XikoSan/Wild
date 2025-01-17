@@ -32,15 +32,30 @@ def articles(request):
     cursor = connection.cursor()
     cursor.execute("""
         WITH dislikes AS (
-            SELECT article_id, COUNT(*) as count FROM public.article_article_votes_con GROUP BY article_id
+            SELECT article_id, COUNT(*) AS count 
+            FROM public.article_article_votes_con 
+            GROUP BY article_id
         ), likes AS (
-            SELECT article_id, COUNT(*) as count FROM public.article_article_votes_pro GROUP BY article_id
+            SELECT article_id, COUNT(*) AS count 
+            FROM public.article_article_votes_pro 
+            GROUP BY article_id
+        ), rating AS (
+            SELECT 
+                COALESCE(l.article_id, d.article_id) AS article_id, 
+                COALESCE(l.count, 0) - COALESCE(d.count, 0) AS difference
+            FROM likes AS l
+            FULL OUTER JOIN dislikes AS d ON d.article_id = l.article_id
         )
-        SELECT COALESCE(l.article_id, d.article_id) as article, COALESCE(l.count, 0) - COALESCE(d.count, 0) AS difference
-        FROM likes AS l 
-        FULL OUTER JOIN dislikes AS d ON d.article_id = l.article_id
-        WHERE COALESCE(l.count, 0) - COALESCE(d.count, 0) > 0
-        ORDER BY difference DESC, article DESC
+        SELECT 
+            a.id, 
+            a.date, 
+            r.difference
+        FROM public.article_article AS a
+        JOIN rating AS r ON a.id = r.article_id
+        WHERE 
+            a.date >= NOW() - INTERVAL '7 days' -- Последняя неделя
+            AND r.difference > 0 -- Учитываем только положительный рейтинг
+        ORDER BY r.difference DESC, a.date DESC -- Сортировка по рейтингу и дате
         LIMIT 10;
     """)
     list_db = cursor.fetchall()
@@ -49,6 +64,7 @@ def articles(request):
     list_articles_pk = [elem[0] for elem in list_db]
 
     # Получаем статьи по сохраненному порядку list_articles_pk
+    # article_noorder = Article.objects.defer('body').filter(pk__in=list_articles_pk)
     article_noorder = Article.objects.defer('body').filter(pk__in=list_articles_pk).exclude(player__pk=1)
     articles_dict = {article.pk: article for article in article_noorder}
 
