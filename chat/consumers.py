@@ -53,7 +53,7 @@ def _delete_message(chat_id, counter):
 
     appendix = ''
 
-    if chat_id not in ['ru', 'be', 'uk', 'hy']:
+    if chat_id not in ['ru', 'be', 'uk', 'hy', 'az']:
         # appendix = f'_{chat_id}'
         appendix = f'_en'
 
@@ -90,7 +90,7 @@ def _append_message(chat_id, author, text):
     counter = 0
     appendix = ''
 
-    if chat_id not in ['ru', 'be', 'uk', 'hy']:
+    if chat_id not in ['ru', 'be', 'uk', 'hy', 'az']:
         # appendix = f'_{chat_id}'
         appendix = f'_en'
 

@@ -148,7 +148,7 @@ def overview(request):
         appendix = ''
         chat_id = get_language()
 
-        if chat_id not in ['ru', 'be', 'uk', 'hy']:
+        if chat_id not in ['ru', 'be', 'uk', 'hy', 'az']:
             # appendix = f'_{chat_id}'
             appendix = f'_en'
 
