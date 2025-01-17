@@ -101,7 +101,7 @@ class Plane(models.Model):
                        'green', 'dark_blue', 'light_blue',
                        'pink', 'violet', 'black',
                        'standard', 'hexagon', 'white_cam',
-                       'gold', 'friday'
+                       'gold', 'friday', 'panty',
                        ],
 
         'observer': ['base',
@@ -171,6 +171,8 @@ class Plane(models.Model):
         ('dreamflight', 'Dreamflight'),  # сходка МСК 2024
         ('android', 'Android'),  # тест андроида осенью 2024
 
+        ('panty', 'Panty'),  # в полоску с бантиком
+
         ('hexagon', 'гексагон'),
         ('standard', 'стандартная схема'),
         ('green_cam', 'зелёный камуфляж'),
@@ -198,7 +200,7 @@ class Plane(models.Model):
 
     rare_colors = [
         'black', 'pink', 'green_white_cam', 'green_cam', 'blue_cam', 'desert_cam', 'pobeda', 'airball',
-        'corny', 'redline', 'standard', 'hexagon', 'white_cam', 'android',
+        'corny', 'redline', 'standard', 'hexagon', 'white_cam', 'android', 'panty',
     ]
 
     gold_colors = ['gold', 'black_gold', 'wood', 'friday']
