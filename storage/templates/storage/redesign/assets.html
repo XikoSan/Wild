@@ -124,7 +124,7 @@
         <label class="actives__region ct__select-region">
           <select id="storages_tabs">
             {% for storage in storages %}
-            <option value="{% localize off %}{% localize off %}{{ storage.pk }}{% endlocalize %}{% endlocalize %}">{{ storage.region }}</option>
+            <option value="{% localize off %}{% localize off %}{{ storage.pk }}{% endlocalize %}{% endlocalize %}" {% if storage == first_storage %}selected{% endif %}>{{ storage.region }}</option>
             {% endfor %}
           </select>
             <svg width="21" height="11" viewBox="0 0 21 11" fill="none" xmlns="http://www.w3.org/2000/svg">
