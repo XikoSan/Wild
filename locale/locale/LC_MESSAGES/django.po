@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-15 09:26+0300\n"
+"POT-Creation-Date: 2025-01-20 09:39+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -60,7 +60,7 @@ msgctxt "overview"
 msgid "магазин"
 msgstr ""
 
-#: article/templates/article/articles.html:30 article/views/articles.py:123
+#: article/templates/article/articles.html:30 article/views/articles.py:139
 msgctxt "article"
 msgid "Статьи"
 msgstr ""
@@ -524,11 +524,11 @@ msgstr ""
 #: party/templates/party/redesign/primaries.html:242
 #: party/templatetags/redesign/tops/factory_top.py:80
 #: party/templatetags/redesign/tops/mining_top.py:81
-#: party/templatetags/redesign/tops/skill_top.py:77
+#: party/templatetags/redesign/tops/skill_top.py:80
 #: party/views/lists/region_parties.py:56
 #: party/views/lists/region_parties.py:76 party/views/lists/state_parties.py:68
-#: party/views/lists/state_parties.py:88 party/views/lists/world_parties.py:57
-#: party/views/lists/world_parties.py:77 player/views/lists/cash_top.py:99
+#: party/views/lists/state_parties.py:88 party/views/lists/world_parties.py:60
+#: party/views/lists/world_parties.py:80 player/views/lists/cash_top.py:99
 #: player/views/lists/damage_top.py:121
 #: player/views/lists/region_citizens.py:50
 #: player/views/lists/region_players.py:50
@@ -551,12 +551,12 @@ msgstr ""
 #: party/templatetags/redesign/tops/factory_top.py:86
 #: party/templatetags/redesign/tops/mining_top.py:86
 #: party/templatetags/redesign/tops/mining_top.py:87
-#: party/templatetags/redesign/tops/skill_top.py:82
-#: party/templatetags/redesign/tops/skill_top.py:83
+#: party/templatetags/redesign/tops/skill_top.py:85
+#: party/templatetags/redesign/tops/skill_top.py:86
 #: party/views/lists/region_parties.py:61
 #: party/views/lists/region_parties.py:62 party/views/lists/state_parties.py:73
-#: party/views/lists/state_parties.py:74 party/views/lists/world_parties.py:62
-#: party/views/lists/world_parties.py:63 player/views/lists/cash_top.py:104
+#: party/views/lists/state_parties.py:74 party/views/lists/world_parties.py:65
+#: party/views/lists/world_parties.py:66 player/views/lists/cash_top.py:104
 #: player/views/lists/cash_top.py:105 player/views/lists/damage_top.py:126
 #: player/views/lists/damage_top.py:127
 #: player/views/lists/region_citizens.py:55
@@ -4868,8 +4868,8 @@ msgstr ""
 #: party/templates/party/redesign/new_party.html:67
 #: party/views/lists/region_parties.py:67
 #: party/views/lists/region_parties.py:68 party/views/lists/state_parties.py:79
-#: party/views/lists/state_parties.py:80 party/views/lists/world_parties.py:68
-#: party/views/lists/world_parties.py:69
+#: party/views/lists/state_parties.py:80 party/views/lists/world_parties.py:71
+#: party/views/lists/world_parties.py:72
 msgctxt "lists"
 msgid "Размер"
 msgstr ""
@@ -5087,7 +5087,7 @@ msgstr ""
 
 #: party/templatetags/redesign/tops/factory_top.py:98
 #: party/templatetags/redesign/tops/mining_top.py:99
-#: party/templatetags/redesign/tops/skill_top.py:95
+#: party/templatetags/redesign/tops/skill_top.py:98
 msgctxt "lists"
 msgid "Награда"
 msgstr ""
@@ -5108,13 +5108,13 @@ msgctxt "skill_top"
 msgid "Топ добычи"
 msgstr ""
 
-#: party/templatetags/redesign/tops/skill_top.py:88
-#: party/templatetags/redesign/tops/skill_top.py:89
+#: party/templatetags/redesign/tops/skill_top.py:91
+#: party/templatetags/redesign/tops/skill_top.py:92
 msgctxt "lists"
 msgid "Прирост"
 msgstr ""
 
-#: party/templatetags/redesign/tops/skill_top.py:101
+#: party/templatetags/redesign/tops/skill_top.py:104
 msgctxt "skill_top"
 msgid "Топ прироста Характеристик"
 msgstr ""
@@ -5131,8 +5131,8 @@ msgstr ""
 
 #: party/views/lists/region_parties.py:81
 #: party/views/lists/region_parties.py:82 party/views/lists/state_parties.py:93
-#: party/views/lists/state_parties.py:94 party/views/lists/world_parties.py:82
-#: party/views/lists/world_parties.py:83 player/views/lists/world_online.py:61
+#: party/views/lists/state_parties.py:94 party/views/lists/world_parties.py:85
+#: party/views/lists/world_parties.py:86 player/views/lists/world_online.py:61
 #: player/views/lists/world_online.py:62 player/views/lists/world_players.py:49
 #: player/views/lists/world_players.py:50
 #: region/views/lists/world_regions.py:70
@@ -5151,7 +5151,7 @@ msgctxt "state_parties"
 msgid "Партии государства"
 msgstr ""
 
-#: party/views/lists/world_parties.py:91
+#: party/views/lists/world_parties.py:94
 msgctxt "world_parties"
 msgid "Партии мира"
 msgstr ""
