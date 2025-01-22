@@ -118,6 +118,14 @@ def player_create(request, form):
         _append_message(chat_id=chat_id, author=admin, text=pgettext('start_messages',
                                                                      'Добро пожаловать в Wild Politics! Вы всегда можете обратиться ко мне прямо в этом чате - либо связаться со мной через группу игры ВК или чат в Телеграмм. Я открыт к любым вопросам и пожеланиям.'))
         _append_message(chat_id=chat_id, author=admin, text=pgettext('start_messages',
+                                                                     'Присоединяйтесь к общему чату игры в Вконтакте:'))
+        _append_message(chat_id=chat_id, author=admin, text='https://vk.cc/clbgGr')
+        _append_message(chat_id=chat_id, author=admin, text=pgettext('start_messages',
+                                                                     'Или же к чату в Телеграм:'))
+        _append_message(chat_id=chat_id, author=admin, text='https://t.me/+N5O-ZWCn5745YTQ6')
+        _append_message(chat_id=chat_id, author=admin, text=pgettext('start_messages',
+                                                                     'В этих чатах вы сможете задать вопросы об игре, а также найти союзников для совместной игры.'))
+        _append_message(chat_id=chat_id, author=admin, text=pgettext('start_messages',
                                                                      'Если найдётся время, расскажите, пожалуйста, о своих впечатлениях от игры - мне это важно. Приятной игры!'))
 
     if character.region.state:
