@@ -354,19 +354,23 @@ def finish_primaries(party_id):
     # все члены партии
     candidates = Player.objects.filter(party=party)
 
+    # должность лидера партии в данной партии
+    party_boss_post = PartyPosition.objects.get(based=True, party=party, party_lead=True)
+    # лидером праймериз будет глава партии, если нет голосов
+    current_leader = Player.get_instance(party=party, party_post=party_boss_post)
+
     # получаем количество бюллетеней
     bulletins = PrimBulletin.objects.filter(primaries=primaries)
     # если их нет - проверка на роспуск партии
     if bulletins.count() == 0:
         r = redis.StrictRedis(host='redis', port=6379, db=0)
         anyone_online = False
-        for char in candidates:
-            timestamp = r.hget('online', str(char.pk))
-            if timestamp:
-                online_dtime = datetime.datetime.fromtimestamp(int(timestamp))
-                if not datetime.datetime.now() > datetime.timedelta(days=30) + online_dtime:
-                    anyone_online = True
-                    break
+        # если главы нет в сети более двух недель - распускаем
+        timestamp = r.hget('online', str(current_leader.pk))
+        if timestamp:
+            online_dtime = datetime.datetime.fromtimestamp(int(timestamp))
+            if not datetime.datetime.now() > datetime.timedelta(days=14) + online_dtime:
+                anyone_online = True
 
         if not anyone_online:
             PartyApply.objects.filter(party=party, status='op').update(status='ra')
@@ -387,10 +391,6 @@ def finish_primaries(party_id):
             # на этом всё
             return
 
-    # должность лидера партии в данной партии
-    party_boss_post = PartyPosition.objects.get(based=True, party=party, party_lead=True)
-    # лидером праймериз будет глава партии, если нет голосов
-    current_leader = Player.get_instance(party=party, party_post=party_boss_post)
     current_leader_votes = 0
 
     # подсчитываем количество голосов за каждого кандидата
