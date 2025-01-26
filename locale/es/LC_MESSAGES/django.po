@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-22 13:04+0300\n"
-"PO-Revision-Date: 2023-04-12 02:35+0300\n"
-"Last-Translator: \n"
+"POT-Creation-Date: 2025-01-20 09:39+0300\n"
+"PO-Revision-Date: 2025-01-26 16:15+0300\n"
+"Last-Translator: Kenobi Bloodhound <matriobdz@gmail.com>\n"
 "Language-Team: \n"
 "Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 3.4.4\n"
 
 #: article/templates/article/article.html:16
 #: article/templates/article/article.html:110
@@ -78,9 +78,6 @@ msgid "Статьи"
 msgstr ""
 
 #: article/templates/article/articles.html:43
-#, fuzzy
-#| msgctxt "w_trading"
-#| msgid "Все"
 msgctxt "article"
 msgid "все"
 msgstr "Todo"
@@ -107,21 +104,15 @@ msgid "Статьи"
 msgstr ""
 
 #: article/templates/article/edit_article.html:12
-#, fuzzy
-#| msgctxt "storage_assets"
-#| msgid "использовать"
 msgctxt "article"
 msgid "Редактировать статью"
-msgstr "usar Wild Pass"
+msgstr "Editar artículo"
 
 #: article/templates/article/edit_article.html:13
 #: article/templates/article/new_article.html:13
-#, fuzzy
-#| msgctxt "party_manage"
-#| msgid "Название не может быть пустым"
 msgctxt "article"
 msgid "Статья не может быть пустой"
-msgstr "No puede estar bacío "
+msgstr "El artículo no puede estar vacío."
 
 #: article/templates/article/edit_article.html:14
 #: article/templates/article/new_article.html:14
@@ -325,8 +316,8 @@ msgstr "No puede estar bacío "
 #: player/views/game_event/check_review.py:41
 #: player/views/game_event/check_review.py:52
 #: player/views/game_event/check_review.py:94
-#: player/views/game_event/check_review.py:104 player/views/new_player.py:215
-#: player/views/new_player.py:228 player/views/open_lootboxes.py:27
+#: player/views/game_event/check_review.py:104 player/views/new_player.py:207
+#: player/views/new_player.py:220 player/views/open_lootboxes.py:27
 #: player/views/open_lootboxes.py:38 player/views/open_lootboxes.py:49
 #: player/views/open_lootboxes.py:59 player/views/open_lootboxes.py:134
 #: player/views/set_language.py:38 player/views/set_language.py:54
@@ -619,12 +610,9 @@ msgstr "Partido"
 #: article/views/change_article.py:23 article/views/change_article.py:34
 #: article/views/change_article.py:42 article/views/change_article.py:54
 #: article/views/change_article.py:74 bill/views/bills/vote_bill.py:132
-#, fuzzy
-#| msgctxt "storage_assets"
-#| msgid "использовать"
 msgctxt "change_article"
 msgid "Редактировать статью"
-msgstr "usar Wild Pass"
+msgstr "Editar artículo"
 
 #: article/views/change_article.py:25
 msgctxt "change_article"
@@ -647,12 +635,9 @@ msgid "Неизвестная статья"
 msgstr "Posición"
 
 #: article/views/change_article.py:56
-#, fuzzy
-#| msgctxt "party_manage"
-#| msgid "Название не может быть пустым"
 msgctxt "change_article"
 msgid "Текст статьи не должен быть пустым"
-msgstr "No puede estar bacío "
+msgstr "El texto del artículo no debe estar vacío."
 
 #: article/views/change_article.py:73 article/views/create_article.py:117
 #: article/views/subscription.py:71 article/views/vote_article.py:73
@@ -699,36 +684,26 @@ msgid "Новая статья"
 msgstr "Nuevo partido"
 
 #: article/views/create_article.py:69
-#, fuzzy, python-format
-#| msgctxt "party_manage"
-#| msgid "Достигнуто ограничение на число должностей"
+#, python-format
 msgctxt "new_article"
 msgid "Вы достигли ограничения на число статей - %(limit)s штук"
-msgstr "Límite de posiciones alcanzado"
+msgstr "Ha alcanzado el límite de número de artículos - %(limit)s piezas"
 
 #: article/views/create_article.py:78
-#, fuzzy
-#| msgctxt "party_manage"
-#| msgid "Название не может быть пустым"
 msgctxt "new_article"
 msgid "Название статьи не должно быть пустым"
-msgstr "No puede estar bacío "
+msgstr "El título del artículo no debe estar vacío."
 
 #: article/views/create_article.py:88
-#, fuzzy
-#| msgctxt "party_manage"
-#| msgid "Название не может быть пустым"
 msgctxt "new_article"
 msgid "Текст статьи не должен быть пустым"
-msgstr "No puede estar bacío "
+msgstr "El texto del artículo no debe estar vacío."
 
 #: article/views/edit_article.py:32
-#, fuzzy, python-format
-#| msgctxt "storage_assets"
-#| msgid "использовать"
+#, python-format
 msgctxt "article"
 msgid "Редактировать: %(title)s"
-msgstr "usar Wild Pass"
+msgstr "Editar: %(title)s"
 
 #: article/views/subscription.py:29 article/views/subscription.py:63
 #: article/views/subscription.py:72
@@ -856,12 +831,9 @@ msgid "Ошибка формы нового герба"
 msgstr "Error al cancelar la habilidad"
 
 #: bill/models/change_coat.py:180
-#, fuzzy
-#| msgctxt "overview"
-#| msgid "государства"
 msgctxt "new_bill"
 msgid "Новый герб государства"
-msgstr "del estado"
+msgstr "Nuevo escudo de armas"
 
 #: bill/models/change_coat.py:181
 #, fuzzy
@@ -872,12 +844,9 @@ msgid "Смена гербов государств"
 msgstr "Cambiar nombre"
 
 #: bill/models/change_form.py:25
-#, fuzzy
-#| msgctxt "menu"
-#| msgid "правительство"
 msgctxt "new_bill"
 msgid "Временное правительство"
-msgstr "gobierno"
+msgstr "Gobierno Provisional"
 
 #: bill/models/change_form.py:26
 msgctxt "new_bill"
@@ -1111,12 +1080,9 @@ msgstr "Tipo"
 
 #: bill/models/construction.py:50 region/building/defences.py:62
 #: region/building/defences.py:63
-#, fuzzy
-#| msgctxt "trading"
-#| msgid "тип предложения"
 msgctxt "new_bill"
 msgid "Укрепления"
-msgstr "tipo de oferta"
+msgstr "Fortificaciones"
 
 #: bill/models/construction.py:60 region/building/infrastructure.py:118
 #, fuzzy
@@ -1171,20 +1137,14 @@ msgid "Наличные"
 msgstr "Efectivo"
 
 #: bill/models/construction.py:535
-#, fuzzy
-#| msgctxt "menu"
-#| msgid "правительство"
 msgctxt "new_bill"
 msgid "Строительство"
-msgstr "gobierno"
+msgstr "Строительство"
 
 #: bill/models/construction.py:536
-#, fuzzy
-#| msgctxt "menu"
-#| msgid "правительство"
 msgctxt "new_bill"
 msgid "Строительства"
-msgstr "gobierno"
+msgstr "Construcción"
 
 #: bill/models/explore_all.py:32 bill/models/explore_resources.py:32
 #: bill/models/geological_surveys.py:28
@@ -1236,20 +1196,14 @@ msgid "Разведки всех регионов"
 msgstr "Error al minar"
 
 #: bill/models/explore_all_region.py:25
-#, fuzzy
-#| msgctxt "no_storage"
-#| msgid "Стоимость создания"
 msgctxt "new_bill"
 msgid "Часть общей разведки"
-msgstr "cuesta:"
+msgstr "Parte de la inteligencia general."
 
 #: bill/models/explore_all_region.py:26
-#, fuzzy
-#| msgctxt "no_storage"
-#| msgid "Стоимость создания"
 msgctxt "new_bill"
 msgid "Части общей разведки"
-msgstr "cuesta:"
+msgstr "Unidades de inteligencia general"
 
 #: bill/models/explore_resources.py:92
 #, fuzzy
@@ -1290,11 +1244,9 @@ msgstr ""
 
 #: bill/models/independence.py:45 bill/models/transfer_accept.py:53
 #: bill/models/transfer_region.py:54
-#, fuzzy
-#| msgid "независимый регион"
 msgctxt "new_bill"
 msgid "Не указан подходящий регион"
-msgstr "región libre"
+msgstr "No se ha especificado ninguna región adecuada"
 
 #: bill/models/independence.py:79
 msgctxt "new_bill"
@@ -1383,12 +1335,9 @@ msgid "Военное положение"
 msgstr "Nueva oferta de comercio"
 
 #: bill/models/martial_law.py:243
-#, fuzzy
-#| msgctxt "trading"
-#| msgid "тип предложения"
 msgctxt "new_bill"
 msgid "Военные положения"
-msgstr "tipo de oferta"
+msgstr "ley marcial"
 
 #: bill/models/purchase_auction.py:60
 #, fuzzy
@@ -1558,12 +1507,9 @@ msgid "Принятие региона"
 msgstr "Partidos de la región"
 
 #: bill/models/transfer_accept.py:403
-#, fuzzy
-#| msgctxt "no_party"
-#| msgid "в регионе"
 msgctxt "new_bill"
 msgid "Принятия регионов"
-msgstr "en"
+msgstr "Adopciones de regiones"
 
 #: bill/models/transfer_region.py:61 bill/models/transfer_resources.py:65
 #, fuzzy
@@ -1678,12 +1624,9 @@ msgid "Передачи товаров"
 msgstr "Transporte"
 
 #: bill/templates/state/redesign/bills/change_coat.html:24
-#, fuzzy
-#| msgctxt "no_party"
-#| msgid "региональные"
 msgctxt "bill"
 msgid "оригинальный размер"
-msgstr "Partidos regionales"
+msgstr "tamaño original"
 
 #: bill/templates/state/redesign/bills/change_coat.html:60
 #: bill/templates/state/redesign/bills/change_residency.html:71
@@ -1704,20 +1647,16 @@ msgstr "residencia"
 #: bill/templates/state/redesign/bills/change_residency.html:23
 #: bill/templates/state/redesign/drafts/change_residency.html:12
 #: bill/templates/state/redesign/reviewed/change_residency.html:24
-#, fuzzy
-#| msgid "Выдаётся министром"
 msgctxt "change_residency_draft"
 msgid "выдается министром"
-msgstr "Propuesta por el ministro"
+msgstr "emitido por el ministro"
 
 #: bill/templates/state/redesign/bills/change_residency.html:25
 #: bill/templates/state/redesign/drafts/change_residency.html:13
 #: bill/templates/state/redesign/reviewed/change_residency.html:26
-#, fuzzy
-#| msgid "Свободная"
 msgctxt "change_residency_draft"
 msgid "свободная"
-msgstr "Liberar"
+msgstr "gratis"
 
 #: bill/templates/state/redesign/bills/change_residency.html:34
 #: factory/migrations/0023_auto_20230911_0014.py:43
@@ -1750,11 +1689,9 @@ msgstr ""
 
 #: bill/templates/state/redesign/bills/change_taxes.html:29
 #: education/templates/education/edu_gov.html:322
-#, fuzzy
-#| msgid "Государство"
 msgctxt "bill"
 msgid "всё государство"
-msgstr "Estado"
+msgstr "todo el estado"
 
 #: bill/templates/state/redesign/bills/martial_law.html:32
 #, fuzzy
@@ -1786,12 +1723,9 @@ msgid "Наземная война"
 msgstr ""
 
 #: bill/templates/state/redesign/drafts/change_coat.html:13
-#, fuzzy
-#| msgctxt "overview"
-#| msgid "государства"
 msgctxt "change_coat_draft"
 msgid "Новый герб государства"
-msgstr "del estado"
+msgstr "Nuevo escudo de armas"
 
 #: bill/templates/state/redesign/drafts/change_coat.html:93
 #, fuzzy
@@ -1823,12 +1757,9 @@ msgstr "Subir"
 #: bill/templates/state/redesign/drafts/transfer_accept.html:48
 #: bill/templates/state/redesign/drafts/transfer_region.html:107
 #: bill/templates/state/redesign/drafts/transfer_resources.html:194
-#, fuzzy
-#| msgctxt "has_party"
-#| msgid "Продолжить"
 msgctxt "bill_draft"
 msgid "предложить"
-msgstr "Continuar"
+msgstr "oferta"
 
 #: bill/templates/state/redesign/drafts/change_form.html:8
 #, fuzzy
@@ -1839,12 +1770,9 @@ msgid "Новая форма правления государства"
 msgstr "Derechos insuficientes para eliminarlo"
 
 #: bill/templates/state/redesign/drafts/change_form.html:12
-#, fuzzy
-#| msgctxt "w_trading_new"
-#| msgid "Выберите группу"
 msgctxt "change_form_draft"
 msgid "выберите форму правления"
-msgstr "Elige categoría"
+msgstr "elegir una forma de gobierno"
 
 #: bill/templates/state/redesign/drafts/change_residency.html:8
 msgctxt "change_residency_draft"
@@ -1876,11 +1804,9 @@ msgid "БПЛА"
 msgstr "VANT"
 
 #: bill/templates/state/redesign/drafts/change_taxes.html:52
-#, fuzzy
-#| msgid "Государство"
 msgctxt "change_taxes_draft"
 msgid "государство"
-msgstr "Estado"
+msgstr "estado"
 
 #: bill/templates/state/redesign/drafts/change_taxes.html:53
 #, fuzzy
@@ -1891,12 +1817,9 @@ msgid "регион"
 msgstr "región"
 
 #: bill/templates/state/redesign/drafts/change_taxes.html:61
-#, fuzzy
-#| msgctxt "assets"
-#| msgid "выберите склад"
 msgctxt "change_taxes_draft"
 msgid "Выберите налог"
-msgstr "escoger almacén"
+msgstr "Seleccionar impuesto"
 
 #: bill/templates/state/redesign/drafts/change_taxes.html:63
 #, fuzzy
@@ -1973,12 +1896,9 @@ msgid "выберите ресурс"
 msgstr "escoger bienes"
 
 #: bill/templates/state/redesign/drafts/explore_all.html:47
-#, fuzzy
-#| msgctxt "no_storage"
-#| msgid "Стоимость создания"
 msgctxt "explore_all_resources_draft"
 msgid "стоимость разведки"
-msgstr "cuesta:"
+msgstr "costo de exploración"
 
 #: bill/templates/state/redesign/drafts/explore_resources.html:159
 #, fuzzy
@@ -2004,20 +1924,14 @@ msgid "За последние сутки"
 msgstr "Energía recargada"
 
 #: bill/templates/state/redesign/drafts/explore_resources.html:173
-#, fuzzy
-#| msgctxt "trading"
-#| msgid "создатель"
 msgctxt "explore_resources_draft"
 msgid "Множитель"
-msgstr "creador"
+msgstr "Factor"
 
 #: bill/templates/state/redesign/drafts/explore_resources.html:175
-#, fuzzy
-#| msgctxt "no_storage"
-#| msgid "Стоимость создания"
 msgctxt "explore_resources_draft"
 msgid "стоимость разведки"
-msgstr "cuesta:"
+msgstr "costo de exploración"
 
 #: bill/templates/state/redesign/drafts/explore_resources.html:192
 #, fuzzy
@@ -2115,28 +2029,19 @@ msgid "количество"
 msgstr "cantidad"
 
 #: bill/templates/state/redesign/drafts/transfer_resources.html:180
-#, fuzzy
-#| msgctxt "no_storage"
-#| msgid "Стоимость создания"
 msgctxt "transfer_resources_draft"
 msgid "стоимость передачи"
-msgstr "cuesta:"
+msgstr "costo de transferencia"
 
 #: bill/templates/state/redesign/new_bill.html:82
-#, fuzzy
-#| msgctxt "has_party"
-#| msgid "Продолжить"
 msgctxt "new_bill"
 msgid "предложить"
-msgstr "Continuar"
+msgstr "oferta"
 
 #: bill/templates/state/redesign/reviewed/change_coat.html:25
-#, fuzzy
-#| msgctxt "no_party"
-#| msgid "региональные"
 msgctxt "change_coat_reviewed"
 msgid "оригинальный размер"
-msgstr "Partidos regionales"
+msgstr "tamaño original"
 
 #: bill/templates/state/redesign/reviewed/change_coat.html:28
 #, fuzzy
@@ -2149,123 +2054,83 @@ msgstr "indisponible"
 #: bill/templates/state/redesign/reviewed/change_coat.html:44
 #: bill/templates/state/redesign/reviewed/change_form.html:37
 #: bill/templates/state/redesign/reviewed/change_residency.html:55
-#, fuzzy
-#| msgctxt "party_requests"
-#| msgid "Принять"
 msgctxt "change_residency_reviewed"
 msgid "принят"
-msgstr "Aceptar"
+msgstr "Aceptado"
 
 #: bill/templates/state/redesign/reviewed/change_coat.html:46
 #: bill/templates/state/redesign/reviewed/change_form.html:39
 #: bill/templates/state/redesign/reviewed/change_residency.html:57
-#, fuzzy
-#| msgctxt "party_requests"
-#| msgid "Отклонить"
 msgctxt "change_residency_reviewed"
 msgid "отклонён"
-msgstr "Rechazar"
+msgstr "Rechazado"
 
 #: bill/templates/state/redesign/reviewed/change_coat.html:48
 #: bill/templates/state/redesign/reviewed/change_form.html:41
 #: bill/templates/state/redesign/reviewed/change_residency.html:59
-#, fuzzy
-#| msgid "Отмена"
 msgctxt "change_residency_reviewed"
 msgid "отменён"
-msgstr "Cancelar"
+msgstr "Cancelado"
 
 #: bill/templates/state/redesign/reviewed/change_residency.html:35
-#, fuzzy
-#| msgctxt "goods"
-#| msgid "Автоматы"
 msgctxt "change_residency_reviewed"
 msgid "Автоматы"
-msgstr "Rifles"
+msgstr "Rifle"
 
 #: bill/templates/state/redesign/reviewed/change_residency.html:38
-#, fuzzy
-#| msgctxt "goods"
-#| msgid "БПЛА"
 msgctxt "change_residency_reviewed"
 msgid "БПЛА"
-msgstr "VANT"
+msgstr "UAV"
 
 #: bill/templates/state/redesign/reviewed/change_taxes.html:30
-#, fuzzy
-#| msgid "Государство"
 msgctxt "change_taxes_reviewed"
 msgid "всё государство"
-msgstr "Estado"
+msgstr "todo el estado"
 
 #: bill/templates/state/redesign/reviewed/change_taxes.html:58
-#, fuzzy
-#| msgctxt "party_requests"
-#| msgid "Принять"
 msgctxt "change_taxes_reviewed"
 msgid "принят"
-msgstr "Aceptar"
+msgstr "Aceptado"
 
 #: bill/templates/state/redesign/reviewed/change_taxes.html:60
-#, fuzzy
-#| msgctxt "party_requests"
-#| msgid "Отклонить"
 msgctxt "change_taxes_reviewed"
 msgid "отклонён"
-msgstr "Rechazar"
+msgstr "Rechazado"
 
 #: bill/templates/state/redesign/reviewed/change_taxes.html:62
-#, fuzzy
-#| msgid "Отмена"
 msgctxt "change_taxes_reviewed"
 msgid "отменён"
-msgstr "Cancelar"
+msgstr "Cancelado"
 
 #: bill/templates/state/redesign/reviewed/change_title.html:37
-#, fuzzy
-#| msgctxt "party_requests"
-#| msgid "Принять"
 msgctxt "change_title_reviewed"
 msgid "принят"
-msgstr "Aceptar"
+msgstr "Aceptado"
 
 #: bill/templates/state/redesign/reviewed/change_title.html:39
-#, fuzzy
-#| msgctxt "party_requests"
-#| msgid "Отклонить"
 msgctxt "change_title_reviewed"
 msgid "отклонён"
-msgstr "Rechazar"
+msgstr "Rechazado"
 
 #: bill/templates/state/redesign/reviewed/change_title.html:41
-#, fuzzy
-#| msgid "Отмена"
 msgctxt "change_title_reviewed"
 msgid "отменён"
-msgstr "Cancelar"
+msgstr "Cancelado"
 
 #: bill/templates/state/redesign/reviewed/construction.html:55
-#, fuzzy
-#| msgctxt "party_requests"
-#| msgid "Принять"
 msgctxt "construction_reviewed"
 msgid "принят"
-msgstr "Aceptar"
+msgstr "Aceptado"
 
 #: bill/templates/state/redesign/reviewed/construction.html:57
-#, fuzzy
-#| msgctxt "party_requests"
-#| msgid "Отклонить"
 msgctxt "construction_reviewed"
 msgid "отклонён"
-msgstr "Rechazar"
+msgstr "Rechazado"
 
 #: bill/templates/state/redesign/reviewed/construction.html:59
-#, fuzzy
-#| msgid "Отмена"
 msgctxt "construction_reviewed"
 msgid "отменён"
-msgstr "Cancelar"
+msgstr "Cancelado"
 
 #: bill/templates/state/redesign/reviewed/explore_all.html:32
 #: bill/templates/state/redesign/reviewed/explore_resources.html:36
@@ -2278,29 +2143,21 @@ msgstr "Efectivo"
 
 #: bill/templates/state/redesign/reviewed/explore_all.html:45
 #: bill/templates/state/redesign/reviewed/explore_resources.html:49
-#, fuzzy
-#| msgctxt "party_requests"
-#| msgid "Принять"
 msgctxt "explore_resources_reviewed"
 msgid "принят"
-msgstr "Aceptar"
+msgstr "Aceptado"
 
 #: bill/templates/state/redesign/reviewed/explore_all.html:47
 #: bill/templates/state/redesign/reviewed/explore_resources.html:51
-#, fuzzy
-#| msgctxt "party_requests"
-#| msgid "Отклонить"
 msgctxt "explore_resources_reviewed"
 msgid "отклонён"
-msgstr "Rechazar"
+msgstr "Rechazado"
 
 #: bill/templates/state/redesign/reviewed/explore_all.html:49
 #: bill/templates/state/redesign/reviewed/explore_resources.html:53
-#, fuzzy
-#| msgid "Отмена"
 msgctxt "explore_resources_reviewed"
 msgid "отменён"
-msgstr "Cancelar"
+msgstr "Cancelado"
 
 #: bill/templates/state/redesign/reviewed/geological_surveys.html:36
 #, fuzzy
@@ -2311,73 +2168,49 @@ msgid "Буровые установки"
 msgstr "Taladros"
 
 #: bill/templates/state/redesign/reviewed/geological_surveys.html:49
-#, fuzzy
-#| msgctxt "party_requests"
-#| msgid "Принять"
 msgctxt "geological_surveys_reviewed"
 msgid "принят"
-msgstr "Aceptar"
+msgstr "Aceptado"
 
 #: bill/templates/state/redesign/reviewed/geological_surveys.html:51
-#, fuzzy
-#| msgctxt "party_requests"
-#| msgid "Отклонить"
 msgctxt "geological_surveys_reviewed"
 msgid "отклонён"
-msgstr "Rechazar"
+msgstr "Rechazado"
 
 #: bill/templates/state/redesign/reviewed/geological_surveys.html:53
-#, fuzzy
-#| msgid "Отмена"
 msgctxt "geological_surveys_reviewed"
 msgid "отменён"
-msgstr "Cancelar"
+msgstr "Cancelado"
 
 #: bill/templates/state/redesign/reviewed/independence.html:41
-#, fuzzy
-#| msgctxt "party_requests"
-#| msgid "Принять"
 msgctxt "independence_reviewed"
 msgid "принят"
-msgstr "Aceptar"
+msgstr "Aceptado"
 
 #: bill/templates/state/redesign/reviewed/independence.html:43
-#, fuzzy
-#| msgctxt "party_requests"
-#| msgid "Отклонить"
 msgctxt "independence_reviewed"
 msgid "отклонён"
-msgstr "Rechazar"
+msgstr "Rechazado"
 
 #: bill/templates/state/redesign/reviewed/independence.html:45
-#, fuzzy
-#| msgid "Отмена"
 msgctxt "independence_reviewed"
 msgid "отменён"
-msgstr "Cancelar"
+msgstr "Cancelado"
 
 #: bill/templates/state/redesign/reviewed/martial_law.html:46
-#, fuzzy
-#| msgctxt "party_requests"
-#| msgid "Принять"
 msgctxt "martial_law_reviewed"
 msgid "принят"
-msgstr "Aceptar"
+msgstr "Aceptado"
 
 #: bill/templates/state/redesign/reviewed/martial_law.html:48
-#, fuzzy
-#| msgctxt "party_requests"
-#| msgid "Отклонить"
 msgctxt "martial_law_reviewed"
 msgid "отклонён"
-msgstr "Rechazar"
+msgstr "Rechazado"
 
 #: bill/templates/state/redesign/reviewed/martial_law.html:50
-#, fuzzy
-#| msgid "Отмена"
 msgctxt "martial_law_reviewed"
 msgid "отменён"
-msgstr "Cancelar"
+msgstr "Cancelado"
 
 #: bill/templates/state/redesign/reviewed/purchase_auction.html:32
 #, fuzzy
@@ -2388,96 +2221,64 @@ msgid "Наличные"
 msgstr "Efectivo"
 
 #: bill/templates/state/redesign/reviewed/purchase_auction.html:46
-#, fuzzy
-#| msgctxt "party_requests"
-#| msgid "Принять"
 msgctxt "purchase_auction_reviewed"
 msgid "принят"
-msgstr "Aceptar"
+msgstr "Aceptado"
 
 #: bill/templates/state/redesign/reviewed/purchase_auction.html:48
-#, fuzzy
-#| msgctxt "party_requests"
-#| msgid "Отклонить"
 msgctxt "purchase_auction_reviewed"
 msgid "отклонён"
-msgstr "Rechazar"
+msgstr "Rechazado"
 
 #: bill/templates/state/redesign/reviewed/purchase_auction.html:50
-#, fuzzy
-#| msgid "Отмена"
 msgctxt "purchase_auction_reviewed"
 msgid "отменён"
-msgstr "Cancelar"
+msgstr "Cancelado"
 
 #: bill/templates/state/redesign/reviewed/start_war.html:77
-#, fuzzy
-#| msgctxt "party_requests"
-#| msgid "Принять"
 msgctxt "start_war_reviewed"
 msgid "принят"
-msgstr "Aceptar"
+msgstr "Aceptado"
 
 #: bill/templates/state/redesign/reviewed/start_war.html:79
-#, fuzzy
-#| msgctxt "party_requests"
-#| msgid "Отклонить"
 msgctxt "start_war_reviewed"
 msgid "отклонён"
-msgstr "Rechazar"
+msgstr "Rechazado"
 
 #: bill/templates/state/redesign/reviewed/start_war.html:81
-#, fuzzy
-#| msgid "Отмена"
 msgctxt "start_war_reviewed"
 msgid "отменён"
-msgstr "Cancelar"
+msgstr "Cancelado"
 
 #: bill/templates/state/redesign/reviewed/transfer_accept.html:60
-#, fuzzy
-#| msgctxt "party_requests"
-#| msgid "Принять"
 msgctxt "transfer_accept_reviewed"
 msgid "принят"
-msgstr "Aceptar"
+msgstr "Aceptado"
 
 #: bill/templates/state/redesign/reviewed/transfer_accept.html:62
-#, fuzzy
-#| msgctxt "party_requests"
-#| msgid "Отклонить"
 msgctxt "transfer_accept_reviewed"
 msgid "отклонён"
-msgstr "Rechazar"
+msgstr "Rechazado"
 
 #: bill/templates/state/redesign/reviewed/transfer_accept.html:64
-#, fuzzy
-#| msgid "Отмена"
 msgctxt "transfer_accept_reviewed"
 msgid "отменён"
-msgstr "Cancelar"
+msgstr "Cancelado"
 
 #: bill/templates/state/redesign/reviewed/transfer_region.html:60
-#, fuzzy
-#| msgctxt "party_requests"
-#| msgid "Принять"
 msgctxt "transfer_region_reviewed"
 msgid "принят"
-msgstr "Aceptar"
+msgstr "Aceptado"
 
 #: bill/templates/state/redesign/reviewed/transfer_region.html:62
-#, fuzzy
-#| msgctxt "party_requests"
-#| msgid "Отклонить"
 msgctxt "transfer_region_reviewed"
 msgid "отклонён"
-msgstr "Rechazar"
+msgstr "Rechazado"
 
 #: bill/templates/state/redesign/reviewed/transfer_region.html:64
-#, fuzzy
-#| msgid "Отмена"
 msgctxt "transfer_region_reviewed"
 msgid "отменён"
-msgstr "Cancelar"
+msgstr "Cancelado"
 
 #: bill/templates/state/redesign/reviewed/transfer_resources.html:41
 #, fuzzy
@@ -2488,27 +2289,19 @@ msgid "Наличные"
 msgstr "Efectivo"
 
 #: bill/templates/state/redesign/reviewed/transfer_resources.html:54
-#, fuzzy
-#| msgctxt "party_requests"
-#| msgid "Принять"
 msgctxt "transfer_resources_reviewed"
 msgid "принят"
-msgstr "Aceptar"
+msgstr "Aceptado"
 
 #: bill/templates/state/redesign/reviewed/transfer_resources.html:56
-#, fuzzy
-#| msgctxt "party_requests"
-#| msgid "Отклонить"
 msgctxt "transfer_resources_reviewed"
 msgid "отклонён"
-msgstr "Rechazar"
+msgstr "Rechazado"
 
 #: bill/templates/state/redesign/reviewed/transfer_resources.html:58
-#, fuzzy
-#| msgid "Отмена"
 msgctxt "transfer_resources_reviewed"
 msgid "отменён"
-msgstr "Cancelar"
+msgstr "Cancelado"
 
 #: bill/views/bills/cancel_bill.py:70
 #, fuzzy
@@ -2544,12 +2337,9 @@ msgid "Нет такого вида законопроекта"
 msgstr "No hay tal habilidad"
 
 #: bill/views/bills/cancel_bill.py:91
-#, fuzzy
-#| msgctxt "overview"
-#| msgid "парламент"
 msgctxt "cancel_bill"
 msgid "Вы - не депутат этого парламента"
-msgstr "parlamento"
+msgstr "No eres miembro de este parlamento."
 
 #: bill/views/bills/cancel_bill.py:98
 #, fuzzy
@@ -2591,12 +2381,9 @@ msgid "В этом регионе нет государства"
 msgstr "No es un Almacén en esta región"
 
 #: bill/views/bills/speedup_bill.py:33
-#, fuzzy
-#| msgctxt "overview"
-#| msgid "парламент"
 msgctxt "speedup_bill"
 msgid "Вы - не депутат этого парламента"
-msgstr "parlamento"
+msgstr "No eres miembro de este parlamento."
 
 #: bill/views/bills/speedup_bill.py:34 bill/views/bills/speedup_bill.py:43
 #: bill/views/bills/speedup_bill.py:69 bill/views/bills/speedup_bill.py:84
@@ -2641,12 +2428,9 @@ msgid "Досрочное принятие запрещено"
 msgstr ""
 
 #: bill/views/bills/speedup_bill.py:132
-#, fuzzy
-#| msgctxt "storage_assets"
-#| msgid "использовать"
 msgctxt "speedup_bill"
 msgid "Надо проголосовать!"
-msgstr "usar Wild Pass"
+msgstr "¡Debemos votar!"
 
 #: bill/views/bills/speedup_bill.py:139
 #, fuzzy
@@ -2703,12 +2487,9 @@ msgid "Ошибка метода"
 msgstr "Error de método"
 
 #: bill/views/bills/vote_bill.py:62
-#, fuzzy
-#| msgctxt "storage_assets"
-#| msgid "использовать"
 msgctxt "vote_bill"
 msgid "Надо проголосовать!"
-msgstr "usar Wild Pass"
+msgstr "¡Debemos votar!"
 
 #: bill/views/bills/vote_bill.py:63 bill/views/bills/vote_bill.py:89
 #: bill/views/bills/vote_bill.py:96 bill/views/bills/vote_bill.py:103
@@ -2722,12 +2503,9 @@ msgid "Голосование"
 msgstr "Equipamiento"
 
 #: bill/views/bills/vote_bill.py:88
-#, fuzzy
-#| msgctxt "storage_assets"
-#| msgid "использовать"
 msgctxt "vote_bill"
 msgid "Вы уже проголосовали"
-msgstr "usar Wild Pass"
+msgstr "ya has votado"
 
 #: bill/views/bills/vote_bill.py:95
 #, fuzzy
@@ -2744,12 +2522,9 @@ msgid "Нет такого вида законопроекта"
 msgstr "No hay tal habilidad"
 
 #: bill/views/bills/vote_bill.py:109
-#, fuzzy
-#| msgctxt "overview"
-#| msgid "парламент"
 msgctxt "vote_bill"
 msgid "Вы - не депутат этого парламента"
-msgstr "parlamento"
+msgstr "No eres miembro de este parlamento."
 
 #: bill/views/bills/vote_bill.py:116
 #, fuzzy
@@ -2798,9 +2573,6 @@ msgid "Диалоги"
 msgstr ""
 
 #: chat/templates/chat/dialogues.html:101
-#, fuzzy
-#| msgctxt "w_trading"
-#| msgid "Все"
 msgctxt "chat"
 msgid "все"
 msgstr "Todo"
@@ -2883,12 +2655,10 @@ msgid "Указанный набор стикеров не найден"
 msgstr "El Almacén especificado no le pertenece"
 
 #: chat/views/buy_sticker_pack.py:45
-#, fuzzy, python-format
-#| msgctxt "storage_upgrade"
-#| msgid "Недостаточно материала: "
+#, python-format
 msgctxt "new_article"
 msgid "Недостаточно золота, необходимо: %(price)s"
-msgstr "No hay suficiente material: "
+msgstr "No hay suficiente oro, requerido: %(price)s"
 
 #: chat/views/buy_sticker_pack.py:53
 msgctxt "chat"
@@ -2988,22 +2758,17 @@ msgstr ""
 
 #: education/templates/education/edu_gov.html:194
 #: state/templates/state/redesign/gov/government.html:179
-#, fuzzy
-#| msgctxt "overview"
-#| msgid "парламент"
 msgctxt "government"
 msgid "Парламент"
-msgstr "parlamento"
+msgstr "Parlamento"
 
 #: education/templates/education/edu_gov.html:208
 #: education/templates/education/edu_overview.html:186
 #: education/templates/education/edu_war.html:146
 #: education/templates/education/edu_war.html:157
-#, fuzzy
-#| msgid "независимый регион"
 msgctxt "education"
 msgid "Столичный регион"
-msgstr "región libre"
+msgstr "Región Capital"
 
 #: education/templates/education/edu_gov.html:231
 #: state/templates/state/redesign/gov/government.html:352
@@ -3050,12 +2815,9 @@ msgid "Подоходный налог"
 msgstr "Nuevo almacén"
 
 #: education/templates/education/edu_gov.html:437
-#, fuzzy
-#| msgctxt "overview"
-#| msgid "государства"
 msgctxt "education"
 msgid "Партия Единства"
-msgstr "del estado"
+msgstr "Partido de la Unidad"
 
 #: education/templates/education/edu_gov.html:439
 #: education/templates/education/edu_gov.html:448
@@ -3133,12 +2895,9 @@ msgid ""
 msgstr ""
 
 #: education/templates/education/edu_lists/list_2.html:78
-#, fuzzy
-#| msgctxt "w_trading_new"
-#| msgid "Цена товара должна быть положительным числом"
 msgctxt "education"
 msgid "Добро пожаловать на избирательный участок!"
-msgstr "El precio del producto debe ser un número positivo"
+msgstr "¡Bienvenidos al colegio electoral!"
 
 #: education/templates/education/edu_lists/list_2.html:82
 msgctxt "education"
@@ -3249,12 +3008,9 @@ msgid ""
 msgstr ""
 
 #: education/templates/education/edu_lists/list_3.html:124
-#, fuzzy
-#| msgctxt "storage_assets"
-#| msgid "использовать"
 msgctxt "education"
 msgid "Нажмите на кнопку, чтобы проголосовать."
-msgstr "usar Wild Pass"
+msgstr "Haga clic en el botón para votar."
 
 #: education/templates/education/edu_lists/list_3.html:129
 msgctxt "education"
@@ -3291,12 +3047,9 @@ msgid ""
 msgstr ""
 
 #: education/templates/education/edu_lists/list_4.html:118
-#, fuzzy
-#| msgctxt "w_trading_new"
-#| msgid "Цена товара должна быть положительным числом"
 msgctxt "education"
 msgid "Добро пожаловать, командир. Ваше присутствие вдохновляет бойцов!"
-msgstr "El precio del producto debe ser un número positivo"
+msgstr "¡El precio del producto debe ser un número positivo!"
 
 #: education/templates/education/edu_lists/list_4.html:122
 msgctxt "education"
@@ -3380,19 +3133,15 @@ msgid "Наш борт направляется в регион %(region)s. "
 msgstr ""
 
 #: education/templates/education/edu_lists/list_5.html:81
-#, fuzzy, python-format
-#| msgctxt "party_manage"
-#| msgid "Управление партией"
+#, python-format
 msgctxt "education"
 msgid "Он принадлежит государству %(state)s."
-msgstr "Administrar Partido"
+msgstr "Pertenece al estado de %(state)s."
 
 #: education/templates/education/edu_lists/list_5.html:81
-#, fuzzy
-#| msgid "независимый регион"
 msgctxt "education"
 msgid "Это независимая территория"
-msgstr "región libre"
+msgstr "Región libre"
 
 #: education/templates/education/edu_lists/list_5.html:85
 msgctxt "education"
@@ -3588,12 +3337,9 @@ msgid ""
 msgstr ""
 
 #: education/templates/education/edu_lists/list_8.html:93
-#, fuzzy
-#| msgctxt "repost"
-#| msgid "поддержи проект репостом и получай золото!"
 msgctxt "education"
 msgid "Энергетики можно приобрести за золото."
-msgstr "¡apoya Wild Politics con un repost y gana oro!"
+msgstr "Las bebidas energéticas se pueden comprar por oro."
 
 #: education/templates/education/edu_lists/list_8.html:99
 msgctxt "education"
@@ -3843,8 +3589,6 @@ msgstr "chat"
 
 #: education/templates/education/edu_overview.html:93
 #: player/templates/player/redesign/overview.html:124
-#, fuzzy
-#| msgid "мир"
 msgctxt "overview"
 msgid "мир"
 msgstr "Mundo"
@@ -3873,7 +3617,7 @@ msgstr "INT"
 #: player/templates/player/redesign/overview.html:609
 msgctxt "overview"
 msgid "вын"
-msgstr "RES"
+msgstr "END"
 
 #: education/templates/education/edu_overview.html:274
 #: education/templates/education/edu_skills.html:22
@@ -3976,11 +3720,9 @@ msgid "Не прячьтесь за стенами, ответьте на воп
 msgstr ""
 
 #: education/templates/education/edu_overview.html:605
-#, fuzzy
-#| msgid "Изменение часового пояса"
 msgctxt "education"
 msgid "Мы против повышения налогов!"
-msgstr "Cambiar zona horaria"
+msgstr "¡Estamos en contra de los aumentos de impuestos!"
 
 #: education/templates/education/edu_overview.html:606
 msgctxt "education"
@@ -3988,18 +3730,14 @@ msgid "Снижение зарплат — это несправедливо!"
 msgstr ""
 
 #: education/templates/education/edu_overview.html:607
-#, fuzzy
-#| msgctxt "w_trading_new"
-#| msgid "Выберите группу"
 msgctxt "education"
 msgid "Прекратите сокращения!"
-msgstr "Elige categoría"
+msgstr "¡Basta de recortes!"
 
 #: education/templates/education/edu_overview.html:608
-#, fuzzy
 msgctxt "education"
 msgid "Требуем равные права!"
-msgstr "No hay suficiente "
+msgstr "¡Exigimos igualdad de derechos!"
 
 #: education/templates/education/edu_overview.html:609
 msgctxt "education"
@@ -4052,12 +3790,9 @@ msgid "Мы требуем справедливости и равных прав
 msgstr ""
 
 #: education/templates/education/edu_overview.html:619
-#, fuzzy
-#| msgctxt "assets"
-#| msgid "Товары для передачи не выбраны"
 msgctxt "education"
 msgid "Политика для народа, а не для избранных!"
-msgstr "No se seleccionaron bienes"
+msgstr "¡La política es para el pueblo, no para unos pocos elegidos!"
 
 #: education/templates/education/edu_produce.html:30
 #: factory/templates/factory/redesign/factory.html:13
@@ -4149,11 +3884,9 @@ msgstr "producir"
 #: education/templates/education/edu_skills.html:55
 #: education/templates/education/edu_skills.html:95
 #: education/templates/education/edu_skills.html:138
-#, fuzzy
-#| msgid "изучить"
 msgctxt "education"
 msgid "изучается..."
-msgstr "subir habilidad"
+msgstr "Siendo estudiado..."
 
 #: education/templates/education/edu_skills.html:105
 #: education/templates/education/edu_skills.html:163
@@ -4240,12 +3973,9 @@ msgstr "todo el dinero"
 
 #: education/templates/education/edu_storage.html:103
 #: storage/templates/storage/redesign/storage_blocks/has_storage.html:51
-#, fuzzy
-#| msgctxt "factory"
-#| msgid "Уровень"
 msgctxt "has_storage"
 msgid "Уровень:"
-msgstr "Nivel"
+msgstr "Nivel:"
 
 #: education/templates/education/edu_storage.html:110
 msgctxt "education"
@@ -4416,20 +4146,14 @@ msgid "Выборы"
 msgstr "Elecciones"
 
 #: education/views/edu_gov.py:59
-#, fuzzy
-#| msgctxt "overview"
-#| msgid "парламент"
 msgctxt "education"
 msgid "Парламент"
-msgstr "parlamento"
+msgstr "Parlamento"
 
 #: education/views/edu_map.py:68
-#, fuzzy
-#| msgctxt "menu"
-#| msgid "карта"
 msgctxt "education"
 msgid "Карта"
-msgstr "mapa"
+msgstr "Mapa"
 
 #: education/views/edu_mining.py:24
 #, fuzzy
@@ -4555,20 +4279,14 @@ msgid "личный"
 msgstr "prersonal"
 
 #: event/templates/event/anniversary.html:393
-#, fuzzy
-#| msgctxt "game_event"
-#| msgid "Новогоднее событие в WP:"
 msgctxt "game_event"
 msgid "Годовщина сервера WP:"
-msgstr "Evento de año nuevo en WP:"
+msgstr "Aniversario del servidor WP:"
 
 #: event/templates/event/anniversary.html:394
-#, fuzzy
-#| msgctxt "game_event"
-#| msgid "- до семи дней премиум аккаунта"
 msgctxt "game_event"
 msgid "заработайте премиум и золото!"
-msgstr "- hasta siete días de cuenta Premium"
+msgstr "¡Gana premiun y oro!"
 
 #: event/templates/event/anniversary.html:395
 msgctxt "game_event"
@@ -4607,12 +4325,9 @@ msgstr "Progresión general del evento"
 #: event/templates/event/anniversary.html:399
 #: event/templates/event/black_friday.html:397
 #: event/templates/event/summer_festival.html:399
-#, fuzzy
-#| msgctxt "game_event"
-#| msgid "Заполняется усилиями всех игроков сервера."
 msgctxt "game_event"
 msgid "Заполняется суммой усилий всех игроков сервера."
-msgstr "Se llena con los esfuerzos de todos los jugadores en el servidor."
+msgstr "Lleno de la suma de los esfuerzos de todos los jugadores del servidor."
 
 #: event/templates/event/black_friday.html:218
 #: player/templates/player/redesign/overview.html:551
@@ -4627,12 +4342,9 @@ msgid "Чёрная пятница 2024:"
 msgstr ""
 
 #: event/templates/event/black_friday.html:392
-#, fuzzy
-#| msgctxt "game_event"
-#| msgid "- до семи дней премиум аккаунта"
 msgctxt "game_event"
 msgid "заработайте премиум, золото и особый самолёт!"
-msgstr "- hasta siete días de cuenta Premium"
+msgstr "¡Gana premium, oro y un avión especial!"
 
 #: event/templates/event/black_friday.html:393
 msgctxt "game_event"
@@ -4707,20 +4419,14 @@ msgid "и получай награды!"
 msgstr "¡juega de seguido y obtén recompensas!"
 
 #: event/templates/event/inviting.html:46
-#, fuzzy
-#| msgctxt "overview"
-#| msgid "парламент"
 msgctxt "game_event"
 msgid "Регламент"
-msgstr "parlamento"
+msgstr "Reglamentos"
 
 #: event/templates/event/inviting.html:48
-#, fuzzy
-#| msgctxt "storage_assets"
-#| msgid "использовать"
 msgctxt "game_event"
 msgid "Активировать"
-msgstr "usar Wild Pass"
+msgstr "Activar"
 
 #: event/templates/event/inviting.html:50
 #: event/templates/event/inviting.html:144
@@ -4729,12 +4435,9 @@ msgid "Приглашённые"
 msgstr ""
 
 #: event/templates/event/inviting.html:57
-#, fuzzy
-#| msgctxt "game_event"
-#| msgid "Награды события:"
 msgctxt "game_event"
 msgid "Регламент события"
-msgstr "Recompensas:"
+msgstr "Reglamento del evento"
 
 #: event/templates/event/inviting.html:60
 msgctxt "game_event"
@@ -4750,18 +4453,13 @@ msgid "по"
 msgstr "hasta"
 
 #: event/templates/event/inviting.html:64
-#, fuzzy
-#| msgctxt "game_event"
-#| msgid ""
-#| "Когда будет открыт очередной этап общей прогрессии, потрать энергию, "
-#| "чтобы получить свою награду"
 msgctxt "game_event"
 msgid ""
 "Приглашайте новых игроков в проект и возвращайте уже игравших, чтобы "
 "получать награды!"
 msgstr ""
-"Cuando se abra la siguiente etapa de la progresión general, gasta energía "
-"para obtener tu recompensa"
+"¡Invita a nuevos jugadores al proyecto y devuelve a los que ya jugaron para "
+"recibir recompensas!"
 
 #: event/templates/event/inviting.html:68
 msgctxt "game_event"
@@ -4834,12 +4532,9 @@ msgid "Укажите ID пользователя, пригласившего в
 msgstr ""
 
 #: event/templates/event/inviting.html:105
-#, fuzzy
-#| msgctxt "factory"
-#| msgid "Вы получили "
 msgctxt "game_event"
 msgid "Вы получите"
-msgstr "Recibes "
+msgstr "Recibirás"
 
 #: event/templates/event/inviting.html:106
 #, fuzzy
@@ -4850,12 +4545,9 @@ msgid "7 дней премиум-аккаунта"
 msgstr "de cuenta Premium"
 
 #: event/templates/event/inviting.html:107
-#, fuzzy
-#| msgctxt "mining"
-#| msgid "Ошибка получения финансирования"
 msgctxt "game_event"
 msgid ", а пригласивший - бонус к Финансированию."
-msgstr "Error de financiación diaria"
+msgstr ", y el que invita obtiene una bonificación de financiación."
 
 #: event/templates/event/inviting.html:111
 msgctxt "game_event"
@@ -4922,12 +4614,9 @@ msgid "увеличение Финансирования, премиум и Аэ
 msgstr "¡premios del juego y nuevos marcos de avatar en dos progresiones!"
 
 #: event/views/activate_invite.py:31
-#, fuzzy
-#| msgctxt "profile"
-#| msgid "не активен"
 msgctxt "game_event"
 msgid "Событие неактивно"
-msgstr "no activa"
+msgstr "El evento está inactivo"
 
 #: event/views/activate_invite.py:32 event/views/activate_invite.py:46
 #: event/views/activate_invite.py:57 event/views/activate_invite.py:73
@@ -5393,12 +5082,9 @@ msgid "Добыча сырья"
 msgstr "Trabajar"
 
 #: gov/models/custom_rights/mining_stats.py:112
-#, fuzzy
-#| msgctxt "menu"
-#| msgid "добыча"
 msgctxt "minister_right"
 msgid "Статистика добычи"
-msgstr "trabajar"
+msgstr "Статистика добычи"
 
 #: gov/models/minister_right.py:22
 msgctxt "new_bill"
@@ -5406,12 +5092,9 @@ msgid "Министр иностранных дел"
 msgstr ""
 
 #: gov/models/minister_right.py:23
-#, fuzzy
-#| msgctxt "menu"
-#| msgid "добыча"
 msgctxt "new_bill"
 msgid "Статистика добычи"
-msgstr "trabajar"
+msgstr "Estadísticas de producción"
 
 #: gov/templates/gov/redesign/elections.html:25
 #, fuzzy
@@ -5428,20 +5111,14 @@ msgid "Кандидат"
 msgstr ""
 
 #: gov/templates/state/redesign/forms/foreign_right.html:15
-#, fuzzy
-#| msgctxt "profile"
-#| msgid "прописка"
 msgctxt "foreign_right"
 msgid "Запросы прописки"
-msgstr "residencia"
+msgstr "Solicitudes de registro"
 
 #: gov/templates/state/redesign/forms/foreign_right.html:15
-#, fuzzy
-#| msgctxt "menu"
-#| msgid "производство"
 msgctxt "foreign_right"
 msgid "Последние прописавшиеся"
-msgstr "producción"
+msgstr "Último registrado"
 
 #: gov/templates/state/redesign/forms/foreign_right.html:19
 #, fuzzy
@@ -5497,12 +5174,9 @@ msgstr "No eres miembro de ningún partido"
 
 #: gov/views/color_change.py:29 gov/views/color_change.py:43
 #: gov/views/color_change.py:59
-#, fuzzy
-#| msgctxt "overview"
-#| msgid "государства"
 msgctxt "edit_state_color"
 msgid "Цвет государства"
-msgstr "del estado"
+msgstr "Color del estado"
 
 #: gov/views/color_change.py:42
 #, fuzzy
@@ -5550,20 +5224,15 @@ msgid "Назначение министров"
 msgstr "Nombre del partido"
 
 #: gov/views/set_ministers.py:37
-#, fuzzy
-#| msgctxt "assets"
-#| msgid "вам не принадлежит"
 msgctxt "set_ministers"
 msgid "Вы не президент"
-msgstr "no está disponible par ti"
+msgstr "Tu no eres el presidente"
 
 #: gov/views/set_ministers.py:53
-#, fuzzy, python-format
-#| msgctxt "factory"
-#| msgid "Указанный товар не существует"
+#, python-format
 msgctxt "set_ministers"
 msgid "Игрока с id %(minister)s не существует"
-msgstr "El bien elegido no existe"
+msgstr "El jugador con id %(minister)s no existe"
 
 #: gov/views/set_ministers.py:63
 #, python-format
@@ -5572,12 +5241,10 @@ msgid "Депутата с id игрока %(minister)s в вашем парла
 msgstr ""
 
 #: gov/views/set_ministers.py:84
-#, fuzzy, python-format
-#| msgctxt "w_trading"
-#| msgid "Выбранного склада игрока не существует"
+#, python-format
 msgctxt "set_ministers"
 msgid "Указанного права министров не существует: %(right)s"
-msgstr "El almacén del jugador elegido no existe"
+msgstr "El derecho especificado de los ministros no existe: %(right)s"
 
 #: gov/views/set_ministers.py:94
 msgctxt "set_ministers"
@@ -5593,20 +5260,14 @@ msgid "Вы не являетесь лидером государства"
 msgstr "No eres miembro de ningún partido"
 
 #: gov/views/switch_description.py:23 gov/views/switch_description.py:44
-#, fuzzy
-#| msgctxt "overview"
-#| msgid "государства"
 msgctxt "edit_state_descr"
 msgid "Сообщение от государства"
-msgstr "del estado"
+msgstr "Mensaje del Estado"
 
 #: party/party.py:27
-#, fuzzy
-#| msgctxt "party_manage"
-#| msgid "открытая"
 msgctxt "party_view"
 msgid "Открытая"
-msgstr "abrir"
+msgstr "Abierto"
 
 #: party/party.py:28
 msgctxt "party_view"
@@ -5651,12 +5312,9 @@ msgid "Активных праймериз нет"
 msgstr "Activación"
 
 #: party/primaries/views/vote_primaries.py:58
-#, fuzzy
-#| msgctxt "no_party"
-#| msgid "вы в полете"
 msgctxt "vote_primaries"
 msgid "Вы уже голосовали"
-msgstr "estas volando"
+msgstr "Ya has votado"
 
 #: party/primaries/views/vote_primaries.py:69
 #: party/primaries/views/vote_primaries.py:78
@@ -5682,17 +5340,11 @@ msgid "партия"
 msgstr "partido"
 
 #: party/templates/party/redesign/lists/party_history_list.html:20
-#, fuzzy
-#| msgctxt "party_view"
-#| msgid "Дата основания"
 msgctxt "party_hist"
 msgid "дата вступления"
 msgstr "Fecha de creación"
 
 #: party/templates/party/redesign/lists/party_history_list.html:21
-#, fuzzy
-#| msgctxt "w_auctions"
-#| msgid "Дата создания"
 msgctxt "party_hist"
 msgid "дата выхода"
 msgstr "Fecha de creación"
@@ -5737,8 +5389,6 @@ msgid "должности"
 msgstr "posiciones"
 
 #: party/templates/party/redesign/manage.html:26
-#, fuzzy
-#| msgid "Золото"
 msgctxt "party_manage"
 msgid "золото"
 msgstr "Oro"
@@ -5779,12 +5429,9 @@ msgid "роспуск невозможен"
 msgstr "no disponible"
 
 #: party/templates/party/redesign/manage.html:120
-#, fuzzy
-#| msgctxt "overview"
-#| msgid "парламент"
 msgctxt "party_manage"
 msgid "Цвет в парламенте"
-msgstr "parlamento"
+msgstr "Color en el Parlamento"
 
 #: party/templates/party/redesign/manage.html:121
 #: party/templates/party/redesign/manage.html:340
@@ -5822,7 +5469,7 @@ msgstr "nombre de la posición"
 #: party/templates/party/redesign/manage.html:186
 msgctxt "party_manage"
 msgid "действия"
-msgstr "Acción"
+msgstr "comportamiento"
 
 #: party/templates/party/redesign/manage.html:235
 #, fuzzy
@@ -5846,12 +5493,9 @@ msgid "Ни один из игроков партии не подходит дл
 msgstr ""
 
 #: party/templates/party/redesign/manage.html:250
-#, fuzzy
-#| msgctxt "trading"
-#| msgid "продать"
 msgctxt "party_manage"
 msgid "Выдать"
-msgstr "vender"
+msgstr "Asunto"
 
 #: party/templates/party/redesign/manage.html:290
 #, fuzzy
@@ -5902,7 +5546,7 @@ msgstr "Nuevo partido"
 #: party/templates/party/redesign/new_party.html:20
 msgctxt "new_party"
 msgid "Стоимость создания партии"
-msgstr "Coste de creación:"
+msgstr "Costo de crear un lote"
 
 #: party/templates/party/redesign/new_party.html:26
 msgctxt "new_party"
@@ -6040,12 +5684,12 @@ msgstr "estas volando"
 #: party/templates/party/redesign/party_blocks/no_party.html:39
 msgctxt "no_party"
 msgid "региональные"
-msgstr "Partidos regionales"
+msgstr "regional"
 
 #: party/templates/party/redesign/party_blocks/no_party.html:54
 msgctxt "no_party"
 msgid "все партии"
-msgstr "Todos los partidos"
+msgstr "todos los juegos"
 
 #: party/templates/party/redesign/party_blocks/no_party.html:70
 #: party/templates/party/redesign/party_blocks/no_party.html:133
@@ -6174,12 +5818,9 @@ msgid "Награда"
 msgstr ""
 
 #: party/templatetags/redesign/tops/factory_top.py:104
-#, fuzzy
-#| msgctxt "menu"
-#| msgid "производство"
 msgctxt "skill_top"
 msgid "Топ производства"
-msgstr "producción"
+msgstr "Producción superior"
 
 #: party/templatetags/redesign/tops/mining_top.py:92
 #: party/templatetags/redesign/tops/mining_top.py:93
@@ -6191,12 +5832,9 @@ msgid "Добыто"
 msgstr "Trabajar"
 
 #: party/templatetags/redesign/tops/mining_top.py:105
-#, fuzzy
-#| msgctxt "menu"
-#| msgid "добыча"
 msgctxt "skill_top"
 msgid "Топ добычи"
-msgstr "trabajar"
+msgstr "Botín superior"
 
 #: party/templatetags/redesign/tops/skill_top.py:91
 #: party/templatetags/redesign/tops/skill_top.py:92
@@ -6212,12 +5850,9 @@ msgid "Топ прироста Характеристик"
 msgstr "Top habbilidades"
 
 #: party/views/lists/party_history.py:36
-#, fuzzy
-#| msgctxt "party_manage"
-#| msgid "Новая должность"
 msgctxt "party_hist"
 msgid "Партийная активность "
-msgstr "Nueva posición"
+msgstr "Actividad de fiesta"
 
 #: party/views/lists/party_top.py:22
 #, fuzzy
@@ -6249,12 +5884,9 @@ msgid "Партии региона"
 msgstr "Partidos de la región"
 
 #: party/views/lists/state_parties.py:102
-#, fuzzy
-#| msgctxt "overview"
-#| msgid "государства"
 msgctxt "state_parties"
 msgid "Партии государства"
-msgstr "del estado"
+msgstr "Estados partes"
 
 #: party/views/lists/world_parties.py:94
 #, fuzzy
@@ -6327,20 +5959,14 @@ msgstr "La cantidad no es un número"
 #: party/views/management/gold/give_party_gold.py:101
 #: party/views/management/gold/give_party_gold.py:108
 #: party/views/management/gold/give_party_gold.py:115
-#, fuzzy
-#| msgctxt "factory"
-#| msgid " золота"
 msgctxt "party_manage"
 msgid "Выдача золота"
-msgstr " de oro"
+msgstr "Emision de oro"
 
 #: party/views/management/gold/give_party_gold.py:44
-#, fuzzy
-#| msgctxt "w_trading_new"
-#| msgid "Цена товара должна быть положительным числом"
 msgctxt "party_manage"
 msgid "Сумма золота должна быть не менее 1 ед."
-msgstr "El precio del producto debe ser un número positivo"
+msgstr "La cantidad de oro debe ser de al menos 1 unidad."
 
 #: party/views/management/gold/give_party_gold.py:52
 #, fuzzy
@@ -6398,7 +6024,7 @@ msgstr "Nueva posición"
 #: party/views/management/roles/new_role.py:56
 msgctxt "party_manage"
 msgid "Название не может быть пустым"
-msgstr "No puede estar bacío "
+msgstr "El título no puede estar vacío."
 
 #: party/views/management/roles/new_role.py:64
 msgctxt "party_manage"
@@ -6521,7 +6147,7 @@ msgstr "Nuevo almacén"
 #: player/logs/cash_log.py:25
 msgctxt "cash_log"
 msgid "Операции со Складом"
-msgstr "Operaciones con bienes "
+msgstr "Operaciones con Almacén"
 
 #: player/logs/cash_log.py:26
 msgctxt "cash_log"
@@ -6613,12 +6239,9 @@ msgid "Ссылки"
 msgstr ""
 
 #: player/templates/player/index.html:99
-#, fuzzy
-#| msgctxt "w_auctions"
-#| msgid "начальная"
 msgctxt "index_links"
 msgid "Официальная"
-msgstr "puja inicial"
+msgstr "Puja inicial"
 
 #: player/templates/player/index.html:99
 msgctxt "index_links"
@@ -6635,12 +6258,9 @@ msgstr "Categoría de bienes"
 
 #: player/templates/player/index.html:112
 #: player/templates/player/index.html:125
-#, fuzzy
-#| msgctxt "translations"
-#| msgid "без контекста"
 msgctxt "index_links"
 msgid "Вконтакте"
-msgstr "sin contexto"
+msgstr "Sin contexto"
 
 #: player/templates/player/index.html:125
 msgctxt "index_links"
@@ -6863,17 +6483,14 @@ msgid "Инструкция по удалению персональных да�
 msgstr ""
 
 #: player/templates/player/personal_data.html:42
-#, fuzzy
-#| msgctxt "has_party"
-#| msgid "Некорректная партия игрока"
 msgctxt "personal_data"
 msgid "Контактная информация оператора:"
-msgstr "Miembro del partido incorrecto"
+msgstr "Miembro del partido incorrecto: "
 
 #: player/templates/player/personal_data.html:43
 msgctxt "personal_data"
 msgid "Электронная почта Администрации:"
-msgstr ""
+msgstr "Correo electrónico de administración:"
 
 #: player/templates/player/personal_data.html:45
 msgctxt "personal_data"
@@ -6885,12 +6502,9 @@ msgid ""
 msgstr ""
 
 #: player/templates/player/redesign/bonus_code/bonus_code.html:14
-#, fuzzy
-#| msgctxt "storage_assets"
-#| msgid "Активация"
 msgctxt "bonus_code"
 msgid "Активация бонус-кода"
-msgstr "Activación"
+msgstr "Activación del código de bonificación"
 
 #: player/templates/player/redesign/bonus_code/bonus_code.html:18
 msgctxt "bonus_code"
@@ -6898,20 +6512,14 @@ msgid "Бонус-код"
 msgstr ""
 
 #: player/templates/player/redesign/bonus_code/bonus_code.html:34
-#, fuzzy
-#| msgctxt "storage_assets"
-#| msgid "использовать"
 msgctxt "bonus_code"
 msgid "активировать"
-msgstr "usar Wild Pass"
+msgstr "Usar Wild Pass"
 
 #: player/templates/player/redesign/bonus_code/bonus_code.html:41
-#, fuzzy
-#| msgctxt "storage_assets"
-#| msgid "Активация"
 msgctxt "bonus_code"
 msgid "Информация о бонус-кодах"
-msgstr "Activación"
+msgstr "Información sobre códigos de bonificación"
 
 #: player/templates/player/redesign/bonus_code/bonus_code.html:44
 msgctxt "bonus_code"
@@ -6936,21 +6544,15 @@ msgid "Срок действия у каждого кода свой и може
 msgstr ""
 
 #: player/templates/player/redesign/customization/border_select.html:10
-#, fuzzy
-#| msgctxt "factory"
-#| msgid "выбор товара"
 msgctxt "border_select"
 msgid "Выбор рамок аватара"
-msgstr "escoger bienes"
+msgstr "Escoger bienes"
 
 #: player/templates/player/redesign/customization/plane_select.html:13
 #: player/views/customization/plane/plane_select.py:56
-#, fuzzy
-#| msgctxt "trading"
-#| msgid "выбор категории"
 msgctxt "plane_select"
 msgid "Выбор авиации"
-msgstr "categoría"
+msgstr "Categoría"
 
 #: player/templates/player/redesign/customization/plane_select.html:21
 msgctxt "plane_select"
@@ -6973,12 +6575,9 @@ msgid "сбросить"
 msgstr ""
 
 #: player/templates/player/redesign/customization/plane_select.html:97
-#, fuzzy
-#| msgctxt "assets"
-#| msgid "подтвердить"
 msgctxt "plane_select"
 msgid "подтвердить"
-msgstr "aceptar"
+msgstr "Aceptar"
 
 #: player/templates/player/redesign/customization/view_borders.html:10
 msgctxt "view_borders"
@@ -6986,12 +6585,9 @@ msgid "Рамки аватара"
 msgstr ""
 
 #: player/templates/player/redesign/customization/view_medals.html:11
-#, fuzzy
-#| msgctxt "game_event"
-#| msgid "Награды события:"
 msgctxt "medals"
 msgid "Награды игрока"
-msgstr "Recompensas:"
+msgstr "Recompensas: "
 
 #: player/templates/player/redesign/customization/view_medals.html:22
 msgctxt "medals"
@@ -7072,7 +6668,7 @@ msgstr "Activación"
 #: player/views/game_event/halloween.py:57
 msgctxt "game_event"
 msgid "Хэллоуинский ивент!"
-msgstr "Feliz Halloween "
+msgstr "¡Evento de Halloween!"
 
 #: player/templates/player/redesign/game_event/halloween.html:142
 #: player/templates/player/redesign/game_event/halloween.html:153
@@ -7083,7 +6679,7 @@ msgstr "Feliz Halloween "
 #: player/templates/player/redesign/game_event/halloween.html:202
 msgctxt "game_event"
 msgid "очков"
-msgstr "Puntos "
+msgstr "agujas"
 
 #: player/templates/player/redesign/game_event/halloween.html:143
 #: player/templates/player/redesign/game_event/halloween.html:154
@@ -7197,27 +6793,19 @@ msgstr "¡Feliz año nuevo!"
 
 #: player/templates/player/redesign/game_event/play_market_event.html:10
 #: player/views/game_event/play_market_event.py:44
-#, fuzzy
-#| msgid "Население региона"
 msgctxt "event"
 msgid "Наступление на Google Play"
-msgstr "Población de la región"
+msgstr "Ataque a Google Play"
 
 #: player/templates/player/redesign/game_event/play_market_event.html:22
-#, fuzzy
-#| msgctxt "game_event"
-#| msgid "Награды события:"
 msgctxt "event"
 msgid "Уважаемые игроки!"
-msgstr "Recompensas:"
+msgstr "¡Recompensas!"
 
 #: player/templates/player/redesign/game_event/play_market_event.html:28
-#, fuzzy
-#| msgctxt "party"
-#| msgid "Вы не состоите в указанной партии"
 msgctxt "event"
 msgid "Вы - самая важная часть проекта."
-msgstr "No eres miembro del partido seleccionado"
+msgstr "No eres miembro del partido seleccionado."
 
 #: player/templates/player/redesign/game_event/play_market_event.html:31
 msgctxt "event"
@@ -7255,8 +6843,6 @@ msgid ""
 msgstr ""
 
 #: player/templates/player/redesign/game_event/play_market_event.html:66
-#, fuzzy
-#| msgid "Золото"
 msgctxt "event"
 msgid "золота"
 msgstr "Oro"
@@ -7281,16 +6867,11 @@ msgid "В этом нам помогут"
 msgstr ""
 
 #: player/templates/player/redesign/game_event/play_market_event.html:79
-#, fuzzy
-#| msgid "Загрузить"
 msgctxt "event"
 msgid "загрузки"
 msgstr "Subir"
 
 #: player/templates/player/redesign/game_event/play_market_event.html:82
-#, fuzzy
-#| msgctxt "storage_assets"
-#| msgid "Продление"
 msgctxt "event"
 msgid "приложения, его"
 msgstr "Renovación"
@@ -7379,15 +6960,12 @@ msgstr ""
 #: player/templates/player/redesign/game_event/play_market_event.html:147
 msgctxt "event"
 msgid "\"наставника\", которая станет отличным украшением вашего профиля :)"
-msgstr ""
+msgstr "\"mentor\", que será una gran decoración para tu perfil :)"
 
 #: player/templates/player/redesign/game_event/play_market_event.html:165
-#, fuzzy
-#| msgctxt "assets"
-#| msgid "недостаточно товара"
 msgctxt "event"
 msgid "Нужно больше золота?"
-msgstr "no hay suficientes bienes"
+msgstr "No hay suficientes bienes"
 
 #: player/templates/player/redesign/game_event/play_market_event.html:172
 msgctxt "event"
@@ -7395,17 +6973,11 @@ msgid "Можем устроить!"
 msgstr ""
 
 #: player/templates/player/redesign/game_event/play_market_event.html:173
-#, fuzzy
-#| msgctxt "trading"
-#| msgid "создатель"
 msgctxt "event"
 msgid "В Telegram создан"
-msgstr "creador"
+msgstr "Creador"
 
 #: player/templates/player/redesign/game_event/play_market_event.html:175
-#, fuzzy
-#| msgctxt "no_party"
-#| msgid "региональные"
 msgctxt "event"
 msgid "отдельный чат"
 msgstr "Partidos regionales"
@@ -7449,9 +7021,6 @@ msgid ""
 msgstr ""
 
 #: player/templates/player/redesign/game_event/play_market_event.html:208
-#, fuzzy
-#| msgctxt "game_event"
-#| msgid "Награды события:"
 msgctxt "event"
 msgid "Награды для всех"
 msgstr "Recompensas:"
@@ -7478,11 +7047,9 @@ msgid ""
 msgstr ""
 
 #: player/templates/player/redesign/game_event/play_market_event.html:227
-#, fuzzy
-#| msgid "Финансирование"
 msgctxt "event"
 msgid "Спасибо за внимание!"
-msgstr "Fondos"
+msgstr "¡Fondos!"
 
 #: player/templates/player/redesign/header.html:200
 msgctxt "education"
@@ -7495,12 +7062,9 @@ msgid "Дальше"
 msgstr ""
 
 #: player/templates/player/redesign/header.html:203
-#, fuzzy
-#| msgctxt "profile"
-#| msgid "показывать партийный фон"
 msgctxt "education"
 msgid "Не показывать обучение"
-msgstr "ver fondo de partidos"
+msgstr "Ver fondo de partidos"
 
 #: player/templates/player/redesign/menu.html:7
 msgctxt "menu"
@@ -7588,11 +7152,9 @@ msgid "независимый регион"
 msgstr "región libre"
 
 #: player/templates/player/redesign/overview.html:271
-#, fuzzy
-#| msgid "Население региона"
 msgctxt "event"
 msgid "Публикация в Google Play!"
-msgstr "Población de la región"
+msgstr "¡Publicación en Google Play!"
 
 #: player/templates/player/redesign/overview.html:342
 msgctxt "overview"
@@ -7887,8 +7449,6 @@ msgstr ""
 
 #: player/templates/player/redesign/premium_shop.html:87
 #: player/templates/player/redesign/premium_shop.html:95
-#, fuzzy
-#| msgid "Золото"
 msgctxt "shop"
 msgid "золото"
 msgstr "Oro"
@@ -7902,12 +7462,9 @@ msgid "бесплатно"
 msgstr "sin afiliar"
 
 #: player/templates/player/redesign/premium_shop.html:103
-#, fuzzy
-#| msgctxt "daily_header"
-#| msgid "за день!"
 msgctxt "shop"
 msgid "деньги"
-msgstr "al día!"
+msgstr "¡al día!"
 
 #: player/templates/player/redesign/premium_shop.html:115
 msgctxt "shop"
@@ -7966,9 +7523,6 @@ msgid "пригласи друга"
 msgstr ""
 
 #: player/templates/player/redesign/profile.html:303
-#, fuzzy
-#| msgctxt "storage_assets"
-#| msgid "Активация"
 msgctxt "profile"
 msgid "ввести бонус-код"
 msgstr "Activación"
@@ -8005,9 +7559,6 @@ msgstr "lugar de calificación"
 
 #: player/templates/player/redesign/profile.html:366
 #: player/templates/player/redesign/view_profile.html:154
-#, fuzzy
-#| msgctxt "has_party"
-#| msgid "Должность"
 msgctxt "profile"
 msgid "известность"
 msgstr "Posición"
@@ -8036,7 +7587,7 @@ msgstr "sin guerras"
 #: player/templates/player/redesign/view_profile.html:177
 msgctxt "profile"
 msgid "характеристики"
-msgstr "Características"
+msgstr "características"
 
 #: player/templates/player/redesign/profile.html:404
 #: player/templates/player/redesign/view_profile.html:192
@@ -8123,8 +7674,6 @@ msgid "сохранить"
 msgstr "guardar"
 
 #: player/templates/player/redesign/profile.html:692
-#, fuzzy
-#| msgid "Завершение"
 msgctxt "profile"
 msgid "обучение"
 msgstr "Termina a las"
@@ -8143,9 +7692,6 @@ msgid "Укажите имя автора отзыва"
 msgstr "Escoger bienes"
 
 #: player/templates/player/redesign/rate_us.html:30
-#, fuzzy
-#| msgctxt "factory"
-#| msgid "Уровень"
 msgctxt "bonus_code"
 msgid "проверить"
 msgstr "Nivel"
@@ -8176,12 +7722,9 @@ msgid ""
 msgstr ""
 
 #: player/templates/player/redesign/rate_us.html:50
-#, fuzzy
-#| msgctxt "factory"
-#| msgid "Вы получили "
 msgctxt "event"
 msgid "Вы получите"
-msgstr "Recibes "
+msgstr "Recibes"
 
 #: player/templates/player/redesign/rate_us.html:52
 msgctxt "event"
@@ -8447,12 +7990,9 @@ msgid "Изменение описания профиля"
 msgstr "Cambiar descripción"
 
 #: player/views/change_nickname.py:22
-#, fuzzy
-#| msgctxt "storage_upgrade"
-#| msgid "Недостаточно материала: "
 msgctxt "change_nickname"
 msgid "Недостаточно золота, необходимо: 50"
-msgstr "No hay suficiente material: "
+msgstr "No hay suficiente material: 50"
 
 #: player/views/change_nickname.py:23 player/views/change_nickname.py:33
 #: player/views/change_nickname.py:41 player/views/change_nickname.py:64
@@ -8464,12 +8004,9 @@ msgid "Смена никнейма"
 msgstr "Cambio de posición"
 
 #: player/views/change_nickname.py:32
-#, fuzzy
-#| msgctxt "party_manage"
-#| msgid "Название не может быть пустым"
 msgctxt "change_nickname"
 msgid "Никнейм не может быть пустым"
-msgstr "No puede estar bacío "
+msgstr "No puede estar vacio"
 
 #: player/views/change_nickname.py:40
 #, fuzzy
@@ -8527,22 +8064,16 @@ msgid "Смена аватара"
 msgstr "Cancelar mejora de habilidad"
 
 #: player/views/customization/border/border_select.py:29
-#, fuzzy
-#| msgctxt "factory"
-#| msgid "выбор товара"
 msgctxt "border_select"
 msgid "Выбор рамки"
-msgstr "escoger bienes"
+msgstr "Escoger bienes"
 
 #: player/views/customization/border/choose_border.py:24
 #: player/views/customization/border/choose_border.py:51
 #: player/views/customization/border/choose_border.py:60
-#, fuzzy
-#| msgctxt "factory"
-#| msgid "выбор товара"
 msgctxt "choose_border"
 msgid "Выбор рамки"
-msgstr "escoger bienes"
+msgstr "Escoger bienes"
 
 #: player/views/customization/border/choose_border.py:26
 #, fuzzy
@@ -8560,30 +8091,21 @@ msgid "Указанная рамка вам не принадлежит"
 msgstr "El Almacén especificado no le pertenece"
 
 #: player/views/customization/border/view_borders.py:34
-#, fuzzy
-#| msgctxt "factory"
-#| msgid "выбор товара"
 msgctxt "view_borders"
 msgid "Просмотр рамок"
-msgstr "escoger bienes"
+msgstr "Escoger bienes"
 
 #: player/views/customization/medals/medals.py:55
-#, fuzzy
-#| msgctxt "game_event"
-#| msgid "Награды события:"
 msgctxt "medals"
 msgid "Награды"
-msgstr "Recompensas:"
+msgstr "Recompensas: "
 
 #: player/views/customization/plane/choose_plane.py:24
 #: player/views/customization/plane/choose_plane.py:51
 #: player/views/customization/plane/choose_plane.py:60
-#, fuzzy
-#| msgctxt "trading"
-#| msgid "выбор категории"
 msgctxt "choose_plane"
 msgid "Выбор авиации"
-msgstr "categoría"
+msgstr "Categoría"
 
 #: player/views/customization/plane/choose_plane.py:26
 #, fuzzy
@@ -8629,12 +8151,9 @@ msgid "Указанный самолёт вам не принадлежит"
 msgstr "El Almacén especificado no le pertenece"
 
 #: player/views/customization/plane/set_plane_nick.py:24
-#, fuzzy
-#| msgctxt "party_manage"
-#| msgid "Название не может быть пустым"
 msgctxt "set_plane_nick"
 msgid "Позывной не может быть пустым"
-msgstr "No puede estar bacío "
+msgstr "No puede estar vacio"
 
 #: player/views/customization/plane/set_plane_nick.py:25
 #: player/views/customization/plane/set_plane_nick.py:35
@@ -8787,12 +8306,9 @@ msgid "Вы уже получили награду"
 msgstr "Error de financiación diaria"
 
 #: player/views/game_event/check_review.py:50
-#, fuzzy
-#| msgctxt "game_event"
-#| msgid "играй как обычно - и получай награды!"
 msgctxt "event"
 msgid "За данный отзыв уже получена награда"
-msgstr "¡juega de seguido y obtén recompensas!"
+msgstr "Esta reseña ya ha recibido una recompensa."
 
 #: player/views/game_event/check_review.py:92
 #, fuzzy
@@ -8808,12 +8324,9 @@ msgid "С новым годом!"
 msgstr ""
 
 #: player/views/game_event/rate_us.py:30 player/views/premium_shop.py:49
-#, fuzzy
-#| msgctxt "profile"
-#| msgid "премиум-аккаунт"
 msgctxt "shop"
 msgid "Премиум-магазин"
-msgstr "cuenta premium"
+msgstr "Cuenta premium"
 
 #: player/views/lists/cash_top.py:114
 #, fuzzy
@@ -8879,29 +8392,12 @@ msgstr ""
 
 #: player/views/new_player.py:121
 msgctxt "start_messages"
-msgid "Присоединяйтесь к общему чату игры в Вконтакте:"
-msgstr ""
-
-#: player/views/new_player.py:124
-msgctxt "start_messages"
-msgid "Или же к чату в Телеграм:"
-msgstr ""
-
-#: player/views/new_player.py:127
-msgctxt "start_messages"
-msgid ""
-"В этих чатах вы сможете задать вопросы об игре, а также найти союзников для "
-"совместной игры."
-msgstr ""
-
-#: player/views/new_player.py:129
-msgctxt "start_messages"
 msgid ""
 "Если найдётся время, расскажите, пожалуйста, о своих впечатлениях от игры - "
 "мне это важно. Приятной игры!"
 msgstr ""
 
-#: player/views/new_player.py:151
+#: player/views/new_player.py:143
 #, python-format
 msgctxt "start_messages"
 msgid ""
@@ -8910,21 +8406,21 @@ msgid ""
 "ответив на него"
 msgstr ""
 
-#: player/views/new_player.py:212
+#: player/views/new_player.py:204
 #, fuzzy
 #| msgid ": попробуйте создать персонажа, не загружая изображение"
 msgctxt "new_player"
 msgid "попробуйте создать персонажа, не загружая изображение"
 msgstr ": intenta crear un personaje sin cargar una imagen"
 
-#: player/views/new_player.py:214 player/views/new_player.py:227
+#: player/views/new_player.py:206 player/views/new_player.py:219
 #, fuzzy
 #| msgid "Новый персонаж"
 msgctxt "new_player"
 msgid "Новый персонаж"
 msgstr "Nuevo personaje"
 
-#: player/views/new_player.py:226
+#: player/views/new_player.py:218
 #, fuzzy
 #| msgid "Ошибка в форме профиля"
 msgctxt "new_player"
@@ -8966,12 +8462,9 @@ msgid "Некорректное количество кейсов для отк�
 msgstr "Cantidad de dinero del jugador incorrecta"
 
 #: player/views/open_lootboxes.py:57
-#, fuzzy
-#| msgctxt "assets"
-#| msgid " недостаточно места для товара "
 msgctxt "open_box"
 msgid "Недостаточно кейсов для открытия"
-msgstr " no hay espacio suficiente espacio para "
+msgstr "No hay suficientes casos para abrir"
 
 #: player/views/set_language.py:36
 #, fuzzy
@@ -9037,12 +8530,12 @@ msgid "Нет склада с бустерами в этом регионе"
 msgstr "No tienes un almacén en esta región"
 
 #: player/views/skills/boost_skill.py:92
-#, fuzzy, python-format
-#| msgctxt "w_trading"
-#| msgid "Недостаточно средств. Требуется $"
+#, python-format
 msgctxt "skills"
 msgid "Недостаточно бустера %(booster_name)s. Требуется: %(boosters_need)s."
-msgstr "Fondos insuficientes. Requiere $"
+msgstr ""
+"No hay suficientes %(booster_name)s de refuerzo. Requerido: "
+"%(boosters_need)s."
 
 #: player/views/skills/boost_skill.py:102
 #, fuzzy
@@ -9093,20 +8586,14 @@ msgid "Данный навык изучен полностью или полно
 msgstr ""
 
 #: player/views/skills/up_skill.py:104
-#, fuzzy
-#| msgctxt "storage"
-#| msgid "Недостаточно денег на транспортировку"
 msgctxt "skills"
 msgid "Недостаточно денег, необходимо: "
-msgstr "No hay suficiente dinero para el transporte"
+msgstr "No hay suficiente dinero para el transporte: "
 
 #: player/views/skills/up_skill.py:113
-#, fuzzy
-#| msgctxt "skills"
-#| msgid "изучается..."
 msgctxt "skills"
 msgid "Навык уже изучается"
-msgstr "en proceso..."
+msgstr "La habilidad ya se está aprendiendo."
 
 #: player/views/skills/up_skill.py:121
 #, fuzzy
@@ -9136,12 +8623,9 @@ msgid "Инфраструктуры"
 msgstr "Nivel de Hospital"
 
 #: region/building/power_plant.py:196
-#, fuzzy
-#| msgctxt "factory"
-#| msgid "Недостаточно "
 msgctxt "new_bill"
 msgid "Электростанции"
-msgstr "No hay suficiente "
+msgstr "No hay suficiente"
 
 #: region/models/region.py:115
 msgctxt "goods"
@@ -9241,12 +8725,9 @@ msgid "Залежи руд"
 msgstr "Calidad del Mineral"
 
 #: region/templates/region/redesign/map.html:227
-#, fuzzy
-#| msgctxt "no_party"
-#| msgid "в регионе"
 msgctxt "map"
 msgid "Связи регионов"
-msgstr "en"
+msgstr "En"
 
 #: region/templates/region/redesign/map.html:274
 msgctxt "map"
@@ -9256,12 +8737,9 @@ msgstr ""
 #: region/templates/region/redesign/mining.html:36
 msgctxt "daily_header"
 msgid "получаем"
-msgstr "recibiendo..."
+msgstr "obtenemos"
 
 #: region/templates/region/redesign/region_info.html:65
-#, fuzzy
-#| msgctxt "daily_header"
-#| msgid "в полете"
 msgctxt "education"
 msgid "В полёте"
 msgstr "volando"
@@ -9279,11 +8757,9 @@ msgid "отправиться"
 msgstr "volar"
 
 #: region/templates/region/redesign/region_view.html:69
-#, fuzzy
-#| msgid "независимый регион"
 msgctxt "region_view"
 msgid "Независимый регион"
-msgstr "región libre"
+msgstr "Región libre"
 
 #: region/templates/region/redesign/region_view.html:88
 #, fuzzy
@@ -9363,12 +8839,9 @@ msgid "Партий"
 msgstr "Partido"
 
 #: region/templates/region/redesign/region_view.html:208
-#, fuzzy
-#| msgctxt "factory"
-#| msgid " золота"
 msgctxt "region_view"
 msgid "Запасы золота"
-msgstr " de oro"
+msgstr "De oro"
 
 #: region/templates/region/redesign/region_view.html:209
 #, fuzzy
@@ -9403,28 +8876,19 @@ msgid "Качество руды"
 msgstr "Calidad del Mineral"
 
 #: region/templates/region/redesign/region_view.html:213
-#, fuzzy
-#| msgctxt "goods"
-#| msgid "Уголь"
 msgctxt "region_view"
 msgid "уголь"
-msgstr "Carbón"
+msgstr "carbón"
 
 #: region/templates/region/redesign/region_view.html:213
-#, fuzzy
-#| msgctxt "goods"
-#| msgid "Железо"
 msgctxt "region_view"
 msgid "железо"
-msgstr "Hierro"
+msgstr "hierro"
 
 #: region/templates/region/redesign/region_view.html:213
-#, fuzzy
-#| msgctxt "goods"
-#| msgid "Бокситы"
 msgctxt "region_view"
 msgid "бокситы"
-msgstr "Bauxitas"
+msgstr "bauxita"
 
 #: region/templates/region/redesign/region_view.html:224
 #, fuzzy
@@ -9447,12 +8911,9 @@ msgid "На добычу  (нефть / руда)"
 msgstr ""
 
 #: region/templates/region/redesign/region_view.html:227
-#, fuzzy
-#| msgctxt "menu"
-#| msgid "торговля"
 msgctxt "region_view"
 msgid "На торговлю"
-msgstr "comercio"
+msgstr "Comercio"
 
 #: region/templates/region/redesign/region_view.html:233
 #, fuzzy
@@ -9571,12 +9032,9 @@ msgid "Указанный регион закрыт для получения п
 msgstr "No se indican todos los elementos de mejora"
 
 #: region/views/map/get_residency.py:88
-#, fuzzy
-#| msgctxt "profile"
-#| msgid "прописка"
 msgctxt "get_residency"
 msgid "Запрос прописки"
-msgstr "residencia"
+msgstr "Residencia"
 
 #: region/views/map/get_residency.py:90
 #, fuzzy
@@ -9611,28 +9069,20 @@ msgid "Указанный регион закрыт для полётов"
 msgstr "Las reservas de minerales en la región no son suficientes para minar"
 
 #: region/views/map/map.py:109
-#, fuzzy
-#| msgctxt "no_party"
-#| msgid "вы в полете"
 msgctxt "start_fly"
 msgid "Вы уже в полёте"
-msgstr "estas volando"
+msgstr "Estas volando"
 
 #: region/views/map/map.py:117
-#, fuzzy, python-format
-#| msgctxt "factory"
-#| msgid "Недостаточно энергии. В наличии "
+#, python-format
 msgctxt "start_fly"
 msgid "Недостаточно денег. В наличии: $%(cash)s, требуется: $%(cost)s"
-msgstr "No hay suficiente energía. Ahora "
+msgstr "No hay suficiente energía. $%(cash)s, Ahora: $%(cost)s"
 
 #: region/views/map/map.py:236
-#, fuzzy
-#| msgctxt "menu"
-#| msgid "карта"
 msgctxt "map"
 msgid "Карта"
-msgstr "mapa"
+msgstr "Mapa"
 
 #: region/views/map/plane_info.py:34
 #, fuzzy
@@ -9643,12 +9093,9 @@ msgid "Игрок не существует"
 msgstr "El bien elegido no existe"
 
 #: region/views/map/plane_info.py:36 region/views/map/plane_info.py:43
-#, fuzzy
-#| msgctxt "party_view"
-#| msgid "информация"
 msgctxt "plane_info"
 msgid "Информация о самолёте"
-msgstr "información"
+msgstr "Información"
 
 #: region/views/map/region_info.py:43
 #, fuzzy
@@ -9751,12 +9198,9 @@ msgid "позволяет извлекать дополнительные 10% н
 msgstr ""
 
 #: skill/models/military_production.py:9 skill/models/military_production.py:29
-#, fuzzy
-#| msgctxt "menu"
-#| msgid "производство"
 msgctxt "skills"
 msgid "Режимное производство"
-msgstr "producción"
+msgstr "Producción"
 
 #: skill/models/military_production.py:10
 msgctxt "skills"
@@ -9775,12 +9219,9 @@ msgid "Стандартизация"
 msgstr "Activación"
 
 #: skill/models/scouting.py:15 skill/models/scouting.py:46
-#, fuzzy
-#| msgctxt "party_manage"
-#| msgid "название должности"
 msgctxt "skills"
 msgid "Знание местности"
-msgstr "nombre de la posición"
+msgstr "Nombre de la posición"
 
 #: skill/models/scouting.py:16
 msgctxt "skills"
@@ -9810,12 +9251,9 @@ msgid "Открывает возможность конвертации оруж
 msgstr ""
 
 #: skill/templates/redesign/skill/skill_list.html:52
-#, fuzzy
-#| msgctxt "factory"
-#| msgid "Уровень"
 msgctxt "skills"
 msgid "уровень"
-msgstr "Nivel"
+msgstr "nivel"
 
 #: skill/templates/redesign/skill/skill_list.html:52
 #, fuzzy
@@ -9826,12 +9264,9 @@ msgid "в очереди"
 msgstr "en cola"
 
 #: skill/templates/redesign/skill/skill_list.html:54
-#, fuzzy
-#| msgctxt "skill_cancel"
-#| msgid "Отмена изучения навыка"
 msgctxt "skills"
 msgid "время изучения"
-msgstr "Cancelar mejora de habilidad"
+msgstr "tiempo de estudio"
 
 #: skill/templates/redesign/skill/skill_list.html:62
 msgctxt "skills"
@@ -9870,12 +9305,9 @@ msgid "Нет навыков в очереди"
 msgstr "No hay habilidades en cola"
 
 #: state/models/state.py:31
-#, fuzzy
-#| msgctxt "menu"
-#| msgid "правительство"
 msgctxt "state_view"
 msgid "Временное правительство"
-msgstr "gobierno"
+msgstr "Gobierno"
 
 #: state/models/state.py:32
 msgctxt "state_view"
@@ -9903,20 +9335,14 @@ msgid "Президент"
 msgstr ""
 
 #: state/templates/state/redesign/gov/executives.html:30
-#, fuzzy
-#| msgctxt "storage_assets"
-#| msgid "Продление"
 msgctxt "executives"
 msgid "управление"
-msgstr "Renovación"
+msgstr "управление"
 
 #: state/templates/state/redesign/gov/executives.html:41
-#, fuzzy
-#| msgctxt "profile"
-#| msgid "место в рейтинге"
 msgctxt "executives"
 msgid "Место вакантно"
-msgstr "lugar de calificación"
+msgstr "Lugar de calificación"
 
 #: state/templates/state/redesign/gov/executives.html:69
 #, fuzzy
@@ -9927,19 +9353,14 @@ msgid "Добавить министра"
 msgstr "Crear posición"
 
 #: state/templates/state/redesign/gov/government.html:214
-#, fuzzy
-#| msgid "независимый регион"
 msgctxt "government"
 msgid "Независимый регион"
-msgstr "región libre"
+msgstr "Región libre"
 
 #: state/templates/state/redesign/gov/government.html:233
-#, fuzzy
-#| msgctxt "overview"
-#| msgid "Выборы"
 msgctxt "government"
 msgid "выборы"
-msgstr "Elecciones"
+msgstr "elecciones"
 
 #: state/templates/state/redesign/gov/government.html:237
 #, fuzzy
@@ -9950,11 +9371,9 @@ msgid "Выборы"
 msgstr "Elecciones"
 
 #: state/templates/state/redesign/gov/government.html:243
-#, fuzzy
-#| msgid "Государство"
 msgctxt "government"
 msgid "основать государство"
-msgstr "Estado"
+msgstr "encontró un estado"
 
 #: state/templates/state/redesign/gov/government.html:264
 msgctxt "government"
@@ -9975,12 +9394,9 @@ msgid "Управление государством"
 msgstr "Administrar Partido"
 
 #: state/templates/state/redesign/gov/manage.html:21
-#, fuzzy
-#| msgctxt "overview"
-#| msgid "парламент"
 msgctxt "state_manage"
 msgid "Цвет на карте"
-msgstr "parlamento"
+msgstr "Parlamento"
 
 #: state/templates/state/redesign/gov/manage.html:22
 #: state/templates/state/redesign/gov/manage.html:72
@@ -10007,19 +9423,14 @@ msgid "Смена приветственного сообщения"
 msgstr "Cancelar oferta"
 
 #: state/templates/state/redesign/gov/parliament.html:97
-#, fuzzy
-#| msgid "Свободная"
 msgctxt "parliament"
 msgid "свободно"
-msgstr "Liberar"
+msgstr "gratis"
 
 #: state/templates/state/redesign/gov/parliament.html:116
-#, fuzzy
-#| msgctxt "party_manage"
-#| msgid "Управление партией"
 msgctxt "parliament"
 msgid "нет парламентских партий"
-msgstr "Administrar Partido"
+msgstr "ningún partido parlamentario"
 
 #: state/templates/state/redesign/set_mandate.html:46
 #: state/views/set_mandate.py:31 state/views/set_mandate.py:42
@@ -10067,12 +9478,9 @@ msgid "Казна"
 msgstr ""
 
 #: state/templates/state/redesign/state_view.html:125
-#, fuzzy
-#| msgctxt "trading"
-#| msgid "тип предложения"
 msgctxt "state_view"
 msgid "Форма правления"
-msgstr "tipo de oferta"
+msgstr "Tipo de oferta"
 
 #: state/templates/state/redesign/state_view.html:130
 #: state/templates/state/redesign/state_view.html:132
@@ -10094,12 +9502,9 @@ msgid "Зарплата лидера"
 msgstr "Elecciones presidenciales"
 
 #: state/templates/state/redesign/state_view.html:143
-#, fuzzy
-#| msgctxt "w_auctions"
-#| msgid "начальная"
 msgctxt "state_view"
 msgid "Начало срока"
-msgstr "puja inicial"
+msgstr "Puja inicial"
 
 #: state/templates/state/redesign/state_view.html:154
 msgctxt "state_view"
@@ -10142,20 +9547,14 @@ msgid "На финансирование"
 msgstr "Fondos"
 
 #: state/templates/state/redesign/state_view.html:170
-#, fuzzy
-#| msgctxt "menu"
-#| msgid "добыча"
 msgctxt "state_view"
 msgid "На добычу"
-msgstr "trabajar"
+msgstr "Trabajar"
 
 #: state/templates/state/redesign/state_view.html:171
-#, fuzzy
-#| msgctxt "menu"
-#| msgid "торговля"
 msgctxt "state_view"
 msgid "На торговлю"
-msgstr "comercio"
+msgstr "Comercio"
 
 #: state/templates/state/redesign/state_view.html:183
 #: state/templates/state/redesign/state_view.html:215
@@ -10235,12 +9634,9 @@ msgstr "No tienes un almacén en esta región"
 #: state/views/state_foundation.py:41 state/views/state_foundation.py:55
 #: state/views/state_foundation.py:69 state/views/state_foundation.py:110
 #: war/views/start_war.py:103
-#, fuzzy
-#| msgctxt "overview"
-#| msgid "государства"
 msgctxt "state_foundation"
 msgid "Основание государства"
-msgstr "del estado"
+msgstr "Del estado"
 
 #: state/views/state_foundation.py:54
 msgctxt "state_foundation"
@@ -10308,12 +9704,9 @@ msgid "Передано отрицательное значение"
 msgstr "Valor incorrecto"
 
 #: storage/models/storage.py:209
-#, fuzzy
-#| msgctxt "factory"
-#| msgid "Недостаточно "
 msgctxt "goods"
 msgid "Недостаточно"
-msgstr "No hay suficiente "
+msgstr "No hay suficiente"
 
 #: storage/models/transport.py:93
 msgctxt "goods"
@@ -10517,12 +9910,9 @@ msgid "ставка"
 msgstr "entrega"
 
 #: storage/templates/storage/redesign/auctions/auction_info.html:78
-#, fuzzy
-#| msgctxt "w_auctions"
-#| msgid "Лидер"
 msgctxt "auction"
 msgid "лидер"
-msgstr "Líder"
+msgstr "líder"
 
 #: storage/templates/storage/redesign/auctions/auction_info.html:85
 #, fuzzy
@@ -10587,11 +9977,9 @@ msgid "Ничего не найдено"
 msgstr "Nada encontrado"
 
 #: storage/templates/storage/redesign/auctions/auctions.html:56
-#, fuzzy
-#| msgid "Государство"
 msgctxt "auctions"
 msgid "государство"
-msgstr "Estado"
+msgstr "estado"
 
 #: storage/templates/storage/redesign/auctions/auctions.html:58
 #, fuzzy
@@ -10627,12 +10015,9 @@ msgid "цена"
 msgstr "precio"
 
 #: storage/templates/storage/redesign/auctions/auctions.html:66
-#, fuzzy
-#| msgctxt "w_trading"
-#| msgid "Лотов"
 msgctxt "auctions"
 msgid "лотов"
-msgstr "Nº de lotes"
+msgstr "lotes"
 
 #: storage/templates/storage/redesign/auctions/auctions.html:68
 msgctxt "auctions"
@@ -10645,12 +10030,9 @@ msgid "максимум"
 msgstr ""
 
 #: storage/templates/storage/redesign/auctions/auctions.html:130
-#, fuzzy
-#| msgctxt "trading"
-#| msgid "Настройки поиска"
 msgctxt "auctions"
 msgid "Настройки поиска"
-msgstr "buscar filtros"
+msgstr "Buscar filtros"
 
 #: storage/templates/storage/redesign/auctions/auctions.html:132
 #, fuzzy
@@ -10811,12 +10193,9 @@ msgid "Стоимость"
 msgstr "Precio"
 
 #: storage/templates/storage/redesign/storage.html:274
-#, fuzzy
-#| msgctxt "assets"
-#| msgid "Требуется:"
 msgctxt "storage_upgrade"
 msgid "Требуется"
-msgstr "Requiere:"
+msgstr "Requerido"
 
 #: storage/templates/storage/redesign/storage.html:274
 msgid "Интеллект"
@@ -10983,43 +10362,29 @@ msgid "Открывайте Ледяные сундуки и богатейте!
 msgstr ""
 
 #: storage/templates/storage/redesign/storage_blocks/avia_box.html:41
-#, fuzzy
-#| msgid "У вас пока еще нет стикеров"
 msgctxt "lootbox"
 msgid "У вас нет сундуков"
 msgstr "No tienes stickers aún"
 
 #: storage/templates/storage/redesign/storage_blocks/avia_box.html:47
-#, fuzzy
-#| msgctxt "storage_transfer"
-#| msgid "перенести"
 msgctxt "lootbox"
 msgid "приобрести"
-msgstr "mover"
+msgstr "compra"
 
 #: storage/templates/storage/redesign/storage_blocks/avia_box.html:53
-#, fuzzy
-#| msgctxt "trading"
-#| msgid "количество"
 msgctxt "lootbox"
 msgid "Количество сундуков:"
-msgstr "cantidad"
+msgstr "Número de cofres:"
 
 #: storage/templates/storage/redesign/storage_blocks/avia_box.html:73
-#, fuzzy
-#| msgctxt "party_manage"
-#| msgid "открытая"
 msgctxt "lootbox"
 msgid "Открыть"
-msgstr "abrir"
+msgstr "Abrir"
 
 #: storage/templates/storage/redesign/storage_blocks/avia_box.html:81
-#, fuzzy
-#| msgctxt "storage"
-#| msgid "В этом регионе нет Склада"
 msgctxt "lootbox"
 msgid "В этом сундуке вы можете найти:"
-msgstr "No es un Almacén en esta región"
+msgstr "No es un Almacén en esta región:"
 
 #: storage/templates/storage/redesign/storage_blocks/avia_box.html:88
 #: storage/templates/storage/redesign/storage_blocks/avia_box.html:106
@@ -11044,9 +10409,6 @@ msgid "макс"
 msgstr ""
 
 #: storage/templates/storage/redesign/storage_blocks/avia_box.html:263
-#, fuzzy
-#| msgctxt "trading"
-#| msgid "купить"
 msgctxt "lootbox"
 msgid "купить"
 msgstr "comprar"
@@ -11070,58 +10432,37 @@ msgid ""
 msgstr ""
 
 #: storage/templates/storage/redesign/storage_blocks/avia_box.html:388
-#, fuzzy
-#| msgctxt "menu"
-#| msgid "добыча"
 msgctxt "lootbox"
 msgid "Статистика за всё время:"
-msgstr "trabajar"
+msgstr "Estadísticas de todos los tiempos:"
 
 #: storage/templates/storage/redesign/storage_blocks/avia_box.html:392
-#, fuzzy
-#| msgctxt "daily_header"
-#| msgid "энергии потрачено"
 msgctxt "lootbox"
 msgid "потрачено"
-msgstr "energía gastada"
+msgstr "gastado"
 
 #: storage/templates/storage/redesign/storage_blocks/avia_box.html:403
-#, fuzzy
-#| msgctxt "party_manage"
-#| msgid "открытая"
 msgctxt "lootbox"
 msgid "открыто"
-msgstr "abrir"
+msgstr "abierto"
 
 #: storage/templates/storage/redesign/storage_blocks/avia_box.html:414
-#, fuzzy
-#| msgctxt "daily_header"
-#| msgid "уже получено"
 msgctxt "lootbox"
 msgid "получено"
-msgstr "canjeado"
+msgstr "recibió"
 
 #: storage/templates/storage/redesign/storage_blocks/avia_box.html:427
-#, fuzzy
-#| msgctxt "menu"
-#| msgid "производство"
 msgctxt "lootbox"
 msgid "Последние открытия сундуков:"
-msgstr "producción"
+msgstr "Últimas aperturas de cofres:"
 
 #: storage/templates/storage/redesign/storage_blocks/avia_box.html:482
 #: storage/templates/storage/redesign/storage_blocks/avia_box.html:535
-#, fuzzy
-#| msgctxt "profile"
-#| msgid "Скрыть кнопку Wiki"
 msgctxt "lootbox"
 msgid "Открываем сундук..."
-msgstr "Ocultar botón de Wiki"
+msgstr "Ocultar botón de Wiki."
 
 #: storage/templates/storage/redesign/storage_blocks/avia_box.html:655
-#, fuzzy
-#| msgctxt "has_party"
-#| msgid "Продолжить"
 msgctxt "lootbox"
 msgid "Продолжить"
 msgstr "Continuar"
@@ -11129,12 +10470,12 @@ msgstr "Continuar"
 #: storage/templates/storage/redesign/storage_blocks/no_storage.html:7
 msgctxt "no_storage"
 msgid "склад в регионе"
-msgstr "Almacén en"
+msgstr "almacén en la región"
 
 #: storage/templates/storage/redesign/storage_blocks/no_storage.html:9
 msgctxt "no_storage"
 msgid "Стоимость создания"
-msgstr "cuesta:"
+msgstr "Costo de creación"
 
 #: storage/templates/storage/redesign/storage_blocks/no_storage.html:10
 msgctxt "no_storage"
@@ -11191,12 +10532,9 @@ msgid "создать"
 msgstr "crear"
 
 #: storage/templates/storage/redesign/trading/trading.html:67
-#, fuzzy
-#| msgctxt "w_trading"
-#| msgid "Государственнные закупки"
 msgctxt "trading"
 msgid "государственные закупки"
-msgstr "Adquisición de estado"
+msgstr "contratación pública"
 
 #: storage/templates/storage/redesign/trading/trading.html:71
 msgctxt "trading"
@@ -11266,7 +10604,7 @@ msgstr "vendedor"
 #: storage/templates/storage/redesign/trading/trading.html:125
 msgctxt "trading"
 msgid "Настройки поиска"
-msgstr "buscar filtros"
+msgstr "Configuración de búsqueda"
 
 #: storage/templates/storage/redesign/trading/trading.html:127
 #: storage/templates/storage/redesign/trading/trading.html:216
@@ -11428,15 +10766,11 @@ msgid "Ваше торговое предложение будет удален�
 msgstr "La oferta será eliminada. ¿Continuar?"
 
 #: storage/templates/storage/redesign/trading/trading.html:434
-#, fuzzy
-#| msgid "Продолжить"
 msgctxt "trading"
 msgid "Продолжить"
 msgstr "Continuar"
 
 #: storage/templates/storage/redesign/trading/trading.html:435
-#, fuzzy
-#| msgid "Отмена"
 msgctxt "trading"
 msgid "Отмена"
 msgstr "Cancelar"
@@ -11486,9 +10820,6 @@ msgstr "Cerrar"
 
 #: storage/views/assets/assets_destroy.py:74
 #: storage/views/assets/assets_transfer.py:134
-#, fuzzy
-#| msgctxt "w_trading"
-#| msgid "Выберите один или несколько критериев справа и нажмите \"Поиск\""
 msgctxt "assets"
 msgid "Один или несколько запасов не принадлежат вашим складам"
 msgstr ""
@@ -11496,9 +10827,6 @@ msgstr ""
 
 #: storage/views/assets/assets_destroy.py:84
 #: storage/views/assets/assets_transfer.py:144
-#, fuzzy
-#| msgctxt "w_trading"
-#| msgid "Выбранного склада игрока не существует"
 msgctxt "assets"
 msgid "Один или несколько запасов не существуют"
 msgstr "El almacén del jugador elegido no existe"
@@ -11530,9 +10858,6 @@ msgid ", в наличии: "
 msgstr ", disponible: "
 
 #: storage/views/assets/assets_destroy.py:122
-#, fuzzy
-#| msgctxt "assets"
-#| msgid "Товары для передачи не выбраны"
 msgctxt "assets"
 msgid "Товары не выбраны"
 msgstr "No se seleccionaron bienes"
@@ -11544,17 +10869,12 @@ msgid "Операции с товарами"
 msgstr "Operaciones con bienes"
 
 #: storage/views/assets/assets_info.py:61
-#, fuzzy
-#| msgid "Такого языка в игре нет"
 msgctxt "assets_info"
 msgid "Такого склада у вас нет"
 msgstr "No hay ese idioma"
 
 #: storage/views/assets/assets_info.py:62
 #: storage/views/assets/assets_info.py:70
-#, fuzzy
-#| msgctxt "storage_upgrade"
-#| msgid "Улучшение склада"
 msgctxt "assets_info"
 msgid "Получение склада"
 msgstr "Mejorar almacén"
@@ -11571,9 +10891,6 @@ msgid "Перемещение товаров"
 msgstr "Movimiento de mercancías"
 
 #: storage/views/assets/assets_transfer.py:53
-#, fuzzy
-#| msgctxt "w_trading_new"
-#| msgid "Цена товара должна быть положительным числом"
 msgctxt "assets"
 msgid "Целевой Склад должен быть целым числом"
 msgstr "El precio del producto debe ser un número positivo"
@@ -11599,9 +10916,6 @@ msgid "Запрещено вывозить товары из атакованн�
 msgstr "Esta prohibido exportar bienes de la región atacada"
 
 #: storage/views/assets/assets_transfer.py:119
-#, fuzzy
-#| msgctxt "w_trading"
-#| msgid "Выбранного склада игрока не существует"
 msgctxt "assets"
 msgid "Один или несколько запасов пусты"
 msgstr "El almacén del jugador elegido no existe"
@@ -11617,12 +10931,9 @@ msgid "типоразмер:"
 msgstr ""
 
 #: storage/views/assets/assets_transfer.py:196
-#, fuzzy
-#| msgctxt "assets"
-#| msgid " недостаточно места для товара "
 msgctxt "assets"
 msgid "недостаточно места для товара."
-msgstr " no hay espacio suficiente espacio para "
+msgstr "No hay suficiente espacio para la mercancía."
 
 #: storage/views/assets/assets_transfer.py:206
 msgctxt "assets"
@@ -11661,9 +10972,6 @@ msgid "Склад не заполнен"
 msgstr "Almacén no especificado"
 
 #: storage/views/assets/storage_move.py:47
-#, fuzzy
-#| msgctxt "assets"
-#| msgid "Перемещение Склада"
 msgctxt "assets"
 msgid "У вас более одного Склада"
 msgstr "Mover mercancía"
@@ -11674,9 +10982,6 @@ msgid "Указанный Склад вам не принадлежит"
 msgstr "El Almacén especificado no le pertenece"
 
 #: storage/views/assets/storage_move.py:66
-#, fuzzy
-#| msgctxt "assets"
-#| msgid "Указанный Склад уже в текущем регионе"
 msgctxt "assets"
 msgid "Указанный Склад уже переносился"
 msgstr "El Almacén especificado ya esta en la actual región"
@@ -11692,143 +10997,91 @@ msgid "Нельзя переместить Склад из атакованно�
 msgstr "No puedes mover el Almacén de una región bajo ataque"
 
 #: storage/views/auctions/auction_info.py:60
-#, fuzzy
-#| msgctxt "w_trading_new"
-#| msgid "Группа товаров"
 msgctxt "auction"
 msgid "Закупка товаров"
 msgstr "Categoría de bienes"
 
 #: storage/views/auctions/set_bet.py:29
-#, fuzzy
-#| msgctxt "factory"
-#| msgid "Количество - не число"
 msgctxt "auction"
 msgid "Лот - не число"
 msgstr "La cantidad no es un número"
 
 #: storage/views/auctions/set_bet.py:31
-#, fuzzy
-#| msgctxt "w_trading"
-#| msgid "ID оффера должно быть числом"
 msgctxt "auction"
 msgid "ID лота должно быть числом"
 msgstr "La ID de la oferta debe ser un número"
 
 #: storage/views/auctions/set_bet.py:37
-#, fuzzy
-#| msgctxt "factory"
-#| msgid "Указанный товар не существует"
 msgctxt "auction"
 msgid "Лот не существует"
 msgstr "El bien elegido no existe"
 
 #: storage/views/auctions/set_bet.py:39
-#, fuzzy
-#| msgctxt "factory"
-#| msgid "Указанный товар не существует"
 msgctxt "auction"
 msgid "Указанный лот не существует"
 msgstr "El bien elegido no existe"
 
 #: storage/views/auctions/set_bet.py:50
-#, fuzzy
-#| msgctxt "factory"
-#| msgid "Количество - не число"
 msgctxt "auction"
 msgid "Склад - не число"
 msgstr "La cantidad no es un número"
 
 #: storage/views/auctions/set_bet.py:52
-#, fuzzy
-#| msgctxt "w_trading"
-#| msgid "ID склада должно быть числом"
 msgctxt "auction"
 msgid "ID склада должно быть числом"
 msgstr "La ID del almacén debe ser un número"
 
 #: storage/views/auctions/set_bet.py:58
-#, fuzzy
-#| msgctxt "factory"
-#| msgid "Указанный товар не существует"
 msgctxt "auction"
 msgid "Склад не существует"
 msgstr "El bien elegido no existe"
 
 #: storage/views/auctions/set_bet.py:60
-#, fuzzy
-#| msgctxt "factory"
-#| msgid "Указанный товар не существует"
 msgctxt "auction"
 msgid "Указанный склад не существует"
 msgstr "El bien elegido no existe"
 
 #: storage/views/auctions/set_bet.py:69
-#, fuzzy
-#| msgctxt "assets"
-#| msgid "недостаточно товара"
 msgctxt "auction"
 msgid "Недостаточно товаров"
-msgstr "no hay suficientes bienes"
+msgstr "No hay suficientes bienes"
 
 #: storage/views/auctions/set_bet.py:71
-#, fuzzy
-#| msgctxt "w_trading"
-#| msgid "На выбранном складе недостаточно товара"
 msgctxt "auction"
 msgid "На указанном складе недостаточно товара"
 msgstr "No hay suficiente bienes en el almacén elegido"
 
 #: storage/views/auctions/set_bet.py:82
-#, fuzzy
-#| msgctxt "factory"
-#| msgid "Количество - не число"
 msgctxt "auction"
 msgid "Цена - не число"
 msgstr "La cantidad no es un número"
 
 #: storage/views/auctions/set_bet.py:84
-#, fuzzy
-#| msgctxt "w_trading_new"
-#| msgid "Цена товара должна быть положительным числом"
 msgctxt "auction"
 msgid "Цена товара должна быть числом"
 msgstr "El precio del producto debe ser un número positivo"
 
 #: storage/views/auctions/set_bet.py:94 storage/views/auctions/set_bet.py:102
-#, fuzzy
-#| msgctxt "w_trading_new"
-#| msgid "Цена товара слишком велика"
 msgctxt "auction"
 msgid "Ставка слишком велика"
 msgstr "El precio del producto es demasiado alto"
 
 #: storage/views/auctions/set_bet.py:96
-#, fuzzy
-#| msgid "ID навыка должен быть числом"
 msgctxt "auction"
 msgid "Ставка должна быть меньше существующей"
 msgstr "La ID de la habilidad debe ser un número"
 
 #: storage/views/auctions/set_bet.py:104
-#, fuzzy
-#| msgctxt "w_trading_new"
-#| msgid "Цена товара должна быть положительным числом"
 msgctxt "auction"
 msgid "Ставка должна быть не больше начальной"
 msgstr "El precio del producto debe ser un número positivo"
 
 #: storage/views/auctions/set_bet.py:110
-#, fuzzy
-#| msgctxt "w_trading_new"
-#| msgid "Цена товара слишком велика"
 msgctxt "auction"
 msgid "Ставка слишком мала"
 msgstr "El precio del producto es demasiado alto"
 
 #: storage/views/auctions/set_bet.py:112
-#, fuzzy
-#| msgid "ID навыка должен быть числом"
 msgctxt "auction"
 msgid "Ставка должна быть не меньше 1"
 msgstr "La ID de la habilidad debe ser un número"
@@ -11901,12 +11154,9 @@ msgid "Не найден Склад списания материалов"
 msgstr "Materiales no encontrados en el almacén de origen"
 
 #: storage/views/storage/new_storage.py:63
-#, fuzzy
-#| msgctxt "storage"
-#| msgid "Недостаточно ресурсов"
 msgctxt "storage"
 msgid "Недостаточно ресурса: "
-msgstr "No hay suficientes recursos"
+msgstr "No hay suficientes recursos: "
 
 #: storage/views/storage/new_storage.py:83
 msgctxt "storage"
@@ -11914,25 +11164,17 @@ msgid "Недостаточно денег на транспортировку"
 msgstr "No hay suficiente dinero para el transporte"
 
 #: storage/views/storage/storage_status.py:56
-#, fuzzy
-#| msgctxt "factory"
-#| msgid "Указанный Склад вам не принадлежит"
 msgctxt "storage_status"
 msgid "Склад с указанным ID не существует или не принадлежит вам"
 msgstr "El Almacén especificado no le pertenece"
 
 #: storage/views/storage/storage_status.py:57
 #: storage/views/storage/storage_status.py:97
-#, fuzzy
-#| msgctxt "storage_upgrade"
-#| msgid "Улучшение склада"
 msgctxt "storage_status"
 msgid "Данные склада"
 msgstr "Mejorar almacén"
 
 #: storage/views/storage/storage_status.py:70
-#, fuzzy
-#| msgid "Недостаточно Энергетиков. Создайте их в Хранилище Склада"
 msgctxt "storage_status"
 msgid "Недостаточно Энергетиков. Создайте их в Хранилище Склада"
 msgstr ""
@@ -11940,16 +11182,11 @@ msgstr ""
 "Almacén"
 
 #: storage/views/storage/storage_status.py:71
-#, fuzzy
-#| msgid "Пополнение энергии"
 msgctxt "storage_status"
 msgid "Пополнение энергии"
 msgstr "Energía recargada"
 
 #: storage/views/storage/storage_status.py:96
-#, fuzzy
-#| msgctxt "w_trading"
-#| msgid "Некорректный владелец"
 msgctxt "storage_status"
 msgid "Некорректный параметр"
 msgstr "Dueño incorrecto"
@@ -12167,8 +11404,6 @@ msgid "Достигнут лимит торговых предложений"
 msgstr "Límite de oferta comercial alcanzado"
 
 #: storage/views/trading/create_offer.py:86
-#, fuzzy
-#| msgid "ID навыка должен быть числом"
 msgctxt "w_trading_new"
 msgid "ID товара должен быть целым числом"
 msgstr "La ID de la habilidad debe ser un número"
@@ -12224,20 +11459,14 @@ msgid "Недостаточно средств"
 msgstr "Fondos insuficientes"
 
 #: storage/views/trading/create_offer.py:228
-#, fuzzy
-#| msgctxt "factory"
-#| msgid "Недостаточно места на складе для товара. В наличии "
 msgctxt "w_trading_new"
 msgid "Недостаточно места на складе для закупаемого товара"
-msgstr "Espacio insuficiente. Libere espacio "
+msgstr "Espacio insuficiente. Libere espacio"
 
 #: storage/views/trading/create_offer.py:251
-#, fuzzy
-#| msgctxt "factory"
-#| msgid "Недостаточно места на складе для товара. В наличии "
 msgctxt "w_trading_new"
 msgid "Недостаточно места на складе, с учётом других закупочных ордеров"
-msgstr "Espacio insuficiente. Libere espacio "
+msgstr "Espacio insuficiente. Libere espacio"
 
 #: storage/views/trading/create_offer.py:285
 msgctxt "w_trading_new"
@@ -12299,8 +11528,6 @@ msgid "Торговое предложение успешно принято"
 msgstr "Oferta de comercio aceptada exitósamnete"
 
 #: storage/views/vault/avia_box/avia_lootbox.py:135
-#, fuzzy
-#| msgid "Пополнение энергии"
 msgctxt "assets"
 msgid "Ледяные сундуки"
 msgstr "Energía recargada"
@@ -12311,17 +11538,11 @@ msgid "Сундуки"
 msgstr ""
 
 #: storage/views/vault/use_card.py:25
-#, fuzzy
-#| msgctxt "factory"
-#| msgid "Недостаточно "
 msgctxt "use_card"
 msgid "Недостаточно Wild Pass"
-msgstr "No hay suficiente "
+msgstr "No hay suficiente"
 
 #: storage/views/vault/use_card.py:26 storage/views/vault/use_card.py:70
-#, fuzzy
-#| msgctxt "storage_assets"
-#| msgid "Активация"
 msgctxt "use_card"
 msgid "Активация Wild Pass"
 msgstr "Activación"
@@ -12336,62 +11557,41 @@ msgstr ""
 #: war/consumers.py:236 war/consumers.py:248 war/consumers.py:270
 #: war/consumers.py:290 war/consumers.py:299 war/consumers.py:312
 #: war/consumers.py:323 war/consumers.py:333 war/consumers.py:597
-#, fuzzy
-#| msgctxt "w_trading"
-#| msgid "Ставка (макс)"
 msgctxt "war_consumers"
 msgid "Отправка войск"
 msgstr "Puja (máxima)"
 
 #: war/consumers.py:180
-#, fuzzy
-#| msgid "Такого языка в игре нет"
 msgctxt "war_consumers"
 msgid "Такого вида войн нет"
 msgstr "No hay ese idioma"
 
 #: war/consumers.py:190
-#, fuzzy
-#| msgid "Нет такого навыка"
 msgctxt "war_consumers"
 msgid "Нет такой войны"
 msgstr "No hay tal habilidad"
 
 #: war/consumers.py:202
-#, fuzzy
-#| msgid "Нет такого навыка"
 msgctxt "war_consumers"
 msgid "Нет такой стороны боя"
 msgstr "No hay tal habilidad"
 
 #: war/consumers.py:212
-#, fuzzy
-#| msgctxt "assets"
-#| msgid "Нельзя переместить Склад из атакованного региона"
 msgctxt "war_consumers"
 msgid "Вы находитесь вне зоны боевых действий"
 msgstr "No puedes mover el Almacén de una región bajo ataque"
 
 #: war/consumers.py:225
-#, fuzzy
-#| msgctxt "w_trading"
-#| msgid "ID склада должно быть числом"
 msgctxt "war_consumers"
 msgid "ID склада должен быть числом"
 msgstr "La ID del almacén debe ser un número"
 
 #: war/consumers.py:235
-#, fuzzy
-#| msgctxt "storage_transfer"
-#| msgid "Склад будет перемещен в регион вашего местонахождения"
 msgctxt "war_consumers"
 msgid "У вас нет склада в регионе местонахождения"
 msgstr "El almacén se moverá a la región de tu ubicación"
 
 #: war/consumers.py:247
-#, fuzzy
-#| msgctxt "w_trading"
-#| msgid "Выберите товар"
 msgctxt "war_consumers"
 msgid "Не выбраны войска"
 msgstr "Escoger bienes"
@@ -12403,28 +11603,20 @@ msgid "Нет юнита с ID %(unit)s"
 msgstr ""
 
 #: war/consumers.py:289
-#, fuzzy
-#| msgctxt "factory"
-#| msgid "Количество товара должно быть положительным числом"
 msgctxt "war_consumers"
 msgid "Количество войск должно быть положительным числом"
 msgstr "La cantidad del objeto debe ser un número positivo"
 
 #: war/consumers.py:298
-#, fuzzy
-#| msgctxt "mining"
-#| msgid "Количество Энергии должно быть кратно десяти"
 msgctxt "war_consumers"
 msgid "Количество войск должно быть не более 100"
 msgstr "La cantidad de energía debe ser múltiplo de diez"
 
 #: war/consumers.py:311
-#, fuzzy, python-format
-#| msgctxt "storage_upgrade"
-#| msgid "Недостаточно материала: "
+#, python-format
 msgctxt "war_consumers"
 msgid "Недостаточно на складе: %(name)s"
-msgstr "No hay suficiente material: "
+msgstr "No hay suficiente material: %(name)s"
 
 #: war/consumers.py:322
 msgctxt "war_consumers"
@@ -12432,50 +11624,34 @@ msgid "В бой не отправлен ни один юнит"
 msgstr ""
 
 #: war/consumers.py:332
-#, fuzzy
-#| msgctxt "mining"
-#| msgid "Недостаточно энергии"
 msgctxt "war_consumers"
 msgid "Недостаточно энергии"
 msgstr "No hay suficiente energía"
 
 #: war/consumers.py:596
-#, fuzzy
-#| msgctxt "w_trading"
-#| msgid "Не удалось получить блокировку по офферу"
 msgctxt "war_consumers"
 msgid "Не удалось отправить войска, повторите попытку"
 msgstr "Falló el obtener el bloqueo de oferta"
 
 #: war/models/wars/event_war.py:280 war/models/wars/ground_war.py:804
 #: war/models/wars/revolution/revolution.py:549
-#, fuzzy
-#| msgid "Изменение часового пояса"
 msgctxt "war_page"
 msgid "График урона в бою"
 msgstr "Cambiar zona horaria"
 
 #: war/models/wars/event_war.py:284 war/models/wars/ground_war.py:808
 #: war/models/wars/revolution/revolution.py:553
-#, fuzzy
-#| msgctxt "party_view"
-#| msgid "Дата основания"
 msgctxt "war_page"
 msgid "дата/время"
-msgstr "Fecha de creación"
+msgstr "fecha/hora"
 
 #: war/models/wars/event_war.py:290 war/models/wars/ground_war.py:814
 #: war/models/wars/revolution/revolution.py:559
-#, fuzzy
-#| msgctxt "party_manage"
-#| msgid "Тип партии"
 msgctxt "war_page"
 msgid "очки урона"
-msgstr "Tipo de partido"
+msgstr "puntos de daño"
 
 #: war/templates/war/redesign/EventWar.html:63
-#, fuzzy
-#| msgid "Тестовый сервер войн"
 msgctxt "war_page"
 msgid "Тестовая война"
 msgstr "Servidor de prueba de guerra"
@@ -12532,12 +11708,9 @@ msgstr ""
 #: war/templates/war/redesign/EventWar.html:258
 #: war/templates/war/redesign/GroundWar.html:256
 #: war/templates/war/redesign/Revolution.html:259
-#, fuzzy
-#| msgctxt "profile"
-#| msgid "история"
 msgctxt "war_page"
 msgid "сторона боя"
-msgstr "historia"
+msgstr "lado de la batalla"
 
 #: war/templates/war/redesign/EventWar.html:259
 #: war/templates/war/redesign/GroundWar.html:257
@@ -12559,17 +11732,13 @@ msgid "Наземная война"
 msgstr ""
 
 #: war/templates/war/redesign/Revolution.html:63
-#, fuzzy
 #| msgctxt "assets"
 #| msgid "На складе в регионе"
 msgctxt "war_page"
 msgid "Восстание в регионе"
-msgstr "En el almacén de la"
+msgstr "Activos en un almacén en la región"
 
 #: war/templates/war/redesign/character_wars.html:27
-#, fuzzy
-#| msgctxt "w_trading"
-#| msgid "Мои"
 msgctxt "wars_list"
 msgid "Бои"
 msgstr "Mio"
@@ -12580,9 +11749,6 @@ msgid "Дата"
 msgstr ""
 
 #: war/templates/war/redesign/character_wars.html:38
-#, fuzzy
-#| msgctxt "w_trading"
-#| msgid "Мои"
 msgctxt "wars_list"
 msgid "Бой"
 msgstr "Mio"
@@ -12593,11 +11759,9 @@ msgid "Урон"
 msgstr ""
 
 #: war/templates/war/redesign/character_wars.html:76
-#, fuzzy
-#| msgid "должность в партии"
 msgctxt "wars_list"
 msgid "Силы восстания"
-msgstr "posición en el partido"
+msgstr "Posición en el partido"
 
 #: war/templates/war/redesign/war_page.html:65
 msgctxt "war_page"
@@ -12605,48 +11769,33 @@ msgid "Список войн"
 msgstr ""
 
 #: war/templates/war/redesign/war_page.html:83
-#, fuzzy
-#| msgid "должность в партии"
 msgctxt "war_page"
 msgid "Поднять восстание"
-msgstr "posición en el partido"
+msgstr "Posición en el partido"
 
 #: war/templates/war/redesign/war_page.html:168
-#, fuzzy
-#| msgctxt "menu"
-#| msgid "активы"
 msgctxt "war_page"
 msgid "активно"
-msgstr "activos"
+msgstr "activamente"
 
 #: war/templates/war/redesign/war_page.html:189
 #: war/templates/war/redesign/war_page.html:213
-#, fuzzy
-#| msgctxt "menu"
-#| msgid "войны"
 msgctxt "war_page"
 msgid "Все войны"
-msgstr "guerras"
+msgstr "Guerras"
 
 #: war/templates/war/redesign/war_page.html:204
-#, fuzzy
-#| msgctxt "menu"
-#| msgid "войны"
 msgctxt "war_page"
 msgid "Гос. войны"
-msgstr "guerras"
+msgstr "Guerras"
 
 #: war/templates/war/redesign/war_page.html:245
 #: war/templates/war/redesign/war_page.html:284
-#, fuzzy
-#| msgid "войн нет"
 msgctxt "war_page"
 msgid "войн нет"
-msgstr "sin guerras"
+msgstr "Sin guerras"
 
 #: war/templates/war/redesign/war_page.html:252
-#, fuzzy
-#| msgid "Государство"
 msgctxt "war_page"
 msgid "Государственные"
 msgstr "Estado"
@@ -12660,20 +11809,14 @@ msgstr ""
 #: war/views/join_revolution.py:66 war/views/join_revolution.py:78
 #: war/views/join_revolution.py:90 war/views/join_revolution.py:102
 #: war/views/join_revolution.py:111 war/views/join_revolution.py:151
-#, fuzzy
-#| msgctxt "no_party"
-#| msgid "Вы не состоите в партии"
 msgctxt "join_revolution"
 msgid "Участие в восстании"
 msgstr "No eres miembro de ningún partido"
 
 #: war/views/join_revolution.py:52
-#, fuzzy
-#| msgctxt "assets"
-#| msgid "недостаточно товара"
 msgctxt "join_revolution"
 msgid "Недостаточно золота"
-msgstr "no hay suficientes bienes"
+msgstr "No hay suficientes bienes"
 
 #: war/views/join_revolution.py:65
 msgctxt "join_revolution"
@@ -12686,9 +11829,6 @@ msgid "Для участия в восстании требуется пропи
 msgstr ""
 
 #: war/views/join_revolution.py:89
-#, fuzzy
-#| msgctxt "no_party"
-#| msgid "Вы не состоите в партии"
 msgctxt "join_revolution"
 msgid "Вы уже являетесь участником восстания здесь"
 msgstr "No eres miembro de ningún partido"
@@ -12719,42 +11859,30 @@ msgid "Урон за сторону:"
 msgstr ""
 
 #: war/views/switch_war_visibility.py:38
-#, fuzzy
-#| msgid "Нет такого навыка"
 msgctxt "war_visibility"
 msgid "Нет такого типа войн"
 msgstr "No hay tal habilidad"
 
 #: war/views/switch_war_visibility.py:39 war/views/switch_war_visibility.py:47
 #: war/views/switch_war_visibility.py:63 war/views/switch_war_visibility.py:91
-#, fuzzy
-#| msgctxt "profile"
-#| msgid "Скрыть кнопку Wiki"
 msgctxt "war_visibility"
 msgid "Скрытие войны"
 msgstr "Ocultar botón de Wiki"
 
 #: war/views/switch_war_visibility.py:46
-#, fuzzy
-#| msgid "Нет такого навыка"
 msgctxt "war_visibility"
 msgid "Нет такой войны"
 msgstr "No hay tal habilidad"
 
 #: war/views/switch_war_visibility.py:62
-#, fuzzy
-#| msgid "Нет такого навыка"
 msgctxt "war_visibility"
 msgid "Нет такой записи об участии в бою"
 msgstr "No hay tal habilidad"
 
 #: war/views/war_page.py:104
-#, fuzzy
-#| msgctxt "menu"
-#| msgid "войны"
 msgctxt "war_page"
 msgid "Войны"
-msgstr "guerras"
+msgstr "Guerras"
 
 #, fuzzy
 #~| msgctxt "mining"
