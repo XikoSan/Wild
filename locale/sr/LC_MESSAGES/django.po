@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-26 21:48+0300\n"
+"POT-Creation-Date: 2025-01-26 22:35+0300\n"
 "PO-Revision-Date: 2024-10-28 19:30+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -162,23 +162,23 @@ msgstr "Чланак не може бити празан"
 #: bill/views/bills/cancel_bill.py:72 bill/views/bills/cancel_bill.py:79
 #: bill/views/bills/cancel_bill.py:86 bill/views/bills/cancel_bill.py:93
 #: bill/views/bills/cancel_bill.py:100 bill/views/bills/cancel_bill.py:107
-#: bill/views/bills/cancel_bill.py:115 bill/views/bills/new_bill.py:50
-#: bill/views/bills/new_bill.py:57 bill/views/bills/new_bill.py:64
-#: bill/views/bills/new_bill.py:71 bill/views/bills/new_bill.py:79
-#: bill/views/bills/speedup_bill.py:35 bill/views/bills/speedup_bill.py:44
-#: bill/views/bills/speedup_bill.py:70 bill/views/bills/speedup_bill.py:85
-#: bill/views/bills/speedup_bill.py:96 bill/views/bills/speedup_bill.py:104
-#: bill/views/bills/speedup_bill.py:127 bill/views/bills/speedup_bill.py:134
-#: bill/views/bills/speedup_bill.py:141 bill/views/bills/speedup_bill.py:148
-#: bill/views/bills/speedup_bill.py:155 bill/views/bills/speedup_bill.py:162
-#: bill/views/bills/speedup_bill.py:170 bill/views/bills/vote_bill.py:64
-#: bill/views/bills/vote_bill.py:90 bill/views/bills/vote_bill.py:97
-#: bill/views/bills/vote_bill.py:104 bill/views/bills/vote_bill.py:111
-#: bill/views/bills/vote_bill.py:118 bill/views/bills/vote_bill.py:125
-#: bill/views/bills/vote_bill.py:133 chat/templates/chat/dialogue.html:212
-#: chat/views/buy_sticker_pack.py:24 chat/views/buy_sticker_pack.py:36
-#: chat/views/buy_sticker_pack.py:47 chat/views/buy_sticker_pack.py:55
-#: chat/views/buy_sticker_pack.py:90
+#: bill/views/bills/cancel_bill.py:115 bill/views/bills/new_bill.py:46
+#: bill/views/bills/new_bill.py:62 bill/views/bills/new_bill.py:69
+#: bill/views/bills/new_bill.py:76 bill/views/bills/new_bill.py:83
+#: bill/views/bills/new_bill.py:91 bill/views/bills/speedup_bill.py:35
+#: bill/views/bills/speedup_bill.py:44 bill/views/bills/speedup_bill.py:70
+#: bill/views/bills/speedup_bill.py:85 bill/views/bills/speedup_bill.py:96
+#: bill/views/bills/speedup_bill.py:104 bill/views/bills/speedup_bill.py:127
+#: bill/views/bills/speedup_bill.py:134 bill/views/bills/speedup_bill.py:141
+#: bill/views/bills/speedup_bill.py:148 bill/views/bills/speedup_bill.py:155
+#: bill/views/bills/speedup_bill.py:162 bill/views/bills/speedup_bill.py:170
+#: bill/views/bills/vote_bill.py:64 bill/views/bills/vote_bill.py:90
+#: bill/views/bills/vote_bill.py:97 bill/views/bills/vote_bill.py:104
+#: bill/views/bills/vote_bill.py:111 bill/views/bills/vote_bill.py:118
+#: bill/views/bills/vote_bill.py:125 bill/views/bills/vote_bill.py:133
+#: chat/templates/chat/dialogue.html:212 chat/views/buy_sticker_pack.py:24
+#: chat/views/buy_sticker_pack.py:36 chat/views/buy_sticker_pack.py:47
+#: chat/views/buy_sticker_pack.py:55 chat/views/buy_sticker_pack.py:90
 #: chat/views/messages/get_message_block.py:28
 #: chat/views/messages/get_message_block.py:38
 #: chat/views/messages/get_message_block.py:51
@@ -604,7 +604,7 @@ msgstr "Текст чланка не може бити празан"
 
 #: article/views/change_article.py:73 article/views/create_article.py:117
 #: article/views/subscription.py:71 article/views/vote_article.py:73
-#: bill/views/bills/cancel_bill.py:113 bill/views/bills/new_bill.py:77
+#: bill/views/bills/cancel_bill.py:113 bill/views/bills/new_bill.py:89
 #: bill/views/bills/vote_bill.py:131 chat/views/buy_sticker_pack.py:88
 #: chat/views/messages/get_message_block.py:84
 #: event/views/activate_invite.py:124 factory/views/cancel_auto.py:35
@@ -745,9 +745,10 @@ msgstr "Нема таквог чланка"
 #: bill/models/transfer_resources.py:107 bill/models/transfer_resources.py:121
 #: bill/models/transfer_resources.py:128 bill/models/transfer_resources.py:137
 #: bill/models/transfer_resources.py:149 bill/models/transfer_resources.py:156
-#: bill/models/transfer_resources.py:176 bill/views/bills/new_bill.py:49
-#: bill/views/bills/new_bill.py:56 bill/views/bills/new_bill.py:63
-#: bill/views/bills/new_bill.py:70 bill/views/bills/new_bill.py:78
+#: bill/models/transfer_resources.py:176 bill/views/bills/new_bill.py:45
+#: bill/views/bills/new_bill.py:61 bill/views/bills/new_bill.py:68
+#: bill/views/bills/new_bill.py:75 bill/views/bills/new_bill.py:82
+#: bill/views/bills/new_bill.py:90
 msgctxt "new_bill"
 msgid "Новый законопроект"
 msgstr "Нови закон"
@@ -1959,17 +1960,22 @@ msgctxt "cancel_bill"
 msgid "В этом регионе нет государства"
 msgstr ""
 
-#: bill/views/bills/new_bill.py:48
+#: bill/views/bills/new_bill.py:44
+msgctxt "new_bill"
+msgid "Нельзя предложить более трех законов одновременно"
+msgstr ""
+
+#: bill/views/bills/new_bill.py:60
 msgctxt "new_bill"
 msgid "Нет такого вида законопроекта"
 msgstr ""
 
-#: bill/views/bills/new_bill.py:62
+#: bill/views/bills/new_bill.py:74
 msgctxt "new_bill"
 msgid "В этом государстве нет парламента"
 msgstr ""
 
-#: bill/views/bills/new_bill.py:69
+#: bill/views/bills/new_bill.py:81
 msgctxt "new_bill"
 msgid "В этом регионе нет государства"
 msgstr ""
