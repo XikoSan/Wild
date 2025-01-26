@@ -25,6 +25,9 @@ from storage.views.vault.avia_box.generate_rewards import prepare_plane_lists
 @login_required(login_url='/')
 @check_player
 def avia_lootbox(request):
+
+    return redirect('storage')
+
     player = Player.get_instance(account=request.user)
 
     lootbox_count = 0

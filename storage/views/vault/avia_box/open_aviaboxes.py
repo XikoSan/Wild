@@ -25,6 +25,14 @@ from storage.models.lootbox_prize import LootboxPrize
 @check_player
 def open_aviaboxes(request):
     if request.method == "POST":
+
+        data = {
+            'response': pgettext('open_box', 'Кейсы отключены'),
+            'header': pgettext('open_box', 'Открытие кейсов'),
+            'grey_btn': pgettext('core', 'Закрыть'),
+        }
+        return JResponse(data)
+
         # получаем персонажа игрока
         player = Player.get_instance(account=request.user)
 
