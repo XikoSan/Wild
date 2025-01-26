@@ -32,8 +32,20 @@ def new_bill(request):
 
                     bills_dict = {}
 
+                    bills_count = 0
+
                     for bill_cl in bills_classes:
                         bills_dict[bill_cl.__name__] = bill_cl
+
+                        bills_count += bill_cl.objects.filter(initiator=player, running=True).count()
+
+                    if bills_count >= 3:
+                        data = {
+                            'response': pgettext('new_bill', 'Нельзя предложить более трех законов одновременно'),
+                            'header': pgettext('new_bill', 'Новый законопроект'),
+                            'grey_btn': pgettext('core', 'Закрыть'),
+                        }
+                        return JResponse(data)
 
                     bill_type = request.POST.get('bill_type')
 
