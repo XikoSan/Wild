@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-22 13:04+0300\n"
+"POT-Creation-Date: 2025-01-26 21:48+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -257,16 +257,17 @@ msgstr ""
 #: player/views/bonus_code/activate_code.py:75
 #: player/views/bonus_code/activate_code.py:172
 #: player/views/bonus_code/activate_code.py:181
-#: player/views/buy_lootboxes.py:58 player/views/buy_lootboxes.py:69
-#: player/views/buy_lootboxes.py:77 player/views/buy_lootboxes.py:87
-#: player/views/buy_lootboxes.py:95 player/views/buy_lootboxes.py:163
-#: player/views/cash_lootboxes.py:59 player/views/cash_lootboxes.py:70
-#: player/views/cash_lootboxes.py:78 player/views/cash_lootboxes.py:88
-#: player/views/cash_lootboxes.py:100 player/views/cash_lootboxes.py:168
-#: player/views/change_back_allow.py:43 player/views/change_back_allow.py:59
-#: player/views/change_bio.py:34 player/views/change_nickname.py:24
-#: player/views/change_nickname.py:34 player/views/change_nickname.py:42
-#: player/views/change_nickname.py:65 player/views/change_wiki_hide_allow.py:43
+#: player/views/buy_lootboxes.py:40 player/views/buy_lootboxes.py:65
+#: player/views/buy_lootboxes.py:76 player/views/buy_lootboxes.py:84
+#: player/views/buy_lootboxes.py:94 player/views/buy_lootboxes.py:102
+#: player/views/buy_lootboxes.py:170 player/views/cash_lootboxes.py:59
+#: player/views/cash_lootboxes.py:70 player/views/cash_lootboxes.py:78
+#: player/views/cash_lootboxes.py:88 player/views/cash_lootboxes.py:100
+#: player/views/cash_lootboxes.py:168 player/views/change_back_allow.py:43
+#: player/views/change_back_allow.py:59 player/views/change_bio.py:34
+#: player/views/change_nickname.py:24 player/views/change_nickname.py:34
+#: player/views/change_nickname.py:42 player/views/change_nickname.py:65
+#: player/views/change_wiki_hide_allow.py:43
 #: player/views/change_wiki_hide_allow.py:59 player/views/claim_reward.py:85
 #: player/views/color_change.py:32 player/views/color_change.py:44
 #: player/views/color_change.py:56 player/views/color_change.py:68
@@ -435,8 +436,9 @@ msgstr ""
 #: storage/views/trading/premium_trading.py:112
 #: storage/views/trading/premium_trading.py:120
 #: storage/views/vault/avia_box/loot_aviaboxes.py:56
-#: storage/views/vault/avia_box/open_aviaboxes.py:35
-#: storage/views/vault/avia_box/open_aviaboxes.py:126
+#: storage/views/vault/avia_box/open_aviaboxes.py:32
+#: storage/views/vault/avia_box/open_aviaboxes.py:43
+#: storage/views/vault/avia_box/open_aviaboxes.py:134
 #: storage/views/vault/use_card.py:27 storage/views/vault/use_card.py:71
 #: war/consumers.py:163 war/consumers.py:182 war/consumers.py:192
 #: war/consumers.py:204 war/consumers.py:214 war/consumers.py:227
@@ -619,7 +621,7 @@ msgstr ""
 #: state/views/state_foundation.py:109 storage/views/assets/assets_info.py:69
 #: storage/views/auctions/set_bet.py:159
 #: storage/views/vault/avia_box/loot_aviaboxes.py:54
-#: storage/views/vault/avia_box/open_aviaboxes.py:124
+#: storage/views/vault/avia_box/open_aviaboxes.py:132
 #: storage/views/vault/use_card.py:69 war/views/start_war.py:102
 #: war/views/switch_war_visibility.py:90
 msgctxt "core"
@@ -7068,7 +7070,18 @@ msgctxt "activate_code"
 msgid "Данный код уже был активирован"
 msgstr ""
 
-#: player/views/buy_lootboxes.py:161 player/views/cash_lootboxes.py:166
+#: player/views/buy_lootboxes.py:38 player/views/open_lootboxes.py:25
+#: storage/views/vault/avia_box/open_aviaboxes.py:30
+msgctxt "open_box"
+msgid "Кейсы отключены"
+msgstr ""
+
+#: player/views/buy_lootboxes.py:39
+msgctxt "open_box"
+msgid "Приобретение кейсов"
+msgstr ""
+
+#: player/views/buy_lootboxes.py:168 player/views/cash_lootboxes.py:166
 #: player/views/change_back_allow.py:57
 #: player/views/change_wiki_hide_allow.py:57 region/views/cancel_auto.py:35
 #: region/views/daily_status.py:86 region/views/daily_status.py:88
@@ -7077,7 +7090,7 @@ msgstr ""
 msgid "Ошибка метода"
 msgstr ""
 
-#: player/views/buy_lootboxes.py:162 player/views/cash_lootboxes.py:167
+#: player/views/buy_lootboxes.py:169 player/views/cash_lootboxes.py:167
 msgid "Открытие сундуков"
 msgstr ""
 
@@ -7465,23 +7478,19 @@ msgctxt "new_player"
 msgid "Ошибка в форме профиля"
 msgstr ""
 
-#: player/views/open_lootboxes.py:25
-msgctxt "open_box"
-msgid "Кейсы отключены"
-msgstr ""
-
 #: player/views/open_lootboxes.py:26 player/views/open_lootboxes.py:37
 #: player/views/open_lootboxes.py:48 player/views/open_lootboxes.py:58
 #: player/views/open_lootboxes.py:133
 #: storage/views/vault/avia_box/loot_aviaboxes.py:55
-#: storage/views/vault/avia_box/open_aviaboxes.py:34
-#: storage/views/vault/avia_box/open_aviaboxes.py:125
+#: storage/views/vault/avia_box/open_aviaboxes.py:31
+#: storage/views/vault/avia_box/open_aviaboxes.py:42
+#: storage/views/vault/avia_box/open_aviaboxes.py:133
 msgctxt "open_box"
 msgid "Открытие кейсов"
 msgstr ""
 
 #: player/views/open_lootboxes.py:36
-#: storage/views/vault/avia_box/open_aviaboxes.py:33
+#: storage/views/vault/avia_box/open_aviaboxes.py:41
 msgctxt "open_box"
 msgid "У вас нет кейсов"
 msgstr ""
@@ -10172,7 +10181,7 @@ msgctxt "w_trading"
 msgid "Торговое предложение успешно принято"
 msgstr ""
 
-#: storage/views/vault/avia_box/avia_lootbox.py:135
+#: storage/views/vault/avia_box/avia_lootbox.py:138
 msgctxt "assets"
 msgid "Ледяные сундуки"
 msgstr ""

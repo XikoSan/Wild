@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-22 13:04+0300\n"
-"PO-Revision-Date: 2025-01-26 16:17+0300\n"
+"POT-Creation-Date: 2025-01-26 21:48+0300\n"
+"PO-Revision-Date: 2025-01-26 21:47+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: tr\n"
@@ -255,16 +255,17 @@ msgstr "Makale boş olamaz"
 #: player/views/bonus_code/activate_code.py:75
 #: player/views/bonus_code/activate_code.py:172
 #: player/views/bonus_code/activate_code.py:181
-#: player/views/buy_lootboxes.py:58 player/views/buy_lootboxes.py:69
-#: player/views/buy_lootboxes.py:77 player/views/buy_lootboxes.py:87
-#: player/views/buy_lootboxes.py:95 player/views/buy_lootboxes.py:163
-#: player/views/cash_lootboxes.py:59 player/views/cash_lootboxes.py:70
-#: player/views/cash_lootboxes.py:78 player/views/cash_lootboxes.py:88
-#: player/views/cash_lootboxes.py:100 player/views/cash_lootboxes.py:168
-#: player/views/change_back_allow.py:43 player/views/change_back_allow.py:59
-#: player/views/change_bio.py:34 player/views/change_nickname.py:24
-#: player/views/change_nickname.py:34 player/views/change_nickname.py:42
-#: player/views/change_nickname.py:65 player/views/change_wiki_hide_allow.py:43
+#: player/views/buy_lootboxes.py:40 player/views/buy_lootboxes.py:65
+#: player/views/buy_lootboxes.py:76 player/views/buy_lootboxes.py:84
+#: player/views/buy_lootboxes.py:94 player/views/buy_lootboxes.py:102
+#: player/views/buy_lootboxes.py:170 player/views/cash_lootboxes.py:59
+#: player/views/cash_lootboxes.py:70 player/views/cash_lootboxes.py:78
+#: player/views/cash_lootboxes.py:88 player/views/cash_lootboxes.py:100
+#: player/views/cash_lootboxes.py:168 player/views/change_back_allow.py:43
+#: player/views/change_back_allow.py:59 player/views/change_bio.py:34
+#: player/views/change_nickname.py:24 player/views/change_nickname.py:34
+#: player/views/change_nickname.py:42 player/views/change_nickname.py:65
+#: player/views/change_wiki_hide_allow.py:43
 #: player/views/change_wiki_hide_allow.py:59 player/views/claim_reward.py:85
 #: player/views/color_change.py:32 player/views/color_change.py:44
 #: player/views/color_change.py:56 player/views/color_change.py:68
@@ -433,8 +434,9 @@ msgstr "Makale boş olamaz"
 #: storage/views/trading/premium_trading.py:112
 #: storage/views/trading/premium_trading.py:120
 #: storage/views/vault/avia_box/loot_aviaboxes.py:56
-#: storage/views/vault/avia_box/open_aviaboxes.py:35
-#: storage/views/vault/avia_box/open_aviaboxes.py:126
+#: storage/views/vault/avia_box/open_aviaboxes.py:32
+#: storage/views/vault/avia_box/open_aviaboxes.py:43
+#: storage/views/vault/avia_box/open_aviaboxes.py:134
 #: storage/views/vault/use_card.py:27 storage/views/vault/use_card.py:71
 #: war/consumers.py:163 war/consumers.py:182 war/consumers.py:192
 #: war/consumers.py:204 war/consumers.py:214 war/consumers.py:227
@@ -628,7 +630,7 @@ msgstr "Pozisyon başlığı boş olamaz"
 #: state/views/state_foundation.py:109 storage/views/assets/assets_info.py:69
 #: storage/views/auctions/set_bet.py:159
 #: storage/views/vault/avia_box/loot_aviaboxes.py:54
-#: storage/views/vault/avia_box/open_aviaboxes.py:124
+#: storage/views/vault/avia_box/open_aviaboxes.py:132
 #: storage/views/vault/use_card.py:69 war/views/start_war.py:102
 #: war/views/switch_war_visibility.py:90
 msgctxt "core"
@@ -1183,8 +1185,10 @@ msgstr "Bu sıkıyönetim rejimi çoktan seçilmiştir"
 
 #: bill/models/martial_law.py:109
 msgctxt "new_bill"
-msgid "Прошло менее двух недель с момента отмены предыдущего военного положения"
-msgstr "Önceki sıkıyönetim kaldırılmasının üzerinden iki haftadanaz zaman geçti"
+msgid ""
+"Прошло менее двух недель с момента отмены предыдущего военного положения"
+msgstr ""
+"Önceki sıkıyönetim kaldırılmasının üzerinden iki haftadanaz zaman geçti"
 
 #: bill/models/martial_law.py:242
 msgctxt "new_bill"
@@ -2226,7 +2230,9 @@ msgstr "Bir set satın al"
 #: chat/templates/chat/sticker-shop.html:116
 msgctxt "chat"
 msgid "Похоже, вы скупили все стикерпаки. Ожидайте выхода новых!"
-msgstr "Görünüşe göre tüm çıkartma paketlerini satın almışsın. Yenilerinin çıkmasını bekleyin!"
+msgstr ""
+"Görünüşe göre tüm çıkartma paketlerini satın almışsın. Yenilerinin çıkmasını "
+"bekleyin!"
 
 #: chat/views/buy_sticker_pack.py:23 chat/views/buy_sticker_pack.py:35
 #: chat/views/buy_sticker_pack.py:46 chat/views/buy_sticker_pack.py:54
@@ -2418,17 +2424,28 @@ msgstr ""
 #: education/templates/education/edu_lists/list_1.html:43
 #, python-format
 msgctxt "education"
-msgid "Здравствуйте! Меня зовут %(assistant)s, я ваша помощница и верный союзник на вашем новом пути. Поздравляю вас с принятием в Партию Единства Республики — это первый шаг к вершинам политической карьеры!"
+msgid ""
+"Здравствуйте! Меня зовут %(assistant)s, я ваша помощница и верный союзник на "
+"вашем новом пути. Поздравляю вас с принятием в Партию Единства Республики — "
+"это первый шаг к вершинам политической карьеры!"
 msgstr ""
 
 #: education/templates/education/edu_lists/list_1.html:47
 msgctxt "education"
-msgid "Вступив в ряды правящей партии, вы оказались в самом центре эпохи перемен и возможностей. Сейчас настало время амбициозных личностей, которые стремятся внести вклад в развитие нашего государства и укрепить его влияние на мировой арене."
+msgid ""
+"Вступив в ряды правящей партии, вы оказались в самом центре эпохи перемен и "
+"возможностей. Сейчас настало время амбициозных личностей, которые стремятся "
+"внести вклад в развитие нашего государства и укрепить его влияние на мировой "
+"арене."
 msgstr ""
 
 #: education/templates/education/edu_lists/list_1.html:51
 msgctxt "education"
-msgid "В мире ведутся масштабные войны, создаются союзы, меняющие континенты. Люди основывают крупные бизнесы, корпорации и целые сети. СМИ играют роль невидимых нитей, связывая влиятельные силы. И очень скоро вы займете своё место среди них. Я же буду рядом, помогая вам разбираться в тонкостях игры."
+msgid ""
+"В мире ведутся масштабные войны, создаются союзы, меняющие континенты. Люди "
+"основывают крупные бизнесы, корпорации и целые сети. СМИ играют роль "
+"невидимых нитей, связывая влиятельные силы. И очень скоро вы займете своё "
+"место среди них. Я же буду рядом, помогая вам разбираться в тонкостях игры."
 msgstr ""
 
 #: education/templates/education/edu_lists/list_1.html:55
@@ -2438,17 +2455,24 @@ msgstr ""
 
 #: education/templates/education/edu_lists/list_1.html:61
 msgctxt "education"
-msgid "Как вам известно, предыдущая администрация чуть не привела нашу страну к краху. Теперь нам предстоит удержать республику от этой участи, даже если это потребует решительных реформ."
+msgid ""
+"Как вам известно, предыдущая администрация чуть не привела нашу страну к "
+"краху. Теперь нам предстоит удержать республику от этой участи, даже если "
+"это потребует решительных реформ."
 msgstr ""
 
 #: education/templates/education/edu_lists/list_1.html:67
 msgctxt "education"
-msgid "Сегодня день выборов, и атмосфера в столице накалена до предела. На улицах шумят радикалы, требующие перемен, но это не помешает нам достичь своей цели!"
+msgid ""
+"Сегодня день выборов, и атмосфера в столице накалена до предела. На улицах "
+"шумят радикалы, требующие перемен, но это не помешает нам достичь своей цели!"
 msgstr ""
 
 #: education/templates/education/edu_lists/list_1.html:71
 msgctxt "education"
-msgid "Что? Вы еще не проголосовали? Это недоразумение нужно срочно исправить. Пора отправиться на избирательный участок!"
+msgid ""
+"Что? Вы еще не проголосовали? Это недоразумение нужно срочно исправить. Пора "
+"отправиться на избирательный участок!"
 msgstr ""
 
 #: education/templates/education/edu_lists/list_2.html:78
@@ -2461,22 +2485,33 @@ msgstr "Ürünlerin fiyatı pozitif bir sayı olmalıdır"
 
 #: education/templates/education/edu_lists/list_2.html:82
 msgctxt "education"
-msgid "Этот момент — не просто формальность, а важный шаг для любого политика. Ваш голос и ваша активность сейчас заложат основу для будущих побед."
+msgid ""
+"Этот момент — не просто формальность, а важный шаг для любого политика. Ваш "
+"голос и ваша активность сейчас заложат основу для будущих побед."
 msgstr ""
 
 #: education/templates/education/edu_lists/list_2.html:86
 msgctxt "education"
-msgid "Как только вы проголосуете, ваш голос пойдет в копилку нашей партии. Чем больше людей поддержат нас, тем больше у нас шансов получить места в парламенте."
+msgid ""
+"Как только вы проголосуете, ваш голос пойдет в копилку нашей партии. Чем "
+"больше людей поддержат нас, тем больше у нас шансов получить места в "
+"парламенте."
 msgstr ""
 
 #: education/templates/education/edu_lists/list_2.html:90
 msgctxt "education"
-msgid "Каждое кресло в парламенте открывает новые возможности для решения государственных вопросов: от налоговой реформы до влияния на внешнюю политику."
+msgid ""
+"Каждое кресло в парламенте открывает новые возможности для решения "
+"государственных вопросов: от налоговой реформы до влияния на внешнюю "
+"политику."
 msgstr ""
 
 #: education/templates/education/edu_lists/list_2.html:94
 msgctxt "education"
-msgid "Помните, каждый голос важен! Чем выше результат партии на этих выборах, тем выше шанс, что вы займете место среди избранных, сможете продвигать законы, инициировать реформы и даже влиять на оборонную стратегию страны."
+msgid ""
+"Помните, каждый голос важен! Чем выше результат партии на этих выборах, тем "
+"выше шанс, что вы займете место среди избранных, сможете продвигать законы, "
+"инициировать реформы и даже влиять на оборонную стратегию страны."
 msgstr ""
 
 #: education/templates/education/edu_lists/list_2.html:98
@@ -2486,7 +2521,9 @@ msgstr ""
 
 #: education/templates/education/edu_lists/list_2.html:103
 msgctxt "education"
-msgid "Дело сделано! А теперь давайте вернёмся в офис партии. Там спокойнее и не слышно всех этих радикалов."
+msgid ""
+"Дело сделано! А теперь давайте вернёмся в офис партии. Там спокойнее и не "
+"слышно всех этих радикалов."
 msgstr ""
 
 #: education/templates/education/edu_lists/list_2.html:107
@@ -2511,7 +2548,9 @@ msgstr ""
 
 #: education/templates/education/edu_lists/list_2.html:123
 msgctxt "education"
-msgid "На пути к вершинам всегда будет недовольные, но мы справимся. Главное — ваш выбор и ваша решимость."
+msgid ""
+"На пути к вершинам всегда будет недовольные, но мы справимся. Главное — ваш "
+"выбор и ваша решимость."
 msgstr ""
 
 #: education/templates/education/edu_lists/list_3.html:99
@@ -2521,7 +2560,9 @@ msgstr ""
 
 #: education/templates/education/edu_lists/list_3.html:103
 msgctxt "education"
-msgid "Теперь, когда у нас большинство, вы можете занять своё место в зале и приступать к работе над ключевыми решениями."
+msgid ""
+"Теперь, когда у нас большинство, вы можете занять своё место в зале и "
+"приступать к работе над ключевыми решениями."
 msgstr ""
 
 #: education/templates/education/edu_lists/list_3.html:108
@@ -2531,17 +2572,23 @@ msgstr ""
 
 #: education/templates/education/edu_lists/list_3.html:112
 msgctxt "education"
-msgid "Голосование проходит просто — выберите, поддержать ли предложенный законопроект. Но помните, каждое ваше решение повлияет на ситуацию в стране."
+msgid ""
+"Голосование проходит просто — выберите, поддержать ли предложенный "
+"законопроект. Но помните, каждое ваше решение повлияет на ситуацию в стране."
 msgstr ""
 
 #: education/templates/education/edu_lists/list_3.html:116
 msgctxt "education"
-msgid "Из-за ошибок прежнего правительства мы оказались на грани экономического кризиса."
+msgid ""
+"Из-за ошибок прежнего правительства мы оказались на грани экономического "
+"кризиса."
 msgstr ""
 
 #: education/templates/education/edu_lists/list_3.html:120
 msgctxt "education"
-msgid "Сегодня на повестке — законопроект о повышении налогов. Партия поддерживает это решение, чтобы помочь стабилизировать экономику."
+msgid ""
+"Сегодня на повестке — законопроект о повышении налогов. Партия поддерживает "
+"это решение, чтобы помочь стабилизировать экономику."
 msgstr ""
 
 #: education/templates/education/edu_lists/list_3.html:124
@@ -2569,7 +2616,9 @@ msgstr ""
 
 #: education/templates/education/edu_lists/list_3.html:141
 msgctxt "education"
-msgid "Митинги и беспорядки на улицах переросли в революцию. Мы организуем срочную эвакуацию парламентариев."
+msgid ""
+"Митинги и беспорядки на улицах переросли в революцию. Мы организуем срочную "
+"эвакуацию парламентариев."
 msgstr ""
 
 #: education/templates/education/edu_lists/list_4.html:110
@@ -2579,7 +2628,9 @@ msgstr ""
 
 #: education/templates/education/edu_lists/list_4.html:114
 msgctxt "education"
-msgid "Помощь правительственным силам сейчас как никогда необходима. Вы будете командовать отдельным подразделением самообороны столицы."
+msgid ""
+"Помощь правительственным силам сейчас как никогда необходима. Вы будете "
+"командовать отдельным подразделением самообороны столицы."
 msgstr ""
 
 #: education/templates/education/edu_lists/list_4.html:118
@@ -2592,32 +2643,44 @@ msgstr "Ürünlerin fiyatı pozitif bir sayı olmalıdır"
 
 #: education/templates/education/edu_lists/list_4.html:122
 msgctxt "education"
-msgid "В вашем распоряжении 100 единиц энергии для управления действиями войск. Мы готовы действовать по вашему приказу, чтобы отбить натиск противника."
+msgid ""
+"В вашем распоряжении 100 единиц энергии для управления действиями войск. Мы "
+"готовы действовать по вашему приказу, чтобы отбить натиск противника."
 msgstr ""
 
 #: education/templates/education/edu_lists/list_4.html:126
 msgctxt "education"
-msgid "В вашем распоряжении находятся различные подразделения, и для вашего удобства мной уже собран оперативный отряд для первой атаки."
+msgid ""
+"В вашем распоряжении находятся различные подразделения, и для вашего "
+"удобства мной уже собран оперативный отряд для первой атаки."
 msgstr ""
 
 #: education/templates/education/edu_lists/list_4.html:130
 msgctxt "education"
-msgid "Нажмите кнопку «в бой», чтобы начать операцию и потратить первые 100 единиц энергии."
+msgid ""
+"Нажмите кнопку «в бой», чтобы начать операцию и потратить первые 100 единиц "
+"энергии."
 msgstr ""
 
 #: education/templates/education/edu_lists/list_4.html:135
 msgctxt "education"
-msgid "Я вижу, что вы на посту уже вторые сутки… Вот, принесла вам кофе, чтобы восстановить силы."
+msgid ""
+"Я вижу, что вы на посту уже вторые сутки… Вот, принесла вам кофе, чтобы "
+"восстановить силы."
 msgstr ""
 
 #: education/templates/education/edu_lists/list_4.html:139
 msgctxt "education"
-msgid "Не забывайте заботиться о себе! Кнопка «пополнить энергию» поможет вам получить еще 100 единиц энергии."
+msgid ""
+"Не забывайте заботиться о себе! Кнопка «пополнить энергию» поможет вам "
+"получить еще 100 единиц энергии."
 msgstr ""
 
 #: education/templates/education/edu_lists/list_4.html:144
 msgctxt "education"
-msgid "Левый фланг начинает ослабевать. Предлагаю направить туда дополнительные силы для поддержки."
+msgid ""
+"Левый фланг начинает ослабевать. Предлагаю направить туда дополнительные "
+"силы для поддержки."
 msgstr ""
 
 #: education/templates/education/edu_lists/list_4.html:149
@@ -2627,22 +2690,30 @@ msgstr ""
 
 #: education/templates/education/edu_lists/list_4.html:153
 msgctxt "education"
-msgid "Вам нужно немедленно покинуть штаб — здесь скоро будет жарко. Мы будем прикрывать ваш отход до последнего."
+msgid ""
+"Вам нужно немедленно покинуть штаб — здесь скоро будет жарко. Мы будем "
+"прикрывать ваш отход до последнего."
 msgstr ""
 
 #: education/templates/education/edu_lists/list_5.html:68
 msgctxt "education"
-msgid "К сожалению, несмотря на доблестное сопротивление армии, мятежники прорвали оборону. Столица пала."
+msgid ""
+"К сожалению, несмотря на доблестное сопротивление армии, мятежники прорвали "
+"оборону. Столица пала."
 msgstr ""
 
 #: education/templates/education/edu_lists/list_5.html:72
 msgctxt "education"
-msgid "Это был последний самолёт, успевший покинуть город. Мы в безопасности, но впереди – неизвестность."
+msgid ""
+"Это был последний самолёт, успевший покинуть город. Мы в безопасности, но "
+"впереди – неизвестность."
 msgstr ""
 
 #: education/templates/education/edu_lists/list_5.html:76
 msgctxt "education"
-msgid "Мы уже подлетаем к месту назначения. Давайте взглянем на карту, чтобы получить общее представление."
+msgid ""
+"Мы уже подлетаем к месту назначения. Давайте взглянем на карту, чтобы "
+"получить общее представление."
 msgstr ""
 
 #: education/templates/education/edu_lists/list_5.html:81
@@ -2673,27 +2744,39 @@ msgstr ""
 
 #: education/templates/education/edu_lists/list_5.html:89
 msgctxt "education"
-msgid "Придется начинать всё с нуля. У вас есть решимость и опыт, а всё остальное мы сумеем добыть вместе."
+msgid ""
+"Придется начинать всё с нуля. У вас есть решимость и опыт, а всё остальное "
+"мы сумеем добыть вместе."
 msgstr ""
 
 #: education/templates/education/edu_lists/list_6.html:63
 msgctxt "education"
-msgid "Начинаем с основ: в новом государстве для усиления позиций вам потребуется налаживать добычу ресурсов и привлекать инвесторов."
+msgid ""
+"Начинаем с основ: в новом государстве для усиления позиций вам потребуется "
+"налаживать добычу ресурсов и привлекать инвесторов."
 msgstr ""
 
 #: education/templates/education/edu_lists/list_6.html:67
 msgctxt "education"
-msgid "Наша первая задача — организовать работы на месторождениях нефти и руды. Эти ресурсы станут опорой вашей политической и экономической силы."
+msgid ""
+"Наша первая задача — организовать работы на месторождениях нефти и руды. Эти "
+"ресурсы станут опорой вашей политической и экономической силы."
 msgstr ""
 
 #: education/templates/education/edu_lists/list_6.html:71
 msgctxt "education"
-msgid "Обратите внимание: добычу нефти и руды инвесторы профинансируют с готовностью, но если решите добывать золото для личных целей, это придётся делать за свой счёт."
+msgid ""
+"Обратите внимание: добычу нефти и руды инвесторы профинансируют с "
+"готовностью, но если решите добывать золото для личных целей, это придётся "
+"делать за свой счёт."
 msgstr ""
 
 #: education/templates/education/edu_lists/list_6.html:75
 msgctxt "education"
-msgid "Добыча полезных ископаемых — ваш первый шаг к укреплению позиций. Как только мы сможем обеспечить стабильный приток сырья и средств, перед нами откроются возможности для дальнейшего развития."
+msgid ""
+"Добыча полезных ископаемых — ваш первый шаг к укреплению позиций. Как только "
+"мы сможем обеспечить стабильный приток сырья и средств, перед нами откроются "
+"возможности для дальнейшего развития."
 msgstr ""
 
 #: education/templates/education/edu_lists/list_6.html:79
@@ -2708,32 +2791,43 @@ msgstr ""
 
 #: education/templates/education/edu_lists/list_6.html:88
 msgctxt "education"
-msgid "Средства будут аккумулироваться на временном счёте. Вы сможете снять их целиком или частично — как будет удобнее для управления вашими проектами."
+msgid ""
+"Средства будут аккумулироваться на временном счёте. Вы сможете снять их "
+"целиком или частично — как будет удобнее для управления вашими проектами."
 msgstr ""
 
 #: education/templates/education/edu_lists/list_6.html:92
 msgctxt "education"
-msgid "Предлагаю забрать часть средств прямо сейчас, чтобы выгодно их инвестировать."
+msgid ""
+"Предлагаю забрать часть средств прямо сейчас, чтобы выгодно их инвестировать."
 msgstr ""
 
 #: education/templates/education/edu_lists/list_6.html:97
 msgctxt "education"
-msgid "Эти средства понадобятся уже скоро. Следите за количеством добытого сырья и привлечённых инвестиций — это ключ к нашему будущему успеху."
+msgid ""
+"Эти средства понадобятся уже скоро. Следите за количеством добытого сырья и "
+"привлечённых инвестиций — это ключ к нашему будущему успеху."
 msgstr ""
 
 #: education/templates/education/edu_lists/list_6.html:101
 msgctxt "education"
-msgid "Я рекомендую вложить часть капитала в производство товаров, чтобы укрепить экономическую базу и поддержать ваши политические инициативы."
+msgid ""
+"Я рекомендую вложить часть капитала в производство товаров, чтобы укрепить "
+"экономическую базу и поддержать ваши политические инициативы."
 msgstr ""
 
 #: education/templates/education/edu_lists/list_7.html:84
 msgctxt "education"
-msgid "Теперь, когда у нас есть ресурсы и капитал, мы можем переходить к следующему этапу — производству."
+msgid ""
+"Теперь, когда у нас есть ресурсы и капитал, мы можем переходить к следующему "
+"этапу — производству."
 msgstr ""
 
 #: education/templates/education/edu_lists/list_7.html:88
 msgctxt "education"
-msgid "Все добытые ресурсы отправляются на ваш личный Склад. Обычно в новом регионе склад нужно строить с нуля, но в этот раз я всё подготовила заранее."
+msgid ""
+"Все добытые ресурсы отправляются на ваш личный Склад. Обычно в новом регионе "
+"склад нужно строить с нуля, но в этот раз я всё подготовила заранее."
 msgstr ""
 
 #: education/templates/education/edu_lists/list_7.html:92
@@ -2743,7 +2837,9 @@ msgstr ""
 
 #: education/templates/education/edu_lists/list_7.html:96
 msgctxt "education"
-msgid "Но продавать сырьё прямо сейчас невыгодно — лучше превратить его в Материалы. Так оно принесет больше прибыли."
+msgid ""
+"Но продавать сырьё прямо сейчас невыгодно — лучше превратить его в "
+"Материалы. Так оно принесет больше прибыли."
 msgstr ""
 
 #: education/templates/education/edu_lists/list_7.html:100
@@ -2753,52 +2849,73 @@ msgstr ""
 
 #: education/templates/education/edu_lists/list_7.html:104
 msgctxt "education"
-msgid "Наличные тоже готовы и находятся на складе, откуда будут браться остальные ресурсы для запуска."
+msgid ""
+"Наличные тоже готовы и находятся на складе, откуда будут браться остальные "
+"ресурсы для запуска."
 msgstr ""
 
 #: education/templates/education/edu_lists/list_7.html:108
 msgctxt "education"
-msgid "Перед началом стоит помнить, что любое производство требует энергии. Мы израсходовали её на добычу, поэтому сейчас пополним её вручную."
+msgid ""
+"Перед началом стоит помнить, что любое производство требует энергии. Мы "
+"израсходовали её на добычу, поэтому сейчас пополним её вручную."
 msgstr ""
 
 #: education/templates/education/edu_lists/list_7.html:112
 msgctxt "education"
-msgid "Энергия со временем восстанавливается сама, но иногда нужно ускорить процесс."
+msgid ""
+"Энергия со временем восстанавливается сама, но иногда нужно ускорить процесс."
 msgstr ""
 
 #: education/templates/education/edu_lists/list_7.html:117
 msgctxt "education"
-msgid "Энергия восстановлена, а это значит, что всё готово для запуска производства. Нажмите кнопку «Произвести», чтобы превратить сырьё в материалы."
+msgid ""
+"Энергия восстановлена, а это значит, что всё готово для запуска "
+"производства. Нажмите кнопку «Произвести», чтобы превратить сырьё в "
+"материалы."
 msgstr ""
 
 #: education/templates/education/edu_lists/list_7.html:122
 msgctxt "education"
-msgid "Отлично! Под вашим руководством ресурсы превращаются в Материалы. Такие производственные цепочки — ключ к стабильному доходу и экономической независимости."
+msgid ""
+"Отлично! Под вашим руководством ресурсы превращаются в Материалы. Такие "
+"производственные цепочки — ключ к стабильному доходу и экономической "
+"независимости."
 msgstr ""
 
 #: education/templates/education/edu_lists/list_7.html:126
 msgctxt "education"
-msgid "Самый эффективный подход — разделить обязанности: кто-то добывает сырьё, кто-то производит материалы и товары, а кто-то продает их и распределяет прибыль."
+msgid ""
+"Самый эффективный подход — разделить обязанности: кто-то добывает сырьё, кто-"
+"то производит материалы и товары, а кто-то продает их и распределяет прибыль."
 msgstr ""
 
 #: education/templates/education/edu_lists/list_7.html:130
 msgctxt "education"
-msgid "Теперь давайте заглянем на Склад и лично проверим, какие запасы доступны в этом регионе."
+msgid ""
+"Теперь давайте заглянем на Склад и лично проверим, какие запасы доступны в "
+"этом регионе."
 msgstr ""
 
 #: education/templates/education/edu_lists/list_8.html:72
 msgctxt "education"
-msgid "Добро пожаловать на ваш склад! Я приобрела его недавно, поэтому пока не успела полностью ознакомиться с его запасами."
+msgid ""
+"Добро пожаловать на ваш склад! Я приобрела его недавно, поэтому пока не "
+"успела полностью ознакомиться с его запасами."
 msgstr ""
 
 #: education/templates/education/edu_lists/list_8.html:76
 msgctxt "education"
-msgid "Но перед началом производства я оставила $1000 для работы со сталью. Вы уже потратили $200, так что оставшуюся сумму можно забрать себе на баланс."
+msgid ""
+"Но перед началом производства я оставила $1000 для работы со сталью. Вы уже "
+"потратили $200, так что оставшуюся сумму можно забрать себе на баланс."
 msgstr ""
 
 #: education/templates/education/edu_lists/list_8.html:80
 msgctxt "education"
-msgid "Просто выберите нужную сумму и переведите её на баланс. Эти средства пригодятся вам для новых проектов и сделок."
+msgid ""
+"Просто выберите нужную сумму и переведите её на баланс. Эти средства "
+"пригодятся вам для новых проектов и сделок."
 msgstr ""
 
 #: education/templates/education/edu_lists/list_8.html:85
@@ -2808,7 +2925,9 @@ msgstr ""
 
 #: education/templates/education/edu_lists/list_8.html:89
 msgctxt "education"
-msgid "Оно доступно всегда, даже если у вас нет собственного склада в регионе. Здесь хранятся два вида ресурсов высокой ценности — Энергетики и Wild Pass."
+msgid ""
+"Оно доступно всегда, даже если у вас нет собственного склада в регионе. "
+"Здесь хранятся два вида ресурсов высокой ценности — Энергетики и Wild Pass."
 msgstr ""
 
 #: education/templates/education/edu_lists/list_8.html:93
@@ -2821,7 +2940,10 @@ msgstr "projeyi repost ile destekle ve altın kazan!"
 
 #: education/templates/education/edu_lists/list_8.html:99
 msgctxt "education"
-msgid "Это ценный ресурс: именно благодаря ему вы восстанавливали энергию во время прошлой битвы и при производстве товаров. Резервы энергии — ключ к стабильному развитию."
+msgid ""
+"Это ценный ресурс: именно благодаря ему вы восстанавливали энергию во время "
+"прошлой битвы и при производстве товаров. Резервы энергии — ключ к "
+"стабильному развитию."
 msgstr ""
 
 #: education/templates/education/edu_lists/list_8.html:103
@@ -2831,38 +2953,54 @@ msgstr ""
 
 #: education/templates/education/edu_lists/list_8.html:109
 msgctxt "education"
-msgid "Его можно обменивать на золото или использовать для доступа к различным премиум-возможностям, которые делают управление более удобным и эффективным."
+msgid ""
+"Его можно обменивать на золото или использовать для доступа к различным "
+"премиум-возможностям, которые делают управление более удобным и эффективным."
 msgstr ""
 
 #: education/templates/education/edu_lists/list_8.html:113
 msgctxt "education"
-msgid "Несмотря на их ценность, эти ресурсы можно добывать, как и обычные. Занимайтесь добычей, развивайте торговые связи с политиками и предпринимателями, и получите всё необходимое для дальнейшего роста."
+msgid ""
+"Несмотря на их ценность, эти ресурсы можно добывать, как и обычные. "
+"Занимайтесь добычей, развивайте торговые связи с политиками и "
+"предпринимателями, и получите всё необходимое для дальнейшего роста."
 msgstr ""
 
 #: education/templates/education/edu_lists/list_9.html:61
 msgctxt "education"
-msgid "Теперь, когда основы политической и экономической игры вам знакомы, можно двигаться дальше. Развитие — это ключ к успеху в мире постоянного противостояния."
+msgid ""
+"Теперь, когда основы политической и экономической игры вам знакомы, можно "
+"двигаться дальше. Развитие — это ключ к успеху в мире постоянного "
+"противостояния."
 msgstr ""
 
 #: education/templates/education/edu_lists/list_9.html:65
 msgctxt "education"
-msgid "Чтобы не отставать, вам предстоит совершенствовать свои навыки. Давайте посмотрим на раздел харатеристик."
+msgid ""
+"Чтобы не отставать, вам предстоит совершенствовать свои навыки. Давайте "
+"посмотрим на раздел харатеристик."
 msgstr ""
 
 #: education/templates/education/edu_lists/list_9.html:69
 msgctxt "education"
-msgid "В вашем распоряжении три основных характеристики — Сила, Интеллект и Выносливость. Каждая из них определяет, как вы сможете влиять на мир."
+msgid ""
+"В вашем распоряжении три основных характеристики — Сила, Интеллект и "
+"Выносливость. Каждая из них определяет, как вы сможете влиять на мир."
 msgstr ""
 
 #: education/templates/education/edu_lists/list_9.html:73
 msgctxt "education"
-msgid "Начнём с Силы. Она определяет вашу эффективность в бою, усиливая вас с каждым уровнем."
+msgid ""
+"Начнём с Силы. Она определяет вашу эффективность в бою, усиливая вас с "
+"каждым уровнем."
 msgstr ""
 
 #: education/templates/education/edu_lists/list_9.html:79
 #, python-format
 msgctxt "education"
-msgid "Так, с ростом уровня сила в бою увеличивается на 1%%. Представьте, на 100 уровне вы будете вдвое мощнее новичка!"
+msgid ""
+"Так, с ростом уровня сила в бою увеличивается на 1%%. Представьте, на 100 "
+"уровне вы будете вдвое мощнее новичка!"
 msgstr ""
 
 #: education/templates/education/edu_lists/list_9.html:83
@@ -2872,7 +3010,10 @@ msgstr ""
 
 #: education/templates/education/edu_lists/list_9.html:89
 msgctxt "education"
-msgid "Эта характеристика увеличивает доход от производства товаров и позволяет успешнее развивать торговлю и логистику. Это путь к крупному капиталу и управлению целыми промышленными гигантами."
+msgid ""
+"Эта характеристика увеличивает доход от производства товаров и позволяет "
+"успешнее развивать торговлю и логистику. Это путь к крупному капиталу и "
+"управлению целыми промышленными гигантами."
 msgstr ""
 
 #: education/templates/education/edu_lists/list_9.html:93
@@ -2883,22 +3024,30 @@ msgstr ""
 #: education/templates/education/edu_lists/list_9.html:99
 #, python-format
 msgctxt "education"
-msgid "Каждый её уровень увеличивает объёмы добычи нефти и руды на 1%%. С высокой выносливостью ваша добыча принесёт немалый доход."
+msgid ""
+"Каждый её уровень увеличивает объёмы добычи нефти и руды на 1%%. С высокой "
+"выносливостью ваша добыча принесёт немалый доход."
 msgstr ""
 
 #: education/templates/education/edu_lists/list_9.html:103
 msgctxt "education"
-msgid "Каждая из трёх Характеристик повышает ваше финансирование. И чем выше уровень Характеристики - тем больше."
+msgid ""
+"Каждая из трёх Характеристик повышает ваше финансирование. И чем выше "
+"уровень Характеристики - тем больше."
 msgstr ""
 
 #: education/templates/education/edu_lists/list_9.html:107
 msgctxt "education"
-msgid "Есть ещё и особые Навыки, которые откроются по мере развития. Они дают уникальные преимущества и могут серьёзно расширить ваши возможности."
+msgid ""
+"Есть ещё и особые Навыки, которые откроются по мере развития. Они дают "
+"уникальные преимущества и могут серьёзно расширить ваши возможности."
 msgstr ""
 
 #: education/templates/education/edu_lists/list_9.html:111
 msgctxt "education"
-msgid "Их стоит прокачивать, как только у вас появится шанс. А теперь выберите, какую характеристику хотите развить в первую очередь."
+msgid ""
+"Их стоит прокачивать, как только у вас появится шанс. А теперь выберите, "
+"какую характеристику хотите развить в первую очередь."
 msgstr ""
 
 #: education/templates/education/edu_lists/list_9.html:116
@@ -2908,7 +3057,9 @@ msgstr ""
 
 #: education/templates/education/edu_lists/list_9.html:121
 msgctxt "education"
-msgid "Ну вот, я передала вам все ключевые знания для старта с чистого листа. Мы проделали отличную работу, и я благодарю вас за плодотворное сотрудничество!"
+msgid ""
+"Ну вот, я передала вам все ключевые знания для старта с чистого листа. Мы "
+"проделали отличную работу, и я благодарю вас за плодотворное сотрудничество!"
 msgstr ""
 
 #: education/templates/education/edu_lists/list_9.html:125
@@ -2918,12 +3069,16 @@ msgstr ""
 
 #: education/templates/education/edu_lists/list_9.html:129
 msgctxt "education"
-msgid "Там можно обозначить себя — присоединиться к сильным политическим группам региона или заявить о создании собственной партии. Как поступить — решать вам."
+msgid ""
+"Там можно обозначить себя — присоединиться к сильным политическим группам "
+"региона или заявить о создании собственной партии. Как поступить — решать "
+"вам."
 msgstr ""
 
 #: education/templates/education/edu_lists/list_9.html:133
 msgctxt "education"
-msgid "Удачи вам, я уверена, что у вас всё получится! Мы обязательно ещё встретимся."
+msgid ""
+"Удачи вам, я уверена, что у вас всё получится! Мы обязательно ещё встретимся."
 msgstr ""
 
 #: education/templates/education/edu_mining.html:30
@@ -3727,8 +3882,12 @@ msgstr "Kişisel Etkinlik İlerlemesi"
 #: event/templates/event/black_friday.html:395
 #: event/templates/event/summer_festival.html:397
 msgctxt "game_event"
-msgid "Заполняется по тем же принципам, что и шкала Финансирования - тратами энергии игроком."
-msgstr "Oyuncunun enerji harcamaları ile Finansman ölçeği ile aynı prensiplere göre doldurulur."
+msgid ""
+"Заполняется по тем же принципам, что и шкала Финансирования - тратами "
+"энергии игроком."
+msgstr ""
+"Oyuncunun enerji harcamaları ile Finansman ölçeği ile aynı prensiplere göre "
+"doldurulur."
 
 #: event/templates/event/anniversary.html:398
 #: event/templates/event/black_friday.html:396
@@ -3786,7 +3945,8 @@ msgstr "Hızlandırma, premium ve kutular iki ilerlemede!"
 
 #: event/templates/event/festival.html:396
 msgctxt "game_event"
-msgid "Заполняется ежедневным входом в игру, а также завершением Финансирования."
+msgid ""
+"Заполняется ежедневным входом в игру, а также завершением Финансирования."
 msgstr "Her gün oyuna giriş yaparak ve Finansmanı tamamlayarak doldurulur."
 
 #: event/templates/event/festival.html:397
@@ -3796,8 +3956,12 @@ msgstr "Bir günü kaçırırsanız bir ilerleme puanı kaybedersiniz."
 
 #: event/templates/event/festival.html:399
 msgctxt "game_event"
-msgid "Заполняется усилиями всех игроков сервера. Очки могут быть как заработаны, так и потеряны."
-msgstr "Tüm sunucu oyuncularının çabalarıyla dolu. Puanlar kazanılabilir veya kaybedilebilir."
+msgid ""
+"Заполняется усилиями всех игроков сервера. Очки могут быть как заработаны, "
+"так и потеряны."
+msgstr ""
+"Tüm sunucu oyuncularının çabalarıyla dolu. Puanlar kazanılabilir veya "
+"kaybedilebilir."
 
 #: event/templates/event/invited_list.html:27
 #: event/templates/event/inviting.html:167
@@ -3855,49 +4019,84 @@ msgstr "-"
 
 #: event/templates/event/inviting.html:64
 msgctxt "game_event"
-msgid "Приглашайте новых игроков в проект и возвращайте уже игравших, чтобы получать награды!"
-msgstr "Yeni oyuncuları projeye davet edin ve daha önce oynamış olanları ödül almak için geri gönderin!"
+msgid ""
+"Приглашайте новых игроков в проект и возвращайте уже игравших, чтобы "
+"получать награды!"
+msgstr ""
+"Yeni oyuncuları projeye davet edin ve daha önce oynamış olanları ödül almak "
+"için geri gönderin!"
 
 #: event/templates/event/inviting.html:68
 msgctxt "game_event"
-msgid "Новички должны указать ваш ID на вкладке \"активировать\", первые трое суток после регистрации."
-msgstr "Yeni gelenlerin kayıttan sonraki ilk üç gün boyunca “etkinleştir” sekmesinde kimliklerini belirtmeleri gerekmektedir."
+msgid ""
+"Новички должны указать ваш ID на вкладке \"активировать\", первые трое суток "
+"после регистрации."
+msgstr ""
+"Yeni gelenlerin kayıttan sonraki ilk üç gün boyunca “etkinleştir” sekmesinde "
+"kimliklerini belirtmeleri gerekmektedir."
 
 #: event/templates/event/inviting.html:70
 msgctxt "game_event"
-msgid "Игроки, заходившие в проект более 30 дней назад, также имеют доступ к указанной вкладке."
-msgstr "Projeye 30 günden daha uzun bir süre önce giriş yapan oyuncular da belirtilen sekmeye erişebilir."
+msgid ""
+"Игроки, заходившие в проект более 30 дней назад, также имеют доступ к "
+"указанной вкладке."
+msgstr ""
+"Projeye 30 günden daha uzun bir süre önce giriş yapan oyuncular da "
+"belirtilen sekmeye erişebilir."
 
 #: event/templates/event/inviting.html:72
 msgctxt "game_event"
-msgid "В данном сезоне игрового события не получится пригласить игроков, которые уже принимали приглашение в прошлом сезоне!"
-msgstr "Oyun etkinliğinin bu sezonunda, önceki sezonda daveti kabul etmiş olan oyuncuları davet etmek mümkün olmayacaktır!"
+msgid ""
+"В данном сезоне игрового события не получится пригласить игроков, которые "
+"уже принимали приглашение в прошлом сезоне!"
+msgstr ""
+"Oyun etkinliğinin bu sezonunda, önceki sezonda daveti kabul etmiş olan "
+"oyuncuları davet etmek mümkün olmayacaktır!"
 
 #: event/templates/event/inviting.html:76
 msgctxt "game_event"
-msgid "ВАЖНО: вернувшимся в проект игрокам необходимо сделать это до получения Финансирования!"
-msgstr "ÖNEMLİ: Projeye geri dönen oyuncuların Fon almadan önce bunu yapması gerekir!"
+msgid ""
+"ВАЖНО: вернувшимся в проект игрокам необходимо сделать это до получения "
+"Финансирования!"
+msgstr ""
+"ÖNEMLİ: Projeye geri dönen oyuncuların Fon almadan önce bunu yapması gerekir!"
 
 #: event/templates/event/inviting.html:80
 #, python-format
 msgctxt "game_event"
-msgid "Получайте по 2%% к Финансированию за каждые десять уровней Характеристик, изученных приглашёнными игроками."
-msgstr "Davet edilen oyuncular tarafından öğrenilen her on Özellik seviyesi için Finansmana %%2 kazanın."
+msgid ""
+"Получайте по 2%% к Финансированию за каждые десять уровней Характеристик, "
+"изученных приглашёнными игроками."
+msgstr ""
+"Davet edilen oyuncular tarafından öğrenilen her on Özellik seviyesi için "
+"Finansmana %%2 kazanın."
 
 #: event/templates/event/inviting.html:82
 msgctxt "game_event"
-msgid "Для ранее игравших игроков бонус считается как разница между суммой Характеристик после и до возвращения в игру."
-msgstr "Daha önce oynayan oyuncular için bonus, oyuna dönmeden önceki ve sonraki Karakter miktarı arasındaki fark olarak hesaplanır."
+msgid ""
+"Для ранее игравших игроков бонус считается как разница между суммой "
+"Характеристик после и до возвращения в игру."
+msgstr ""
+"Daha önce oynayan oyuncular için bonus, oyuna dönmeden önceki ve sonraki "
+"Karakter miktarı arasındaki fark olarak hesaplanır."
 
 #: event/templates/event/inviting.html:86
 msgctxt "game_event"
-msgid "Войдите в топ-3 игроков, чьи подопечные развились больше всех - и получите денежный приз!"
-msgstr "Oyuncuları en çok gelişme gösteren ilk 3 oyuncu arasında yer alın ve nakit ödül kazanın!"
+msgid ""
+"Войдите в топ-3 игроков, чьи подопечные развились больше всех - и получите "
+"денежный приз!"
+msgstr ""
+"Oyuncuları en çok gelişme gösteren ilk 3 oyuncu arasında yer alın ve nakit "
+"ödül kazanın!"
 
 #: event/templates/event/inviting.html:90
 msgctxt "game_event"
-msgid "Нерезидентам РФ денежный приз будет выдан в виде эквивалента в игровой валюте."
-msgstr "Rusya Federasyonu'nda yerleşik olmayanlar, oyun para biriminin eşdeğeri şeklinde bir nakit ödül alacaklardır."
+msgid ""
+"Нерезидентам РФ денежный приз будет выдан в виде эквивалента в игровой "
+"валюте."
+msgstr ""
+"Rusya Federasyonu'nda yerleşik olmayanlar, oyun para biriminin eşdeğeri "
+"şeklinde bir nakit ödül alacaklardır."
 
 #: event/templates/event/inviting.html:98
 msgctxt "game_event"
@@ -3926,8 +4125,12 @@ msgstr "davet eden - finansman bonusu."
 
 #: event/templates/event/inviting.html:111
 msgctxt "game_event"
-msgid "Внимание: данная вкладка пропадёт после активации, изменить пригласившего будет нельзя!"
-msgstr "Dikkat: Etkinleştirmeden sonra bu sekme kaybolacaktır; davet edeni değiştiremezsiniz!"
+msgid ""
+"Внимание: данная вкладка пропадёт после активации, изменить пригласившего "
+"будет нельзя!"
+msgstr ""
+"Dikkat: Etkinleştirmeden sonra bu sekme kaybolacaktır; davet edeni "
+"değiştiremezsiniz!"
 
 #: event/templates/event/inviting.html:118
 msgctxt "game_event"
@@ -4778,13 +4981,21 @@ msgstr "ver"
 
 #: party/templates/party/redesign/manage.html:308
 msgctxt "party_manage"
-msgid "Золото начисляется на баланс партии за призовые места в еженедельном рейтинге, а также за особые заслуги."
-msgstr "Altın, haftalık sıralamada kazanma yerleri ve özel ödüller için parti bakiyesine eklenir."
+msgid ""
+"Золото начисляется на баланс партии за призовые места в еженедельном "
+"рейтинге, а также за особые заслуги."
+msgstr ""
+"Altın, haftalık sıralamada kazanma yerleri ve özel ödüller için parti "
+"bakiyesine eklenir."
 
 #: party/templates/party/redesign/manage.html:310
 msgctxt "party_manage"
-msgid "Вы можете выдать золото с баланса партии любому однопартийцу, состоящему в партии более 7 дней."
-msgstr "Partiye 7 günden fazla üye olan herhangi bir parti üyesine, parti bakiyesinden altın verebilirsiniz."
+msgid ""
+"Вы можете выдать золото с баланса партии любому однопартийцу, состоящему в "
+"партии более 7 дней."
+msgstr ""
+"Partiye 7 günden fazla üye olan herhangi bir parti üyesine, parti "
+"bakiyesinden altın verebilirsiniz."
 
 #: party/templates/party/redesign/manage.html:323
 msgctxt "party_manage"
@@ -4796,10 +5007,8 @@ msgctxt "party_manage"
 msgid "Смена описания партии"
 msgstr "Partinin açıklamasını değiştir"
 
-#. Отредактировано B♤SS, id 2344
 #: party/templates/party/redesign/manage.html:423
 #: player/templates/player/redesign/profile.html:543
-#| msgid "Отмена"
 msgctxt "profile"
 msgid "Отмена"
 msgstr "İptal et"
@@ -4843,12 +5052,16 @@ msgstr "Maksimum seviye"
 
 #: party/templates/party/redesign/new_party.html:55
 msgctxt "new_party"
-msgid "Рекомендуем присоединиться к одной из существующих партий, и изучить игру, прежде чем начинать собственную карьеру партийного лидера"
+msgid ""
+"Рекомендуем присоединиться к одной из существующих партий, и изучить игру, "
+"прежде чем начинать собственную карьеру партийного лидера"
 msgstr ""
 
 #: party/templates/party/redesign/new_party.html:58
 msgctxt "new_party"
-msgid "Ниже представлены партии в порядке давности убывания онлайна их лидеров. Они, вероятнее всего, будут рады принять вас к себе"
+msgid ""
+"Ниже представлены партии в порядке давности убывания онлайна их лидеров. "
+"Они, вероятнее всего, будут рады принять вас к себе"
 msgstr ""
 
 #: party/templates/party/redesign/new_party.html:67
@@ -5027,7 +5240,6 @@ msgctxt "party_view"
 msgid "Участников"
 msgstr "Üyeler"
 
-#. Отредактировано B♤SS, id 2344
 #: party/templates/party/redesign/party_view.html:90
 #: player/templates/player/redesign/profile.html:360
 #: player/templates/player/redesign/profile.html:383
@@ -5444,17 +5656,23 @@ msgstr ""
 
 #: player/templates/player/data_deleting.html:10
 msgctxt "data_deleting"
-msgid "Для полного удаления ваших персональных данных, вам необходимо составить обращение в свободной форме, и отправить его по адресу электронной почты"
+msgid ""
+"Для полного удаления ваших персональных данных, вам необходимо составить "
+"обращение в свободной форме, и отправить его по адресу электронной почты"
 msgstr ""
 
 #: player/templates/player/data_deleting.html:13
 msgctxt "data_deleting"
-msgid "В обращении требуется указать полное игровое имя вашего персонажа в Проекте, а также его уникальный ID (доступен в профиле персонажа)."
+msgid ""
+"В обращении требуется указать полное игровое имя вашего персонажа в Проекте, "
+"а также его уникальный ID (доступен в профиле персонажа)."
 msgstr ""
 
 #: player/templates/player/data_deleting.html:16
 msgctxt "data_deleting"
-msgid "После получения вашего обращения, мы попросим вас подтвердить владение указанным в заявке аккаунтом, связавшись с вами внутри Проекта."
+msgid ""
+"После получения вашего обращения, мы попросим вас подтвердить владение "
+"указанным в заявке аккаунтом, связавшись с вами внутри Проекта."
 msgstr ""
 
 #: player/templates/player/data_deleting.html:19
@@ -5464,7 +5682,9 @@ msgstr ""
 
 #: player/templates/player/data_deleting.html:22
 msgctxt "data_deleting"
-msgid "После обработки вашего заявления и удаления аккаунта, его восстановление будет невозможно!"
+msgid ""
+"После обработки вашего заявления и удаления аккаунта, его восстановление "
+"будет невозможно!"
 msgstr ""
 
 #: player/templates/player/index.html:89 player/templates/player/index.html:254
@@ -5553,7 +5773,8 @@ msgstr "Dünya haritasını yeniden yaratın."
 
 #: player/templates/player/index.html:247
 msgctxt "index"
-msgid "Создайте бизнес своей мечты - добыча ископаемых, промышленность, торговля."
+msgid ""
+"Создайте бизнес своей мечты - добыча ископаемых, промышленность, торговля."
 msgstr "Hayalinizdeki işi yaratın - madencilik, endüstri, ticaret."
 
 #: player/templates/player/index.html:248
@@ -5591,7 +5812,8 @@ msgstr "Çıkış yap"
 #: player/templates/player/index.html:303
 msgctxt "index"
 msgid "Продолжая использование сайта, вы принимаете условия"
-msgstr "Siteyi kullanmaya devam ederek, kullanım şartlarını kabul etmiş olursunuz"
+msgstr ""
+"Siteyi kullanmaya devam ederek, kullanım şartlarını kabul etmiş olursunuz"
 
 #: player/templates/player/index.html:304
 msgctxt "index"
@@ -5616,7 +5838,13 @@ msgstr ""
 
 #: player/templates/player/personal_data.html:13
 msgctxt "personal_data"
-msgid "Я, передавая уникальные идентификаторы социальных сетей, а также имя, фамилию и псевдонимы в них, далее именуемый(ая) \"Субъект персональных данных\", даю свое согласие на обработку своих персональных данных Администрацией Wild Politics, физическим лицом Горшенин А.И., далее именуемым \"Администрация\", в соответствии с законодательством Российской Федерации (далее - \"Законодательство\")."
+msgid ""
+"Я, передавая уникальные идентификаторы социальных сетей, а также имя, "
+"фамилию и псевдонимы в них, далее именуемый(ая) \"Субъект персональных "
+"данных\", даю свое согласие на обработку своих персональных данных "
+"Администрацией Wild Politics, физическим лицом Горшенин А.И., далее "
+"именуемым \"Администрация\", в соответствии с законодательством Российской "
+"Федерации (далее - \"Законодательство\")."
 msgstr ""
 
 #: player/templates/player/personal_data.html:15
@@ -5666,7 +5894,9 @@ msgstr ""
 
 #: player/templates/player/personal_data.html:30
 msgctxt "personal_data"
-msgid "Сбор, хранение, использование и передача третьим лицам в рекламных целях, а также в целях повышения качества работы Сервисов Wild Politics."
+msgid ""
+"Сбор, хранение, использование и передача третьим лицам в рекламных целях, а "
+"также в целях повышения качества работы Сервисов Wild Politics."
 msgstr ""
 
 #: player/templates/player/personal_data.html:32
@@ -5676,7 +5906,10 @@ msgstr ""
 
 #: player/templates/player/personal_data.html:33
 msgctxt "personal_data"
-msgid "Субъект персональных данных соглашается на передачу его/ее персональных данных третьим лицам, для хранения и обработки в рекламных целях, а также в целях повышения качества работы Сервисов Wild Politics."
+msgid ""
+"Субъект персональных данных соглашается на передачу его/ее персональных "
+"данных третьим лицам, для хранения и обработки в рекламных целях, а также в "
+"целях повышения качества работы Сервисов Wild Politics."
 msgstr ""
 
 #: player/templates/player/personal_data.html:35
@@ -5686,7 +5919,11 @@ msgstr ""
 
 #: player/templates/player/personal_data.html:36
 msgctxt "personal_data"
-msgid "Персональные данные субъекта персональных данных хранятся и обрабатываются Администрацией до получения письменного обращения от пользователя в свободной форме, с желанием отозвать своё согласие на обработку персональных данных."
+msgid ""
+"Персональные данные субъекта персональных данных хранятся и обрабатываются "
+"Администрацией до получения письменного обращения от пользователя в "
+"свободной форме, с желанием отозвать своё согласие на обработку персональных "
+"данных."
 msgstr ""
 
 #: player/templates/player/personal_data.html:38
@@ -5696,7 +5933,9 @@ msgstr ""
 
 #: player/templates/player/personal_data.html:39
 msgctxt "personal_data"
-msgid "Субъект персональных данных имеет право отозвать свое согласие на обработку своих персональных данных."
+msgid ""
+"Субъект персональных данных имеет право отозвать свое согласие на обработку "
+"своих персональных данных."
 msgstr ""
 
 #: player/templates/player/personal_data.html:40
@@ -5719,7 +5958,11 @@ msgstr ""
 
 #: player/templates/player/personal_data.html:45
 msgctxt "personal_data"
-msgid "Я ПОДТВЕРЖДАЮ, ЧТО ЯВЛЯЮСЬ СУБЪЕКТОМ ПЕРСОНАЛЬНЫХ ДАННЫХ, ОЗНАКОМЛЕН(А) С ЦЕЛЯМИ ОБРАБОТКИ МОИХ ПЕРСОНАЛЬНЫХ ДАННЫХ И ДОБРОВОЛЬНО ПРЕДОСТАВЛЯЮ СВОЕ СОГЛАСИЕ НА ИХ ОБРАБОТКУ В СООТВЕТСТВИИ С УКАЗАННЫМИ ВЫШЕ УСЛОВИЯМИ И УСЛОВИЯМИ ЗАКОНОДАТЕЛЬСТВА."
+msgid ""
+"Я ПОДТВЕРЖДАЮ, ЧТО ЯВЛЯЮСЬ СУБЪЕКТОМ ПЕРСОНАЛЬНЫХ ДАННЫХ, ОЗНАКОМЛЕН(А) С "
+"ЦЕЛЯМИ ОБРАБОТКИ МОИХ ПЕРСОНАЛЬНЫХ ДАННЫХ И ДОБРОВОЛЬНО ПРЕДОСТАВЛЯЮ СВОЕ "
+"СОГЛАСИЕ НА ИХ ОБРАБОТКУ В СООТВЕТСТВИИ С УКАЗАННЫМИ ВЫШЕ УСЛОВИЯМИ И "
+"УСЛОВИЯМИ ЗАКОНОДАТЕЛЬСТВА."
 msgstr ""
 
 #: player/templates/player/redesign/bonus_code/bonus_code.html:14
@@ -5758,7 +6001,9 @@ msgstr ""
 
 #: player/templates/player/redesign/bonus_code/bonus_code.html:48
 msgctxt "bonus_code"
-msgid "Коды могут содержать дни Премиум аккаунта, внутриигровую валюту и прочие игровые ресурсы."
+msgid ""
+"Коды могут содержать дни Премиум аккаунта, внутриигровую валюту и прочие "
+"игровые ресурсы."
 msgstr ""
 
 #: player/templates/player/redesign/bonus_code/bonus_code.html:52
@@ -5890,7 +6135,9 @@ msgstr "Oyunun bölgeleri"
 
 #: player/templates/player/redesign/customization/view_medals.html:255
 msgctxt "medals"
-msgid "Выдаётся за выполненный перевод проекта, или активное участие в его исправлении"
+msgid ""
+"Выдаётся за выполненный перевод проекта, или активное участие в его "
+"исправлении"
 msgstr ""
 
 #: player/templates/player/redesign/customization/view_planes.html:10
@@ -5942,7 +6189,8 @@ msgstr "her zamanki gibi oynayın - ve ödüller kazanın!"
 #: player/templates/player/redesign/game_event/halloween.html:219
 msgctxt "game_event"
 msgid "- с 25.10 по 1.11 заполняй прогрессию события, расходуя энергию"
-msgstr "- 25.10'dan 1.11'e, enerji harcayarak etkinliğin ilerlemesini tamamlayın"
+msgstr ""
+"- 25.10'dan 1.11'e, enerji harcayarak etkinliğin ilerlemesini tamamlayın"
 
 #: player/templates/player/redesign/game_event/halloween.html:220
 msgctxt "game_event"
@@ -5979,14 +6227,22 @@ msgstr "iki ilerlemede oyun değerleri ve yeni avatar çerçeveleri!"
 #: player/templates/player/redesign/game_event/halloween2.html:395
 #: player/templates/player/redesign/game_event/newyear.html:396
 msgctxt "game_event"
-msgid "Заполняется расходованием энергии, как и ежедневное финансирование, и зависит только от твоих личных усилий."
-msgstr "Günlük finansman gibi enerji harcamalarıyla doludur ve yalnızca kişisel çabalarınıza bağlıdır."
+msgid ""
+"Заполняется расходованием энергии, как и ежедневное финансирование, и "
+"зависит только от твоих личных усилий."
+msgstr ""
+"Günlük finansman gibi enerji harcamalarıyla doludur ve yalnızca kişisel "
+"çabalarınıza bağlıdır."
 
 #: player/templates/player/redesign/game_event/halloween2.html:396
 #: player/templates/player/redesign/game_event/newyear.html:397
 msgctxt "game_event"
-msgid "Она позволит получить тебе премиум-аккаунт для комфортной игры, а также один из трёх этапов зимней прогрессионой рамки аватара."
-msgstr "Rahat bir oyun için premium bir hesabın yanı sıra kış ilerlemesi avatar çerçevesinin üç aşamasından birini elde etmenizi sağlayacaktır."
+msgid ""
+"Она позволит получить тебе премиум-аккаунт для комфортной игры, а также один "
+"из трёх этапов зимней прогрессионой рамки аватара."
+msgstr ""
+"Rahat bir oyun için premium bir hesabın yanı sıra kış ilerlemesi avatar "
+"çerçevesinin üç aşamasından birini elde etmenizi sağlayacaktır."
 
 #: player/templates/player/redesign/game_event/halloween2.html:398
 #: player/templates/player/redesign/game_event/newyear.html:399
@@ -5997,14 +6253,22 @@ msgstr "Sunucudaki tüm oyuncuların çabalarıyla dolar."
 #: player/templates/player/redesign/game_event/halloween2.html:399
 #: player/templates/player/redesign/game_event/newyear.html:400
 msgctxt "game_event"
-msgid "Ты не сможешь собрать награды, открытые в общей прогрессии, пока не пройдёшь соответствующий этап личной."
-msgstr "Kişisel olanın ilgili aşamasını tamamlayana kadar genel ilerlemede açılan ödülleri toplayamazsınız."
+msgid ""
+"Ты не сможешь собрать награды, открытые в общей прогрессии, пока не пройдёшь "
+"соответствующий этап личной."
+msgstr ""
+"Kişisel olanın ilgili aşamasını tamamlayana kadar genel ilerlemede açılan "
+"ödülleri toplayamazsınız."
 
 #: player/templates/player/redesign/game_event/halloween2.html:400
 #: player/templates/player/redesign/game_event/newyear.html:401
 msgctxt "game_event"
-msgid "Когда будет открыт очередной этап общей прогрессии, потрать энергию, чтобы получить свою награду"
-msgstr "Genel ilerlemenin bir sonraki aşaması açıldığında, ödülünüzü almak için enerji harcayın"
+msgid ""
+"Когда будет открыт очередной этап общей прогрессии, потрать энергию, чтобы "
+"получить свою награду"
+msgstr ""
+"Genel ilerlemenin bir sonraki aşaması açıldığında, ödülünüzü almak için "
+"enerji harcayın"
 
 #: player/templates/player/redesign/game_event/newyear.html:218
 msgctxt "game_event"
@@ -6035,7 +6299,8 @@ msgstr "Belirtilen partinin üyesi değilsiniz"
 
 #: player/templates/player/redesign/game_event/play_market_event.html:31
 msgctxt "event"
-msgid "Каждый раз, когда вас становится больше, для меня это - большой праздник!"
+msgid ""
+"Каждый раз, когда вас становится больше, для меня это - большой праздник!"
 msgstr ""
 
 #: player/templates/player/redesign/game_event/play_market_event.html:37
@@ -6050,7 +6315,9 @@ msgstr ""
 
 #: player/templates/player/redesign/game_event/play_market_event.html:46
 msgctxt "event"
-msgid "Я надеюсь, что это событие станет мощным импульсом для роста онлайна, а вы поддержите игру в такой важный день!"
+msgid ""
+"Я надеюсь, что это событие станет мощным импульсом для роста онлайна, а вы "
+"поддержите игру в такой важный день!"
 msgstr ""
 
 #: player/templates/player/redesign/game_event/play_market_event.html:52
@@ -6060,7 +6327,9 @@ msgstr ""
 
 #: player/templates/player/redesign/game_event/play_market_event.html:58
 msgctxt "event"
-msgid "В наступление не ходят без припасов. Я подготовил их для вас в разеделе «Магазин» вашего профиля."
+msgid ""
+"В наступление не ходят без припасов. Я подготовил их для вас в разеделе "
+"«Магазин» вашего профиля."
 msgstr ""
 
 #: player/templates/player/redesign/game_event/play_market_event.html:66
@@ -6072,12 +6341,16 @@ msgstr "Altın"
 
 #: player/templates/player/redesign/game_event/play_market_event.html:69
 msgctxt "event"
-msgid "и $500 000 доступны для получения в актуальной версии мобильного приложения WP."
+msgid ""
+"и $500 000 доступны для получения в актуальной версии мобильного приложения "
+"WP."
 msgstr ""
 
 #: player/templates/player/redesign/game_event/play_market_event.html:75
 msgctxt "event"
-msgid "Чтобы занять первый плацдарм, а именно - вообще появиться в поисковой выдаче магазина приложений, нам нужно заявить о себе."
+msgid ""
+"Чтобы занять первый плацдарм, а именно - вообще появиться в поисковой выдаче "
+"магазина приложений, нам нужно заявить о себе."
 msgstr ""
 
 #: player/templates/player/redesign/game_event/play_market_event.html:76
@@ -6122,12 +6395,16 @@ msgstr ""
 
 #: player/templates/player/redesign/game_event/play_market_event.html:100
 msgctxt "event"
-msgid "Вспомните себя - стали бы вы скачивать неизвестное приложение, если о нём ничего нельзя узнать заранее от тех, кто уже его скачивал?"
+msgid ""
+"Вспомните себя - стали бы вы скачивать неизвестное приложение, если о нём "
+"ничего нельзя узнать заранее от тех, кто уже его скачивал?"
 msgstr ""
 
 #: player/templates/player/redesign/game_event/play_market_event.html:101
 msgctxt "event"
-msgid "Нам нужно показать, что игра растёт и развивается, и с каждым новым игроком, с каждой созданной партией становится только интереснее!"
+msgid ""
+"Нам нужно показать, что игра растёт и развивается, и с каждым новым игроком, "
+"с каждой созданной партией становится только интереснее!"
 msgstr ""
 
 #: player/templates/player/redesign/game_event/play_market_event.html:107
@@ -6147,17 +6424,24 @@ msgstr ""
 
 #: player/templates/player/redesign/game_event/play_market_event.html:127
 msgctxt "event"
-msgid "На момент перед публикацией приложения предварительную регистрацию в WP оформили более 600 человек."
+msgid ""
+"На момент перед публикацией приложения предварительную регистрацию в WP "
+"оформили более 600 человек."
 msgstr ""
 
 #: player/templates/player/redesign/game_event/play_market_event.html:132
 msgctxt "event"
-msgid "Да, некоторая часть из них - это вы, опытные игроки. Но всё же, поддержите тех, кто зайдёт в игру впервые. Пригласите в партию, поделитесь игровой валютой и гайдом, позовите в чаты."
+msgid ""
+"Да, некоторая часть из них - это вы, опытные игроки. Но всё же, поддержите "
+"тех, кто зайдёт в игру впервые. Пригласите в партию, поделитесь игровой "
+"валютой и гайдом, позовите в чаты."
 msgstr ""
 
 #: player/templates/player/redesign/game_event/play_market_event.html:140
 msgctxt "event"
-msgid "Сейчас в игре активен новый сезон программы \"Пригласи друга\" - и это отличный шанс начать игру для них, и попасть в топ - для вас!"
+msgid ""
+"Сейчас в игре активен новый сезон программы \"Пригласи друга\" - и это "
+"отличный шанс начать игру для них, и попасть в топ - для вас!"
 msgstr ""
 
 #: player/templates/player/redesign/game_event/play_market_event.html:142
@@ -6206,12 +6490,16 @@ msgstr "bölgesel partiler"
 
 #: player/templates/player/redesign/game_event/play_market_event.html:177
 msgctxt "event"
-msgid "где вы можете опубликовать скриншоты своих отзывов с Play Market, сопроводив их своим игровым ID."
+msgid ""
+"где вы можете опубликовать скриншоты своих отзывов с Play Market, сопроводив "
+"их своим игровым ID."
 msgstr ""
 
 #: player/templates/player/redesign/game_event/play_market_event.html:178
 msgctxt "event"
-msgid "Раз в неделю я буду выбирать случайный скриншот, проверять его реальность, и награждать игрока!"
+msgid ""
+"Раз в неделю я буду выбирать случайный скриншот, проверять его реальность, и "
+"награждать игрока!"
 msgstr ""
 
 #: player/templates/player/redesign/game_event/play_market_event.html:189
@@ -6226,12 +6514,16 @@ msgstr ""
 
 #: player/templates/player/redesign/game_event/play_market_event.html:198
 msgctxt "event"
-msgid "И да, это тот случай, когда чем больше разных отзывов - тем лучше! Но не забывайте, что несколько персонажей в игре запрещены :)"
+msgid ""
+"И да, это тот случай, когда чем больше разных отзывов - тем лучше! Но не "
+"забывайте, что несколько персонажей в игре запрещены :)"
 msgstr ""
 
 #: player/templates/player/redesign/game_event/play_market_event.html:201
 msgctxt "event"
-msgid "Дополнительно, я отмечу призовым золотом самые содержательные и интересные отзывы в Play Market - как обычно."
+msgid ""
+"Дополнительно, я отмечу призовым золотом самые содержательные и интересные "
+"отзывы в Play Market - как обычно."
 msgstr ""
 
 #: player/templates/player/redesign/game_event/play_market_event.html:208
@@ -6244,17 +6536,23 @@ msgstr "Ödüller:"
 
 #: player/templates/player/redesign/game_event/play_market_event.html:212
 msgctxt "event"
-msgid "Как и во всех событиях нашей игры, помимо личной прогрессии будет общесерверная."
+msgid ""
+"Как и во всех событиях нашей игры, помимо личной прогрессии будет "
+"общесерверная."
 msgstr ""
 
 #: player/templates/player/redesign/game_event/play_market_event.html:215
 msgctxt "event"
-msgid "Каждое значительное число скачиваний за время Наступления будет отмечено призами и бонус-кодами."
+msgid ""
+"Каждое значительное число скачиваний за время Наступления будет отмечено "
+"призами и бонус-кодами."
 msgstr ""
 
 #: player/templates/player/redesign/game_event/play_market_event.html:223
 msgctxt "event"
-msgid "Также, приглашаем вас в наши социальные сети - Вконтакте и Telegram, где будут проводиться различные конкурсы и активности!"
+msgid ""
+"Также, приглашаем вас в наши социальные сети - Вконтакте и Telegram, где "
+"будут проводиться различные конкурсы и активности!"
 msgstr ""
 
 #: player/templates/player/redesign/game_event/play_market_event.html:227
@@ -6430,55 +6728,75 @@ msgstr "sıraya al"
 
 #: player/templates/player/redesign/player_help.html:6
 msgctxt "screen_help"
-msgid "Здесь собрана информация о мире игры: население, онлайн, число партий, стран, независимых регионов"
+msgid ""
+"Здесь собрана информация о мире игры: население, онлайн, число партий, "
+"стран, независимых регионов"
 msgstr ""
 
 #: player/templates/player/redesign/player_help.html:8
 msgctxt "screen_help"
-msgid "Здесь вы можете узнать информацию о государстве вашего местонахождения: население, онлайн, число партий"
+msgid ""
+"Здесь вы можете узнать информацию о государстве вашего местонахождения: "
+"население, онлайн, число партий"
 msgstr ""
 
 #: player/templates/player/redesign/player_help.html:10
 #, fuzzy
 #| msgctxt "storage_transfer"
-#| msgid "Вы можете перенести Склад в регион текущего местоположения (один раз)"
+#| msgid ""
+#| "Вы можете перенести Склад в регион текущего местоположения (один раз)"
 msgctxt "screen_help"
-msgid "Здесь вы можете узнать больше о регионе вашего местонахождения: население, онлайн, число партий"
+msgid ""
+"Здесь вы можете узнать больше о регионе вашего местонахождения: население, "
+"онлайн, число партий"
 msgstr "Depoyu geçerli konumun bulunduğu bölgeye (bir kez) taşıyabilirsiniz."
 
 #: player/templates/player/redesign/player_help.html:12
 msgctxt "screen_help"
-msgid "Здесь отображается ближайшая к вам война, проходящая в государстве или мире в целом"
+msgid ""
+"Здесь отображается ближайшая к вам война, проходящая в государстве или мире "
+"в целом"
 msgstr ""
 
 #: player/templates/player/redesign/player_help.html:14
 msgctxt "screen_help"
-msgid "Это особое событие, проходящее в мире Wild Politics прямо сейчас. Успейте принять участие!"
+msgid ""
+"Это особое событие, проходящее в мире Wild Politics прямо сейчас. Успейте "
+"принять участие!"
 msgstr ""
 
 #: player/templates/player/redesign/player_help.html:18
 msgctxt "screen_help"
-msgid "Сила вашего персонажа влияет на конечный урон в войнах. Также, каждая из Характеристик повышает выплаты Финансирования"
+msgid ""
+"Сила вашего персонажа влияет на конечный урон в войнах. Также, каждая из "
+"Характеристик повышает выплаты Финансирования"
 msgstr ""
 
 #: player/templates/player/redesign/player_help.html:20
 msgctxt "screen_help"
-msgid "Интеллект влияет на объёмы производимой продукции и возможность улучшения Склада. Также, каждая из Характеристик повышает выплаты Финансирования"
+msgid ""
+"Интеллект влияет на объёмы производимой продукции и возможность улучшения "
+"Склада. Также, каждая из Характеристик повышает выплаты Финансирования"
 msgstr ""
 
 #: player/templates/player/redesign/player_help.html:22
 msgctxt "screen_help"
-msgid "Выносливость вашего персонажа повышает объёмы добываемого сырья. Также, каждая из Характеристик повышает выплаты Финансирования"
+msgid ""
+"Выносливость вашего персонажа повышает объёмы добываемого сырья. Также, "
+"каждая из Характеристик повышает выплаты Финансирования"
 msgstr ""
 
 #: player/templates/player/redesign/player_help.html:24
 msgctxt "screen_help"
-msgid "Здесь вы можете развить своего персонажа, улучшив одну их трёх основных характеристик - Силу, Интеллект, Выносливость"
+msgid ""
+"Здесь вы можете развить своего персонажа, улучшив одну их трёх основных "
+"характеристик - Силу, Интеллект, Выносливость"
 msgstr ""
 
 #: player/templates/player/redesign/player_help.html:26
 msgctxt "screen_help"
-msgid "Очередь последующей прокачки Характеристик, доступна с Премиум-аккаунтом"
+msgid ""
+"Очередь последующей прокачки Характеристик, доступна с Премиум-аккаунтом"
 msgstr ""
 
 #: player/templates/player/redesign/player_help.html:28
@@ -6488,7 +6806,9 @@ msgstr ""
 
 #: player/templates/player/redesign/player_help.html:30
 msgctxt "screen_help"
-msgid "При наличии на Складе текущего региона бустеров, вы можете ускорить прокачку Характеристики, нажав на эту кнопку"
+msgid ""
+"При наличии на Складе текущего региона бустеров, вы можете ускорить прокачку "
+"Характеристики, нажав на эту кнопку"
 msgstr ""
 
 #: player/templates/player/redesign/player_help.html:34
@@ -6522,7 +6842,9 @@ msgstr "Devletinizin etkisini genişletin."
 
 #: player/templates/player/redesign/player_help.html:44
 msgctxt "screen_help"
-msgid "Партии, представленные в парламенте государства, и процент занимаемых ими мест"
+msgid ""
+"Партии, представленные в парламенте государства, и процент занимаемых ими "
+"мест"
 msgstr ""
 
 #: player/templates/player/redesign/player_repost.html:4
@@ -6617,7 +6939,8 @@ msgstr ""
 #| msgid "Продолжая использование сайта, вы принимаете условия"
 msgctxt "shop"
 msgid "В данный момент все пожертвования на развитие игры принимаются лично"
-msgstr "Siteyi kullanmaya devam ederek, kullanım şartlarını kabul etmiş olursunuz"
+msgstr ""
+"Siteyi kullanmaya devam ederek, kullanım şartlarını kabul etmiş olursunuz"
 
 #: player/templates/player/redesign/premium_shop.html:27
 #, fuzzy
@@ -6662,71 +6985,56 @@ msgstr ""
 
 #: player/templates/player/redesign/premium_shop.html:118
 msgctxt "shop"
-msgid "Обращаем ваше внимание, что конечная стоимость наборов зависит от валюты и методов оплаты, и может включать в себя дополнительные комиссии и сборы."
+msgid ""
+"Обращаем ваше внимание, что конечная стоимость наборов зависит от валюты и "
+"методов оплаты, и может включать в себя дополнительные комиссии и сборы."
 msgstr ""
 
-#. Отредактировано B♤SS, id 2344
 #: player/templates/player/redesign/profile.html:99
 #: player/templates/player/redesign/view_profile.html:72
 msgctxt "profile"
 msgid "инфо"
 msgstr "info"
 
-#. Отредактировано B♤SS, id 2344
 #: player/templates/player/redesign/profile.html:153
-#| msgid "настройки"
 msgctxt "profile"
 msgid "настройки"
 msgstr "ayarla"
 
-#. Отредактировано B♤SS, id 2344
 #: player/templates/player/redesign/profile.html:180
 #: player/templates/player/redesign/view_profile.html:99
 msgctxt "profile"
 msgid "рамки"
 msgstr "çerçeveler"
 
-#. Отредактировано B♤SS, id 2344
 #: player/templates/player/redesign/profile.html:191
 #: player/templates/player/redesign/view_profile.html:110
-#| msgid "Время полёта"
 msgctxt "profile"
 msgid "самолёты"
 msgstr "uçak"
 
-#. Отредактировано B♤SS, id 2344
 #: player/templates/player/redesign/profile.html:205
 #: player/templates/player/redesign/view_profile.html:124
 msgctxt "profile"
 msgid "награды"
 msgstr "ödüller"
 
-#. Отредактировано B♤SS, id 2344
 #: player/templates/player/redesign/profile.html:219
-#| msgctxt "overview"
-#| msgid "магазин"
 msgctxt "profile"
 msgid "магазин"
 msgstr "mağaza"
 
-#. Отредактировано B♤SS, id 2344
 #: player/templates/player/redesign/profile.html:249
 msgctxt "profile"
 msgid "пригласи друга"
 msgstr "arkadaşını davet et"
 
-#. Отредактировано B♤SS, id 2344
 #: player/templates/player/redesign/profile.html:303
-#| msgctxt "storage_assets"
-#| msgid "Активация"
 msgctxt "profile"
 msgid "ввести бонус-код"
 msgstr "bonus kodu aktiv et"
 
-#. Отредактировано B♤SS, id 2344
 #: player/templates/player/redesign/profile.html:317
-#| msgctxt "party_view"
-#| msgid "отменить заявку"
 msgctxt "profile"
 msgid "оценить нас"
 msgstr "bizi değerlendirin"
@@ -6736,7 +7044,6 @@ msgctxt "profile"
 msgid "премиум-аккаунт"
 msgstr "premium hesap"
 
-#. Отредактировано B♤SS, id 2344
 #: player/templates/player/redesign/profile.html:348
 #, python-format
 msgctxt "profile"
@@ -6754,35 +7061,26 @@ msgctxt "profile"
 msgid "место в рейтинге"
 msgstr "değerlendirme yeri"
 
-#. Отредактировано B♤SS, id 2344
 #: player/templates/player/redesign/profile.html:366
 #: player/templates/player/redesign/view_profile.html:154
-#| msgctxt "has_party"
-#| msgid "Должность"
 msgctxt "profile"
 msgid "известность"
 msgstr "şöhret"
 
-#. Отредактировано B♤SS, id 2344
 #: player/templates/player/redesign/profile.html:370
 #: player/templates/player/redesign/view_profile.html:158
 msgctxt "profile"
 msgid "(к статьям)"
 msgstr "(makalelere)"
 
-#. Отредактировано B♤SS, id 2344
 #: player/templates/player/redesign/profile.html:376
 #: player/templates/player/redesign/view_profile.html:164
-#| msgctxt "storage_upgrade"
-#| msgid "Максимальный уровень"
 msgctxt "profile"
 msgid "суммарный урон"
 msgstr "toplam hasar"
 
-#. Отредактировано B♤SS, id 2344
 #: player/templates/player/redesign/profile.html:380
 #: player/templates/player/redesign/view_profile.html:168
-#| msgid "войн нет"
 msgctxt "profile"
 msgid "(к войнам)"
 msgstr "(savaşlara)"
@@ -6811,12 +7109,10 @@ msgctxt "profile"
 msgid "с"
 msgstr "şu zamandan beri"
 
-#. Отредактировано B♤SS, id 2344
 #: player/templates/player/redesign/profile.html:428
 #: player/templates/player/redesign/profile.html:446
 #: player/templates/player/redesign/view_profile.html:216
 #: player/templates/player/redesign/view_profile.html:234
-#| msgid "беспартийный"
 msgctxt "profile"
 msgid "беспартийный"
 msgstr "partisi yok"
@@ -6827,25 +7123,19 @@ msgctxt "profile"
 msgid "история"
 msgstr "geçmiş"
 
-#. Отредактировано B♤SS, id 2344
 #: player/templates/player/redesign/profile.html:438
 #: player/templates/player/redesign/view_profile.html:226
-#| msgid "должность в партии"
 msgctxt "profile"
 msgid "должность в партии"
 msgstr "partideki pozisyon"
 
-#. Отредактировано B♤SS, id 2344
 #: player/templates/player/redesign/profile.html:473
 #: player/templates/player/redesign/view_profile.html:240
-#| msgid "о себе"
 msgctxt "profile"
 msgid "о себе"
 msgstr "biyografi"
 
-#. Отредактировано B♤SS, id 2344
 #: player/templates/player/redesign/profile.html:544
-#| msgid "Загрузить"
 msgctxt "profile"
 msgid "Загрузить"
 msgstr "Yüklemek"
@@ -6870,16 +7160,12 @@ msgctxt "profile"
 msgid "стандарт"
 msgstr "standart"
 
-#. Отредактировано B♤SS, id 2344
 #: player/templates/player/redesign/profile.html:677
-#| msgid "сохранить"
 msgctxt "profile"
 msgid "сохранить"
 msgstr "kaydet"
 
-#. Отредактировано B♤SS, id 2344
 #: player/templates/player/redesign/profile.html:692
-#| msgid "Завершение"
 msgctxt "profile"
 msgid "обучение"
 msgstr "eğitim"
@@ -6925,7 +7211,9 @@ msgstr ""
 
 #: player/templates/player/redesign/rate_us.html:46
 msgctxt "event"
-msgid "После этого напишите здесь имя аккаунта так, как он написан над вашим отзывом."
+msgid ""
+"После этого напишите здесь имя аккаунта так, как он написан над вашим "
+"отзывом."
 msgstr ""
 
 #: player/templates/player/redesign/rate_us.html:50
@@ -6943,7 +7231,9 @@ msgstr ""
 
 #: player/templates/player/redesign/rate_us.html:56
 msgctxt "event"
-msgid "За использование чужого отзыва для получения награды к вам может быть применено дисциплинарное взыскание."
+msgid ""
+"За использование чужого отзыва для получения награды к вам может быть "
+"применено дисциплинарное взыскание."
 msgstr ""
 
 #: player/templates/player/redesign/view_profile.html:137
@@ -6951,9 +7241,7 @@ msgctxt "profile"
 msgid "был в сети"
 msgstr "çevrimiçiydi"
 
-#. Отредактировано B♤SS, id 2344
 #: player/templates/player/redesign/view_profile.html:139
-#| msgid "давно"
 msgctxt "profile"
 msgid "давно"
 msgstr "uzun zaman önce"
@@ -7147,7 +7435,20 @@ msgctxt "activate_code"
 msgid "Данный код уже был активирован"
 msgstr "Belirtilen Depo zaten geçerli bölgede"
 
-#: player/views/buy_lootboxes.py:161 player/views/cash_lootboxes.py:166
+#: player/views/buy_lootboxes.py:38 player/views/open_lootboxes.py:25
+#: storage/views/vault/avia_box/open_aviaboxes.py:30
+msgctxt "open_box"
+msgid "Кейсы отключены"
+msgstr ""
+
+#: player/views/buy_lootboxes.py:39
+#, fuzzy
+#| msgid "Скрыть кнопку Wiki"
+msgctxt "open_box"
+msgid "Приобретение кейсов"
+msgstr "Wiki düğmesini gizle"
+
+#: player/views/buy_lootboxes.py:168 player/views/cash_lootboxes.py:166
 #: player/views/change_back_allow.py:57
 #: player/views/change_wiki_hide_allow.py:57 region/views/cancel_auto.py:35
 #: region/views/daily_status.py:86 region/views/daily_status.py:88
@@ -7156,7 +7457,7 @@ msgstr "Belirtilen Depo zaten geçerli bölgede"
 msgid "Ошибка метода"
 msgstr "Yöntem hatası"
 
-#: player/views/buy_lootboxes.py:162 player/views/cash_lootboxes.py:167
+#: player/views/buy_lootboxes.py:169 player/views/cash_lootboxes.py:167
 msgid "Открытие сундуков"
 msgstr ""
 
@@ -7592,7 +7893,10 @@ msgstr "Dünya nüfusu"
 
 #: player/views/new_player.py:119
 msgctxt "start_messages"
-msgid "Добро пожаловать в Wild Politics! Вы всегда можете обратиться ко мне прямо в этом чате - либо связаться со мной через группу игры ВК или чат в Телеграмм. Я открыт к любым вопросам и пожеланиям."
+msgid ""
+"Добро пожаловать в Wild Politics! Вы всегда можете обратиться ко мне прямо в "
+"этом чате - либо связаться со мной через группу игры ВК или чат в Телеграмм. "
+"Я открыт к любым вопросам и пожеланиям."
 msgstr ""
 
 #: player/views/new_player.py:121
@@ -7607,18 +7911,25 @@ msgstr ""
 
 #: player/views/new_player.py:127
 msgctxt "start_messages"
-msgid "В этих чатах вы сможете задать вопросы об игре, а также найти союзников для совместной игры."
+msgid ""
+"В этих чатах вы сможете задать вопросы об игре, а также найти союзников для "
+"совместной игры."
 msgstr ""
 
 #: player/views/new_player.py:129
 msgctxt "start_messages"
-msgid "Если найдётся время, расскажите, пожалуйста, о своих впечатлениях от игры - мне это важно. Приятной игры!"
+msgid ""
+"Если найдётся время, расскажите, пожалуйста, о своих впечатлениях от игры - "
+"мне это важно. Приятной игры!"
 msgstr ""
 
 #: player/views/new_player.py:151
 #, python-format
 msgctxt "start_messages"
-msgid "Добро пожаловать в государство %(state_title)s! Это автоматическое сообщение, созданное игрой. Но вы можете связаться со мной напрямую, просто ответив на него"
+msgid ""
+"Добро пожаловать в государство %(state_title)s! Это автоматическое "
+"сообщение, созданное игрой. Но вы можете связаться со мной напрямую, просто "
+"ответив на него"
 msgstr ""
 
 #: player/views/new_player.py:212
@@ -7642,17 +7953,13 @@ msgctxt "new_player"
 msgid "Ошибка в форме профиля"
 msgstr "Profil formu hatası"
 
-#: player/views/open_lootboxes.py:25
-msgctxt "open_box"
-msgid "Кейсы отключены"
-msgstr ""
-
 #: player/views/open_lootboxes.py:26 player/views/open_lootboxes.py:37
 #: player/views/open_lootboxes.py:48 player/views/open_lootboxes.py:58
 #: player/views/open_lootboxes.py:133
 #: storage/views/vault/avia_box/loot_aviaboxes.py:55
-#: storage/views/vault/avia_box/open_aviaboxes.py:34
-#: storage/views/vault/avia_box/open_aviaboxes.py:125
+#: storage/views/vault/avia_box/open_aviaboxes.py:31
+#: storage/views/vault/avia_box/open_aviaboxes.py:42
+#: storage/views/vault/avia_box/open_aviaboxes.py:133
 #, fuzzy
 #| msgid "Скрыть кнопку Wiki"
 msgctxt "open_box"
@@ -7660,7 +7967,7 @@ msgid "Открытие кейсов"
 msgstr "Wiki düğmesini gizle"
 
 #: player/views/open_lootboxes.py:36
-#: storage/views/vault/avia_box/open_aviaboxes.py:33
+#: storage/views/vault/avia_box/open_aviaboxes.py:41
 #, fuzzy
 #| msgctxt "overview"
 #| msgid "У вас пока еще нет стикеров"
@@ -8372,7 +8679,8 @@ msgstr "Tutarlılık"
 
 #: skill/models/coherence.py:16
 msgctxt "skills"
-msgid "бонус 10% за каждый вид юнитов, количество которых в отряде не менее 20%"
+msgid ""
+"бонус 10% за каждый вид юнитов, количество которых в отряде не менее 20%"
 msgstr "Kadrodaki sayısı en az %20 olan her birim türü için %10 bonus"
 
 #: skill/models/excavation.py:9 skill/models/excavation.py:38
@@ -8412,8 +8720,12 @@ msgstr "Rejim üretimi"
 
 #: skill/models/military_production.py:10
 msgctxt "skills"
-msgid "Добавляет возможность произвести дополнительные войска при тех же затратах энергии, с округлением затрат в большую сторону"
-msgstr "Maliyetlerin yuvarlanması ile aynı enerji maliyetleriyle ek birlikler üretme yeteneği ekler"
+msgid ""
+"Добавляет возможность произвести дополнительные войска при тех же затратах "
+"энергии, с округлением затрат в большую сторону"
+msgstr ""
+"Maliyetlerin yuvarlanması ile aynı enerji maliyetleriyle ek birlikler üretme "
+"yeteneği ekler"
 
 #: skill/models/military_production.py:20 skill/models/standardization.py:9
 #: skill/models/standardization.py:24
@@ -8428,13 +8740,21 @@ msgstr "Yerel bilgi"
 
 #: skill/models/scouting.py:16
 msgctxt "skills"
-msgid "бонус к урону 2% за уровень, если с момента прилёта игрока в регион прошло более суток"
-msgstr "oyuncunun bölgeye gelmesinin üzerinden bir günden fazla zaman geçmişse seviye başına %2 hasar bonusu"
+msgid ""
+"бонус к урону 2% за уровень, если с момента прилёта игрока в регион прошло "
+"более суток"
+msgstr ""
+"oyuncunun bölgeye gelmesinin üzerinden bir günden fazla zaman geçmişse "
+"seviye başına %2 hasar bonusu"
 
 #: skill/models/standardization.py:10
 msgctxt "skills"
-msgid "Добавляет возможность произвести дополнительные материалы при тех же затратах энергии, с округлением затрат в большую сторону"
-msgstr "Maliyetlerin yuvarlanması ile aynı enerji maliyetleriyle ek malzeme üretme yeteneği ekler"
+msgid ""
+"Добавляет возможность произвести дополнительные материалы при тех же "
+"затратах энергии, с округлением затрат в большую сторону"
+msgstr ""
+"Maliyetlerin yuvarlanması ile aynı enerji maliyetleriyle ek malzeme üretme "
+"yeteneği ekler"
 
 #: skill/models/trophy_engineering.py:9 skill/models/trophy_engineering.py:34
 msgctxt "skills"
@@ -8840,7 +9160,9 @@ msgstr ""
 
 #: state/views/state_foundation.py:68
 msgctxt "state_foundation"
-msgid "Невозможно создать государство в первые 12 часов после объявления независимости"
+msgid ""
+"Невозможно создать государство в первые 12 часов после объявления "
+"независимости"
 msgstr ""
 
 #: storage/migrations/0067_auto_20230715_1635.py:13 storage/models/good.py:25
@@ -9385,7 +9707,8 @@ msgstr "Depo yükseltmesi"
 #| msgid "Вы можете улучшить Склад, расширив хранилища части товаров"
 msgctxt "storage_upgrade"
 msgid "Вы можете улучшить Склад, расширив его хранилища"
-msgstr "Malların bir kısmının depolarını genişleterek Depoyu geliştirebilirsiniz"
+msgstr ""
+"Malların bir kısmının depolarını genişleterek Depoyu geliştirebilirsiniz"
 
 #: storage/templates/storage/redesign/storage.html:271
 msgctxt "storage_upgrade"
@@ -9417,7 +9740,8 @@ msgstr "Yeterli malzeme yok"
 
 #: storage/templates/storage/redesign/storage.html:314
 msgctxt "storage_upgrade"
-msgid "После подтверждения улучшения Склада, его ёмкость изменится следующим образом"
+msgid ""
+"После подтверждения улучшения Склада, его ёмкость изменится следующим образом"
 msgstr ""
 
 #: storage/templates/storage/redesign/storage.html:321
@@ -9452,13 +9776,21 @@ msgstr "premium hesap"
 
 #: storage/templates/storage/redesign/storage.html:376
 msgctxt "storage_assets"
-msgid "Ваш премиум-аккаунт будет продлён на один месяц. Данную операцию невозможно отменить. Продолжить?"
-msgstr "Premium hesabınız bir aylığına yenilenecektir. Bu işlemi iptal edemezsiniz. Devam etmek istiyor musunuz?"
+msgid ""
+"Ваш премиум-аккаунт будет продлён на один месяц. Данную операцию невозможно "
+"отменить. Продолжить?"
+msgstr ""
+"Premium hesabınız bir aylığına yenilenecektir. Bu işlemi iptal edemezsiniz. "
+"Devam etmek istiyor musunuz?"
 
 #: storage/templates/storage/redesign/storage.html:378
 msgctxt "storage_assets"
-msgid "Вы активируете премиум-аккаунт, длительностью один месяц. Данную операцию невозможно отменить. Продолжить?"
-msgstr "Bir ay süren premium bir hesabı etkinleştireceksiniz. Bu işlem geri alınamaz. Devam et?"
+msgid ""
+"Вы активируете премиум-аккаунт, длительностью один месяц. Данную операцию "
+"невозможно отменить. Продолжить?"
+msgstr ""
+"Bir ay süren premium bir hesabı etkinleştireceksiniz. Bu işlem geri "
+"alınamaz. Devam et?"
 
 #: storage/templates/storage/redesign/storage.html:381
 #, fuzzy
@@ -9471,10 +9803,16 @@ msgstr "Wild Pass ticareti"
 #: storage/templates/storage/redesign/storage.html:382
 #, fuzzy
 #| msgctxt "storage_assets"
-#| msgid "Вы активируете премиум-аккаунт, длительностью один месяц. Данную операцию невозможно отменить. Продолжить?"
+#| msgid ""
+#| "Вы активируете премиум-аккаунт, длительностью один месяц. Данную операцию "
+#| "невозможно отменить. Продолжить?"
 msgctxt "storage_vault"
-msgid "Вы обменяете премиум-карту на G 800. Данную операцию невозможно отменить. Продолжить?"
-msgstr "Bir ay süren premium bir hesabı etkinleştireceksiniz. Bu işlem geri alınamaz. Devam et?"
+msgid ""
+"Вы обменяете премиум-карту на G 800. Данную операцию невозможно отменить. "
+"Продолжить?"
+msgstr ""
+"Bir ay süren premium bir hesabı etkinleştireceksiniz. Bu işlem geri "
+"alınamaz. Devam et?"
 
 #: storage/templates/storage/redesign/storage.html:384
 msgctxt "storage_assets"
@@ -9625,7 +9963,9 @@ msgstr "satın al"
 
 #: storage/templates/storage/redesign/storage_blocks/avia_box.html:289
 msgctxt "lootbox"
-msgid "Вы скупили все сундуки за игровые средства. Новые предложения появятся через сутки"
+msgid ""
+"Вы скупили все сундуки за игровые средства. Новые предложения появятся через "
+"сутки"
 msgstr ""
 
 #: storage/templates/storage/redesign/storage_blocks/avia_box.html:295
@@ -9635,7 +9975,8 @@ msgstr ""
 
 #: storage/templates/storage/redesign/storage_blocks/avia_box.html:358
 msgctxt "lootbox"
-msgid "Вы скупили все сундуки за Wild Pass. Новые предложения появятся через сутки"
+msgid ""
+"Вы скупили все сундуки за Wild Pass. Новые предложения появятся через сутки"
 msgstr ""
 
 #: storage/templates/storage/redesign/storage_blocks/avia_box.html:388
@@ -10846,7 +11187,7 @@ msgctxt "w_trading"
 msgid "Торговое предложение успешно принято"
 msgstr "Takas teklifi başarıyla kabul edildi"
 
-#: storage/views/vault/avia_box/avia_lootbox.py:135
+#: storage/views/vault/avia_box/avia_lootbox.py:138
 #, fuzzy
 #| msgctxt "explore_resources_draft"
 #| msgid "За последние сутки"
@@ -11327,8 +11668,11 @@ msgstr "savaşlar"
 
 #, fuzzy
 #~ msgctxt "education"
-#~ msgid "У Вас даже может не быть Склада в регионе Вашего местонахождения, но Хранилище - будет всегда."
-#~ msgstr "Depoyu geçerli konumun bulunduğu bölgeye (bir kez) taşıyabilirsiniz."
+#~ msgid ""
+#~ "У Вас даже может не быть Склада в регионе Вашего местонахождения, но "
+#~ "Хранилище - будет всегда."
+#~ msgstr ""
+#~ "Depoyu geçerli konumun bulunduğu bölgeye (bir kez) taşıyabilirsiniz."
 
 #, fuzzy
 #~ msgctxt "education"
@@ -11480,8 +11824,12 @@ msgstr "savaşlar"
 
 #, fuzzy
 #~ msgctxt "storage_vault"
-#~ msgid "Вы обменяете премиум-карту на G 1000. Данную операцию невозможно отменить. Продолжить?"
-#~ msgstr "Bir ay süren premium bir hesabı etkinleştireceksiniz. Bu işlem geri alınamaz. Devam et?"
+#~ msgid ""
+#~ "Вы обменяете премиум-карту на G 1000. Данную операцию невозможно "
+#~ "отменить. Продолжить?"
+#~ msgstr ""
+#~ "Bir ay süren premium bir hesabı etkinleştireceksiniz. Bu işlem geri "
+#~ "alınamaz. Devam et?"
 
 #~ msgctxt "w_trading"
 #~ msgid "Партия"
@@ -11708,7 +12056,9 @@ msgstr "savaşlar"
 #~ msgstr "İHA - limit"
 
 #~ msgctxt "storage_upgrade"
-#~ msgid "Выберите товары в каждой из категорий, ёмкость Склада для которых будет увеличена"
+#~ msgid ""
+#~ "Выберите товары в каждой из категорий, ёмкость Склада для которых будет "
+#~ "увеличена"
 #~ msgstr "Depo kapasitesinin yükseltileceği her kategorideki malları seçin"
 
 #~ msgctxt "assets"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-20 09:39+0300\n"
+"POT-Creation-Date: 2025-01-26 21:48+0300\n"
 "PO-Revision-Date: 2025-01-26 16:15+0300\n"
 "Last-Translator: Kenobi Bloodhound <matriobdz@gmail.com>\n"
 "Language-Team: \n"
@@ -272,16 +272,17 @@ msgstr "El artículo no puede estar vacío."
 #: player/views/bonus_code/activate_code.py:75
 #: player/views/bonus_code/activate_code.py:172
 #: player/views/bonus_code/activate_code.py:181
-#: player/views/buy_lootboxes.py:58 player/views/buy_lootboxes.py:69
-#: player/views/buy_lootboxes.py:77 player/views/buy_lootboxes.py:87
-#: player/views/buy_lootboxes.py:95 player/views/buy_lootboxes.py:163
-#: player/views/cash_lootboxes.py:59 player/views/cash_lootboxes.py:70
-#: player/views/cash_lootboxes.py:78 player/views/cash_lootboxes.py:88
-#: player/views/cash_lootboxes.py:100 player/views/cash_lootboxes.py:168
-#: player/views/change_back_allow.py:43 player/views/change_back_allow.py:59
-#: player/views/change_bio.py:34 player/views/change_nickname.py:24
-#: player/views/change_nickname.py:34 player/views/change_nickname.py:42
-#: player/views/change_nickname.py:65 player/views/change_wiki_hide_allow.py:43
+#: player/views/buy_lootboxes.py:40 player/views/buy_lootboxes.py:65
+#: player/views/buy_lootboxes.py:76 player/views/buy_lootboxes.py:84
+#: player/views/buy_lootboxes.py:94 player/views/buy_lootboxes.py:102
+#: player/views/buy_lootboxes.py:170 player/views/cash_lootboxes.py:59
+#: player/views/cash_lootboxes.py:70 player/views/cash_lootboxes.py:78
+#: player/views/cash_lootboxes.py:88 player/views/cash_lootboxes.py:100
+#: player/views/cash_lootboxes.py:168 player/views/change_back_allow.py:43
+#: player/views/change_back_allow.py:59 player/views/change_bio.py:34
+#: player/views/change_nickname.py:24 player/views/change_nickname.py:34
+#: player/views/change_nickname.py:42 player/views/change_nickname.py:65
+#: player/views/change_wiki_hide_allow.py:43
 #: player/views/change_wiki_hide_allow.py:59 player/views/claim_reward.py:85
 #: player/views/color_change.py:32 player/views/color_change.py:44
 #: player/views/color_change.py:56 player/views/color_change.py:68
@@ -316,8 +317,8 @@ msgstr "El artículo no puede estar vacío."
 #: player/views/game_event/check_review.py:41
 #: player/views/game_event/check_review.py:52
 #: player/views/game_event/check_review.py:94
-#: player/views/game_event/check_review.py:104 player/views/new_player.py:207
-#: player/views/new_player.py:220 player/views/open_lootboxes.py:27
+#: player/views/game_event/check_review.py:104 player/views/new_player.py:215
+#: player/views/new_player.py:228 player/views/open_lootboxes.py:27
 #: player/views/open_lootboxes.py:38 player/views/open_lootboxes.py:49
 #: player/views/open_lootboxes.py:59 player/views/open_lootboxes.py:134
 #: player/views/set_language.py:38 player/views/set_language.py:54
@@ -450,8 +451,9 @@ msgstr "El artículo no puede estar vacío."
 #: storage/views/trading/premium_trading.py:112
 #: storage/views/trading/premium_trading.py:120
 #: storage/views/vault/avia_box/loot_aviaboxes.py:56
-#: storage/views/vault/avia_box/open_aviaboxes.py:35
-#: storage/views/vault/avia_box/open_aviaboxes.py:126
+#: storage/views/vault/avia_box/open_aviaboxes.py:32
+#: storage/views/vault/avia_box/open_aviaboxes.py:43
+#: storage/views/vault/avia_box/open_aviaboxes.py:134
 #: storage/views/vault/use_card.py:27 storage/views/vault/use_card.py:71
 #: war/consumers.py:163 war/consumers.py:182 war/consumers.py:192
 #: war/consumers.py:204 war/consumers.py:214 war/consumers.py:227
@@ -658,7 +660,7 @@ msgstr "El texto del artículo no debe estar vacío."
 #: state/views/state_foundation.py:109 storage/views/assets/assets_info.py:69
 #: storage/views/auctions/set_bet.py:159
 #: storage/views/vault/avia_box/loot_aviaboxes.py:54
-#: storage/views/vault/avia_box/open_aviaboxes.py:124
+#: storage/views/vault/avia_box/open_aviaboxes.py:132
 #: storage/views/vault/use_card.py:69 war/views/start_war.py:102
 #: war/views/switch_war_visibility.py:90
 #, fuzzy
@@ -7959,7 +7961,21 @@ msgctxt "activate_code"
 msgid "Данный код уже был активирован"
 msgstr "El Almacén especificado ya esta en la actual región"
 
-#: player/views/buy_lootboxes.py:161 player/views/cash_lootboxes.py:166
+#: player/views/buy_lootboxes.py:38 player/views/open_lootboxes.py:25
+#: storage/views/vault/avia_box/open_aviaboxes.py:30
+msgctxt "open_box"
+msgid "Кейсы отключены"
+msgstr ""
+
+#: player/views/buy_lootboxes.py:39
+#, fuzzy
+#| msgctxt "profile"
+#| msgid "Скрыть кнопку Wiki"
+msgctxt "open_box"
+msgid "Приобретение кейсов"
+msgstr "Ocultar botón de Wiki"
+
+#: player/views/buy_lootboxes.py:168 player/views/cash_lootboxes.py:166
 #: player/views/change_back_allow.py:57
 #: player/views/change_wiki_hide_allow.py:57 region/views/cancel_auto.py:35
 #: region/views/daily_status.py:86 region/views/daily_status.py:88
@@ -7968,7 +7984,7 @@ msgstr "El Almacén especificado ya esta en la actual región"
 msgid "Ошибка метода"
 msgstr "Error de método"
 
-#: player/views/buy_lootboxes.py:162 player/views/cash_lootboxes.py:167
+#: player/views/buy_lootboxes.py:169 player/views/cash_lootboxes.py:167
 msgid "Открытие сундуков"
 msgstr ""
 
@@ -8392,12 +8408,29 @@ msgstr ""
 
 #: player/views/new_player.py:121
 msgctxt "start_messages"
+msgid "Присоединяйтесь к общему чату игры в Вконтакте:"
+msgstr ""
+
+#: player/views/new_player.py:124
+msgctxt "start_messages"
+msgid "Или же к чату в Телеграм:"
+msgstr ""
+
+#: player/views/new_player.py:127
+msgctxt "start_messages"
+msgid ""
+"В этих чатах вы сможете задать вопросы об игре, а также найти союзников для "
+"совместной игры."
+msgstr ""
+
+#: player/views/new_player.py:129
+msgctxt "start_messages"
 msgid ""
 "Если найдётся время, расскажите, пожалуйста, о своих впечатлениях от игры - "
 "мне это важно. Приятной игры!"
 msgstr ""
 
-#: player/views/new_player.py:143
+#: player/views/new_player.py:151
 #, python-format
 msgctxt "start_messages"
 msgid ""
@@ -8406,38 +8439,34 @@ msgid ""
 "ответив на него"
 msgstr ""
 
-#: player/views/new_player.py:204
+#: player/views/new_player.py:212
 #, fuzzy
 #| msgid ": попробуйте создать персонажа, не загружая изображение"
 msgctxt "new_player"
 msgid "попробуйте создать персонажа, не загружая изображение"
 msgstr ": intenta crear un personaje sin cargar una imagen"
 
-#: player/views/new_player.py:206 player/views/new_player.py:219
+#: player/views/new_player.py:214 player/views/new_player.py:227
 #, fuzzy
 #| msgid "Новый персонаж"
 msgctxt "new_player"
 msgid "Новый персонаж"
 msgstr "Nuevo personaje"
 
-#: player/views/new_player.py:218
+#: player/views/new_player.py:226
 #, fuzzy
 #| msgid "Ошибка в форме профиля"
 msgctxt "new_player"
 msgid "Ошибка в форме профиля"
 msgstr "Error de formulario de perfil"
 
-#: player/views/open_lootboxes.py:25
-msgctxt "open_box"
-msgid "Кейсы отключены"
-msgstr ""
-
 #: player/views/open_lootboxes.py:26 player/views/open_lootboxes.py:37
 #: player/views/open_lootboxes.py:48 player/views/open_lootboxes.py:58
 #: player/views/open_lootboxes.py:133
 #: storage/views/vault/avia_box/loot_aviaboxes.py:55
-#: storage/views/vault/avia_box/open_aviaboxes.py:34
-#: storage/views/vault/avia_box/open_aviaboxes.py:125
+#: storage/views/vault/avia_box/open_aviaboxes.py:31
+#: storage/views/vault/avia_box/open_aviaboxes.py:42
+#: storage/views/vault/avia_box/open_aviaboxes.py:133
 #, fuzzy
 #| msgctxt "profile"
 #| msgid "Скрыть кнопку Wiki"
@@ -8446,7 +8475,7 @@ msgid "Открытие кейсов"
 msgstr "Ocultar botón de Wiki"
 
 #: player/views/open_lootboxes.py:36
-#: storage/views/vault/avia_box/open_aviaboxes.py:33
+#: storage/views/vault/avia_box/open_aviaboxes.py:41
 #, fuzzy
 #| msgid "У вас пока еще нет стикеров"
 msgctxt "open_box"
@@ -11527,7 +11556,7 @@ msgctxt "w_trading"
 msgid "Торговое предложение успешно принято"
 msgstr "Oferta de comercio aceptada exitósamnete"
 
-#: storage/views/vault/avia_box/avia_lootbox.py:135
+#: storage/views/vault/avia_box/avia_lootbox.py:138
 msgctxt "assets"
 msgid "Ледяные сундуки"
 msgstr "Energía recargada"
@@ -11732,8 +11761,6 @@ msgid "Наземная война"
 msgstr ""
 
 #: war/templates/war/redesign/Revolution.html:63
-#| msgctxt "assets"
-#| msgid "На складе в регионе"
 msgctxt "war_page"
 msgid "Восстание в регионе"
 msgstr "Activos en un almacén en la región"
