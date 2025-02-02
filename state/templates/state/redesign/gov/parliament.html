@@ -1,6 +1,7 @@
 {% load static %}
 {% load l10n %}{% load i18n %}
 {% load dict_key %}
+{% load trunc_nick %}
 {% load redesign.template_svg.nopic_list %}
 {% load redesign.template_svg.nopic_party_list %}
 {% load redesign.template_svg.plus %}
@@ -92,7 +93,7 @@
                         {% endif %}
 
                         {% if deputate.player %}
-                            {{ deputate.player.nickname }}
+                            {{ deputate.player.nickname|trunc_nick }}
                         {% else %}
                             {% trans 'свободно' context "parliament" %}
                         {% endif %}

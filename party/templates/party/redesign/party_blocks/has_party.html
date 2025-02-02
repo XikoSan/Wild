@@ -1,5 +1,6 @@
 {% load dict_key %}
 {% load has_key %}
+{% load trunc_nick %}
 {% load static %}
 {% load l10n %}{% load i18n %}{% load tz %}
 
@@ -148,7 +149,7 @@
 <!--							символ лидера праймериз -->
 							⭐
 							{% endif %}
-							{{ member.nickname }}
+							{{ member.nickname|trunc_nick }}
 							</a>
 						</td>
 						<td class="j-t-three">
