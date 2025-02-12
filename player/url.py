@@ -69,8 +69,8 @@ urlpatterns = [
 
     url(r'^dmg_tbl$', dmg_tbl, name='dmg_tbl'),
     url(r'^skill_tbl$', skill_tbl, name='skill_tbl'),
-    # Соглашение об обработке ПД
-    path('personal_data/', TemplateView.as_view(template_name='player/personal_data.html'), name='personal_data'),
+    # Политика конфиденциальности
+    path('privacy/', TemplateView.as_view(template_name='player/privacy.html'), name='privacy'),
     # регистрация нового персонажа
     url(r'^player/new/$', new_player, name='new_player'),
     # выход

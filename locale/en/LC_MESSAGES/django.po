@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-26 22:35+0300\n"
-"PO-Revision-Date: 2025-01-26 22:37+0300\n"
+"POT-Creation-Date: 2025-02-12 17:28+0300\n"
+"PO-Revision-Date: 2025-02-12 17:29+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -340,8 +340,8 @@ msgstr "Article cannot be empty"
 #: state/views/state_foundation.py:56 state/views/state_foundation.py:70
 #: state/views/state_foundation.py:111
 #: storage/views/assets/assets_destroy.py:137
-#: storage/views/assets/assets_info.py:63
-#: storage/views/assets/assets_info.py:71
+#: storage/views/assets/assets_info.py:72
+#: storage/views/assets/assets_info.py:80
 #: storage/views/assets/storage_move.py:37
 #: storage/views/assets/storage_move.py:46
 #: storage/views/assets/storage_move.py:55
@@ -443,10 +443,10 @@ msgstr "Article cannot be empty"
 #: war/consumers.py:237 war/consumers.py:249 war/consumers.py:271
 #: war/consumers.py:291 war/consumers.py:300 war/consumers.py:313
 #: war/consumers.py:324 war/consumers.py:334 war/consumers.py:598
-#: war/views/join_revolution.py:31 war/views/join_revolution.py:54
-#: war/views/join_revolution.py:67 war/views/join_revolution.py:79
-#: war/views/join_revolution.py:91 war/views/join_revolution.py:103
-#: war/views/join_revolution.py:112 war/views/join_revolution.py:149
+#: war/views/join_revolution.py:115 war/views/join_revolution.py:138
+#: war/views/join_revolution.py:151 war/views/join_revolution.py:163
+#: war/views/join_revolution.py:175 war/views/join_revolution.py:187
+#: war/views/join_revolution.py:196 war/views/join_revolution.py:397
 #: war/views/start_war.py:104 war/views/switch_war_visibility.py:40
 #: war/views/switch_war_visibility.py:48 war/views/switch_war_visibility.py:64
 #: war/views/switch_war_visibility.py:92
@@ -616,7 +616,7 @@ msgstr "The text of the article should not be empty"
 #: player/views/set_timezone.py:43 player/views/skills/boost_skill.py:166
 #: player/views/skills/up_skill.py:190 player/views/switch_chat.py:85
 #: skill/views/skill_cancel.py:101 state/views/set_mandate.py:78
-#: state/views/state_foundation.py:109 storage/views/assets/assets_info.py:69
+#: state/views/state_foundation.py:109 storage/views/assets/assets_info.py:78
 #: storage/views/auctions/set_bet.py:159
 #: storage/views/vault/avia_box/loot_aviaboxes.py:54
 #: storage/views/vault/avia_box/open_aviaboxes.py:132
@@ -2069,7 +2069,7 @@ msgstr "There is no parliament in this state"
 #: storage/views/trading/accept_offer.py:477
 #: storage/views/trading/cancel_offer.py:165
 #: storage/views/trading/create_offer.py:295
-#: storage/views/trading/get_offers.py:259 war/views/join_revolution.py:150
+#: storage/views/trading/get_offers.py:259 war/views/join_revolution.py:398
 msgctxt "core"
 msgid "Ошибка метода"
 msgstr "Method error"
@@ -2338,7 +2338,7 @@ msgstr "Party of Unity"
 #: education/templates/education/edu_gov.html:439
 #: education/templates/education/edu_gov.html:448
 #: education/templates/education/edu_gov.html:457
-#: state/templates/state/redesign/gov/parliament.html:46
+#: state/templates/state/redesign/gov/parliament.html:47
 msgctxt "parliament"
 msgid "мест"
 msgstr "places"
@@ -5105,56 +5105,56 @@ msgctxt "has_party"
 msgid "исключить"
 msgstr "expel"
 
-#: party/templates/party/redesign/party_blocks/has_party.html:12
+#: party/templates/party/redesign/party_blocks/has_party.html:13
 #: party/templates/party/redesign/party_blocks/no_party.html:10
 #: party/views/party.py:43
 msgctxt "has_party"
 msgid "Партия"
 msgstr "Party"
 
-#: party/templates/party/redesign/party_blocks/has_party.html:130
+#: party/templates/party/redesign/party_blocks/has_party.html:131
 #: party/templates/party/redesign/party_requests.html:29
 #: party/templates/party/redesign/party_view.html:178
 msgctxt "has_party"
 msgid "Никнейм"
 msgstr "Nickname"
 
-#: party/templates/party/redesign/party_blocks/has_party.html:131
+#: party/templates/party/redesign/party_blocks/has_party.html:132
 #: party/templates/party/redesign/party_view.html:179
 msgctxt "has_party"
 msgid "Был в сети"
 msgstr "Was online"
 
-#: party/templates/party/redesign/party_blocks/has_party.html:132
+#: party/templates/party/redesign/party_blocks/has_party.html:133
 #: party/templates/party/redesign/party_view.html:180
 msgctxt "has_party"
 msgid "Должность"
 msgstr "Position"
 
-#: party/templates/party/redesign/party_blocks/has_party.html:159
-#: party/templates/party/redesign/party_blocks/has_party.html:162
+#: party/templates/party/redesign/party_blocks/has_party.html:160
+#: party/templates/party/redesign/party_blocks/has_party.html:163
 #: party/templates/party/redesign/party_view.html:203
 #: party/templates/party/redesign/party_view.html:206
 msgctxt "has_party"
 msgid "давно"
 msgstr "long ago"
 
-#: party/templates/party/redesign/party_blocks/has_party.html:195
+#: party/templates/party/redesign/party_blocks/has_party.html:196
 msgctxt "has_party"
 msgid "Покинуть партию?"
 msgstr "Leave the party?"
 
-#: party/templates/party/redesign/party_blocks/has_party.html:196
+#: party/templates/party/redesign/party_blocks/has_party.html:197
 msgctxt "has_party"
 msgid "Вы покинете партию, а также все связанные должности. Продолжить?"
 msgstr "You will leave the party, as well as all related positions. Continue?"
 
-#: party/templates/party/redesign/party_blocks/has_party.html:197
+#: party/templates/party/redesign/party_blocks/has_party.html:198
 msgctxt "has_party"
 msgid "Продолжить"
 msgstr "Continue"
 
-#: party/templates/party/redesign/party_blocks/has_party.html:198
+#: party/templates/party/redesign/party_blocks/has_party.html:199
 msgctxt "has_party"
 msgid "Отмена"
 msgstr "Cancel"
@@ -5812,22 +5812,22 @@ msgstr "User Agreement"
 
 #: player/templates/player/index.html:305
 msgctxt "index"
-msgid "и порядка обработки персональных данных"
-msgstr "and the procedure of personal data processing"
+msgid "и Политики конфиденциальности"
+msgstr "and Privacy Policy"
 
 #: player/templates/player/index.html:340
 msgctxt "index"
 msgid "читать"
 msgstr "read"
 
-#: player/templates/player/personal_data.html:6
-#: player/templates/player/personal_data.html:10
-msgctxt "personal_data"
-msgid "Согласие на обработку персональных данных"
-msgstr "Personal data consent of processing"
+#: player/templates/player/privacy.html:6
+#: player/templates/player/privacy.html:10
+msgctxt "privacy"
+msgid "Политика конфиденциальности"
+msgstr "Privacy Policy"
 
-#: player/templates/player/personal_data.html:13
-msgctxt "personal_data"
+#: player/templates/player/privacy.html:13
+msgctxt "privacy"
 msgid ""
 "Я, передавая уникальные идентификаторы социальных сетей, а также имя, "
 "фамилию и псевдонимы в них, далее именуемый(ая) \"Субъект персональных "
@@ -5844,53 +5844,53 @@ msgstr ""
 "legislation of the Russian Federation (hereinafter referred to as the "
 "\"Legislation\")."
 
-#: player/templates/player/personal_data.html:15
-msgctxt "personal_data"
+#: player/templates/player/privacy.html:15
+msgctxt "privacy"
 msgid "Цель обработки персональных данных:"
 msgstr "Purpose of personal data processing:"
 
-#: player/templates/player/personal_data.html:17
-msgctxt "personal_data"
+#: player/templates/player/privacy.html:17
+msgctxt "privacy"
 msgid "Предоставление услуг развлекательного характера."
 msgstr "Provision of entertainment services."
 
-#: player/templates/player/personal_data.html:18
-msgctxt "personal_data"
+#: player/templates/player/privacy.html:18
+msgctxt "privacy"
 msgid "Информирование пользователя об изменениях работы Сайта."
 msgstr "Informing the user about changes in the operation of the Site."
 
-#: player/templates/player/personal_data.html:19
-msgctxt "personal_data"
+#: player/templates/player/privacy.html:19
+msgctxt "privacy"
 msgid "Обработка данных в рекламных целях."
 msgstr "Processing data for advertising purposes."
 
-#: player/templates/player/personal_data.html:22
-msgctxt "personal_data"
+#: player/templates/player/privacy.html:22
+msgctxt "privacy"
 msgid "Категории персональных данных:"
 msgstr "Categories of personal data:"
 
-#: player/templates/player/personal_data.html:24
-msgctxt "personal_data"
+#: player/templates/player/privacy.html:24
+msgctxt "privacy"
 msgid "Уникальные идентификаторы социальных сетей."
 msgstr "Unique social network identifiers."
 
-#: player/templates/player/personal_data.html:25
-msgctxt "personal_data"
+#: player/templates/player/privacy.html:25
+msgctxt "privacy"
 msgid "Имя, фамилия и псевдонимы в социальных сетях."
 msgstr "First name, last name and nicknames on social networks."
 
-#: player/templates/player/personal_data.html:26
-msgctxt "personal_data"
+#: player/templates/player/privacy.html:26
+msgctxt "privacy"
 msgid "IP-адрес и информация браузера."
 msgstr "IP address and browser information."
 
-#: player/templates/player/personal_data.html:29
-msgctxt "personal_data"
+#: player/templates/player/privacy.html:29
+msgctxt "privacy"
 msgid "Способы и условия обработки персональных данных:"
 msgstr "Methods and conditions for processing personal data:"
 
-#: player/templates/player/personal_data.html:30
-msgctxt "personal_data"
+#: player/templates/player/privacy.html:30
+msgctxt "privacy"
 msgid ""
 "Сбор, хранение, использование и передача третьим лицам в рекламных целях, а "
 "также в целях повышения качества работы Сервисов Wild Politics."
@@ -5899,13 +5899,13 @@ msgstr ""
 "purposes, as well as for the purpose of improving the quality of the Wild "
 "Politics Services."
 
-#: player/templates/player/personal_data.html:32
-msgctxt "personal_data"
+#: player/templates/player/privacy.html:32
+msgctxt "privacy"
 msgid "Передача персональных данных третьим лицам:"
 msgstr "Transfer of personal data to third parties:"
 
-#: player/templates/player/personal_data.html:33
-msgctxt "personal_data"
+#: player/templates/player/privacy.html:33
+msgctxt "privacy"
 msgid ""
 "Субъект персональных данных соглашается на передачу его/ее персональных "
 "данных третьим лицам, для хранения и обработки в рекламных целях, а также в "
@@ -5916,13 +5916,13 @@ msgstr ""
 "well as for the purpose of improving the quality of the Wild Politics "
 "Services."
 
-#: player/templates/player/personal_data.html:35
-msgctxt "personal_data"
+#: player/templates/player/privacy.html:35
+msgctxt "privacy"
 msgid "Сроки обработки персональных данных:"
 msgstr "Terms of personal data processing:"
 
-#: player/templates/player/personal_data.html:36
-msgctxt "personal_data"
+#: player/templates/player/privacy.html:36
+msgctxt "privacy"
 msgid ""
 "Персональные данные субъекта персональных данных хранятся и обрабатываются "
 "Администрацией до получения письменного обращения от пользователя в "
@@ -5934,13 +5934,13 @@ msgstr ""
 "free form, with the desire to revoke their consent to the processing of "
 "personal data."
 
-#: player/templates/player/personal_data.html:38
-msgctxt "personal_data"
+#: player/templates/player/privacy.html:38
+msgctxt "privacy"
 msgid "Отзыв согласия на обработку персональных данных:"
 msgstr "Withdrawal of consent to the processing of personal data:"
 
-#: player/templates/player/personal_data.html:39
-msgctxt "personal_data"
+#: player/templates/player/privacy.html:39
+msgctxt "privacy"
 msgid ""
 "Субъект персональных данных имеет право отозвать свое согласие на обработку "
 "своих персональных данных."
@@ -5948,23 +5948,23 @@ msgstr ""
 "The subject of personal data has the right to revoke his consent to the "
 "processing of his personal data."
 
-#: player/templates/player/personal_data.html:40
-msgctxt "personal_data"
+#: player/templates/player/privacy.html:40
+msgctxt "privacy"
 msgid "Инструкция по удалению персональных данных размещена по адресу"
 msgstr "Instructions for deleting personal data are available at"
 
-#: player/templates/player/personal_data.html:42
-msgctxt "personal_data"
+#: player/templates/player/privacy.html:42
+msgctxt "privacy"
 msgid "Контактная информация оператора:"
 msgstr "Operator contact information:"
 
-#: player/templates/player/personal_data.html:43
-msgctxt "personal_data"
+#: player/templates/player/privacy.html:43
+msgctxt "privacy"
 msgid "Электронная почта Администрации:"
 msgstr "Administration email:"
 
-#: player/templates/player/personal_data.html:45
-msgctxt "personal_data"
+#: player/templates/player/privacy.html:45
+msgctxt "privacy"
 msgid ""
 "Я ПОДТВЕРЖДАЮ, ЧТО ЯВЛЯЮСЬ СУБЪЕКТОМ ПЕРСОНАЛЬНЫХ ДАННЫХ, ОЗНАКОМЛЕН(А) С "
 "ЦЕЛЯМИ ОБРАБОТКИ МОИХ ПЕРСОНАЛЬНЫХ ДАННЫХ И ДОБРОВОЛЬНО ПРЕДОСТАВЛЯЮ СВОЕ "
@@ -8625,12 +8625,12 @@ msgctxt "state_manage"
 msgid "Смена приветственного сообщения"
 msgstr "Change the welcome message"
 
-#: state/templates/state/redesign/gov/parliament.html:97
+#: state/templates/state/redesign/gov/parliament.html:98
 msgctxt "parliament"
 msgid "свободно"
 msgstr "free chair"
 
-#: state/templates/state/redesign/gov/parliament.html:116
+#: state/templates/state/redesign/gov/parliament.html:117
 msgctxt "parliament"
 msgid "нет парламентских партий"
 msgstr "no parliamentary parties"
@@ -8854,7 +8854,7 @@ msgstr "Small"
 
 #: storage/models/storage.py:110
 #: storage/templates/storage/redesign/assets.html:143
-#: storage/templates/storage/redesign/assets_info.html:11
+#: storage/templates/storage/redesign/assets_info.html:12
 msgctxt "storage"
 msgid "Уровень"
 msgstr "Level"
@@ -9022,7 +9022,8 @@ msgstr "choose warehouse"
 
 #: storage/templates/storage/redesign/assets.html:101
 #: storage/templates/storage/redesign/assets.html:167
-#: storage/templates/storage/redesign/assets_info.html:34
+#: storage/templates/storage/redesign/assets_info.html:42
+#: war/templates/war/redesign/revolution_page.html:184
 msgctxt "assets"
 msgid "объём (ед)"
 msgstr "volume"
@@ -9798,13 +9799,13 @@ msgid "Отмена"
 msgstr "Cancel"
 
 #: storage/views/assets/assets_destroy.py:49
-#: storage/views/assets/assets_transfer.py:82
+#: storage/views/assets/assets_transfer.py:82 war/views/join_revolution.py:219
 msgctxt "assets"
 msgid "Склад"
 msgstr "Warehouse"
 
 #: storage/views/assets/assets_destroy.py:50
-#: storage/views/assets/assets_transfer.py:83
+#: storage/views/assets/assets_transfer.py:83 war/views/join_revolution.py:220
 msgctxt "assets"
 msgid "вам не принадлежит"
 msgstr "does not belong to you"
@@ -9835,45 +9836,51 @@ msgstr "Goods destruction"
 #: storage/views/assets/assets_transfer.py:211
 #: storage/views/assets/assets_transfer.py:218
 #: storage/views/assets/assets_transfer.py:225
-#: storage/views/assets/assets_transfer.py:232
+#: storage/views/assets/assets_transfer.py:232 war/views/join_revolution.py:222
+#: war/views/join_revolution.py:242 war/views/join_revolution.py:258
+#: war/views/join_revolution.py:274 war/views/join_revolution.py:284
+#: war/views/join_revolution.py:328 war/views/join_revolution.py:341
+#: war/views/join_revolution.py:353 war/views/join_revolution.py:360
 msgctxt "assets"
 msgid "Закрыть"
 msgstr "Close"
 
 #: storage/views/assets/assets_destroy.py:74
-#: storage/views/assets/assets_transfer.py:134
+#: storage/views/assets/assets_transfer.py:134 war/views/join_revolution.py:272
 msgctxt "assets"
 msgid "Один или несколько запасов не принадлежат вашим складам"
 msgstr "One or more stocks do not belong in your warehouses"
 
 #: storage/views/assets/assets_destroy.py:84
-#: storage/views/assets/assets_transfer.py:144
+#: storage/views/assets/assets_transfer.py:144 war/views/join_revolution.py:282
 msgctxt "assets"
 msgid "Один или несколько запасов не существуют"
 msgstr "One or more stocks do not exist"
 
 #: storage/views/assets/assets_destroy.py:111
-#: storage/views/assets/assets_transfer.py:205
+#: storage/views/assets/assets_transfer.py:205 war/views/join_revolution.py:346
 msgctxt "assets"
 msgid "На складе в регионе "
 msgstr "At warehouse in the "
 
 #: storage/views/assets/assets_destroy.py:112
-#: storage/views/assets/assets_transfer.py:206
+#: storage/views/assets/assets_transfer.py:206 war/views/join_revolution.py:347
 msgctxt "assets"
 msgid " недостаточно товара "
 msgstr " not enough goods "
 
 #: storage/views/assets/assets_destroy.py:113
 #: storage/views/assets/assets_transfer.py:197
-#: storage/views/assets/assets_transfer.py:207
+#: storage/views/assets/assets_transfer.py:207 war/views/join_revolution.py:337
+#: war/views/join_revolution.py:349
 msgctxt "assets"
 msgid "Требуется: "
 msgstr "Required: "
 
 #: storage/views/assets/assets_destroy.py:114
 #: storage/views/assets/assets_transfer.py:197
-#: storage/views/assets/assets_transfer.py:208
+#: storage/views/assets/assets_transfer.py:208 war/views/join_revolution.py:338
+#: war/views/join_revolution.py:350
 msgctxt "assets"
 msgid ", в наличии: "
 msgstr ", in stock: "
@@ -9889,13 +9896,13 @@ msgctxt "assets"
 msgid "Операции с товарами"
 msgstr "Operations with goods"
 
-#: storage/views/assets/assets_info.py:61
+#: storage/views/assets/assets_info.py:70
 msgctxt "assets_info"
 msgid "Такого склада у вас нет"
 msgstr "You don't have such a warehouse"
 
-#: storage/views/assets/assets_info.py:62
-#: storage/views/assets/assets_info.py:70
+#: storage/views/assets/assets_info.py:71
+#: storage/views/assets/assets_info.py:79
 msgctxt "assets_info"
 msgid "Получение склада"
 msgstr "Warehouse getting"
@@ -9926,42 +9933,45 @@ msgstr "Target Warehouse ID must be an integer"
 #: storage/views/assets/assets_transfer.py:210
 #: storage/views/assets/assets_transfer.py:217
 #: storage/views/assets/assets_transfer.py:224
-#: storage/views/assets/assets_transfer.py:231
+#: storage/views/assets/assets_transfer.py:231 war/views/join_revolution.py:257
+#: war/views/join_revolution.py:273 war/views/join_revolution.py:283
+#: war/views/join_revolution.py:327 war/views/join_revolution.py:340
+#: war/views/join_revolution.py:352 war/views/join_revolution.py:359
 msgctxt "assets"
 msgid "Перемещение товара"
 msgstr "Goods transfer"
 
-#: storage/views/assets/assets_transfer.py:103
+#: storage/views/assets/assets_transfer.py:103 war/views/join_revolution.py:240
 msgctxt "assets"
 msgid "Запрещено вывозить товары из атакованных регионов"
 msgstr "It is forbidden to export goods from the attacked regions"
 
-#: storage/views/assets/assets_transfer.py:119
+#: storage/views/assets/assets_transfer.py:119 war/views/join_revolution.py:256
 msgctxt "assets"
 msgid "Один или несколько запасов пусты"
 msgstr "One or more stocks are empty"
 
-#: storage/views/assets/assets_transfer.py:186
+#: storage/views/assets/assets_transfer.py:186 war/views/join_revolution.py:326
 msgctxt "assets"
 msgid "Недостаточно средств для оплаты доставки"
 msgstr "Insufficient funds to pay for shipping"
 
-#: storage/views/assets/assets_transfer.py:194
+#: storage/views/assets/assets_transfer.py:194 war/views/join_revolution.py:334
 msgctxt "assets"
 msgid "типоразмер:"
 msgstr "size:"
 
-#: storage/views/assets/assets_transfer.py:196
+#: storage/views/assets/assets_transfer.py:196 war/views/join_revolution.py:336
 msgctxt "assets"
 msgid "недостаточно места для товара."
 msgstr "insufficient space for goods."
 
-#: storage/views/assets/assets_transfer.py:206
+#: storage/views/assets/assets_transfer.py:206 war/views/join_revolution.py:348
 msgctxt "assets"
 msgid " для передачи."
 msgstr " for transfer."
 
-#: storage/views/assets/assets_transfer.py:216
+#: storage/views/assets/assets_transfer.py:216 war/views/join_revolution.py:358
 msgctxt "assets"
 msgid "Товары для передачи не выбраны"
 msgstr "Goods to transfer are not selected"
@@ -10781,6 +10791,11 @@ msgctxt "wars_list"
 msgid "Силы восстания"
 msgstr "Rebellion forces"
 
+#: war/templates/war/redesign/revolution_page.html:63
+msgctxt "revolution_page"
+msgid "Начать восстание"
+msgstr "Raise a rebellion"
+
 #: war/templates/war/redesign/war_page.html:65
 msgctxt "war_page"
 msgid "Список войн"
@@ -10818,47 +10833,48 @@ msgctxt "war_page"
 msgid "Государственные"
 msgstr "State wars"
 
-#: war/views/join_revolution.py:29
+#: war/views/join_revolution.py:113
 msgctxt "join_revolution"
 msgid "Поднятие восстания доступно начиная с суммы Характеристик в 15 ед."
 msgstr ""
 "Raising a rebellion is available starting with a Characteristics total of 15 "
 "units"
 
-#: war/views/join_revolution.py:30 war/views/join_revolution.py:53
-#: war/views/join_revolution.py:66 war/views/join_revolution.py:78
-#: war/views/join_revolution.py:90 war/views/join_revolution.py:102
-#: war/views/join_revolution.py:111 war/views/join_revolution.py:151
+#: war/views/join_revolution.py:114 war/views/join_revolution.py:137
+#: war/views/join_revolution.py:150 war/views/join_revolution.py:162
+#: war/views/join_revolution.py:174 war/views/join_revolution.py:186
+#: war/views/join_revolution.py:195 war/views/join_revolution.py:221
+#: war/views/join_revolution.py:241 war/views/join_revolution.py:399
 msgctxt "join_revolution"
 msgid "Участие в восстании"
 msgstr "Revolution participation"
 
-#: war/views/join_revolution.py:52
+#: war/views/join_revolution.py:136
 msgctxt "join_revolution"
 msgid "Недостаточно золота"
 msgstr "Not enough gold"
 
-#: war/views/join_revolution.py:65
+#: war/views/join_revolution.py:149
 msgctxt "join_revolution"
 msgid "С момента завершения последнего восстания не прошло 7 дней"
 msgstr "It has not been 7 days since the end of the last revolution"
 
-#: war/views/join_revolution.py:77
+#: war/views/join_revolution.py:161
 msgctxt "join_revolution"
 msgid "Для участия в восстании требуется прописка"
 msgstr "Residency is required to participate in the uprising"
 
-#: war/views/join_revolution.py:89
+#: war/views/join_revolution.py:173
 msgctxt "join_revolution"
 msgid "Вы уже являетесь участником восстания здесь"
 msgstr "You are already a participant of this revolution"
 
-#: war/views/join_revolution.py:101
+#: war/views/join_revolution.py:185
 msgctxt "join_revolution"
 msgid "Вы принимали участие в восстании последние 10 дней"
 msgstr "You have already taken part in the uprising in the last 10 days"
 
-#: war/views/join_revolution.py:110
+#: war/views/join_revolution.py:194
 msgctxt "join_revolution"
 msgid "В данном регионе объявлено мирное время"
 msgstr "Peace time has been declared in this region"
@@ -10877,6 +10893,11 @@ msgstr "defence"
 msgctxt "lists"
 msgid "Урон за сторону:"
 msgstr "Damage of side:"
+
+#: war/views/revolution_page.py:112
+msgctxt "war_page"
+msgid "Начать революцию"
+msgstr "Raise a revolution"
 
 #: war/views/switch_war_visibility.py:38
 msgctxt "war_visibility"
@@ -10903,6 +10924,14 @@ msgstr "There is no such record of participation in the battle"
 msgctxt "war_page"
 msgid "Войны"
 msgstr "Wars"
+
+#~ msgctxt "index"
+#~ msgid "и порядка обработки персональных данных"
+#~ msgstr "and the procedure of personal data processing"
+
+#~ msgctxt "personal_data"
+#~ msgid "Согласие на обработку персональных данных"
+#~ msgstr "Personal data consent of processing"
 
 #~ msgctxt "assets"
 #~ msgid "Аэрокейсы"

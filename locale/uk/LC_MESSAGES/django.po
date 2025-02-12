@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-26 22:35+0300\n"
+"POT-Creation-Date: 2025-02-12 17:28+0300\n"
 "PO-Revision-Date: 2025-01-15 09:26+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -342,8 +342,8 @@ msgstr "Стаття не може бути порожньою"
 #: state/views/state_foundation.py:56 state/views/state_foundation.py:70
 #: state/views/state_foundation.py:111
 #: storage/views/assets/assets_destroy.py:137
-#: storage/views/assets/assets_info.py:63
-#: storage/views/assets/assets_info.py:71
+#: storage/views/assets/assets_info.py:72
+#: storage/views/assets/assets_info.py:80
 #: storage/views/assets/storage_move.py:37
 #: storage/views/assets/storage_move.py:46
 #: storage/views/assets/storage_move.py:55
@@ -445,10 +445,10 @@ msgstr "Стаття не може бути порожньою"
 #: war/consumers.py:237 war/consumers.py:249 war/consumers.py:271
 #: war/consumers.py:291 war/consumers.py:300 war/consumers.py:313
 #: war/consumers.py:324 war/consumers.py:334 war/consumers.py:598
-#: war/views/join_revolution.py:31 war/views/join_revolution.py:54
-#: war/views/join_revolution.py:67 war/views/join_revolution.py:79
-#: war/views/join_revolution.py:91 war/views/join_revolution.py:103
-#: war/views/join_revolution.py:112 war/views/join_revolution.py:149
+#: war/views/join_revolution.py:115 war/views/join_revolution.py:138
+#: war/views/join_revolution.py:151 war/views/join_revolution.py:163
+#: war/views/join_revolution.py:175 war/views/join_revolution.py:187
+#: war/views/join_revolution.py:196 war/views/join_revolution.py:397
 #: war/views/start_war.py:104 war/views/switch_war_visibility.py:40
 #: war/views/switch_war_visibility.py:48 war/views/switch_war_visibility.py:64
 #: war/views/switch_war_visibility.py:92
@@ -618,7 +618,7 @@ msgstr "Текст статті не може бути порожнім"
 #: player/views/set_timezone.py:43 player/views/skills/boost_skill.py:166
 #: player/views/skills/up_skill.py:190 player/views/switch_chat.py:85
 #: skill/views/skill_cancel.py:101 state/views/set_mandate.py:78
-#: state/views/state_foundation.py:109 storage/views/assets/assets_info.py:69
+#: state/views/state_foundation.py:109 storage/views/assets/assets_info.py:78
 #: storage/views/auctions/set_bet.py:159
 #: storage/views/vault/avia_box/loot_aviaboxes.py:54
 #: storage/views/vault/avia_box/open_aviaboxes.py:132
@@ -2087,7 +2087,7 @@ msgstr "У цій державі немає парламенту"
 #: storage/views/trading/accept_offer.py:477
 #: storage/views/trading/cancel_offer.py:165
 #: storage/views/trading/create_offer.py:295
-#: storage/views/trading/get_offers.py:259 war/views/join_revolution.py:150
+#: storage/views/trading/get_offers.py:259 war/views/join_revolution.py:398
 msgctxt "core"
 msgid "Ошибка метода"
 msgstr "Помилка методу"
@@ -2386,7 +2386,7 @@ msgstr "Партії держави"
 #: education/templates/education/edu_gov.html:439
 #: education/templates/education/edu_gov.html:448
 #: education/templates/education/edu_gov.html:457
-#: state/templates/state/redesign/gov/parliament.html:46
+#: state/templates/state/redesign/gov/parliament.html:47
 msgctxt "parliament"
 msgid "мест"
 msgstr "місць"
@@ -5108,56 +5108,56 @@ msgctxt "has_party"
 msgid "исключить"
 msgstr "виключити"
 
-#: party/templates/party/redesign/party_blocks/has_party.html:12
+#: party/templates/party/redesign/party_blocks/has_party.html:13
 #: party/templates/party/redesign/party_blocks/no_party.html:10
 #: party/views/party.py:43
 msgctxt "has_party"
 msgid "Партия"
 msgstr "Партія"
 
-#: party/templates/party/redesign/party_blocks/has_party.html:130
+#: party/templates/party/redesign/party_blocks/has_party.html:131
 #: party/templates/party/redesign/party_requests.html:29
 #: party/templates/party/redesign/party_view.html:178
 msgctxt "has_party"
 msgid "Никнейм"
 msgstr "Нікнейм"
 
-#: party/templates/party/redesign/party_blocks/has_party.html:131
+#: party/templates/party/redesign/party_blocks/has_party.html:132
 #: party/templates/party/redesign/party_view.html:179
 msgctxt "has_party"
 msgid "Был в сети"
 msgstr "Був у мережі"
 
-#: party/templates/party/redesign/party_blocks/has_party.html:132
+#: party/templates/party/redesign/party_blocks/has_party.html:133
 #: party/templates/party/redesign/party_view.html:180
 msgctxt "has_party"
 msgid "Должность"
 msgstr "Посада"
 
-#: party/templates/party/redesign/party_blocks/has_party.html:159
-#: party/templates/party/redesign/party_blocks/has_party.html:162
+#: party/templates/party/redesign/party_blocks/has_party.html:160
+#: party/templates/party/redesign/party_blocks/has_party.html:163
 #: party/templates/party/redesign/party_view.html:203
 #: party/templates/party/redesign/party_view.html:206
 msgctxt "has_party"
 msgid "давно"
 msgstr "давно"
 
-#: party/templates/party/redesign/party_blocks/has_party.html:195
+#: party/templates/party/redesign/party_blocks/has_party.html:196
 msgctxt "has_party"
 msgid "Покинуть партию?"
 msgstr "Покинути партію?"
 
-#: party/templates/party/redesign/party_blocks/has_party.html:196
+#: party/templates/party/redesign/party_blocks/has_party.html:197
 msgctxt "has_party"
 msgid "Вы покинете партию, а также все связанные должности. Продолжить?"
 msgstr "Ви покинете партію, а також всі пов'язані посади. Продовжити?"
 
-#: party/templates/party/redesign/party_blocks/has_party.html:197
+#: party/templates/party/redesign/party_blocks/has_party.html:198
 msgctxt "has_party"
 msgid "Продолжить"
 msgstr "Продовжити"
 
-#: party/templates/party/redesign/party_blocks/has_party.html:198
+#: party/templates/party/redesign/party_blocks/has_party.html:199
 msgctxt "has_party"
 msgid "Отмена"
 msgstr "Скасувати"
@@ -5818,9 +5818,12 @@ msgid "Пользовательского соглашения"
 msgstr "Угоди користувача"
 
 #: player/templates/player/index.html:305
+#, fuzzy
+#| msgctxt "assets"
+#| msgid "Товары для передачи не выбраны"
 msgctxt "index"
-msgid "и порядка обработки персональных данных"
-msgstr "та порядку обробки персональних даних"
+msgid "и Политики конфиденциальности"
+msgstr "Товари для передачі не обрані"
 
 #: player/templates/player/index.html:340
 #, fuzzy
@@ -5830,14 +5833,26 @@ msgctxt "index"
 msgid "читать"
 msgstr "стаття"
 
-#: player/templates/player/personal_data.html:6
-#: player/templates/player/personal_data.html:10
-msgctxt "personal_data"
-msgid "Согласие на обработку персональных данных"
-msgstr "Згода на обробку персональних даних"
+#: player/templates/player/privacy.html:6
+#: player/templates/player/privacy.html:10
+#, fuzzy
+#| msgctxt "assets"
+#| msgid "Товары для передачи не выбраны"
+msgctxt "privacy"
+msgid "Политика конфиденциальности"
+msgstr "Товари для передачі не обрані"
 
-#: player/templates/player/personal_data.html:13
-msgctxt "personal_data"
+#: player/templates/player/privacy.html:13
+#, fuzzy
+#| msgctxt "personal_data"
+#| msgid ""
+#| "Я, передавая уникальные идентификаторы социальных сетей, а также имя, "
+#| "фамилию и псевдонимы в них, далее именуемый(ая) \"Субъект персональных "
+#| "данных\", даю свое согласие на обработку своих персональных данных "
+#| "Администрацией Wild Politics, физическим лицом Горшенин А.И., далее "
+#| "именуемым \"Администрация\", в соответствии с законодательством "
+#| "Российской Федерации (далее - \"Законодательство\")."
+msgctxt "privacy"
 msgid ""
 "Я, передавая уникальные идентификаторы социальных сетей, а также имя, "
 "фамилию и псевдонимы в них, далее именуемый(ая) \"Субъект персональных "
@@ -5853,53 +5868,85 @@ msgstr ""
 "\"Адміністрація\", відповідно до законодавства Російської Федерації (Далі - "
 "\"Законодавство\")."
 
-#: player/templates/player/personal_data.html:15
-msgctxt "personal_data"
+#: player/templates/player/privacy.html:15
+#, fuzzy
+#| msgctxt "personal_data"
+#| msgid "Цель обработки персональных данных:"
+msgctxt "privacy"
 msgid "Цель обработки персональных данных:"
 msgstr "Мета обробки персональних даних:"
 
-#: player/templates/player/personal_data.html:17
-msgctxt "personal_data"
+#: player/templates/player/privacy.html:17
+#, fuzzy
+#| msgctxt "personal_data"
+#| msgid "Предоставление услуг развлекательного характера."
+msgctxt "privacy"
 msgid "Предоставление услуг развлекательного характера."
 msgstr "Надання послуг розважального характеру."
 
-#: player/templates/player/personal_data.html:18
-msgctxt "personal_data"
+#: player/templates/player/privacy.html:18
+#, fuzzy
+#| msgctxt "personal_data"
+#| msgid "Информирование пользователя об изменениях работы Сайта."
+msgctxt "privacy"
 msgid "Информирование пользователя об изменениях работы Сайта."
 msgstr "Інформування користувача про зміни роботи Сайту."
 
-#: player/templates/player/personal_data.html:19
-msgctxt "personal_data"
+#: player/templates/player/privacy.html:19
+#, fuzzy
+#| msgctxt "personal_data"
+#| msgid "Обработка данных в рекламных целях."
+msgctxt "privacy"
 msgid "Обработка данных в рекламных целях."
 msgstr "Обробка даних у цілях реклами."
 
-#: player/templates/player/personal_data.html:22
-msgctxt "personal_data"
+#: player/templates/player/privacy.html:22
+#, fuzzy
+#| msgctxt "personal_data"
+#| msgid "Категории персональных данных:"
+msgctxt "privacy"
 msgid "Категории персональных данных:"
 msgstr "Категорії персональних даних:"
 
-#: player/templates/player/personal_data.html:24
-msgctxt "personal_data"
+#: player/templates/player/privacy.html:24
+#, fuzzy
+#| msgctxt "personal_data"
+#| msgid "Уникальные идентификаторы социальных сетей."
+msgctxt "privacy"
 msgid "Уникальные идентификаторы социальных сетей."
 msgstr "Унікальні ідентифікатори соціальних мереж."
 
-#: player/templates/player/personal_data.html:25
-msgctxt "personal_data"
+#: player/templates/player/privacy.html:25
+#, fuzzy
+#| msgctxt "personal_data"
+#| msgid "Имя, фамилия и псевдонимы в социальных сетях."
+msgctxt "privacy"
 msgid "Имя, фамилия и псевдонимы в социальных сетях."
 msgstr "Ім'я, прізвище та псевдоніми у соціальних мережах."
 
-#: player/templates/player/personal_data.html:26
-msgctxt "personal_data"
+#: player/templates/player/privacy.html:26
+#, fuzzy
+#| msgctxt "personal_data"
+#| msgid "IP-адрес и информация браузера."
+msgctxt "privacy"
 msgid "IP-адрес и информация браузера."
 msgstr "IP-адреса та інформація браузера."
 
-#: player/templates/player/personal_data.html:29
-msgctxt "personal_data"
+#: player/templates/player/privacy.html:29
+#, fuzzy
+#| msgctxt "personal_data"
+#| msgid "Способы и условия обработки персональных данных:"
+msgctxt "privacy"
 msgid "Способы и условия обработки персональных данных:"
 msgstr "Способи та умови обробки персональних даних:"
 
-#: player/templates/player/personal_data.html:30
-msgctxt "personal_data"
+#: player/templates/player/privacy.html:30
+#, fuzzy
+#| msgctxt "personal_data"
+#| msgid ""
+#| "Сбор, хранение, использование и передача третьим лицам в рекламных целях, "
+#| "а также в целях повышения качества работы Сервисов Wild Politics."
+msgctxt "privacy"
 msgid ""
 "Сбор, хранение, использование и передача третьим лицам в рекламных целях, а "
 "также в целях повышения качества работы Сервисов Wild Politics."
@@ -5907,13 +5954,22 @@ msgstr ""
 "Збір, зберігання, використання та передача третім особам з рекламною метою, "
 "а також з метою підвищення якості роботи Сервісів Wild Politics."
 
-#: player/templates/player/personal_data.html:32
-msgctxt "personal_data"
+#: player/templates/player/privacy.html:32
+#, fuzzy
+#| msgctxt "personal_data"
+#| msgid "Передача персональных данных третьим лицам:"
+msgctxt "privacy"
 msgid "Передача персональных данных третьим лицам:"
 msgstr "Передача персональних даних третім особам:"
 
-#: player/templates/player/personal_data.html:33
-msgctxt "personal_data"
+#: player/templates/player/privacy.html:33
+#, fuzzy
+#| msgctxt "personal_data"
+#| msgid ""
+#| "Субъект персональных данных соглашается на передачу его/ее персональных "
+#| "данных третьим лицам, для хранения и обработки в рекламных целях, а также "
+#| "в целях повышения качества работы Сервисов Wild Politics."
+msgctxt "privacy"
 msgid ""
 "Субъект персональных данных соглашается на передачу его/ее персональных "
 "данных третьим лицам, для хранения и обработки в рекламных целях, а также в "
@@ -5923,13 +5979,23 @@ msgstr ""
 "даних третім особам, для зберігання та обробки з рекламною метою, а також з "
 "метою підвищення якості роботи Сервісів Wild Politics."
 
-#: player/templates/player/personal_data.html:35
-msgctxt "personal_data"
+#: player/templates/player/privacy.html:35
+#, fuzzy
+#| msgctxt "personal_data"
+#| msgid "Сроки обработки персональных данных:"
+msgctxt "privacy"
 msgid "Сроки обработки персональных данных:"
 msgstr "Терміни обробки персональних даних:"
 
-#: player/templates/player/personal_data.html:36
-msgctxt "personal_data"
+#: player/templates/player/privacy.html:36
+#, fuzzy
+#| msgctxt "personal_data"
+#| msgid ""
+#| "Персональные данные субъекта персональных данных хранятся и "
+#| "обрабатываются Администрацией до получения письменного обращения от "
+#| "пользователя в свободной форме, с желанием отозвать своё согласие на "
+#| "обработку персональных данных."
+msgctxt "privacy"
 msgid ""
 "Персональные данные субъекта персональных данных хранятся и обрабатываются "
 "Администрацией до получения письменного обращения от пользователя в "
@@ -5940,13 +6006,21 @@ msgstr ""
 "Адміністрацією до отримання письмового звернення від користувача у вільній "
 "формі, з бажанням відкликати свою згоду на обробку персональних даних."
 
-#: player/templates/player/personal_data.html:38
-msgctxt "personal_data"
+#: player/templates/player/privacy.html:38
+#, fuzzy
+#| msgctxt "personal_data"
+#| msgid "Отзыв согласия на обработку персональных данных:"
+msgctxt "privacy"
 msgid "Отзыв согласия на обработку персональных данных:"
 msgstr "Відклик згоди на обробку персональних даних:"
 
-#: player/templates/player/personal_data.html:39
-msgctxt "personal_data"
+#: player/templates/player/privacy.html:39
+#, fuzzy
+#| msgctxt "personal_data"
+#| msgid ""
+#| "Субъект персональных данных имеет право отозвать свое согласие на "
+#| "обработку своих персональных данных."
+msgctxt "privacy"
 msgid ""
 "Субъект персональных данных имеет право отозвать свое согласие на обработку "
 "своих персональных данных."
@@ -5954,23 +6028,39 @@ msgstr ""
 "Суб'єкт персональних даних має право відкликати свою згоду на опрацювання "
 "своїх персональних даних."
 
-#: player/templates/player/personal_data.html:40
-msgctxt "personal_data"
+#: player/templates/player/privacy.html:40
+#, fuzzy
+#| msgctxt "personal_data"
+#| msgid "Инструкция по удалению персональных данных размещена по адресу"
+msgctxt "privacy"
 msgid "Инструкция по удалению персональных данных размещена по адресу"
 msgstr "Інструкцію з видалення персональних даних розміщено за адресою"
 
-#: player/templates/player/personal_data.html:42
-msgctxt "personal_data"
+#: player/templates/player/privacy.html:42
+#, fuzzy
+#| msgctxt "personal_data"
+#| msgid "Контактная информация оператора:"
+msgctxt "privacy"
 msgid "Контактная информация оператора:"
 msgstr "Контактна інформація оператора:"
 
-#: player/templates/player/personal_data.html:43
-msgctxt "personal_data"
+#: player/templates/player/privacy.html:43
+#, fuzzy
+#| msgctxt "personal_data"
+#| msgid "Электронная почта Администрации:"
+msgctxt "privacy"
 msgid "Электронная почта Администрации:"
 msgstr "Електронна пошта Адміністрації:"
 
-#: player/templates/player/personal_data.html:45
-msgctxt "personal_data"
+#: player/templates/player/privacy.html:45
+#, fuzzy
+#| msgctxt "personal_data"
+#| msgid ""
+#| "Я ПОДТВЕРЖДАЮ, ЧТО ЯВЛЯЮСЬ СУБЪЕКТОМ ПЕРСОНАЛЬНЫХ ДАННЫХ, ОЗНАКОМЛЕН(А) С "
+#| "ЦЕЛЯМИ ОБРАБОТКИ МОИХ ПЕРСОНАЛЬНЫХ ДАННЫХ И ДОБРОВОЛЬНО ПРЕДОСТАВЛЯЮ СВОЕ "
+#| "СОГЛАСИЕ НА ИХ ОБРАБОТКУ В СООТВЕТСТВИИ С УКАЗАННЫМИ ВЫШЕ УСЛОВИЯМИ И "
+#| "УСЛОВИЯМИ ЗАКОНОДАТЕЛЬСТВА."
+msgctxt "privacy"
 msgid ""
 "Я ПОДТВЕРЖДАЮ, ЧТО ЯВЛЯЮСЬ СУБЪЕКТОМ ПЕРСОНАЛЬНЫХ ДАННЫХ, ОЗНАКОМЛЕН(А) С "
 "ЦЕЛЯМИ ОБРАБОТКИ МОИХ ПЕРСОНАЛЬНЫХ ДАННЫХ И ДОБРОВОЛЬНО ПРЕДОСТАВЛЯЮ СВОЕ "
@@ -8748,12 +8838,12 @@ msgctxt "state_manage"
 msgid "Смена приветственного сообщения"
 msgstr "Зміна вітального повідомлення"
 
-#: state/templates/state/redesign/gov/parliament.html:97
+#: state/templates/state/redesign/gov/parliament.html:98
 msgctxt "parliament"
 msgid "свободно"
 msgstr "вільно"
 
-#: state/templates/state/redesign/gov/parliament.html:116
+#: state/templates/state/redesign/gov/parliament.html:117
 msgctxt "parliament"
 msgid "нет парламентских партий"
 msgstr "немає парламентських партій"
@@ -8978,7 +9068,7 @@ msgstr "Малий"
 
 #: storage/models/storage.py:110
 #: storage/templates/storage/redesign/assets.html:143
-#: storage/templates/storage/redesign/assets_info.html:11
+#: storage/templates/storage/redesign/assets_info.html:12
 msgctxt "storage"
 msgid "Уровень"
 msgstr "Рівень"
@@ -9146,7 +9236,8 @@ msgstr "оберіть склад"
 
 #: storage/templates/storage/redesign/assets.html:101
 #: storage/templates/storage/redesign/assets.html:167
-#: storage/templates/storage/redesign/assets_info.html:34
+#: storage/templates/storage/redesign/assets_info.html:42
+#: war/templates/war/redesign/revolution_page.html:184
 msgctxt "assets"
 msgid "объём (ед)"
 msgstr "об'єм (од)"
@@ -9976,13 +10067,13 @@ msgid "Отмена"
 msgstr "Скасувати"
 
 #: storage/views/assets/assets_destroy.py:49
-#: storage/views/assets/assets_transfer.py:82
+#: storage/views/assets/assets_transfer.py:82 war/views/join_revolution.py:219
 msgctxt "assets"
 msgid "Склад"
 msgstr "Склад"
 
 #: storage/views/assets/assets_destroy.py:50
-#: storage/views/assets/assets_transfer.py:83
+#: storage/views/assets/assets_transfer.py:83 war/views/join_revolution.py:220
 msgctxt "assets"
 msgid "вам не принадлежит"
 msgstr "вам не належить"
@@ -10013,45 +10104,51 @@ msgstr "Знищення товару"
 #: storage/views/assets/assets_transfer.py:211
 #: storage/views/assets/assets_transfer.py:218
 #: storage/views/assets/assets_transfer.py:225
-#: storage/views/assets/assets_transfer.py:232
+#: storage/views/assets/assets_transfer.py:232 war/views/join_revolution.py:222
+#: war/views/join_revolution.py:242 war/views/join_revolution.py:258
+#: war/views/join_revolution.py:274 war/views/join_revolution.py:284
+#: war/views/join_revolution.py:328 war/views/join_revolution.py:341
+#: war/views/join_revolution.py:353 war/views/join_revolution.py:360
 msgctxt "assets"
 msgid "Закрыть"
 msgstr "Зачинити"
 
 #: storage/views/assets/assets_destroy.py:74
-#: storage/views/assets/assets_transfer.py:134
+#: storage/views/assets/assets_transfer.py:134 war/views/join_revolution.py:272
 msgctxt "assets"
 msgid "Один или несколько запасов не принадлежат вашим складам"
 msgstr "Один чи декілька запасів не належать до ваших складів"
 
 #: storage/views/assets/assets_destroy.py:84
-#: storage/views/assets/assets_transfer.py:144
+#: storage/views/assets/assets_transfer.py:144 war/views/join_revolution.py:282
 msgctxt "assets"
 msgid "Один или несколько запасов не существуют"
 msgstr "Один чи декілька запасів не існують"
 
 #: storage/views/assets/assets_destroy.py:111
-#: storage/views/assets/assets_transfer.py:205
+#: storage/views/assets/assets_transfer.py:205 war/views/join_revolution.py:346
 msgctxt "assets"
 msgid "На складе в регионе "
 msgstr "На складі в регіоні"
 
 #: storage/views/assets/assets_destroy.py:112
-#: storage/views/assets/assets_transfer.py:206
+#: storage/views/assets/assets_transfer.py:206 war/views/join_revolution.py:347
 msgctxt "assets"
 msgid " недостаточно товара "
 msgstr "недостатньо товару"
 
 #: storage/views/assets/assets_destroy.py:113
 #: storage/views/assets/assets_transfer.py:197
-#: storage/views/assets/assets_transfer.py:207
+#: storage/views/assets/assets_transfer.py:207 war/views/join_revolution.py:337
+#: war/views/join_revolution.py:349
 msgctxt "assets"
 msgid "Требуется: "
 msgstr "Потрібно:"
 
 #: storage/views/assets/assets_destroy.py:114
 #: storage/views/assets/assets_transfer.py:197
-#: storage/views/assets/assets_transfer.py:208
+#: storage/views/assets/assets_transfer.py:208 war/views/join_revolution.py:338
+#: war/views/join_revolution.py:350
 msgctxt "assets"
 msgid ", в наличии: "
 msgstr ", в наявності:"
@@ -10067,15 +10164,15 @@ msgctxt "assets"
 msgid "Операции с товарами"
 msgstr "Операції з товарами"
 
-#: storage/views/assets/assets_info.py:61
+#: storage/views/assets/assets_info.py:70
 #, fuzzy
 #| msgid "Такого склада у вас нет"
 msgctxt "assets_info"
 msgid "Такого склада у вас нет"
 msgstr "Такого складу у вас немає"
 
-#: storage/views/assets/assets_info.py:62
-#: storage/views/assets/assets_info.py:70
+#: storage/views/assets/assets_info.py:71
+#: storage/views/assets/assets_info.py:79
 #, fuzzy
 #| msgctxt "storage_upgrade"
 #| msgid "Улучшение склада"
@@ -10109,42 +10206,45 @@ msgstr "Цільовий Склад має бути цілим числом"
 #: storage/views/assets/assets_transfer.py:210
 #: storage/views/assets/assets_transfer.py:217
 #: storage/views/assets/assets_transfer.py:224
-#: storage/views/assets/assets_transfer.py:231
+#: storage/views/assets/assets_transfer.py:231 war/views/join_revolution.py:257
+#: war/views/join_revolution.py:273 war/views/join_revolution.py:283
+#: war/views/join_revolution.py:327 war/views/join_revolution.py:340
+#: war/views/join_revolution.py:352 war/views/join_revolution.py:359
 msgctxt "assets"
 msgid "Перемещение товара"
 msgstr "Переміщення товару"
 
-#: storage/views/assets/assets_transfer.py:103
+#: storage/views/assets/assets_transfer.py:103 war/views/join_revolution.py:240
 msgctxt "assets"
 msgid "Запрещено вывозить товары из атакованных регионов"
 msgstr "Заборонено вивозити товари з атакованих регіонів"
 
-#: storage/views/assets/assets_transfer.py:119
+#: storage/views/assets/assets_transfer.py:119 war/views/join_revolution.py:256
 msgctxt "assets"
 msgid "Один или несколько запасов пусты"
 msgstr "Один або кілька запасів порожні"
 
-#: storage/views/assets/assets_transfer.py:186
+#: storage/views/assets/assets_transfer.py:186 war/views/join_revolution.py:326
 msgctxt "assets"
 msgid "Недостаточно средств для оплаты доставки"
 msgstr "Недостатньо коштів на оплату доставки"
 
-#: storage/views/assets/assets_transfer.py:194
+#: storage/views/assets/assets_transfer.py:194 war/views/join_revolution.py:334
 msgctxt "assets"
 msgid "типоразмер:"
 msgstr "типорозмір:"
 
-#: storage/views/assets/assets_transfer.py:196
+#: storage/views/assets/assets_transfer.py:196 war/views/join_revolution.py:336
 msgctxt "assets"
 msgid "недостаточно места для товара."
 msgstr "недостатньо місця для товару"
 
-#: storage/views/assets/assets_transfer.py:206
+#: storage/views/assets/assets_transfer.py:206 war/views/join_revolution.py:348
 msgctxt "assets"
 msgid " для передачи."
 msgstr "для передачі"
 
-#: storage/views/assets/assets_transfer.py:216
+#: storage/views/assets/assets_transfer.py:216 war/views/join_revolution.py:358
 msgctxt "assets"
 msgid "Товары для передачи не выбраны"
 msgstr "Товари для передачі не обрані"
@@ -10980,6 +11080,14 @@ msgctxt "wars_list"
 msgid "Силы восстания"
 msgstr "Сили повстання"
 
+#: war/templates/war/redesign/revolution_page.html:63
+#, fuzzy
+#| msgctxt "war_page"
+#| msgid "Поднять восстание"
+msgctxt "revolution_page"
+msgid "Начать восстание"
+msgstr "Підняти повстання"
+
 #: war/templates/war/redesign/war_page.html:65
 msgctxt "war_page"
 msgid "Список войн"
@@ -11017,45 +11125,46 @@ msgctxt "war_page"
 msgid "Государственные"
 msgstr "Державні"
 
-#: war/views/join_revolution.py:29
+#: war/views/join_revolution.py:113
 msgctxt "join_revolution"
 msgid "Поднятие восстания доступно начиная с суммы Характеристик в 15 ед."
 msgstr "Підняття повстання доступне починаючи з суми Характеристик 15 од."
 
-#: war/views/join_revolution.py:30 war/views/join_revolution.py:53
-#: war/views/join_revolution.py:66 war/views/join_revolution.py:78
-#: war/views/join_revolution.py:90 war/views/join_revolution.py:102
-#: war/views/join_revolution.py:111 war/views/join_revolution.py:151
+#: war/views/join_revolution.py:114 war/views/join_revolution.py:137
+#: war/views/join_revolution.py:150 war/views/join_revolution.py:162
+#: war/views/join_revolution.py:174 war/views/join_revolution.py:186
+#: war/views/join_revolution.py:195 war/views/join_revolution.py:221
+#: war/views/join_revolution.py:241 war/views/join_revolution.py:399
 msgctxt "join_revolution"
 msgid "Участие в восстании"
 msgstr "Участь у повстанні"
 
-#: war/views/join_revolution.py:52
+#: war/views/join_revolution.py:136
 msgctxt "join_revolution"
 msgid "Недостаточно золота"
 msgstr "Недостатньо золота"
 
-#: war/views/join_revolution.py:65
+#: war/views/join_revolution.py:149
 msgctxt "join_revolution"
 msgid "С момента завершения последнего восстания не прошло 7 дней"
 msgstr "З моменту завершення останнього повстання не минуло 7 днів"
 
-#: war/views/join_revolution.py:77
+#: war/views/join_revolution.py:161
 msgctxt "join_revolution"
 msgid "Для участия в восстании требуется прописка"
 msgstr "Для участі у повстанні потрібна прописка"
 
-#: war/views/join_revolution.py:89
+#: war/views/join_revolution.py:173
 msgctxt "join_revolution"
 msgid "Вы уже являетесь участником восстания здесь"
 msgstr "Ви вже є учасником повстання тут"
 
-#: war/views/join_revolution.py:101
+#: war/views/join_revolution.py:185
 msgctxt "join_revolution"
 msgid "Вы принимали участие в восстании последние 10 дней"
 msgstr "Ви брали участь у повстанні останні 10 днів"
 
-#: war/views/join_revolution.py:110
+#: war/views/join_revolution.py:194
 #, fuzzy
 #| msgctxt "new_bill"
 #| msgid "В данном регионе введено военное положение"
@@ -11077,6 +11186,11 @@ msgstr "оборона"
 msgctxt "lists"
 msgid "Урон за сторону:"
 msgstr "Шкода за бік:"
+
+#: war/views/revolution_page.py:112
+msgctxt "war_page"
+msgid "Начать революцию"
+msgstr ""
 
 #: war/views/switch_war_visibility.py:38
 #, fuzzy
@@ -11111,6 +11225,14 @@ msgstr "Немає такого запису про участь у бою"
 msgctxt "war_page"
 msgid "Войны"
 msgstr "Війни"
+
+#~ msgctxt "index"
+#~ msgid "и порядка обработки персональных данных"
+#~ msgstr "та порядку обробки персональних даних"
+
+#~ msgctxt "personal_data"
+#~ msgid "Согласие на обработку персональных данных"
+#~ msgstr "Згода на обробку персональних даних"
 
 #~ msgctxt "education"
 #~ msgid ""
