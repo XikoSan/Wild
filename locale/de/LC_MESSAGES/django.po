@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-12 17:28+0300\n"
+"POT-Creation-Date: 2025-02-12 17:38+0300\n"
 "PO-Revision-Date: 2023-06-22 18:43+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -366,8 +366,8 @@ msgstr "Bezeichnung darf nicht leer sein"
 #: state/views/state_foundation.py:56 state/views/state_foundation.py:70
 #: state/views/state_foundation.py:111
 #: storage/views/assets/assets_destroy.py:137
-#: storage/views/assets/assets_info.py:72
-#: storage/views/assets/assets_info.py:80
+#: storage/views/assets/assets_info.py:63
+#: storage/views/assets/assets_info.py:71
 #: storage/views/assets/storage_move.py:37
 #: storage/views/assets/storage_move.py:46
 #: storage/views/assets/storage_move.py:55
@@ -469,10 +469,10 @@ msgstr "Bezeichnung darf nicht leer sein"
 #: war/consumers.py:237 war/consumers.py:249 war/consumers.py:271
 #: war/consumers.py:291 war/consumers.py:300 war/consumers.py:313
 #: war/consumers.py:324 war/consumers.py:334 war/consumers.py:598
-#: war/views/join_revolution.py:115 war/views/join_revolution.py:138
-#: war/views/join_revolution.py:151 war/views/join_revolution.py:163
-#: war/views/join_revolution.py:175 war/views/join_revolution.py:187
-#: war/views/join_revolution.py:196 war/views/join_revolution.py:397
+#: war/views/join_revolution.py:31 war/views/join_revolution.py:54
+#: war/views/join_revolution.py:67 war/views/join_revolution.py:79
+#: war/views/join_revolution.py:91 war/views/join_revolution.py:103
+#: war/views/join_revolution.py:112 war/views/join_revolution.py:149
 #: war/views/start_war.py:104 war/views/switch_war_visibility.py:40
 #: war/views/switch_war_visibility.py:48 war/views/switch_war_visibility.py:64
 #: war/views/switch_war_visibility.py:92
@@ -672,7 +672,7 @@ msgstr "Bezeichnung darf nicht leer sein"
 #: player/views/set_timezone.py:43 player/views/skills/boost_skill.py:166
 #: player/views/skills/up_skill.py:190 player/views/switch_chat.py:85
 #: skill/views/skill_cancel.py:101 state/views/set_mandate.py:78
-#: state/views/state_foundation.py:109 storage/views/assets/assets_info.py:78
+#: state/views/state_foundation.py:109 storage/views/assets/assets_info.py:69
 #: storage/views/auctions/set_bet.py:159
 #: storage/views/vault/avia_box/loot_aviaboxes.py:54
 #: storage/views/vault/avia_box/open_aviaboxes.py:132
@@ -2705,7 +2705,7 @@ msgstr "Es gibt kein Lagerhaus in dieser Region"
 #: storage/views/trading/accept_offer.py:477
 #: storage/views/trading/cancel_offer.py:165
 #: storage/views/trading/create_offer.py:295
-#: storage/views/trading/get_offers.py:259 war/views/join_revolution.py:398
+#: storage/views/trading/get_offers.py:259 war/views/join_revolution.py:150
 #, fuzzy
 #| msgid "Ошибка метода"
 msgctxt "core"
@@ -10345,7 +10345,7 @@ msgstr ""
 
 #: storage/models/storage.py:110
 #: storage/templates/storage/redesign/assets.html:143
-#: storage/templates/storage/redesign/assets_info.html:12
+#: storage/templates/storage/redesign/assets_info.html:11
 msgctxt "storage"
 msgid "Уровень"
 msgstr "Level"
@@ -10518,8 +10518,7 @@ msgstr "Wählen Sie ein Lagerhaus"
 
 #: storage/templates/storage/redesign/assets.html:101
 #: storage/templates/storage/redesign/assets.html:167
-#: storage/templates/storage/redesign/assets_info.html:42
-#: war/templates/war/redesign/revolution_page.html:184
+#: storage/templates/storage/redesign/assets_info.html:34
 msgctxt "assets"
 msgid "объём (ед)"
 msgstr "Menge (Einheiten)"
@@ -11482,13 +11481,13 @@ msgid "Отмена"
 msgstr "abbrechen"
 
 #: storage/views/assets/assets_destroy.py:49
-#: storage/views/assets/assets_transfer.py:82 war/views/join_revolution.py:219
+#: storage/views/assets/assets_transfer.py:82
 msgctxt "assets"
 msgid "Склад"
 msgstr "Lagerhaus"
 
 #: storage/views/assets/assets_destroy.py:50
-#: storage/views/assets/assets_transfer.py:83 war/views/join_revolution.py:220
+#: storage/views/assets/assets_transfer.py:83
 msgctxt "assets"
 msgid "вам не принадлежит"
 msgstr "Sie gehören nicht dazu"
@@ -11519,17 +11518,13 @@ msgstr "Vernichtung der Waren"
 #: storage/views/assets/assets_transfer.py:211
 #: storage/views/assets/assets_transfer.py:218
 #: storage/views/assets/assets_transfer.py:225
-#: storage/views/assets/assets_transfer.py:232 war/views/join_revolution.py:222
-#: war/views/join_revolution.py:242 war/views/join_revolution.py:258
-#: war/views/join_revolution.py:274 war/views/join_revolution.py:284
-#: war/views/join_revolution.py:328 war/views/join_revolution.py:341
-#: war/views/join_revolution.py:353 war/views/join_revolution.py:360
+#: storage/views/assets/assets_transfer.py:232
 msgctxt "assets"
 msgid "Закрыть"
 msgstr "Schließen"
 
 #: storage/views/assets/assets_destroy.py:74
-#: storage/views/assets/assets_transfer.py:134 war/views/join_revolution.py:272
+#: storage/views/assets/assets_transfer.py:134
 #, fuzzy
 #| msgctxt "w_trading"
 #| msgid "Выберите один или несколько критериев в настройках поиска"
@@ -11538,7 +11533,7 @@ msgid "Один или несколько запасов не принадлеж
 msgstr "Wähle in den Sucheinstellungen ein oder mehrere Kriterien aus"
 
 #: storage/views/assets/assets_destroy.py:84
-#: storage/views/assets/assets_transfer.py:144 war/views/join_revolution.py:282
+#: storage/views/assets/assets_transfer.py:144
 #, fuzzy
 #| msgctxt "w_trading"
 #| msgid "Выбранного склада игрока не существует"
@@ -11547,29 +11542,27 @@ msgid "Один или несколько запасов не существую
 msgstr "Das Lager des ausgewählten Spielers existiert nicht"
 
 #: storage/views/assets/assets_destroy.py:111
-#: storage/views/assets/assets_transfer.py:205 war/views/join_revolution.py:346
+#: storage/views/assets/assets_transfer.py:205
 msgctxt "assets"
 msgid "На складе в регионе "
 msgstr "In der Region vorrätig"
 
 #: storage/views/assets/assets_destroy.py:112
-#: storage/views/assets/assets_transfer.py:206 war/views/join_revolution.py:347
+#: storage/views/assets/assets_transfer.py:206
 msgctxt "assets"
 msgid " недостаточно товара "
 msgstr "nicht genügend Waren"
 
 #: storage/views/assets/assets_destroy.py:113
 #: storage/views/assets/assets_transfer.py:197
-#: storage/views/assets/assets_transfer.py:207 war/views/join_revolution.py:337
-#: war/views/join_revolution.py:349
+#: storage/views/assets/assets_transfer.py:207
 msgctxt "assets"
 msgid "Требуется: "
 msgstr "Erforderlich:"
 
 #: storage/views/assets/assets_destroy.py:114
 #: storage/views/assets/assets_transfer.py:197
-#: storage/views/assets/assets_transfer.py:208 war/views/join_revolution.py:338
-#: war/views/join_revolution.py:350
+#: storage/views/assets/assets_transfer.py:208
 msgctxt "assets"
 msgid ", в наличии: "
 msgstr "verfügbar:"
@@ -11588,15 +11581,15 @@ msgctxt "assets"
 msgid "Операции с товарами"
 msgstr "Transaktionen mit Waren"
 
-#: storage/views/assets/assets_info.py:70
+#: storage/views/assets/assets_info.py:61
 #, fuzzy
 #| msgid "Такого региона нет"
 msgctxt "assets_info"
 msgid "Такого склада у вас нет"
 msgstr "Es gibt keine solche Region"
 
-#: storage/views/assets/assets_info.py:71
-#: storage/views/assets/assets_info.py:79
+#: storage/views/assets/assets_info.py:62
+#: storage/views/assets/assets_info.py:70
 #, fuzzy
 #| msgctxt "storage_upgrade"
 #| msgid "Улучшение склада"
@@ -11633,20 +11626,17 @@ msgstr "Der Preis eines Artikels muss eine positive Zahl sein"
 #: storage/views/assets/assets_transfer.py:210
 #: storage/views/assets/assets_transfer.py:217
 #: storage/views/assets/assets_transfer.py:224
-#: storage/views/assets/assets_transfer.py:231 war/views/join_revolution.py:257
-#: war/views/join_revolution.py:273 war/views/join_revolution.py:283
-#: war/views/join_revolution.py:327 war/views/join_revolution.py:340
-#: war/views/join_revolution.py:352 war/views/join_revolution.py:359
+#: storage/views/assets/assets_transfer.py:231
 msgctxt "assets"
 msgid "Перемещение товара"
 msgstr "Verlagerung der Ware"
 
-#: storage/views/assets/assets_transfer.py:103 war/views/join_revolution.py:240
+#: storage/views/assets/assets_transfer.py:103
 msgctxt "assets"
 msgid "Запрещено вывозить товары из атакованных регионов"
 msgstr "Verbot der Ausfuhr von Waren aus angegriffenen Regionen"
 
-#: storage/views/assets/assets_transfer.py:119 war/views/join_revolution.py:256
+#: storage/views/assets/assets_transfer.py:119
 #, fuzzy
 #| msgctxt "w_trading"
 #| msgid "Выбранного склада игрока не существует"
@@ -11654,17 +11644,17 @@ msgctxt "assets"
 msgid "Один или несколько запасов пусты"
 msgstr "Das Lager des ausgewählten Spielers existiert nicht"
 
-#: storage/views/assets/assets_transfer.py:186 war/views/join_revolution.py:326
+#: storage/views/assets/assets_transfer.py:186
 msgctxt "assets"
 msgid "Недостаточно средств для оплаты доставки"
 msgstr "Unzureichende Mittel für die Bezahlung der Lieferung"
 
-#: storage/views/assets/assets_transfer.py:194 war/views/join_revolution.py:334
+#: storage/views/assets/assets_transfer.py:194
 msgctxt "assets"
 msgid "типоразмер:"
 msgstr ""
 
-#: storage/views/assets/assets_transfer.py:196 war/views/join_revolution.py:336
+#: storage/views/assets/assets_transfer.py:196
 #, fuzzy
 #| msgctxt "assets"
 #| msgid " недостаточно места для товара "
@@ -11672,12 +11662,12 @@ msgctxt "assets"
 msgid "недостаточно места для товара."
 msgstr "unzureichender Platz für die Ware"
 
-#: storage/views/assets/assets_transfer.py:206 war/views/join_revolution.py:348
+#: storage/views/assets/assets_transfer.py:206
 msgctxt "assets"
 msgid " для передачи."
 msgstr " für die Übertragung"
 
-#: storage/views/assets/assets_transfer.py:216 war/views/join_revolution.py:358
+#: storage/views/assets/assets_transfer.py:216
 msgctxt "assets"
 msgid "Товары для передачи не выбраны"
 msgstr "Nicht für die Übertragung ausgewählte Waren"
@@ -12647,13 +12637,6 @@ msgctxt "wars_list"
 msgid "Силы восстания"
 msgstr "Position in der Partei"
 
-#: war/templates/war/redesign/revolution_page.html:63
-#, fuzzy
-#| msgid "должность в партии"
-msgctxt "revolution_page"
-msgid "Начать восстание"
-msgstr "Position in der Partei"
-
 #: war/templates/war/redesign/war_page.html:65
 msgctxt "war_page"
 msgid "Список войн"
@@ -12706,16 +12689,15 @@ msgctxt "war_page"
 msgid "Государственные"
 msgstr "Staatliche Steuern"
 
-#: war/views/join_revolution.py:113
+#: war/views/join_revolution.py:29
 msgctxt "join_revolution"
 msgid "Поднятие восстания доступно начиная с суммы Характеристик в 15 ед."
 msgstr ""
 
-#: war/views/join_revolution.py:114 war/views/join_revolution.py:137
-#: war/views/join_revolution.py:150 war/views/join_revolution.py:162
-#: war/views/join_revolution.py:174 war/views/join_revolution.py:186
-#: war/views/join_revolution.py:195 war/views/join_revolution.py:221
-#: war/views/join_revolution.py:241 war/views/join_revolution.py:399
+#: war/views/join_revolution.py:30 war/views/join_revolution.py:53
+#: war/views/join_revolution.py:66 war/views/join_revolution.py:78
+#: war/views/join_revolution.py:90 war/views/join_revolution.py:102
+#: war/views/join_revolution.py:111 war/views/join_revolution.py:151
 #, fuzzy
 #| msgctxt "no_party"
 #| msgid "Вы не состоите в партии"
@@ -12723,7 +12705,7 @@ msgctxt "join_revolution"
 msgid "Участие в восстании"
 msgstr "Sie sind kein Mitglied der angegebenen Partei"
 
-#: war/views/join_revolution.py:136
+#: war/views/join_revolution.py:52
 #, fuzzy
 #| msgctxt "assets"
 #| msgid "недостаточно товара"
@@ -12731,17 +12713,17 @@ msgctxt "join_revolution"
 msgid "Недостаточно золота"
 msgstr "nicht genügend Waren"
 
-#: war/views/join_revolution.py:149
+#: war/views/join_revolution.py:65
 msgctxt "join_revolution"
 msgid "С момента завершения последнего восстания не прошло 7 дней"
 msgstr ""
 
-#: war/views/join_revolution.py:161
+#: war/views/join_revolution.py:77
 msgctxt "join_revolution"
 msgid "Для участия в восстании требуется прописка"
 msgstr ""
 
-#: war/views/join_revolution.py:173
+#: war/views/join_revolution.py:89
 #, fuzzy
 #| msgctxt "no_party"
 #| msgid "Вы не состоите в партии"
@@ -12749,12 +12731,12 @@ msgctxt "join_revolution"
 msgid "Вы уже являетесь участником восстания здесь"
 msgstr "Sie sind kein Mitglied der angegebenen Partei"
 
-#: war/views/join_revolution.py:185
+#: war/views/join_revolution.py:101
 msgctxt "join_revolution"
 msgid "Вы принимали участие в восстании последние 10 дней"
 msgstr ""
 
-#: war/views/join_revolution.py:194
+#: war/views/join_revolution.py:110
 msgctxt "join_revolution"
 msgid "В данном регионе объявлено мирное время"
 msgstr ""
@@ -12772,11 +12754,6 @@ msgstr ""
 #: war/views/open_war_side_list.py:121
 msgctxt "lists"
 msgid "Урон за сторону:"
-msgstr ""
-
-#: war/views/revolution_page.py:112
-msgctxt "war_page"
-msgid "Начать революцию"
 msgstr ""
 
 #: war/views/switch_war_visibility.py:38
@@ -12816,6 +12793,12 @@ msgstr "Du hast diese Fähigkeit nicht erlernt"
 msgctxt "war_page"
 msgid "Войны"
 msgstr "Kriege"
+
+#, fuzzy
+#~| msgid "должность в партии"
+#~ msgctxt "revolution_page"
+#~ msgid "Начать восстание"
+#~ msgstr "Position in der Partei"
 
 #, fuzzy
 #~| msgctxt "mining"
