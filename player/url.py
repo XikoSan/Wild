@@ -71,6 +71,7 @@ urlpatterns = [
     url(r'^skill_tbl$', skill_tbl, name='skill_tbl'),
     # Политика конфиденциальности
     path('privacy/', TemplateView.as_view(template_name='player/privacy.html'), name='privacy'),
+    path('personal_data/', TemplateView.as_view(template_name='player/privacy.html'), name='personal_data'),
     # регистрация нового персонажа
     url(r'^player/new/$', new_player, name='new_player'),
     # выход
